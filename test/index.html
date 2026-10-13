@@ -370,7 +370,9 @@ function loadElection() {
 }
 const PREC = {}, precLoading = {};
 let heatLevel = "county";
-window.__prec = function (st, rows) {
+const PREC_CREDIT = {};
+window.__prec = function (st, rows, credit) {
+  PREC_CREDIT[st] = credit || "";
   rows.forEach(r => {
     r[5] = decodePolys(r[5]);
     let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
@@ -470,7 +472,7 @@ function drawHeat() {
       const fill = r[4] ? marginColor((r[3] - r[2]) / r[4]) : "#d6d3d1";
       L.polygon(toLatLngs(r.slice(0, 6)), { renderer: heatRenderer, pane: "heatPane", color: "#ffffff", weight: 0.3, fillColor: fill, fillOpacity: 0.75, interactive: false }).addTo(heatLayer);
     });
-    mapnote.textContent = items.length ? items.length.toLocaleString("en-US") + " precincts shown. Results: MIT Election Data + Science Lab (CC0); shapes: Census 2020 voting districts." : "Precinct results not yet available for this county. Switch to By county to see county results.";
+    mapnote.textContent = items.length ? items.length.toLocaleString("en-US") + " precincts shown. Sources: " + (PREC_CREDIT[state.value] || "") : "Precinct results not yet available for this county. Switch to By county to see county results.";
     return;
   }
   if (!window.ELECTION2024) return;
