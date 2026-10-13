@@ -57,7 +57,7 @@
   #barGeo { top: calc(var(--sat) + var(--gap) * 2 + var(--bar)); }
   #barTime { top: calc(var(--sat) + var(--gap) * 3 + var(--bar) * 2); flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px; }
   #barTime[hidden] { display: none; }
-  #barBottom { bottom: calc(var(--sab) + var(--gap)); }
+  #barBottom { bottom: 0; padding-bottom: calc(var(--sab) + 4px); min-height: calc(var(--bar) + var(--sab)); box-sizing: border-box; }
   .rbtn { flex: 0 0 var(--btn); width: var(--btn); height: var(--btn); border-radius: 50%; padding: 0; border: 3px solid #fff; background: #000; color: #fff;
           display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,.35); cursor: pointer; touch-action: manipulation; }
   .rbtn svg { width: 55%; height: 55%; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
@@ -75,7 +75,7 @@
   #ynote { width: 100%; font-size: .8em; color: #444; padding-bottom: 4px; }
   #ynote:empty { display: none; }
   .bottomlbl { font: inherit; background: transparent; border: 0; color: #111; text-align: left; padding: 10px 0; min-height: 44px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .sheet { position: fixed; z-index: 1002; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) * 2 + var(--bar));
+  .sheet { position: fixed; z-index: 1002; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
            background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: auto; -webkit-overflow-scrolling: touch;
            padding: 0 calc(var(--gap) + var(--sar)) 0 calc(var(--gap) + var(--sal)); font-size: var(--fs); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
   .sheet[hidden] { display: none; }
@@ -87,7 +87,7 @@
   @media (min-width: 900px) {
     .sheet { left: auto; width: min(560px, 42vw); right: calc(var(--gap) * 2 + var(--btn) + var(--sar)); border-radius: 14px; top: calc(var(--sat) + var(--gap) * 3 + var(--bar) * 2); }
   }
-  .layout > .panel { position: fixed; z-index: 1003; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) * 2 + var(--bar));
+  .layout > .panel { position: fixed; z-index: 1003; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
            overflow: auto; border-radius: 0; box-shadow: 0 6px 20px rgba(0,0,0,.2); font-size: var(--fs); }
   .layout > .panel.closed { display: none; }
   .layout > .panel button, .layout > .panel select, .layout > .panel input { min-height: 44px; font-size: max(16px, 1em); }
@@ -95,7 +95,7 @@
   .tablewrap { max-height: none; }
   .leaflet-top { top: calc(var(--sat) + var(--gap) * 4 + var(--bar) * 3); }
   .leaflet-top.leaflet-right { right: calc(var(--gap) * 2 + var(--btn)); }
-  .leaflet-bottom { bottom: calc(var(--sab) + var(--gap) * 2 + var(--bar)); }
+  .leaflet-bottom { bottom: calc(var(--sab) + var(--gap) + var(--bar)); }
   .leaflet-control-zoom { display: none; }
   .heatinfo { font-size: 13px; max-width: min(70vw, 320px); }
   @media (max-width: 899px) { .leaflet-top.leaflet-right { right: 0; left: 0; display: flex; justify-content: center; } }
@@ -936,7 +936,11 @@ $("bList").onclick=()=>{ if(!sheet.hidden&&$("bList").classList.contains("on")){
 $("bList").onlongpress=null;
 // legacy selection panel still reachable from the district list
 const _cs=closeSheet; closeSheet=function(){ _cs(); $("bList").classList.remove("on"); };
-window.__v2={active,aggFor,refreshLayers,openLists};
+// VIEW HOOK: globe button will later flip between full-screen map and a full-screen list of candidates in office.
+// For now (one office) only "map" exists; add a "officeholders" view and call setView from $("bGlobe").onclick later.
+const VIEWS={map:{show(){}}}; let view="map";
+function setView(v){ if(!VIEWS[v]) return; view=v; VIEWS[v].show(); }
+window.__v2={active,aggFor,refreshLayers,openLists,VIEWS,setView,get view(){return view;}};
 syncLetters();
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
