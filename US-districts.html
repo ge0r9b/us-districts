@@ -34,6 +34,11 @@
   #picked button { padding: 2px 8px; }
   #map { height: 78vh; min-height: 420px; border-radius: 12px; }
   .mapbar { padding: 10px 12px; color: #57534e; }
+  .heatbtn { margin-left: 8px; white-space: nowrap; cursor: pointer; }
+  .heatlegend, .heatinfo { background: rgba(255,255,255,.94); padding: 6px 9px; border-radius: 6px; font: 12px/1.4 system-ui, sans-serif; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+  .heatinfo { min-width: 150px; }
+  .heatbar { display: flex; margin: 4px 0 2px; } .heatbar span { width: 22px; height: 10px; }
+  .heatlbl { display: flex; justify-content: space-between; color: #57534e; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -60,7 +65,7 @@
     <ul id="picked"></ul>
   </div>
   <div class="mapwrap">
-    <div class="mapbar"><span id="mapnote">Check a row to draw its boundary.</span> <label class="filebtn">Full boundaries<input id="fullfile" type="file" accept=".zip,application/zip" multiple hidden></label></div>
+    <div class="mapbar"><span id="mapnote">Check a row to draw its boundary.</span> <label class="heatbtn"><input id="heat" type="checkbox"> Show 2024 election heat map</label> <select id="heatlevel" hidden><option value="county">By county</option><option value="precinct">By precinct</option></select> <label class="filebtn">Full boundaries<input id="fullfile" type="file" accept=".zip,application/zip" multiple hidden></label></div>
     <div id="map"></div>
   </div>
 </div>
@@ -274,7 +279,7 @@ function drawFocus(zoom) {
         shapesFor(dataset.value, r).forEach(s => {
           const poly = L.polygon(toLatLngs(s), { color: "#64748b", weight: 1, fillColor: "#94a3b8", fillOpacity: 0.08 });
           poly.bindTooltip(r.filter(Boolean).slice(1).join(", "), { sticky: true });
-          poly.on("click", () => toggleRow(r));
+          poly.on("click", () => { if (!heatOn) toggleRow(r); });
           poly.addTo(focusLayer);
         });
       });
@@ -349,6 +354,191 @@ document.getElementById("deselall").onclick = () => {
   render(); redraw(); drawFocus(false);
 };
 document.getElementById("clear").onclick = () => { selected.clear(); render(); redraw(); drawFocus(false); };
+
+// ---- 2024 presidential election heat map ----
+let heatOn = false, heatLayer = null, heatRenderer = null, heatInfo = null, heatLegend = null, electionLoading = null;
+function loadElection() {
+  if (window.ELECTION2024) return Promise.resolve();
+  if (!electionLoading) electionLoading = new Promise(resolve => {
+    const s = document.createElement("script");
+    s.src = "data/election2024.js";
+    s.onload = () => resolve();
+    s.onerror = () => { mapnote.textContent = "Couldn't load the election results."; resolve(); };
+    document.head.appendChild(s);
+  });
+  return electionLoading;
+}
+const PREC = {}, precLoading = {};
+let heatLevel = "county";
+const PREC_CREDIT = {};
+window.__prec = function (st, rows, credit) {
+  PREC_CREDIT[st] = credit || "";
+  rows.forEach(r => {
+    r[5] = decodePolys(r[5]);
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    r[5].forEach(rings => rings[0].forEach(([x, y]) => { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }));
+    r.push([x0, y0, x1, y1]);
+  });
+  PREC[st] = rows;
+};
+function loadPrecincts(st) {
+  if (!st || PREC[st]) return Promise.resolve();
+  if (!precLoading[st]) precLoading[st] = new Promise(resolve => {
+    mapnote.textContent = "Loading " + st + " precinct results...";
+    const s = document.createElement("script");
+    s.src = "data/precincts2024/" + st.replace(/ /g, "_") + ".js";
+    s.onload = () => resolve();
+    s.onerror = () => { PREC[st] = null; resolve(); };
+    document.head.appendChild(s);
+  });
+  return precLoading[st];
+}
+function precItems() {
+  const rows = PREC[state.value];
+  if (!rows) return [];
+  return county.value ? rows.filter(r => r[0] === county.value) : rows;
+}
+function precHtml(r) {
+  const [cn, nm, dem, rep, tot] = r;
+  const head = "<strong>Precinct " + esc(nm) + "</strong><br>" + esc(cn) + ", " + esc(state.value) + "<br>";
+  if (!tot) return head + "No votes reported.";
+  const pd = dem / tot * 100, pr = rep / tot * 100, m = pr - pd;
+  return head + "Harris: " + fmtN(dem) + " (" + pd.toFixed(1) + "%)<br>Trump: " + fmtN(rep) + " (" + pr.toFixed(1) + "%)<br>Margin: " +
+    (m >= 0 ? "Trump +" : "Harris +") + Math.abs(m).toFixed(1) + " pts<br>Total votes: " + fmtN(tot);
+}
+function precAt(ll) {
+  const x = ll.lng, y = ll.lat;
+  return precItems().find(r => { const b = r[6]; return x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3] && pointInItem(r.slice(0, 6), x, y); }) || null;
+}
+function marginColor(m) {
+  // m = (Trump - Harris) / total, -1..1; red = Trump, blue = Harris
+  const stops = [[-0.6,[8,48,107]],[-0.3,[33,113,181]],[-0.1,[107,174,214]],[0,[247,247,247]],[0.1,[252,146,114]],[0.3,[222,45,38]],[0.6,[103,0,13]]];
+  if (m <= stops[0][0]) return "rgb(" + stops[0][1] + ")";
+  for (let i = 1; i < stops.length; i++) {
+    if (m <= stops[i][0]) {
+      const [a, ca] = stops[i - 1], [b, cb] = stops[i], t = (m - a) / (b - a);
+      return "rgb(" + ca.map((c, j) => Math.round(c + (cb[j] - c) * t)).join(",") + ")";
+    }
+  }
+  return "rgb(" + stops[stops.length - 1][1] + ")";
+}
+function fmtN(n) { return n.toLocaleString("en-US"); }
+function heatHtml(d) {
+  const r = window.ELECTION2024 && window.ELECTION2024[d[0] + "|" + d[1]];
+  if (!r) return "<strong>" + esc(d[1]) + ", " + esc(d[0]) + "</strong><br>No 2024 county results available.";
+  const [dem, rep, tot] = r, pd = dem / tot * 100, pr = rep / tot * 100, m = pr - pd;
+  return "<strong>" + esc(d[1]) + ", " + esc(d[0]) + "</strong><br>" +
+    "Harris: " + fmtN(dem) + " (" + pd.toFixed(1) + "%)<br>" +
+    "Trump: " + fmtN(rep) + " (" + pr.toFixed(1) + "%)<br>" +
+    "Margin: " + (m >= 0 ? "Trump +" : "Harris +") + Math.abs(m).toFixed(1) + " pts<br>" +
+    "Total votes: " + fmtN(tot);
+}
+function pointInItem(d, lon, lat) {
+  for (const rings of d[d.length - 1]) {
+    let inside = false;
+    rings.forEach((ring, ri) => {
+      let c = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i], [xj, yj] = ring[j];
+        if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) c = !c;
+      }
+      if (ri === 0) inside = c; else if (c) inside = false;
+    });
+    if (inside) return true;
+  }
+  return false;
+}
+function heatItems() {
+  return (GEOM.counties || []).filter(d => !state.value || d[0] === state.value);
+}
+function hitAt(latlng) {
+  if (!heatOn) return null;
+  if (heatLevel === "precinct") { const r = precAt(latlng); return r ? precHtml(r) : null; }
+  const d = countyAt(latlng); return d ? heatHtml(d) : null;
+}
+function countyAt(latlng) {
+  if (!heatOn) return null;
+  return heatItems().find(d => pointInItem(d, latlng.lng, latlng.lat)) || null;
+}
+function drawHeat() {
+  if (!map) return;
+  if (heatLayer) heatLayer.clearLayers();
+  if (!heatOn) return;
+  if (heatLevel === "precinct") {
+    if (!state.value) { mapnote.textContent = "Pick a state to see its precinct results."; return; }
+    if (PREC[state.value] === null) { mapnote.textContent = "Precinct results not yet available for this state. Switch to By county to see county results."; return; }
+    const items = precItems();
+    items.forEach(r => {
+      const fill = r[4] ? marginColor((r[3] - r[2]) / r[4]) : "#d6d3d1";
+      L.polygon(toLatLngs(r.slice(0, 6)), { renderer: heatRenderer, pane: "heatPane", color: "#ffffff", weight: 0.3, fillColor: fill, fillOpacity: 0.75, interactive: false }).addTo(heatLayer);
+    });
+    mapnote.textContent = items.length ? items.length.toLocaleString("en-US") + " precincts shown. Sources: " + (typeof PREC_CREDIT[state.value] === "object" ? (county.value ? (PREC_CREDIT[state.value][county.value] || "") : "varies by county; pick a county to see its source") : (PREC_CREDIT[state.value] || "")) : "Precinct results not yet available for this county. Switch to By county to see county results.";
+    return;
+  }
+  if (!window.ELECTION2024) return;
+  heatItems().forEach(d => {
+    const r = window.ELECTION2024[d[0] + "|" + d[1]];
+    const fill = r ? marginColor((r[1] - r[0]) / r[2]) : "#d6d3d1";
+    const hl = county.value && d[1] === county.value && d[0] === state.value;
+    L.polygon(toLatLngs(d), { renderer: heatRenderer, pane: "heatPane", color: hl ? "#111" : "#ffffff", weight: hl ? 2.5 : 0.6, fillColor: fill, fillOpacity: 0.72, interactive: false }).addTo(heatLayer);
+  });
+}
+function setHeat(on) {
+  heatOn = on;
+  if (!map) return;
+  if (on) {
+    heatLegend.addTo(map); heatInfo.addTo(map);
+    heatInfo.update(null);
+    heatLevelSel.hidden = false;
+    loadElection().then(() => loadState(state.value)).then(() => heatLevel === "precinct" ? loadPrecincts(state.value) : null).then(() => {
+      drawHeat();
+      if (!state.value && heatLevel === "county") mapnote.textContent = "Heat map shows counties of states you've opened. Pick a state to load its counties.";
+    });
+  } else {
+    heatLevelSel.hidden = true; heatLegend.remove(); heatInfo.remove(); drawHeat();
+  }
+}
+if (map) {
+  map.createPane("heatPane"); map.getPane("heatPane").style.zIndex = 350;
+  heatRenderer = L.canvas({ pane: "heatPane" });
+  heatLayer = L.layerGroup().addTo(map);
+  heatLegend = L.control({ position: "bottomright" });
+  heatLegend.onAdd = () => {
+    const div = L.DomUtil.create("div", "heatlegend");
+    const steps = [-0.6, -0.4, -0.2, -0.1, 0, 0.1, 0.2, 0.4, 0.6];
+    div.innerHTML = "<strong>2024 president, <span id='heatlvl'>county</span> margin</strong><div class='heatbar'>" +
+      steps.map(s => "<span style='background:" + marginColor(s) + "'></span>").join("") +
+      "</div><div class='heatlbl'><span>Harris +60</span><span>even</span><span>Trump +60</span></div>";
+    return div;
+  };
+  heatInfo = L.control({ position: "topright" });
+  heatInfo.onAdd = () => { const div = L.DomUtil.create("div", "heatinfo"); heatInfo._div = div; return div; };
+  heatInfo.update = d => { if (heatInfo._div) heatInfo._div.innerHTML = d ? heatHtml(d) : "Hover or tap a county"; };
+  let lastHover = null;
+  map.on("mousemove", e => {
+    if (!heatOn) return;
+    const h = hitAt(e.latlng);
+    if (h !== lastHover) { lastHover = h; heatInfo._div.innerHTML = h || "Hover or tap an area"; }
+  });
+  map.on("click", e => {
+    const h = hitAt(e.latlng);
+    if (h) { heatInfo._div.innerHTML = h; L.popup().setLatLng(e.latlng).setContent(h).openOn(map); }
+  });
+}
+const _drawFocusOrig = drawFocus;
+drawFocus = function (zoom) {
+  _drawFocusOrig(zoom);
+  if (heatOn && heatLevel === "precinct" && state.value && !(state.value in PREC)) loadPrecincts(state.value).then(drawHeat);
+  else drawHeat();
+};
+const heatLevelSel = document.getElementById("heatlevel");
+heatLevelSel.onchange = () => {
+  heatLevel = heatLevelSel.value;
+  const lv = document.getElementById("heatlvl"); if (lv) lv.textContent = heatLevel;
+  if (heatInfo._div) heatInfo._div.innerHTML = "Hover or tap an area";
+  (heatLevel === "precinct" ? loadPrecincts(state.value) : Promise.resolve()).then(drawHeat);
+};
+document.getElementById("heat").onchange = e => setHeat(e.target.checked);
 
 const FIPS = {"01":"Alabama","02":"Alaska","04":"Arizona","05":"Arkansas","06":"California","08":"Colorado","09":"Connecticut","10":"Delaware","12":"Florida","13":"Georgia","15":"Hawaii","16":"Idaho","17":"Illinois","18":"Indiana","19":"Iowa","20":"Kansas","21":"Kentucky","22":"Louisiana","23":"Maine","24":"Maryland","25":"Massachusetts","26":"Michigan","27":"Minnesota","28":"Mississippi","29":"Missouri","30":"Montana","31":"Nebraska","32":"Nevada","33":"New Hampshire","34":"New Jersey","35":"New Mexico","36":"New York","37":"North Carolina","38":"North Dakota","39":"Ohio","40":"Oklahoma","41":"Oregon","42":"Pennsylvania","44":"Rhode Island","45":"South Carolina","46":"South Dakota","47":"Tennessee","48":"Texas","49":"Utah","50":"Vermont","51":"Virginia","53":"Washington","54":"West Virginia","55":"Wisconsin","56":"Wyoming"};
 function polysFromGeom(g) {
