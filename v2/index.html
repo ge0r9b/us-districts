@@ -938,6 +938,8 @@ $("bList").onlongpress=null;
 const _cs=closeSheet; closeSheet=function(){ _cs(); $("bList").classList.remove("on"); };
 // VIEW HOOK: globe button will later flip between full-screen map and a full-screen list of candidates in office.
 // For now (one office) only "map" exists; add a "officeholders" view and call setView from $("bGlobe").onclick later.
+// CHART HOOK: bar/line/pie buttons (later) will register VIEWS.bar/line/pie that replace the map with charts of the same data
+// (use __v2.aggFor(layer) / ELECTION2024 / ELECTION2020 / PREC as the data source).
 const VIEWS={map:{show(){}}}; let view="map";
 function setView(v){ if(!VIEWS[v]) return; view=v; VIEWS[v].show(); }
 window.__v2={active,aggFor,refreshLayers,openLists,VIEWS,setView,get view(){return view;}};
