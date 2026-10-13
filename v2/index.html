@@ -102,6 +102,24 @@
 
   
   #crumbs { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding-right: calc(var(--btn) + var(--gap)); }
+  .xwrap { position: relative; display: flex; justify-content: flex-end; }
+  .xrow { position: absolute; right: calc(100% + var(--gap)); top: 0; display: flex; flex-direction: row-reverse; gap: 6px; flex-wrap: nowrap; }
+  .xrow[hidden] { display: none; }
+  .lbtn { --lb: clamp(36px, calc((100vw - var(--btn) - var(--gap) * 3 - 36px - var(--sal) - var(--sar)) / 7), 52px); width: var(--lb); height: var(--lb); flex: 0 0 var(--lb); margin-top: calc((var(--btn) - var(--lb)) / 2); font: 700 clamp(14px, 1.2vw + 8px, 20px)/1 system-ui, sans-serif; background: rgba(0,0,0,.82); }
+  .lbtn.on { background: #1d4ed8; }
+  .fold { border-top: 1px solid rgba(0,0,0,.1); }
+  .fold summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; min-height: 48px; font-weight: 600; }
+  .fold summary::-webkit-details-marker { display: none; }
+  .fold summary::after { content: "▾"; margin-left: auto; transition: transform .2s; }
+  .fold:not([open]) summary::after { transform: rotate(-90deg); }
+  .fold .lt { width: 28px; height: 28px; border-radius: 50%; background: #000; color: #fff; display: inline-grid; place-items: center; font-size: .8em; }
+  .fold .ct { color: #57534e; font-weight: 400; }
+  .selbar { display: flex; gap: 8px; margin: 0 0 6px; }
+  .selbar button { min-height: 40px; }
+  .nl { list-style: none; margin: 0; padding: 0; }
+  .nl li { display: flex; align-items: center; gap: 10px; min-height: 44px; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .nl input { width: 22px; height: 22px; flex: 0 0 22px; }
+  .nl label { flex: 1; min-width: 0; }
 </style>
 </head>
 <body>
@@ -783,6 +801,143 @@ $("bSearch").onclick=go; $("gq").addEventListener("keydown",e=>{ if(e.key==="Ent
 // keep crumbs in sync
 const _sc=state.onchange, _cc=county.onchange, _dc=dataset.onchange;
 state.onchange=()=>{ _sc(); crumbs(); }; county.onchange=()=>{ _cc(); crumbs(); }; dataset.onchange=()=>{ _dc(); crumbs(); };
+// ===== layer letters, office menu, district aggregation =====
+const LYR=[["S","schools","School districts"],["T","towns","Towns, townships, cities, boroughs"],["C","counties","Counties"],["H","ushouse","US House"],["U","senate","State senate"],["L","statehouse","State house"],["P","precincts","Precincts"]];
+const AGG_LAYERS=new Set(["ushouse","senate","statehouse","schools"]);
+const OFFICES=[{id:"president",label:"President",letter:"Pr"}]; // add more offices here later
+let office="president";
+const active=new Set(["counties"]); let fillTop=null; // last-activated aggregatable layer gets fill
+const lyrGroup=map?L.layerGroup().addTo(map):null;
+if(map){ map.createPane("lyrPane"); map.getPane("lyrPane").style.zIndex=360; }
+const lyrRenderer=map?L.canvas({pane:"lyrPane"}):null;
+function mkRow(id,btnId,items){
+  const host=$(btnId); const wrap=document.createElement("div"); wrap.className="xwrap"; host.replaceWith(wrap); wrap.append(host);
+  const row=document.createElement("div"); row.className="xrow"; row.id=id; row.hidden=true;
+  items.forEach(([t,key,lab])=>{ const b=document.createElement("button"); b.type="button"; b.className="rbtn lbtn"; b.dataset.k=key; b.textContent=t; b.title=lab; b.setAttribute("aria-label",lab); row.append(b); });
+  wrap.append(row);
+  host.onclick=()=>{ row.hidden=!row.hidden; host.classList.toggle("on",!row.hidden); document.querySelectorAll(".xrow").forEach(r=>{ if(r!==row){ r.hidden=true; r.previousElementSibling.classList.remove("on"); } }); };
+  return row;
+}
+// add two rail buttons
+rail.insertAdjacentHTML("beforeend",'<button class="rbtn" id="bLyr" aria-label="Map layers"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></button><button class="rbtn" id="bOff" aria-label="Office"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6z"/></svg></button>');
+const lrow=mkRow("lyrRow","bLyr",LYR.map(([t,k,l])=>[t,k,l]));
+const orow=mkRow("offRow","bOff",OFFICES.map(o=>[o.letter,o.id,o.label]));
+function syncLetters(){ lrow.querySelectorAll(".lbtn").forEach(b=>b.classList.toggle("on",active.has(b.dataset.k))); orow.querySelectorAll(".lbtn").forEach(b=>b.classList.toggle("on",b.dataset.k===office)); }
+lrow.querySelectorAll(".lbtn").forEach(b=>b.onclick=()=>{ const k=b.dataset.k;
+  if(active.has(k)){ active.delete(k); if(fillTop===k) fillTop=[...active].reverse().find(x=>AGG_LAYERS.has(x))||null; }
+  else { active.add(k); if(AGG_LAYERS.has(k)) fillTop=k; }
+  if(k==="precincts"){ heatLevelSel.value=active.has("precincts")?"precinct":"county"; heatLevelSel.onchange(); }
+  syncLetters(); refreshLayers(); crumbs2(); });
+orow.querySelectorAll(".lbtn").forEach(b=>b.onclick=()=>{ office=b.dataset.k; syncLetters(); refreshLayers(); });
+function crumbs2(){ const names=LYR.filter(l=>active.has(l[1])).map(l=>l[0]).join(" "); $("bLayerLbl").textContent="geography: "+(names||"none")+" · "+OFFICES.find(o=>o.id===office).label+" "+ym().replace("delta","2020→2024"); }
+// geometry per layer within current area
+function inArea(d){ return d[0]===state.value; }
+function countyBox(){ if(!county.value) return null; const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&d[1]===county.value); return c?bboxOf(c[c.length-1]):null; }
+function bboxOf(polys){ let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(r=>r[0].forEach(([x,y])=>{ if(x<a)a=x; if(x>c)c=x; if(y<b)b=y; if(y>e)e=y; })); return [a,b,c,e]; }
+function hits(b1,b2){ return !b2||!(b1[2]<b2[0]||b1[0]>b2[2]||b1[3]<b2[1]||b1[1]>b2[3]); }
+function layerItems(k){
+  if(!state.value) return [];
+  let items = k==="towns" ? [...(GEOM.towns||[]),...(GEOM.places||[])].filter(inArea) : (GEOM[k]||[]).filter(inArea);
+  const cb=countyBox(); items.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
+  return cb? items.filter(d=>k==="counties"? d[1]===county.value : hits(d.__bb,cb)) : items;
+}
+function dname(k,d){ return k==="towns"? (d.length>3?d[2]:d[1]) : k==="counties"? d[1] : k==="schools"? d[1] : (d[1]+(d.length>3&&d[2]&&typeof d[2]==="string"?" "+d[2]:"")); }
+// ---- aggregation: precinct centroid point-in-polygon, coverage by vote-weighted sampling ----
+const AGG={};
+function grid(items,bbf,cs){ const g=new Map(); items.forEach(it=>{ const b=bbf(it); for(let x=Math.floor(b[0]/cs);x<=Math.floor(b[2]/cs);x++) for(let y=Math.floor(b[1]/cs);y<=Math.floor(b[3]/cs);y++){ const k=x+","+y; if(!g.has(k)) g.set(k,[]); g.get(k).push(it); } }); return {g,cs}; }
+function gq(G,x,y){ return G.g.get(Math.floor(x/G.cs)+","+Math.floor(y/G.cs))||[]; }
+function ringArea(r){ let s=0; for(let i=0,j=r.length-1;i<r.length;j=i++) s+=(r[j][0]+r[i][0])*(r[j][1]-r[i][1]); return Math.abs(s/2); }
+function centroid(polys){ let best=null,ba=-1; polys.forEach(p=>{ const a=ringArea(p[0]); if(a>ba){ba=a;best=p[0];} });
+  let A=0,cx=0,cy=0; for(let i=0,j=best.length-1;i<best.length;j=i++){ const f=best[j][0]*best[i][1]-best[i][0]*best[j][1]; A+=f; cx+=(best[j][0]+best[i][0])*f; cy+=(best[j][1]+best[i][1])*f; }
+  return A? [cx/(3*A),cy/(3*A)] : best[0]; }
+function aggFor(k){
+  const st=state.value, key=st+"|"+k; if(AGG[key]) return AGG[key];
+  const P=PREC[st]; if(!P) return null;
+  const dists=(GEOM[k]||[]).filter(inArea); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
+  const DG=grid(dists,d=>d.__bb,0.1), res=new Map(); dists.forEach(d=>res.set(d,{dem:0,rep:0,tot:0,n:0}));
+  P.forEach(r=>{ if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const b=r[6]; c=[(b[0]+b[2])/2,(b[1]+b[3])/2]; } r.__c=c; }
+    const [x,y]=r.__c; const d=gq(DG,x,y).find(d=>x>=d.__bb[0]&&x<=d.__bb[2]&&y>=d.__bb[1]&&y<=d.__bb[3]&&pointInItem(d,x,y)); if(!d) return;
+    const a=res.get(d); a.dem+=r[2]; a.rep+=r[3]; a.tot+=r[4]; a.n++; });
+  // coverage: sample points weighted by county vote density; covered if inside a reported precinct
+  const PG=grid(P.filter(r=>r[4]>0),r=>r[6],0.05);
+  const C=(GEOM.counties||[]).filter(inArea); C.forEach(c=>{ if(!c.__bb) c.__bb=bboxOf(c[c.length-1]); const e=window.ELECTION2024&&window.ELECTION2024[c[0]+"|"+c[1]]; let ar=0; c[c.length-1].forEach(p=>ar+=ringArea(p[0])); c.__dens=e&&ar?e[2]/ar:0; });
+  const CG=grid(C,c=>c.__bb,0.25);
+  dists.forEach(d=>{ const [x0,y0,x1,y1]=d.__bb, N=16; let w=0,wc=0;
+    for(let i=0;i<N;i++) for(let j=0;j<N;j++){ const x=x0+(x1-x0)*(i+.5)/N, y=y0+(y1-y0)*(j+.5)/N; if(!pointInItem(d,x,y)) continue;
+      const c=gq(CG,x,y).find(c=>pointInItem(c,x,y)); const dw=c?c.__dens:0; if(!dw) continue; w+=dw;
+      if(gq(PG,x,y).some(r=>x>=r[6][0]&&x<=r[6][2]&&y>=r[6][1]&&y<=r[6][3]&&pointInItem(r.slice(0,6),x,y))) wc+=dw; }
+    res.get(d).cov=w? wc/w : 0; });
+  return AGG[key]=res;
+}
+function aggHtml(k,d,a){ const lab=LYR.find(l=>l[1]===k)[2];
+  let h="<strong>"+(k==="ushouse"?"District ":"")+esc(dname(k,d))+"</strong><br>"+esc(lab)+", "+esc(d[0])+"<br>";
+  if(ym()!=="2024") return h+"District totals need precinct results; 2020 precinct results aren't available, so there's no "+(ym()==="delta"?"change":"2020")+" figure for this district.";
+  if(!a||!a.tot) return h+"No precinct results fall inside this district.";
+  const pd=a.dem/a.tot*100, pr=a.rep/a.tot*100, m=pr-pd;
+  h+="<b>2024 President</b> (sum of "+fmtN(a.n)+" precincts)<br>Harris: "+fmtN(a.dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(a.rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":"Harris +")+Math.abs(m).toFixed(1)+" pts<br>Total votes: "+fmtN(a.tot)+"<br>";
+  return h+"Coverage: about "+Math.round(a.cov*100)+"% of the district's votes"+(a.cov<0.5?" (under 50%, shown gray)":"");
+}
+let drawSeq=0;
+function refreshLayers(){
+  if(!lyrGroup) return; const seq=++drawSeq; { const lg=document.querySelector(".heatlegend strong"); if(lg&&heatOn&&fillTop&&ym()==="2024") lg.textContent="2024 president, "+LYR.find(l=>l[1]===fillTop)[2]+" margin (summed precincts)"; else if(window.updateLegend) updateLegend(); } lyrGroup.clearLayers(); crumbs2();
+  if(!state.value){ return; }
+  const need=heatOn&&fillTop&&ym()==="2024";
+  loadState(state.value).then(()=>need?loadPrecincts(state.value):null).then(()=>{
+    if(seq!==drawSeq) return;
+    const order=["counties","towns","schools","ushouse","senate","statehouse"];
+    order.filter(k=>active.has(k)&&k!=="precincts").forEach(k=>{
+      const filling=heatOn&&k===fillTop; const ag=filling&&ym()==="2024"?aggFor(k):null;
+      if(filling&&ym()==="2024"&&!PREC[state.value]) mapnote.textContent="No precinct results for "+state.value+" yet, so districts can't be colored.";
+      layerItems(k).forEach(d=>{ let o={renderer:lyrRenderer,pane:"lyrPane",interactive:false,color:k==="counties"?"#111":"#1f2937",weight:k==="counties"?1.2:1.6,fill:false};
+        if(filling){ const a=ag&&ag.get(d); let f="#a8a29e";
+          if(a&&a.tot&&a.cov>=0.5) f=marginColor((a.rep-a.dem)/a.tot);
+          o={...o,fill:true,fillColor:f,fillOpacity:0.8,color:"#fff",weight:0.8}; }
+        L.polygon(toLatLngs(d),o).addTo(lyrGroup); });
+    });
+    if(fillTop&&heatOn&&ym()==="2024"&&PREC[state.value]){ const ag=aggFor(fillTop); let n=0,g=0; ag.forEach(a=>{n++; if(!(a.tot&&a.cov>=0.5)) g++;}); mapnote.textContent=LYR.find(l=>l[1]===fillTop)[2]+": "+n+" districts colored by summed precinct results; "+g+" gray (under 50% of votes covered)."; }
+  });
+}
+// tap: topmost active district layer first
+const _hitAt=hitAt;
+hitAt=function(ll){
+  if(heatOn&&state.value) for(const k of ["statehouse","senate","ushouse","schools"]) if(active.has(k)&&k===fillTop){
+    const d=layerItems(k).find(d=>pointInItem(d,ll.lng,ll.lat)); if(d){ const ag=ym()==="2024"&&PREC[state.value]?aggFor(k):null; return aggHtml(k,d,ag&&ag.get(d)); } }
+  return _hitAt(ll);
+};
+// redraw on changes
+const _dh=drawHeat; drawHeat=function(){ _dh(); refreshLayers(); };
+// ---- foldable multi-select district lists ----
+const LSET={schools:"schools",ushouse:"ushouse",senate:"senate",statehouse:"statehouse",towns:"localities"};
+function rowsFor(k){ const sid=LSET[k]; if(!sid) return []; return (DATA[sid]||[]).filter(r=>r[0]===state.value&&(!county.value||sid!=="localities"||r[1]===county.value)); }
+function setSel(sid,r,on){ const key=rowKey(sid,r); if(on) selected.set(key,{setId:sid,row:r,label:labelFor(sid,r)}); else selected.delete(key); }
+function openLists(){
+  closeSheet(); if(!state.value){ openGeo(); return; }
+  sheet.innerHTML="<h3><span>Districts in "+esc(county.value||state.value)+"</span><button class='quiet close' type='button'>Close</button></h3><div class='folds'></div>";
+  sheet.querySelector(".close").onclick=closeSheet; const host=sheet.querySelector(".folds");
+  LYR.filter(l=>active.has(l[1])).forEach(([t,k,lab])=>{
+    const det=document.createElement("details"); det.className="fold"; det.open=true;
+    if(k==="counties"||k==="precincts"){ const items=k==="counties"?countiesOf(state.value).filter(c=>!county.value||c===county.value):(PREC[state.value]||[]).filter(r=>!county.value||r[0]===county.value).map(r=>r[1]);
+      det.innerHTML="<summary><span class='lt'>"+t+"</span>"+esc(lab)+" <span class='ct'>"+items.length+"</span></summary><ol class='nl'></ol>";
+      const ol=det.querySelector("ol"); items.slice(0,2000).forEach((it,i)=>{ const li=document.createElement("li"); li.innerHTML="<span class='n'>"+(i+1)+"</span><span>"+esc(it)+"</span>"; if(k==="counties") li.onclick=()=>{ county.value=it; county.onchange(); closeSheet(); }; ol.append(li); });
+      host.append(det); return; }
+    const sid=LSET[k], rows=rowsFor(k);
+    det.innerHTML="<summary><span class='lt'>"+t+"</span>"+esc(lab)+" <span class='ct'>"+rows.length+"</span></summary><div class='selbar'><button type='button' class='quiet sa'>Select all</button><button type='button' class='quiet da'>Deselect all</button></div><ol class='nl'></ol>";
+    const ol=det.querySelector("ol");
+    rows.slice(0,2000).forEach((r,i)=>{ const li=document.createElement("li"); const id="cb_"+k+"_"+i;
+      li.innerHTML="<span class='n'>"+(i+1)+"</span><input type='checkbox' id='"+id+"'><label for='"+id+"'>"+esc(labelFor(sid,r))+"</label>";
+      const cb=li.querySelector("input"); cb.checked=selected.has(rowKey(sid,r)); cb.onchange=()=>{ setSel(sid,r,cb.checked); render(); loadState(r[0]).then(redraw); }; ol.append(li); });
+    const all=on=>{ rows.forEach(r=>setSel(sid,r,on)); ol.querySelectorAll("input").forEach(c=>c.checked=on); render(); loadState(state.value).then(redraw); };
+    det.querySelector(".sa").onclick=()=>all(true); det.querySelector(".da").onclick=()=>all(false);
+    host.append(det); });
+  if(!host.children.length) host.innerHTML="<p>Turn on a layer with the layers button to list its districts.</p>";
+  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); $("bList").classList.remove("on");
+}
+$("bList").onclick=()=>{ if(!sheet.hidden&&$("bList").classList.contains("on")){ closeSheet(); return; } openLists(); $("bList").classList.add("on"); };
+$("bList").onlongpress=null;
+// legacy selection panel still reachable from the district list
+const _cs=closeSheet; closeSheet=function(){ _cs(); $("bList").classList.remove("on"); };
+window.__v2={active,aggFor,refreshLayers,openLists};
+syncLetters();
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
