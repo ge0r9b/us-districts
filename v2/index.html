@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141468 -->
+<!-- build 202610141469 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141468";</script>
+<script>window.BUILD="202610141469";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -439,6 +439,22 @@
   .cpanel .cpie1 { display: flex; flex-direction: column; align-items: center; gap: 4px; } .cpanel .cpie1 svg { width: 180px; height: 180px; }
   .cpanel .clinechart svg { width: 100%; height: auto; } .cpanel svg text { fill: #111 !important; }
   .cbars { display: flex; flex-direction: column; gap: 10px; }
+  .cblk + .cblk { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,.08); }
+  .cleg { border-collapse: collapse; font: 13px system-ui, sans-serif; color: #111; font-variant-numeric: tabular-nums; }
+  .cleg th { font-weight: 600; color: #57534e; text-align: right; padding: 2px 8px; font-size: 12px; } .cleg th:nth-child(2) { text-align: left; }
+  .cleg td { padding: 5px 8px; text-align: right; border-top: 1px solid rgba(0,0,0,.07); white-space: nowrap; } .cleg td:nth-child(2) { text-align: left; font-weight: 600; }
+  .cleg td i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; opacity: .7; } .cleg .cpty { font-weight: 400; color: #57534e; margin-left: 4px; } .cleg .ctot td { font-weight: 600; }
+  .cwide { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 18px; } .cwideWrap { width: 100%; }
+  .cpanel .cpie1 svg { max-width: 100%; } .cpieL svg { display: block; }
+  .clinechart.big svg { width: 100% !important; height: auto; max-width: 100%; } .clinechart.big { margin-bottom: 14px; }
+  .cbars.big .cbr { grid-template-columns: 110px 1fr 80px; font-size: 15px; } .cbars.big .cbt { height: 28px; }
+  .cbars.big .cbt { background: repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 10%), rgba(0,0,0,.05); }
+  .cax .cticks { background: none !important; height: 16px !important; overflow: visible; } .cax .cticks em { position: absolute; transform: translateX(-50%); font: 11px system-ui, sans-serif; color: #57534e; font-style: normal; }
+  @media (min-width: 600px) {
+    body.listmode .cands:not(.two) { display: grid !important; grid-template-columns: 300px minmax(0, 1fr); grid-auto-rows: max-content; align-content: start; column-gap: 24px !important; }
+    body.listmode .cands:not(.two) > * { grid-column: 1; }
+    body.listmode .cands:not(.two) > .cpanel { grid-column: 2; grid-row: 1 / span 40; padding: 8px calc(var(--btn, 48px) + 20px) 16px 0; }
+  }
   .cbr { display: grid; grid-template-columns: 92px 1fr 72px; align-items: center; gap: 8px; font: 600 14px system-ui, sans-serif; color: #111; }
   .cbt { position: relative; height: 22px; background: rgba(0,0,0,.06); border-radius: 4px; overflow: hidden; } .cbt i { position: absolute; top: 0; bottom: 0; left: 0; opacity: .6; border-radius: 4px; transition: width .3s, left .3s; }
   .cbt.dv b { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); } .cbv { text-align: right; font-variant-numeric: tabular-nums; }
@@ -2067,13 +2083,24 @@ setInterval(updShift,1000);
 
 // ===== change mode: no caption on the map row; shift shown in list view header and in tap bubbles =====
 { const fmtV=(n,t)=>numMode==="pct"?(n/t*100).toFixed(1)+"%":(n>=1e6?(n/1e6).toFixed(2)+"M":n>=1e4?Math.round(n/1e3)+"K":fmtN(n));
-  const lineSvg=a=>{ const v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return ""; const W=300,H=110,x0=46,x1=W-46,yT=14,yB=H-22;
+  const lineSvg=(a,Wd,Hd,det)=>{ const v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return ""; if(det) return lineDet(v0,v1,Wd||600,Hd||300); const W=300,H=110,x0=46,x1=W-46,yT=14,yB=H-22;
     const pc=numMode==="pct"; const val=(v,k)=>pc?v[k]/v.tot:v[k]; const all=[val(v0,"rep"),val(v0,"dem"),val(v1,"rep"),val(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.25||(pc?.05:1000); lo-=pad; hi+=pad; const Y=q=>yB-(q-lo)/(hi-lo)*(yB-yT);
     let g='<line x1="'+x0+'" y1="'+yB+'" x2="'+x1+'" y2="'+yB+'" stroke="rgba(0,0,0,.25)" stroke-width="1"/>'; [["2020",x0],["2024",x1]].forEach(([t,x])=>{ g+='<text x="'+x+'" y="'+(H-6)+'" font-size="10" text-anchor="middle" fill="#111">'+t+'</text>'; });
     [["rep","rgb(220,38,38)"],["dem","rgb(37,99,235)"]].forEach(([k,c])=>{ const a0=Y(val(v0,k)),a1=Y(val(v1,k)); g+='<line x1="'+x0+'" y1="'+a0.toFixed(1)+'" x2="'+x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>';
       g+='<circle cx="'+x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'" fill-opacity=".6"/><circle cx="'+x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'" fill-opacity=".6"/>';
       g+='<text x="'+(x0-8)+'" y="'+a0.toFixed(1)+'" font-size="10" text-anchor="end" dominant-baseline="central" fill="#111">'+fmtV(v0[k],v0.tot)+'</text><text x="'+(x1+8)+'" y="'+a1.toFixed(1)+'" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111">'+fmtV(v1[k],v1.tot)+'</text>'; });
     return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="2020 to 2024">'+g+'</svg>'; };
+  const lineDet=(v0,v1,W,H)=>{ const pc=numMode==="pct"; const ks=[["rep","rgb(220,38,38)"],["dem","rgb(37,99,235)"],["oth","rgb(120,113,108)"]]; const V=(v,k)=>{ const n=k==="oth"?Math.max(0,v.tot-v.rep-v.dem):v[k]; return pc?n/v.tot*100:n; };
+    const xL=70,xR=W-150,yT=20,yB=H-36; const all=[]; ks.forEach(([k])=>{ all.push(V(v0,k),V(v1,k)); }); let hi=Math.max(...all); const st=(()=>{ const r=hi/5, m=Math.pow(10,Math.floor(Math.log10(r||1))); return [1,2,2.5,5,10].map(x=>x*m).find(x=>x>=r); })(); hi=Math.ceil(hi/st)*st||1; const Y=q=>yB-q/hi*(yB-yT);
+    const fv=q=>pc?q.toFixed(q<10&&st<1?1:0)+"%":(q>=1e6?(q/1e6).toFixed(q%1e6?1:0)+"M":q>=1e3?Math.round(q/1e3)+"K":String(Math.round(q)));
+    const fx=(n,t)=>pc?(n/t*100).toFixed(1)+"%":Math.round(n).toLocaleString("en-US");
+    let g=""; for(let q=0;q<=hi+1e-9;q+=st){ const y=Y(q).toFixed(1); g+='<line x1="'+xL+'" y1="'+y+'" x2="'+xR+'" y2="'+y+'" stroke="rgba(0,0,0,'+(q?'.09':'.3')+')"/><text x="'+(xL-8)+'" y="'+y+'" font-size="11" text-anchor="end" dominant-baseline="central" fill="#57534e">'+fv(q)+'</text>'; }
+    [["2020",xL],["2024",xR]].forEach(([t,x])=>{ g+='<line x1="'+x+'" y1="'+yT+'" x2="'+x+'" y2="'+yB+'" stroke="rgba(0,0,0,.12)"/><text x="'+x+'" y="'+(yB+20)+'" font-size="12" font-weight="600" text-anchor="middle" fill="#111">'+t+'</text>'; });
+    const ry={}; { const o=ks.map(([k])=>[k,Y(V(v1,k))]).sort((p,q)=>p[1]-q[1]); for(let i=1;i<o.length;i++) if(o[i][1]-o[i-1][1]<15) o[i][1]=o[i-1][1]+15; o.forEach(([k,y])=>ry[k]=y); } const ly={}; { const o=ks.map(([k])=>[k,Y(V(v0,k))-10]).sort((p,q)=>p[1]-q[1]); for(let i=1;i<o.length;i++) if(o[i][1]-o[i-1][1]<14) o[i][1]=o[i-1][1]+14; o.forEach(([k,y])=>ly[k]=y); }
+    ks.forEach(([k,c])=>{ const n0=k==="oth"?Math.max(0,v0.tot-v0.rep-v0.dem):v0[k], n1=k==="oth"?Math.max(0,v1.tot-v1.rep-v1.dem):v1[k]; const a0=Y(V(v0,k)).toFixed(1),a1=Y(V(v1,k)).toFixed(1);
+      g+='<line x1="'+xL+'" y1="'+a0+'" x2="'+xR+'" y2="'+a1+'" stroke="'+c+'" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/><circle cx="'+xL+'" cy="'+a0+'" r="5" fill="'+c+'"/><circle cx="'+xR+'" cy="'+a1+'" r="5" fill="'+c+'"/>';
+      g+='<text x="'+(xL+10)+'" y="'+ly[k].toFixed(1)+'" font-size="11" fill="#111">'+fx(n0,v0.tot)+'</text><text x="'+(xR+10)+'" y="'+ry[k].toFixed(1)+'" font-size="11" dominant-baseline="central" fill="#111"><tspan font-weight="600">'+({rep:"Republican",dem:"Democratic",oth:"Other"})[k]+'</tspan> '+fx(n1,v1.tot)+'</text>'; });
+    return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="2020 to 2024">'+g+'</svg>'; };
   window.__lineSvg=lineSvg;
   const fit=()=>{ const box=$("cands"); if(!box) return; if(!document.body.classList.contains("listmode")){ box.style.maxHeight=""; return; } const r=box.getBoundingClientRect(); const bb=$("barBottom")?$("barBottom").getBoundingClientRect().top:innerHeight; box.style.maxHeight=Math.max(120,bb-r.top-4)+"px"; };
   const lsUpd=()=>{ const box=$("cands"); if(!box) return; let f=box.querySelector(":scope > .cfoot"); const lm=document.body.classList.contains("listmode"); let a=null; try{ a=cur||scopeArea(); }catch(e){}
@@ -2675,19 +2702,34 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     else { const d=delta(v0,v1), mx=Math.max(1e-9,...Object.values(d).map(Math.abs)); ["rep","dem","oth"].forEach(k=>{ const f=d[k]/mx*50; h+='<div class="cbr"><span class="cbl">'+NM[k]+'</span><span class="cbt dv"><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PC[k]+'"></i><b></b></span><span class="cbv">'+(d[k]>=0?"+":"")+(numMode==="pct"?d[k].toFixed(1)+" pts":fmtN(d[k]))+'</span></div>'; }); h+='<div class="cbcap">Change 2020 → 2024</div>'; }
     return h+'</div>'; };
   const lineMenu=()=>{};
+  const cname=(yr,k)=>{ if(k==="oth") return "Other"; const c=(window.CANDS||CANDS)[yr]; const x=c&&c.find(q=>q.p===k[0]); return x?x.full:NM[k]; };
+  const fx=(n,t)=>(n/t*100).toFixed(1)+"%";
+  const legend=yrs=>{ let h='<table class="cleg"><thead><tr><th></th><th>Candidate</th>'+yrs.map(([y])=>'<th colspan="2">'+y+'</th>').join("")+'</tr><tr><th></th><th></th>'+yrs.map(()=>'<th>Votes</th><th>Share</th>').join("")+'</tr></thead><tbody>';
+    ["rep","dem","oth"].forEach(k=>{ h+='<tr><td><i style="background:'+PC[k]+'"></i></td><td>'+yrs.map(([y])=>cname(y,k)).filter((x,i,a)=>a.indexOf(x)===i).join(" / ")+' <span class="cpty">'+NM[k]+'</span></td>'+yrs.map(([y,v])=>{ const p=parts(v); return '<td>'+Math.round(p[k]).toLocaleString("en-US")+'</td><td>'+fx(p[k],v.tot||1)+'</td>'; }).join("")+'</tr>'; });
+    h+='<tr class="ctot"><td></td><td>Total</td>'+yrs.map(([y,v])=>'<td>'+Math.round(v.tot).toLocaleString("en-US")+'</td><td>100%</td>').join("")+'</tr></tbody></table>'; return h; };
+  const pieBig=(v0,v1,S)=>{ const svg=pieSvg(v0,v1).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'"'); return svg; };
+  const barBig=(v0,v1)=>{ let h=barHtml(v0,v1); const ticks=v1?["−max","0","+max"]:[0,10,20,30,40,50,60,70,80,90,100]; if(!v1) h=h.replace('<div class="cbars">','<div class="cbars big"><div class="cbr cax"><span></span><span class="cbt cticks">'+ticks.map(t=>'<em style="left:'+t+'%">'+t+'%</em>').join("")+'</span><span></span></div>'); else h=h.replace('<div class="cbars">','<div class="cbars big">');
+    return h; };
   const draw=()=>{ lineMenu(); let pn=candBox.querySelector(":scope > .cpanel"); const m=window.chartMode, lm=document.body.classList.contains("listmode");
     if(m==="line"&&ym()!=="delta"&&window.__ySelectAll) window.__ySelectAll();
     const mode=window.chartMode; if(!mode||!lm){ if(pn) pn.remove(); return; } let a=null; try{ a=scopeArea(); }catch(e){} if(!a){ if(pn) pn.remove(); return; }
     const two=ym()==="delta"; let v0=null,v1=null; try{ if(two){ v0=scopeVals(a,"2020"); v1=scopeVals(a,"2024"); } else v0=scopeVals(a,ym()); }catch(e){}
     if(!v0||!v0.tot||(two&&(!v1||!v1.tot))){ if(pn) pn.remove(); return; }
-    const h=mode==="line"?'<div class="clinechart">'+(window.__lineSvg?window.__lineSvg(a):"")+'</div>':mode==="pie"?'<div class="cpie1">'+pieSvg(v0,v1)+'</div>':barHtml(v0,v1);
+    const wide=innerWidth>=600; const one=k=>k==="line"?(two?'<div class="clinechart">'+(window.__lineSvg?window.__lineSvg(a):"")+'</div>':""):k==="pie"?'<div class="cpie1">'+pieSvg(v0,v1)+'</div>':barHtml(v0,v1);
+    let h; if(!wide){ h=["bar","pie","line"].sort((x,y)=>(x===mode?-1:0)-(y===mode?-1:0)).map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
+    else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);
+      const yrs=two?[["2020",v0],["2024",v1]]:[[ym(),v0]]; const leg=legend(yrs);
+      let main; if(mode==="pie"){ const S=Math.min(pw-480,avail-30,560); main='<div class="cwide"><div class="cpieL">'+pieBig(v0,v1,Math.max(220,S))+'</div>'+leg+'</div>'; }
+      else if(mode==="line"&&two){ main='<div class="clinechart big">'+window.__lineSvg(a,pw,Math.min(avail,420),true)+'</div>'+leg; }
+      else { main=barBig(v0,v1)+'<div class="cwide">'+'<div class="cpieL">'+pieBig(v0,v1,Math.min(320,avail))+'</div>'+leg+'</div>'; }
+      h='<div class="cwideWrap">'+main+'</div>'; }
     if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn); if(pn.innerHTML!==h) pn.innerHTML=h; };
   const _rcX=renderCands; renderCands=function(){ const r=_rcX.apply(this,arguments); draw(); return r; };
   setInterval(draw,700); document.addEventListener("click",()=>setTimeout(draw,50),true); $("yslider").addEventListener("input",()=>setTimeout(()=>{ draw(); try{ renderCands(); }catch(e){} },30)); }
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141468"></script>
-<script src="data/dc.js?v=202610141468"></script>
+<script defer src="data/countries.js?v=202610141469"></script>
+<script src="data/dc.js?v=202610141469"></script>
 </body>
 </html>
