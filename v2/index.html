@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140520 -->
+<!-- build 202610140600 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140530";</script>
+<script>window.BUILD="202610140600";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -370,6 +370,10 @@
   body.foldfs #crumbs.ctop .crumb.glob { font-weight: 600; color: #000; }
   #crumbs .crumb.cur { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   body:not(.foldfs) #crumbs .crumb.cur { max-width: calc(100vw - 120px); }
+  .cand { position: relative; }
+  .cand .cbar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 6px; pointer-events: none; z-index: 0; transition: width .45s cubic-bezier(.2,.8,.2,1); }
+  .cand.r .cbar { background: rgba(220,38,38,.3); } .cand.d .cbar { background: rgba(37,99,235,.3); }
+  .cand > :not(.cbar) { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -1810,6 +1814,10 @@ $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) re
 credit.remove();
 const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri · VEST"; return d; }; esriA.addTo(map);
 console.log("us-districts v2 build "+window.BUILD);
+// ===== every text field = title + blank search: tap title opens search; empty commit on org = United States =====
+$("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!document.body.classList.contains("srchfs")) openUS(); });
+$("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"||!i.closest||!i.closest(".fsq")||i.value.trim()) return; e.preventDefault(); e.stopImmediatePropagation();
+  window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ closeSheet(); crumbs(); },80); },true);
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
   const lb=lg.querySelector(".heatlbl"); const want=dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
@@ -1831,14 +1839,14 @@ window.__usIndex=usIndex;
 function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); const q=$("usq"); if(q) q.remove(); setTimeout(()=>map.invalidateSize(),50); }
 function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("ushouse"); }catch(e){} document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
   const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
-  const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search everything"; inp.setAttribute("aria-label","Search everything");
+  const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder=""; inp.setAttribute("aria-label","Search everything");
   $("bSearch").before(inp); u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
   Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[];
       res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(it.name))+"</span><span class='tg'>"+esc(t32(it.tag))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
-    inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(res[0]) pickIt(res[0]); } }); show(); });
+    inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()) return closeUS(); if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
   setTimeout(()=>inp.focus(),30); }
 $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():openUS();
 // no instructional text: list header/empty note, map note
@@ -1977,7 +1985,7 @@ setInterval(placeLegend,500);
   const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
   const paint=()=>{ const k=window.chartMode||last; main.innerHTML=SV[k]; main.dataset.ch=k; main.classList.toggle("on",!!window.chartMode); };
   const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
-  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); };
+  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); try{ renderCands(); }catch(e){} };
   const open=()=>{ const cur=window.chartMode||last; opts.innerHTML=""; K.filter(k=>k!==cur).forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
     void opts.offsetWidth; w.classList.add("open"); dim.classList.add("on"); };
   main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
@@ -2180,11 +2188,11 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         ol.append(li); }); }); }
   const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<div class="gtrow"></div>'; const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
   xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>closeG();
-  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); setTimeout(()=>{ i.focus({preventScroll:true}); },0); }
-  function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; home.prepend(i); }
+  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder=""; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); setTimeout(()=>{ i.focus({preventScroll:true}); },0); }
+  function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if(i.placeholder===""&&i.dataset.ph!=null) i.placeholder=i.dataset.ph; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
   g().addEventListener("focus",openG); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
-  g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); });
+  g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
@@ -2296,6 +2304,12 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(pathParts().length<=1) sheet.querySelectorAll(".foldlist li").forEach(li=>{ if(li.querySelector(".oic")) return; const nm=li.querySelector(".nm"); if(!nm) return; const st=nm.textContent.trim(); if(!(typeof STATE_FILES!=="undefined"&&STATE_FILES[st])) return; const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML='<img alt="" src="img/stateflags/'+st.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">'; nm.before(sp); }); };
   new MutationObserver(()=>{ setTimeout(alignOrg,30); setTimeout(alignOrg,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignOrg,600); }
 
+// ===== bar chart mode in list view: party-colored bars behind candidate rows =====
+{ const prevW={}; const _rcB=renderCands; renderCands=function(){ _rcB(); const on=window.chartMode==="bar"&&view==="list";
+    candBox.querySelectorAll(".ccol").forEach((col,ci)=>{ const cs=[...col.querySelectorAll(".cand")]; const v=cs.map(c=>{ const t=((c.querySelector(".cs")||{}).textContent||"").split("·")[0].trim(); return /%$/.test(t)?{p:parseFloat(t)}:{n:parseFloat(t.replace(/[^\d.]/g,""))||0}; });
+      const mx=Math.max(1,...v.map(x=>x.n||0));
+      cs.forEach((c,i)=>{ let bar=c.querySelector(".cbar"); if(!on){ bar&&bar.remove(); return; } const w=v[i].p!=null?v[i].p:(v[i].n/mx*100); const key=ci+"|"+(c.title||i);
+        if(!bar){ bar=document.createElement("span"); bar.className="cbar"; c.prepend(bar); } bar.style.width=(prevW[key]!=null?prevW[key]:0)+"%"; void bar.offsetWidth; bar.style.width=Math.max(0,Math.min(100,w))+"%"; prevW[key]=w; }); }); }; }
 })();
 
 </script>
