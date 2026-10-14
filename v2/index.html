@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141100 -->
+<!-- build 202610141230 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141100";</script>
+<script>window.BUILD="202610141230";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2176,6 +2176,8 @@ function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1
 { const _an18=aname; aname=function(a){ if(a.kind!=="natcd") return _an18(a); const k=a.tk||"ushouse"; return k==="schools"?a.d[1]:"District "+String(a.d[1]).replace(/^0+(?=\d)/,""); }; }
 { const _al18=areaLabel; areaLabel=function(a){ if(a.kind!=="natcd"||!a.tk||a.tk==="ushouse") return _al18(a); const ab=ABBR[a.d[0]]||a.d[0], n=String(a.d[1]).replace(/^0+(?=\w)/,"");
   return t32(a.tk==="senate"?ab+" Senate "+n:a.tk==="statehouse"?ab+" House "+n:a.d[1]+", "+ab); }; }
+// precinct zoom: a single tap shows the tapped precinct even when a district type is selected
+{ const _aa19=areaAt; areaAt=function(ll){ if(window.__autoP&&heatOn&&ym()!=="delta"){ const m=ym(); for(const s of statesInView()){ const P=precFor(s,m); if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&r[4]&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m==="2020"?"2020":"2024"}; } } return _aa19(ll); }; }
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 // ===== bottom geography field: full-screen nested list (Country > State > County > Town), type to filter =====
