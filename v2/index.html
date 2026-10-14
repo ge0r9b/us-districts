@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141472 -->
+<!-- build 202610141473 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141472";</script>
+<script>window.BUILD="202610141473";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1594,7 +1594,7 @@ function vals(a,yr){
 function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?precDisp(a.d.__st||state.value,a.d[0],a.d[1]):(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
 function candLines(a,long){ const out=[], two=yrsOn().length>1;
   candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
-    out.push(v? nm+" "+fmtN(c.ix?v.rep:v.dem)+" · "+((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%" : nm+": no data"); });
+    out.push(v? nm+" "+fmtN(c.ix?v.rep:v.dem)+(numMode==="pct"?" · "+((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%":"") : nm+": no data"); });
   return out; }
 function marginTxt(v,yr){ const m=(v.rep-v.dem)/v.tot*100; return (m>=0?"Trump +":(yr==="2020"?"Biden +":"Harris +"))+Math.abs(m).toFixed(1); }
 function deltaTxt(a){ const v20=vals(a,"2020"), v24=vals(a,"2024"); if(!v20||!v24) return "Change: n/a";
@@ -1996,7 +1996,7 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.clas
 { const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
-  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&!dl)?"<span>20%</span><span>50%</span><span>80%</span>":dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
+  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
   if(!lg.__mag){ lg.__mag=1; L.DomEvent.disableClickPropagation(lg); lg.addEventListener("click",()=>lg.classList.toggle("mag")); } }
 const _ul2=window.updateLegend; window.updateLegend=function(){ _ul2(); fixLegend(); }; updateLegend=window.updateLegend;
 const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
@@ -2712,11 +2712,11 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const lineMenu=()=>{};
   const cname=(yr,k)=>{ if(k==="oth") return "Other"; const c=(window.CANDS||CANDS)[yr]; const x=c&&c.find(q=>q.p===k[0]); return x?x.full:NM[k]; };
   const fx=(n,t)=>(n/t*100).toFixed(1)+"%";
-  const legend=yrs=>{ let h='<table class="cleg"><thead><tr><th></th><th>Candidate</th>'+yrs.map(([y])=>'<th colspan="2">'+y+'</th>').join("")+'</tr><tr><th></th><th></th>'+yrs.map(()=>'<th>Votes</th><th>Share</th>').join("")+'</tr></thead><tbody>';
-    ["rep","dem","oth"].forEach(k=>{ h+='<tr><td><i style="background:'+PC[k]+'"></i></td><td>'+yrs.map(([y])=>cname(y,k)).filter((x,i,a)=>a.indexOf(x)===i).join(" / ")+' <span class="cpty">'+NM[k]+'</span></td>'+yrs.map(([y,v])=>{ const p=parts(v); return '<td>'+Math.round(p[k]).toLocaleString("en-US")+'</td><td>'+fx(p[k],v.tot||1)+'</td>'; }).join("")+'</tr>'; });
-    h+='<tr class="ctot"><td></td><td>Total</td>'+yrs.map(([y,v])=>'<td>'+Math.round(v.tot).toLocaleString("en-US")+'</td><td>100%</td>').join("")+'</tr></tbody></table>'; return h; };
+  const legend=yrs=>{ const pc=numMode==="pct", cs=pc?2:1; let h='<table class="cleg"><thead><tr><th></th><th>Candidate</th>'+yrs.map(([y])=>'<th colspan="'+cs+'">'+y+'</th>').join("")+'</tr><tr><th></th><th></th>'+yrs.map(()=>'<th>Votes</th>'+(pc?'<th>Share</th>':'')).join("")+'</tr></thead><tbody>';
+    ["rep","dem","oth"].forEach(k=>{ h+='<tr><td><i style="background:'+PC[k]+'"></i></td><td>'+yrs.map(([y])=>cname(y,k)).filter((x,i,a)=>a.indexOf(x)===i).join(" / ")+' <span class="cpty">'+NM[k]+'</span></td>'+yrs.map(([y,v])=>{ const p=parts(v); return '<td>'+Math.round(p[k]).toLocaleString("en-US")+'</td>'+(pc?'<td>'+fx(p[k],v.tot||1)+'</td>':''); }).join("")+'</tr>'; });
+    h+='<tr class="ctot"><td></td><td>Total</td>'+yrs.map(([y,v])=>'<td>'+Math.round(v.tot).toLocaleString("en-US")+'</td>'+(pc?'<td>100%</td>':'')).join("")+'</tr></tbody></table>'; return h; };
   const pieBig=(v0,v1,S)=>{ const svg=pieSvg(v0,v1).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'"'); return svg; };
-  const barBig=(v0,v1)=>{ let h=barHtml(v0,v1); const ticks=v1?["−max","0","+max"]:[0,10,20,30,40,50,60,70,80,90,100]; if(!v1) h=h.replace('<div class="cbars">','<div class="cbars big"><div class="cbr cax"><span></span><span class="cbt cticks">'+ticks.map(t=>'<em style="left:'+t+'%">'+t+'%</em>').join("")+'</span><span></span></div>'); else h=h.replace('<div class="cbars">','<div class="cbars big">');
+  const barBig=(v0,v1)=>{ let h=barHtml(v0,v1); const ticks=v1?["−max","0","+max"]:[0,10,20,30,40,50,60,70,80,90,100]; if(!v1&&numMode==="pct") h=h.replace('<div class="cbars">','<div class="cbars big"><div class="cbr cax"><span></span><span class="cbt cticks">'+ticks.map(t=>'<em style="left:'+t+'%">'+t+'%</em>').join("")+'</span><span></span></div>'); if(!h.includes('cbars big')) h=h.replace('<div class="cbars">','<div class="cbars big">');
     return h; };
   const draw=()=>{ lineMenu(); let pn=candBox.querySelector(":scope > .cpanel"); const m=window.chartMode, lm=document.body.classList.contains("listmode");
     if(m==="line"&&ym()!=="delta"&&window.__ySelectAll) window.__ySelectAll();
@@ -2743,7 +2743,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141472"></script>
-<script src="data/dc.js?v=202610141472"></script>
+<script defer src="data/countries.js?v=202610141473"></script>
+<script src="data/dc.js?v=202610141473"></script>
 </body>
 </html>
