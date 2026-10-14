@@ -120,14 +120,19 @@
   .nl li { display: flex; align-items: center; gap: 10px; min-height: 44px; border-bottom: 1px solid rgba(0,0,0,.06); }
   .nl input { width: 22px; height: 22px; flex: 0 0 22px; }
   .nl label { flex: 1; min-width: 0; }
+  .vtitle { font-weight: 700; font-size: 1.12em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 10px 0; }
+  #gq::placeholder { color: #1c1917; opacity: 1; }
+  #gq:focus::placeholder { color: #78716c; }
+  #crumbs .lyrs { margin-left: 8px; color: #44403c; font-size: .9em; }
+  .nest li.lvl1 { padding-left: 18px; } .nest li.lvl2 { padding-left: 36px; } .nest li.lvl3 { padding-left: 54px; }
 </style>
 </head>
 <body>
-<div class="v2bar" id="barSearch"><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Search a place, ZIP, county, district" aria-label="Search"></div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
+<div class="v2bar" id="barSearch"><div class="grow vtitle" id="vtitle">President results</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
 <div class="v2bar" id="barGeo"><div class="grow crumbs" id="crumbs"></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
 <div class="v2bar" id="barTime" hidden style="padding-right:calc(var(--gap) * 2 + var(--btn) + var(--sar))"><div class="yr"><button class="chip" id="c2020" type="button">2020</button><input id="yslider" type="range" min="0" max="2" step="1" value="2" aria-label="Year"><button class="chip on" id="c2024" type="button">2024</button></div><div id="ynote"></div></div>
 <div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button><button class="rbtn" id="bList" aria-label="Selections"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11M3.5 18l1.2 1.2L7 17"/></svg></button></div>
-<div class="v2bar" id="barBottom"><button class="grow bottomlbl" id="bLayerLbl">geography</button><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
+<div class="v2bar" id="barBottom"><button class="bottomlbl" id="bLayerLbl" hidden>geography</button><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="go" autocomplete="off" placeholder="Search a ZIP, place, county or address" aria-label="Go to a place"></div><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
 <div class="sheet" id="sheet" hidden></div>
 
 <header>
@@ -481,8 +486,9 @@ function loadPrecincts(st) {
   });
   return precLoading[st];
 }
+function precSrc(){ return ym()==="2020" ? (window.PREC20||{})[state.value] : PREC[state.value]; }
 function precItems() {
-  const rows = PREC[state.value];
+  const rows = precSrc();
   if (!rows) return [];
   return county.value ? rows.filter(r => r[0] === county.value) : rows;
 }
@@ -559,7 +565,7 @@ function heatItems() {
 }
 function hitAt(latlng) {
   if (!heatOn) return null;
-  if (heatLevel === "precinct" && ym()==="2024") { const r = precAt(latlng); return r ? precHtml(r) : null; }
+  if (heatLevel === "precinct") { const r = precAt(latlng); return r ? precHtml(r) : null; }
   const d = countyAt(latlng); return d ? heatHtml(d) : null;
 }
 function countyAt(latlng) {
@@ -570,14 +576,15 @@ function drawHeat() {
   if (!map) return;
   if (heatLayer) heatLayer.clearLayers();
   if (!heatOn) return;
-  if (heatLevel === "precinct" && ym()==="2024") {
+  if (heatLevel === "precinct") {
     if (!state.value) { mapnote.textContent = "Pick a state to see its precinct results."; return; }
-    if (PREC[state.value] === null) { mapnote.textContent = "Precinct results not yet available for this state. Switch to By county to see county results."; return; }
+    if (precSrc() === null || (ym()==="2020" && precSrc() === undefined)) { mapnote.textContent = "Precinct results not yet available for this state. Switch to By county to see county results."; return; }
     const items = precItems();
     items.forEach(r => {
-      const fill = r[4] ? marginColor((r[3] - r[2]) / r[4]) : "#d6d3d1";
+      const fill = window.precFill ? precFill(r) : (r[4] ? marginColor((r[3] - r[2]) / r[4]) : "#d6d3d1");
       L.polygon(toLatLngs(r.slice(0, 6)), { renderer: heatRenderer, pane: "heatPane", color: "#ffffff", weight: 0.3, fillColor: fill, fillOpacity: 0.75, interactive: false }).addTo(heatLayer);
     });
+    if (window.precNote && ym()!=="2024") { mapnote.textContent = precNote(items); return; }
     mapnote.textContent = items.length ? items.length.toLocaleString("en-US") + " precincts shown. Sources: " + (typeof PREC_CREDIT[state.value] === "object" ? (county.value ? (PREC_CREDIT[state.value][county.value] || "") : "varies by county; pick a county to see its source") : (PREC_CREDIT[state.value] || "")) : "Precinct results not yet available for this county. Switch to By county to see county results.";
     return;
   }
@@ -716,8 +723,8 @@ function syncYears(){
   $("c2020").classList.toggle("on", years.has("2020")); $("c2024").classList.toggle("on", years.has("2024"));
   $("yslider").value = ymode()==="2020"?0:ymode()==="delta"?1:2;
   const m=ymode();
-  $("ynote").textContent = m==="2024" ? "" : (heatLevel==="precinct" ? "2020 results are county-level only; showing counties." : "") + (m==="delta" ? " Change in margin, 2020 → 2024." : "");
-  (m==="2024" ? Promise.resolve() : loadE2020()).then(()=>{ updateLegend(); drawHeat(); });
+  $("ynote").textContent = m==="2024" ? "" : m==="2020" ? "2020 results." : (heatLevel==="precinct" ? "Change in margin, 2020 → 2024: precincts shown only where both years use the identical precinct shape." : "Change in margin, 2020 → 2024.");
+  (m==="2024" ? Promise.resolve() : loadE2020()).then(()=>window.ensure20?ensure20():null).then(()=>{ updateLegend(); drawHeat(); });
 }
 $("c2020").onclick=()=>{ years.has("2020")&&years.size>1?years.delete("2020"):years.add("2020"); syncYears(); };
 $("c2024").onclick=()=>{ years.has("2024")&&years.size>1?years.delete("2024"):years.add("2024"); syncYears(); };
@@ -729,9 +736,9 @@ window.updateLegend = function(){
   const div=document.querySelector(".heatlegend"); if(!div) return;
   const m=ymode();
   if(m==="delta"){ const st=[-0.2,-0.1,-0.05,0,0.05,0.1,0.2];
-    div.innerHTML="<strong>Change in margin, 2020→2024</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
+    div.innerHTML="<strong>Change in margin, 2020→2024 ("+heatLevel+")</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
   } else { const st=[-0.6,-0.4,-0.2,-0.1,0,0.1,0.2,0.4,0.6]; const d=m==="2020"?"Biden":"Harris";
-    div.innerHTML="<strong>"+m+" president, "+(m==="2024"?heatLevel:"county")+" margin</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+marginColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>"+d+" +60</span><span>even</span><span>Trump +60</span></div>"; }
+    div.innerHTML="<strong>"+m+" president, "+heatLevel+" margin</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+marginColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>"+d+" +60</span><span>even</span><span>Trump +60</span></div>"; }
 };
 // geography breadcrumb + sheet
 const sheet=$("sheet");
@@ -850,9 +857,9 @@ function ringArea(r){ let s=0; for(let i=0,j=r.length-1;i<r.length;j=i++) s+=(r[
 function centroid(polys){ let best=null,ba=-1; polys.forEach(p=>{ const a=ringArea(p[0]); if(a>ba){ba=a;best=p[0];} });
   let A=0,cx=0,cy=0; for(let i=0,j=best.length-1;i<best.length;j=i++){ const f=best[j][0]*best[i][1]-best[i][0]*best[j][1]; A+=f; cx+=(best[j][0]+best[i][0])*f; cy+=(best[j][1]+best[i][1])*f; }
   return A? [cx/(3*A),cy/(3*A)] : best[0]; }
-function aggFor(k){
-  const st=state.value, key=st+"|"+k; if(AGG[key]) return AGG[key];
-  const P=PREC[st]; if(!P) return null;
+function aggFor(k,yr){
+  yr=yr||(ym()==="2020"?"2020":"2024"); const st=state.value, key=st+"|"+k+"|"+yr; if(AGG[key]) return AGG[key];
+  const P=yr==="2020"?(window.PREC20||{})[st]:PREC[st]; if(!P) return null; const EL=yr==="2020"?window.ELECTION2020:window.ELECTION2024;
   const dists=(GEOM[k]||[]).filter(inArea); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
   const DG=grid(dists,d=>d.__bb,0.1), res=new Map(); dists.forEach(d=>res.set(d,{dem:0,rep:0,tot:0,n:0}));
   P.forEach(r=>{ if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const b=r[6]; c=[(b[0]+b[2])/2,(b[1]+b[3])/2]; } r.__c=c; }
@@ -860,11 +867,11 @@ function aggFor(k){
     const a=res.get(d); a.dem+=r[2]; a.rep+=r[3]; a.tot+=r[4]; a.n++; });
   // coverage: sample points weighted by county vote density; covered if inside a reported precinct
   const PG=grid(P.filter(r=>r[4]>0),r=>r[6],0.05);
-  const C=(GEOM.counties||[]).filter(inArea); C.forEach(c=>{ if(!c.__bb) c.__bb=bboxOf(c[c.length-1]); const e=window.ELECTION2024&&window.ELECTION2024[c[0]+"|"+c[1]]; let ar=0; c[c.length-1].forEach(p=>ar+=ringArea(p[0])); c.__dens=e&&ar?e[2]/ar:0; });
+  const C=(GEOM.counties||[]).filter(inArea); C.forEach(c=>{ if(!c.__bb) c.__bb=bboxOf(c[c.length-1]); const e=EL&&EL[c[0]+"|"+c[1]]; let ar=0; c[c.length-1].forEach(p=>ar+=ringArea(p[0])); c["__dens"+yr]=e&&ar?e[2]/ar:0; });
   const CG=grid(C,c=>c.__bb,0.25);
   dists.forEach(d=>{ const [x0,y0,x1,y1]=d.__bb, N=16; let w=0,wc=0;
     for(let i=0;i<N;i++) for(let j=0;j<N;j++){ const x=x0+(x1-x0)*(i+.5)/N, y=y0+(y1-y0)*(j+.5)/N; if(!pointInItem(d,x,y)) continue;
-      const c=gq(CG,x,y).find(c=>pointInItem(c,x,y)); const dw=c?c.__dens:0; if(!dw) continue; w+=dw;
+      const c=gq(CG,x,y).find(c=>pointInItem(c,x,y)); const dw=c?c["__dens"+yr]:0; if(!dw) continue; w+=dw;
       if(gq(PG,x,y).some(r=>x>=r[6][0]&&x<=r[6][2]&&y>=r[6][1]&&y<=r[6][3]&&pointInItem(r.slice(0,6),x,y))) wc+=dw; }
     res.get(d).cov=w? wc/w : 0; });
   return AGG[key]=res;
@@ -901,7 +908,7 @@ function refreshLayers(){
 const _hitAt=hitAt;
 hitAt=function(ll){
   if(heatOn&&state.value) for(const k of ["statehouse","senate","ushouse","schools"]) if(active.has(k)&&k===fillTop){
-    const d=layerItems(k).find(d=>pointInItem(d,ll.lng,ll.lat)); if(d){ const ag=ym()==="2024"&&PREC[state.value]?aggFor(k):null; return aggHtml(k,d,ag&&ag.get(d)); } }
+    const d=layerItems(k).find(d=>pointInItem(d,ll.lng,ll.lat)); if(d) return aggHtml(k,d); }
   return _hitAt(ll);
 };
 // redraw on changes
@@ -926,7 +933,7 @@ function openLists(){
     rows.slice(0,2000).forEach((r,i)=>{ const li=document.createElement("li"); const id="cb_"+k+"_"+i;
       li.innerHTML="<span class='n'>"+(i+1)+"</span><input type='checkbox' id='"+id+"'><label for='"+id+"'>"+esc(labelFor(sid,r))+"</label>";
       const cb=li.querySelector("input"); cb.checked=selected.has(rowKey(sid,r)); cb.onchange=()=>{ setSel(sid,r,cb.checked); render(); loadState(r[0]).then(redraw); }; ol.append(li); });
-    const all=on=>{ rows.forEach(r=>setSel(sid,r,on)); ol.querySelectorAll("input").forEach(c=>c.checked=on); render(); loadState(state.value).then(redraw); };
+    const all=on=>{ window.__bulk=1; rows.forEach(r=>setSel(sid,r,on)); window.__bulk=0; ol.querySelectorAll("input").forEach(c=>c.checked=on); render(); loadState(state.value).then(redraw); };
     det.querySelector(".sa").onclick=()=>all(true); det.querySelector(".da").onclick=()=>all(false);
     host.append(det); });
   if(!host.children.length) host.innerHTML="<p>Turn on a layer with the layers button to list its districts.</p>";
@@ -944,6 +951,144 @@ const VIEWS={map:{show(){}}}; let view="map";
 function setView(v){ if(!VIEWS[v]) return; view=v; VIEWS[v].show(); }
 window.__v2={active,aggFor,refreshLayers,openLists,VIEWS,setView,get view(){return view;}};
 syncLetters();
+// ===== 2020 precincts, same-unit delta, year-aware districts =====
+window.PREC20={}; const PREC20CREDIT={}, P20L={};
+function ghash(e){ let h=0; for(const rg of e) for(const r of rg) for(let i=0;i<r.length;i++) h=(Math.imul(h,31)+r[i])|0; return h; }
+const _precCore=window.__prec;
+window.__prec=function(st,rows,credit){
+  rows.forEach(r=>{ r.__h=ghash(r[5]); });
+  const is20=/precincts2020/.test(((document.currentScript||{}).src)||"");
+  if(!is20) return _precCore(st,rows,credit);
+  const had=(st in PREC), sv=PREC[st], hc=(st in PREC_CREDIT), sc=PREC_CREDIT[st];
+  _precCore(st,rows,credit); PREC20[st]=PREC[st]; PREC20CREDIT[st]=credit;
+  if(had) PREC[st]=sv; else delete PREC[st]; if(hc) PREC_CREDIT[st]=sc; else delete PREC_CREDIT[st];
+};
+function loadPrec20(st){
+  if(!st||(st in PREC20)) return Promise.resolve();
+  return P20L[st]||(P20L[st]=new Promise(res=>{ mapnote.textContent="Loading "+st+" 2020 precinct results...";
+    const s=document.createElement("script"); s.src="../data/precincts2020/"+st.replace(/ /g,"_")+".js";
+    s.onload=()=>{ if(!(st in PREC20)) PREC20[st]=null; res(); }; s.onerror=()=>{ PREC20[st]=null; res(); }; document.head.appendChild(s); }));
+}
+function ensure20(){ const m=ym(), st=state.value; if(!st||!heatOn) return Promise.resolve();
+  const want=heatLevel==="precinct"||fillTop; if(!want) return Promise.resolve();
+  return Promise.all([m!=="2024"?loadPrec20(st):null, m!=="2020"?loadPrecincts(st):null, m!=="2024"?loadE2020():null]); }
+window.ensure20=ensure20;
+const M20={};
+function match20(r){ const st=state.value, P=PREC20[st]; if(!P) return null;
+  if(!M20[st]){ const mp=new Map(); P.forEach(o=>mp.set(o[0]+"|"+o[1]+"|"+o.__h,o)); M20[st]=mp; }
+  const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); return o&&o[4]&&r[4]?o:null; }
+window.precFill=function(r){ const m=ym();
+  if(m!=="delta") return r[4]?marginColor((r[3]-r[2])/r[4]):"#d6d3d1";
+  const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; };
+window.precNote=function(items){ const st=state.value, m=ym();
+  if(m==="2020"){ if(!PREC20[st]) return "No 2020 precinct results joined for "+st+". Switch to counties or a district layer."; return fmtN(items.length)+" 2020 precincts shown. Source: "+(PREC20CREDIT[st]||""); }
+  if(!PREC20[st]) return "No 2020 precinct results joined for "+st+", so there is no precinct-level change here. Use counties or a district layer.";
+  const n=items.filter(match20).length; return fmtN(n)+" of "+fmtN(items.length)+" precincts are the identical unit in 2020 and 2024 (same name and shape) and show the change; the rest are gray. District and county layers show the change everywhere both years have data."; };
+const _precHtml=precHtml;
+function yr3(a,yr){ return a&&a[2]?yrHtml(a,yr):"<b>"+yr+"</b> no votes reported<br>"; }
+precHtml=function(r){ const m=ym(); if(m==="2024") return _precHtml(r);
+  const h="<strong>Precinct "+esc(r[1])+"</strong><br>"+esc(r[0])+", "+esc(state.value)+"<br>";
+  if(m==="2020") return h+yr3(r.slice(2,5),"2020")+"Total votes: "+fmtN(r[4]);
+  const o=match20(r); if(!o) return h+yr3(r.slice(2,5),"2024")+"No identical 2020 precinct (boundary or name changed, or no 2020 data), so no precinct-level change. Use a district layer or counties.";
+  const dm=((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4])*100;
+  return h+yr3(o.slice(2,5),"2020")+yr3(r.slice(2,5),"2024")+"<b>Change:</b> "+(dm>=0?"R +":"D +")+Math.abs(dm).toFixed(1)+" pts (same precinct both years)"; };
+// districts by year
+function okA(a){ return a&&a.tot&&a.cov>=0.5; }
+function mg(a){ return (a.rep-a.dem)/a.tot; }
+function distVals(k,d){ const m=ym(); const g=yr=>{ const A=aggFor(k,yr); return A?A.get(d):null; };
+  return {a24:m!=="2020"?g("2024"):null, a20:m!=="2024"?g("2020"):null}; }
+function distFill(k,d){ const m=ym(),{a24,a20}=distVals(k,d);
+  if(m==="2024") return okA(a24)?marginColor(mg(a24)):"#a8a29e";
+  if(m==="2020") return okA(a20)?marginColor(mg(a20)):"#a8a29e";
+  return okA(a24)&&okA(a20)?deltaColor(mg(a24)-mg(a20)):"#a8a29e"; }
+function aBlock(a,yr){ if(!a||!a.tot) return "<b>"+yr+"</b>: no precinct results inside this district.<br>";
+  const dn=yr==="2020"?"Biden":"Harris", pd=a.dem/a.tot*100, pr=a.rep/a.tot*100, m=pr-pd;
+  return "<b>"+yr+" President</b> (sum of "+fmtN(a.n)+" precincts)<br>"+dn+": "+fmtN(a.dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(a.rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>Total votes: "+fmtN(a.tot)+"<br>Coverage: about "+Math.round(a.cov*100)+"% of votes"+(a.cov<0.5?" (under 50%)":"")+"<br>"; }
+function aggHtml(k,d){ const lab=LYR.find(l=>l[1]===k)[2], m=ym(), {a24,a20}=distVals(k,d);
+  let h="<strong>"+(k==="ushouse"?"District ":"")+esc(dname(k,d))+"</strong><br>"+esc(lab)+", "+esc(d[0])+"<br>";
+  if(m!=="2024") h+=aBlock(a20,"2020"); if(m!=="2020") h+=aBlock(a24,"2024");
+  if(m==="delta") h+= okA(a24)&&okA(a20) ? "<b>Change:</b> "+((mg(a24)-mg(a20))>=0?"R +":"D +")+Math.abs((mg(a24)-mg(a20))*100).toFixed(1)+" pts (each year summed into this same district)" : "No change shown: a year has under 50% coverage.";
+  return h; }
+function refreshLayers(){
+  if(!lyrGroup) return; const seq=++drawSeq; lyrGroup.clearLayers(); crumbs2();
+  if(!state.value) return; const m=ym();
+  const lgd=document.querySelector(".heatlegend strong"); if(lgd&&heatOn&&fillTop){ const L2=LYR.find(l=>l[1]===fillTop)[2]; lgd.textContent=m==="delta"?"Change in margin, 2020→2024 ("+L2+")":m+" president, "+L2+" margin (summed precincts)"; } else if(window.updateLegend) updateLegend();
+  const need=heatOn&&fillTop;
+  loadState(state.value).then(()=>need?Promise.all([m!=="2020"?loadPrecincts(state.value):null,m!=="2024"?loadPrec20(state.value):null,m!=="2024"?loadE2020():null]):null).then(()=>{
+    if(seq!==drawSeq) return;
+    ["counties","towns","schools","ushouse","senate","statehouse"].filter(k=>active.has(k)).forEach(k=>{
+      const filling=heatOn&&k===fillTop;
+      layerItems(k).forEach(d=>{ let o={renderer:lyrRenderer,pane:"lyrPane",interactive:false,color:k==="counties"?"#111":"#1f2937",weight:k==="counties"?1.2:1.6,fill:false};
+        if(filling) o={...o,fill:true,fillColor:distFill(k,d),fillOpacity:0.8,color:"#fff",weight:0.8};
+        L.polygon(toLatLngs(d),o).addTo(lyrGroup); });
+    });
+    if(need){ const n=layerItems(fillTop).length, gray=layerItems(fillTop).filter(d=>distFill(fillTop,d)==="#a8a29e").length;
+      const miss=(m!=="2020"&&!PREC[state.value]?"2024 ":"")+(m!=="2024"&&!PREC20[state.value]?"2020 ":"");
+      mapnote.textContent=LYR.find(l=>l[1]===fillTop)[2]+": "+n+" districts, "+gray+" gray (under 50% of votes covered"+(m==="delta"?" in either year":"")+")."+(miss?" No "+miss.trim().replace(" "," or ")+" precinct results for "+state.value+".":""); }
+  });
+}
+// ===== layout: title, nesting fold-up, bottom navigation =====
+function setTitle(){ $("vtitle").textContent=OFFICES.find(o=>o.id===office).label+" results"; }
+setTitle();
+function crumbs2(){ setTitle(); const c=$("crumbs"); let s=c.querySelector(".lyrs"); if(!s){ s=document.createElement("span"); s.className="lyrs"; c.append(s); }
+  const names=LYR.filter(l=>active.has(l[1])).map(l=>l[0]).join(" "); s.textContent="· "+(names||"no layers")+(selected.size?" · "+selected.size+" selected":""); }
+const _crumbs=crumbs; crumbs=function(){ _crumbs(); crumbs2(); };
+function fitItems(items){ if(!items.length) return; let b=null; items.forEach(d=>{ const p=L.polygon(toLatLngs(d)); b=b?b.extend(p.getBounds()):p.getBounds(); }); map.fitBounds(b,{padding:[24,24],maxZoom:14}); }
+function zoomTo(sid,r){ loadState(r[0]).then(()=>fitItems(shapesFor(sid,r))); }
+function openNest(){
+  closeSheet(); $("bGeo").classList.add("on");
+  sheet.innerHTML="<h3><span>What's plotted</span><button class='quiet close' type='button'>Close</button></h3><ol class='nl nest'></ol>";
+  sheet.querySelector(".close").onclick=closeSheet; const ol=sheet.querySelector("ol");
+  const add=(lvl,txt,fn,cls)=>{ const li=document.createElement("li"); li.className="lvl"+lvl+(cls?" "+cls:""); li.innerHTML="<span>"+txt+"</span>"; if(fn) li.onclick=fn; ol.append(li); return li; };
+  add(0,"<b>Nation</b>",()=>{ state.value=""; state.onchange(); closeSheet(); });
+  add(1,state.value?"<b>"+esc(state.value)+"</b> (change)":"Pick a state…",()=>{ county.value=""; openGeo(); });
+  if(state.value) add(2,county.value?"<b>"+esc(county.value)+"</b> (change)":"Pick a county…",()=>{ county.value=""; county.onchange(); openGeo(); });
+  if(county.value&&heatLevel==="precinct") add(3,"Precincts in "+esc(county.value)+"…",()=>openGeo());
+  add(0,"<b>Layers on</b>",null);
+  LYR.forEach(([t,k,lab])=>{ const li=add(1,"<span class='lt' style='display:inline-grid;width:26px;height:26px;border-radius:50%;place-items:center;background:"+(active.has(k)?"#1d4ed8":"#000")+";color:#fff;margin-right:8px'>"+t+"</span>"+esc(lab)+(active.has(k)?" — on":""),()=>{ lrow.querySelector(".lbtn[data-k="+k+"]").click(); openNest(); }); });
+  add(0,"<b>Selected for highlight</b> ("+selected.size+")",selected.size?null:()=>openLists());
+  selected.forEach((it,key)=>{ const li=add(1,esc(it.label)+" <button type='button' class='quiet' style='margin-left:auto'>Remove</button>",()=>{ zoomTo(it.setId,it.row); });
+    li.querySelector("button").onclick=e=>{ e.stopPropagation(); selected.delete(key); render(); redraw(); crumbs2(); openNest(); }; });
+  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed");
+}
+$("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openNest(); };
+// auto-zoom when a district is checked in the lists
+const _setSel=setSel; setSel=function(sid,r,on){ _setSel(sid,r,on); if(on&&!window.__bulk) zoomTo(sid,r); crumbs2(); };
+// bottom field: navigation only (never changes filters or selection)
+function navTo(q){ const ql=q.toLowerCase();
+  if(/^\d{5}$/.test(q)) return loadZ().then(()=>{ const z=window.ZCTA2024&&ZCTA2024[q]; if(z) map.setView(z,13); else geocode(q); });
+  const st=allStates().find(s=>s.toLowerCase()===ql); if(st) return loadState(st).then(()=>fitItems((GEOM.counties||[]).filter(d=>d[0]===st)));
+  for(const k of Object.keys(XREF.ushouse||{})){ const [s,c]=k.split("|"); const cl=c.toLowerCase();
+    if(cl===ql||cl===ql+" county"||(c+", "+s).toLowerCase()===ql||(cl.replace(/ county$/,"")+", "+s.toLowerCase())===ql) return loadState(s).then(()=>fitItems((GEOM.counties||[]).filter(d=>d[0]===s&&d[1]===c))); }
+  const r=(DATA.localities||[]).find(r=>r[2]&&(r[2].toLowerCase()===ql||(r[2]+", "+r[0]).toLowerCase()===ql));
+  if(r) return loadState(r[0]).then(()=>{ const sh=shapesFor("localities",r); sh.length?fitItems(sh):geocode(q); });
+  geocode(q);
+}
+geocode=function(q){
+  fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q="+encodeURIComponent(q),{headers:{"Accept":"application/json"}})
+   .then(r=>r.json()).then(a=>{ if(!a.length){ $("gq").placeholder="No match for "+q; return; } const h=a[0];
+     if(h.boundingbox){ const b=h.boundingbox.map(Number); map.fitBounds([[b[0],b[2]],[b[1],b[3]]],{maxZoom:16}); } else map.setView([+h.lat,+h.lon],14); })
+   .catch(()=>{ $("gq").placeholder="Search needs a connection for addresses"; });
+};
+go=function(){ const q=$("gq").value.trim(); if(!q) return; navTo(q); $("gq").value=""; $("gq").blur(); };
+$("bSearch").onclick=()=>{ $("gq").focus(); };
+const gqEl=$("gq"); const gqClone=gqEl.cloneNode(true); gqEl.replaceWith(gqClone);
+gqClone.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); go(); } });
+$("bGlobe").onclick=()=>{ if(!sheet.hidden&&$("bGlobe").classList.contains("on")) return closeSheet(); openLayers(); };
+// name of area in view (offline: loaded shapes + bundled ZCTA)
+let whereT=null;
+function whereAmI(){ if(document.activeElement===$("gq")) return; const c=map.getCenter(), x=c.lng, y=c.lat, z=map.getZoom();
+  if(z<5){ $("gq").placeholder="United States"; return; }
+  const inn=d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); const b=d.__bb; return x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]&&pointInItem(d,x,y); };
+  const cty=(GEOM.counties||[]).find(inn);
+  let place=null; if(cty&&z>=10){ const t=(GEOM.towns||[]).find(d=>d[0]===cty[0]&&inn(d)); place=t?t[2]:((GEOM.places||[]).find(d=>d[0]===cty[0]&&inn(d))||[])[1]; }
+  if(cty){ $("gq").placeholder=(place?place+" · ":"")+cty[1]+", "+cty[0]; return; }
+  loadZ().then(()=>{ const Z=window.ZCTA2024; if(!Z) return; let best=null,bd=1e9; for(const k in Z){ const p=Z[k], d=(p[0]-y)**2+((p[1]-x)*Math.cos(y*Math.PI/180))**2; if(d<bd){bd=d;best=k;} }
+    const zst=Object.keys(STATE_FILES); $("gq").placeholder=best&&bd<0.05?"Near ZIP "+best:"United States"; });
+}
+map.on("moveend",()=>{ clearTimeout(whereT); whereT=setTimeout(whereAmI,250); });
+gqClone.addEventListener("blur",()=>setTimeout(whereAmI,50));
+window.__v2.match20=match20; window.__v2.distFill=distFill; window.__v2.PREC20=PREC20;
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
