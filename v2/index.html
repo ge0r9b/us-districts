@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141469 -->
+<!-- build 202610141470 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141469";</script>
+<script>window.BUILD="202610141470";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -440,11 +440,11 @@
   .cpanel .clinechart svg { width: 100%; height: auto; } .cpanel svg text { fill: #111 !important; }
   .cbars { display: flex; flex-direction: column; gap: 10px; }
   .cblk + .cblk { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,.08); }
-  .cleg { border-collapse: collapse; font: 13px system-ui, sans-serif; color: #111; font-variant-numeric: tabular-nums; }
+  .cleg { width: auto !important; flex: 0 1 auto; border-collapse: collapse; font: 13px system-ui, sans-serif; color: #111; font-variant-numeric: tabular-nums; }
   .cleg th { font-weight: 600; color: #57534e; text-align: right; padding: 2px 8px; font-size: 12px; } .cleg th:nth-child(2) { text-align: left; }
   .cleg td { padding: 5px 8px; text-align: right; border-top: 1px solid rgba(0,0,0,.07); white-space: nowrap; } .cleg td:nth-child(2) { text-align: left; font-weight: 600; }
   .cleg td i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; opacity: .7; } .cleg .cpty { font-weight: 400; color: #57534e; margin-left: 4px; } .cleg .ctot td { font-weight: 600; }
-  .cwide { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 18px; } .cwideWrap { width: 100%; }
+  .cwide { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: flex-start; margin-top: 18px; } .cwideWrap { width: 100%; }
   .cpanel .cpie1 svg { max-width: 100%; } .cpieL svg { display: block; }
   .clinechart.big svg { width: 100% !important; height: auto; max-width: 100%; } .clinechart.big { margin-bottom: 14px; }
   .cbars.big .cbr { grid-template-columns: 110px 1fr 80px; font-size: 15px; } .cbars.big .cbt { height: 28px; }
@@ -878,17 +878,23 @@ function marginColor(m) {
   }
   return "rgb(" + stops[stops.length - 1][1] + ")";
 }
+const __hsChk=()=>{ const k=[...(window.__candOn||[])].sort().join(); if(window.__candOn&&k!==window.__hsK){ const first=window.__hsK===undefined; window.__hsK=k; if(!first) try{ window.__syncYears&&window.__syncYears(); }catch(_){} } }; setInterval(__hsChk,150); ["click","pointerup"].forEach(t=>document.addEventListener(t,()=>{ setTimeout(__hsChk,0); setTimeout(__hsChk,40); },true));
+if(0) document.addEventListener("click",e=>{ if(e.target.closest&&e.target.closest("#cands .cand")) setTimeout(()=>{ const k=[...(window.__candOn||[])].sort().join(); if(k!==window.__hsK){ window.__hsK=k; try{ window.__syncYears&&window.__syncYears(); }catch(_){} } },0); },true);
+// heat shading follows the answer selection: both top-two answers = margin map; one = that answer's share (light -> its color); none = no fill
+function heatSel(){ try{ const CO=window.__candOn; if(!CO||!window.__candsOn) return {m:"both"}; const cs=window.__candsOn(); const on=cs.filter(c=>CO.has(c.id)); const ix=new Set(on.map(c=>c.ix)); if(ix.size>=2||!cs.length) return {m:"both"}; if(!ix.size) return {m:"none"}; const c=on[0]; return {m:"one",ix:c.ix,color:c.color||(c.ix?"#dc2626":"#2563eb")}; }catch(e){ return {m:"both"}; } }
+function shareColor(f,col){ const h=col.replace("#",""); const C=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)); const L=[247,247,247]; const t=Math.max(0,Math.min(1,(f-0.2)/0.6)); const k=t<0.5?t*2:1, d=t<0.5?0:(t-0.5)*2; return "rgb("+L.map((l,j)=>Math.round(t<0.5?l+(C[j]-l)*k:C[j]*(1-0.45*d))).join(",")+")"; }
+function heatC(dem,rep,tot){ const S=heatSel(); if(S.m==="none") return "rgba(0,0,0,0)"; if(S.m==="one") return shareColor((S.ix?rep:dem)/tot,S.color); return marginColor((rep-dem)/tot); }
 function fmtN(n) { return n.toLocaleString("en-US"); }
 let E2020L=null;
 function loadE2020(){ if(window.ELECTION2020) return Promise.resolve(); return E2020L||(E2020L=new Promise(r=>{const s=document.createElement("script");s.src="../data/election2020.js?v="+window.BUILD;s.onload=r;s.onerror=r;document.head.append(s);})); }
-function deltaColor(d){ const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
+function deltaColor(d){ if(typeof heatSel==="function"&&heatSel().m==="none") return "rgba(0,0,0,0)"; const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
   if(d<=st[0][0]) return "rgb("+st[0][1]+")"; for(let i=1;i<st.length;i++){ if(d<=st[i][0]){ const [a,ca]=st[i-1],[b,cb]=st[i],t=(d-a)/(b-a); return "rgb("+ca.map((c,j)=>Math.round(c+(cb[j]-c)*t)).join(",")+")"; } } return "rgb("+st[st.length-1][1]+")"; }
 function ym(){ return window.__ymode ? window.__ymode() : "2024"; }
 function yrHtml(r,yr){ const [dem,rep,tot]=r,pd=dem/tot*100,pr=rep/tot*100,m=pr-pd,dn=yr==="2020"?"Biden":"Harris";
   return "<b>"+yr+"</b> "+dn+": "+fmtN(dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>"; }
 function countyFill(k){ const m=ym(), a=window.ELECTION2024&&window.ELECTION2024[k], b=window.ELECTION2020&&window.ELECTION2020[k];
-  if(m==="2024") return a?marginColor((a[1]-a[0])/a[2]):null;
-  if(m==="2020") return b?marginColor((b[1]-b[0])/b[2]):null;
+  if(m==="2024") return a?heatC(a[0],a[1],a[2]):null;
+  if(m==="2020") return b?heatC(b[0],b[1],b[2]):null;
   return a&&b?deltaColor((a[1]-a[0])/a[2]-(b[1]-b[0])/b[2]):null; }
 function heatHtml(d) {
   const k=d[0]+"|"+d[1], yy=ym();
@@ -943,7 +949,7 @@ function drawHeat() {
     if (precSrc() === null || (ym()==="2020" && precSrc() === undefined)) { mapnote.textContent = "Precinct results not yet available for this state. Switch to By county to see county results."; return; }
     const items = precItems();
     items.forEach(r => {
-      const fill = window.precFill ? precFill(r) : (r[4] ? marginColor((r[3] - r[2]) / r[4]) : "#d6d3d1");
+      const fill = window.precFill ? precFill(r) : (r[4] ? heatC(r[2],r[3],r[4]) : "#d6d3d1");
       L.polygon(toLatLngs(r.slice(0, 6)), { renderer: heatRenderer, pane: "heatPane", color: "#ffffff", weight: 0.3, fillColor: fill, fillOpacity: 0.75, interactive: false }).addTo(heatLayer);
     });
     if (window.precNote && ym()!=="2024") { mapnote.textContent = precNote(items); return; }
@@ -1097,6 +1103,8 @@ $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").cl
 window.updateLegend = function(){
   const div=document.querySelector(".heatlegend"); if(!div) return;
   const m=ymode();
+  { const S=heatSel(); if(S.m==="none"){ div.innerHTML="<strong>No answer selected · no shading</strong>"; return; }
+    if(S.m==="one"&&m!=="delta"){ const c=candsOn().find(x=>candOn.has(x.id)); const st=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]; div.innerHTML="<strong>"+m+" "+esc(c?c.short:"")+" share, "+heatLevel+"</strong><div class='heatbar'>"+st.map(f=>"<span style='background:"+shareColor(f,S.color)+"'></span>").join("")+"</div><div class='heatlbl'><span>20%</span><span>50%</span><span>80%</span></div>"; return; } }
   if(m==="delta"){ const st=[-0.2,-0.1,-0.05,0,0.05,0.1,0.2];
     div.innerHTML="<strong>Margin change 20→24 · "+heatLevel+"</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
   } else { const st=[-0.6,-0.4,-0.2,-0.1,0,0.1,0.2,0.4,0.6]; const d=m==="2020"?"Biden":"Harris";
@@ -1259,7 +1267,7 @@ function refreshLayers(){
       if(filling&&ym()==="2024"&&!PREC[state.value]) mapnote.textContent="No precinct results for "+state.value+" yet, so districts can't be colored.";
       layerItems(k).forEach(d=>{ let o={renderer:lyrRenderer,pane:"lyrPane",interactive:false,color:k==="counties"?"#111":"#1f2937",weight:k==="counties"?1.2:1.6,fill:false};
         if(filling){ const a=ag&&ag.get(d); let f="#a8a29e";
-          if(a&&a.tot&&a.cov>=0.5) f=marginColor((a.rep-a.dem)/a.tot);
+          if(a&&a.tot&&a.cov>=0.5) f=heatC(a.dem,a.rep,a.tot);
           o={...o,fill:true,fillColor:f,fillOpacity:0.8,color:"#fff",weight:0.8}; }
         L.polygon(toLatLngs(d),o).addTo(lyrGroup); });
     });
@@ -1362,7 +1370,7 @@ function match20(r){ const st=r.__st||state.value, P=PREC20[st]; if(!P) return n
   if(!M20[st]){ const mp=new Map(); P.forEach(o=>mp.set(o[0]+"|"+o[1]+"|"+o.__h,o)); M20[st]=mp; }
   const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); return o&&o[4]&&r[4]?o:null; }
 window.precFill=function(r){ const m=ym();
-  if(m!=="delta") return r[4]?marginColor((r[3]-r[2])/r[4]):"#d6d3d1";
+  if(m!=="delta") return r[4]?heatC(r[2],r[3],r[4]):"#d6d3d1";
   const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; };
 window.precNote=function(items){ const st=state.value, m=ym();
   if(m==="2020"){ if(!PREC20[st]) return "No 2020 precinct results joined for "+st+". Switch to counties or a district layer."; return fmtN(items.length)+" 2020 precincts shown. Source: "+(PREC20CREDIT[st]||""); }
@@ -1382,8 +1390,8 @@ function mg(a){ return (a.rep-a.dem)/a.tot; }
 function distVals(k,d){ const m=ym(); const g=yr=>{ const A=aggFor(k,yr); return A?A.get(d):null; };
   return {a24:m!=="2020"?g("2024"):null, a20:m!=="2024"?g("2020"):null}; }
 function distFill(k,d){ const m=ym(),{a24,a20}=distVals(k,d);
-  if(m==="2024") return okA(a24)?marginColor(mg(a24)):"#a8a29e";
-  if(m==="2020") return okA(a20)?marginColor(mg(a20)):"#a8a29e";
+  if(m==="2024") return okA(a24)?heatC(a24.dem,a24.rep,a24.tot):"#a8a29e";
+  if(m==="2020") return okA(a20)?heatC(a20.dem,a20.rep,a20.tot):"#a8a29e";
   return okA(a24)&&okA(a20)?deltaColor(mg(a24)-mg(a20)):"#a8a29e"; }
 function aBlock(a,yr){ if(!a||!a.tot) return "<b>"+yr+"</b>: no precinct data here<br>";
   const dn=yr==="2020"?"Biden":"Harris", pd=a.dem/a.tot*100, pr=a.rep/a.tot*100, m=pr-pd;
@@ -1567,7 +1575,7 @@ function answers(v,yr){ return v?CANDS[yr].map(c=>({answerId:c.answerId,candidat
 function answerDelta(v24,v20,id){ const a=answers(v24,"2024").find(x=>x[MATCH]===id), b=answers(v20,"2020").find(x=>x[MATCH]===id); return a&&b?{share:a.share-b.share,votes:a.votes-b.votes}:null; }
 const candOn=new Set(["h24","t24","b20","t20"]);
 function yrsOn(){ const m=ym(); return m==="delta"?["2020","2024"]:[m]; }
-function candsOn(){ return yrsOn().flatMap(y=>CANDS[y]); }
+function candsOn(){ return yrsOn().flatMap(y=>CANDS[y]); } window.__candOn=candOn; window.__candsOn=candsOn; window.__syncYears=()=>syncYears();
 const candBox=document.createElement("div"); candBox.id="cands"; candBox.className="cands"; document.body.append(candBox);
 function renderCands(){ const lst=document.body.classList.contains("listmode"), two=yrsOn().length>1; candBox.innerHTML="";
   candsOn().forEach(c=>{ const b=document.createElement("button"); b.type="button"; b.className="cand "+c.p+(candOn.has(c.id)?" on":"");
@@ -1988,7 +1996,7 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.clas
 { const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
-  const lb=lg.querySelector(".heatlbl"); const want=dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
+  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&!dl)?"<span>20%</span><span>50%</span><span>80%</span>":dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
   if(!lg.__mag){ lg.__mag=1; L.DomEvent.disableClickPropagation(lg); lg.addEventListener("click",()=>lg.classList.toggle("mag")); } }
 const _ul2=window.updateLegend; window.updateLegend=function(){ _ul2(); fixLegend(); }; updateLegend=window.updateLegend;
 const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
@@ -2115,7 +2123,7 @@ setInterval(updShift,1000);
 // ===== county fallback where the state lacks precinct data for the selected year(s) =====
 function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
 function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k];
-  if(m==="2024") return a&&a[2]?marginColor((a[1]-a[0])/a[2]):"#a8a29e"; if(m==="2020") return b&&b[2]?marginColor((b[1]-b[0])/b[2]):"#a8a29e";
+  if(m==="2024") return a&&a[2]?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b&&b[2]?heatC(b[0],b[1],b[2]):"#a8a29e";
   return a&&b&&a[2]&&b[2]?deltaColor((a[1]-a[0])/a[2]-(b[1]-b[0])/b[2]):"#a8a29e"; }
 const ctyFillGroup=L.layerGroup().addTo(map);
 function drawCtyFill(){ ctyFillGroup.clearLayers(); if(!heatOn||!state.value) return; const st=state.value;
@@ -2154,14 +2162,14 @@ function natFill(d){ return ctyFill([d.st,d.nm]); }
 let natSeq=0;
 function drawNat(){ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
   const m=ym(); Promise.all([loadNat(), window.ELECTION2024?null:loadElection(), m!=="2024"?loadE2020():null]).then(()=>{ if(seq!==natSeq||!NAT) return;
-    if(!natGroup.__m||natGroup.__m!==m){ natGroup.clearLayers(); natGroup.__m=m; NAT.forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}).addTo(natGroup)); }
+    const mk=m+"|"+JSON.stringify(heatSel()); if(!natGroup.__m||natGroup.__m!==mk){ natGroup.clearLayers(); natGroup.__m=mk; NAT.forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}).addTo(natGroup)); }
     natDetail(seq); }); }
 function statesInView(){ const b=map.getBounds(), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); const S=new Set(); (NAT||[]).forEach(d=>{ const q=d.bb; if(!(q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1)) S.add(d.st); }); return [...S]; }
 function natDetail(seq){ natPrec.clearLayers(); const m=ym(); if(map.getZoom()<9||m==="delta") return; const sts=statesInView().filter(s=>s!==state.value); if(sts.length>4) return;
   Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth();
     sts.forEach(s=>{ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) return;
       P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return;
-        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
+        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
 let natT=null; map.on("moveend",()=>{ clearTimeout(natT); natT=setTimeout(()=>{ if(plotting()&&NAT) natDetail(++natSeq); },150); });
 const _dh11=drawHeat; drawHeat=function(){ _dh11(); drawNat(); };
 // tap anywhere: precinct detail (other states) or national county
@@ -2303,7 +2311,7 @@ window.__uscd=function(rows){ CD=rows.map(([st,nm,enc,a24,a20])=>{ const polys=e
 function loadCD(){ return cdL||(cdL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/uscd.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
 const cdGroup=L.layerGroup().addTo(map);
 function cdFill(d){ const m=ym(), a=d.v["2024"], b=d.v["2020"], mg=v=>(v[1]-v[0])/v[2];
-  if(m==="2024") return a?marginColor(mg(a)):"#a8a29e"; if(m==="2020") return b?marginColor(mg(b)):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; }
+  if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; }
 function natTypeOn(){ return ltype==="ushouse"; }
 function drawCD(){ cdGroup.clearLayers(); if(!plotting()||!natTypeOn()) return; loadCD().then(()=>{ if(!CD||!natTypeOn()||!plotting()) return; cdGroup.clearLayers();
   CD.forEach(d=>{ if(state.value===d.st) return; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:1.6,interactive:false}).addTo(cdGroup); }); }); }
@@ -2332,13 +2340,13 @@ function akHD(name){ const n=parseInt(name,10); const v=window.__ak&&__ak.hd2024
 function akSen(name){ const L0=String(name).replace(/^0+/,""); const i=L0.charCodeAt(0)-65; if(i<0||i>19) return null; const a=akHD(String(2*i+1)), b=akHD(String(2*i+2)); return a&&b?[a[0]+b[0],a[1]+b[1],a[2]+b[2]]:null; }
 function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
 const _df15=distFill; distFill=function(k,d){ if(d[0]!=="Alaska"||!window.__ak) return _df15(k,d); const m=ym(), a=akVals(k,d,"2024"), b=akVals(k,d,"2020"), mg=v=>(v[1]-v[0])/v[2];
-  if(m==="2024") return a?marginColor(mg(a)):"#a8a29e"; if(m==="2020") return b?marginColor(mg(b)):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
+  if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
 const _v15=vals; vals=function(a,yr){ if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(a.kind)){ const v=akVals(a.kind,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
 const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r) return {dem:r.dem+v[0],rep:r.rep+v[1],tot:r.tot+v[2]}; return r; } return _sv15(a,yr); };
 // national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
 const akGroup=L.layerGroup().addTo(map);
 function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
-  const fc=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):marginColor(mg(__ak["state"+m]));
+  const fc=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]);
   (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup)); }); }
 const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
@@ -2358,7 +2366,7 @@ natDetail=function(seq){ natPrec.clearLayers(); const m=ym(); window.__autoP=fal
   if(!plotting()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
   Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
     const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m==="delta"?"2024":m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
-      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
+      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
     window.__autoPS=drawn; window.__autoP=n>0; restyleType(); }).catch(()=>{}); };
 window.__audit=async(k)=>{ document.querySelector("[data-k="+k+"]")&&ltype!==k&&document.querySelector("[data-k="+k+"]").click(); await loadDS(k); await new Promise(r=>setTimeout(r,500)); const bad={},miss={}; let n=0;
   for(const d of DS[k]){ if(!d.v["2024"]) continue; let pt=null; for(let i=1;i<6&&!pt;i++) for(let j=1;j<6&&!pt;j++){ const ll=L.latLng(d.bb[1]+(d.bb[3]-d.bb[1])*i/6,d.bb[0]+(d.bb[2]-d.bb[0])*j/6); if(pip(d,ll)) pt=ll; } if(!pt) continue; n++;
@@ -2729,7 +2737,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141469"></script>
-<script src="data/dc.js?v=202610141469"></script>
+<script defer src="data/countries.js?v=202610141470"></script>
+<script src="data/dc.js?v=202610141470"></script>
 </body>
 </html>
