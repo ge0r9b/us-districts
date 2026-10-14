@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141453 -->
+<!-- build 202610141454 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141453";</script>
+<script>window.BUILD="202610141454";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -320,7 +320,7 @@
   #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
   #vtitle { position: relative; }
   #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 24px; height: 24px; margin-top: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
-  #vtitle { padding-left: var(--tiP, 0px) !important; }
+  #vtitle { --tiL: 5px; --tiP: 40px; padding-left: var(--tiP, 40px) !important; }
   #crumbs .cic.flag.shape img { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
   #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
   #crumbs .cic.flag:not(.shape) { width: 30px !important; justify-content: center; }
@@ -434,14 +434,19 @@
   .cbt.dv b { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); } .cbv { text-align: right; font-variant-numeric: tabular-nums; }
   .cbcap { font: 12px system-ui, sans-serif; color: #57534e; text-align: center; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
+  /* first paint: hide JS-positioned chrome until layout has settled, then fade in (map shows immediately) */
+  body.preload > *:not(#map) { opacity: 0 !important; pointer-events: none !important; }
+  body.unveil > *:not(#map) { transition: opacity .2s ease-out; }
 </style>
+<script>(function(){ var t0=Date.now(); function go(){ var b=document.body; if(!b) return; b.classList.add("unveil"); b.classList.remove("preload"); setTimeout(function(){ b.classList.remove("unveil"); },400); }
+  window.addEventListener("load",function(){ setTimeout(go,750); }); setTimeout(go,6000); })();</script>
 </head>
-<body>
+<body class="preload">
 <div class="v2bar" id="barSearch"><div class="grow vtitle seal" id="vtitle">President</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
 <div class="v2bar" id="barGeo"><div class="grow crumbs" id="crumbs"></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
 <div class="v2bar" id="barTime" hidden style="padding-right:calc(var(--gap) * 2 + var(--btn) + var(--sar))"><div class="yr"><button class="chip" id="c2020" type="button">2020</button><input id="yslider" type="range" min="0" max="2" step="1" value="2" aria-label="Year"><button class="chip on" id="c2024" type="button">2024</button></div><div id="ynote"></div></div>
 <div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button></div>
-<div class="v2bar" id="barBottom"><button class="bottomlbl" id="bLayerLbl" hidden>geography</button><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="go" autocomplete="off" placeholder="ZIP, place, county or address" aria-label="Go to a place"></div><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
+<div class="v2bar" id="barBottom"><button class="bottomlbl" id="bLayerLbl" hidden>geography</button><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="go" autocomplete="off" placeholder="United States" aria-label="Go to a place"></div><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
 <div class="sheet" id="sheet" hidden></div>
 
 <div class="layout">
@@ -2604,6 +2609,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141453"></script>
+<script src="data/dc.js?v=202610141454"></script>
 </body>
 </html>
