@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141461 -->
+<!-- build 202610141462 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141461";</script>
+<script>window.BUILD="202610141462";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -317,6 +317,8 @@
   #geotop .gtrow { display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 16px; }
   #geotop #gq { flex: 1 1 auto; min-width: 0; height: 44px; font-size: 17px !important; border: 0 !important; background: transparent !important; box-shadow: none !important; outline: none !important; padding: 0; }
   #geotop .rbtn { flex: 0 0 auto; }
+  #gq, #geotop #gq { -webkit-user-select: text !important; user-select: text !important; pointer-events: auto !important; -webkit-touch-callout: default !important; }
+  #geotop form.gtrow { margin: 0; }
   #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
   #vtitle { position: relative; }
   #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 24px; height: 24px; margin-top: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
@@ -2387,8 +2389,10 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         li.onclick=e=>{ if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
-  const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<div class="gtrow"></div>'; const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
-  xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>closeG();
+  const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<form class="gtrow" action="#" role="search" autocomplete="off"></form>'; top.firstChild.addEventListener("submit",e=>{ e.preventDefault(); window.__geoSubmit(); }); const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
+  xb.type="button"; xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>{ if(g().value.trim()) window.__geoSubmit(); else closeG(); };
+  // submit = same path as Enter (place / country / address resolution, collapse, navigate)
+  window.__geoSubmit=()=>{ const ev=new KeyboardEvent("keydown",{key:"Enter",code:"Enter",keyCode:13,bubbles:true,cancelable:true}); g().dispatchEvent(ev); };
   function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
   function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if((i.placeholder===""||i.placeholder==="ZIP, place, county or address")&&i.dataset.ph!=null) i.placeholder=(i.dataset.ph&&i.dataset.ph!=="ZIP, place, county or address")?i.dataset.ph:"United States"; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
@@ -2396,7 +2400,9 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   const refocus=()=>{ if(document.body.classList.contains("geofs")&&document.activeElement!==g()&&Date.now()-(window.__gOpenAt||0)<1200){ try{ g().focus({preventScroll:true}); }catch(_){ g().focus(); } } };
   document.addEventListener("touchend",refocus,true); document.addEventListener("click",refocus,true);
   setInterval(()=>{ const i=g(); if(!document.body.classList.contains("geofs")&&document.activeElement!==i&&!i.value&&(!i.placeholder||i.placeholder==="ZIP, place, county or address")) i.placeholder="United States"; },500);
-  g().addEventListener("focus",()=>openG()); g().addEventListener("pointerdown",e=>{ if(!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } }); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
+  g().addEventListener("focus",()=>openG()); g().addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse"&&!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } });
+  // touch (iOS Safari): open + focus synchronously inside touchend (a user gesture), so the keyboard and caret appear
+  g().addEventListener("touchend",e=>{ if(document.body.classList.contains("geofs")) return; e.preventDefault(); window.__gOpenAt=Date.now(); openG(); try{ g().focus(); }catch(_){} },{passive:false}); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
   // Enter in the open field: resolve typed text (exact name first, else top match), collapse, navigate (map or list)
   const geoResolve=f=>{ const A=geoAll()||[]; const lo=f.toLowerCase(); const ex=A.find(x=>x.name.toLowerCase()===lo||(x.full||"").toLowerCase()===lo); if(ex) return ex; const r=fuzzyRank(A,lo,5); return r&&r[0]; };
@@ -2450,7 +2456,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
     const loc=(geoAll()||[]).find(x=>x.name.toLowerCase()===f.toLowerCase()||(x.full||"").toLowerCase()===f.toLowerCase()); if(loc) return; // exact place name wins
     e.preventDefault(); e.stopImmediatePropagation(); clearTimeout(adT); GQ.placeholder="Looking up address…";
     census(f).then(ms=>ms&&ms.length?ms:nominatim(f)).then(ms=>{ if(ms&&ms.length) return goAddr(ms[0]); closeG(); GQ.placeholder=t32(ms===null?"Address lookup unavailable":"No address match: "+f); }); },true);
-  $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
+  $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); if(g().value.trim()) window.__geoSubmit(); else closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
 
@@ -2666,7 +2672,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141461"></script>
-<script src="data/dc.js?v=202610141461"></script>
+<script defer src="data/countries.js?v=202610141462"></script>
+<script src="data/dc.js?v=202610141462"></script>
 </body>
 </html>
