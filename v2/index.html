@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141443 -->
+<!-- build 202610141444 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141443";</script>
+<script>window.BUILD="202610141444";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -414,6 +414,10 @@
   .fsq .fsqlbl img { width: 30px; height: 20px; object-fit: cover; flex: 0 0 30px; border-radius: 2px; box-shadow: 0 0 0 .5px rgba(0,0,0,.2); }
   .fsq .fsqlbl span { overflow: hidden; text-overflow: ellipsis; }
   .fsq.typing .fsqlbl { display: none; }
+  .fsq .fsqlbl .fqi { display: inline-flex; width: 30px; justify-content: center; flex: 0 0 30px; }
+  .fsq .fsqlbl .fqi svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .fsq .fsqlbl .fqi img { width: auto; height: 20px; max-width: 30px; flex: none; object-fit: contain; }
+  #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
 </style>
 </head>
 <body>
@@ -1593,13 +1597,16 @@ function rowOf(k,d){ const sid=LSET[k]; if(!sid) return null; const R=DATA[sid]|
 function children(){ const k=ltype;
   if(!state.value) return {lvl:"State",items:allStates().map(s=>({name:s,pick:()=>{ state.value=s; state.onchange(); }}))};
   if(hier.dist) return {lvl:"Precinct",kind:"precinct",need:true,items:precIn(hier.dist).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
+  if(!k||(!ALLLBL[k]&&!USES_COUNTY[k]&&!layerItems(k).length)){ let cg=[]; try{ cg=(layerItems("counties")||[]).filter(d=>d[0]===state.value); }catch(e){}
+    const names=countiesOf(state.value); const nm=names.length?names:[...new Set(cg.map(d=>d[1]))].sort();
+    return {lvl:"County",items:nm.map(c=>({name:c,close:true,pick:()=>{ county.value=c; county.onchange&&county.onchange(); const g=cg.find(d=>d[1]===c); if(g) try{ zoomItem("counties",g); }catch(e){} }}))}; }
   if(!USES_COUNTY[k]) return {lvl:TYPE_LBL[k],kind:k,items:layerItems(k).sort((a,b)=>String(a[1]).localeCompare(String(b[1]),undefined,{numeric:true})).map(d=>({name:aname({kind:k,d}),d,kind:k,drill:true}))};
   if(!county.value) return {lvl:"County",items:countiesOf(state.value).map(c=>({name:c,pick:()=>{ county.value=c; county.onchange(); }}))};
   if(k==="towns"){ const t=(GEOM.towns||[]).filter(d=>d[0]===state.value&&d[1]===county.value); return {lvl:"Town",kind:k,items:t.map(d=>({name:d[2],d,kind:k,drill:true}))}; }
   if(k==="schools") return {lvl:"School district",kind:k,items:schoolsInCounty(state.value,county.value).map(d=>({name:d[1],d,kind:k,drill:true}))};
   return {lvl:"Precinct",kind:"precinct",need:true,items:(precSrc()||[]).filter(r=>r[0]===county.value).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
 }
-const ALLLBL={ushouse:"All US House districts",schools:"All school districts",senate:"All state Senate districts",statehouse:"All state House districts"};
+const ALLLBL={ushouse:"All US House districts",schools:"All school districts",senate:"All state senate districts",statehouse:"All state house districts"};
 function pathParts(){ const p=[[ALLLBL[ltype]||"United States",()=>{ state.value=""; state.onchange(); }]];
   if(state.value) p.push([state.value,()=>{ hier.dist=null; county.value=""; county.onchange(); }]);
   if(county.value&&USES_COUNTY[ltype]) p.push([county.value,()=>{ hier.dist=null; crumbs(); refreshLayers(); }]);
@@ -1626,7 +1633,7 @@ function openFold(){
     ch.items.slice(0,2500).forEach((it,i)=>{ const li=document.createElement("li"); li.innerHTML="<span class='n'>"+(i+1)+"</span>"+(sid?"<input type='checkbox' aria-label='Highlight'>":"")+"<span class='nm'>"+esc(t32(it.name))+"</span>"+(it.drill||it.pick?"<span class='go'>›</span>":"");
       const row=sid?rowOf(ch.kind,it.d):null, cb=li.querySelector("input");
       if(cb){ if(!row) cb.disabled=true; else cb.checked=selected.has(rowKey(sid,row)); cb.onclick=e=>e.stopPropagation(); cb.onchange=()=>{ window.__bulk=1; setSel(sid,row,cb.checked); window.__bulk=0; render(); redraw(); crumbs(); if(view==="list") renderList(); }; }
-      li.onclick=()=>{ if(it.pick){ it.pick(); setTimeout(openFold,80); return; }
+      li.onclick=()=>{ if(it.pick&&it.close){ it.pick(); setTimeout(()=>{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); else closeSheet(); },60); return; } if(it.pick){ it.pick(); setTimeout(openFold,80); return; }
         if(it.drill){ hier.dist=it.d; drawDist(); zoomItem(it.kind,it.d); crumbs(); if(view==="list") renderList(); openFold(); return; }
         const c=zoomItem(it.kind,it.d); closeSheet(); if(view==="list") setView("map"); setTimeout(()=>showArea({kind:"precinct",d:it.d,yr:ym()==="2020"?"2020":"2024"},c),350); };
       ol.append(li); });
@@ -1885,11 +1892,14 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.clas
 $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"||!i.closest||!i.closest(".fsq")||i.value.trim()) return; e.preventDefault(); e.stopImmediatePropagation();
   window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ closeSheet(); crumbs(); },80); },true);
 
+
+// ===== selection label icon: district-type icon for "All ... districts" =====
+{ const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"), cur=c.querySelector(".crumb.cur"), ic=c.querySelector(".cic"); const t=cur&&cur.textContent.trim(); const k=Object.keys(ALLLBL).find(k=>ALLLBL[k]===t); if(k&&ic){ ic.className="cic tyic"; ic.innerHTML=icon(k); } }catch(e){} return r; }; }
 // ===== org menu field: show the current selection label (with its icon) until the user taps/types =====
-{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")) return _ofL.apply(this,arguments); const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const im=cr&&cr.querySelector(".cic img"); const src=im?im.getAttribute("src"):"";
+{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")) return _ofL.apply(this,arguments); const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const ci=cr&&cr.querySelector(".cic"); const ich=ci?ci.innerHTML:"";
     const r=_ofL.apply(this,arguments);
     const put=()=>{ const box=$("barGeo").querySelector(".fsq"); if(!box||box.querySelector(".fsqlbl")) return !!box; const inp=box.querySelector("input"); if(!inp||!lbl) return true;
-      const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(src?'<img alt="" src="'+src+'">':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
+      const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
       const clear=()=>box.classList.add("typing"); inp.addEventListener("pointerdown",clear); inp.addEventListener("touchstart",clear,{passive:true}); inp.addEventListener("keydown",clear); inp.addEventListener("input",()=>{ if(inp.value) clear(); }); return true; };
     let n=0; const tick=()=>{ if(!put()&&n++<20) setTimeout(tick,40); }; Promise.resolve(r).then(()=>setTimeout(tick,0)); setTimeout(tick,0); return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
@@ -1943,7 +1953,7 @@ document.addEventListener("focusin",()=>setTimeout(pin,0));
 { const pb=lrow.querySelector(".lbtn[data-k=precincts]"); if(pb) pb.remove();
   const cb=lrow.querySelector(".lbtn[data-k=counties]"); if(cb){ cb.dataset.k="towns"; cb.innerHTML=icon("towns"); cb.setAttribute("aria-label","Local"); cb.title="Local"; }
   ["ushouse","senate","statehouse","towns","schools"].forEach(k=>{ const b=lrow.querySelector(".lbtn[data-k="+k+"]"); if(b) lrow.append(b); }); }
-LYR.find(l=>l[1]==="towns")[2]="Local"; LYR.find(l=>l[1]==="statehouse")[2]="State House"; LYR.find(l=>l[1]==="senate")[2]="State Senate";
+LYR.find(l=>l[1]==="towns")[2]="Local"; LYR.find(l=>l[1]==="statehouse")[2]="State house"; LYR.find(l=>l[1]==="senate")[2]="State senate";
 AGG_LAYERS.add("towns"); delete USES_COUNTY.schools; delete USES_COUNTY.towns; TYPE_LBL.towns="Local";
 aname=(function(_a){ return function(a){ return a.kind==="towns"&&a.d.length<=3?shortPlace(a.d[1]):a.kind==="towns"?a.d[2]:_a(a); }; })(aname);
 // county stays as a filter (from the bottom field) but not as an org level
@@ -2343,7 +2353,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 }
 
 // ===== org field = real text field: prefilled with current label; clearing it offers district types =====
-{ const OPTS=[["United States",null],["All US House districts","ushouse"],["All state Senate districts","senate"],["All state House districts","statehouse"],["All school districts","schools"]];
+{ const OPTS=[["United States",null],["All US House districts","ushouse"],["All state senate districts","senate"],["All state house districts","statehouse"],["All school districts","schools"]];
   const pickType=k=>{ if(k){ if(ltype!==k||!active.has(k)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+k+']'); b&&b.click(); } }
     else if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
     state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); },250); };
@@ -2465,6 +2475,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141443"></script>
+<script src="data/dc.js?v=202610141444"></script>
 </body>
 </html>
