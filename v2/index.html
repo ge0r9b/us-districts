@@ -301,15 +301,6 @@
   svg text { fill: #fff; stroke: none !important; }
   .rail .rbtn svg text, #bGeo svg text, .xrow .lbtn svg text { fill: #000; }
   .rail .rbtn.on svg text, #bGeo.on svg text, .xrow .lbtn.on svg text { fill: #fff; }
-  html body input.ksdock, html body #gq.ksdock, html body #usq.ksdock { position: fixed !important; left: 10px !important; right: 62px !important; width: auto !important; height: 44px !important; z-index: 2000 !important; margin: 0 !important;
-    border-radius: 22px !important; background: #eeeef0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") no-repeat 12px center / 18px !important;
-    padding: 0 12px 0 38px !important; font-size: 17px !important; color: #111 !important; box-shadow: none !important; border: 0 !important; }
-  input.ksdock::-webkit-search-cancel-button { display: none; }
-  body.ksdocked #barBottom { background: transparent !important; box-shadow: none !important; border: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-  body.ksdocked #barBottom > *:not(.grow), body.ksdocked #bGlobe { visibility: hidden; }
-  #ksx { position: fixed; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #eeeef0; z-index: 2000; display: none; place-items: center; font: 600 20px/1 system-ui; color: #3c3c43; padding: 0; }
-  body.ksdocked #ksx { display: grid; }
-  body.ksdocked #geofs, body.ksdocked.foldfs .sheet, body.ksdocked.srchfs .usres, body.ksdocked .sheet { padding-bottom: calc(var(--kbh, 0px) + 64px) !important; }
 </style>
 </head>
 <body>
@@ -2085,7 +2076,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   g().addEventListener("focus",openG); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); });
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
-  document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)&&e.target.id!=="ksx"&&!e.target.classList.contains("ksdock")) closeG(); });
+  document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
 
 // ===== iOS: single focusable field (no form accessory arrows / autofill suggestions) =====
@@ -2099,23 +2090,6 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   document.addEventListener("focusout",()=>setTimeout(()=>{ if(document.activeElement&&document.activeElement.matches&&document.activeElement.matches("input,textarea")) return; all().forEach(el=>{ if(el.__tmpDis){ el.__tmpDis=0; el.removeAttribute("tabindex"); el.disabled=false; } }); },0));
   document.querySelectorAll("select").forEach(el=>{ if(el.offsetParent===null) el.setAttribute("tabindex","-1"); });
 }
-
-// ===== touch: dock the focused full-screen search input above the keyboard (iOS Mail style) =====
-{ const touch=matchMedia("(pointer:coarse)").matches; const vv=window.visualViewport;
-  if(touch){ const x=document.createElement("button"); x.id="ksx"; x.type="button"; x.setAttribute("aria-label","Clear"); x.textContent="✕"; document.body.append(x);
-    let cur=null, ph="";
-    const fullOpen=()=>document.body.classList.contains("geofs")||document.body.classList.contains("foldfs")||document.body.classList.contains("srchfs");
-    const place=()=>{ if(!cur) return; const kb=vv?Math.max(0,innerHeight-(vv.offsetTop+vv.height)):0; const b=(kb+8)+"px"; cur.style.setProperty("bottom",b,"important"); cur.style.setProperty("top","auto","important"); x.style.bottom=b; document.body.style.setProperty("--kbh",kb+"px"); };
-    const dock=el=>{ if(cur===el) return; undock(); cur=el; ph=el.placeholder; el.placeholder="Search"; el.classList.add("ksdock"); document.body.classList.add("ksdocked"); place(); };
-    const undock=()=>{ if(!cur) return; cur.classList.remove("ksdock"); cur.style.removeProperty("bottom"); cur.style.removeProperty("top"); cur.placeholder=ph; cur=null; document.body.classList.remove("ksdocked"); };
-    document.addEventListener("focusin",e=>{ const t=e.target; if(t.matches&&t.matches("#gq,#usq,.fsq input")) setTimeout(()=>{ if(document.activeElement===t&&fullOpen()) dock(t); },30); });
-    document.addEventListener("focusout",e=>{ setTimeout(()=>{ if(cur&&document.activeElement!==cur&&!fullOpen()) undock(); else if(cur&&document.activeElement!==cur) place(); },60); });
-    x.addEventListener("pointerdown",e=>e.preventDefault());
-    x.onclick=()=>{ if(!cur) return; const el=cur; if(el.value){ el.value=""; el.dispatchEvent(new Event("input",{bubbles:true})); el.focus(); return; }
-      undock(); el.blur(); if(window.__geoClose&&document.body.classList.contains("geofs")) window.__geoClose(); else { const btn=document.body.classList.contains("srchfs")?$("bSearch"):document.body.classList.contains("foldfs")?$("bGeo"):null; btn&&btn.click(); } };
-    vv&&vv.addEventListener("resize",place); vv&&vv.addEventListener("scroll",place);
-    new MutationObserver(()=>{ if(cur&&!fullOpen()) undock(); }).observe(document.body,{attributes:true,attributeFilter:["class"]});
-  } }
 
 })();
 
