@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140340 -->
+<!-- build 202610140400 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140340";</script>
+<script>window.BUILD="202610140400";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -191,7 +191,7 @@
   body.foldfs #map { visibility: hidden; }
   body.foldfs #barBottom, body.foldfs #barTime, body.foldfs .rail, body.foldfs .cands, body.foldfs .xrow, body.foldfs #listView, body.foldfs .leaflet-control-container, body.foldfs .bub { display: none !important; }
   body.foldfs .sheet { top: calc(var(--sat) + var(--gap) * 2 + var(--bar)) !important; bottom: 0 !important; left: 0 !important; right: 0 !important; max-width: none !important; width: auto !important; border-radius: 0; padding-bottom: calc(var(--sab) + 12px); }
-  body.foldfs .sheet > * { max-width: 760px; margin-left: auto; margin-right: auto; }
+  body.foldfs .sheet > * { max-width: none; margin-left: 0; margin-right: 0; }
   .fsq { position: sticky; top: 0; z-index: 2; background: inherit; padding: 8px 0; }
   .fsq input { width: 100%; box-sizing: border-box; font: inherit; font-size: 17px; padding: 10px 14px; border-radius: 12px; border: 1px solid #d6d3d1; background: #fff; }
   .lvlrow { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
@@ -209,7 +209,7 @@
   body.srchfs #vtitle { display: none; }
   #barSearch .usq { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 17px; font-weight: 600; border: 0; background: transparent; outline: none; padding: 0 4px; height: var(--btn); color: #111; -webkit-appearance: none; }
   .usv { position: fixed; z-index: 1002; left: 0; right: 0; bottom: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar)); overflow: auto; background: #fafaf9; padding: 0 calc(var(--gap) + var(--sar)) calc(var(--sab) + 12px) calc(var(--gap) + var(--sal)); }
-  .usv > * { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .usv > * { max-width: none; margin-left: 0; margin-right: 0; }
   .usv .nl { list-style: none; padding: 0; }
   .usv .nl li { display: flex; justify-content: space-between; gap: 12px; min-height: 44px; align-items: center; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
   .usv .tg { font-size: .75em; color: #78716c; }
@@ -293,7 +293,7 @@
   body.geofs #barSearch, body.geofs #barGeo, body.geofs #barTime, body.geofs .rail, body.geofs .leaflet-control-container, body.geofs .legend { display: none !important; }
   #geofs .gh { position: sticky; top: 0; background: #fff; padding: 12px 16px; font-weight: 600; border-bottom: 1px solid #e7e5e4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #geofs .gh span { color: #57534e; font-weight: 500; }
-  #geofs ol { list-style: none; margin: 0 auto; padding: 0; max-width: 760px; }
+  #geofs ol { list-style: none; margin: 0; padding: 0; max-width: none; }
   #geofs li { display: flex; align-items: center; min-height: 48px; padding: 0 16px; border-bottom: 1px solid #e7e5e4; cursor: pointer; }
   #geofs li .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #geofs li .dr { color: #a8a29e; padding-left: 16px; font-size: 20px; }  .numpop { position: fixed; z-index: 1010; display: flex; gap: 8px; }
@@ -368,7 +368,7 @@
   body.foldfs:not(.fqtyping) #barGeo { z-index: 3000 !important; background: transparent !important; box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; pointer-events: none; }
   body.foldfs:not(.fqtyping) #barGeo #bGeo { pointer-events: auto; }
   body.foldfs:not(.fqtyping) #barGeo .fsq { opacity: 0; }
-  body.foldfs:not(.fqtyping) .sheet li { padding-right: calc(var(--btn) + var(--gap) * 2) !important; }
+  body.foldfs:not(.fqtyping) .sheet > :first-child:not([hidden]) > li:first-child, body.foldfs:not(.fqtyping) .sheet > #orgTypes[hidden] + * li:first-child { padding-right: calc(var(--btn) + var(--gap) * 2) !important; }
 </style>
 </head>
 <body>
@@ -1967,7 +1967,7 @@ setInterval(placeLegend,500);
 // ===== chart controls (bar / pie / line): toggles only for now =====
 { const w=document.createElement("div"); w.id="chartBox"; w.className="rail";
   const SV={bar:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M3.5 2.5V20.5H21.5"/><g stroke-width="1.5"><rect x="3.5" y="3.6" width="9" height="1.9"/><rect x="3.5" y="7.9" width="14" height="1.9"/><rect x="3.5" y="12.2" width="17" height="1.9"/><rect x="3.5" y="16.5" width="6" height="1.9"/></g></svg>',
-    pie:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M11 13L17.93 9A8 8 0 1 1 11 5Z"/><path d="M11 13L5.5 18.8"/><path d="M12.6 10.6V2.6A8 8 0 0 1 19.53 6.6Z"/></svg>',
+    pie:'<svg viewBox="0 0 24 24" stroke-width="2.2"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12H20.5"/></svg>',
     line:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 4v16h16"/></svg>'};
   const K=["bar","pie","line"]; let last="bar";
   w.innerHTML='<div id="chartLg"></div><div class="crow"><div class="copts"></div><button class="rbtn cmain" aria-label="Chart"></button></div>';
