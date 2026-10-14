@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140640 -->
+<!-- build 202610140700 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140640";</script>
+<script>window.BUILD="202610140700";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -359,7 +359,7 @@
   #chartBox .rbtn svg { width: 60%; height: 60%; }
   #chartBox .crow { position: relative; }
   #chartBox .copts { position: absolute; right: calc(100% + var(--gap)); top: 0; display: flex; gap: var(--gap); transform-origin: 100% 50%; transform: translateX(30px) scaleX(.2); opacity: 0; pointer-events: none; transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s; }
-  #chartBox.open .copts { transform: none; opacity: 1; pointer-events: auto; }
+  #chartBox .copts { visibility: hidden; } #chartBox.open .copts { transform: none; opacity: 1; pointer-events: auto; visibility: visible; }
   #chartBox.open { z-index: 1012 !important; }
   #chartDim { position: fixed; inset: 0; z-index: 1011; background: rgba(0,0,0,.28); opacity: 0; pointer-events: none; transition: opacity .2s; }
   #chartDim.on { opacity: 1; pointer-events: auto; }
@@ -1985,13 +1985,14 @@ setInterval(placeLegend,500);
   const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
   const paint=()=>{ const k=window.chartMode||last; main.innerHTML=SV[k]; main.dataset.ch=k; main.classList.toggle("on",!!window.chartMode); };
   const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
-  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } try{ renderCands(); }catch(e){} };
+  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); if(window.chartMode&&view!=="list") $("bGlobe").click(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } try{ renderCands(); }catch(e){} };
   const open=()=>{ const cur=window.chartMode||last; opts.innerHTML=""; K.filter(k=>k!==cur).forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
     void opts.offsetWidth; w.classList.add("open"); dim.classList.add("on"); };
   main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
   dim.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); close(); });
   window.chartMode=null; paint();
-  const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; w.style.top=(t+3)+"px"; };
+  const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; let top=t+3; w.style.top=top+"px";
+    for(let k=0;k<4;k++){ const r=w.getBoundingClientRect(); let push=0; document.querySelectorAll("button, .chip").forEach(o=>{ if(w.contains(o)||!o.offsetParent||getComputedStyle(o).visibility==="hidden") return; const q=o.getBoundingClientRect(); if(q.width<20||q.right<r.left||q.left>r.right||q.bottom<=r.top||q.top>=r.bottom) return; if(q.top<r.top+r.height/2) push=Math.max(push,q.bottom+3-r.top); }); if(!push) break; top+=push; w.style.top=top+"px"; } };
   addEventListener("resize",pos); setInterval(pos,400); pos(); }
 placeLegend();
 // ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
