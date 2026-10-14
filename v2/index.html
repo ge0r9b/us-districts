@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141455 -->
+<!-- build 202610141456 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141455";</script>
+<script>window.BUILD="202610141456";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -432,21 +432,21 @@
   .cbr { display: grid; grid-template-columns: 92px 1fr 72px; align-items: center; gap: 8px; font: 600 14px system-ui, sans-serif; color: #111; }
   .cbt { position: relative; height: 22px; background: rgba(0,0,0,.06); border-radius: 4px; overflow: hidden; } .cbt i { position: absolute; top: 0; bottom: 0; left: 0; opacity: .6; border-radius: 4px; transition: width .3s, left .3s; }
   .cbt.dv b { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); } .cbv { text-align: right; font-variant-numeric: tabular-nums; }
+  body.listmode .cands .cand { justify-content: flex-start !important; text-align: left; }
   .cbcap { font: 12px system-ui, sans-serif; color: #57534e; text-align: center; }
   body.worldmode .cands, body.worldmode .leaflet-overlay-pane, body.worldmode .leaflet-lyrPane-pane, body.worldmode .leaflet-marker-pane, body.worldmode .leaflet-popup-pane, body.worldmode .heatlegend, body.worldmode #chartW, body.worldmode #barTime { display: none !important; }
   #worldMsg { display: none; position: fixed; z-index: 1001; left: calc(var(--gap, 8px) + var(--sal, 0px)); top: 126px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.92); font: 600 14px system-ui, sans-serif; color: #57534e; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
   body.worldmode #worldMsg { display: block; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
-  /* first paint: hide JS-positioned chrome until layout has settled, then fade in (map shows immediately) */
-  body.preload > *:not(#map) { opacity: 0 !important; pointer-events: none !important; }
-  body.unveil > *:not(#map) { transition: opacity .2s ease-out; }
+  /* first-paint slots: same values the layout JS computes at phone size, so nothing moves when it runs */
+  .rail { top: 122px; } .cands { top: 122px; } #chartBox { top: 173px; }
+  .crow { position: fixed; z-index: 1013; top: 186px; right: 8px; }
+  #usq::placeholder { color: #a8a29e; opacity: 1; } #usq::-webkit-input-placeholder { color: #a8a29e; opacity: 1; }
 </style>
-<script>(function(){ var t0=Date.now(); function go(){ var b=document.body; if(!b) return; b.classList.add("unveil"); b.classList.remove("preload"); setTimeout(function(){ b.classList.remove("unveil"); },400); }
-  window.addEventListener("load",function(){ setTimeout(go,750); }); setTimeout(go,6000); })();</script>
 </head>
-<body class="preload">
+<body>
 <div class="v2bar" id="barSearch"><div class="grow vtitle seal" id="vtitle">President</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
-<div class="v2bar" id="barGeo"><div class="grow crumbs" id="crumbs"></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
+<div class="v2bar" id="barGeo"><div class="grow crumbs ctop" id="crumbs"><span class="cic flag shape"><img alt="" src="img/flags/US.png"></span><button class="crumb cur" title="United States">United States</button></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
 <div class="v2bar" id="barTime" hidden style="padding-right:calc(var(--gap) * 2 + var(--btn) + var(--sar))"><div class="yr"><button class="chip" id="c2020" type="button">2020</button><input id="yslider" type="range" min="0" max="2" step="1" value="2" aria-label="Year"><button class="chip on" id="c2024" type="button">2024</button></div><div id="ynote"></div></div>
 <div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button></div>
 <div class="v2bar" id="barBottom"><button class="bottomlbl" id="bLayerLbl" hidden>geography</button><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="go" autocomplete="off" placeholder="United States" aria-label="Go to a place"></div><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
@@ -1950,7 +1950,7 @@ window.__usIndex=usIndex;
 function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); const q=$("usq"); if(q) q.remove(); setTimeout(()=>map.invalidateSize(),50); }
 function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("ushouse"); }catch(e){} document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
   const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
-  const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder=""; inp.setAttribute("aria-label","Search everything");
+  const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search"; inp.setAttribute("aria-label","Search everything");
   $("bSearch").before(inp); u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
   Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
@@ -2366,6 +2366,9 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
   function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if((i.placeholder===""||i.placeholder==="ZIP, place, county or address")&&i.dataset.ph!=null) i.placeholder=(i.dataset.ph&&i.dataset.ph!=="ZIP, place, county or address")?i.dataset.ph:"United States"; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
+  // iOS Safari only raises the keyboard for focus() inside a user gesture: re-focus on the touchend/click that follows the opening tap
+  const refocus=()=>{ if(document.body.classList.contains("geofs")&&document.activeElement!==g()&&Date.now()-(window.__gOpenAt||0)<1200){ try{ g().focus({preventScroll:true}); }catch(_){ g().focus(); } } };
+  document.addEventListener("touchend",refocus,true); document.addEventListener("click",refocus,true);
   setInterval(()=>{ const i=g(); if(!document.body.classList.contains("geofs")&&document.activeElement!==i&&!i.value&&(!i.placeholder||i.placeholder==="ZIP, place, county or address")) i.placeholder="United States"; },500);
   g().addEventListener("focus",()=>openG()); g().addEventListener("pointerdown",e=>{ if(!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } }); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
@@ -2633,7 +2636,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141455"></script>
-<script src="data/dc.js?v=202610141455"></script>
+<script defer src="data/countries.js?v=202610141456"></script>
+<script src="data/dc.js?v=202610141456"></script>
 </body>
 </html>
