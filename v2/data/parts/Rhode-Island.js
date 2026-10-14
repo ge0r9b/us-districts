@@ -1,0 +1,1 @@
+__parts("Rhode Island",[["Kent County","Warwick city",null],["Newport County","Newport city",null],["Providence County","East Providence city",null],["Providence County","Providence city",null],["Providence County","Woonsocket city",null],["Providence County","Cranston city",null],["Providence County","Central Falls city",null],["Providence County","Pawtucket city",null]]);
