@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141459 -->
+<!-- build 202610141460 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141459";</script>
+<script>window.BUILD="202610141460";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -197,7 +197,7 @@
   .lvlrow { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
   .lvlrow .lt { width: 26px; height: 26px; border-radius: 50%; background: #000; color: #fff; display: inline-grid; place-items: center; font-size: .8em; }
   .nl li .go { padding: 10px 14px; margin: -10px -6px -10px 0; font-size: 1.5em; }
-  .esria { font-size: 9px; line-height: 1; color: #57534e; background: rgba(255,255,255,.6); padding: 1px 3px; border-radius: 3px; margin: 0 4px 2px 0 !important; }
+  .esria { font-size: 9px; line-height: 1; color: #44403c; background: rgba(255,255,255,.55); padding: 1px 2px; border-radius: 2px; letter-spacing: -.1px; margin: 0 4px 2px 0 !important; }
   .heatlegend strong, .heatlegend .srcbtn { display: none !important; }
   .heatlegend { padding: 4px 6px !important; cursor: pointer; transition: transform .2s; transform-origin: 100% 100%; }
   .heatlegend .heatbar span { width: 14px !important; height: 8px !important; }
@@ -249,7 +249,7 @@
   #rail2 { top: auto !important; bottom: calc(var(--bar) + var(--sab) + var(--gap)); }
   .leaflet-bottom.leaflet-left .heatlegend { transform-origin: 0 100%; margin-left: calc(var(--gap) + var(--sal)) !important; }
   body.lyropen .heatlegend { visibility: hidden; }
-  .leaflet-bottom.leaflet-left .esria { clear: none; float: left; align-self: flex-end; margin: 0 0 12px 4px !important; }
+  .leaflet-bottom.leaflet-left .esria { clear: none; float: left; align-self: flex-end; margin: 0 0 1px calc(4px + var(--sal, 0px)) !important; }
   body.listmode .cands:not(.two) { left: 0 !important; right: 0 !important; width: auto !important; flex-direction: column !important; gap: 0 !important; padding: 0 calc(var(--btn) + var(--gap) * 2 + var(--sar)) 0 calc(var(--gap) + var(--sal)); box-sizing: border-box; }
   body.listmode .cands:not(.two) .ccol { width: 100%; display: flex; flex-direction: column; }
   body.listmode .cands:not(.two) .cand.ph { width: 100% !important; justify-content: flex-start; height: 56px; }
@@ -412,7 +412,7 @@
   body:not(.listmode) .cand.ph .cpt { left: 22px !important; bottom: -3px !important; font-size: 8.5px !important; padding: 1px 3px !important; line-height: 1.1 !important; }
   body.listmode .cand.ph .cw { margin-left: 4px !important; padding-left: 0 !important; }
   body.listmode .cands .cand.ph { height: 36px !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
-  body:not(.listmode) #chartLg { position: fixed !important; left: calc(var(--gap) + var(--sal)) !important; right: auto !important; top: auto !important; bottom: calc(var(--bar) + var(--sab) + 36px) !important; margin: 0 !important; z-index: 1002; }
+  body:not(.listmode) #chartLg { position: fixed !important; left: calc(4px + var(--sal)) !important; right: auto !important; top: auto !important; bottom: calc(var(--bar) + var(--sab) + 21px) !important; margin: 0 !important; z-index: 1002; }
   body:not(.listmode) #chartLg .heatlegend { transform-origin: 0% 100% !important; }
   .fsq { position: relative; }
   .fsq .fsqlbl { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 0 12px; pointer-events: none; font: 600 17px/1.2 system-ui, -apple-system, sans-serif; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -2666,7 +2666,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141459"></script>
-<script src="data/dc.js?v=202610141459"></script>
+<script defer src="data/countries.js?v=202610141460"></script>
+<script src="data/dc.js?v=202610141460"></script>
 </body>
 </html>
