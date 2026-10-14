@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140140 -->
+<!-- build 202610140200 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140140";</script>
+<script>window.BUILD="202610140200";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2196,6 +2196,19 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 }
 
 $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("foldfs")) window.__slideDir="r"; },true);
+// ===== path always shows United States; drop "All" first when tight; empty input; other states match =====
+{ const _cr=crumbs; crumbs=function(){ _cr(); const c=$("crumbs"); const bs=[...c.querySelectorAll(".crumb")]; if(!bs.length) return;
+    bs.forEach(b=>{ if(b.title) b.textContent=b.title; }); const g=c.querySelector(".crumb.glob"), gs=c.querySelector(".sep.glob");
+    const main=bs.filter(b=>!b.classList.contains("glob")); if(state.value&&main[0]){ main[0].textContent="United States"; main[0].title="United States"; }
+    const len=()=>[...c.children].filter(e=>e.style.display!=="none"&&getComputedStyle(e).display!=="none").map(e=>e.textContent).join(" ").replace(/\s+/g," ").trim().length;
+    if(g){ g.style.display=""; gs.style.display=""; } if(len()>MAXC&&g){ g.style.display="none"; gs.style.display="none"; }
+    for(let i=1;i<main.length-1&&len()>MAXC;i++) main[i].textContent="…";
+    const last=main[main.length-1]; if(len()>MAXC&&last&&main.length>1){ const over=len()-MAXC; last.textContent=last.textContent.slice(0,Math.max(1,last.textContent.length-over-1))+"…"; } };
+  const _ot=window.__orgTypes; window.__orgTypes=function(inp){ _ot&&_ot(inp); inp.placeholder="";
+    inp.addEventListener("input",()=>{ const ol=sheet.querySelector(".foldlist ol, ol.nl:not(#orgTypes):not(#orgGlobal)"); sheet.querySelectorAll("li.xst").forEach(x=>x.remove()); const q=inp.value.trim().toLowerCase(); if(!state.value||q.length<2||!ol) return;
+      const sts=Object.keys(STATE_FILES).filter(n=>n!==state.value&&n.toLowerCase().includes(q)).sort((a,b)=>(b.toLowerCase().startsWith(q))-(a.toLowerCase().startsWith(q))||a.localeCompare(b));
+      sts.slice(0,8).reverse().forEach(n=>{ const li=document.createElement("li"); li.className="xst"; const f=n.replace(/ /g,"_"); li.innerHTML='<span class="oic"><img alt="" style="width:22px" src="img/stateflags/'+f+'.png?v='+(window.BUILD||1)+'" onerror="this.src=\'img/flags/US.png\'"></span><span class="nm"></span><span class="go">›</span>'; li.querySelector(".nm").textContent=n;
+        li.onclick=e=>{ e.stopPropagation(); window.__slideDir="l"; hier.dist=null; county.value=""; state.value=n; state.onchange&&state.onchange(); setTimeout(openFold,80); }; ol.prepend(li); }); }); }; }
 
 // ===== explicit touch double-tap (iOS Safari doesn't deliver dblclick reliably) =====
 { const el=map.getContainer(); let lt=0,lx=0,ly=0,moved=false,sx=0,sy=0;
