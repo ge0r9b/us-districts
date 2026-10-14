@@ -2102,7 +2102,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
       const ol=gfs.querySelector("ol");
       if(path.length){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
       L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
-        li.onclick=e=>{ if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
+        li.onclick=e=>{ if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
   const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<div class="gtrow"></div>'; const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
