@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141447 -->
+<!-- build 202610141448 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141447";</script>
+<script>window.BUILD="202610141448";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -421,6 +421,9 @@
   .fsq .fsqlbl .fqi img.fqflag:not(.shape) { height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
   #crumbs .crumb.usc { display: inline-flex; align-items: center; gap: 6px; }
   #crumbs .crumb.usc img.usflag { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
+  body.foldfs #crumbs .tbHide { display: none !important; }
+  body.foldfs #crumbs .crumb.tbPar { flex: 0 0 auto; padding-left: 0; }
+  #crumbs .crumb.usc img.usflag { object-fit: contain; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -2459,6 +2462,18 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       if(ic&&ic.nextElementSibling===nm) ic.style.marginRight=Math.max(0,Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d))+"px"; else nm.style.marginLeft=Math.max(0,Math.round((parseFloat(getComputedStyle(nm).marginLeft)||0)+d))+"px"; }); };
   new MutationObserver(()=>{ requestAnimationFrame(alignFld); setTimeout(alignFld,120); }).observe(document.body,{childList:true,subtree:true}); setInterval(alignFld,600); }
 
+// ===== top bar while the menu is open: only the parent level, icon + text aligned with the current-field row =====
+{ const alignTop=()=>{ const c=$("crumbs"); if(!c) return; const fs=document.body.classList.contains("foldfs");
+    const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; c.querySelectorAll(".crumb,.sep").forEach(x=>x.classList.remove("tbHide","tbPar")); if(!fs||bs.length<2) return;
+    const par=bs[bs.length-2]; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar");
+    const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L||!L.offsetParent) return; const li=L.querySelector("img"), sp=L.querySelector("span"); if(!sp) return;
+    const rg=document.createRange(); rg.selectNodeContents(sp); const tx=rg.getBoundingClientRect().left;
+    const pi=par.querySelector("img"), pt=par.querySelector("span")||par;
+    if(pi&&li){ const r=(L.querySelector(".fqi")||li).getBoundingClientRect(); pi.style.width=r.width+"px"; pi.style.height=r.height+"px"; const d=r.left-pi.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; }
+    else { const d=tx-pt.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; }
+    if(pi){ const r2=document.createRange(); r2.selectNodeContents(pt); const d=tx-r2.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.gap=Math.max(0,(parseFloat(getComputedStyle(par).columnGap)||0)+d)+"px"; } };
+  new MutationObserver(()=>{ requestAnimationFrame(alignTop); setTimeout(alignTop,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignTop,500); }
+
 // ===== pie chart mode in list view: real share of total per year column =====
 { const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); if(window.chartMode!=="pie"||view!=="list") return;
     let a; try{ a=scopeArea(); }catch(e){ return; } const yrs=yrsOn(); const cols=[...candBox.querySelectorAll(".ccol")];
@@ -2487,6 +2502,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141447"></script>
+<script src="data/dc.js?v=202610141448"></script>
 </body>
 </html>
