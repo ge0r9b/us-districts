@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140720 -->
+<!-- build 202610140740 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140720";</script>
+<script>window.BUILD="202610140740";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2191,10 +2191,10 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         ol.append(li); }); }); }
   const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<div class="gtrow"></div>'; const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
   xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>closeG();
-  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder=""; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); setTimeout(()=>{ i.focus({preventScroll:true}); },0); }
+  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder=""; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
   function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if(i.placeholder===""&&i.dataset.ph!=null) i.placeholder=i.dataset.ph; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
-  g().addEventListener("focus",openG); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
+  g().addEventListener("focus",openG); g().addEventListener("pointerdown",e=>{ if(!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } }); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
