@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141000 -->
+<!-- build 202610141100 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141035";</script>
+<script>window.BUILD="202610141100";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1811,7 +1811,10 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
   inp.addEventListener("input",()=>{ const L=inp.dataset.lbl||"", V=inp.value; const q=(L&&V.startsWith(L)?V.slice(L.length):V).trim().toLowerCase(); window.__orgTypesUpd&&window.__orgTypesUpd(inp,q); if(!ol) return; const pre=[],con=[];
     let vis; if(!q) vis=lis.slice(); else { const W=lis.map(li=>({name:txt(li),li})); vis=window.fuzzyRank?fuzzyRank(W,q,5000).map(o=>o.li):[]; } lis.forEach(li=>{ li.style.display=vis.includes(li)?"":"none"; }); vis.forEach(li=>ol.append(li));
     lis.forEach(li=>li.classList.remove("topm")); if(q&&vis[0]) vis[0].classList.add("topm"); });
-  const born=Date.now(); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(Date.now()-born<600) return; const f=lis.find(li=>li.style.display!=="none"); if(f) drill(f); } });
+  const born=Date.now(); window.__orgEnter=e=>{ if(Date.now()-born<400) return false; const q=inp.value.trim(); const vis=lis.filter(li=>li.style.display!=="none"); const cbs=vis.map(li=>li.querySelector("input[type=checkbox]")).filter(Boolean);
+    if(cbs.length){ if(q) lis.forEach(li=>{ const c=li.querySelector("input[type=checkbox]"); if(c&&li.style.display==="none"&&c.checked){ c.checked=false; c.dispatchEvent(new Event("change")); } }); cbs.forEach(c=>{ if(!c.checked){ c.checked=true; c.dispatchEvent(new Event("change")); } }); inp.blur(); closeSheet(); setTimeout(()=>{ crumbs(); redraw&&redraw(); },80); return true; }
+    if(q&&vis[0]){ drill(vis[0]); window.__orgAutoAll=Date.now(); return true; } return false; };
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); e.stopImmediatePropagation(); window.__orgEnter(e); } });
   window.__orgTypes&&window.__orgTypes(inp);
   setTimeout(()=>inp.focus(),30); }); };
 const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3(); const was=document.body.classList.contains("foldfs"); _cs3(); document.body.classList.remove("foldfs"); { const f=$("barGeo").querySelector(".fsq"); if(f) f.remove(); const cr=$("crumbs"); if(cr.parentElement!==$("barGeo")) $("barGeo").prepend(cr); }
@@ -1825,6 +1828,7 @@ const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.Dom
 console.log("us-districts v2 build "+window.BUILD);
 // ===== every text field = title + blank search: tap title opens search; empty commit on org = United States =====
 $("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!document.body.classList.contains("srchfs")) openUS(); });
+document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("foldfs")||!window.__orgEnter) return; const i=e.target; if(i&&i.matches&&i.matches("input:not(.fsq input):not([type=checkbox]),textarea")&&!i.closest(".fsq")) return; if(window.__orgEnter(e)){ e.preventDefault(); e.stopImmediatePropagation(); } },true);
 $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"||!i.closest||!i.closest(".fsq")||i.value.trim()) return; e.preventDefault(); e.stopImmediatePropagation();
   window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ closeSheet(); crumbs(); },80); },true);
 // ===== legend: colors + tiny numbers only; tap to magnify =====
