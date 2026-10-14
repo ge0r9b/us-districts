@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132210 -->
+<!-- build 202610132212 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -255,6 +255,16 @@
   body.listmode .cands .cand .cn { white-space: nowrap; }
   body.listmode .cands.two .cand .cn { font-size: .78em; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   body.listmode .cands.two .cand.ph { max-width: 100%; }
+  .cand .cw { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; line-height: 1.2; text-align: left; }
+  .cand .cs { font-size: .72em; color: #57534e; font-weight: 500; white-space: nowrap; }
+  .cands.two .cand .cs { white-space: normal; font-size: .66em; }
+  body.listmode .cands.two .cand.ph { height: auto; min-height: 56px; padding: 4px 0; }
+  .cand.ph { position: relative; overflow: visible !important; }
+  .cand.ph img { border-radius: 50%; }
+  .cand .cpt { position: absolute; right: -6px; bottom: -4px; font-size: 9px; font-weight: 700; background: #fff; color: #111; border-radius: 6px; padding: 0 3px; line-height: 13px; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+  body.listmode .cands:not(.two) .cand.ph { height: 60px; }
+  .lvrow { padding-left: calc(var(--gap) + var(--sal)) !important; }
+  @media (max-width: 899px) { .lvrow { padding-left: calc(var(--gap) + var(--sal)) !important; } }
 </style>
 </head>
 <body>
@@ -1844,6 +1854,17 @@ document.addEventListener("pointerdown",e=>{ if(!e.target.closest(".cn")&&!bub.h
 const _vals12=vals; vals=function(a,yr){ return a.kind==="sum"?scopeVals(a,yr):_vals12(a,yr); };
 const _an12=aname; aname=function(a){ return a.kind==="sum"?(a.st||"United States"):_an12(a); };
 const _la12=listAreas; listAreas=function(){ if(!state.value) return allStates().map(st=>({kind:"sum",st,d:[st],yr:ym()==="2020"?"2020":"2024"})); return _la12(); };
+// ===== candidate stats in list mode (and tiny % on map thumbnails) =====
+function candStats(){ const a=scopeArea(), two=candBox.classList.contains("two"), lst=document.body.classList.contains("listmode");
+  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
+    const v=scopeVals(a,yr); b.querySelectorAll(".cs,.cpt").forEach(x=>x.remove()); if(!v||!v.tot) return;
+    const n=c.ix?v.rep:v.dem, pc=n/v.tot*100;
+    if(lst){ const st=document.createElement("span"); st.className="cs"; let t=pc.toFixed(1)+"% · "+fmtN(n);
+      if(two&&yr==="2024"){ const c0=CANDS["2020"].find(x=>x.ix===c.ix), v0=scopeVals(a,"2020"); if(c0&&v0&&v0.tot){ const d=pc-(c.ix?v0.rep:v0.dem)/v0.tot*100; t+=" · "+(d>=0?"+":"")+d.toFixed(1)+" pts"; } }
+      st.textContent=t32(t); const cn=b.querySelector(".cn"); if(cn){ let w=b.querySelector(".cw"); if(!w){ w=document.createElement("span"); w.className="cw"; cn.replaceWith(w); w.append(cn); } w.append(st); } }
+    else { const t=document.createElement("span"); t.className="cpt"; t.textContent=Math.round(pc)+"%"; b.append(t); } }); }
+const _rc13=renderCands; renderCands=function(){ _rc13(); candStats(); };
+renderCands();
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
