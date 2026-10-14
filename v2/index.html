@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132206 -->
+<!-- build 202610132210 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -249,6 +249,12 @@
   .leaflet-bottom.leaflet-left .heatlegend { transform-origin: 0 100%; margin-left: calc(var(--gap) + var(--sal)) !important; }
   body.lyropen .heatlegend { visibility: hidden; }
   .leaflet-bottom.leaflet-left .esria { clear: none; float: left; align-self: flex-end; margin: 0 0 12px 4px !important; }
+  body.listmode .cands:not(.two) { left: 0 !important; right: 0 !important; width: auto !important; flex-direction: column !important; gap: 0 !important; padding: 0 calc(var(--btn) + var(--gap) * 2 + var(--sar)) 0 calc(var(--gap) + var(--sal)); box-sizing: border-box; }
+  body.listmode .cands:not(.two) .ccol { width: 100%; display: flex; flex-direction: column; }
+  body.listmode .cands:not(.two) .cand.ph { width: 100% !important; justify-content: flex-start; height: 56px; }
+  body.listmode .cands .cand .cn { white-space: nowrap; }
+  body.listmode .cands.two .cand .cn { font-size: .78em; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  body.listmode .cands.two .cand.ph { max-width: 100%; }
 </style>
 </head>
 <body>
@@ -1352,7 +1358,7 @@ function listAreas(){ let kind, items;
   const sid=LSET[kind]; if(sid){ const sel=[...selected.values()].filter(s=>s.setId===sid); if(sel.length){ const keep=new Set(sel.flatMap(s=>shapesFor(sid,s.row))); items=items.filter(d=>keep.has(d)); } }
   const yr=ym()==="2020"?"2020":"2024"; return items.map(d=>({kind,d,yr})); }
 function renderList(){ const areas=listAreas(), two=yrsOn().length>1, N=1500;
-  lv.innerHTML="<div class='lvhead'>"+esc(t32(fmtN(areas.length)+" "+(areas[0]?({county:"counties",precinct:"precincts"}[areas[0].kind]||LYR.find(l=>l[1]===areas[0].kind)[2]):"areas")))+"</div><div class='lvgrid'></div>";
+  lv.innerHTML="<div class='lvhead'>"+esc(t32(fmtN(areas.length)+" "+(areas[0]?({county:"counties",precinct:"precincts"}[areas[0].kind]||(LYR.find(l=>l[1]===areas[0].kind)||[0,0,"areas"])[2]):"areas")))+"</div><div class='lvgrid'></div>";
   const g=lv.querySelector(".lvgrid");
   areas.slice(0,N).forEach(a=>{ const el=document.createElement("button"); el.type="button"; el.className="lvrow";
     let h="<b>"+esc(t32(aname(a)))+"</b>";
@@ -1825,6 +1831,19 @@ drawNat();
 function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; if(lg&&lg.parentElement!==bl) bl.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
 new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").hidden)).observe($("lyrRow"),{attributes:true,attributeFilter:["hidden"]});
 setInterval(placeLegend,500); placeLegend();
+// ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
+let lastYr="2024";
+$("c2020").addEventListener("click",()=>{ const y="2020"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
+$("c2024").addEventListener("click",()=>{ const y="2024"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
+$("yslider").addEventListener("input",e=>{ const v=+e.target.value; if(v===0) lastYr="2020"; if(v===2) lastYr="2024"; });
+const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
+new MutationObserver(()=>{ renderCands(); if(view==="list") renderList(); refreshBubble(); }).observe($("barTime"),{attributes:true,attributeFilter:["hidden"]});
+// list mode: last names in two-year columns, full names otherwise; list states at the national level
+const _rc12=renderCands; renderCands=function(){ _rc12(); if(!candBox.classList.contains("two")) return; candBox.querySelectorAll(".cand .cn").forEach(n=>{ const t=(n.title||n.textContent).trim(); n.title=t; n.setAttribute("aria-label",t); n.onclick=e=>{ if(n.scrollWidth<=n.clientWidth) return; e.stopPropagation(); showBub(n,0); }; }); };
+document.addEventListener("pointerdown",e=>{ if(!e.target.closest(".cn")&&!bub.hidden) hideBub(); },true);
+const _vals12=vals; vals=function(a,yr){ return a.kind==="sum"?scopeVals(a,yr):_vals12(a,yr); };
+const _an12=aname; aname=function(a){ return a.kind==="sum"?(a.st||"United States"):_an12(a); };
+const _la12=listAreas; listAreas=function(){ if(!state.value) return allStates().map(st=>({kind:"sum",st,d:[st],yr:ym()==="2020"?"2020":"2024"})); return _la12(); };
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
