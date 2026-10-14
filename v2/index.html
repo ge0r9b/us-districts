@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141437 -->
+<!-- build 202610141438 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141437";</script>
+<script>window.BUILD="202610141438";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -398,6 +398,13 @@
   #ydelta { display: none !important; }
   #lshift { position: fixed; z-index: 640; white-space: nowrap; font-size: 13px; font-weight: 600; color: #1c1917; letter-spacing: .01em; pointer-events: none; }
   #lshift:empty { display: none; }
+  body.listmode #chartLg { visibility: hidden !important; }
+  body.listmode .cands { flex-wrap: wrap !important; z-index: 999 !important; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  body.listmode .cands > .cfoot { flex: 0 0 100%; width: 100%; order: 99; padding: 6px 4px 10px; box-sizing: border-box; }
+  .cfoot .clinechart svg { display: block; width: 100%; max-width: 360px; height: auto; }
+  .cfoot svg text { fill: #111 !important; }
+  .cfoot .lsh { font-size: 13px; font-weight: 600; color: #1c1917; margin-top: 6px; }
+  #lshift { display: none !important; }
 </style>
 </head>
 <body>
@@ -1961,8 +1968,19 @@ const _dh9=drawHeat; drawHeat=function(){ _dh9(); updShift(); };
 setInterval(updShift,1000);
 
 // ===== change mode: no caption on the map row; shift shown in list view header and in tap bubbles =====
-{ const lsUpd=()=>{ const box=$("cands"); if(!box) return; let el=$("lshift"); if(!el){ el=document.createElement("div"); el.id="lshift"; document.body.append(el); } const show=ym()==="delta"&&document.body.classList.contains("listmode");
-    let t=""; if(show){ try{ t=shiftTxt(cur||scopeArea()); }catch(e){} } el.textContent=t; if(!t) return; let L=1e9,Bt=0; box.querySelectorAll(".cand").forEach(c=>{ const q=c.getBoundingClientRect(); if(q.width&&q.height){ L=Math.min(L,q.left); Bt=Math.max(Bt,q.bottom); } }); if(!Bt){ const q=box.getBoundingClientRect(); L=q.left; Bt=q.bottom; } el.style.left=(L+4)+"px"; el.style.top=(Bt+10)+"px"; };
+{ const fmtV=(n,t)=>numMode==="pct"?(n/t*100).toFixed(1)+"%":(n>=1e6?(n/1e6).toFixed(2)+"M":n>=1e4?Math.round(n/1e3)+"K":fmtN(n));
+  const lineSvg=a=>{ const v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return ""; const W=300,H=110,x0=46,x1=W-46,yT=14,yB=H-22;
+    const pc=numMode==="pct"; const val=(v,k)=>pc?v[k]/v.tot:v[k]; const all=[val(v0,"rep"),val(v0,"dem"),val(v1,"rep"),val(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.25||(pc?.05:1000); lo-=pad; hi+=pad; const Y=q=>yB-(q-lo)/(hi-lo)*(yB-yT);
+    let g='<line x1="'+x0+'" y1="'+yB+'" x2="'+x1+'" y2="'+yB+'" stroke="rgba(0,0,0,.25)" stroke-width="1"/>'; [["2020",x0],["2024",x1]].forEach(([t,x])=>{ g+='<text x="'+x+'" y="'+(H-6)+'" font-size="10" text-anchor="middle" fill="#111">'+t+'</text>'; });
+    [["rep","rgb(220,38,38)"],["dem","rgb(37,99,235)"]].forEach(([k,c])=>{ const a0=Y(val(v0,k)),a1=Y(val(v1,k)); g+='<line x1="'+x0+'" y1="'+a0.toFixed(1)+'" x2="'+x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>';
+      g+='<circle cx="'+x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'" fill-opacity=".6"/><circle cx="'+x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'" fill-opacity=".6"/>';
+      g+='<text x="'+(x0-8)+'" y="'+a0.toFixed(1)+'" font-size="10" text-anchor="end" dominant-baseline="central" fill="#111">'+fmtV(v0[k],v0.tot)+'</text><text x="'+(x1+8)+'" y="'+a1.toFixed(1)+'" font-size="10" text-anchor="start" dominant-baseline="central" fill="#111">'+fmtV(v1[k],v1.tot)+'</text>'; });
+    return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="2020 to 2024">'+g+'</svg>'; };
+  const fit=()=>{ const box=$("cands"); if(!box) return; if(!document.body.classList.contains("listmode")){ box.style.maxHeight=""; return; } const r=box.getBoundingClientRect(); const bb=$("barBottom")?$("barBottom").getBoundingClientRect().top:innerHeight; box.style.maxHeight=Math.max(120,bb-r.top-4)+"px"; };
+  const lsUpd=()=>{ const box=$("cands"); if(!box) return; let f=box.querySelector(":scope > .cfoot"); const lm=document.body.classList.contains("listmode"); let a=null; try{ a=cur||scopeArea(); }catch(e){}
+    let h=""; if(lm&&a){ if(window.chartMode==="line"){ try{ const sv=lineSvg(a); if(sv) h+='<div class="clinechart">'+sv+'</div>'; }catch(e){} } if(ym()==="delta"){ let t=""; try{ t=shiftTxt(a); }catch(e){} if(t) h+='<div class="lsh">'+esc(t)+'</div>'; } }
+    if(!h){ if(f) f.remove(); fit(); return; } if(!f){ f=document.createElement("div"); f.className="cfoot"; } if(box.lastChild!==f) box.append(f); if(f.innerHTML!==h) f.innerHTML=h; fit(); };
+  setInterval(lsUpd,700);
   window.addEventListener("resize",lsUpd);
   const _rc=renderCands; renderCands=function(){ const r=_rc.apply(this,arguments); lsUpd(); return r; };
   const _us=updShift; updShift=function(){ _us(); lsUpd(); };
@@ -2406,11 +2424,11 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 { const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); if(window.chartMode!=="pie"||view!=="list") return;
     let a; try{ a=scopeArea(); }catch(e){ return; } const yrs=yrsOn(); const cols=[...candBox.querySelectorAll(".ccol")];
     cols.forEach((col,ci)=>{ const yr=yrs[Math.min(ci,yrs.length-1)]; let v; try{ v=scopeVals(a,yr); }catch(e){} if(!v||!v.tot) return;
-      const sl=[["r",v.rep,"#dc2626"],["d",v.dem,"#2563eb"],["o",Math.max(0,v.tot-v.rep-v.dem),"#a8a29e"]].filter(x=>x[1]>0);
+      const sl=[["r",v.rep,"rgb(220,38,38)"],["d",v.dem,"rgb(37,99,235)"],["o",Math.max(0,v.tot-v.rep-v.dem),"rgb(168,162,158)"]].filter(x=>x[1]>0);
       const R=30,C=36; let ang=-Math.PI/2, g="";
       sl.forEach(([k,n,c])=>{ const f=n/v.tot, a2=ang+f*2*Math.PI, lg=f>.5?1:0; const x1=C+R*Math.cos(ang),y1=C+R*Math.sin(ang),x2=C+R*Math.cos(a2),y2=C+R*Math.sin(a2);
-        g+=f>=.9999?'<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="'+c+'" fill-opacity=".85"/>':'<path d="M'+C+' '+C+'L'+x1.toFixed(2)+' '+y1.toFixed(2)+'A'+R+' '+R+' 0 '+lg+' 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+'Z" fill="'+c+'" fill-opacity=".85" stroke="#fff" stroke-width="1"/>';
-        if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="'+(numMode==='pct'?8:6.5)+'" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(numMode==='pct'?(f*100).toFixed(f<.1?1:0)+'%':(n>=1e6?(n/1e6).toFixed(n>=1e8?0:2)+'M':n>=1e3?Math.round(n/1e3)+'K':String(n)))+'</text>'; }
+        g+=f>=.9999?'<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="'+c+'" fill-opacity=".55"/>':'<path d="M'+C+' '+C+'L'+x1.toFixed(2)+' '+y1.toFixed(2)+'A'+R+' '+R+' 0 '+lg+' 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+'Z" fill="'+c+'" fill-opacity=".55" stroke="#fff" stroke-width="1"/>';
+        if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="'+(numMode==='pct'?8:6.5)+'" fill="#111" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(numMode==='pct'?(f*100).toFixed(f<.1?1:0)+'%':(n>=1e6?(n/1e6).toFixed(n>=1e8?0:2)+'M':n>=1e3?Math.round(n/1e3)+'K':String(n)))+'</text>'; }
         ang=a2; });
       const d=document.createElement("div"); d.className="cpie"; d.innerHTML='<svg viewBox="0 0 72 72" width="104" height="104">'+g+'</svg>';
       const first=col.querySelector(".cand"); first?col.insertBefore(d,first):col.append(d); }); }; }
@@ -2430,6 +2448,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141437"></script>
+<script src="data/dc.js?v=202610141438"></script>
 </body>
 </html>
