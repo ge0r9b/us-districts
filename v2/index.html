@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140240 -->
+<!-- build 202610140300 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140240";</script>
+<script>window.BUILD="202610140300";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -357,6 +357,12 @@
   body.lyropen #chartBox, body.noplot #chartLg { visibility: hidden; }
   #chartBox .rbtn svg .f { fill: #000; stroke: none; } #chartBox .rbtn.on svg .f { fill: #fff; }
   #chartBox .rbtn svg { width: 60%; height: 60%; }
+  #chartBox .crow { position: relative; }
+  #chartBox .copts { position: absolute; right: calc(100% + var(--gap)); top: 0; display: flex; gap: var(--gap); transform-origin: 100% 50%; transform: translateX(30px) scaleX(.2); opacity: 0; pointer-events: none; transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s; }
+  #chartBox.open .copts { transform: none; opacity: 1; pointer-events: auto; }
+  #chartBox.open { z-index: 1012 !important; }
+  #chartDim { position: fixed; inset: 0; z-index: 1011; background: rgba(0,0,0,.28); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  #chartDim.on { opacity: 1; pointer-events: auto; }
 </style>
 </head>
 <body>
@@ -1953,12 +1959,22 @@ new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").h
 setInterval(placeLegend,500);
 // ===== chart controls (bar / pie / line): toggles only for now =====
 { const w=document.createElement("div"); w.id="chartBox"; w.className="rail";
-  const SV={bar:'<svg viewBox="0 0 24 24"><path d="M4 3v18" stroke-width="2.4"/><rect class="f" x="5" y="4.5" width="9" height="3.2"/><rect class="f" x="5" y="9" width="12" height="3.2"/><rect class="f" x="5" y="13.5" width="15" height="3.2"/><rect class="f" x="5" y="18" width="7" height="2.6"/></svg>',
+  const SV={bar:'<svg viewBox="0 0 24 24"><path d="M3.5 2.5v19.5" stroke-width="2.6" stroke-linecap="butt"/><rect class="f" x="5" y="3.5" width="10" height="3.8"/><rect class="f" x="5" y="8.3" width="13" height="3.8"/><rect class="f" x="5" y="13.1" width="16" height="3.8"/><rect class="f" x="5" y="17.9" width="8" height="3.6"/></svg>',
     pie:'<svg viewBox="0 0 24 24"><path class="f" d="M11 13 L17.93 9 A8 8 0 1 1 11 5 Z"/><path class="f" d="M12.25 10.83 L12.25 2.83 A8 8 0 0 1 19.18 6.83 Z"/></svg>',
     line:'<svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 4v16h16"/></svg>'};
-  w.innerHTML='<div id="chartLg"></div><div class="crow">'+["bar","pie","line"].map(k=>'<button class="rbtn" data-ch="'+k+'" aria-label="'+k+' chart">'+SV[k]+'</button>').join("")+'</div>';
+  const K=["bar","pie","line"]; let last="bar";
+  w.innerHTML='<div id="chartLg"></div><div class="crow"><div class="copts"></div><button class="rbtn cmain" aria-label="Chart"></button></div>';
   document.body.append(w); L.DomEvent&&L.DomEvent.disableClickPropagation(w);
-  w.querySelectorAll(".rbtn").forEach(b=>b.onclick=()=>{ const on=!b.classList.contains("on"); w.querySelectorAll(".rbtn").forEach(x=>x.classList.remove("on")); b.classList.toggle("on",on); window.chartMode=on?b.dataset.ch:null; });
+  const dim=document.createElement("div"); dim.id="chartDim"; document.body.append(dim);
+  const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
+  const paint=()=>{ const k=window.chartMode||last; main.innerHTML=SV[k]; main.dataset.ch=k; main.classList.toggle("on",!!window.chartMode); };
+  const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
+  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); };
+  const open=()=>{ const cur=window.chartMode||last; opts.innerHTML=""; K.filter(k=>k!==cur).forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
+    void opts.offsetWidth; w.classList.add("open"); dim.classList.add("on"); };
+  main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
+  dim.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); close(); });
+  window.chartMode=null; paint();
   const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; w.style.top=(t+3)+"px"; };
   addEventListener("resize",pos); setInterval(pos,400); pos(); }
 placeLegend();
