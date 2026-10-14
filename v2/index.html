@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132214 -->
+<!-- build 202610132218 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -267,7 +267,9 @@
   @media (max-width: 899px) { .lvrow { padding-left: calc(var(--gap) + var(--sal)) !important; } }
   #rail2 { display: flex; flex-direction: column; align-items: flex-end; gap: var(--gap); }
   .numtog { display: flex; gap: 6px; }
-  .numtog .rbtn.sm { width: calc(var(--btn) * .8); height: calc(var(--btn) * .8); font: 700 16px/1 system-ui, sans-serif; color: #000; padding: 0; }
+  .numtog { gap: var(--gap) !important; }
+  .numtog .rbtn.sm { width: var(--btn) !important; height: var(--btn) !important; min-width: var(--btn); flex: 0 0 var(--btn); border-radius: 50% !important; aspect-ratio: 1; box-sizing: border-box; font: 700 18px/1 system-ui, sans-serif; color: #000; padding: 0 !important; display: grid; place-items: center; order: 1; }
+  .numtog .rbtn.sm.on { order: 2; }
   .numtog .rbtn.sm.on { color: #fff; }
 </style>
 </head>
@@ -275,16 +277,12 @@
 <div class="v2bar" id="barSearch"><div class="grow vtitle" id="vtitle">President</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
 <div class="v2bar" id="barGeo"><div class="grow crumbs" id="crumbs"></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
 <div class="v2bar" id="barTime" hidden style="padding-right:calc(var(--gap) * 2 + var(--btn) + var(--sar))"><div class="yr"><button class="chip" id="c2020" type="button">2020</button><input id="yslider" type="range" min="0" max="2" step="1" value="2" aria-label="Year"><button class="chip on" id="c2024" type="button">2024</button></div><div id="ynote"></div></div>
-<div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button><button class="rbtn" id="bList" aria-label="Selections"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11M3.5 18l1.2 1.2L7 17"/></svg></button></div>
+<div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button></div>
 <div class="v2bar" id="barBottom"><button class="bottomlbl" id="bLayerLbl" hidden>geography</button><div class="grow"><input id="gq" type="search" inputmode="search" enterkeyhint="go" autocomplete="off" placeholder="ZIP, place, county or address" aria-label="Go to a place"></div><button class="rbtn" id="bGlobe" aria-label="Geography layers"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button></div>
 <div class="sheet" id="sheet" hidden></div>
 
-<header>
-  <h1>US districts</h1>
-  <p>Pick a state, then a county, to see only that area's districts and zoom the map to it. This works for every list. Click a row or a shape on the map to select it; selections stay highlighted and on the selected list. Boundaries are the Census Bureau 2024 TIGER/Line legal boundaries, the same source state maps use, kept to within about 20 meters. Keep the data and lib folders next to this file. The background map needs an internet connection.</p>
-</header>
 <div class="layout">
-  <div class="panel">
+  <div class="panel" hidden style="display:none">
     <div class="controls">
       <select id="dataset"></select>
       <select id="state"><option value="">All states</option></select>
@@ -302,7 +300,7 @@
     <ul id="picked"></ul>
   </div>
   <div class="mapwrap">
-    <div class="mapbar"><span id="mapnote">Check a row to draw its boundary.</span> <label class="heatbtn"><input id="heat" type="checkbox"> Show 2024 election heat map</label> <select id="heatlevel" hidden><option value="county">By county</option><option value="precinct">By precinct</option></select> <label class="filebtn">Full boundaries<input id="fullfile" type="file" accept=".zip,application/zip" multiple hidden></label></div>
+    <div class="mapbar" hidden style="display:none"><span id="mapnote">Check a row to draw its boundary.</span> <label class="heatbtn"><input id="heat" type="checkbox"> Show 2024 election heat map</label> <select id="heatlevel" hidden><option value="county">By county</option><option value="precinct">By precinct</option></select> <label class="filebtn">Full boundaries<input id="fullfile" type="file" accept=".zip,application/zip" multiple hidden></label></div>
     <div id="map"></div>
   </div>
 </div>
@@ -874,7 +872,7 @@ $("c2020").onclick=()=>{ years.has("2020")?years.delete("2020"):years.add("2020"
 $("c2024").onclick=()=>{ years.has("2024")?years.delete("2024"):years.add("2024"); syncYears(); };
 $("yslider").oninput=e=>{ const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
 $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").classList.toggle("on",!b.hidden); layoutRail(); };
-$("bList").onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
+($("bList")||{}).onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
 // legend
 window.updateLegend = function(){
   const div=document.querySelector(".heatlegend"); if(!div) return;
@@ -1083,8 +1081,8 @@ function openLists(){
   if(!host.children.length) host.innerHTML="<p>Turn on a layer with the layers button to list its districts.</p>";
   sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); ($("bList")||document.createElement("i")).classList.remove("on");
 }
-$("bList").onclick=()=>{ if(!sheet.hidden&&($("bList")||document.createElement("i")).classList.contains("on")){ closeSheet(); return; } openLists(); ($("bList")||document.createElement("i")).classList.add("on"); };
-$("bList").onlongpress=null;
+($("bList")||{}).onclick=()=>{ if(!sheet.hidden&&($("bList")||document.createElement("i")).classList.contains("on")){ closeSheet(); return; } openLists(); ($("bList")||document.createElement("i")).classList.add("on"); };
+($("bList")||{}).onlongpress=null;
 // legacy selection panel still reachable from the district list
 const _cs=closeSheet; closeSheet=function(){ _cs(); ($("bList")||document.createElement("i")).classList.remove("on"); };
 // VIEW HOOK: globe button will later flip between full-screen map and a full-screen list of candidates in office.
