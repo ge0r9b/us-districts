@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140600 -->
+<!-- build 202610140640 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140600";</script>
+<script>window.BUILD="202610140640";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1985,7 +1985,7 @@ setInterval(placeLegend,500);
   const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
   const paint=()=>{ const k=window.chartMode||last; main.innerHTML=SV[k]; main.dataset.ch=k; main.classList.toggle("on",!!window.chartMode); };
   const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
-  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); try{ renderCands(); }catch(e){} };
+  const pick=k=>{ if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } try{ renderCands(); }catch(e){} };
   const open=()=>{ const cur=window.chartMode||last; opts.innerHTML=""; K.filter(k=>k!==cur).forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
     void opts.offsetWidth; w.classList.add("open"); dim.classList.add("on"); };
   main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
