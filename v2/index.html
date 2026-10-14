@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141451 -->
+<!-- build 202610141452 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141451";</script>
+<script>window.BUILD="202610141452";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -369,6 +369,7 @@
   body.foldfs #crumbs .cic { visibility: hidden; }
   body.foldfs #crumbs.ctop .crumb:not(.glob) { display: none !important; }
   body.foldfs #crumbs.ctop .crumb.glob { font-weight: 600; color: #000; }
+  body.foldfs #crumbs.ctop .crumb.tbScope { display: inline-flex !important; }
   #crumbs .crumb.cur { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   body:not(.foldfs) #crumbs .crumb.cur { max-width: calc(100vw - 120px); }
   .cand { position: relative; }
@@ -2491,12 +2492,20 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 
 // ===== top bar while the menu is open: only the parent level, icon + text aligned with the current-field row =====
 { const alignTop=()=>{ const c=$("crumbs"); if(!c) return; const fs=document.body.classList.contains("foldfs");
-    const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; c.querySelectorAll(".crumb,.sep").forEach(x=>x.classList.remove("tbHide","tbPar")); if(!fs||bs.length<2) return;
-    const par=bs[bs.length-2]; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar");
+    c.querySelectorAll(".crumb,.sep").forEach(x=>x.classList.remove("tbHide","tbPar")); let sc=c.querySelector(".crumb.tbScope"); if(!fs){ if(sc) sc.remove(); return; }
+    let par; const typ=ALLLBL[ltype]?ltype:null;
+    if(typ){ // district type: parent row = geographic scope (state or United States); current row = the type
+      const st=state.value, nm=st||"United States", src="img/stateflags/"+nm.replace(/ /g,"_")+".png?v="+(window.BUILD||1);
+      if(!sc){ sc=document.createElement("button"); sc.className="crumb tbScope usc"; sc.innerHTML='<img alt="" class="usflag"><span></span>'; sc.onclick=e=>{ e.stopPropagation(); if(state.value){ hier.dist=null; county.value=""; try{ county.onchange&&county.onchange(); }catch(_){} } setTimeout(openFold,60); }; c.append(sc); }
+      if(sc.lastChild.textContent!==nm){ sc.lastChild.textContent=nm; sc.title=nm; sc.firstChild.setAttribute("src",src); }
+      par=sc; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==sc) x.classList.add("tbHide"); }); sc.classList.add("tbPar");
+      const L0=document.querySelector("#barGeo .fsq .fsqlbl"); if(L0&&st){ const sp0=L0.querySelector("span"), fq=L0.querySelector(".fqi"); const want=ALLLBL[typ]; if(sp0&&sp0.textContent!==want) sp0.textContent=want; if(fq&&fq.dataset.k!==typ){ fq.dataset.k=typ; fq.innerHTML=icon(typ); } }
+    } else { if(sc) sc.remove(); const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; if(bs.length<2) return;
+      par=bs[bs.length-2]; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar"); }
     const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L||!L.offsetParent) return; const li=L.querySelector("img"), sp=L.querySelector("span"); if(!sp) return;
     const rg=document.createRange(); rg.selectNodeContents(sp); const tx=rg.getBoundingClientRect().left;
     const pi=par.querySelector("img"), pt=par.querySelector("span")||par;
-    if(pi&&li){ const r=(L.querySelector(".fqi")||li).getBoundingClientRect(); pi.style.width=r.width+"px"; pi.style.height=r.height+"px"; const d=r.left-pi.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; }
+    if(pi&&(li||L.querySelector(".fqi"))){ const r=(L.querySelector(".fqi")||li).getBoundingClientRect(); pi.style.width=r.width+"px"; pi.style.height=r.height+"px"; const d=r.left-pi.getBoundingClientRect().left; if(Math.abs(d)>0.5){ if(par.classList.contains("tbScope")){ par.style.position="relative"; par.style.left=((parseFloat(par.style.left)||0)+d)+"px"; } else par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; } }
     else { const d=tx-pt.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; }
     if(pi){ const r2=document.createRange(); r2.selectNodeContents(pt); const d=tx-r2.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.gap=Math.max(0,(parseFloat(getComputedStyle(par).columnGap)||0)+d)+"px"; } };
   new MutationObserver(()=>{ requestAnimationFrame(alignTop); setTimeout(alignTop,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignTop,500); }
@@ -2556,6 +2565,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141451"></script>
+<script src="data/dc.js?v=202610141452"></script>
 </body>
 </html>
