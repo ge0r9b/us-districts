@@ -1644,8 +1644,7 @@ const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
 setInterval(fixLegend,800);
 // ===== full-screen universal search (separate from bottom geography field) =====
 function usIndex(){ const R=[]; const st=state.value;
-  OFFICES.forEach(o=>R.push({name:o.label,tag:"Office",pick:()=>{ office=o.id; $("vtitle").textContent=t32(o.label); }}));
-  ["2024","2020"].forEach(yr=>CANDS[yr].forEach(c=>R.push({name:c.full+" "+yr,tag:"Candidate",pick:()=>{ candOn.add(c.id); renderCands(); refreshBubble(); }})));
+  ["2024","2020"].forEach(yr=>CANDS[yr].forEach(c=>R.push({name:c.full+" "+yr,tag:"Candidate",pick:()=>{ candOn.clear(); candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); }})));
   LYR.filter(l=>lrow.querySelector(".lbtn[data-k="+l[1]+"]")).forEach(l=>R.push({name:l[2],tag:"Type",pick:()=>lrow.querySelector(".lbtn[data-k="+l[1]+"]").click()}));
   allStates().forEach(s=>R.push({name:s,tag:"State",pick:()=>{ state.value=s; state.onchange(); }}));
   Object.keys(window.ELECTION2024||{}).forEach(k=>{ const [s,c]=k.split("|"); R.push({name:c+", "+(ABBR[s]||s),tag:"County",pick:()=>{ state.value=s; state.onchange(); loadState(s).then(()=>setTimeout(()=>{ county.value=c; county.onchange(); },200)); }}); });
@@ -1670,25 +1669,6 @@ $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():op
 const _rl9=renderList; renderList=function(){ _rl9(); lv.querySelectorAll(".lvhead").forEach(x=>x.remove()); lv.querySelectorAll(".lvgrid > p").forEach(x=>x.remove()); };
 // ===== office chooser on the title (office side button removed) =====
 { const ob=$("bOff"); if(ob){ const w=ob.closest(".xwrap")||ob; w.remove(); } }
-// topic registry: topic > sub-item; each item supplies its data source + color scale. Add entries here later.
-const TOPICS=[{id:"elections",label:"Elections",items:[{id:"president",label:"President",
-  data:{years:["2020","2024"],county:{"2020":"../data/election2020.js","2024":"../data/election2024.js"},precincts:{"2020":"../data/precincts2020/","2024":"../data/precincts2024/"}},
-  type:"govoffice"}]}];
-// topic TYPES own the color scheme; topics inherit it from their type
-// minimal extensible registry: topic types (only the candidate-office type is active)
-const TOPIC_TYPES={govoffice:{kind:"candidate",label:"Candidate office",thumbnails:true,scheme:{margin:typeof marginColor==="function"?marginColor:null,delta:typeof deltaColor==="function"?deltaColor:null}}};
-function topicScheme(o){ return (TOPIC_TYPES[o.type]||{}).scheme; } window.__topicTypes=TOPIC_TYPES; window.topicScheme=topicScheme;
-window.__topics=TOPICS;
-function openOffices(){ closeSheet(); sheet.innerHTML=""; TOPICS.forEach(tp=>{ const h=document.createElement("div"); h.className="lvlrow"; h.textContent=t32(tp.label); sheet.append(h);
-  const ol=document.createElement("ol"); ol.className="nl"; tp.items.forEach(o=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(o.label))+"</span>"+(o.id===office?"<span class='tg'>✓</span>":"");
-    li.onclick=()=>{ office=o.id; window.__topic=o; $("vtitle").textContent=t32(o.label); closeSheet(); refreshLayers(); }; ol.append(li); }); sheet.append(ol); });
-  sheet.hidden=false; sheet.scrollTop=0; }
-function openOffices_old(){ closeSheet(); sheet.innerHTML="<ol class='nl'></ol>"; const ol=sheet.querySelector("ol");
-  OFFICES.forEach(o=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(o.label))+"</span>"+(o.id===office?"<span class='tg'>✓</span>":"");
-    li.onclick=()=>{ office=o.id; $("vtitle").textContent=t32(o.label); closeSheet(); refreshLayers(); }; ol.append(li); });
-  sheet.hidden=false; sheet.scrollTop=0; }
-$("vtitle").setAttribute("role","button"); $("vtitle").style.cursor="pointer";
-$("vtitle").onclick=()=>{ if(!sheet.hidden) closeSheet(); else openOffices(); };
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
