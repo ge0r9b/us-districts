@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610132245";</script>
+<script>window.BUILD="202610140012";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -311,6 +311,13 @@
   input[type=checkbox] { accent-color: #000; }
   #crumbs .cic.flag { background: none !important; border-radius: 0 !important; width: auto !important; height: auto !important; min-width: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; flex: 0 0 auto; }
   #crumbs .cic.flag img { height: 16px; width: auto; display: block; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
+  body.geofs #barBottom { display: none !important; }
+  #geofs { bottom: 0 !important; }
+  #geotop { position: sticky; top: var(--ghh, 45px); z-index: 2; background: #fff; border-bottom: 1px solid #e7e5e4; }
+  #geotop .gtrow { display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 16px; }
+  #geotop #gq { flex: 1 1 auto; min-width: 0; height: 44px; font-size: 17px !important; border: 0 !important; background: transparent !important; box-shadow: none !important; outline: none !important; padding: 0; }
+  #geotop .rbtn { flex: 0 0 auto; }
+  #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
 </style>
 </head>
 <body>
@@ -2066,14 +2073,15 @@ function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 // ===== bottom geography field: full-screen nested list (Country > State > County > Town), type to filter =====
 { const gfs=document.createElement("div"); gfs.id="geofs"; document.body.append(gfs); let path=[];
-  const g=()=>$("gq");
+  const GQ=$("gq"); const g=()=>GQ;
   function items(){ if(!path.length) return Promise.resolve(Object.keys(STATE_FILES).sort().map(n=>({name:n,drill:1})));
     if(path.length===1) return loadNat().then(()=>[...new Set((NAT||[]).filter(d=>d.st===path[0]).map(d=>d.nm))].sort().map(n=>({name:n,drill:1})));
     return loadState(path[0]).then(()=>{ const P=window.PARTS&&!PARTS[path[0]]&&window.__parts?window.__parts(path[0]):null; return Promise.resolve(P).then(()=>{ let t=[]; try{ t=townsIn(path[0],path[1]); }catch(e){} return [...new Set(t.map(x=>x[2]))].sort().map(n=>({name:n})); }); }); }
   function pick(nm){ const q=path.length===0?nm:path.length===1?nm+", "+path[0]:nm+", "+path[1]+", "+path[0]; closeG(); g().value=""; g().placeholder=t32(q); g().title=q; navTo(q); }
   function geoRender(){ const f=g().value.trim().toLowerCase();
-    items().then(L0=>{ let L1=L0; if(f){ const a=L0.filter(x=>x.name.toLowerCase().startsWith(f)), b=L0.filter(x=>!x.name.toLowerCase().startsWith(f)&&x.name.toLowerCase().includes(f)); L1=a.concat(b); }
-      const crumbs=["United States"].concat(path); gfs.innerHTML="<div class='gh'></div><ol></ol>"; const h=gfs.querySelector(".gh");
+    const tok=(window.__geoTok=(window.__geoTok||0)+1);
+    items().catch(()=>[]).then(L0=>{ if(tok!==window.__geoTok) return; L0=L0||[]; let L1=L0; if(f){ const a=L0.filter(x=>x.name.toLowerCase().startsWith(f)), b=L0.filter(x=>!x.name.toLowerCase().startsWith(f)&&x.name.toLowerCase().includes(f)); L1=a.concat(b); }
+      const crumbs=["United States"].concat(path); if(!gfs.querySelector(".gh")){ gfs.innerHTML="<div class='gh'></div><ol></ol>"; gfs.querySelector(".gh").after(top); } const h=gfs.querySelector(".gh"); h.innerHTML=""; gfs.querySelector("ol").innerHTML="";
       crumbs.forEach((c,i)=>{ const sp=document.createElement("span"); sp.textContent=(i?" › ":"")+t32(c); if(i===crumbs.length-1) sp.style.color="#111"; sp.onclick=()=>{ path=path.slice(0,i); g().value=""; geoRender(); }; h.append(sp); });
       const ol=gfs.querySelector("ol");
       if(path.length){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
@@ -2081,8 +2089,10 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         li.onclick=e=>{ if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
-  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; setTimeout(()=>{ g().value=""; geoRender(); },0); geoRender(); }
-  function closeG(){ document.body.classList.remove("geofs"); g().blur(); }
+  const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<div class="gtrow"></div>'; const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
+  xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>closeG();
+  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); setTimeout(()=>{ i.focus({preventScroll:true}); },0); }
+  function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
   g().addEventListener("focus",openG); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); });
@@ -2134,6 +2144,10 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     lt=now; lx=t.clientX; ly=t.clientY; },{passive:false});
   { const _f=map.fire; map.fire=function(type,data){ if(type==="dblclick"&&data&&data.originalEvent&&data.originalEvent.type!=="touchend"){ if(Date.now()-(window.__dblAt||0)<400) return this; window.__dblAt=Date.now(); clearTimeout(window.__tapT); } return _f.apply(this,arguments); }; }
 }
+
+// ===== keep Safari accessory bar away: legacy controls never focusable =====
+{ const kill=()=>document.querySelectorAll("select, #q, input[type=checkbox]:not(.sheet input), textarea").forEach(el=>{ if(el.closest(".sheet")) return; el.disabled=true; el.tabIndex=-1; el.setAttribute("aria-hidden","true"); });
+  kill(); new MutationObserver(kill).observe(document.body,{childList:true,subtree:true}); }
 
 })();
 
