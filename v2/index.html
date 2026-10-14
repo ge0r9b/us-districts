@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132149 -->
+<!-- build 202610132155 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -205,7 +205,8 @@
   .mapnote, #mapnote, .lvhead { display: none !important; }
   body.srchfs #map, body.srchfs #listView { visibility: hidden; }
   body.srchfs #barGeo, body.srchfs #barBottom, body.srchfs #barTime, body.srchfs .rail, body.srchfs .cands, body.srchfs .xrow, body.srchfs .sheet, body.srchfs .leaflet-control-container, body.srchfs .bub { display: none !important; }
-  body.srchfs #vtitle { visibility: hidden; }
+  body.srchfs #vtitle { display: none; }
+  #barSearch .usq { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 17px; font-weight: 600; border: 0; background: transparent; outline: none; padding: 0 4px; height: var(--btn); color: #111; -webkit-appearance: none; }
   .usv { position: fixed; z-index: 1002; left: 0; right: 0; bottom: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar)); overflow: auto; background: #fafaf9; padding: 0 calc(var(--gap) + var(--sar)) calc(var(--sab) + 12px) calc(var(--gap) + var(--sal)); }
   .usv > * { max-width: 760px; margin-left: auto; margin-right: auto; }
   .usv .nl { list-style: none; padding: 0; }
@@ -629,7 +630,7 @@ function marginColor(m) {
 function fmtN(n) { return n.toLocaleString("en-US"); }
 let E2020L=null;
 function loadE2020(){ if(window.ELECTION2020) return Promise.resolve(); return E2020L||(E2020L=new Promise(r=>{const s=document.createElement("script");s.src="../data/election2020.js?v="+window.BUILD;s.onload=r;s.onerror=r;document.head.append(s);})); }
-function deltaColor(d){ const st=[[-0.2,[64,0,128]],[-0.1,[118,72,180]],[-0.03,[200,185,230]],[0,[247,247,247]],[0.03,[253,208,162]],[0.1,[241,105,19]],[0.2,[127,39,4]]];
+function deltaColor(d){ const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
   if(d<=st[0][0]) return "rgb("+st[0][1]+")"; for(let i=1;i<st.length;i++){ if(d<=st[i][0]){ const [a,ca]=st[i-1],[b,cb]=st[i],t=(d-a)/(b-a); return "rgb("+ca.map((c,j)=>Math.round(c+(cb[j]-c)*t)).join(",")+")"; } } return "rgb("+st[st.length-1][1]+")"; }
 function ym(){ return window.__ymode ? window.__ymode() : "2024"; }
 function yrHtml(r,yr){ const [dem,rep,tot]=r,pd=dem/tot*100,pr=rep/tot*100,m=pr-pd,dn=yr==="2020"?"Biden":"Harris";
@@ -1129,7 +1130,7 @@ function refreshLayers(){
     ["counties","towns","schools","ushouse","senate","statehouse"].filter(k=>active.has(k)&&!(k==="counties"&&heatOn)).forEach(k=>{
       const filling=heatOn&&k===fillTop;
       layerItems(k).forEach(d=>{ let o={renderer:lyrRenderer,pane:"lyrPane",interactive:false,color:k==="counties"?"#111":"#1f2937",weight:k==="counties"?1.2:1.6,fill:false};
-        if(filling) o={...o,fill:true,fillColor:distFill(k,d),fillOpacity:0.72,color:"#ffffff",weight:0.6};
+        if(filling){ const fc=distFill(k,d); o={...o,fill:true,fillColor:fc,fillOpacity:fc==="#a8a29e"?0:0.72,color:"#ffffff",weight:0.6}; }
         L.polygon(toLatLngs(d),o).addTo(lyrGroup); });
     });
     if(need){ const n=layerItems(fillTop).length, gray=layerItems(fillTop).filter(d=>distFill(fillTop,d)==="#a8a29e").length;
@@ -1674,10 +1675,11 @@ function usIndex(){ const R=[]; const st=state.value;
     (PREC[st]||[]).forEach(r=>R.push({name:r[1]+", "+r[0],tag:"Precinct",pick:()=>{ const c=zoomItem("precinct",r); setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }})); }
   return R; }
 window.__usIndex=usIndex;
-function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); setTimeout(()=>map.invalidateSize(),50); }
+function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); const q=$("usq"); if(q) q.remove(); setTimeout(()=>map.invalidateSize(),50); }
 function openUS(){ if(!sheet.hidden) closeSheet(); document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
-  const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<div class='fsq'><input type='search' enterkeyhint='go' autocomplete='off' autocapitalize='words' placeholder='Search everything' aria-label='Search everything'></div><ol class='nl'></ol>"; document.body.append(u);
-  const inp=u.querySelector("input"), ol=u.querySelector("ol");
+  const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
+  const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search everything"; inp.setAttribute("aria-label","Search everything");
+  $("bSearch").before(inp); u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
   Promise.all([window.ELECTION2024?null:loadElection(), state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
@@ -1736,6 +1738,28 @@ const _nav7=navTo; navTo=function(q){ const t=String(q).trim(), lo=t.toLowerCase
   return _nav7(q); };
 if(!$("gq").__nav7){ $("gq").__nav7=1; }
 setType("ushouse");
+// ===== change line: margin shift for tapped area, else the viewed geography =====
+function shiftTxt(a){ const v24=scopeVals(a,"2024"), v20=scopeVals(a,"2020"); if(!v24||!v20||!v24.tot||!v20.tot) return "";
+  const sh=((v24.rep-v24.dem)/v24.tot-(v20.rep-v20.dem)/v20.tot)*100; return Math.abs(sh)<0.05?"No shift":(sh>0?"R+":"D+")+Math.abs(sh).toFixed(1)+" shift"; }
+function updShift(){ const dl=$("ydelta"); if(!dl) return; $("ynote").textContent="";
+  if(ym()!=="delta"){ dl.textContent=""; return; } if(cur&&cur.d&&state.value&&cur.d[0]!==state.value){ cur=null; if(bubPop) map.closePopup(bubPop); } const a=cur||scopeArea(); const t=shiftTxt(a); const nm=a.kind==="sum"?(a.st||"US"):aname(a);
+  dl.textContent=t?t32((t.length+nm.length+2<=32?nm+": ":"")+t):""; dl.title=nm; }
+const _rb8=refreshBubble; refreshBubble=function(){ _rb8(); updShift(); };
+const _cr8=crumbs; crumbs=function(){ _cr8(); updShift(); };
+const _dh9=drawHeat; drawHeat=function(){ _dh9(); updShift(); };
+setInterval(updShift,1000);
+// ===== county fallback where the state lacks precinct data for the selected year(s) =====
+function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
+function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k];
+  if(m==="2024") return a&&a[2]?marginColor((a[1]-a[0])/a[2]):"#a8a29e"; if(m==="2020") return b&&b[2]?marginColor((b[1]-b[0])/b[2]):"#a8a29e";
+  return a&&b&&a[2]&&b[2]?deltaColor((a[1]-a[0])/a[2]-(b[1]-b[0])/b[2]):"#a8a29e"; }
+const ctyFillGroup=L.layerGroup().addTo(map);
+function drawCtyFill(){ ctyFillGroup.clearLayers(); if(!heatOn||!state.value) return; const st=state.value;
+  Promise.all([loadPrecincts(st), ym()!=="2024"?loadPrec20(st):null, ym()!=="2024"?loadE2020():null]).then(()=>{ if(st!==state.value) return; ctyFillGroup.clearLayers(); if(!precMissing()) return;
+    (GEOM.counties||[]).filter(d=>d[0]===st).forEach(d=>L.polygon(toLatLngs(d),{renderer:lyrRenderer,pane:"lyrPane",fill:true,fillColor:ctyFill(d),fillOpacity:0.72,color:"#fff",weight:0.6,interactive:false}).addTo(ctyFillGroup));
+    ctyFillGroup.eachLayer(l=>l.bringToBack()); }).catch(()=>{}); }
+const _dh10=drawHeat; drawHeat=function(){ _dh10(); drawCtyFill(); };
+const _aa10=areaAt; areaAt=function(ll){ if(heatOn&&state.value&&precMissing()&&!hier.dist){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&pointInItem(d,ll.lng,ll.lat)); if(c) return {kind:"county",d:c}; } return _aa10(ll); };
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
