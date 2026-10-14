@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132155 -->
+<!-- build 202610132206 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -236,6 +236,19 @@
   html, body { position: fixed; inset: 0; width: 100%; overscroll-behavior: none; touch-action: manipulation; }
   #bGeo, #bGeo.on, #bGeo:active, #bGeo:focus { transform: none !important; transition: background-color .12s, color .12s !important; border-width: 0 !important; outline: none !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; -webkit-tap-highlight-color: transparent; }
   .rbtn { -webkit-tap-highlight-color: transparent; }
+  body.foldfs #barSearch { visibility: visible !important; }
+  body.foldfs #vtitle, body.foldfs #bSearch { display: none !important; }
+  body.foldfs #barSearch .crumbs { flex: 1 1 auto; min-width: 0; }
+  #barGeo .fsq { position: static; flex: 1 1 auto; min-width: 0; padding: 0; background: transparent; }
+  #barGeo .fsq input { height: var(--btn); padding: 0 12px; font-size: 17px; border-radius: 999px; }
+  body.noplot .leaflet-heat-pane, body.noplot .leaflet-lyr-pane, body.noplot .leaflet-nat-pane, body.noplot .cands, body.noplot .heatlegend, body.noplot .leaflet-popup, body.noplot #ydelta { display: none !important; }
+  #vtitle { min-height: 1.4em; }
+  #barSearch .topin { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 1.15em; font-weight: 700; border: 0; background: transparent; outline: none; padding: 0; height: var(--btn); color: #111; -webkit-appearance: none; }
+  .topsug { position: fixed; z-index: 1004; background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.2); padding: 10px 16px; font-weight: 700; min-height: 24px; }
+  #rail2 { top: auto !important; bottom: calc(var(--bar) + var(--sab) + var(--gap)); }
+  .leaflet-bottom.leaflet-left .heatlegend { transform-origin: 0 100%; margin-left: calc(var(--gap) + var(--sal)) !important; }
+  body.lyropen .heatlegend { visibility: hidden; }
+  .leaflet-bottom.leaflet-left .esria { clear: none; float: left; align-self: flex-end; margin: 0 0 12px 4px !important; }
 </style>
 </head>
 <body>
@@ -837,8 +850,8 @@ function syncYears(){
   $("ynote").textContent = m==="2024" ? "" : m==="2020" ? "" : (heatLevel==="precinct" ? "Change 20→24, same-shape only" : "Change in margin, 2020→2024");
   (m==="2024" ? Promise.resolve() : loadE2020()).then(()=>window.ensure20?ensure20():null).then(()=>{ updateLegend(); drawHeat(); });
 }
-$("c2020").onclick=()=>{ years.has("2020")&&years.size>1?years.delete("2020"):years.add("2020"); syncYears(); };
-$("c2024").onclick=()=>{ years.has("2024")&&years.size>1?years.delete("2024"):years.add("2024"); syncYears(); };
+$("c2020").onclick=()=>{ years.has("2020")?years.delete("2020"):years.add("2020"); syncYears(); };
+$("c2024").onclick=()=>{ years.has("2024")?years.delete("2024"):years.add("2024"); syncYears(); };
 $("yslider").oninput=e=>{ const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
 $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").classList.toggle("on",!b.hidden); layoutRail(); };
 $("bList").onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
@@ -1614,8 +1627,8 @@ function startCrumbEdit(btn){ const inp=document.createElement("input"); inp.typ
   inp.addEventListener("blur",()=>setTimeout(()=>{ if(!done){ closeSheet(); crumbs(); } },150));
   show(); }
 const _crE=crumbs; crumbs=function(){ _crE(); const bs=[...$("crumbs").querySelectorAll(".crumb")]; const last=bs[bs.length-1];
-  if(last){ last.onclick=e=>{ e.stopPropagation(); startCrumbEdit(last); }; last.setAttribute("aria-label","Type to jump: "+(last.title||last.textContent)); } };
-$("crumbs").onclick=e=>{ if(e.target.closest(".crumb")||e.target.closest("input")) return; openFold(); };
+  if(last){ last.onclick=e=>{ e.stopPropagation(); if(!document.body.classList.contains("foldfs")) openFold(); }; last.setAttribute("aria-label","Type to jump: "+(last.title||last.textContent)); } };
+$("crumbs").onclick=e=>{ if(e.target.closest(".crumb")||e.target.closest("input")||document.body.classList.contains("foldfs")) return; openFold(); };
 ["bLyr","bOff"].forEach(id=>$(id).addEventListener("click",()=>{ if(!sheet.hidden) closeSheet(); }));
 new MutationObserver(()=>{ if(!sheet.hidden) document.querySelectorAll(".xrow").forEach(r=>{ r.hidden=true; if(r.previousElementSibling) r.previousElementSibling.classList.remove("on"); }); }).observe(sheet,{attributes:true,attributeFilter:["hidden"]});
 crumbs();
@@ -1636,7 +1649,7 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
   sheet.querySelectorAll(".lvlrow, h3").forEach(r=>r.remove());
   document.body.style.setProperty("--fstop",Math.round($("barGeo").getBoundingClientRect().bottom)+"px");
   const box=document.createElement("div"); box.className="fsq"; box.innerHTML="<input type='search' enterkeyhint='go' autocomplete='off' autocapitalize='words' placeholder='Type to filter' aria-label='Filter'>";
-  sheet.prepend(box); const inp=box.querySelector("input"); const ol=sheet.querySelector(".foldlist ol, ol.nl");
+  { const old=$("barGeo").querySelector(".fsq"); if(old) old.remove(); } $("barGeo").insertBefore(box,$("bGeo")); { const cr=$("crumbs"); if(cr.parentElement!==$("barSearch")) $("barSearch").prepend(cr); } const inp=box.querySelector("input"); const ol=sheet.querySelector(".foldlist ol, ol.nl");
   const lis=ol?[...ol.children]:[];
   lis.forEach(li=>{ const cb=li.querySelector("input[type=checkbox]"); const orig=li.onclick; li.__drill=orig;
     if(cb&&li.querySelector(".go")){ li.onclick=e=>{ if(e.target.closest(".go")) return orig&&orig(e); if(e.target!==cb){ cb.checked=!cb.checked; cb.dispatchEvent(new Event("change")); } }; } });
@@ -1648,7 +1661,7 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
     if(q.length>=2&&vis.length===1) drill(vis[0]); });
   const born=Date.now(); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(Date.now()-born<600) return; const f=lis.find(li=>li.style.display!=="none"); if(f) drill(f); } });
   setTimeout(()=>inp.focus(),30); }); };
-const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3(); const was=document.body.classList.contains("foldfs"); _cs3(); document.body.classList.remove("foldfs");
+const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3(); const was=document.body.classList.contains("foldfs"); _cs3(); document.body.classList.remove("foldfs"); { const f=$("barGeo").querySelector(".fsq"); if(f) f.remove(); const cr=$("crumbs"); if(cr.parentElement!==$("barGeo")) $("barGeo").prepend(cr); }
   if(was){ setTimeout(()=>{ map.invalidateSize(); const kind=ltype==="counties"?"towns":ltype, sid=LSET[kind]; let items=[];
     if(sid) [...selected.values()].filter(x=>x.setId===sid&&x.row[0]===state.value&&(!county.value||kind!=="towns"||x.row[1]===county.value)).forEach(x=>items.push(...shapesFor(sid,x.row)));
     if(hier.dist) items=[hier.dist]; if(items.length) fitItems(items); redraw(); },60); } };
@@ -1760,6 +1773,58 @@ function drawCtyFill(){ ctyFillGroup.clearLayers(); if(!heatOn||!state.value) re
     ctyFillGroup.eachLayer(l=>l.bringToBack()); }).catch(()=>{}); }
 const _dh10=drawHeat; drawHeat=function(){ _dh10(); drawCtyFill(); };
 const _aa10=areaAt; areaAt=function(ll){ if(heatOn&&state.value&&precMissing()&&!hier.dist){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&pointInItem(d,ll.lng,ll.lat)); if(c) return {kind:"county",d:c}; } return _aa10(ll); };
+// ===== plotting on/off: topic set + at least one year =====
+let topicOn=true;
+function plotting(){ return topicOn&&years.size>0; }
+function syncPlot(){ document.body.classList.toggle("noplot",!plotting()); if(!plotting()){ cur=null; if(bubPop) map.closePopup(bubPop); } }
+const _sy12=syncYears; syncYears=function(){ syncPlot(); if(years.size===0){ $("c2020").classList.remove("on"); $("c2024").classList.remove("on"); $("ydelta").textContent=""; return; } _sy12(); drawNat(); };
+// tap the title to edit the topic; empty clears, "Pres…" restores
+$("vtitle").onclick=()=>{ if($("topin")) return; const inp=document.createElement("input"); inp.id="topin"; inp.className="topin"; inp.type="text"; inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.setAttribute("enterkeyhint","done"); inp.setAttribute("aria-label","Topic");
+  inp.value=topicOn?"President":""; $("vtitle").style.display="none"; $("vtitle").after(inp); inp.focus(); inp.setSelectionRange(inp.value.length,inp.value.length);
+  let sug=null; const hideSug=()=>{ if(sug){ sug.remove(); sug=null; } };
+  const setTopic=on=>{ topicOn=on; $("vtitle").textContent=on?"President":""; syncPlot(); if(on){ drawHeat(); drawNat(); renderCands(); } };
+  const done=()=>{ hideSug(); inp.remove(); $("vtitle").style.display=""; };
+  inp.addEventListener("input",()=>{ const v=inp.value.trim().toLowerCase(); hideSug();
+    if(!v){ setTopic(false); return; }
+    if(v==="president"){ setTopic(true); return; }
+    if("president".startsWith(v)){ sug=document.createElement("button"); sug.type="button"; sug.className="topsug"; sug.textContent="President"; const r=$("barSearch").getBoundingClientRect(); sug.style.left=(r.left+12)+"px"; sug.style.top=(r.bottom+4)+"px";
+      sug.onpointerdown=e=>{ e.preventDefault(); inp.value="President"; setTopic(true); inp.blur(); }; document.body.append(sug); } });
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const v=inp.value.trim().toLowerCase(); if(v&&"president".startsWith(v)) setTopic(true); inp.blur(); } });
+  inp.addEventListener("blur",()=>setTimeout(done,120)); };
+// ===== nationwide results: light county layer everywhere, precinct detail lazy-loaded for states in view =====
+map.createPane("natPane"); map.getPane("natPane").style.zIndex=340; map.getPane("natPane").style.pointerEvents="none";
+const natRenderer=L.canvas({pane:"natPane",padding:0.3}); const natGroup=L.layerGroup().addTo(map), natPrec=L.layerGroup().addTo(map);
+let NAT=null, natL=null;
+window.__uscty=function(rows){ NAT=rows.map(([st,nm,enc])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
+  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e]}; }); };
+function loadNat(){ return natL||(natL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/uscounties.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
+const natLL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
+function natFill(d){ return ctyFill([d.st,d.nm]); }
+let natSeq=0;
+function drawNat(){ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
+  const m=ym(); Promise.all([loadNat(), window.ELECTION2024?null:loadElection(), m!=="2024"?loadE2020():null]).then(()=>{ if(seq!==natSeq||!NAT) return;
+    if(!natGroup.__m||natGroup.__m!==m){ natGroup.clearLayers(); natGroup.__m=m; NAT.forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}).addTo(natGroup)); }
+    natDetail(seq); }); }
+function statesInView(){ const b=map.getBounds(), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); const S=new Set(); (NAT||[]).forEach(d=>{ const q=d.bb; if(!(q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1)) S.add(d.st); }); return [...S]; }
+function natDetail(seq){ natPrec.clearLayers(); const m=ym(); if(map.getZoom()<9||m==="delta") return; const sts=statesInView().filter(s=>s!==state.value); if(sts.length>4) return;
+  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth();
+    sts.forEach(s=>{ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) return;
+      P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return;
+        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
+let natT=null; map.on("moveend",()=>{ clearTimeout(natT); natT=setTimeout(()=>{ if(plotting()&&NAT) natDetail(++natSeq); },150); });
+const _dh11=drawHeat; drawHeat=function(){ _dh11(); drawNat(); };
+// tap anywhere: precinct detail (other states) or national county
+const _aa11=areaAt; areaAt=function(ll){ if(!plotting()) return null;
+  const m=ym(); if(map.getZoom()>=9&&m!=="delta"){ for(const s of statesInView().filter(s=>s!==state.value)){ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m}; } }
+  { const a=_aa11(ll); if(a) return a; }
+  const d=(NAT||[]).find(d=>{ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let inside=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) inside=!inside; } return inside; }); });
+  if(!d) return null; const c=(GEOM.counties||[]).find(x=>x[0]===d.st&&x[1]===d.nm); return c?{kind:"county",d:c}:{kind:"county",d:[d.st,d.nm,d.polys]}; };
+drawNat();
+// ===== layers button lives in the lower right (above the globe), legend in the lower left =====
+{ const r2=document.createElement("div"); r2.id="rail2"; r2.className="rail"; document.body.append(r2); const w=$("bLyr").closest(".xwrap")||$("bLyr"); r2.append(w); }
+function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; if(lg&&lg.parentElement!==bl) bl.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
+new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").hidden)).observe($("lyrRow"),{attributes:true,attributeFilter:["hidden"]});
+setInterval(placeLegend,500); placeLegend();
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
