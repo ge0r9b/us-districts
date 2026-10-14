@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141470 -->
+<!-- build 202610141471 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141470";</script>
+<script>window.BUILD="202610141471";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -51,7 +51,7 @@
   .layout { display: block; padding: 0; }
   .mapwrap { position: fixed; inset: 0; border: 0; border-radius: 0; background: #ddd; }
   #map { position: absolute; inset: 0; height: 100% !important; min-height: 0; border-radius: 0; }
-  :root { --gap: clamp(8px, 1.2vw, 16px); --btn: clamp(48px, 4vw, 56px); --bar: clamp(48px, 4.2vw, 60px); --fs: clamp(16px, 1.1vw + 8px, 19px);
+  :root { --gap: 8px; --btn: 48px; --bar: 48px; --fs: 16px;
           --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); --sal: env(safe-area-inset-left, 0px); --sar: env(safe-area-inset-right, 0px); }
   .v2bar { position: fixed; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; gap: var(--gap);
            padding: 0 calc(var(--gap) + var(--sar)) 0 calc(var(--gap) + var(--sal)); min-height: var(--bar);
@@ -1987,7 +1987,7 @@ $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"
       const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
       const sync=()=>box.classList.toggle("typing",!!inp.value); inp.addEventListener("input",sync); inp.addEventListener("blur",sync); inp.addEventListener("focus",sync); setInterval(()=>{ if(box.classList.contains("typing")&&!inp.value) box.classList.remove("typing"); },400); sync(); return true; };
     let n=0; const tick=()=>{ if(!put()&&n++<20) setTimeout(tick,40); }; Promise.resolve(r).then(()=>setTimeout(tick,0)); setTimeout(tick,0); return r; }; }
-setInterval(()=>{ const B=document.body.classList; if(!B.contains("foldfs")||B.contains("orgglobal")||B.contains("worldmode")) return; const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L) return; const sp=L.querySelector("span"); if(!sp||sp.textContent!=="United States") return; sp.textContent="All countries"; let fq=L.querySelector(".fqi"); if(!fq){ fq=document.createElement("i"); fq.className="fqi"; L.prepend(fq); } fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; },120);
+if(0) setInterval(()=>{ const B=document.body.classList; if(!B.contains("foldfs")||B.contains("orgglobal")||B.contains("worldmode")) return; const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L) return; const sp=L.querySelector("span"); if(!sp||sp.textContent!=="United States") return; sp.textContent="All countries"; let fq=L.querySelector(".fqi"); if(!fq){ fq=document.createElement("i"); fq.className="fqi"; L.prepend(fq); } fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; },120);
 ["pointerdown","touchstart"].forEach(t=>document.addEventListener(t,e=>{ const b=e.target.closest&&e.target.closest("#barGeo .fsq"); if(b) b.classList.add("fqfocus"); },{capture:true,passive:true}));
 document.addEventListener("focusout",e=>{ const b=e.target.closest&&e.target.closest("#barGeo .fsq"); if(b){ b.classList.remove("fqfocus"); if(!e.target.value) b.classList.remove("typing"); } },true);
 // ===== All countries level: live filter + Enter + reopen in world mode =====
@@ -2737,7 +2737,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141470"></script>
-<script src="data/dc.js?v=202610141470"></script>
+<script defer src="data/countries.js?v=202610141471"></script>
+<script src="data/dc.js?v=202610141471"></script>
 </body>
 </html>
