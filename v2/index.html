@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132138 -->
+<!-- build 202610132141 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -837,7 +837,7 @@ $("c2020").onclick=()=>{ years.has("2020")&&years.size>1?years.delete("2020"):ye
 $("c2024").onclick=()=>{ years.has("2024")&&years.size>1?years.delete("2024"):years.add("2024"); syncYears(); };
 $("yslider").oninput=e=>{ const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
 $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").classList.toggle("on",!b.hidden); layoutRail(); };
-$("bList").onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); $("bList").classList.toggle("on",!panel.classList.contains("closed")); };
+$("bList").onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
 // legend
 window.updateLegend = function(){
   const div=document.querySelector(".heatlegend"); if(!div) return;
@@ -864,7 +864,7 @@ function list(title,items,onpick,cur){
   sheet.querySelector(".close").onclick=closeSheet;
   const ol=sheet.querySelector("ol");
   items.slice(0,3000).forEach((it,i)=>{ const li=document.createElement("li"); if(it===cur) li.className="on"; li.innerHTML="<span class='n'>"+(i?i:"")+"</span><span>"+esc(it)+"</span>"; li.onclick=()=>onpick(it,i); ol.append(li); });
-  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); $("bList").classList.remove("on");
+  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); ($("bList")||document.createElement("i")).classList.remove("on");
 }
 function allStates(){ return Object.keys(STATE_FILES).sort(); }
 function countiesOf(st){ return [...new Set(Object.keys(XREF.ushouse||{}).filter(k=>k.startsWith(st+"|")).map(k=>k.slice(st.length+1)))].sort(); }
@@ -1044,12 +1044,12 @@ function openLists(){
     det.querySelector(".sa").onclick=()=>all(true); det.querySelector(".da").onclick=()=>all(false);
     host.append(det); });
   if(!host.children.length) host.innerHTML="<p>Turn on a layer with the layers button to list its districts.</p>";
-  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); $("bList").classList.remove("on");
+  sheet.hidden=false; sheet.scrollTop=0; panel.classList.add("closed"); ($("bList")||document.createElement("i")).classList.remove("on");
 }
-$("bList").onclick=()=>{ if(!sheet.hidden&&$("bList").classList.contains("on")){ closeSheet(); return; } openLists(); $("bList").classList.add("on"); };
+$("bList").onclick=()=>{ if(!sheet.hidden&&($("bList")||document.createElement("i")).classList.contains("on")){ closeSheet(); return; } openLists(); ($("bList")||document.createElement("i")).classList.add("on"); };
 $("bList").onlongpress=null;
 // legacy selection panel still reachable from the district list
-const _cs=closeSheet; closeSheet=function(){ _cs(); $("bList").classList.remove("on"); };
+const _cs=closeSheet; closeSheet=function(){ _cs(); ($("bList")||document.createElement("i")).classList.remove("on"); };
 // VIEW HOOK: globe button will later flip between full-screen map and a full-screen list of candidates in office.
 // For now (one office) only "map" exists; add a "officeholders" view and call setView from $("bGlobe").onclick later.
 // CHART HOOK: bar/line/pie buttons (later) will register VIEWS.bar/line/pie that replace the map with charts of the same data
@@ -1687,6 +1687,11 @@ $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():op
 const _rl9=renderList; renderList=function(){ _rl9(); lv.querySelectorAll(".lvhead").forEach(x=>x.remove()); lv.querySelectorAll(".lvgrid > p").forEach(x=>x.remove()); };
 // ===== office chooser on the title (office side button removed) =====
 { const ob=$("bOff"); if(ob){ const w=ob.closest(".xwrap")||ob; w.remove(); } }
+// ===== checklist button and its old sheet removed; all old list paths go to the org menu =====
+{ const b=$("bList"); if(b) b.remove(); }
+openLists=function(){ return openFold(); }; openGeo=function(){ return openFold(); };
+if(window.__v2) window.__v2.openLists=openLists;
+setTimeout(()=>{ layoutRail&&layoutRail(); layoutSide&&layoutSide(); },0);
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
