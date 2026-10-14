@@ -1403,7 +1403,7 @@ function refreshBubble(){ const dl=$("ydelta");
     bubPop.setLatLng(curLL).setContent(html); if(!map.hasLayer(bubPop)) bubPop.openOn(map); }
   dl.textContent=ym()==="delta"?t32(aname(cur)+": "+deltaTxt(cur)):""; dl.title=aname(cur); }
 map.off("click"); map.off("mousemove");
-map.on("click",e=>{ const a=areaAt(e.latlng); if(!a){ cur=null; refreshBubble(); return; } showArea(a,e.latlng); });
+map.on("click",e=>{ clearTimeout(window.__tapT); if(Date.now()-(window.__dblAt||0)<400) return; window.__tapT=setTimeout(()=>{ if(Date.now()-(window.__dblAt||0)<400) return; const a=areaAt(e.latlng); if(!a){ cur=null; refreshBubble(); return; } showArea(a,e.latlng); },260); });
 map.on("popupclose",e=>{ if(e.popup===bubPop){ cur=null; $("ydelta").textContent=""; } });
 // delta line under the slider
 const yd=document.createElement("div"); yd.id="ydelta"; yd.className="ydelta"; $("barTime").append(yd);
@@ -2123,6 +2123,17 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 }
 
 $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("foldfs")) window.__slideDir="r"; },true);
+
+// ===== explicit touch double-tap (iOS Safari doesn't deliver dblclick reliably) =====
+{ const el=map.getContainer(); let lt=0,lx=0,ly=0,moved=false,sx=0,sy=0;
+  el.addEventListener("touchstart",e=>{ if(e.touches.length!==1){ moved=true; return; } moved=false; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+  el.addEventListener("touchmove",e=>{ const t=e.touches[0]; if(t&&Math.hypot(t.clientX-sx,t.clientY-sy)>10) moved=true; },{passive:true});
+  el.addEventListener("touchend",e=>{ if(moved||e.changedTouches.length!==1) return; const t=e.changedTouches[0], now=Date.now();
+    if(now-lt<350&&Math.hypot(t.clientX-lx,t.clientY-ly)<40){ lt=0; window.__dblAt=now; clearTimeout(window.__tapT); e.preventDefault();
+      const r=el.getBoundingClientRect(); const ll=map.containerPointToLatLng([t.clientX-r.left,t.clientY-r.top]); map.fire("dblclick",{latlng:ll,containerPoint:L.point(t.clientX-r.left,t.clientY-r.top),originalEvent:e}); return; }
+    lt=now; lx=t.clientX; ly=t.clientY; },{passive:false});
+  { const _f=map.fire; map.fire=function(type,data){ if(type==="dblclick"&&data&&data.originalEvent&&data.originalEvent.type!=="touchend"){ if(Date.now()-(window.__dblAt||0)<400) return this; window.__dblAt=Date.now(); clearTimeout(window.__tapT); } return _f.apply(this,arguments); }; }
+}
 
 })();
 
