@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141444 -->
+<!-- build 202610141445 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141444";</script>
+<script>window.BUILD="202610141445";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -417,6 +417,8 @@
   .fsq .fsqlbl .fqi { display: inline-flex; width: 30px; justify-content: center; flex: 0 0 30px; }
   .fsq .fsqlbl .fqi svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .fsq .fsqlbl .fqi img { width: auto; height: 20px; max-width: 30px; flex: none; object-fit: contain; }
+  .fsq .fsqlbl .fqi img.fqflag.shape { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; border-radius: 0; }
+  .fsq .fsqlbl .fqi img.fqflag:not(.shape) { height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1597,8 +1599,8 @@ function rowOf(k,d){ const sid=LSET[k]; if(!sid) return null; const R=DATA[sid]|
 function children(){ const k=ltype;
   if(!state.value) return {lvl:"State",items:allStates().map(s=>({name:s,pick:()=>{ state.value=s; state.onchange(); }}))};
   if(hier.dist) return {lvl:"Precinct",kind:"precinct",need:true,items:precIn(hier.dist).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
-  if(!k||(!ALLLBL[k]&&!USES_COUNTY[k]&&!layerItems(k).length)){ let cg=[]; try{ cg=(layerItems("counties")||[]).filter(d=>d[0]===state.value); }catch(e){}
-    const names=countiesOf(state.value); const nm=names.length?names:[...new Set(cg.map(d=>d[1]))].sort();
+  if(!k||k==="counties"||(!ALLLBL[k]&&!USES_COUNTY[k]&&!layerItems(k).length)){ let cg=[]; try{ cg=(layerItems("counties")||[]).filter(d=>d[0]===state.value); }catch(e){}
+    const cn=[...new Set(cg.map(d=>d[1]))].sort(); const nm=cn.length?cn:countiesOf(state.value);
     return {lvl:"County",items:nm.map(c=>({name:c,close:true,pick:()=>{ county.value=c; county.onchange&&county.onchange(); const g=cg.find(d=>d[1]===c); if(g) try{ zoomItem("counties",g); }catch(e){} }}))}; }
   if(!USES_COUNTY[k]) return {lvl:TYPE_LBL[k],kind:k,items:layerItems(k).sort((a,b)=>String(a[1]).localeCompare(String(b[1]),undefined,{numeric:true})).map(d=>({name:aname({kind:k,d}),d,kind:k,drill:true}))};
   if(!county.value) return {lvl:"County",items:countiesOf(state.value).map(c=>({name:c,pick:()=>{ county.value=c; county.onchange(); }}))};
@@ -1896,7 +1898,7 @@ $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"
 // ===== selection label icon: district-type icon for "All ... districts" =====
 { const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"), cur=c.querySelector(".crumb.cur"), ic=c.querySelector(".cic"); const t=cur&&cur.textContent.trim(); const k=Object.keys(ALLLBL).find(k=>ALLLBL[k]===t); if(k&&ic){ ic.className="cic tyic"; ic.innerHTML=icon(k); } }catch(e){} return r; }; }
 // ===== org menu field: show the current selection label (with its icon) until the user taps/types =====
-{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")) return _ofL.apply(this,arguments); const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const ci=cr&&cr.querySelector(".cic"); const ich=ci?ci.innerHTML:"";
+{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")) return _ofL.apply(this,arguments); const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const ci=cr&&cr.querySelector(".cic"); const fim=ci&&ci.classList.contains("flag")&&ci.querySelector("img"); const ich=fim?'<img alt="" class="fqflag'+(ci.classList.contains("shape")?" shape":"")+'" src="'+fim.getAttribute("src")+'">':(ci?ci.innerHTML:"");
     const r=_ofL.apply(this,arguments);
     const put=()=>{ const box=$("barGeo").querySelector(".fsq"); if(!box||box.querySelector(".fsqlbl")) return !!box; const inp=box.querySelector("input"); if(!inp||!lbl) return true;
       const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
@@ -2475,6 +2477,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141444"></script>
+<script src="data/dc.js?v=202610141445"></script>
 </body>
 </html>
