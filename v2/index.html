@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132120 -->
+<!-- build 202610132127 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -216,6 +216,15 @@
   .rbtn svg { stroke: #000 !important; }
   .rbtn.on { background: #000 !important; }
   .rbtn.on svg { stroke: #fff !important; }
+  .listview { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .listview { padding-right: 0 !important; right: 0 !important; }
+  .lvgrid { display: block !important; margin: 0 !important; }
+  .lvrow { padding-right: calc(var(--btn) + var(--gap) * 2 + var(--sar)) !important; }
+  .lvrow { width: 100%; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; border-bottom: 1px solid rgba(0,0,0,.1) !important; padding: 12px 4px !important; }
+  body.listmode .cand, body.listmode .cand.ph, body.listmode .cand.ph.on, body.listmode .cand.ph.on.d, body.listmode .cand.ph.on.r { box-shadow: none !important; border: 0 !important; outline: 0 !important; background: transparent !important; border-radius: 0 !important; }
+  body.listmode .cand img { box-shadow: none !important; border: 0 !important; }
+  body.listmode .cands .cand { border-bottom: 1px solid rgba(0,0,0,.1) !important; }
+  @media (max-width: 899px) { .listview { padding-left: 0 !important; } .lvrow { padding-left: calc(var(--gap) + var(--sal) + 4px) !important; } }
 </style>
 </head>
 <body>
