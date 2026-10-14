@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132143 -->
+<!-- build 202610132149 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -970,7 +970,7 @@ function centroid(polys){ let best=null,ba=-1; polys.forEach(p=>{ const a=ringAr
 function aggFor(k,yr){
   yr=yr||(ym()==="2020"?"2020":"2024"); const st=state.value, key=st+"|"+k+"|"+yr; if(AGG[key]) return AGG[key];
   const P=yr==="2020"?(window.PREC20||{})[st]:PREC[st]; if(!P) return null; const EL=yr==="2020"?window.ELECTION2020:window.ELECTION2024;
-  const dists=(GEOM[k]||[]).filter(inArea); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
+  const dists=(k==="towns"?[...(GEOM.towns||[]),...(GEOM.places||[])]:(GEOM[k]||[])).filter(inArea); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
   const DG=grid(dists,d=>d.__bb,0.1), res=new Map(); dists.forEach(d=>res.set(d,{dem:0,rep:0,tot:0,n:0}));
   P.forEach(r=>{ if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const b=r[6]; c=[(b[0]+b[2])/2,(b[1]+b[3])/2]; } r.__c=c; }
     const [x,y]=r.__c; const d=gq(DG,x,y).find(d=>x>=d.__bb[0]&&x<=d.__bb[2]&&y>=d.__bb[1]&&y<=d.__bb[3]&&pointInItem(d,x,y)); if(!d) return;
@@ -1632,7 +1632,7 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
   sheet.querySelectorAll("details.fold.lvlp").forEach(det=>{ const sm=det.querySelector("summary"); const row=document.createElement("div"); row.className="lvlrow"; row.style.paddingLeft=det.style.paddingLeft;
     if(sm){ while(sm.firstChild) row.append(sm.firstChild); row.onclick=sm.onclick; } det.replaceWith(row); });
   sheet.querySelectorAll("details.fold").forEach(det=>{ const d=document.createElement("div"); d.className="foldlist"; d.style.paddingLeft=det.style.paddingLeft; while(det.firstChild) d.append(det.firstChild); det.replaceWith(d); });
-  sheet.querySelectorAll(".lvlrow").forEach(r=>{ if(/^\s*\d*\s*All\s*$/.test(r.textContent)) r.remove(); });
+  sheet.querySelectorAll(".lvlrow, h3").forEach(r=>r.remove());
   document.body.style.setProperty("--fstop",Math.round($("barGeo").getBoundingClientRect().bottom)+"px");
   const box=document.createElement("div"); box.className="fsq"; box.innerHTML="<input type='search' enterkeyhint='go' autocomplete='off' autocapitalize='words' placeholder='Type to filter' aria-label='Filter'>";
   sheet.prepend(box); const inp=box.querySelector("input"); const ol=sheet.querySelector(".foldlist ol, ol.nl");
@@ -1700,6 +1700,42 @@ const pin=()=>{ if(window.scrollY||window.scrollX) window.scrollTo(0,0); if(docu
 window.addEventListener("scroll",pin,{passive:true}); if(window.visualViewport){ visualViewport.addEventListener("scroll",pin); visualViewport.addEventListener("resize",pin); }
 document.addEventListener("focusin",()=>setTimeout(pin,0)); 
 { const _f=HTMLInputElement.prototype.focus; HTMLInputElement.prototype.focus=function(o){ return _f.call(this,Object.assign({preventScroll:true},o||{})); }; }
+// ===== district types only (side menu). NOTE: this side menu will later fold into the org filter (second bar). =====
+// Counties/towns are no longer a type: they come from the bottom geography field (state/county filter + context outlines).
+// Precincts are no longer a type: they are always the bottom level inside the selected district.
+{ const pb=lrow.querySelector(".lbtn[data-k=precincts]"); if(pb) pb.remove();
+  const cb=lrow.querySelector(".lbtn[data-k=counties]"); if(cb){ cb.dataset.k="towns"; cb.innerHTML=icon("towns"); cb.setAttribute("aria-label","Local"); cb.title="Local"; }
+  ["ushouse","senate","statehouse","towns","schools"].forEach(k=>{ const b=lrow.querySelector(".lbtn[data-k="+k+"]"); if(b) lrow.append(b); }); }
+LYR.find(l=>l[1]==="towns")[2]="Local"; LYR.find(l=>l[1]==="statehouse")[2]="State House"; LYR.find(l=>l[1]==="senate")[2]="State Senate";
+AGG_LAYERS.add("towns"); delete USES_COUNTY.schools; delete USES_COUNTY.towns; TYPE_LBL.towns="Local";
+aname=(function(_a){ return function(a){ return a.kind==="towns"&&a.d.length<=3?shortPlace(a.d[1]):a.kind==="towns"?a.d[2]:_a(a); }; })(aname);
+// county stays as a filter (from the bottom field) but not as an org level
+const _pp7=pathParts; pathParts=function(){ return _pp7().filter((x,i,arr)=>!(county.value&&x[0]===county.value&&i===2)); };
+// precincts inside the drilled district, colored by result
+const precGroup=L.layerGroup().addTo(map);
+function drawPrecInDist(){ precGroup.clearLayers(); if(!hier.dist||!heatOn) return; const d=hier.dist;
+  Promise.all([ym()!=="2020"?loadPrecincts(state.value):null, ym()!=="2024"?loadPrec20(state.value):null]).then(()=>{ if(hier.dist!==d) return; precGroup.clearLayers();
+    precIn(d).forEach(r=>L.polygon(toLatLngs(r.slice(0,6)),{renderer:lyrRenderer,pane:"lyrPane",fill:true,fillColor:precFill(r),fillOpacity:0.85,color:"#fff",weight:0.5,interactive:false}).addTo(precGroup));
+    drawDist(); }); }
+const _dd7=drawDist; drawDist=function(){ _dd7(); if(distOutline) distOutline.bringToFront(); if(!drawPrecInDist.__busy){ drawPrecInDist.__busy=1; setTimeout(()=>{ drawPrecInDist.__busy=0; },0); drawPrecInDist(); } };
+const _dh7=drawHeat; drawHeat=function(){ _dh7(); if(hier.dist) drawPrecInDist(); else precGroup.clearLayers(); };
+// tap inside drilled district -> precinct
+const _areaAt7=areaAt; areaAt=function(ll){ if(hier.dist&&heatOn){ const r=precIn(hier.dist).find(r=>pointInItem(r.slice(0,6),ll.lng,ll.lat)); if(r) return {kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"}; } return _areaAt7(ll); };
+// county context outlines for the current state
+const ctxGroup=L.layerGroup().addTo(map);
+function drawCtx(){ ctxGroup.clearLayers(); if(!state.value) return; (GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)).forEach(d=>L.polygon(toLatLngs(d),{renderer:lyrRenderer,pane:"lyrPane",fill:false,color:"#57534e",weight:county.value?2:0.6,dashArray:county.value?null:"2 3",interactive:false}).addTo(ctxGroup)); }
+const _dh8=drawHeat; drawHeat=function(){ _dh8(); drawCtx(); };
+// bottom field: exact state / county / town names set the geography filter, then zoom; anything else just moves the map
+const _nav7=navTo; navTo=function(q){ const t=String(q).trim(), lo=t.toLowerCase();
+  const stM=allStates().find(s=>s.toLowerCase()===lo||(ABBR[s]||"").toLowerCase()===lo);
+  if(stM){ state.value=stM; county.value=""; state.onchange(); return Promise.resolve(); }
+  const mm=t.match(/^(.+?)(?:,\s*([A-Za-z .]+))?$/); const nm=(mm[1]||"").toLowerCase(), stq=(mm[2]||"").trim().toLowerCase();
+  const stOk=s=>!stq||s.toLowerCase()===stq||(ABBR[s]||"").toLowerCase()===stq;
+  const ck=Object.keys(window.ELECTION2024||{}).find(k=>{ const [s,c]=k.split("|"); return stOk(s)&&(c.toLowerCase()===nm||c.toLowerCase()===nm+" county"||c.toLowerCase()===nm+" parish"); });
+  if(ck&&(stq||!/^\d/.test(nm))){ const [s,c]=ck.split("|"); state.value=s; state.onchange(); return loadState(s).then(()=>{ county.value=c; county.onchange(); }); }
+  return _nav7(q); };
+if(!$("gq").__nav7){ $("gq").__nav7=1; }
+setType("ushouse");
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
