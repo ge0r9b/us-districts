@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132127 -->
+<!-- build 202610132135 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -225,6 +225,12 @@
   body.listmode .cand img { box-shadow: none !important; border: 0 !important; }
   body.listmode .cands .cand { border-bottom: 1px solid rgba(0,0,0,.1) !important; }
   @media (max-width: 899px) { .listview { padding-left: 0 !important; } .lvrow { padding-left: calc(var(--gap) + var(--sal) + 4px) !important; } }
+  #barTime.hasclock { display: grid !important; grid-template-columns: minmax(0,1fr) var(--btn); column-gap: var(--gap); align-items: center; flex-wrap: nowrap !important; }
+  #barTime.hasclock .yr { grid-column: 1; grid-row: 1; display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; min-width: 0; width: auto !important; }
+  #barTime.hasclock #bTime { grid-column: 2; grid-row: 1; margin: 0 !important; justify-self: end; }
+  #barTime.hasclock #ynote, #barTime.hasclock .ydelta { grid-column: 1 / -1; }
+  #barTime .yr .chip { flex: 0 1 auto; min-width: 0; padding-left: clamp(8px, 3vw, 18px); padding-right: clamp(8px, 3vw, 18px); }
+  #barTime .yr input[type=range] { flex: 1 1 auto; min-width: 40px; width: auto; }
 </style>
 </head>
 <body>
