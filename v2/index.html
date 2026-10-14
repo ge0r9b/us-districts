@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140100 -->
+<!-- build 202610140120 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140100";</script>
+<script>window.BUILD="202610140120";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -343,6 +343,18 @@
   body:not(.foldfs) #crumbs .glob { display: none !important; }
   body.orgglobal .sheet > :not(#orgGlobal) { display: none !important; }
   #crumbs .cic svg { width: 18px; height: 18px; fill: none; stroke: #000; stroke-width: 1.6; }
+  #chartBox { flex-direction: column; align-items: flex-end; gap: 6px; }
+  #chartBox .crow { display: flex; gap: var(--gap); }
+  #chartBox:has(#chartLg:empty) { gap: 0; }
+  #chartLg .heatlegend { width: auto !important; display: flex !important; align-items: center; gap: 3px; background: rgba(255,255,255,.6) !important; box-shadow: none !important; border: 0 !important; padding: 2px 4px !important; margin: 0 !important; border-radius: 4px; transform-origin: 100% 0 !important; }
+  #chartLg .heatlegend .heatbar { order: 2; margin: 0 !important; width: 56px; border-radius: 1px; overflow: hidden; }
+  #chartLg .heatlegend .heatbar span { flex: 1 1 0; width: auto !important; height: 4px !important; }
+  #chartLg .heatlegend .heatlbl { display: contents !important; font-size: 6px !important; line-height: 1; color: #000; }
+  #chartLg .heatlegend .heatlbl span { font-size: 6px; line-height: 1; }
+  #chartLg .heatlegend .heatlbl span:nth-child(1) { order: 1; } #chartLg .heatlegend .heatlbl span:nth-child(2) { display: none; } #chartLg .heatlegend .heatlbl span:nth-child(3) { order: 3; }
+  #chartLg .heatlegend.mag { transform: scale(2.4); }
+  #chartBox .rbtn svg { fill: none; stroke-width: 2; }
+  body.lyropen #chartBox, body.noplot #chartLg { visibility: hidden; }
 </style>
 </head>
 <body>
@@ -1934,9 +1946,20 @@ const _aa11=areaAt; areaAt=function(ll){ if(!plotting()) return null;
 drawNat();
 // ===== layers button lives in the lower right (above the globe), legend in the lower left =====
 { const r2=document.createElement("div"); r2.id="rail2"; r2.className="rail"; document.body.append(r2); const w=$("bLyr").closest(".xwrap")||$("bLyr"); r2.append(w); }
-function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; const rr=document.getElementById("rail"); if(lg&&rr&&lg.parentElement!==rr) rr.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
+function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; const rr=document.getElementById("chartLg"); if(lg&&rr&&lg.parentElement!==rr) rr.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
 new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").hidden)).observe($("lyrRow"),{attributes:true,attributeFilter:["hidden"]});
-setInterval(placeLegend,500); placeLegend();
+setInterval(placeLegend,500);
+// ===== chart controls (bar / pie / line): toggles only for now =====
+{ const w=document.createElement("div"); w.id="chartBox"; w.className="rail";
+  const SV={bar:'<svg viewBox="0 0 24 24"><path d="M4 6h12M4 12h16M4 18h8" stroke-width="3" stroke-linecap="round"/></svg>',
+    pie:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v8h8"/></svg>',
+    line:'<svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 4v16h16"/></svg>'};
+  w.innerHTML='<div id="chartLg"></div><div class="crow">'+["bar","pie","line"].map(k=>'<button class="rbtn" data-ch="'+k+'" aria-label="'+k+' chart">'+SV[k]+'</button>').join("")+'</div>';
+  document.body.append(w); L.DomEvent&&L.DomEvent.disableClickPropagation(w);
+  w.querySelectorAll(".rbtn").forEach(b=>b.onclick=()=>{ const on=!b.classList.contains("on"); w.querySelectorAll(".rbtn").forEach(x=>x.classList.remove("on")); b.classList.toggle("on",on); window.chartMode=on?b.dataset.ch:null; });
+  const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=Math.max(t,tb.getBoundingClientRect().bottom); w.style.top=(t+g)+"px"; };
+  addEventListener("resize",pos); setInterval(pos,400); pos(); }
+placeLegend();
 // ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
 let lastYr="2024";
 $("c2020").addEventListener("click",()=>{ const y="2020"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
