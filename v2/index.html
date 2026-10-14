@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140900 -->
+<!-- build 202610140820 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140900";</script>
+<script>window.BUILD="202610140820";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -375,7 +375,7 @@
   .cand .cbar.chg { border-radius: 2px; }
   .cand.r .cbar { background: rgba(220,38,38,.3); } .cand.d .cbar { background: rgba(37,99,235,.3); }
   .cand > :not(.cbar) { position: relative; z-index: 1; }
-  .cpie { display: flex; justify-content: flex-start; padding: 4px 0 6px 4px; }
+  .cpie { display: flex; justify-content: flex-start; padding: 6px 0 8px 4px; } .cpie svg { width: 104px !important; height: 104px !important; min-width: 104px; flex: 0 0 104px; max-width: none !important; }
   /* candidate photos: one fixed circle everywhere, ring on the photo itself */
   .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 50% !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2.5px #a8a29e !important; }
   .cand.ph.on.r img { box-shadow: 0 0 0 2.5px #b91c1c !important; } .cand.ph.on.d img { box-shadow: 0 0 0 2.5px #1d4ed8 !important; }
@@ -2324,7 +2324,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
         g+=f>=.9999?'<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="'+c+'" fill-opacity=".85"/>':'<path d="M'+C+' '+C+'L'+x1.toFixed(2)+' '+y1.toFixed(2)+'A'+R+' '+R+' 0 '+lg+' 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+'Z" fill="'+c+'" fill-opacity=".85" stroke="#fff" stroke-width="1"/>';
         if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="8" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(f*100).toFixed(f<.1?1:0)+'%</text>'; }
         ang=a2; });
-      const d=document.createElement("div"); d.className="cpie"; d.innerHTML='<svg viewBox="0 0 72 72" width="72" height="72">'+g+'</svg>';
+      const d=document.createElement("div"); d.className="cpie"; d.innerHTML='<svg viewBox="0 0 72 72" width="104" height="104">'+g+'</svg>';
       const first=col.querySelector(".cand"); first?col.insertBefore(d,first):col.append(d); }); }; }
 // ===== bar chart mode in list view: party-colored bars behind candidate rows =====
 { const prevW={}; const num=t=>{ const m=String(t).replace(/,/g,"").match(/[-+−]?\d+(\.\d+)?/); return m?parseFloat(m[0].replace("−","-")):0; };
