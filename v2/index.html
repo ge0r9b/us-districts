@@ -1343,11 +1343,13 @@ map.on("popupopen",e=>{ const p=e.popup; const top=($("barTime").hidden?$("barGe
   p.options.autoPanPaddingTopLeft=L.point(8,top); p.options.autoPanPaddingBottomRight=L.point(innerWidth-rail.getBoundingClientRect().left+8,innerHeight-$("barBottom").getBoundingClientRect().top+8); p.update(); });
 // ===== candidates, tiny bubble, delta line, list mode =====
 // Data model: per time point a list of answers {answerId,label(full),photo,votes}. votes come from the per-area tuple [dem,rep,total] via ix.
-// Deltas compare the SAME answerId across time points; margin = share(rep_nominee) - share(dem_nominee).
-const CANDS={"2024":[{id:"h24",yr:"2024",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Harris",full:"Kamala Harris",ini:"KH",p:"d"},{id:"t24",yr:"2024",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}],
-             "2020":[{id:"b20",yr:"2020",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Biden",full:"Joe Biden",ini:"JB",p:"d"},{id:"t20",yr:"2020",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}]};
-function answers(v,yr){ return v?CANDS[yr].map(c=>({answerId:c.answerId,label:c.full,color:c.color,votes:c.ix?v.rep:v.dem,share:v.tot?(c.ix?v.rep:v.dem)/v.tot:0})):[]; }
-function answerDelta(v24,v20,id){ const a=answers(v24,"2024").find(x=>x.answerId===id), b=answers(v20,"2020").find(x=>x.answerId===id); return a&&b?{share:a.share-b.share,votes:a.votes-b.votes}:null; }
+// answerId is a generic slot key (this dataset maps slots to party nominees); candidateId is separate so matching can switch to candidate-based later (set MATCH="candidateId").
+// Deltas compare the SAME key across time points; margin = share(rep_nominee) - share(dem_nominee).
+const CANDS={"2024":[{id:"h24",candidateId:"harris_kamala",yr:"2024",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Harris",full:"Kamala Harris",ini:"KH",p:"d"},{id:"t24",candidateId:"trump_donald",yr:"2024",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}],
+             "2020":[{id:"b20",candidateId:"biden_joe",yr:"2020",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Biden",full:"Joe Biden",ini:"JB",p:"d"},{id:"t20",candidateId:"trump_donald",yr:"2020",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}]};
+const MATCH="answerId";
+function answers(v,yr){ return v?CANDS[yr].map(c=>({answerId:c.answerId,candidateId:c.candidateId,label:c.full,color:c.color,votes:c.ix?v.rep:v.dem,share:v.tot?(c.ix?v.rep:v.dem)/v.tot:0})):[]; }
+function answerDelta(v24,v20,id){ const a=answers(v24,"2024").find(x=>x[MATCH]===id), b=answers(v20,"2020").find(x=>x[MATCH]===id); return a&&b?{share:a.share-b.share,votes:a.votes-b.votes}:null; }
 const candOn=new Set(["h24","t24","b20","t20"]);
 function yrsOn(){ const m=ym(); return m==="delta"?["2020","2024"]:[m]; }
 function candsOn(){ return yrsOn().flatMap(y=>CANDS[y]); }
