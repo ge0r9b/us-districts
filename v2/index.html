@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610132230 -->
+<!-- build 202610140040 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140020";</script>
+<script>window.BUILD="202610140040";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -334,6 +334,12 @@
   /* podium above = generic fallback for topics without a seal */
   #vtitle.seal::before { background-image: url("img/seal-president.png?v=1"); left: calc(var(--tiL, 0px) - 2px); }
   body:not(.foldfs) #crumbs > :not(.cic):not(:last-child) { display: none !important; }
+  /* legend: top-right, in the rail, inconspicuous */
+  #rail .heatlegend { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; margin: 0 !important; width: 48px; box-sizing: border-box; transform-origin: 100% 0 !important; float: none; clear: none; }
+  #rail .heatlegend .heatbar { margin: 0 !important; width: 48px; border-radius: 2px; overflow: hidden; }
+  #rail .heatlegend .heatbar span { flex: 1 1 0; width: auto !important; height: 6px !important; }
+  #rail .heatlegend .heatlbl { font-size: 7px !important; line-height: 1.1; color: #000; text-shadow: 0 0 2px #fff, 0 0 2px #fff; letter-spacing: -.2px; }
+  #rail .heatlegend.mag { transform: scale(2.4); }
 </style>
 </head>
 <body>
@@ -1363,7 +1369,7 @@ function layoutInfo(){ const el=document.querySelector(".heatinfo"); if(!el) ret
   const railL=rail.getBoundingClientRect().left, bottomBar=$("barBottom").getBoundingClientRect().top;
   const sh=!sheet.hidden?sheet.getBoundingClientRect():null;
   el.style.position="fixed"; el.style.margin="0"; el.style.zIndex="999";
-  if(mob){ const lg=document.querySelector(".heatlegend"); const lgT=lg?lg.getBoundingClientRect().top:bottomBar;
+  if(mob){ const lgT=bottomBar;
     el.style.left=gap+"px"; el.style.right=(W-railL+gap)+"px"; el.style.top="auto"; el.style.width="auto";
     el.style.bottom=(H-lgT+gap)+"px"; el.style.maxHeight=Math.max(80,lgT-gap-top-gap)+"px"; }
   else { let right=W-railL+gap; if(sh&&sh.left>W/2) right=W-sh.left+gap;
@@ -1913,7 +1919,7 @@ const _aa11=areaAt; areaAt=function(ll){ if(!plotting()) return null;
 drawNat();
 // ===== layers button lives in the lower right (above the globe), legend in the lower left =====
 { const r2=document.createElement("div"); r2.id="rail2"; r2.className="rail"; document.body.append(r2); const w=$("bLyr").closest(".xwrap")||$("bLyr"); r2.append(w); }
-function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; if(lg&&lg.parentElement!==bl) bl.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
+function placeLegend(){ const lg=document.querySelector(".heatlegend"), ea=document.querySelector(".esria"); const bl=map._controlCorners&&map._controlCorners.bottomleft; if(!bl) return; const rr=document.getElementById("rail"); if(lg&&rr&&lg.parentElement!==rr) rr.append(lg); if(ea&&ea.parentElement!==bl) bl.append(ea); }
 new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").hidden)).observe($("lyrRow"),{attributes:true,attributeFilter:["hidden"]});
 setInterval(placeLegend,500); placeLegend();
 // ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
