@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141445 -->
+<!-- build 202610141446 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141445";</script>
+<script>window.BUILD="202610141446";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -419,6 +419,8 @@
   .fsq .fsqlbl .fqi img { width: auto; height: 20px; max-width: 30px; flex: none; object-fit: contain; }
   .fsq .fsqlbl .fqi img.fqflag.shape { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; border-radius: 0; }
   .fsq .fsqlbl .fqi img.fqflag:not(.shape) { height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
+  #crumbs .crumb.usc { display: inline-flex; align-items: center; gap: 6px; }
+  #crumbs .crumb.usc img.usflag { height: 14px; width: auto; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1426,7 +1428,7 @@ document.querySelectorAll(".xrow .lbtn").forEach(b=>{ b.innerHTML=icon(b.dataset
   b.addEventListener("touchstart",()=>{ long=false; lp=setTimeout(()=>{ long=true; showBub(b,1800); },450); },{passive:true});
   b.addEventListener("touchend",e=>{ clearTimeout(lp); if(long){ e.preventDefault(); } },{passive:false});
   b.addEventListener("touchmove",()=>clearTimeout(lp),{passive:true});
-  b.addEventListener("click",()=>showBub(b,1200)); });
+  });
 window.__v2.icon=icon;
 // ===== 32-character rule =====
 const MAXC=32;
@@ -1984,7 +1986,7 @@ const _nav7=navTo; navTo=function(q){ const t=String(q).trim(), lo=t.toLowerCase
   if(ck&&(stq||!/^\d/.test(nm))){ const [s,c]=ck.split("|"); state.value=s; state.onchange(); return loadState(s).then(()=>{ county.value=c; county.onchange(); }); }
   return _nav7(q); };
 if(!$("gq").__nav7){ $("gq").__nav7=1; }
-setType("ushouse");
+setType("none");
 // ===== change line: margin shift for tapped area, else the viewed geography =====
 function shiftTxt(a){ const v24=scopeVals(a,"2024"), v20=scopeVals(a,"2020"); if(!v24||!v20||!v24.tot||!v20.tot) return "";
   const sh=((v24.rep-v24.dem)/v24.tot-(v20.rep-v20.dem)/v20.tot)*100; return Math.abs(sh)<0.05?"No shift":(sh>0?"R+":"D+")+Math.abs(sh).toFixed(1)+" shift"; }
@@ -2387,6 +2389,8 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       sts.slice(0,8).reverse().forEach(n=>{ const li=document.createElement("li"); li.className="xst"; const f=n.replace(/ /g,"_"); li.innerHTML='<span class="oic"><img alt="" style="width:22px" src="img/stateflags/'+f+'.png?v='+(window.BUILD||1)+'" onerror="this.src=\'img/flags/US.png\'"></span><span class="nm"></span><span class="go">›</span>'; li.querySelector(".nm").textContent=n;
         li.onclick=e=>{ e.stopPropagation(); window.__slideDir="l"; hier.dist=null; county.value=""; state.value=n; state.onchange&&state.onchange(); setTimeout(openFold,80); }; ol.prepend(li); }); }); }; }
 
+// ===== breadcrumb: "United States" (US flag) > State; no "All" crumb when a state is shown =====
+{ const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"); if(state.value){ c.querySelectorAll(".crumb.glob,.sep.glob").forEach(x=>x.remove()); const us=[...c.querySelectorAll(".crumb")].find(b=>b.title==="United States"||/^(US|United States)$/.test(b.textContent.trim())); if(us){ us.textContent=""; us.title="United States"; us.classList.add("usc"); us.innerHTML='<img alt="" class="usflag" src="img/flags/US.png?v='+(window.BUILD||1)+'"><span>United States</span>'; } } }catch(e){} return r; }; crumbs(); }
 // ===== explicit touch double-tap (iOS Safari doesn't deliver dblclick reliably) =====
 { const el=map.getContainer(); let lt=0,lx=0,ly=0,moved=false,sx=0,sy=0;
   el.addEventListener("touchstart",e=>{ if(e.touches.length!==1){ moved=true; return; } moved=false; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
@@ -2477,6 +2481,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141445"></script>
+<script src="data/dc.js?v=202610141446"></script>
 </body>
 </html>
