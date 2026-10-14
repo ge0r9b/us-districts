@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141430 -->
+<!-- build 202610141431 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141430";</script>
+<script>window.BUILD="202610141431";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -383,6 +383,17 @@
   body:not(.listmode) .cand.ph img { position: absolute; left: 2.5px; top: 2.5px; width: 43px !important; height: 43px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
   body.listmode .cand.ph img { width: 42px !important; height: 42px !important; flex: 0 0 42px !important; margin-left: 3px; }
   body.listmode .cand .cbar.chg { top: auto !important; bottom: 1px !important; height: 5px; border-radius: 3px; }
+  #c2020, #c2024, #yslider { display: none !important; }
+  #ysl { position: relative; flex: 1 1 auto; min-width: 120px; height: 40px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; }
+  #ysl .trk { position: absolute; left: 18px; right: 18px; top: 14px; height: 1px; background: rgba(0,0,0,.35); }
+  #ysl .fill { position: absolute; top: 12.5px; height: 4px; background: #000; border-radius: 2px; display: none; }
+  #ysl .tk { position: absolute; top: 0; width: 44px; height: 40px; margin-left: -22px; }
+  #ysl .tk i { position: absolute; left: 19px; top: 11.5px; width: 6px; height: 6px; border-radius: 50%; background: #000; }
+  #ysl .tk span { position: absolute; left: 0; right: 0; top: 24px; text-align: center; font-size: 11px; line-height: 12px; color: #111; font-variant-numeric: tabular-nums; }
+  #ysl .kn { position: absolute; top: 3px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.18); pointer-events: none; transition: left .12s ease; }
+  #ysl.drag .kn, #ysl.drag .fill { transition: none; }
+  #ysl .kn.b { display: none; }
+  #ysl.rng .kn.b, #ysl.rng .fill { display: block; }
 </style>
 </head>
 <body>
@@ -2036,6 +2047,34 @@ $("c2020").addEventListener("click",()=>{ const y="2020"; if(years.has(y)) lastY
 $("c2024").addEventListener("click",()=>{ const y="2024"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
 $("yslider").addEventListener("input",e=>{ const v=+e.target.value; if(v===0) lastYr="2020"; if(v===2) lastYr="2024"; });
 const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
+
+// ===== time row: tick slider (single year = one knob; range = two knobs + black fill = change mode) =====
+{ const YRS=["2020","2024"], N=YRS.length; const yr=document.querySelector("#barTime .yr"); const w=document.createElement("div"); w.id="ysl"; w.setAttribute("role","group"); w.setAttribute("aria-label","Year");
+  w.innerHTML='<div class="trk"></div><div class="fill"></div>'+YRS.map((y,i)=>'<div class="tk" data-i="'+i+'"><i></i><span>'+y+'</span></div>').join("")+'<div class="kn a"></div><div class="kn b"></div>';
+  yr.insertBefore(w,$("c2024")); let A=N-1,B=N-1;
+  const xs=i=>{ const r=w.getBoundingClientRect(); return 18+(N>1?i/(N-1):0)*(r.width-36); };
+  const near=cx=>{ const r=w.getBoundingClientRect(); let best=0,bd=1e9; for(let i=0;i<N;i++){ const d=Math.abs(r.left+xs(i)-cx); if(d<bd){bd=d;best=i;} } return best; };
+  const paint=()=>{ w.querySelectorAll(".tk").forEach(t=>t.style.left=xs(+t.dataset.i)+"px"); const lo=Math.min(A,B),hi=Math.max(A,B); w.classList.toggle("rng",lo!==hi);
+    w.querySelector(".kn.a").style.left=xs(A)+"px"; w.querySelector(".kn.b").style.left=xs(B)+"px"; const f=w.querySelector(".fill"); f.style.left=xs(lo)+"px"; f.style.width=(xs(hi)-xs(lo))+"px"; };
+  const fromState=()=>{ const v=+$("yslider").value; if(v===1){A=0;B=N-1;} else {A=B=(v===0?0:N-1);} paint(); };
+  const commit=()=>{ const lo=Math.min(A,B),hi=Math.max(A,B); const v=lo!==hi?1:(lo===0?0:2); paint(); if(+$("yslider").value!==v||(v!==1&&!years.has(YRS[lo]))){ $("yslider").value=v; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } };
+  const P=new Map(); let g=null;
+  w.addEventListener("pointerdown",e=>{ e.preventDefault(); try{w.setPointerCapture(e.pointerId);}catch(_){}
+    P.set(e.pointerId,e.clientX); const r=w.getBoundingClientRect();
+    if(P.size>=2){ const v=[...P.values()]; g={two:true,moved:true}; A=near(v[0]); B=near(v[1]); w.classList.add("drag"); paint(); return; }
+    const rng=A!==B, i=near(e.clientX); const onA=Math.abs(r.left+xs(A)-e.clientX)<24, onB=Math.abs(r.left+xs(B)-e.clientX)<24;
+    g={x0:e.clientX,moved:false,mouse:e.pointerType==="mouse",end:rng?(onA?"A":onB?"B":null):null,anchor:rng?null:(onA?A:i)}; });
+  w.addEventListener("pointermove",e=>{ if(!P.has(e.pointerId)||!g) return; P.set(e.pointerId,e.clientX);
+    if(g.two){ const v=[...P.values()]; if(v.length>=2){ A=near(v[0]); B=near(v[1]); paint(); } return; }
+    if(!g.moved&&Math.abs(e.clientX-g.x0)<6) return; g.moved=true; w.classList.add("drag"); const i=near(e.clientX);
+    if(g.end==="A") A=i; else if(g.end==="B") B=i; else if(g.mouse&&g.anchor!=null){ A=g.anchor; B=i; } else { A=B=i; } paint(); });
+  const up=e=>{ if(!P.has(e.pointerId)) return; P.delete(e.pointerId); if(!g) return; if(g.two&&P.size) return; w.classList.remove("drag");
+    if(!g.moved){ A=B=near(e.clientX); } g=null; P.clear(); commit(); };
+  w.addEventListener("pointerup",up); w.addEventListener("pointercancel",up);
+  w.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ const d=e.key==="ArrowLeft"?-1:1; A=B=Math.max(0,Math.min(N-1,(A===B?A:B)+d)); commit(); } }); w.tabIndex=0;
+  const _syS=syncYears; syncYears=function(){ const r=_syS.apply(this,arguments); try{ fromState(); }catch(_){} return r; };
+  $("yslider").addEventListener("input",()=>setTimeout(fromState,0));
+  new ResizeObserver(paint).observe(w); fromState(); window.__ysl={get:()=>[A,B]}; }
 new MutationObserver(()=>{ renderCands(); if(view==="list") renderList(); refreshBubble(); }).observe($("barTime"),{attributes:true,attributeFilter:["hidden"]});
 // list mode: last names in two-year columns, full names otherwise; list states at the national level
 const _rc12=renderCands; renderCands=function(){ _rc12(); if(!candBox.classList.contains("two")) return; candBox.querySelectorAll(".cand .cn").forEach(n=>{ const t=(n.title||n.textContent).trim(); n.title=t; n.setAttribute("aria-label",t); n.onclick=e=>{ if(n.scrollWidth<=n.clientWidth) return; e.stopPropagation(); showBub(n,0); }; }); };
@@ -2370,6 +2409,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141430"></script>
+<script src="data/dc.js?v=202610141431"></script>
 </body>
 </html>
