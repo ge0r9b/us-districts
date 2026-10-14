@@ -2105,17 +2105,18 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   const pickType=k=>{ if(k){ if(ltype!==k||!active.has(k)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+k+']'); b&&b.click(); } }
     else if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
     state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); },250); };
-  window.__orgTypes=inp=>{ const pp=pathParts(); const lbl=(pp[pp.length-1]||["All"])[0]; inp.dataset.lbl=lbl; inp.value=lbl; inp.dataset.wasTop=pp.length<=1?"1":""; const dir=window.__slideDir; window.__slideDir="";
+  window.__orgTypes=inp=>{ const pp=pathParts(); const lbl=(pp[pp.length-1]||["All"])[0]; inp.dataset.lbl=""; inp.value=""; inp.placeholder=lbl; inp.dataset.wasTop="1"; const atTop=pp.length<=1; const dir=window.__slideDir; window.__slideDir="";
     if(dir==="l"){ inp.value=""; inp.dataset.lbl=""; inp.dataset.wasTop="1"; }
     if(dir){ sheet.querySelectorAll(".foldlist").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add(dir==="l"?"slideL":"slideR"); }); const c=$("crumbs"); c.classList.remove("crumbIn"); void c.offsetWidth; c.classList.add("crumbIn"); }
-    let box=document.getElementById("orgTypes"); if(box) box.remove(); box=document.createElement("ol"); box.id="orgTypes"; box.className="nl"; box.hidden=true;
+    let box=document.getElementById("orgTypes"); if(box) box.remove(); box=document.createElement("ol"); box.id="orgTypes"; box.className="nl"; box.hidden=!atTop;
     OPTS.forEach(([t,k])=>{ const li=document.createElement("li"); li.className="lvrow flat"; li.innerHTML='<span class="nm"></span>'; li.firstChild.textContent=t; li.onclick=()=>pickType(k); box.append(li); });
-    sheet.prepend(box); };
+    sheet.prepend(box);
+    inp.addEventListener("keydown",e=>{ if(e.key==="Backspace"&&inp.value===""&&pathParts().length>1){ e.preventDefault(); window.__slideDir="r"; state.value=""; hier.dist=null; state.onchange&&state.onchange(); setTimeout(()=>{ if(pathParts().length<=1){ openFold(); } },60); } }); };
   window.__orgTypesUpd=(inp,q)=>{ const box=document.getElementById("orgTypes"); if(!box) return; const empty=inp.value==="";
     if(empty&&inp.dataset.lbl&&!inp.dataset.wasTop){ inp.dataset.wasTop="1"; inp.dataset.lbl=""; state.value=""; hier.dist=null; window.__reopenEmpty=1; state.onchange&&state.onchange(); }
-    const show=empty||/^all\b/i.test(inp.value)&&inp.value!==inp.dataset.lbl; box.hidden=!show;
+    const show=(empty&&pathParts().length<=1)||/^all\b/i.test(inp.value); box.hidden=!show;
     if(show){ const qq=inp.value.trim().toLowerCase(); [...box.children].forEach(li=>li.style.display=!qq||li.textContent.toLowerCase().startsWith(qq)?"":"none"); }
-    sheet.querySelectorAll(".foldlist").forEach(f=>f.style.display=show&&empty?"none":""); };
+    };
   { const _o=openFold; openFold=function(){ const r=_o.apply(this,arguments); if(window.__reopenEmpty){ window.__reopenEmpty=0; Promise.resolve(r).then(()=>setTimeout(()=>{ const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.dataset.lbl=""; i.dataset.wasTop="1"; i.dispatchEvent(new Event("input")); i.focus(); } },60)); } return r; }; }
 }
 
