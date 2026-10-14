@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140012";</script>
+<script>window.BUILD="202610140020";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -321,6 +321,10 @@
   #vtitle { position: relative; }
   #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 20px; height: 20px; margin-top: -10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
   #vtitle { padding-left: var(--tiP, 0px) !important; }
+  #crumbs .cic.flag.shape img { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
+  #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
+  #crumbs .cic.flag:not(.shape) { width: 30px !important; justify-content: center; }
+  #crumbs .cic.flag:not(.shape) img { max-width: 30px; }
 </style>
 </head>
 <body>
@@ -1524,7 +1528,7 @@ openNest=openFold;
 $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openFold(); };
 $("crumbs").onclick=e=>{ if(e.target.closest(".crumb")) return; openFold(); };
 // breadcrumb bar: icon + path (<=32)
-crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic flag"; { const sv=state.value; const f=(sv&&/^[A-Z]/.test(sv)?sv:"US").replace(/ /g,"_"); ic.innerHTML='<img alt="" src="img/flags/'+f+'.png?v='+(window.BUILD||"1")+'" onerror="this.src=\'img/flags/US.png\'">'; } c.append(ic);
+crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic flag"; { const sv=state.value; const isSt=sv&&/^[A-Z]/.test(sv); const f=(isSt?sv:"US").replace(/ /g,"_"); ic.classList.toggle("shape",!!isSt); ic.innerHTML='<img alt="" src="img/'+(isSt?"stateflags/":"flags/")+f+'.png?v='+(window.BUILD||"1")+'" onerror="this.src=\'img/flags/US.png\'">'; } c.append(ic);
   const parts=pathParts(); parts.forEach((p,i)=>{ if(i){ const s=document.createElement("span"); s.className="sep"; s.textContent="›"; c.append(s); }
     const b=document.createElement("button"); b.className="crumb"+(i===parts.length-1?" cur":""); b.textContent=p[0]; b.title=p[0]; b.onclick=e=>{ e.stopPropagation(); if(i<parts.length-1) p[1](); setTimeout(openFold,60); }; c.append(b); });
   const bs=[...c.querySelectorAll(".crumb")], len=()=>c.textContent.replace(/\s+/g," ").trim().length;
