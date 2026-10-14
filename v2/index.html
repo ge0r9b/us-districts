@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141457 -->
+<!-- build 202610141458 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141457";</script>
+<script>window.BUILD="202610141458";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -379,11 +379,11 @@
   .cand > :not(.cbar) { position: relative; z-index: 1; }
   .cpie { display: flex; justify-content: flex-start; padding: 6px 0 8px 4px; } .cpie svg { width: 104px !important; height: 104px !important; min-width: 104px; flex: 0 0 104px; max-width: none !important; }
   /* candidate photos: one fixed circle everywhere, ring on the photo itself */
-  .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 7px !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2.5px #a8a29e !important; }
-  .cand.ph.on.r img { box-shadow: 0 0 0 2.5px #b91c1c !important; } .cand.ph.on.d img { box-shadow: 0 0 0 2.5px #1d4ed8 !important; }
+  .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 4px !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2px #a8a29e !important; }
+  .cand.ph.on.r img { box-shadow: 0 0 0 2px #b91c1c !important; } .cand.ph.on.d img { box-shadow: 0 0 0 2px #1d4ed8 !important; }
   body:not(.listmode) .cand.ph, body:not(.listmode) .cand.ph.on, body:not(.listmode) .cand.ph.on.r, body:not(.listmode) .cand.ph.on.d { box-shadow: none !important; border: 0 !important; background: transparent !important; width: 48px !important; height: 48px !important; flex: 0 0 48px; }
-  body:not(.listmode) .cand.ph img { position: absolute; left: 6.5px; top: 2.5px; width: 43px !important; height: 43px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
-  body.listmode .cand.ph img { width: 42px !important; height: 42px !important; flex: 0 0 42px !important; margin-left: 6.5px; }
+  body:not(.listmode) .cand.ph img { position: absolute; left: 6px; top: 4px; width: 26px !important; height: 26px !important; border-width: 1.5px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+  body.listmode .cand.ph img { width: 26px !important; height: 26px !important; flex: 0 0 26px !important; margin-left: 6px; border-width: 1.5px !important; }
   body.listmode .cand .cbar.chg { top: auto !important; bottom: 1px !important; height: 5px; border-radius: 3px; }
   #c2020, #c2024, #yslider { display: none !important; }
   #ysl { position: relative; flex: 1 1 auto; min-width: 120px; height: 44px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; }
@@ -408,6 +408,10 @@
   #lshift { display: none !important; }
   body:not(.listmode) .cand.ph .cpt { position: absolute !important; left: calc(100% - 20px) !important; right: auto !important; top: auto !important; bottom: -6px !important; transform: none !important; margin: 0 !important; font-size: 10px !important; font-weight: 700; line-height: 15px !important; padding: 0 5px !important; border-radius: 8px !important; background: rgba(255,255,255,.86) !important; color: #111 !important; z-index: 3; box-shadow: 0 0 0 0.5px rgba(0,0,0,.18), 0 1px 2px rgba(0,0,0,.12) !important; white-space: nowrap; pointer-events: none; width: auto !important; height: auto !important; }
   body:not(.listmode) .cands { column-gap: 44px !important; }
+  body:not(.listmode) .cand.ph, body:not(.listmode) .cand.ph.on, body:not(.listmode) .cand.ph.on.r, body:not(.listmode) .cand.ph.on.d { width: 40px !important; height: 34px !important; flex: 0 0 34px !important; }
+  body:not(.listmode) .cand.ph .cpt { left: 22px !important; bottom: -3px !important; font-size: 8.5px !important; padding: 1px 3px !important; line-height: 1.1 !important; }
+  body.listmode .cand.ph .cw { margin-left: 4px !important; padding-left: 0 !important; }
+  body.listmode .cands .cand.ph { height: 36px !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
   body:not(.listmode) #chartLg { position: fixed !important; left: calc(var(--gap) + var(--sal)) !important; right: auto !important; top: auto !important; bottom: calc(var(--bar) + var(--sab) + 36px) !important; margin: 0 !important; z-index: 1002; }
   body:not(.listmode) #chartLg .heatlegend { transform-origin: 0% 100% !important; }
   .fsq { position: relative; }
@@ -2651,7 +2655,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141457"></script>
-<script src="data/dc.js?v=202610141457"></script>
+<script defer src="data/countries.js?v=202610141458"></script>
+<script src="data/dc.js?v=202610141458"></script>
 </body>
 </html>
