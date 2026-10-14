@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141471 -->
+<!-- build 202610141472 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141471";</script>
+<script>window.BUILD="202610141472";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2734,10 +2734,16 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn); if(pn.innerHTML!==h) pn.innerHTML=h; };
   const _rcX=renderCands; renderCands=function(){ const r=_rcX.apply(this,arguments); draw(); return r; };
   setInterval(draw,700); document.addEventListener("click",()=>setTimeout(draw,50),true); $("yslider").addEventListener("input",()=>setTimeout(()=>{ draw(); try{ renderCands(); }catch(e){} },30)); }
+// ===== zoom level-of-detail (no district type): a county filling the view or a close zoom shows its precincts; a state shows counties =====
+{ const lod=()=>{ try{ if(natTypeOn()||!state.value||!heatOn||!plotting()) return; if(![...heatLevelSel.options].some(o=>o.value==="precinct")) return;
+    const b=map.getBounds(), W=b.getEast()-b.getWest(), H=b.getNorth()-b.getSouth(); let want=W<1.6?"precinct":"county";
+    const cn=county&&county.value&&county.selectedOptions&&county.selectedOptions[0]?county.selectedOptions[0].textContent.trim():""; if(cn&&NAT){ const d=NAT.find(n=>n.st===state.value&&n.nm===cn); if(d&&((d.bb[2]-d.bb[0])>=0.35*W||(d.bb[3]-d.bb[1])>=0.35*H)) want="precinct"; }
+    if(heatLevel!==want){ heatLevelSel.value=want; heatLevel=want; const lv=document.getElementById("heatlvl"); if(lv) lv.textContent=want; (want==="precinct"?loadPrecincts(state.value):Promise.resolve()).then(()=>{ drawHeat(); if(window.updateLegend) updateLegend(); }); } }catch(e){} };
+  map.on("moveend",lod); setInterval(lod,1500); window.__lod=lod; }
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141471"></script>
-<script src="data/dc.js?v=202610141471"></script>
+<script defer src="data/countries.js?v=202610141472"></script>
+<script src="data/dc.js?v=202610141472"></script>
 </body>
 </html>
