@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141456 -->
+<!-- build 202610141457 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141456";</script>
+<script>window.BUILD="202610141457";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -320,7 +320,7 @@
   #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
   #vtitle { position: relative; }
   #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 24px; height: 24px; margin-top: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
-  #vtitle { --tiL: 5px; --tiP: 40px; padding-left: var(--tiP, 40px) !important; }
+  #vtitle { --tiL: 9px; --tiP: 44px; padding-left: var(--tiP, 44px) !important; }
   #crumbs .cic.flag.shape img { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
   #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
   #crumbs .cic.flag:not(.shape) { width: 30px !important; justify-content: center; }
@@ -379,11 +379,11 @@
   .cand > :not(.cbar) { position: relative; z-index: 1; }
   .cpie { display: flex; justify-content: flex-start; padding: 6px 0 8px 4px; } .cpie svg { width: 104px !important; height: 104px !important; min-width: 104px; flex: 0 0 104px; max-width: none !important; }
   /* candidate photos: one fixed circle everywhere, ring on the photo itself */
-  .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 50% !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2.5px #a8a29e !important; }
+  .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 7px !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2.5px #a8a29e !important; }
   .cand.ph.on.r img { box-shadow: 0 0 0 2.5px #b91c1c !important; } .cand.ph.on.d img { box-shadow: 0 0 0 2.5px #1d4ed8 !important; }
   body:not(.listmode) .cand.ph, body:not(.listmode) .cand.ph.on, body:not(.listmode) .cand.ph.on.r, body:not(.listmode) .cand.ph.on.d { box-shadow: none !important; border: 0 !important; background: transparent !important; width: 48px !important; height: 48px !important; flex: 0 0 48px; }
-  body:not(.listmode) .cand.ph img { position: absolute; left: 2.5px; top: 2.5px; width: 43px !important; height: 43px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
-  body.listmode .cand.ph img { width: 42px !important; height: 42px !important; flex: 0 0 42px !important; margin-left: 3px; }
+  body:not(.listmode) .cand.ph img { position: absolute; left: 6.5px; top: 2.5px; width: 43px !important; height: 43px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+  body.listmode .cand.ph img { width: 42px !important; height: 42px !important; flex: 0 0 42px !important; margin-left: 6.5px; }
   body.listmode .cand .cbar.chg { top: auto !important; bottom: 1px !important; height: 5px; border-radius: 3px; }
   #c2020, #c2024, #yslider { display: none !important; }
   #ysl { position: relative; flex: 1 1 auto; min-width: 120px; height: 44px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; }
@@ -437,6 +437,21 @@
   body.worldmode .cands, body.worldmode .leaflet-overlay-pane, body.worldmode .leaflet-lyrPane-pane, body.worldmode .leaflet-marker-pane, body.worldmode .leaflet-popup-pane, body.worldmode .heatlegend, body.worldmode #chartW, body.worldmode #barTime { display: none !important; }
   #worldMsg { display: none; position: fixed; z-index: 1001; left: calc(var(--gap, 8px) + var(--sal, 0px)); top: 126px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.92); font: 600 14px system-ui, sans-serif; color: #57534e; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
   body.worldmode #worldMsg { display: block; }
+  /* ===== one shared icon slot for every menu row: 30x22 icon at x=12, text at x=52 (crumbs, field, all list rows) ===== */
+  body.foldfs .sheet, body.foldfs .sheet ol, body.foldfs .sheet .nl, body.foldfs .sheet .foldlist { padding-left: 0 !important; padding-right: 0 !important; margin-left: 0 !important; margin-right: 0 !important; }
+  body.foldfs .sheet li { margin: 0 !important; padding-left: 12px !important; box-sizing: border-box; background: #fff !important; border-bottom: 1px solid #e7e5e4 !important; border-radius: 0 !important; }
+  body.foldfs .sheet li .oic { flex: 0 0 30px !important; width: 30px !important; height: 22px !important; margin: 0 10px 0 0 !important; display: inline-flex; align-items: center; justify-content: center; }
+  body.foldfs .sheet li .oic img { max-width: 30px !important; max-height: 22px !important; width: auto !important; height: auto !important; object-fit: contain; }
+  body.foldfs .sheet li .oic img[src*="flags/"]:not([src*="stateflags"]) { width: 30px !important; height: auto !important; }
+  body.foldfs .sheet li .oic svg { width: 22px; height: 22px; }
+  body.foldfs .sheet li { column-gap: 0 !important; gap: 0 !important; } body.foldfs .sheet li .oic + .nm, body.foldfs .sheet li .oic ~ .nm { margin-left: 0 !important; padding-left: 0 !important; }
+  body.foldfs .sheet li:not(:has(.oic)):not(:has(input[type=checkbox])) .nm { margin-left: 40px !important; }
+  #crumbs .crumb .ico { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 22px; flex: 0 0 30px; }
+  #crumbs .crumb .ico svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; }
+  #crumbs .crumb.glob.usc { display: inline-flex; align-items: center; gap: 10px; }
+  body:not(.foldfs) #crumbs .crumb.glob .ico { display: none; }
+  body.orgglobal #barGeo .fsqlbl { display: none; }
+  body:not(.foldfs) #crumbs .cic.flag { margin-left: 4px !important; margin-right: 2px !important; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
   /* first-paint slots: same values the layout JS computes at phone size, so nothing moves when it runs */
   .rail { top: 122px; } .cands { top: 122px; } #chartBox { top: 173px; }
@@ -1678,7 +1693,7 @@ crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.create
   for(let i=1;i<bs.length-1&&len()>MAXC;i++) bs[i].textContent="…";
   if(len()>MAXC&&bs.length>1) bs[0].textContent="…";
   const last=bs[bs.length-1]; if(len()>MAXC&&last){ const over=len()-MAXC; last.textContent=last.textContent.slice(0,Math.max(1,last.textContent.length-over-1))+"…"; }
-  { const g=document.createElement("button"); g.className="crumb glob"; g.textContent="All countries"; g.title="All countries"; g.onclick=e=>{ e.stopPropagation(); window.__orgGlobal(); }; const sp=document.createElement("span"); sp.className="sep glob"; sp.textContent="›"; ic.after(g,sp); }
+  { const g=document.createElement("button"); g.className="crumb glob usc"; g.innerHTML='<span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><span>All countries</span>'; g.title="All countries"; g.onclick=e=>{ e.stopPropagation(); window.__orgGlobal(); }; const sp=document.createElement("span"); sp.className="sep glob"; sp.textContent="›"; ic.after(g,sp); }
   setTitle(); };
 crumbs2=function(){ setTitle(); };
 // ===== global "All" level above United States (only child for now) =====
@@ -2463,7 +2478,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("foldfs")) window.__slideDir="r"; },true);
 // ===== path always shows United States; drop "All" first when tight; empty input; other states match =====
 { const _cr=crumbs; crumbs=function(){ _cr(); const c=$("crumbs"); const bs=[...c.querySelectorAll(".crumb")]; if(!bs.length) return;
-    bs.forEach(b=>{ if(b.title) b.textContent=b.title; b.style.display=""; }); c.querySelectorAll(".sep").forEach(x=>x.style.display="");
+    bs.forEach(b=>{ if(b.title&&!b.querySelector(".ico,img")) b.textContent=b.title; b.style.display=""; }); c.querySelectorAll(".sep").forEach(x=>x.style.display="");
     const main=bs.filter(b=>!b.classList.contains("glob")); if(state.value&&main[0]){ main[0].textContent="United States"; main[0].title="United States"; }
     c.classList.toggle("ctop",!state.value); requestAnimationFrame(()=>{ c.scrollLeft=c.scrollWidth; }); };
   crumbs();
@@ -2526,20 +2541,20 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 
 // ===== title topic icon (podium) aligned with breadcrumb flag; title text aligned with crumb text =====
 { const al=()=>{ const t=$("vtitle"), f=document.querySelector("#crumbs .cic"); if(!t||!f) return; const tr=t.getBoundingClientRect(), fr=f.getBoundingClientRect(); if(!fr.width) return;
-    let txt=f.nextElementSibling; while(txt&&!txt.offsetWidth) txt=txt.nextElementSibling; const xr=(txt&&txt.getBoundingClientRect)?txt.getBoundingClientRect().left:fr.right+8;
+    let txt=f.nextElementSibling; while(txt&&!txt.offsetWidth) txt=txt.nextElementSibling; const xr=(txt&&txt.getBoundingClientRect)?(()=>{ const g=document.createRange(); g.selectNodeContents(txt); const l=g.getBoundingClientRect().left; return l>0?l:txt.getBoundingClientRect().left; })():fr.right+8;
     const base=parseFloat(getComputedStyle(t).paddingLeft)-(parseFloat(t.style.getPropertyValue("--tiP"))||0);
     t.style.setProperty("--tiL",Math.round(fr.left+fr.width/2-10-tr.left)+"px"); t.style.setProperty("--tiP",Math.max(0,Math.round(xr-tr.left))+"px"); };
   setInterval(al,700); addEventListener("resize",al); setTimeout(al,300); }
 
 // ===== org list: state rows get state-shaped flags; align icon column with breadcrumb flag, text with crumb text =====
 { const alignOrg=()=>{ if(!document.body.classList.contains("foldfs")) return; const f=document.querySelector("#crumbs .cic"); if(!f) return; const fr=f.getBoundingClientRect(); let tx=(f.nextElementSibling||f).getBoundingClientRect().left; { const sp=document.querySelector("#barGeo .fsq .fsqlbl span"); if(sp){ const r=document.createRange(); r.selectNodeContents(sp); const x=r.getBoundingClientRect().left; if(x>0) tx=x; } }
-    document.querySelectorAll("#orgTypes li, .foldlist li").forEach(li=>{ if(!li.querySelector(".oic")||li.querySelector("input[type=checkbox]")) return; const want=fr.left+fr.width/2-15; { const ic0=li.querySelector(".oic"); const d0=want-ic0.getBoundingClientRect().left; if(Math.abs(d0)>0.5){ const np=(parseFloat(getComputedStyle(li).paddingLeft)||0)+d0; if(np>=0) li.style.setProperty("padding-left",Math.round(np)+"px","important"); else ic0.style.marginLeft=Math.round((parseFloat(getComputedStyle(ic0).marginLeft)||0)+d0)+"px"; } } const ic=li.querySelector(".oic"); if(ic){ const nm=ic.nextElementSibling; const d=tx-nm.getBoundingClientRect().left; if(Math.abs(d)>0.5) ic.style.marginRight=Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d)+"px"; } });
+    if(0) document.querySelectorAll("#orgTypes li, .foldlist li").forEach(li=>{ if(!li.querySelector(".oic")||li.querySelector("input[type=checkbox]")) return; const want=fr.left+fr.width/2-15; { const ic0=li.querySelector(".oic"); const d0=want-ic0.getBoundingClientRect().left; if(Math.abs(d0)>0.5){ const np=(parseFloat(getComputedStyle(li).paddingLeft)||0)+d0; if(np>=0) li.style.setProperty("padding-left",Math.round(np)+"px","important"); else ic0.style.marginLeft=Math.round((parseFloat(getComputedStyle(ic0).marginLeft)||0)+d0)+"px"; } } const ic=li.querySelector(".oic"); if(ic){ const nm=ic.nextElementSibling; const d=tx-nm.getBoundingClientRect().left; if(Math.abs(d)>0.5) ic.style.marginRight=Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d)+"px"; } });
     if(pathParts().length<=1) sheet.querySelectorAll(".foldlist li").forEach(li=>{ if(li.querySelector(".oic")) return; const nm=li.querySelector(".nm"); if(!nm) return; const st=nm.textContent.trim(); if(!(typeof STATE_FILES!=="undefined"&&STATE_FILES[st])) return; const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML='<img alt="" src="img/stateflags/'+st.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">'; nm.before(sp); }); };
   new MutationObserver(()=>{ setTimeout(alignOrg,30); setTimeout(alignOrg,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignOrg,600); }
 
 // ===== menu list: item text left-aligns with the current-field label text (blank indent when no icon) =====
 { let lastX=null; const alignFld=()=>{ const sp=document.querySelector("#barGeo .fsq .fsqlbl span"); if(sp){ const r=document.createRange(); r.selectNodeContents(sp); const x=r.getBoundingClientRect().left; if(x>0) lastX=x; } if(lastX==null) return;
-    document.querySelectorAll(".foldlist li").forEach(li=>{ if(!li.offsetParent||li.querySelector("input[type=checkbox]")) return; const nm=li.querySelector(".nm"); if(!nm) return; const ic=li.querySelector(".oic"); const d=lastX-nm.getBoundingClientRect().left; if(Math.abs(d)<=0.5) return;
+    if(0) document.querySelectorAll(".foldlist li").forEach(li=>{ if(!li.offsetParent||li.querySelector("input[type=checkbox]")) return; const nm=li.querySelector(".nm"); if(!nm) return; const ic=li.querySelector(".oic"); const d=lastX-nm.getBoundingClientRect().left; if(Math.abs(d)<=0.5) return;
       if(ic&&ic.nextElementSibling===nm) ic.style.marginRight=Math.max(0,Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d))+"px"; else nm.style.marginLeft=Math.max(0,Math.round((parseFloat(getComputedStyle(nm).marginLeft)||0)+d))+"px"; }); };
   new MutationObserver(()=>{ requestAnimationFrame(alignFld); setTimeout(alignFld,120); }).observe(document.body,{childList:true,subtree:true}); setInterval(alignFld,600); }
 
@@ -2553,11 +2568,11 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       if(sc.lastChild.textContent!==nm){ sc.lastChild.textContent=nm; sc.title=nm; sc.firstChild.setAttribute("src",src); }
       par=sc; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==sc) x.classList.add("tbHide"); }); sc.classList.add("tbPar");
       const L0=document.querySelector("#barGeo .fsq .fsqlbl"); if(L0&&st){ const sp0=L0.querySelector("span"), fq=L0.querySelector(".fqi"); const want=ALLLBL[typ]; if(sp0&&sp0.textContent!==want) sp0.textContent=want; if(fq&&fq.dataset.k!==typ){ fq.dataset.k=typ; fq.innerHTML=icon(typ); } }
-    } else { if(sc) sc.remove(); const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; if(bs.length<2) return;
-      par=bs[bs.length-2]; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar"); }
+    } else { if(sc) sc.remove(); const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; const gl=c.querySelector(".crumb.glob"); if(bs.length<2&&!(gl&&(bs.length===1||document.body.classList.contains("orgglobal")))) return;
+      par=bs.length>=2?bs[bs.length-2]:gl; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar"); }
     const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L||!L.offsetParent) return; const li=L.querySelector("img"), sp=L.querySelector("span"); if(!sp) return;
     const rg=document.createRange(); rg.selectNodeContents(sp); const tx=rg.getBoundingClientRect().left;
-    const pi=par.querySelector("img"), pt=par.querySelector("span")||par;
+    const pi=par.querySelector("img,.ico"), pt=par.querySelector("span:not(.ico)")||par;
     if(pi&&(li||L.querySelector(".fqi"))){ const r=(L.querySelector(".fqi")||li).getBoundingClientRect(); pi.style.width=r.width+"px"; pi.style.height=r.height+"px"; const d=r.left-pi.getBoundingClientRect().left; if(Math.abs(d)>0.5){ if(par.classList.contains("tbScope")){ par.style.position="relative"; par.style.left=((parseFloat(par.style.left)||0)+d)+"px"; } else par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; } }
     else { const d=tx-pt.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.marginLeft=((parseFloat(par.style.marginLeft)||0)+d)+"px"; }
     if(pi){ const r2=document.createRange(); r2.selectNodeContents(pt); const d=tx-r2.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.gap=Math.max(0,(parseFloat(getComputedStyle(par).columnGap)||0)+d)+"px"; } };
@@ -2636,7 +2651,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141456"></script>
-<script src="data/dc.js?v=202610141456"></script>
+<script defer src="data/countries.js?v=202610141457"></script>
+<script src="data/dc.js?v=202610141457"></script>
 </body>
 </html>
