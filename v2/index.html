@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141435 -->
+<!-- build 202610141436 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141435";</script>
+<script>window.BUILD="202610141436";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1265,7 +1265,7 @@ function ensure20(){ const m=ym(), st=state.value; if(!st||!heatOn) return Promi
   return Promise.all([m!=="2024"?loadPrec20(st):null, m!=="2020"?loadPrecincts(st):null, m!=="2024"?loadE2020():null]); }
 window.ensure20=ensure20;
 const M20={};
-function match20(r){ const st=state.value, P=PREC20[st]; if(!P) return null;
+function match20(r){ const st=r.__st||state.value, P=PREC20[st]; if(!P) return null;
   if(!M20[st]){ const mp=new Map(); P.forEach(o=>mp.set(o[0]+"|"+o[1]+"|"+o.__h,o)); M20[st]=mp; }
   const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); return o&&o[4]&&r[4]?o:null; }
 window.precFill=function(r){ const m=ym();
@@ -1967,7 +1967,7 @@ setInterval(updShift,1000);
   const _rc=renderCands; renderCands=function(){ const r=_rc.apply(this,arguments); lsUpd(); return r; };
   const _us=updShift; updShift=function(){ _us(); lsUpd(); };
   new MutationObserver(lsUpd).observe(document.body,{attributes:true,attributeFilter:["class"]});
-  const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); if(t){ const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const parts=c.split("<br>"); parts.splice(1,0,"<b data-sh>"+esc(t)+"</b>"); bubPop.setContent(parts.join("<br>")); } } } }catch(e){} return r; }; }
+  const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const nm=c.split("<br>")[0]; bubPop.setContent(nm+"<br><b data-sh>"+esc(t||"No exact 2020 match")+"</b>"); } } }catch(e){} return r; }; }
 // ===== county fallback where the state lacks precinct data for the selected year(s) =====
 function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
 function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k];
@@ -2014,10 +2014,10 @@ function drawNat(){ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers();
     natDetail(seq); }); }
 function statesInView(){ const b=map.getBounds(), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); const S=new Set(); (NAT||[]).forEach(d=>{ const q=d.bb; if(!(q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1)) S.add(d.st); }); return [...S]; }
 function natDetail(seq){ natPrec.clearLayers(); const m=ym(); if(map.getZoom()<9||m==="delta") return; const sts=statesInView().filter(s=>s!==state.value); if(sts.length>4) return;
-  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth();
+  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth();
     sts.forEach(s=>{ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) return;
       P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return;
-        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
+        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
 let natT=null; map.on("moveend",()=>{ clearTimeout(natT); natT=setTimeout(()=>{ if(plotting()&&NAT) natDetail(++natSeq); },150); });
 const _dh11=drawHeat; drawHeat=function(){ _dh11(); drawNat(); };
 // tap anywhere: precinct detail (other states) or national county
@@ -2208,10 +2208,10 @@ function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-
   const H=b.getNorth()-b.getSouth(); if(fd&&d===fd.d&&((d.bb[2]-d.bb[0])>=0.25*W||(d.bb[3]-d.bb[1])>=0.3*H)) return d; return d&&((d.bb[2]-d.bb[0])>=0.5*W||(d.bb[3]-d.bb[1])>=0.6*H)?d:null; }
 function precFor(s,m){ return m==="2020"?(window.PREC20||{})[s]:PREC[s]; }
 natDetail=function(seq){ natPrec.clearLayers(); const m=ym(); window.__autoP=false; restyleType();
-  if(m==="delta"||!plotting()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
-  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
-    const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
-      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
+  if(!plotting()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
+  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
+    const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m==="delta"?"2024":m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
+      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():marginColor((r[3]-r[2])/r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
     window.__autoPS=drawn; window.__autoP=n>0; restyleType(); }).catch(()=>{}); };
 window.__audit=async(k)=>{ document.querySelector("[data-k="+k+"]")&&ltype!==k&&document.querySelector("[data-k="+k+"]").click(); await loadDS(k); await new Promise(r=>setTimeout(r,500)); const bad={},miss={}; let n=0;
   for(const d of DS[k]){ if(!d.v["2024"]) continue; let pt=null; for(let i=1;i<6&&!pt;i++) for(let j=1;j<6&&!pt;j++){ const ll=L.latLng(d.bb[1]+(d.bb[3]-d.bb[1])*i/6,d.bb[0]+(d.bb[2]-d.bb[0])*j/6); if(pip(d,ll)) pt=ll; } if(!pt) continue; n++;
@@ -2257,7 +2257,7 @@ function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1
 { const _al18=areaLabel; areaLabel=function(a){ if(a.kind!=="natcd"||!a.tk||a.tk==="ushouse") return _al18(a); const ab=ABBR[a.d[0]]||a.d[0], n=String(a.d[1]).replace(/^0+(?=\w)/,"");
   return t32(a.tk==="senate"?ab+" Senate "+n:a.tk==="statehouse"?ab+" House "+n:a.d[1]+", "+ab); }; }
 // precinct zoom: a single tap shows the tapped precinct even when a district type is selected
-{ const _aa19=areaAt; areaAt=function(ll){ if(window.__autoP&&heatOn&&ym()!=="delta"){ const m=ym(); for(const s of statesInView()){ const P=precFor(s,m); if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&r[4]&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m==="2020"?"2020":"2024"}; } } return _aa19(ll); }; }
+{ const _aa19=areaAt; areaAt=function(ll){ if(window.__autoP&&heatOn){ const m=ym()==="delta"?"2024":ym(); for(const s of statesInView()){ const P=precFor(s,m); if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&r[4]&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m==="2020"?"2020":"2024"}; } } return _aa19(ll); }; }
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 // ===== bottom geography field: full-screen nested list (Country > State > County > Town), type to filter =====
@@ -2428,6 +2428,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141435"></script>
+<script src="data/dc.js?v=202610141436"></script>
 </body>
 </html>
