@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141446 -->
+<!-- build 202610141447 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141446";</script>
+<script>window.BUILD="202610141447";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -420,7 +420,7 @@
   .fsq .fsqlbl .fqi img.fqflag.shape { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; border-radius: 0; }
   .fsq .fsqlbl .fqi img.fqflag:not(.shape) { height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
   #crumbs .crumb.usc { display: inline-flex; align-items: center; gap: 6px; }
-  #crumbs .crumb.usc img.usflag { height: 14px; width: auto; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
+  #crumbs .crumb.usc img.usflag { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1650,7 +1650,7 @@ openNest=openFold;
 $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openFold(); };
 $("crumbs").onclick=e=>{ if(e.target.closest(".crumb")) return; openFold(); };
 // breadcrumb bar: icon + path (<=32)
-crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic flag"; { const sv=state.value; const isSt=sv&&/^[A-Z]/.test(sv); const f=(isSt?sv:"US").replace(/ /g,"_"); ic.classList.toggle("shape",!!isSt); ic.innerHTML='<img alt="" src="img/'+(isSt?"stateflags/":"flags/")+f+'.png?v='+(window.BUILD||"1")+'" onerror="this.src=\'img/flags/US.png\'">'; } c.append(ic);
+crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic flag"; { const sv=state.value; const isSt=sv&&/^[A-Z]/.test(sv); const f=(isSt?sv:"United States").replace(/ /g,"_"); ic.classList.toggle("shape",true); ic.innerHTML='<img alt="" src="img/stateflags/'+f+'.png?v='+(window.BUILD||"1")+'" onerror="this.src=\'img/flags/US.png\'">'; } c.append(ic);
   const parts=pathParts(); parts.forEach((p,i)=>{ if(i){ const s=document.createElement("span"); s.className="sep"; s.textContent="›"; c.append(s); }
     const b=document.createElement("button"); b.className="crumb"+(i===parts.length-1?" cur":""); b.textContent=p[0]; b.title=p[0]; b.onclick=e=>{ e.stopPropagation(); if(i<parts.length-1) p[1](); setTimeout(openFold,60); }; c.append(b); });
   const bs=[...c.querySelectorAll(".crumb")], len=()=>c.textContent.replace(/\s+/g," ").trim().length;
@@ -2390,7 +2390,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
         li.onclick=e=>{ e.stopPropagation(); window.__slideDir="l"; hier.dist=null; county.value=""; state.value=n; state.onchange&&state.onchange(); setTimeout(openFold,80); }; ol.prepend(li); }); }); }; }
 
 // ===== breadcrumb: "United States" (US flag) > State; no "All" crumb when a state is shown =====
-{ const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"); if(state.value){ c.querySelectorAll(".crumb.glob,.sep.glob").forEach(x=>x.remove()); const us=[...c.querySelectorAll(".crumb")].find(b=>b.title==="United States"||/^(US|United States)$/.test(b.textContent.trim())); if(us){ us.textContent=""; us.title="United States"; us.classList.add("usc"); us.innerHTML='<img alt="" class="usflag" src="img/flags/US.png?v='+(window.BUILD||1)+'"><span>United States</span>'; } } }catch(e){} return r; }; crumbs(); }
+{ const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"); if(state.value){ c.querySelectorAll(".crumb.glob,.sep.glob").forEach(x=>x.remove()); const us=[...c.querySelectorAll(".crumb")].find(b=>b.title==="United States"||/^(US|United States)$/.test(b.textContent.trim())); if(us){ us.textContent=""; us.title="United States"; us.classList.add("usc"); us.innerHTML='<img alt="" class="usflag" src="img/stateflags/United_States.png?v='+(window.BUILD||1)+'"><span>United States</span>'; } } }catch(e){} return r; }; crumbs(); }
 // ===== explicit touch double-tap (iOS Safari doesn't deliver dblclick reliably) =====
 { const el=map.getContainer(); let lt=0,lx=0,ly=0,moved=false,sx=0,sy=0;
   el.addEventListener("touchstart",e=>{ if(e.touches.length!==1){ moved=true; return; } moved=false; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
@@ -2448,10 +2448,16 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   setInterval(al,700); addEventListener("resize",al); setTimeout(al,300); }
 
 // ===== org list: state rows get state-shaped flags; align icon column with breadcrumb flag, text with crumb text =====
-{ const alignOrg=()=>{ if(!document.body.classList.contains("foldfs")) return; const f=document.querySelector("#crumbs .cic"); if(!f) return; const fr=f.getBoundingClientRect(); const tx=(f.nextElementSibling||f).getBoundingClientRect().left;
+{ const alignOrg=()=>{ if(!document.body.classList.contains("foldfs")) return; const f=document.querySelector("#crumbs .cic"); if(!f) return; const fr=f.getBoundingClientRect(); let tx=(f.nextElementSibling||f).getBoundingClientRect().left; { const sp=document.querySelector("#barGeo .fsq .fsqlbl span"); if(sp){ const r=document.createRange(); r.selectNodeContents(sp); const x=r.getBoundingClientRect().left; if(x>0) tx=x; } }
     document.querySelectorAll("#orgTypes li, .foldlist li").forEach(li=>{ if(!li.querySelector(".oic")||li.querySelector("input[type=checkbox]")) return; const want=fr.left+fr.width/2-15; { const ic0=li.querySelector(".oic"); const d0=want-ic0.getBoundingClientRect().left; if(Math.abs(d0)>0.5){ const np=(parseFloat(getComputedStyle(li).paddingLeft)||0)+d0; if(np>=0) li.style.setProperty("padding-left",Math.round(np)+"px","important"); else ic0.style.marginLeft=Math.round((parseFloat(getComputedStyle(ic0).marginLeft)||0)+d0)+"px"; } } const ic=li.querySelector(".oic"); if(ic){ const nm=ic.nextElementSibling; const d=tx-nm.getBoundingClientRect().left; if(Math.abs(d)>0.5) ic.style.marginRight=Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d)+"px"; } });
     if(pathParts().length<=1) sheet.querySelectorAll(".foldlist li").forEach(li=>{ if(li.querySelector(".oic")) return; const nm=li.querySelector(".nm"); if(!nm) return; const st=nm.textContent.trim(); if(!(typeof STATE_FILES!=="undefined"&&STATE_FILES[st])) return; const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML='<img alt="" src="img/stateflags/'+st.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">'; nm.before(sp); }); };
   new MutationObserver(()=>{ setTimeout(alignOrg,30); setTimeout(alignOrg,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignOrg,600); }
+
+// ===== menu list: item text left-aligns with the current-field label text (blank indent when no icon) =====
+{ let lastX=null; const alignFld=()=>{ const sp=document.querySelector("#barGeo .fsq .fsqlbl span"); if(sp){ const r=document.createRange(); r.selectNodeContents(sp); const x=r.getBoundingClientRect().left; if(x>0) lastX=x; } if(lastX==null) return;
+    document.querySelectorAll(".foldlist li").forEach(li=>{ if(!li.offsetParent||li.querySelector("input[type=checkbox]")) return; const nm=li.querySelector(".nm"); if(!nm) return; const ic=li.querySelector(".oic"); const d=lastX-nm.getBoundingClientRect().left; if(Math.abs(d)<=0.5) return;
+      if(ic&&ic.nextElementSibling===nm) ic.style.marginRight=Math.max(0,Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d))+"px"; else nm.style.marginLeft=Math.max(0,Math.round((parseFloat(getComputedStyle(nm).marginLeft)||0)+d))+"px"; }); };
+  new MutationObserver(()=>{ requestAnimationFrame(alignFld); setTimeout(alignFld,120); }).observe(document.body,{childList:true,subtree:true}); setInterval(alignFld,600); }
 
 // ===== pie chart mode in list view: real share of total per year column =====
 { const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); if(window.chartMode!=="pie"||view!=="list") return;
@@ -2481,6 +2487,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141446"></script>
+<script src="data/dc.js?v=202610141447"></script>
 </body>
 </html>
