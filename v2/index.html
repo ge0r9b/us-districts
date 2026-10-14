@@ -309,6 +309,8 @@
   .foldlist.slideL { animation: slL .2s ease-out; } .foldlist.slideR { animation: slR .2s ease-out; } #crumbs.crumbIn { animation: crIn .2s ease-out; }
   .sheet li.topm { background: #f1f1f1; }
   input[type=checkbox] { accent-color: #000; }
+  #crumbs .cic.flag { background: none !important; border-radius: 0 !important; width: auto !important; height: auto !important; min-width: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; flex: 0 0 auto; }
+  #crumbs .cic.flag img { height: 16px; width: auto; display: block; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
 </style>
 </head>
 <body>
@@ -1512,7 +1514,7 @@ openNest=openFold;
 $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openFold(); };
 $("crumbs").onclick=e=>{ if(e.target.closest(".crumb")) return; openFold(); };
 // breadcrumb bar: icon + path (<=32)
-crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic"; ic.innerHTML=icon(ltype); c.append(ic);
+crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.createElement("span"); ic.className="cic flag"; { const sv=state.value; const f=(sv&&/^[A-Z]/.test(sv)?sv:"US").replace(/ /g,"_"); ic.innerHTML='<img alt="" src="img/flags/'+f+'.png?v='+(window.BUILD||"1")+'" onerror="this.src=\'img/flags/US.png\'">'; } c.append(ic);
   const parts=pathParts(); parts.forEach((p,i)=>{ if(i){ const s=document.createElement("span"); s.className="sep"; s.textContent="›"; c.append(s); }
     const b=document.createElement("button"); b.className="crumb"+(i===parts.length-1?" cur":""); b.textContent=p[0]; b.title=p[0]; b.onclick=e=>{ e.stopPropagation(); if(i<parts.length-1) p[1](); setTimeout(openFold,60); }; c.append(b); });
   const bs=[...c.querySelectorAll(".crumb")], len=()=>c.textContent.replace(/\s+/g," ").trim().length;
