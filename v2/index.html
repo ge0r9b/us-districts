@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132135 -->
+<!-- build 202610132138 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -188,8 +188,7 @@
   #barTime #bTime { flex: 0 0 var(--btn); margin-left: var(--gap); }
   #barTime #ynote, #barTime .ydelta { flex: 1 0 100%; }
   body.foldfs #map { visibility: hidden; }
-  body.foldfs #barSearch, body.foldfs #barBottom, body.foldfs #barTime, body.foldfs .rail, body.foldfs .cands, body.foldfs .xrow, body.foldfs #listView, body.foldfs .leaflet-control-container, body.foldfs .bub { display: none !important; }
-  body.foldfs #barGeo { top: calc(var(--sat) + var(--gap)) !important; }
+  body.foldfs #barBottom, body.foldfs #barTime, body.foldfs .rail, body.foldfs .cands, body.foldfs .xrow, body.foldfs #listView, body.foldfs .leaflet-control-container, body.foldfs .bub { display: none !important; }
   body.foldfs .sheet { top: calc(var(--sat) + var(--gap) * 2 + var(--bar)) !important; bottom: 0 !important; left: 0 !important; right: 0 !important; max-width: none !important; width: auto !important; border-radius: 0; padding-bottom: calc(var(--sab) + 12px); }
   body.foldfs .sheet > * { max-width: 760px; margin-left: auto; margin-right: auto; }
   .fsq { position: sticky; top: 0; z-index: 2; background: inherit; padding: 8px 0; }
@@ -231,6 +230,8 @@
   #barTime.hasclock #ynote, #barTime.hasclock .ydelta { grid-column: 1 / -1; }
   #barTime .yr .chip { flex: 0 1 auto; min-width: 0; padding-left: clamp(8px, 3vw, 18px); padding-right: clamp(8px, 3vw, 18px); }
   #barTime .yr input[type=range] { flex: 1 1 auto; min-width: 40px; width: auto; }
+  body.foldfs #barSearch { visibility: hidden; }
+  body.foldfs .sheet { top: var(--fstop, 140px) !important; }
 </style>
 </head>
 <body>
@@ -1628,6 +1629,8 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
   sheet.querySelectorAll("details.fold.lvlp").forEach(det=>{ const sm=det.querySelector("summary"); const row=document.createElement("div"); row.className="lvlrow"; row.style.paddingLeft=det.style.paddingLeft;
     if(sm){ while(sm.firstChild) row.append(sm.firstChild); row.onclick=sm.onclick; } det.replaceWith(row); });
   sheet.querySelectorAll("details.fold").forEach(det=>{ const d=document.createElement("div"); d.className="foldlist"; d.style.paddingLeft=det.style.paddingLeft; while(det.firstChild) d.append(det.firstChild); det.replaceWith(d); });
+  sheet.querySelectorAll(".lvlrow").forEach(r=>{ if(/^\s*\d*\s*All\s*$/.test(r.textContent)) r.remove(); });
+  document.body.style.setProperty("--fstop",Math.round($("barGeo").getBoundingClientRect().bottom)+"px");
   const box=document.createElement("div"); box.className="fsq"; box.innerHTML="<input type='search' enterkeyhint='go' autocomplete='off' autocapitalize='words' placeholder='Type to filter' aria-label='Filter'>";
   sheet.prepend(box); const inp=box.querySelector("input"); const ol=sheet.querySelector(".foldlist ol, ol.nl");
   const lis=ol?[...ol.children]:[];
