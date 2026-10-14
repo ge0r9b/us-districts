@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132212 -->
+<!-- build 202610132214 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -265,6 +265,10 @@
   body.listmode .cands:not(.two) .cand.ph { height: 60px; }
   .lvrow { padding-left: calc(var(--gap) + var(--sal)) !important; }
   @media (max-width: 899px) { .lvrow { padding-left: calc(var(--gap) + var(--sal)) !important; } }
+  #rail2 { display: flex; flex-direction: column; align-items: flex-end; gap: var(--gap); }
+  .numtog { display: flex; gap: 6px; }
+  .numtog .rbtn.sm { width: calc(var(--btn) * .8); height: calc(var(--btn) * .8); font: 700 16px/1 system-ui, sans-serif; color: #000; padding: 0; }
+  .numtog .rbtn.sm.on { color: #fff; }
 </style>
 </head>
 <body>
@@ -1865,6 +1869,25 @@ function candStats(){ const a=scopeArea(), two=candBox.classList.contains("two")
     else { const t=document.createElement("span"); t.className="cpt"; t.textContent=Math.round(pc)+"%"; b.append(t); } }); }
 const _rc13=renderCands; renderCands=function(){ _rc13(); candStats(); };
 renderCands();
+// ===== % / # toggle (default %) =====
+let numMode="pct";
+const sgnN=x=>(x>=0?"+":"-")+fmtN(Math.abs(Math.round(x)));
+candLines=function(a){ const out=[], two=yrsOn().length>1;
+  candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
+    if(!v){ out.push(nm+": no data"); return; } const n=c.ix?v.rep:v.dem; out.push(nm+" "+(numMode==="pct"?(n/v.tot*100).toFixed(1)+"%":fmtN(n))); }); return out; };
+const _mt=marginTxt; marginTxt=function(v,yr){ if(numMode==="pct") return _mt(v,yr); const d=v.rep-v.dem; return (d>=0?"Trump +":(yr==="2020"?"Biden +":"Harris +"))+fmtN(Math.abs(d)); };
+const _dt=deltaTxt; deltaTxt=function(a){ if(numMode==="pct") return _dt(a); const v20=vals(a,"2020"), v24=vals(a,"2024"); if(!v20||!v24) return "Change: n/a"; const d=(v24.rep-v24.dem)-(v20.rep-v20.dem); return (d>=0?"R +":"D +")+fmtN(Math.abs(d))+" votes"; };
+const _st13=shiftTxt; shiftTxt=function(a){ if(numMode==="pct") return _st13(a); const v24=scopeVals(a,"2024"), v20=scopeVals(a,"2020"); if(!v24||!v20) return ""; const d=(v24.rep-v24.dem)-(v20.rep-v20.dem); return (d>=0?"R+":"D+")+fmtN(Math.abs(d))+" vote shift"; };
+const _rl13=renderList; renderList=function(){ _rl13(); lv.querySelectorAll(".lvrow .l.d,.lvrow .l.r").forEach(sp=>{ const t=sp.textContent, mm=t.match(/^(.*) ([\d,]+) \(([\d.]+%)\)$/); if(mm) sp.textContent=mm[1]+" "+(numMode==="pct"?mm[3]:mm[2]); }); };
+candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.classList.contains("two"), lst=document.body.classList.contains("listmode");
+  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
+    const v=scopeVals(a,yr); b.querySelectorAll(".cs,.cpt").forEach(x=>x.remove()); if(!v||!v.tot) return; const n=c.ix?v.rep:v.dem, pc=n/v.tot*100;
+    if(lst){ const st=document.createElement("span"); st.className="cs"; let t=numMode==="pct"?pc.toFixed(1)+"%":fmtN(n);
+      if(two&&yr==="2024"){ const v0=scopeVals(a,"2020"); if(v0&&v0.tot){ const n0=c.ix?v0.rep:v0.dem; t+=" · "+(numMode==="pct"?((pc-n0/v0.tot*100)>=0?"+":"")+(pc-n0/v0.tot*100).toFixed(1)+" pts":sgnN(n-n0)); } }
+      st.textContent=t32(t); const cn=b.querySelector(".cn"); if(cn){ let w=b.querySelector(".cw"); if(!w){ w=document.createElement("span"); w.className="cw"; cn.replaceWith(w); w.append(cn); } w.append(st); } }
+    else { const t=document.createElement("span"); t.className="cpt"; t.textContent=numMode==="pct"?Math.round(pc)+"%":(n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?Math.round(n/1e3)+"k":String(n)); b.append(t); } }); }; })();
+{ const tg=document.createElement("div"); tg.id="numTog"; tg.className="numtog"; tg.innerHTML="<button type='button' class='rbtn sm on' data-m='pct' aria-label='Percent'>%</button><button type='button' class='rbtn sm' data-m='num' aria-label='Votes'>#</button>"; $("rail2").append(tg);
+  tg.querySelectorAll("button").forEach(b=>b.onclick=()=>{ numMode=b.dataset.m; tg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); }); }
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
