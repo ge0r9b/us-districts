@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141474 -->
+<!-- build 202610141475 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141474";</script>
+<script>window.BUILD="202610141475";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2341,15 +2341,16 @@ function akSen(name){ const L0=String(name).replace(/^0+/,""); const i=L0.charCo
 function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
 const _df15=distFill; distFill=function(k,d){ if(d[0]!=="Alaska"||!window.__ak) return _df15(k,d); const m=ym(), a=akVals(k,d,"2024"), b=akVals(k,d,"2020"), mg=v=>(v[1]-v[0])/v[2];
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
-const _v15=vals; vals=function(a,yr){ if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(a.kind)){ const v=akVals(a.kind,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
+const _v15=vals; vals=function(a,yr){ if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(a.kind)){ const v=akVals(a.kind,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } if(a.kind==="county"&&a.d&&a.d[0]==="Alaska"&&yr==="2024"&&window.__ak&&__ak.boro2024){ const v=__ak.boro2024[a.d[1]]; if(v&&v[2]) return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
 const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r) return {dem:r.dem+v[0],rep:r.rep+v[1],tot:r.tot+v[2]}; return r; } return _sv15(a,yr); };
 // national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
 const akGroup=L.layerGroup().addTo(map);
 function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
-  const fc=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]);
-  (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup)); }); }
+  const fc0=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]); const BO=__ak.boro2024||{};
+  (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>{ const bv=BO[d.nm]; const fc=(m==="2024"&&bv&&bv[2])?heatC(bv[0],bv[1],bv[2]):fc0; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup); }); }); }
 const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
+{ const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); }
 { const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
@@ -2743,7 +2744,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141474"></script>
-<script src="data/dc.js?v=202610141474"></script>
+<script defer src="data/countries.js?v=202610141475"></script>
+<script src="data/dc.js?v=202610141475"></script>
 </body>
 </html>
