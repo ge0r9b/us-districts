@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141442 -->
+<!-- build 202610141443 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141442";</script>
+<script>window.BUILD="202610141443";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -409,6 +409,11 @@
   body:not(.listmode) .cands { column-gap: 44px !important; }
   body:not(.listmode) #chartLg { position: fixed !important; left: calc(var(--gap) + var(--sal)) !important; right: auto !important; top: auto !important; bottom: calc(var(--bar) + var(--sab) + 36px) !important; margin: 0 !important; z-index: 1002; }
   body:not(.listmode) #chartLg .heatlegend { transform-origin: 0% 100% !important; }
+  .fsq { position: relative; }
+  .fsq .fsqlbl { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 0 12px; pointer-events: none; font: 600 17px/1.2 system-ui, -apple-system, sans-serif; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fsq .fsqlbl img { width: 30px; height: 20px; object-fit: cover; flex: 0 0 30px; border-radius: 2px; box-shadow: 0 0 0 .5px rgba(0,0,0,.2); }
+  .fsq .fsqlbl span { overflow: hidden; text-overflow: ellipsis; }
+  .fsq.typing .fsqlbl { display: none; }
 </style>
 </head>
 <body>
@@ -1879,6 +1884,14 @@ $("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!
 document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("foldfs")||!window.__orgEnter) return; const i=e.target; if(i&&i.matches&&i.matches("input:not(.fsq input):not([type=checkbox]),textarea")&&!i.closest(".fsq")) return; if(window.__orgEnter(e)){ e.preventDefault(); e.stopImmediatePropagation(); } },true);
 $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"||!i.closest||!i.closest(".fsq")||i.value.trim()) return; e.preventDefault(); e.stopImmediatePropagation();
   window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ closeSheet(); crumbs(); },80); },true);
+
+// ===== org menu field: show the current selection label (with its icon) until the user taps/types =====
+{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")) return _ofL.apply(this,arguments); const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const im=cr&&cr.querySelector(".cic img"); const src=im?im.getAttribute("src"):"";
+    const r=_ofL.apply(this,arguments);
+    const put=()=>{ const box=$("barGeo").querySelector(".fsq"); if(!box||box.querySelector(".fsqlbl")) return !!box; const inp=box.querySelector("input"); if(!inp||!lbl) return true;
+      const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(src?'<img alt="" src="'+src+'">':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
+      const clear=()=>box.classList.add("typing"); inp.addEventListener("pointerdown",clear); inp.addEventListener("touchstart",clear,{passive:true}); inp.addEventListener("keydown",clear); inp.addEventListener("input",()=>{ if(inp.value) clear(); }); return true; };
+    let n=0; const tick=()=>{ if(!put()&&n++<20) setTimeout(tick,40); }; Promise.resolve(r).then(()=>setTimeout(tick,0)); setTimeout(tick,0); return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
   const lb=lg.querySelector(".heatlbl"); const want=dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
@@ -2452,6 +2465,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141442"></script>
+<script src="data/dc.js?v=202610141443"></script>
 </body>
 </html>
