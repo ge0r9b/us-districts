@@ -318,6 +318,9 @@
   #geotop #gq { flex: 1 1 auto; min-width: 0; height: 44px; font-size: 17px !important; border: 0 !important; background: transparent !important; box-shadow: none !important; outline: none !important; padding: 0; }
   #geotop .rbtn { flex: 0 0 auto; }
   #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
+  #vtitle { position: relative; }
+  #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 20px; height: 20px; margin-top: -10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
+  #vtitle { padding-left: var(--tiP, 0px) !important; }
 </style>
 </head>
 <body>
@@ -2185,6 +2188,13 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const H=(typeof DS!=="undefined"&&DS.ushouse)||[]; H.forEach(d=>{ const lb=(ABBR[d.st]||d.st)+"-"+String(d.nm).padStart(2,"0"); R.push({name:lb,tag:"US House",st:d.st,pick:()=>{ const b=lrow.querySelector(".lbtn[data-k=ushouse]"); if(ltype!=="ushouse"&&b) b.click(); setTimeout(()=>{ if(d.bb) map.fitBounds([[d.bb[1],d.bb[0]],[d.bb[3],d.bb[2]]]); $("gq").placeholder=lb; },250); }}); });
       return R; }; window.__usIndex=usIndex; }
 }
+
+// ===== title topic icon (podium) aligned with breadcrumb flag; title text aligned with crumb text =====
+{ const al=()=>{ const t=$("vtitle"), f=document.querySelector("#crumbs .cic"); if(!t||!f) return; const tr=t.getBoundingClientRect(), fr=f.getBoundingClientRect(); if(!fr.width) return;
+    const txt=f.nextElementSibling||f.nextSibling; const xr=(txt&&txt.getBoundingClientRect)?txt.getBoundingClientRect().left:fr.right+8;
+    const base=parseFloat(getComputedStyle(t).paddingLeft)-(parseFloat(t.style.getPropertyValue("--tiP"))||0);
+    t.style.setProperty("--tiL",Math.round(fr.left+fr.width/2-10-tr.left)+"px"); t.style.setProperty("--tiP",Math.max(0,Math.round(xr-tr.left))+"px"); };
+  setInterval(al,700); addEventListener("resize",al); setTimeout(al,300); }
 
 })();
 
