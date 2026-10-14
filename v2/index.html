@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141433 -->
+<!-- build 202610141434 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141433";</script>
+<script>window.BUILD="202610141434";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -394,6 +394,9 @@
   #ysl.drag .kn, #ysl.drag .fill { transition: none; }
   #ysl .kn.b { display: none; }
   #ysl.rng .kn.b, #ysl.rng .fill { display: block; }
+  #ydelta { display: none !important; }
+  #lshift { position: fixed; z-index: 640; white-space: nowrap; font-size: 13px; font-weight: 600; color: #1c1917; letter-spacing: .01em; pointer-events: none; }
+  #lshift:empty { display: none; }
 </style>
 </head>
 <body>
@@ -1955,6 +1958,15 @@ const _rb8=refreshBubble; refreshBubble=function(){ _rb8(); updShift(); };
 const _cr8=crumbs; crumbs=function(){ _cr8(); updShift(); };
 const _dh9=drawHeat; drawHeat=function(){ _dh9(); updShift(); };
 setInterval(updShift,1000);
+
+// ===== change mode: no caption on the map row; shift shown in list view header and in tap bubbles =====
+{ const lsUpd=()=>{ const box=$("cands"); if(!box) return; let el=$("lshift"); if(!el){ el=document.createElement("div"); el.id="lshift"; document.body.append(el); } const show=ym()==="delta"&&document.body.classList.contains("listmode");
+    let t=""; if(show){ try{ t=shiftTxt(cur||scopeArea()); }catch(e){} } el.textContent=t; if(!t) return; let L=1e9,Bt=0; box.querySelectorAll(".cand").forEach(c=>{ const q=c.getBoundingClientRect(); if(q.width&&q.height){ L=Math.min(L,q.left); Bt=Math.max(Bt,q.bottom); } }); if(!Bt){ const q=box.getBoundingClientRect(); L=q.left; Bt=q.bottom; } el.style.left=(L+4)+"px"; el.style.top=(Bt+10)+"px"; };
+  window.addEventListener("resize",lsUpd);
+  const _rc=renderCands; renderCands=function(){ const r=_rc.apply(this,arguments); lsUpd(); return r; };
+  const _us=updShift; updShift=function(){ _us(); lsUpd(); };
+  new MutationObserver(lsUpd).observe(document.body,{attributes:true,attributeFilter:["class"]});
+  const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); if(t){ const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const parts=c.split("<br>"); parts.splice(1,0,"<b data-sh>"+esc(t)+"</b>"); bubPop.setContent(parts.join("<br>")); } } } }catch(e){} return r; }; }
 // ===== county fallback where the state lacks precinct data for the selected year(s) =====
 function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
 function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k];
@@ -2410,6 +2422,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141433"></script>
+<script src="data/dc.js?v=202610141434"></script>
 </body>
 </html>
