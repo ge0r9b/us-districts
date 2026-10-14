@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132218 -->
+<!-- build 202610132227 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -271,6 +271,13 @@
   .numtog .rbtn.sm { width: var(--btn) !important; height: var(--btn) !important; min-width: var(--btn); flex: 0 0 var(--btn); border-radius: 50% !important; aspect-ratio: 1; box-sizing: border-box; font: 700 18px/1 system-ui, sans-serif; color: #000; padding: 0 !important; display: grid; place-items: center; order: 1; }
   .numtog .rbtn.sm.on { order: 2; }
   .numtog .rbtn.sm.on { color: #fff; }
+  .leaflet-popup.tiny .leaflet-popup-content { white-space: nowrap; }
+  #bGlobe.on { background: #000 !important; } #bGlobe.on svg { stroke: #fff !important; }
+  #bGlobe:not(.on) { background: #fff !important; } #bGlobe:not(.on) svg { stroke: #000 !important; }
+  .lvrow .l.d, .lvrow .l.r { color: #1c1917 !important; text-decoration: none; }
+  .lvrow .l.d::before, .lvrow .l.r::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .lvrow .l.d::before { background: #1d4ed8; } .lvrow .l.r::before { background: #b91c1c; }
+  .lvrow { cursor: pointer; display: flex !important; flex-direction: column; align-items: flex-start; }
 </style>
 </head>
 <body>
@@ -1612,7 +1619,7 @@ redraw=function(){ if(!drawn) return; drawn.clearLayers(); const k=ltype, sid=LS
     L.polygon(toLatLngs(d),{color:"#a8a29e",weight:0.6,fillColor:"#e7e5e4",fillOpacity:0.75,interactive:false}).addTo(drawn); });
   if(view==="list") renderList(); };
 // list mode respects selection (only selected rows)
-const _la=listAreas; listAreas=function(){ const a=_la(); return a.filter(x=>{ const kind=x.kind, sid=LSET[kind]; if(!sid) return true; const r=rowOf(kind,x.d); return !r||selected.has(rowKey(sid,r)); }); };
+const _la=listAreas; listAreas=function(){ const a=_la(); return a.filter(x=>{ const kind=x.kind, sid=LSET[kind]; if(!sid) return true; if(![...selected.values()].some(v=>v.setId===sid)) return true; const r=rowOf(kind,x.d); return !r||selected.has(rowKey(sid,r)); }); };
 // ZIP label + select-on-focus
 let lastZip=null;
 const _nav2=navTo; navTo=function(q){ if(/^\d{5}$/.test(q)) lastZip=q; else lastZip=null; return _nav2(q); };
@@ -1773,7 +1780,7 @@ setType("ushouse");
 function shiftTxt(a){ const v24=scopeVals(a,"2024"), v20=scopeVals(a,"2020"); if(!v24||!v20||!v24.tot||!v20.tot) return "";
   const sh=((v24.rep-v24.dem)/v24.tot-(v20.rep-v20.dem)/v20.tot)*100; return Math.abs(sh)<0.05?"No shift":(sh>0?"R+":"D+")+Math.abs(sh).toFixed(1)+" shift"; }
 function updShift(){ const dl=$("ydelta"); if(!dl) return; $("ynote").textContent="";
-  if(ym()!=="delta"){ dl.textContent=""; return; } if(cur&&cur.d&&state.value&&cur.d[0]!==state.value){ cur=null; if(bubPop) map.closePopup(bubPop); } const a=cur||scopeArea(); const t=shiftTxt(a); const nm=a.kind==="sum"?(a.st||"US"):aname(a);
+  if(ym()!=="delta"){ dl.textContent=""; return; } if(cur&&cur.d&&state.value&&cur.d[0]!==state.value){ cur=null; if(bubPop) map.closePopup(bubPop); } const a=cur||scopeArea(); const t=shiftTxt(a); let nm; try{ nm=a.kind==="sum"?(a.st||"US"):areaLabel(a); }catch(e){ nm=aname(a); }
   dl.textContent=t?t32((t.length+nm.length+2<=32?nm+": ":"")+t):""; dl.title=nm; }
 const _rb8=refreshBubble; refreshBubble=function(){ _rb8(); updShift(); };
 const _cr8=crumbs; crumbs=function(){ _cr8(); updShift(); };
@@ -1833,7 +1840,7 @@ let natT=null; map.on("moveend",()=>{ clearTimeout(natT); natT=setTimeout(()=>{ 
 const _dh11=drawHeat; drawHeat=function(){ _dh11(); drawNat(); };
 // tap anywhere: precinct detail (other states) or national county
 const _aa11=areaAt; areaAt=function(ll){ if(!plotting()) return null;
-  const m=ym(); if(map.getZoom()>=9&&m!=="delta"){ for(const s of statesInView().filter(s=>s!==state.value)){ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m}; } }
+  const m=ym(); if(ltype==="none"&&map.getZoom()>=9&&m!=="delta"){ for(const s of statesInView().filter(s=>s!==state.value)){ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) continue; const r=P.find(r=>{ const q=r[6]; return q&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&pointInItem(r.slice(0,6),ll.lng,ll.lat); }); if(r) return {kind:"precinct",d:r,yr:m}; } }
   { const a=_aa11(ll); if(a) return a; }
   const d=(NAT||[]).find(d=>{ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let inside=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) inside=!inside; } return inside; }); });
   if(!d) return null; const c=(GEOM.counties||[]).find(x=>x[0]===d.st&&x[1]===d.nm); return c?{kind:"county",d:c}:{kind:"county",d:[d.st,d.nm,d.polys]}; };
@@ -1886,6 +1893,81 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     else { const t=document.createElement("span"); t.className="cpt"; t.textContent=numMode==="pct"?Math.round(pc)+"%":(n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?Math.round(n/1e3)+"k":String(n)); b.append(t); } }); }; })();
 { const tg=document.createElement("div"); tg.id="numTog"; tg.className="numtog"; tg.innerHTML="<button type='button' class='rbtn sm on' data-m='pct' aria-label='Percent'>%</button><button type='button' class='rbtn sm' data-m='num' aria-label='Votes'>#</button>"; $("rail2").append(tg);
   tg.querySelectorAll("button").forEach(b=>b.onclick=()=>{ numMode=b.dataset.m; tg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); }); }
+window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
+// ===== double-tap: zoom to the area and show its name in the bottom geography field =====
+map.doubleClickZoom.disable();
+let nameLock=null;
+function areaLabel(a){ const st=a.d[0], ab=ABBR[st]||st;
+  if(a.kind==="county") return a.d[1]+", "+ab;
+  const sh=x=>String(x).replace(/ County$/," Co").replace(/ Parish$/," Par").replace(/ [Tt]ownship$/," Twp").replace(/ [Bb]orough$/," Boro").replace(/ city$/,"").replace(/ town$/,"").replace(/ village$/,"");
+  if(a.kind==="precinct") return t32("Precinct "+String(a.d[1]).replace(/^Precinct /i,"")+", "+sh(a.d[0]));
+  if(a.kind==="towns") return t32(sh(a.d.length>3?a.d[2]:a.d[1])+", "+ab);
+  if(a.kind==="ushouse"){ const n=String(a.d[1]).replace(/^0+(?=\d)/,""); return ab+"-"+(n==="0"||n==="00"?"AL":n.padStart(2,"0")); }
+  if(a.kind==="sum") return a.st||"United States";
+  return aname(a)+", "+ab; }
+map.on("dblclick",e=>{ const a=areaAt(e.latlng); if(!a||!a.d) return; const kind=a.kind==="county"?"county":a.kind;
+  const it=kind==="precinct"?a.d.slice(0,6):a.d; const pl=L.polygon(toLatLngs(it)); map.fitBounds(pl.getBounds(),{maxZoom:15,paddingTopLeft:[70,200],paddingBottomRight:[80,140]});
+  const g=$("gq"), t=areaLabel(a); nameLock=t; g.value=""; g.placeholder=t32(t); g.title=t; });
+const _wai=whereAmI; whereAmI=function(){ if(nameLock){ const g=$("gq"); g.placeholder=t32(nameLock); return; } _wai(); };
+map.on("dragstart",()=>{ nameLock=null; }); map.on("zoomstart",e=>{ if(!map.__fitting) {} });
+$("gq").addEventListener("focus",()=>{ nameLock=null; });
+// ===== district type drives the nationwide fill (US House: all 435 districts) =====
+let CD=null, cdL=null;
+window.__uscd=function(rows){ CD=rows.map(([st,nm,enc,a24,a20])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
+  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20}}; }); };
+function loadCD(){ return cdL||(cdL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/uscd.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
+const cdGroup=L.layerGroup().addTo(map);
+function cdFill(d){ const m=ym(), a=d.v["2024"], b=d.v["2020"], mg=v=>(v[1]-v[0])/v[2];
+  if(m==="2024") return a?marginColor(mg(a)):"#a8a29e"; if(m==="2020") return b?marginColor(mg(b)):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; }
+function natTypeOn(){ return ltype==="ushouse"; }
+function drawCD(){ cdGroup.clearLayers(); if(!plotting()||!natTypeOn()) return; loadCD().then(()=>{ if(!CD||!natTypeOn()||!plotting()) return; cdGroup.clearLayers();
+  CD.forEach(d=>{ if(state.value===d.st) return; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:1.6,interactive:false}).addTo(cdGroup); }); }); }
+// county layer: fill only when no district type is active; thin light lines otherwise
+const _dn14=drawNat; drawNat=function(){ const t=natTypeOn(); if(natGroup.__t!==t){ natGroup.__m=null; natGroup.__t=t; } _dn14(); setTimeout(()=>{ if(natTypeOn()) natGroup.eachLayer(l=>l.setStyle({fillOpacity:0,color:"#d6d3d1",weight:0.4})); drawCD(); },0); };
+// taps on the national US House layer
+const _aa14=areaAt; areaAt=function(ll){ const a=_aa14(ll); if(!natTypeOn()||!CD||(a&&a.kind!=="county")) return a;
+  const d=CD.find(d=>{ const q=d.bb; return d.st!==state.value&&ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let ins=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }); });
+  return d?{kind:"natcd",d:[d.st,d.nm,d.polys],cd:d}:a; };
+const _vals14=vals; vals=function(a,yr){ if(a.kind==="natcd"){ const v=a.cd.v[yr]; return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } return _vals14(a,yr); };
+const _an14=aname; aname=function(a){ return a.kind==="natcd"?"District "+a.d[1]:_an14(a); };
+const _al14=areaLabel; areaLabel=function(a){ return a.kind==="natcd"?_al14({kind:"ushouse",d:a.d}):_al14(a); };
+// tap the active type again to turn district types off (county heat map)
+LYR.push(["N","none","Counties"]); TYPE_LBL.none="County";
+lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ setType(ltype===b.dataset.k?"none":b.dataset.k); drawNat(); }; });
+drawNat();
+// ===== clearing the bottom field zooms to the org selection (All = whole US) =====
+function fitOrgSel(){ nameLock=null; if(hier.dist){ zoomItem(ltype==="none"?"county":ltype,hier.dist); return; }
+  if(state.value){ const cs=(GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)); if(cs.length){ fitItems(cs); return; } const n=(NAT||[]).filter(d=>d.st===state.value); if(n.length){ let b=L.latLngBounds([]); n.forEach(d=>b.extend(L.polygon(natLL(d)).getBounds())); map.fitBounds(b,{paddingTopLeft:[70,200],paddingBottomRight:[80,140]}); return; } }
+  map.fitBounds([[24.4,-125],[49.5,-66.9]],{paddingTopLeft:[10,180],paddingBottomRight:[60,120]}); }
+$("gq").addEventListener("input",e=>{ if(!e.target.value) fitOrgSel(); });
+$("gq").addEventListener("search",e=>{ if(!e.target.value) fitOrgSel(); });
+// ===== Alaska: official Division of Elections totals (no county results exist) =====
+let AKL=null; const loadAK=()=>AKL||(AKL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/ak.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); }));
+function akHD(name){ const n=parseInt(name,10); const v=window.__ak&&__ak.hd2024[String(n)]; return v||null; }
+function akSen(name){ const L0=String(name).replace(/^0+/,""); const i=L0.charCodeAt(0)-65; if(i<0||i>19) return null; const a=akHD(String(2*i+1)), b=akHD(String(2*i+2)); return a&&b?[a[0]+b[0],a[1]+b[1],a[2]+b[2]]:null; }
+function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
+const _df15=distFill; distFill=function(k,d){ if(d[0]!=="Alaska"||!window.__ak) return _df15(k,d); const m=ym(), a=akVals(k,d,"2024"), b=akVals(k,d,"2020"), mg=v=>(v[1]-v[0])/v[2];
+  if(m==="2024") return a?marginColor(mg(a)):"#a8a29e"; if(m==="2020") return b?marginColor(mg(b)):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
+const _v15=vals; vals=function(a,yr){ if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(a.kind)){ const v=akVals(a.kind,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
+const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r) return {dem:r.dem+v[0],rep:r.rep+v[1],tot:r.tot+v[2]}; return r; } return _sv15(a,yr); };
+// national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
+const akGroup=L.layerGroup().addTo(map);
+function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
+  const fc=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):marginColor(mg(__ak["state"+m]));
+  (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup)); }); }
+const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
+loadAK().then(()=>{ drawNat(); renderCands(); });
+{ const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
+// Local type removed (towns come from the bottom geography field)
+{ const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
+// bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
+{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } return [t32(nm)].concat(l); }; }
+{ const _nd17=natDetail; natDetail=function(seq){ if(ltype!=="none"){ natPrec.clearLayers(); return; } return _nd17(seq); }; }
+{ const _dc17=drawCtyFill; drawCtyFill=function(){ if(ltype!=="none"){ ctyFillGroup.clearLayers(); return; } return _dc17(); }; }
+// globe: black while the map shows, white in list view
+function syncGlobe(){ $("bGlobe").classList.toggle("on",!document.body.classList.contains("listmode")); }
+new MutationObserver(syncGlobe).observe(document.body,{attributes:true,attributeFilter:["class"]}); syncGlobe();
+window.__v2.dbg=()=>({fillTop,heatOn,lt:ltype,li:layerItems(ltype).length,la:listAreas().length,sel:[...selected.values()].filter(x=>x.setId===LSET[ltype]).length});
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
