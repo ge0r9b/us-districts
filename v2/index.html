@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141400 -->
+<!-- build 202610141430 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141400";</script>
+<script>window.BUILD="202610141430";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1217,6 +1217,28 @@ window.__prec=function(st,rows,credit){
   _precCore(st,rows,credit); PREC20[st]=PREC[st]; PREC20CREDIT[st]=credit;
   if(had) PREC[st]=sv; else delete PREC[st]; if(hc) PREC_CREDIT[st]=sc; else delete PREC_CREDIT[st];
 };
+{ const _pw=window.__prec; window.__prec=function(st,rows,credit){ rows.forEach(r=>{ r.__st=st; }); return _pw.apply(this,arguments); }; }
+// display-only precinct names: the local name voters know (official IDs stay in r[1] for matching)
+function precDisp(st,cty,raw){ let n=String(raw==null?"":raw).replace(/_/g," ").replace(/\s+/g," ").trim(); cty=String(cty||"");
+  let cs=cty.replace(/ (County|Parish|Borough|Census Area|Municipality|City and Borough)$/i,"").replace(/ city$/,"").trim(); if(/^District of Columbia$/i.test(cs)) cs="DC";
+  const code=x=>(cs?cs+" ":"")+"Precinct "+(/^\d+$/.test(x)?String(+x):x);
+  let m;
+  if(st==="Colorado"&&/^\d{10}$/.test(n)) return code(n.slice(7));               // CRS 1-5-101.5: CD(1) SD(2) HD(2) county(2) precinct(3)
+  if(/^Philadelphia/i.test(cty)&&((m=n.match(/^(\d+)-(\d+)$/))||(m=n.match(/WARD (\d+) (?:PRECINCT|DIVISION|DIV|DISTRICT) (\d+)/i)))) return "Philadelphia Ward "+(+m[1])+" Div "+(+m[2]);
+  if(st==="New York"&&(m=n.match(/^(\d{3})\/(\d{2})$/))) return (cs?cs+" ":"")+"AD "+(+m[2])+" ED "+(+m[1]);
+  if(st==="Kentucky"&&(m=n.match(/^PRECINCT (\w+) \d+ DISTRICT$/i))) return code(m[1]);
+  n=n.replace(/^(Voter|Voting) District\s*-?\s*/i,"").replace(/^VTD\s*-?\s*/i,"").replace(/\s*-\s*Voting District\b/i,"").replace(/\s+/g," ").trim();
+  if(n===n.toUpperCase()) n=n.replace(/\b[A-Z][A-Z'.]+\b/g,w=>w==="TWP"?"Twp":/^(NE|NW|SE|SW|II|III|IV|VI|VII|VIII|IX|XI|XII)$/.test(w)?w:/[AEIOUY]/.test(w)?w[0]+w.slice(1).toLowerCase():w);
+  if(cs){ const e=cs.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); n=n.replace(new RegExp("^"+e+"( County| City| Parish)?\\s+(?=(PRECINCT|PREC|PCT)\\b)","i"),""); }
+  n=n.replace(/^(PRECINCT|PREC\.?|PCT\.?)\s*#?\s*/i,"").replace(/^P\s?(?=\d+[A-Z]?$)/,"").replace(/\bPCT\b\.?/gi,"Precinct").replace(/\bPREC\b\.?/gi,"Precinct");
+  if((m=n.match(/^(.+?) Precinct$/i))&&!/[A-Za-z]{3,}/.test(m[1])) n=m[1];
+  if(!n) return code(String(raw));
+  if(!/[A-Za-z]{3,}/.test(n)||/^[A-Za-z]{1,4}\d+[A-Za-z]?$/.test(n)) return code(n);
+  return n; }
+function pcut(s,max){ s=String(s); max=max||40; if(s.length<=max) return s; const c=s.slice(0,max-1); const i=c.lastIndexOf(" "); return (i>max*0.6?c.slice(0,i):c).replace(/[-,\s]+$/,"")+"…"; }
+function precLabel(r){ const st=r.__st||(typeof state!=="undefined"&&state.value)||""; const d=precDisp(st,r[0],r[1]); const named=!/ Precinct |^Philadelphia Ward|ED \d+$/.test(d);
+  const cs=String(r[0]||"").replace(/ County$/," Co").replace(/ Parish$/," Par").replace(/ city$/,""); return named&&cs&&!d.toLowerCase().includes(cs.replace(/ (Co|Par)$/,"").toLowerCase())&&(d+", "+cs).length<=34? d+", "+cs : d; }
+window.__v2&&(window.__v2.precDisp=precDisp); window.precDisp=precDisp; window.precLabel=precLabel;
 function loadPrec20(st){
   if(!st||(st in PREC20)) return Promise.resolve();
   return P20L[st]||(P20L[st]=new Promise(res=>{ mapnote.textContent="Loading "+st+" 2020 precinct results...";
@@ -1453,7 +1475,7 @@ function vals(a,yr){
   if(a.kind==="county"){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; const v=E&&E[a.d[0]+"|"+a.d[1]]; return v&&v[2]?{dem:v[0],rep:v[1],tot:v[2]}:null; }
   if(a.kind==="precinct"){ const r=a.d; if(a.yr===yr) return r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; if(yr==="2020"){ const o=match20(r); return o?{dem:o[2],rep:o[3],tot:o[4]}:null; } return null; }
   const A=aggFor(a.kind,yr); const v=A&&A.get(a.d); return v&&v.tot&&v.cov>=0.5?v:null; }
-function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?"Precinct "+a.d[1]:(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
+function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?precDisp(a.d.__st||state.value,a.d[0],a.d[1]):(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
 function candLines(a,long){ const out=[], two=yrsOn().length>1;
   candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
     out.push(v? nm+" "+fmtN(c.ix?v.rep:v.dem)+" · "+((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%" : nm+": no data"); });
@@ -1539,12 +1561,12 @@ function rowOf(k,d){ const sid=LSET[k]; if(!sid) return null; const R=DATA[sid]|
 // deepest level -> children {lvl, kind, items:[{name,d,pick}]}
 function children(){ const k=ltype;
   if(!state.value) return {lvl:"State",items:allStates().map(s=>({name:s,pick:()=>{ state.value=s; state.onchange(); }}))};
-  if(hier.dist) return {lvl:"Precinct",kind:"precinct",need:true,items:precIn(hier.dist).map(r=>({name:"Precinct "+r[1],d:r,kind:"precinct"}))};
+  if(hier.dist) return {lvl:"Precinct",kind:"precinct",need:true,items:precIn(hier.dist).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
   if(!USES_COUNTY[k]) return {lvl:TYPE_LBL[k],kind:k,items:layerItems(k).sort((a,b)=>String(a[1]).localeCompare(String(b[1]),undefined,{numeric:true})).map(d=>({name:aname({kind:k,d}),d,kind:k,drill:true}))};
   if(!county.value) return {lvl:"County",items:countiesOf(state.value).map(c=>({name:c,pick:()=>{ county.value=c; county.onchange(); }}))};
   if(k==="towns"){ const t=(GEOM.towns||[]).filter(d=>d[0]===state.value&&d[1]===county.value); return {lvl:"Town",kind:k,items:t.map(d=>({name:d[2],d,kind:k,drill:true}))}; }
   if(k==="schools") return {lvl:"School district",kind:k,items:schoolsInCounty(state.value,county.value).map(d=>({name:d[1],d,kind:k,drill:true}))};
-  return {lvl:"Precinct",kind:"precinct",need:true,items:(precSrc()||[]).filter(r=>r[0]===county.value).map(r=>({name:"Precinct "+r[1],d:r,kind:"precinct"}))};
+  return {lvl:"Precinct",kind:"precinct",need:true,items:(precSrc()||[]).filter(r=>r[0]===county.value).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
 }
 const ALLLBL={ushouse:"All US House districts",schools:"All school districts",senate:"All state Senate districts",statehouse:"All state House districts"};
 function pathParts(){ const p=[[ALLLBL[ltype]||"United States",()=>{ state.value=""; state.onchange(); }]];
@@ -2058,7 +2080,7 @@ let nameLock=null;
 function areaLabel(a){ const st=a.d[0], ab=ABBR[st]||st;
   if(a.kind==="county") return a.d[1]+", "+ab;
   const sh=x=>String(x).replace(/ County$/," Co").replace(/ Parish$/," Par").replace(/ [Tt]ownship$/," Twp").replace(/ [Bb]orough$/," Boro").replace(/ city$/,"").replace(/ town$/,"").replace(/ village$/,"");
-  if(a.kind==="precinct") return t32("Precinct "+String(a.d[1]).replace(/^Precinct /i,"")+", "+sh(a.d[0]));
+  if(a.kind==="precinct") return pcut(precLabel(a.d),40);
   if(a.kind==="towns") return t32(sh(a.d.length>3?a.d[2]:a.d[1])+", "+ab);
   if(a.kind==="ushouse"){ const n=String(a.d[1]).replace(/^0+(?=\d)/,""); return ab+"-"+(n==="0"||n==="00"?"AL":n.padStart(2,"0")); }
   if(a.kind==="sum") return a.st||"United States";
@@ -2348,6 +2370,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141400"></script>
+<script src="data/dc.js?v=202610141430"></script>
 </body>
 </html>
