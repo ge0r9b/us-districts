@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132141 -->
+<!-- build 202610132143 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -232,6 +232,9 @@
   #barTime .yr input[type=range] { flex: 1 1 auto; min-width: 40px; width: auto; }
   body.foldfs #barSearch { visibility: hidden; }
   body.foldfs .sheet { top: var(--fstop, 140px) !important; }
+  html, body { position: fixed; inset: 0; width: 100%; overscroll-behavior: none; touch-action: manipulation; }
+  #bGeo, #bGeo.on, #bGeo:active, #bGeo:focus { transform: none !important; transition: background-color .12s, color .12s !important; border-width: 0 !important; outline: none !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; -webkit-tap-highlight-color: transparent; }
+  .rbtn { -webkit-tap-highlight-color: transparent; }
 </style>
 </head>
 <body>
@@ -1692,6 +1695,11 @@ const _rl9=renderList; renderList=function(){ _rl9(); lv.querySelectorAll(".lvhe
 openLists=function(){ return openFold(); }; openGeo=function(){ return openFold(); };
 if(window.__v2) window.__v2.openLists=openLists;
 setTimeout(()=>{ layoutRail&&layoutRail(); layoutSide&&layoutSide(); },0);
+// ===== keep page pinned (iOS visual viewport / keyboard) so fixed buttons never shift =====
+const pin=()=>{ if(window.scrollY||window.scrollX) window.scrollTo(0,0); if(document.scrollingElement) document.scrollingElement.scrollTop=0; };
+window.addEventListener("scroll",pin,{passive:true}); if(window.visualViewport){ visualViewport.addEventListener("scroll",pin); visualViewport.addEventListener("resize",pin); }
+document.addEventListener("focusin",()=>setTimeout(pin,0)); 
+{ const _f=HTMLInputElement.prototype.focus; HTMLInputElement.prototype.focus=function(o){ return _f.call(this,Object.assign({preventScroll:true},o||{})); }; }
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
