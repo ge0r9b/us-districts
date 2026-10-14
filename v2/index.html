@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141431 -->
+<!-- build 202610141432 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141431";</script>
+<script>window.BUILD="202610141432";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2075,6 +2075,7 @@ const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hi
   const _syS=syncYears; syncYears=function(){ const r=_syS.apply(this,arguments); try{ fromState(); }catch(_){} return r; };
   $("yslider").addEventListener("input",()=>setTimeout(fromState,0));
   new ResizeObserver(paint).observe(w); fromState(); window.__ysl={get:()=>[A,B]}; }
+{ const syncClock=()=>$("bTime").classList.toggle("on",!$("barTime").hidden); new MutationObserver(syncClock).observe($("barTime"),{attributes:true,attributeFilter:["hidden"]}); syncClock(); }
 new MutationObserver(()=>{ renderCands(); if(view==="list") renderList(); refreshBubble(); }).observe($("barTime"),{attributes:true,attributeFilter:["hidden"]});
 // list mode: last names in two-year columns, full names otherwise; list states at the national level
 const _rc12=renderCands; renderCands=function(){ _rc12(); if(!candBox.classList.contains("two")) return; candBox.querySelectorAll(".cand .cn").forEach(n=>{ const t=(n.title||n.textContent).trim(); n.title=t; n.setAttribute("aria-label",t); n.onclick=e=>{ if(n.scrollWidth<=n.clientWidth) return; e.stopPropagation(); showBub(n,0); }; }); };
@@ -2409,6 +2410,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141431"></script>
+<script src="data/dc.js?v=202610141432"></script>
 </body>
 </html>
