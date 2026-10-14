@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140200 -->
+<!-- build 202610140220 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140200";</script>
+<script>window.BUILD="202610140220";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1957,7 +1957,7 @@ setInterval(placeLegend,500);
   w.innerHTML='<div id="chartLg"></div><div class="crow">'+["bar","pie","line"].map(k=>'<button class="rbtn" data-ch="'+k+'" aria-label="'+k+' chart">'+SV[k]+'</button>').join("")+'</div>';
   document.body.append(w); L.DomEvent&&L.DomEvent.disableClickPropagation(w);
   w.querySelectorAll(".rbtn").forEach(b=>b.onclick=()=>{ const on=!b.classList.contains("on"); w.querySelectorAll(".rbtn").forEach(x=>x.classList.remove("on")); b.classList.toggle("on",on); window.chartMode=on?b.dataset.ch:null; });
-  const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=Math.max(t,tb.getBoundingClientRect().bottom); w.style.top=(t+g)+"px"; };
+  const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; w.style.top=(t+3)+"px"; };
   addEventListener("resize",pos); setInterval(pos,400); pos(); }
 placeLegend();
 // ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
