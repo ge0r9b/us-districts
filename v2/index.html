@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141458 -->
+<!-- build 202610141459 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141458";</script>
+<script>window.BUILD="202610141459";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -456,6 +456,13 @@
   body:not(.foldfs) #crumbs .crumb.glob .ico { display: none; }
   body.orgglobal #barGeo .fsqlbl { display: none; }
   body:not(.foldfs) #crumbs .cic.flag { margin-left: 4px !important; margin-right: 2px !important; }
+  /* ===== candidate thumbnails: ONE rule for map/list/chart. Outer square (border included) = flag icon box (left & width). --thx/--thw set from the rendered flag ===== */
+  :root { --thx: -4px; --thw: 30px; }
+  .cands .cand.ph img, body.listmode .cands .cand.ph img, body:not(.listmode) .cands .cand.ph img { box-sizing: border-box !important; width: var(--thw) !important; height: var(--thw) !important; flex: 0 0 var(--thw) !important; border-radius: 2.5px !important; border: 2px solid #a8a29e !important; box-shadow: none !important; position: relative !important; left: auto !important; top: auto !important; margin: 0 0 0 var(--thx) !important; filter: none !important; }
+  .cands .cand.ph.on.r img { border-color: #b91c1c !important; } .cands .cand.ph.on.d img { border-color: #1d4ed8 !important; }
+  body:not(.listmode) .cands .cand.ph, body:not(.listmode) .cands .cand.ph.on { width: calc(var(--thx) + var(--thw) + 16px) !important; height: calc(var(--thw) + 6px) !important; flex: 0 0 auto !important; display: flex !important; align-items: center !important; justify-content: flex-start !important; padding: 0 !important; }
+  body:not(.listmode) .cands .cand.ph .cpt { left: calc(var(--thx) + var(--thw) - 4px) !important; bottom: -1px !important; border-radius: 1px !important; font-size: 9px !important; padding: 1px 3px !important; line-height: 1.15 !important; }
+  body.listmode .cands .cand.ph .cw { margin-left: calc(52px - 16px - var(--thx) - var(--thw)) !important; padding-left: 0 !important; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
   /* first-paint slots: same values the layout JS computes at phone size, so nothing moves when it runs */
   .rail { top: 122px; } .cands { top: 122px; } #chartBox { top: 173px; }
@@ -2600,6 +2607,10 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const _sc=state.onchange; state.onchange=function(){ if(W&&state.value){ W=null; document.body.classList.remove("worldmode"); nameLock=null; } return _sc.apply(this,arguments); };
   setInterval(label,800); }
 
+// keep thumbnail column == flag icon box (measured), for every view
+{ const th=()=>{ const f=document.querySelector("#crumbs .cic img"), c=document.getElementById("cands"); if(!f||!c||!f.offsetWidth) return; const fb=f.getBoundingClientRect(), cb=c.getBoundingClientRect(); const R=document.documentElement.style;
+    const im=[...c.querySelectorAll(".cand.ph img")].find(i=>i.offsetParent); const cur=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--thx"))||0; const x=(im?Math.round((cur+fb.left-im.getBoundingClientRect().left)*10)/10:Math.round((fb.left-cb.left)*10)/10)+"px", w=(Math.round(fb.width*10)/10)+"px"; if(R.getPropertyValue("--thx")!==x) R.setProperty("--thx",x); if(R.getPropertyValue("--thw")!==w) R.setProperty("--thw",w); };
+  setInterval(th,700); addEventListener("resize",th); setTimeout(th,0); }
 // ===== pie chart mode in list view: real share of total per year column =====
 { const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); return;
     let a; try{ a=scopeArea(); }catch(e){ return; } const yrs=yrsOn(); const cols=[...candBox.querySelectorAll(".ccol")];
@@ -2655,7 +2666,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141458"></script>
-<script src="data/dc.js?v=202610141458"></script>
+<script defer src="data/countries.js?v=202610141459"></script>
+<script src="data/dc.js?v=202610141459"></script>
 </body>
 </html>
