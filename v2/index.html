@@ -1466,7 +1466,10 @@ function pathParts(){ const p=[[ALLLBL[ltype]||"All",()=>{ state.value=""; state
   if(state.value) p.push([state.value,()=>{ hier.dist=null; county.value=""; county.onchange(); }]);
   if(county.value&&USES_COUNTY[ltype]) p.push([county.value,()=>{ hier.dist=null; crumbs(); refreshLayers(); }]);
   if(hier.dist) p.push([aname({kind:ltype,d:hier.dist}),()=>{}]);
+  else { try{ const ch=children(), sid=ch.kind&&LSET[ch.kind]; if(sid&&ch.items.length){ const on=ch.items.filter(it=>{ const r=rowOf(ch.kind,it.d); return r&&selected.has(rowKey(sid,r)); }).map(it=>it.name);
+    if(on.length&&on.length<ch.items.length) p.push([multiLbl(on),()=>{}]); } }catch(e){} }
   return p; }
+function multiLbl(n){ const all=n.join(", "); if(all.length<=32) return all; for(let k=Math.min(2,n.length-1);k>=1;k--){ const t=n.slice(0,k).join(", ")+" +"+(n.length-k)+" more"; if(t.length<=32) return t; } return t32(n[0]).slice(0,22)+"… +"+(n.length-1)+" more"; }
 function zoomItem(kind,d){ const it=kind==="precinct"?d.slice(0,6):d; const pl=L.polygon(toLatLngs(it)); map.fitBounds(pl.getBounds(),{maxZoom:15,paddingTopLeft:[70,200],paddingBottomRight:[80,120]}); return pl.getBounds().getCenter(); }
 let distOutline=null;
 function drawDist(){ if(distOutline){ distOutline.remove(); distOutline=null; } if(hier.dist) distOutline=L.polygon(toLatLngs(hier.dist),{color:"#111",weight:3.5,fill:false,interactive:false,pane:"lyrPane"}).addTo(map); }
@@ -1720,7 +1723,7 @@ const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3();
 $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openFold(); };
 // ===== credits removed; minimal Esri attribution =====
 credit.remove();
-const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri"; return d; }; esriA.addTo(map);
+const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri · VEST"; return d; }; esriA.addTo(map);
 console.log("us-districts v2 build "+window.BUILD);
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
@@ -2036,10 +2039,10 @@ window.__uscd=function(rows){ DS.ushouse=decRows(rows); CD=DS.ushouse; };
 function loadDS(k){ if(!TFILE[k]) return Promise.resolve(); return DSL[k]||(DSL[k]=new Promise(r=>{ const s=document.createElement("script"); s.src="data/"+TFILE[k]+"?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
 natTypeOn=function(){ return !!TFILE[ltype]; };
 drawCD=function(){ cdGroup.clearLayers(); if(!plotting()||!natTypeOn()) return; const k=ltype; loadDS(k).then(()=>{ if(ltype!==k||!DS[k]||!plotting()) return; cdGroup.clearLayers();
-  const w=k==="ushouse"?1.6:1.1, m0=ym(), has0=d=>m0==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m0]; DS[k].slice().sort((x,y)=>(has0(x)?1:0)-(has0(y)?1:0)).forEach(d=>{ if(state.value===d.st) return; { const l=L.polygon(natLL(d),{renderer:typeRenderer,pane:"typePane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:w,interactive:false}); l.__d=d; l.addTo(cdGroup); } }); restyleType(); }); };
+  const w=k==="ushouse"?1.6:1.1, m0=ym(), has0=d=>m0==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m0]; DS[k].slice().sort((x,y)=>(has0(x)?1:0)-(has0(y)?1:0)).forEach(d=>{ { const l=L.polygon(natLL(d),{renderer:typeRenderer,pane:"typePane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:w,interactive:false}); l.__d=d; l.addTo(cdGroup); } }); restyleType(); }); };
 function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let ins=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }); }
-{ const _aa18=areaAt; areaAt=function(ll){ let a=_aa18(ll); if(a&&a.kind==="natcd"&&(a.tk||"ushouse")===ltype) return a; if(a&&a.kind==="natcd") a=null; if(!natTypeOn()) return a; const k=ltype; if(!DS[k]) return a; if(a&&a.kind!=="county"&&a.kind!=="sum") return a;
-  const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>d.st!==state.value&&pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys],cd:d}:(a&&a.kind==="county"?null:a); }; }
+{ const _aa18=areaAt; areaAt=function(ll){ let a=_aa18(ll); if(a&&a.kind==="natcd"&&(a.tk||"ushouse")===ltype) return a; if(a&&a.kind==="natcd") a=null; if(!natTypeOn()) return a; const k=ltype; if(!DS[k]) return a; if(a&&a.kind!=="county"&&a.kind!=="sum"&&a.kind!==k&&!(a.kind==="precinct"&&!window.__autoP)) return a;
+  const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys],cd:d}:(a&&a.kind==="county"?null:a); }; }
 { const _an18=aname; aname=function(a){ if(a.kind!=="natcd") return _an18(a); const k=a.tk||"ushouse"; return k==="schools"?a.d[1]:"District "+String(a.d[1]).replace(/^0+(?=\d)/,""); }; }
 { const _al18=areaLabel; areaLabel=function(a){ if(a.kind!=="natcd"||!a.tk||a.tk==="ushouse") return _al18(a); const ab=ABBR[a.d[0]]||a.d[0], n=String(a.d[1]).replace(/^0+(?=\w)/,"");
   return t32(a.tk==="senate"?ab+" Senate "+n:a.tk==="statehouse"?ab+" House "+n:a.d[1]+", "+ab); }; }
