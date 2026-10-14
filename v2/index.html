@@ -1715,11 +1715,12 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
     if(cb&&li.querySelector(".go")){ li.onclick=e=>{ if(e.target.closest(".go")) return orig&&orig(e); if(e.target!==cb){ cb.checked=!cb.checked; cb.dispatchEvent(new Event("change")); } }; } });
   const txt=li=>((li.querySelector(".nm")||li).textContent||"").toLowerCase();
   const drill=li=>{ li.__drill?li.__drill({target:li}):li.click(); };
-  inp.addEventListener("input",()=>{ const q=inp.value.trim().toLowerCase(); if(!ol) return; const pre=[],con=[];
+  inp.addEventListener("input",()=>{ const L=inp.dataset.lbl||"", V=inp.value; const q=(L&&V.startsWith(L)?V.slice(L.length):V).trim().toLowerCase(); window.__orgTypesUpd&&window.__orgTypesUpd(inp,q); if(!ol) return; const pre=[],con=[];
     lis.forEach(li=>{ const f=txt(li), n=f.replace(/^(precinct|district)\s+/,""); if(!q||n.startsWith(q)||f.startsWith(q)) pre.push(li); else if(f.includes(q)) con.push(li); });
     const vis=pre.concat(con); lis.forEach(li=>{ li.style.display=vis.includes(li)?"":"none"; }); vis.forEach(li=>ol.append(li));
     if(q.length>=2&&vis.length===1) drill(vis[0]); });
   const born=Date.now(); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(Date.now()-born<600) return; const f=lis.find(li=>li.style.display!=="none"); if(f) drill(f); } });
+  window.__orgTypes&&window.__orgTypes(inp);
   setTimeout(()=>inp.focus(),30); }); };
 const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3(); const was=document.body.classList.contains("foldfs"); _cs3(); document.body.classList.remove("foldfs"); { const f=$("barGeo").querySelector(".fsq"); if(f) f.remove(); const cr=$("crumbs"); if(cr.parentElement!==$("barGeo")) $("barGeo").prepend(cr); }
   if(was){ setTimeout(()=>{ map.invalidateSize(); const kind=ltype==="counties"?"towns":ltype, sid=LSET[kind]; let items=[];
@@ -2091,6 +2092,23 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
     all().forEach(el=>{ if(el!==t&&!el.disabled){ el.__tmpDis=1; el.setAttribute("tabindex","-1"); if(el.tagName==="SELECT"||el.offsetParent===null) el.disabled=true; } }); });
   document.addEventListener("focusout",()=>setTimeout(()=>{ if(document.activeElement&&document.activeElement.matches&&document.activeElement.matches("input,textarea")) return; all().forEach(el=>{ if(el.__tmpDis){ el.__tmpDis=0; el.removeAttribute("tabindex"); el.disabled=false; } }); },0));
   document.querySelectorAll("select").forEach(el=>{ if(el.offsetParent===null) el.setAttribute("tabindex","-1"); });
+}
+
+// ===== org field = real text field: prefilled with current label; clearing it offers district types =====
+{ const OPTS=[["All",null],["All US House districts","ushouse"],["All state Senate districts","senate"],["All state House districts","statehouse"],["All school districts","schools"]];
+  const pickType=k=>{ if(k){ if(ltype!==k||!active.has(k)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+k+']'); b&&b.click(); } }
+    else if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
+    state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); },250); };
+  window.__orgTypes=inp=>{ const pp=pathParts(); const lbl=(pp[pp.length-1]||["All"])[0]; inp.dataset.lbl=lbl; inp.value=lbl; inp.dataset.wasTop=pp.length<=1?"1":"";
+    let box=document.getElementById("orgTypes"); if(box) box.remove(); box=document.createElement("ol"); box.id="orgTypes"; box.className="nl"; box.hidden=true;
+    OPTS.forEach(([t,k])=>{ const li=document.createElement("li"); li.className="lvrow flat"; li.innerHTML='<span class="nm"></span>'; li.firstChild.textContent=t; li.onclick=()=>pickType(k); box.append(li); });
+    sheet.prepend(box); };
+  window.__orgTypesUpd=(inp,q)=>{ const box=document.getElementById("orgTypes"); if(!box) return; const empty=inp.value==="";
+    if(empty&&inp.dataset.lbl&&!inp.dataset.wasTop){ inp.dataset.wasTop="1"; inp.dataset.lbl=""; state.value=""; hier.dist=null; window.__reopenEmpty=1; state.onchange&&state.onchange(); }
+    const show=empty||/^all\b/i.test(inp.value)&&inp.value!==inp.dataset.lbl; box.hidden=!show;
+    if(show){ const qq=inp.value.trim().toLowerCase(); [...box.children].forEach(li=>li.style.display=!qq||li.textContent.toLowerCase().startsWith(qq)?"":"none"); }
+    sheet.querySelectorAll(".foldlist").forEach(f=>f.style.display=show&&empty?"none":""); };
+  { const _o=openFold; openFold=function(){ const r=_o.apply(this,arguments); if(window.__reopenEmpty){ window.__reopenEmpty=0; Promise.resolve(r).then(()=>setTimeout(()=>{ const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.dataset.lbl=""; i.dataset.wasTop="1"; i.dispatchEvent(new Event("input")); i.focus(); } },60)); } return r; }; }
 }
 
 })();
