@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140910 -->
+<!-- build 202610141000 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140910";</script>
+<script>window.BUILD="202610141000";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2322,7 +2322,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const R=30,C=36; let ang=-Math.PI/2, g="";
       sl.forEach(([k,n,c])=>{ const f=n/v.tot, a2=ang+f*2*Math.PI, lg=f>.5?1:0; const x1=C+R*Math.cos(ang),y1=C+R*Math.sin(ang),x2=C+R*Math.cos(a2),y2=C+R*Math.sin(a2);
         g+=f>=.9999?'<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="'+c+'" fill-opacity=".85"/>':'<path d="M'+C+' '+C+'L'+x1.toFixed(2)+' '+y1.toFixed(2)+'A'+R+' '+R+' 0 '+lg+' 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+'Z" fill="'+c+'" fill-opacity=".85" stroke="#fff" stroke-width="1"/>';
-        if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="8" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(f*100).toFixed(f<.1?1:0)+'%</text>'; }
+        if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="'+(numMode==='pct'?8:6.5)+'" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(numMode==='pct'?(f*100).toFixed(f<.1?1:0)+'%':(n>=1e6?(n/1e6).toFixed(n>=1e8?0:2)+'M':n>=1e3?Math.round(n/1e3)+'K':String(n)))+'</text>'; }
         ang=a2; });
       const d=document.createElement("div"); d.className="cpie"; d.innerHTML='<svg viewBox="0 0 72 72" width="104" height="104">'+g+'</svg>';
       const first=col.querySelector(".cand"); first?col.insertBefore(d,first):col.append(d); }); }; }
