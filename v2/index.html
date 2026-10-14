@@ -325,6 +325,12 @@
   #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
   #crumbs .cic.flag:not(.shape) { width: 30px !important; justify-content: center; }
   #crumbs .cic.flag:not(.shape) img { max-width: 30px; }
+  .oic { flex: 0 0 30px; width: 30px; height: 24px; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; }
+  .oic svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.8; }
+  .oic svg text { fill: #000; stroke: none; }
+  .oic img { max-width: 30px; max-height: 20px; display: block; }
+  .oic.st img { max-height: 22px; }
+  #orgTypes li { display: flex; align-items: center; }
 </style>
 </head>
 <body>
@@ -2131,7 +2137,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
     if(dir==="l"){ inp.value=""; inp.dataset.lbl=""; inp.dataset.wasTop="1"; }
     if(dir){ sheet.querySelectorAll(".foldlist").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add(dir==="l"?"slideL":"slideR"); }); const c=$("crumbs"); c.classList.remove("crumbIn"); void c.offsetWidth; c.classList.add("crumbIn"); }
     let box=document.getElementById("orgTypes"); if(box) box.remove(); box=document.createElement("ol"); box.id="orgTypes"; box.className="nl"; box.hidden=!atTop;
-    OPTS.forEach(([t,k])=>{ const li=document.createElement("li"); li.className="lvrow flat"; li.innerHTML='<span class="nm"></span>'; li.firstChild.textContent=t; li.onclick=()=>pickType(k); box.append(li); });
+    OPTS.forEach(([t,k])=>{ const li=document.createElement("li"); li.className="lvrow flat oti"; li.innerHTML='<span class="oic">'+(k?icon(k):'<img alt="" src="img/flags/US.png?v='+(window.BUILD||1)+'">')+'</span><span class="nm"></span>'; li.lastChild.textContent=t; li.onclick=()=>pickType(k); box.append(li); });
     sheet.prepend(box);
     inp.addEventListener("keydown",e=>{ if(e.key==="Backspace"&&inp.value===""&&pathParts().length>1){ e.preventDefault(); window.__slideDir="r"; state.value=""; hier.dist=null; state.onchange&&state.onchange(); setTimeout(()=>{ if(pathParts().length<=1){ openFold(); } },60); } }); };
   window.__orgTypesUpd=(inp,q)=>{ const box=document.getElementById("orgTypes"); if(!box) return; const empty=inp.value==="";
@@ -2199,6 +2205,12 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const base=parseFloat(getComputedStyle(t).paddingLeft)-(parseFloat(t.style.getPropertyValue("--tiP"))||0);
     t.style.setProperty("--tiL",Math.round(fr.left+fr.width/2-10-tr.left)+"px"); t.style.setProperty("--tiP",Math.max(0,Math.round(xr-tr.left))+"px"); };
   setInterval(al,700); addEventListener("resize",al); setTimeout(al,300); }
+
+// ===== org list: state rows get state-shaped flags; align icon column with breadcrumb flag, text with crumb text =====
+{ const alignOrg=()=>{ if(!document.body.classList.contains("foldfs")) return; const f=document.querySelector("#crumbs .cic"); if(!f) return; const fr=f.getBoundingClientRect(); const tx=(f.nextElementSibling||f).getBoundingClientRect().left;
+    document.querySelectorAll("#orgTypes li, .foldlist li").forEach(li=>{ if(!li.querySelector(".oic")||li.querySelector("input[type=checkbox]")) return; const want=fr.left+fr.width/2-15; { const ic0=li.querySelector(".oic"); const d0=want-ic0.getBoundingClientRect().left; if(Math.abs(d0)>0.5){ const np=(parseFloat(getComputedStyle(li).paddingLeft)||0)+d0; if(np>=0) li.style.setProperty("padding-left",Math.round(np)+"px","important"); else ic0.style.marginLeft=Math.round((parseFloat(getComputedStyle(ic0).marginLeft)||0)+d0)+"px"; } } const ic=li.querySelector(".oic"); if(ic){ const nm=ic.nextElementSibling; const d=tx-nm.getBoundingClientRect().left; if(Math.abs(d)>0.5) ic.style.marginRight=Math.round((parseFloat(getComputedStyle(ic).marginRight)||0)+d)+"px"; } });
+    if(pathParts().length<=1) sheet.querySelectorAll(".foldlist li").forEach(li=>{ if(li.querySelector(".oic")) return; const nm=li.querySelector(".nm"); if(!nm) return; const st=nm.textContent.trim(); if(!(typeof STATE_FILES!=="undefined"&&STATE_FILES[st])) return; const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML='<img alt="" src="img/stateflags/'+st.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">'; nm.before(sp); }); };
+  new MutationObserver(()=>{ setTimeout(alignOrg,30); setTimeout(alignOrg,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignOrg,600); }
 
 })();
 
