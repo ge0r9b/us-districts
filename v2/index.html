@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141466 -->
+<!-- build 202610141468 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141466";</script>
+<script>window.BUILD="202610141468";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -423,8 +423,8 @@
   .fsq .fsqlbl span { overflow: hidden; text-overflow: ellipsis; }
   .fsq.typing .fsqlbl { display: none; }
   .fsq:has(.fsqlbl):not(.typing) input:not(:focus)::placeholder { color: transparent !important; }
-  body.foldfs.worldmode #crumbs .crumb.glob.cur { visibility: hidden; }
-  .fsq:has(input:focus:not([placeholder=""])) .fsqlbl { display: none; }
+  body.wcountry .cands, body.wcountry #chartBox, body.wcountry .crow, body.wcountry .cpanel, body.wcountry #legend, body.wcountry .legend, body.wcountry .leaflet-overlay-pane, body.wcountry .leaflet-marker-pane, body.wcountry .leaflet-tooltip-pane { display: none !important; }
+  .fsq.fqfocus .fsqlbl { display: none !important; }
   .fsq .fsqlbl .fqi { display: inline-flex; width: 30px; justify-content: center; flex: 0 0 30px; }
   .fsq .fsqlbl .fqi svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .fsq .fsqlbl .fqi img { width: auto; height: 20px; max-width: 30px; flex: none; object-fit: contain; }
@@ -460,7 +460,7 @@
   #crumbs .crumb .ico svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; }
   #crumbs .crumb.glob.usc { display: inline-flex; align-items: center; gap: 10px; }
   body:not(.foldfs) #crumbs .crumb.glob .ico { display: none; }
-  body.orgglobal #crumbs > * { visibility: hidden !important; }
+  body.orgglobal #crumbs > :not(.crumb.glob) { visibility: hidden !important; } body.orgglobal #crumbs > .crumb.glob { display: inline-flex !important; visibility: visible !important; } body.orgglobal #crumbs { position: relative; } body.orgglobal #crumbs > .crumb.glob { position: absolute !important; left: 4px !important; margin: 0 !important; } body.orgglobal #barGeo .fsq .fsqlbl { display: none !important; } body.orgglobal #barGeo .fsq input::placeholder { color: #78716c !important; }
   body:not(.foldfs) #crumbs .cic.flag { margin-left: 4px !important; margin-right: 2px !important; }
   /* ===== candidate thumbnails: ONE rule for map/list/chart. Outer square (border included) = flag icon box (left & width). --thx/--thw set from the rendered flag ===== */
   :root { --thx: -4px; --thw: 30px; }
@@ -1663,7 +1663,7 @@ function children(){ const k=ltype;
   if(k==="schools") return {lvl:"School district",kind:k,items:schoolsInCounty(state.value,county.value).map(d=>({name:d[1],d,kind:k,drill:true}))};
   return {lvl:"Precinct",kind:"precinct",need:true,items:(precSrc()||[]).filter(r=>r[0]===county.value).map(r=>({name:precDisp(r.__st||state.value,r[0],r[1]),d:r,kind:"precinct"}))};
 }
-const ALLLBL={ushouse:"All US House districts",schools:"All school districts",senate:"All state senate districts",statehouse:"All state house districts"};
+const ALLLBL={ushouse:"US House districts",schools:"School districts",senate:"State senate districts",statehouse:"State house districts"};
 function pathParts(){ const p=[[ALLLBL[ltype]||"United States",()=>{ state.value=""; state.onchange(); }]];
   if(state.value) p.push([state.value,()=>{ hier.dist=null; county.value=""; county.onchange(); }]);
   if(county.value&&(USES_COUNTY[ltype]||(window.DISTRICT_TYPES&&!window.DISTRICT_TYPES.has(ltype)))) p.push([county.value,()=>{ hier.dist=null; crumbs(); refreshLayers(); }]);
@@ -1715,7 +1715,7 @@ crumbs=function(){ const c=$("crumbs"); c.innerHTML=""; const ic=document.create
   setTitle(); };
 crumbs2=function(){ setTitle(); };
 // ===== global "All" level above United States (only child for now) =====
-window.__allPick=function(){ try{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); }catch(_){} setTimeout(()=>{ try{ window.__worldEnter("all"); }catch(_){} },30); };
+window.__allPick=function(){ setTimeout(()=>{ if(!document.body.classList.contains("foldfs")){ document.body.classList.remove("orgglobal"); const ob=document.getElementById("orgGlobal"); ob&&ob.remove(); } },350); document.body.classList.remove("orgglobal"); { const ob=document.getElementById("orgGlobal"); ob&&ob.remove(); } try{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); }catch(_){} setTimeout(()=>{ try{ window.__worldEnter("all"); }catch(_){} },30); };
 window.__orgGlobal=function(){ const go=()=>{ let box=document.getElementById("orgGlobal"); if(box) box.remove(); box=document.createElement("ol"); box.id="orgGlobal"; box.className="nl";
     const li=document.createElement("li"); li.className="lvrow flat oti"; li.innerHTML='<span class="oic"><img alt="" src="img/flags/US.png?v='+(window.BUILD||1)+'"></span><span class="nm">United States</span><span class="go">›</span>';
     li.onclick=()=>{ window.__worldExit&&window.__worldExit(); document.body.classList.remove("orgglobal"); box.remove(); window.__slideDir="l"; state.value=""; state.onchange&&state.onchange(); setTimeout(openFold,60); }; box.append(li);
@@ -1723,7 +1723,7 @@ window.__orgGlobal=function(){ const go=()=>{ let box=document.getElementById("o
     (window.COUNTRIES||[]).filter(c=>c[0]!=="us").forEach(c=>{ const l2=document.createElement("li"); l2.className="lvrow flat oti"; l2.innerHTML='<span class="oic"><img alt="" loading="lazy" src="img/flags/c/'+c[0]+'.png?v='+(window.BUILD||1)+'"></span><span class="nm"></span>'; l2.querySelector(".nm").textContent=c[1];
       l2.onclick=()=>{ document.body.classList.remove("orgglobal"); box.remove(); closeSheet&&closeSheet(); window.__worldEnter(c[0]); }; box.append(l2); });
     sheet.prepend(box); document.body.classList.add("orgglobal"); sheet.querySelectorAll(".foldlist,#orgGlobal").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add("slideR"); });
-    const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="All"; i.dataset.lbl=""; } { const Lb=$("barGeo").querySelector(".fsq .fsqlbl"); if(Lb){ const sp=Lb.querySelector("span"), fq=Lb.querySelector(".fqi"); if(sp) sp.textContent="All"; if(fq){ fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; } } } const c=$("crumbs"); c.querySelectorAll(".crumb").forEach(b=>b.classList.remove("cur")); const gb=c.querySelector(".crumb.glob"); gb&&gb.classList.add("cur");
+    const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="All countries"; i.dataset.lbl=""; } { const Lb=$("barGeo").querySelector(".fsq .fsqlbl"); if(Lb){ const sp=Lb.querySelector("span"), fq=Lb.querySelector(".fqi"); if(sp) sp.textContent="All countries"; if(fq){ fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; } } } const c=$("crumbs"); c.querySelectorAll(".crumb").forEach(b=>b.classList.remove("cur")); const gb=c.querySelector(".crumb.glob"); gb&&gb.classList.add("cur");
     const ci=c.querySelector(".cic"); if(ci) ci.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg>'; };
   if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
   if(state.value){ state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ openFold(); setTimeout(go,120); },60); } else { if(!document.body.classList.contains("foldfs")) openFold(); setTimeout(go,120); } };
@@ -1957,12 +1957,19 @@ $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"
 // ===== selection label icon: district-type icon for "All ... districts" =====
 { const _cr=crumbs; crumbs=function(){ const r=_cr.apply(this,arguments); try{ const c=$("crumbs"), cur=c.querySelector(".crumb.cur"), ic=c.querySelector(".cic"); const t=cur&&cur.textContent.trim(); const k=Object.keys(ALLLBL).find(k=>ALLLBL[k]===t); if(k&&ic){ ic.className="cic tyic"; ic.innerHTML=icon(k); } }catch(e){} return r; }; }
 // ===== org menu field: show the current selection label (with its icon) until the user taps/types =====
-{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")){ const r0=_ofL.apply(this,arguments); const re=()=>{ const box=$("barGeo")&&$("barGeo").querySelector(".fsq"); if(!box) return; const L=box.querySelector(".fsqlbl"); const cr=$("crumbs"); const cur=cr&&(cr.querySelector(".crumb.cur")||cr.querySelector(".crumb.glob")); const lbl=cur?cur.textContent.trim():""; if(!lbl) return; if(L&&L.dataset.fix!=="1"&&L.querySelector("span").textContent===lbl) return; const ci=cr.querySelector(".cic"); const fim=ci&&ci.classList.contains("flag")&&ci.querySelector("img"); const ich=fim?'<img alt="" class="fqflag'+(ci.classList.contains("shape")?" shape":"")+'" src="'+fim.getAttribute("src")+'">':(ci?ci.innerHTML:""); if(L) L.remove(); const N=document.createElement("div"); N.className="fsqlbl"; N.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; N.lastChild.textContent=lbl; box.append(N); const inp=box.querySelector("input"); if(inp) inp.placeholder=""; if(inp&&!box.dataset.sy){ box.dataset.sy="1"; const sync=()=>box.classList.toggle("typing",!!inp.value); inp.addEventListener("input",sync); inp.addEventListener("blur",sync); } }; Promise.resolve(r0).then(()=>setTimeout(re,0)); setTimeout(re,60); return r0; } const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const ci=cr&&cr.querySelector(".cic"); const fim=ci&&ci.classList.contains("flag")&&ci.querySelector("img"); const ich=fim?'<img alt="" class="fqflag'+(ci.classList.contains("shape")?" shape":"")+'" src="'+fim.getAttribute("src")+'">':(ci?ci.innerHTML:"");
+{ const _ofL=openFold; openFold=function(){ if(document.body.classList.contains("foldfs")){ const r0=_ofL.apply(this,arguments); const re=()=>{ if(document.body.classList.contains("orgglobal")) return; const box=$("barGeo")&&$("barGeo").querySelector(".fsq"); if(!box) return; const L=box.querySelector(".fsqlbl"); const cr=$("crumbs"); const cur=cr&&(cr.querySelector(".crumb.cur")||cr.querySelector(".crumb.glob")); const lbl=cur?cur.textContent.trim():""; if(!lbl) return; if(L&&L.dataset.fix!=="1"&&L.querySelector("span").textContent===lbl) return; const ci=cr.querySelector(".cic"); const fim=ci&&ci.classList.contains("flag")&&ci.querySelector("img"); const ich=fim?'<img alt="" class="fqflag'+(ci.classList.contains("shape")?" shape":"")+'" src="'+fim.getAttribute("src")+'">':(ci?ci.innerHTML:""); if(L) L.remove(); const N=document.createElement("div"); N.className="fsqlbl"; N.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; N.lastChild.textContent=lbl; box.append(N); const inp=box.querySelector("input"); if(inp) inp.placeholder=""; if(inp&&!box.dataset.sy){ box.dataset.sy="1"; const sync=()=>box.classList.toggle("typing",!!inp.value); inp.addEventListener("input",sync); inp.addEventListener("blur",sync); } }; Promise.resolve(r0).then(()=>setTimeout(re,0)); setTimeout(re,60); return r0; } const cr=$("crumbs"); const cur=cr&&cr.querySelector(".crumb.cur"); const lbl=cur?cur.textContent.trim():""; const ci=cr&&cr.querySelector(".cic"); const fim=ci&&ci.classList.contains("flag")&&ci.querySelector("img"); const ich=fim?'<img alt="" class="fqflag'+(ci.classList.contains("shape")?" shape":"")+'" src="'+fim.getAttribute("src")+'">':(ci?ci.innerHTML:"");
     const r=_ofL.apply(this,arguments);
     const put=()=>{ const box=$("barGeo").querySelector(".fsq"); if(!box||box.querySelector(".fsqlbl")) return !!box; const inp=box.querySelector("input"); if(!inp||!lbl) return true;
       const L=document.createElement("div"); L.className="fsqlbl"; L.innerHTML=(ich?'<i class="fqi">'+ich+'</i>':'')+'<span></span>'; L.lastChild.textContent=lbl; box.append(L);
       const sync=()=>box.classList.toggle("typing",!!inp.value); inp.addEventListener("input",sync); inp.addEventListener("blur",sync); inp.addEventListener("focus",sync); setInterval(()=>{ if(box.classList.contains("typing")&&!inp.value) box.classList.remove("typing"); },400); sync(); return true; };
     let n=0; const tick=()=>{ if(!put()&&n++<20) setTimeout(tick,40); }; Promise.resolve(r).then(()=>setTimeout(tick,0)); setTimeout(tick,0); return r; }; }
+setInterval(()=>{ const B=document.body.classList; if(!B.contains("foldfs")||B.contains("orgglobal")||B.contains("worldmode")) return; const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L) return; const sp=L.querySelector("span"); if(!sp||sp.textContent!=="United States") return; sp.textContent="All countries"; let fq=L.querySelector(".fqi"); if(!fq){ fq=document.createElement("i"); fq.className="fqi"; L.prepend(fq); } fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; },120);
+["pointerdown","touchstart"].forEach(t=>document.addEventListener(t,e=>{ const b=e.target.closest&&e.target.closest("#barGeo .fsq"); if(b) b.classList.add("fqfocus"); },{capture:true,passive:true}));
+document.addEventListener("focusout",e=>{ const b=e.target.closest&&e.target.closest("#barGeo .fsq"); if(b){ b.classList.remove("fqfocus"); if(!e.target.value) b.classList.remove("typing"); } },true);
+// ===== All countries level: live filter + Enter + reopen in world mode =====
+document.addEventListener("input",e=>{ if(!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); document.querySelectorAll("#orgGlobal li").forEach(l=>{ const n=(l.querySelector(".nm")||l).textContent.toLowerCase(); l.style.display=!q||n.includes(q)?"":"none"; }); },true);
+document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgGlobal li")].filter(l=>l.style.display!=="none"); const ex=ls.find(l=>(l.querySelector(".nm")||l).textContent.toLowerCase()===q)||ls[0]; if(ex){ e.preventDefault(); e.stopImmediatePropagation(); e.target.value=""; e.target.blur(); ex.click(); } },true);
+{ const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
   const lb=lg.querySelector(".heatlbl"); const want=dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
@@ -2481,7 +2488,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 }
 
 // ===== org field = real text field: prefilled with current label; clearing it offers district types =====
-{ const OPTS=[["United States",null],["All US House districts","ushouse"],["All state senate districts","senate"],["All state house districts","statehouse"],["All school districts","schools"]];
+{ const OPTS=[["United States",null],["US House districts","ushouse"],["State senate districts","senate"],["State house districts","statehouse"],["School districts","schools"]];
   const pickType=k=>{ if(k){ if(ltype!==k||!active.has(k)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+k+']'); b&&b.click(); } }
     else if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
     state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ if(document.body.classList.contains("foldfs")) $("bGeo").click(); },250); };
@@ -2612,13 +2619,13 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     c.querySelectorAll(".crumb:not(.wl),.sep").forEach(x=>{ if(!(W==="all"&&x.classList.contains("glob"))) x.style.display="none"; });
     let w=c.querySelector(".crumb.wl"); if(W==="all"){ if(w) w.remove(); const g=c.querySelector(".crumb.glob"); if(g){ g.style.display=""; g.classList.add("cur"); } return; }
     if(!w){ w=document.createElement("button"); w.className="crumb cur wl"; w.onclick=e=>{ e.stopPropagation(); window.__orgGlobal(); }; } if(c.lastChild!==w) c.append(w); if(w.textContent!==nm){ w.textContent=nm; w.title=nm; } };
-  window.__worldEnter=k=>{ W=k; document.body.classList.add("worldmode"); try{ if(cur) cur=null; if(typeof bubPop!=="undefined"&&bubPop) map.closePopup(bubPop); }catch(_){}
+  window.__worldEnter=k=>{ W=k; document.body.classList.add("worldmode"); document.body.classList.toggle("wcountry",k!=="all"); try{ if(cur) cur=null; if(typeof bubPop!=="undefined"&&bubPop) map.closePopup(bubPop); }catch(_){}
     if(k==="all") map.fitWorld({animate:true}); else { const co=C().find(x=>x[0]===k); if(co) map.flyToBounds([[co[2],co[3]],[co[4],co[5]]],{maxZoom:7,duration:1.2,paddingTopLeft:[20,180],paddingBottomRight:[60,80]}); }
     const g=$("gq"); if(g){ const co=C().find(x=>x[0]===k); g.value=""; g.placeholder=co?co[1]:"All"; g.title=""; } nameLock=(C().find(x=>x[0]===k)||[0,"All"])[1]; label(); };
-  window.__worldExit=()=>{ if(!W) return; W=null; document.body.classList.remove("worldmode"); nameLock=null; const c=$("crumbs"); if(c){ c.querySelectorAll(".crumb.wl").forEach(x=>x.remove()); c.querySelectorAll(".crumb,.sep").forEach(x=>x.style.display=""); } try{ crumbs(); }catch(_){} map.fitBounds([[24.5,-125],[49.5,-66.9]]); };
+  window.__worldExit=()=>{ if(!W) return; W=null; document.body.classList.remove("worldmode","wcountry"); nameLock=null; const c=$("crumbs"); if(c){ c.querySelectorAll(".crumb.wl").forEach(x=>x.remove()); c.querySelectorAll(".crumb,.sep").forEach(x=>x.style.display=""); } try{ crumbs(); }catch(_){} map.fitBounds([[24.5,-125],[49.5,-66.9]]); };
   window.__worldFind=q=>{ const lo=String(q).trim().toLowerCase(); if(!lo||lo==="united states"||lo==="usa"||lo==="us") return null; return C().find(c=>c[1].toLowerCase()===lo)||null; };
   const _crW=crumbs; crumbs=function(){ const r=_crW.apply(this,arguments); try{ label(); }catch(_){} return r; };
-  const _sc=state.onchange; state.onchange=function(){ if(W&&state.value){ W=null; document.body.classList.remove("worldmode"); nameLock=null; } return _sc.apply(this,arguments); };
+  const _sc=state.onchange; state.onchange=function(){ if(W&&state.value){ W=null; document.body.classList.remove("worldmode","wcountry"); nameLock=null; } return _sc.apply(this,arguments); };
   setInterval(label,800); }
 
 // keep thumbnail column == flag icon box (measured), for every view
@@ -2680,7 +2687,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141466"></script>
-<script src="data/dc.js?v=202610141466"></script>
+<script defer src="data/countries.js?v=202610141468"></script>
+<script src="data/dc.js?v=202610141468"></script>
 </body>
 </html>
