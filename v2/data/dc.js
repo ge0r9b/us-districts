@@ -4,4 +4,4 @@ wrap("__uscd",function(a){a[0]=a[0].filter(function(r){return r[0]!=="District o
 wrap("__usdist",function(a){if(a[0]==="senate")a[1]=a[1].filter(function(r){return r[0]!=="District of Columbia"}).concat(W);if(a[0]==="schools")a[1]=a[1].filter(function(r){return r[0]!=="District of Columbia"}).concat([["District of Columbia","District of Columbia Public Schools",P,A24,A20]]);});
 wrap("__uscty",function(a){a[0]=a[0].filter(function(r){return r[0]!=="District of Columbia"}).concat([["District of Columbia","District of Columbia",P]]);});
 function inj(n,v){var cur=window[n];Object.defineProperty(window,n,{configurable:true,get:function(){return cur},set:function(x){if(x&&typeof x==="object")x["District of Columbia|District of Columbia"]=v;cur=x;}});if(cur)window[n]=cur;}
-inj("ELECTION2024",A24);inj("ELECTION2020",A20);})();
+inj("ELECTION2024",A24);inj("ELECTION2020",A20);["precincts2024-DC.js","precincts2020-DC.js"].forEach(function(f){var e=document.createElement("script");e.src="data/"+f+"?v="+(window.BUILD||1);document.body.appendChild(e);});})();
