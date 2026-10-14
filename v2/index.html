@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- build 202610132227 -->
+<!-- build 202610132230 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -278,6 +278,10 @@
   .lvrow .l.d::before, .lvrow .l.r::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
   .lvrow .l.d::before { background: #1d4ed8; } .lvrow .l.r::before { background: #b91c1c; }
   .lvrow { cursor: pointer; display: flex !important; flex-direction: column; align-items: flex-start; }
+  .numbtn { font: 700 20px/1 system-ui, sans-serif !important; color: #fff !important; display: grid; place-items: center; padding: 0 !important; }
+  .lvrow.flat { flex-direction: row !important; align-items: center !important; justify-content: space-between; gap: 12px; min-height: 48px; padding-top: 10px !important; padding-bottom: 10px !important; }
+  .lvrow.flat .nm { font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .lvrow.flat .mg { font-size: .85em; color: #57534e; white-space: nowrap; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -1968,6 +1972,20 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 function syncGlobe(){ $("bGlobe").classList.toggle("on",!document.body.classList.contains("listmode")); }
 new MutationObserver(syncGlobe).observe(document.body,{attributes:true,attributeFilter:["class"]}); syncGlobe();
 window.__v2.dbg=()=>({fillTop,heatOn,lt:ltype,li:layerItems(ltype).length,la:listAreas().length,sel:[...selected.values()].filter(x=>x.setId===LSET[ltype]).length});
+// ===== single %/# button =====
+{ const old=$("numTog"); if(old) old.remove(); const b=document.createElement("button"); b.type="button"; b.id="bNum"; b.className="rbtn on numbtn"; b.textContent="%"; b.setAttribute("aria-label","Percent or votes"); $("rail2").append(b);
+  b.onclick=()=>{ numMode=numMode==="pct"?"num":"pct"; b.textContent=numMode==="pct"?"%":"#"; renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); }; }
+// ===== list: one flat row per area: name + margin (or shift) =====
+renderList=function(){ const areas=listAreas(), m=ym(); lv.innerHTML="<div class='lvgrid'></div>"; const g=lv.querySelector(".lvgrid");
+  areas.slice(0,1500).forEach(a=>{ let txt="";
+    if(m==="delta"){ const v24=vals(a,"2024"), v20=vals(a,"2020"); if(!v24||!v20) return;
+      if(numMode==="pct"){ const d=((v24.rep-v24.dem)/v24.tot-(v20.rep-v20.dem)/v20.tot)*100; txt=(d>=0?"R+":"D+")+Math.abs(d).toFixed(1)+" shift"; }
+      else { const d=(v24.rep-v24.dem)-(v20.rep-v20.dem); txt=(d>=0?"R+":"D+")+fmtN(Math.abs(d))+" shift"; } }
+    else { const v=vals(a,m); if(!v||!v.tot) return; const d=v.rep-v.dem; txt=(d>=0?"R+":"D+")+(numMode==="pct"?Math.abs(d/v.tot*100).toFixed(1):fmtN(Math.abs(d))); }
+    const el=document.createElement("button"); el.type="button"; el.className="lvrow flat";
+    el.innerHTML="<span class='nm'>"+esc(t32(aname(a)))+"</span><span class='mg "+(txt[0]==="R"?"r":"d")+"'>"+esc(t32(txt))+"</span>";
+    el.onclick=()=>{ setView("map"); const it=a.kind==="precinct"?a.d.slice(0,6):a.d; if(it&&it.length>2){ try{ map.fitBounds(L.polygon(toLatLngs(it)).getBounds(),{maxZoom:14,paddingTopLeft:[70,200],paddingBottomRight:[80,140]}); }catch(e){} } };
+    g.append(el); }); };
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
