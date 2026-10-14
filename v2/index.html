@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141448 -->
+<!-- build 202610141449 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141448";</script>
+<script>window.BUILD="202610141449";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1616,7 +1616,7 @@ function children(){ const k=ltype;
 const ALLLBL={ushouse:"All US House districts",schools:"All school districts",senate:"All state senate districts",statehouse:"All state house districts"};
 function pathParts(){ const p=[[ALLLBL[ltype]||"United States",()=>{ state.value=""; state.onchange(); }]];
   if(state.value) p.push([state.value,()=>{ hier.dist=null; county.value=""; county.onchange(); }]);
-  if(county.value&&USES_COUNTY[ltype]) p.push([county.value,()=>{ hier.dist=null; crumbs(); refreshLayers(); }]);
+  if(county.value&&(USES_COUNTY[ltype]||(window.DISTRICT_TYPES&&!window.DISTRICT_TYPES.has(ltype)))) p.push([county.value,()=>{ hier.dist=null; crumbs(); refreshLayers(); }]);
   if(hier.dist) p.push([aname({kind:ltype,d:hier.dist}),()=>{}]);
   else { try{ const ch=children(), sid=ch.kind&&LSET[ch.kind]; if(sid&&ch.items.length){ const on=ch.items.filter(it=>{ const r=rowOf(ch.kind,it.d); return r&&selected.has(rowKey(sid,r)); }).map(it=>it.name);
     if(on.length&&on.length<ch.items.length) p.push([multiLbl(on),()=>{}]); } }catch(e){} }
@@ -1964,7 +1964,10 @@ LYR.find(l=>l[1]==="towns")[2]="Local"; LYR.find(l=>l[1]==="statehouse")[2]="Sta
 AGG_LAYERS.add("towns"); delete USES_COUNTY.schools; delete USES_COUNTY.towns; TYPE_LBL.towns="Local";
 aname=(function(_a){ return function(a){ return a.kind==="towns"&&a.d.length<=3?shortPlace(a.d[1]):a.kind==="towns"?a.d[2]:_a(a); }; })(aname);
 // county stays as a filter (from the bottom field) but not as an org level
-const _pp7=pathParts; pathParts=function(){ return _pp7().filter((x,i,arr)=>!(county.value&&x[0]===county.value&&i===2)); };
+// geography-backed institutions (no district type): the institution path follows the geographic filter (state > county > ...).
+// District types (DISTRICT_TYPES) keep county as a geographic filter only. Add future entity types to DISTRICT_TYPES.
+window.DISTRICT_TYPES=window.DISTRICT_TYPES||new Set(["ushouse","senate","statehouse","schools","towns"]);
+const _pp7=pathParts; pathParts=function(){ const geoInst=!window.DISTRICT_TYPES.has(ltype); return _pp7().filter((x,i,arr)=>geoInst||!(county.value&&x[0]===county.value&&i===2)); };
 // precincts inside the drilled district, colored by result
 const precGroup=L.layerGroup().addTo(map);
 function drawPrecInDist(){ precGroup.clearLayers(); if(!hier.dist||!heatOn) return; const d=hier.dist;
@@ -2341,8 +2344,21 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder=""; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
   function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if(i.placeholder===""&&i.dataset.ph!=null) i.placeholder=i.dataset.ph; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
-  g().addEventListener("focus",openG); g().addEventListener("pointerdown",e=>{ if(!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } }); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
+  g().addEventListener("focus",()=>openG()); g().addEventListener("pointerdown",e=>{ if(!document.body.classList.contains("geofs")){ e.preventDefault(); window.__gOpenAt=Date.now(); openG(); } }); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
+  // Enter in the open field: resolve typed text (exact name first, else top match), collapse, navigate (map or list)
+  const geoResolve=f=>{ const A=geoAll()||[]; const lo=f.toLowerCase(); const ex=A.find(x=>x.name.toLowerCase()===lo||(x.full||"").toLowerCase()===lo); if(ex) return ex; const r=fuzzyRank(A,lo,5); return r&&r[0]; };
+  window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f) return;
+    e.preventDefault(); e.stopImmediatePropagation(); Promise.resolve(window.ELECTION2024?null:loadElection()).catch(()=>0).then(()=>{ GA=null; const x=geoResolve(f); closeG(); nameLock=null;
+      const q=x?(x.full||x.name):f, lbl=x?x.name:f; GQ.placeholder=t32(lbl); GQ.title=q;
+      // towns: sync state + county (geographic filter) first, then move the map to the town
+      const pre=(x&&x.tag==="Town")?(()=>{ const pr=x.full.split(", "); const s=pr[pr.length-1], c=pr[pr.length-2]; state.value=s; county.value=""; state.onchange(); return loadState(s).then(()=>{ county.value=c; county.onchange(); }); })():null;
+      Promise.resolve(pre).catch(()=>0).then(()=>pre?new Promise(r=>setTimeout(r,450)).then(()=>navTo(q)):navTo(q)).then(()=>{ GQ.placeholder=t32(lbl); GQ.title=q; nameLock=lbl; if(view==="list") setTimeout(()=>{ try{ renderList(); }catch(_){} const lv=$("listView"); lv&&lv.scrollTo&&lv.scrollTo({top:0}); },300); }); }); },true);
+  // opening the field: breadcrumb/list start at the field's current geography
+  { const _o=openG; openG=function(){ const was=document.body.classList.contains("geofs"); const t=(GQ.title||GQ.placeholder||"").trim(); _o(); if(was) return; let np=[];
+      try{ const A=geoAll()||[]; const x=A.find(a=>(a.full||"")===t)||A.find(a=>a.name===t); if(x&&x.full){ const parts=x.full.split(", ").reverse(); np=x.tag==="County"?[parts[0],parts[1]]:x.tag==="State"?[parts[0]]:[parts[0],parts[1]]; }
+        else if(state.value){ np=county.value?[state.value,county.value]:[state.value]; } }catch(_){}
+      if(np.length){ path=np; geoRender(); } }; window.__geoOpen=openG; }
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
@@ -2502,6 +2518,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141448"></script>
+<script src="data/dc.js?v=202610141449"></script>
 </body>
 </html>
