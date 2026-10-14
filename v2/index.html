@@ -319,7 +319,7 @@
   #geotop .rbtn { flex: 0 0 auto; }
   #geofs .gh { padding-top: calc(var(--sat, 0px) + 12px); }
   #vtitle { position: relative; }
-  #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 20px; height: 20px; margin-top: -10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
+  #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 24px; height: 24px; margin-top: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
   #vtitle { padding-left: var(--tiP, 0px) !important; }
   #crumbs .cic.flag.shape img { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
   #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
@@ -331,10 +331,13 @@
   .oic img { max-width: 30px; max-height: 20px; display: block; }
   .oic.st img { max-height: 22px; }
   #orgTypes li { display: flex; align-items: center; }
+  /* podium above = generic fallback for topics without a seal */
+  #vtitle.seal::before { background-image: url("img/seal-president.png?v=1"); left: calc(var(--tiL, 0px) - 2px); }
+  body:not(.foldfs) #crumbs > :not(.cic):not(:last-child) { display: none !important; }
 </style>
 </head>
 <body>
-<div class="v2bar" id="barSearch"><div class="grow vtitle" id="vtitle">President</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
+<div class="v2bar" id="barSearch"><div class="grow vtitle seal" id="vtitle">President</div><button class="rbtn" id="bSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button></div>
 <div class="v2bar" id="barGeo"><div class="grow crumbs" id="crumbs"></div><button class="rbtn" id="bGeo" aria-label="Geography filter"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg></button></div>
 <div class="v2bar" id="barTime" hidden style="padding-right:calc(var(--gap) * 2 + var(--btn) + var(--sar))"><div class="yr"><button class="chip" id="c2020" type="button">2020</button><input id="yslider" type="range" min="0" max="2" step="1" value="2" aria-label="Year"><button class="chip on" id="c2024" type="button">2024</button></div><div id="ynote"></div></div>
 <div class="rail" id="rail"><button class="rbtn" id="bTime" aria-label="Time filter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-4"/></svg></button></div>
@@ -2201,7 +2204,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 
 // ===== title topic icon (podium) aligned with breadcrumb flag; title text aligned with crumb text =====
 { const al=()=>{ const t=$("vtitle"), f=document.querySelector("#crumbs .cic"); if(!t||!f) return; const tr=t.getBoundingClientRect(), fr=f.getBoundingClientRect(); if(!fr.width) return;
-    const txt=f.nextElementSibling||f.nextSibling; const xr=(txt&&txt.getBoundingClientRect)?txt.getBoundingClientRect().left:fr.right+8;
+    let txt=f.nextElementSibling; while(txt&&!txt.offsetWidth) txt=txt.nextElementSibling; const xr=(txt&&txt.getBoundingClientRect)?txt.getBoundingClientRect().left:fr.right+8;
     const base=parseFloat(getComputedStyle(t).paddingLeft)-(parseFloat(t.style.getPropertyValue("--tiP"))||0);
     t.style.setProperty("--tiL",Math.round(fr.left+fr.width/2-10-tr.left)+"px"); t.style.setProperty("--tiP",Math.max(0,Math.round(xr-tr.left))+"px"); };
   setInterval(al,700); addEventListener("resize",al); setTimeout(al,300); }
