@@ -129,6 +129,28 @@
   .bub { position: fixed; z-index: 1100; background: #111; color: #fff; font-size: 13px; line-height: 1; padding: 7px 10px; border-radius: 12px; white-space: nowrap; pointer-events: none; transition: opacity .3s; opacity: 1; }
   .bub.fade { opacity: 0; } .bub[hidden] { display: none; }
   .nest li.lvl1 { padding-left: 18px; } .nest li.lvl2 { padding-left: 36px; } .nest li.lvl3 { padding-left: 54px; }
+  .rail { z-index: 1003 !important; }
+  @media (max-width: 899px) { .sheet { right: calc(var(--btn) + var(--gap) * 2 + var(--sar)) !important; } }
+  .heatinfo { box-sizing: border-box; max-width: min(360px, calc(100vw - 16px)); }
+  .heatinfo { display: none !important; }
+  .cands { position: fixed; z-index: 1003; left: calc(var(--gap) + var(--sal)); display: flex; flex-direction: column; gap: 8px; }
+  .cand { width: clamp(44px, 3.4vw, 52px); height: clamp(44px, 3.4vw, 52px); border-radius: 10px; border: 2px solid #fff; color: #fff; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05; font: 700 15px/1.05 system-ui, sans-serif; box-shadow: 0 1px 4px rgba(0,0,0,.3); opacity: .38; }
+  .cand small { font-size: 10px; font-weight: 600; } .cand.on { opacity: 1; }
+  .cand.d { background: #1d4ed8; } .cand.r { background: #b91c1c; }
+  .listmode .cand { width: auto; min-width: 150px; height: 48px; align-items: flex-start; padding: 0 12px; }
+  .tiny .leaflet-popup-content-wrapper { border-radius: 10px; padding: 0; } .tiny .leaflet-popup-content { margin: 6px 9px; font-size: 12.5px; line-height: 1.35; white-space: nowrap; }
+  .ydelta { width: 100%; font-size: .85em; color: #44403c; min-height: 0; } .ydelta:empty { display: none; }
+  .listview { position: fixed; z-index: 990; left: 0; right: 0; bottom: calc(var(--bar) + var(--sab)); overflow-y: auto; background: #fafaf9;
+    padding: 0 calc(var(--btn) + var(--gap) * 2 + var(--sar)) 12px calc(var(--gap) * 2 + var(--sal) + 52px); -webkit-overflow-scrolling: touch; }
+  .listmode .listview { padding-left: calc(var(--gap) * 2 + var(--sal) + 160px); }
+  @media (max-width: 699px) { .listmode .cands { flex-direction: row; flex-wrap: wrap; } .listmode .cand { min-width: 0; width: calc(50% - 4px); height: 44px; } }
+  .listview[hidden] { display: none; }
+  .lvhead { font-weight: 700; padding: 10px 0 6px; }
+  .lvgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 8px; }
+  .lvhead { background: rgba(255,255,255,.92); border-radius: 10px; padding: 8px 10px; margin: 0 0 8px; }
+  .lvrow { text-align: left; background: #fff; border: 1px solid #e7e5e4; border-radius: 12px; padding: 10px 12px; font: inherit; color: #111; display: flex; flex-direction: column; gap: 2px; min-height: 44px; }
+  .lvrow .l { font-size: .92em; } .lvrow .l.d { color: #1d4ed8; } .lvrow .l.r { color: #b91c1c; } .lvrow .l.y { font-weight: 700; margin-top: 4px; } .lvrow .l.c { font-weight: 700; margin-top: 4px; }
+  #bGlobe.light { background: #fff; } #bGlobe.light svg { stroke: #000; }
 </style>
 </head>
 <body>
@@ -1155,6 +1177,114 @@ function addSrcBtn(){ const lg=document.querySelector(".heatlegend"); if(!lg||lg
   const b=document.createElement("button"); b.type="button"; b.className="quiet srcbtn"; b.textContent="Sources ⓘ"; b.onclick=e=>{ e.stopPropagation(); openInfo(); }; lg.append(b); }
 const _ul=window.updateLegend; window.updateLegend=function(){ _ul(); addSrcBtn(); }; updateLegend=window.updateLegend;
 setInterval(addSrcBtn,1000);
+// ===== info box placement =====
+function layoutInfo(){ const el=document.querySelector(".heatinfo"); if(!el) return;
+  const gap=parseFloat(getComputedStyle($("barGeo")).gap)||8, W=innerWidth, H=innerHeight, mob=W<700;
+  const tb=$("barTime"), top=(tb.hidden?$("barGeo"):tb).getBoundingClientRect().bottom+gap;
+  const railL=rail.getBoundingClientRect().left, bottomBar=$("barBottom").getBoundingClientRect().top;
+  const sh=!sheet.hidden?sheet.getBoundingClientRect():null;
+  el.style.position="fixed"; el.style.margin="0"; el.style.zIndex="999";
+  if(mob){ const lg=document.querySelector(".heatlegend"); const lgT=lg?lg.getBoundingClientRect().top:bottomBar;
+    el.style.left=gap+"px"; el.style.right=(W-railL+gap)+"px"; el.style.top="auto"; el.style.width="auto";
+    el.style.bottom=(H-lgT+gap)+"px"; el.style.maxHeight=Math.max(80,lgT-gap-top-gap)+"px"; }
+  else { let right=W-railL+gap; if(sh&&sh.left>W/2) right=W-sh.left+gap;
+    el.style.top=top+"px"; el.style.right=right+"px"; el.style.left="auto"; el.style.bottom="auto"; el.style.width="auto";
+    el.style.maxHeight=Math.max(80,bottomBar-gap-top)+"px"; }
+  el.style.overflowY="auto"; el.hidden=!!(mob&&sh); }
+const infoObs=new MutationObserver(layoutInfo);
+[$("barTime"),sheet].forEach(n=>infoObs.observe(n,{attributes:true,attributeFilter:["hidden","class","style"]}));
+addEventListener("resize",layoutInfo); setInterval(layoutInfo,700);
+const _lr=layoutRail; layoutRail=function(){ _lr(); layoutInfo(); };
+// popups: keep clear of bars/buttons when auto-panning
+map.on("popupopen",e=>{ const p=e.popup; const top=($("barTime").hidden?$("barGeo"):$("barTime")).getBoundingClientRect().bottom+8;
+  p.options.autoPanPaddingTopLeft=L.point(8,top); p.options.autoPanPaddingBottomRight=L.point(innerWidth-rail.getBoundingClientRect().left+8,innerHeight-$("barBottom").getBoundingClientRect().top+8); p.update(); });
+// ===== candidates, tiny bubble, delta line, list mode =====
+const CANDS={"2024":[{id:"h24",yr:"2024",ix:0,short:"Harris",full:"Kamala Harris",ini:"KH",p:"d"},{id:"t24",yr:"2024",ix:1,short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}],
+             "2020":[{id:"b20",yr:"2020",ix:0,short:"Biden",full:"Joe Biden",ini:"JB",p:"d"},{id:"t20",yr:"2020",ix:1,short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}]};
+const candOn=new Set(["h24","t24","b20","t20"]);
+function yrsOn(){ const m=ym(); return m==="delta"?["2020","2024"]:[m]; }
+function candsOn(){ return yrsOn().flatMap(y=>CANDS[y]); }
+const candBox=document.createElement("div"); candBox.id="cands"; candBox.className="cands"; document.body.append(candBox);
+function renderCands(){ const lst=document.body.classList.contains("listmode"), two=yrsOn().length>1; candBox.innerHTML="";
+  candsOn().forEach(c=>{ const b=document.createElement("button"); b.type="button"; b.className="cand "+c.p+(candOn.has(c.id)?" on":"");
+    b.setAttribute("aria-pressed",candOn.has(c.id)); b.setAttribute("aria-label",c.full+" "+c.yr);
+    b.innerHTML=lst?"<b>"+esc(t32(c.full))+"</b><small>"+c.yr+"</small>":"<b>"+c.ini+"</b>"+(two?"<small>'"+c.yr.slice(2)+"</small>":"");
+    b.onclick=()=>{ candOn.has(c.id)?candOn.delete(c.id):candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); };
+    candBox.append(b); });
+  layoutSide(); }
+function layoutSide(){ const t=$("barTime"); const top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8);
+  candBox.style.top=top+"px"; const lv=$("listView"); if(lv){ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; lv.style.top=top+"px"; lv.style.bottom=(innerHeight-$("barBottom").getBoundingClientRect().top+g)+"px"; const mobL=innerWidth<700&&document.body.classList.contains("listmode"); candBox.style.right=mobL?(innerWidth-rail.getBoundingClientRect().left+g)+"px":"auto"; if(mobL){ lv.style.top=(candBox.getBoundingClientRect().bottom+g)+"px"; lv.style.left=g+"px"; } else lv.style.left=(candBox.getBoundingClientRect().right+g)+"px"; lv.style.right=(innerWidth-rail.getBoundingClientRect().left+g)+"px"; lv.style.padding="0 4px 12px"; lv.style.background="transparent"; } }
+// area values
+function vals(a,yr){
+  if(a.kind==="county"){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; const v=E&&E[a.d[0]+"|"+a.d[1]]; return v&&v[2]?{dem:v[0],rep:v[1],tot:v[2]}:null; }
+  if(a.kind==="precinct"){ const r=a.d; if(a.yr===yr) return r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; if(yr==="2020"){ const o=match20(r); return o?{dem:o[2],rep:o[3],tot:o[4]}:null; } return null; }
+  const A=aggFor(a.kind,yr); const v=A&&A.get(a.d); return v&&v.tot&&v.cov>=0.5?v:null; }
+function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?"Precinct "+a.d[1]:(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
+function candLines(a,long){ const out=[], two=yrsOn().length>1;
+  candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
+    out.push(v? nm+" "+fmtN(c.ix?v.rep:v.dem)+" · "+((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%" : nm+": no data"); });
+  return out; }
+function marginTxt(v,yr){ const m=(v.rep-v.dem)/v.tot*100; return (m>=0?"Trump +":(yr==="2020"?"Biden +":"Harris +"))+Math.abs(m).toFixed(1); }
+function deltaTxt(a){ const v20=vals(a,"2020"), v24=vals(a,"2024"); if(!v20||!v24) return "Change: n/a";
+  const dm=((v24.rep-v24.dem)/v24.tot-(v20.rep-v20.dem)/v20.tot)*100; return (dm>=0?"R +":"D +")+Math.abs(dm).toFixed(1)+" pts"; }
+// hit test
+function areaAt(ll){ if(!heatOn) return null; const x=ll.lng,y=ll.lat;
+  if(state.value&&fillTop){ const d=layerItems(fillTop).find(d=>pointInItem(d,x,y)); if(d) return {kind:fillTop,d}; }
+  if(heatLevel==="precinct"){ const r=precAt(ll); if(r) return {kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"}; }
+  const c=countyAt(ll); return c?{kind:"county",d:c}:null; }
+let cur=null, curLL=null, bubPop=null;
+function showArea(a,ll){ cur=a; curLL=ll; refreshBubble(); }
+function refreshBubble(){ const dl=$("ydelta");
+  if(!cur){ if(bubPop) map.closePopup(bubPop); dl.textContent=""; return; }
+  const lines=candLines(cur); const html=(lines.length?lines:["No candidate selected"]).map(l=>esc(t32(l))).join("<br>");
+  if(view==="map"&&curLL){ bubPop=bubPop||L.popup({className:"tiny",closeButton:false,autoPanPaddingTopLeft:L.point(70,200),autoPanPaddingBottomRight:L.point(80,140),offset:L.point(0,-4)});
+    bubPop.setLatLng(curLL).setContent(html); if(!map.hasLayer(bubPop)) bubPop.openOn(map); }
+  dl.textContent=ym()==="delta"?t32(aname(cur)+": "+deltaTxt(cur)):""; dl.title=aname(cur); }
+map.off("click"); map.off("mousemove");
+map.on("click",e=>{ const a=areaAt(e.latlng); if(!a){ cur=null; refreshBubble(); return; } showArea(a,e.latlng); });
+map.on("popupclose",e=>{ if(e.popup===bubPop){ cur=null; $("ydelta").textContent=""; } });
+// delta line under the slider
+const yd=document.createElement("div"); yd.id="ydelta"; yd.className="ydelta"; $("barTime").append(yd);
+// ---- list mode ----
+const lv=document.createElement("div"); lv.id="listView"; lv.className="listview"; lv.hidden=true; document.body.append(lv);
+function listAreas(){ let kind, items;
+  if(heatOn&&state.value&&fillTop){ kind=fillTop; items=layerItems(fillTop); }
+  else if(heatOn&&heatLevel==="precinct"&&state.value){ kind="precinct"; items=precItems(); }
+  else { kind="county"; items=heatItems().filter(d=>!county.value||d[1]===county.value); }
+  const sid=LSET[kind]; if(sid){ const sel=[...selected.values()].filter(s=>s.setId===sid); if(sel.length){ const keep=new Set(sel.flatMap(s=>shapesFor(sid,s.row))); items=items.filter(d=>keep.has(d)); } }
+  const yr=ym()==="2020"?"2020":"2024"; return items.map(d=>({kind,d,yr})); }
+function renderList(){ const areas=listAreas(), two=yrsOn().length>1, N=1500;
+  lv.innerHTML="<div class='lvhead'>"+esc(t32(fmtN(areas.length)+" "+(areas[0]?({county:"counties",precinct:"precincts"}[areas[0].kind]||LYR.find(l=>l[1]===areas[0].kind)[2]):"areas")))+"</div><div class='lvgrid'></div>";
+  const g=lv.querySelector(".lvgrid");
+  areas.slice(0,N).forEach(a=>{ const el=document.createElement("button"); el.type="button"; el.className="lvrow";
+    let h="<b>"+esc(t32(aname(a)))+"</b>";
+    yrsOn().forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
+      if(!v){ h+="<span class='l'>"+yr+": no data</span>"; return; }
+      if(two) h+="<span class='l y'>"+yr+"</span>";
+      cs.forEach(c=>{ const n=c.ix?v.rep:v.dem; h+="<span class='l "+c.p+"'>"+esc(t32(c.full+" "+fmtN(n)+" ("+(n/v.tot*100).toFixed(1)+"%)"))+"</span>"; });
+      h+="<span class='l m'>"+esc(t32("Margin: "+marginTxt(v,yr)))+"</span>"; });
+    if(two) h+="<span class='l c'>"+esc(t32("Change: "+deltaTxt(a).replace("Change: ","")))+"</span>";
+    el.innerHTML=h; el.onclick=()=>{ setView("map"); const it=a.kind==="precinct"?a.d.slice(0,6):a.d; const p=L.polygon(toLatLngs(it)); map.fitBounds(p.getBounds(),{maxZoom:14,paddingTopLeft:[70,200],paddingBottomRight:[80,120]}); setTimeout(()=>showArea(a,p.getBounds().getCenter()),400); };
+    g.append(el); });
+  if(areas.length>N){ const m=document.createElement("div"); m.className="lvhead"; m.textContent=t32("First "+fmtN(N)+"; pick a county"); g.after(m); }
+  if(!areas.length) g.innerHTML="<p>"+esc(t32("Pick a state to list areas"))+"</p>"; }
+VIEWS.list={show(){ document.body.classList.add("listmode"); lv.hidden=false; document.getElementById("map").style.visibility="hidden"; $("bGlobe").classList.add("light"); if(bubPop) map.closePopup(bubPop); renderList(); renderCands(); layoutSide(); }};
+VIEWS.map={show(){ document.body.classList.remove("listmode"); lv.hidden=true; document.getElementById("map").style.visibility=""; $("bGlobe").classList.remove("light"); renderCands(); setTimeout(()=>map.invalidateSize(),50); }};
+$("bGlobe").onclick=()=>{ closeSheet(); setView(view==="map"?"list":"map"); };
+$("bGlobe").setAttribute("aria-label","Map or list");
+const _dh2=drawHeat; drawHeat=function(){ _dh2(); renderCands(); if(view==="list") renderList(); if(cur&&view==="map") refreshBubble(); };
+const _rd=redraw; redraw=function(){ _rd(); if(view==="list") renderList(); };
+// coverage into Sources sheet
+const _oi=openInfo; openInfo=function(){ _oi(); const box=sheet.querySelector(".info32"); if(!box) return;
+  const add=(h,t)=>{ const p=document.createElement("p"); p.innerHTML="<b>"+esc(h)+"</b><br>"; p.append(document.createTextNode(t)); box.insertBefore(p,box.children[1]||null); };
+  if(state.value&&fillTop){ yrsOn().forEach(yr=>{ const A=aggFor(fillTop,yr); if(!A){ add("Coverage "+yr,"No "+yr+" precinct data"); return; }
+    let n=0,g=0,s=0; A.forEach(v=>{ n++; s+=v.cov||0; if(!(v.tot&&v.cov>=0.5)) g++; });
+    add("Coverage "+yr, LYR.find(l=>l[1]===fillTop)[2]+": avg "+Math.round(s/Math.max(n,1)*100)+"% of votes covered by precinct results; "+g+" of "+n+" districts under 50% (gray)."); }); }
+  if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, "Total votes "+fmtN(v.tot)+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
+window.__v2.cands=candOn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
+const _sy=syncYears; syncYears=function(){ _sy(); renderCands(); refreshBubble(); if(view==="list") renderList(); };
+addEventListener("resize",layoutSide); setInterval(layoutSide,700);
+renderCands();
 // default: heat on
 document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLegend();
 })();
