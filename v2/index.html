@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140740 -->
+<!-- build 202610140800 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140740";</script>
+<script>window.BUILD="202610140800";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -376,6 +376,13 @@
   .cand.r .cbar { background: rgba(220,38,38,.3); } .cand.d .cbar { background: rgba(37,99,235,.3); }
   .cand > :not(.cbar) { position: relative; z-index: 1; }
   .cpie { display: flex; justify-content: flex-start; padding: 4px 0 6px 4px; }
+  /* candidate photos: one fixed circle everywhere, ring on the photo itself */
+  .cand.ph img { box-sizing: border-box; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 50% !important; display: block; background: #e7e5e4; border: 2px solid #fff !important; box-shadow: 0 0 0 2.5px #a8a29e !important; }
+  .cand.ph.on.r img { box-shadow: 0 0 0 2.5px #b91c1c !important; } .cand.ph.on.d img { box-shadow: 0 0 0 2.5px #1d4ed8 !important; }
+  body:not(.listmode) .cand.ph, body:not(.listmode) .cand.ph.on, body:not(.listmode) .cand.ph.on.r, body:not(.listmode) .cand.ph.on.d { box-shadow: none !important; border: 0 !important; background: transparent !important; width: 48px !important; height: 48px !important; flex: 0 0 48px; }
+  body:not(.listmode) .cand.ph img { position: absolute; left: 2.5px; top: 2.5px; width: 43px !important; height: 43px !important; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+  body.listmode .cand.ph img { width: 42px !important; height: 42px !important; flex: 0 0 42px !important; margin-left: 3px; }
+  body.listmode .cand .cbar.chg { top: auto !important; bottom: 1px !important; height: 5px; border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -1994,7 +2001,7 @@ setInterval(placeLegend,500);
   dim.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); close(); });
   window.chartMode=null; paint();
   const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; let top=t+3; w.style.top=top+"px";
-    for(let k=0;k<4;k++){ const r=w.getBoundingClientRect(); let push=0; document.querySelectorAll("button, .chip").forEach(o=>{ if(w.contains(o)||!o.offsetParent||getComputedStyle(o).visibility==="hidden") return; const q=o.getBoundingClientRect(); if(q.width<20||q.right<r.left||q.left>r.right||q.bottom<=r.top||q.top>=r.bottom) return; if(q.top<r.top+r.height/2) push=Math.max(push,q.bottom+3-r.top); }); if(!push) break; top+=push; w.style.top=top+"px"; } };
+    for(let k=0;k<4;k++){ const r=w.getBoundingClientRect(); let push=0; document.querySelectorAll("button, .chip, .cyr").forEach(o=>{ if(w.contains(o)||!o.offsetParent||getComputedStyle(o).visibility==="hidden") return; const q=o.getBoundingClientRect(); if(q.width<20||q.right<r.left||q.left>r.right||q.bottom<=r.top||q.top>=r.bottom) return; if(q.top<r.top+r.height/2) push=Math.max(push,q.bottom+3-r.top); }); if(!push) break; top+=push; w.style.top=top+"px"; } };
   addEventListener("resize",pos); setInterval(pos,400); pos(); }
 placeLegend();
 // ===== candidate columns: two only when time bar open AND both years; else the last-chosen year =====
