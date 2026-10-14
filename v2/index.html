@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140300 -->
+<!-- build 202610140340 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140300";</script>
+<script>window.BUILD="202610140340";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -363,6 +363,12 @@
   #chartBox.open { z-index: 1012 !important; }
   #chartDim { position: fixed; inset: 0; z-index: 1011; background: rgba(0,0,0,.28); opacity: 0; pointer-events: none; transition: opacity .2s; }
   #chartDim.on { opacity: 1; pointer-events: auto; }
+  /* org menu: first row shares the line with the menu button until typing starts */
+  body.foldfs:not(.fqtyping) .sheet { top: var(--fstop0, 64px) !important; }
+  body.foldfs:not(.fqtyping) #barGeo { z-index: 3000 !important; background: transparent !important; box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; pointer-events: none; }
+  body.foldfs:not(.fqtyping) #barGeo #bGeo { pointer-events: auto; }
+  body.foldfs:not(.fqtyping) #barGeo .fsq { opacity: 0; }
+  body.foldfs:not(.fqtyping) .sheet li { padding-right: calc(var(--btn) + var(--gap) * 2) !important; }
 </style>
 </head>
 <body>
@@ -1587,6 +1593,7 @@ window.__orgGlobal=function(){ const go=()=>{ let box=document.getElementById("o
   if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
   if(state.value){ state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ openFold(); setTimeout(go,120); },60); } else { if(!document.body.classList.contains("foldfs")) openFold(); setTimeout(go,120); } };
 { const _of=openFold; openFold=function(){ document.body.classList.remove("orgglobal"); const b=document.getElementById("orgGlobal"); b&&b.remove(); return _of.apply(this,arguments); }; openNest=openFold; }
+document.addEventListener("input",e=>{ if(e.target.closest&&e.target.closest("#barGeo .fsq")) document.body.classList.toggle("fqtyping",e.target.value!==""); },true);
 document.addEventListener("input",e=>{ if(!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest(".fsq")) return; const q=e.target.value.trim().toLowerCase(); const b=document.getElementById("orgGlobal"); b&&[...b.children].forEach(li=>li.style.display=!q||li.textContent.toLowerCase().includes(q)?"":"none"); },true);
 const _sc2=state.onchange, _cc2=county.onchange;
 state.onchange=()=>{ hier.dist=null; drawDist(); _sc2(); crumbs(); if(view==="list") renderList(); };
@@ -1779,7 +1786,7 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
     if(sm){ while(sm.firstChild) row.append(sm.firstChild); row.onclick=sm.onclick; } det.replaceWith(row); });
   sheet.querySelectorAll("details.fold").forEach(det=>{ const d=document.createElement("div"); d.className="foldlist"; d.style.paddingLeft=det.style.paddingLeft; while(det.firstChild) d.append(det.firstChild); det.replaceWith(d); });
   sheet.querySelectorAll(".lvlrow, h3").forEach(r=>r.remove());
-  document.body.style.setProperty("--fstop",Math.round($("barGeo").getBoundingClientRect().bottom)+"px");
+  document.body.style.setProperty("--fstop",Math.round($("barGeo").getBoundingClientRect().bottom)+"px"); document.body.style.setProperty("--fstop0",Math.round($("barGeo").getBoundingClientRect().top)+"px"); document.body.classList.remove("fqtyping");
   const box=document.createElement("div"); box.className="fsq"; box.innerHTML="<input type='search' enterkeyhint='go' autocomplete='off' autocapitalize='words' placeholder='Type to filter' aria-label='Filter'>";
   { const old=$("barGeo").querySelector(".fsq"); if(old) old.remove(); } $("barGeo").insertBefore(box,$("bGeo")); { const cr=$("crumbs"); if(cr.parentElement!==$("barSearch")) $("barSearch").prepend(cr); } const inp=box.querySelector("input"); const ol=sheet.querySelector(".foldlist ol, ol.nl");
   const lis=ol?[...ol.children]:[];
@@ -1959,9 +1966,9 @@ new MutationObserver(()=>document.body.classList.toggle("lyropen",!$("lyrRow").h
 setInterval(placeLegend,500);
 // ===== chart controls (bar / pie / line): toggles only for now =====
 { const w=document.createElement("div"); w.id="chartBox"; w.className="rail";
-  const SV={bar:'<svg viewBox="0 0 24 24"><path d="M3.5 2.5v19.5" stroke-width="2.6" stroke-linecap="butt"/><rect class="f" x="5" y="3.5" width="10" height="3.8"/><rect class="f" x="5" y="8.3" width="13" height="3.8"/><rect class="f" x="5" y="13.1" width="16" height="3.8"/><rect class="f" x="5" y="17.9" width="8" height="3.6"/></svg>',
-    pie:'<svg viewBox="0 0 24 24"><path class="f" d="M11 13 L17.93 9 A8 8 0 1 1 11 5 Z"/><path class="f" d="M12.25 10.83 L12.25 2.83 A8 8 0 0 1 19.18 6.83 Z"/></svg>',
-    line:'<svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 4v16h16"/></svg>'};
+  const SV={bar:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M3.5 2.5V20.5H21.5"/><g stroke-width="1.5"><rect x="3.5" y="3.6" width="9" height="1.9"/><rect x="3.5" y="7.9" width="14" height="1.9"/><rect x="3.5" y="12.2" width="17" height="1.9"/><rect x="3.5" y="16.5" width="6" height="1.9"/></g></svg>',
+    pie:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M11 13L17.93 9A8 8 0 1 1 11 5Z"/><path d="M11 13L5.5 18.8"/><path d="M12.6 10.6V2.6A8 8 0 0 1 19.53 6.6Z"/></svg>',
+    line:'<svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 4v16h16"/></svg>'};
   const K=["bar","pie","line"]; let last="bar";
   w.innerHTML='<div id="chartLg"></div><div class="crow"><div class="copts"></div><button class="rbtn cmain" aria-label="Chart"></button></div>';
   document.body.append(w); L.DomEvent&&L.DomEvent.disableClickPropagation(w);
