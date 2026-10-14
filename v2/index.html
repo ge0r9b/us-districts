@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141452 -->
+<!-- build 202610141453 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141452";</script>
+<script>window.BUILD="202610141453";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2345,7 +2345,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
       const crumbs=["United States"].concat(path); if(!gfs.querySelector(".gh")){ gfs.innerHTML="<div class='gh'></div><ol></ol>"; gfs.querySelector(".gh").after(top); } const h=gfs.querySelector(".gh"); h.innerHTML=""; gfs.querySelector("ol").innerHTML="";
       crumbs.forEach((c,i)=>{ const sp=document.createElement("span"); sp.textContent=(i?" › ":"")+t32(c); if(i===crumbs.length-1) sp.style.color="#111"; sp.onclick=()=>{ path=path.slice(0,i); g().value=""; geoRender(); }; h.append(sp); });
       const ol=gfs.querySelector("ol");
-      if(path.length){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
+      if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
       L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
         li.onclick=e=>{ if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
@@ -2360,7 +2360,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
   // Enter in the open field: resolve typed text (exact name first, else top match), collapse, navigate (map or list)
   const geoResolve=f=>{ const A=geoAll()||[]; const lo=f.toLowerCase(); const ex=A.find(x=>x.name.toLowerCase()===lo||(x.full||"").toLowerCase()===lo); if(ex) return ex; const r=fuzzyRank(A,lo,5); return r&&r[0]; };
-  window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f) return;
+  window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f) return; if(window.__addrFirst&&window.__addrFirst(f)) return;
     e.preventDefault(); e.stopImmediatePropagation(); Promise.resolve(window.ELECTION2024?null:loadElection()).catch(()=>0).then(()=>{ GA=null; const x=geoResolve(f); closeG(); nameLock=null;
       const q=x?(x.full||x.name):f, lbl=x?x.name:f; GQ.placeholder=t32(lbl); GQ.title=q;
       // towns: sync state + county (geographic filter) first, then move the map to the town
@@ -2371,6 +2371,45 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
       try{ const A=geoAll()||[]; const x=A.find(a=>(a.full||"")===t)||A.find(a=>a.name===t); if(x&&x.full){ const parts=x.full.split(", ").reverse(); np=x.tag==="County"?[parts[0],parts[1]]:x.tag==="State"?[parts[0]]:[parts[0],parts[1]]; }
         else if(state.value){ np=county.value?[state.value,county.value]:[state.value]; } }catch(_){}
       if(np.length){ path=np; geoRender(); } }; window.__geoOpen=openG; }
+  // ===== street addresses: US Census Geocoder via JSONP (no CORS on its API; no key) -> pin + containing precinct (else county) =====
+  const ADDR_HINT="ZIP, place, county or address";
+  const addrLike=f=>/^\d+[a-z]?\s+\S+/i.test(f)||/\b(st|street|ave|avenue|rd|road|blvd|dr|drive|ln|lane|ct|court|pl|place|way|pike|hwy|highway|ter|terrace|cir|circle|pkwy)\b\.?(,|\s|$)/i.test(f);
+  const ST_BY_ABBR={}; allStates().forEach(s=>{ if(ABBR[s]) ST_BY_ABBR[ABBR[s]]=s; });
+  let jsn=0; const census=q=>new Promise(res=>{ const cb="__cg"+(++jsn); const sc=document.createElement("script"); let done=false; const fin=v=>{ if(done) return; done=true; try{ delete window[cb]; }catch(_){ window[cb]=undefined; } sc.remove(); res(v); };
+      window[cb]=d=>{ const m=((d&&d.result&&d.result.addressMatches)||[]).map(x=>({addr:x.matchedAddress,lat:+x.coordinates.y,lon:+x.coordinates.x,st:ST_BY_ABBR[(x.addressComponents||{}).state]||null})); fin(m); };
+      sc.onerror=()=>fin(null); setTimeout(()=>fin(null),9000);
+      sc.src="https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&callback="+cb+"&address="+encodeURIComponent(q); document.head.append(sc); });
+  let lastNom=0; const nominatim=q=>{ const wait=Math.max(0,1100-(Date.now()-lastNom)); return new Promise(r=>setTimeout(r,wait)).then(()=>{ lastNom=Date.now(); return fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&addressdetails=1&q="+encodeURIComponent(q),{headers:{Accept:"application/json"}}); })
+      .then(r=>r.json()).then(a=>a.map(h=>({addr:h.display_name,lat:+h.lat,lon:+h.lon,st:(h.address&&h.address.state)||null}))).catch(()=>null); };
+  const pinLayer=L.layerGroup().addTo(map);
+  const goAddr=m=>{ closeG(); nameLock=null; pinLayer.clearLayers(); L.circleMarker([m.lat,m.lon],{radius:8,color:"#fff",weight:3,fillColor:"#111",fillOpacity:1,pane:"markerPane"}).addTo(pinLayer);
+    const short=m.addr.split(",").slice(0,2).join(",").trim(); GQ.placeholder=t32(short); GQ.title=m.addr;
+    const st=m.st&&allStates().includes(m.st)?m.st:null; const res={addr:m.addr,lat:m.lat,lon:m.lon,state:st,county:null,precinct:null,level:"point"}; window.__lastAddr=res;
+    if(!st){ map.setView([m.lat,m.lon],15); return Promise.resolve(res); }
+    state.value=st; county.value=""; state.onchange();
+    return loadState(st).then(()=>{ const cd=(GEOM.counties||[]).find(d=>d[0]===st&&pointInItem(d,m.lon,m.lat)); if(cd){ county.value=cd[1]; county.onchange(); res.county=cd[1]; res.level="county"; }
+        return Promise.all([loadPrecincts(st), ym()==="2020"&&typeof loadPrec20==="function"?loadPrec20(st):null]).catch(()=>0).then(()=>{ const rows=(ym()==="2020"?(window.PREC20||{})[st]:PREC[st])||[];
+          const r=rows.find(r=>(!cd||r[0]===cd[1])&&pointInItem(r.slice(0,6),m.lon,m.lat))||rows.find(r=>pointInItem(r.slice(0,6),m.lon,m.lat));
+          setTimeout(()=>{ if(r){ const c=zoomItem("precinct",r); res.precinct=r[1]; res.level="precinct"; setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }
+            else map.setView([m.lat,m.lon],cd?13:12);
+            GQ.placeholder=t32(short); GQ.title=m.addr; nameLock=short; if(view==="list") setTimeout(()=>{ try{ renderList(); renderCands(); }catch(_){} },500); },450); }); })
+      .then(()=>res); };
+  window.__goAddr=goAddr;
+  window.__addrFirst=f=>addrLike(f)&&!(geoAll()||[]).some(x=>x.name.toLowerCase()===f.toLowerCase()||(x.full||"").toLowerCase()===f.toLowerCase());
+  // suggestions: local place matches are rendered by geoRender; address matches are appended after a debounce
+  let adT=null, adTok=0; const addrSuggest=()=>{ clearTimeout(adT); const f=GQ.value.trim(); const ol=gfs.querySelector("ol"); if(ol) ol.querySelectorAll("li.addr,li.addrst").forEach(x=>x.remove());
+    if(f.length<6||!addrLike(f)) return; const tok=++adTok;
+    adT=setTimeout(()=>{ const o=gfs.querySelector("ol"); if(!o) return; const ld=document.createElement("li"); ld.className="addrst"; ld.innerHTML="<span class='nm' style='color:#78716c'>Looking up address…</span>"; o.append(ld);
+      census(f).then(ms=>{ if(tok!==adTok) return; ld.remove(); const o2=gfs.querySelector("ol"); if(!o2) return;
+        if(ms===null){ const e=document.createElement("li"); e.className="addrst"; e.innerHTML="<span class='nm' style='color:#78716c'>Address lookup unavailable — check connection</span>"; o2.append(e); return; }
+        if(!ms.length){ const e=document.createElement("li"); e.className="addrst"; e.innerHTML="<span class='nm' style='color:#78716c'>No address match (try adding city and state)</span>"; o2.append(e); return; }
+        ms.filter((m,i,a)=>a.findIndex(x=>x.addr===m.addr)===i).slice(0,5).forEach(m=>{ const li=document.createElement("li"); li.className="addr"; li.innerHTML="<span class='nm'>"+esc(t32(m.addr))+"</span><span class='dr' style='font-size:13px'>Address</span>"; li.title=m.addr; li.onclick=()=>goAddr(m); o2.append(li); }); }); },650); };
+  GQ.addEventListener("input",()=>setTimeout(addrSuggest,0));
+  // Enter on an address: geocode (Census, then Nominatim once) and go to the precinct
+  window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f||!addrLike(f)) return;
+    const loc=(geoAll()||[]).find(x=>x.name.toLowerCase()===f.toLowerCase()||(x.full||"").toLowerCase()===f.toLowerCase()); if(loc) return; // exact place name wins
+    e.preventDefault(); e.stopImmediatePropagation(); clearTimeout(adT); GQ.placeholder="Looking up address…";
+    census(f).then(ms=>ms&&ms.length?ms:nominatim(f)).then(ms=>{ if(ms&&ms.length) return goAddr(ms[0]); closeG(); GQ.placeholder=t32(ms===null?"Address lookup unavailable":"No address match: "+f); }); },true);
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
@@ -2565,6 +2604,6 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script src="data/dc.js?v=202610141452"></script>
+<script src="data/dc.js?v=202610141453"></script>
 </body>
 </html>
