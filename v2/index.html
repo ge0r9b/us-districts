@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141463 -->
+<!-- build 202610141464 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141463";</script>
+<script>window.BUILD="202610141464";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -432,7 +432,7 @@
   body.foldfs #crumbs .tbHide { display: none !important; }
   body.foldfs #crumbs .crumb.tbPar { flex: 0 0 auto; padding-left: 0; }
   #crumbs .crumb.usc img.usflag { object-fit: contain; }
-  .cpanel { flex: 0 0 100% !important; width: 100%; order: -1; padding: 8px calc(var(--btn, 48px) + 12px) 12px 6px; box-sizing: border-box; }
+  .cpanel { flex: 0 0 100% !important; width: 100%; order: 98; padding: 8px calc(var(--btn, 48px) + 12px) 12px 6px; box-sizing: border-box; }
   .cpanel .cpie1 { display: flex; flex-direction: column; align-items: center; gap: 4px; } .cpanel .cpie1 svg { width: 180px; height: 180px; }
   .cpanel .clinechart svg { width: 100%; height: auto; } .cpanel svg text { fill: #111 !important; }
   .cbars { display: flex; flex-direction: column; gap: 10px; }
@@ -466,6 +466,7 @@
   body:not(.listmode) .cands .cand.ph, body:not(.listmode) .cands .cand.ph.on { width: calc(var(--thx) + var(--thw) + 16px) !important; height: calc(var(--thw) + 6px) !important; flex: 0 0 auto !important; display: flex !important; align-items: center !important; justify-content: flex-start !important; padding: 0 !important; }
   body:not(.listmode) .cands .cand.ph .cpt { left: calc(var(--thx) + var(--thw) - 4px) !important; bottom: -1px !important; border-radius: 1px !important; font-size: 8px !important; padding: 1px 2px !important; line-height: 1.15 !important; }
   body.listmode .cands .cand.ph .cw { margin-left: calc(52px - 16px - var(--thx) - var(--thw)) !important; padding-left: 0 !important; }
+  body.listmode .cands { margin-top: -3px !important; }
   #crumbs .cic.tyic { background: none !important; width: 30px !important; justify-content: center; display: inline-flex; align-items: center; }
   /* first-paint slots: same values the layout JS computes at phone size, so nothing moves when it runs */
   .rail { top: 122px; } .cands { top: 122px; } #chartBox { top: 173px; }
@@ -2675,7 +2676,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141463"></script>
-<script src="data/dc.js?v=202610141463"></script>
+<script defer src="data/countries.js?v=202610141464"></script>
+<script src="data/dc.js?v=202610141464"></script>
 </body>
 </html>
