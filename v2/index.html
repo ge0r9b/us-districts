@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141462 -->
+<!-- build 202610141463 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141462";</script>
+<script>window.BUILD="202610141463";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -295,6 +295,7 @@
   #geofs .gh span { color: #57534e; font-weight: 500; }
   #geofs ol { list-style: none; margin: 0; padding: 0; max-width: none; }
   #geofs li { display: flex; align-items: center; min-height: 48px; padding: 0 16px; border-bottom: 1px solid #e7e5e4; cursor: pointer; }
+  #geofs li .oic { flex: 0 0 30px; width: 30px; height: 22px; margin-right: 10px; display: inline-flex; align-items: center; } #geofs li .oic img { width: 30px; height: auto; max-height: 22px; }
   #geofs li .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #geofs li .dr { color: #a8a29e; padding-left: 16px; font-size: 20px; }  .numpop { position: fixed; z-index: 1010; display: flex; gap: 8px; }
   .numpop[hidden] { display: none; }
@@ -456,7 +457,7 @@
   #crumbs .crumb .ico svg { width: 22px; height: 22px; fill: none; stroke: #000; stroke-width: 1.6; }
   #crumbs .crumb.glob.usc { display: inline-flex; align-items: center; gap: 10px; }
   body:not(.foldfs) #crumbs .crumb.glob .ico { display: none; }
-  body.orgglobal #barGeo .fsqlbl { display: none; }
+  body.orgglobal #crumbs > * { visibility: hidden !important; }
   body:not(.foldfs) #crumbs .cic.flag { margin-left: 4px !important; margin-right: 2px !important; }
   /* ===== candidate thumbnails: ONE rule for map/list/chart. Outer square (border included) = flag icon box (left & width). --thx/--thw set from the rendered flag ===== */
   :root { --thx: -4px; --thw: 30px; }
@@ -1717,7 +1718,7 @@ window.__orgGlobal=function(){ const go=()=>{ let box=document.getElementById("o
     (window.COUNTRIES||[]).filter(c=>c[0]!=="us").forEach(c=>{ const l2=document.createElement("li"); l2.className="lvrow flat oti"; l2.innerHTML='<span class="oic"><img alt="" loading="lazy" src="img/flags/c/'+c[0]+'.png?v='+(window.BUILD||1)+'"></span><span class="nm"></span>'; l2.querySelector(".nm").textContent=c[1];
       l2.onclick=()=>{ document.body.classList.remove("orgglobal"); box.remove(); closeSheet&&closeSheet(); window.__worldEnter(c[0]); }; box.append(l2); });
     sheet.prepend(box); document.body.classList.add("orgglobal"); sheet.querySelectorAll(".foldlist,#orgGlobal").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add("slideR"); });
-    const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="All countries"; i.dataset.lbl=""; } const c=$("crumbs"); c.querySelectorAll(".crumb").forEach(b=>b.classList.remove("cur")); const gb=c.querySelector(".crumb.glob"); gb&&gb.classList.add("cur");
+    const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="All countries"; i.dataset.lbl=""; } { const Lb=$("barGeo").querySelector(".fsq .fsqlbl"); if(Lb){ const sp=Lb.querySelector("span"), fq=Lb.querySelector(".fqi"); if(sp) sp.textContent="All countries"; if(fq){ fq.dataset.k="world"; fq.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>'; } } } const c=$("crumbs"); c.querySelectorAll(".crumb").forEach(b=>b.classList.remove("cur")); const gb=c.querySelector(".crumb.glob"); gb&&gb.classList.add("cur");
     const ci=c.querySelector(".cic"); if(ci) ci.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg>'; };
   if(ltype&&active.has(ltype)){ const b=document.querySelector('#lyrRow .lbtn[data-k='+ltype+']'); b&&b.click(); }
   if(state.value){ state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ openFold(); setTimeout(go,120); },60); } else { if(!document.body.classList.contains("foldfs")) openFold(); setTimeout(go,120); } };
@@ -1820,7 +1821,7 @@ function fillCredits(l){ const st=state.value, A=(t,u)=>"<li><a href='"+u+"' tar
   l.innerHTML=h; }
 // ===== sheet: outside-tap close, no title/selbar, default select-all, readable area name =====
 document.addEventListener("pointerdown",e=>{ if(sheet.hidden) return; const t=e.target;
-  if(sheet.contains(t)||t.closest(".rail,#barGeo,#bGlobe,.xrow,.bub,.leaflet-control")) return; closeSheet(); },true);
+  if(sheet.contains(t)||t.closest(".rail,#barGeo,#crumbs,#bGlobe,.xrow,.bub,.leaflet-control")) return; closeSheet(); },true);
 const ABBR={"Alabama":"AL","Alaska":"AK","Arizona":"AZ","Arkansas":"AR","California":"CA","Colorado":"CO","Connecticut":"CT","Delaware":"DE","District of Columbia":"DC","Florida":"FL","Georgia":"GA","Hawaii":"HI","Idaho":"ID","Illinois":"IL","Indiana":"IN","Iowa":"IA","Kansas":"KS","Kentucky":"KY","Louisiana":"LA","Maine":"ME","Maryland":"MD","Massachusetts":"MA","Michigan":"MI","Minnesota":"MN","Mississippi":"MS","Missouri":"MO","Montana":"MT","Nebraska":"NE","Nevada":"NV","New Hampshire":"NH","New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND","Ohio":"OH","Oklahoma":"OK","Oregon":"OR","Pennsylvania":"PA","Rhode Island":"RI","South Carolina":"SC","South Dakota":"SD","Tennessee":"TN","Texas":"TX","Utah":"UT","Vermont":"VT","Virginia":"VA","Washington":"WA","West Virginia":"WV","Wisconsin":"WI","Wyoming":"WY"};
 const ZR=[[5,5,"New York"],[10,27,"Massachusetts"],[28,29,"Rhode Island"],[30,38,"New Hampshire"],[39,49,"Maine"],[50,54,"Vermont"],[55,55,"Massachusetts"],[56,59,"Vermont"],[60,69,"Connecticut"],[70,89,"New Jersey"],[100,149,"New York"],[150,196,"Pennsylvania"],[197,199,"Delaware"],[200,200,"District of Columbia"],[201,201,"Virginia"],[202,205,"District of Columbia"],[206,219,"Maryland"],[220,246,"Virginia"],[247,268,"West Virginia"],[270,289,"North Carolina"],[290,299,"South Carolina"],[300,319,"Georgia"],[320,349,"Florida"],[350,369,"Alabama"],[370,385,"Tennessee"],[386,397,"Mississippi"],[398,399,"Georgia"],[400,427,"Kentucky"],[430,458,"Ohio"],[460,479,"Indiana"],[480,499,"Michigan"],[500,528,"Iowa"],[530,549,"Wisconsin"],[550,567,"Minnesota"],[569,569,"District of Columbia"],[570,577,"South Dakota"],[580,588,"North Dakota"],[590,599,"Montana"],[600,629,"Illinois"],[630,658,"Missouri"],[660,679,"Kansas"],[680,693,"Nebraska"],[700,714,"Louisiana"],[716,729,"Arkansas"],[730,749,"Oklahoma"],[750,799,"Texas"],[800,816,"Colorado"],[820,831,"Wyoming"],[832,838,"Idaho"],[840,847,"Utah"],[850,865,"Arizona"],[870,884,"New Mexico"],[885,885,"Texas"],[889,898,"Nevada"],[900,961,"California"],[967,968,"Hawaii"],[970,979,"Oregon"],[980,994,"Washington"],[995,999,"Alaska"]];
 function zipState(z){ const p=parseInt(String(z).slice(0,3),10); const r=ZR.find(r=>p>=r[0]&&p<=r[1]); return r?r[2]:null; }
@@ -2370,10 +2371,12 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 // ===== bottom geography field: full-screen nested list (Country > State > County > Town), type to filter =====
 { const gfs=document.createElement("div"); gfs.id="geofs"; document.body.append(gfs); let path=[];
   const GQ=$("gq"); const g=()=>GQ;
-  function items(){ if(!path.length) return Promise.resolve(Object.keys(STATE_FILES).sort().map(n=>({name:n,drill:1})));
+  let gWorld=false;
+  function items(){ if(gWorld) return Promise.resolve((window.COUNTRIES||[]).map(c=>({name:c[1],tag:"Country",iso:c[0],full:c[1]})));
+    if(!path.length) return Promise.resolve(Object.keys(STATE_FILES).sort().map(n=>({name:n,drill:1})));
     if(path.length===1) return loadNat().then(()=>[...new Set((NAT||[]).filter(d=>d.st===path[0]).map(d=>d.nm))].sort().map(n=>({name:n,drill:1})));
     return loadState(path[0]).then(()=>{ const P=window.PARTS&&!PARTS[path[0]]&&window.__parts?window.__parts(path[0]):null; return Promise.resolve(P).then(()=>{ let t=[]; try{ t=townsIn(path[0],path[1]); }catch(e){} return [...new Set(t.map(x=>x[2]))].sort().map(n=>({name:n})); }); }); }
-  let GA=null; function geoAll(){ if(GA) return GA; GA=[]; const E=window.ELECTION2024||{}; allStates().forEach(s=>GA.push({name:s,tag:"State",st:s,full:s}));
+  let GA=null; function geoAll(){ if(GA) return GA; GA=[]; const E=window.ELECTION2024||{}; allStates().forEach(s=>GA.push({name:s,tag:"State",st:s,full:s})); (window.COUNTRIES||[]).forEach(c=>{ if(c[0]!=="us") GA.push({name:c[1],tag:"Country",iso:c[0],full:c[1]}); });
     Object.keys(E).forEach(k=>{ const [s,c]=k.split("|"); const v=E[k]; GA.push({name:c+", "+(ABBR[s]||s),tag:"County",st:s,full:c+", "+s,w:v&&(v.tot||0)}); });
     const seen=new Set(); ((PACK.lists||{}).localities||[]).forEach(([s,c,t])=>{ const k=s+"|"+c+"|"+t; if(t&&!seen.has(k)){ seen.add(k); GA.push({name:t+", "+c+", "+(ABBR[s]||s),tag:"Town",st:s,full:t+", "+c+", "+s}); } });
     if(!window.ELECTION2024) { const r=GA; GA=null; return r; } return GA; }
@@ -2381,19 +2384,19 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   function geoRender(){ const f=g().value.trim().toLowerCase();
     const tok=(window.__geoTok=(window.__geoTok||0)+1);
     (f?Promise.resolve(geoAll()):items()).catch(()=>[]).then(L0=>{ if(tok!==window.__geoTok) return; L0=L0||[]; let L1=L0; if(f){ L1=fuzzyRank(L0,f,50); }
-      const crumbs=["United States"].concat(path); if(!gfs.querySelector(".gh")){ gfs.innerHTML="<div class='gh'></div><ol></ol>"; gfs.querySelector(".gh").after(top); } const h=gfs.querySelector(".gh"); h.innerHTML=""; gfs.querySelector("ol").innerHTML="";
-      crumbs.forEach((c,i)=>{ const sp=document.createElement("span"); sp.textContent=(i?" › ":"")+t32(c); if(i===crumbs.length-1) sp.style.color="#111"; sp.onclick=()=>{ path=path.slice(0,i); g().value=""; geoRender(); }; h.append(sp); });
+      const crumbs=gWorld?["All countries"]:["All countries","United States"].concat(path); if(!gfs.querySelector(".gh")){ gfs.innerHTML="<div class='gh'></div><ol></ol>"; gfs.querySelector(".gh").after(top); } const h=gfs.querySelector(".gh"); h.innerHTML=""; gfs.querySelector("ol").innerHTML="";
+      crumbs.forEach((c,i)=>{ const sp=document.createElement("span"); sp.textContent=(i?" › ":"")+t32(c); if(i===crumbs.length-1) sp.style.color="#111"; sp.onclick=()=>{ if(i===0){ gWorld=true; path=[]; } else { gWorld=false; path=path.slice(0,i-1); } g().value=""; geoRender(); try{ g().focus({preventScroll:true}); }catch(_){} }; h.append(sp); });
       const ol=gfs.querySelector("ol");
       if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
-      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
-        li.onclick=e=>{ if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
+      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=(x.tag==="Country"?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
+        li.onclick=e=>{ if(x.tag==="Country"){ closeG(); if(x.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange(); } else window.__worldEnter(x.iso); return; } if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
   const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<form class="gtrow" action="#" role="search" autocomplete="off"></form>'; top.firstChild.addEventListener("submit",e=>{ e.preventDefault(); window.__geoSubmit(); }); const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
   xb.type="button"; xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>{ if(g().value.trim()) window.__geoSubmit(); else closeG(); };
   // submit = same path as Enter (place / country / address resolution, collapse, navigate)
   window.__geoSubmit=()=>{ const ev=new KeyboardEvent("keydown",{key:"Enter",code:"Enter",keyCode:13,bubbles:true,cancelable:true}); g().dispatchEvent(ev); };
-  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
+  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; gWorld=false; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
   function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if((i.placeholder===""||i.placeholder==="ZIP, place, county or address")&&i.dataset.ph!=null) i.placeholder=(i.dataset.ph&&i.dataset.ph!=="ZIP, place, county or address")?i.dataset.ph:"United States"; home.prepend(i); }
   window.__geoOpen=openG; window.__geoClose=closeG;
   // iOS Safari only raises the keyboard for focus() inside a user gesture: re-focus on the touchend/click that follows the opening tap
@@ -2413,7 +2416,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
       const pre=(x&&x.tag==="Town")?(()=>{ const pr=x.full.split(", "); const s=pr[pr.length-1], c=pr[pr.length-2]; state.value=s; county.value=""; state.onchange(); return loadState(s).then(()=>{ county.value=c; county.onchange(); }); })():null;
       Promise.resolve(pre).catch(()=>0).then(()=>pre?new Promise(r=>setTimeout(r,450)).then(()=>navTo(q)):navTo(q)).then(()=>{ GQ.placeholder=t32(lbl); GQ.title=q; nameLock=lbl; if(view==="list") setTimeout(()=>{ try{ renderList(); }catch(_){} const lv=$("listView"); lv&&lv.scrollTo&&lv.scrollTo({top:0}); },300); }); }); },true);
   // opening the field: breadcrumb/list start at the field's current geography
-  { const _o=openG; openG=function(){ const was=document.body.classList.contains("geofs"); const t=(GQ.title||GQ.placeholder||"").trim(); _o(); if(was) return; let np=[];
+  { const _o=openG; openG=function(){ const was=document.body.classList.contains("geofs"); const t=(GQ.title||GQ.placeholder||"").trim(); _o(); if(was) return; if(document.body.classList.contains("worldmode")){ gWorld=true; path=[]; geoRender(); return; } let np=[];
       try{ const A=geoAll()||[]; const x=A.find(a=>(a.full||"")===t)||A.find(a=>a.name===t); if(x&&x.full){ const parts=x.full.split(", ").reverse(); np=x.tag==="County"?[parts[0],parts[1]]:x.tag==="State"?[parts[0]]:[parts[0],parts[1]]; }
         else if(state.value){ np=county.value?[state.value,county.value]:[state.value]; } }catch(_){}
       if(np.length){ path=np; geoRender(); } }; window.__geoOpen=openG; }
@@ -2672,7 +2675,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141462"></script>
-<script src="data/dc.js?v=202610141462"></script>
+<script defer src="data/countries.js?v=202610141463"></script>
+<script src="data/dc.js?v=202610141463"></script>
 </body>
 </html>
