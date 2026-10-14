@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610140700 -->
+<!-- build 202610140720 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610140700";</script>
+<script>window.BUILD="202610140720";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -371,9 +371,11 @@
   #crumbs .crumb.cur { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   body:not(.foldfs) #crumbs .crumb.cur { max-width: calc(100vw - 120px); }
   .cand { position: relative; }
-  .cand .cbar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 6px; pointer-events: none; z-index: 0; transition: width .45s cubic-bezier(.2,.8,.2,1); }
+  .cand .cbar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 6px; pointer-events: none; z-index: 0; transition: width .45s cubic-bezier(.2,.8,.2,1), left .45s cubic-bezier(.2,.8,.2,1); }
+  .cand .cbar.chg { border-radius: 2px; }
   .cand.r .cbar { background: rgba(220,38,38,.3); } .cand.d .cbar { background: rgba(37,99,235,.3); }
   .cand > :not(.cbar) { position: relative; z-index: 1; }
+  .cpie { display: flex; justify-content: flex-start; padding: 4px 0 6px 4px; }
 </style>
 </head>
 <body>
@@ -2305,12 +2307,31 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(pathParts().length<=1) sheet.querySelectorAll(".foldlist li").forEach(li=>{ if(li.querySelector(".oic")) return; const nm=li.querySelector(".nm"); if(!nm) return; const st=nm.textContent.trim(); if(!(typeof STATE_FILES!=="undefined"&&STATE_FILES[st])) return; const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML='<img alt="" src="img/stateflags/'+st.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">'; nm.before(sp); }); };
   new MutationObserver(()=>{ setTimeout(alignOrg,30); setTimeout(alignOrg,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignOrg,600); }
 
+// ===== pie chart mode in list view: real share of total per year column =====
+{ const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); if(window.chartMode!=="pie"||view!=="list") return;
+    let a; try{ a=scopeArea(); }catch(e){ return; } const yrs=yrsOn(); const cols=[...candBox.querySelectorAll(".ccol")];
+    cols.forEach((col,ci)=>{ const yr=yrs[Math.min(ci,yrs.length-1)]; let v; try{ v=scopeVals(a,yr); }catch(e){} if(!v||!v.tot) return;
+      const sl=[["r",v.rep,"#dc2626"],["d",v.dem,"#2563eb"],["o",Math.max(0,v.tot-v.rep-v.dem),"#a8a29e"]].filter(x=>x[1]>0);
+      const R=30,C=36; let ang=-Math.PI/2, g="";
+      sl.forEach(([k,n,c])=>{ const f=n/v.tot, a2=ang+f*2*Math.PI, lg=f>.5?1:0; const x1=C+R*Math.cos(ang),y1=C+R*Math.sin(ang),x2=C+R*Math.cos(a2),y2=C+R*Math.sin(a2);
+        g+=f>=.9999?'<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="'+c+'" fill-opacity=".85"/>':'<path d="M'+C+' '+C+'L'+x1.toFixed(2)+' '+y1.toFixed(2)+'A'+R+' '+R+' 0 '+lg+' 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+'Z" fill="'+c+'" fill-opacity=".85" stroke="#fff" stroke-width="1"/>';
+        if(f>=.06){ const m=(ang+a2)/2, lr=R*.6; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="8" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="600">'+(f*100).toFixed(f<.1?1:0)+'%</text>'; }
+        ang=a2; });
+      const d=document.createElement("div"); d.className="cpie"; d.innerHTML='<svg viewBox="0 0 72 72" width="72" height="72">'+g+'</svg>';
+      const first=col.querySelector(".cand"); first?col.insertBefore(d,first):col.append(d); }); }; }
 // ===== bar chart mode in list view: party-colored bars behind candidate rows =====
-{ const prevW={}; const _rcB=renderCands; renderCands=function(){ _rcB(); const on=window.chartMode==="bar"&&view==="list";
-    candBox.querySelectorAll(".ccol").forEach((col,ci)=>{ const cs=[...col.querySelectorAll(".cand")]; const v=cs.map(c=>{ const t=((c.querySelector(".cs")||{}).textContent||"").split("·")[0].trim(); return /%$/.test(t)?{p:parseFloat(t)}:{n:parseFloat(t.replace(/[^\d.]/g,""))||0}; });
-      const mx=Math.max(1,...v.map(x=>x.n||0));
-      cs.forEach((c,i)=>{ let bar=c.querySelector(".cbar"); if(!on){ bar&&bar.remove(); return; } const w=v[i].p!=null?v[i].p:(v[i].n/mx*100); const key=ci+"|"+(c.title||i);
-        if(!bar){ bar=document.createElement("span"); bar.className="cbar"; c.prepend(bar); } bar.style.width=(prevW[key]!=null?prevW[key]:0)+"%"; void bar.offsetWidth; bar.style.width=Math.max(0,Math.min(100,w))+"%"; prevW[key]=w; }); }); }; }
+{ const prevW={}; const num=t=>{ const m=String(t).replace(/,/g,"").match(/[-+−]?\d+(\.\d+)?/); return m?parseFloat(m[0].replace("−","-")):0; };
+  const _rcB=renderCands; renderCands=function(){ _rcB(); const on=window.chartMode==="bar"&&view==="list"; const two=candBox.classList.contains("two");
+    const cols=[...candBox.querySelectorAll(".ccol")];
+    if(two) cols.forEach(col=>{ const cs=[...col.querySelectorAll(".cand")]; cs.sort((a,b)=>(b.classList.contains("r")-a.classList.contains("r"))).forEach(c=>c.parentElement.append(c)); });
+    cols.forEach((col,ci)=>{ const cs=[...col.querySelectorAll(".cand")]; const txt=c=>((c.querySelector(".cs")||{}).textContent||"");
+      const isChg=two&&ci===cols.length-1;
+      const v=cs.map(c=>{ const [a,d]=txt(c).split("·"); if(isChg) return {chg:num(d||"0")}; const t=a.trim(); return /%$/.test(t)?{p:parseFloat(t)}:{n:num(t)}; });
+      const mx=Math.max(1,...v.map(x=>x.n||0)), mc=Math.max(1e-9,...v.map(x=>Math.abs(x.chg||0)));
+      cs.forEach((c,i)=>{ let bar=c.querySelector(".cbar"); if(!on||(two&&!isChg)){ bar&&bar.remove(); return; }
+        if(!bar){ bar=document.createElement("span"); bar.className="cbar"; c.prepend(bar); } const key=ci+"|"+(c.className.includes(" r")?"r":"d")+"|"+two;
+        let L,W; if(isChg){ const f=(v[i].chg||0)/mc*50; L=f>=0?50:50+f; W=Math.abs(f); bar.classList.add("chg"); } else { L=0; W=v[i].p!=null?v[i].p:(v[i].n/mx*100); bar.classList.remove("chg"); }
+        const pv=prevW[key]; bar.style.left=(pv?pv[0]:L)+"%"; bar.style.width=(pv?pv[1]:0)+"%"; void bar.offsetWidth; bar.style.left=L+"%"; bar.style.width=Math.max(0,Math.min(100,W))+"%"; prevW[key]=[L,W]; }); }); }; }
 })();
 
 </script>
