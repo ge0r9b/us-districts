@@ -118,3 +118,35 @@ Source: Alaska Division of Elections, official 2024 General results by precinct 
 - **US House (at-large), state house (40) and state senate (20).** Exact. They use the official House-district totals; each senate district is the sum of its two House districts.
 - **School districts.** All 53 are covered: 45 nulls filled, flagged "est".
 - **2020.** Unchanged (VEST and statewide).
+
+## Nationwide re-tabulation (builds 202610141482 to 202610141490)
+
+**Boundaries.** All years use the current (2024) district boundaries. Results are re-tabulated to the current districts:
+- **2020:** VEST 2020 precincts, area-weighted into the current districts.
+- **2024:** official county totals for districts made of whole counties. Elsewhere, precincts are area-weighted into the districts.
+
+**2024 precincts.** These now come from The New York Times 2024 presidential precinct results and boundaries (github.com/nytimes/presidential-precinct-map-2024, NYT C-UDA non-commercial license, with credit). The NYT data is merged per county with the earlier Census VTD + MEDSL data, keeping whichever matches the official county total better. Alaska keeps the official Division of Elections file. Examples:
+- Florida: 61 of 67 counties are now within 2% of the official totals (28 before). Manatee now has 71 precincts at 99.6% of the official total (61 precincts at 85% before).
+- Alabama: 49 of 67 counties are now within 2% (no file before).
+- Statewide files were added for CT, DE, HI, MA, MO, NJ, ND, RI and WI. CO, WY and NE were completed.
+
+**How the districts are filled:**
+- Whole counties use the official county totals.
+- Split counties use precincts, area-weighted. Before that, each county's precincts must sum to 70–100% of the official total and cover at least 70% of the county's area. Precincts are scaled per party to the official county totals.
+- Rows filled this way carry the flag `est` (≈ estimate).
+- **Validation:** I checked against districts with known results, using the earlier, stricter QC thresholds (precinct area cover ≥90%), on 16,647 districts. Median total error is 0.69%, median Republican-share error is 0.06 points, and the 90th-percentile Republican-share error is 1.02 points. The final 70% threshold has not been validated separately.
+
+| Layer | Before (build 1481) | After | Total | Coverage after |
+|---|---|---|---|---|
+| US House | 363 | 430 | 435 | 98.9% |
+| State house | 3,587 | 4,740 | 4,882 | 97.1% |
+| State senate | 1,399 | 1,863 | 1,942 | 95.9% |
+| School districts | 8,344 | 12,819 | 13,208 | 97.1% |
+
+The Alaska state senate is now exact in the data file: each senate district is the sum of its two House districts.
+
+**Remaining gaps and their causes.** The causes are counties where the precinct data is missing or fails QC: precinct area cover under 70%, or precinct sums outside 70–100% of the official total. They are mostly where NYT shows town-level or approximate data:
+- **State house:** ME 26, FL 17, VT 17, OK 15, VA 14, LA 11.
+- **State senate:** UT 20, FL 9, LA 8, VA 8.
+- **US House:** FL 2, LA 2, MS 1.
+- **Schools:** CA 133, WI 34, ME 32, SD 28.
