@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141518 -->
+<!-- build 202610141519 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141518";</script>
+<script>window.BUILD="202610141519";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2150,6 +2150,7 @@ function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
+      { /* a Place row always sits right after its institution twin */ const key=r=>r.name+"|"+(r.st||"")+"|"+(r.iso||""); const P=new Map(), inst=new Set(); res.forEach(r=>{ if(r.geo){ const k=key(r); (P.get(k)||P.set(k,[]).get(k)).push(r); } else inst.add(key(r)); }); const out=[]; res.forEach(r=>{ if(r.geo){ if(!inst.has(key(r))) out.push(r); } else { out.push(r); (P.get(key(r))||[]).forEach(x=>out.push(x)); } }); res=out; }
       res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+usIcon(it)+"</span><span class='nm'>"+esc(t32(it.name))+"</span><span class='tg "+usKind(it).c+"'>"+usKind(it).i+esc(t32(usKind(it).l))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
     inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()){ if(inp.__had&&window.__setTopic) window.__setTopic(null); return closeUS(); } if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
   if(window.__usFromTitle&&window.__topicOn&&window.__topicOn()){ inp.value=$("vtitle").textContent||""; inp.__had=1; setTimeout(()=>{ try{ inp.select(); }catch(e){} },40); } setTimeout(()=>inp.focus(),30); }
@@ -3316,7 +3317,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141518"></script>
-<script src="data/dc.js?v=202610141518"></script>
+<script defer src="data/countries.js?v=202610141519"></script>
+<script src="data/dc.js?v=202610141519"></script>
 </body>
 </html>

@@ -24,6 +24,8 @@ async def run(b,tag,vp):
   i=[k for k,x in enumerate(r) if x['nm']=="Montgomery County, PA"]
   ck(tag+" montgomery: County row then Place row",len(i)>=2 and r[i[0]]['tg']=='County' and r[i[1]]['tg']=='Place',r[:4])
   if len(i)>=2: ck(tag+" montgomery: entity icon + star silhouette",r[i[0]]['svg'] and not r[i[0]]['star'] and r[i[1]]['svg'] and r[i[1]]['star'],r[:4])
+  adj=all(not(x['tg']=='Place') or k>0 and r[k-1]['nm']==x['nm'] and r[k-1]['tg']!='Place' for k,x in enumerate(r[:10]))
+  ck(tag+" every Place row sits right after its institution row",adj,[(x['nm'],x['tg']) for x in r[:10]])
   ck(tag+" no 'Place' label on county/town institution rows",all(x['tg']!='Place' for x in r if x['tg'] in('County','Town','Township','Borough')),r)
   ck(tag+" no 'incorporated' for states",not any('ncorporated' in x['tg'] for x in r),r)
   # picks: Place row sets geo
