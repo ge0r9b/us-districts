@@ -155,3 +155,10 @@ The Alaska state senate is now exact in the data file: each senate district is t
 - Maine: State House 151/151 and State Senate 35/35 from official Maine SOS town-level 2024 results (President by town + legislative town→district lists). Towns split between districts are apportioned by the legislative-race turnout in each part and marked est. Whole-town districts match the precinct re-tabulation exactly (median R-share difference 0.0 pts). Schools 253/267; the remaining ones are unorganized territories and towns that are reported only combined with other towns, so they are left as no data.
 - The fill6 pipeline (vote-total QC, whole small districts) added FL, LA, VA, UT, VT, CA, NY and others.
 - Coverage now: US House 434/435 (99.8%), State House 4,821/4,882 (98.8%), State Senate 1,916/1,942 (98.7%), Schools 12,997/13,208 (98.4%).
+
+## Sources and licenses (commercial-readiness tracker)
+| State | 2024 results source | Terms | Boundaries | Status |
+|---|---|---|---|---|
+| Maine | https://www.maine.gov/sos/elections-voting/election-results-data/election-results-2024 (President by town, State Senator, Rep. to the Legislature) | Public government record | Census TIGER (public domain) | Districts done from official data; precinct layer still NYT-merged |
+| All other states | NYT 2024 precinct map data, merged with official county totals | **RESTRICTIVE: NYT C-UDA, non-commercial only.** Must be replaced before commercial use | VEST (CC-BY, credit required) / Census TIGER | To do, state by state |
+NYT attribution stays until no NYT-derived data remains.
