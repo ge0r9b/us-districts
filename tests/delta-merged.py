@@ -14,7 +14,7 @@ async def main():
       for mode in ('num','pct'):
         await pg.evaluate("m=>window.__setNum(m==='num'?'num':'pct')",mode); await pg.wait_for_timeout(1200)
         r=await pg.evaluate("""()=>{const x=document.querySelector('#cands .dmx'); if(!x) return {none:true}; const rail=document.querySelector('.rail').getBoundingClientRect().left; const rows=[...x.querySelectorAll('.dmr')]; const imgs=[...x.querySelectorAll('img.dmt')].map(i=>i.getBoundingClientRect());
-          const dd=[...document.querySelectorAll('#ysl .tk i')]; const db=dd[dd.length-1].getBoundingClientRect(); const lb={right:db.left+db.width/2};
+          const dd=[...document.querySelectorAll('#ysl .ylb')]; const db=dd[dd.length-1].getBoundingClientRect(); const lb={right:db.left+db.width/2};
           const vis=[...document.querySelectorAll('#cands > *')].filter(e=>e!==x&&getComputedStyle(e).display!=='none').length;
           return {rows:rows.length,txt:x.innerText.replace(/\\s+/g,' '),maxR:Math.max(...imgs.map(i=>i.right)),minL:Math.min(...imgs.map(i=>i.left)),rail,lblR:lb.right,dotC:lb.right,others:vis,bubbles:x.querySelectorAll('[data-party]').length}}""")
         ok=(not r.get('none')) and r['rows']==3 and r['others']==0 and r['maxR']<=r['rail']-2 and abs(r['maxR']-19-r['dotC'])<=2 and not re.search(r'Republican|Democratic|Other|\\d{2},\\d{3}',r['txt']) and (('%' not in r['txt']) )

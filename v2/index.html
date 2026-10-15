@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141508 -->
+<!-- build 202610141509 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141508";</script>
+<script>window.BUILD="202610141509";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -396,11 +396,12 @@
   body.listmode .cand .cbar.chg { top: auto !important; bottom: 1px !important; height: 5px; border-radius: 3px; }
   #c2020, #c2024, #yslider { display: none !important; }
   #ysl { position: relative; flex: 1 1 auto; min-width: 120px; height: 44px; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; }
-  #ysl .trk { position: absolute; left: 18px; right: 18px; top: var(--ytr,30px); height: 1px; background: rgba(0,0,0,.35); }
+  #ysl .trk { position: absolute; left: 52px; right: 52px; top: var(--ytr,30px); height: 1px; background: rgba(0,0,0,.35); }
   #ysl .fill { position: absolute; top: calc(var(--ytr,30px) - 1.5px); height: 4px; background: #000; border-radius: 2px; display: none; }
   #ysl .tk { position: absolute; top: 0; width: 44px; height: 44px; margin-left: -22px; }
   #ysl .tk i { position: absolute; left: 19px; top: calc(var(--ytr,30px) - 2.5px); width: 6px; height: 6px; border-radius: 50%; background: #000; }
-  #ysl .tk span { position: absolute; left: 0; right: 0; top: var(--ylb,5px); text-align: center; font-size: 10.5px; line-height: 11px; color: #111; font-variant-numeric: tabular-nums; }
+  #ysl .tk span { display: none; }
+  #ysl .ylb { position: absolute; top: calc(var(--ytr,30px) - 6px); width: 36px; text-align: center; font: 600 12px/12px system-ui, sans-serif; color: #111; pointer-events: none; font-variant-numeric: tabular-nums; } #ysl .ylb.l { left: 0; } #ysl .ylb.r { right: 0; }
   #ysl .kn { position: absolute; top: calc(var(--ytr,30px) - 11px); width: 11px; height: 22px; margin-left: -5.5px; border-radius: 5.5px; background: rgba(255,255,255,.88); border: 0.5px solid rgba(0,0,0,.12); box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,.25), 0 0.5px 1.5px rgba(0,0,0,.2); pointer-events: none; transition: left .12s ease; }
   #ysl.drag .kn, #ysl.drag .fill { transition: none; }
   #ysl .kn.b { display: none; }
@@ -1862,14 +1863,12 @@ renderCands=function(){ const lst=document.body.classList.contains("listmode"), 
   const place=()=>{ if(busy) return; busy=1; try{ const cb=candBox, cols=cb.querySelectorAll(":scope > .ccol"), tb=$("barTime"), two=cols.length>1&&!document.body.classList.contains("listmode")&&tb&&!tb.hidden;
     const clear=()=>{ if(cb.style.width||cb.style.justifyContent){ cb.style.width=""; cb.style.justifyContent=""; cb.style.columnGap=""; } };
     if(!two){ clear(); return; }
-    const sp=[...document.querySelectorAll("#ysl .tk span")]; if(sp.length<2) { clear(); return; }
-    const tr=e=>{ const r=document.createRange(); r.selectNodeContents(e); const b=r.getBoundingClientRect(); return b.width?b:e.getBoundingClientRect(); };
-    const first=tr(sp[0]), last=tr(sp[sp.length-1]); if(!(last.right>0)) { clear(); return; }
-    const dots=[...document.querySelectorAll("#ysl .tk i")], dr=dots[dots.length-1].getBoundingClientRect(), L=cb.getBoundingClientRect().left, rr=Math.min(dr.left+dr.width/2+23, innerWidth-8);
+    const lbr=document.querySelector("#ysl .ylb.r"); if(!lbr||!(lbr.getBoundingClientRect().right>0)) { clear(); return; }
+    const lr=document.querySelector("#ysl .ylb.r").getBoundingClientRect(), L=cb.getBoundingClientRect().left, rr=Math.min(lr.left+lr.width/2+23, innerWidth-8);
     cb.style.columnGap="0px"; cb.style.justifyContent="space-between"; cb.style.width=Math.max(60,rr-L)+"px"; }catch(e){} finally{ busy=0; } };
   layoutSide=function(){ _ls(); place(); }; window.__placeCols=place;
   window.addEventListener("resize",()=>setTimeout(place,60)); try{ new MutationObserver(()=>setTimeout(place,30)).observe($("barTime"),{attributes:true,attributeFilter:["hidden","style","class"]}); new ResizeObserver(()=>place()).observe($("ysl")); }catch(e){}
-  setTimeout(place,500); }
+  setTimeout(place,500); setInterval(place,400); }
 const _rb=refreshBubble; refreshBubble=function(){ _rb(); renderCands(); };
 const _cr3=crumbs; crumbs=function(){ _cr3(); if(window.ELECTION2024) renderCands(); };
 const _oi2=openInfo; openInfo=function(){ _oi2(); const box=sheet.querySelector(".info32"); if(!box) return; const p=document.createElement("p");
@@ -2320,9 +2319,9 @@ const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hi
 
 // ===== time row: tick slider (single year = one knob; range = two knobs + black fill = change mode) =====
 { const YRS=["2020","2024"], N=YRS.length; const yr=document.querySelector("#barTime .yr"); const w=document.createElement("div"); w.id="ysl"; w.setAttribute("role","group"); w.setAttribute("aria-label","Year");
-  w.innerHTML='<div class="trk"></div><div class="fill"></div>'+YRS.map((y,i)=>'<div class="tk" data-i="'+i+'"><i></i><span>'+y+'</span></div>').join("")+'<div class="kn a"></div><div class="kn b"></div>';
+  w.innerHTML='<div class="trk"></div><div class="fill"></div><span class="ylb l">\'20</span><span class="ylb r">\'24</span>'+YRS.map((y,i)=>'<div class="tk" data-i="'+i+'"><i></i><span>'+y+'</span></div>').join("")+'<div class="kn a"></div><div class="kn b"></div>';
   yr.insertBefore(w,$("c2024")); let A=N-1,B=N-1;
-  const xs=i=>{ const r=w.getBoundingClientRect(); return 18+(N>1?i/(N-1):0)*(r.width-36); };
+  const xs=i=>{ const r=w.getBoundingClientRect(); return 52+(N>1?i/(N-1):0)*(r.width-104); };
   const near=cx=>{ const r=w.getBoundingClientRect(); let best=0,bd=1e9; for(let i=0;i<N;i++){ const d=Math.abs(r.left+xs(i)-cx); if(d<bd){bd=d;best=i;} } return best; };
   const paint=()=>{ w.querySelectorAll(".tk").forEach(t=>t.style.left=xs(+t.dataset.i)+"px"); const lo=Math.min(A,B),hi=Math.max(A,B); w.classList.toggle("rng",lo!==hi);
     w.querySelector(".kn.a").style.left=xs(A)+"px"; w.querySelector(".kn.b").style.left=xs(B)+"px"; const f=w.querySelector(".fill"); f.style.left=xs(lo)+"px"; f.style.width=(xs(hi)-xs(lo))+"px"; };
@@ -2401,7 +2400,7 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
       const th=(c,yr)=>c?'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="38" height="38" data-party="'+esc(c.full+" "+yr)+'">':'<span class="dmt dmo"></span>';
       const left=d[k]>=0; return '<div class="dmr">'+(k==="oth"?th(null):th(c20(k==="rep"?1:0),"2020"))+'<span class="dmb" data-party="'+esc(who+": "+exact)+'"><b class="z"></b><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PCc[k]+'"></i><em class="'+(left?"l":"r")+'">'+txt+'</em></span>'+(k==="oth"?th(null):th(c24(k==="rep"?1:0),"2024"))+'</div>'; }).join(""); }
   function fit(box){ const tb=$("barTime"), sp=[...document.querySelectorAll("#ysl .tk span")]; const L=box.getBoundingClientRect().left; let R;
-    { const dots=[...document.querySelectorAll("#ysl .tk i")]; if(dots.length>=2){ const b=dots[dots.length-1].getBoundingClientRect(); R=b.left+b.width/2+19; } }
+    { const lb=document.querySelector("#ysl .ylb.r"); if(lb){ const b=lb.getBoundingClientRect(); R=b.left+b.width/2+19; } }
     const rl=document.querySelector(".rail"), cap=(rl?rl.getBoundingClientRect().left:innerWidth-64)-3; R=Math.min(R||cap,cap); box.style.width=Math.max(120,R-L)+"px"; }
   function sync(){ try{ const was=document.body.classList.contains("dmerge"); if(!on()){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
     const h=build(); if(h===null){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
@@ -3185,7 +3184,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141508"></script>
-<script src="data/dc.js?v=202610141508"></script>
+<script defer src="data/countries.js?v=202610141509"></script>
+<script src="data/dc.js?v=202610141509"></script>
 </body>
 </html>

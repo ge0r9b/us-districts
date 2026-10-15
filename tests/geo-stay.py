@@ -35,8 +35,8 @@ async def main():
           await pg.evaluate("([z,c])=>{ window.__map.setView(c,z,{animate:false}); }",[z,ctr]); await pg.wait_for_timeout(1200); r=await pg.evaluate(S); seq.append((z,r['span'],r['solid']))
         n=11; up=seq[:n]; dn=seq[n:]
         print(t,lay,seq,flush=True)
-        if lay=='ushouse':
-          chk(f'{t} {lay} district detail at every zoom (never solid)',not any(x[2] for x in seq),str(seq[:3]))
+        if lay!='none':
+          chk(f'{t} {lay} district detail at every zoom (never solid, all four district types)',not any(x[2] for x in seq),str(seq[:3]))
         else:
           off=next((x for x in up if not x[2]),None); on=next((x for x in dn if x[2]),None)
           chk(f'{t} {lay} solid statewide zoomed out',seq[0][2] and seq[-1][2])
