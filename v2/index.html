@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141507 -->
+<!-- build 202610141508 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141507";</script>
+<script>window.BUILD="202610141508";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -545,6 +545,17 @@ body.geofs #geofs{display:flex!important}
   .lvrow.la.cmp .sth { position: absolute; left: 0; top: 0; width: 22px; height: 22px; object-fit: cover; object-position: 50% 30%; box-sizing: border-box; border-radius: 4px 0 0 4px; pointer-events: none; border: 2px solid #fff; } .lvrow.la.cmp .sth.r { border-color: #b91c1c; } .lvrow.la.cmp .sth.d { border-color: #1d4ed8; }
   .lvrow.la.cmp .scg { flex: 0 0 auto; font-size: 11px; font-weight: 600; color: #444; white-space: nowrap; }
   .lvrow.la.cmp b.rn .oic { left: -40px; }
+  body:not(.listmode) .cands.two .cyr { display: none !important; }
+  body:not(.listmode) .cands.two .ccol:last-child .cand.ph .cpt { left: auto !important; right: calc(100% - 16px) !important; }
+  body.dmerge .cands > :not(.dmx) { display: none !important; }
+  body.dmerge .cands { display: block !important; }
+  .dmx { display: flex; flex-direction: column; gap: 10px; padding: 6px 0 10px; box-sizing: border-box; }
+  .dmr { display: flex; align-items: center; gap: 8px; height: 38px; }
+  .dmt { flex: 0 0 38px; width: 38px; height: 38px; box-sizing: border-box; object-fit: cover; object-position: 50% 30%; border-radius: 2.5px; background: #e7e5e4; cursor: pointer; display: block; }
+  .dmt.r { box-shadow: 0 0 0 2px #b91c1c; } .dmt.d { box-shadow: 0 0 0 2px #1d4ed8; } .dmt.dmo { background: none; box-shadow: none; cursor: default; }
+  .dmb { position: relative; flex: 1 1 auto; min-width: 0; height: 26px; background: rgba(0,0,0,.07); border-radius: 4px; overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .dmb i { position: absolute; top: 0; bottom: 0; opacity: .85; } .dmb .z { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); z-index: 2; }
+  .dmb em { position: absolute; top: 50%; transform: translateY(-50%); font: 600 12px/1 system-ui, sans-serif; font-style: normal; color: #111; font-variant-numeric: tabular-nums; z-index: 3; } .dmb em.l { right: calc(50% + 6px); } .dmb em.r { left: calc(50% + 6px); }
   .lvrow.la { cursor: pointer; -webkit-tap-highlight-color: rgba(0,0,0,.06); } .lvrow.la .cbars { width: 100%; max-width: 420px; } .lvrow.la .cbt i { transition: none !important; } .lvrow.la .cbr { font-size: 12px; gap: 6px; grid-template-columns: 84px 1fr 64px; } .lvrow.la .cbt { height: 12px; }
   .provlbl span { position: absolute; transform: translate(-50%,-50%); font: 600 10px/1 system-ui, sans-serif; color: #292524; white-space: nowrap; text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
   body.orgcountry:not(.foldfs) { }
@@ -1854,7 +1865,7 @@ renderCands=function(){ const lst=document.body.classList.contains("listmode"), 
     const sp=[...document.querySelectorAll("#ysl .tk span")]; if(sp.length<2) { clear(); return; }
     const tr=e=>{ const r=document.createRange(); r.selectNodeContents(e); const b=r.getBoundingClientRect(); return b.width?b:e.getBoundingClientRect(); };
     const first=tr(sp[0]), last=tr(sp[sp.length-1]); if(!(last.right>0)) { clear(); return; }
-    const L=cb.getBoundingClientRect().left, rr=Math.min(last.right, innerWidth-8);
+    const dots=[...document.querySelectorAll("#ysl .tk i")], dr=dots[dots.length-1].getBoundingClientRect(), L=cb.getBoundingClientRect().left, rr=Math.min(dr.left+dr.width/2+23, innerWidth-8);
     cb.style.columnGap="0px"; cb.style.justifyContent="space-between"; cb.style.width=Math.max(60,rr-L)+"px"; }catch(e){} finally{ busy=0; } };
   layoutSide=function(){ _ls(); place(); }; window.__placeCols=place;
   window.addEventListener("resize",()=>setTimeout(place,60)); try{ new MutationObserver(()=>setTimeout(place,30)).observe($("barTime"),{attributes:true,attributeFilter:["hidden","style","class"]}); new ResizeObserver(()=>place()).observe($("ysl")); }catch(e){}
@@ -2375,6 +2386,28 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     else { const t=document.createElement("span"); t.className="cpt"; t.textContent=numMode==="pct"?Math.round(pc)+"%":(n>=1e6?(n/1e6).toFixed(1)+"M":n>=1e3?Math.round(n/1e3)+"k":String(n)); b.append(t); } }); }; })();
 { const tg=document.createElement("div"); tg.id="numTog"; tg.className="numtog"; tg.innerHTML="<button type='button' class='rbtn sm on' data-m='pct' aria-label='Percent'>%</button><button type='button' class='rbtn sm' data-m='num' aria-label='Votes'>#</button>"; $("rail2").append(tg);
   tg.querySelectorAll("button").forEach(b=>b.onclick=()=>{ numMode=b.dataset.m; tg.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); }); }
+// ===== merged two-point (2020 -> 2024) bar block: [2020 thumb] -- change bar -- [2024 thumb]; change values only, names/exact values in press bubbles =====
+{ const PCc={rep:"rgb(220,38,38)",dem:"rgb(37,99,235)",oth:"rgb(168,162,158)"}, NMc={rep:"Republican",dem:"Democratic",oth:"Other"};
+  const shortN=x=>{ const a=Math.abs(x), sg=x>=0?"+":"\u2212"; return sg+(a>=1e6?(a/1e6).toFixed(2)+"M":a>=1e3?Math.round(a/1e3)+"K":String(Math.round(a))); };
+  const on=()=>{ try{ return document.body.classList.contains("listmode")&&!document.body.classList.contains("listall")&&window.chartMode==="bar"&&ym()==="delta"&&!$("barTime").hidden; }catch(e){ return false; } };
+  function build(){ const a=scopeArea(), v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null;
+    const pr=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))}), p0=pr(v0), p1=pr(v1), pct=numMode==="pct", d={};
+    ["rep","dem","oth"].forEach(k=>d[k]=pct?((p1[k]/v1.tot)-(p0[k]/v0.tot))*100:p1[k]-p0[k]);
+    const mx=Math.max(1e-9,...Object.values(d).map(Math.abs)); const c20=ix=>CANDS["2020"].find(c=>!!c.ix===!!ix), c24=ix=>CANDS["2024"].find(c=>!!c.ix===!!ix);
+    const ks=(p1.rep>=p1.dem?["rep","dem"]:["dem","rep"]).concat(["oth"]);
+    return ks.map(k=>{ const f=d[k]/mx*50, txt=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1):shortN(d[k]);
+      const exact=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1)+" pts":(d[k]>=0?"+":"\u2212")+Math.round(Math.abs(d[k])).toLocaleString("en-US");
+      const who=k==="oth"?"Other":NMc[k]+" ("+(k==="rep"?c24(1).short:c24(0).short)+")";
+      const th=(c,yr)=>c?'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="38" height="38" data-party="'+esc(c.full+" "+yr)+'">':'<span class="dmt dmo"></span>';
+      const left=d[k]>=0; return '<div class="dmr">'+(k==="oth"?th(null):th(c20(k==="rep"?1:0),"2020"))+'<span class="dmb" data-party="'+esc(who+": "+exact)+'"><b class="z"></b><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PCc[k]+'"></i><em class="'+(left?"l":"r")+'">'+txt+'</em></span>'+(k==="oth"?th(null):th(c24(k==="rep"?1:0),"2024"))+'</div>'; }).join(""); }
+  function fit(box){ const tb=$("barTime"), sp=[...document.querySelectorAll("#ysl .tk span")]; const L=box.getBoundingClientRect().left; let R;
+    { const dots=[...document.querySelectorAll("#ysl .tk i")]; if(dots.length>=2){ const b=dots[dots.length-1].getBoundingClientRect(); R=b.left+b.width/2+19; } }
+    const rl=document.querySelector(".rail"), cap=(rl?rl.getBoundingClientRect().left:innerWidth-64)-3; R=Math.min(R||cap,cap); box.style.width=Math.max(120,R-L)+"px"; }
+  function sync(){ try{ const was=document.body.classList.contains("dmerge"); if(!on()){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
+    const h=build(); if(h===null){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
+    let x=candBox.querySelector(":scope > .dmx"); if(!x){ x=document.createElement("div"); x.className="dmx"; candBox.prepend(x); } if(x.innerHTML!==h) x.innerHTML=h; document.body.classList.add("dmerge"); fit(x); }catch(e){} }
+  const _rcM=renderCands; renderCands=function(){ const r=_rcM.apply(this,arguments); sync(); return r; };
+  setInterval(sync,400); window.addEventListener("resize",()=>setTimeout(sync,80)); window.__dmSync=sync; }
 window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
 // ===== double-tap: zoom to the area and show its name in the bottom geography field =====
 map.doubleClickZoom.disable();
@@ -2543,7 +2576,7 @@ window.__v2.dbg=()=>({fillTop,heatOn,lt:ltype,li:layerItems(ltype).length,la:lis
 // ===== single %/# button =====
 { const old=$("numTog"); if(old) old.remove(); const b=document.createElement("button"); b.type="button"; b.id="bNum"; b.className="rbtn on numbtn"; b.textContent="%"; b.setAttribute("aria-label","Percent or votes"); $("rail2").append(b);
   const pop=document.createElement("div"); pop.className="numpop"; pop.hidden=true; document.body.append(pop);
-   const setM=m=>{ if(m!==numMode){ numMode=m; b.textContent=m==="pct"?"%":"#"; renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); } pop.hidden=true; };
+   const setM=m=>{ if(m!==numMode){ numMode=m; b.textContent=m==="pct"?"%":"#"; renderCands(); refreshBubble(); updShift(); if(view==="list") renderList(); } pop.hidden=true; }; window.__setNum=setM;
    b.onclick=e=>{ e.stopPropagation(); if(!pop.hidden){ pop.hidden=true; return; } const r=b.getBoundingClientRect(); pop.innerHTML="";
      ["pct","num"].filter(m=>m!==numMode).forEach(m=>{ const x=document.createElement("button"); x.type="button"; x.className="rbtn numbtn off"; x.textContent=m==="pct"?"%":"#"; x.onclick=ev=>{ ev.stopPropagation(); setM(m); }; pop.append(x); });
      pop.style.top=r.top+"px"; pop.style.right=(innerWidth-r.left+8)+"px"; pop.style.height=r.height+"px"; pop.hidden=false; };
@@ -2979,7 +3012,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     { const yr=yrs[yrs.length-1], v=vals(a,yr); if(!v) return h+"<span class='sbw nd'>no data</span>";
       const pr=parts(v), t=v.tot||1, cs=CANDS[yr], win=pr.rep>=pr.dem?cs.find(c=>c.ix):cs.find(c=>!c.ix); let d=null; if(two){ const v0=vals(a,"2020"); if(v0){ const q=parts(v0); d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((pr[k]/t)-(q[k]/(v0.tot||1)))*100:pr[k]-q[k]); } }
       const nmP={rep:"Republican",dem:"Democratic",oth:"Other"}, cn=k=>k==="rep"?(cs.find(c=>c.ix)||{}).full:k==="dem"?(cs.find(c=>!c.ix)||{}).full:"";
-      const bub=k=>{ const who=nmP[k]+(cn(k)?" · "+cn(k):""); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":Math.round(Math.abs(d[k])).toLocaleString("en-US"))+" ('20→'24)"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":Math.round(pr[k]).toLocaleString("en-US")); };
+      const bub=k=>{ const who=nmP[k]+(k==="oth"?"":" ("+((cs.find(c=>k==="rep"?c.ix:!c.ix)||{}).short||"")+")"); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":Math.round(Math.abs(d[k])).toLocaleString("en-US"))+" ('20→'24)"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":Math.round(pr[k]).toLocaleString("en-US")); };
       h+="<span class='sbw'>"+["rep","dem","oth"].map(k=>"<i class='sg "+k+"' data-party=\""+esc(bub(k))+"\" style='width:"+(pr[k]/t*100).toFixed(2)+"%'></i>").join("")+(win?"<img class='sth "+(win.ix?"r":"d")+"' alt='' src='"+PHOTO[win.id]+"' width='22' height='22'>":"")+"</span>";
       if(two&&vals(a,"2020")) h+="<span class='scg'>"+esc(t32(deltaTxt(a).replace(" pts","")))+"</span>"; return h; }
     if(bar){ if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); h+=(v0&&v1)?deltaHtml(v0,v1):"<span class='l'>no data</span>"; } else { const v=vals(a,yrs[0]); h+=v?barsHtml(v):"<span class='l'>no data</span>"; } return h; }
@@ -3152,7 +3185,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141507"></script>
-<script src="data/dc.js?v=202610141507"></script>
+<script defer src="data/countries.js?v=202610141508"></script>
+<script src="data/dc.js?v=202610141508"></script>
 </body>
 </html>
