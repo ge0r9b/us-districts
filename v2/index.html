@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141482 -->
+<!-- build 202610141483 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141482";</script>
+<script>window.BUILD="202610141483";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2362,7 +2362,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   let ST=null; window.__usst=rows=>{ ST=rows.map(([st,enc])=>({st,polys:enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }))})); };
   const sc=document.createElement("script"); sc.src="data/usstates.js?v="+window.BUILD; sc.onload=()=>{ drawLines(); upd(true); }; document.head.append(sc);
   const LL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
-  function drawLines(){ stLineG.clearLayers(); if(!ST) return; ST.forEach(d=>L.polygon(LL(d),{renderer:stLR,pane:"stLinePane",fill:false,color:"#fff",weight:1,interactive:false}).addTo(stLineG)); }
+  function drawLines(){ stLineG.clearLayers(); if(!ST) return; ST.forEach(d=>L.polygon(LL(d),{renderer:stLR,pane:"stLinePane",fill:false,color:"#b5aea8",weight:1,opacity:0.95,interactive:false}).addTo(stLineG)); }
   function stTot(st,yr){ if(st==="Alaska"&&window.__ak) return __ak["state"+yr]; const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; const t=[0,0,0]; let n=0; const pre=st+"|"; for(const k in E){ if(k.startsWith(pre)){ const v=E[k]; t[0]+=v[0]; t[1]+=v[1]; t[2]+=v[2]; n++; } } return n?t:null; }
   window.__stTot=stTot;
   function solid(){ if(!ST||natTypeOn()||!plotting()) return false; const b=map.getBounds(); return b.getWest()<=-124.8&&b.getEast()>=-66.9&&b.getSouth()<=24.4&&b.getNorth()>=49.4; }
@@ -2770,7 +2770,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141482"></script>
-<script src="data/dc.js?v=202610141482"></script>
+<script defer src="data/countries.js?v=202610141483"></script>
+<script src="data/dc.js?v=202610141483"></script>
 </body>
 </html>
