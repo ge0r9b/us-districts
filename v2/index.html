@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141480 -->
+<!-- build 202610141481 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141480";</script>
+<script>window.BUILD="202610141481";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -494,6 +494,7 @@
 #bLyr.typed{background:#000!important;border-color:#fff}#bLyr.typed svg{stroke:#fff!important}#bLyr.typed svg text{fill:#fff}#bLyr:not(.typed) svg{fill:none!important}
 .xrow{gap:var(--gap)!important;right:calc(100% + var(--gap))!important;top:0!important;align-items:center}.xrow .lbtn,#bLyr{width:var(--btn)!important;height:var(--btn)!important;min-width:var(--btn)!important;max-width:var(--btn)!important;flex:0 0 var(--btn)!important;box-sizing:border-box!important;padding:0!important;margin:0!important;border-radius:50%!important;border-width:3px!important;transform:none!important}
 .xrow,.xrow .lbtn,#bLyr{transition:none!important;animation:none!important}
+#vtitle::before,#vtitle.seal::before{left:7px!important}.cic.tyic{width:30px!important;min-width:30px!important;max-width:30px!important;flex:0 0 30px!important;display:inline-flex!important;justify-content:center!important;align-items:center!important;margin-left:4px!important;margin-right:2px!important;padding:0!important}.cic.tyic svg{margin:0!important}
 </style>
 </head>
 <body>
@@ -2380,7 +2381,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
 // bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
-{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const ak=d&&d[0]==="Alaska"&&!["ushouse","senate","statehouse","sum"].includes(a.kind==="natcd"?(a.tk||"ushouse"):a.kind)&&ym()!=="2020"; if((ak||(d&&d[5]==="est"))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
+{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const ak=d&&(d[0]==="Alaska"||d.__st==="Alaska")&&!["ushouse","senate","statehouse","sum"].includes(a.kind==="natcd"?(a.tk||"ushouse"):a.kind)&&ym()!=="2020"; if((ak||(d&&d[5]==="est"))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
 // auto precincts: when one district (active type, or county when none) spans >=half the view width, fill precincts in view; district outline on top, no fill
 const _nd17=natDetail;
 function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-b.getWest(); const k=ltype; let d=null;
@@ -2769,7 +2770,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141480"></script>
-<script src="data/dc.js?v=202610141480"></script>
+<script defer src="data/countries.js?v=202610141481"></script>
+<script src="data/dc.js?v=202610141481"></script>
 </body>
 </html>
