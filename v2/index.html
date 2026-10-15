@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141515 -->
+<!-- build 202610141516 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141515";</script>
+<script>window.BUILD="202610141516";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -546,7 +546,8 @@ body.geofs #geofs{display:flex!important}
   .lvrow.la.cmp b.rn { flex: 0 0 var(--rnw, 34px); width: var(--rnw, 34px); min-width: 0; overflow: visible; white-space: nowrap; font-size: 14px; } .lvrow.la.cmp b.rn .nmx { display: block; overflow: hidden; text-overflow: ellipsis; }
   .lvrow.la.cmp .sbw { position: relative; flex: 1 1 auto; min-width: 0; height: 22px; display: flex; border-radius: 4px; overflow: hidden; background: #e7e5e4; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .lvrow.la.cmp .sbw.nd { background: none; font-size: 12px; color: #78716c; align-items: center; cursor: default; }
-  .lvrow.la.cmp .sg { display: block; height: 100%; flex: 0 0 auto; } .lvrow.la.cmp .sg.rep { background: rgb(220,38,38); opacity: .8; } .lvrow.la.cmp .sg.dem { background: rgb(37,99,235); opacity: .8; } .lvrow.la.cmp .sg.oth { background: rgb(168,162,158); }
+  .lvrow.la.cmp .sg { display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; color: #fff; font: 600 11px/1 system-ui, sans-serif; font-variant-numeric: tabular-nums; } .lvrow.la.cmp .sg b { font-weight: 600; pointer-events: none; text-shadow: 0 0 2px rgba(0,0,0,.3); } .lvrow.la.cmp .sg.f { justify-content: flex-start; padding-left: 26px; }
+  .lvrow.la.cmp .sg { display: flex; height: 100%; flex: 0 0 auto; } .lvrow.la.cmp .sg.rep { background: rgb(220,38,38); opacity: .8; } .lvrow.la.cmp .sg.dem { background: rgb(37,99,235); opacity: .8; } .lvrow.la.cmp .sg.oth { background: rgb(168,162,158); }
   .lvrow.la.cmp .sth { position: absolute; left: 0; top: 0; width: 22px; height: 22px; object-fit: cover; object-position: 50% 30%; box-sizing: border-box; border-radius: 4px 0 0 4px; pointer-events: none; border: 2px solid #fff; } .lvrow.la.cmp .sth.r { border-color: #b91c1c; } .lvrow.la.cmp .sth.d { border-color: #1d4ed8; }
   .lvrow.la.cmp .scg { flex: 0 0 auto; font-size: 11px; font-weight: 600; color: #444; white-space: nowrap; }
   .lvrow.la.cmp b.rn .oic { left: -40px; }
@@ -1668,8 +1669,9 @@ function renderCands(){ const lst=document.body.classList.contains("listmode"), 
     b.onclick=()=>{ candOn.has(c.id)?candOn.delete(c.id):candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); };
     candBox.append(b); });
   layoutSide(); }
+function sSet(el,p,v){ if(el.style[p]!==v) el.style[p]=v; }
 function layoutSide(){ const t=$("barTime"); const top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8);
-  candBox.style.top=top+"px"; const lv=$("listView"); if(lv){ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; lv.style.top=top+"px"; lv.style.bottom=(innerHeight-$("barBottom").getBoundingClientRect().top+g)+"px"; const mobL=document.body.classList.contains("listmode")&&(innerWidth<700||candBox.getBoundingClientRect().width>innerWidth*0.5); candBox.style.right=mobL?(innerWidth-rail.getBoundingClientRect().left+g)+"px":"auto"; if(mobL){ lv.style.top=(candBox.getBoundingClientRect().bottom+g)+"px"; lv.style.left=g+"px"; } else lv.style.left=(candBox.getBoundingClientRect().right+g)+"px"; lv.style.right=(innerWidth-rail.getBoundingClientRect().left+g)+"px"; lv.style.padding="0 4px 12px"; lv.style.background="transparent"; } }
+  sSet(candBox,"top",top+"px"); const lv=$("listView"); if(lv){ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; sSet(lv,"top",top+"px"); sSet(lv,"bottom",(innerHeight-$("barBottom").getBoundingClientRect().top+g)+"px"); const mobL=document.body.classList.contains("listmode")&&(innerWidth<700||candBox.getBoundingClientRect().width>innerWidth*0.5); sSet(candBox,"right",mobL?(innerWidth-rail.getBoundingClientRect().left+g)+"px":"auto"); if(mobL){ sSet(lv,"top",(candBox.getBoundingClientRect().bottom+g)+"px"); sSet(lv,"left",g+"px"); } else sSet(lv,"left",(candBox.getBoundingClientRect().right+g)+"px"); sSet(lv,"right",(innerWidth-rail.getBoundingClientRect().left+g)+"px"); sSet(lv,"padding","0 4px 12px"); sSet(lv,"background","transparent"); } }
 // area values
 function vals(a,yr){
   if(a.kind==="county"){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; const v=E&&E[a.d[0]+"|"+a.d[1]]; return v&&v[2]?{dem:v[0],rep:v[1],tot:v[2]}:null; }
@@ -1739,7 +1741,7 @@ const _oi=openInfo; openInfo=function(){ _oi(); const box=sheet.querySelector(".
   if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, (numMode==="pct"?"":"Total votes "+fmtN(v.tot))+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
 window.__v2.cands=candOn; window.__v2.townsIn=townsIn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
 const _sy=syncYears; syncYears=function(){ _sy(); renderCands(); refreshBubble(); if(view==="list") renderList(); };
-addEventListener("resize",layoutSide); setInterval(layoutSide,700);
+addEventListener("resize",()=>layoutSide()); setInterval(()=>layoutSide(),700);
 renderCands();
 // ===== exclusive layer type + hierarchy fold-down =====
 const hier={dist:null};
@@ -3067,7 +3069,8 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const pr=parts(v), t=v.tot||1, cs=CANDS[yr], win=pr.rep>=pr.dem?cs.find(c=>c.ix):cs.find(c=>!c.ix); let d=null; if(two){ const v0=vals(a,"2020"); if(v0){ const q=parts(v0); d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((pr[k]/t)-(q[k]/(v0.tot||1)))*100:pr[k]-q[k]); } }
       const nmP={rep:"Republican",dem:"Democratic",oth:"Other"}, cn=k=>k==="rep"?(cs.find(c=>c.ix)||{}).full:k==="dem"?(cs.find(c=>!c.ix)||{}).full:"";
       const bub=k=>{ const who=nmP[k]+(k==="oth"?"":" ("+((cs.find(c=>k==="rep"?c.ix:!c.ix)||{}).short||"")+")"); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":Math.round(Math.abs(d[k])).toLocaleString("en-US"))+" ('20→'24)"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":Math.round(pr[k]).toLocaleString("en-US")); };
-      h+="<span class='sbw'>"+["rep","dem","oth"].map(k=>"<i class='sg "+k+"' data-party=\""+esc(bub(k))+"\" style='width:"+(pr[k]/t*100).toFixed(2)+"%'></i>").join("")+(win?"<img class='sth "+(win.ix?"r":"d")+"' alt='' src='"+PHOTO[win.id]+"' width='22' height='22'>":"")+"</span>";
+      const sgT=k=>{ const f=pr[k]/t; if(f<(numMode==="pct"?0.13:0.19)) return ""; if(d) return numMode==="pct"?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1):(d[k]>=0?"+":"\u2212")+(Math.abs(d[k])>=1e6?(Math.abs(d[k])/1e6).toFixed(2)+"M":Math.abs(d[k])>=1e3?Math.round(Math.abs(d[k])/1e3)+"K":String(Math.round(Math.abs(d[k])))); return numMode==="pct"?(f*100).toFixed(1)+"%":(pr[k]>=1e6?(pr[k]/1e6).toFixed(2)+"M":pr[k]>=1e3?Math.round(pr[k]/1e3)+"K":String(Math.round(pr[k]))); };
+      h+="<span class='sbw'>"+["rep","dem","oth"].map((k,ix0)=>"<i class='sg "+k+(ix0===0?" f":"")+"' data-party=\""+esc(bub(k))+"\" style='width:"+(pr[k]/t*100).toFixed(2)+"%'>"+(sgT(k)?"<b>"+esc(sgT(k))+"</b>":"")+"</i>").join("")+(win?"<img class='sth "+(win.ix?"r":"d")+"' alt='' src='"+PHOTO[win.id]+"' width='22' height='22'>":"")+"</span>";
       if(two&&vals(a,"2020")) h+="<span class='scg'>"+esc(t32(deltaTxt(a).replace(" pts","")))+"</span>"; return h; }
     if(bar){ if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); h+=(v0&&v1)?deltaHtml(v0,v1):"<span class='l'>no data</span>"; } else { const v=vals(a,yrs[0]); h+=v?barsHtml(v):"<span class='l'>no data</span>"; } return h; }
     yrs.forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
@@ -3155,11 +3158,57 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     document.addEventListener("touchstart",e=>{ const r=hit(e); ty=r?e.touches[0].clientY:null; tx=r?e.touches[0].clientX:0; },{passive:true,capture:true});
     document.addEventListener("touchend",e=>{ const r=hit(e); if(!r||ty===null) return; const t=e.changedTouches[0]; const m=Math.abs(t.clientY-ty)+Math.abs(t.clientX-tx); ty=null; if(m>10) return; done=Date.now(); window.__laPick(r.__a); },{passive:true,capture:true});
     document.addEventListener("click",e=>{ const r=hit(e); if(!r||Date.now()-done<600) return; e.stopPropagation(); window.__laPick(r.__a); },true); }
-  window.__laEnsureRow=ensureRow; setInterval(()=>{ try{ if(document.body.classList.contains("foldfs")&&(window.scrollY||document.documentElement.scrollTop||document.body.scrollTop)){ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; } }catch(e){} },150);
+  window.__laEnsureRow=ensureRow;
+  // ===== state persistence: versioned snapshot (v:1) of the user's filter/view settings -> URL hash (#s=...) via replaceState + localStorage fallback; restored on load (an explicit exception to "only user actions change the selection"). Snapshot doubles as a future saved preset =====
+  { const KEY="usd.state", VER=1, sleep=ms=>new Promise(r=>setTimeout(r,ms)); let restoring=true, last="";
+    const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+    const dec=t=>{ try{ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; return JSON.parse(decodeURIComponent(escape(atob(t)))); }catch(e){ return null; } };
+    const snap=()=>{ const o={v:VER}; try{ o.top=(window.__topicOn&&window.__topicOn())?(OFFICES.find(x=>x.id===office)||{}).label||null:null; }catch(e){}
+      try{ o.w=window.__W?window.__W():null; }catch(e){} try{ o.st=state.value||""; o.co=county.value||""; }catch(e){} try{ o.lt=ltype; }catch(e){}
+      try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; }catch(e){}
+      try{ const c=map.getCenter(); o.ll=[+c.lat.toFixed(4),+c.lng.toFixed(4),+map.getZoom().toFixed(2)]; }catch(e){}
+      Object.keys(o).forEach(k=>{ if(o[k]===null||o[k]===undefined||o[k]==="") delete o[k]; }); return o; };
+    window.__stateSnapshot=snap; window.__stateEncode=enc; window.__stateDecode=dec;
+    const save=()=>{ if(restoring) return; try{ const o=snap(), j=JSON.stringify(o); if(j===last) return; last=j; history.replaceState(null,"",location.pathname+location.search+"#s="+enc(o)); try{ localStorage.setItem(KEY,j); }catch(e){} }catch(e){} };
+    const ok=(v,list)=>list.indexOf(v)>=0;
+    async function apply(o){ if(!o||typeof o!=="object") return; restoring=true; try{ const bump=()=>{ window.__selAt=Date.now(); };
+      // unknown/invalid values fall back per field (ignored); a newer snapshot version is read best-effort (known fields only)
+      if(typeof o.top==="string"&&OFFICES.some(x=>x.label===o.top)){ try{ window.__setTopic(o.top); }catch(e){} } else if(o.top===undefined&&false){}
+      if(ok(o.yv,[0,1,2])){ try{ if(+$("yslider").value!==o.yv){ $("yslider").value=o.yv; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } if(o.tb&&$("barTime").hidden) $("bTime").click(); }catch(e){} }
+      if(ok(o.nm,["pct","num"])&&window.__setNum){ try{ window.__setNum(o.nm); }catch(e){} }
+      if(typeof o.lt==="string"&&o.lt!==ltype&&o.lt!=="counties"){ const b=document.querySelector('#lyrRow .lbtn[data-k="'+o.lt.replace(/[^a-z]/g,"")+'"]'); if(b){ try{ b.click(); }catch(e){} await sleep(500); } }
+      bump();
+      if(typeof o.w==="string"&&o.w&&window.__worldEnter){ try{ window.__worldEnter(o.w); }catch(e){} await sleep(800); }
+      else if(typeof o.st==="string"&&o.st&&allStates().indexOf(o.st)>=0){ try{ county.value=""; hier.dist=null; state.value=o.st; state.onchange&&state.onchange(); bump(); await sleep(1800);
+          if(typeof o.co==="string"&&o.co&&[...county.options].some(x=>x.value===o.co)){ county.value=o.co; county.onchange&&county.onchange(); bump(); await sleep(1200); }
+          const g=document.getElementById("gq"); if(g){ const lbl=o.co?o.co+", "+(ABBR[o.st]||o.st):o.st; g.placeholder=lbl; g.title=lbl; try{ nameLock=lbl; }catch(e){} window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; } }catch(e){} }
+      bump();
+      if(ok(o.ch,["bar","line","pie"])){ try{ const open=()=>document.querySelector("[aria-label=Chart]")&&document.querySelector("[aria-label=Chart]").click(); const find=()=>[...document.querySelectorAll("button")].find(b=>b.dataset&&b.dataset.ch===o.ch); if(window.chartMode!==o.ch){ open(); await sleep(400); const b=find(); if(b) b.click(); else console.warn("state restore: chart button missing"); await sleep(500); } }catch(e){ console.warn("state restore chart",e); } }
+      if(ok(o.so,["asc","desc"])){ try{ LA.sort=o.so; }catch(e){} }
+      if(o.vw==="list"&&view!=="list"){ try{ setView("list"); }catch(e){} }
+      if(o.vw==="map"&&view==="list"&&!o.ch){ try{ setView("map"); }catch(e){} }
+      if(typeof o.la==="string"&&o.vw==="list"){ try{ const lv=level(); if(lv&&lv.id===o.la){ await enter(); } }catch(e){} }
+      if(Array.isArray(o.ll)&&o.ll.length===3&&o.ll.every(x=>typeof x==="number"&&isFinite(x))&&Math.abs(o.ll[0])<=85&&Math.abs(o.ll[1])<=180&&o.ll[2]>=1&&o.ll[2]<=19&&o.vw!=="list"){ bump(); try{ map.setView([o.ll[0],o.ll[1]],o.ll[2],{animate:false}); }catch(e){} bump(); }
+    }catch(e){ try{ console.warn("state restore",e); }catch(_){} } await sleep(600); window.__selAt=Date.now(); restoring=false; last=""; save(); }
+    window.__stateApply=apply;
+    const init=async()=>{ let o=null; try{ const m=/[#&]s=([^&]+)/.exec(location.hash); if(m) o=dec(m[1]); }catch(e){} if(!o){ try{ const j=localStorage.getItem(KEY); if(j) o=JSON.parse(j); }catch(e){} }
+      await sleep(1800); if(o&&typeof o==="object"&&Object.keys(o).filter(k=>k!=="v"&&k!=="ll").length) await apply(o); else { restoring=false; } };
+    if(document.readyState==="complete") init(); else addEventListener("load",init);
+  // ===== district-type group is data-driven per country context: US = school, state house, state senate, US House; other countries/contexts = none for now (add a key to extend). Non-US context hides the group (slot kept: no layout jump) and resets any selected district layer to the default =====
+  { const DT=["ushouse","senate","statehouse","schools"]; window.DISTRICT_TYPES_BY_COUNTRY=window.DISTRICT_TYPES_BY_COUNTRY||{us:["schools","statehouse","senate","ushouse"]}; // other countries: no entry = no district types yet
+    const ctx=()=>{ try{ const w=window.__W&&window.__W(); return w?String(w):"us"; }catch(e){ return "us"; } };
+    window.__districtTypes=()=>window.DISTRICT_TYPES_BY_COUNTRY[ctx()]||[];
+    const css=document.createElement("style"); css.textContent="body.nodist #bLyr, body.nodist #lyrRow { visibility: hidden !important; pointer-events: none !important; }"; document.head.append(css);
+    let lastCtx=null; const apply=()=>{ try{ const types=window.__districtTypes(), none=types.length===0; document.body.classList.toggle("nodist",none);
+        DT.forEach(k=>{ const b=document.querySelector('#lyrRow .lbtn[data-k="'+k+'"]'); if(b) b.style.display=types.indexOf(k)>=0?"":"none"; });
+        if(typeof ltype==="string"&&DT.indexOf(ltype)>=0&&types.indexOf(ltype)<0){ const on=document.querySelector("#lyrRow .lbtn.on"), def=document.querySelector('#lyrRow .lbtn[data-k="counties"]'); if(on&&on.dataset.k===ltype) on.click(); else if(def) def.click(); } lastCtx=ctx(); }catch(e){} };
+    setInterval(apply,200); window.__applyDistrictCtx=apply; }
+    setInterval(save,900); ["click","change","input","keyup"].forEach(t=>document.addEventListener(t,()=>setTimeout(save,250),true)); map.on("moveend",()=>setTimeout(save,300)); }
+ setInterval(()=>{ try{ if(document.body.classList.contains("foldfs")&&(window.scrollY||document.documentElement.scrollTop||document.body.scrollTop)){ window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0; } }catch(e){} },150);
   // 'List all states': field reads 'All States' (flag kept); list starts right under the toolbar strip; party names appear in a press bubble
   { const _cr=crumbs; const lab=()=>{ try{ const on=LA.on&&LA.lv&&LA.lv.id==="states"; const c=document.querySelector("#crumbs .crumb.cur"); if(!c) return; if(on){ if(c.textContent!=="All States"){ c.textContent="All States"; c.title="All States"; c.setAttribute("aria-label","All States"); } } }catch(e){} };
     crumbs=function(){ const r=_cr.apply(this,arguments); lab(); return r; }; setInterval(lab,250); window.__laLab=lab; window.__layoutSide=()=>layoutSide(); setInterval(()=>{ if(LA.on) layoutSide(); },200);
-    const _ls=layoutSide; layoutSide=function(){ _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); lv.style.top=(top+30)+"px"; if(innerWidth<700||true) lv.style.left=((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"; } }catch(e){} };
+    const _ls=layoutSide; layoutSide=function(){ _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); sSet(lv,"top",(top+30)+"px"); sSet(lv,"left",((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"); } }catch(e){} };
     let bub=null, bt=0; const hide=()=>{ if(bub){ bub.remove(); bub=null; } clearTimeout(bt); };
     document.addEventListener("click",e=>{ const el=e.target.closest&&e.target.closest("[data-party]"); if(!el){ hide(); return; } hide(); const r=el.getBoundingClientRect(); bub=document.createElement("div"); bub.id="partyBub"; bub.textContent=el.dataset.party; document.body.append(bub); const w=bub.offsetWidth; bub.style.left=Math.max(w/2+6,Math.min(innerWidth-w/2-6,r.left+r.width/2))+"px"; bub.style.top=(r.top-4)+"px"; bt=setTimeout(hide,1800); },true);
     document.addEventListener("scroll",hide,true); }
@@ -3240,7 +3289,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141515"></script>
-<script src="data/dc.js?v=202610141515"></script>
+<script defer src="data/countries.js?v=202610141516"></script>
+<script src="data/dc.js?v=202610141516"></script>
 </body>
 </html>
