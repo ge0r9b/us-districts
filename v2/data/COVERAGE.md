@@ -183,8 +183,8 @@ NYT attribution stays until no NYT-derived data remains.
   - SD schools: 28 left.
 
 ## Gray legislative districts (counted from the data files at build 1525)
-Districts with no 2024 value (gray in 2024 and in delta): State Senate 20, State House 70, with the gaps listed by state in the data (`__usdist` rows with a null 2024 total). In the six states named in the queue (OR, VA, LA, AL, TN, MS) there are 21: AL (senate 006, house 004), LA (senate 002 and 019, house 057 and 058), MS (senate 012, 022, 023; house 050, 051, 054, 115), OR (senate 029, house 057), TN (house 021 and 023), VA (senate 025; house 014, 066, 089). Closing them needs official precinct returns for 2024 in each state. **Not started**: no fabricated or area-weighted fill is used for these.
-Districts with no 2020 value (gray in delta): Kentucky 1 senate and 10 house, Maine 16 house, Vermont 2 house, Montana 1 house, New Hampshire 1 house.
+Districts with no 2024 value (gray in 2024 and in delta): State Senate 19 (AL 1, AR 2, GA 1, LA 2, MS 3, OK 6, OR 1, VA 1, WY 2) and State House 54 (AL 1, AR 4, GA 4, LA 2, MS 4, MO 1, OK 15, OR 1, TN 2, VT 10, VA 3, WY 7), counted from `__usdist` rows with a null 2024 total. In the six states named in the queue (OR, VA, LA, AL, TN, MS) there are 21: AL (senate 006, house 004), LA (senate 002 and 019, house 057 and 058), MS (senate 012, 022, 023; house 050, 051, 054, 115), OR (senate 029, house 057), TN (house 021 and 023), VA (senate 025; house 014, 066, 089). Closing them needs official precinct returns for 2024 in each state. **Not started**: no fabricated or area-weighted fill is used for these.
+Districts with no 2020 value (gray in delta): State Senate 1 (KY) and State House 30 (KY 10, ME 16, MT 1, NH 1, VT 2).
 
 ## Texas precinct timing (measured Oct 15, 2026, build 1525, live, desktop Chromium)
 Selecting Harris County, TX: the 2024 precinct set (9,712 precincts) is ready about 2.6 s after Enter. Switching to the 2020-to-2024 change loads the 2020 set (8,572 precincts) in about 0.4 s and re-renders in about 0.1 s (two long tasks of about 80 ms). No stall found; real-network and phone timings are not measured.
