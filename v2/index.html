@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141478 -->
+<!-- build 202610141479 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141478";</script>
+<script>window.BUILD="202610141479";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -493,6 +493,7 @@
   #usq::placeholder { color: #a8a29e; opacity: 1; } #usq::-webkit-input-placeholder { color: #a8a29e; opacity: 1; }
 #bLyr.typed{background:#000!important;border-color:#fff}#bLyr.typed svg{stroke:#fff!important}#bLyr.typed svg text{fill:#fff}#bLyr:not(.typed) svg{fill:none!important}
 .xrow{gap:var(--gap)!important;right:calc(100% + var(--gap))!important;top:0!important;align-items:center}.xrow .lbtn,#bLyr{width:var(--btn)!important;height:var(--btn)!important;min-width:var(--btn)!important;max-width:var(--btn)!important;flex:0 0 var(--btn)!important;box-sizing:border-box!important;padding:0!important;margin:0!important;border-radius:50%!important;border-width:3px!important;transform:none!important}
+.xrow,.xrow .lbtn,#bLyr{transition:none!important;animation:none!important}
 </style>
 </head>
 <body>
@@ -1495,7 +1496,7 @@ const ICO={
  president:'<path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6L12 16.3 6.6 19.3l1.3-6L3.3 9.2l6.1-.6z"/>'
 };
 function icon(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(ICO[k]||"")+'</svg>'; }
-setInterval(()=>{ const b=document.getElementById("bLyr"); if(!b) return; const ob=document.querySelector("#lyrRow .lbtn.on"); const k0=ob&&ob.dataset.k; const t=["ushouse","senate","statehouse","schools"].includes(k0)?k0:""; if(b.__k===t) return; b.__k=t; b.innerHTML=icon(t||"ushouse"); b.classList.toggle("typed",!!t); },250);
+window.__lyrSync=()=>{ const b=document.getElementById("bLyr"); if(!b) return; const ob=document.querySelector("#lyrRow .lbtn.on"); const k0=ob&&ob.dataset.k; const t=["ushouse","senate","statehouse","schools"].includes(k0)?k0:""; if(b.__k===t) return; b.__k=t; b.innerHTML=icon(t||"ushouse"); b.classList.toggle("typed",!!t); }; setInterval(window.__lyrSync,250);
 const bub=document.createElement("div"); bub.className="bub"; bub.hidden=true; document.body.append(bub); let bubT=null;
 function showBub(b,ms){ bub.textContent=t32(b.getAttribute("aria-label")); bub.hidden=false; bub.classList.remove("fade");
   const r=b.getBoundingClientRect(), w=bub.offsetWidth; let x=r.left+r.width/2-w/2; x=Math.max(6,Math.min(innerWidth-w-6,x));
@@ -2329,7 +2330,7 @@ const _an14=aname; aname=function(a){ return a.kind==="natcd"?"District "+a.d[1]
 const _al14=areaLabel; areaLabel=function(a){ return a.kind==="natcd"?_al14({kind:"ushouse",d:a.d}):_al14(a); };
 // tap the active type again to turn district types off (county heat map)
 LYR.push(["N","none","Counties"]); TYPE_LBL.none="County";
-lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ setType(ltype===b.dataset.k?"none":b.dataset.k); drawNat(); }; });
+lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ setType(ltype===b.dataset.k?"none":b.dataset.k); drawNat(); lrow.hidden=true; const lb=document.getElementById("bLyr"); if(lb){ lb.classList.remove("on"); } try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); }; });
 drawNat();
 // ===== clearing the bottom field zooms to the org selection (All = whole US) =====
 function fitOrgSel(){ nameLock=null; if(hier.dist){ zoomItem(ltype==="none"?"county":ltype,hier.dist); return; }
@@ -2747,7 +2748,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141478"></script>
-<script src="data/dc.js?v=202610141478"></script>
+<script defer src="data/countries.js?v=202610141479"></script>
+<script src="data/dc.js?v=202610141479"></script>
 </body>
 </html>
