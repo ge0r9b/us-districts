@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141516 -->
+<!-- build 202610141517 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141516";</script>
+<script>window.BUILD="202610141517";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3065,7 +3065,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const d=a.d||[]; const st=a.kind==="precinct"?(d.__st||state.value):((typeof d[0]==="string"&&(STATE_FILES[d[0]]||d[0]==="District of Columbia"))?d[0]:state.value); return stImg(st); }catch(e){ return ""; } }
   function rowHtml(a){ let nmx=String(aname(a)); try{ if(LA.lv&&LA.lv.id==="states"&&typeof ABBR!=="undefined"&&ABBR[nmx]) nmx=ABBR[nmx]; }catch(e){} let h="<b class='rn' title='"+esc(String(aname(a)))+"'><span class='oic'>"+iconFor(a)+"</span><span class='nmx'>"+esc(t32(nmx))+"</span></b>"; if(NOTOP(a)||(window.__topicOn&&!window.__topicOn())) return h;
     const yrs=yrsNow(), two=yrs.length>1, bar=window.chartMode==="bar";
-    { const yr=yrs[yrs.length-1], v=vals(a,yr); if(!v) return h+"<span class='sbw nd'>no data</span>";
+    { const yr=yrs[yrs.length-1], v=vals(a,yr); if(!v) return h+"<span class='sbw nd'>no data</span>"; if(two&&!vals(a,"2020")) return h+"<span class='sbw nd'>no '20 data</span>";
       const pr=parts(v), t=v.tot||1, cs=CANDS[yr], win=pr.rep>=pr.dem?cs.find(c=>c.ix):cs.find(c=>!c.ix); let d=null; if(two){ const v0=vals(a,"2020"); if(v0){ const q=parts(v0); d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((pr[k]/t)-(q[k]/(v0.tot||1)))*100:pr[k]-q[k]); } }
       const nmP={rep:"Republican",dem:"Democratic",oth:"Other"}, cn=k=>k==="rep"?(cs.find(c=>c.ix)||{}).full:k==="dem"?(cs.find(c=>!c.ix)||{}).full:"";
       const bub=k=>{ const who=nmP[k]+(k==="oth"?"":" ("+((cs.find(c=>k==="rep"?c.ix:!c.ix)||{}).short||"")+")"); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":Math.round(Math.abs(d[k])).toLocaleString("en-US"))+" ('20→'24)"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":Math.round(pr[k]).toLocaleString("en-US")); };
@@ -3107,13 +3107,13 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   setInterval(()=>{ if(LA.on&&LA.items.length&&document.body.classList.contains('listmode')&&!document.querySelector('#listView .lvrow.la')) render(); },400);
   // ---- enter / exit ----
   async function enter(){ const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(()=>{ let n=""; try{ n=String(aname({kind:ltype==="counties"||ltype==="none"?"towns":ltype,d:hier.dist})||""); }catch(e){} if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[2]||""); if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[1]||""); return (n.length>60||/^-?\d/.test(n))?"":n; })():""));
-    try{ closeSheet(); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
+    try{ closeSheet(); }catch(e){} try{ if(ym()!=="2024"&&state.value&&!(state.value in PREC20)) await loadPrec20(state.value); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
     setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} fit(); }
   function fit(){ try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
   function exit(){ if(!LA.on) return; LA.on=false; document.body.classList.remove("listall"); if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; LA.items=[]; LA.agg=null; cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){} const sp=document.getElementById("laSortPop"); if(sp) sp.hidden=true; try{ document.getElementById("listView").innerHTML=""; renderCands(); }catch(e){} try{ crumbs(); }catch(e){} try{ redraw(); }catch(e){} }
   window.__laExit=exit; window.__laEnter=enter;
   const sig=()=>[ym(),[...candOn].sort().join(),numMode,window.chartMode,LA.sort,window.__topicOn&&window.__topicOn(),view].join("|");
-  setInterval(()=>{ if(!LA.on) return; const s=sig(); if(s!==LA.sig){ LA.sig=s; if(view!=="list"&&!document.body.classList.contains("listmode")){ computeAgg(); drawMap(); } else render(); } place(); },300);
+  setInterval(()=>{ if(!LA.on) return; try{ if(state.value&&PREC[state.value]===undefined&&typeof loadPrecincts==="function"&&!LA.__p){ LA.__p=1; Promise.resolve(loadPrecincts(state.value)).catch(()=>0).then(()=>{ LA.__p=0; if(LA.on) LA.sig=""; }); } }catch(e){} try{ if(ym()!=="2024"&&state.value&&!(state.value in PREC20)&&!LA.__w){ LA.__w=1; loadPrec20(state.value).then(()=>{ LA.__w=0; if(LA.on){ LA.sig=""; } }); } }catch(e){} const s=sig(); if(s!==LA.sig){ LA.sig=s; if(view!=="list"&&!document.body.classList.contains("listmode")){ computeAgg(); drawMap(); } else render(); } place(); },300);
   // ---- exits: any selection change at the institution/geo filter ----
   { const wrap=(o,k)=>{ const f=o[k]; if(typeof f!=="function") return; o[k]=function(){ if(!window.__laBusy) exit(); return f.apply(this,arguments); }; };
     wrap(state,"onchange"); wrap(county,"onchange");
@@ -3289,7 +3289,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141516"></script>
-<script src="data/dc.js?v=202610141516"></script>
+<script defer src="data/countries.js?v=202610141517"></script>
+<script src="data/dc.js?v=202610141517"></script>
 </body>
 </html>
