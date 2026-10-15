@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141521 -->
+<!-- build 202610141523 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141521";</script>
+<script>window.BUILD="202610141523";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2927,6 +2927,34 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(pi){ const r2=document.createRange(); r2.selectNodeContents(pt); const d=tx-r2.getBoundingClientRect().left; if(Math.abs(d)>0.5) par.style.gap=Math.max(0,(parseFloat(getComputedStyle(par).columnGap)||0)+d)+"px"; } };
   new MutationObserver(()=>{ requestAnimationFrame(alignTop); setTimeout(alignTop,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignTop,500); }
 
+// ===== top scope row (e.g. "Alabama" above a district type) is an editable institution field: tap -> full state list; type + Enter picks; Escape returns =====
+{ const css=document.createElement("style"); css.textContent="body.ctxedit .sheet > :not(#ctxList){display:none!important} #ctxList{list-style:none;margin:0;padding:0} #ctxList li{display:flex;align-items:center;cursor:pointer}";
+  document.head.append(css);
+  const stName=li=>li.querySelector(".nm").textContent;
+  function list(){ return document.getElementById("ctxList"); }
+  function exit(reopen){ document.body.classList.remove("ctxedit"); const l=list(); if(l) l.remove(); window.__ctxEdit=0; if(reopen) setTimeout(()=>{ try{ openFold(); }catch(_){} },30); }
+  function pick(nm){ exit(false); window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=nm; state.onchange&&state.onchange(); setTimeout(()=>{ try{ crumbs(); openFold(); }catch(_){} },80); }
+  function start(){ if(!state.value||!document.body.classList.contains("foldfs")) return false; window.__ctxEdit=1; document.body.classList.add("ctxedit");
+    let l=list(); if(l) l.remove(); l=document.createElement("ol"); l.id="ctxList"; l.className="nl";
+    allStates().slice().sort().forEach(n=>{ const li=document.createElement("li"); li.className="lvrow flat oti"; li.innerHTML="<span class='oic st'><img alt='' src='img/stateflags/"+n.replace(/ /g,"_")+".png?v="+(window.BUILD||1)+"'></span><span class='nm'></span>"; li.querySelector(".nm").textContent=n; li.onclick=()=>pick(n); l.append(li); });
+    sheet.append(l); const inp=document.querySelector("#barGeo .fsq input"); if(inp){ inp.value=""; inp.dataset.lbl=""; try{ inp.focus(); }catch(_){} } return true; }
+  window.__ctxEditStart=start;
+  document.addEventListener("input",e=>{ if(!document.body.classList.contains("ctxedit")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim(); const l=list(); if(!l) return; const lis=[...l.children]; let vis=lis; if(q){ const W=lis.map(li=>({name:stName(li),li})); vis=window.fuzzyRank?fuzzyRank(W,q,100).map(o=>o.li):lis.filter(li=>stName(li).toLowerCase().includes(q.toLowerCase())); } lis.forEach(li=>{ li.style.display=vis.includes(li)?"":"none"; }); vis.forEach(li=>l.append(li)); lis.filter(li=>!vis.includes(li)).forEach(li=>l.append(li)); },true);
+  window.addEventListener("keydown",e=>{ if(!document.body.classList.contains("ctxedit")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; if(e.key==="Escape"){ e.preventDefault(); e.stopImmediatePropagation(); exit(true); return; }
+    if(e.key==="Enter"){ e.preventDefault(); e.stopImmediatePropagation(); const l=list(); const q=e.target.value.trim().toLowerCase(); const vis=l?[...l.children].filter(li=>li.style.display!=="none"):[]; const ex=vis.find(li=>stName(li).toLowerCase()===q)||vis[0]; if(ex) pick(stName(ex)); else exit(true); } },true);
+  setInterval(()=>{ if(document.body.classList.contains("ctxedit")&&!document.body.classList.contains("foldfs")) exit(false); },400);
+  const wire=()=>{ const sc=document.querySelector("#crumbs .crumb.tbScope"); if(sc&&!sc.__ctx){ sc.__ctx=1; sc.onclick=e=>{ e.stopPropagation(); if(state.value){ if(!start()) setTimeout(openFold,60); } else setTimeout(openFold,60); }; } };
+  setInterval(wire,300); new MutationObserver(wire).observe($("crumbs"),{childList:true}); }
+
+// ===== district rows in the institution menu: the state flag (x=27) replaces the black checkmark; text at x=52 =====
+{ const css=document.createElement("style"); css.textContent="body.foldfs .foldlist li.dli > input[type=checkbox], body.foldfs .foldlist li.dli > .n { display:none !important } body.foldfs .foldlist li.dli { display:flex; align-items:center } body.foldfs .foldlist li.dli.off .oic img { filter:grayscale(1) opacity(.4) } body.foldfs .foldlist li.dli .oic { margin-right:10px !important }";
+  document.head.append(css);
+  const deco=()=>{ if(!document.body.classList.contains("foldfs")) return; const st=state.value; const f=st?"img/stateflags/"+st.replace(/ /g,"_")+".png?v="+(window.BUILD||1):"img/flags/US.png?v="+(window.BUILD||1);
+    sheet.querySelectorAll(".foldlist li").forEach(li=>{ const cb=li.querySelector(":scope > input[type=checkbox]"); if(!cb) return;
+      if(!li.classList.contains("dli")){ li.classList.add("dli"); const sp=document.createElement("span"); sp.className="oic st"; sp.innerHTML="<img alt='' src='"+f+"'>"; const nm=li.querySelector(".nm"); if(nm) nm.before(sp); }
+      li.classList.toggle("off",!cb.checked); }); };
+  new MutationObserver(()=>requestAnimationFrame(deco)).observe(sheet,{childList:true,subtree:true}); sheet.addEventListener("change",()=>setTimeout(deco,0),true); setInterval(deco,500); }
+
 // ===== world level: "All" + non-US countries (country level only; no results data yet) =====
 {   let W=null; const C=()=>window.COUNTRIES||[];
   const label=()=>{ if(!W) return; const c=$("crumbs"); if(!c) return; const ci=c.querySelector(".cic"), cur=c.querySelector(".crumb.cur")||c.querySelector(".crumb:last-of-type");
@@ -3318,7 +3346,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141521"></script>
-<script src="data/dc.js?v=202610141521"></script>
+<script defer src="data/countries.js?v=202610141523"></script>
+<script src="data/dc.js?v=202610141523"></script>
 </body>
 </html>
