@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141479 -->
+<!-- build 202610141480 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141479";</script>
+<script>window.BUILD="202610141480";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2354,6 +2354,27 @@ function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(
   (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>{ const bv=BO[d.nm]; const fc=(m==="2024"&&bv&&bv[2])?heatC(bv[0],bv[1],bv[2]):fc0; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup); }); }); }
 const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
+// solid statewide shading when the whole lower 48 fits; state lines on top
+{ map.createPane("stPane"); map.getPane("stPane").style.zIndex=341; map.getPane("stPane").style.pointerEvents="none";
+  map.createPane("stLinePane"); map.getPane("stLinePane").style.zIndex=345; map.getPane("stLinePane").style.pointerEvents="none";
+  const stR=L.canvas({pane:"stPane",padding:0.3}), stLR=L.canvas({pane:"stLinePane",padding:0.3}); const stFillG=L.layerGroup().addTo(map), stLineG=L.layerGroup().addTo(map);
+  let ST=null; window.__usst=rows=>{ ST=rows.map(([st,enc])=>({st,polys:enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }))})); };
+  const sc=document.createElement("script"); sc.src="data/usstates.js?v="+window.BUILD; sc.onload=()=>{ drawLines(); upd(true); }; document.head.append(sc);
+  const LL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
+  function drawLines(){ stLineG.clearLayers(); if(!ST) return; ST.forEach(d=>L.polygon(LL(d),{renderer:stLR,pane:"stLinePane",fill:false,color:"#fff",weight:1,interactive:false}).addTo(stLineG)); }
+  function stTot(st,yr){ if(st==="Alaska"&&window.__ak) return __ak["state"+yr]; const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; const t=[0,0,0]; let n=0; const pre=st+"|"; for(const k in E){ if(k.startsWith(pre)){ const v=E[k]; t[0]+=v[0]; t[1]+=v[1]; t[2]+=v[2]; n++; } } return n?t:null; }
+  window.__stTot=stTot;
+  function solid(){ if(!ST||natTypeOn()||!plotting()) return false; const b=map.getBounds(); return b.getWest()<=-124.8&&b.getEast()>=-66.9&&b.getSouth()<=24.4&&b.getNorth()>=49.4; }
+  window.__stSolid=solid;
+  function fillOf(st){ const m=ym(), mg=v=>(v[1]-v[0])/v[2]; if(m==="delta"){ const a=stTot(st,"2024"), b=stTot(st,"2020"); return a&&b?deltaColor(mg(a)-mg(b)):"#d6d3d1"; } const v=stTot(st,m); return v?heatC(v[0],v[1],v[2]):"#d6d3d1"; }
+  let key="";
+  function upd(force){ const on=solid(); const np=map.getPane("natPane"); const k=on?(ym()+"|"+JSON.stringify(heatSel())+"|"+(window.ELECTION2020?1:0)+(window.ELECTION2024?1:0)+(window.__ak?1:0)):"off";
+    if(np) np.style.visibility=on?"hidden":""; if(!force&&k===key) return; key=k; stFillG.clearLayers(); if(!on) return; if(ym()!=="2024"&&!window.ELECTION2020&&typeof loadE2020==="function") loadE2020().then(()=>upd(true));
+    ST.forEach(d=>L.polygon(LL(d),{renderer:stR,pane:"stPane",fill:true,fillColor:fillOf(d.st),fillOpacity:0.72,stroke:false,interactive:false}).addTo(stFillG)); }
+  map.on("moveend zoomend",()=>upd()); map.on("move",()=>upd()); setInterval(()=>upd(),300);
+  function stAt(ll){ if(!ST) return null; return ST.find(d=>d.polys.some(p=>{ const r0=p[0]; let ins=false; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; })); }
+  const _aaS=areaAt; areaAt=function(ll){ if(solid()){ const d=stAt(ll); if(d) return {kind:"sum",st:d.st,d:[d.st,(NAT||[]).filter(x=>x.st===d.st).map(x=>x.polys).flat()]}; } return _aaS(ll); };
+}
 { const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); }
 { const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(0&&a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
@@ -2748,7 +2769,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141479"></script>
-<script src="data/dc.js?v=202610141479"></script>
+<script defer src="data/countries.js?v=202610141480"></script>
+<script src="data/dc.js?v=202610141480"></script>
 </body>
 </html>
