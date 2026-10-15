@@ -163,6 +163,15 @@ The Alaska state senate is now exact in the data file: each senate district is t
 | All other states | NYT 2024 precinct map data, merged with official county totals | **RESTRICTIVE: NYT C-UDA, non-commercial only.** Must be replaced before commercial use | VEST (CC-BY, credit required) / Census TIGER | To do, state by state |
 NYT attribution stays until no NYT-derived data remains.
 
+### Additional sources and licenses (checked Oct 15, 2026, build 1525)
+| Source | Used for | Terms found | Action |
+|---|---|---|---|
+| MIT Election Data + Science Lab (MEDSL) precinct returns, Harvard Dataverse (doi 10.7910/DVN/XDJYKC, nytpdu) | Candidate for replacing NYT 2024 precinct data | Federal precinct returns dataset is licensed CC0 1.0 (per the Dataverse record). Some older cycles sit behind a guestbook: answer it only with the owner's authorization | Candidate for NYT replacement (state by state, with a count check against official county totals) |
+| OpenElections (github.com/openelections, one repo per state) | South Dakota legislative districts and gap fills | Free to anyone per openelections.net/about. The license is per repo (Indiana's repo is MIT). **South Dakota repo license NOT confirmed**: the repo page shows none, so check its LICENSE file before commercial use | Open |
+| California Statewide Database (UC Berkeley Law) | California school/legislative district re-tabulation (if used) | Free public resource under the site's Terms and Conditions (statewidedatabase.org/terms; accept before use; cite Statewide Database, UC Berkeley) | Read and record the exact use restrictions before commercial use |
+| Natural Earth 1:50m admin-0 | Country silhouettes (`ctryshape.js`) | Public domain (stated in the file header) | None |
+| Texas and North Carolina official precinct/boundary files | Texas and North Carolina precinct layers | **Not verified in this pass**: licenses and URLs still need recording per file | To do |
+
 ## Gap pass 2 (build 202610141497)
 - Validation of the fill6 rules (vote-total QC, whole small districts, scaling down to 0.5×), checked against 2,280 districts that have exact results: median R-share error 0.05 pts, p90 0.41 pts, median total error 0.29%. 13 districts are off by more than 3 pts.
 - South Dakota: State House and Senate are now complete. They come from 2024 precinct results converted from the official county files by OpenElections (openelections-data-sd); the statewide totals match the FEC/SoS totals exactly (146,859 D / 272,081 R). Vote-center and absentee precincts are split across districts by each district's State House vote and marked est. Where both methods apply, they agree within 0.9 pts.
@@ -172,3 +181,10 @@ NYT attribution stays until no NYT-derived data remains.
   - Precinct coverage too low: TN HD21/23 (Monroe County 60%), MS SD12/22/23 and HD50/51/54/115.
   - Boundary sliver: OR SD29 and HD57.
   - SD schools: 28 left.
+
+## Gray legislative districts (counted from the data files at build 1525)
+Districts with no 2024 value (gray in 2024 and in delta): State Senate 20, State House 70, with the gaps listed by state in the data (`__usdist` rows with a null 2024 total). In the six states named in the queue (OR, VA, LA, AL, TN, MS) there are 21: AL (senate 006, house 004), LA (senate 002 and 019, house 057 and 058), MS (senate 012, 022, 023; house 050, 051, 054, 115), OR (senate 029, house 057), TN (house 021 and 023), VA (senate 025; house 014, 066, 089). Closing them needs official precinct returns for 2024 in each state. **Not started**: no fabricated or area-weighted fill is used for these.
+Districts with no 2020 value (gray in delta): Kentucky 1 senate and 10 house, Maine 16 house, Vermont 2 house, Montana 1 house, New Hampshire 1 house.
+
+## Texas precinct timing (measured Oct 15, 2026, build 1525, live, desktop Chromium)
+Selecting Harris County, TX: the 2024 precinct set (9,712 precincts) is ready about 2.6 s after Enter. Switching to the 2020-to-2024 change loads the 2020 set (8,572 precincts) in about 0.4 s and re-renders in about 0.1 s (two long tasks of about 80 ms). No stall found; real-network and phone timings are not measured.
