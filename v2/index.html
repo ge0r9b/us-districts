@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141488 -->
+<!-- build 202610141490 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141488";</script>
+<script>window.BUILD="202610141490";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -312,7 +312,7 @@
   input[type=checkbox] { accent-color: #000; }
   #crumbs .cic.flag { background: none !important; border-radius: 0 !important; width: auto !important; height: auto !important; min-width: 0 !important; padding: 0 !important; display: inline-flex; align-items: center; flex: 0 0 auto; }
   #crumbs .cic.flag img { height: 16px; width: auto; display: block; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); }
-  body.geofs #barBottom { display: none !important; }
+  body.geofs #barBottom { display: flex; }
   #geofs { bottom: 0 !important; }
   #geotop { position: sticky; top: var(--ghh, 45px); z-index: 2; background: #fff; border-bottom: 1px solid #e7e5e4; }
   #geotop .gtrow { display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 16px; }
@@ -497,6 +497,15 @@
 #vtitle::before,#vtitle.seal::before{left:7px!important}.cic.tyic{width:30px!important;min-width:30px!important;max-width:30px!important;flex:0 0 30px!important;display:inline-flex!important;justify-content:center!important;align-items:center!important;margin-left:4px!important;margin-right:2px!important;padding:0!important}.cic.tyic svg{margin:0!important}
 .gqic{position:absolute;left:calc(27px - 8px - 15px);top:50%;width:30px;height:22px;margin-top:-11px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}.gqic svg{display:block}#gq{padding-left:calc(52px - 8px)!important;box-sizing:border-box}
 body.notopic .cands,body.notopic #chartBox,body.notopic .cpanel,body.notopic .heatlegend,body.notopic #chartLg,body.notopic #chartW,body.notopic #ydelta,body.notopic .crow{display:none!important}
+body.geofs #barBottom{z-index:950!important;transform:translateY(calc(-1 * var(--kb,0px)))}
+#geofs{top:0!important;bottom:calc(var(--sab,0px) + var(--gap,8px) * 2 + var(--bar,48px) + var(--kb,0px))!important;display:none;flex-direction:column;overflow:hidden!important;padding-top:env(safe-area-inset-top)}
+body.geofs #geofs{display:flex!important}
+#geofs #geotop,#geofs .gh{display:none!important}
+#geofs ol{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column-reverse;overscroll-behavior:contain}
+#geofs li,#geofs .gsel{display:flex;align-items:center;min-height:48px;padding:0 12px!important;box-sizing:border-box;flex:0 0 auto}
+#geofs .gsel{border-top:1px solid #d6d3d1;font-weight:600;background:#fff;cursor:pointer}
+#geofs li .oic,#geofs .gsel .oic{flex:0 0 30px!important;width:30px!important;height:22px;margin:0 10px 0 0!important;display:inline-flex;align-items:center;justify-content:center}
+#geofs .oic svg{display:block}
 </style>
 </head>
 <body>
@@ -2388,7 +2397,9 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
     const d=R.filter(r=>r.length>2).map(r=>"M"+r.map(q=>P(q).join(" ")).join("L")+"Z").join("");
     let st=""; if(star){ let [sx,sy]=star; if(rings.__ak&&sx>0) sx-=360; const [px,py]=P([sx,sy]).map(Number); const pts=[]; for(let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, rr=i%2?1.3:3.1; pts.push((px+rr*Math.cos(a)).toFixed(1)+","+(py+rr*Math.sin(a)).toFixed(1)); } st='<polygon points="'+pts.join(" ")+'" fill="#fff" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/><polygon points="'+pts.join(" ")+'" fill="#facc15"/>'; }
     return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'"><path d="'+d+'" fill="#222" fill-rule="evenodd"/>'+st+'</svg>'; }
+  const SILC={}; window.__stSil=(st,star)=>{ if(!st) return ''; if(!star&&SILC[st]) return SILC[st]; const r=stRings(st); const v=r?svgOf(r,star):''; if(!star&&v) SILC[st]=v; return v; };
   function stRings(st){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; const r=d.polys.map(p=>p[0]); if(st==="Alaska") r.__ak=1; return r; }
+  window.__usSil=()=>{ const r=usRings(); return r?svgOf(r,null):''; };
   function usRings(){ const S=window.__STget&&window.__STget(); if(!S) return null; return S.filter(x=>x.st!=="Alaska"&&x.st!=="Hawaii").flatMap(x=>x.polys.map(p=>p[0])); }
   let key="";
   function upd(){ const B=document.body.classList; const txt=(gq.value||gq.placeholder||"").trim(); const sv=(typeof state!=="undefined"&&state.value)||"", cv=(typeof county!=="undefined"&&county.value)||"";
@@ -2490,11 +2501,16 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   function geoRender(){ const f=g().value.trim().toLowerCase();
     const tok=(window.__geoTok=(window.__geoTok||0)+1);
     (f?Promise.resolve(geoAll()):items()).catch(()=>[]).then(L0=>{ if(tok!==window.__geoTok) return; L0=L0||[]; let L1=L0; if(f){ L1=fuzzyRank(L0,f,50); }
-      const crumbs=gWorld?["All"]:["All","United States"].concat(path); if(!gfs.querySelector(".gh")){ gfs.innerHTML="<div class='gh'></div><ol></ol>"; gfs.querySelector(".gh").after(top); } const h=gfs.querySelector(".gh"); h.innerHTML=""; gfs.querySelector("ol").innerHTML="";
-      crumbs.forEach((c,i)=>{ const sp=document.createElement("span"); sp.textContent=(i?" › ":"")+t32(c); if(i===crumbs.length-1) sp.style.color="#111"; sp.onclick=()=>{ if(i===0){ g().value=""; try{ closeG(); }catch(_){} window.__allPick(); return; } else { gWorld=false; path=path.slice(0,i-1); } g().value=""; geoRender(); try{ g().focus({preventScroll:true}); }catch(_){} }; h.append(sp); });
+      if(!gfs.querySelector(".gsel")){ gfs.innerHTML="<ol></ol><div class='gsel'></div>"; gfs.append(top); const o=gfs.querySelector("ol"); const bl=()=>{ try{ g().blur(); }catch(_){} }; o.addEventListener("touchmove",bl,{passive:true}); o.addEventListener("wheel",()=>{},{passive:true}); }
+      gfs.querySelector("ol").innerHTML="";
+      { const h=gfs.querySelector(".gsel"); const SA=window.__SA||{}; const nm=gWorld?"All":path.length?path[path.length-1]:"United States"; const st=path[0]||""; let ic="";
+        if(gWorld) ic='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#222" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>';
+        else if(st){ let star=null; if(path.length>1){ const d=(NAT||[]).find(x=>x.st===st&&x.nm===path[1]); if(d) star=[(d.bb[0]+d.bb[2])/2,(d.bb[1]+d.bb[3])/2]; } ic=window.__stSil?window.__stSil(st,star):""; }
+        else ic=(document.querySelector(".gqic")&&!st)?(window.__usSil?window.__usSil():""):"";
+        h.innerHTML="<span class='oic'>"+ic+"</span><span class='nm'>"+esc(t32(nm))+"</span>"; h.onclick=()=>{ if(path.length){ path.pop(); g().value=""; geoRender(); } }; }
       const ol=gfs.querySelector("ol");
-      if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
-      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=(x.tag==="Country"?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
+      if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+(window.__stSil?window.__stSil(path[0],null):"")+"</span><span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
+      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=(x.tag==="Country"?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"<span class='oic'>"+(window.__stSil?window.__stSil(x.st||(path[0]||(x.tag===undefined&&!path.length?x.name:"")),null):"")+"</span>")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
         li.onclick=e=>{ if(x.tag==="Country"){ closeG(); if(x.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange(); } else window.__worldEnter(x.iso); return; } if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
@@ -2502,9 +2518,10 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   xb.type="button"; xb.addEventListener("pointerdown",e=>e.preventDefault()); xb.onclick=()=>{ if(g().value.trim()) window.__geoSubmit(); else closeG(); };
   // submit = same path as Enter (place / country / address resolution, collapse, navigate)
   window.__geoSubmit=()=>{ const ev=new KeyboardEvent("keydown",{key:"Enter",code:"Enter",keyCode:13,bubbles:true,cancelable:true}); g().dispatchEvent(ev); };
-  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; gWorld=false; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; top.firstChild.insertBefore(i,xb); i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
-  function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if((i.placeholder===""||i.placeholder==="ZIP, place, county or address")&&i.dataset.ph!=null) i.placeholder=(i.dataset.ph&&i.dataset.ph!=="ZIP, place, county or address")?i.dataset.ph:"United States"; home.prepend(i); }
-  window.__geoOpen=openG; window.__geoClose=closeG;
+  function openG(){ if(document.body.classList.contains("geofs")) return; document.body.classList.add("geofs"); path=[]; gWorld=false; const i=g(); i.dataset.ph=i.placeholder; i.placeholder="ZIP, place, county or address"; i.value=""; geoRender(); try{ i.focus({preventScroll:true}); }catch(e){} setTimeout(()=>{ if(document.activeElement!==i) i.focus({preventScroll:true}); },0); }
+  function closeG(){ document.body.classList.remove("geofs"); const i=g(); i.blur(); i.value=""; if((i.placeholder===""||i.placeholder==="ZIP, place, county or address")&&i.dataset.ph!=null) i.placeholder=(i.dataset.ph&&i.dataset.ph!=="ZIP, place, county or address")?i.dataset.ph:"United States"; }
+  window.__geoOpen=openG; window.__geoClose=closeG; $("bGlobe").addEventListener("click",e=>{ if(!document.body.classList.contains("geofs")) return; e.preventDefault(); e.stopImmediatePropagation(); if(g().value.trim()) window.__geoSubmit(); else closeG(); },true); $("bGlobe").addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")) e.preventDefault(); },true);
+  if(window.visualViewport){ const vv=window.visualViewport; const kb=()=>{ const k=Math.max(0,Math.round(window.innerHeight-(vv.height+vv.offsetTop))); document.documentElement.style.setProperty("--kb",k+"px"); }; vv.addEventListener("resize",kb); vv.addEventListener("scroll",kb); kb(); }
   // iOS Safari only raises the keyboard for focus() inside a user gesture: re-focus on the touchend/click that follows the opening tap
   const refocus=()=>{ if(document.body.classList.contains("geofs")&&document.activeElement!==g()&&Date.now()-(window.__gOpenAt||0)<1200){ try{ g().focus({preventScroll:true}); }catch(_){ g().focus(); } } };
   document.addEventListener("touchend",refocus,true); document.addEventListener("click",refocus,true);
@@ -2655,6 +2672,11 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     out.sort((a,b)=>b[0]-a[0]||b[1]-a[1]||b[2]-a[2]||b[3]-a[3]);
     return out.slice(0,cap||50).map(r=>r[4]); };
   matchList=function(list,q){ return fuzzyRank(list,q,50); };
+{ const SA={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",PR:"Puerto Rico",GU:"Guam",VI:"U.S. Virgin Islands",AS:"American Samoa",MP:"Northern Mariana Islands"};
+  window.__SA=SA; window.__stateQ=q=>{ q=String(q||"").trim(); if(!q) return null; const u=q.toUpperCase(); if(SA[u]) return SA[u]; const lo=q.toLowerCase(); const n=Object.values(SA).find(v=>v.toLowerCase()===lo); return n||null; };
+  const _fr=window.fuzzyRank; window.fuzzyRank=fuzzyRank=function(list,q,n){ const r=_fr.apply(this,arguments)||[]; const st=window.__stateQ(q); if(!st) return r; const isSt=x=>{ const nm=String(x&&x.name||"").trim().toLowerCase(); return nm===st.toLowerCase()&&(!x.tag||x.tag==="State"||x.li); };
+    let hit=(list||[]).filter(isSt); if(!hit.length) return r; hit=hit.filter((x,i)=>i===0||!x.tag); return hit.concat(r.filter(x=>!hit.includes(x))).slice(0,Math.max(n||50,hit.length)); };
+  matchList=function(list,q){ return fuzzyRank(list,q,50); }; }
   // richer universal index: nationwide towns/schools + US House districts, county weights
   { const _ui=usIndex; usIndex=function(){ const R=_ui(); const E=window.ELECTION2024||{};
       R.forEach(x=>{ if(x.tag==="County"){ const m=x.name.match(/^(.*), ([A-Z]{2})$/); const s=m&&AB2S[m[2].toLowerCase()]; const v=s&&E[s+"|"+m[1]]; x.st=s; x.w=v?(v.tot||v[2]||0):0; } else if(x.tag==="State") x.st=x.name; });
@@ -2802,7 +2824,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141488"></script>
-<script src="data/dc.js?v=202610141488"></script>
+<script defer src="data/countries.js?v=202610141490"></script>
+<script src="data/dc.js?v=202610141490"></script>
 </body>
 </html>
