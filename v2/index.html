@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141485 -->
+<!-- build 202610141486 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141485";</script>
+<script>window.BUILD="202610141486";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -495,6 +495,7 @@
 .xrow{gap:var(--gap)!important;right:calc(100% + var(--gap))!important;top:0!important;align-items:center}.xrow .lbtn,#bLyr{width:var(--btn)!important;height:var(--btn)!important;min-width:var(--btn)!important;max-width:var(--btn)!important;flex:0 0 var(--btn)!important;box-sizing:border-box!important;padding:0!important;margin:0!important;border-radius:50%!important;border-width:3px!important;transform:none!important}
 .xrow,.xrow .lbtn,#bLyr{transition:none!important;animation:none!important}
 #vtitle::before,#vtitle.seal::before{left:7px!important}.cic.tyic{width:30px!important;min-width:30px!important;max-width:30px!important;flex:0 0 30px!important;display:inline-flex!important;justify-content:center!important;align-items:center!important;margin-left:4px!important;margin-right:2px!important;padding:0!important}.cic.tyic svg{margin:0!important}
+.gqic{position:absolute;left:calc(27px - 8px - 15px);top:50%;width:30px;height:22px;margin-top:-11px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}.gqic svg{display:block}#gq{padding-left:calc(52px - 8px)!important;box-sizing:border-box}
 </style>
 </head>
 <body>
@@ -2359,7 +2360,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 { map.createPane("stPane"); map.getPane("stPane").style.zIndex=341; map.getPane("stPane").style.pointerEvents="none";
   map.createPane("stLinePane"); map.getPane("stLinePane").style.zIndex=345; map.getPane("stLinePane").style.pointerEvents="none";
   const stR=L.canvas({pane:"stPane",padding:0.3}), stLR=L.canvas({pane:"stLinePane",padding:0.3}); const stFillG=L.layerGroup().addTo(map), stLineG=L.layerGroup().addTo(map);
-  let ST=null; window.__usst=rows=>{ ST=rows.map(([st,enc])=>({st,polys:enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }))})); };
+  let ST=null; window.__STget=()=>ST; window.__usst=rows=>{ ST=rows.map(([st,enc])=>({st,polys:enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }))})); };
   const sc=document.createElement("script"); sc.src="data/usstates.js?v="+window.BUILD; sc.onload=()=>{ drawLines(); upd(true); }; document.head.append(sc);
   const LL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
   function drawLines(){ stLineG.clearLayers(); if(!ST) return; ST.forEach(d=>L.polygon(LL(d),{renderer:stLR,pane:"stLinePane",fill:false,color:"#fff",weight:1.2,opacity:1,interactive:false}).addTo(stLineG)); }
@@ -2376,6 +2377,35 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   function stAt(ll){ if(!ST) return null; return ST.find(d=>d.polys.some(p=>{ const r0=p[0]; let ins=false; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; })); }
   const _aaS=areaAt; areaAt=function(ll){ if(solid()){ const d=stAt(ll); if(d) return {kind:"sum",st:d.st,d:[d.st,(NAT||[]).filter(x=>x.st===d.st).map(x=>x.polys).flat()]}; } return _aaS(ll); };
 }
+// bottom geo field: silhouette icon of the country/state (+ star at the selected feature)
+{ const gq=document.getElementById("gq"); if(gq){ const host=gq.parentElement; if(getComputedStyle(host).position==="static") host.style.position="relative";
+  const ic=document.createElement("span"); ic.className="gqic"; host.insertBefore(ic,gq);
+  let CS=null; const ls=document.createElement("script"); ls.src="data/ctryshape.js?v="+window.BUILD; ls.onload=()=>{ CS=window.CTRYSHAPE; key=""; }; document.head.append(ls);
+  const W=30,H=22; const GLOBE='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#222" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>';
+  function svgOf(rings,star){ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; const R=rings.map(r=>r.map(([x,y])=>[x>0&&rings.__ak?x-360:x,y])); R.forEach(r=>r.forEach(([x,y])=>{ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }));
+    const k=Math.cos((y0+y1)/2*Math.PI/180), w=(x1-x0)*k||1, h=(y1-y0)||1, sc=Math.min((W-2)/w,(H-2)/h), ox=(W-w*sc)/2, oy=(H-h*sc)/2; const P=([x,y])=>[(ox+(x-x0)*k*sc).toFixed(1),(oy+(y1-y)*sc).toFixed(1)];
+    const d=R.filter(r=>r.length>2).map(r=>"M"+r.map(q=>P(q).join(" ")).join("L")+"Z").join("");
+    let st=""; if(star){ let [sx,sy]=star; if(rings.__ak&&sx>0) sx-=360; const [px,py]=P([sx,sy]).map(Number); const pts=[]; for(let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, rr=i%2?1.3:3.1; pts.push((px+rr*Math.cos(a)).toFixed(1)+","+(py+rr*Math.sin(a)).toFixed(1)); } st='<polygon points="'+pts.join(" ")+'" fill="#fff" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/><polygon points="'+pts.join(" ")+'" fill="#facc15"/>'; }
+    return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'"><path d="'+d+'" fill="#222" fill-rule="evenodd"/>'+st+'</svg>'; }
+  function stRings(st){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; const r=d.polys.map(p=>p[0]); if(st==="Alaska") r.__ak=1; return r; }
+  function usRings(){ const S=window.__STget&&window.__STget(); if(!S) return null; return S.filter(x=>x.st!=="Alaska"&&x.st!=="Hawaii").flatMap(x=>x.polys.map(p=>p[0])); }
+  let key="";
+  function upd(){ const B=document.body.classList; const txt=(gq.value||gq.placeholder||"").trim(); const sv=(typeof state!=="undefined"&&state.value)||"", cv=(typeof county!=="undefined"&&county.value)||"";
+    let mode, k;
+    if(B.contains("worldmode")&&!B.contains("wcountry")) { mode="all"; }
+    else if(B.contains("wcountry")) { mode="ctry"; }
+    else if(sv) { mode="st"; } else mode="us";
+    k=mode+"|"+sv+"|"+cv+"|"+txt+"|"+(CS?1:0)+"|"+(window.__STget&&window.__STget()?1:0)+(mode==="st"&&!cv&&txt.toLowerCase()!==sv.toLowerCase()?"|"+map.getCenter().lat.toFixed(2)+","+map.getCenter().lng.toFixed(2):"");
+    if(k===key) return; key=k; let h="";
+    if(mode==="all") h=GLOBE;
+    else if(mode==="ctry"){ const C=(window.COUNTRIES||[]).find(c=>txt.toLowerCase().startsWith(c[1].toLowerCase())); const r=C&&CS&&CS[C[0]]; h=r?svgOf(r,null):GLOBE; }
+    else if(mode==="us"){ const r=usRings(); h=r?svgOf(r,null):""; }
+    else { const r=stRings(sv); let star=null;
+      if(cv){ const d=(NAT||[]).find(x=>x.st===sv&&x.nm===cv); if(d) star=[(d.bb[0]+d.bb[2])/2,(d.bb[1]+d.bb[3])/2]; }
+      else if(txt&&txt.toLowerCase()!==sv.toLowerCase()){ const c=map.getCenter(); star=[c.lng,c.lat]; }
+      h=r?svgOf(r,star):""; }
+    ic.innerHTML=h; ic.style.display=h?"":"none"; }
+  setInterval(upd,400); map.on("moveend",upd); gq.addEventListener("input",upd); } }
 { const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); }
 { const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(0&&a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
@@ -2770,7 +2800,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141485"></script>
-<script src="data/dc.js?v=202610141485"></script>
+<script defer src="data/countries.js?v=202610141486"></script>
+<script src="data/dc.js?v=202610141486"></script>
 </body>
 </html>
