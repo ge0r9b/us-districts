@@ -27,6 +27,8 @@ async def run(b,tag,vp,mobile):
     await setchart(pg,"line"); s=await pg.evaluate(LST)
     ck(tag+" %s line: every row is a two-point line graph (no bars)"%mode,s['lnw']>=40 and s['bars']==0,{k:s[k] for k in ('n','bars','lnw')})
     ck(tag+" %s line: 4 endpoint thumbnails per row; graph ends left of the button column"%mode,all(len(x['th'])==4 for x in s['lines']) and s['over']==0,(s['over'],[len(x['th']) for x in s['lines'][:3]]))
+    g=await pg.evaluate("()=>{ const r=[...document.querySelectorAll('#listView .lvrow.la')].filter(r=>r.querySelector('.lnw')).slice(0,20); const bar=22; return {h:Math.min(...r.map(x=>x.getBoundingClientRect().height)),sw:Math.min(...r.map(x=>parseFloat(getComputedStyle(x.querySelector('polyline')).strokeWidth))),th:Math.min(...r.map(x=>x.querySelector('.lth').getBoundingClientRect().width))} }")
+    ck(tag+" %s line: rows at least as tall as bar rows (>=44px), lines 3-4px+, thumbnails >=20px"%mode,g['h']>=44 and g['sw']>=3 and g['th']>=20,g)
     ok1=ok2=ok3=True; bad=None
     for x in s['lines']:
       th=x['th']; xl=max(t[2] for t in th[:2]); xr=min(t[0] for t in th[2:]); sv=x['sv']
