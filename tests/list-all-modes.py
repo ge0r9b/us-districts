@@ -28,11 +28,11 @@ async def main():
       await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1500)
       await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(3500)
       await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(3000)
-      info=await pg.evaluate("()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; return {n:rows.length,dv:lv.querySelectorAll('.cbt.dv').length,names:rows.map(r=>r.querySelector('b').textContent)}}")
-      chk(t+' delta rows+bars',info['n']>=51 and info['dv']>=51*2,f"rows={info['n']} dvbars={info['dv']}")
+      info=await pg.evaluate("()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; return {n:rows.length,dv:lv.querySelectorAll('.sbw.dl').length,names:rows.map(r=>r.querySelector('b').textContent)}}")
+      chk(t+' delta rows+scaled delta bars (build 1528+ layout)',info['n']>=51 and info['dv']>=51,f"rows={info['n']} dvbars={info['dv']}")
       ordr=lambda: pg.evaluate("()=>window.__LA.order")
       o=await ordr(); vs=[x[1] for x in o if x[1] is not None]
-      chk(t+' delta sort desc by total-vote change',all(vs[i]>=vs[i+1] for i in range(len(vs)-1)) and len(vs)>=50,f'{o[:2]}..{o[-2:]}'); await sh('delta-desc')
+      chk(t+' delta sort desc by |net change| as displayed (t272)',all(vs[i]>=vs[i+1] for i in range(len(vs)-1)) and len(vs)>=50,f'{o[:2]}..{o[-2:]}'); await sh('delta-desc')
       await pg.evaluate("()=>{ if(window.__laInfo().sort!=='asc') document.getElementById('laSort').click(); }"); await pg.wait_for_timeout(1200)
       o2=await ordr(); vs2=[x[1] for x in o2 if x[1] is not None]
       chk(t+' delta sort asc',all(vs2[i]<=vs2[i+1] for i in range(len(vs2)-1)),f'{o2[:2]}'); await sh('delta-asc')

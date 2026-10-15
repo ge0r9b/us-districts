@@ -308,3 +308,73 @@ Idaho 2024: 0 of 204 town rows without data. Idaho 2020: counties whose towns ha
 
 ## County tier for school districts, state house and state senate (build 1530)
 National list -> states -> **counties** -> districts of the selected type. A district is listed under every county it touches (24x24 sample grid over the district box; counties with under 3% of the district's sample points are not listed). Values are the district's **whole-district** numbers, identical to the map pop-up; a district that lies in more than one county is marked ≈ in each county list. County rows show the county's own results. Nothing is pro-rated or invented.
+
+## 2020 precinct coverage after build 1531 (VEST 2020, CC BY 4.0)
+Source added: **Voting and Election Science Team (VEST), 2020 General Election precinct boundaries and results, Harvard Dataverse doi:10.7910/DVN/K7760H, licence CC BY 4.0**, converted by `tools/build_vest2020.py` (county = Census 2020 county containing the precinct's representative point; shapes simplified to about 40 m; total = all presidential candidates in the file; the VEST files for some states have no write-in column). Existing MEDSL/TIGER rows were kept (they match the 2024 shapes); VEST rows were added only for counties the existing file did not cover. A county was **only added when its Biden+Trump total is within 90–110% of the official county total** (`ELECTION2020`); counties outside that were dropped, not used.
+States processed this build: CA, NY, MI, VA, NJ, FL, NC, WI, CO, MA, IL, IN, OR, AL, TN, KY, MO, WA, LA, IA, MN, UT, OH, NH, GA, KS, HI, RI, ID, AZ, AR, ND, SD, WV, MS, NV, NE, WY, ME, VT.
+
+**Counties dropped by the QC (VEST total under 90% of official, so not used):** Alabama: Baldwin (0.75). Virginia: Accomack (0.70), Lancaster (0.84), Mathews (0.75), Middlesex (0.75), Northampton (0.62), York (0.89) and 3 more. North Carolina: New Hanover (0.90), Hyde (0.71), Dare (0.34). Rhode Island: Washington (0.88), Newport (0.81) (mail ballots are not in the precinct file). Maine: Washington (0.89). Hawaii: Kalawao (no official row).
+
+**Still missing (no real source joined yet):**
+- **Connecticut** (9 planning regions in the app): VEST CT is by town and the app's 2020 county table has no Connecticut rows; needs a town-to-planning-region join and official regional 2020 totals. 0 of 167 2024 precinct rows have a 2020 side.
+- **Alaska** (30 districts/boroughs): VEST AK is by state house district shape, the app uses boroughs; not joined.
+- The QC-dropped counties above, and small remainders in TX (14 counties), NM, OK, SC, MD, MT.
+- A 2024 precinct row shows its 2020 side only when a precinct with the same county, name and identical shape exists in 2020 (approved same-shape rule), so most rows in newly added counties still show `'20 n/a · '24 …` at precinct level; district, county and town rows aggregate the 2020 precincts and now have 2020 values.
+
+| State | 2024 precincts | 2020 precincts | 2024 counties | counties with 2020 precincts | 2024 vote share in counties still without 2020 precincts |
+|---|---|---|---|---|---|
+| Alabama | 1898 | 1826 | 67 | 66 | 6% |
+| Alaska | 402 | 0 | 30 | 0 | 100% |
+| Arizona | 1694 | 1478 | 15 | 15 | 0% |
+| Arkansas | 2636 | 2470 | 75 | 75 | 0% |
+| California | 18378 | 17500 | 58 | 58 | 0% |
+| Colorado | 3143 | 3200 | 64 | 64 | 0% |
+| Connecticut | 167 | 0 | 9 | 0 | 100% |
+| Delaware | 525 | 407 | 3 | 3 | 0% |
+| District of Columbia | 0 | 0 | 0 | 0 | NaN% |
+| Florida | 5546 | 5659 | 67 | 67 | 0% |
+| Georgia | 2634 | 2450 | 158 | 159 | 0% |
+| Hawaii | 233 | 249 | 4 | 4 | 0% |
+| Idaho | 957 | 919 | 44 | 44 | 0% |
+| Illinois | 8498 | 9664 | 102 | 102 | 0% |
+| Indiana | 5053 | 5108 | 92 | 92 | 0% |
+| Iowa | 1650 | 1541 | 99 | 99 | 0% |
+| Kansas | 3665 | 3177 | 105 | 105 | 0% |
+| Kentucky | 3200 | 1223 | 120 | 120 | 0% |
+| Louisiana | 3632 | 3695 | 64 | 64 | 0% |
+| Maine | 490 | 455 | 16 | 15 | 2% |
+| Maryland | 1951 | 1996 | 24 | 23 | 1% |
+| Massachusetts | 2333 | 2034 | 13 | 14 | 0% |
+| Michigan | 3973 | 4655 | 83 | 83 | 0% |
+| Minnesota | 4067 | 3883 | 87 | 87 | 0% |
+| Mississippi | 1703 | 1598 | 81 | 82 | 0% |
+| Missouri | 3014 | 3329 | 115 | 115 | 0% |
+| Montana | 720 | 656 | 56 | 55 | 0% |
+| Nebraska | 1323 | 1268 | 93 | 93 | 0% |
+| Nevada | 1236 | 1854 | 17 | 17 | 0% |
+| New Hampshire | 238 | 291 | 10 | 10 | 0% |
+| New Jersey | 6378 | 726 | 21 | 21 | 0% |
+| New Mexico | 2164 | 1877 | 33 | 32 | 2% |
+| New York | 12902 | 15111 | 62 | 62 | 0% |
+| North Carolina | 2643 | 2588 | 100 | 97 | 3% |
+| North Dakota | 379 | 422 | 53 | 53 | 0% |
+| Ohio | 8786 | 8605 | 88 | 88 | 0% |
+| Oklahoma | 1899 | 1893 | 77 | 72 | 1% |
+| Oregon | 1244 | 1317 | 36 | 36 | 0% |
+| Pennsylvania | 9100 | 9160 | 67 | 67 | 0% |
+| Rhode Island | 39 | 338 | 5 | 3 | 23% |
+| South Carolina | 2302 | 2164 | 46 | 43 | 1% |
+| South Dakota | 616 | 737 | 56 | 66 | 0% |
+| Tennessee | 1830 | 1852 | 95 | 95 | 0% |
+| Texas | 9712 | 8572 | 254 | 240 | 2% |
+| Utah | 2670 | 2179 | 29 | 29 | 0% |
+| Vermont | 237 | 241 | 14 | 14 | 0% |
+| Virginia | 2515 | 2329 | 133 | 124 | 5% |
+| Washington | 7912 | 7216 | 39 | 39 | 0% |
+| West Virginia | 1611 | 1618 | 55 | 55 | 0% |
+| Wisconsin | 3361 | 6695 | 72 | 72 | 0% |
+| Wyoming | 415 | 453 | 23 | 23 | 0% |
+
+Idaho: 2024 gaps (counties with no usable 2024 precinct file: Kootenai QC fail, Gem, Franklin, Madison, Clark and others listed above) are **not closed**; no 2024 precinct source with shapes was found. Idaho 2020 is now complete (VEST, 44 of 44 counties minus none dropped).
+
+**Gray legislative districts:** not changed in this build. The remaining ones (State Senate 19, State House 54 for 2024; State Senate 1 and State House 30 for 2020, see the inventory above) have no obtained official result file yet; none were estimated.

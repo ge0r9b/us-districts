@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (updated at build 202610151530, Oct 15, 2026)
+# US Districts: HANDOFF (updated at build 202610151531, Oct 15, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -50,7 +50,7 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 2. Safari jumping needs confirmation on a real iPhone; WebKit tests were not run.
 3. No dedicated regression test for the sort-under-search bug (t239).
 4. Old `tests/list-all-modes.py` delta assertions use class names from before the delta redesign (stale; `delta-scale.py` covers the new layout).
-5. **Data gaps (see COVERAGE.md):** Arizona 2020 precincts now complete (VEST, CC BY 4.0, 1,484 precincts, build 1530); most 2024 AZ precinct rows still show `'20 n/a` because 2020 and 2024 precinct shapes differ (same-shape rule). Other states with partial 2020 precinct files are listed in COVERAGE.md and were **not** completed in this session (each needs a real 2020 source such as VEST/MEDSL joined to shapes); 2020 Idaho precincts exist only for Ada, Blaine, Bonner, Butte, Caribou, Kootenai, so 2020/delta town rows elsewhere in Idaho stay "no data"; Idaho counties with no 2024 precinct file (e.g. Kootenai QC fail, Gem, Franklin, Madison, Clark); remaining gray legislative districts listed by state in COVERAGE.md (AL, AR, GA, LA, MS, OK, OR, VA, WY senate; AL, AR, GA, LA, MS, MO, OK, OR, TN, VT, VA house, KY/ME/MT/NH/VT 2020). They need official state results; none were estimated.
+5. **Data gaps (see COVERAGE.md; 2020 precinct coverage was largely completed in 1531 with VEST 2020, tool `tools/build_vest2020.py`; still missing: Connecticut, Alaska, QC-dropped counties, Idaho 2024 gaps, gray legislative districts; data folder grew by about 21 MB):** Arizona 2020 precincts now complete (VEST, CC BY 4.0, 1,484 precincts, build 1530); most 2024 AZ precinct rows still show `'20 n/a` because 2020 and 2024 precinct shapes differ (same-shape rule). Other states with partial 2020 precinct files are listed in COVERAGE.md and were **not** completed in this session (each needs a real 2020 source such as VEST/MEDSL joined to shapes); 2020 Idaho precincts exist only for Ada, Blaine, Bonner, Butte, Caribou, Kootenai, so 2020/delta town rows elsewhere in Idaho stay "no data"; Idaho counties with no 2024 precinct file (e.g. Kootenai QC fail, Gem, Franklin, Madison, Clark); remaining gray legislative districts listed by state in COVERAGE.md (AL, AR, GA, LA, MS, OK, OR, VA, WY senate; AL, AR, GA, LA, MS, MO, OK, OR, TN, VT, VA house, KY/ME/MT/NH/VT 2020). They need official state results; none were estimated.
 6. NYT-to-official source replacement and 2016 data are parked (NYT credit stays).
 
 ## 5. Future plans (approved direction, not started)
