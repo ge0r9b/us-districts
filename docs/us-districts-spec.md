@@ -281,6 +281,10 @@ As in section 6. Candidate thumbnails (photo squares the size of the flag icon) 
 | Pie | Single point only. No table. Thumbnails act as the legend. Updates live while the slider moves. The concentric 2020/2024 delta ring is **removed** | Yes (build 1528) |
 | Scatter plot | **Not wanted** (user rule): do not build | n/a |
 | Chart button in the full-screen map | No chart is displayed there, so the button shows the inactive style (not dark). It is dark only while a chart is displayed in list view | Yes (build 1528) |
+| Delta sort rule | In delta mode the default sort is by the **magnitude of the net change as displayed** (largest first): % mode = change of the margin in points (`R +13.6`), # mode = change of the vote-count margin. Party side is ignored; the sort button reverses it. Applies at every list level (states, counties, towns, districts, precincts) | Yes (build 1530) |
+| Single-year # bars | In # mode a bar's total length is proportional to the row's total votes on one common scale for the whole list (largest = longest, capped left of the floating buttons); the red/blue/gray split stays inside. % mode keeps full-width shares | Yes (build 1530) |
+| District-type lists | US House: one nationwide list (435), a state's list is flat. School districts, state house and state senate: states -> counties -> districts. A district spanning counties is listed under each county it touches with its whole-district numbers and the ≈ mark (identical to the map pop-up) | Yes (build 1530) |
+| Rows without a 2020 side | Show the real 2024 value with `'20 n/a`, never an empty "no data" row | Yes (build 1530) |
 | List-all rows | Per-row charts follow the same rule: bar and line for a range (line = two-point lines with thumbnails at the endpoints), bar and pie for a single point | Yes (build 1528) |
 | Bar | Bars plus a table (candidate, share or votes, total). In delta mode, change bars that diverge from zero | Yes |
 | Desktop | Full width (≥ 600 px wide layout) | Yes |
@@ -411,6 +415,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 
 | Date | Change |
 |---|---|
+| Oct 15, 2026 | Build 1530: delta sort by net magnitude; # bars to scale; county tier for school/state-house/state-senate lists; Arizona 2020 precincts (VEST, CC BY 4.0); `'20 n/a` rows; readable line rows (1529) |
 | Oct 15, 2026 | Chart rules (build 1528): pie only at a single point, line only for a range, button cycles valid types, auto-switch and restore, delta pie ring removed, no scatter, chart button inactive in the full-screen map, line delta labels under the line; list-all line rows |
 | Oct 15, 2026 | Gap section refreshed at build 1525: unisearch two-row rule, sovereign vs incorporated wording, ≈ popup verified, district list-all data, editable scope row, silhouettes in the geo filter. |
 | Oct 14, 2026 | First version, written from the code at build 1498 (live) and 1499 (working copy), `COVERAGE.md`, and the approved rules. |

@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (written at build 202610151528, Oct 15, 2026)
+# US Districts: HANDOFF (updated at build 202610151530, Oct 15, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -37,6 +37,7 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | District-type change re-renders list-all immediately (t223/t224) | 1527 | `type-switch.py` |
 | Safari list jumping (t234 and t203): scroll preserved, redundant rebuilds skipped, iOS toolbar resize swallowed, `overscroll-behavior: contain` | 1527 | `scroll-stable.py` (Chromium emulation; **not verified on real iPhone or WebKit**) |
 | Back button, keyboard, popstate, history stack (t225–t230) | 1527 | `filter-back.py` |
+| Delta sort by |net| as displayed (t272/t273), # bars to scale (t274/t275), Arizona 2020 precincts, `'20 n/a` rows | 1530 | `sort-scale.py` |
 | Sort tap-flip + bubble (t229); sort hidden under search/full-screen filter (t239) | 1527 / 1528 | `sort-flip.py` (no dedicated test for t239 yet) |
 | Idaho/all-state town rows area-weighted with ≈ instead of "no data" (t231/t232) | 1527 | `idaho-towns.py` |
 | No text under floating buttons (t235/t236); delta net/scale layout (t237/t238) | 1528 | `label-clamp.py`, `delta-scale.py` |
@@ -45,11 +46,11 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | Unisearch two-row rule, sovereign/incorporated wording, geo silhouettes, editable scope row, ≈ marks in list rows, 12 gray districts filled | 1519–1527 | `unisearch.py`, `ctx-edit.py`, `geo-icons.py`, `est-list.py` |
 
 **Still open / known gaps (be honest about these):**
-1. **National school districts / state house / state senate drill-down is only two levels:** national list = states; tapping a state opens that state's flat district list. The requested chain state → **counties** → districts is **not built** (the existing state-level list-all is flat; there is no county tier that filters districts by county). US House is nationwide, as agreed.
+1. ~~County tier~~ **Done in 1530:** school districts / state house / state senate list as states -> counties -> districts (`distInCounty`, `level()` `dt` flag); a district spanning counties appears under each county it touches, marked ≈. `tests/district-list-view.py` covers it.
 2. Safari jumping needs confirmation on a real iPhone; WebKit tests were not run.
 3. No dedicated regression test for the sort-under-search bug (t239).
 4. Old `tests/list-all-modes.py` delta assertions use class names from before the delta redesign (stale; `delta-scale.py` covers the new layout).
-5. **Data gaps (see COVERAGE.md):** 2020 Idaho precincts exist only for Ada, Blaine, Bonner, Butte, Caribou, Kootenai, so 2020/delta town rows elsewhere in Idaho stay "no data"; Idaho counties with no 2024 precinct file (e.g. Kootenai QC fail, Gem, Franklin, Madison, Clark); remaining gray legislative districts listed by state in COVERAGE.md (AL, AR, GA, LA, MS, OK, OR, VA, WY senate; AL, AR, GA, LA, MS, MO, OK, OR, TN, VT, VA house, KY/ME/MT/NH/VT 2020). They need official state results; none were estimated.
+5. **Data gaps (see COVERAGE.md):** Arizona 2020 precincts now complete (VEST, CC BY 4.0, 1,484 precincts, build 1530); most 2024 AZ precinct rows still show `'20 n/a` because 2020 and 2024 precinct shapes differ (same-shape rule). Other states with partial 2020 precinct files are listed in COVERAGE.md and were **not** completed in this session (each needs a real 2020 source such as VEST/MEDSL joined to shapes); 2020 Idaho precincts exist only for Ada, Blaine, Bonner, Butte, Caribou, Kootenai, so 2020/delta town rows elsewhere in Idaho stay "no data"; Idaho counties with no 2024 precinct file (e.g. Kootenai QC fail, Gem, Franklin, Madison, Clark); remaining gray legislative districts listed by state in COVERAGE.md (AL, AR, GA, LA, MS, OK, OR, VA, WY senate; AL, AR, GA, LA, MS, MO, OK, OR, TN, VT, VA house, KY/ME/MT/NH/VT 2020). They need official state results; none were estimated.
 6. NYT-to-official source replacement and 2016 data are parked (NYT credit stays).
 
 ## 5. Future plans (approved direction, not started)
@@ -57,7 +58,7 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 
 ## 6. Tests
 Playwright (Python). Serve locally: `cd us-districts && python3 -m http.server 8765`, then
-`python3 tests/<name>.py http://localhost:8765/v2/` (or the live URL). Each test prints `OK`/`FAIL` lines and `FAILS <n>`, and exits non-zero on failure. Most check desktop (1280x800) and phone (390x780, touch). Run one at a time (they are heavy; parallel runs clobber timing). Core set before any push: `scroll-stable, type-switch, filter-back, sort-flip, label-clamp, delta-scale, chart-line-single, chart-modes-list, district-list-view, district-consistency, idaho-towns, unisearch, list-all-renders, list-all-clean`. Others in `tests/` cover icons, abbreviations, persistence, menus, estimates. Screenshots are written to `/tmp` by some tests.
+`python3 tests/<name>.py http://localhost:8765/v2/` (or the live URL). Each test prints `OK`/`FAIL` lines and `FAILS <n>`, and exits non-zero on failure. Most check desktop (1280x800) and phone (390x780, touch). Run one at a time (they are heavy; parallel runs clobber timing). Core set before any push: `sort-scale, scroll-stable, type-switch, filter-back, sort-flip, label-clamp, delta-scale, chart-line-single, chart-modes-list, district-list-view, district-consistency, idaho-towns, unisearch, list-all-renders, list-all-clean`. Others in `tests/` cover icons, abbreviations, persistence, menus, estimates. Screenshots are written to `/tmp` by some tests.
 
 ## 7. Build, bump, deploy
 1. Edit `v2/index.html`; syntax check (extract the last big `<script>` and `new Function(...)`).

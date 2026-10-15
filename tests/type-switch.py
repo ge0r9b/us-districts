@@ -16,8 +16,8 @@ async def run(b,tag,vp):
   await pg.click("#bGeo"); await pg.wait_for_timeout(1200)
   await pg.evaluate("()=>document.querySelector('.lbtn[data-k=schools]').click()"); await pg.wait_for_timeout(4000)
   await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(5000)
-  s0=await pg.evaluate(ST); ck(tag+" start: AL school districts list-all",s0['la'] and s0['rows']>100 and s0['lt']=='schools',s0)
-  for k,exp in (("senate",35),("statehouse",105),("ushouse",7),("schools",141)):
+  s0=await pg.evaluate(ST); ck(tag+" start: AL school districts list-all (state -> counties tier)",s0['la'] and s0["rows"]>60 and s0['lt']=='schools',s0)
+  for k,exp in (("senate",67),("statehouse",67),("ushouse",7),("schools",67)):
     await pg.evaluate(FR)
     await pg.evaluate("k=>{const x=document.querySelector('.lbtn[data-k='+k+']'); x.click()}",k); await pg.wait_for_timeout(3500)
     fr=await pg.evaluate("()=>{cancelAnimationFrame(window.__frid); return window.__fr}")
@@ -30,7 +30,7 @@ async def run(b,tag,vp):
   await pg.keyboard.type("ohio"); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(6000)
   s=await pg.evaluate(ST); ck(tag+" menu: Alabama -> Ohio, menu stays on Ohio school districts",s['fs'] and s['st']=='Ohio' and s['crumb']=='Ohio',s)
   await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(4000)
-  s=await pg.evaluate(ST); ck(tag+" menu closed -> Ohio school-district list-all, rows rendered, list view kept, top/geo rows",s['la'] and not s['fs'] and s['st']=='Ohio' and s['rows']>100 and s['view']=='list' and s['top']=='President' and s['crumb']=='Ohio' and s['lt']=='schools',s)
+  s=await pg.evaluate(ST); ck(tag+" menu closed -> Ohio school-district list-all, rows rendered, list view kept, top/geo rows",s['la'] and not s['fs'] and s['st']=='Ohio' and s["rows"]>60 and s["view"]=='list' and s['top']=='President' and s['crumb']=='Ohio' and s['lt']=='schools',s)
   # menu path: pick a district-type via the menu header, back to statewide
   ck(tag+" no page errors",not errs,errs[:3]); await c.close()
 async def main():

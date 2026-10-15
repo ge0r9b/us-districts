@@ -300,3 +300,11 @@ Idaho 2024: 0 of 204 town rows without data. Idaho 2020: counties whose towns ha
 - Twin Falls County: Buhl city, Castleford city, Filer city, Hansen city, Hollister city, Kimberly city, Murtaugh city, Twin Falls city (no 2020 precinct file)
 - Valley County: Cascade city, Donnelly city, McCall city (no 2020 precinct file)
 - Washington County: Cambridge city, Midvale city, Weiser city (no 2020 precinct file)
+
+## Arizona 2020 precincts (added build 1530)
+- **Gap found (t273u):** `precincts2020/Arizona.js` held only 55 precincts (Gila 37, Graham 18; the MEDSL names did not join to the TIGER voting-district shapes elsewhere), so 2020/delta rows for Arizona towns, and every 2020 precinct-level value, were empty.
+- **Fix:** replaced with the **VEST 2020 General Election precinct boundaries and results for Arizona** (Harvard Dataverse doi:10.7910/DVN/K7760H, file `az_2020.zip`, licence **CC BY 4.0**, credit kept in the file). 1,484 precincts in all 15 counties; presidential totals Biden 1,672,143, Trump 1,661,686 (match the official statewide result). Total votes = Biden + Trump + Libertarian (the VEST file has no write-in column, so the total is slightly under the official total, by under 0.1%).
+- **Still n/a by design:** a 2024 precinct row shows its 2020 side only when a precinct with the same county, name and identical shape exists in 2020 (approved "same shape" rule). Arizona changed many precinct boundaries between 2020 and 2024, so most 2024 precinct rows show `'20 n/a · '24 R/D x%` (real 2024 value, 2020 marked n/a) instead of an empty "no data" row. District, county and town rows use the area/centroid aggregation and do have 2020 values.
+
+## County tier for school districts, state house and state senate (build 1530)
+National list -> states -> **counties** -> districts of the selected type. A district is listed under every county it touches (24x24 sample grid over the district box; counties with under 3% of the district's sample points are not listed). Values are the district's **whole-district** numbers, identical to the map pop-up; a district that lies in more than one county is marked ≈ in each county list. County rows show the county's own results. Nothing is pro-rated or invented.
