@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141487 -->
+<!-- build 202610141488 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141487";</script>
+<script>window.BUILD="202610141488";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -496,6 +496,7 @@
 .xrow,.xrow .lbtn,#bLyr{transition:none!important;animation:none!important}
 #vtitle::before,#vtitle.seal::before{left:7px!important}.cic.tyic{width:30px!important;min-width:30px!important;max-width:30px!important;flex:0 0 30px!important;display:inline-flex!important;justify-content:center!important;align-items:center!important;margin-left:4px!important;margin-right:2px!important;padding:0!important}.cic.tyic svg{margin:0!important}
 .gqic{position:absolute;left:calc(27px - 8px - 15px);top:50%;width:30px;height:22px;margin-top:-11px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}.gqic svg{display:block}#gq{padding-left:calc(52px - 8px)!important;box-sizing:border-box}
+body.notopic .cands,body.notopic #chartBox,body.notopic .cpanel,body.notopic .heatlegend,body.notopic #chartLg,body.notopic #chartW,body.notopic #ydelta,body.notopic .crow{display:none!important}
 </style>
 </head>
 <body>
@@ -886,7 +887,7 @@ function marginColor(m) {
 const __hsChk=()=>{ const k=[...(window.__candOn||[])].sort().join(); if(window.__candOn&&k!==window.__hsK){ const first=window.__hsK===undefined; window.__hsK=k; if(!first) try{ window.__syncYears&&window.__syncYears(); }catch(_){} } }; setInterval(__hsChk,150); ["click","pointerup"].forEach(t=>document.addEventListener(t,()=>{ setTimeout(__hsChk,0); setTimeout(__hsChk,40); },true));
 if(0) document.addEventListener("click",e=>{ if(e.target.closest&&e.target.closest("#cands .cand")) setTimeout(()=>{ const k=[...(window.__candOn||[])].sort().join(); if(k!==window.__hsK){ window.__hsK=k; try{ window.__syncYears&&window.__syncYears(); }catch(_){} } },0); },true);
 // heat shading follows the answer selection: both top-two answers = margin map; one = that answer's share (light -> its color); none = no fill
-function heatSel(){ try{ const CO=window.__candOn; if(!CO||!window.__candsOn) return {m:"both"}; const cs=window.__candsOn(); const on=cs.filter(c=>CO.has(c.id)); const ix=new Set(on.map(c=>c.ix)); if(ix.size>=2||!cs.length) return {m:"both"}; if(!ix.size) return {m:"none"}; const c=on[0]; return {m:"one",ix:c.ix,color:c.color||(c.ix?"#dc2626":"#2563eb")}; }catch(e){ return {m:"both"}; } }
+function heatSel(){ try{ if(window.__topicOn&&!window.__topicOn()) return {m:"none"}; const CO=window.__candOn; if(!CO||!window.__candsOn) return {m:"both"}; const cs=window.__candsOn(); const on=cs.filter(c=>CO.has(c.id)); const ix=new Set(on.map(c=>c.ix)); if(ix.size>=2||!cs.length) return {m:"both"}; if(!ix.size) return {m:"none"}; const c=on[0]; return {m:"one",ix:c.ix,color:c.color||(c.ix?"#dc2626":"#2563eb")}; }catch(e){ return {m:"both"}; } }
 function shareColor(f,col){ const h=col.replace("#",""); const C=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)); const L=[247,247,247]; const t=Math.max(0,Math.min(1,(f-0.2)/0.6)); const k=t<0.5?t*2:1, d=t<0.5?0:(t-0.5)*2; return "rgb("+L.map((l,j)=>Math.round(t<0.5?l+(C[j]-l)*k:C[j]*(1-0.45*d))).join(",")+")"; }
 function heatC(dem,rep,tot){ const S=heatSel(); if(S.m==="none") return "rgba(0,0,0,0)"; if(S.m==="one") return shareColor((S.ix?rep:dem)/tot,S.color); return marginColor((rep-dem)/tot); }
 function fmtN(n) { return n.toLocaleString("en-US"); }
@@ -1425,7 +1426,7 @@ function refreshLayers(){
   });
 }
 // ===== layout: title, nesting fold-up, bottom navigation =====
-function setTitle(){ $("vtitle").textContent=OFFICES.find(o=>o.id===office).label; }
+function setTitle(){ const off=window.__topicOn&&!window.__topicOn(); $("vtitle").textContent=off?"":OFFICES.find(o=>o.id===office).label; $("vtitle").classList.toggle("seal",!off); }
 setTitle();
 function crumbs2(){ setTitle(); const c=$("crumbs"); let s=c.querySelector(".lyrs"); if(!s){ s=document.createElement("span"); s.className="lyrs"; c.append(s); }
   const nl=LYR.filter(l=>active.has(l[1])).length; s.textContent="· "+nl+" layer"+(nl===1?"":"s")+(selected.size?" · "+selected.size+" selected":""); }
@@ -1978,7 +1979,7 @@ credit.remove();
 const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri · VEST · NYT"; return d; }; esriA.addTo(map);
 console.log("us-districts v2 build "+window.BUILD);
 // ===== every text field = title + blank search: tap title opens search; empty commit on org = United States =====
-$("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!document.body.classList.contains("srchfs")) openUS(); });
+$("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!document.body.classList.contains("srchfs")){ window.__usFromTitle=1; openUS(); window.__usFromTitle=0; } });
 document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("foldfs")||!window.__orgEnter) return; const i=e.target; if(i&&i.matches&&i.matches("input:not(.fsq input):not([type=checkbox]),textarea")&&!i.closest(".fsq")) return; if(window.__orgEnter(e)){ e.preventDefault(); e.stopImmediatePropagation(); } },true);
 $("barGeo").addEventListener("keydown",e=>{ const i=e.target; if(e.key!=="Enter"||!i.closest||!i.closest(".fsq")||i.value.trim()) return; e.preventDefault(); e.stopImmediatePropagation();
   window.__slideDir="r"; hier.dist=null; if(county) county.value=""; state.value=""; state.onchange&&state.onchange(); setTimeout(()=>{ closeSheet(); crumbs(); },80); },true);
@@ -2026,10 +2027,10 @@ function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("
   Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
-      if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[];
+      if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
       res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(it.name))+"</span><span class='tg'>"+esc(t32(it.tag))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
-    inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()) return closeUS(); if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
-  setTimeout(()=>inp.focus(),30); }
+    inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()){ if(inp.__had&&window.__setTopic) window.__setTopic(null); return closeUS(); } if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
+  if(window.__usFromTitle&&window.__topicOn&&window.__topicOn()){ inp.value=$("vtitle").textContent||""; inp.__had=1; setTimeout(()=>{ try{ inp.select(); }catch(e){} },40); } setTimeout(()=>inp.focus(),30); }
 $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():openUS();
 // no instructional text: list header/empty note, map note
 const _rl9=renderList; renderList=function(){ _rl9(); lv.querySelectorAll(".lvhead").forEach(x=>x.remove()); lv.querySelectorAll(".lvgrid > p").forEach(x=>x.remove()); };
@@ -2140,21 +2141,21 @@ const _dh10=drawHeat; drawHeat=function(){ _dh10(); drawCtyFill(); };
 const _aa10=areaAt; areaAt=function(ll){ if(heatOn&&state.value&&precMissing()&&!hier.dist){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&pointInItem(d,ll.lng,ll.lat)); if(c) return {kind:"county",d:c}; } return _aa10(ll); };
 // ===== plotting on/off: topic set + at least one year =====
 let topicOn=true;
-function plotting(){ return topicOn&&years.size>0; }
-function syncPlot(){ document.body.classList.toggle("noplot",!plotting()); if(!plotting()){ cur=null; if(bubPop) map.closePopup(bubPop); } }
+function plotting(){ return years.size>0; } window.__topicOn=()=>topicOn; window.__setTopic=lab=>{ topicOn=!!lab; if(lab){ const o=OFFICES.find(o=>o.label===lab); if(o) office=o.id; } $("vtitle").textContent=lab||""; $("vtitle").classList.toggle("seal",!!lab); syncPlot(); try{ drawHeat(); }catch(e){} try{ drawNat(); }catch(e){} try{ renderCands(); }catch(e){} if(!lab){ cur=null; try{ map.closePopup(); }catch(e){} try{ refreshBubble(); }catch(e){} } };
+function syncPlot(){ document.body.classList.toggle("noplot",!plotting()); document.body.classList.toggle("notopic",!topicOn); if(!plotting()){ cur=null; if(bubPop) map.closePopup(bubPop); } }
 const _sy12=syncYears; syncYears=function(){ syncPlot(); if(years.size===0){ $("c2020").classList.remove("on"); $("c2024").classList.remove("on"); $("ydelta").textContent=""; return; } _sy12(); drawNat(); };
 // tap the title to edit the topic; empty clears, "Pres…" restores
 $("vtitle").onclick=()=>{ if($("topin")) return; const inp=document.createElement("input"); inp.id="topin"; inp.className="topin"; inp.type="text"; inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.setAttribute("enterkeyhint","done"); inp.setAttribute("aria-label","Topic");
-  inp.value=topicOn?"President":""; $("vtitle").style.display="none"; $("vtitle").after(inp); inp.focus(); inp.setSelectionRange(inp.value.length,inp.value.length);
+  inp.value=topicOn?($("vtitle").textContent||""):""; $("vtitle").style.display="none"; $("vtitle").after(inp); inp.focus(); inp.setSelectionRange(inp.value.length,inp.value.length);
   let sug=null; const hideSug=()=>{ if(sug){ sug.remove(); sug=null; } };
-  const setTopic=on=>{ topicOn=on; $("vtitle").textContent=on?"President":""; syncPlot(); if(on){ drawHeat(); drawNat(); renderCands(); } };
+  const TOP=()=>OFFICES.map(o=>o.label); const curLab=()=>{ const o=OFFICES.find(o=>o.id===office); return o?o.label:""; };
+  const setTopic=lab=>{ topicOn=!!lab; if(lab){ const o=OFFICES.find(o=>o.label===lab); if(o) office=o.id; } $("vtitle").textContent=lab||""; $("vtitle").classList.toggle("seal",!!lab); syncPlot(); try{ drawHeat(); }catch(e){} try{ drawNat(); }catch(e){} try{ renderCands(); }catch(e){} if(!lab){ cur=null; try{ map.closePopup(); }catch(e){} } };
   const done=()=>{ hideSug(); inp.remove(); $("vtitle").style.display=""; };
-  inp.addEventListener("input",()=>{ const v=inp.value.trim().toLowerCase(); hideSug();
-    if(!v){ setTopic(false); return; }
-    if(v==="president"){ setTopic(true); return; }
-    if("president".startsWith(v)){ sug=document.createElement("button"); sug.type="button"; sug.className="topsug"; sug.textContent="President"; const r=$("barSearch").getBoundingClientRect(); sug.style.left=(r.left+12)+"px"; sug.style.top=(r.bottom+4)+"px";
-      sug.onpointerdown=e=>{ e.preventDefault(); inp.value="President"; setTopic(true); inp.blur(); }; document.body.append(sug); } });
-  inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const v=inp.value.trim().toLowerCase(); if(v&&"president".startsWith(v)) setTopic(true); inp.blur(); } });
+  inp.addEventListener("input",()=>{ const v=inp.value.trim().toLowerCase(); hideSug(); if(!v) return;
+    const ex=TOP().find(t=>t.toLowerCase()===v); if(ex){ setTopic(ex); return; }
+    const M=TOP().filter(t=>t.toLowerCase().startsWith(v)); if(M.length){ const r=$("barSearch").getBoundingClientRect(); sug=document.createElement("div"); sug.className="topsugs"; sug.style.cssText="position:fixed;left:"+(r.left+12)+"px;top:"+(r.bottom+4)+"px;z-index:3000;display:flex;flex-direction:column;gap:4px";
+      M.forEach(t=>{ const b=document.createElement("button"); b.type="button"; b.className="topsug"; b.style.position="static"; b.textContent=t; b.onpointerdown=e=>{ e.preventDefault(); inp.value=t; setTopic(t); inp.blur(); }; sug.append(b); }); document.body.append(sug); } });
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); const v=inp.value.trim().toLowerCase(); if(!v) setTopic(null); else { const M=TOP().filter(t=>t.toLowerCase().startsWith(v)); if(M.length) setTopic(M[0]); } inp.blur(); } });
   inp.addEventListener("blur",()=>setTimeout(done,120)); };
 // ===== nationwide results: light county layer everywhere, precinct detail lazy-loaded for states in view =====
 map.createPane("natPane"); map.getPane("natPane").style.zIndex=340; map.getPane("natPane").style.pointerEvents="none";
@@ -2412,6 +2413,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
 // bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
 { const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const ak=d&&(d[0]==="Alaska"||d.__st==="Alaska")&&!["ushouse","senate","statehouse","sum"].includes(a.kind==="natcd"?(a.tk||"ushouse"):a.kind)&&ym()!=="2020"; if((ak||(d&&d[5]==="est"))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
+{ const _clT=candLines; candLines=function(a){ const l=_clT(a); return (window.__topicOn&&!window.__topicOn())?l.slice(0,1):l; }; }
 // auto precincts: when one district (active type, or county when none) spans >=half the view width, fill precincts in view; district outline on top, no fill
 const _nd17=natDetail;
 function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-b.getWest(); const k=ltype; let d=null;
@@ -2800,7 +2802,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141487"></script>
-<script src="data/dc.js?v=202610141487"></script>
+<script defer src="data/countries.js?v=202610141488"></script>
+<script src="data/dc.js?v=202610141488"></script>
 </body>
 </html>
