@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141523 -->
+<!-- build 202610141524 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141523";</script>
+<script>window.BUILD="202610141524";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2592,6 +2592,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
     return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'"><path d="'+d+'" fill="#222" fill-rule="evenodd"/>'+st+'</svg>'; }
   const SILC={}; window.__stSil=(st,star)=>{ if(!st) return ''; if(!star&&SILC[st]) return SILC[st]; const r=stRings(st); const v=r?svgOf(r,star):''; if(!star&&v) SILC[st]=v; return v; };
   function stRings(st){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; const r=d.polys.map(p=>p[0]); if(st==="Alaska") r.__ak=1; return r; }
+  window.__provSil=nm=>{ const p=(window.CANADA||[]).find(q=>q[0]===nm); return p&&p[6]?svgOf(p[6],null):''; };
   window.__ctrySil=iso=>{ const c=(window.CTRYSHAPE||{})[iso]; return c?svgOf(c,null):''; };
   window.__usSil=()=>{ const r=usRings(); return r?svgOf(r,null):''; };
   function usRings(){ const S=window.__STget&&window.__STget(); if(!S) return null; return S.filter(x=>x.st!=="Alaska"&&x.st!=="Hawaii").flatMap(x=>x.polys.map(p=>p[0])); }
@@ -2707,7 +2708,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         h.innerHTML="<span class='oic'>"+ic+"</span><span class='nm'>"+esc(t32(nm))+"</span>"; h.onclick=()=>{ if(path.length){ path.pop(); g().value=""; geoRender(); } }; }
       const ol=gfs.querySelector("ol");
       if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+(window.__stSil?window.__stSil(path[0],null):"")+"</span><span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
-      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=((x.tag==="Country"||x.tag==="Province")?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"<span class='oic'>"+(window.__stSil?window.__stSil(x.st||(path[0]||(x.tag===undefined&&!path.length?x.name:"")),null):"")+"</span>")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
+      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=((x.tag==="Country"||x.tag==="Province")?"<span class='oic'>"+(x.tag==="Province"?(window.__provSil?window.__provSil(x.pn):""):x.iso==="us"?(window.__usSil?window.__usSil():""):(window.__ctrySil?window.__ctrySil(x.iso):""))+"</span>":"<span class='oic'>"+(window.__stSil?window.__stSil(x.st||(path[0]||(x.tag===undefined&&!path.length?x.name:"")),null):"")+"</span>")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
         li.onclick=e=>{ if(x.tag==="Province"){ closeG(); window.__worldEnter("ca"); setTimeout(()=>{ try{ window.__W_prov(x.pn); }catch(_){} },350); return; } if(x.tag==="Country"){ closeG(); if(x.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange(); } else window.__worldEnter(x.iso); return; } if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
@@ -3346,7 +3347,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141523"></script>
-<script src="data/dc.js?v=202610141523"></script>
+<script defer src="data/countries.js?v=202610141524"></script>
+<script src="data/dc.js?v=202610141524"></script>
 </body>
 </html>
