@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141519 -->
+<!-- build 202610141521 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141519";</script>
+<script>window.BUILD="202610141521";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2150,7 +2150,8 @@ function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
-      { /* a Place row always sits right after its institution twin */ const key=r=>r.name+"|"+(r.st||"")+"|"+(r.iso||""); const P=new Map(), inst=new Set(); res.forEach(r=>{ if(r.geo){ const k=key(r); (P.get(k)||P.set(k,[]).get(k)).push(r); } else inst.add(key(r)); }); const out=[]; res.forEach(r=>{ if(r.geo){ if(!inst.has(key(r))) out.push(r); } else { out.push(r); (P.get(key(r))||[]).forEach(x=>out.push(x)); } }); res=out; }
+      { /* a Place row always sits right after its institution twin */ const key=r=>r.name+"|"+(r.st||"")+"|"+(r.iso||""); if(!IDX.__tw){ IDX.__tw=new Map(); IDX.forEach(r=>{ if(r.geo){ const k=key(r); (IDX.__tw.get(k)||IDX.__tw.set(k,[]).get(k)).push(r); } }); } const have=new Set(res); const add=[]; res.forEach(r=>{ if(!r.geo) (IDX.__tw.get(key(r))||[]).forEach(x=>{ if(!have.has(x)){ have.add(x); add.push(x); } }); }); res=res.concat(add); }
+      { const key=r=>r.name+"|"+(r.st||"")+"|"+(r.iso||""); const P=new Map(), inst=new Set(); res.forEach(r=>{ if(r.geo){ const k=key(r); (P.get(k)||P.set(k,[]).get(k)).push(r); } else inst.add(key(r)); }); const out=[]; res.forEach(r=>{ if(r.geo){ if(!inst.has(key(r))) out.push(r); } else { out.push(r); (P.get(key(r))||[]).forEach(x=>out.push(x)); } }); res=out; }
       res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+usIcon(it)+"</span><span class='nm'>"+esc(t32(it.name))+"</span><span class='tg "+usKind(it).c+"'>"+usKind(it).i+esc(t32(usKind(it).l))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
     inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()){ if(inp.__had&&window.__setTopic) window.__setTopic(null); return closeUS(); } if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
   if(window.__usFromTitle&&window.__topicOn&&window.__topicOn()){ inp.value=$("vtitle").textContent||""; inp.__had=1; setTimeout(()=>{ try{ inp.select(); }catch(e){} },40); } setTimeout(()=>inp.focus(),30); }
@@ -2875,7 +2876,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   matchList=function(list,q){ return fuzzyRank(list,q,50); }; }
   // richer universal index: nationwide towns/schools + US House districts, county weights
   { const _ui=usIndex; usIndex=function(){ const R=_ui(); const E=window.ELECTION2024||{};
-      R.forEach(x=>{ if(x.tag==="County"){ const m=x.name.match(/^(.*), ([A-Z]{2})$/); const s=m&&AB2S[m[2].toLowerCase()]; const v=s&&E[s+"|"+m[1]]; x.st=s; x.w=v?(v.tot||v[2]||0):0; } else if(x.tag==="State") x.st=x.name; });
+      R.forEach(x=>{ if(x.tag==="County"){ const m=x.name.match(/^(.*), ([A-Z]{2})$/); const s=m&&AB2S[m[2].toLowerCase()]; const v=s&&E[s+"|"+m[1]]; x.st=s; x.w=v?(v.tot||v[2]||0):0; } else if(x.tag==="State") x.st=x.name; else if(x.tag==="Place"&&x.cty&&x.st&&!x.twn){ const v=E[x.st+"|"+x.cty]; x.w=v?(v.tot||v[2]||0):0; } });
       const seenT=new Set(), seenS=new Set();
       ((PACK.lists||{}).localities||[]).forEach(r=>{ const [s,c,t,sd]=r; const k=s+"|"+c+"|"+t; if(t&&!seenT.has(k)){ seenT.add(k); const nm=t+", "+c+", "+(ABBR[s]||s), pk=()=>navTo(t+", "+c+", "+s); const m=/\b(township|borough|city|village|town)\b/i.exec(t); const tl=m?m[1][0].toUpperCase()+m[1].slice(1).toLowerCase():"Town"; R.push({name:nm,tag:"Town",tl,st:s,cty:c,pick:pk}); R.push({name:nm,tag:"Place",geo:1,st:s,cty:c,pick:pk}); }
         if(sd&&!seenS.has(s+"|"+sd)){ seenS.add(s+"|"+sd); R.push({name:sd+", "+(ABBR[s]||s),tag:"School",st:s,pick:()=>navTo(sd+", "+s)}); } });
@@ -3317,7 +3318,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141519"></script>
-<script src="data/dc.js?v=202610141519"></script>
+<script defer src="data/countries.js?v=202610141521"></script>
+<script src="data/dc.js?v=202610141521"></script>
 </body>
 </html>
