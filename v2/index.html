@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141475 -->
+<!-- build 202610141477 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141475";</script>
+<script>window.BUILD="202610141477";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -491,6 +491,7 @@
   .rail { top: 122px; } .cands { top: 122px; } #chartBox { top: 173px; }
   .crow { position: fixed; z-index: 1013; top: 186px; right: 8px; }
   #usq::placeholder { color: #a8a29e; opacity: 1; } #usq::-webkit-input-placeholder { color: #a8a29e; opacity: 1; }
+#bLyr.typed{background:#000!important;border-color:#fff}#bLyr.typed svg{stroke:#fff!important}#bLyr.typed svg text{fill:#fff}#bLyr:not(.typed) svg{fill:none!important}
 </style>
 </head>
 <body>
@@ -887,7 +888,7 @@ function heatC(dem,rep,tot){ const S=heatSel(); if(S.m==="none") return "rgba(0,
 function fmtN(n) { return n.toLocaleString("en-US"); }
 let E2020L=null;
 function loadE2020(){ if(window.ELECTION2020) return Promise.resolve(); return E2020L||(E2020L=new Promise(r=>{const s=document.createElement("script");s.src="../data/election2020.js?v="+window.BUILD;s.onload=r;s.onerror=r;document.head.append(s);})); }
-function deltaColor(d){ if(typeof heatSel==="function"&&heatSel().m==="none") return "rgba(0,0,0,0)"; const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
+function deltaColor(d){ if(typeof heatSel==="function"&&heatSel().m==="none") return "rgba(0,0,0,0)"; if(typeof heatSel==="function"){ const S=heatSel(); if(S.m==="one"){ const f=(S.ix?d:-d); return f<=0?"rgb(247,247,247)":shareColor(0.5+Math.min(1,f/0.2)*0.3,S.color); } } const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
   if(d<=st[0][0]) return "rgb("+st[0][1]+")"; for(let i=1;i<st.length;i++){ if(d<=st[i][0]){ const [a,ca]=st[i-1],[b,cb]=st[i],t=(d-a)/(b-a); return "rgb("+ca.map((c,j)=>Math.round(c+(cb[j]-c)*t)).join(",")+")"; } } return "rgb("+st[st.length-1][1]+")"; }
 function ym(){ return window.__ymode ? window.__ymode() : "2024"; }
 function yrHtml(r,yr){ const [dem,rep,tot]=r,pd=dem/tot*100,pr=rep/tot*100,m=pr-pd,dn=yr==="2020"?"Biden":"Harris";
@@ -1493,6 +1494,7 @@ const ICO={
  president:'<path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6L12 16.3 6.6 19.3l1.3-6L3.3 9.2l6.1-.6z"/>'
 };
 function icon(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(ICO[k]||"")+'</svg>'; }
+setInterval(()=>{ const b=document.getElementById("bLyr"); if(!b) return; const ob=document.querySelector("#lyrRow .lbtn.on"); const k0=ob&&ob.dataset.k; const t=["ushouse","senate","statehouse","schools"].includes(k0)?k0:""; if(b.__k===t) return; b.__k=t; b.innerHTML=icon(t||"ushouse"); b.classList.toggle("typed",!!t); },250);
 const bub=document.createElement("div"); bub.className="bub"; bub.hidden=true; document.body.append(bub); let bubT=null;
 function showBub(b,ms){ bub.textContent=t32(b.getAttribute("aria-label")); bub.hidden=false; bub.classList.remove("fade");
   const r=b.getBoundingClientRect(), w=bub.offsetWidth; let x=r.left+r.width/2-w/2; x=Math.max(6,Math.min(innerWidth-w-6,x));
@@ -1996,7 +1998,7 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.clas
 { const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
-  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
+  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&dl)?"<span>no gain</span><span>gain</span><span>+20 margin</span>":(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
   if(!lg.__mag){ lg.__mag=1; L.DomEvent.disableClickPropagation(lg); lg.addEventListener("click",()=>lg.classList.toggle("mag")); } }
 const _ul2=window.updateLegend; window.updateLegend=function(){ _ul2(); fixLegend(); }; updateLegend=window.updateLegend;
 const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
@@ -2341,7 +2343,7 @@ function akSen(name){ const L0=String(name).replace(/^0+/,""); const i=L0.charCo
 function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
 const _df15=distFill; distFill=function(k,d){ if(d[0]!=="Alaska"||!window.__ak) return _df15(k,d); const m=ym(), a=akVals(k,d,"2024"), b=akVals(k,d,"2020"), mg=v=>(v[1]-v[0])/v[2];
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
-const _v15=vals; vals=function(a,yr){ if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(a.kind)){ const v=akVals(a.kind,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } if(a.kind==="county"&&a.d&&a.d[0]==="Alaska"&&yr==="2024"&&window.__ak&&__ak.boro2024){ const v=__ak.boro2024[a.d[1]]; if(v&&v[2]) return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
+const _v15=vals; vals=function(a,yr){ const ak_k=a&&a.kind==="natcd"?(a.tk||"ushouse"):a&&a.kind; if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(ak_k)){ const v=akVals(ak_k,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } if(a.kind==="county"&&a.d&&a.d[0]==="Alaska"&&yr==="2024"&&window.__ak&&__ak.boro2024){ const v=__ak.boro2024[a.d[1]]; if(v&&v[2]) return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
 const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r) return {dem:r.dem+v[0],rep:r.rep+v[1],tot:r.tot+v[2]}; return r; } return _sv15(a,yr); };
 // national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
 const akGroup=L.layerGroup().addTo(map);
@@ -2351,11 +2353,11 @@ function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(
 const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
 { const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); }
-{ const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
+{ const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(0&&a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
 // bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
-{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } return [t32(nm)].concat(l); }; }
+{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const ak=d&&d[0]==="Alaska"&&!["ushouse","senate","statehouse","sum"].includes(a.kind==="natcd"?(a.tk||"ushouse"):a.kind)&&ym()!=="2020"; if((ak||(d&&d[5]==="est"))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
 // auto precincts: when one district (active type, or county when none) spans >=half the view width, fill precincts in view; district outline on top, no fill
 const _nd17=natDetail;
 function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-b.getWest(); const k=ltype; let d=null;
@@ -2744,7 +2746,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141475"></script>
-<script src="data/dc.js?v=202610141475"></script>
+<script defer src="data/countries.js?v=202610141477"></script>
+<script src="data/dc.js?v=202610141477"></script>
 </body>
 </html>
