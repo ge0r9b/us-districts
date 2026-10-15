@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141500 -->
+<!-- build 202610141501 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141500";</script>
+<script>window.BUILD="202610141501";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -212,7 +212,11 @@
   .usv > * { max-width: none; margin-left: 0; margin-right: 0; }
   .usv .nl { list-style: none; padding: 0; }
   .usv .nl li { display: flex; justify-content: space-between; gap: 12px; min-height: 44px; align-items: center; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
-  .usv .tg { font-size: .75em; color: #78716c; }
+  .usv .tg { font-size: .75em; color: #78716c; margin-left: 12px; white-space: nowrap; }
+  .usv { padding-left: 0 !important; } .usv .nl li { padding: 0 12px; gap: 0; min-height: 48px; justify-content: flex-start; }
+  .usv .nl li .oic { flex: 0 0 30px; width: 30px; height: 22px; margin: 0 10px 0 0; display: inline-flex; align-items: center; justify-content: center; }
+  .usv .nl li .oic img { max-width: 30px; max-height: 22px; width: auto; height: auto; object-fit: contain; } .usv .nl li .oic svg { width: 22px; height: 22px; }
+  .usv .nl li .nm { flex: 1 1 auto; min-width: 0; font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .usv .nl li .tg { margin-left: auto; padding-left: 12px; }
   .rbtn { background: #fff !important; border-color: #fff !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; }
   .rbtn svg { stroke: #000 !important; }
   .rbtn.on { background: #000 !important; }
@@ -2039,25 +2043,34 @@ const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
 setInterval(fixLegend,800);
 // ===== full-screen universal search (separate from bottom geography field) =====
 function usIndex(){ const R=[]; const st=state.value;
-  ["2024","2020"].forEach(yr=>CANDS[yr].forEach(c=>R.push({name:c.full+" "+yr,tag:"Candidate",pick:()=>{ candOn.clear(); candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); }})));
-  LYR.filter(l=>lrow.querySelector(".lbtn[data-k="+l[1]+"]")).forEach(l=>R.push({name:l[2],tag:"Type",pick:()=>lrow.querySelector(".lbtn[data-k="+l[1]+"]").click()}));
+  ["2024","2020"].forEach(yr=>CANDS[yr].forEach(c=>R.push({name:c.full+" "+yr,tag:"Candidate",cp:c.p,pick:()=>{ candOn.clear(); candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); }})));
+  LYR.filter(l=>lrow.querySelector(".lbtn[data-k="+l[1]+"]")).forEach(l=>R.push({name:l[2],tag:"Type",lk:l[1],pick:()=>lrow.querySelector(".lbtn[data-k="+l[1]+"]").click()}));
   allStates().forEach(s=>R.push({name:s,tag:"State",pick:()=>{ state.value=s; state.onchange(); }}));
-  Object.keys(window.ELECTION2024||{}).forEach(k=>{ const [s,c]=k.split("|"); R.push({name:c+", "+(ABBR[s]||s),tag:"County",pick:()=>{ state.value=s; state.onchange(); loadState(s).then(()=>setTimeout(()=>{ county.value=c; county.onchange(); },200)); }}); });
-  if(st){ (GEOM.counties||[]).filter(d=>d[0]===st).forEach(d=>(PARTS[st]?townsIn(st,d[1]):[]).forEach(t=>R.push({name:t[2]+", "+d[1],tag:"Town",pick:()=>{ county.value=d[1]; county.onchange(); setTimeout(()=>{ hier.dist=t; drawDist(); zoomItem("towns",t); crumbs(); },400); }})));
-    ["ushouse","senate","statehouse","schools"].forEach(k=>layerItems(k).forEach(d=>R.push({name:aname({kind:k,d}),tag:LYR.find(l=>l[1]===k)[2],pick:()=>{ lrow.querySelector(".lbtn[data-k="+k+"]").click(); setTimeout(()=>{ hier.dist=d; drawDist(); zoomItem(k,d); crumbs(); },300); }})));
-    (PREC[st]||[]).forEach(r=>R.push({name:r[1]+", "+r[0],tag:"Precinct",pick:()=>{ const c=zoomItem("precinct",r); setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }})); }
+  Object.keys(window.ELECTION2024||{}).forEach(k=>{ const [s,c]=k.split("|"); R.push({name:c+", "+(ABBR[s]||s),tag:"County",st:s,pick:()=>{ state.value=s; state.onchange(); loadState(s).then(()=>setTimeout(()=>{ county.value=c; county.onchange(); },200)); }}); });
+  if(st){ (GEOM.counties||[]).filter(d=>d[0]===st).forEach(d=>(PARTS[st]?townsIn(st,d[1]):[]).forEach(t=>R.push({name:t[2]+", "+d[1],tag:"Town",st:st,pick:()=>{ county.value=d[1]; county.onchange(); setTimeout(()=>{ hier.dist=t; drawDist(); zoomItem("towns",t); crumbs(); },400); }})));
+    ["ushouse","senate","statehouse","schools"].forEach(k=>layerItems(k).forEach(d=>R.push({name:aname({kind:k,d}),tag:LYR.find(l=>l[1]===k)[2],st:d[0],lk:k,pick:()=>{ lrow.querySelector(".lbtn[data-k="+k+"]").click(); setTimeout(()=>{ hier.dist=d; drawDist(); zoomItem(k,d); crumbs(); },300); }})));
+    (PREC[st]||[]).forEach(r=>R.push({name:r[1]+", "+r[0],tag:"Precinct",st:st,pick:()=>{ const c=zoomItem("precinct",r); setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }})); }
   return R; }
 window.__usIndex=usIndex;
+function usIcon(it){ try{ const t=it.tag, B=window.BUILD||1;
+    if(t==="Topic") return '<img alt="" src="img/seal-president.png?v=1">';
+    if(t==="State") return '<img alt="" src="img/stateflags/'+encodeURIComponent(it.name)+'.png?v='+B+'">';
+    if(t==="Country"||t==="Province") return '<img alt="" src="img/flags/'+(it.iso==="us"?"US.png":"c/"+(it.iso||"ca")+".png")+'?v='+B+'">';
+    if(t==="County"||t==="Town"||t==="Precinct"||(it.st&&it.lk)) return window.__stSil&&it.st?window.__stSil(it.st,null):"";
+    if(t==="Candidate") return '<svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="7" fill="'+(it.cp==="r"||it.cp==="R"?"#dc2626":"#2563eb")+'"/></svg>';
+    if(t==="Type"){ const b=lrow.querySelector(".lbtn[data-k="+it.lk+"] svg"); return b?b.outerHTML:""; }
+    if(t==="ZIP") return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#222" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  }catch(e){} return ""; }
 function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); const q=$("usq"); if(q) q.remove(); setTimeout(()=>map.invalidateSize(),50); }
 function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("ushouse"); }catch(e){} document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
   const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
   const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search"; inp.setAttribute("aria-label","Search everything");
-  $("bSearch").before(inp); u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
+  $("bSearch").before(inp); try{ inp.style.paddingLeft=Math.max(0,52-inp.getBoundingClientRect().left)+"px"; }catch(e){} u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
   Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
-      res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='nm'>"+esc(t32(it.name))+"</span><span class='tg'>"+esc(t32(it.tag))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
+      res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+usIcon(it)+"</span><span class='nm'>"+esc(t32(it.name))+"</span><span class='tg'>"+esc(t32(it.tag))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
     inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()){ if(inp.__had&&window.__setTopic) window.__setTopic(null); return closeUS(); } if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
   if(window.__usFromTitle&&window.__topicOn&&window.__topicOn()){ inp.value=$("vtitle").textContent||""; inp.__had=1; setTimeout(()=>{ try{ inp.select(); }catch(e){} },40); } setTimeout(()=>inp.focus(),30); }
 $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():openUS();
@@ -3043,7 +3056,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141500"></script>
-<script src="data/dc.js?v=202610141500"></script>
+<script defer src="data/countries.js?v=202610141501"></script>
+<script src="data/dc.js?v=202610141501"></script>
 </body>
 </html>
