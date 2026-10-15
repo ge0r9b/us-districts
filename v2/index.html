@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141495 -->
+<!-- build 202610141496 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141495";</script>
+<script>window.BUILD="202610141496";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -874,8 +874,8 @@ function precHtml(r) {
   const head = "<strong>Precinct " + esc(nm) + "</strong><br>" + esc(cn) + ", " + esc(state.value) + "<br>";
   if (!tot) return head + "No votes reported.";
   const pd = dem / tot * 100, pr = rep / tot * 100, m = pr - pd;
-  return head + "Harris: " + fmtN(dem) + " (" + pd.toFixed(1) + "%)<br>Trump: " + fmtN(rep) + " (" + pr.toFixed(1) + "%)<br>Margin: " +
-    (m >= 0 ? "Trump +" : "Harris +") + Math.abs(m).toFixed(1) + " pts<br>Total votes: " + fmtN(tot);
+  return head + "Harris: " + VP(dem,pd)+"<br>Trump: " + VP(rep,pr)+"<br>Margin: " +
+    (m >= 0 ? "Trump +" : "Harris +") + Math.abs(m).toFixed(1) + " pts" + (isPct()?"":"<br>Total votes: " + fmtN(tot));
 }
 function precAt(ll) {
   const x = ll.lng, y = ll.lat;
@@ -900,13 +900,15 @@ function heatSel(){ try{ if(window.__topicOn&&!window.__topicOn()) return {m:"no
 function shareColor(f,col){ const h=col.replace("#",""); const C=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)); const L=[247,247,247]; const t=Math.max(0,Math.min(1,(f-0.2)/0.6)); const k=t<0.5?t*2:1, d=t<0.5?0:(t-0.5)*2; return "rgb("+L.map((l,j)=>Math.round(t<0.5?l+(C[j]-l)*k:C[j]*(1-0.45*d))).join(",")+")"; }
 function heatC(dem,rep,tot){ const S=heatSel(); if(S.m==="none") return "rgba(0,0,0,0)"; if(S.m==="one") return shareColor((S.ix?rep:dem)/tot,S.color); return marginColor((rep-dem)/tot); }
 function fmtN(n) { return n.toLocaleString("en-US"); }
+function isPct(){ return window.__numMode?window.__numMode()==="pct":true; }
+function VP(n,p){ return isPct()?p.toFixed(1)+"%":fmtN(n)+" ("+p.toFixed(1)+"%)"; }
 let E2020L=null;
 function loadE2020(){ if(window.ELECTION2020) return Promise.resolve(); return E2020L||(E2020L=new Promise(r=>{const s=document.createElement("script");s.src="../data/election2020.js?v="+window.BUILD;s.onload=r;s.onerror=r;document.head.append(s);})); }
 function deltaColor(d){ if(typeof heatSel==="function"&&heatSel().m==="none") return "rgba(0,0,0,0)"; if(typeof heatSel==="function"){ const S=heatSel(); if(S.m==="one"){ const f=(S.ix?d:-d); return f<=0?"rgb(247,247,247)":shareColor(0.5+Math.min(1,f/0.2)*0.3,S.color); } } const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
   if(d<=st[0][0]) return "rgb("+st[0][1]+")"; for(let i=1;i<st.length;i++){ if(d<=st[i][0]){ const [a,ca]=st[i-1],[b,cb]=st[i],t=(d-a)/(b-a); return "rgb("+ca.map((c,j)=>Math.round(c+(cb[j]-c)*t)).join(",")+")"; } } return "rgb("+st[st.length-1][1]+")"; }
 function ym(){ return window.__ymode ? window.__ymode() : "2024"; }
 function yrHtml(r,yr){ const [dem,rep,tot]=r,pd=dem/tot*100,pr=rep/tot*100,m=pr-pd,dn=yr==="2020"?"Biden":"Harris";
-  return "<b>"+yr+"</b> "+dn+": "+fmtN(dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>"; }
+  return "<b>"+yr+"</b> "+dn+": "+VP(dem,pd)+"<br>Trump: "+VP(rep,pr)+"<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>"; }
 function countyFill(k){ const m=ym(), a=window.ELECTION2024&&window.ELECTION2024[k], b=window.ELECTION2020&&window.ELECTION2020[k];
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):null;
   if(m==="2020") return b?heatC(b[0],b[1],b[2]):null;
@@ -923,10 +925,10 @@ function heatHtml(d) {
   if (!r) return "<strong>" + esc(d[1]) + ", " + esc(d[0]) + "</strong><br>No 2024 county results";
   const [dem, rep, tot] = r, pd = dem / tot * 100, pr = rep / tot * 100, m = pr - pd;
   return "<strong>" + esc(d[1]) + ", " + esc(d[0]) + "</strong><br>" +
-    "Harris: " + fmtN(dem) + " (" + pd.toFixed(1) + "%)<br>" +
-    "Trump: " + fmtN(rep) + " (" + pr.toFixed(1) + "%)<br>" +
+    "Harris: " + VP(dem,pd)+"<br>" +
+    "Trump: " + VP(rep,pr)+"<br>" +
     "Margin: " + (m >= 0 ? "Trump +" : "Harris +") + Math.abs(m).toFixed(1) + " pts<br>" +
-    "Total votes: " + fmtN(tot);
+    (isPct()?"":"Total votes: "+fmtN(tot));
 }
 function pointInItem(d, lon, lat) {
   for (const rings of d[d.length - 1]) {
@@ -1266,7 +1268,7 @@ function aggHtml(k,d,a){ const lab=LYR.find(l=>l[1]===k)[2];
   if(ym()!=="2024") return h+"District totals need precinct results; 2020 precinct results aren't available, so there's no "+(ym()==="delta"?"change":"2020")+" figure for this district.";
   if(!a||!a.tot) return h+"No precinct results fall inside this district.";
   const pd=a.dem/a.tot*100, pr=a.rep/a.tot*100, m=pr-pd;
-  h+="<b>2024 President</b> (sum of "+fmtN(a.n)+" precincts)<br>Harris: "+fmtN(a.dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(a.rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":"Harris +")+Math.abs(m).toFixed(1)+" pts<br>Total votes: "+fmtN(a.tot)+"<br>";
+  h+="<b>2024 President</b> (sum of "+fmtN(a.n)+" precincts)<br>Harris: "+VP(a.dem,pd)+"<br>Trump: "+VP(a.rep,pr)+"<br>Margin: "+(m>=0?"Trump +":"Harris +")+Math.abs(m).toFixed(1)+" pts<br>"+(isPct()?"":"Total votes: "+fmtN(a.tot)+"<br>");
   return h+"Coverage: about "+Math.round(a.cov*100)+"% of the district's votes"+(a.cov<0.5?" (under 50%, shown gray)":"");
 }
 let drawSeq=0;
@@ -1395,7 +1397,7 @@ const _precHtml=precHtml;
 function yr3(a,yr){ return a&&a[2]?yrHtml(a,yr):"<b>"+yr+"</b> no votes reported<br>"; }
 precHtml=function(r){ const m=ym(); if(m==="2024") return _precHtml(r);
   const h="<strong>Precinct "+esc(r[1])+"</strong><br>"+esc(r[0])+", "+esc(state.value)+"<br>";
-  if(m==="2020") return h+yr3(r.slice(2,5),"2020")+"Total votes: "+fmtN(r[4]);
+  if(m==="2020") return h+yr3(r.slice(2,5),"2020")+(isPct()?"":"Total votes: "+fmtN(r[4]));
   const o=match20(r); if(!o) return h+yr3(r.slice(2,5),"2024")+"No same-shape 2020 precinct<br>Change: see districts/counties";
   const dm=((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4])*100;
   return h+yr3(o.slice(2,5),"2020")+yr3(r.slice(2,5),"2024")+"<b>Change:</b> "+(dm>=0?"R +":"D +")+Math.abs(dm).toFixed(1)+" pts<br>Same precinct, both years"; };
@@ -1410,7 +1412,7 @@ function distFill(k,d){ const m=ym(),{a24,a20}=distVals(k,d);
   return okA(a24)&&okA(a20)?deltaColor(mg(a24)-mg(a20)):"#a8a29e"; }
 function aBlock(a,yr){ if(!a||!a.tot) return "<b>"+yr+"</b>: no precinct data here<br>";
   const dn=yr==="2020"?"Biden":"Harris", pd=a.dem/a.tot*100, pr=a.rep/a.tot*100, m=pr-pd;
-  return "<b>"+yr+"</b> · "+fmtN(a.n)+" precincts summed<br>"+dn+": "+fmtN(a.dem)+" ("+pd.toFixed(1)+"%)<br>Trump: "+fmtN(a.rep)+" ("+pr.toFixed(1)+"%)<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>Total votes: "+fmtN(a.tot)+"<br>Coverage: ~"+Math.round(a.cov*100)+"% of votes"+(a.cov<0.5?" (low)":"")+"<br>"; }
+  return "<b>"+yr+"</b> · "+fmtN(a.n)+" precincts summed<br>"+dn+": "+VP(a.dem,pd)+"<br>Trump: "+VP(a.rep,pr)+"<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>"+(isPct()?"":"Total votes: "+fmtN(a.tot)+"<br>")+"Coverage: ~"+Math.round(a.cov*100)+"% of votes"+(a.cov<0.5?" (low)":"")+"<br>"; }
 function aggHtml(k,d){ const lab=LYR.find(l=>l[1]===k)[2], m=ym(), {a24,a20}=distVals(k,d);
   let h="<strong>"+(k==="ushouse"?"District ":"")+esc(dname(k,d))+"</strong><br>"+esc(t32(lab+", "+d[0]))+"<br>";
   if(m!=="2024") h+=aBlock(a20,"2020"); if(m!=="2020") h+=aBlock(a24,"2024");
@@ -1610,7 +1612,7 @@ function vals(a,yr){
 function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?precDisp(a.d.__st||state.value,a.d[0],a.d[1]):(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
 function candLines(a,long){ const out=[], two=yrsOn().length>1;
   candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
-    out.push(v? nm+" "+fmtN(c.ix?v.rep:v.dem)+(numMode==="pct"?" · "+((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%":"") : nm+": no data"); });
+    out.push(v? nm+" "+(numMode==="pct"?((c.ix?v.rep:v.dem)/v.tot*100).toFixed(1)+"%":fmtN(c.ix?v.rep:v.dem)) : nm+": no data"); });
   return out; }
 function marginTxt(v,yr){ const m=(v.rep-v.dem)/v.tot*100; return (m>=0?"Trump +":(yr==="2020"?"Biden +":"Harris +"))+Math.abs(m).toFixed(1); }
 function deltaTxt(a){ const v20=vals(a,"2020"), v24=vals(a,"2024"); if(!v20||!v24) return "Change: n/a";
@@ -1649,7 +1651,7 @@ function renderList(){ const areas=listAreas(), two=yrsOn().length>1, N=1500;
     yrsOn().forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
       if(!v){ h+="<span class='l'>"+yr+": no data</span>"; return; }
       if(two) h+="<span class='l y'>"+yr+"</span>";
-      cs.forEach(c=>{ const n=c.ix?v.rep:v.dem; h+="<span class='l "+c.p+"'>"+esc(t32(c.full+" "+fmtN(n)+" ("+(n/v.tot*100).toFixed(1)+"%)"))+"</span>"; });
+      cs.forEach(c=>{ const n=c.ix?v.rep:v.dem; h+="<span class='l "+c.p+"'>"+esc(t32(c.full+" "+VP(n,n/v.tot*100)))+"</span>"; });
       h+="<span class='l m'>"+esc(t32("Margin: "+marginTxt(v,yr)))+"</span>"; });
     if(two) h+="<span class='l c'>"+esc(t32("Change: "+deltaTxt(a).replace("Change: ","")))+"</span>";
     el.innerHTML=h; el.onclick=()=>{ setView("map"); const it=a.kind==="precinct"?a.d.slice(0,6):a.d; const p=L.polygon(toLatLngs(it)); map.fitBounds(p.getBounds(),{maxZoom:14,paddingTopLeft:[70,200],paddingBottomRight:[80,120]}); setTimeout(()=>showArea(a,p.getBounds().getCenter()),400); };
@@ -2280,14 +2282,14 @@ function candStats(){ const a=scopeArea(), two=candBox.classList.contains("two")
   candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
     const v=scopeVals(a,yr); b.querySelectorAll(".cs,.cpt").forEach(x=>x.remove()); if(!v||!v.tot) return;
     const n=c.ix?v.rep:v.dem, pc=n/v.tot*100;
-    if(lst){ const st=document.createElement("span"); st.className="cs"; let t=pc.toFixed(1)+"% · "+fmtN(n);
+    if(lst){ const st=document.createElement("span"); st.className="cs"; let t=pc.toFixed(1)+"%"+(isPct()?"":" · "+fmtN(n));
       if(two&&yr==="2024"){ const c0=CANDS["2020"].find(x=>x.ix===c.ix), v0=scopeVals(a,"2020"); if(c0&&v0&&v0.tot){ const d=pc-(c.ix?v0.rep:v0.dem)/v0.tot*100; t+=" · "+(d>=0?"+":"")+d.toFixed(1)+" pts"; } }
       st.textContent=t32(t); const cn=b.querySelector(".cn"); if(cn){ let w=b.querySelector(".cw"); if(!w){ w=document.createElement("span"); w.className="cw"; cn.replaceWith(w); w.append(cn); } w.append(st); } }
     else { const t=document.createElement("span"); t.className="cpt"; t.textContent=Math.round(pc)+"%"; b.append(t); } }); }
 const _rc13=renderCands; renderCands=function(){ _rc13(); candStats(); };
 renderCands();
 // ===== % / # toggle (default %) =====
-let numMode="pct";
+let numMode="pct"; window.__numMode=()=>numMode;
 const sgnN=x=>(x>=0?"+":"-")+fmtN(Math.abs(Math.round(x)));
 candLines=function(a){ const out=[], two=yrsOn().length>1;
   candsOn().filter(c=>candOn.has(c.id)).forEach(c=>{ const v=vals(a,c.yr); const nm=c.short+(two?" '"+c.yr.slice(2):"");
@@ -2838,7 +2840,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141495"></script>
-<script src="data/dc.js?v=202610141495"></script>
+<script defer src="data/countries.js?v=202610141496"></script>
+<script src="data/dc.js?v=202610141496"></script>
 </body>
 </html>
