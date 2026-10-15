@@ -134,7 +134,7 @@ Source: Alaska Division of Elections, official 2024 General results by precinct 
 - Whole counties use the official county totals.
 - Split counties use precincts, area-weighted. Before that, each county's precincts must sum to 70–100% of the official total and cover at least 70% of the county's area. Precincts are scaled per party to the official county totals.
 - Rows filled this way carry the flag `est` (≈ estimate).
-- **Validation:** I checked against districts with known results, using the earlier, stricter QC thresholds (precinct area cover ≥90%), on 16,647 districts. Median total error is 0.69%, median Republican-share error is 0.06 points, and the 90th-percentile Republican-share error is 1.02 points. The final 70% threshold has not been validated separately.
+- **Validation:** I checked against districts with known results, using the final thresholds, on 18,827 districts. Median total error is 0.71%, median Republican-share error is 0.06 points, and the 90th-percentile Republican-share error is 1.02 points.
 
 | Layer | Before (build 1481) | After | Total | Coverage after |
 |---|---|---|---|---|
