@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141486 -->
+<!-- build 202610141487 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141486";</script>
+<script>window.BUILD="202610141487";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1539,7 +1539,7 @@ const _c2=crumbs2; crumbs2=function(){ _c2(); const c=$("crumbs"); const bs=[...
 function openInfo(){ closeSheet(); const st=state.value; const c24=PREC_CREDIT[st], c20=PREC20CREDIT[st];
   const credit=typeof c24==="object"&&c24?(county.value?c24[county.value]:Object.values(c24).filter((v,i,a)=>a.indexOf(v)===i).join("; ")):c24;
   const parts=[["Status",mapnote.dataset.full||mapnote.textContent],["2024 precincts",credit],["2020 precincts",c20],
-    ["County results","2024 county results file; 2020: tonmcg county results"],["Map","Basemap tiles © Esri"]].filter(p=>p[1]);
+    ["County results","2024 county results file; 2020: tonmcg county results"],["Districts","Current (2024) district boundaries are used for all years. Results re-tabulated to current districts: 2020 from VEST 2020 precincts; 2024 from official county totals and NYT/MEDSL precincts, area-weighted where precincts split (≈ marks estimates)."],["Map","Basemap tiles © Esri"]].filter(p=>p[1]);
   sheet.innerHTML="<h3><span>Sources</span><button class='quiet close' type='button'>Close</button></h3><div class='info32'></div>";
   sheet.querySelector(".close").onclick=closeSheet; const box=sheet.querySelector(".info32");
   parts.forEach(([h,t])=>{ const d=document.createElement("p"); d.innerHTML="<b>"+esc(h)+"</b><br>"; d.append(document.createTextNode(String(t))); box.append(d); });
@@ -1975,7 +1975,7 @@ const _cs3=closeSheet; closeSheet=function(){ if(window.__reopen) return _cs3();
 $("bGeo").onclick=()=>{ if(!sheet.hidden&&$("bGeo").classList.contains("on")) return closeSheet(); openFold(); };
 // ===== credits removed; minimal Esri attribution =====
 credit.remove();
-const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri · VEST"; return d; }; esriA.addTo(map);
+const esriA=L.control({position:"bottomright"}); esriA.onAdd=()=>{ const d=L.DomUtil.create("div","esria"); d.textContent="© Esri · VEST · NYT"; return d; }; esriA.addTo(map);
 console.log("us-districts v2 build "+window.BUILD);
 // ===== every text field = title + blank search: tap title opens search; empty commit on org = United States =====
 $("vtitle").style.cursor="text"; $("vtitle").addEventListener("click",()=>{ if(!document.body.classList.contains("srchfs")) openUS(); });
@@ -2391,18 +2391,18 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   function usRings(){ const S=window.__STget&&window.__STget(); if(!S) return null; return S.filter(x=>x.st!=="Alaska"&&x.st!=="Hawaii").flatMap(x=>x.polys.map(p=>p[0])); }
   let key="";
   function upd(){ const B=document.body.classList; const txt=(gq.value||gq.placeholder||"").trim(); const sv=(typeof state!=="undefined"&&state.value)||"", cv=(typeof county!=="undefined"&&county.value)||"";
-    let mode, k;
+    let mode, k, svx="";
     if(B.contains("worldmode")&&!B.contains("wcountry")) { mode="all"; }
     else if(B.contains("wcountry")) { mode="ctry"; }
-    else if(sv) { mode="st"; } else mode="us";
-    k=mode+"|"+sv+"|"+cv+"|"+txt+"|"+(CS?1:0)+"|"+(window.__STget&&window.__STget()?1:0)+(mode==="st"&&!cv&&txt.toLowerCase()!==sv.toLowerCase()?"|"+map.getCenter().lat.toFixed(2)+","+map.getCenter().lng.toFixed(2):"");
+    else if(sv) { mode="st"; } else { const mm=txt.match(/, ([A-Z]{2})(\s|$)/); const ab=mm&&Object.entries(typeof ABBR!=="undefined"?ABBR:{}).find(([n,a])=>a===mm[1]); if(ab){ mode="st"; svx=ab[0]; } else mode="us"; }
+    const SV=svx||sv; k=mode+"|"+SV+"|"+cv+"|"+txt+"|"+(CS?1:0)+"|"+(window.__STget&&window.__STget()?1:0)+(mode==="st"&&!cv&&txt.toLowerCase()!==SV.toLowerCase()?"|"+map.getCenter().lat.toFixed(2)+","+map.getCenter().lng.toFixed(2):"");
     if(k===key) return; key=k; let h="";
     if(mode==="all") h=GLOBE;
     else if(mode==="ctry"){ const C=(window.COUNTRIES||[]).find(c=>txt.toLowerCase().startsWith(c[1].toLowerCase())); const r=C&&CS&&CS[C[0]]; h=r?svgOf(r,null):GLOBE; }
     else if(mode==="us"){ const r=usRings(); h=r?svgOf(r,null):""; }
-    else { const r=stRings(sv); let star=null;
-      if(cv){ const d=(NAT||[]).find(x=>x.st===sv&&x.nm===cv); if(d) star=[(d.bb[0]+d.bb[2])/2,(d.bb[1]+d.bb[3])/2]; }
-      else if(txt&&txt.toLowerCase()!==sv.toLowerCase()){ const c=map.getCenter(); star=[c.lng,c.lat]; }
+    else { const r=stRings(SV); let star=null;
+      if(cv){ const d=(NAT||[]).find(x=>x.st===SV&&x.nm===cv); if(d) star=[(d.bb[0]+d.bb[2])/2,(d.bb[1]+d.bb[3])/2]; }
+      else if(txt&&txt.toLowerCase()!==SV.toLowerCase()){ const c=map.getCenter(); star=[c.lng,c.lat]; }
       h=r?svgOf(r,star):""; }
     ic.innerHTML=h; ic.style.display=h?"":"none"; }
   setInterval(upd,400); map.on("moveend",upd); gq.addEventListener("input",upd); } }
@@ -2420,7 +2420,7 @@ function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-
   const H=b.getNorth()-b.getSouth(); if(fd&&d===fd.d&&((d.bb[2]-d.bb[0])>=0.25*W||(d.bb[3]-d.bb[1])>=0.3*H)) return d; return d&&((d.bb[2]-d.bb[0])>=0.5*W||(d.bb[3]-d.bb[1])>=0.6*H)?d:null; }
 function precFor(s,m){ return m==="2020"?(window.PREC20||{})[s]:PREC[s]; }
 natDetail=function(seq){ natPrec.clearLayers(); const m=ym(); window.__autoP=false; restyleType();
-  if(!plotting()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
+  if(!plotting()||natTypeOn()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
   Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
     const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m==="delta"?"2024":m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
       L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
@@ -2800,7 +2800,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141486"></script>
-<script src="data/dc.js?v=202610141486"></script>
+<script defer src="data/countries.js?v=202610141487"></script>
+<script src="data/dc.js?v=202610141487"></script>
 </body>
 </html>
