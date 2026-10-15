@@ -13,8 +13,8 @@ async def main():
       await pg.evaluate("()=>document.getElementById('bSearch').click()"); await pg.wait_for_timeout(2500)
       await pg.locator('#usq').type('pr',delay=60); await pg.wait_for_timeout(1500)
       r=await pg.evaluate("""()=>{const rows=[...document.querySelectorAll('#usv li')].slice(0,12); const i=document.getElementById('usq'); const ir=i.getBoundingClientRect(); const pl=parseFloat(getComputedStyle(i).paddingLeft);
-        return {n:document.querySelectorAll('#usv li').length,inputText:Math.round(ir.left+pl),rows:rows.map(l=>{const o=l.querySelector('.oic').getBoundingClientRect(), n=l.querySelector('.nm').getBoundingClientRect(); return [l.querySelector('.nm').textContent.slice(0,22), l.querySelector('.tg').textContent, Math.round(o.left+o.width/2), Math.round(n.left), l.querySelector('.oic').innerHTML.length>0, Math.round(l.getBoundingClientRect().height)]})}}""")
-      bad=[x for x in r['rows'] if x[2]!=27 or x[3]!=52 or not x[4]]; ok=r['n']>0 and not bad and r['inputText']==52; fails+=0 if ok else 1
+        return {n:document.querySelectorAll('#usv li').length,inputText:Math.round(ir.left+pl),rows:rows.map(l=>{const o=l.querySelector('.oic').getBoundingClientRect(), n=l.querySelector('.nm').getBoundingClientRect(); return [l.querySelector('.nm').textContent.slice(0,22), l.querySelector('.tg').textContent, Math.round(o.left+o.width/2), Math.round(n.left), l.querySelector('.oic').innerHTML.length>0, Math.round(l.getBoundingClientRect().height), Math.round(l.querySelector('.tg').getBoundingClientRect().left-n.right), l.querySelector('.tg').innerHTML.includes('svg')]})}}""")
+      bad=[x for x in r['rows'] if x[2]!=27 or x[3]!=52 or not x[4] or x[6]>14 or x[7] is False]; ok=r['n']>0 and not bad and r['inputText']==52; fails+=0 if ok else 1
       print(W,'OK' if ok else 'FAIL',r['n'],'inputText',r['inputText'],'bad',bad[:4]); print([ (x[0],x[1]) for x in r['rows'][:8]])
       await pg.screenshot(path=f"/workspace/shots/unisearch-{tag}-{t}.png"); print(er[:2]); await pg.close()
     await b.close()

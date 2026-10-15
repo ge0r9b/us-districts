@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141501 -->
+<!-- build 202610141502 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141501";</script>
+<script>window.BUILD="202610141502";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -216,7 +216,7 @@
   .usv { padding-left: 0 !important; } .usv .nl li { padding: 0 12px; gap: 0; min-height: 48px; justify-content: flex-start; }
   .usv .nl li .oic { flex: 0 0 30px; width: 30px; height: 22px; margin: 0 10px 0 0; display: inline-flex; align-items: center; justify-content: center; }
   .usv .nl li .oic img { max-width: 30px; max-height: 22px; width: auto; height: auto; object-fit: contain; } .usv .nl li .oic svg { width: 22px; height: 22px; }
-  .usv .nl li .nm { flex: 1 1 auto; min-width: 0; font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .usv .nl li .tg { margin-left: auto; padding-left: 12px; }
+  .usv .nl li .nm { flex: 0 1 auto; min-width: 0; font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .usv .nl li .tg { margin-left: 8px; padding-left: 0; display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; } .usv .tg.k-top { color: #5b6b9a; } .usv .tg.k-place { color: #5f8a73; } .usv .tg.k-gov { color: #9a7b3a; } .usv .tg.k-biz { color: #a0614a; } .usv .tg.k-misc { color: #78716c; }
   .rbtn { background: #fff !important; border-color: #fff !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; }
   .rbtn svg { stroke: #000 !important; }
   .rbtn.on { background: #000 !important; }
@@ -2052,6 +2052,10 @@ function usIndex(){ const R=[]; const st=state.value;
     (PREC[st]||[]).forEach(r=>R.push({name:r[1]+", "+r[0],tag:"Precinct",st:st,pick:()=>{ const c=zoomItem("precinct",r); setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }})); }
   return R; }
 window.__usIndex=usIndex;
+const US_SVG=d=>'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
+const US_I={gov:US_SVG('<path d="M3 9.5L12 4l9 5.5"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/>'),store:US_SVG('<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9v11h16V9"/><path d="M4 9c0 1.7 1.3 3 2.7 3S9.3 10.7 9.3 9M9.3 9c0 1.7 1.3 3 2.7 3s2.7-1.3 2.7-3M14.7 9c0 1.7 1.3 3 2.7 3S20 10.7 20 9"/><path d="M10 20v-5h4v5"/>'),pod:US_SVG('<path d="M7 9h10l-1.3 11H8.3z"/><path d="M12 3.5v5M9.5 5h5"/>'),pin:US_SVG('<path d="M12 21s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10z"/><circle cx="12" cy="11" r="2"/>')};
+function usKind(it){ const t=it.tag; if(t==="Topic") return {l:"Topic",c:"k-top",i:US_I.pod}; if(t==="State"||t==="Country"||t==="Province") return {l:t,c:"k-gov",i:US_I.gov}; if(t==="Business") return {l:t,c:"k-biz",i:US_I.store};
+  if(t==="County"||t==="Town"||t==="Precinct"||t==="ZIP"||(it.st&&it.lk)) return {l:"Place",c:"k-place",i:US_I.pin}; return {l:t,c:"k-misc",i:""}; }
 function usIcon(it){ try{ const t=it.tag, B=window.BUILD||1;
     if(t==="Topic") return '<img alt="" src="img/seal-president.png?v=1">';
     if(t==="State") return '<img alt="" src="img/stateflags/'+encodeURIComponent(it.name)+'.png?v='+B+'">';
@@ -2070,7 +2074,7 @@ function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
-      res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+usIcon(it)+"</span><span class='nm'>"+esc(t32(it.name))+"</span><span class='tg'>"+esc(t32(it.tag))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
+      res.slice(0,80).forEach(it=>{ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+usIcon(it)+"</span><span class='nm'>"+esc(t32(it.name))+"</span><span class='tg "+usKind(it).c+"'>"+usKind(it).i+esc(t32(usKind(it).l))+"</span>"; li.onclick=()=>pickIt(it); ol.append(li); }); };
     inp.addEventListener("input",show); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); if(!inp.value.trim()){ if(inp.__had&&window.__setTopic) window.__setTopic(null); return closeUS(); } if(res[0]) pickIt(res[0]); } if(e.key==="Escape") closeUS(); }); show(); });
   if(window.__usFromTitle&&window.__topicOn&&window.__topicOn()){ inp.value=$("vtitle").textContent||""; inp.__had=1; setTimeout(()=>{ try{ inp.select(); }catch(e){} },40); } setTimeout(()=>inp.focus(),30); }
 $("bSearch").onclick=()=>document.body.classList.contains("srchfs")?closeUS():openUS();
@@ -3056,7 +3060,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141501"></script>
-<script src="data/dc.js?v=202610141501"></script>
+<script defer src="data/countries.js?v=202610141502"></script>
+<script src="data/dc.js?v=202610141502"></script>
 </body>
 </html>
