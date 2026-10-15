@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141499 -->
+<!-- build 202610141500 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141499";</script>
+<script>window.BUILD="202610141500";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2921,8 +2921,8 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     LA.agg=n?sum:null; LA.nData=n; LA.title="Total of "+LA.items.length+" "+LA.noun+(LA.parent?" in "+LA.parent:""); }
   function colorAgg(){ if(!LA.agg) return "#d6d3d1"; const m=ym(); if(m==="delta"){ const a=LA.agg["2020"],b=LA.agg["2024"]; if(!a||!b||!a.tot||!b.tot) return "#d6d3d1"; return deltaColor((b.rep-b.dem)/b.tot-(a.rep-a.dem)/a.tot); } const v=LA.agg[m]; if(!v||!v.tot) return "#d6d3d1"; return heatC(v.dem,v.rep,v.tot); }
   function drawMap(){ if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; if(!LA.on) return; const col=colorAgg(); const g=L.layerGroup(); const none=!LA.agg;
-    LA.items.forEach(a=>{ if(a.kind==="ctry"||none&&false) return; const rs=ringsOf(a); rs.forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,stroke:true,color:none?"#78716c":col,weight:none?1:1,fillColor:col,fillOpacity:none?0.35:0.82}).addTo(g); }); });
-    if(LA.lv&&LA.lv.id==="countries"){ LA.items.forEach(a=>{ ringsOf(a).forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,color:"#78716c",weight:0.8,fillColor:"#d6d3d1",fillOpacity:0.5}).addTo(g); }); }); }
+    LA.items.forEach(a=>{ if(a.kind==="ctry"||none&&false) return; const rs=ringsOf(a); rs.forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,stroke:true,color:"#1c1917",weight:1,fillColor:col,fillOpacity:none?0.35:0.82}).addTo(g); }); });
+    if(LA.lv&&LA.lv.id==="countries"){ LA.items.forEach(a=>{ ringsOf(a).forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,color:"#1c1917",weight:0.8,fillColor:"#d6d3d1",fillOpacity:0.5}).addTo(g); }); }); }
     LA.layer=g.addTo(map); }
   // ---- list rendering ----
   function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); computeAgg(); drawMap();
@@ -2977,7 +2977,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const sil=rings=>{ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; rings.forEach(r=>r.forEach(([x,y])=>{ x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y); })); const k=Math.cos((y0+y1)/2*Math.PI/180),w=(x1-x0)*k||1,h=(y1-y0)||1,W=30,H=22,sc=Math.min((W-2)/w,(H-2)/h),ox=(W-w*sc)/2,oy=(H-h*sc)/2; const d=rings.map(r=>"M"+r.map(([x,y])=>((ox+(x-x0)*k*sc).toFixed(1))+" "+((oy+(y1-y)*sc).toFixed(1))).join("L")+"Z").join(""); return '<svg viewBox="0 0 30 22" width="30" height="22"><path d="'+d+'" fill="#222" fill-rule="evenodd"/></svg>'; };
     const lbls=[]; const updLbl=()=>{ lbls.forEach(([m,bb])=>{ const a=map.latLngToContainerPoint(bb.getSouthWest()), c=map.latLngToContainerPoint(bb.getNorthEast()); const el=m.getElement&&m.getElement(); if(el) el.style.display=(Math.abs(c.x-a.x)>56&&Math.abs(a.y-c.y)>14)?"":"none"; }); }; map.on("zoomend moveend",updLbl);
     function syncCan(){ const on=Wk()==="ca"&&window.CANADA; document.body.classList.toggle("cacan",!!on); if(!on){ lbls.length=0; if(canG){ canG.remove(); canG=null; } return; } if(canG) return; canG=L.layerGroup();
-      window.CANADA.forEach(p=>{ const rs=p[6].map(r=>r.map(([x,y])=>[y,x])); const pg=L.polygon(rs,{renderer:laR,pane:"canPane",interactive:false,color:"#57534e",weight:p[0]===sel?3:1,fillColor:"#e7e5e4",fillOpacity:p[0]===sel?0.55:0.25}).addTo(canG); const bbx=L.latLngBounds([p[2],p[3]],[p[4],p[5]]), c=bbx.getCenter(); lbls.push([L.marker(c,{pane:"canPane",interactive:false,icon:L.divIcon({className:"provlbl",html:"<span>"+p[0]+"</span>",iconSize:[0,0]})}).addTo(canG),bbx]); }); canG.addTo(map); setTimeout(updLbl,50); }
+      window.CANADA.forEach(p=>{ const rs=p[6].map(r=>r.map(([x,y])=>[y,x])); const pg=L.polygon(rs,{renderer:laR,pane:"canPane",interactive:false,color:"#1c1917",weight:p[0]===sel?3:1,fillColor:"#e7e5e4",fillOpacity:p[0]===sel?0.55:0.25}).addTo(canG); const bbx=L.latLngBounds([p[2],p[3]],[p[4],p[5]]), c=bbx.getCenter(); lbls.push([L.marker(c,{pane:"canPane",interactive:false,icon:L.divIcon({className:"provlbl",html:"<span>"+p[0]+"</span>",iconSize:[0,0]})}).addTo(canG),bbx]); }); canG.addTo(map); setTimeout(updLbl,50); }
     setInterval(syncCan,400);
     map.on("click",e=>{ if(Wk()!=="ca"||LA.on||!window.CANADA) return; const x=e.latlng.lng,y=e.latlng.lat; const hit=window.CANADA.find(p=>{ if(y<p[2]||y>p[4]||x<p[3]||x>p[5]) return false; let ins=false; p[6].forEach(r=>{ for(let i=0,j=r.length-1;i<r.length;j=i++){ const xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1]; if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi)) ins=!ins; } }); return ins; });
       if(hit) L.popup({closeButton:false,autoPan:false}).setLatLng(e.latlng).setContent("<b>"+esc(hit[0])+"</b>").openOn(map); else map.closePopup(); });
@@ -3031,10 +3031,19 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const ex=ls.find(l=>l.querySelector(".nm").textContent.toLowerCase()===q)||ls[0]; e.preventDefault(); e.stopImmediatePropagation(); ex.click(); },true);
   ["closeSheet"].forEach(()=>{ const _c=closeSheet; closeSheet=function(){ clear(); return _c.apply(this,arguments); }; });
 })();
+
+// ===== boundary color rule: WHITE when data shading is plotted, BLACK when only boundaries are viewed (no topic / no answers / no plot). Applied at draw time to every canvas boundary stroke; switches instantly (no fades) =====
+(function(){ const BC=new Set(["#fff","#ffffff","#1c1917","#1f2937","#57534e"]);
+  const shown=()=>{ try{ return !!(plotting()&&(!window.__topicOn||window.__topicOn())&&heatSel().m!=="none"); }catch(e){ return true; } };
+  window.__boundShown=shown;
+  const _fs=L.Canvas.prototype._fillStroke;
+  L.Canvas.prototype._fillStroke=function(ctx,layer){ const o=layer.options, c=o.color; const w=o.weight||1; if(o.stroke!==false&&c&&((BC.has(c)&&w<=1.7)||(c==="#111"&&w<=1.3))){ o.color=shown()?"#fff":"#000"; try{ return _fs.call(this,ctx,layer); }finally{ o.color=c; } } return _fs.call(this,ctx,layer); };
+  let last=shown(); const flip=()=>{ const n=shown(); if(n===last) return; last=n; const seen=new Set(); map.eachLayer(l=>{ const r=l._renderer; if(r&&r._redraw&&!seen.has(r)){ seen.add(r); try{ r._redrawBounds=null; r._redraw(); }catch(e){} } }); };
+  setInterval(flip,80); ["click","pointerup","input","change"].forEach(t=>document.addEventListener(t,()=>{ setTimeout(flip,0); setTimeout(flip,60); },true)); })();
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141499"></script>
-<script src="data/dc.js?v=202610141499"></script>
+<script defer src="data/countries.js?v=202610141500"></script>
+<script src="data/dc.js?v=202610141500"></script>
 </body>
 </html>
