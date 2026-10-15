@@ -162,3 +162,13 @@ The Alaska state senate is now exact in the data file: each senate district is t
 | Maine | https://www.maine.gov/sos/elections-voting/election-results-data/election-results-2024 (President by town, State Senator, Rep. to the Legislature) | Public government record | Census TIGER (public domain) | Districts done from official data; precinct layer still NYT-merged |
 | All other states | NYT 2024 precinct map data, merged with official county totals | **RESTRICTIVE: NYT C-UDA, non-commercial only.** Must be replaced before commercial use | VEST (CC-BY, credit required) / Census TIGER | To do, state by state |
 NYT attribution stays until no NYT-derived data remains.
+
+## Gap pass 2 (build 202610141497)
+- Validation of the fill6 rules (vote-total QC, whole small districts, scaling down to 0.5×), checked against 2,280 districts that have exact results: median R-share error 0.05 pts, p90 0.41 pts, median total error 0.29%. 13 districts are off by more than 3 pts.
+- South Dakota: State House and Senate are now complete. They come from 2024 precinct results converted from the official county files by OpenElections (openelections-data-sd); the statewide totals match the FEC/SoS totals exactly (146,859 D / 272,081 R). Vote-center and absentee precincts are split across districts by each district's State House vote and marked est. Where both methods apply, they agree within 0.9 pts.
+- Mississippi MS-02 filled. Issaquena County lies 99.9% inside the district, so it is counted whole from the official county total.
+- Still no data, because they fail QC and are not filled:
+  - Split share above 30% of the district's votes, with no validation evidence for districts that split that much: VA SD25, VA HD14/66/89, LA SD2/19 and HD57/58 (St. John the Baptist precincts cover only 39% of the parish), AL SD6 and HD4.
+  - Precinct coverage too low: TN HD21/23 (Monroe County 60%), MS SD12/22/23 and HD50/51/54/115.
+  - Boundary sliver: OR SD29 and HD57.
+  - SD schools: 28 left.
