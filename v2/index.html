@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141524 -->
+<!-- build 202610141525 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141524";</script>
+<script>window.BUILD="202610141525";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3080,10 +3080,14 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     await ensureFor(); const ch=children();
     if(lv.id==="townships"){ try{ await loadState(state.value); }catch(e){} return townsIn(state.value,county.value).map(d=>({kind:"towns",d})); }
     if(lv.id==="precincts") return ch.items.filter(i=>i.d).map(i=>({kind:"precinct",d:i.d,yr})); 
-    if(lv.id==="districts") return ch.items.filter(i=>i.d).map(i=>({kind:ltype,d:i.d}));
+    if(lv.id==="districts"){ try{ await loadDS(ltype); }catch(e){} return ch.items.filter(i=>i.d).map(i=>({kind:ltype,d:i.d})); }
     let cg=[]; try{ cg=(layerItems("counties")||[]).filter(d=>d[0]===state.value); }catch(e){} return cg.map(d=>({kind:"county",d})); }
   // vals / names / scope for the aggregate and the new kinds
-  { const _v=vals; vals=function(a,yr){ if(a&&a.kind==="laagg") return LA.agg&&LA.agg[yr]||null; if(a&&(a.kind==="ctry"||a.kind==="prov")) return null; return _v(a,yr); };
+  { const _v=vals; const DSK=new Set(["ushouse","senate","statehouse","schools"]), DSM={}; const dsRow=(k,d)=>{ const R=DS[k]; if(!R||!d) return null; const mk=DSM[k]||(DSM[k]=new Map(R.map(x=>[x.st+"|"+String(x.nm),x]))); return mk.get(d[0]+"|"+String(d[1]))||null; };
+    vals=function(a,yr){ if(a&&a.kind==="laagg") return LA.agg&&LA.agg[yr]||null; if(a&&(a.kind==="ctry"||a.kind==="prov")) return null;
+      /* district rows in the list read the same re-tabulated district numbers the map popup uses (so 2020 exists wherever the map has it) */
+      if(a&&DSK.has(a.kind)&&a.d&&a.d[0]!=="Alaska"&&!a.cd){ const r=dsRow(a.kind,a.d); const v=r&&r.v&&r.v[yr]; if(v&&v[2]&&(v[0]+v[1])>0) return {dem:v[0],rep:v[1],tot:v[2]}; }
+      return _v(a,yr); };
     const _n=aname; aname=function(a){ if(a.kind==="laagg") return LA.title; if(a.kind==="ctry"||a.kind==="prov") return a.name; return _n(a); };
     const _s=scopeArea; scopeArea=function(){ if(LA.on) return {kind:"laagg"}; return _s(); };
     const _aa=areaAt; areaAt=function(ll){ if(LA.on){ return LA.polys.some(r=>pip(r,ll.lng,ll.lat))?{kind:"laagg"}:null; } return _aa(ll); }; }
@@ -3347,7 +3351,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141524"></script>
-<script src="data/dc.js?v=202610141524"></script>
+<script defer src="data/countries.js?v=202610141525"></script>
+<script src="data/dc.js?v=202610141525"></script>
 </body>
 </html>
