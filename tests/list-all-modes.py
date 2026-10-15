@@ -28,16 +28,31 @@ async def main():
       await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1500)
       await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(3500)
       await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(3000)
-      info=await pg.evaluate("()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; const g=(r,k)=>{const x=[...r.querySelectorAll('.cbr')].find(c=>c.querySelector('.cbl').textContent===k); return x?x.querySelector('.cbv').textContent:null}; return {n:rows.length,dv:lv.querySelectorAll('.cbt.dv').length,rep:rows.map(r=>g(r,'Republican')),dem:rows.map(r=>g(r,'Democratic')),names:rows.map(r=>r.querySelector('b').textContent)}}")
-      num=lambda s: float(re.sub(r'[^0-9.+-]','',s.replace('−','-'))) if s else None
-      rep=[num(x) for x in info['rep']]
-      chk(t+' delta rows+bars',info['n']>=51 and info['dv']>=51*2,f"rows={info['n']} dvbars={info['dv']} sample={info['rep'][:3]}")
-      rep=[x for x in rep if x is not None]; desc=all(rep[i]>=rep[i+1]-1e-9 for i in range(len(rep)-1))
-      chk(t+' delta sort desc by Republican shift',desc,f'{rep[:4]}..{rep[-3:]}'); await sh('delta-desc')
+      info=await pg.evaluate("()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; return {n:rows.length,dv:lv.querySelectorAll('.cbt.dv').length,names:rows.map(r=>r.querySelector('b').textContent)}}")
+      chk(t+' delta rows+bars',info['n']>=51 and info['dv']>=51*2,f"rows={info['n']} dvbars={info['dv']}")
+      ordr=lambda: pg.evaluate("()=>window.__LA.order")
+      o=await ordr(); vs=[x[1] for x in o if x[1] is not None]
+      chk(t+' delta sort desc by total-vote change',all(vs[i]>=vs[i+1] for i in range(len(vs)-1)) and len(vs)>=50,f'{o[:2]}..{o[-2:]}'); await sh('delta-desc')
       await pg.evaluate("()=>document.getElementById('laSort').click()"); await pg.wait_for_timeout(400)
       await pg.evaluate("()=>[...document.querySelectorAll('#laSortPop button')][1].click()"); await pg.wait_for_timeout(1200)
-      rep2=[num(x) for x in await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].map(r=>{const x=[...r.querySelectorAll('.cbr')].find(c=>c.querySelector('.cbl').textContent==='Republican'); return x&&x.querySelector('.cbv').textContent})")]
-      rep2=[x for x in rep2 if x is not None]; rep=[x for x in rep if x is not None]; asc=all(rep2[i]<=rep2[i+1]+1e-9 for i in range(len(rep2)-1)); chk(t+' delta sort asc',asc and rep2[0]==min(rep),f'{rep2[:3]}'); await sh('delta-asc')
+      o2=await ordr(); vs2=[x[1] for x in o2 if x[1] is not None]
+      chk(t+' delta sort asc',all(vs2[i]<=vs2[i+1] for i in range(len(vs2)-1)),f'{o2[:2]}'); await sh('delta-asc')
+      # single year, # and %: California first / Wyoming+DC last on high-to-low, reverse on low-to-high
+      await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(2500)
+      await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1500)
+      await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(3500)
+      async def tg(m):
+        await pg.evaluate("()=>document.getElementById('bNum').click()"); await pg.wait_for_timeout(500)
+        await pg.evaluate("(m)=>{const b=[...document.querySelectorAll('button')].find(b=>b.offsetParent&&b.textContent.trim()===m); b&&b.click();}",m); await pg.wait_for_timeout(1500)
+      async def setsort(i):
+        await pg.evaluate("()=>document.getElementById('laSort').click()"); await pg.wait_for_timeout(300)
+        await pg.evaluate("(i)=>[...document.querySelectorAll('#laSortPop button')][i].click()",i); await pg.wait_for_timeout(1200)
+      for m in ('#','%'):
+        await tg(m); await setsort(0); o=[x[0] for x in await ordr()]
+        chk(f'{t} sort high-low {m}',o[0]=='California' and o[1]=='Texas' and 'Wyoming' in o[-4:] and 'District of Columbia' in o[-4:],f'{o[:3]}..{o[-3:]}')
+        await sh('sort-desc-'+('num' if m=='#' else 'pct'))
+        await setsort(1); o=[x[0] for x in await ordr()]
+        chk(f'{t} sort low-high {m}',o[-1]=='California' and o[-2]=='Texas' and 'Wyoming' in o[:4] and 'District of Columbia' in o[:4],f'{o[:3]}..{o[-3:]}'); await setsort(0)
       # --- pie # and % with the real toggle (single year and delta)
       await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(2500)
       await pg.evaluate("()=>document.querySelector('[aria-label=Chart]').click()"); await pg.wait_for_timeout(600)
