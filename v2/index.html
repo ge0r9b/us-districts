@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141493 -->
+<!-- build 202610141494 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141493";</script>
+<script>window.BUILD="202610141494";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2390,6 +2390,10 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   function stAt(ll){ if(!ST) return null; return ST.find(d=>d.polys.some(p=>{ const r0=p[0]; let ins=false; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; })); }
   const _aaS=areaAt; areaAt=function(ll){ if(solid()){ const d=stAt(ll); if(d) return {kind:"sum",st:d.st,d:[d.st,(NAT||[]).filter(x=>x.st===d.st).map(x=>x.polys).flat()]}; } return _aaS(ll); };
 }
+// stale selection: if the user moves the map off the selected state (or out to the national view), clear the state selection
+{ let tSel=Date.now(), last=""; setInterval(()=>{ const v=state.value||""; if(v!==last){ last=v; tSel=Date.now(); } },150);
+  const bbOf=st=>{ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; let b=null; d.polys.forEach(p=>p[0].forEach(([x,y])=>{ if(st==="Alaska"&&x>0) return; const ll=L.latLng(y,x); b=b?b.extend(ll):L.latLngBounds(ll,ll); })); return b; };
+  map.on("moveend",()=>{ const v=state.value; if(!v||Date.now()-tSel<4000||document.body.classList.contains("worldmode")) return; const b=bbOf(v); if(!b) return; const vb=map.getBounds(); const gone=!vb.intersects(b)||map.getZoom()<4.5&&!b.contains(vb.getCenter()); if(gone){ state.value=""; state.onchange&&state.onchange(); } }); }
 // bottom geo field: silhouette icon of the country/state (+ star at the selected feature)
 { const gq=document.getElementById("gq"); if(gq){ const host=gq.parentElement; if(getComputedStyle(host).position==="static") host.style.position="relative";
   const ic=document.createElement("span"); ic.className="gqic"; host.insertBefore(ic,gq);
@@ -2409,7 +2413,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
     let mode, k, svx="";
     if(B.contains("worldmode")&&!B.contains("wcountry")) { mode="all"; }
     else if(B.contains("wcountry")) { mode="ctry"; }
-    else if(sv) { mode="st"; } else { const mm=txt.match(/, ([A-Z]{2})(\s|$)/); const ab=mm&&Object.entries(typeof ABBR!=="undefined"?ABBR:{}).find(([n,a])=>a===mm[1]); if(ab){ mode="st"; svx=ab[0]; } else mode="us"; }
+    else if(sv&&txt!=="United States") { mode="st"; } else { const mm=txt.match(/, ([A-Z]{2})(\s|$)/); const ab=mm&&Object.entries(typeof ABBR!=="undefined"?ABBR:{}).find(([n,a])=>a===mm[1]); if(ab){ mode="st"; svx=ab[0]; } else mode="us"; }
     const SV=svx||sv; k=mode+"|"+SV+"|"+cv+"|"+txt+"|"+(CS?1:0)+"|"+(window.__STget&&window.__STget()?1:0)+(mode==="st"&&!cv&&txt.toLowerCase()!==SV.toLowerCase()?"|"+map.getCenter().lat.toFixed(2)+","+map.getCenter().lng.toFixed(2):"");
     if(k===key) return; key=k; let h="";
     if(mode==="all") h=GLOBE;
@@ -2834,7 +2838,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141493"></script>
-<script src="data/dc.js?v=202610141493"></script>
+<script defer src="data/countries.js?v=202610141494"></script>
+<script src="data/dc.js?v=202610141494"></script>
 </body>
 </html>
