@@ -33,8 +33,7 @@ async def main():
       ordr=lambda: pg.evaluate("()=>window.__LA.order")
       o=await ordr(); vs=[x[1] for x in o if x[1] is not None]
       chk(t+' delta sort desc by total-vote change',all(vs[i]>=vs[i+1] for i in range(len(vs)-1)) and len(vs)>=50,f'{o[:2]}..{o[-2:]}'); await sh('delta-desc')
-      await pg.evaluate("()=>document.getElementById('laSort').click()"); await pg.wait_for_timeout(400)
-      await pg.evaluate("()=>[...document.querySelectorAll('#laSortPop button')][1].click()"); await pg.wait_for_timeout(1200)
+      await pg.evaluate("()=>{ if(window.__laInfo().sort!=='asc') document.getElementById('laSort').click(); }"); await pg.wait_for_timeout(1200)
       o2=await ordr(); vs2=[x[1] for x in o2 if x[1] is not None]
       chk(t+' delta sort asc',all(vs2[i]<=vs2[i+1] for i in range(len(vs2)-1)),f'{o2[:2]}'); await sh('delta-asc')
       # single year, # and %: California first / Wyoming+DC last on high-to-low, reverse on low-to-high
@@ -45,8 +44,7 @@ async def main():
         await pg.evaluate("()=>document.getElementById('bNum').click()"); await pg.wait_for_timeout(500)
         await pg.evaluate("(m)=>{const b=[...document.querySelectorAll('button')].find(b=>b.offsetParent&&b.textContent.trim()===m); b&&b.click();}",m); await pg.wait_for_timeout(1500)
       async def setsort(i):
-        await pg.evaluate("()=>document.getElementById('laSort').click()"); await pg.wait_for_timeout(300)
-        await pg.evaluate("(i)=>[...document.querySelectorAll('#laSortPop button')][i].click()",i); await pg.wait_for_timeout(1200)
+        await pg.evaluate("(i)=>{ const w=i===0?'desc':'asc'; if(window.__laInfo().sort!==w) document.getElementById('laSort').click(); }",i); await pg.wait_for_timeout(1200)
       for m in ('#','%'):
         await tg(m); await setsort(0); o=[x[0] for x in await ordr()]
         chk(f'{t} sort high-low {m}',o[0]=='California' and o[1]=='Texas' and 'Wyoming' in o[-4:] and 'District of Columbia' in o[-4:],f'{o[:3]}..{o[-3:]}')

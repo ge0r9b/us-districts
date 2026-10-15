@@ -15,7 +15,7 @@ async def main():
       await pg.click("#bTime"); await pg.wait_for_timeout(400); await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(1200)
       await pg.click("#bGeo"); await pg.wait_for_timeout(900); await pg.click("li.la-row"); await pg.wait_for_timeout(3500)
       await pg.evaluate("()=>window.__setNum('num')"); await pg.wait_for_timeout(500)
-      await pg.evaluate("()=>{ const b=document.querySelector('#laSort'); b&&b.click(); const o=[...document.querySelectorAll('#laSortPop button')].find(x=>/low/i.test(x.textContent)&&/high/i.test(x.textContent)); }"); await pg.wait_for_timeout(300)
+      await pg.evaluate("()=>{ const b=document.querySelector('#laSort'); b&&b.click(); }"); await pg.wait_for_timeout(300)
       s0=await pg.evaluate(S); print(t,'start',json.dumps(s0))
       # tap a state row -> its own counties list in list view, same settings
       await pg.evaluate("()=>{const r=[...document.querySelectorAll('#listView .lvrow.la')].find(x=>x.querySelector('b.rn').title==='Texas'); r.querySelector('b.rn').click();}"); await pg.wait_for_timeout(7000)

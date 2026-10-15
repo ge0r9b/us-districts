@@ -188,3 +188,115 @@ Districts with no 2020 value (gray in delta): State Senate 1 (KY) and State Hous
 
 ## Texas precinct timing (measured Oct 15, 2026, build 1525, live, desktop Chromium)
 Selecting Harris County, TX: the 2024 precinct set (9,712 precincts) is ready about 2.6 s after Enter. Switching to the 2020-to-2024 change loads the 2020 set (8,572 precincts) in about 0.4 s and re-renders in about 0.1 s (two long tasks of about 80 ms). No stall found; real-network and phone timings are not measured.
+
+## Town rows in list-all drill-down: 'no data' audit (build 1527)
+
+**Root cause (Idaho and most states).** The town polygons exist for every listed town, and 2024 precinct data exists in every Idaho county. The town value was computed by summing the precincts whose *centroid* lies inside the town polygon. A town that is smaller than the precinct(s) it sits in (typical for rural Idaho, e.g. Council and New Meadows are inside 5 county-wide precincts) has no precinct centroid inside it, so it showed 'no data'. Kamiah only worked because a precinct centroid happened to fall inside the city.
+
+**Fix.** When no precinct centroid is inside the town, the town's result is the real results of the precinct(s) that overlap it, weighted by the share of the *town's* area lying in each precinct (28x28 sample grid, at least half of the town's area must be covered by precinct polygons; otherwise it stays 'no data'). Shares are the area-weighted precinct shares. Counts are the overlapping precincts' totals pro-rated the same way, so they are an upper bound for the town (a precinct also holds voters outside the town). These rows carry the approximate mark (≈) in lists. Towns that contain at least one precinct centroid are unchanged (exact, no mark). No precinct or number is invented: no overlapping precinct means no data.
+
+2020 is a separate gap: no 2020 precinct file exists for most Idaho counties (only Ada, Blaine, Bonner, Butte, Caribou, Kootenai have one), so 2020 and delta rows for towns elsewhere stay 'no data' until 2020 precinct data is added (same for the states below).
+
+### Town rows still 'no data' by state (all towns listed in the town drill-down)
+
+| State | Town rows | 2024 no data before | 2024 no data now | 2020 no data before | 2020 no data now | ≈ rows (2024) |
+|---|---|---|---|---|---|---|
+| Alabama | 509 | 266 | 11 | 483 | 435 | 255 |
+| Alaska | 148 | 112 | 0 | 148 | 148 | 112 |
+| Arizona | 98 | 38 | 1 | 93 | 89 | 37 |
+| Arkansas | 520 | 238 | 7 | 374 | 299 | 231 |
+| California | 482 | 1 | 0 | 482 | 482 | 1 |
+| Colorado | 294 | 178 | 7 | 294 | 294 | 171 |
+| Connecticut | 176 | 8 | 2 | 176 | 176 | 6 |
+| Delaware | 60 | 31 | 0 | 38 | 1 | 31 |
+| Florida | 414 | 120 | 7 | 238 | 174 | 113 |
+| Georgia | 591 | 382 | 6 | 419 | 102 | 376 |
+| Hawaii | 1 | 0 | 0 | 1 | 1 | 0 |
+| Idaho | 204 | 148 | 0 | 188 | 167 | 148 |
+| Illinois | 2374 | 558 | 4 | 973 | 491 | 554 |
+| Indiana | 1531 | 273 | 2 | 1531 | 1531 | 271 |
+| Iowa | 1011 | 838 | 1 | 997 | 997 | 837 |
+| Kansas | 1806 | 326 | 7 | 467 | 169 | 319 |
+| Kentucky | 435 | 245 | 7 | 380 | 333 | 238 |
+| Louisiana | 315 | 65 | 0 | 223 | 199 | 65 |
+| Maine | 453 | 1 | 1 | 341 | 341 | 0 |
+| Maryland | 161 | 88 | 0 | 90 | 15 | 88 |
+| Massachusetts | 351 | 8 | 8 | 350 | 350 | 0 |
+| Michigan | 1703 | 172 | 23 | 1700 | 1699 | 149 |
+| Minnesota | 2680 | 109 | 5 | 426 | 399 | 104 |
+| Mississippi | 320 | 203 | 4 | 243 | 120 | 199 |
+| Missouri | 1252 | 828 | 13 | 1043 | 767 | 815 |
+| Montana | 127 | 75 | 0 | 78 | 3 | 75 |
+| Nebraska | 824 | 597 | 2 | 706 | 432 | 595 |
+| Nevada | 19 | 2 | 0 | 5 | 3 | 2 |
+| New Hampshire | 241 | 5 | 5 | 238 | 238 | 0 |
+| New Jersey | 564 | 2 | 2 | 564 | 564 | 0 |
+| New Mexico | 110 | 56 | 0 | 58 | 3 | 56 |
+| New York | 1350 | 105 | 7 | 1284 | 1282 | 98 |
+| North Carolina | 598 | 373 | 2 | 480 | 283 | 371 |
+| North Dakota | 1675 | 1455 | 2 | 1669 | 1640 | 1453 |
+| Ohio | 2251 | 340 | 12 | 730 | 479 | 328 |
+| Oklahoma | 643 | 528 | 14 | 511 | 30 | 514 |
+| Oregon | 251 | 71 | 5 | 251 | 251 | 66 |
+| Pennsylvania | 2588 | 56 | 26 | 37 | 9 | 30 |
+| Rhode Island | 39 | 1 | 0 | 39 | 39 | 1 |
+| South Carolina | 293 | 176 | 1 | 182 | 28 | 175 |
+| South Dakota | 1220 | 941 | 143 | 1214 | 1184 | 798 |
+| Tennessee | 379 | 212 | 4 | 324 | 251 | 208 |
+| Texas | 1390 | 892 | 8 | 947 | 101 | 884 |
+| Utah | 260 | 59 | 4 | 235 | 235 | 55 |
+| Vermont | 266 | 28 | 15 | 56 | 47 | 13 |
+| Virginia | 238 | 141 | 1 | 237 | 237 | 140 |
+| Washington | 289 | 10 | 3 | 114 | 107 | 7 |
+| West Virginia | 238 | 103 | 6 | 179 | 115 | 97 |
+| Wisconsin | 1914 | 136 | 105 | 1914 | 1914 | 31 |
+| Wyoming | 100 | 55 | 2 | 86 | 71 | 53 |
+| **Total** | 35756 | 11655 | 485 | 23836 | 19325 | 11170 |
+
+The 2024 rows still 'no data' are towns where the precinct polygons cover less than half of the town (precinct file gaps, e.g. Wisconsin, South Dakota, Pennsylvania wards) or the county has no precinct file. They are not guessed.
+
+### Idaho, per county
+
+Idaho 2024: 0 of 204 town rows without data. Idaho 2020: counties whose towns have no 2020 precinct data:
+
+- Adams County: Council city, New Meadows city (no 2020 precinct file)
+- Bannock County: Arimo city, Chubbuck city, Downey city, Inkom city, Lava Hot Springs city, McCammon city, Pocatello city (no 2020 precinct file)
+- Bear Lake County: Bloomington city, Georgetown city, Montpelier city, Paris city, St. Charles city (no 2020 precinct file)
+- Benewah County: Plummer city, St. Maries city, Tensed city (no 2020 precinct file)
+- Bingham County: Aberdeen city, Basalt city, Blackfoot city, Firth city, Shelley city (no 2020 precinct file)
+- Blaine County: Ketchum city (no 2020 precinct file)
+- Boise County: Crouch city, Horseshoe Bend city, Idaho City city, Placerville city (no 2020 precinct file)
+- Bonner County: Priest River city (no 2020 precinct file)
+- Bonneville County: Ammon city, Idaho Falls city, Iona city, Irwin city, Ririe city, Swan Valley city, Ucon city (no 2020 precinct file)
+- Boundary County: Bonners Ferry city, Moyie Springs city (no 2020 precinct file)
+- Butte County: Moore city (no 2020 precinct file)
+- Camas County: Fairfield city (no 2020 precinct file)
+- Canyon County: Caldwell city, Greenleaf city, Melba city, Middleton city, Nampa city, Notus city, Parma city, Star city, Wilder city (no 2020 precinct file)
+- Cassia County: Albion city, Burley city, Declo city, Malta city, Oakley city (no 2020 precinct file)
+- Clark County: Dubois city, Spencer city (no 2020 precinct file)
+- Clearwater County: Elk River city, Orofino city, Pierce city, Weippe city (no 2020 precinct file)
+- Custer County: Challis city, Clayton city, Mackay city, Stanley city (no 2020 precinct file)
+- Elmore County: Glenns Ferry city, Mountain Home city (no 2020 precinct file)
+- Franklin County: Clifton city, Dayton city, Franklin city, Oxford city, Preston city, Weston city (no 2020 precinct file)
+- Fremont County: Ashton city, Drummond city, Island Park city, Newdale city, Parker city, St. Anthony city, Teton city, Warm River city (no 2020 precinct file)
+- Gem County: Emmett city (no 2020 precinct file)
+- Gooding County: Bliss city, Gooding city, Hagerman city, Wendell city (no 2020 precinct file)
+- Idaho County: Cottonwood city, Ferdinand city, Grangeville city, Kamiah city, Kooskia city, Riggins city, Stites city, White Bird city (no 2020 precinct file)
+- Jefferson County: Lewisville city, Menan city, Mud Lake city, Rigby city, Ririe city, Roberts city (no 2020 precinct file)
+- Jerome County: Eden city, Hazelton city, Jerome city (no 2020 precinct file)
+- Latah County: Bovill city, Deary city, Genesee city, Juliaetta city, Kendrick city, Moscow city, Onaway city, Potlatch city, Troy city (no 2020 precinct file)
+- Lemhi County: Leadore city, Salmon city (no 2020 precinct file)
+- Lewis County: Craigmont city, Kamiah city, Nezperce city, Reubens city, Winchester city (no 2020 precinct file)
+- Lincoln County: Dietrich city, Richfield city, Shoshone city (no 2020 precinct file)
+- Madison County: Newdale city, Rexburg city, Sugar City city (no 2020 precinct file)
+- Minidoka County: Acequia city, Burley city, Heyburn city, Minidoka city, Paul city, Rupert city (no 2020 precinct file)
+- Nez Perce County: Culdesac city, Lapwai city, Lewiston city, Peck city (no 2020 precinct file)
+- Oneida County: Malad City city (no 2020 precinct file)
+- Owyhee County: Grand View city, Homedale city, Marsing city (no 2020 precinct file)
+- Payette County: Fruitland city, New Plymouth city, Payette city (no 2020 precinct file)
+- Power County: American Falls city, Pocatello city, Rockland city (no 2020 precinct file)
+- Shoshone County: Kellogg city, Mullan city, Osburn city, Pinehurst city, Smelterville city, Wallace city, Wardner city (no 2020 precinct file)
+- Teton County: Driggs city, Tetonia city, Victor city (no 2020 precinct file)
+- Twin Falls County: Buhl city, Castleford city, Filer city, Hansen city, Hollister city, Kimberly city, Murtaugh city, Twin Falls city (no 2020 precinct file)
+- Valley County: Cascade city, Donnelly city, McCall city (no 2020 precinct file)
+- Washington County: Cambridge city, Midvale city, Weiser city (no 2020 precinct file)
