@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141497 -->
+<!-- build 202610141498 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141497";</script>
+<script>window.BUILD="202610141498";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2821,12 +2821,12 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const two=ym()==="delta"; let v0=null,v1=null; try{ if(two){ v0=scopeVals(a,"2020"); v1=scopeVals(a,"2024"); } else v0=scopeVals(a,ym()); }catch(e){}
     if(!v0||!v0.tot||(two&&(!v1||!v1.tot))){ if(pn) pn.remove(); return; }
     const wide=innerWidth>=600; const one=k=>k==="line"?(two?'<div class="clinechart">'+(window.__lineSvg?window.__lineSvg(a):"")+'</div>':""):k==="pie"?'<div class="cpie1">'+pieSvg(v0,v1)+'</div>':barHtml(v0,v1);
-    let h; if(!wide){ h=["bar","pie","line"].sort((x,y)=>(x===mode?-1:0)-(y===mode?-1:0)).map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
+    let h; if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
     else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);
       const yrs=two?[["2020",v0],["2024",v1]]:[[ym(),v0]]; const leg=legend(yrs);
       let main; if(mode==="pie"){ const S=Math.min(pw-480,avail-30,560); main='<div class="cwide"><div class="cpieL">'+pieBig(v0,v1,Math.max(220,S))+'</div>'+leg+'</div>'; }
       else if(mode==="line"&&two){ main='<div class="clinechart big">'+window.__lineSvg(a,pw,Math.min(avail,420),true)+'</div>'+leg; }
-      else { main=barBig(v0,v1)+'<div class="cwide">'+'<div class="cpieL">'+pieBig(v0,v1,Math.min(320,avail))+'</div>'+leg+'</div>'; }
+      else if(mode==="line"){ main=leg; } else { main=barBig(v0,v1)+leg; }
       h='<div class="cwideWrap">'+main+'</div>'; }
     if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn); if(pn.innerHTML!==h) pn.innerHTML=h; };
   const _rcX=renderCands; renderCands=function(){ const r=_rcX.apply(this,arguments); draw(); return r; };
@@ -2840,7 +2840,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141497"></script>
-<script src="data/dc.js?v=202610141497"></script>
+<script defer src="data/countries.js?v=202610141498"></script>
+<script src="data/dc.js?v=202610141498"></script>
 </body>
 </html>
