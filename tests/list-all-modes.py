@@ -58,7 +58,7 @@ async def main():
       async def tog(m):
         await pg.evaluate("()=>document.getElementById('bNum').click()"); await pg.wait_for_timeout(500)
         await pg.evaluate("(m)=>{const b=[...document.querySelectorAll('button')].find(b=>b.offsetParent&&b.textContent.trim()===m); b&&b.click();}",m); await pg.wait_for_timeout(1500)
-      for rng in ('one','delta'):
+      for rng in ('one',):  # delta pie ring removed (t251-t254): pie is single-point only
         if rng=='delta': await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(1500)
         for m,want in (('#','num'),('%','pct')):
           await tog(m); mode=await pg.evaluate("()=>window.__numMode()")

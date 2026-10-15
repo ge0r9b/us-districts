@@ -11,7 +11,7 @@ async def main():
       await pg.click("#bTime"); await pg.wait_for_timeout(500); await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(1500)
       await pg.evaluate("()=>document.querySelector('[aria-label=Chart]').click()"); await pg.wait_for_timeout(600)
       await pg.evaluate("()=>{const x=[...document.querySelectorAll('button')].find(b=>b.dataset.ch==='line'); x&&x.click();}"); await pg.wait_for_timeout(2500)
-      for ch in ('line','pie'):
+      for ch in ('line',):
        if ch!='line': await pg.evaluate("c=>{const x=[...document.querySelectorAll('button')].find(b=>b.dataset.ch===c); x&&x.click();}",ch); await pg.wait_for_timeout(1800)
        for mode in ('pct','num'):
          await pg.evaluate("m=>window.__setNum(m)",mode); await pg.wait_for_timeout(1500)
