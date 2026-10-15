@@ -7,7 +7,7 @@ def ck(n,ok,d=''):
   print(('OK   ' if ok else 'FAIL ')+n,'' if ok else d); fails+=0 if ok else 1
 S="""()=>{const vis=e=>e&&e.getBoundingClientRect().width>0&&getComputedStyle(e).display!=='none'; const b=document.getElementById('bBack'); const r=b.getBoundingClientRect(); const so=document.getElementById('laSort'); const sr=so.getBoundingClientRect(); return {fs:document.body.classList.contains('foldfs'),btn:!!vis(b),box:[Math.round(r.left),Math.round(r.top),Math.round(r.width),Math.round(r.height)],sortbox:vis(so)?[Math.round(sr.left),Math.round(sr.top),Math.round(sr.width),Math.round(sr.height)]:null,depth:window.__backDepth(),st:state.value,co:county.value,w:window.__W&&window.__W(),lt:(document.querySelector('#lyrRow .lbtn.on')||{dataset:{}}).dataset.k||'',la:document.body.classList.contains('listall'),view:window.__v2.view,sort:window.__laInfo().sort,lv:window.__laInfo().lv,rows:[...document.querySelectorAll('#listView .lvrow.la')].filter(r=>r.offsetParent).length,top:window.__stateSnapshot().top,url:location.pathname}}"""
 async def fresh(b,vp,geo=None):
-  c=await b.new_context(viewport=vp); pg=await c.new_page(); pg.errs=[]; pg.on('pageerror',lambda e:pg.errs.append(str(e)[:150]))
+  c=await b.new_context(viewport=vp); await c.add_init_script('window.__noDistTier=1'); pg=await c.new_page(); pg.errs=[]; pg.on('pageerror',lambda e:pg.errs.append(str(e)[:150]))
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3800)
   if geo:
     await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.wait_for_timeout(500); await pg.keyboard.type(geo); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(3800)

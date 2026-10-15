@@ -10,7 +10,7 @@ ROWS="()=>[...document.querySelectorAll('#listView .lvrow.la')].filter(x=>x.offs
 async def setmode(pg,v):
   await pg.evaluate("v=>{const y=document.getElementById('yslider'); y.value=v; y.dispatchEvent(new Event('input',{bubbles:true}))}",v); await pg.wait_for_timeout(2500)
 async def open_list(b,vp,st,kind):
-  c=await b.new_context(viewport=vp); pg=await c.new_page(); errs=[]; pg.on("pageerror",lambda e:errs.append(str(e)[:150]))
+  c=await b.new_context(viewport=vp); await c.add_init_script("window.__noDistTier=1"); pg=await c.new_page(); errs=[]; pg.on("pageerror",lambda e:errs.append(str(e)[:150]))
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
   await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.wait_for_timeout(500); await pg.keyboard.type(st.lower()); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(3500)
   await pg.click("#bGeo"); await pg.wait_for_timeout(1200)

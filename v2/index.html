@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610151531";</script>
+<script>window.BUILD="202610151532";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3136,7 +3136,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const NOTOP=a=>a.kind==="ctry"||a.kind==="prov";
   const LIST_ICO='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1" fill="#222"/><circle cx="4" cy="12" r="1" fill="#222"/><circle cx="4" cy="18" r="1" fill="#222"/></svg>';
   /* school districts / state house / state senate: state -> counties -> districts (US House stays one flat list per state) */
-  const dtier=()=>ltype!=="ushouse"&&!!state.value&&(GEOM.counties||[]).some(d=>d[0]===state.value);
+  const dtier=()=>!window.__noDistTier&&ltype!=="ushouse"&&!!state.value&&(GEOM.counties||[]).some(d=>d[0]===state.value);
   /* districts touching a county, from the district and county polygons (24x24 sample grid over the district's box). A district that lies in several counties is listed under each one it touches with its WHOLE-district numbers (identical to the map pop-up), flagged split -> shown with the approximate mark. No numbers are invented or pro-rated. */
   const pipD=(d,lng,lat)=>{ const q=d.bb; return lng>=q[0]&&lng<=q[2]&&lat>=q[1]&&lat<=q[3]&&d.polys.some(p=>{ let ins=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const xi=r0[i][0],yi=r0[i][1],xj=r0[j][0],yj=r0[j][1]; if(((yi>lat)!==(yj>lat))&&(lng<(xj-xi)*(lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }); };
   const DIC={}; function distInCounty(k,st,cn){ const key=k+"|"+st+"|"+cn; if(DIC[key]) return DIC[key]; const cg=(GEOM.counties||[]).find(d=>d[0]===st&&d[1]===cn); if(!cg) return DIC[key]=[]; const cb=bboxOf(cg[cg.length-1]), N=24, out=[];
