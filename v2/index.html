@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141514 -->
+<!-- build 202610141515 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141514";</script>
+<script>window.BUILD="202610141515";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3140,7 +3140,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     li.addEventListener("touchend",e=>{ if(ty===null) return; const d=Math.abs((e.changedTouches[0]||{clientY:ty}).clientY-ty); ty=null; if(d>10) return; e.preventDefault(); e.stopPropagation(); act(); },{passive:false});
     li.onclick=e=>{ e.stopPropagation(); act(); }; h.prepend(li); }
   // ---- tapping a list-all row selects that entity (same result as picking it in the institution list) ----
-  window.__laPick=async function(a){ const kl=view==='list'||LA.on; const tomap=()=>{ if(!kl) setView('map'); else setView('list'); }; const after=()=>{ if(!kl) return; const go=async n=>{ try{ if(LA.on) return; setView('list'); const lv=level(); if(lv) await enter(); else setView('list'); }catch(e){} if(!LA.on&&n<3) setTimeout(()=>go(n+1),1200); }; setTimeout(()=>go(0),1400); }; try{ if(!a) return; after(); window.__geoLock=null; try{ nameLock=null; }catch(e){}
+  window.__laPick=async function(a){ const kl=view==='list'||LA.on; const tomap=()=>{ if(!kl) setView('map'); else setView('list'); }; const after=()=>{ if(!kl||(a&&a.st==="District of Columbia")) return; const go=async n=>{ try{ if(LA.on) return; setView('list'); const lv=level(); if(lv) await enter(); else setView('list'); }catch(e){} if(!LA.on&&n<3) setTimeout(()=>go(n+1),1200); }; setTimeout(()=>go(0),1400); }; try{ if(!a) return; after(); window.__geoLock=null; try{ nameLock=null; }catch(e){}
     if(a.kind==="ctry"){ exit(); tomap(); if(a.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange&&state.onchange(); } else window.__worldEnter(a.iso); return; }
     if(a.kind==="prov"){ exit(); tomap(); window.__W_prov(a.p[0]); return; }
     if(a.kind==="sum"&&a.st==="District of Columbia"){ exit(); tomap(); map.fitBounds([[38.79,-77.12],[38.995,-76.909]],{padding:[10,10]}); const lbl="District of Columbia"; try{ const gq=$("gq"); gq.placeholder=lbl; gq.title=lbl; nameLock=lbl; window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; window.__selAt=Date.now(); }catch(e){} setTimeout(()=>{ try{ showArea({kind:"county",d:["District of Columbia","District of Columbia"],yr:ym()==="2020"?"2020":"2024"},L.latLng(38.9,-77.03)); }catch(e){} },500); return; }
@@ -3240,7 +3240,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141514"></script>
-<script src="data/dc.js?v=202610141514"></script>
+<script defer src="data/countries.js?v=202610141515"></script>
+<script src="data/dc.js?v=202610141515"></script>
 </body>
 </html>
