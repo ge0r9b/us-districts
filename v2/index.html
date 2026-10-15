@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<!-- build 202610141517 -->
+<!-- build 202610141518 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141517";</script>
+<script>window.BUILD="202610141518";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../lib/leaflet.css">
+<script>/* blank-topic snapshot: hide results before first paint so a restored blank topic never flashes President results */
+(function(){ try{ var o=null, m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ var t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } else { var j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&o.top==="-") document.documentElement.classList.add("notopic0"); }catch(e){} })();</script>
+<style>
+  html.notopic0 .cands, html.notopic0 .cpanel, html.notopic0 .dmx, html.notopic0 .dlx, html.notopic0 .heatlegend, html.notopic0 #chartLg, html.notopic0 .leaflet-heat-pane, html.notopic0 .leaflet-natPane-pane, html.notopic0 .leaflet-stPane-pane { display: none !important; }
+</style>
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; font: 15px/1.4 "Segoe UI", system-ui, sans-serif; color: #1c1917; background: #f6f4f1; }
@@ -216,7 +221,7 @@
   .usv { padding-left: 0 !important; } .usv .nl li { padding: 0 12px; gap: 0; min-height: 48px; justify-content: flex-start; }
   .usv .nl li .oic { flex: 0 0 30px; width: 30px; height: 22px; margin: 0 10px 0 0; display: inline-flex; align-items: center; justify-content: center; }
   .usv .nl li .oic img { max-width: 30px; max-height: 22px; width: auto; height: auto; object-fit: contain; } .usv .nl li .oic svg { width: 22px; height: 22px; }
-  .usv .nl li .nm { flex: 0 1 auto; min-width: 0; font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .usv .nl li .tg { margin-left: 8px; padding-left: 0; display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; } .usv .tg.k-top { color: #5b6b9a; } .usv .tg.k-place { color: #5f8a73; } .usv .tg.k-gov { color: #9a7b3a; } .usv .tg.k-biz { color: #a0614a; } .usv .tg.k-misc { color: #78716c; }
+  .usv .nl li .nm { flex: 0 1 auto; min-width: 0; font-weight: 600; color: #1c1917; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .usv .nl li .tg { margin-left: 8px; padding-left: 0; display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; } .usv .tg.k-top { color: #5b6b9a; } .usv .tg.k-place { color: #5f8a73; } .usv .tg.k-gov { color: #9a7b3a; } .usv .tg.k-inc { color: #8a6f8f; } .usv .tg.k-biz { color: #a0614a; } .usv .tg.k-misc { color: #78716c; }
   .rbtn { background: #fff !important; border-color: #fff !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; }
   .rbtn svg { stroke: #000 !important; }
   .rbtn.on { background: #000 !important; }
@@ -2089,6 +2094,7 @@ if(0) setInterval(()=>{ const B=document.body.classList; if(!B.contains("foldfs"
 document.addEventListener("focusout",e=>{ const b=e.target.closest&&e.target.closest("#barGeo .fsq"); if(b){ b.classList.remove("fqfocus"); if(!e.target.value) b.classList.remove("typing"); } },true);
 // ===== All countries level: live filter + Enter + reopen in world mode =====
 document.addEventListener("input",e=>{ if(!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); document.querySelectorAll("#orgGlobal li").forEach(l=>{ const n=(l.querySelector(".nm")||l).textContent.toLowerCase(); l.style.display=!q||n.includes(q)?"":"none"; }); },true);
+window.addEventListener("keydown",e=>{ /* top level 'All': typing All+Enter or Escape only collapses the filter */ if((e.key!=="Enter"&&e.key!=="Escape")||!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=(e.target.value||"").trim().toLowerCase(); if(e.key==="Enter"&&q&&q!=="all"&&q!=="all countries") return; e.preventDefault(); e.stopImmediatePropagation(); e.target.value=""; try{ e.target.blur(); }catch(_){} try{ closeSheet(); crumbs(); }catch(_){} },true);
 document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgGlobal li")].filter(l=>l.style.display!=="none"); const ex=ls.find(l=>(l.querySelector(".nm")||l).textContent.toLowerCase()===q)||ls[0]; if(ex){ e.preventDefault(); e.stopImmediatePropagation(); e.target.value=""; e.target.blur(); ex.click(); } },true);
 { const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ (window.__W&&window.__W()==="ca"&&window.__orgCountry)?window.__orgCountry("ca"):window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
@@ -2102,9 +2108,15 @@ setInterval(fixLegend,800);
 function usIndex(){ const R=[]; const st=state.value;
   ["2024","2020"].forEach(yr=>CANDS[yr].forEach(c=>R.push({name:c.full+" "+yr,tag:"Candidate",cp:c.p,pick:()=>{ candOn.clear(); candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); }})));
   LYR.filter(l=>lrow.querySelector(".lbtn[data-k="+l[1]+"]")).forEach(l=>R.push({name:l[2],tag:"Type",lk:l[1],pick:()=>lrow.querySelector(".lbtn[data-k="+l[1]+"]").click()}));
-  allStates().forEach(s=>R.push({name:s,tag:"State",pick:()=>{ state.value=s; state.onchange(); }}));
-  Object.keys(window.ELECTION2024||{}).forEach(k=>{ const [s,c]=k.split("|"); R.push({name:c+", "+(ABBR[s]||s),tag:"County",st:s,pick:()=>{ state.value=s; state.onchange(); loadState(s).then(()=>setTimeout(()=>{ county.value=c; county.onchange(); },200)); }}); });
-  if(st){ (GEOM.counties||[]).filter(d=>d[0]===st).forEach(d=>(PARTS[st]?townsIn(st,d[1]):[]).forEach(t=>R.push({name:t[2]+", "+d[1],tag:"Town",st:st,pick:()=>{ county.value=d[1]; county.onchange(); setTimeout(()=>{ hier.dist=t; drawDist(); zoomItem("towns",t); crumbs(); },400); }})));
+  /* every entity that is both a government and a place gets TWO rows: institution row (flag/entity icon + type label) and Place row (territorial silhouette, label "Place"). States and countries are SOVEREIGN; counties/towns/townships/boroughs/cities are incorporated. */
+  (window.COUNTRIES||[]).forEach(c=>{ const iso=c[0], nm=c[1]; const isUS=iso==="us";
+    R.push({name:nm,tag:"Country",iso,pick:()=>{ if(isUS){ if(window.__worldExit) window.__worldExit(); state.value=""; hier.dist=null; if(county) county.value=""; state.onchange&&state.onchange(); } else if(window.__worldEnter) window.__worldEnter(iso); }});
+    R.push({name:nm,tag:"Place",geo:1,iso,pick:()=>{ if(isUS){ if(window.__worldExit) window.__worldExit(); state.value=""; hier.dist=null; if(county) county.value=""; state.onchange&&state.onchange(); try{ map.fitBounds([[24.5,-125],[49.5,-66.9]]); }catch(_){} } else if(window.__worldEnter) window.__worldEnter(iso); }}); });
+  allStates().forEach(s=>{ R.push({name:s,tag:"State",pick:()=>{ state.value=s; state.onchange(); }}); R.push({name:s,tag:"Place",geo:1,st:s,pick:()=>navTo(s)}); });
+  Object.keys(window.ELECTION2024||{}).forEach(k=>{ const [s,c]=k.split("|"); const nm=c+", "+(ABBR[s]||s);
+    R.push({name:nm,tag:"County",st:s,cty:c,pick:()=>{ state.value=s; state.onchange(); loadState(s).then(()=>setTimeout(()=>{ county.value=c; county.onchange(); },200)); }});
+    R.push({name:nm,tag:"Place",geo:1,st:s,cty:c,pick:()=>navTo(nm)}); });
+  if(st){ (GEOM.counties||[]).filter(d=>d[0]===st).forEach(d=>(PARTS[st]?townsIn(st,d[1]):[]).forEach(t=>{ const pk=()=>{ county.value=d[1]; county.onchange(); setTimeout(()=>{ hier.dist=t; drawDist(); zoomItem("towns",t); crumbs(); },400); }; const m=/\b(township|borough|city|village|town)\b/i.exec(t[2]); const tl=m?m[1][0].toUpperCase()+m[1].slice(1).toLowerCase():"Town"; R.push({name:t[2]+", "+d[1],tag:"Town",tl,st:st,cty:d[1],twn:t,pick:pk}); R.push({name:t[2]+", "+d[1],tag:"Place",geo:1,st:st,cty:d[1],twn:t,pick:pk}); }));
     ["ushouse","senate","statehouse","schools"].forEach(k=>layerItems(k).forEach(d=>R.push({name:aname({kind:k,d}),tag:LYR.find(l=>l[1]===k)[2],st:d[0],lk:k,pick:()=>{ lrow.querySelector(".lbtn[data-k="+k+"]").click(); setTimeout(()=>{ hier.dist=d; drawDist(); zoomItem(k,d); crumbs(); },300); }})));
     (PREC[st]||[]).forEach(r=>R.push({name:r[1]+", "+r[0],tag:"Precinct",st:st,pick:()=>{ const c=zoomItem("precinct",r); setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2020"?"2020":"2024"},c),350); }})); }
   return R; }
@@ -2112,12 +2124,19 @@ window.__usIndex=usIndex;
 const US_SVG=d=>'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
 const US_I={gov:US_SVG('<path d="M3 9.5L12 4l9 5.5"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/>'),store:US_SVG('<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9v11h16V9"/><path d="M4 9c0 1.7 1.3 3 2.7 3S9.3 10.7 9.3 9M9.3 9c0 1.7 1.3 3 2.7 3s2.7-1.3 2.7-3M14.7 9c0 1.7 1.3 3 2.7 3S20 10.7 20 9"/><path d="M10 20v-5h4v5"/>'),pod:US_SVG('<path d="M7 9h10l-1.3 11H8.3z"/><path d="M12 3.5v5M9.5 5h5"/>'),pin:US_SVG('<path d="M12 21s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10z"/><circle cx="12" cy="11" r="2"/>')};
 function usKind(it){ const t=it.tag; if(t==="Topic") return {l:"Topic",c:"k-top",i:US_I.pod}; if(t==="State"||t==="Country"||t==="Province") return {l:t,c:"k-gov",i:US_I.gov}; if(t==="Business") return {l:t,c:"k-biz",i:US_I.store};
-  if(t==="County"||t==="Town"||t==="Precinct"||t==="ZIP"||(it.st&&it.lk)) return {l:"Place",c:"k-place",i:US_I.pin}; return {l:t,c:"k-misc",i:""}; }
+  if(t==="Place"||t==="Precinct"||t==="ZIP"||(it.st&&it.lk)) return {l:"Place",c:"k-place",i:US_I.pin};
+  if(t==="County") return {l:"County",c:"k-inc",i:US_SVG('<path d="M4 4h7v6h9v10H9v-6H4z"/><circle cx="14" cy="15" r="1.6"/>')};
+  if(t==="Town") return {l:it.tl||"Town",c:"k-inc",i:US_SVG('<path d="M3 21h18M4 21V9h6v12M10 21V4h8v17"/><path d="M13 8h2M13 12h2M13 16h2"/>')}; return {l:t,c:"k-misc",i:""}; }
+const US_ENT=d=>'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#222" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
+const US_STAR={}; function usStar(it){ try{ if(it.twn){ const b=bboxOf(it.twn[3]); return [(b[0]+b[2])/2,(b[1]+b[3])/2]; } const k=it.st+"|"+it.cty; if(k in US_STAR) return US_STAR[k]; const d=(window.NAT||(typeof NAT!=="undefined"?NAT:null)||[]).find(x=>x.st===it.st&&x.nm===it.cty); return US_STAR[k]=d?[(d.bb[0]+d.bb[2])/2,(d.bb[1]+d.bb[3])/2]:null; }catch(e){ return null; } }
 function usIcon(it){ try{ const t=it.tag, B=window.BUILD||1;
     if(t==="Topic") return '<img alt="" src="img/seal-president.png?v=1">';
     if(t==="State") return '<img alt="" src="img/stateflags/'+encodeURIComponent(it.name)+'.png?v='+B+'">';
     if(t==="Country"||t==="Province") return '<img alt="" src="img/flags/'+(it.iso==="us"?"US.png":"c/"+(it.iso||"ca")+".png")+'?v='+B+'">';
-    if(t==="County"||t==="Town"||t==="Precinct"||(it.st&&it.lk)) return window.__stSil&&it.st?window.__stSil(it.st,null):"";
+    if(t==="County") return US_ENT('<path d="M4 4h7v6h9v10H9v-6H4z"/><circle cx="14" cy="15" r="1.6"/>');
+    if(t==="Town") return US_ENT('<path d="M3 21h18M4 21V9h6v12M10 21V4h8v17"/><path d="M13 8h2M13 12h2M13 16h2M6.5 13h1M6.5 17h1"/>');
+    if(t==="Place"){ if(it.iso) return it.iso==="us"?(window.__usSil?window.__usSil():""):(window.__ctrySil?window.__ctrySil(it.iso):""); if(!window.__stSil||!it.st) return ""; return window.__stSil(it.st,it.cty?usStar(it):null); }
+    if(t==="Precinct"||(it.st&&it.lk)) return window.__stSil&&it.st?window.__stSil(it.st,null):"";
     if(t==="Candidate") return '<svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="7" fill="'+(it.cp==="r"||it.cp==="R"?"#dc2626":"#2563eb")+'"/></svg>';
     if(t==="Type"){ const b=lrow.querySelector(".lbtn[data-k="+it.lk+"] svg"); return b?b.outerHTML:""; }
     if(t==="ZIP") return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#222" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
@@ -2127,7 +2146,7 @@ function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("
   const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
   const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search"; inp.setAttribute("aria-label","Search everything");
   $("bSearch").before(inp); try{ inp.style.paddingLeft=Math.max(0,52-inp.getBoundingClientRect().left)+"px"; }catch(e){} u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
-  Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
+  Promise.all([window.ELECTION2024?null:loadElection(), (typeof loadNat==='function')?loadNat().catch(()=>0):null, (typeof loadDS==='function'&&!DS.ushouse)?loadDS('ushouse').catch(()=>0):null, state.value?ensureFor().then(()=>loadPrecincts(state.value)):null]).then(()=>{ const IDX=usIndex(); let res=[];
     const pickIt=it=>{ closeUS(); it.pick(); };
     const show=()=>{ const q=inp.value.trim(); ol.innerHTML="";
       if(/^\d{5}$/.test(q)) res=[{name:"ZIP "+q,tag:"ZIP",pick:()=>navTo(q)}]; else res=q?matchList(IDX,q):[]; if(q){ const T=OFFICES.filter(o=>o.label.toLowerCase().startsWith(q.toLowerCase())).map(o=>({name:o.label,tag:'Topic',pick:()=>window.__setTopic&&window.__setTopic(o.label)})); res=T.concat(res.filter(r=>r.tag!=='Topic')); }
@@ -2571,6 +2590,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
     return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'"><path d="'+d+'" fill="#222" fill-rule="evenodd"/>'+st+'</svg>'; }
   const SILC={}; window.__stSil=(st,star)=>{ if(!st) return ''; if(!star&&SILC[st]) return SILC[st]; const r=stRings(st); const v=r?svgOf(r,star):''; if(!star&&v) SILC[st]=v; return v; };
   function stRings(st){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; const r=d.polys.map(p=>p[0]); if(st==="Alaska") r.__ak=1; return r; }
+  window.__ctrySil=iso=>{ const c=(window.CTRYSHAPE||{})[iso]; return c?svgOf(c,null):''; };
   window.__usSil=()=>{ const r=usRings(); return r?svgOf(r,null):''; };
   function usRings(){ const S=window.__STget&&window.__STget(); if(!S) return null; return S.filter(x=>x.st!=="Alaska"&&x.st!=="Hawaii").flatMap(x=>x.polys.map(p=>p[0])); }
   let key="";
@@ -2856,7 +2876,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   { const _ui=usIndex; usIndex=function(){ const R=_ui(); const E=window.ELECTION2024||{};
       R.forEach(x=>{ if(x.tag==="County"){ const m=x.name.match(/^(.*), ([A-Z]{2})$/); const s=m&&AB2S[m[2].toLowerCase()]; const v=s&&E[s+"|"+m[1]]; x.st=s; x.w=v?(v.tot||v[2]||0):0; } else if(x.tag==="State") x.st=x.name; });
       const seenT=new Set(), seenS=new Set();
-      ((PACK.lists||{}).localities||[]).forEach(r=>{ const [s,c,t,sd]=r; const k=s+"|"+c+"|"+t; if(t&&!seenT.has(k)){ seenT.add(k); R.push({name:t+", "+c+", "+(ABBR[s]||s),tag:"Town",st:s,pick:()=>navTo(t+", "+c+", "+s)}); }
+      ((PACK.lists||{}).localities||[]).forEach(r=>{ const [s,c,t,sd]=r; const k=s+"|"+c+"|"+t; if(t&&!seenT.has(k)){ seenT.add(k); const nm=t+", "+c+", "+(ABBR[s]||s), pk=()=>navTo(t+", "+c+", "+s); const m=/\b(township|borough|city|village|town)\b/i.exec(t); const tl=m?m[1][0].toUpperCase()+m[1].slice(1).toLowerCase():"Town"; R.push({name:nm,tag:"Town",tl,st:s,cty:c,pick:pk}); R.push({name:nm,tag:"Place",geo:1,st:s,cty:c,pick:pk}); }
         if(sd&&!seenS.has(s+"|"+sd)){ seenS.add(s+"|"+sd); R.push({name:sd+", "+(ABBR[s]||s),tag:"School",st:s,pick:()=>navTo(sd+", "+s)}); } });
       const H=(typeof DS!=="undefined"&&DS.ushouse)||[]; H.forEach(d=>{ const lb=(ABBR[d.st]||d.st)+"-"+String(d.nm).padStart(2,"0"); R.push({name:lb,tag:"US House",st:d.st,pick:()=>{ const b=lrow.querySelector(".lbtn[data-k=ushouse]"); if(ltype!=="ushouse"&&b) b.click(); setTimeout(()=>{ if(d.bb) map.fitBounds([[d.bb[1],d.bb[0]],[d.bb[3],d.bb[2]]]); $("gq").placeholder=lb; },250); }}); });
       return R; }; window.__usIndex=usIndex; }
@@ -3148,6 +3168,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(a.kind==="prov"){ exit(); tomap(); window.__W_prov(a.p[0]); return; }
     if(a.kind==="sum"&&a.st==="District of Columbia"){ exit(); tomap(); map.fitBounds([[38.79,-77.12],[38.995,-76.909]],{padding:[10,10]}); const lbl="District of Columbia"; try{ const gq=$("gq"); gq.placeholder=lbl; gq.title=lbl; nameLock=lbl; window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; window.__selAt=Date.now(); }catch(e){} setTimeout(()=>{ try{ showArea({kind:"county",d:["District of Columbia","District of Columbia"],yr:ym()==="2020"?"2020":"2024"},L.latLng(38.9,-77.03)); }catch(e){} },500); return; }
     if(a.kind==="sum"){ exit(); tomap(); navTo(String(a.st)); setTimeout(()=>{ try{ if(state.value!==a.st){ county.value=""; hier.dist=null; state.value=a.st; state.onchange&&state.onchange(); } }catch(e){} },1500); return; }
+    if(kl&&a.kind==="towns"&&a.d){ exit(); try{ zoomItem("towns",a.d); }catch(e){} hier.dist=a.d; try{ drawDist(); }catch(e){} try{ crumbs(); }catch(e){} return; }
     const nm=String(aname(a)); let ch=null; try{ await ensureFor(); ch=children(); }catch(e){}
     const it=ch&&ch.items.find(i=>i.name===nm||(a.d&&i.d===a.d));
     exit(); tomap();
@@ -3159,11 +3180,17 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     document.addEventListener("touchend",e=>{ const r=hit(e); if(!r||ty===null) return; const t=e.changedTouches[0]; const m=Math.abs(t.clientY-ty)+Math.abs(t.clientX-tx); ty=null; if(m>10) return; done=Date.now(); window.__laPick(r.__a); },{passive:true,capture:true});
     document.addEventListener("click",e=>{ const r=hit(e); if(!r||Date.now()-done<600) return; e.stopPropagation(); window.__laPick(r.__a); },true); }
   window.__laEnsureRow=ensureRow;
+  // ===== blank topic = no results: gate every results block on the topic synchronously (class set in __setTopic, no render-then-clear flash) =====
+  { const css=document.createElement("style"); css.textContent="body.notopic .cands, body.notopic .cpanel, body.notopic .dmx, body.notopic .dlx, body.notopic .heatlegend, body.notopic #chartLg, body.notopic #lshift, body.notopic #partyBub { display: none !important; }"; document.head.append(css);
+    const sync=()=>{ try{ document.body.classList.toggle("notopic",!(window.__topicOn&&window.__topicOn())); }catch(e){} }; sync();
+    const _st=window.__setTopic; if(_st&&!_st.__nt){ window.__setTopic=function(l){ document.body.classList.toggle("notopic",!l); const r=_st.apply(this,arguments); sync(); return r; }; window.__setTopic.__nt=1; }
+    setInterval(()=>{ sync(); if(!(window.__stateRestoring&&window.__stateRestoring())) document.documentElement.classList.remove("notopic0"); },120); }
+
   // ===== state persistence: versioned snapshot (v:1) of the user's filter/view settings -> URL hash (#s=...) via replaceState + localStorage fallback; restored on load (an explicit exception to "only user actions change the selection"). Snapshot doubles as a future saved preset =====
   { const KEY="usd.state", VER=1, sleep=ms=>new Promise(r=>setTimeout(r,ms)); let restoring=true, last="";
     const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
     const dec=t=>{ try{ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; return JSON.parse(decodeURIComponent(escape(atob(t)))); }catch(e){ return null; } };
-    const snap=()=>{ const o={v:VER}; try{ o.top=(window.__topicOn&&window.__topicOn())?(OFFICES.find(x=>x.id===office)||{}).label||null:null; }catch(e){}
+    const snap=()=>{ const o={v:VER}; try{ o.top=(window.__topicOn&&window.__topicOn())?(OFFICES.find(x=>x.id===office)||{}).label||null:"-"; }catch(e){}
       try{ o.w=window.__W?window.__W():null; }catch(e){} try{ o.st=state.value||""; o.co=county.value||""; }catch(e){} try{ o.lt=ltype; }catch(e){}
       try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; }catch(e){}
       try{ const c=map.getCenter(); o.ll=[+c.lat.toFixed(4),+c.lng.toFixed(4),+map.getZoom().toFixed(2)]; }catch(e){}
@@ -3173,7 +3200,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const ok=(v,list)=>list.indexOf(v)>=0;
     async function apply(o){ if(!o||typeof o!=="object") return; restoring=true; try{ const bump=()=>{ window.__selAt=Date.now(); };
       // unknown/invalid values fall back per field (ignored); a newer snapshot version is read best-effort (known fields only)
-      if(typeof o.top==="string"&&OFFICES.some(x=>x.label===o.top)){ try{ window.__setTopic(o.top); }catch(e){} } else if(o.top===undefined&&false){}
+      if(typeof o.top==="string"&&OFFICES.some(x=>x.label===o.top)){ try{ window.__setTopic(o.top); }catch(e){} } else if(o.top==="-"){ try{ window.__setTopic(null); }catch(e){} } else if(o.top===undefined&&false){}
       if(ok(o.yv,[0,1,2])){ try{ if(+$("yslider").value!==o.yv){ $("yslider").value=o.yv; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } if(o.tb&&$("barTime").hidden) $("bTime").click(); }catch(e){} }
       if(ok(o.nm,["pct","num"])&&window.__setNum){ try{ window.__setNum(o.nm); }catch(e){} }
       if(typeof o.lt==="string"&&o.lt!==ltype&&o.lt!=="counties"){ const b=document.querySelector('#lyrRow .lbtn[data-k="'+o.lt.replace(/[^a-z]/g,"")+'"]'); if(b){ try{ b.click(); }catch(e){} await sleep(500); } }
@@ -3190,7 +3217,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       if(typeof o.la==="string"&&o.vw==="list"){ try{ const lv=level(); if(lv&&lv.id===o.la){ await enter(); } }catch(e){} }
       if(Array.isArray(o.ll)&&o.ll.length===3&&o.ll.every(x=>typeof x==="number"&&isFinite(x))&&Math.abs(o.ll[0])<=85&&Math.abs(o.ll[1])<=180&&o.ll[2]>=1&&o.ll[2]<=19&&o.vw!=="list"){ bump(); try{ map.setView([o.ll[0],o.ll[1]],o.ll[2],{animate:false}); }catch(e){} bump(); }
     }catch(e){ try{ console.warn("state restore",e); }catch(_){} } await sleep(600); window.__selAt=Date.now(); restoring=false; last=""; save(); }
-    window.__stateApply=apply;
+    window.__stateApply=apply; window.__stateRestoring=()=>restoring;
     const init=async()=>{ let o=null; try{ const m=/[#&]s=([^&]+)/.exec(location.hash); if(m) o=dec(m[1]); }catch(e){} if(!o){ try{ const j=localStorage.getItem(KEY); if(j) o=JSON.parse(j); }catch(e){} }
       await sleep(1800); if(o&&typeof o==="object"&&Object.keys(o).filter(k=>k!=="v"&&k!=="ll").length) await apply(o); else { restoring=false; } };
     if(document.readyState==="complete") init(); else addEventListener("load",init);
@@ -3289,7 +3316,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141517"></script>
-<script src="data/dc.js?v=202610141517"></script>
+<script defer src="data/countries.js?v=202610141518"></script>
+<script src="data/dc.js?v=202610141518"></script>
 </body>
 </html>
