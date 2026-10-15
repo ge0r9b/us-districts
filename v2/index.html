@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141498 -->
+<!-- build 202610141499 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141498";</script>
+<script>window.BUILD="202610141499";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -344,7 +344,7 @@
   #rail .heatlegend .heatlbl { font-size: 7px !important; line-height: 1.1; color: #000; text-shadow: 0 0 2px #fff, 0 0 2px #fff; letter-spacing: -.2px; }
   #rail .heatlegend.mag { transform: scale(2.4); }
   body:not(.foldfs) #crumbs .glob { display: none !important; }
-  body.orgglobal .sheet > :not(#orgGlobal) { display: none !important; }
+  body.orgglobal .sheet > :not(#orgGlobal):not(#orgSearch) { display: none !important; }
   #crumbs .cic svg { width: 18px; height: 18px; fill: none; stroke: #000; stroke-width: 1.6; }
   #chartBox { flex-direction: column; align-items: flex-end; gap: 6px; }
   #chartBox .crow { display: flex; gap: var(--gap); }
@@ -422,6 +422,7 @@
   .fsq .fsqlbl img { width: 30px; height: 20px; object-fit: cover; flex: 0 0 30px; border-radius: 2px; box-shadow: 0 0 0 .5px rgba(0,0,0,.2); }
   .fsq .fsqlbl span { overflow: hidden; text-overflow: ellipsis; }
   .fsq.typing .fsqlbl { display: none; }
+  #barGeo .fsq:has(.fsqrec) input { padding-left: 44px !important; } .fsq .fsqrec { position: absolute; left: 12px; top: 0; bottom: 0; width: 30px; display: none; align-items: center; justify-content: center; pointer-events: none; transition: none; } body.fqtyping .fsq .fsqrec:not(:empty) { display: flex; } .fsq .fsqrec img { width: auto; height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); } .fsq .fsqrec svg { width: 22px; height: 22px; }
   .fsq:has(.fsqlbl):not(.typing) input:not(:focus)::placeholder { color: transparent !important; }
   body.wcountry .cands, body.wcountry #chartBox, body.wcountry .crow, body.wcountry .cpanel, body.wcountry #legend, body.wcountry .legend, body.wcountry .leaflet-overlay-pane, body.wcountry .leaflet-marker-pane, body.wcountry .leaflet-tooltip-pane { display: none !important; }
   .fsq.fqfocus .fsqlbl { display: none !important; }
@@ -459,10 +460,14 @@
   .cbt { position: relative; height: 22px; background: rgba(0,0,0,.06); border-radius: 4px; overflow: hidden; } .cbt i { position: absolute; top: 0; bottom: 0; left: 0; opacity: .6; border-radius: 4px; transition: width .3s, left .3s; }
   .cbt.dv b { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); } .cbv { text-align: right; font-variant-numeric: tabular-nums; }
   body.listmode .cands .cand { justify-content: flex-start !important; text-align: left; }
+  .cpanel .cbcap { white-space: normal; overflow: visible; text-overflow: clip; max-width: none; } .cpanel .pcap b { font-weight: 700; }
+  #worldMsg { display: none; position: fixed; z-index: 1001; left: calc(var(--gap, 8px) + var(--sal, 0px)); top: 126px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.92); font: 600 14px system-ui, sans-serif; color: #57534e; box-shadow: 0 1px 3px rgba(0,0,0,.15); pointer-events: none; }
+  body.worldmode:not(.foldfs):not(.geofs):not(.listall) #worldMsg { display: block; }
+  body.wcountry .leaflet-natPane-pane, body.wcountry .leaflet-stPane-pane, body.wcountry .leaflet-typePane-pane, body.wcountry .leaflet-heat-pane, body.wcountry .leaflet-lyr-pane, body.wcountry .leaflet-laPane-pane { visibility: hidden !important; }
+  body.orgsearch #orgGlobal { display: none !important; } #orgGlobal li[style*="display: none"], .nl li[style*="display: none"] { display: none !important; }
+  .cwide.pieonly { justify-content: center; } .cwide.pieonly .cpieL { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .cbcap { font: 12px system-ui, sans-serif; color: #57534e; text-align: center; }
   body.worldmode .cands, body.worldmode .leaflet-overlay-pane, body.worldmode .leaflet-lyrPane-pane, body.worldmode .leaflet-marker-pane, body.worldmode .leaflet-popup-pane, body.worldmode .heatlegend, body.worldmode #chartW, body.worldmode #barTime { display: none !important; }
-  #worldMsg { display: none; position: fixed; z-index: 1001; left: calc(var(--gap, 8px) + var(--sal, 0px)); top: 126px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.92); font: 600 14px system-ui, sans-serif; color: #57534e; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
-  body.worldmode #worldMsg { display: block; }
   /* ===== one shared icon slot for every menu row: 30x22 icon at x=12, text at x=52 (crumbs, field, all list rows) ===== */
   body.foldfs .sheet, body.foldfs .sheet ol, body.foldfs .sheet .nl, body.foldfs .sheet .foldlist { padding-left: 0 !important; padding-right: 0 !important; margin-left: 0 !important; margin-right: 0 !important; }
   body.foldfs .sheet li { margin: 0 !important; padding-left: 12px !important; box-sizing: border-box; background: #fff !important; border-bottom: 1px solid #e7e5e4 !important; border-radius: 0 !important; }
@@ -506,6 +511,19 @@ body.geofs #geofs{display:flex!important}
 #geofs .gsel{border-top:1px solid #d6d3d1;font-weight:600;background:#fff;cursor:pointer}
 #geofs li .oic,#geofs .gsel .oic{flex:0 0 30px!important;width:30px!important;height:22px;margin:0 10px 0 0!important;display:inline-flex;align-items:center;justify-content:center}
 #geofs .oic svg{display:block}
+
+  /* list-all */
+  body.listall .leaflet-natPane-pane, body.listall .leaflet-stPane-pane, body.listall .leaflet-typePane-pane, body.listall .leaflet-overlay-pane, body.listall .leaflet-lyrPane-pane { visibility: hidden !important; }
+  body.listall.worldmode .leaflet-popup-pane, body.cacan .leaflet-popup-pane { display: block !important; }
+  #laSort { position: fixed; z-index: 1002; display: none; width: 22px; height: 22px; padding: 2px; background: none; border: 0; box-shadow: none; align-items: center; justify-content: center; cursor: pointer; }
+  body.listall.listmode #laSort { display: flex; }
+  #laSortPop { position: fixed; z-index: 1003; display: flex; flex-direction: column; gap: 2px; padding: 4px; background: #fff; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,.25); font: 600 10px/1.2 system-ui, sans-serif; }
+  #laSortPop[hidden] { display: none; }
+  #laSortPop button { background: none; border: 0; padding: 4px 6px; font: inherit; color: #57534e; text-align: left; white-space: nowrap; cursor: pointer; }
+  #laSortPop button.on { color: #111; font-weight: 800; }
+  .lvrow.la { cursor: default; } .lvrow.la .cbars { width: 100%; max-width: 420px; } .lvrow.la .cbt i { transition: none !important; } .lvrow.la .cbr { font-size: 12px; gap: 6px; grid-template-columns: 84px 1fr 64px; } .lvrow.la .cbt { height: 12px; }
+  .provlbl span { position: absolute; transform: translate(-50%,-50%); font: 600 10px/1 system-ui, sans-serif; color: #292524; white-space: nowrap; text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
+  body.orgcountry:not(.foldfs) { }
 </style>
 </head>
 <body>
@@ -2011,7 +2029,7 @@ document.addEventListener("focusout",e=>{ const b=e.target.closest&&e.target.clo
 // ===== All countries level: live filter + Enter + reopen in world mode =====
 document.addEventListener("input",e=>{ if(!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); document.querySelectorAll("#orgGlobal li").forEach(l=>{ const n=(l.querySelector(".nm")||l).textContent.toLowerCase(); l.style.display=!q||n.includes(q)?"":"none"; }); },true);
 document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgGlobal li")].filter(l=>l.style.display!=="none"); const ex=ls.find(l=>(l.querySelector(".nm")||l).textContent.toLowerCase()===q)||ls[0]; if(ex){ e.preventDefault(); e.stopImmediatePropagation(); e.target.value=""; e.target.blur(); ex.click(); } },true);
-{ const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
+{ const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ (window.__W&&window.__W()==="ca"&&window.__orgCountry)?window.__orgCountry("ca"):window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
   const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&dl)?"<span>no gain</span><span>gain</span><span>+20 margin</span>":(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
@@ -2328,7 +2346,7 @@ $("gq").addEventListener("focus",()=>{ nameLock=null; });
 // ===== district type drives the nationwide fill (US House: all 435 districts) =====
 let CD=null, cdL=null;
 window.__uscd=function(rows){ CD=rows.map(([st,nm,enc,a24,a20])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
-  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20}}; }); };
+  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20},est:est}; }); };
 function loadCD(){ return cdL||(cdL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/uscd.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
 const cdGroup=L.layerGroup().addTo(map);
 function cdFill(d){ const m=ym(), a=d.v["2024"], b=d.v["2020"], mg=v=>(v[1]-v[0])/v[2];
@@ -2479,8 +2497,8 @@ renderList=function(){ lv.innerHTML=""; };
 // ===== every district type fills nationwide from a combined file (lazy-loaded) =====
 map.createPane("typePane").style.zIndex=440; map.getPane("typePane").style.pointerEvents="none"; const typeRenderer=L.canvas({pane:"typePane",padding:0.3});
 const TFILE={ushouse:"uscd.js",senate:"ussldu.js",statehouse:"ussldl.js",schools:"ussch.js"}, DS={ushouse:null}, DSL={};
-function decRows(rows){ return rows.map(([st,nm,enc,a24,a20])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
-  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20}}; }); }
+function decRows(rows){ return rows.map(([st,nm,enc,a24,a20,est])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
+  let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20},est:est}; }); }
 window.__usdist=function(k,rows){ DS[k]=decRows(rows); };
 window.__uscd=function(rows){ DS.ushouse=decRows(rows); CD=DS.ushouse; };
 function loadDS(k){ if(!TFILE[k]) return Promise.resolve(); return DSL[k]||(DSL[k]=new Promise(r=>{ const s=document.createElement("script"); s.src="data/"+TFILE[k]+"?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
@@ -2489,7 +2507,7 @@ drawCD=function(){ cdGroup.clearLayers(); if(!plotting()||!natTypeOn()) return; 
   const w=k==="ushouse"?1.6:1.1, m0=ym(), has0=d=>m0==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m0]; DS[k].slice().sort((x,y)=>(has0(x)?1:0)-(has0(y)?1:0)).forEach(d=>{ { const l=L.polygon(natLL(d),{renderer:typeRenderer,pane:"typePane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:w,interactive:false}); l.__d=d; l.addTo(cdGroup); } }); restyleType(); }); };
 function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let ins=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }); }
 { const _aa18=areaAt; areaAt=function(ll){ let a=_aa18(ll); if(a&&a.kind==="natcd"&&(a.tk||"ushouse")===ltype) return a; if(a&&a.kind==="natcd") a=null; if(!natTypeOn()) return a; const k=ltype; if(!DS[k]) return a; if(a&&a.kind!=="county"&&a.kind!=="sum"&&a.kind!==k&&!(a.kind==="precinct"&&!window.__autoP)) return a;
-  const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys],cd:d}:(a&&a.kind==="county"?null:a); }; }
+  const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys,,,d.est],cd:d}:(a&&a.kind==="county"?null:a); }; }
 { const _an18=aname; aname=function(a){ if(a.kind!=="natcd") return _an18(a); const k=a.tk||"ushouse"; return k==="schools"?a.d[1]:"District "+String(a.d[1]).replace(/^0+(?=\d)/,""); }; }
 { const _al18=areaLabel; areaLabel=function(a){ if(a.kind!=="natcd"||!a.tk||a.tk==="ushouse") return _al18(a); const ab=ABBR[a.d[0]]||a.d[0], n=String(a.d[1]).replace(/^0+(?=\w)/,"");
   return t32(a.tk==="senate"?ab+" Senate "+n:a.tk==="statehouse"?ab+" House "+n:a.d[1]+", "+ab); }; }
@@ -2505,12 +2523,12 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
     if(!path.length) return Promise.resolve(Object.keys(STATE_FILES).sort().map(n=>({name:n,drill:1})));
     if(path.length===1) return loadNat().then(()=>[...new Set((NAT||[]).filter(d=>d.st===path[0]).map(d=>d.nm))].sort().map(n=>({name:n,drill:1})));
     return loadState(path[0]).then(()=>{ const P=window.PARTS&&!PARTS[path[0]]&&window.__parts?window.__parts(path[0]):null; return Promise.resolve(P).then(()=>{ let t=[]; try{ t=townsIn(path[0],path[1]); }catch(e){} return [...new Set(t.map(x=>x[2]))].sort().map(n=>({name:n})); }); }); }
-  let GA=null; function geoAll(){ if(GA) return GA; GA=[]; const E=window.ELECTION2024||{}; allStates().forEach(s=>GA.push({name:s,tag:"State",st:s,full:s})); (window.COUNTRIES||[]).forEach(c=>{ if(c[0]!=="us") GA.push({name:c[1],tag:"Country",iso:c[0],full:c[1]}); });
+  let GA=null; function geoAll(){ if(GA) return GA; GA=[]; const E=window.ELECTION2024||{}; allStates().forEach(s=>GA.push({name:s,tag:"State",st:s,full:s})); (window.COUNTRIES||[]).forEach(c=>{ if(c[0]!=="us") GA.push({name:c[1],tag:"Country",iso:c[0],full:c[1]}); }); (window.CANADA||[]).forEach(q=>GA.push({name:q[0]+", Canada",tag:"Province",iso:"ca",pn:q[0],full:q[0]+", Canada"}));
     Object.keys(E).forEach(k=>{ const [s,c]=k.split("|"); const v=E[k]; GA.push({name:c+", "+(ABBR[s]||s),tag:"County",st:s,full:c+", "+s,w:v&&(v.tot||0)}); });
     const seen=new Set(); ((PACK.lists||{}).localities||[]).forEach(([s,c,t])=>{ const k=s+"|"+c+"|"+t; if(t&&!seen.has(k)){ seen.add(k); GA.push({name:t+", "+c+", "+(ABBR[s]||s),tag:"Town",st:s,full:t+", "+c+", "+s}); } });
     if(!window.ELECTION2024) { const r=GA; GA=null; return r; } return GA; }
   function pick(nm){ const q=path.length===0?nm:path.length===1?nm+", "+path[0]:nm+", "+path[1]+", "+path[0]; closeG(); g().value=""; g().placeholder=t32(q); g().title=q; navTo(q); }
-  function geoRender(){ const f=g().value.trim().toLowerCase();
+  function geoRender(){ const f=(window.__NAMES&&window.__NAMES.canon(g().value))||g().value.trim().toLowerCase();
     const tok=(window.__geoTok=(window.__geoTok||0)+1);
     (f?Promise.resolve(geoAll()):items()).catch(()=>[]).then(L0=>{ if(tok!==window.__geoTok) return; L0=L0||[]; let L1=L0; if(f){ L1=fuzzyRank(L0,f,50); }
       if(!gfs.querySelector(".gsel")){ gfs.innerHTML="<ol></ol><div class='gsel'></div>"; gfs.append(top); const o=gfs.querySelector("ol"); const bl=()=>{ try{ g().blur(); }catch(_){} }; o.addEventListener("touchmove",bl,{passive:true}); o.addEventListener("wheel",()=>{},{passive:true}); }
@@ -2522,8 +2540,8 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
         h.innerHTML="<span class='oic'>"+ic+"</span><span class='nm'>"+esc(t32(nm))+"</span>"; h.onclick=()=>{ if(path.length){ path.pop(); g().value=""; geoRender(); } }; }
       const ol=gfs.querySelector("ol");
       if(path.length&&!f){ const li=document.createElement("li"); li.innerHTML="<span class='oic'>"+(window.__stSil?window.__stSil(path[0],null):"")+"</span><span class='nm'>All of "+esc(t32(path[path.length-1]))+"</span>"; li.onclick=()=>{ const nm=path.pop(); pick(nm); }; ol.append(li); }
-      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=(x.tag==="Country"?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"<span class='oic'>"+(window.__stSil?window.__stSil(x.st||(path[0]||(x.tag===undefined&&!path.length?x.name:"")),null):"")+"</span>")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
-        li.onclick=e=>{ if(x.tag==="Country"){ closeG(); if(x.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange(); } else window.__worldEnter(x.iso); return; } if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
+      L1.slice(0,2500).forEach(x=>{ const li=document.createElement("li"); li.innerHTML=((x.tag==="Country"||x.tag==="Province")?"<span class='oic'><img alt='' loading='lazy' src='"+(x.iso==="us"?"img/flags/US.png":"img/flags/c/"+x.iso+".png")+"'></span>":"<span class='oic'>"+(window.__stSil?window.__stSil(x.st||(path[0]||(x.tag===undefined&&!path.length?x.name:"")),null):"")+"</span>")+"<span class='nm'>"+esc(t32(x.name))+"</span>"+(x.tag==="Country"?"":x.full&&x.tag!=="State"?"<span class='dr' style='font-size:13px'>"+esc(x.tag)+"</span>":x.drill?"<span class='dr'>›</span>":""); li.title=x.name;
+        li.onclick=e=>{ if(x.tag==="Province"){ closeG(); window.__worldEnter("ca"); setTimeout(()=>{ try{ window.__W_prov(x.pn); }catch(_){} },350); return; } if(x.tag==="Country"){ closeG(); if(x.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange(); } else window.__worldEnter(x.iso); return; } if(x.full&&x.tag==="State"){ path=[x.name]; g().value=""; geoRender(); g().focus({preventScroll:true}); return; } if(x.full){ closeG(); g().placeholder=t32(x.name); g().title=x.full; navTo(x.full); return; } if(x.drill&&(e.target.classList.contains("dr")||path.length<2)){ path.push(x.name); g().value=""; geoRender(); g().focus({preventScroll:true}); } else pick(x.name); };
         if(x.drill){ li.ondblclick=()=>pick(x.name); }
         ol.append(li); }); }); }
   const home=g().parentElement; const top=document.createElement("div"); top.id="geotop"; top.innerHTML='<form class="gtrow" action="#" role="search" autocomplete="off"></form>'; top.firstChild.addEventListener("submit",e=>{ e.preventDefault(); window.__geoSubmit(); }); const xb=document.createElement("button"); xb.className="rbtn on"; xb.id="bGeoX"; xb.type="button"; xb.setAttribute("aria-label","Close"); xb.innerHTML=$("bGlobe").innerHTML; top.firstChild.append(xb);
@@ -2543,9 +2561,9 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   g().addEventListener("touchend",e=>{ if(document.body.classList.contains("geofs")) return; e.preventDefault(); window.__gOpenAt=Date.now(); openG(); try{ g().focus(); }catch(_){} },{passive:false}); document.addEventListener("click",e=>{ if(Date.now()-(window.__gOpenAt||0)<450&&e.target!==g()){ e.preventDefault(); e.stopImmediatePropagation(); } },true); g().addEventListener("keydown",e=>e.stopPropagation()); g().addEventListener("input",()=>{ if(!document.body.classList.contains("geofs")) openG(); else geoRender(); });
   g().addEventListener("keydown",e=>{ if(e.key==="Escape") closeG(); if(e.key==="Enter"&&!g().value.trim()&&!path.length){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); nameLock=null; map.fitBounds([[24.5,-125],[49.5,-66.9]]); g().placeholder="United States"; g().title=""; } });
   // Enter in the open field: resolve typed text (exact name first, else top match), collapse, navigate (map or list)
-  const geoResolve=f=>{ const A=geoAll()||[]; const lo=f.toLowerCase(); const ex=A.find(x=>x.name.toLowerCase()===lo||(x.full||"").toLowerCase()===lo); if(ex) return ex; const r=fuzzyRank(A,lo,5); return r&&r[0]; };
+  const geoResolve=f=>{ const A=geoAll()||[]; const lo=((window.__NAMES&&window.__NAMES.canon(f))||f).toLowerCase(); const ex=A.find(x=>x.name.toLowerCase()===lo||(x.full||"").toLowerCase()===lo); if(ex) return ex; const r=fuzzyRank(A,lo,5); return r&&r[0]; };
   window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f) return; { const wc=window.__worldFind&&window.__worldFind(f); if(wc){ e.preventDefault(); e.stopImmediatePropagation(); closeG(); window.__worldEnter(wc[0]); return; } } if(window.__addrFirst&&window.__addrFirst(f)) return;
-    e.preventDefault(); e.stopImmediatePropagation(); Promise.resolve(window.ELECTION2024?null:loadElection()).catch(()=>0).then(()=>{ GA=null; const x=geoResolve(f); closeG(); nameLock=null;
+    e.preventDefault(); e.stopImmediatePropagation(); Promise.resolve(window.ELECTION2024?null:loadElection()).catch(()=>0).then(()=>{ GA=null; const x=geoResolve(f); closeG(); nameLock=null; if(x&&x.tag==="Province"){ window.__worldEnter("ca"); setTimeout(()=>{ try{ window.__W_prov(x.pn); }catch(_){} },350); return; }
       const q=x?(x.full||x.name):f, lbl=x?x.name:f; GQ.placeholder=t32(lbl); GQ.title=q;
       // towns: sync state + county (geographic filter) first, then move the map to the town
       const pre=(x&&x.tag==="Town")?(()=>{ const pr=x.full.split(", "); const s=pr[pr.length-1], c=pr[pr.length-2]; state.value=s; county.value=""; state.onchange(); return loadState(s).then(()=>{ county.value=c; county.onchange(); }); })():null;
@@ -2730,7 +2748,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const L0=document.querySelector("#barGeo .fsq .fsqlbl"); if(L0&&st){ const sp0=L0.querySelector("span"), fq=L0.querySelector(".fqi"); const want=ALLLBL[typ]; if(sp0&&sp0.textContent!==want) sp0.textContent=want; if(fq&&fq.dataset.k!==typ){ fq.dataset.k=typ; fq.innerHTML=icon(typ); } }
     } else { if(sc) sc.remove(); const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; const gl=c.querySelector(".crumb.glob"); if(bs.length<2&&!(gl&&(bs.length===1||document.body.classList.contains("orgglobal")))) return;
       par=bs.length>=2?bs[bs.length-2]:gl; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar"); }
-    { const OG=document.body.classList.contains("orgglobal"); const usLvl=!OG&&!state.value&&!typ&&!document.body.classList.contains("worldmode"); const gl2=c.querySelector(".crumb.glob");
+    { const OG=document.body.classList.contains("orgglobal"); const usLvl=!OG&&!state.value&&!typ&&(!document.body.classList.contains("worldmode")||document.body.classList.contains("wcountry")); const gl2=c.querySelector(".crumb.glob");
       if(gl2){ const sp=[...gl2.querySelectorAll("span")].find(x=>!x.classList.contains("ico"))||gl2.querySelector("span"); const want=usLvl?"All countries":"All"; if(sp&&sp.textContent!==want) sp.textContent=want; gl2.title=want;
         if(!gl2.__wrapped){ gl2.__wrapped=1; gl2.addEventListener("click",e=>{ if(gl2.title==="All countries"){ e.preventDefault(); e.stopImmediatePropagation(); try{ window.__orgGlobal(); }catch(_){} } },true); } }
       document.querySelectorAll("#orgTypes li").forEach(li=>{ const n=li.querySelector(".nm"); if(n&&n.textContent.trim()==="United States"){ if(usLvl) li.style.setProperty("display","none","important"); else li.style.removeProperty("display"); } }); }
@@ -2743,8 +2761,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   new MutationObserver(()=>{ requestAnimationFrame(alignTop); setTimeout(alignTop,120); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); setInterval(alignTop,500); }
 
 // ===== world level: "All" + non-US countries (country level only; no results data yet) =====
-{ const wmsg=document.createElement("div"); wmsg.id="worldMsg"; wmsg.textContent="No data yet"; document.body.append(wmsg);
-  let W=null; const C=()=>window.COUNTRIES||[];
+{   let W=null; const C=()=>window.COUNTRIES||[];
   const label=()=>{ if(!W) return; const c=$("crumbs"); if(!c) return; const ci=c.querySelector(".cic"), cur=c.querySelector(".crumb.cur")||c.querySelector(".crumb:last-of-type");
     const co=W==="all"?null:C().find(x=>x[0]===W); const nm=co?co[1]:"All";
     if(ci){ ci.className="cic flag shape"; ci.innerHTML=co?'<img alt="" src="img/flags/c/'+co[0]+'.png?v='+(window.BUILD||1)+'">':'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg>'; }
@@ -2755,6 +2772,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(k==="all") map.fitWorld({animate:true}); else { const co=C().find(x=>x[0]===k); if(co) map.flyToBounds([[co[2],co[3]],[co[4],co[5]]],{maxZoom:7,duration:1.2,paddingTopLeft:[20,180],paddingBottomRight:[60,80]}); }
     const g=$("gq"); if(g){ const co=C().find(x=>x[0]===k); g.value=""; g.placeholder=co?co[1]:"All"; g.title=""; } nameLock=(C().find(x=>x[0]===k)||[0,"All"])[1]; label(); };
   window.__worldExit=()=>{ if(!W) return; W=null; document.body.classList.remove("worldmode","wcountry"); nameLock=null; const c=$("crumbs"); if(c){ c.querySelectorAll(".crumb.wl").forEach(x=>x.remove()); c.querySelectorAll(".crumb,.sep").forEach(x=>x.style.display=""); } try{ crumbs(); }catch(_){} map.fitBounds([[24.5,-125],[49.5,-66.9]]); };
+  window.__W=()=>W;
   window.__worldFind=q=>{ const lo=String(q).trim().toLowerCase(); if(!lo||lo==="united states"||lo==="usa"||lo==="us") return null; return C().find(c=>c[1].toLowerCase()===lo)||null; };
   const _crW=crumbs; crumbs=function(){ const r=_crW.apply(this,arguments); try{ label(); }catch(_){} return r; };
   const _sc=state.onchange; state.onchange=function(){ if(W&&state.value){ W=null; document.body.classList.remove("worldmode","wcountry"); nameLock=null; } return _sc.apply(this,arguments); };
@@ -2794,12 +2812,12 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 { const PC={rep:"rgb(220,38,38)",dem:"rgb(37,99,235)",oth:"rgb(168,162,158)"}, NM={rep:"Republican",dem:"Democratic",oth:"Other"};
   const fmtN=n=>{ const a=Math.abs(n); return (n<0?"−":"")+(a>=1e6?(a/1e6).toFixed(2)+"M":a>=1e3?Math.round(a/1e3)+"K":String(Math.round(a))); };
   const parts=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))});
-  const pieRing=(v,R,r0,lbl)=>{ const p=parts(v), t=v.tot||1; let ang=-Math.PI/2, g=""; const C=80;
+  const pieRing=(v,R,r0,lbl,fs)=>{ const p=parts(v), t=v.tot||1; let ang=-Math.PI/2, g=""; const C=80;
     ["rep","dem","oth"].forEach(k=>{ const f=p[k]/t; if(f<=0) return; const a2=ang+f*2*Math.PI, lg=f>.5?1:0, P=(rr,a)=>(C+rr*Math.cos(a)).toFixed(2)+" "+(C+rr*Math.sin(a)).toFixed(2);
       g+=f>=.9999?'<circle cx="80" cy="80" r="'+((R+r0)/2)+'" fill="none" stroke="'+PC[k]+'" stroke-opacity=".6" stroke-width="'+(R-r0)+'"/>':'<path d="M'+P(R,ang)+'A'+R+' '+R+' 0 '+lg+' 1 '+P(R,a2)+'L'+P(r0,a2)+(r0?'A'+r0+' '+r0+' 0 '+lg+' 0 '+P(r0,ang):'')+'Z" fill="'+PC[k]+'" fill-opacity=".6" stroke="#fff" stroke-width="1"/>';
-      if(lbl&&f>=.07){ const m=(ang+a2)/2, lr=(R+r0)/2; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="11" font-weight="600" text-anchor="middle" dominant-baseline="central" fill="#111">'+(numMode==="pct"?(f*100).toFixed(0)+"%":fmtN(p[k]))+'</text>'; }
+      if(lbl&&f>=(fs?0.12:.07)){ const m=(ang+a2)/2, lr=(R+r0)/2; g+='<text x="'+(C+lr*Math.cos(m)).toFixed(1)+'" y="'+(C+lr*Math.sin(m)).toFixed(1)+'" font-size="'+(fs||11)+'" font-weight="600" text-anchor="middle" dominant-baseline="central" fill="#111">'+(numMode==="pct"?(f*100).toFixed(0)+"%":fmtN(p[k]))+'</text>'; }
       ang=a2; }); return g; };
-  const pieSvg=(v0,v1)=> v1 ? '<svg viewBox="0 0 160 160" width="160" height="160">'+pieRing(v0,46,26,false)+pieRing(v1,76,50,true)+'<text x="80" y="80" font-size="10" text-anchor="middle" dominant-baseline="central" fill="#57534e">2020</text></svg><div class="cbcap">Inner ring 2020 · outer ring 2024</div>'
+  const pieSvg=(v0,v1)=> v1 ? '<svg viewBox="0 0 160 160" width="160" height="160">'+pieRing(v0,46,26,true,8)+pieRing(v1,76,50,true)+'</svg><div class="cbcap pcap"><b>2020</b> inner ring · <b>2024</b> outer ring</div>'
                           : '<svg viewBox="0 0 160 160" width="160" height="160">'+pieRing(v0,76,0,true)+'</svg>';
   const delta=(v0,v1)=>{ const a=parts(v0), b=parts(v1); const o={}; ["rep","dem","oth"].forEach(k=>o[k]=numMode==="pct"?((b[k]/(v1.tot||1))-(a[k]/(v0.tot||1)))*100:b[k]-a[k]); return o; };
   const barHtml=(v0,v1)=>{ let h='<div class="cbars">';
@@ -2824,23 +2842,199 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     let h; if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
     else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);
       const yrs=two?[["2020",v0],["2024",v1]]:[[ym(),v0]]; const leg=legend(yrs);
-      let main; if(mode==="pie"){ const S=Math.min(pw-480,avail-30,560); main='<div class="cwide"><div class="cpieL">'+pieBig(v0,v1,Math.max(220,S))+'</div>'+leg+'</div>'; }
-      else if(mode==="line"&&two){ main='<div class="clinechart big">'+window.__lineSvg(a,pw,Math.min(avail,420),true)+'</div>'+leg; }
-      else if(mode==="line"){ main=leg; } else { main=barBig(v0,v1)+leg; }
+      let main; if(mode==="pie"){ const S=Math.min(pw-480,avail-30,560); main='<div class="cwide pieonly"><div class="cpieL">'+pieBig(v0,v1,Math.max(220,Math.min(S+480,avail-30,560)))+'</div></div>'; }
+      else if(mode==="line"&&two){ main='<div class="clinechart big">'+window.__lineSvg(a,pw,Math.min(avail,420),true)+'</div>'; }
+      else if(mode==="line"){ main=""; } else { main=barBig(v0,v1)+leg; }
       h='<div class="cwideWrap">'+main+'</div>'; }
     if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn); if(pn.innerHTML!==h) pn.innerHTML=h; };
   const _rcX=renderCands; renderCands=function(){ const r=_rcX.apply(this,arguments); draw(); return r; };
   setInterval(draw,700); document.addEventListener("click",()=>setTimeout(draw,50),true); $("yslider").addEventListener("input",()=>setTimeout(()=>{ draw(); try{ renderCands(); }catch(e){} },30)); }
 // ===== zoom level-of-detail (no district type): a county filling the view or a close zoom shows its precincts; a state shows counties =====
 { const lod=()=>{ try{ if(natTypeOn()||!state.value||!heatOn||!plotting()) return; if(![...heatLevelSel.options].some(o=>o.value==="precinct")) return;
-    const b=map.getBounds(), W=b.getEast()-b.getWest(), H=b.getNorth()-b.getSouth(); let want=W<1.6?"precinct":"county";
+    const b=map.getBounds(), W=b.getEast()-b.getWest(), H=b.getNorth()-b.getSouth(); let want=(W<1.6||state.value)?"precinct":"county";
     const cn=county&&county.value&&county.selectedOptions&&county.selectedOptions[0]?county.selectedOptions[0].textContent.trim():""; if(cn&&NAT){ const d=NAT.find(n=>n.st===state.value&&n.nm===cn); if(d&&((d.bb[2]-d.bb[0])>=0.35*W||(d.bb[3]-d.bb[1])>=0.35*H)) want="precinct"; }
     if(heatLevel!==want){ heatLevelSel.value=want; heatLevel=want; const lv=document.getElementById("heatlvl"); if(lv) lv.textContent=want; (want==="precinct"?loadPrecincts(state.value):Promise.resolve()).then(()=>{ drawHeat(); if(window.updateLegend) updateLegend(); }); } }catch(e){} };
   map.on("moveend",lod); setInterval(lod,1500); window.__lod=lod; }
+// ===== list-all: "List all …" rows in the institution menu, list-all list view, aggregate map, sort =====
+(function(){ const LA={on:false,lv:null,items:[],sort:"desc",agg:null,polys:[],layer:null,title:"",sig:""};
+  window.__LA=LA;
+  const Wk=()=>window.__W?window.__W():null;
+  map.createPane("laPane").style.zIndex=470; map.getPane("laPane").style.pointerEvents="none";
+  const laR=L.canvas({pane:"laPane",padding:0.2});
+  const PC={rep:"rgb(220,38,38)",dem:"rgb(37,99,235)",oth:"rgb(168,162,158)"}, NM={rep:"Republican",dem:"Democratic",oth:"Other"};
+  const NOTOP=a=>a.kind==="ctry"||a.kind==="prov";
+  const LIST_ICO='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1" fill="#222"/><circle cx="4" cy="12" r="1" fill="#222"/><circle cx="4" cy="18" r="1" fill="#222"/></svg>';
+  // ---- level of the current selection ----
+  function level(){ const W=Wk();
+    if(W==="all") return {id:"countries",label:"List all countries",noun:"countries"};
+    if(W==="ca") return {id:"provinces",label:"List all provinces",noun:"provinces and territories"};
+    if(W) return null;
+    if(!state.value) return {id:"states",label:"List all states",noun:"states"};
+    if(hier.dist) return {id:"precincts",label:"List all precincts",noun:"precincts"};
+    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?null:{id:"districts",label:"List all "+ALLLBL[ltype].toLowerCase(),noun:ALLLBL[ltype].toLowerCase()};
+    if(county.value) return {id:"townships",label:"List all townships",noun:"townships"};
+    return {id:"counties",label:"List all counties",noun:"counties"}; }
+  // ---- items ----
+  async function itemsFor(lv){ const yr=ym()==="2020"?"2020":"2024";
+    if(lv.id==="countries") return (window.COUNTRIES||[]).map(c=>({kind:"ctry",iso:c[0],d:c,name:c[1]}));
+    if(lv.id==="provinces") return (window.CANADA||[]).map(p=>({kind:"prov",p,name:p[0]}));
+    if(lv.id==="states") return allStates().map(st=>({kind:"sum",st,d:[st]}));
+    await ensureFor(); const ch=children();
+    if(lv.id==="townships"){ try{ await loadState(state.value); }catch(e){} return townsIn(state.value,county.value).map(d=>({kind:"towns",d})); }
+    if(lv.id==="precincts") return ch.items.filter(i=>i.d).map(i=>({kind:"precinct",d:i.d,yr})); 
+    if(lv.id==="districts") return ch.items.filter(i=>i.d).map(i=>({kind:ltype,d:i.d}));
+    let cg=[]; try{ cg=(layerItems("counties")||[]).filter(d=>d[0]===state.value); }catch(e){} return cg.map(d=>({kind:"county",d})); }
+  // vals / names / scope for the aggregate and the new kinds
+  { const _v=vals; vals=function(a,yr){ if(a&&a.kind==="laagg") return LA.agg&&LA.agg[yr]||null; if(a&&(a.kind==="ctry"||a.kind==="prov")) return null; return _v(a,yr); };
+    const _n=aname; aname=function(a){ if(a.kind==="laagg") return LA.title; if(a.kind==="ctry"||a.kind==="prov") return a.name; return _n(a); };
+    const _s=scopeArea; scopeArea=function(){ if(LA.on) return {kind:"laagg"}; return _s(); };
+    const _aa=areaAt; areaAt=function(ll){ if(LA.on){ return LA.polys.some(r=>pip(r,ll.lng,ll.lat))?{kind:"laagg"}:null; } return _aa(ll); }; }
+  function pip(r,x,y){ let ins=false; for(let i=0,j=r.length-1;i<r.length;j=i++){ const [yi,xi]=r[i],[yj,xj]=r[j]; if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }
+  function ringsOf(a){ // -> array of rings of [lat,lng]
+    if(a.kind==="sum"){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===a.st); return d?d.polys.map(p=>p[0].map(([x,y])=>[y,x])):[]; }
+    if(a.kind==="ctry"){ const r=window.CTRYSHAPE&&CTRYSHAPE[a.iso]; return r?r.map(ring=>ring.map(([x,y])=>[y,x])):[]; }
+    if(a.kind==="prov") return a.p[6].map(r=>r.map(([x,y])=>[y,x]));
+    try{ const it=a.kind==="precinct"?a.d.slice(0,6):a.d; return toLatLngs(it).map(rings=>rings[0]); }catch(e){ return []; } }
+  const yrsNow=()=>ym()==="delta"?["2020","2024"]:[ym()];
+  function sortVal(a){ const m=ym(); const cs=candsOn().filter(c=>candOn.has(c.id));
+    if(m==="delta"){ const v0=vals(a,"2020"), v1=vals(a,"2024"); if(!v0||!v1) return null; const c=cs[cs.length-1]||cs[0]; const k=c?(c.ix?"rep":"dem"):null;
+      if(!k) return ((v1.rep-v1.dem)/v1.tot-(v0.rep-v0.dem)/v0.tot)*100; return (v1[k]/v1.tot-v0[k]/v0.tot)*100; }
+    const v=vals(a,m); if(!v) return null; const mine=cs.filter(c=>c.yr===m); if(!mine.length) return (v.rep-v.dem)/v.tot*100;
+    return Math.max(...mine.map(c=>{ const n=c.ix?v.rep:v.dem; return numMode==="pct"?n/v.tot*100:n; })); }
+  const parts=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))});
+  function keysOn(){ const cs=candsOn().filter(c=>candOn.has(c.id)); const ks=[...new Set(cs.map(c=>c.ix?"rep":"dem"))]; return ks.length===1?ks:["rep","dem","oth"]; }
+  function barsHtml(v){ const p=parts(v), t=v.tot||1; let h='<div class="cbars la">'; keysOn().forEach(k=>{ const f=p[k]/t; h+='<div class="cbr"><span class="cbl">'+NM[k]+'</span><span class="cbt"><i style="width:'+(f*100).toFixed(1)+'%;background:'+PC[k]+'"></i></span><span class="cbv">'+(numMode==="pct"?(f*100).toFixed(1)+"%":fmtN(Math.round(p[k])))+'</span></div>'; }); return h+'</div>'; }
+  function deltaHtml(v0,v1){ const a=parts(v0),b=parts(v1),d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((b[k]/(v1.tot||1))-(a[k]/(v0.tot||1)))*100:b[k]-a[k]);
+    const ks=keysOn(), mx=Math.max(1e-9,...ks.map(k=>Math.abs(d[k]))); let h='<div class="cbars la">'; ks.forEach(k=>{ const f=d[k]/mx*50; h+='<div class="cbr"><span class="cbl">'+NM[k]+'</span><span class="cbt dv"><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PC[k]+'"></i><b></b></span><span class="cbv">'+(d[k]>=0?"+":"")+(numMode==="pct"?d[k].toFixed(1)+" pts":fmtN(Math.round(d[k])))+'</span></div>'; }); return h+'<div class="cbcap">Change 2020 → 2024</div></div>'; }
+  function rowHtml(a){ let h="<b>"+esc(t32(aname(a)))+"</b>"; if(NOTOP(a)||(window.__topicOn&&!window.__topicOn())) return h;
+    const yrs=yrsNow(), two=yrs.length>1, bar=window.chartMode==="bar";
+    if(bar){ if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); h+=(v0&&v1)?deltaHtml(v0,v1):"<span class='l'>no data</span>"; } else { const v=vals(a,yrs[0]); h+=v?barsHtml(v):"<span class='l'>no data</span>"; } return h; }
+    yrs.forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
+      if(!v){ h+="<span class='l'>"+yr+": no data</span>"; return; }
+      if(two) h+="<span class='l y'>"+yr+"</span>";
+      cs.forEach(c=>{ const n=c.ix?v.rep:v.dem; h+="<span class='l "+c.p+"'>"+esc(t32(c.full+" "+VP(n,n/v.tot*100)))+"</span>"; });
+      h+="<span class='l m'>"+esc(t32("Margin: "+marginTxt(v,yr)))+"</span>"; });
+    if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); if(v0&&v1) h+="<span class='l c'>"+esc(t32(deltaTxt(a)))+"</span>"; }
+    return h; }
+  function computeAgg(){ const yrs=yrsNow(); const sum={}; yrs.forEach(y=>sum[y]={dem:0,rep:0,tot:0}); let n=0;
+    LA.items.forEach(a=>{ if(NOTOP(a)) return; const vs=yrs.map(y=>vals(a,y)); if(vs.some(v=>!v)) return; n++; vs.forEach((v,i)=>{ const s=sum[yrs[i]]; s.dem+=v.dem; s.rep+=v.rep; s.tot+=v.tot; }); });
+    LA.agg=n?sum:null; LA.nData=n; LA.title="Total of "+LA.items.length+" "+LA.noun+(LA.parent?" in "+LA.parent:""); }
+  function colorAgg(){ if(!LA.agg) return "#d6d3d1"; const m=ym(); if(m==="delta"){ const a=LA.agg["2020"],b=LA.agg["2024"]; if(!a||!b||!a.tot||!b.tot) return "#d6d3d1"; return deltaColor((b.rep-b.dem)/b.tot-(a.rep-a.dem)/a.tot); } const v=LA.agg[m]; if(!v||!v.tot) return "#d6d3d1"; return heatC(v.dem,v.rep,v.tot); }
+  function drawMap(){ if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; if(!LA.on) return; const col=colorAgg(); const g=L.layerGroup(); const none=!LA.agg;
+    LA.items.forEach(a=>{ if(a.kind==="ctry"||none&&false) return; const rs=ringsOf(a); rs.forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,stroke:true,color:none?"#78716c":col,weight:none?1:1,fillColor:col,fillOpacity:none?0.35:0.82}).addTo(g); }); });
+    if(LA.lv&&LA.lv.id==="countries"){ LA.items.forEach(a=>{ ringsOf(a).forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,color:"#78716c",weight:0.8,fillColor:"#d6d3d1",fillOpacity:0.5}).addTo(g); }); }); }
+    LA.layer=g.addTo(map); }
+  // ---- list rendering ----
+  function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); computeAgg(); drawMap();
+    const rows=LA.items.map(a=>({a,s:sortVal(a)})); const dir=LA.sort==="asc"?1:-1;
+    rows.sort((x,y)=>{ if(x.s==null&&y.s==null) return String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); if(x.s==null) return 1; if(y.s==null) return -1; return (x.s-y.s)*dir||String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); });
+    lv.innerHTML="<div class='lvhead'>"+esc(t32(fmtN(LA.items.length)+" "+LA.noun))+"</div><div class='lvgrid'></div>"; const g=lv.querySelector(".lvgrid");
+    rows.slice(0,2500).forEach(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"; el.innerHTML=rowHtml(a); g.append(el); });
+    if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
+    place(); try{ renderCands(); }catch(e){} }
+  const _rl=renderList; renderList=function(){ if(LA.on) render(); else _rl(); };
+  // ---- enter / exit ----
+  async function enter(){ const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(hier.dist[2]||hier.dist[1]):""));
+    try{ closeSheet(); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
+    setView("list"); LA.sig=sig(); render(); fit(); }
+  function fit(){ try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
+  function exit(){ if(!LA.on) return; LA.on=false; document.body.classList.remove("listall"); if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; LA.items=[]; LA.agg=null; cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){} const sp=document.getElementById("laSortPop"); if(sp) sp.hidden=true; try{ document.getElementById("listView").innerHTML=""; renderCands(); }catch(e){} try{ redraw(); }catch(e){} }
+  window.__laExit=exit; window.__laEnter=enter;
+  const sig=()=>[ym(),[...candOn].sort().join(),numMode,window.chartMode,LA.sort,window.__topicOn&&window.__topicOn(),view].join("|");
+  setInterval(()=>{ if(!LA.on) return; const s=sig(); if(s!==LA.sig){ LA.sig=s; if(view!=="list"&&!document.body.classList.contains("listmode")){ computeAgg(); drawMap(); } else render(); } place(); },300);
+  // ---- exits: any selection change at the institution/geo filter ----
+  { const wrap=(o,k)=>{ const f=o[k]; if(typeof f!=="function") return; o[k]=function(){ if(!window.__laBusy) exit(); return f.apply(this,arguments); }; };
+    wrap(state,"onchange"); wrap(county,"onchange");
+    ["__worldEnter","__worldExit"].forEach(k=>{ const f=window[k]; if(typeof f==="function") window[k]=function(){ if(!window.__laBusy&&arguments[0]!==Wk()) exit(); return f.apply(this,arguments); }; });
+    document.addEventListener("click",e=>{ if(!LA.on) return; const li=e.target.closest&&e.target.closest("#sheet li, #sheet .lvrow"); if(li&&!li.classList.contains("la-row")) exit(); if(e.target.closest&&e.target.closest("#lyrRow .lbtn")) exit(); },true);
+    document.addEventListener("keydown",e=>{ if(!LA.on||e.key!=="Enter") return; const t=e.target; if(t&&(t.id==="gq"||(t.closest&&t.closest(".fsq")))&&t.value&&t.value.trim()) exit(); },true); }
+  // ---- sort control ----
+  const sb=document.createElement("button"); sb.id="laSort"; sb.type="button"; sb.setAttribute("aria-label","Sort"); sb.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M3.5 16.5L7 20l3.5-3.5M17 20V4M13.5 7.5L17 4l3.5 3.5"/></svg>'; document.body.append(sb);
+  const sp=document.createElement("div"); sp.id="laSortPop"; sp.hidden=true; sp.innerHTML='<button type="button" data-s="desc">High to low</button><button type="button" data-s="asc">Low to high</button>'; document.body.append(sp);
+  const mark=()=>sp.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.s===LA.sort));
+  sb.addEventListener("click",e=>{ e.stopPropagation(); sp.hidden=!sp.hidden; mark(); place(); });
+  sp.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LA.sort=b.dataset.s; sp.hidden=true; LA.sig=sig(); render(); });
+  document.addEventListener("pointerdown",e=>{ if(!sp.hidden&&!sp.contains(e.target)&&e.target!==sb&&!sb.contains(e.target)) sp.hidden=true; });
+  function place(){ const t=$("barTime"), anchor=(t&&!t.hidden)?t:$("barGeo"); const r=anchor.getBoundingClientRect(); const gap=parseFloat(getComputedStyle($("barGeo")).gap)||8; const btn=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--btn"))||44;
+    const right=btn+gap*2+4; sb.style.top=Math.round(r.bottom+2)+"px"; sb.style.right=right+"px"; sp.style.top=Math.round(r.bottom+24)+"px"; sp.style.right=right+"px"; }
+  // ---- menu row ----
+  function host(){ if(!document.body.classList.contains("foldfs")) return null; const B=document.body.classList;
+    const oc=document.getElementById("orgCountry"); if(oc&&Wk()&&Wk()!=="all") return oc;
+    const og=document.getElementById("orgGlobal"); if(og&&B.contains("orgglobal")) return og;
+    const ot=document.getElementById("orgTypes"); if(ot&&!ot.hidden&&!state.value) return ot;
+    return sheet.querySelector(".foldlist ol, ol.nl:not(#orgTypes):not(#orgGlobal):not(#orgCountry)"); }
+  function ensureRow(){ const h=host(); document.querySelectorAll("li.la-row").forEach(x=>{ if(x.parentElement!==h) x.remove(); }); if(!h) return; const lv=level(); if(!lv){ h.querySelectorAll("li.la-row").forEach(x=>x.remove()); return; }
+    let li=h.querySelector("li.la-row"); if(li&&li.dataset.l===lv.label){ if(h.firstElementChild!==li) h.prepend(li); return; } if(li) li.remove();
+    li=document.createElement("li"); li.className="lvrow flat oti la-row"; li.dataset.l=lv.label; li.innerHTML='<span class="oic">'+LIST_ICO+'</span><span class="nm"></span>'; li.querySelector(".nm").textContent=lv.label;
+    li.onclick=e=>{ e.stopPropagation(); window.__laBusy=1; enter().finally(()=>setTimeout(()=>{ window.__laBusy=0; },300)); }; h.prepend(li); }
+  window.__laEnsureRow=ensureRow;
+  { const _of=openFold; openFold=function(){ const r=_of.apply(this,arguments); Promise.resolve(r).then(()=>{ setTimeout(ensureRow,0); setTimeout(ensureRow,120); setTimeout(ensureRow,450); }); return r; }; }
+  setInterval(ensureRow,200);
+  document.addEventListener("input",e=>{ if(e.target&&e.target.closest&&e.target.closest(".fsq")){ const v=e.target.value.trim(); document.querySelectorAll("li.la-row").forEach(x=>x.style.display=v?"none":""); } },true);
+  // ---- Canada: provinces / territories as children ----
+  { const cl=document.createElement("script"); cl.src="data/canada.js?v="+window.BUILD; document.head.append(cl);
+    map.createPane("canPane").style.zIndex=450; map.getPane("canPane").style.pointerEvents="none"; let canG=null, sel=null;
+    const sil=rings=>{ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; rings.forEach(r=>r.forEach(([x,y])=>{ x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y); })); const k=Math.cos((y0+y1)/2*Math.PI/180),w=(x1-x0)*k||1,h=(y1-y0)||1,W=30,H=22,sc=Math.min((W-2)/w,(H-2)/h),ox=(W-w*sc)/2,oy=(H-h*sc)/2; const d=rings.map(r=>"M"+r.map(([x,y])=>((ox+(x-x0)*k*sc).toFixed(1))+" "+((oy+(y1-y)*sc).toFixed(1))).join("L")+"Z").join(""); return '<svg viewBox="0 0 30 22" width="30" height="22"><path d="'+d+'" fill="#222" fill-rule="evenodd"/></svg>'; };
+    const lbls=[]; const updLbl=()=>{ lbls.forEach(([m,bb])=>{ const a=map.latLngToContainerPoint(bb.getSouthWest()), c=map.latLngToContainerPoint(bb.getNorthEast()); const el=m.getElement&&m.getElement(); if(el) el.style.display=(Math.abs(c.x-a.x)>56&&Math.abs(a.y-c.y)>14)?"":"none"; }); }; map.on("zoomend moveend",updLbl);
+    function syncCan(){ const on=Wk()==="ca"&&window.CANADA; document.body.classList.toggle("cacan",!!on); if(!on){ lbls.length=0; if(canG){ canG.remove(); canG=null; } return; } if(canG) return; canG=L.layerGroup();
+      window.CANADA.forEach(p=>{ const rs=p[6].map(r=>r.map(([x,y])=>[y,x])); const pg=L.polygon(rs,{renderer:laR,pane:"canPane",interactive:false,color:"#57534e",weight:p[0]===sel?3:1,fillColor:"#e7e5e4",fillOpacity:p[0]===sel?0.55:0.25}).addTo(canG); const bbx=L.latLngBounds([p[2],p[3]],[p[4],p[5]]), c=bbx.getCenter(); lbls.push([L.marker(c,{pane:"canPane",interactive:false,icon:L.divIcon({className:"provlbl",html:"<span>"+p[0]+"</span>",iconSize:[0,0]})}).addTo(canG),bbx]); }); canG.addTo(map); setTimeout(updLbl,50); }
+    setInterval(syncCan,400);
+    map.on("click",e=>{ if(Wk()!=="ca"||LA.on||!window.CANADA) return; const x=e.latlng.lng,y=e.latlng.lat; const hit=window.CANADA.find(p=>{ if(y<p[2]||y>p[4]||x<p[3]||x>p[5]) return false; let ins=false; p[6].forEach(r=>{ for(let i=0,j=r.length-1;i<r.length;j=i++){ const xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1]; if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi)) ins=!ins; } }); return ins; });
+      if(hit) L.popup({closeButton:false,autoPan:false}).setLatLng(e.latlng).setContent("<b>"+esc(hit[0])+"</b>").openOn(map); else map.closePopup(); });
+    window.__W_prov=n=>{ sel=n; if(canG){ canG.remove(); canG=null; } syncCan(); const p=(window.CANADA||[]).find(q=>q[0]===n); if(p) map.flyToBounds([[p[2],p[3]],[p[4],p[5]]],{maxZoom:7,duration:1,paddingTopLeft:[20,180],paddingBottomRight:[60,80]}); const g=$("gq"); if(g){ g.placeholder=n; g.value=""; } };
+    window.__orgCountry=function(iso){ if(iso!=="ca") return; window.__worldEnter&&window.__worldEnter("ca"); document.getElementById("orgGlobal")&&document.getElementById("orgGlobal").remove(); document.getElementById("orgCountry")&&document.getElementById("orgCountry").remove(); document.body.classList.remove("orgglobal");
+      const box=document.createElement("ol"); box.id="orgCountry"; box.className="nl";
+      (window.CANADA||[]).slice().sort((a,b)=>a[0].localeCompare(b[0])).forEach(p=>{ const li=document.createElement("li"); li.className="lvrow flat oti"; li.innerHTML='<span class="oic">'+sil(p[6])+'</span><span class="nm"></span>'; li.querySelector(".nm").textContent=p[0]; li.onclick=()=>{ window.__laBusy=1; try{ closeSheet(); }catch(e){} window.__W_prov(p[0]); setTimeout(()=>{ window.__laBusy=0; },300); }; box.append(li); });
+      sheet.prepend(box); document.body.classList.add("orgcountry"); sheet.querySelectorAll(".foldlist,#orgCountry").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add("slideL"); });
+      const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="Canada"; i.dataset.lbl=""; } const Lb=$("barGeo").querySelector(".fsq .fsqlbl"); if(Lb){ const sp2=Lb.querySelector("span"), fq=Lb.querySelector(".fqi"); if(sp2) sp2.textContent="Canada"; if(fq){ fq.dataset.k="ca"; fq.innerHTML='<img alt="" src="img/flags/c/ca.png?v='+(window.BUILD||1)+'" style="width:22px">'; } }
+      ensureRow(); };
+    // Canada in the All-countries list is drillable
+    setInterval(()=>{ const og=document.getElementById("orgGlobal"); if(!og) return; const li=[...og.children].find(l=>{ const n=l.querySelector(".nm"); return n&&n.textContent==="Canada"; }); if(!li||li.dataset.dr) return; li.dataset.dr=1; if(!li.querySelector(".go")){ const g=document.createElement("span"); g.className="go"; g.textContent="›"; li.append(g); } li.onclick=e=>{ e.stopPropagation(); window.__laBusy=1; window.__orgCountry("ca"); setTimeout(()=>{ window.__laBusy=0; },300); }; },200); }
+})();
+
+{ const wmsg=document.createElement("div"); wmsg.id="worldMsg"; wmsg.textContent="No data yet"; document.body.append(wmsg); }
+// ===== institution filter search: same names/ranking as the geography filter (shared __entities + fuzzyRank); countries, states, provinces =====
+(function(){ const $=id=>document.getElementById(id);
+  // generic entity registry for the institution filter: {name, kind, iso?, parent?, hasBoundary?}; boundaries are optional (companies/brands have none). Canonical country/state names are the same strings the geography filter uses.
+  // ONE shared name/alias table for place entities (countries, states): both filters resolve aliases through it; each filter keeps its own search code and icons
+  window.__NAMES=(()=>{ const T={}; const add=(a,n)=>{ T[a.toLowerCase()]=n; }; allStates().forEach(st=>{ if(ABBR[st]) add(ABBR[st],st); });
+    [["usa","United States"],["us","United States"],["u.s.","United States"],["u.s.a.","United States"],["america","United States"],["uk","United Kingdom"],["u.k.","United Kingdom"],["britain","United Kingdom"],["great britain","United Kingdom"],["uae","United Arab Emirates"],["czech republic","Czechia"],["holland","Netherlands"],["burma","Myanmar"],["south korea","South Korea"],["russian federation","Russia"]].forEach(([a,n])=>add(a,n));
+    return { canon:q=>{ const k=String(q||"").trim().toLowerCase(); return T[k]?T[k].toLowerCase():k; }, alias:q=>T[String(q||"").trim().toLowerCase()]||null, table:T }; })();
+  window.__entities=()=>{ const o=[{name:"United States",kind:"Country",iso:"us",hasBoundary:true}]; (window.COUNTRIES||[]).forEach(c=>{ if(c[0]!=="us") o.push({name:c[1],kind:"Country",iso:c[0],hasBoundary:true}); }); allStates().forEach(s=>o.push({name:s,kind:"State",parent:"United States",hasBoundary:true})); (window.CANADA||[]).forEach(q=>o.push({name:q[0],kind:"Province",parent:"Canada",iso:"ca",hasBoundary:true})); return o; };
+  const B=()=>document.body.classList, top=()=>B().contains("orgglobal")||!state.value;
+  const clear=()=>{ const o=$("orgSearch"); if(o) o.remove(); B().remove("orgsearch"); };
+  const icon=x=>!x.iso&&x.kind!=="State"?'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#57534e" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2"/></svg>':x.kind==="State"?(window.__stSil?window.__stSil(x.name,null):""):'<img alt="" src="img/flags/'+(x.iso==="us"?"US.png":"c/"+x.iso+".png")+'?v='+(window.BUILD||1)+'">';
+  const pickE=x=>{ clear(); const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.blur(); } B().remove("fqtyping");
+    if(x.kind==="Province"){ window.__orgCountry("ca"); setTimeout(()=>{ try{ window.__W_prov(x.name); }catch(e){} closeSheet(); },80); return; }
+    if(x.kind==="State"){ try{ window.__worldExit&&window.__worldExit(); }catch(e){} B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); state.value=x.name; state.onchange&&state.onchange(); closeSheet(); return; }
+    if(x.iso==="us"){ try{ window.__worldExit&&window.__worldExit(); }catch(e){} B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); window.__slideDir="l"; state.value=""; state.onchange&&state.onchange(); setTimeout(openFold,60); return; }
+    if(x.iso==="ca"){ window.__laBusy=1; window.__orgCountry("ca"); setTimeout(()=>{ window.__laBusy=0; },300); return; }
+    B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); closeSheet(); window.__worldEnter(x.iso); };
+  const rec=q=>{ const box=$("barGeo").querySelector(".fsq"); if(!box) return; let r=box.querySelector(".fsqrec"); if(!r){ r=document.createElement("span"); r.className="fsqrec"; box.append(r); }
+    const k=window.__NAMES.canon(q); const x=k&&window.__entities().find(e=>e.kind!=="Province"&&e.name.toLowerCase()===k); const h=x?icon(x):""; if(r.innerHTML!==h) r.innerHTML=h; };
+  setInterval(()=>{ const box=document.querySelector("#barGeo .fsq"); if(box&&!box.querySelector(".fsqrec")){ const r=document.createElement("span"); r.className="fsqrec"; box.append(r); } },300);
+  const run=q=>{ rec(q); clear(); q=(q||"").trim(); if(!q||!B().contains("foldfs")||!top()) return;
+    const og=B().contains("orgglobal"); let A=window.__entities(); if(!og) A=A.filter(x=>x.kind!=="State");
+    let R=fuzzyRank(A,q.toLowerCase(),50)||[]; { const al=window.__NAMES.alias(q); if(al){ const AA=window.__entities(); const t=AA.find(x=>x.name===al&&(og||x.kind!=="State")); if(t){ R=[t].concat(R.filter(x=>x.name!==al)); if(!A.includes(t)) A.push(t); } } } if(!R.length) return;
+    const ol=document.createElement("ol"); ol.id="orgSearch"; ol.className="nl";
+    { const out=[], seen=new Set(); R.forEach(x=>{ if(!seen.has(x)){ seen.add(x); out.push(x); } if(x.kind==="Country"&&x.iso==="ca"||x.kind==="Country"&&x.name==="United States"&&og&&0){ A.filter(c=>c.parent===x.name).forEach(c=>{ if(!seen.has(c)){ seen.add(c); c.__child=1; out.push(c); } }); } }); R=out; }
+    R.forEach(x=>{ const li=document.createElement("li"); li.className="lvrow flat oti"+(x.__child?" orgchild":""); li.innerHTML='<span class="oic">'+icon(x)+'</span><span class="nm"></span>'+(x.kind==="Province"?'<span class="go" style="opacity:.5;font-size:12px">Canada</span>':""); li.querySelector(".nm").textContent=x.name; li.onclick=e=>{ e.stopPropagation(); pickE(x); }; ol.append(li); });
+    sheet.append(ol); B().add("orgsearch"); };
+  document.addEventListener("input",e=>{ const t=e.target; if(!(t&&t.closest&&t.closest("#barGeo .fsq"))) return; run(t.value);
+    // inline autocomplete (iOS style): complete a recognized country/state name, remainder selected; Enter accepts
+    try{ const q=t.value; if(!q||!top()||/^delete/.test(e.inputType||"")||t.selectionStart!==q.length||window.__NAMES.alias(q)) return; const lo=q.toLowerCase();
+      const x=window.__entities().find(en=>en.kind!=="Province"&&en.name.length>q.length&&en.name.toLowerCase().startsWith(lo)&&(B().contains("orgglobal")||en.kind!=="State"||true)); if(!x) return;
+      t.value=q+x.name.slice(q.length); t.setSelectionRange(q.length,x.name.length); rec(t.value); }catch(_){} },true);
+  window.__orgSearch=run; window.__orgSearchRows=()=>[...document.querySelectorAll("#orgSearch li")].map(l=>l.textContent.trim());
+  window.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgSearch li")]; if(!ls.length) return;
+    if(!B().contains("orgglobal")&&[...sheet.querySelectorAll("li")].some(l=>l.offsetParent&&!l.closest("#orgSearch"))) return;
+    const ex=ls.find(l=>l.querySelector(".nm").textContent.toLowerCase()===q)||ls[0]; e.preventDefault(); e.stopImmediatePropagation(); ex.click(); },true);
+  ["closeSheet"].forEach(()=>{ const _c=closeSheet; closeSheet=function(){ clear(); return _c.apply(this,arguments); }; });
+})();
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141498"></script>
-<script src="data/dc.js?v=202610141498"></script>
+<script defer src="data/countries.js?v=202610141499"></script>
+<script src="data/dc.js?v=202610141499"></script>
 </body>
 </html>
