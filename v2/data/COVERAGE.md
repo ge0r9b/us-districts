@@ -150,3 +150,8 @@ The Alaska state senate is now exact in the data file: each senate district is t
 - **State senate:** UT 20, FL 9, LA 8, VA 8.
 - **US House:** FL 2, LA 2, MS 1.
 - **Schools:** CA 133, WI 34, ME 32, SD 28.
+
+## Gap pass (build 202610141495)
+- Maine: State House 151/151 and State Senate 35/35 from official Maine SOS town-level 2024 results (President by town + legislative town→district lists). Towns split between districts are apportioned by the legislative-race turnout in each part and marked est. Whole-town districts match the precinct re-tabulation exactly (median R-share difference 0.0 pts). Schools 253/267; the remaining ones are unorganized territories and towns that are reported only combined with other towns, so they are left as no data.
+- The fill6 pipeline (vote-total QC, whole small districts) added FL, LA, VA, UT, VT, CA, NY and others.
+- Coverage now: US House 434/435 (99.8%), State House 4,821/4,882 (98.8%), State Senate 1,916/1,942 (98.7%), Schools 12,997/13,208 (98.4%).
