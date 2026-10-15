@@ -17,7 +17,7 @@ async def main():
           const dd=[...document.querySelectorAll('#ysl .ylb')]; const db=dd[dd.length-1].getBoundingClientRect(); const lb={right:db.left+db.width/2};
           const vis=[...document.querySelectorAll('#cands > *')].filter(e=>e!==x&&getComputedStyle(e).display!=='none').length;
           return {rows:rows.length,txt:x.innerText.replace(/\\s+/g,' '),maxR:Math.max(...imgs.map(i=>i.right)),minL:Math.min(...imgs.map(i=>i.left)),rail,lblR:lb.right,dotC:lb.right,others:vis,bubbles:x.querySelectorAll('[data-party]').length}}""")
-        ok=(not r.get('none')) and r['rows']==3 and r['others']==0 and r['maxR']<=r['rail']-2 and abs(r['maxR']-19-r['dotC'])<=2 and not re.search(r'Republican|Democratic|Other|\\d{2},\\d{3}',r['txt']) and (('%' not in r['txt']) )
+        ok=(not r.get('none')) and r['rows']==3 and r['others']==0 and r['maxR']<=r['rail']-2 and abs(r['maxR']-15-r['dotC'])<=2 and not re.search(r'Republican|Democratic|Other|\d{2},\d{3}',r['txt']) and (('%' not in r['txt']) )
         if mode=='num': ok=ok and bool(re.search(r'[MK]',r['txt']))
         fails+=0 if ok else 1; print(t,mode,'OK' if ok else 'FAIL',json.dumps(r)[:330],flush=True)
         await pg.screenshot(path=f"/workspace/shots/dm-{tag}-{t}-{mode}.png")

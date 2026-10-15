@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141509 -->
+<!-- build 202610141510 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141509";</script>
+<script>window.BUILD="202610141510";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -548,11 +548,17 @@ body.geofs #geofs{display:flex!important}
   .lvrow.la.cmp b.rn .oic { left: -40px; }
   body:not(.listmode) .cands.two .cyr { display: none !important; }
   body:not(.listmode) .cands.two .ccol:last-child .cand.ph .cpt { left: auto !important; right: calc(100% - 16px) !important; }
+  body.dline .cands > :not(.dlx) { display: none !important; }
+  body.dline .cands { display: block !important; }
+  .dlx { width: 100%; padding: 4px 0 10px; box-sizing: border-box; } .dlch { display: block; } .dlch svg { display: block; overflow: visible; }
+  .dlch text { fill: #111 !important; } .dlt .dmt { width: 30px; height: 30px; flex: 0 0 30px; }
+  .dlt { position: relative; height: 90px; margin-top: 6px; } .dlc { position: absolute; top: 0; display: flex; flex-direction: column; gap: 8px; }
   body.dmerge .cands > :not(.dmx) { display: none !important; }
   body.dmerge .cands { display: block !important; }
   .dmx { display: flex; flex-direction: column; gap: 10px; padding: 6px 0 10px; box-sizing: border-box; }
   .dmr { display: flex; align-items: center; gap: 8px; height: 38px; }
-  .dmt { flex: 0 0 38px; width: 38px; height: 38px; box-sizing: border-box; object-fit: cover; object-position: 50% 30%; border-radius: 2.5px; background: #e7e5e4; cursor: pointer; display: block; }
+  .dmt { flex: 0 0 30px; width: 30px; height: 30px; box-sizing: border-box; object-fit: cover; object-position: 50% 30%; border-radius: 2.5px; background: #e7e5e4; cursor: pointer; display: block; }
+  .dmr > .dmt:first-child { margin-left: 3px; }
   .dmt.r { box-shadow: 0 0 0 2px #b91c1c; } .dmt.d { box-shadow: 0 0 0 2px #1d4ed8; } .dmt.dmo { background: none; box-shadow: none; cursor: default; }
   .dmb { position: relative; flex: 1 1 auto; min-width: 0; height: 26px; background: rgba(0,0,0,.07); border-radius: 4px; overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .dmb i { position: absolute; top: 0; bottom: 0; opacity: .85; } .dmb .z { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,.35); z-index: 2; }
@@ -2397,16 +2403,41 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     return ks.map(k=>{ const f=d[k]/mx*50, txt=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1):shortN(d[k]);
       const exact=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1)+" pts":(d[k]>=0?"+":"\u2212")+Math.round(Math.abs(d[k])).toLocaleString("en-US");
       const who=k==="oth"?"Other":NMc[k]+" ("+(k==="rep"?c24(1).short:c24(0).short)+")";
-      const th=(c,yr)=>c?'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="38" height="38" data-party="'+esc(c.full+" "+yr)+'">':'<span class="dmt dmo"></span>';
+      const th=(c,yr)=>c?'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="30" height="30" data-party="'+esc(c.full+" "+yr)+'">':'<span class="dmt dmo"></span>';
       const left=d[k]>=0; return '<div class="dmr">'+(k==="oth"?th(null):th(c20(k==="rep"?1:0),"2020"))+'<span class="dmb" data-party="'+esc(who+": "+exact)+'"><b class="z"></b><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PCc[k]+'"></i><em class="'+(left?"l":"r")+'">'+txt+'</em></span>'+(k==="oth"?th(null):th(c24(k==="rep"?1:0),"2024"))+'</div>'; }).join(""); }
   function fit(box){ const tb=$("barTime"), sp=[...document.querySelectorAll("#ysl .tk span")]; const L=box.getBoundingClientRect().left; let R;
-    { const lb=document.querySelector("#ysl .ylb.r"); if(lb){ const b=lb.getBoundingClientRect(); R=b.left+b.width/2+19; } }
+    { const lb=document.querySelector("#ysl .ylb.r"); if(lb){ const b=lb.getBoundingClientRect(); R=b.left+b.width/2+15; } }
     const rl=document.querySelector(".rail"), cap=(rl?rl.getBoundingClientRect().left:innerWidth-64)-3; R=Math.min(R||cap,cap); box.style.width=Math.max(120,R-L)+"px"; }
   function sync(){ try{ const was=document.body.classList.contains("dmerge"); if(!on()){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
     const h=build(); if(h===null){ if(was){ document.body.classList.remove("dmerge"); const x=candBox.querySelector(":scope > .dmx"); if(x) x.remove(); } return; }
     let x=candBox.querySelector(":scope > .dmx"); if(!x){ x=document.createElement("div"); x.className="dmx"; candBox.prepend(x); } if(x.innerHTML!==h) x.innerHTML=h; document.body.classList.add("dmerge"); fit(x); }catch(e){} }
   const _rcM=renderCands; renderCands=function(){ const r=_rcM.apply(this,arguments); sync(); return r; };
   setInterval(sync,400); window.addEventListener("resize",()=>setTimeout(sync,80)); window.__dmSync=sync; }
+// ===== two-point LINE view: line chart directly under the time filter (its range = the horizontal axis), thumbnails-only columns right below, change values only =====
+{ const PCc={rep:"rgb(220,38,38)",dem:"rgb(37,99,235)"}, NMc={rep:"Republican",dem:"Democratic"};
+  const shortN=x=>{ const a=Math.abs(x), sg=x>=0?"+":"\u2212"; return sg+(a>=1e6?(a/1e6).toFixed(2)+"M":a>=1e3?Math.round(a/1e3)+"K":String(Math.round(a))); };
+  const on=()=>{ try{ return document.body.classList.contains("listmode")&&!document.body.classList.contains("listall")&&window.chartMode==="line"&&ym()==="delta"&&!$("barTime").hidden; }catch(e){ return false; } };
+  const geom=box=>{ const rl=document.querySelector(".rail"), cap=(rl?rl.getBoundingClientRect().left:innerWidth-64)-3, L=box.getBoundingClientRect().left;
+    const dots=[...document.querySelectorAll("#ysl .tk i")].map(d=>{ const b=d.getBoundingClientRect(); return b.left+b.width/2; }), lb=document.querySelector("#ysl .ylb.l").getBoundingClientRect(), lr=document.querySelector("#ysl .ylb.r").getBoundingClientRect();
+    return {L,W:Math.max(160,cap-L),x0:dots[0]-L,x1:dots[dots.length-1]-L,c0:lb.left+lb.width/2-L,c1:lr.left+lr.width/2-L}; };
+  function build(box){ const a=scopeArea(), v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; const g=geom(box), pc=numMode==="pct", H=innerWidth>=700?170:112, yT=12, yB=H-12;
+    const V=(v,k)=>pc?v[k]/v.tot*100:v[k]; const all=[V(v0,"rep"),V(v0,"dem"),V(v1,"rep"),V(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.3||(pc?3:1000); lo-=pad; hi+=pad; const Y=q=>yB-(q-lo)/(hi-lo)*(yB-yT);
+    const ks=["rep","dem"], y1={}, c24=ix=>CANDS["2024"].find(c=>!!c.ix===!!ix), c20=ix=>CANDS["2020"].find(c=>!!c.ix===!!ix);
+    { const o=ks.map(k=>[k,Y(V(v1,k))]).sort((p,q)=>p[1]-q[1]); for(let i=1;i<o.length;i++) if(o[i][1]-o[i-1][1]<15) o[i][1]=o[i-1][1]+15; o.forEach(([k,y])=>y1[k]=y); }
+    let svg='<svg width="'+g.W+'" height="'+H+'" viewBox="0 0 '+g.W+' '+H+'" role="img" aria-label="2020 to 2024 change">';
+    ks.forEach(k=>{ const a0=Y(V(v0,k)), a1=Y(V(v1,k)), d=V(v1,k)-V(v0,k), c=PCc[k];
+      const exact=pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1)+" pts":(d>=0?"+":"\u2212")+Math.round(Math.abs(d)).toLocaleString("en-US"), who=NMc[k]+" ("+(c24(k==="rep"?1:0).short)+")"; const tip=esc(who+": "+exact);
+      svg+='<g data-party="'+tip+'" style="cursor:pointer"><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="transparent" stroke-width="18"/><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="'+g.x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'"/><circle cx="'+g.x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'"/>'
+        +'<text x="'+(g.x1+10)+'" y="'+y1[k].toFixed(1)+'" font-size="12" font-weight="600" dominant-baseline="central" fill="#111">'+(pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1):shortN(d))+'</text></g>'; });
+    svg+='</svg>';
+    const th=(c,yr)=>'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="30" height="30" data-party="'+esc(c.full+" "+yr)+'">';
+    const col=(yr,v,cx)=>'<div class="dlc" style="left:'+(cx-15).toFixed(1)+'px">'+[...CANDS[yr]].sort((x,y)=>(y.ix?v.rep:v.dem)-(x.ix?v.rep:v.dem)).map(c=>th(c,yr)).join("")+'</div>';
+    return '<div class="dlch" style="width:'+g.W+'px;height:'+H+'px">'+svg+'</div><div class="dlt">'+col("2020",v0,g.c0)+col("2024",v1,g.c1)+'</div>'; }
+  function sync(){ try{ const was=document.body.classList.contains("dline"); const off=()=>{ if(was){ document.body.classList.remove("dline"); const x=candBox.querySelector(":scope > .dlx"); if(x) x.remove(); } };
+    if(!on()){ off(); return; } let x=candBox.querySelector(":scope > .dlx"); if(!x){ x=document.createElement("div"); x.className="dlx"; candBox.prepend(x); } document.body.classList.add("dline");
+    const h=build(x); if(h===null){ x.remove(); document.body.classList.remove("dline"); return; } if(x.__h!==h){ x.innerHTML=h; x.__h=h; } }catch(e){} }
+  const _rcL=renderCands; renderCands=function(){ const r=_rcL.apply(this,arguments); sync(); return r; };
+  setInterval(sync,400); window.addEventListener("resize",()=>setTimeout(sync,80)); window.__dlSync=sync; }
 window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
 // ===== double-tap: zoom to the area and show its name in the bottom geography field =====
 map.doubleClickZoom.disable();
@@ -3184,7 +3215,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141509"></script>
-<script src="data/dc.js?v=202610141509"></script>
+<script defer src="data/countries.js?v=202610141510"></script>
+<script src="data/dc.js?v=202610141510"></script>
 </body>
 </html>
