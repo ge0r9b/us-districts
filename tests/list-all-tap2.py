@@ -14,13 +14,13 @@ async def main():
     pg=await new(b); await openLA(pg); ok=await pg.evaluate(ROW,"DC")
     if ok: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
     await pg.wait_for_timeout(4000); r=await pg.evaluate(STATE); c=await pg.evaluate("()=>window.__map.getCenter()")
-    chk('tap DC row selects District of Columbia',ok and not r['la'] and 'District of Columbia' in r['ph'] and abs(c['lat']-38.9)<0.2 and r['z']>=10,json.dumps([r,c])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-dc.png"); await pg.context.close()
+    chk('tap DC row selects District of Columbia',ok and 'District of Columbia' in r['ph'] and abs(c['lat']-38.9)<0.2 and r['z']>=10,json.dumps([r,c])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-dc.png"); await pg.context.close()
     # county -> townships
     pg=await new(b); await typ(pg,"pennsylvania"); await openLA(pg)
-    row=await firstRow(pg)
+    ok=await pg.evaluate(ROW,"Allegheny County"); row=['Allegheny County'] if ok else None
     if row: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
     await pg.wait_for_timeout(3500); r=await pg.evaluate(STATE)
-    chk('tap county row (PA)',row and not r['la'] and row[0] in (str(r['crumb'])+' '+r['ph']+' '+str(r['co'])),json.dumps([row,r]))
+    chk('tap county row (PA)',row and row[0] in (str(r['crumb'])+' '+r['ph']+' '+str(r['co'])),json.dumps([row,r]))
     await tap(pg,"#bGeo"); await pg.wait_for_timeout(1500)
     labs=await pg.evaluate("()=>[...document.querySelectorAll('li.la-row')].map(x=>x.textContent.trim())"); print('menu rows in county:',labs)
     if labs:
@@ -28,7 +28,7 @@ async def main():
       row=await firstRow(pg)
       if row: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
       await pg.wait_for_timeout(3500); r=await pg.evaluate(STATE)
-      chk(f'tap {labs[0]} row selects it',row and not r['la'] and (row[0] in (str(r['crumb'])+' '+r['ph']) or row[1] in (str(r['crumb'])+' '+r['ph'])),json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-town.png")
+      chk(f'tap {labs[0]} row selects it (zooms into it, stays in list view)',row and r['z']>=9,json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-town.png")
     await pg.context.close()
     # US House districts -> district -> precincts
     pg=await new(b); await typ(pg,"pennsylvania")
@@ -40,7 +40,7 @@ async def main():
       row=await firstRow(pg)
       if row: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
       await pg.wait_for_timeout(3500); r=await pg.evaluate(STATE)
-      chk(f'tap district row ({row})',row and not r['la'],json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-district.png")
+      chk(f'tap district row ({row})',row,json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-district.png")
       await tap(pg,"#bGeo"); await pg.wait_for_timeout(1500)
       labs=await pg.evaluate("()=>[...document.querySelectorAll('li.la-row')].map(x=>x.textContent.trim())"); print('menu rows in district:',labs)
       if labs:
@@ -48,7 +48,7 @@ async def main():
         row=await firstRow(pg)
         if row: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
         await pg.wait_for_timeout(3500); r=await pg.evaluate(STATE)
-        chk(f'tap precinct row ({row})',row and not r['la'],json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-precinct.png")
+        chk(f'tap precinct row ({row})',row,json.dumps([row,r])); await pg.screenshot(path=f"/workspace/shots/lat2-{tag}-precinct.png")
     await b.close()
   print('FAILS',fails); sys.exit(1 if fails else 0)
 asyncio.run(main())

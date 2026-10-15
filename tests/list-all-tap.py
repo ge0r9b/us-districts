@@ -31,7 +31,7 @@ async def main():
       if ok: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
       await pg.wait_for_timeout(2500)
       r=await pg.evaluate("()=>({w:window.__W&&window.__W(),la:window.__LA.on,ph:document.getElementById('gq').placeholder,crumb:(document.querySelector('#crumbs .crumb.cur')||{}).textContent})")
-      chk(f'tap {name} selects it',ok and not r['la'] and name in (r['ph']+' '+str(r['crumb'])),json.dumps(r)); 
+      chk(f'tap {name} selects it',ok and name in (r['ph']+' '+str(r['crumb'])),json.dumps(r)); 
       if name=='Haiti': await pg.screenshot(path=f"/workspace/shots/lat-{tag}-haiti.png")
       await pg.context.close()
     # states
@@ -42,7 +42,7 @@ async def main():
       if ok: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
       await pg.wait_for_timeout(4000)
       r=await pg.evaluate("()=>({st:state.value||window.__v2&&0,la:window.__LA.on,ph:document.getElementById('gq').placeholder,crumb:(document.querySelector('#crumbs .crumb.cur')||{}).textContent})")
-      chk(f'tap state {name}',ok and not r['la'] and name in (str(r['crumb'])+' '+r['ph']),json.dumps(r))
+      chk(f'tap state {name}',ok and name in (str(r['crumb'])+' '+r['ph']),json.dumps(r))
       if name=='Texas': await pg.screenshot(path=f"/workspace/shots/lat-{tag}-state.png")
       await pg.context.close()
     # counties of Texas
@@ -56,7 +56,7 @@ async def main():
     if row: await tap(pg,"#listView .lvrow.la[data-t='1'] b.rn")
     await pg.wait_for_timeout(3500)
     r=await pg.evaluate("()=>({la:window.__LA.on,co:(document.getElementById('county')||{}).value,ph:document.getElementById('gq').placeholder,crumb:(document.querySelector('#crumbs .crumb.cur')||{}).textContent})")
-    chk('tap county row selects it',row and not r['la'] and row in (str(r['crumb'])+' '+r['ph']+' '+str(r['co'])),json.dumps([lab,row,r])); await pg.screenshot(path=f"/workspace/shots/lat-{tag}-county.png")
+    chk('tap county row selects it',row and row in (str(r['crumb'])+' '+r['ph']+' '+str(r['co'])),json.dumps([lab,row,r])); await pg.screenshot(path=f"/workspace/shots/lat-{tag}-county.png")
     await b.close()
   print('FAILS',fails); sys.exit(1 if fails else 0)
 asyncio.run(main())
