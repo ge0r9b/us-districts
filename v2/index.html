@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141492 -->
+<!-- build 202610141493 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141492";</script>
+<script>window.BUILD="202610141493";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1196,7 +1196,7 @@ state.onchange=()=>{ _sc(); crumbs(); }; county.onchange=()=>{ _cc(); crumbs(); 
 // ===== layer letters, office menu, district aggregation =====
 const LYR=[["S","schools","School districts"],["T","towns","Towns, cities, boroughs"],["C","counties","Counties"],["H","ushouse","US House"],["U","senate","State senate"],["L","statehouse","State house"],["P","precincts","Precincts"]];
 const AGG_LAYERS=new Set(["ushouse","senate","statehouse","schools"]);
-const OFFICES=[{id:"president",label:"President",letter:"Pr"}]; // add more offices here later
+const OFFICES=[{id:"president",label:"President",letter:"Pr",scope:"us"}]; // add more offices here later
 let office="president";
 const active=new Set(["counties"]); let fillTop=null; // last-activated aggregatable layer gets fill
 const lyrGroup=map?L.layerGroup().addTo(map):null;
@@ -1668,7 +1668,7 @@ const _oi=openInfo; openInfo=function(){ _oi(); const box=sheet.querySelector(".
   if(state.value&&fillTop){ yrsOn().forEach(yr=>{ const A=aggFor(fillTop,yr); if(!A){ add("Coverage "+yr,"No "+yr+" precinct data"); return; }
     let n=0,g=0,s=0; A.forEach(v=>{ n++; s+=v.cov||0; if(!(v.tot&&v.cov>=0.5)) g++; });
     add("Coverage "+yr, LYR.find(l=>l[1]===fillTop)[2]+": avg "+Math.round(s/Math.max(n,1)*100)+"% of votes covered by precinct results; "+g+" of "+n+" districts under 50% (gray)."); }); }
-  if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, "Total votes "+fmtN(v.tot)+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
+  if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, (numMode==="pct"?"":"Total votes "+fmtN(v.tot))+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
 window.__v2.cands=candOn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
 const _sy=syncYears; syncYears=function(){ _sy(); renderCands(); refreshBubble(); if(view==="list") renderList(); };
 addEventListener("resize",layoutSide); setInterval(layoutSide,700);
@@ -2150,7 +2150,10 @@ const _dh10=drawHeat; drawHeat=function(){ _dh10(); drawCtyFill(); };
 const _aa10=areaAt; areaAt=function(ll){ if(heatOn&&state.value&&precMissing()&&!hier.dist){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&pointInItem(d,ll.lng,ll.lat)); if(c) return {kind:"county",d:c}; } return _aa10(ll); };
 // ===== plotting on/off: topic set + at least one year =====
 let topicOn=true;
-function plotting(){ return years.size>0; } window.__topicOn=()=>topicOn; window.__setTopic=lab=>{ topicOn=!!lab; if(lab){ const o=OFFICES.find(o=>o.label===lab); if(o) office=o.id; } $("vtitle").textContent=lab||""; $("vtitle").classList.toggle("seal",!!lab); syncPlot(); try{ drawHeat(); }catch(e){} try{ drawNat(); }catch(e){} try{ renderCands(); }catch(e){} if(!lab){ cur=null; try{ map.closePopup(); }catch(e){} try{ refreshBubble(); }catch(e){} } };
+function plotting(){ return years.size>0; } window.__topicOn=()=>topicOn; { let saved=null, wasOut=null; const scopeOf=()=>{ const B=document.body.classList; return B.contains("worldmode")?(B.contains("wcountry")?"country":"all"):"us"; };
+  setInterval(()=>{ const sc=scopeOf(), out=sc!=="us"; if(out===wasOut) return; wasOut=out; const o=OFFICES.find(o=>o.id===office);
+    if(out){ if(topicOn&&o&&o.scope&&o.scope!==sc){ saved=o.label; window.__setTopic(null); } }
+    else if(saved&&!topicOn){ const l=saved; saved=null; window.__setTopic(l); } },200); } window.__setTopic=lab=>{ topicOn=!!lab; if(lab){ const o=OFFICES.find(o=>o.label===lab); if(o) office=o.id; } $("vtitle").textContent=lab||""; $("vtitle").classList.toggle("seal",!!lab); syncPlot(); try{ drawHeat(); }catch(e){} try{ drawNat(); }catch(e){} try{ renderCands(); }catch(e){} if(!lab){ cur=null; try{ map.closePopup(); }catch(e){} try{ refreshBubble(); }catch(e){} } };
 function syncPlot(){ document.body.classList.toggle("noplot",!plotting()); document.body.classList.toggle("notopic",!topicOn); if(!plotting()){ cur=null; if(bubPop) map.closePopup(bubPop); } }
 const _sy12=syncYears; syncYears=function(){ syncPlot(); if(years.size===0){ $("c2020").classList.remove("on"); $("c2024").classList.remove("on"); $("ydelta").textContent=""; return; } _sy12(); drawNat(); };
 // tap the title to edit the topic; empty clears, "Pres…" restores
@@ -2721,6 +2724,10 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
       const L0=document.querySelector("#barGeo .fsq .fsqlbl"); if(L0&&st){ const sp0=L0.querySelector("span"), fq=L0.querySelector(".fqi"); const want=ALLLBL[typ]; if(sp0&&sp0.textContent!==want) sp0.textContent=want; if(fq&&fq.dataset.k!==typ){ fq.dataset.k=typ; fq.innerHTML=icon(typ); } }
     } else { if(sc) sc.remove(); const bs=[...c.querySelectorAll(".crumb:not(.glob)")]; const gl=c.querySelector(".crumb.glob"); if(bs.length<2&&!(gl&&(bs.length===1||document.body.classList.contains("orgglobal")))) return;
       par=bs.length>=2?bs[bs.length-2]:gl; c.querySelectorAll(".crumb,.sep").forEach(x=>{ if(x!==par) x.classList.add("tbHide"); }); par.classList.add("tbPar"); }
+    { const OG=document.body.classList.contains("orgglobal"); const usLvl=!OG&&!state.value&&!typ&&!document.body.classList.contains("worldmode"); const gl2=c.querySelector(".crumb.glob");
+      if(gl2){ const sp=[...gl2.querySelectorAll("span")].find(x=>!x.classList.contains("ico"))||gl2.querySelector("span"); const want=usLvl?"All countries":"All"; if(sp&&sp.textContent!==want) sp.textContent=want; gl2.title=want;
+        if(!gl2.__wrapped){ gl2.__wrapped=1; gl2.addEventListener("click",e=>{ if(gl2.title==="All countries"){ e.preventDefault(); e.stopImmediatePropagation(); try{ window.__orgGlobal(); }catch(_){} } },true); } }
+      document.querySelectorAll("#orgTypes li").forEach(li=>{ const n=li.querySelector(".nm"); if(n&&n.textContent.trim()==="United States"){ if(usLvl) li.style.setProperty("display","none","important"); else li.style.removeProperty("display"); } }); }
     const L=document.querySelector("#barGeo .fsq .fsqlbl"); if(!L||!L.offsetParent) return; const li=L.querySelector("img"), sp=L.querySelector("span"); if(!sp) return;
     const rg=document.createRange(); rg.selectNodeContents(sp); const tx=rg.getBoundingClientRect().left;
     const pi=par.querySelector("img,.ico"), pt=par.querySelector("span:not(.ico)")||par;
@@ -2796,9 +2803,9 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const lineMenu=()=>{};
   const cname=(yr,k)=>{ if(k==="oth") return "Other"; const c=(window.CANDS||CANDS)[yr]; const x=c&&c.find(q=>q.p===k[0]); return x?x.full:NM[k]; };
   const fx=(n,t)=>(n/t*100).toFixed(1)+"%";
-  const legend=yrs=>{ const pc=numMode==="pct", cs=pc?2:1; let h='<table class="cleg"><thead><tr><th></th><th>Candidate</th>'+yrs.map(([y])=>'<th colspan="'+cs+'">'+y+'</th>').join("")+'</tr><tr><th></th><th></th>'+yrs.map(()=>'<th>Votes</th>'+(pc?'<th>Share</th>':'')).join("")+'</tr></thead><tbody>';
-    ["rep","dem","oth"].forEach(k=>{ h+='<tr><td><i style="background:'+PC[k]+'"></i></td><td>'+yrs.map(([y])=>cname(y,k)).filter((x,i,a)=>a.indexOf(x)===i).join(" / ")+' <span class="cpty">'+NM[k]+'</span></td>'+yrs.map(([y,v])=>{ const p=parts(v); return '<td>'+Math.round(p[k]).toLocaleString("en-US")+'</td>'+(pc?'<td>'+fx(p[k],v.tot||1)+'</td>':''); }).join("")+'</tr>'; });
-    h+='<tr class="ctot"><td></td><td>Total</td>'+yrs.map(([y,v])=>'<td>'+Math.round(v.tot).toLocaleString("en-US")+'</td>'+(pc?'<td>100%</td>':'')).join("")+'</tr></tbody></table>'; return h; };
+  const legend=yrs=>{ const pc=numMode==="pct"; let h='<table class="cleg"><thead><tr><th></th><th>Candidate</th>'+yrs.map(([y])=>'<th>'+y+'</th>').join("")+'</tr><tr><th></th><th></th>'+yrs.map(()=>pc?'<th>Share</th>':'<th>Votes</th>').join("")+'</tr></thead><tbody>';
+    ["rep","dem","oth"].forEach(k=>{ h+='<tr><td><i style="background:'+PC[k]+'"></i></td><td>'+yrs.map(([y])=>cname(y,k)).filter((x,i,a)=>a.indexOf(x)===i).join(" / ")+' <span class="cpty">'+NM[k]+'</span></td>'+yrs.map(([y,v])=>{ const p=parts(v); return pc?'<td>'+fx(p[k],v.tot||1)+'</td>':'<td>'+Math.round(p[k]).toLocaleString("en-US")+'</td>'; }).join("")+'</tr>'; });
+    h+='<tr class="ctot"><td></td><td>Total</td>'+yrs.map(([y,v])=>pc?'<td>100%</td>':'<td>'+Math.round(v.tot).toLocaleString("en-US")+'</td>').join("")+'</tr></tbody></table>'; return h; };
   const pieBig=(v0,v1,S)=>{ const svg=pieSvg(v0,v1).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'"'); return svg; };
   const barBig=(v0,v1)=>{ let h=barHtml(v0,v1); const ticks=v1?["−max","0","+max"]:[0,10,20,30,40,50,60,70,80,90,100]; if(!v1&&numMode==="pct") h=h.replace('<div class="cbars">','<div class="cbars big"><div class="cbr cax"><span></span><span class="cbt cticks">'+ticks.map(t=>'<em style="left:'+t+'%">'+t+'%</em>').join("")+'</span><span></span></div>'); if(!h.includes('cbars big')) h=h.replace('<div class="cbars">','<div class="cbars big">');
     return h; };
@@ -2827,7 +2834,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141492"></script>
-<script src="data/dc.js?v=202610141492"></script>
+<script defer src="data/countries.js?v=202610141493"></script>
+<script src="data/dc.js?v=202610141493"></script>
 </body>
 </html>
