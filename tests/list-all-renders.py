@@ -2,7 +2,7 @@
 import asyncio,sys,json
 from playwright.async_api import async_playwright
 base=sys.argv[1]; tag=sys.argv[2] if len(sys.argv)>2 else 'x'; fails=0
-VIS="""()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; const vis=rows.filter(r=>{const b=r.getBoundingClientRect(); return b.height>0&&r.offsetParent!==null}); const o=vis[0]&&vis[0].getBoundingClientRect(); return {on:window.__LA&&window.__LA.on,n:rows.length,vis:vis.length,body:document.body.className,lvDisp:getComputedStyle(lv).display,lvH:Math.round(lv.getBoundingClientRect().height),first:vis[0]&&vis[0].innerText.slice(0,40).replace(/\\n/g,' | '),sort:!!document.getElementById('laSort')&&getComputedStyle(document.getElementById('laSort')).display}}"""
+VIS="""()=>{const lv=document.getElementById('listView'); const rows=[...lv.querySelectorAll('.lvrow.la')]; const vis=rows.filter(r=>{const b=r.getBoundingClientRect(); return b.height>0&&b.width>150&&b.left>=0&&b.right<=innerWidth+1&&r.offsetParent!==null}); const o=vis[0]&&vis[0].getBoundingClientRect(); return {on:window.__LA&&window.__LA.on,n:rows.length,vis:vis.length,body:document.body.className,lvDisp:getComputedStyle(lv).display,lvH:Math.round(lv.getBoundingClientRect().height),first:vis[0]&&vis[0].innerText.slice(0,40).replace(/\\n/g,' | '),sort:!!document.getElementById('laSort')&&getComputedStyle(document.getElementById('laSort')).display}}"""
 async def main():
   global fails
   async with async_playwright() as p:

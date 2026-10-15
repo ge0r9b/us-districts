@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141503 -->
+<!-- build 202610141504 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141503";</script>
+<script>window.BUILD="202610141504";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -328,6 +328,8 @@
   #vtitle { position: relative; }
   #vtitle::before { content: ""; position: absolute; left: var(--tiL, 0px); top: 50%; width: 24px; height: 24px; margin-top: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M4 7h16l-2 4H6z'/%3E%3Cpath d='M12 4v3'/%3E%3Cpath d='M9 11h6v8H9z'/%3E%3Cpath d='M6 21h12'/%3E%3C/svg%3E") no-repeat center / contain; }
   #vtitle { --tiL: 9px; --tiP: 44px; padding-left: var(--tiP, 44px) !important; }
+  #barSearch .usq, #usq, #usq::placeholder { font-size: 16px !important; font-weight: 400 !important; }
+  #vtitle { font-size: 16px !important; font-weight: 600 !important; line-height: 22.4px; display: flex; align-items: center; }
   #crumbs .cic.flag.shape img { height: 22px; max-width: 30px; width: auto; object-fit: contain; box-shadow: none; }
   #crumbs .cic.flag.shape { width: 30px !important; justify-content: center; }
   #crumbs .cic.flag:not(.shape) { width: 30px !important; justify-content: center; }
@@ -525,6 +527,7 @@ body.geofs #geofs{display:flex!important}
   #laSortPop[hidden] { display: none; }
   #laSortPop button { background: none; border: 0; padding: 4px 6px; font: inherit; color: #57534e; text-align: left; white-space: nowrap; cursor: pointer; }
   #laSortPop button.on { color: #111; font-weight: 800; }
+  .lvrow.la { padding-left: var(--lapad,44px) !important; position: relative; } .lvrow.la b.rn { position: relative; display: block; } .lvrow.la b.rn .oic { position: absolute; left: -40px; top: 50%; transform: translateY(-50%); flex: none; width: 30px; height: 22px; margin: 0; display: flex; align-items: center; justify-content: center; } .lvrow.la b.rn .oic img { max-width: 30px; max-height: 22px; width: auto; height: auto; object-fit: contain; display: block; } .lvrow.la b.rn .oic svg { width: 30px; height: 22px; stroke: none; }
   .lvrow.la { cursor: default; } .lvrow.la .cbars { width: 100%; max-width: 420px; } .lvrow.la .cbt i { transition: none !important; } .lvrow.la .cbr { font-size: 12px; gap: 6px; grid-template-columns: 84px 1fr 64px; } .lvrow.la .cbt { height: 12px; }
   .provlbl span { position: absolute; transform: translate(-50%,-50%); font: 600 10px/1 system-ui, sans-serif; color: #292524; white-space: nowrap; text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
   body.orgcountry:not(.foldfs) { }
@@ -1625,7 +1628,7 @@ function renderCands(){ const lst=document.body.classList.contains("listmode"), 
     candBox.append(b); });
   layoutSide(); }
 function layoutSide(){ const t=$("barTime"); const top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8);
-  candBox.style.top=top+"px"; const lv=$("listView"); if(lv){ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; lv.style.top=top+"px"; lv.style.bottom=(innerHeight-$("barBottom").getBoundingClientRect().top+g)+"px"; const mobL=innerWidth<700&&document.body.classList.contains("listmode"); candBox.style.right=mobL?(innerWidth-rail.getBoundingClientRect().left+g)+"px":"auto"; if(mobL){ lv.style.top=(candBox.getBoundingClientRect().bottom+g)+"px"; lv.style.left=g+"px"; } else lv.style.left=(candBox.getBoundingClientRect().right+g)+"px"; lv.style.right=(innerWidth-rail.getBoundingClientRect().left+g)+"px"; lv.style.padding="0 4px 12px"; lv.style.background="transparent"; } }
+  candBox.style.top=top+"px"; const lv=$("listView"); if(lv){ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; lv.style.top=top+"px"; lv.style.bottom=(innerHeight-$("barBottom").getBoundingClientRect().top+g)+"px"; const mobL=document.body.classList.contains("listmode")&&(innerWidth<700||candBox.getBoundingClientRect().width>innerWidth*0.5); candBox.style.right=mobL?(innerWidth-rail.getBoundingClientRect().left+g)+"px":"auto"; if(mobL){ lv.style.top=(candBox.getBoundingClientRect().bottom+g)+"px"; lv.style.left=g+"px"; } else lv.style.left=(candBox.getBoundingClientRect().right+g)+"px"; lv.style.right=(innerWidth-rail.getBoundingClientRect().left+g)+"px"; lv.style.padding="0 4px 12px"; lv.style.background="transparent"; } }
 // area values
 function vals(a,yr){
   if(a.kind==="county"){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; const v=E&&E[a.d[0]+"|"+a.d[1]]; return v&&v[2]?{dem:v[0],rep:v[1],tot:v[2]}:null; }
@@ -1693,7 +1696,7 @@ const _oi=openInfo; openInfo=function(){ _oi(); const box=sheet.querySelector(".
     let n=0,g=0,s=0; A.forEach(v=>{ n++; s+=v.cov||0; if(!(v.tot&&v.cov>=0.5)) g++; });
     add("Coverage "+yr, LYR.find(l=>l[1]===fillTop)[2]+": avg "+Math.round(s/Math.max(n,1)*100)+"% of votes covered by precinct results; "+g+" of "+n+" districts under 50% (gray)."); }); }
   if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, (numMode==="pct"?"":"Total votes "+fmtN(v.tot))+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
-window.__v2.cands=candOn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
+window.__v2.cands=candOn; window.__v2.townsIn=townsIn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
 const _sy=syncYears; syncYears=function(){ _sy(); renderCands(); refreshBubble(); if(view==="list") renderList(); };
 addEventListener("resize",layoutSide); setInterval(layoutSide,700);
 renderCands();
@@ -2888,7 +2891,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(W) return null;
     if(!state.value) return {id:"states",label:"List all states",noun:"states"};
     if(hier.dist) return {id:"precincts",label:"List all precincts",noun:"precincts"};
-    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?null:{id:"districts",label:"List all "+ALLLBL[ltype].toLowerCase(),noun:ALLLBL[ltype].toLowerCase()};
+    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?null:{id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())};
     if(county.value) return {id:"townships",label:"List all townships",noun:"townships"};
     return {id:"counties",label:"List all counties",noun:"counties"}; }
   // ---- items ----
@@ -2923,7 +2926,10 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   function barsHtml(v){ const p=parts(v), t=v.tot||1; let h='<div class="cbars la">'; keysOn().forEach(k=>{ const f=p[k]/t; h+='<div class="cbr"><span class="cbl">'+NM[k]+'</span><span class="cbt"><i style="width:'+(f*100).toFixed(1)+'%;background:'+PC[k]+'"></i></span><span class="cbv">'+(numMode==="pct"?(f*100).toFixed(1)+"%":fmtN(Math.round(p[k])))+'</span></div>'; }); return h+'</div>'; }
   function deltaHtml(v0,v1){ const a=parts(v0),b=parts(v1),d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((b[k]/(v1.tot||1))-(a[k]/(v0.tot||1)))*100:b[k]-a[k]);
     const ks=keysOn(), mx=Math.max(1e-9,...ks.map(k=>Math.abs(d[k]))); let h='<div class="cbars la">'; ks.forEach(k=>{ const f=d[k]/mx*50; h+='<div class="cbr"><span class="cbl">'+NM[k]+'</span><span class="cbt dv"><i style="left:'+(f>=0?50:50+f).toFixed(1)+'%;width:'+Math.abs(f).toFixed(1)+'%;background:'+PC[k]+'"></i><b></b></span><span class="cbv">'+(d[k]>=0?"+":"")+(numMode==="pct"?d[k].toFixed(1)+" pts":fmtN(Math.round(d[k])))+'</span></div>'; }); return h+'<div class="cbcap">Change 2020 → 2024</div></div>'; }
-  function rowHtml(a){ let h="<b>"+esc(t32(aname(a)))+"</b>"; if(NOTOP(a)||(window.__topicOn&&!window.__topicOn())) return h;
+  const stImg=st=>(st==="District of Columbia"||(typeof STATE_FILES!=="undefined"&&STATE_FILES[st]))?'<img alt="" src="img/stateflags/'+String(st).replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">':"";
+  function iconFor(a){ try{ if(a.kind==="ctry") return '<img alt="" src="img/flags/c/'+a.iso+'.png?v='+(window.BUILD||1)+'">'; if(a.kind==="prov") return window.__sil?window.__sil(a.p[6]):""; if(a.kind==="sum") return stImg(a.st);
+      const d=a.d||[]; const st=a.kind==="precinct"?(d.__st||state.value):((typeof d[0]==="string"&&(STATE_FILES[d[0]]||d[0]==="District of Columbia"))?d[0]:state.value); return stImg(st); }catch(e){ return ""; } }
+  function rowHtml(a){ let h="<b class='rn'><span class='oic'>"+iconFor(a)+"</span>"+esc(t32(aname(a)))+"</b>"; if(NOTOP(a)||(window.__topicOn&&!window.__topicOn())) return h;
     const yrs=yrsNow(), two=yrs.length>1, bar=window.chartMode==="bar";
     if(bar){ if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); h+=(v0&&v1)?deltaHtml(v0,v1):"<span class='l'>no data</span>"; } else { const v=vals(a,yrs[0]); h+=v?barsHtml(v):"<span class='l'>no data</span>"; } return h; }
     yrs.forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
@@ -2942,19 +2948,21 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     if(LA.lv&&LA.lv.id==="countries"){ LA.items.forEach(a=>{ ringsOf(a).forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,color:"#1c1917",weight:0.8,fillColor:"#d6d3d1",fillOpacity:0.5}).addTo(g); }); }); }
     LA.layer=g.addTo(map); }
   // ---- list rendering ----
+  function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const d=52-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
+  window.addEventListener("resize",()=>{ if(LA.on) setTimeout(alignRows,60); });
   function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); computeAgg(); drawMap();
     const rows=LA.items.map(a=>{ let s=null; try{ s=sortVal(a); }catch(e){} return {a,s}; }); const dir=LA.sort==="asc"?1:-1;
-    rows.sort((x,y)=>{ if(x.s==null&&y.s==null) return String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); if(x.s==null) return 1; if(y.s==null) return -1; return (x.s-y.s)*dir||String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); });
+    rows.sort((x,y)=>{ if(x.a.kind==="ctry"&&(x.a.iso==="us"||y.a.iso==="us")&&x.a.iso!==y.a.iso) return x.a.iso==="us"?-1:1; if(x.s==null&&y.s==null) return String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); if(x.s==null) return 1; if(y.s==null) return -1; return (x.s-y.s)*dir||String(aname(x.a)).localeCompare(String(aname(y.a)),undefined,{numeric:true}); });
     lv.innerHTML="<div class='lvhead'>"+esc(t32(fmtN(LA.items.length)+" "+LA.noun))+"</div><div class='lvgrid'></div>"; const g=lv.querySelector(".lvgrid");
-    rows.slice(0,2500).forEach(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"; try{ el.innerHTML=rowHtml(a); }catch(e){ el.innerHTML="<b>"+esc(t32(String(aname(a))))+"</b>"; } g.append(el); });
+    rows.slice(0,2500).forEach(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"; try{ el.innerHTML=rowHtml(a); }catch(e){ el.innerHTML="<b class='rn'><span class='oic'></span>"+esc(t32(String(aname(a))))+"</b>"; } g.append(el); });
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
-    place(); try{ renderCands(); }catch(e){}
+    place(); try{ renderCands(); }catch(e){} alignRows();
     if(rows.length&&!g.querySelector('.lvrow.la')&&!LA.__retry){ LA.__retry=1; setTimeout(()=>{ LA.__retry=0; if(LA.on) render(); },300); } }
   const _rl=renderList; renderList=function(){ if(LA.on) render(); else _rl(); };
   try{ window.__v2.renderList=renderList; }catch(e){} // other modules call __v2.renderList(); it must keep the list-all rows
   setInterval(()=>{ if(LA.on&&LA.items.length&&document.body.classList.contains('listmode')&&!document.querySelector('#listView .lvrow.la')) render(); },400);
   // ---- enter / exit ----
-  async function enter(){ const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(hier.dist[2]||hier.dist[1]):""));
+  async function enter(){ const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(()=>{ let n=""; try{ n=String(aname({kind:ltype==="counties"||ltype==="none"?"towns":ltype,d:hier.dist})||""); }catch(e){} if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[2]||""); if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[1]||""); return (n.length>60||/^-?\d/.test(n))?"":n; })():""));
     try{ closeSheet(); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
     setView("list"); LA.sig=sig(); render(); fit(); }
   function fit(){ try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
@@ -2995,6 +3003,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   { const cl=document.createElement("script"); cl.src="data/canada.js?v="+window.BUILD; document.head.append(cl);
     map.createPane("canPane").style.zIndex=450; map.getPane("canPane").style.pointerEvents="none"; let canG=null, sel=null;
     const sil=rings=>{ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; rings.forEach(r=>r.forEach(([x,y])=>{ x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y); })); const k=Math.cos((y0+y1)/2*Math.PI/180),w=(x1-x0)*k||1,h=(y1-y0)||1,W=30,H=22,sc=Math.min((W-2)/w,(H-2)/h),ox=(W-w*sc)/2,oy=(H-h*sc)/2; const d=rings.map(r=>"M"+r.map(([x,y])=>((ox+(x-x0)*k*sc).toFixed(1))+" "+((oy+(y1-y)*sc).toFixed(1))).join("L")+"Z").join(""); return '<svg viewBox="0 0 30 22" width="30" height="22"><path d="'+d+'" fill="#222" fill-rule="evenodd"/></svg>'; };
+    window.__sil=sil;
     const lbls=[]; const updLbl=()=>{ lbls.forEach(([m,bb])=>{ const a=map.latLngToContainerPoint(bb.getSouthWest()), c=map.latLngToContainerPoint(bb.getNorthEast()); const el=m.getElement&&m.getElement(); if(el) el.style.display=(Math.abs(c.x-a.x)>56&&Math.abs(a.y-c.y)>14)?"":"none"; }); }; map.on("zoomend moveend",updLbl);
     function syncCan(){ const on=Wk()==="ca"&&window.CANADA; document.body.classList.toggle("cacan",!!on); if(!on){ lbls.length=0; if(canG){ canG.remove(); canG=null; } return; } if(canG) return; canG=L.layerGroup();
       window.CANADA.forEach(p=>{ const rs=p[6].map(r=>r.map(([x,y])=>[y,x])); const pg=L.polygon(rs,{renderer:laR,pane:"canPane",interactive:false,color:"#1c1917",weight:p[0]===sel?3:1,fillColor:"#e7e5e4",fillOpacity:p[0]===sel?0.55:0.25}).addTo(canG); const bbx=L.latLngBounds([p[2],p[3]],[p[4],p[5]]), c=bbx.getCenter(); lbls.push([L.marker(c,{pane:"canPane",interactive:false,icon:L.divIcon({className:"provlbl",html:"<span>"+p[0]+"</span>",iconSize:[0,0]})}).addTo(canG),bbx]); }); canG.addTo(map); setTimeout(updLbl,50); }
@@ -3063,7 +3072,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141503"></script>
-<script src="data/dc.js?v=202610141503"></script>
+<script defer src="data/countries.js?v=202610141504"></script>
+<script src="data/dc.js?v=202610141504"></script>
 </body>
 </html>
