@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- build 202610141491 -->
+<!-- build 202610141492 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610141491";</script>
+<script>window.BUILD="202610141492";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2418,6 +2418,9 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
       h=r?svgOf(r,star):""; }
     ic.innerHTML=h; ic.style.display=h?"":"none"; }
   setInterval(upd,400); map.on("moveend",upd); gq.addEventListener("input",upd); } }
+// guard: a selected state keeps the map framed on it (prevents a stray world-zoom after selection)
+{ let lastSt="", at=0; const stB=st=>{ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; let a=1e9,b=1e9,c=-1e9,e=-1e9; d.polys.forEach(p=>p[0].forEach(([x,y])=>{ if(st==="Alaska"&&x>0) x-=360; if(x<a)a=x; if(x>c)c=x; if(y<b)b=y; if(y>e)e=y; })); return L.latLngBounds([b,a],[e,c]); };
+  setInterval(()=>{ const sv=(typeof state!=="undefined"&&state.value)||""; if(sv!==lastSt){ lastSt=sv; at=Date.now(); } if(!sv||document.body.classList.contains("worldmode")) return; if(Date.now()-at>2500) return; const B=map.getBounds(); const w=B.getEast()-B.getWest(); const sb=stB(sv); if(!sb) return; if(w>90||!B.intersects(sb)){ map.fitBounds(sb,{animate:false,padding:[20,20]}); } },250); }
 { const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); }
 { const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(0&&a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
@@ -2824,7 +2827,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
 })();
 
 </script>
-<script defer src="data/countries.js?v=202610141491"></script>
-<script src="data/dc.js?v=202610141491"></script>
+<script defer src="data/countries.js?v=202610141492"></script>
+<script src="data/dc.js?v=202610141492"></script>
 </body>
 </html>
