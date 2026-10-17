@@ -520,8 +520,9 @@ Counts from the data files (`/workspace/db/tools/cov.py`, `qc.py`, `flags.py` on
 | Census 2020 TIGER VTDs (CO, SD), county subdivisions (MA, MI, VT) | shapes / town identification | Public domain |
 | Tennessee Comptroller, Office of Local Government voting districts (tnmap.tn.gov) | TN precinct shapes (build 1536) | Public data |
 
-## Builds 202610171540 and 202610171541 (Oct 17, 2026): display fixes, no data change
+## Builds 202610171540 to 202610171543 (Oct 17, 2026): display fixes, no data change
 
 - 1540: the Alaska borough map in 2020 and change mode was gray/faint because only the 2024 borough results (`__ak.boro2024`, ≈) were merged into the county table. The 2020 borough results (`__ak.boro2020`, ≈, same VEST-precinct aggregation) are now merged into `ELECTION2020` when it loads. The national total now counts Alaska once (the state total), not boroughs plus state; before this, the 2024 national sum counted Alaska's ~338k votes twice. Coverage numbers above are unchanged. Test: `tests/ak-2020.py`.
 - 1541: back chevron in the open menu centred on the first menu row (UI only).
-
+- 1542: tapping the District of Columbia row in the states list kept the map on the US (the list re-entered and refitted); it now stays on DC (UI only).
+- 1543: the 'List all …' row now hides on the first search keystroke in the filter list (UI only).

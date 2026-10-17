@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (updated at build 202610171541, Oct 17, 2026)
+# US Districts: HANDOFF (updated at build 202610171543, Oct 17, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -30,7 +30,7 @@ A static map and results viewer for US elections (President 2020 and 2024, plus 
 **Back button:** only exists when the history stack is non-empty; shown in institution/geo filter lists and list views. Style (Instagram-style reference, build 1538): thin plain black chevron, no circle or background, same size as the glyphs in the round right-column buttons, 44 px tap target, light mode only. List view position: centre on the left icon/thumbnail column (x about 27); vertically on the chart button's centre line when the time row is expanded, on the clock button's when collapsed. Filter lists: at the sort-control slot.
 **District type:** a selected type must show its district list (not the consolidated total) in list view; numbers must equal the map pop-ups (same tallies, same area weighting and ≈ rules); map mode unchanged.
 
-## 4. Status at build 1541
+## 4. Status at build 1543
 Fixed and live (verified by the tests named; run them yourself, section 6):
 | Item | Build | Test |
 |---|---|---|
@@ -50,13 +50,15 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | Back chevron restyle (Instagram-style, aligned to icon column and chart/clock button) | 1538 | `filter-back.py` (position, size, no background) |
 | Alaska boroughs coloured in 2020/change mode (2020 borough ≈ results merged into ELECTION2020); national total counts Alaska once | 1540 | `ak-2020.py` |
 | Back chevron in the open menu centred on the first menu row | 1541 | `filter-back.py` |
+| DC row in the states list keeps the map on DC | 1542 | `list-all-tap2.py` |
+| 'List all …' row hidden from the first search keystroke | 1543 | `state_abbr_search.py` |
 | Unisearch two-row rule, sovereign/incorporated wording, geo silhouettes, editable scope row, ≈ marks in list rows, 12 gray districts filled | 1519–1527 | `unisearch.py`, `ctx-edit.py`, `geo-icons.py`, `est-list.py` |
 
 **Still open / known gaps (be honest about these):**
 1. ~~County tier~~ **Done in 1530:** school districts / state house / state senate list as states -> counties -> districts (`distInCounty`, `level()` `dt` flag); a district spanning counties appears under each county it touches, marked ≈. `tests/district-list-view.py` covers it.
 2. Safari jumping needs confirmation on a real iPhone; WebKit tests were not run.
 3. No dedicated regression test for the sort-under-search bug (t239).
-4. Old `tests/list-all-modes.py` delta assertions use class names from before the delta redesign (stale; `delta-scale.py` covers the new layout).
+4. Test harness notes: `list-all.py` takes `W H tag` (not a URL); `institution-search.py` and `list-all-tap2.py` take `URL tag`. Old `tests/list-all-modes.py` delta assertions use class names from before the delta redesign (stale; `delta-scale.py` covers the new layout).
 5. **Data gaps (build 1533, details and per-item reasons in COVERAGE.md):** 2020 is now complete at county level (3,112 incl. Connecticut) and at precinct level (every county within 90-110 % of the official total, VEST 2020 CC BY 4.0 replacing failing counties); Alaska 2020 boroughs/House/Senate and Connecticut 2020 towns added (≈ for Alaska, flag `e20`); 99.3 % of 2024 precincts now have a 2020 side (exact same-shape, else ≈ area-weighted from `v2/data/x20/<State>.js`, tool `tools/build_x20.py`); gray districts filled by area-weighting with county scaling (`tools/fill_gray.py`, flags `e20`/`e24`/`est`); Idaho 2024 Owyhee and Idaho County from the official SOS workbook (`tools/fix_id2024.py`). **Still gray:** 2024 senate 8, house 33 (OK, VT, WY mostly), schools 174; 2020 schools 26 (AK 14). Cause: 2024 precinct polygons cover too little of those districts; they need official 2024 precinct results. 101 counties' 2024 precinct files are outside 90-110 % of official and 13 have none (SD 10, GA Butts, MA Nantucket, MS Issaquena). 1,202 2024 precincts still show `'20 n/a` (2020 cover under 50 %).
 6. **Data at build 1534:** 2024 senate 1,941/1,942, house 4,876/4,882, schools 13,118/13,208 (2020: 1,942 / 4,882 / 13,182). New tools: `tools/fix_ok2024.py` (Oklahoma, State Election Board shapes + MEDSL returns), `tools/fix_vt2024.py` (Vermont town returns), `tools/dist_from_returns.py` (any state: districts from MEDSL precinct returns; split precincts apportioned by legislative-race votes, ≈ only when ≤ 30 % of the district), `tools/build_wi2024.py` (LTSB wards), `tools/build_ca2024.py` (Statewide Database SR precincts). **Still gray 2024:** senate AR 006; house WY 054, MO 156, LA 057, MS 115, VA 089, AL 004; schools 90 (SD 26 vote-center counties, ME 14 unorganized territories reported with towns, MO 9, VT 8 gores, AK 5 …). 73 counties' 2024 precinct files are still outside 90-110 % of official (TN 9, MO 8, OR 6 …), 13 have none. California and Wisconsin no longer use NYT precinct data.
 7. **Data at build 1535:** 2024 senate **1,942/1,942** (AR SD 006 ≈ from AR GIS precinct/Senate shapes), house 4,876/4,882, schools 13,120/13,208; 68 counties outside 90-110 %, 13 with none. Generic county rebuild: `tools/fix_county2024.py <repo> <State> <st24.csv> <shapes.geojson> --cf <county field> --nf <name field> --counties "A County,…" --credit TEXT [--pool REGEX] [--fuzzy S --eliminate] [--dry]` (QC: every returns unit matched, county Harris/Trump = official; review the printed fuzzy pairs before writing). After it: `tools/build_x20.py <repo> <State>` and `fill_gray.py <repo> 2024 --only ussch --redo ST:<counties> --redo-exact-min 0.10`.
