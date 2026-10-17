@@ -12,7 +12,8 @@ Also validates the estimator on districts that already have exact values (flag N
 --redo ST:County A,County B also re-estimates districts of ST that already have a value when the named counties'
 precincts were replaced (their old values came from the old precinct file): a district is redone when those counties'
 precincts cover >= 1 % of it; it keeps its old value if the estimate fails the rules above. --redo-exact-min F: an unflagged (exact) district is
-redone only when the replaced counties cover >= F of it (default 0.01; its old sum came from the incomplete file).
+redone only when the replaced counties cover >= F of it (default 0.01; its old sum came from the incomplete file). An unflagged district whose value equals an official county
+total (a county-wide school district) is never redone.
 usage: fill_gray.py <repo> <year> [--validate N] [--dry] [--redo ST:County,County [--redo-exact-min F]] [--only uscd,ussldu,ussldl,ussch]"""
 import sys,os,json,re,random,collections,statistics
 from shapely.geometry import Polygon,MultiPolygon
@@ -93,6 +94,9 @@ def estimate(st,D):
   if cov/A<0.9: return None,f'usable precinct cover {cov/A:.0%}'
   if acc[2]<1: return None,'no votes'
   return [round(acc[0]),round(acc[1]),round(acc[2])],None
+CTYV=collections.defaultdict(set)
+for k,v in E.items():
+  if v: CTYV[k.split('|')[0]].add(tuple(v[:2]))
 FL={'uscd':'uscd','ussldu':'ussldu','ussldl':'ussldl','ussch':'ussch'}
 report={}
 for f in FL:
@@ -104,7 +108,9 @@ for f in FL:
     if len(r)>YI and r[YI]:
       if not (REDO and r[0]==REDO[0]): continue
       D=mp(r[2],1000)
-      if D is None or D.is_empty or not redo_hit(r[0],D,exact=not (len(r)>5 and r[5] in ('e24','est','e20'))): continue
+      exact=not (len(r)>5 and r[5] in ('e24','est','e20'))
+      if exact and tuple(r[YI][:2]) in CTYV.get(r[0],()): continue  # equals an official county total (county-wide district): keep
+      if D is None or D.is_empty or not redo_hit(r[0],D,exact=exact): continue
     D=D or mp(r[2],1000)
     if D is None or D.is_empty: left.append((r[0],r[1],'no shape')); continue
     v,why=estimate(r[0],D)
