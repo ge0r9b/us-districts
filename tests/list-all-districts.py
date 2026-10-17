@@ -1,4 +1,4 @@
-# t205: district list-all (AL senate/house, OH senate, MS schools, OH US House): rows have data in %, #, and delta; no "no data" rows; values inside segments
+# t205 (phone delta: segment labels only where they fit and clear of the floating buttons since build 1528, so >=1 labelled row): district list-all (AL senate/house, OH senate, MS schools, OH US House): rows have data in %, #, and delta; no "no data" rows; values inside segments
 import asyncio,sys,re,json
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -21,7 +21,7 @@ async def run(b,tag,vp,st,kind,label):
   await pg.screenshot(path=f"/workspace/shots/ld-{tag}-{st[:2]}-{kind}.png")
   await pg.click("#bTime"); await pg.wait_for_timeout(500); await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(3500); r=await pg.evaluate(ROWS)
   txt=[x for row in r['vals'] for x in row if x]
-  ck(f"{tag} {st} {label} delta: rows show change, no 'no data'",r['n']>=5 and r['nd']==0 and len(txt)>=4 and all(re.match(r'^[+\u2212]',x) for x in txt),r)
+  ck(f"{tag} {st} {label} delta: rows show change, no 'no data'",r['n']>=5 and r['nd']==0 and len(txt)>=(4 if tag=='dk' else 1) and all(re.match(r'^[+\u2212]',x) for x in txt),r)
   ck(f"{tag} {st} {label}: no page errors",not errs,errs); await c.close()
 async def m():
   async with async_playwright() as p:
