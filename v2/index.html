@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171547";</script>
+<script>window.BUILD="202610171548";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2784,13 +2784,23 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
       if(np.length){ path=np; geoRender(); } }; window.__geoOpen=openG; }
   // ===== street addresses: US Census Geocoder via JSONP (no CORS on its API; no key) -> pin + containing precinct (else county) =====
   const ADDR_HINT="ZIP, place, county or address";
-  const addrLike=f=>/^\d+[a-z]?\s+\S+/i.test(f)||/\b(st|street|ave|avenue|rd|road|blvd|dr|drive|ln|lane|ct|court|pl|place|way|pike|hwy|highway|ter|terrace|cir|circle|pkwy)\b\.?(,|\s|$)/i.test(f);
+  /* address-like: house number + word (incl. 12B, 12-14, 1/2, 'N Main'), a street suffix anywhere, PO box, rural route; never a bare ZIP */
+  const SUFX="st|str|street|ave|av|avenue|rd|road|blvd|boulevard|dr|drive|ln|lane|ct|court|pl|place|way|pike|hwy|highway|ter|terrace|cir|circle|pkwy|parkway|sq|square|trl|trail|loop|run|plz|plaza|aly|alley|expy|expressway|fwy|freeway|rte|route|tpke|turnpike|xing|crossing|bnd|bend|cv|cove|holw|hollow|hts|heights|grv|grove|mnr|manor|vw|view|crk|creek|rdg|ridge|pt|point|cres|crescent";
+  const SUFRE=new RegExp("\\b("+SUFX+")\\b\\.?(,|\\s|$)","i");
+  const addrLike=f=>{ f=String(f||"").trim(); if(!f||/^\d{5}(-\d{4})?$/.test(f)) return false; return /^\d+[a-z]?(?:[-\/]\d+[a-z]?)?\s+[a-z0-9]/i.test(f)||(/\d/.test(f)&&SUFRE.test(f))||/^(?:[nsew]|ne|nw|se|sw|north|south|east|west)\.?\s+\w+\s+(?:\w+\s+)?(?:st|street|ave|avenue|rd|road|blvd|dr|drive|ln|way)\b/i.test(f)||/\bp\.?\s*o\.?\s*box\s*\d+/i.test(f)||/^(?:rr|hc|rural route)\s*\d+/i.test(f); };
+  /* normalise for the geocoders: spacing and commas, drop unit designators (Apt/Unit/Suite/#), keep the ZIP */
+  const normA=f=>String(f||"").replace(/\s+/g," ").replace(/\s*,\s*/g,", ").replace(/\b(?:apt|apartment|unit|ste|suite|rm|room|bldg|lot|spc|trlr)\.?\s*#?\s*[a-z]?\d*[a-z0-9-]{0,5}(?=,|\s|$)/ig," ").replace(/#\s*[a-z0-9-]+/ig," ").replace(/\s+,/g,",").replace(/(,\s*)+/g,", ").replace(/\s{2,}/g," ").replace(/^[\s,]+|[\s,]+$/g,"").replace(/,?\s*(usa|united states)$/i,"").trim();
+  const ZIPRE=/\b(\d{5})(?:-\d{4})?\s*$/;
+  /* street / city / state / ZIP split for the Census address (component) endpoint */
+  const parseA=f=>{ const pr=f.split(/\s*,\s*/).filter(Boolean); if(pr.length<2) return null; const street=pr[0]; let rest=pr.slice(1).join(" "), zip="", st="", city="";
+    const z=rest.match(ZIPRE); if(z){ zip=z[1]; rest=rest.replace(ZIPRE,"").trim(); } const sm=rest.match(/(?:^|\s)([A-Za-z]{2}|[A-Za-z][A-Za-z ]+)$/); const full=allStates().find(x=>rest.toLowerCase().endsWith(x.toLowerCase())); if(full){ st=ABBR[full]||full; city=rest.slice(0,rest.length-full.length).trim(); } else if(sm&&ST_BY_ABBR[sm[1].toUpperCase()]){ st=sm[1].toUpperCase(); city=rest.slice(0,rest.length-sm[1].length).trim(); } else city=rest;
+    return (st||zip)?{street,city,state:st,zip}:null; };
   const ST_BY_ABBR={}; allStates().forEach(s=>{ if(ABBR[s]) ST_BY_ABBR[ABBR[s]]=s; });
-  let jsn=0; const census=q=>new Promise(res=>{ const cb="__cg"+(++jsn); const sc=document.createElement("script"); let done=false; const fin=v=>{ if(done) return; done=true; try{ delete window[cb]; }catch(_){ window[cb]=undefined; } sc.remove(); res(v); };
+  let jsn=0; const census=(q,parts)=>new Promise(res=>{ const cb="__cg"+(++jsn); const sc=document.createElement("script"); let done=false; const fin=v=>{ if(done) return; done=true; try{ delete window[cb]; }catch(_){ window[cb]=undefined; } sc.remove(); res(v); };
       window[cb]=d=>{ const m=((d&&d.result&&d.result.addressMatches)||[]).map(x=>({addr:x.matchedAddress,lat:+x.coordinates.y,lon:+x.coordinates.x,st:ST_BY_ABBR[(x.addressComponents||{}).state]||null})); fin(m); };
       sc.onerror=()=>fin(null); setTimeout(()=>fin(null),9000);
-      sc.src="https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&callback="+cb+"&address="+encodeURIComponent(q); document.head.append(sc); });
-  let lastNom=0; const nominatim=q=>{ const wait=Math.max(0,1100-(Date.now()-lastNom)); return new Promise(r=>setTimeout(r,wait)).then(()=>{ lastNom=Date.now(); return fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&addressdetails=1&q="+encodeURIComponent(q),{headers:{Accept:"application/json"}}); })
+      sc.src=parts?"https://geocoding.geo.census.gov/geocoder/locations/address?benchmark=Public_AR_Current&format=json&callback="+cb+["street","city","state","zip"].filter(k=>parts[k]).map(k=>"&"+k+"="+encodeURIComponent(parts[k])).join(""):"https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&callback="+cb+"&address="+encodeURIComponent(q); document.head.append(sc); });
+  let lastNom=0; const nominatim=q=>{ const wait=Math.max(0,1100-(Date.now()-lastNom)); return new Promise(r=>setTimeout(r,wait)).then(()=>{ lastNom=Date.now(); return fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&addressdetails=1&q="+encodeURIComponent(q),{headers:{Accept:"application/json"}}); })
       .then(r=>r.json()).then(a=>a.map(h=>({addr:h.display_name,lat:+h.lat,lon:+h.lon,st:(h.address&&h.address.state)||null}))).catch(()=>null); };
   const pinLayer=L.layerGroup().addTo(map);
   const goAddr=m=>{ closeG(); nameLock=null; pinLayer.clearLayers(); L.circleMarker([m.lat,m.lon],{radius:8,color:"#fff",weight:3,fillColor:"#111",fillOpacity:1,pane:"markerPane"}).addTo(pinLayer);
@@ -2806,21 +2816,38 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
             GQ.placeholder=t32(short); GQ.title=m.addr; nameLock=short; if(view==="list") setTimeout(()=>{ try{ renderList(); renderCands(); }catch(_){} },500); },450); }); })
       .then(()=>res); };
   window.__goAddr=goAddr;
+  /* one address lookup for the geo field and the universal search: Census one-line (as typed, normalised, without ZIP) -> Census street/city/state/ZIP endpoint -> OpenStreetMap Nominatim; results of both sources merged (Census first, OSM hits within ~100 m of a Census hit dropped); nationwide, never scoped to the selected state/county; null = every service unreachable */
+  const lookupAddr=async(q,withNom=true)=>{ const n=normA(q); const vs=[...new Set([n, n.replace(ZIPRE,"").replace(/[\s,]+$/,""), String(q).trim()])].filter(x=>x.length>=5); let reach=false, out=[];
+    for(const v of vs){ const m=await census(v); if(m) reach=true; if(m&&m.length){ out=m; break; } }
+    if(!out.length){ const pc=parseA(n); if(pc){ const m=await census(null,pc); if(m) reach=true; if(m&&m.length) out=m; } }
+    let nm=[]; if(withNom||!out.length){ const r=await nominatim(n); if(r) reach=true; if(r) nm=r.filter(x=>!out.some(y=>Math.abs(y.lat-x.lat)<0.001&&Math.abs(y.lon-x.lon)<0.001)); }
+    const all=out.map(x=>Object.assign({src:"Census"},x)).concat(nm.map(x=>Object.assign({src:"OSM"},x))).filter((m,i,a)=>a.findIndex(x=>x.addr===m.addr)===i);
+    return all.length?all:(reach?[]:null); };
+  window.__lookupAddr=lookupAddr; window.__addrLike=addrLike; window.__normA=normA;
+  const zipOf=f=>{ const m=String(f).match(ZIPRE); return m?m[1]:null; };
   window.__addrFirst=f=>addrLike(f)&&!(geoAll()||[]).some(x=>x.name.toLowerCase()===f.toLowerCase()||(x.full||"").toLowerCase()===f.toLowerCase());
   // suggestions: local place matches are rendered by geoRender; address matches are appended after a debounce
   let adT=null, adTok=0; const addrSuggest=()=>{ clearTimeout(adT); const f=GQ.value.trim(); const ol=gfs.querySelector("ol"); if(ol) ol.querySelectorAll("li.addr,li.addrst").forEach(x=>x.remove());
+    if(/^\d{5}$/.test(f)){ const o=gfs.querySelector("ol"); if(o&&!o.querySelector("li.addr")){ const st=zipState(f); const li=document.createElement("li"); li.className="addr"; li.innerHTML="<span class='nm'>ZIP "+esc(f)+(st?", "+esc(ABBR[st]||st):"")+"</span><span class='dr' style='font-size:13px'>ZIP</span>"; li.onclick=()=>{ closeG(); GQ.placeholder="ZIP "+f; GQ.title=f; navTo(f); }; o.prepend(li); } return; }
     if(f.length<6||!addrLike(f)) return; const tok=++adTok;
     adT=setTimeout(()=>{ const o=gfs.querySelector("ol"); if(!o) return; const ld=document.createElement("li"); ld.className="addrst"; ld.innerHTML="<span class='nm' style='color:#78716c'>Looking up address…</span>"; o.append(ld);
-      census(f).then(ms=>{ if(tok!==adTok) return; ld.remove(); const o2=gfs.querySelector("ol"); if(!o2) return;
+      lookupAddr(f,true).then(ms=>{ if(tok!==adTok) return; ld.remove(); const o2=gfs.querySelector("ol"); if(!o2) return;
+        if((!ms||!ms.length)&&/\bp\.?\s*o\.?\s*box/i.test(f)&&zipOf(f)){ const z=zipOf(f); const li=document.createElement("li"); li.className="addr"; li.innerHTML="<span class='nm'>ZIP "+esc(z)+" (PO box area)</span><span class='dr' style='font-size:13px'>ZIP</span>"; li.onclick=()=>{ closeG(); GQ.placeholder="ZIP "+z; navTo(z); }; o2.append(li); return; }
         if(ms===null){ const e=document.createElement("li"); e.className="addrst"; e.innerHTML="<span class='nm' style='color:#78716c'>Address lookup unavailable — check connection</span>"; o2.append(e); return; }
         if(!ms.length){ const e=document.createElement("li"); e.className="addrst"; e.innerHTML="<span class='nm' style='color:#78716c'>No address match (try adding city and state)</span>"; o2.append(e); return; }
-        ms.filter((m,i,a)=>a.findIndex(x=>x.addr===m.addr)===i).slice(0,5).forEach(m=>{ const li=document.createElement("li"); li.className="addr"; li.innerHTML="<span class='nm'>"+esc(t32(m.addr))+"</span><span class='dr' style='font-size:13px'>Address</span>"; li.title=m.addr; li.onclick=()=>goAddr(m); o2.append(li); }); }); },650); };
+        ms.slice(0,6).forEach(m=>{ const li=document.createElement("li"); li.className="addr"; li.dataset.src=m.src||""; li.innerHTML="<span class='nm'>"+esc(t32(m.addr))+"</span><span class='dr' style='font-size:13px'>Address</span>"; li.title=m.addr; li.onclick=()=>goAddr(m); o2.append(li); }); }); },650); };
   GQ.addEventListener("input",()=>setTimeout(addrSuggest,0));
   // Enter on an address: geocode (Census, then Nominatim once) and go to the precinct
   window.addEventListener("keydown",e=>{ if(e.target!==GQ||e.key!=="Enter"||!document.body.classList.contains("geofs")) return; const f=GQ.value.trim(); if(!f||!addrLike(f)) return;
     const loc=(geoAll()||[]).find(x=>x.name.toLowerCase()===f.toLowerCase()||(x.full||"").toLowerCase()===f.toLowerCase()); if(loc) return; // exact place name wins
     e.preventDefault(); e.stopImmediatePropagation(); clearTimeout(adT); GQ.placeholder="Looking up address…";
-    census(f).then(ms=>ms&&ms.length?ms:nominatim(f)).then(ms=>{ if(ms&&ms.length) return goAddr(ms[0]); closeG(); GQ.placeholder=t32(ms===null?"Address lookup unavailable":"No address match: "+f); }); },true);
+    lookupAddr(f,false).then(ms=>{ if(ms&&ms.length) return goAddr(ms[0]); if(zipOf(f)){ closeG(); GQ.placeholder="ZIP "+zipOf(f); return navTo(zipOf(f)); } closeG(); GQ.placeholder=t32(ms===null?"Address lookup unavailable":"No address match: "+f); }); },true);
+  /* universal search (magnifying glass): address-like queries get address suggestions from the same lookup; picking one drops the pin and opens the precinct like the geo field */
+  { let uT=null, uTok=0; document.addEventListener("input",e=>{ if(!e.target||e.target.id!=="usq") return; clearTimeout(uT); const q=e.target.value.trim(); const tok=++uTok; if(q.length<6||!addrLike(q)) return;
+      uT=setTimeout(()=>{ const ol=document.querySelector("#usv ol"); if(!ol) return; const ld=document.createElement("li"); ld.className="addrst"; ld.innerHTML="<span class='oic'></span><span class='nm' style='color:#78716c;font-weight:400'>Looking up address…</span>"; ol.prepend(ld);
+        lookupAddr(q,true).then(ms=>{ ld.remove(); if(tok!==uTok) return; const o=document.querySelector("#usv ol"); if(!o) return; o.querySelectorAll("li.addr").forEach(x=>x.remove());
+          (ms||[]).slice(0,6).reverse().forEach(m=>{ const li=document.createElement("li"); li.className="addr"; li.dataset.src=m.src||""; li.innerHTML="<span class='oic'><svg viewBox='0 0 24 24' width='22' height='22' fill='none' stroke='#222' stroke-width='1.8'><path d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/><circle cx='12' cy='9.5' r='2.5'/></svg></span><span class='nm'>"+esc(t32(m.addr))+"</span><span class='tg'>Address</span>"; li.title=m.addr; li.onclick=()=>{ closeUS(); goAddr(m); }; o.prepend(li); }); }); },650); },true);
+    document.addEventListener("keydown",e=>{ if(!e.target||e.target.id!=="usq"||e.key!=="Enter") return; const q=e.target.value.trim(); if(!window.__addrFirst||!window.__addrFirst(q)) return; e.preventDefault(); e.stopImmediatePropagation(); const first=document.querySelector("#usv ol li.addr"); closeUS(); if(first&&first.onclick){ first.onclick(); return; } GQ.placeholder="Looking up address…"; lookupAddr(q,false).then(ms=>{ if(ms&&ms.length) return goAddr(ms[0]); GQ.placeholder=t32(ms===null?"Address lookup unavailable":"No address match: "+q); }); },true); }
   $("bGlobe").addEventListener("click",e=>{ if(document.body.classList.contains("geofs")){ e.stopImmediatePropagation(); if(g().value.trim()) window.__geoSubmit(); else closeG(); } },true);
   document.addEventListener("pointerdown",e=>{ if(document.body.classList.contains("geofs")&&!gfs.contains(e.target)&&!$("barBottom").contains(e.target)) closeG(); });
 }
