@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171543";</script>
+<script>window.BUILD="202610171544";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2269,7 +2269,7 @@ setInterval(updShift,1000);
   const _rc=renderCands; renderCands=function(){ const r=_rc.apply(this,arguments); lsUpd(); return r; };
   const _us=updShift; updShift=function(){ _us(); lsUpd(); };
   new MutationObserver(lsUpd).observe(document.body,{attributes:true,attributeFilter:["class"]});
-  const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const nm=c.split("<br>")[0]; bubPop.setContent(nm+"<br><b data-sh>"+esc(t||"No exact 2020 match")+"</b>"); } } }catch(e){} return r; }; }
+  const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const nm=c.split("<br>")[0]; bubPop.setContent(nm+"<br><b data-sh>"+esc(t||"No exact 2020 match")+"</b>"+(t&&window.__isEst&&window.__isEst(cur)?"<br>≈ estimate":"")); } } }catch(e){} return r; }; }
 // ===== county fallback where the state lacks precinct data for the selected year(s) =====
 function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
 function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k];
@@ -2649,7 +2649,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
 // bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
-{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const akk=a.kind==="natcd"?(a.tk||"ushouse"):a.kind; const ak=d&&(d[0]==="Alaska"||d.__st==="Alaska")&&akk!=="sum"&&(akk==="ushouse"?ym()!=="2020":true); const ef=d&&d[5]; if((ak||ef==="est"||(ef==="e24"&&ym()!=="2020")||(ef==="e20"&&ym()!=="2024")||(a.kind==="precinct"&&ym()!=="2024"&&window.__v2&&window.__v2.match20&&(window.__v2.match20(d)||{}).__est))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
+{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ if(window.__isEst(a)&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; window.__isEst=function(a){ try{ const d=a&&a.d; if(!d) return false; const akk=a.kind==="natcd"?(a.tk||"ushouse"):a.kind; const ak=(d[0]==="Alaska"||d.__st==="Alaska")&&akk!=="sum"&&(akk==="ushouse"?ym()!=="2020":true); const ef=d[5]; return !!(ak||ef==="est"||(ef==="e24"&&ym()!=="2020")||(ef==="e20"&&ym()!=="2024")||(a.kind==="precinct"&&ym()!=="2024"&&window.__v2&&window.__v2.match20&&(window.__v2.match20(d)||{}).__est)); }catch(e){ return false; } }; }
 { const _clT=candLines; candLines=function(a){ const l=_clT(a); return (window.__topicOn&&!window.__topicOn())?l.slice(0,1):l; }; }
 // auto precincts: when one district (active type, or county when none) spans >=half the view width, fill precincts in view; district outline on top, no fill
 const _nd17=natDetail;
