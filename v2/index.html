@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171537";</script>
+<script>window.BUILD="202610171538";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2975,9 +2975,9 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const wire=()=>{ const sc=document.querySelector("#crumbs .crumb.tbScope"); if(sc&&!sc.__ctx){ sc.__ctx=1; sc.onclick=e=>{ e.stopPropagation(); if(state.value){ if(!start()) setTimeout(openFold,60); } else setTimeout(openFold,60); }; } };
   setInterval(wire,300); new MutationObserver(wire).observe($("crumbs"),{childList:true}); }
 // ===== back: a history stack of changes. Every change of institution, geo, topic or district type made by a menu pick / search selection / drill (NOT the initial or restored state, NOT a back step) pushes the previous state. The back button exists ONLY while the stack is non-empty AND the screen is an institution/geo filter list or a list view (list-all / drill-down); map and single results never show it. Back pops one change and restores institution, geo, topic, district type and view settings (list/map, format, sort, time). Keyboard (Backspace outside a text field, Alt+Left, Cmd+[) and browser back / swipe-back (one history sentinel while a step exists) do the same. Button is fixed on the sort-control row (under the field bar, or under the expanded time filter): x=27 axis in list views, sort-control slot in filter lists; overlay, nothing shifts =====
-{ const css=document.createElement("style"); css.textContent="#bBack{position:fixed;z-index:1002;display:none!important;width:22px;height:22px;padding:0;border:0;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.28),0 0 0 1px rgba(0,0,0,.12);align-items:center;justify-content:center;cursor:pointer;top:var(--bbTop,116px)} #bBack svg{width:14px;height:14px;stroke:#000;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round} body.canback.foldfs #bBack{display:flex!important;left:auto;right:calc(var(--btn) + var(--gap) * 2 + 4px + 36px)} body.canback:not(.foldfs).listall.listmode #bBack{display:flex!important;left:16px;top:var(--lasortTop,116px)}"; document.head.append(css);
+{ const css=document.createElement("style"); css.textContent="#bBack{position:fixed;z-index:1002;display:none!important;width:44px;height:44px;padding:0;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;top:calc(var(--bbTop,116px) - 11px)} #bBack svg{width:var(--bbG,23px);height:var(--bbG,23px);stroke:#000;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round} body.canback.foldfs #bBack{display:flex!important;left:auto;right:calc(var(--btn) + var(--gap) * 2 + 4px + 36px - 11px)} body.canback:not(.foldfs).listall.listmode #bBack{display:flex!important;left:calc(var(--bbCx,27px) - 22px);top:calc(var(--bbCy,127px) - 22px)}"; document.head.append(css);
   const btn=document.createElement("button"); btn.type="button"; btn.className="bbk"; btn.id="bBack"; btn.setAttribute("aria-label","Back"); btn.title="Back";
-  btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>'; document.body.append(btn);
+  btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M15.5 3.5L7 12l8.5 8.5"/></svg>'; document.body.append(btn);
   const B=()=>document.body.classList, inp=()=>document.querySelector("#barGeo .fsq input"), DT=["ushouse","senate","statehouse","schools"], norm=lt=>DT.indexOf(lt)>=0?lt:"x";
   const stack=[]; let cur=null, cand="", nav=0, navT=0;
   const restoring=()=>{ try{ return window.__stateRestoring&&window.__stateRestoring(); }catch(e){ return false; } };
@@ -3011,6 +3011,11 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   let sentinel=0, ign=0;
   const sync=()=>{ const w=vis();
     try{ if(B().contains("foldfs")){ const g=$("barGeo").getBoundingClientRect(); document.documentElement.style.setProperty("--bbTop",Math.round(g.bottom+2)+"px"); } }catch(e){}
+    // list view: chevron centred on the left icon column (x) and on the chart button (time row expanded) or the clock button (collapsed) centre line (y); glyph = the round buttons' glyph size
+    try{ if(w&&!B().contains("foldfs")){ const ds=document.documentElement.style, tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), exp=tb&&tb.classList.contains("on"), ref=exp&&cb&&cb.getBoundingClientRect().height>0?cb:tb;
+        if(ref){ const r=ref.getBoundingClientRect(); if(r.height>0) ds.setProperty("--bbCy",(Math.round((r.top+r.height/2)*2)/2)+"px"); }
+        const ic=[...document.querySelectorAll("#listView .lvrow.la img")].find(i=>i.offsetParent&&i.getBoundingClientRect().width>0); if(ic){ const r=ic.getBoundingClientRect(); ds.setProperty("--bbCx",(Math.round((r.left+r.width/2)*2)/2)+"px"); }
+        const g=document.querySelector("#bTime svg"); if(g){ const r=g.getBoundingClientRect(); if(r.width>0) ds.setProperty("--bbG",(Math.round(r.width*2)/2)+"px"); } } }catch(e){}
     B().toggle("canback",w);
     if(w&&!sentinel&&!ign){ try{ history.pushState({fl:1},"",location.href); sentinel=1; }catch(_){} }
     else if(!w&&sentinel){ sentinel=0; ign=1; try{ history.back(); }catch(_){ ign=0; } } };
