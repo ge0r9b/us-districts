@@ -14,7 +14,7 @@ async def setchart(pg,m):
 LST="""()=>{ const lv=document.getElementById('listView'); let L=1e9; document.querySelectorAll('.rail .rbtn,#bGeo,#bGlobe,#bNum,#bLyr,#bTime,#bSearch,#bChart,.xrow .lbtn').forEach(b=>{const r=b.getBoundingClientRect(); if(r.width>0&&getComputedStyle(b).display!=='none'&&r.left>innerWidth*.5&&r.left<L) L=r.left});
  const rows=[...lv.querySelectorAll('.lvrow.la')].filter(r=>r.offsetParent); const R=r=>{const b=r.getBoundingClientRect(); return [b.left,b.top,b.right,b.bottom]};
  const lines=rows.filter(r=>r.querySelector('.lnw')).map(r=>{ const w=r.querySelector('.lnw'), th=[...w.querySelectorAll('.lth')].map(R), lb=[...w.querySelectorAll('.llb')].map(x=>({r:R(x),t:x.textContent,cls:x.className})), sv=w.querySelector('svg').getBoundingClientRect(), pl=[...w.querySelectorAll('polyline')].map(p=>p.getAttribute('points')); return {w:R(w),th,lb,sv:[sv.left,sv.top,sv.width,sv.height],pl} });
- return {L,n:rows.length,bars:rows.filter(r=>r.querySelector('.sbw:not(.nd)')).length,lnw:lines.length,pwr:rows.filter(r=>r.querySelector('.pwr')).length,circles:rows.filter(r=>r.querySelector('.pwr')).map(r=>r.querySelectorAll('.pwr circle').length).slice(0,3),pth:rows.filter(r=>r.querySelector('.pwr')).map(r=>r.querySelectorAll('.pth').length).slice(0,3),lines:lines.slice(0,12),over:rows.filter(r=>{const w=r.querySelector('.lnw,.pwr'); return w&&w.getBoundingClientRect().right>L}).length}}"""
+ return {L,lac:document.querySelectorAll('#laCands .lact').length,n:rows.length,bars:rows.filter(r=>r.querySelector('.sbw:not(.nd)')).length,lnw:lines.length,pwr:rows.filter(r=>r.querySelector('.pwr')).length,circles:rows.filter(r=>r.querySelector('.pwr')).map(r=>r.querySelectorAll('.pwr circle').length).slice(0,3),pth:rows.filter(r=>r.querySelector('.pwr')).map(r=>r.querySelectorAll('.pth').length).slice(0,3),lines:lines.slice(0,12),over:rows.filter(r=>{const w=r.querySelector('.lnw,.pwr'); return w&&w.getBoundingClientRect().right>L}).length}}"""
 def inter(a,b): return not (a[2]<=b[0] or b[2]<=a[0] or a[3]<=b[1] or b[3]<=a[1])
 async def run(b,tag,vp,mobile):
   c=await b.new_context(viewport=vp,is_mobile=mobile,has_touch=mobile); pg=await c.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
@@ -26,12 +26,12 @@ async def run(b,tag,vp,mobile):
     await setchart(pg,"bar"); s=await pg.evaluate(LST); ck(tag+" %s bar: rows are bars"%mode,s['bars']>=40 and s['lnw']==0 and s['pwr']==0,s)
     await setchart(pg,"line"); s=await pg.evaluate(LST)
     ck(tag+" %s line: every row is a two-point line graph (no bars)"%mode,s['lnw']>=40 and s['bars']==0,{k:s[k] for k in ('n','bars','lnw')})
-    ck(tag+" %s line: 4 endpoint thumbnails per row; graph ends left of the button column"%mode,all(len(x['th'])==4 for x in s['lines']) and s['over']==0,(s['over'],[len(x['th']) for x in s['lines'][:3]]))
-    g=await pg.evaluate("()=>{ const r=[...document.querySelectorAll('#listView .lvrow.la')].filter(r=>r.querySelector('.lnw')).slice(0,20); const bar=22; return {h:Math.min(...r.map(x=>x.getBoundingClientRect().height)),sw:Math.min(...r.map(x=>parseFloat(getComputedStyle(x.querySelector('polyline')).strokeWidth))),th:Math.min(...r.map(x=>x.querySelector('.lth').getBoundingClientRect().width))} }")
+    ck(tag+" %s line: no per-row thumbnails (candidates in the left column since build 1546); graph ends left of the button column"%mode,all(len(x['th'])==0 for x in s['lines']) and s['lac']>=2 and s['over']==0,(s['over'],s['lac'],[len(x['th']) for x in s['lines'][:3]]))
+    g=await pg.evaluate("()=>{ const r=[...document.querySelectorAll('#listView .lvrow.la')].filter(r=>r.querySelector('.lnw')).slice(0,20); const bar=22; return {h:Math.min(...r.map(x=>x.getBoundingClientRect().height)),sw:Math.min(...r.map(x=>parseFloat(getComputedStyle(x.querySelector('polyline')).strokeWidth))),th:Math.min(...[...document.querySelectorAll('#laCands .lact img')].map(i=>i.getBoundingClientRect().width))} }")
     ck(tag+" %s line: rows at least as tall as bar rows (>=44px), lines 3-4px+, thumbnails >=20px"%mode,g['h']>=44 and g['sw']>=3 and g['th']>=20,g)
     ok1=ok2=ok3=True; bad=None
     for x in s['lines']:
-      th=x['th']; xl=max(t[2] for t in th[:2]); xr=min(t[0] for t in th[2:]); sv=x['sv']
+      th=x['th']; sv=x['sv']; xl=sv[0]; xr=sv[0]+sv[2]
       for lb in x['lb']:
         cx=(lb['r'][0]+lb['r'][2])/2
         if not (xl-1<=cx<=xr+1): ok1=False; bad=(cx,xl,xr)
@@ -48,7 +48,7 @@ async def run(b,tag,vp,mobile):
   # single point: bar + pie rows
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=2; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
   s=await pg.evaluate(LST); ck(tag+" single point: line auto-switched to bar rows",s['lnw']==0 and s['bars']>=40,{k:s[k] for k in ('n','bars','lnw')})
-  await setchart(pg,"pie"); s=await pg.evaluate(LST); ck(tag+" single point pie: one disc per row (3 arcs) + 2 legend thumbnails, no bars",s['pwr']>=40 and s['bars']==0 and all(c==3 for c in s['circles']) and all(p==2 for p in s['pth']),s)
+  await setchart(pg,"pie"); s=await pg.evaluate(LST); ck(tag+" single point pie: one disc per row (3 arcs), no per-row thumbnails, 2 candidates in the left column, no bars",s['pwr']>=40 and s['bars']==0 and all(c==3 for c in s['circles']) and all(p==0 for p in s['pth']) and s['lac']==2,s)
   ck(tag+" single point pie: stays left of the button column",s['over']==0,s['over'])
   await pg.screenshot(path="/tmp/cm-%s-pie.png"%tag)
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=1; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)

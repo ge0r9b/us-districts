@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171545";</script>
+<script>window.BUILD="202610171546";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -549,6 +549,19 @@ body.geofs #geofs{display:flex!important}
   /* list-all: no consolidated total block, just the rows; party names live in press bubbles */
   body.listall .cands, body.listall.listmode .cands, body.listall.listmode .cands:not(.two) { display: none !important; }
   .lvrow.la .cbr { grid-template-columns: 1fr 64px !important; } .lvrow.la .cbv, .lvrow.la .l.rt { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+  #laCands { position: fixed; left: calc(8px + var(--sal, 0px)); z-index: 1001; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; overflow-x: visible; scrollbar-width: none; }
+  #laCands[hidden], body.foldfs #laCands, body.geofs #laCands, body.srchfs #laCands, body:not(.lathumb) #laCands { display: none !important; }
+  #laCands .lact { position: relative; flex: 0 0 auto; width: 42px; height: 36px; padding: 0; margin: 0; border: 0; background: transparent; display: flex; align-items: flex-start; justify-content: flex-start; cursor: pointer; -webkit-tap-highlight-color: transparent; --cc: #57534e; }
+  #laCands .lact.r { --cc: #b91c1c; } #laCands .lact.d { --cc: #1d4ed8; }
+  #laCands .lact img, #laCands .lact .lacn { box-sizing: border-box; margin: 0 0 0 4px; width: 30px; height: 30px; flex: 0 0 30px; border-radius: 2.5px; object-fit: cover; object-position: 50% 30%; background: #e7e5e4; box-shadow: 0 0 0 2px var(--cc); }
+  #laCands .lact .lacn { display: flex; align-items: center; justify-content: center; font: 800 14px/1 system-ui, sans-serif; color: #fff; background: var(--cc); }
+  #laCands .lact:not(.on) { filter: grayscale(1) opacity(.5); } #laCands .lact:not(.on) img, #laCands .lact:not(.on) .lacn { box-shadow: 0 0 0 2px #a8a29e; }
+  #laCands .lact .cpt { position: absolute; left: 22px; top: 26px; font: 700 8px/9.2px system-ui, sans-serif; background: rgba(255,255,255,.86); color: #111; padding: 1px 2px; border-radius: 1px; box-shadow: 0 0 0 .5px rgba(0,0,0,.18), 0 1px 2px rgba(0,0,0,.12); white-space: nowrap; pointer-events: none; }
+  #laCands .lact .cpt:empty { display: none; }
+  .lvrow.la.cmp .sbw.ab { min-width: 3px !important; } .lvrow.la.cmp .btl { flex: 0 0 auto; align-self: center; margin-left: 5px; font: 600 11px/1 system-ui, sans-serif; color: #57534e; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .lvrow.la.cmp .sg.cx { background: #78716c; opacity: .85; } .lvrow.la.cmp .pwr .pcx { stroke: #78716c; } .lvrow.la.cmp .lnw polyline.off { display: none; }
+  .lvrow.la.lasel { background: rgba(0,0,0,.06); }
   #partyBub { position: fixed; z-index: 3000; background: #111; color: #fff; font: 600 12px/1.2 system-ui, sans-serif; padding: 5px 8px; border-radius: 6px; pointer-events: none; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,.25); transform: translate(-50%,-100%); }
   .lvrow.la.cmp { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; gap: 8px; min-height: 30px; padding-top: 3px !important; padding-bottom: 3px !important; padding-right: 4px; box-sizing: border-box; }
   .lvrow.la.cmp b.rn { flex: 0 0 var(--rnw, 34px); width: var(--rnw, 34px); min-width: 0; overflow: visible; white-space: nowrap; font-size: 14px; } .lvrow.la.cmp b.rn .nmx { display: block; overflow: hidden; text-overflow: ellipsis; }
@@ -2975,7 +2988,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const wire=()=>{ const sc=document.querySelector("#crumbs .crumb.tbScope"); if(sc&&!sc.__ctx){ sc.__ctx=1; sc.onclick=e=>{ e.stopPropagation(); if(state.value){ if(!start()) setTimeout(openFold,60); } else setTimeout(openFold,60); }; } };
   setInterval(wire,300); new MutationObserver(wire).observe($("crumbs"),{childList:true}); }
 // ===== back: a history stack of changes. Every change of institution, geo, topic or district type made by a menu pick / search selection / drill (NOT the initial or restored state, NOT a back step) pushes the previous state. The back button exists ONLY while the stack is non-empty AND the screen is an institution/geo filter list or a list view (list-all / drill-down); map and single results never show it. Back pops one change and restores institution, geo, topic, district type and view settings (list/map, format, sort, time). Keyboard (Backspace outside a text field, Alt+Left, Cmd+[) and browser back / swipe-back (one history sentinel while a step exists) do the same. Button is fixed on the sort-control row (under the field bar, or under the expanded time filter): x=27 axis in list views, sort-control slot in filter lists; overlay, nothing shifts =====
-{ const css=document.createElement("style"); css.textContent="#bBack{position:fixed;z-index:1002;display:none!important;width:44px;height:44px;padding:0;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;top:calc(var(--bbTop,116px) - 11px)} #bBack svg{width:17px;height:17px;stroke:#111;fill:none;stroke-width:2.12;stroke-linecap:round;stroke-linejoin:round} body.canback.foldfs #bBack{display:flex!important;left:auto;right:calc(var(--btn) + var(--gap) * 2 + 4px + 36px - 11px)} body.canback:not(.foldfs).listall.listmode #bBack{display:flex!important;left:calc(var(--bbCx,27px) - 22px);top:calc(var(--bbCy,127px) - 22px)}"; document.head.append(css);
+{ const css=document.createElement("style"); css.textContent="#bBack{position:fixed;z-index:1002;display:none!important;width:44px;height:44px;padding:0;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;top:calc(var(--bbTop,116px) - 11px)} #bBack svg{width:17px;height:17px;stroke:#111;fill:none;stroke-width:2.12;stroke-linecap:round;stroke-linejoin:round} body.canback.foldfs #bBack{display:flex!important;left:auto;right:calc(var(--btn) + var(--gap) * 2 + 4px + 36px - 11px)} body.canback:not(.foldfs):not(.geofs):not(.srchfs).listall.listmode #bBack{display:flex!important;left:calc(var(--bbCx,27px) - 22px);top:calc(var(--bbCy,127px) - 22px)}"; document.head.append(css);
   const btn=document.createElement("button"); btn.type="button"; btn.className="bbk"; btn.id="bBack"; btn.setAttribute("aria-label","Back"); btn.title="Back";
   btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M15.5 3.5L7 12l8.5 8.5"/></svg>'; document.body.append(btn);
   const B=()=>document.body.classList, inp=()=>document.querySelector("#barGeo .fsq input"), DT=["ushouse","senate","statehouse","schools"], norm=lt=>DT.indexOf(lt)>=0?lt:"x";
@@ -3014,7 +3027,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     // list view: chevron centred on the left icon column (x) and on the chart button (time row expanded) or the clock button (collapsed) centre line (y); glyph = the round buttons' glyph size
     try{ if(w&&!B().contains("foldfs")){ const ds=document.documentElement.style, tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), exp=tb&&tb.classList.contains("on"), ref=exp&&cb&&cb.getBoundingClientRect().height>0?cb:tb;
         if(ref){ const r=ref.getBoundingClientRect(); if(r.height>0) ds.setProperty("--bbCy",(Math.round((r.top+r.height/2)*2)/2)+"px"); }
-        const ic=[...document.querySelectorAll("#listView .lvrow.la img")].find(i=>i.offsetParent&&i.getBoundingClientRect().width>0); if(ic){ const r=ic.getBoundingClientRect(); ds.setProperty("--bbCx",(Math.round((r.left+r.width/2)*2)/2)+"px"); }
+        const ic=[...document.querySelectorAll("body.lathumb #laCands .lact img, body.lathumb #laCands .lact .lacn"),...document.querySelectorAll("#listView .lvrow.la img")].find(i=>i.offsetParent&&i.getBoundingClientRect().width>0); if(ic){ const r=ic.getBoundingClientRect(); const icx=r.left+r.width/2, sal=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sal"))||0, gw=(document.querySelector("#bBack svg")||{getBoundingClientRect:()=>({width:17})}).getBoundingClientRect().width||17; /* half-way from the icon column centre to the screen edge, glyph kept >= 10px from the (safe-area) edge; the 44px target may overhang */ ds.setProperty("--bbCx",(Math.round(Math.max(sal+10+gw/2,icx-(icx-sal)/2)*2)/2)+"px"); }
         const g=document.querySelector("#bTime svg"); if(g){ const r=g.getBoundingClientRect(); if(r.width>0) ds.setProperty("--bbG",(Math.round(r.width*2)/2)+"px"); } } }catch(e){}
     B().toggle("canback",w);
     if(w&&!sentinel&&!ign){ try{ history.pushState({fl:1},"",location.href); sentinel=1; }catch(_){} }
@@ -3199,7 +3212,14 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   const yrsNow=()=>ym()==="delta"?["2020","2024"]:[ym()];
   function sortVal(a){ const m=ym(); // sort key = TOTAL votes cast; in delta mode = |net change| as displayed
     if(m==="delta"){ const v0=vals(a,"2020"), v1=vals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; /* delta: sort by the magnitude of the NET change exactly as displayed ('R +13.6' = margin change in points in %, vote-count margin change in #); party side ignored */ if(numMode==="pct") return Math.round(Math.abs(((v1.rep-v1.dem)/v1.tot-(v0.rep-v0.dem)/v0.tot)*100)*10)/10; return Math.abs((v1.rep-v1.dem)-(v0.rep-v0.dem)); }
-    const v=vals(a,m); if(!v||!v.tot) return null; return v.tot; }
+    const v=vals(a,m); if(!v||!v.tot) return null; /* % mode: share of the selected candidate(s) (the leader's share when every candidate is on); # mode: raw votes (selected candidates' combined votes when a subset is on, else all votes cast) */
+    const cl=CANDS[m]||[], on=cl.filter(c=>candOn.has(c.id)), sub=on.length>0&&on.length<cl.length, sumOn=()=>on.reduce((x,c)=>x+cVal(v,c),0);
+    if(numMode==="pct") return Math.round((sub?sumOn():Math.max(0,...cl.map(c=>cVal(v,c))))/v.tot*1e5)/1e3; return sub?sumOn():v.tot; }
+  /* candidate value from a {dem,rep,tot} record; a candidate with its own value key (c.k, e.g. a 3rd candidate or a poll answer) reads that key */
+  function cVal(v,c){ if(!v||!c) return 0; if(c.k) return +v[c.k]||0; return c.ix?(+v.rep||0):(+v.dem||0); }
+  function cOth(v,cl){ return Math.max(0,(v.tot||0)-cl.reduce((x,c)=>x+cVal(v,c),0)); }
+  const cKey=c=>c.k||(c.ix?"rep":"dem");
+  const cmpN=n=>{ const m=Math.abs(n); return m>=1e6?(m/1e6).toFixed(2)+"M":m>=1e3?Math.round(m/1e3)+"K":String(Math.round(m)); };
   const parts=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))});
   function keysOn(){ const cs=candsOn().filter(c=>candOn.has(c.id)); const ks=[...new Set(cs.map(c=>c.ix?"rep":"dem"))]; return ks.length===1?ks:["rep","dem","oth"]; }
   function barsHtml(v){ const p=parts(v), t=v.tot||1; let h='<div class="cbars la">'; keysOn().forEach(k=>{ const f=p[k]/t; h+='<div class="cbr"><span class="cbt"><i style="width:'+(f*100).toFixed(1)+'%;background:'+PC[k]+'"></i></span><span class="cbv" data-party="'+NM[k]+'" tabindex="0">'+(numMode==="pct"?(f*100).toFixed(1)+"%":fmtN(Math.round(p[k])))+'</span></div>'; }); return h+'</div>'; }
@@ -3235,19 +3255,22 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
         const fd=x=>{ const m=Math.abs(x), sg=x>=0?"+":"\u2212"; return numMode==="pct"?sg+m.toFixed(1):sg+(m>=1e6?(m/1e6).toFixed(2)+"M":m>=1e3?Math.round(m/1e3)+"K":String(Math.round(m))); };
         const mr=(yy(R[0])+yy(R[1]))/2, md=(yy(D[0])+yy(D[1]))/2, close=Math.abs(mr-md)<45, upR=mr<=md; /* label directly under its own line, centred between the two points; the upper line's label goes above it only when the lines are too close */
         const lb=(txt,mid,above,cls)=>"<span class='llb "+cls+"' style='top:calc(6px + (100% - 20px) * "+(mid/100).toFixed(3)+(above?" - 15px":" + 4px")+")'>"+esc(txt)+"</span>";
-        const dl=(k,A)=>numMode==="pct"?A[1]-A[0]:(pr[k]-q[k]); const lab=lb(fd(dl("rep",R)),mr,close&&upR,"r")+lb(fd(dl("dem",D)),md,close&&!upR,"d");
-        return h+"<span class='lnw' data-party=\""+esc(bub("rep")+" / "+bub("dem"))+"\"><svg viewBox='0 0 100 100' preserveAspectRatio='none'><polyline points='0,"+yy(D[0]).toFixed(1)+" 100,"+yy(D[1]).toFixed(1)+"' class='ld'/><polyline points='0,"+yy(R[0]).toFixed(1)+" 100,"+yy(R[1]).toFixed(1)+"' class='lr'/></svg>"+(cr20?th(cr20,"0",yy(R[0])):"")+(cd20?th(cd20,"0",yy(D[0])):"")+(cr24?th(cr24,"calc(100% - 22px)",yy(R[1])):"")+(cd24?th(cd24,"calc(100% - 22px)",yy(D[1])):"")+lab+"</span>"; }
+        const onR=!!(cr24&&candOn.has(cr24.id)), onD=!!(cd24&&candOn.has(cd24.id)); const dl=(k,A)=>numMode==="pct"?A[1]-A[0]:(pr[k]-q[k]); const lab=lb(fd(dl("rep",R)),mr,close&&upR,"r")+lb(fd(dl("dem",D)),md,close&&!upR,"d");
+        return h+"<span class='lnw' data-party=\""+esc(bub("rep")+" / "+bub("dem"))+"\"><svg viewBox='0 0 100 100' preserveAspectRatio='none'><polyline points='0,"+yy(D[0]).toFixed(1)+" 100,"+yy(D[1]).toFixed(1)+"' class='ld"+(onD?"":" off")+"'/><polyline points='0,"+yy(R[0]).toFixed(1)+" 100,"+yy(R[1]).toFixed(1)+"' class='lr"+(onR?"":" off")+"'/></svg>"+(onR?lb(fd(dl("rep",R)),mr,close&&upR,"r"):"")+(onD?lb(fd(dl("dem",D)),md,close&&!upR,"d"):"")+"</span>"; }
       if(window.chartMode==="pie"&&!two){ /* PIE (single point only; a range uses bar/line): one ring per year (2020 inner, 2024 outer when two years; a single disc for one year); thumbnails act as the legend */
         const ring=(p,tt,r,sw)=>{ const C=2*Math.PI*r; let cum=0; return ["rep","dem","oth"].map(k=>{ const L=p[k]/tt*C; const e="<circle r='"+r+"' fill='none' class='p"+k+"' stroke-width='"+sw+"' stroke-dasharray='"+L.toFixed(2)+" "+(C-L).toFixed(2)+"' stroke-dashoffset='"+(-cum).toFixed(2)+"' transform='rotate(-90)'/>"; cum+=L; return e; }).join(""); };
-        let svg=ring(pr,t,6.5,13);
-        const cs2=CANDS[yr], tr=cs2.find(c=>c.ix), td=cs2.find(c=>!c.ix);
-        return h+"<span class='pwr' data-party=\""+esc(bub("rep")+" / "+bub("dem"))+"\"><svg viewBox='-13 -13 26 26' width='26' height='26'>"+svg+"</svg>"+(tr?"<img class='pth r' alt='' src='"+PHOTO[tr.id]+"' width='18' height='18'>":"")+(td?"<img class='pth d' alt='' src='"+PHOTO[td.id]+"' width='18' height='18'>":"")+"</span>"; }
+        const onC=cs.filter(c=>candOn.has(c.id)).sort((x,y)=>(x.k?1:0)-(y.k?1:0)||(y.ix?1:0)-(x.ix?1:0)), P=onC.map(c=>({k:cKey(c),n:cVal(v,c),col:c.col,cx:!!c.k})).concat([{k:"oth",n:cOth(v,cs)}]), PT=P.reduce((x,q)=>x+q.n,0)||1;
+        const C6=2*Math.PI*6.5; let cum=0; const svg=P.map(q=>{ const Ln=q.n/PT*C6; const e="<circle r='6.5' fill='none' class='p"+(q.cx?"cx":q.k)+"' stroke-width='13' stroke-dasharray='"+Ln.toFixed(2)+" "+(C6-Ln).toFixed(2)+"' stroke-dashoffset='"+(-cum).toFixed(2)+"' transform='rotate(-90)'"+(q.col?" style='stroke:"+q.col+"'":"")+"/>"; cum+=Ln; return e; }).join("");
+        return h+"<span class='pwr' data-party=\""+esc(onC.map(c=>c.k?c.full+": "+(cVal(v,c)/t*100).toFixed(1)+"%":bub(cKey(c))).join(" / ")||bub("oth"))+"\"><svg viewBox='-13 -13 26 26' width='26' height='26'>"+svg+"</svg></span>"; }
       if(two&&d){ /* DELTA: net value column + bar built from |R change|+|D change|(+other) on ONE common scale for the whole list (largest total = longest bar, capped left of the button column), winner thumbnail at the bar's left end */
         const ab={rep:Math.abs(d.rep),dem:Math.abs(d.dem),oth:Math.abs(d.oth)}, T=(ab.rep+ab.dem+ab.oth)||1e-9, fr=Math.min(1,T/((LA.dmax||T)||1));
         const fmtD=x=>{ const m=Math.abs(x), sg=x>=0?"+":"\u2212"; return numMode==="pct"?sg+m.toFixed(1):sg+(m>=1e6?(m/1e6).toFixed(2)+"M":m>=1e3?Math.round(m/1e3)+"K":String(Math.round(m))); };
         let nt=""; try{ nt=deltaTxt(a).replace(" pts","").replace(/ votes?$/,""); const mm=/^(\D*)([\d,]+)$/.exec(nt); if(mm&&numMode!=="pct"){ const n=+mm[2].replace(/,/g,""); nt=mm[1]+(n>=1e6?(n/1e6).toFixed(2)+"M":n>=1e3?Math.round(n/1e3)+"K":String(n)); } }catch(e){}
-        return h+"<span class='net'>"+esc(nt)+"</span><span class='sbw dl' style='--f:"+fr.toFixed(4)+"'>"+["rep","dem","oth"].map((k,ix0)=>"<i class='sg "+k+(ix0===0?" f":"")+"' data-party=\""+esc(bub(k))+"\" style='width:"+(ab[k]/T*100).toFixed(2)+"%'>"+(ab[k]>0?"<b>"+esc(fmtD(d[k]))+"</b>":"")+"</i>").join("")+(win?"<img class='sth "+(win.ix?"r":"d")+"' alt='' src='"+PHOTO[win.id]+"' width='22' height='22'>":"")+"</span>"; }
-      h+="<span class='sbw"+(!two&&numMode!=="pct"&&LA.tmax?" ab":"")+"'"+(!two&&numMode!=="pct"&&LA.tmax?" style='--f:"+Math.min(1,(t/LA.tmax)).toFixed(4)+"'":"")+">"+["rep","dem","oth"].map((k,ix0)=>"<i class='sg "+k+(ix0===0?" f":"")+"' data-party=\""+esc(bub(k))+"\" style='width:"+(pr[k]/t*100).toFixed(2)+"%'>"+(sgT(k)?"<b>"+esc(sgT(k))+"</b>":"")+"</i>").join("")+(win?"<img class='sth "+(win.ix?"r":"d")+"' alt='' src='"+PHOTO[win.id]+"' width='22' height='22'>":"")+"</span>";
+        return h+"<span class='net'>"+esc(nt)+"</span><span class='sbw dl' style='--f:"+fr.toFixed(4)+"'>"+["rep","dem","oth"].filter(k=>k==="oth"||cs.some(c=>cKey(c)===k&&candOn.has(c.id))).map((k,ix0)=>"<i class='sg "+k+"' data-party=\""+esc(bub(k))+"\" style='width:"+(ab[k]/T*100).toFixed(2)+"%'>"+(ab[k]>0?"<b>"+esc(fmtD(d[k]))+"</b>":"")+"</i>").join("")+"</span>"; }
+      { const ab=!two&&numMode!=="pct"&&LA.tmax, fr=ab?Math.min(1,t/LA.tmax):1, on=cs.filter(c=>candOn.has(c.id)).sort((x,y)=>(x.k?1:0)-(y.k?1:0)||(y.ix?1:0)-(x.ix?1:0)), oN=cOth(v,cs);
+        const lab=n=>{ const f=n/t; if(f<(numMode==="pct"?0.13:0.19)) return ""; return numMode==="pct"?(f*100).toFixed(1)+"%":cmpN(n); };
+        const seg=c=>{ const n=cVal(v,c), k=cKey(c); return "<i class='sg "+(c.k?"cx":k)+"' data-cid='"+c.id+"' data-party=\""+esc(c.k?(c.full+": "+(numMode==="pct"?(n/t*100).toFixed(1)+"%":Math.round(n).toLocaleString("en-US"))):bub(k))+"\" style='width:"+(n/t*100).toFixed(2)+"%"+(c.col?";background:"+c.col:"")+"'>"+(lab(n)?"<b>"+esc(lab(n))+"</b>":"")+"</i>"; };
+        h+="<span class='sbw"+(ab?" ab":"")+"'"+(ab?" style='--f:"+fr.toFixed(4)+"'":"")+">"+on.map(seg).join("")+"<i class='sg oth' data-party=\""+esc(bub("oth"))+"\" style='width:"+(oN/t*100).toFixed(2)+"%'></i></span>"+(ab&&fr<0.3?"<span class='btl'>"+esc(cmpN(on.length<cs.length?on.reduce((x,c)=>x+cVal(v,c),0):t))+"</span>":""); }
       return h; }
     if(bar){ if(two){ const v0=vals(a,"2020"), v1=vals(a,"2024"); h+=(v0&&v1)?deltaHtml(v0,v1):"<span class='l'>no data</span>"; } else { const v=vals(a,yrs[0]); h+=v?barsHtml(v):"<span class='l'>no data</span>"; } return h; }
     yrs.forEach(yr=>{ const v=vals(a,yr); const cs=CANDS[yr].filter(c=>candOn.has(c.id)); if(!cs.length) return;
@@ -3274,7 +3297,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   function clampLabels(){ try{ const lv=document.getElementById("listView"); const bs=[...lv.querySelectorAll(".sbw .sg b")]; if(!bs.length) return; bs.forEach(b=>{ if(b.style.transform) b.style.transform=""; }); const L=colLeft()-6; if(!isFinite(L)) return; const R=bs.map(b=>[b,b.getBoundingClientRect(),b.parentElement.getBoundingClientRect()]);
       R.forEach(([b,r,s])=>{ if(b.parentElement.parentElement.classList.contains("dl")) return; if(r.right<=L){ if(b.style.visibility) b.style.visibility=""; return; } const sh=r.right-L; if(r.left-sh>=s.left+2&&s.left<L){ b.style.transform="translateX("+(-sh)+"px)"; if(b.style.visibility) b.style.visibility=""; } else b.style.visibility="hidden"; }); }catch(e){} }
   window.__dTot=dTot; window.__clampLabels=()=>{ setDlen(); clampLabels(); fitLabels(); }; setInterval(()=>{ if(LA.on&&document.body.classList.contains("listmode")){ setDlen(); clampLabels(); fitLabels(); } },900);
-  function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const d=(g.classList.contains("dl")?44:52)-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
+  function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const d=(g.classList.contains("dl")?44:52)+(document.body.classList.contains("lathumb")?46:0)-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
   window.addEventListener("resize",()=>{ if(LA.on) setTimeout(()=>{ alignRows(); setDlen(); clampLabels(); fitLabels(); },60); });
   function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); computeAgg(); drawMap();
     const rows=LA.items.map(a=>{ let s=null; try{ s=sortVal(a); }catch(e){} return {a,s}; }); const dir=LA.sort==="asc"?1:-1;
@@ -3286,15 +3309,36 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     LA.lr=null; if(window.chartMode==="line"&&yrsNow().length>1){ let lo=1e9,hi=-1e9; rows.forEach(({a})=>{ try{ const v1=vals(a,"2024"), v0=vals(a,"2020"); if(!v1||!v0) return; const p1=parts(v1), p0=parts(v0); ["rep","dem"].forEach(k=>{ [p1[k]/(v1.tot||1)*100,p0[k]/(v0.tot||1)*100].forEach(x=>{ if(x<lo) lo=x; if(x>hi) hi=x; }); }); }catch(e){} }); if(hi>lo) LA.lr=[Math.max(0,lo-2),Math.min(100,hi+2)]; }
     LA.tmax=0; if(yrsNow().length===1&&numMode!=="pct") rows.forEach(({a})=>{ try{ const v=vals(a,yrsNow()[0]); if(v&&v.tot>LA.tmax) LA.tmax=v.tot; }catch(e){} }); /* # mode: bar length = row total on one common scale */
     LA.dmax=0; if(yrsNow().length>1&&window.__topicOn&&window.__topicOn()) rows.forEach(({a})=>{ try{ const t=dTot(a); if(t>LA.dmax) LA.dmax=t; }catch(e){} });
-    const els=rows.slice(0,2500).map(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"; el.__a=a; try{ el.innerHTML=rowHtml(a); if(el.querySelector(".sbw,.lnw,.pwr")) el.classList.add("cmp"); }catch(e){ el.innerHTML="<b class='rn'><span class='oic'></span>"+esc(t32(String(aname(a))))+"</b>"; } return el; });
+    const els=rows.slice(0,2500).map(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"+(LA.selK&&kOf(a)===LA.selK&&LA.selScope===scopeK()?" lasel":""); el.__a=a; try{ el.innerHTML=rowHtml(a); if(el.querySelector(".sbw,.lnw,.pwr")) el.classList.add("cmp"); }catch(e){ el.innerHTML="<b class='rn'><span class='oic'></span>"+esc(t32(String(aname(a))))+"</b>"; } return el; });
     const key=head+"\u0001"+els.map(e=>e.className+"|"+e.innerHTML).join("\u0001");
-    if(lv.__laKey===key&&lv.querySelector(".lvrow.la")){ restyle(); place(); alignRows(); setDlen(); clampLabels(); return; }
+    if(lv.__laKey===key&&lv.querySelector(".lvrow.la")){ restyle(); place(); laThumbs(); alignRows(); setDlen(); clampLabels(); return; }
     lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw",(LA.lv&&LA.lv.id==="states")?"34px":"clamp(72px,36%,150px)");
     g.classList.toggle("dl",yrsNow().length>1); els.forEach(el=>g.append(el));
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
     if(keepTop) lv.scrollTop=keepTop;
-    restyle(); place(); try{ renderCands(); }catch(e){} alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
+    restyle(); place(); try{ renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
     if(rows.length&&!g.querySelector('.lvrow.la')&&!LA.__retry){ LA.__retry=1; setTimeout(()=>{ LA.__retry=0; if(LA.on) render(); },300); } }
+
+  /* ---- left-edge candidate column for list charts (bar, pie, line, change bars): same thumbnails as the map, ranked for the current selection (the tapped row, else the totals of the loaded list), tap toggles a candidate; an answer without a photo gets a rank-number badge ---- */
+  const scopeK=()=>(LA.lv&&LA.lv.id)+"|"+LA.parent, kOf=a=>a?[a.kind,String(aname(a)),a.d&&a.d[0]||""].join("|"):"";
+  function selItem(){ if(!LA.selK) return null; if(LA.selScope!==scopeK()){ LA.selK=null; return null; } return LA.items.find(a=>kOf(a)===LA.selK)||null; }
+  let lacBox=null, lacKey="";
+  function laThumbs(){ try{ const B=document.body.classList; const ok=LA.on&&B.contains("listmode")&&!B.contains("foldfs")&&!B.contains("geofs")&&!B.contains("srchfs")&&(!window.__topicOn||window.__topicOn())&&!!document.querySelector("#listView .lvrow.la.cmp");
+      if(B.contains("lathumb")!==ok){ B.toggle("lathumb",ok); try{ alignRows(); setDlen(); }catch(e){} }
+      if(!lacBox){ lacBox=document.createElement("div"); lacBox.id="laCands"; lacBox.setAttribute("aria-label","Candidates"); document.body.append(lacBox);
+        lacBox.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".lact"); if(!b) return; e.stopPropagation(); e.preventDefault(); const yrs=yrsNow(), yr=yrs[yrs.length-1], c=(CANDS[yr]||[]).find(x=>x.id===b.dataset.cid); if(!c) return;
+          const ids=yrs.map(y=>(CANDS[y]||[]).find(x=>cKey(x)===cKey(c))).filter(Boolean).map(x=>x.id), turn=!candOn.has(c.id); ids.forEach(i=>turn?candOn.add(i):candOn.delete(i));
+          try{ renderCands(); }catch(_){} try{ refreshBubble(); }catch(_){} try{ renderList(); }catch(_){} laThumbs(); },true); }
+      if(!ok){ lacBox.hidden=true; return; }
+      const yrs=yrsNow(), yr=yrs[yrs.length-1], cl=CANDS[yr]||[], sel=selItem(); let src=sel?vals(sel,yr):null; if(!src&&LA.agg) src=LA.agg[yr]; const tot=src&&src.tot||0;
+      const R=cl.map((c,i)=>({c,i,n:src?cVal(src,c):0})).sort((x,y)=>(y.n-x.n)||(x.i-y.i));
+      const html=R.map((x,r)=>{ const c=x.c, on=candOn.has(c.id), ph=PHOTO&&PHOTO[c.id]; return "<button type='button' class='lact "+(c.k?"x":(c.ix?"r":"d"))+(on?" on":"")+"' data-cid='"+esc(c.id)+"' aria-pressed='"+on+"' aria-label='"+esc(c.full+" "+yr)+"' title='"+esc(c.full+" "+yr)+"'"+(c.col?" style='--cc:"+c.col+"'":"")+">"+(ph?"<img src='"+ph+"' alt='' width='30' height='30' decoding='async'>":"<span class='lacn'>"+(r+1)+"</span>")+"<span class='cpt'>"+(tot?esc(numMode==="pct"?Math.round(x.n/tot*100)+"%":cmpN(x.n)):"")+"</span></button>"; }).join("");
+      if(html!==lacKey){ lacBox.innerHTML=html; lacKey=html; }
+      const bb=document.getElementById("bBack"), bv=bb&&getComputedStyle(bb).display!=="none"&&bb.getBoundingClientRect().height>0, br=bv&&bb.getBoundingClientRect();
+      const tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), ref=tb&&tb.classList.contains("on")&&cb&&cb.getBoundingClientRect().height>0?cb:tb, q=ref&&ref.getBoundingClientRect(), cy=br?br.top+br.height/2:(q&&q.height?q.top+q.height/2:150);
+      const top=Math.round(cy+8.5+6), bot=($("barBottom")&&$("barBottom").getBoundingClientRect().top)||innerHeight; sSet(lacBox,"top",top+"px"); sSet(lacBox,"maxHeight",Math.max(44,bot-top-4)+"px"); lacBox.hidden=false; }catch(e){} }
+  window.__laThumbs=laThumbs; try{ window.__PHOTO=PHOTO; }catch(e){} setInterval(()=>{ try{ laThumbs(); }catch(e){} },500);
+  setTimeout(()=>{ const _lp=window.__laPick; if(typeof _lp!=="function") return; window.__laPick=function(a){ try{ if(a&&LA.on){ LA.selK=kOf(a); LA.selScope=scopeK(); } }catch(e){} const r=_lp.apply(this,arguments); setTimeout(()=>{ try{ if(LA.on) render(); laThumbs(); }catch(e){} },80); return r; }; },0);
   const _rl=renderList; renderList=function(){ if(LA.on) render(); else if(LA.pend) return; else _rl(); };
   { const _rl2=renderList; renderList=function(){ _rl2(); if(!LA.on) restyle(); }; }
   try{ window.__v2.renderList=renderList; }catch(e){} // other modules call __v2.renderList(); it must keep the list-all rows
