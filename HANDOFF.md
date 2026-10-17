@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (updated at build 202610151531, Oct 15, 2026)
+# US Districts: HANDOFF (updated at build 202610171533, Oct 17, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -30,7 +30,7 @@ A static map and results viewer for US elections (President 2020 and 2024, plus 
 **Back button:** only exists when the history stack is non-empty; shown in institution/geo filter lists and list views (row under the institution bar, x about 27, under the expanded time filter when it is open).
 **District type:** a selected type must show its district list (not the consolidated total) in list view; numbers must equal the map pop-ups (same tallies, same area weighting and ≈ rules); map mode unchanged.
 
-## 4. Status at build 1528
+## 4. Status at build 1533
 Fixed and live (verified by the tests named; run them yourself, section 6):
 | Item | Build | Test |
 |---|---|---|
@@ -43,6 +43,7 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | No text under floating buttons (t235/t236); delta net/scale layout (t237/t238) | 1528 | `label-clamp.py`, `delta-scale.py` |
 | List-all line and pie rows; chart-type rule; chart button in map; line delta labels (t240, t249–t254) | 1528 | `chart-modes-list.py`, `chart-line-single.py` |
 | District-type list at national scope: US House nationwide (435 rows); other types list states first | 1528 | `district-list-view.py`, `district-consistency.py` (list values = pop-up values) |
+| Alaska and Connecticut 2020, ≈ 2020 for re-drawn 2024 precincts, gray districts filled, Idaho 2024 | 1533 | `data-2020.py`, `est-list.py`, `est-popup.py`, `district-consistency.py` |
 | Unisearch two-row rule, sovereign/incorporated wording, geo silhouettes, editable scope row, ≈ marks in list rows, 12 gray districts filled | 1519–1527 | `unisearch.py`, `ctx-edit.py`, `geo-icons.py`, `est-list.py` |
 
 **Still open / known gaps (be honest about these):**
@@ -50,11 +51,11 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 2. Safari jumping needs confirmation on a real iPhone; WebKit tests were not run.
 3. No dedicated regression test for the sort-under-search bug (t239).
 4. Old `tests/list-all-modes.py` delta assertions use class names from before the delta redesign (stale; `delta-scale.py` covers the new layout).
-5. **Data gaps (see COVERAGE.md; 2020 precinct coverage was largely completed in 1531 with VEST 2020, tool `tools/build_vest2020.py`; still missing: Connecticut, Alaska, QC-dropped counties, Idaho 2024 gaps, gray legislative districts; data folder grew by about 21 MB):** Arizona 2020 precincts now complete (VEST, CC BY 4.0, 1,484 precincts, build 1530); most 2024 AZ precinct rows still show `'20 n/a` because 2020 and 2024 precinct shapes differ (same-shape rule). Other states with partial 2020 precinct files are listed in COVERAGE.md and were **not** completed in this session (each needs a real 2020 source such as VEST/MEDSL joined to shapes); 2020 Idaho precincts exist only for Ada, Blaine, Bonner, Butte, Caribou, Kootenai, so 2020/delta town rows elsewhere in Idaho stay "no data"; Idaho counties with no 2024 precinct file (e.g. Kootenai QC fail, Gem, Franklin, Madison, Clark); remaining gray legislative districts listed by state in COVERAGE.md (AL, AR, GA, LA, MS, OK, OR, VA, WY senate; AL, AR, GA, LA, MS, MO, OK, OR, TN, VT, VA house, KY/ME/MT/NH/VT 2020). They need official state results; none were estimated.
+5. **Data gaps (build 1533, details and per-item reasons in COVERAGE.md):** 2020 is now complete at county level (3,112 incl. Connecticut) and at precinct level (every county within 90-110 % of the official total, VEST 2020 CC BY 4.0 replacing failing counties); Alaska 2020 boroughs/House/Senate and Connecticut 2020 towns added (≈ for Alaska, flag `e20`); 99.3 % of 2024 precincts now have a 2020 side (exact same-shape, else ≈ area-weighted from `v2/data/x20/<State>.js`, tool `tools/build_x20.py`); gray districts filled by area-weighting with county scaling (`tools/fill_gray.py`, flags `e20`/`e24`/`est`); Idaho 2024 Owyhee and Idaho County from the official SOS workbook (`tools/fix_id2024.py`). **Still gray:** 2024 senate 8, house 33 (OK, VT, WY mostly), schools 174; 2020 schools 26 (AK 14). Cause: 2024 precinct polygons cover too little of those districts; they need official 2024 precinct results. 101 counties' 2024 precinct files are outside 90-110 % of official and 13 have none (SD 10, GA Butts, MA Nantucket, MS Issaquena). 1,202 2024 precincts still show `'20 n/a` (2020 cover under 50 %).
 6. NYT-to-official source replacement and 2016 data are parked (NYT credit stays).
 
 ## 5. Future plans (approved direction, not started)
-2016 presidential data (staging folder, official sources first); Canada (per-country config exists, parked); move to Supabase or Neon + PostGIS when data reaches 700–800 MB (about 176 MB today; schema proposal in spec 4.2); presets and navigation tabs; offline copy; lighter-data plan (tiles/CDN for past elections); live user votes (`vote` table, Auth, one vote per user per topic); businesses/brands/international directories.
+2016 presidential data (staging folder, official sources first); Canada (per-country config exists, parked); move to Supabase or Neon + PostGIS when data reaches 700–800 MB (about 190 MB today; a flat export of all results and boundaries for a database lives on the box in `/workspace/db/export/` with its own README; schema proposal in spec 4.2); presets and navigation tabs; offline copy; lighter-data plan (tiles/CDN for past elections); live user votes (`vote` table, Auth, one vote per user per topic); businesses/brands/international directories.
 
 ## 6. Tests
 Playwright (Python). Serve locally: `cd us-districts && python3 -m http.server 8765`, then

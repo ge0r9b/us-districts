@@ -415,6 +415,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 
 | Date | Change |
 |---|---|
+| Oct 17, 2026 | Build 1533: 2020 complete for all counties (Connecticut added) and precinct files within 90-110 % of official everywhere (VEST 2020, CC BY 4.0); Alaska 2020 boroughs/House/Senate (≈); ≈ 2020 for re-drawn 2024 precincts (area-weighted, `v2/data/x20/`); gray districts filled with ≈ (`e20`/`e24`/`est`); Idaho 2024 Owyhee and Idaho County from the Idaho SOS; remaining gaps in COVERAGE.md |
 | Oct 15, 2026 | Build 1531: 2020 precinct coverage completed for 40 states from VEST 2020 (CC BY 4.0), QC against official county totals; remaining gaps in COVERAGE.md |
 | Oct 15, 2026 | Build 1530: delta sort by net magnitude; # bars to scale; county tier for school/state-house/state-senate lists; Arizona 2020 precincts (VEST, CC BY 4.0); `'20 n/a` rows; readable line rows (1529) |
 | Oct 15, 2026 | Chart rules (build 1528): pie only at a single point, line only for a range, button cycles valid types, auto-switch and restore, delta pie ring removed, no scatter, chart button inactive in the full-screen map, line delta labels under the line; list-all line rows |

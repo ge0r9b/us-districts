@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610151532";</script>
+<script>window.BUILD="202610171533";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -1451,23 +1451,26 @@ function loadPrec20(st){
   if(!st||(st in PREC20)) return Promise.resolve();
   return P20L[st]||(P20L[st]=new Promise(res=>{ mapnote.textContent="Loading "+st+" 2020 precinct results...";
     const s=document.createElement("script"); s.src="../data/precincts2020/"+st.replace(/ /g,"_")+".js?v="+window.BUILD;
-    s.onload=()=>{ if(!(st in PREC20)) PREC20[st]=null; res(); }; s.onerror=()=>{ PREC20[st]=null; res(); }; document.head.appendChild(s); }));
+    const xs=()=>{ const x=document.createElement("script"); x.src="data/x20/"+st.replace(/ /g,"_")+".js?v="+window.BUILD; x.onload=x.onerror=()=>{ M20[st]=null; delete M20[st]; res(); }; document.head.appendChild(x); };
+    s.onload=()=>{ if(!(st in PREC20)) PREC20[st]=null; if(PREC20[st]) xs(); else res(); }; s.onerror=()=>{ PREC20[st]=null; res(); }; document.head.appendChild(s); }));
 }
 function ensure20(){ const m=ym(), st=state.value; if(!st||!heatOn) return Promise.resolve();
   const want=heatLevel==="precinct"||fillTop; if(!want) return Promise.resolve();
   return Promise.all([m!=="2024"?loadPrec20(st):null, m!=="2020"?loadPrecincts(st):null, m!=="2024"?loadE2020():null]); }
 window.ensure20=ensure20;
-const M20={};
+const M20={}, X20={}; window.__x20=function(st,m){ X20[st]=m; };
+// 2020 side of a 2024 precinct: the same-name-and-shape 2020 precinct, else the area-weighted estimate from v2/data/x20 (marked ≈, build 1533)
 function match20(r){ const st=r.__st||state.value, P=PREC20[st]; if(!P) return null;
   if(!M20[st]){ const mp=new Map(); P.forEach(o=>mp.set(o[0]+"|"+o[1]+"|"+o.__h,o)); M20[st]=mp; }
-  const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); return o&&o[4]&&r[4]?o:null; }
+  const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); if(o&&o[4]&&r[4]) return o;
+  if(!r[4]) return null; if(r.__x20!==undefined) return r.__x20; const x=X20[st]&&X20[st][r[0]+"|"+r[1]]; let e=null; if(x&&x[2]){ e=[r[0],r[1],x[0],x[1],x[2]]; e.__est=true; } if(X20[st]) r.__x20=e; return e; }
 window.precFill=function(r){ const m=ym();
   if(m!=="delta") return r[4]?heatC(r[2],r[3],r[4]):"#d6d3d1";
   const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; };
 window.precNote=function(items){ const st=state.value, m=ym();
   if(m==="2020"){ if(!PREC20[st]) return "No 2020 precinct results joined for "+st+". Switch to counties or a district layer."; return fmtN(items.length)+" 2020 precincts shown. Source: "+(PREC20CREDIT[st]||""); }
   if(!PREC20[st]) return "No 2020 precinct results joined for "+st+", so there is no precinct-level change here. Use counties or a district layer.";
-  const n=items.filter(match20).length; return fmtN(n)+" of "+fmtN(items.length)+" precincts are the identical unit in 2020 and 2024 (same name and shape) and show the change; the rest are gray. District and county layers show the change everywhere both years have data."; };
+  const mm=items.map(match20), n=mm.filter(o=>o&&!o.__est).length, ne=mm.filter(o=>o&&o.__est).length; return fmtN(n)+" of "+fmtN(items.length)+" precincts are the identical unit in 2020 and 2024 (same name and shape)"+(ne?"; "+fmtN(ne)+" more show a ≈ 2020 estimate from the overlapping 2020 precincts (area-weighted)":"")+"; the rest are gray. District and county layers show the change everywhere both years have data."; };
 const _precHtml=precHtml;
 function yr3(a,yr){ return a&&a[2]?yrHtml(a,yr):"<b>"+yr+"</b> no votes reported<br>"; }
 precHtml=function(r){ const m=ym(); if(m==="2024") return _precHtml(r);
@@ -1475,7 +1478,7 @@ precHtml=function(r){ const m=ym(); if(m==="2024") return _precHtml(r);
   if(m==="2020") return h+yr3(r.slice(2,5),"2020")+(isPct()?"":"Total votes: "+fmtN(r[4]));
   const o=match20(r); if(!o) return h+yr3(r.slice(2,5),"2024")+"No same-shape 2020 precinct<br>Change: see districts/counties";
   const dm=((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4])*100;
-  return h+yr3(o.slice(2,5),"2020")+yr3(r.slice(2,5),"2024")+"<b>Change:</b> "+(dm>=0?"R +":"D +")+Math.abs(dm).toFixed(1)+" pts<br>Same precinct, both years"; };
+  return h+yr3(o.slice(2,5),"2020")+yr3(r.slice(2,5),"2024")+"<b>Change:</b> "+(dm>=0?"R +":"D +")+Math.abs(dm).toFixed(1)+" pts<br>"+(o.__est?"≈ 2020 estimated from the overlapping 2020 precincts (area-weighted)":"Same precinct, both years"); };
 // districts by year
 function okA(a){ return a&&a.tot&&a.cov>=0.5; }
 function mg(a){ return (a.rep-a.dem)/a.tot; }
@@ -1683,7 +1686,7 @@ function layoutSide(){ const t=$("barTime"); const top=(t.hidden?$("barGeo"):t).
 // area values
 function vals(a,yr){
   if(a.kind==="county"){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; const v=E&&E[a.d[0]+"|"+a.d[1]]; return v&&v[2]?{dem:v[0],rep:v[1],tot:v[2]}:null; }
-  if(a.kind==="precinct"){ const r=a.d; if(a.yr===yr) return r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; if(yr==="2020"){ const o=match20(r); return o?{dem:o[2],rep:o[3],tot:o[4]}:null; } return null; }
+  if(a.kind==="precinct"){ const r=a.d; if(a.yr===yr) return r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; if(yr==="2020"){ const o=match20(r); return o?(o.__est?{dem:o[2],rep:o[3],tot:o[4],est:true}:{dem:o[2],rep:o[3],tot:o[4]}):null; } return null; }
   const A=aggFor(a.kind,yr); const v=A&&A.get(a.d); return v&&v.tot&&v.cov>=0.5?v:null; }
 function aname(a){ return a.kind==="county"?a.d[1]:a.kind==="precinct"?precDisp(a.d.__st||state.value,a.d[0],a.d[1]):(a.kind==="ushouse"?"District ":"")+dname(a.kind,a.d); }
 function candLines(a,long){ const out=[], two=yrsOn().length>1;
@@ -2561,18 +2564,18 @@ $("gq").addEventListener("input",e=>{ if(!e.target.value) fitOrgSel(); });
 $("gq").addEventListener("search",e=>{ if(!e.target.value) fitOrgSel(); });
 // ===== Alaska: official Division of Elections totals (no county results exist) =====
 let AKL=null; const loadAK=()=>AKL||(AKL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/ak.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); }));
-function akHD(name){ const n=parseInt(name,10); const v=window.__ak&&__ak.hd2024[String(n)]; return v||null; }
-function akSen(name){ const L0=String(name).replace(/^0+/,""); const i=L0.charCodeAt(0)-65; if(i<0||i>19) return null; const a=akHD(String(2*i+1)), b=akHD(String(2*i+2)); return a&&b?[a[0]+b[0],a[1]+b[1],a[2]+b[2]]:null; }
-function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
+function akHD(name,yr){ const n=parseInt(name,10); const T=window.__ak&&__ak["hd"+(yr||"2024")]; const v=T&&T[String(n)]; return v||null; }
+function akSen(name,yr){ const L0=String(name).replace(/^0+/,""); const i=L0.charCodeAt(0)-65; if(i<0||i>19) return null; const a=akHD(String(2*i+1),yr), b=akHD(String(2*i+2),yr); return a&&b?[a[0]+b[0],a[1]+b[1],a[2]+b[2]]:null; }
+function akVals(k,d,yr){ if(!window.__ak) return null; if(k==="ushouse") return __ak["state"+yr]; if(yr==="2020"){ /* 2020 in 2024 House districts: VEST precincts area-weighted (estimates, build 1533) */ if(k==="statehouse") return akHD(d[1],"2020"); if(k==="senate") return akSen(d[1],"2020"); return null; } if(yr!=="2024") return null; return k==="statehouse"?akHD(d[1]):k==="senate"?akSen(d[1]):null; }
 const _df15=distFill; distFill=function(k,d){ if(d[0]!=="Alaska"||!window.__ak) return _df15(k,d); const m=ym(), a=akVals(k,d,"2024"), b=akVals(k,d,"2020"), mg=v=>(v[1]-v[0])/v[2];
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; };
-const _v15=vals; vals=function(a,yr){ const ak_k=a&&a.kind==="natcd"?(a.tk||"ushouse"):a&&a.kind; if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(ak_k)){ const v=akVals(ak_k,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } if(a.kind==="county"&&a.d&&a.d[0]==="Alaska"&&yr==="2024"&&window.__ak&&__ak.boro2024){ const v=__ak.boro2024[a.d[1]]; if(v&&v[2]) return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
+const _v15=vals; vals=function(a,yr){ const ak_k=a&&a.kind==="natcd"?(a.tk||"ushouse"):a&&a.kind; if(a.d&&a.d[0]==="Alaska"&&window.__ak&&["ushouse","senate","statehouse"].includes(ak_k)){ const v=akVals(ak_k,a.d,yr); return v?{dem:v[0],rep:v[1],tot:v[2]}:null; } if(a.kind==="sum"&&a.st==="Alaska"&&window.__ak){ const v=__ak["state"+yr]; return {dem:v[0],rep:v[1],tot:v[2]}; } if(a.kind==="county"&&a.d&&a.d[0]==="Alaska"&&(yr==="2024"||yr==="2020")&&window.__ak&&__ak["boro"+yr]){ const v=__ak["boro"+yr][a.d[1]]; if(v&&v[2]) return {dem:v[0],rep:v[1],tot:v[2]}; } return _v15(a,yr); };
 const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r) return {dem:r.dem+v[0],rep:r.rep+v[1],tot:r.tot+v[2]}; return r; } return _sv15(a,yr); };
 // national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
 const akGroup=L.layerGroup().addTo(map);
 function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
-  const fc0=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]); const BO=__ak.boro2024||{};
-  (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>{ const bv=BO[d.nm]; const fc=(m==="2024"&&bv&&bv[2])?heatC(bv[0],bv[1],bv[2]):fc0; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup); }); }); }
+  const fc0=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]); const BO=__ak.boro2024||{}, BO20=__ak.boro2020||{};
+  (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>{ const bv=m==="2020"?BO20[d.nm]:BO[d.nm], b0=BO20[d.nm]; const fc=m==="delta"?((bv&&bv[2]&&b0&&b0[2])?deltaColor(mg(bv)-mg(b0)):fc0):(bv&&bv[2])?heatC(bv[0],bv[1],bv[2]):fc0; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup); }); }); }
 const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
 // solid statewide shading when the whole lower 48 fits; state lines on top
@@ -2646,7 +2649,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
 // bubble: area name on top; district type active -> only district fills (no precinct/town/county fills beneath)
-{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const ak=d&&(d[0]==="Alaska"||d.__st==="Alaska")&&!["ushouse","senate","statehouse","sum"].includes(a.kind==="natcd"?(a.tk||"ushouse"):a.kind)&&ym()!=="2020"; const ef=d&&d[5]; if((ak||ef==="est"||(ef==="e24"&&ym()!=="2020"))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
+{ const _cl17=candLines; candLines=function(a){ const l=_cl17(a); let nm=""; try{ nm=areaLabel(a); }catch(e){ nm=aname(a); } const r=[t32(nm)].concat(l); try{ const d=a&&a.d; const akk=a.kind==="natcd"?(a.tk||"ushouse"):a.kind; const ak=d&&(d[0]==="Alaska"||d.__st==="Alaska")&&akk!=="sum"&&(akk==="ushouse"?ym()!=="2020":true); const ef=d&&d[5]; if((ak||ef==="est"||(ef==="e24"&&ym()!=="2020")||(ef==="e20"&&ym()!=="2024")||(a.kind==="precinct"&&ym()!=="2024"&&window.__v2&&window.__v2.match20&&(window.__v2.match20(d)||{}).__est))&&l.length) r.push("≈ estimate"); }catch(e){} return r; }; }
 { const _clT=candLines; candLines=function(a){ const l=_clT(a); return (window.__topicOn&&!window.__topicOn())?l.slice(0,1):l; }; }
 // auto precincts: when one district (active type, or county when none) spans >=half the view width, fill precincts in view; district outline on top, no fill
 const _nd17=natDetail;
@@ -3210,8 +3213,8 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   function iconFor(a){ try{ if(a.kind==="ctry") return '<img alt="" src="img/flags/c/'+a.iso+'.png?v='+(window.BUILD||1)+'">'; if(a.kind==="prov") return window.__sil?window.__sil(a.p[6]):""; if(a.kind==="sum") return stImg(a.st);
       const d=a.d||[]; const st=a.kind==="precinct"?(d.__st||state.value):((typeof d[0]==="string"&&(STATE_FILES[d[0]]||d[0]==="District of Columbia"))?d[0]:state.value); return stImg(st); }catch(e){ return ""; } }
   window.__estRow=a=>{ if(!a||!a.d) return false; if(a.split) return true; const yrs=yrsNow(), has24=yrs.indexOf("2024")>=0; const k=a.kind;
-    if(["ushouse","senate","statehouse","schools"].includes(k)){ if(a.d[0]==="Alaska") return ym()!=="2020"; const r=window.__dsRow&&window.__dsRow(k,a.d); if(!r) return false; return r.est==="est"||(r.est==="e24"&&has24); }
-    if(k==="county"&&a.d[0]==="Alaska") return has24; if(k==="towns"){ try{ const y=ym(); const ys=y==="delta"?["2020","2024"]:[y==="2020"?"2020":"2024"]; return ys.some(yy=>{ const v=vals(a,yy); return v&&v.est; }); }catch(e){ return false; } } return false; };
+    if(["ushouse","senate","statehouse","schools"].includes(k)){ if(a.d[0]==="Alaska"&&k!=="schools") return k==="ushouse"?ym()!=="2020":true; const r=window.__dsRow&&window.__dsRow(k,a.d); if(!r) return false; return r.est==="est"||(r.est==="e24"&&has24)||(r.est==="e20"&&yrs.indexOf("2020")>=0); }
+    if(k==="county"&&a.d[0]==="Alaska") return true; if(k==="precinct"&&yrs.indexOf("2020")>=0){ try{ const o=window.__v2.match20(a.d); return !!(o&&o.__est); }catch(e){ return false; } } if(k==="towns"){ try{ const y=ym(); const ys=y==="delta"?["2020","2024"]:[y==="2020"?"2020":"2024"]; return ys.some(yy=>{ const v=vals(a,yy); return v&&v.est; }); }catch(e){ return false; } } return false; };
   function rowHtml(a){ let nmx=String(aname(a)); if(a.nat) nmx=(typeof ABBR!=="undefined"&&ABBR[a.d[0]]||a.d[0])+"-"+String(a.d[1]).padStart(2,"0"); try{ if(LA.lv&&LA.lv.id==="states"&&typeof ABBR!=="undefined"&&ABBR[nmx]) nmx=ABBR[nmx]; }catch(e){} let estM=false; try{ estM=window.__estRow?window.__estRow(a):false; }catch(e){} let h="<b class='rn"+(estM?" est":"")+"' title='"+esc(a.nat?a.d[0]+" district "+a.d[1]:String(aname(a)))+(estM?" (≈ estimate)":"")+"'><span class='oic'>"+iconFor(a)+"</span><span class='nmx'>"+esc(t32(nmx))+"</span>"+(estM?"<span class='estm' aria-label='estimate'>≈</span>":"")+"</b>"; if(NOTOP(a)||(window.__topicOn&&!window.__topicOn())) return h;
     const yrs=yrsNow(), two=yrs.length>1, bar=window.chartMode==="bar";
     { const yr=yrs[yrs.length-1], v=vals(a,yr); if(!v) return h+"<span class='sbw nd'>no data</span>"; if(two&&!vals(a,"2020")){ /* 2020 side not available (e.g. precinct boundaries changed, no same-shape 2020 precinct): show the real 2024 value, 2020 marked n/a, never an empty row */ const pp=parts(v), rl=pp.rep>=pp.dem, mx=rl?pp.rep:pp.dem; return h+"<span class='sbw nd' title=\"2020 not available for this row (no same-shape 2020 precinct); 2024 value shown\">'20 n/a \u00b7 '24 "+(rl?"R ":"D ")+(numMode==="pct"?(mx/(v.tot||1)*100).toFixed(1)+"%":fmtN(Math.round(mx)))+"</span>"; }

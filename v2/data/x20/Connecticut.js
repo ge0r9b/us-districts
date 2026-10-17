@@ -1,0 +1,1 @@
+window.__x20&&window.__x20("Connecticut",{});
