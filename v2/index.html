@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171542";</script>
+<script>window.BUILD="202610171543";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3347,8 +3347,8 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
     const ot=document.getElementById("orgTypes"); if(ot&&!ot.hidden&&!state.value) return ot;
     return sheet.querySelector(".foldlist ol, ol.nl:not(#orgTypes):not(#orgGlobal):not(#orgCountry)"); }
   function ensureRow(){ const h=host(); document.querySelectorAll("li.la-row").forEach(x=>{ if(x.parentElement!==h) x.remove(); }); if(!h) return; const lv=level(); if(!lv){ h.querySelectorAll("li.la-row").forEach(x=>x.remove()); return; }
-    let li=h.querySelector("li.la-row"); if(li&&li.dataset.l===lv.label){ if(h.firstElementChild!==li) h.prepend(li); return; } if(li) li.remove();
-    li=document.createElement("li"); li.className="lvrow flat oti la-row"; li.dataset.l=lv.label; li.innerHTML='<span class="oic">'+LIST_ICO+'</span><span class="nm"></span>'; li.querySelector(".nm").textContent=lv.label;
+    const qOn=()=>[...document.querySelectorAll(".fsq input")].some(i=>i.value&&i.value.trim()); let li=h.querySelector("li.la-row"); if(li&&li.dataset.l===lv.label){ if(h.firstElementChild!==li) h.prepend(li); li.style.display=qOn()?"none":""; return; } if(li) li.remove();
+    li=document.createElement("li"); li.className="lvrow flat oti la-row"; li.dataset.l=lv.label; li.innerHTML='<span class="oic">'+LIST_ICO+'</span><span class="nm"></span>'; li.querySelector(".nm").textContent=lv.label; if(qOn()) li.style.display="none";
     const act=()=>{ if(window.__laGo&&Date.now()-window.__laGo<700) return; window.__laGo=Date.now(); window.__laBusy=1; enter().catch(()=>{}).finally(()=>{ setTimeout(()=>{ window.__laBusy=0; },300); const fix=()=>{ if(LA.on&&(document.body.classList.contains("foldfs")||!sheet.hidden)){ try{ closeSheet(); }catch(e){} document.body.classList.remove("foldfs"); } if(LA.on&&!document.querySelector("#listView .lvrow.la")){ try{ render(); }catch(e){} } }; [60,300,900,2000].forEach(t=>setTimeout(fix,t)); }); };
     li.style.cursor="pointer"; li.style.touchAction="manipulation"; let ty=null; li.addEventListener("touchstart",e=>{ ty=e.touches[0].clientY; },{passive:true});
     li.addEventListener("touchend",e=>{ if(ty===null) return; const d=Math.abs((e.changedTouches[0]||{clientY:ty}).clientY-ty); ty=null; if(d>10) return; e.preventDefault(); e.stopPropagation(); act(); },{passive:false});
