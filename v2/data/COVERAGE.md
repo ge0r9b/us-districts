@@ -520,10 +520,14 @@ Counts from the data files (`/workspace/db/tools/cov.py`, `qc.py`, `flags.py` on
 | Census 2020 TIGER VTDs (CO, SD), county subdivisions (MA, MI, VT) | shapes / town identification | Public domain |
 | Tennessee Comptroller, Office of Local Government voting districts (tnmap.tn.gov) | TN precinct shapes (build 1536) | Public data |
 
-## Builds 202610171540 to 202610171544 (Oct 17, 2026): display fixes, no data change
+## Builds 202610171540 to 202610171548 (Oct 17, 2026): display fixes, no data change
 
 - 1540: the Alaska borough map in 2020 and change mode was gray/faint because only the 2024 borough results (`__ak.boro2024`, ≈) were merged into the county table. The 2020 borough results (`__ak.boro2020`, ≈, same VEST-precinct aggregation) are now merged into `ELECTION2020` when it loads. The national total now counts Alaska once (the state total), not boroughs plus state; before this, the 2024 national sum counted Alaska's ~338k votes twice. Coverage numbers above are unchanged. Test: `tests/ak-2020.py`.
 - 1541: back chevron in the open menu centred on the first menu row (UI only).
 - 1542: tapping the District of Columbia row in the states list kept the map on the US (the list re-entered and refitted); it now stays on DC (UI only).
 - 1543: the 'List all …' row now hides on the first search keystroke in the filter list (UI only).
 - 1544: change-mode pop-ups now keep the '≈ estimate' line for estimated areas (Alaska boroughs, est/e24/e20 districts, ≈ 2020 precincts); before, only the 2020 and 2024 pop-ups showed it.
+- 1545: list-view back chevron sized like the sort glyph and on the same line; list scrolls under both with no band (UI only).
+- 1546: list charts (bar, pie, line, change bars) drop per-row candidate photos; candidates float in a left-edge column like the map (ranked, tap toggles, rank-number badge when no photo); # mode bars always drawn to a common vote scale; sort follows the selected candidate(s) (% share, # votes, change = displayed net); chevron half-way to the left edge and hidden while the geo field/search is open (UI only). Test: `tests/list-thumbs-sort.py`.
+- 1547: chevron and sort glyph raised by half the empty band between the list-area top and the chart/clock button centre line (UI only).
+- 1548: address search: looser address detection, input normalisation, Census one-line -> Census street/city/state/ZIP -> OpenStreetMap Nominatim, suggestions from both; ZIP row; address rows in the universal search; typed geo-field results are nationwide whatever state/county is selected. 20 of 22 test addresses in 14 states + DC resolve (misses: '4 Yawkey Way, Boston' (street renamed), 'PO Box 123, Juneau AK' (no geocoder handles PO boxes; it falls back to ZIP 99801)). Test: `tests/addr-search.py` (needs network).

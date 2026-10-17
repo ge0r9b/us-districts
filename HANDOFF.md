@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (updated at build 202610171544, Oct 17, 2026)
+# US Districts: HANDOFF (updated at build 202610171548, Oct 17, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -30,7 +30,7 @@ A static map and results viewer for US elections (President 2020 and 2024, plus 
 **Back button:** only exists when the history stack is non-empty; shown in institution/geo filter lists and list views. Style (Instagram-style reference, build 1538): thin plain black chevron, no circle or background, same size as the glyphs in the round right-column buttons, 44 px tap target, light mode only. List view position: centre on the left icon/thumbnail column (x about 27); vertically on the chart button's centre line when the time row is expanded, on the clock button's when collapsed. Filter lists: at the sort-control slot.
 **District type:** a selected type must show its district list (not the consolidated total) in list view; numbers must equal the map pop-ups (same tallies, same area weighting and ≈ rules); map mode unchanged.
 
-## 4. Status at build 1544
+## 4. Status at build 1548
 Fixed and live (verified by the tests named; run them yourself, section 6):
 | Item | Build | Test |
 |---|---|---|
@@ -53,6 +53,10 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | DC row in the states list keeps the map on DC | 1542 | `list-all-tap2.py` |
 | 'List all …' row hidden from the first search keystroke | 1543 | `state_abbr_search.py` |
 | Change-mode pop-ups keep '≈ estimate' (`window.__isEst` shared with candLines) | 1544 | `est-popup.py` (2020/2024); change mode checked by hand |
+| Chevron sized/aligned with the sort glyph, no band | 1545 | `filter-back.py` |
+| List-chart candidate column (bar/pie/line/change bars), # bars to common scale, candidate-aware sort, chevron half-way to edge, hidden in geo field/search | 1546 | `list-thumbs-sort.py`, `chart-modes-list.py`, `filter-back.py` |
+| Chevron + sort glyph raised by half the band above the chart/clock centre line | 1547 | `filter-back.py` |
+| Address search (Census one-line -> Census components -> Nominatim, ZIP row, universal-search address rows, nationwide typed results) | 1548 | `addr-search.py` (network) |
 | Unisearch two-row rule, sovereign/incorporated wording, geo silhouettes, editable scope row, ≈ marks in list rows, 12 gray districts filled | 1519–1527 | `unisearch.py`, `ctx-edit.py`, `geo-icons.py`, `est-list.py` |
 
 **Still open / known gaps (be honest about these):**
