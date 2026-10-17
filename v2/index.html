@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171540";</script>
+<script>window.BUILD="202610171541";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3010,7 +3010,7 @@ $("crumbs").addEventListener("click",()=>{ if(document.body.classList.contains("
   btn.addEventListener("pointerdown",e=>e.preventDefault()); btn.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); back(); });
   let sentinel=0, ign=0;
   const sync=()=>{ const w=vis();
-    try{ if(B().contains("foldfs")){ const g=$("barGeo").getBoundingClientRect(); document.documentElement.style.setProperty("--bbTop",Math.round(g.bottom+2)+"px"); } }catch(e){}
+    try{ if(B().contains("foldfs")){ const g=$("barGeo").getBoundingClientRect(); const fr=document.querySelector(".folds .lvrow"), rr=fr&&fr.getBoundingClientRect(); document.documentElement.style.setProperty("--bbTop",(rr&&rr.height>0&&rr.top>=g.bottom-1&&rr.top<g.bottom+80?Math.round(rr.top+rr.height/2-11):Math.round(g.bottom+2))+"px"); } }catch(e){}
     // list view: chevron centred on the left icon column (x) and on the chart button (time row expanded) or the clock button (collapsed) centre line (y); glyph = the round buttons' glyph size
     try{ if(w&&!B().contains("foldfs")){ const ds=document.documentElement.style, tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), exp=tb&&tb.classList.contains("on"), ref=exp&&cb&&cb.getBoundingClientRect().height>0?cb:tb;
         if(ref){ const r=ref.getBoundingClientRect(); if(r.height>0) ds.setProperty("--bbCy",(Math.round((r.top+r.height/2)*2)/2)+"px"); }
