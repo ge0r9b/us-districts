@@ -417,3 +417,46 @@ Counts are taken from the data files (`tools` scripts named below; audit scripts
 | VEST 2020 General Election precinct results and boundaries, Harvard Dataverse doi:10.7910/DVN/K7760H (AK, CT, and replacement counties in 35 states) | 2020 precincts, Alaska 2020, Connecticut 2020 | CC BY 4.0 (credit kept in each file) |
 | Idaho Secretary of State, 2024 general results by precinct (raw_races_general.xlsx) | Idaho 2024, Owyhee and Idaho counties | Public government record |
 | Census 2020 cartographic county boundaries (cb_2020_us_county_500k) | county assignment of VEST precincts, Alaska borough split | Public domain |
+
+## Build 202610171534 (Oct 17, 2026): 2024 gray legislative districts from official precinct returns; WI and CA 2024 precinct files rebuilt; gray schools
+
+Counts are taken from the data files (audit scripts `/workspace/db/tools/cov.py` and `qc.py` on the box).
+
+### Coverage before → after (2024; 2020 unchanged)
+| Layer | 2024 before (1533) | 2024 after (1534) | 2020 | Total |
+|---|---|---|---|---|
+| US House | 435 | 435 | 435 | 435 |
+| State senate | 1,934 | **1,941** | 1,942 | 1,942 |
+| State house | 4,849 | **4,876** | 4,882 | 4,882 |
+| School districts | 13,034 | **13,118** | 13,182 | 13,208 |
+| Counties whose 2024 precincts sum to 90-110 % of official | 2,998 (101 outside, 13 none) | **3,026** (73 outside, 13 none) | 3,112 | 3,112 |
+
+Rows flagged as estimates after this build (2024 or 2020 side): US House 73, state senate 570 (`est` 509, `e24` 29, `e20` 32), state house 1,349 (`est` 1,187, `e24` 53, `e20` 109), schools 4,933 (`est` 4,730, `e24` 124, `e20` 79).
+
+### What was done
+1. **Oklahoma** (`tools/fix_ok2024.py`): MEDSL 2024 official precinct returns (github.com/MEDSL/2024-elections-official, `ok24.csv`, CC0; compiled from the Oklahoma State Election Board) joined to the State Election Board precinct boundaries (CSA/INCOG service `map11.incog.org/arcgis11wa/rest/services/PCT_OK_State/FeatureServer/0`, fields `PCT_CEB`, `St_house`, `St_senate`, `Uscong`). All 77 county sums equal the official county totals; every precinct's House/Senate/CD attribute agrees with the district it voted in. Oklahoma County (290 precincts) and Tulsa County (251) replace the old NYT rows (which summed to 77 % / 56 % of official); the countywide early/absentee pseudo-precincts (559999, 729999) are allocated to the county's precincts in proportion to in-person votes (≈ precinct figures, exact county totals). **All OK US House (5), Senate (48) and House (101) rows are now exact precinct sums**; a district that holds only part of Oklahoma or Tulsa County is marked `e24` (allocated absentee). This filled the 6 gray senate and 11 gray house districts and corrected wrong old values (e.g. HD 073: Harris 8,843, Trump 1,488; it was shown R-leaning). Schools: 11 gray filled, and 30 school districts in Oklahoma/Tulsa counties re-estimated from the new precincts (`fill_gray.py --redo`).
+2. **Vermont** (`tools/fix_vt2024.py`): MEDSL `vt24.csv` (CC0; from the Vermont SOS election archive, electionarchive.vermont.gov/elections/search/date:2024-11-05). Reporting units are towns, split towns are reported per district part, so **all 109 House and 16 Senate districts are now exact** (10 were gray: C22, C23, C24, F-3, F-8, R-4 to R-7, WAO). 4 gray town school districts filled with the town total.
+3. **Wyoming, Arkansas, Georgia, Missouri, Tennessee** (`tools/dist_from_returns.py`, generic): MEDSL official precinct returns (CC0). A precinct that lies in one House district counts exactly; a precinct split between districts is apportioned by the votes cast in each part's legislative race (the Maine rule) and the district is marked `e24`; such an estimate is written only if the apportioned votes are ≤ 30 % of the district. County D/R checked within 0.1 % of official. Senate districts not up in 2024 are reached through House→Senate nesting (≥ 98 % of the House district's area). Filled: WY SD 015, HD 019, HD 055; AR HD 085; GA HD 118, HD 135; TN HD 023 (and the other districts of these states rewritten from the same returns where the result is exact or replaces an estimate; GA and MO agree with the previous exact values within about 0.03 pts).
+4. **Wisconsin 2024 precincts** (`tools/build_wi2024.py`): the whole file is now the **Wisconsin Legislative Technology Services Bureau "2024 Election Data with 2025 Wards"** (services1.arcgis.com/FDsAtKBk8Hy4cAH0/arcgis/rest/services/2024_Election_Data_with_2025_Wards/FeatureServer/0; "open and publicly available data"). LTSB disaggregates the official WEC reporting-unit results to wards by population, so ward figures are ≈ but **Harris and Trump equal the official total in all 72 counties** (the NYT-merged file had 20 counties outside 90-110 %). 6,819 wards, named "City/Village/Town of X Ward n". 23 of 24 gray school districts filled (area-weighted, `e24`); `v2/data/x20/Wisconsin.js` rebuilt.
+5. **California 2024 precincts** (`tools/build_ca2024.py`): the whole file is now the **Statewide Database (UC Berkeley Law, California's redistricting database)** G24 Statement of Vote by SR precinct (statewidedatabase.org/pub/data/G24/state/state_g24_sov_data_by_g24_srprec.zip) with the SR precinct shapes (statewidedatabase.org/pub/data/G24/c<fips>/srprec_<fips>_g24_v01_shp.zip). 24,202 precincts (6,154 with 0 votes kept so empty land counts as covered), names are the SR precinct codes. County Harris/Trump sums are 99.4-100 % of official (SWDB suppresses a few tiny precincts as "***" for voter privacy; 462 votes in Orange/San Diego belong to units without a shape). This replaces the NYT rows in 27 CA counties (CA no longer uses NYT data in the precinct layer) and closes the 6 CA counties outside 90-110 %. **All 46 gray CA school districts filled** (area-weighted, `e24`); `v2/data/x20/California.js` rebuilt.
+6. `tools/fill_gray.py`: new `--redo ST:County,…` (re-estimate a state's districts touched by replaced counties) and `--only <layers>`.
+
+### Still gray after this build, and why
+- **2024 state senate (1): AR 006.** Not up in 2024; its House districts do not nest in it and 28,298 votes are in precincts whose district is unknown. Needs the AR SOS precinct boundaries (gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/11) matched to the precinct names in the returns.
+- **2024 state house (6): WY 054, MO 156** (apportioned share 31 % / 47 %, over the 30 % rule); **LA 057, MS 115, VA 089, AL 004** (no legislative race in 2024, so split precincts cannot be apportioned by race; Census 2020 VTDs do not match the 2024 precincts, e.g. St. John the Baptist 29 VTDs vs 36 precincts).
+- **School districts 2024 (90):** SD 26 (vote-center counties such as Brown, Brookings, Hughes, Yankton report by vote center, not by area; Lawrence, Pennington and Stanley have partial precinct data), ME 14 (unorganized territories and plantations reported together with towns, e.g. "Brownville/Twps"), MO 9, VT 8 (unorganized gores with no reporting unit), AK 5 (area-weighting rejected), AL/AR/CO/KY 3 each, MS/MT/NY/OH/OR/WY 2 each, HI/NJ/TX/WI 1 each (WI Sturgeon Bay: 88 % cover). Cause: 2024 precinct cover under 90 % or counties outside 50-110 % of official.
+- **2024 precinct files outside 90-110 % of official: 73 counties** (TN 9, MO 8, OR 6, AL/AR/VT/VA 5, CO/GA/WY 4, OH 3 …), 13 with none (SD 10, GA Butts, MA Nantucket, MS Issaquena). Vermont's precinct layer was not rebuilt (its districts are exact from the town returns).
+- **Observation, not changed:** in OK, KS and TX the older unflagged school values differ from the area-weighted estimate by a median 3-12 % in total votes; they come from earlier passes and were left as they are.
+
+### Blocked
+- UF Election Lab / VEST 2024 precinct files need a login: https://election.lab.ufl.edu/dataset/ok-2024-precinct-level-election-results/ (not needed; Oklahoma done from official returns).
+- Ohio 2024 precinct results need a browser download (SOS site), unchanged.
+- SWDB terms page (statewidedatabase.org/terms.html) returns 404 today; the data are public downloads credited to the Statewide Database. Confirm the terms before commercial use.
+
+### Sources and licences added in this build
+| Source | Used for | Licence / terms |
+|---|---|---|
+| MIT Election Data + Science Lab, 2024-elections-official (github.com/MEDSL/2024-elections-official) | OK, VT, WY, AR, GA, MO, TN 2024 district results | CC0 (compiled from official state returns) |
+| Oklahoma State Election Board precinct boundaries (CSA/INCOG ArcGIS service PCT_OK_State) | OK precinct shapes and district attributes | Public government data |
+| Wisconsin LTSB, 2024 Election Data with 2025 Wards | WI 2024 precincts | Open public data (LTSB, WEC, county land information offices) |
+| Statewide Database (UC Berkeley Law), G24 SOV by SR precinct + SR precinct shapes | CA 2024 precincts | Public download, cite "Statewide Database, UC Berkeley"; terms to confirm before commercial use |

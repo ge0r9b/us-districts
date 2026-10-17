@@ -320,19 +320,19 @@ As in section 6. Candidate thumbnails (photo squares the size of the flag icon) 
 1. **Boundaries:** current (2024) Census TIGER/Line districts, counties and places; VEST and NYT precinct shapes; Natural Earth for the world.
 2. **2020:** VEST 2020 precincts, area-weighted into current districts. County results from tonmcg. The 2020 precinct display layer comes from MEDSL (CC0) joined to Census 2020 VTDs.
 3. **2024:** official county totals for districts made of whole counties. Elsewhere, precincts are area-weighted. QC per county: precinct sums must be 70–100% of the official total and cover at least 70% of the county's area. Precincts are scaled per party to the official county total.
-4. **Special cases:** Alaska uses official Division of Elections results, with absentee and early ballots allocated by House district (estimates). Maine House and Senate use official SOS town results. South Dakota legislative districts use OpenElections precinct results. Texas uses the Texas Legislative Council VTD returns (CC BY 4.0), and North Carolina uses official NC SBE precinct results. The TX/NC change is in the latest local commit `3fdc690`, which is not pushed yet.
+4. **Special cases:** Alaska uses official Division of Elections results, with absentee and early ballots allocated by House district (estimates). Maine House and Senate use official SOS town results. South Dakota legislative districts use OpenElections precinct results. Texas uses the Texas Legislative Council VTD returns (CC BY 4.0), and North Carolina uses official NC SBE precinct results. Since build 1534: Oklahoma, Vermont, Wyoming, Arkansas, Georgia, Missouri and Tennessee 2024 legislative districts come from official precinct returns (MEDSL 2024-elections-official, CC0; Oklahoma joined to State Election Board precinct boundaries); split precincts are apportioned by the votes cast in each part's legislative race (≈, only when ≤ 30 % of the district). The Wisconsin 2024 precinct layer is the LTSB ward file (official results disaggregated to wards, exact county totals) and California's is the Statewide Database SOV by SR precinct. The TX/NC change is in the latest local commit `3fdc690`, which is not pushed yet.
 5. **Flags:** rows produced by area weighting or allocation carry `est`, shown as ≈ (an approximately-equal sign).
 6. **Validation:** against 18,827 districts with known results, median total error is 0.71% and median Republican-share error is 0.06 points. For the fill rules, against 2,280 districts, median R-share error is 0.05 points and p90 is 0.41 points.
 7. **Never fabricate.** A district that fails QC stays gray. Examples: VA SD25, LA SD2/19, TN HD21/23, OR SD29, and 28 SD school districts.
 
-### 9.2 Coverage (computed from the data files on Oct 14, 2026)
+### 9.2 Coverage (computed from the data files on Oct 17, 2026, build 1534)
 
 | Layer | Districts | 2024 with results | 2020 with results | Rows flagged estimate |
 |---|---|---|---|---|
 | US House | 435 | 435 (100%) | 435 (100%) | 73 |
-| State senate | 1,942 | 1,923 (99.0%) | 1,941 (99.9%) | 521 |
-| State house | 4,882 | 4,828 (98.9%) | 4,852 (99.4%) | 1,244 |
-| School districts | 13,208 | 12,997 (98.4%) | 12,817 (97.0%) | 4,723 |
+| State senate | 1,942 | 1,941 (99.9%) | 1,942 (100%) | 570 |
+| State house | 4,882 | 4,876 (99.9%) | 4,882 (100%) | 1,349 |
+| School districts | 13,208 | 13,118 (99.3%) | 13,182 (99.8%) | 4,933 |
 
 ### 9.3 Sources and licenses
 
@@ -346,6 +346,10 @@ As in section 6. Candidate thumbnails (photo squares the size of the flag icon) 
 | OpenElections (South Dakota; some PA counties) | 2024 precinct results | **Needs checking** | Check |
 | Texas Legislative Council (Capitol Data Portal) | TX 2024 precincts | CC BY 4.0 | Yes, with credit |
 | NC State Board of Elections | NC 2024 precincts (67 of 100 counties) | Public record | Yes |
+| MEDSL 2024-elections-official (github.com/MEDSL/2024-elections-official) | OK, VT, WY, AR, GA, MO, TN 2024 legislative districts | CC0 | Yes |
+| Oklahoma State Election Board precinct boundaries (CSA/INCOG ArcGIS) | OK 2024 precinct shapes (Oklahoma and Tulsa counties) | Public government data | Yes |
+| Wisconsin LTSB 2024 Election Data with 2025 Wards | WI 2024 precincts | Open public data | Yes |
+| Statewide Database, UC Berkeley Law (G24 SOV by SR precinct + shapes) | CA 2024 precincts | Public download, credit required; terms page offline (404) on Oct 17, 2026 | Confirm terms |
 | Alaska Division of Elections; Maine SOS | AK precincts and districts; ME legislative districts | Public record | Yes |
 | Natural Earth | Countries, Canadian provinces | Public domain | Yes |
 | Wikimedia Commons official portraits | Candidate photos | Public domain (US government works) | Yes |
@@ -385,7 +389,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 | 15 | Single 5.5 MB `index.html` (about 0.35 MB of code, the rest inlined data) built from many layered overrides (`const _x=f; f=function(){…}`) and `setInterval` polling (200–1500 ms) for layout and sync | Tech debt |
 | 16 | The legacy v1 app (`/index.html`, `US-districts.html`, `test/`) is still in the repo | Clean-up |
 | 17 | Texas precinct switching timing is not yet measured or tuned | Not started |
-| 18 | 18 gray legislative districts (OR, VA, LA, AL, TN, MS) are not yet closed | Not started |
+| 18 | 2024 gray legislative districts down to 7 (AR SD 006; WY 054, MO 156, LA 057, MS 115, VA 089, AL 004); 90 gray school districts (SD 26, ME 14 …); reasons in COVERAGE.md | Partly done (1534) |
 | 19 | NYT-to-official source replacement is not done. The NYT credit stays until it is. OpenElections South Dakota license is unconfirmed | Not started |
 | 20 | 2016 presidential data: prepared offline only (not live, not in the time filter). Canada is parked | Parked / low priority |
 | 21 | Safari/WebKit behavior (list jumping, bar values, menu header) is untested here; all checks run in Chromium (desktop and phone sizes) | Unverified |
@@ -415,6 +419,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 
 | Date | Change |
 |---|---|
+| Oct 17, 2026 | Build 1534: 2024 gray legislative districts filled from official precinct returns (MEDSL CC0: OK, VT, WY, AR, GA, MO, TN; all OK and VT districts now exact); Oklahoma and Tulsa County precincts from the State Election Board; Wisconsin 2024 precincts from LTSB wards and California 2024 precincts from the Statewide Database; 84 gray school districts filled (CA 46, WI 23, OK 11, VT 4); still gray: senate 1, house 6, schools 90 (COVERAGE.md) |
 | Oct 17, 2026 | Build 1533: 2020 complete for all counties (Connecticut added) and precinct files within 90-110 % of official everywhere (VEST 2020, CC BY 4.0); Alaska 2020 boroughs/House/Senate (≈); ≈ 2020 for re-drawn 2024 precincts (area-weighted, `v2/data/x20/`); gray districts filled with ≈ (`e20`/`e24`/`est`); Idaho 2024 Owyhee and Idaho County from the Idaho SOS; remaining gaps in COVERAGE.md |
 | Oct 15, 2026 | Build 1531: 2020 precinct coverage completed for 40 states from VEST 2020 (CC BY 4.0), QC against official county totals; remaining gaps in COVERAGE.md |
 | Oct 15, 2026 | Build 1530: delta sort by net magnitude; # bars to scale; county tier for school/state-house/state-senate lists; Arizona 2020 precincts (VEST, CC BY 4.0); `'20 n/a` rows; readable line rows (1529) |
