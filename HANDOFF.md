@@ -1,4 +1,4 @@
-# US Districts: HANDOFF (updated at build 202610171539, Oct 17, 2026)
+# US Districts: HANDOFF (updated at build 202610171541, Oct 17, 2026)
 
 Read this first, then `docs/us-districts-spec.md` (full spec, also as `.docx`) and `v2/data/COVERAGE.md` (data coverage, sources, licenses).
 
@@ -30,7 +30,7 @@ A static map and results viewer for US elections (President 2020 and 2024, plus 
 **Back button:** only exists when the history stack is non-empty; shown in institution/geo filter lists and list views. Style (Instagram-style reference, build 1538): thin plain black chevron, no circle or background, same size as the glyphs in the round right-column buttons, 44 px tap target, light mode only. List view position: centre on the left icon/thumbnail column (x about 27); vertically on the chart button's centre line when the time row is expanded, on the clock button's when collapsed. Filter lists: at the sort-control slot.
 **District type:** a selected type must show its district list (not the consolidated total) in list view; numbers must equal the map pop-ups (same tallies, same area weighting and ≈ rules); map mode unchanged.
 
-## 4. Status at build 1539
+## 4. Status at build 1541
 Fixed and live (verified by the tests named; run them yourself, section 6):
 | Item | Build | Test |
 |---|---|---|
@@ -48,6 +48,8 @@ Fixed and live (verified by the tests named; run them yourself, section 6):
 | Arkansas SD 006 (≈) and five AR counties' precincts from official returns + AR GIS shapes (`tools/fix_ar2024_sd6.py`, `tools/fix_county2024.py`) | 1535 | data suites in section 6 |
 | 20 more 2024 counties from official returns on unchanged 2020 precinct boundaries; Vermont schools = sums of official town returns; MO HD 156 ≈; Hawaii DOE = state total | 1536-1537, 1539 | data suites in section 6 |
 | Back chevron restyle (Instagram-style, aligned to icon column and chart/clock button) | 1538 | `filter-back.py` (position, size, no background) |
+| Alaska boroughs coloured in 2020/change mode (2020 borough ≈ results merged into ELECTION2020); national total counts Alaska once | 1540 | `ak-2020.py` |
+| Back chevron in the open menu centred on the first menu row | 1541 | `filter-back.py` |
 | Unisearch two-row rule, sovereign/incorporated wording, geo silhouettes, editable scope row, ≈ marks in list rows, 12 gray districts filled | 1519–1527 | `unisearch.py`, `ctx-edit.py`, `geo-icons.py`, `est-list.py` |
 
 **Still open / known gaps (be honest about these):**
