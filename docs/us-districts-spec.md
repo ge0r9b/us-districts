@@ -325,14 +325,14 @@ As in section 6. Candidate thumbnails (photo squares the size of the flag icon) 
 6. **Validation:** against 18,827 districts with known results, median total error is 0.71% and median Republican-share error is 0.06 points. For the fill rules, against 2,280 districts, median R-share error is 0.05 points and p90 is 0.41 points.
 7. **Never fabricate.** A district that fails QC stays gray. Examples: VA SD25, LA SD2/19, TN HD21/23, OR SD29, and 28 SD school districts.
 
-### 9.2 Coverage (computed from the data files on Oct 17, 2026, build 1535)
+### 9.2 Coverage (computed from the data files on Oct 17, 2026, build 1539)
 
-| Layer | Districts | 2024 with results | 2020 with results | Rows flagged estimate |
-|---|---|---|---|---|
-| US House | 435 | 435 (100%) | 435 (100%) | 73 |
-| State senate | 1,942 | 1,942 (100%) | 1,942 (100%) | 571 |
-| State house | 4,882 | 4,876 (99.9%) | 4,882 (100%) | 1,349 |
-| School districts | 13,208 | 13,120 (99.3%) | 13,182 (99.8%) | 4,939 |
+| Layer | Districts | 2024 with results (exact / ≈) | 2020 with results (exact / ≈) |
+|---|---|---|---|
+| US House | 435 | 435 (362 / 73) | 435 (362 / 73) |
+| State senate | 1,942 | 1,942 (1,403 / 539) | 1,942 (1,401 / 541) |
+| State house | 4,882 | 4,877 (3,636 / 1,241) | 4,882 (3,586 / 1,296) |
+| School districts | 13,208 | 13,124 (8,245 / 4,879) | 13,182 (8,387 / 4,795) |
 
 ### 9.3 Sources and licenses
 
@@ -389,7 +389,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 | 15 | Single 5.5 MB `index.html` (about 0.35 MB of code, the rest inlined data) built from many layered overrides (`const _x=f; f=function(){…}`) and `setInterval` polling (200–1500 ms) for layout and sync | Tech debt |
 | 16 | The legacy v1 app (`/index.html`, `US-districts.html`, `test/`) is still in the repo | Clean-up |
 | 17 | Texas precinct switching timing is not yet measured or tuned | Not started |
-| 18 | 2024 gray legislative districts down to 6 (state house WY 054, MO 156, LA 057, MS 115, VA 089, AL 004; every senate district has results since 1535); 88 gray school districts (SD 26, ME 14 …); reasons in COVERAGE.md | Partly done (1535) |
+| 18 | 2024 gray legislative districts down to 5 (state house AL 004, LA 057, MS 115, VA 089, WY 054); 84 gray school districts in 2024 (SD 26, ME 14, VT 8, MO 8 …) and 26 in 2020; reasons per item in COVERAGE.md (need official precinct shapes, or structurally impossible: vote centers, combined unorganized territories, uninhabited gores) | Partly done (1539) |
 | 19 | NYT-to-official source replacement is not done. The NYT credit stays until it is. OpenElections South Dakota license is unconfirmed | Not started |
 | 20 | 2016 presidential data: prepared offline only (not live, not in the time filter). Canada is parked | Parked / low priority |
 | 21 | Safari/WebKit behavior (list jumping, bar values, menu header) is untested here; all checks run in Chromium (desktop and phone sizes) | Unverified |
@@ -419,6 +419,7 @@ The commercial-readiness tracker lives in `COVERAGE.md` ("Sources and licenses")
 
 | Date | Change |
 |---|---|
+| Oct 17, 2026 | Builds 1536-1539: 2024 precincts from official returns for 31 more counties (GA, SD, TN, VA in 1536; AL, CO, GA, MA, MI, MO, NE, SD, TN, VT in 1537) on 2020 boundaries of unchanged precincts, Census VTDs/towns or the TN Comptroller layer; Vermont school districts as exact sums of official town returns; MO HD 156 ≈; Hawaii DOE = statewide total; back button restyled as a thin Instagram-style chevron aligned with the icon column and the chart/clock button (1538) |
 | Oct 17, 2026 | Build 1535: Arkansas SD 006 from official returns + Arkansas GIS precinct and Senate boundaries (≈, 4.6 % apportioned); Franklin, Greene, Saline, Sevier and Stone counties (AR) rebuilt from official returns and state precinct shapes (`tools/fix_county2024.py`); 2 gray AR schools filled; all 1,942 state senate districts now have 2024 results |
 | Oct 17, 2026 | Build 1534: 2024 gray legislative districts filled from official precinct returns (MEDSL CC0: OK, VT, WY, AR, GA, MO, TN; all OK and VT districts now exact); Oklahoma and Tulsa County precincts from the State Election Board; Wisconsin 2024 precincts from LTSB wards and California 2024 precincts from the Statewide Database; 84 gray school districts filled (CA 46, WI 23, OK 11, VT 4); still gray: senate 1, house 6, schools 90 (COVERAGE.md) |
 | Oct 17, 2026 | Build 1533: 2020 complete for all counties (Connecticut added) and precinct files within 90-110 % of official everywhere (VEST 2020, CC BY 4.0); Alaska 2020 boroughs/House/Senate (≈); ≈ 2020 for re-drawn 2024 precincts (area-weighted, `v2/data/x20/`); gray districts filled with ≈ (`e20`/`e24`/`est`); Idaho 2024 Owyhee and Idaho County from the Idaho SOS; remaining gaps in COVERAGE.md |
