@@ -11,8 +11,9 @@ county and party to the official county totals (data/election<year>.js). Rows fi
 Also validates the estimator on districts that already have exact values (flag None) and prints the errors.
 --redo ST:County A,County B also re-estimates districts of ST that already have a value when the named counties'
 precincts were replaced (their old values came from the old precinct file): a district is redone when those counties'
-precincts cover >= 1 % of it; it keeps its old value if the estimate fails the rules above.
-usage: fill_gray.py <repo> <year> [--validate N] [--dry] [--redo ST:County,County] [--only uscd,ussldu,ussldl,ussch]"""
+precincts cover >= 1 % of it; it keeps its old value if the estimate fails the rules above. --redo-exact-min F: an unflagged (exact) district is
+redone only when the replaced counties cover >= F of it (default 0.01; its old sum came from the incomplete file).
+usage: fill_gray.py <repo> <year> [--validate N] [--dry] [--redo ST:County,County [--redo-exact-min F]] [--only uscd,ussldu,ussldl,ussch]"""
 import sys,os,json,re,random,collections,statistics
 from shapely.geometry import Polygon,MultiPolygon
 from shapely.strtree import STRtree
@@ -23,14 +24,15 @@ REDO=None
 if '--redo' in sys.argv:
   a=sys.argv[sys.argv.index('--redo')+1]; REDO=(a.split(':')[0],set(a.split(':')[1].split(',')))
 ONLY=set(sys.argv[sys.argv.index('--only')+1].split(',')) if '--only' in sys.argv else None
-def redo_hit(st,D):
+REDO_EXACT=float(sys.argv[sys.argv.index('--redo-exact-min')+1]) if '--redo-exact-min' in sys.argv else 0.01
+def redo_hit(st,D,exact=False):
   if not REDO or st!=REDO[0]: return False
   T,G,V,sc,TB,BAD=prec(st); a=0.0
   for i in T.query(D):
     if V[i][0] in REDO[1]:
       try: a+=G[i].intersection(D).area
       except Exception: pass
-  return a/D.area>=0.01
+  return a/D.area>=(REDO_EXACT if exact else 0.01)
 E=json.loads(re.search(r'=(\{.*\})',open(f"{repo}/data/election{year}.js").read(),re.S).group(1))
 def ldw(p):
   s=open(p).read(); i=s.index('[',s.index('(')); j=s.rindex(']')+1; return s,i,j,json.loads(s[i:j])
@@ -102,7 +104,7 @@ for f in FL:
     if len(r)>YI and r[YI]:
       if not (REDO and r[0]==REDO[0]): continue
       D=mp(r[2],1000)
-      if D is None or D.is_empty or not redo_hit(r[0],D): continue
+      if D is None or D.is_empty or not redo_hit(r[0],D,exact=not (len(r)>5 and r[5] in ('e24','est','e20'))): continue
     D=D or mp(r[2],1000)
     if D is None or D.is_empty: left.append((r[0],r[1],'no shape')); continue
     v,why=estimate(r[0],D)

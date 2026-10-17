@@ -460,3 +460,24 @@ Rows flagged as estimates after this build (2024 or 2020 side): US House 73, sta
 | Oklahoma State Election Board precinct boundaries (CSA/INCOG ArcGIS service PCT_OK_State) | OK precinct shapes and district attributes | Public government data |
 | Wisconsin LTSB, 2024 Election Data with 2025 Wards | WI 2024 precincts | Open public data (LTSB, WEC, county land information offices) |
 | Statewide Database (UC Berkeley Law), G24 SOV by SR precinct + SR precinct shapes | CA 2024 precincts | Public download, cite "Statewide Database, UC Berkeley"; terms to confirm before commercial use |
+
+## Build 202610171535 (Oct 17, 2026): Arkansas Senate district 6; five Arkansas counties from official precinct returns
+
+Counts from the data files (`/workspace/db/tools/cov.py`, `qc.py`).
+
+| Layer | 2024 before (1534) | 2024 after (1535) | 2020 | Total |
+|---|---|---|---|---|
+| US House | 435 | 435 | 435 | 435 |
+| State senate | 1,941 | **1,942** | 1,942 | 1,942 |
+| State house | 4,876 | 4,876 | 4,882 | 4,882 |
+| School districts | 13,118 | **13,120** | 13,182 | 13,208 |
+| Counties whose 2024 precincts sum to 90-110 % of official | 3,026 (73 outside, 13 none) | **3,031** (68 outside, 13 none) | 3,112 | 3,112 |
+
+### What was done
+1. **Arkansas SD 006** (`tools/fix_ar2024_sd6.py`): the SD 6 race *was* on the 2024 ballot (uncontested, Matt McKee), so the build 1534 note "not up in 2024" was wrong; it stayed gray because units with no Senate race could not be placed without shapes. Now: MEDSL `ar24.csv` (CC0, from the Arkansas SOS) joined to the official **Arkansas GIS Office precinct boundaries** (`gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/11`, ELECTION_PRECINCTS) and **Senate districts** (layer 34). Garland and Saline counties: 41 precincts lie wholly in SD 6 (exact), 49 outside, 4 split (Garland 023, 061; Saline 08, 20), apportioned by their SD 6 race votes relative to the county's SD 6 undervote rate (73.5 % Garland, 81.3 % Saline), capped at the whole precinct. Apportioned votes are 4.6 % of the district, so the 2024 value is **≈ (flag `e24`)**: Harris 12,058, Trump 26,174, total 39,089 (2020: 12,852 / 26,529 / 40,371). Every returns unit with an SD 6 race matched a precinct shape that overlaps SD 6, and every shape overlapping SD 6 has returns; both county sums equal the official totals.
+2. **Arkansas Franklin, Greene, Saline, Sevier, Stone counties** (new generic tool `tools/fix_county2024.py`): the old NYT-merged rows summed to 84-90 % of official. Replaced by MEDSL returns joined to the same Arkansas GIS Office precinct shapes (join by precinct code, name, "A/B" names unioned, or number). All 119 returns units matched, every county's Harris/Trump equals the official total, **precinct figures exact** (no pooled units). Note: some shapes were edited after the election (Saline 14 and 15 in Aug 2026, a few Franklin and Stone shapes in 2025); names and counts still match the 2024 returns one to one, so votes are exact but those boundaries may differ slightly from Nov 2024. `v2/data/x20/Arkansas.js` rebuilt.
+3. **Schools:** `fill_gray.py --redo Arkansas:<the 5 counties> --redo-exact-min 0.10 --only ussch` re-estimated 21 school districts touched by the replaced counties (≈, `e24`/`est`) and filled 2 gray ones (Bauxite, Benton). New option `--redo-exact-min`: an unflagged district is re-estimated only if the replaced counties cover ≥ 10 % of it (so a 1 % sliver no longer turns an exact value into an estimate).
+
+### Still gray after this build, and why
+- **2024 state house (6):** WY 054 (the official Wyoming SOS precinct-by-precinct file reports Fremont 05-1, 1,648 ballots, as one unit across HD 33/34/54; apportioned share 31 %, over the 30 % rule; no finer official source), MO 156 (Taney County reports 9,130 absentee votes countywide; 47 % of the district would be apportioned; Missouri SOS precinct files are sold, not published), LA 057, MS 115, VA 089, AL 004 (unchanged, see build 1534).
+- **Schools 2024 (88), counties outside 90-110 % (68) and with none (13):** see build 1534 list, minus the Arkansas counties above.
