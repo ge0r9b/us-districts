@@ -1,0 +1,88 @@
+== 390x844 14:55:26 load 4.57
+390x844 {"timing": {"ttfb": 88, "html_done": 126, "dcl": 801, "load": 812, "fcp": 256, "lcp": 472, "first_vector_map": 585, "first_tile": 457, "first_map": 585, "longtasks_ms": 391, "longest_task": 149, "heapMB": 56}, "bytes_initial": {"enc": 1585132, "dec": 7792449, "n": 19}, "bytes_pa": {"enc": 3653811, "dec": 13317408, "n": 80}, "pan": {"frames": 277, "avg_ms": 16.8, "p95_ms": 16.8, "max_ms": 33.3, "janky_gt25": 3, "dropped": 3, "fps": 59.4}, "lat": {"open_institution": {"median": 18.8, "max": 79.8, "n": 5}, "all_states": {"median": 36.6, "max": 117.6, "n": 5}, "time_open": {"median": 27.4, "max": 27.4, "n": 1}, "time_step": {"median": 51.0, "max": 60.1, "n": 10}, "chart_menu": {"median": 14.2, "max": 35, "n": 10}, "chart_line": {"median": 13.5, "max": 24.5, "n": 5}, "chart_bar": {"median": 17.7, "max": 28.5, "n": 5}, "time_close": {"median": 20.1, "max": 20.1, "n": 1}, "drill_PA": {"median": 28.1, "max": 31.9, "n": 5}, "back": {"median": 46.1, "max": 52.5, "n": 4}, "type_menu": {"median": 20.3, "max": 20.3, "n": 1}, "ushouse_pick": {"median": 73.6, "max": 121.6, "n": 5}, "ushouse_deselect": {"median": 36.0, "max": 38.5, "n": 4}}, "notes": [], "errors": []}
+== 375x667 14:58:12 load 3.83
+Traceback (most recent call last):
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 134, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 109, in main
+    xy=await pg.evaluate(PAXY); await pg.wait_for_timeout(500)
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 9421, in evaluate
+    await self._impl_obj.evaluate(
+        expression=expression, arg=mapping.to_impl(arg)
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 474, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Target crashed 
+== 320x568 15:02:05 load 82.93
+Traceback (most recent call last):
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 134, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 81, in main
+    if not await center('li.la-row'): await tap('#bGeo','open_institution',1200)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 51, in center
+    return await pg.evaluate("s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundingClientRect();if(!r.width||r.bottom<0||r.top>innerHeight)return null;return [r.left+r.width/2,r.top+r.height/2]}",sel)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 9421, in evaluate
+    await self._impl_obj.evaluate(
+        expression=expression, arg=mapping.to_impl(arg)
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 474, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Target crashed 
+== ipad820x1180 15:04:26 load 87.22
+ipad820x1180 {"timing": {"ttfb": 101, "html_done": 156, "dcl": 576, "load": 1255, "fcp": 296, "lcp": 620, "first_vector_map": 993, "first_tile": 583, "first_map": 993, "longtasks_ms": 759, "longest_task": 167, "heapMB": 58}, "bytes_initial": {"enc": 1585031, "dec": 7792449, "n": 19}, "bytes_pa": {"enc": 3654191, "dec": 13315587, "n": 79}, "pan": {"frames": 222, "avg_ms": 21.2, "p95_ms": 33.4, "max_ms": 83.3, "janky_gt25": 53, "dropped": 61, "fps": 47.1}, "lat": {"open_institution": {"median": 22.8, "max": 78.9, "n": 5}, "all_states": {"median": 34.5, "max": 116.9, "n": 5}, "time_open": {"median": 31.7, "max": 31.7, "n": 1}, "time_step": {"median": 44.5, "max": 63.2, "n": 10}, "chart_menu": {"median": 10.8, "max": 31.4, "n": 10}, "chart_line": {"median": 10.9, "max": 19, "n": 5}, "chart_bar": {"median": 19.4, "max": 25.8, "n": 5}, "time_close": {"median": 22.7, "max": 22.7, "n": 1}, "drill_PA": {"median": 14.1, "max": 88.4, "n": 5}, "back": {"median": 49.0, "max": 64.2, "n": 4}, "type_menu": {"median": 25.4, "max": 25.4, "n": 1}, "ushouse_pick": {"median": 68.7, "max": 74.5, "n": 5}, "ushouse_deselect": {"median": 39.3, "max": 51.1, "n": 4}}, "notes": [], "errors": []}
+DONE
+-- rerun of crashed viewports
+== 375x667 15:07:25 load 8.52
+375x667 {"timing": {"ttfb": 81, "html_done": 128, "dcl": 458, "load": 684, "fcp": 240, "lcp": 556, "first_vector_map": 644, "first_tile": 445, "first_map": 644, "longtasks_ms": 267, "longest_task": 100, "heapMB": 54}, "bytes_initial": {"enc": 1585148, "dec": 7792449, "n": 19}, "bytes_pa": {"enc": 3654418, "dec": 13311945, "n": 77}, "pan": {"frames": 272, "avg_ms": 16.7, "p95_ms": 16.7, "max_ms": 33.4, "janky_gt25": 1, "dropped": 1, "fps": 59.8}, "lat": {"open_institution": {"median": 20.6, "max": 70.4, "n": 5}, "all_states": {"median": 37, "max": 103.7, "n": 5}, "time_open": {"median": 37.1, "max": 37.1, "n": 1}, "time_step": {"median": 40.7, "max": 57.5, "n": 10}, "chart_menu": {"median": 9.7, "max": 22.4, "n": 10}, "chart_line": {"median": 12.7, "max": 21.8, "n": 5}, "chart_bar": {"median": 11.6, "max": 22.5, "n": 5}, "time_close": {"median": 29.7, "max": 29.7, "n": 1}, "drill_PA": {"median": 12.1, "max": 16.1, "n": 5}, "back": {"median": 43.4, "max": 48.8, "n": 4}, "type_menu": {"median": 17.1, "max": 17.1, "n": 1}, "ushouse_pick": {"median": 72.3, "max": 94, "n": 5}, "ushouse_deselect": {"median": 36.6, "max": 47.3, "n": 4}}, "notes": [], "errors": []}
+== 320x568 15:10:10 load 4.97
+320x568 {"timing": {"ttfb": 68, "html_done": 109, "dcl": 750, "load": 791, "fcp": 244, "lcp": 496, "first_vector_map": 574, "first_tile": 471, "first_map": 574, "longtasks_ms": 404, "longest_task": 117, "heapMB": 54}, "bytes_initial": {"enc": 1585268, "dec": 7792449, "n": 19}, "bytes_pa": {"enc": 3656632, "dec": 13317408, "n": 80}, "pan": {"frames": 278, "avg_ms": 16.7, "p95_ms": 16.7, "max_ms": 16.8, "janky_gt25": 0, "dropped": 0, "fps": 60.0}, "lat": {"open_institution": {"median": 22.4, "max": 84.4, "n": 5}, "all_states": {"median": 44.3, "max": 92.7, "n": 5}, "time_open": {"median": 35.1, "max": 35.1, "n": 1}, "time_step": {"median": 42.3, "max": 76.9, "n": 10}, "chart_menu": {"median": 14.7, "max": 29.5, "n": 10}, "chart_line": {"median": 16.7, "max": 20.7, "n": 5}, "chart_bar": {"median": 22.1, "max": 34.4, "n": 5}, "time_close": {"median": 18.8, "max": 18.8, "n": 1}, "drill_PA": {"median": 18.9, "max": 73, "n": 5}, "back": {"median": 43.8, "max": 57.7, "n": 4}, "type_menu": {"median": 20.3, "max": 20.3, "n": 1}, "ushouse_pick": {"median": 68.5, "max": 76.5, "n": 5}, "ushouse_deselect": {"median": 39.7, "max": 42.8, "n": 4}}, "notes": [], "errors": []}
+DONE2

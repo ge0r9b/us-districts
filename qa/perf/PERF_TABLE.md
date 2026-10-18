@@ -27,6 +27,10 @@ Box is shared and was loaded (load avg 3-5) so treat single numbers as +/-30%.
 | 1582 (16b1393) | 375x667 | 1.58 / 7.79 | 3.65 / 13.31 | 714 | 733 | 651 | 108 | 94 / 237 (cold 237) | 111 / 333 (cold 333) | 16 / 24 | 13 / 16 | 90 / 242 | 66 / 85 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
 | 1582 (16b1393) | 320x568 | 1.58 / 7.79 | 3.65 / 13.32 | 796 | 843 | 620 | 120 | 74 / 261 (cold 261) | 100 / 242 (cold 242) | 15 / 24 | 16 / 19 | 102 / 278 | 54 / 73 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
 | 1582 (16b1393) | ipad820x1180 | 1.58 / 7.79 | 3.65 / 13.31 | 629 | 1017 | 638 | 167 | 146 / 191 (cold 191) | 116 / 347 (cold 347) | 19 / 33 | 14 / 87 | 106 / 134 | 69 / 89 | 44.5 fps, p95 33.4, max 83.3, dropped 73/209 |
+| 1584 (ae92b92) | 390x844 | 1.59 / 7.79 | 3.65 / 13.32 | 801 | 812 | 585 | 149 | 37 / 118 (cold 118) | 74 / 122 (cold 47) | 14 / 24 | 28 / 32 | 46 / 52 | 51 / 60 | 59.4 fps, p95 16.8, max 33.3, dropped 3/277 |
+| 1584 (ae92b92) | 375x667 | 1.59 / 7.79 | 3.65 / 13.31 | 458 | 684 | 644 | 100 | 37 / 104 (cold 104) | 72 / 94 (cold 41) | 13 / 22 | 12 / 16 | 43 / 49 | 41 / 58 | 59.8 fps, p95 16.7, max 33.4, dropped 1/272 |
+| 1584 (ae92b92) | 320x568 | 1.59 / 7.79 | 3.66 / 13.32 | 750 | 791 | 574 | 117 | 44 / 93 (cold 93) | 68 / 76 (cold 53) | 17 / 21 | 19 / 73 | 44 / 58 | 42 / 77 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1584 (ae92b92) | ipad820x1180 | 1.59 / 7.79 | 3.65 / 13.32 | 576 | 1255 | 993 | 167 | 34 / 117 (cold 117) | 69 / 74 (cold 55) | 11 / 19 | 14 / 88 | 49 / 64 | 44 / 63 | 47.1 fps, p95 33.4, max 83.3, dropped 61/222 |
 
 Raw JSON: raw/b<build>-live-<viewport>.json (per-try latencies, top-10 resources, notes).
 
@@ -91,3 +95,13 @@ Run 2026-10-18 13:55-14:06 EDT, load avg 2-4.5, same tools/baseline.py and selec
 - Startup same or better: DCL 756/714/796/629, first map 677/651/620/638, longest task 108-167. Bytes +0.2% (1.58 / 7.79 MB initial, 3.65 / 13.31 MB PA session).
 - Pan: phones 59.6-60 fps; iPad 44.5 fps, 73 of 209 dropped (1579: 51.4 / 42; within the 1575-1579 range of 45-51).
 - Proposals: none landed. PACK/XREF still inline (lines 686/691), ?v=+BUILD in 43 places, enter() still ends with a synchronous fit() (line 3755).
+
+## 1584 (ae92b92) vs 1582 (16b1393) and 1576 (615fa5a)
+Run 2026-10-18 14:55-15:13 EDT, same tools/baseline.py. Box load 4-9, except a spike to 80+ from other jobs at 15:02-15:06: the first 375 and 320 runs crashed (Target crashed) and were rerun at load 5-8.5; the iPad run ran during the spike, so its startup numbers (first map 993, load 1255) are not trustworthy. 1583 is the WebKit back-chevron fix; 1584 is the speed build (patch E idle aggFor warm-up, patch D deferred fit, rowOf map, chartDim class instead of body:has).
+- **US House pick fixed, better than 1576**: median 74/72/68/69 ms (390/375/320/iPad; 1582: 102/111/100/116, 1576: 102/101/78/81). Worst pick (first tap) 122/94/76/74 (1582: 260/333/242/347, 1576: 346/272/374/353). Deselect 51/41/42/44.
+- **Back fixed, better than 1576**: median 46/43/44/49 (1582: 99/90/102/106, 1576: 53/76/46/57), max 52/49/58/64 (1582: 283/242/278/134).
+- **All States much faster**: median 37/37/44/34 (1582: 96/94/74/146), first tap 118/104/93/117 (1582: 232/237/261/191).
+- Time step median 51/41/42/44 (1582: 57/66/54/69). Line pick and drill-in within noise (drill 390 median 28 vs 16, max 32, under 100 ms).
+- Bytes +0.2% (index.html +2.4 KB gz). Startup within noise at phones (DCL 801/458/750, first map 585/644/574). Pan unchanged (phones 59-60 fps, iPad 47 fps, 61 dropped of 222).
+- Proposals: **#3 (deferred fit, patch D) and #4 (aggFor idle warm-up, patch E) landed**. #1 (PACK/XREF out of index.html, still 5.95 MB raw) and #2 (data versioned by content; window.BUILD still 47 refs) not landed.
+- QA-007 All States (238-380 ms): **no longer reproduces** (first tap 93-118 ms). QA-007 US House pick (205-528 ms): **no longer reproduces** (first tap 74-122 ms, median 68-74). QA-041 Line pick: still fixed (median 11-17). Worth WebKit confirmation by QA.
