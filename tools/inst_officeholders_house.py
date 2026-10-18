@@ -7,8 +7,8 @@ Outputs (data-v3/inst/, one row per seat x term):
   officeholders_house_current.csv  Clerk snapshot (vacancies included), unit_vintage cd119
   officeholders_house_2024.csv     119th Congress as elected Nov 2024: congress-legislators terms starting 2025-01-03,
                                    unit_vintage cd119; Clerk bioguide/party cross-check
-  officeholders_house_2020.csv     117th Congress as elected Nov 2020 (terms starting 2021-01-03), unit_vintage cd116;
-                                   unit_geoid EMPTY, join_status=pending_geo_2020 until geo's 2020 GEOID tables land
+  officeholders_house_2020.csv     117th Congress as elected Nov 2020 (terms starting 2021-01-03), unit_vintage cd116,
+                                   unit_geoid = cd116 GEOID joined to data-v3/geo/ushouse_2020.csv
 Join: statedistrict (Clerk; AQ = American Samoa) / congress-legislators (state, district) -> data-v3/geo/ushouse.csv
 geoid by (state, 2-digit code); at-large 00; DC -> 1198. No name joins. Territories other than DC have no data-v3
 unit (v2 draws no territories): join_status=no_v3_unit.
@@ -24,12 +24,29 @@ CLERK_URL = "https://clerk.house.gov/xml/lists/MemberData.xml"
 CL_URL = "https://github.com/unitedstates/congress-legislators"
 
 G116 = {}; gaz116 = None
+# data-v3/geo/ushouse_2020.csv (geo lane): each v2 (2024-plan) row paired with its same-code 116th-Congress district,
+# with overlap shares both ways; 'unpaired_2020' = a 2020 district no v2 row points to
+V2_2020 = collections.defaultdict(list); IN_2020 = set()
+def load_2020(repo):
+    for r in csv.DictReader(open(os.path.join(repo, "data-v3/geo/ushouse_2020.csv"))):
+        IN_2020.add(r["geoid_2020"])
+        if r["geoid_2024"]: V2_2020[r["geoid_2020"]].append(r)
+CT_NOTE = ("; Connecticut: TIGER 2020 and the 116th-Congress files use the 8 old counties (09001-09015), while data-v3 and v2 use the 9 "
+           "planning regions (09110-09190) in both years, so any county-level 2020 join goes town -> planning region via the TIGER 2022+ town "
+           "GEOIDs 091x0xxxxx (data-v3/geo/ALIGNMENT.md section 2); this district join is by code and is not affected")
+def note2020(g):
+    if not g: return ""
+    if g not in IN_2020: return "TIGER 2020 cd116 GEOID %s not in data-v3/geo/ushouse_2020.csv" % g
+    v = V2_2020.get(g)
+    if not v: return "unit is the 116th-Congress district %s; no v2 (2024-plan) row is paired with it (unpaired_2020 in data-v3/geo/ushouse_2020.csv)" % g
+    return "unit is the 116th-Congress district %s; v2 rows carrying its 2020 figures: %s (data-v3/geo/ushouse_2020.csv)" % (g, "; ".join(
+        "%s (%s, v2_in_2020 %s, 2020_in_v2 %s)" % (r["geoid_2024"], r["match"], r["v2_in_2020"], r["2020_in_v2"]) for r in v))
 def sha(p): return hashlib.sha256(open(p, "rb").read()).hexdigest()
 def iso(d): return "%s-%s-%s" % (d[:4], d[4:6], d[6:]) if d and len(d) == 8 else ""
 
 def main():
     global gaz116
-    a = sys.argv[1:]; repo = a[0]; gaz116 = a[a.index("--gaz116") + 1]; clerk = a[a.index("--clerk") + 1]; cl = a[a.index("--cl") + 1]; out = a[a.index("--out") + 1]
+    a = sys.argv[1:]; repo = a[0]; load_2020(repo); gaz116 = a[a.index("--gaz116") + 1]; clerk = a[a.index("--clerk") + 1]; cl = a[a.index("--cl") + 1]; out = a[a.index("--out") + 1]
     retrieved = a[a.index("--retrieved") + 1] if "--retrieved" in a else ""
     geo = {}; names = {}
     for r in csv.DictReader(open(os.path.join(repo, "data-v3/geo/ushouse.csv"))): geo[(r["state"], r["v2_name"])] = r["geoid"]
@@ -78,19 +95,21 @@ def main():
         for k in sorted(set(exp) | set(seats)):
             post, d = k; sd = ("AQ" if post == "AS" else post) + "%02d" % d
             if vint == "2024": g, js = join(post, d)
-            else: g, js = "", ("pending_geo_2020" if k in G116 and post != "PR" else "no_v3_unit")
+            else:
+                g = G116.get(k, "") if post != "PR" else ""
+                js = ("joined" if V2_2020.get(g) else "joined_unpaired_2020") if g in IN_2020 else "no_v3_unit"
             base = {"unit_geoid": g, "unit_vintage": uv, "join_status": js, "entity_id": "us-house", "seat": "", "statedistrict": sd,
                     "source": "unitedstates/congress-legislators (commit %s)" % commit, "source_url": CL_URL, "retrieved_at": retrieved,
                     "sha256": ysha, "license": "CC0 1.0"}
             if not seats.get(k):
-                rows.append(dict(base, status="vacant", note="no Representative term starting %s in congress-legislators (seat vacant when the Congress convened)" % start, source_id=""))
+                rows.append(dict(base, status="vacant", note="no Representative term starting %s in congress-legislators (seat vacant when the Congress convened)" % start + ("; " + note2020(G116.get(k, "")) if vint == "2020" else ""), source_id=""))
                 continue
             for p, t in seats[k]:
                 bid = p["id"]["bioguide"]; note = ""
                 if vint == "2024":
                     c = clerk_by.get(sd)
                     if c and c["person_id"] != "bioguide:" + bid: note = "Clerk %s now shows %s (%s)" % (pub, c["person_id"] or "vacant", c["note"] or "elected %s" % c["elected_date"])
-                if vint == "2020" and k in G116: note = "TIGER 2020 cd116 GEOID %s; join to data-v3 waits for geo's 2020 GEOID tables" % G116[k]
+                if vint == "2020": note = note2020(G116.get(k, "")) + (CT_NOTE if post == "CT" else "")
                 rows.append(dict(base, person_id="bioguide:" + bid, name=p["name"].get("official_full") or " ".join(x for x in (p["name"].get("first"), p["name"].get("last")) if x),
                                  party=t.get("party", ""), caucus=t.get("caucus", ""), status="elected", term_start=t["start"], term_end=t["end"], elected_date="",
                                  note=note, source_id=bid))
