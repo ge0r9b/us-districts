@@ -66,7 +66,7 @@ apart. Built: 1,264 = 22 Métropole (21 + Métropole de Lyon) + 14 CU + 229 CA +
 territorial; minus Lyon and the 11 EPT = 1,252. IGN still types 243100781 Le Grand Ouest Toulousain as a CC (DGCL: a CA since
 2025), hence CA 229 / CC 988 vs DGCL 230 / 987. The 4 communes in no EPCI carry `epci_siren` = `NR`.
 Communes associées/déléguées: 582 share their parent's INSEE code, so join on (code, type). INSEE COG 2026 lists 2,576; the 10
-IGN lacks (under parents 25390, 55012 Apremont-la-Forêt, 69208 Saint-Germain-Nuelles; 25390 is Pays-de-Montbenoît) are listed in README.md; IGN
+IGN lacks (under parents 25390 Pays-de-Montbenoît, 55012 Apremont-la-Forêt, 69208 Saint-Germain-Nuelles) are listed in README.md; IGN
 publishes no other layer with them.
 Overseas collectivités Saint-Barthélemy (977), Saint-Martin (978), Saint-Pierre-et-Miquelon (975) are in `fr_com_om.csv`, keyed
 by INSEE code, outside the 34,875 communes.

@@ -1023,3 +1023,33 @@ Gaps and approximations (none missing):
 Relation to v2: the app's `v2/data/canada.js` (Natural Earth 1:50m, 13 provinces) is unchanged and is still what v2 draws.
 The new layers do not replace it in v2: they are v3 data, about 15 MB gzipped each, too large for v2 drawing. A small display tier
 is proposed in `data-v3/geo/QUESTIONS.md` Q-G11. Join canada.js rows to `ca_pr` by code (QC ↔ 24 etc.), not name ("Québec" vs "Quebec").
+
+## United Kingdom, Germany, France boundaries for v3 (Oct 18, 2026, branch `data/geo`, no app/BUILD change)
+CSV indexes in `data-v3/geo/` (in git); GeoJSON regenerated into `../geo-data-raw/v3gb`, `v3de`, `v3fr` (sizes, sha256 and
+commands in `data-v3/geo/README.md`; vintages and keys in `data-v3/geo/FOREIGN_VINTAGES.md`).
+
+| layer | vintage | ours | official total |
+|---|---|---|---|
+| UK LAD (`gb_lad`) | ONS May 2026 BFC | 361 | 361 (E 296, S 32, W 22, NI 11) |
+| UK counties + unitaries (`gb_ctyua`) | ONS Dec 2025 BFC | 218 | 218 (21 counties, ONS CTY list) |
+| UK combined authorities (`gb_cauth`) | ONS Dec 2025 BFC | 15 | 15 |
+| UK parishes / communities / NCP (`gb_par`) | ONS May 2026 BFC | 11,542 | 10,464 + 878 + 200, equal to ONS PAR/NCP Apr 2026 code lists |
+| DE Länder (`de_lan`) | BKG VG250 01.01.2026 | 16 | 16 |
+| DE Kreise (`de_krs`) | same | 401 | 294 Landkreise + 107 kreisfreie Städte |
+| DE Gemeindeverbände (`de_vwg`) | same | 4,580 | no national total verified (1,202 Verbände + 3,378 verband-free units) |
+| DE Gemeinden (`de_gem`) | same | 10,939 | 10,747 Gemeinden (Destatis via secondary source) + 192 gemeindefreie Gebiete |
+| FR régions (`fr_reg`) | IGN ADMIN EXPRESS COG 2026 | 18 | 18 |
+| FR départements (`fr_dep`) | same | 101 | 101 |
+| FR EPCI (`fr_epci`) | same | 1,264 | 1,252 EPCI à fiscalité propre (DGCL) + Métropole de Lyon + 11 EPT |
+| FR communes (`fr_com`) | same | 34,875 | 34,875 (INSEE COG 2026) |
+| FR overseas collectivités (`fr_com_om`) | same | 3 | 3 (975, 977, 978) |
+| FR communes associées / déléguées (`fr_cad`) | same | 2,566 | 2,576 (INSEE COG 2026) |
+
+Gaps and approximations:
+- `fr_cad`: 10 COG 2026 communes déléguées/associées have no IGN polygon (parents 25390, 55012, 69208); IGN has no other layer with
+  them. Fall back to the parent commune (QUESTIONS Q-G12.3).
+- DE: VG250 01.01.2026 includes the 1 Jan 2026 changes (Hanau kreisfrei, 06415). DE totals checked against secondary sources
+  citing Destatis, because Destatis was unreachable; gemeindefreie Gebiete 192 vs 194 (de.wikipedia) not resolved.
+- UK: CTYUA/CAUTH Dec 2025 rebuilt from May 2026 LADs (differences from ONS polygons ≤ 0.15 %, coastline).
+- FR: IGN types 243100781 as CC (DGCL: CA). EPCI CA/CC split is 229/988 vs DGCL 230/987.
+- Geometry simplified with shared edges (UK 20 m, DE 10 m, FR 20 m), area error ≤ 0.15 %; all layers of a country nest exactly.

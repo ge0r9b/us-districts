@@ -179,3 +179,31 @@ see README "Canada, Statistics Canada 2021"). All counts equal StatCan's and Ele
    boundary adjustments and the 3 territories as "same"), not a legal-description comparison.
 6. **Institutions alignment hooks:** PR ↔ provincial governments (`pruid`), CD ↔ counties / regional municipalities / MRCs
    (`cduid`), CSD ↔ municipalities and First Nations reserves (`csduid`, `type` = CSD type such as CY, T, MÉ, RM, IRI), FED ↔ MPs.
+
+## Q-G12: UK, Germany and France layers (Oct 18, 2026), open points
+
+Built for the Governments crosswalk (vintages and keys in `FOREIGN_VINTAGES.md`; sources, counts, sha256 in `README.md`).
+1. **Join keys.** UK: GSS code (`LAD26CD`, `CTYUA25CD`, `CAUTH25CD`, `PARNCP26CD`). DE: ARS (12/9/5/2 digits); AGS in `de_gem.ags`.
+   FR: INSEE code (communes, départements, régions), SIREN (EPCI); `fr_cad` needs **(code, type)**, because 582 communes
+   déléguées share the INSEE code of their parent commune nouvelle.
+2. **Germany, 1 Jan 2026 changes (Governments bot: 8 entities, e.g. Hanau).** VG250 01.01.2026 carries them. Diffed against the
+   31.12.2025 edition: Hanau is Kreis 06415 (kreisfreie Stadt) and Gemeinde 064150000000 (was 064350014014); also Bönebüttel
+   (new ARS 010575785008), Dobitschen merged into Schmölln (160770043043), Kiliansroda / Kleinschwabhausen / Mechelroda gone,
+   6 gemeindefreie Gebiete dissolved (Sachsenwald, Buchholz, 4 Bavarian forests). Full list in README.md. Open: we only have the
+   Governments bot's count (8), not its list, so which of these 13 old / 3 new codes are its 8 is not confirmed. Any xwalk row
+   keyed to an old ARS must be remapped; our CSVs hold only 2026 codes.
+3. **France, 10 communes déléguées / associées missing.** IGN publishes these units in ADMIN EXPRESS COG, layer
+   `commune_associee_ou_deleguee`, now built as `fr_cad` (2,566 = 468 COMA + 2,098 COMD; FXX only). INSEE COG 2026 lists 2,576;
+   the same 10 are missing from IGN's layer: 25303, 25347, 25390, 25398, 25620 (COMD of 25390 Pays-de-Montbenoît), 55294, 55319,
+   55451 (COMA of 55012 Apremont-la-Forêt), 69144, 69208 (COMD of 69208 Saint-Germain-Nuelles). IGN's only download for them is
+   this layer, so there is no official polygon. **Proposal:** the crosswalk maps these 10 to their parent commune's polygon
+   (`fr_com` 25390 / 55012 / 69208) with a `parent_fallback` flag. Do not draw shapes for them by hand.
+4. **Mixed UK vintages.** CTYUA and CAUTH are December 2025 (the latest ONS publishes); LAD and PARNCP are May 2026. Same LAD codes
+   in both, and our CTYUA/CAUTH are unions of May 2026 LADs, so they nest; the published Dec 2025 polygons differ by ≤ 0.15 %
+   (coastline). Switch when ONS issues the 2026 editions.
+5. **E43 non-civil-parished areas** (200) are in `gb_par` so the coverage is complete; they have no parish council. Key
+   institutions only to E04 / W04.
+6. **Germany totals vs Destatis.** Destatis was unreachable from here (TLS reset / timeout), so DE totals are checked against
+   secondary sources citing Destatis. Gemeindefreie Gebiete: 192 in VG250 vs 194 on de.wikipedia (31.12.2025 edition had 198);
+   not resolved.
+7. **France EPCI type.** IGN still types 243100781 Le Grand Ouest Toulousain as a CC (DGCL: a CA since 2025). Kept as published.
