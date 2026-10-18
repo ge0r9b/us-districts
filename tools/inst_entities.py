@@ -1071,7 +1071,8 @@ for x in XW:
                 'share_of_entity_in_geoid': x['share_of_entity_in_geoid'],
                 # the GEOID is the record id inside the cited Census source (Gazetteer / TIGER / ANSI); empty for derived links
                 'source_record_id': x['geoid'] if srcs and (srcs[0] in (S_GEOJSON, S_ST, 'U.S. Census Bureau Gazetteer') or (srcs[0].startswith('U.S. Census Bureau,') and 'Gazetteer' in srcs[0])) else ''})
-XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid', 'source_record_id']
+XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid', 'source_record_id', 'load_group']
+for x in XW2: x['load_group'] = 2 if x['entity_id'] in LOCAL_IDS else 1   # entity_geoid: the group of its entity (all 1 today)
 xk = [(x['entity_id'], x['unit_layer'], x['geoid'], x['vintage']) for x in XW2]; assert len(xk) == len(set(xk))
 assert {x['entity_id'] for x in XW2} <= set(ids)
 with open(os.path.join(OUT, 'entity_geoid_xwalk.csv'), 'w', newline='', encoding='utf-8') as fh:
@@ -1221,6 +1222,7 @@ for l_ in BLINKS: l_['source_id'] = _bsid + (';' + _csid if l_.pop('_m') else ''
 with open(os.path.join(OUT, 'body_key_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, inst_bodies.GAPCOLS, lineterminator='\n'); w.writeheader(); w.writerows(BGAPS)
 with open(os.path.join(OUT, 'body_entity.csv'), 'w', newline='', encoding='utf-8') as fh:
+    assert not {l_['entity_id'] for l_ in BLINKS} & LOCAL_IDS, 'body_entity links a GB/DE/FR row (the manifest loads it as group 1)'
     w = csv.DictWriter(fh, inst_bodies.LINKCOLS, lineterminator='\n'); w.writeheader(); w.writerows(BLINKS)
 USED = set()
 for tbl in (rows, XW2, V2OUT, GAPS, BGAPS, BLINKS):
@@ -1363,8 +1365,8 @@ MANIFEST = [('enum_feed.csv', 'db', 1, '', 'lookup for entities.feed / pack feed
             ('source_sets.csv', 'db', 1, '', 'source_set -> its sources (ordered)'),
             ('entities.csv', 'db', 2, 'load_group', 'load_group 1 first; 2 behind the GB/DE/FR flag'), ('entity_relations.csv', 'db', 3, 'load_group', 'load_group 2 = either end is a GB/DE/FR row'),
             ('entity_images.csv', 'db', 3, 'load_group', ''), ('pack/entity_feed_map.csv', 'pack', '', '', 'feed id -> entity map; ships as a separate artifact, NOT loaded into Postgres (the DB keeps code_scheme / code on entities)'),
-            ('entity_gaps.csv', 'repo', '', '', 'build log of gaps; not in this load plan'), ('entity_geoid_xwalk.csv', 'repo', '', '', 'not in this load plan'),
-            ('entity_v2_rows.csv', 'repo', '', '', 'v2 / v1 back-links (holds v2_row; v2_key derivable); not in this load plan'), ('body_entity.csv', 'repo', '', '', 'not in this load plan'),
+            ('entity_gaps.csv', 'repo', '', '', 'build log of gaps; not in this load plan'), ('entity_geoid_xwalk.csv', 'db', 3, 'load_group', 'loads entity_geoid; load_group = its entity\'s group'),
+            ('entity_v2_rows.csv', 'repo', '', '', 'v2 / v1 back-links (holds v2_row; v2_key derivable); not in this load plan'), ('body_entity.csv', 'db', 3, '', 'all rows load_group 1 (bodies are US chambers / councils / courts; asserted at build)'),
             ('body_key_gaps.csv', 'repo', '', '', 'not in this load plan'), ('entities_summary.json', 'repo', '', '', 'build summary')]
 with open(os.path.join(OUT, 'load_manifest.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.writer(fh, lineterminator='\n'); w.writerow(['file', 'target', 'load_order', 'group_column', 'note']); w.writerows(MANIFEST)

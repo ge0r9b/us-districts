@@ -10,8 +10,8 @@ entity_relations.csv,db,3,load_group,load_group 2 = either end is a GB/DE/FR row
 entity_images.csv,db,3,load_group,
 pack/entity_feed_map.csv,pack,,,"feed id -> entity map; ships as a separate artifact, NOT loaded into Postgres (the DB keeps code_scheme / code on entities)"
 entity_gaps.csv,repo,,,build log of gaps; not in this load plan
-entity_geoid_xwalk.csv,repo,,,not in this load plan
+entity_geoid_xwalk.csv,db,3,load_group,loads entity_geoid; load_group = its entity's group
 entity_v2_rows.csv,repo,,,v2 / v1 back-links (holds v2_row; v2_key derivable); not in this load plan
-body_entity.csv,repo,,,not in this load plan
+body_entity.csv,db,3,,all rows load_group 1 (bodies are US chambers / councils / courts; asserted at build)
 body_key_gaps.csv,repo,,,not in this load plan
 entities_summary.json,repo,,,build summary

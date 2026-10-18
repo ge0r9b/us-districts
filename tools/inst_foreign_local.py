@@ -207,8 +207,8 @@ def integrate(L, ents, new_row):
     def parent_of(cc, r):
         p_ = parent_of_(cc, r)
         if corse_council and p_ == CORSE_AREA:
-            if r['entity_id'].startswith('fr-cog:com:'): st['corse_commune_parent_to_council'] += 1; return corse_council
-            st[f'corse_area_parent_kept|{r["subtype"]}'] += 1
+            # communes (ruling on 04227d3) and the intercommunal bodies (follow-up on 7b9a726): every FR unit under the area
+            st[f'corse_parent_to_council|{r["subtype"]}'] += 1; return corse_council
         return p_
     def parent_of_(cc, r):
         p, hops = r['parent_id'], []

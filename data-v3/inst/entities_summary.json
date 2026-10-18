@@ -69,7 +69,7 @@
   }
  },
  "built_from": {
-  "repo_head": "04227d30ef5e267e7573d04c79535ffc6b95edb6",
+  "repo_head": "7b9a726efc6b9a1a7848b8651b7d1eae4bd5e367",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -357,9 +357,9 @@
   "minted": 305
  },
  "country_layers": {
-  "corse_area_parent_kept|communaute_d_agglomeration": 2,
-  "corse_area_parent_kept|communaute_de_communes": 17,
-  "corse_commune_parent_to_council": 360,
+  "corse_parent_to_council|communaute_d_agglomeration": 2,
+  "corse_parent_to_council|communaute_de_communes": 17,
+  "corse_parent_to_council|commune": 360,
   "feed_id_area_only_shadowed": 2,
   "feed_id_roles_assigned": 2,
   "feed_id_two_targets": 1,

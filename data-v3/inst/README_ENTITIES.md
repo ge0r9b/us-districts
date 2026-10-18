@@ -106,7 +106,9 @@ crosswalk. GP/RE:
   sourced (commune → EPCI / EPT, UK council → combined authority); a `;`-list gives one relation per body.
 - Corse (ruling on 04227d3): the 360 communes' parent is the Collectivité de Corse council (`regional_authority:fr-94`, minted
   from the bot's code_xwalk insee_ctcd row, `county_powers`), which has an `area` relation to `subdivision:fr-20r`; the 19
-  Corse EPCIs keep the bot's parent `subdivision:fr-20r` (like the mainland EPCIs, which sit under their région area).
+  Corse intercommunal bodies are moved there too (follow-up on 7b9a726), by the same builder rule: every FR unit the bot
+  puts under `subdivision:fr-20r` gets the council as parent.
+- insee_dep:69 roles confirmed (Oct 18): Rhône `departmental_council` primary, Lyon `territorial_collectivity`.
 - GF / MQ / YT (ruling on 04227d3): the bot's mapping is kept (the collectivité unique is the territory row).
 
 ## Governments bot feed (tools/inst_govfeed.py)

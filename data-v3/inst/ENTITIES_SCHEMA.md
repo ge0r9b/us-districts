@@ -54,6 +54,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 7 | `source_set` | | key into `source_sets.csv` (was the `;`-list `source_id`) |
 | 8–10 | `overlap`, `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | `equal` / `split` / `contained` | geometric relationship (mutual ≥ 0.9 = equal; GEOID ≥ 0.9 inside entity = split; entity ≥ 0.9 inside GEOID = contained), measured on the TIGER 2024 geometry in EPSG:6933 |
 | 11 | `source_record_id` | `1703114000` | SCHEMA `entity_geoid.source_record_id`: the GEOID when the cited source is Census; empty for derived links |
+| 12 | `load_group` | `1` | smallint (enum_load_group.csv): the group of `entity_id` (all 1 today) |
 
 ## Officeholder rows (data-v3/inst/officeholders_*.csv)
 
@@ -271,7 +272,9 @@ Build inputs (all read-only): `data-v3/geo/*.csv`; TIGER 2024 Gazetteer (countie
 - **DB**: `enum_feed.csv`, `enum_feed_map_status.csv`, `enum_load_group.csv`, `sources.csv`, `source_urls.csv`,
   `source_sets.csv`, then `entities.csv`, then `entity_relations.csv` and `entity_images.csv`. Load `load_group` 1 first;
   `load_group` 2 (GB / DE / FR) later behind a flag (a column, not split files: one schema per table, and the split is a
-  `WHERE load_group = 1`). Group 1 also holds the 16 area rows the country layers mark `area_only` (subdivision:gb-eng, the 13
+  `WHERE load_group = 1`). Also `db` (follow-up on 7b9a726): `entity_geoid_xwalk.csv` (loads `entity_geoid`; own
+  `load_group` column = its entity's group, all 1 today) and `body_entity.csv` (no column: every row is group 1, asserted at
+  build). No group-1 row depends on a group-2 row (asserted for entities; relations take group 2 when either end is). Group 1 also holds the 16 area rows the country layers mark `area_only` (subdivision:gb-eng, the 13
   FR région areas, territory:gp / re); their councils arrive with group 2.
 - **pack**: `pack/entity_feed_map.csv`: `feed` (smallint, enum_feed), `feed_id`, `role`, `is_primary`, `entity_id`,
   `status` (smallint, enum_feed_map_status: 1 mapped, 2 feed_only, 3 unmapped), `note`, `source_set`. Key
@@ -279,7 +282,7 @@ Build inputs (all read-only): `data-v3/geo/*.csv`; TIGER 2024 Gazetteer (countie
   with several targets gets each target body's role and exactly one primary, the target the feed crosswalks
   `same_government` (the others are `governs_part`). Only case: `insee_dep:69` → `county:fr-69` role `departmental_council`
   (primary: INSEE's département 69 is the Rhône) and `county:fr-69m` role `territorial_collectivity` (Métropole de Lyon,
-  governs part). Boilerplate notes `minted` / `alt_code` (and a `minted;` prefix) are dropped. The DB keeps the codes as
+  governs part). **Confirmed by Full Stack (Oct 18, on 7b9a726).** Boilerplate notes `minted` / `alt_code` (and a `minted;` prefix) are dropped. The DB keeps the codes as
   `code_scheme` / `code` on entities.
 - **source_sets.csv** `source_set, ord, source_id`: every table's former `source_id` list (entities, relations, images, gaps,
   geoid xwalk, v2 rows, body files, pack) is a `source_set` key; `sources.csv` / `source_urls.csv` keep `source_id`.
