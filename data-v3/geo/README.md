@@ -53,3 +53,6 @@ Columns: `layer, state, row, v2_name, geoid_2024, geoid_2020, tiger_name_2020, m
 - `county_funcstat.csv`: TIGER 2024 county FUNCSTAT; see ALIGNMENT.md item 1.
 - `town_pairs.csv`: the classes behind `v2/data/town_pairs.js`.
 - `town_gaps_2024*.csv`: the town-layer gap audit.
+- `zcta2024.csv` (`tools/zcta2024_csv.py`): all 33,791 ZCTAs of the Census 2024 ZCTA Gazetteer, keyed by `zcta5` (the ZCTA GEOID),
+  with land/water area (m²) and the internal point as published. `in_v2` and `v2_point_match` check `v2/data/zcta2024.js`:
+  all 33,791 v2 keys are in the Gazetteer and every v2 [lat, lon] is the Gazetteer point rounded to 4 decimals.

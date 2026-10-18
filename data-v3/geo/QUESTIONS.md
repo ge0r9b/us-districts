@@ -122,3 +122,17 @@ A parts row with no geometry borrows the v1 place polygon by (state, name), and 
 Both rows are v1 (`data/Ohio.js`) and the app always shows v1 town rows. A rename can't be done in v2 without editing root data or `index.html`, so it is left for the orchestrator's move off v1. The fix would be to rename the second row "Washington township (3915981242)" or give it a county-unique label.
 
 **Towns added in this pass:** every new parts row gets a (county, name) that is unique in its file, and a (state, name) not already used by a v1 place. The fill tool checks this before writing.
+
+## Q-G9: town file size, 300 KB target (ruled by the orchestrator, Oct 18, 2026)
+
+Ruling: (a) keep v2/data/parts/ and places/ at coverage-simplification tolerance 0.002° (about 100-200 m median deviation)
+as built. GitHub Pages serves .js gzipped (the big-state parts files are 130-290 KB gzipped), so v2 gets no format change.
+The per-state size tables (raw and gzip at each tolerance) are in the build reports of tools/build_town_files.py.
+
+v3 note (not done in v2): per-row overhead (county name, town name, first absolute point, about 60 bytes) is a large share of a
+parts file (about 150 KB in Pennsylvania). A v3 town format could
+- store a county index (`counties:[...]` once, rows `[countyIndex, name, enc]`), or split files per county and load them lazily;
+- let a parts row of an incorporated place reference its places/ row instead of repeating the clipped geometry when the place lies
+  in one county (about half of the Texas parts bytes);
+- store shared arcs once (TopoJSON-style), since the coverage simplification already makes neighbouring rows share identical
+  vertices.
