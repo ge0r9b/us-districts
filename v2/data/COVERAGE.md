@@ -865,3 +865,36 @@ Not changed:
 - Seven of these counties are vote-centre counties (marked "(Vote Center)" by SD SOS; Haakon's units are also polling places, not precincts): Brookings, Brown, Haakon, Hughes, Potter, Sully and Yankton. Their official canvass reports by vote centre plus one countywide Absentee Precinct, and neither unit has a geography. Absentee share of the vote: Brookings ≈ 62 %, Brown ≈ 59 %, Yankton ≈ 66 %, Hughes ≈ 43 %.
 - Lawrence reports 10 geographic precincts, but its countywide Absentee Precinct holds 59.5 % of Harris+Trump. The precincts would place only 40.5 %, under the 50 % usability floor, so even with county GIS shapes the Lead-Deadwood and Spearfish districts can't be estimated.
 - Sources: SD SOS 2024 General Election official county canvass documents (Aurora-Clark, Clay-Faulk, Grant-Lyman, Marshall-Ziebach bundles); SD SOS election-night site precinct/vote-centre listing.
+
+## Institutions lane, fix 3: Oregon, Wyoming and Missouri 2024 precinct shortfalls (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+Baseline: `data/geo` a0c2262 (`tools/inst_audit.py`): 2024 gray school districts 86 (SD 26 structural and LA HD 057 out of scope). The precinct files (root `data/precincts2024/`) are **not changed**. `tools/inst_prec_fill.py` builds, outside the repo, a corrected copy of each county's 2024 units for `tools/fill_official_precincts.py` (geo lane, unchanged rules: exact, else ≈ area-weighted scaled to official county totals, else gray). Only gray 2024 school rows were written.
+
+**Counties rebuilt, with their sources:**
+- **Columbia County, OR.** 33 units from the Columbia County Clerk Certified Final Results, Precinct Abstract Report (Dec 2, 2024). 5 units the app file lacked (10 Milton, 15 Rainier, 21 St Helens One, 35 SE Scappoose, 48 S Deer Island) use the VEST 2020 polygon with the same precinct number.
+- **Uinta and Weston Counties, WY.** All units from the WY county clerk Official Precinct-by-Precinct Summaries. 4 units the app lacked (Uinta 4-1; Weston 1-1, 4-1, 5-3) use the VEST 2020 polygon whose Census 2020 VTD code is that precinct number (000401 Ft. Bridger; 000101, 000401, 000503).
+- **Cape Girardeau, Cole, Miller and Pettis Counties, MO.** Returns from MEDSL 2024-elections-official (CC0, compiled from the official county returns); Harris and Trump equal the certified county totals exactly. 11 units the app lacked use VEST 2020 polygons with the same name, or the 2020 precincts the 2024 name lists (e.g. "4 WARD/SED W/FLAT CREEK" = 4th Ward/Sedalia W + Flat Creek). Absentee and central-poll units carry no geography and are spread by the county scaling.
+- **Checks on every new unit:** it is not under an app 2024 polygon (overlap 0-1 %); turnout vs 2020 is 0.85-1.24 after pro-rating pooled votes; Republican share is within 12 points.
+
+**Result:** 9 rows computed (all ≈, `e24`); 1 rejected afterwards. 2024 gray school districts 86 → **78**.
+
+| District | 2024 (Harris / Trump / total) | 2020 (for comparison) |
+|---|---|---|
+| OR Scappoose SD 1J | 5,503 / 4,899 / 10,809 ≈ | 10,098 |
+| WY Uinta County SD 4 | 200 / 1,385 / 1,608 ≈ | 1,679 |
+| WY Weston County SD 1 | 323 / 2,356 / 2,721 ≈ | 2,741 |
+| MO Eldon R-I | 1,117 / 4,826 / 5,995 ≈ | 5,630 |
+| MO La Monte R-IV | 178 / 688 / 876 ≈ | 996 |
+| MO Sweet Springs R-VII | 358 / 1,420 / 1,801 ≈ | 1,394 |
+| MO Miller County R-III | 61 / 515 / 580 ≈ | 783 |
+| MO Cole Camp R-I | 1,004 / 3,726 / 4,787 ≈ | 4,208 |
+
+**Still gray, and why:**
+- **OR Pleasant Hill SD 1.** Lane County's 7 renumbered 2024 precincts (1560, 1784, 2238, 733, 737, 739, 755; 25,592 votes) have no public 2024 polygon. LCOG sells the precinct GIS under licence, and since 2023 Lane County gives precinct-level results only on request. Usable cover is 41 %.
+- **MO Cape Girardeau 63.** Cape Girardeau city redrew its wards for 2024. The app's 2024 city polygons leave the old 6A/6B area uncovered, and no 2024 city precinct layer was found. Usable cover is 84 %.
+- **MO Delta C-7.** This district is in Pemiscot County, not the Cape Girardeau "Delta" precinct; Pemiscot's usable 2024 precinct cover is 42 %. No source was fetched.
+- **MO Pettis County R-XII.** The estimate (1,064 votes vs 478 in 2020; Republican share 0.68 vs 0.81) spreads the merged Sedalia-ward unit over rural land. It fails the 2020 consistency rule, so it was rejected and kept gray.
+
+**Data discrepancy, logged:** Columbia County OR certified Harris/Trump is 12,895 / 17,227, but `data/election2024.js` (v1, not edited) has 12,865 / 17,184. The estimates are scaled to the v1 numbers (0.2 % lower). This should be reported to the Election Data lane.
+
+`v2/data/ussch.js` 4750432 → 4750567 bytes. Report: `data-v3/inst/fix3_report.json`.
