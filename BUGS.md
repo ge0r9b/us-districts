@@ -340,6 +340,99 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots: shots/b1575-ch-390-qa044-crop-num.png, shots/b1575-ch-390-qa044-crop-pct.png (crops), shots/b1575-ch-390-states-num-rangeline.png, shots/b1575-ch-390-states-pct-rangeline.png, shots/b1575-ch-390-PA-pct-rangeline.png, shots/b1575-ch-375-states-num-rangeline.png
 - Data: `qa/b1575-rows-chromium-390.json`, `qa/b1575-rows-chromium-375_320_1024x576_1024x768.json` (`cov`)
 
+## Re-test status, builds 1574 / 1575 (pass 8, '16 ranges + Safari check + map/list stability, Oct 18 ~9:26-10:50 AM EDT)
+- Live build: 1574 at the start (`window.BUILD` 202610181574), 1575 from ~9:50 AM EDT. 1575 only changed the list top band and sort-chip glass, so the '16-range results below hold for both. Scripts: `qa/b1574-range.py` (US map / All States / PA counties / Philadelphia city precincts x '16>'24 and '16>'20; touch drag of a knob, CDP touch in Chromium, touch pointer events in WebKit), `qa/b1574-check.py` (state rows vs FEC 2016/2020/2024), `qa/b1574-layout.py` (per-frame box sampling), `qa/b1575-saf.py` (Safari check), `qa/b1575-usmap.py`. The box was overloaded (several OOM kills), so the WebKit '16-range run and the 1024x768 '16>'20 run were cut off; WebKit got the Safari check instead.
+- QA-038: confirmed fixed (390x844, 320x568, 1024x768 Chromium). '16>'24 All States: FL R +11.9, CA R +10.0, NY R +9.8 with change bars; '16>'20: VT D +9.0, CO D +8.6. Candidates are the end year's (Trump / Harris, or Biden / Trump for '16>'20). Reload restores both ranges at US, All States and PA counties (not at precincts, see QA-050). Bar and Pie keep the range.
+- '16 change values vs FEC: all 51 state margin shifts within 0.15 pts except VT, ND, WY, AL, MD ('16>'24) and ME ('16>'20), 0.15-0.44 pts off: **LOW**, caused by the 2024/2020 state totals leaving out write-ins (QA-003; e.g. VT 2024 total 366,389 vs FEC 369,422). PA '16>'24: margin R +1.0 (FEC R +0.99), `#` R +76K (FEC +75,974), Trump +2.2 / Harris +1.2 pts (FEC +2.01 / +1.03 on the full total: LOW). Philadelphia county R +8.3, Philadelphia city R +8.6.
+- QA-043: **still on 1574/1575**, and wider than logged: picking Line resets '16>'24 and '16>'20 to '20>'24 at the US map, All States, PA counties and precinct levels (`pick()` calls `__ySelectAll`). Once Line is on, re-choosing '16 works and the Line rows are right (FL +7.1 / -4.8, PA Philadelphia +4.6 / -3.7). Reload with Line on also comes back as '20>'24.
+- QA-041: still. Line pick 187 ms (390, All States) and 246 ms (1024x768); Bar pick 137-161 ms.
+- QA-039 / QA-040: not rechecked (the check run was killed by an out-of-memory event on the box).
+- Safari regression check (build 1575; WebKit and Chromium; 1440x900 desktop, 1024x768, 390x844; AL Blount County, PA Lancaster, MA Worcester, GA Cobb; county view then +1, +2, +3 zoom). Results are **the same in WebKit and Chromium at every size, and the same on 1574** (served from `36b6ced` on port 8850), so these are not Safari-only and not new in 1575: shrunken thumbnails in AL and GA (QA-045); Blount County precincts all one colour (QA-046). Jagged precinct outlines: **not confirmed** in headless WebKit at 2x: the outlines look the same as Chromium (shots/b1575-saf-1440-Al-z3-we-vs-ch-crop.png, shots/b1575-saf-1440-Pe-z3-we-vs-ch-crop.png). The stair-step edge of Jefferson County in the Blount view matches the real section-line boundary (shots/b1575-saf-ch-1440-Al-county-jefferson-crop.png). Needs a real desktop Safari screenshot to go further.
+- Map/list stability sweep (Chromium 1024x768 and 390x844; user path MA > Worcester County > time row > US House > President, then map/list, years, drill-in and back; boxes before/after and every frame for 2.2 s): QA-053 to QA-058. Unlike pass 7 this samples every frame, so it also catches jumps that settle back.
+
+## New on builds 1574 / 1575 (pass 8)
+
+### QA-045 [HIGH] Candidate thumbnails shrink to half size in Alabama (and by a third in Georgia)
+- Severity: HIGH | Build 1575 (same on 1574) | WebKit and Chromium, 1440x900, 1024x768, 390x844
+- Steps: geo menu > Alabama > Blount County (any AL view); compare the thumbnails with United States or PA/MA.
+- Expected: the same thumbnail size everywhere (30 x 30 px photo in a 42 x 36 box).
+- Actual: AL 14.7 x 14.7 px photo in a 34.4 x 20.7 box (-51%); GA (Cobb) 19.3 px in 36.7 x 25.3 (-36%). PA and MA 30 px. Cause: the thumbnail width copies the rendered width of the flag in `#crumbs .cic img` (`--thw`), and the AL flag image is portrait (32 x 48 natural, drawn 14.7 x 22) and GA's is 42 x 48 (drawn 19.3 x 22). The small size stays after leaving AL until the flag changes.
+- Screenshots: shots/b1575-saf-we-1440-Al-county.png, shots/b1575-saf-we-1024x768-Al-county.png, shots/b1575-saf-we-390-Al-county.png, shots/b1575-saf-we-1440-Ge-county.png, shots/b1575-saf-ch-1440-Al-county.png, shots/b1575-saf-v1574-ch-1440-Al-county.png (1574)
+- Data: `qa/b1575-saf-webkit.json`, `qa/b1575-saf-chromium.json`
+
+### QA-046 [HIGH] Blount County, AL looks filled solid instead of shaded per precinct
+- Severity: HIGH (as reported; may be the colour scale by design) | Build 1575 (same on 1574) | WebKit and Chromium, all 3 sizes
+- Steps: Alabama > Blount County, zoom in 1-3 levels.
+- Expected: precincts shaded by their own result, as in Lancaster PA or Cobb GA.
+- Actual: all 23 Blount precincts draw the same darkest red, with only the white outlines and a few town shapes showing; distinct colours in the centre crop 48 > 28 > 18 > 11 as you zoom in (Lancaster 135 > 71, Cobb 120 > 23). The precinct data is there (`precincts2024/Alabama.js` has 23 Blount rows, R 87-93%), but every one is past the legend's R+20 end, so the heat scale clamps them all to one colour. A wider scale, or more steps past ±20, would show them.
+- Screenshots: shots/b1575-saf-we-1440-Al-county.png, shots/b1575-saf-we-1440-Al-county-z2.png, shots/b1575-saf-ch-1440-Pe-county-z2.png (comparison)
+
+### QA-047 [Critical] US map in a '16 range is coloured with the '20>'24 shift
+- Severity: Critical (wrong map) | Build 1574 and 1575 | 390x844, 320x568, 1024x768 (Chromium)
+- Steps: US map > time row > set '16>'24 or '16>'20 > wait 12 s.
+- Expected: states coloured by the '16 shift (CO D +6.1 and KS D +4.5 blue for '16>'24; most states blue for '16>'20).
+- Actual: the state colours are pixel-identical to '20>'24 for both '16 ranges: CO (251,186,162) light red, KS (249,211,197), IL (239,119,99), FL (223,50,42). The single-year '16 map does change colours (CO (178,211,231)), so only the ranges are stuck. The list rows for the same ranges are right.
+- Screenshots: shots/b1575-usmap-ch-1024x768-20-24.png, shots/b1575-usmap-ch-1024x768-16-24.png, shots/b1575-usmap-ch-1024x768-16-20.png, shots/b1575-usmap-ch-1024x768-2016.png, shots/b1574-ch-390-r16-20-US.png
+
+### QA-048 [Critical] Precinct list in a '16 range shows "'20 n/a · '24 ..." and no change values
+- Severity: Critical (missing numbers, wrong year) | Build 1574/1575 | 390x844, 320x568, 1024x768 (Chromium)
+- Steps: All States > set '16>'24 (or '16>'20) > PA > Philadelphia > Philadelphia city.
+- Expected: 1,703 precinct rows with '16 change values (2016 precincts are loaded; the single-year '16 view shows them), and thumbnails with numbers.
+- Actual: every row reads "'20 n/a · '24 D 94.7%" (`#`: "'20 n/a · '24 D 431"). In '16>'20 the label still says '24 (Delaware Precinct 317 "'20 n/a · '24 D 97.9%"). Both thumbnails are blank. The county and towns levels above show change values correctly.
+- Screenshots: shots/b1574-ch-390-r16-24-prec-pct.png, shots/b1574-ch-390-r16-24-prec-num.png, shots/b1574-ch-390-r16-20-prec-pct.png, shots/b1574-ch-1024x768-r16-24-prec-pct.png
+
+### QA-049 [High] '16>'20 on the US map: the Biden 2020 thumbnail has no number
+- Severity: High (missing number) | Build 1574/1575 | 390x844, 320x568 (Chromium)
+- Steps: US map > time row > '16>'20.
+- Expected: four thumbnails with numbers (Trump 46% / Clinton 48% | Trump 47% / Biden 51%).
+- Actual: Biden 2020 shows no percentage; the 2020 Trump badge reads 46% (2020 national is 46.8%, so this may be fine). Reload keeps the blank.
+- Screenshot: shots/b1574-ch-390-r16-20-US.png
+
+### QA-050 [High] Reload on the precinct list in a '16 range lands on the county summary
+- Severity: High (navigation lost) | Build 1574/1575 | 390x844, 320x568, 1024x768 (Chromium)
+- Steps: '16>'24 > PA > Philadelphia > Philadelphia city precincts > reload.
+- Expected: the same precinct list.
+- Actual: the app opens "Philadelphia County" as a single-place summary (2016 Trump 15.4% / Clinton 82.5% | 2024 Trump 20.0% / Harris 78.8%, "R+8.3 shift") and no list. The range itself is kept.
+- Screenshot: shots/b1574-ch-390-r16-24-prec-reload.png
+
+### QA-051 Low '16>'20 list thumbnails are labelled "Joe Biden 2024"
+- Build 1574/1575 | 390x844. All States in '16>'20: the thumbnails show the right 2020 values (Biden 51%, Trump 47%), but their aria-label and hover title say "Joe Biden 2024" / "Donald Trump 2024". Screenshot: shots/b1574-ch-390-r16-20-states-pct.png
+
+### QA-052 Medium Tapping into the Philadelphia city precincts is slow in a '16 range
+- Build 1574/1575 | Chromium. Tap to paint 150-161 ms at 390 and 320, 93-115 ms at 1024x768 (other drill-ins 7-50 ms). Data: `qa/b1574-range-chromium-390_320.json` (`Prec.tap_lat`).
+
+### QA-053 [HIGH] Opening the time row moves the time button down 5 px
+- Build 1575 | 1024x768 and 390x844 (Chromium) | US and Worcester County map views
+- Steps: tap the clock (time) button.
+- Actual: `#bTime` moves dx 0 / dy +5 / dw 0 / dh 0 (122 > 127). The thumbnails also drop dy +68 to make room for the slider (likely intended, logged so it can be confirmed).
+- Screenshots: shots/b1574-ch-1024x768-ls04-open-time-slider-before.png / -after.png, shots/b1574-ch-390-ls04-open-time-slider-before.png / -after.png
+
+### QA-054 [HIGH] Thumbnails jump 3 px when switching between map and list
+- Build 1575 | 1024x768 and 390x844 (Chromium) | Worcester County, President, time row open
+- Map > list: thumbnails dy -3 (190 > 187; they widen +258/+276 to show names, by design). List > map: dy +3, and for about 250-700 ms the photo box is 50 px wide before it settles at 42 px.
+- Screenshots: shots/b1574-ch-1024x768-ls09-view-list-Worcester-before.png / -after.png, shots/b1574-ch-1024x768-ls17-view-map-Worcester-before.png / -after.png, shots/b1574-ch-390-ls17-view-map-Worcester-after.png
+
+### QA-055 [HIGH] First list row jumps up and back on back and drill-in
+- Build 1575 | 390x844 and 1024x768 (Chromium) | All States > MA > Worcester, then back twice; also All States > MA in bar mode
+- At 390, after the back tap the first row is drawn at y 8 (over the top fields) for 210-670 ms, then returns to y 198: dy -190 then +190. At 1024x768 it flickers dy -8 (198 > 190 > 198, about 120-200 ms), and the back chevron moves dy +4 and back. The settled positions match (which is why the pass 7 sweep saw no jump).
+- Screenshots: shots/b1574-ch-390-ls28-list-back-1-before.png / -after.png, shots/b1574-ch-390-ls29-list-back-2-before.png / -after.png, shots/b1574-ch-1024x768-ls28-list-back-1-before.png / -after.png
+- Data: `qa/b1574-layout-chromium-390.json`, `qa/b1574-layout-chromium-1024x768.json` (`transient`)
+
+### QA-056 [HIGH] Thumbnails flash at the top of the screen when the geo menu closes
+- Build 1575 | 1024x768 (Chromium), seen once | after the geo menu closed over Massachusetts.
+- For about 450 ms the thumbnails are drawn at y 8 (over the President field), 54 px wide, then drop to y 190 (dy +182) and narrow to 42 px. The crumb field also slides in from x 32.
+- Screenshots: shots/b1574-ch-1024x768-ls15-year-2020-before.png / -after.png
+
+### QA-057 [HIGH] User's path: switching to US House hides the chart button and changes the place
+- Build 1575 | 1024x768 and 390x844 (Chromium) | MA > Worcester County, President, time row open, then layers > US House, then back to President (map and list view)
+- No box moved on the switch itself, but the chart button (968,186) disappears while the layers row is open and comes back when it closes, and the crumb changes Worcester County > Massachusetts while the list still shows Worcester's President result (Harris 53.9% / Trump 43.9%; QA-005 family). Back to President returns to Worcester County.
+- Screenshots: shots/b1574-ch-1024x768-ls10-list-switch-USHouse-before.png / -after.png, shots/b1574-ch-1024x768-ls12-list-switch-back-President-before.png / -after.png, shots/b1574-ch-390-ls10-list-switch-USHouse-after.png
+
+### QA-058 [HIGH] Turning on a range in a place summary shifts the thumbnails 23 px
+- Build 1575 | 1024x768 and 390x844 (Chromium) | Worcester County list summary
+- Year > range ('16>'24): thumbnails dy +23 and narrow (-175 / -138 px) to make room for the two year columns; back to one year: dy -23. Probably by design (column headers); logged as asked.
+- Screenshots: shots/b1574-ch-1024x768-ls15-list-range-16-24-before.png / -after.png, shots/b1574-ch-390-ls15-list-range-16-24-after.png
+
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
 - Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).
