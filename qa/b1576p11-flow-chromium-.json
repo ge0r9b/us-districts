@@ -1,0 +1,1290 @@
+{
+ "iphone390": {
+  "lat": {
+   "open_institution": 75.7,
+   "list_all_states": 285.2,
+   "sort_flip": 27.5,
+   "sort_flip_back": 26.6,
+   "num_toggle": 14.9,
+   "num_pick": 31.9,
+   "time_open": 48.2,
+   "chart_menu": 12.6,
+   "chart_pie": 27.2,
+   "chart_menu_re": 21.1,
+   "chart_line": 123.9,
+   "chart_menu_single": 19.4,
+   "drill_PA": 25.8,
+   "drill_county": 18.8,
+   "drill_town": 77,
+   "back": 14.5,
+   "type_menu": 23.1,
+   "type_ushouse": 275.5,
+   "type_deselect": 67.9
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [
+     "\u22121.83M x laSort"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5806,
+   "list_all_states": 7570,
+   "sort_flip": 13058,
+   "sort_flip_back": 14460,
+   "num_toggle": 16737,
+   "time_open": 20585,
+   "chart_menu": 28302,
+   "chart_pie": 39878,
+   "chart_menu_re": 32127,
+   "chart_line": 33094,
+   "chart_menu_single": 38895,
+   "back": 60950,
+   "type_menu": 64025,
+   "type_ushouse": 65401,
+   "type_deselect": 69790
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "pie",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "pie",
+    "pie"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "pie"
+  ],
+  "chart_now": "pie",
+  "PA_rows": [
+   "Allegheny",
+   "Bucks",
+   "Montgomery",
+   "Lancaster",
+   "York",
+   "Philadelphia",
+   "Chester",
+   "Westmoreland"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Allegheny County\",283595],[\"Bucks County\",198722],[\"Montgomery County\",198311],[\"Lancaster County\",166261],[\"York County\",15",
+  "county_rows": [
+   "Pittsburgh city",
+   "Penn Hills township",
+   "Mount Lebanon township",
+   "Ross township",
+   "Bethel Park municipality",
+   "McCandless township",
+   "Monroeville municipality",
+   "Shaler township"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "town_rows": [
+   "Pittsburgh Ward 2 Dist 1",
+   "Pittsburgh Ward 1 Dist 1",
+   "Pittsburgh Ward 2 Dist 2",
+   "Pittsburgh Ward 6 Dist 1",
+   "Pittsburgh Ward 14 Dist 7",
+   "Pittsburgh Ward 4 Dist 8",
+   "Pittsburgh Ward 4 Dist 7",
+   "Pittsburgh Ward 14 Dist 31"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh Ward 2 Dist 1\",1215],[\"Pittsburgh Ward 1 Dist 1\",1074],[\"Pittsburgh Ward 2 Dist 2\",1047],[\"Pittsburgh Ward 6 Dis",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.6021,-79.9974,8]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.435,-80.0249,9]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "Allegheny County, PA",
+   "val": "",
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "pop": []
+  },
+  "cls": 0.01627198832702977,
+  "shifts": [
+   {
+    "v": 0.0033,
+    "t": 18457,
+    "src": [
+     "cfoot"
+    ]
+   },
+   {
+    "v": 0.0012,
+    "t": 19114,
+    "src": [
+     "listView"
+    ]
+   },
+   {
+    "v": 0.0034,
+    "t": 19157,
+    "src": [
+     "cfoot"
+    ]
+   },
+   {
+    "v": 0.0084,
+    "t": 19814,
+    "src": [
+     "listView"
+    ]
+   }
+  ],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone375": {
+  "lat": {
+   "open_institution": 42,
+   "list_all_states": 272.9,
+   "sort_flip": 25.8,
+   "sort_flip_back": 17.8,
+   "num_toggle": 9.4,
+   "num_pick": 44.6,
+   "time_open": 35.6,
+   "chart_menu": 31.2,
+   "chart_pie": 8,
+   "chart_menu_re": 32.1,
+   "chart_line": 164.7,
+   "chart_menu_single": 6.2,
+   "drill_PA": 5.6,
+   "drill_county": 21.3,
+   "drill_town": 87.3,
+   "back": 30.4,
+   "type_menu": 11.3,
+   "type_ushouse": 243.1,
+   "type_deselect": 77.3
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [
+     "\u22121.83M x laSort"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5576,
+   "list_all_states": 7268,
+   "sort_flip": 12730,
+   "sort_flip_back": 14117,
+   "num_toggle": 16388,
+   "time_open": 20218,
+   "chart_menu": 27948,
+   "chart_pie": 39571,
+   "chart_menu_re": 31831,
+   "chart_line": 32808,
+   "chart_menu_single": 38656,
+   "back": 60531,
+   "type_menu": 63616,
+   "type_ushouse": 64991,
+   "type_deselect": 69359
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "pie",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "pie",
+    "pie"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "pie"
+  ],
+  "chart_now": "pie",
+  "PA_rows": [
+   "Allegheny",
+   "Bucks",
+   "Montgomery",
+   "Lancaster",
+   "York",
+   "Philadelphia",
+   "Chester",
+   "Westmoreland"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Allegheny County\",283595],[\"Bucks County\",198722],[\"Montgomery County\",198311],[\"Lancaster County\",166261],[\"York County\",15",
+  "county_rows": [
+   "Pittsburgh city",
+   "Penn Hills township",
+   "Mount Lebanon township",
+   "Ross township",
+   "Bethel Park municipality",
+   "McCandless township",
+   "Monroeville municipality",
+   "Shaler township"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "town_rows": [
+   "Pittsburgh Ward 2 Dist 1",
+   "Pittsburgh Ward 1 Dist 1",
+   "Pittsburgh Ward 2 Dist 2",
+   "Pittsburgh Ward 6 Dist 1",
+   "Pittsburgh Ward 14 Dist 7",
+   "Pittsburgh Ward 4 Dist 8",
+   "Pittsburgh Ward 4 Dist 7",
+   "Pittsburgh Ward 14 Dist 31"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh Ward 2 Dist 1\",1215],[\"Pittsburgh Ward 1 Dist 1\",1074],[\"Pittsburgh Ward 2 Dist 2\",1047],[\"Pittsburgh Ward 6 Dis",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.6021,-79.9974,8]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.435,-80.0249,9]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "Allegheny County, PA",
+   "val": "",
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "pop": []
+  },
+  "cls": 0.2610719052018219,
+  "shifts": [
+   {
+    "v": 0.2286,
+    "t": 19181,
+    "src": [
+     "cpanel"
+    ]
+   },
+   {
+    "v": 0.0011,
+    "t": 19841,
+    "src": [
+     "listView"
+    ]
+   },
+   {
+    "v": 0.0305,
+    "t": 19896,
+    "src": [
+     "cfoot"
+    ]
+   },
+   {
+    "v": 0.0009,
+    "t": 20542,
+    "src": [
+     "listView"
+    ]
+   }
+  ],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone320": {
+  "lat": {
+   "open_institution": 45.6,
+   "list_all_states": 292.3,
+   "sort_flip": 36.1,
+   "sort_flip_back": 27.9,
+   "num_toggle": 13,
+   "num_pick": 31.7,
+   "time_open": 29.6,
+   "chart_menu": 30.4,
+   "chart_pie": 12.7,
+   "chart_menu_re": 30.3,
+   "chart_line": 159.7,
+   "chart_menu_single": 30.4,
+   "drill_PA": 15.4,
+   "drill_county": 32.1,
+   "drill_town": 66.3,
+   "back": 26.7,
+   "type_menu": 13.1,
+   "type_ushouse": 261.9,
+   "type_deselect": 71.7
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [
+     "CA x laSort",
+     "\u22121.83M x Chart"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5597,
+   "list_all_states": 7270,
+   "sort_flip": 12724,
+   "sort_flip_back": 14118,
+   "num_toggle": 16393,
+   "time_open": 20201,
+   "chart_menu": 27808,
+   "chart_pie": 39392,
+   "chart_menu_re": 31609,
+   "chart_line": 32585,
+   "chart_menu_single": 38403,
+   "back": 60310,
+   "type_menu": 63392,
+   "type_ushouse": 64750,
+   "type_deselect": 69099
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0%",
+   "ND | 67.5%",
+   "ID | 66.9%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 5.24M",
+   "IL",
+   "PA",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "pie",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "pie",
+    "pie"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "pie"
+  ],
+  "chart_now": "pie",
+  "PA_rows": [
+   "Allegheny",
+   "Bucks",
+   "Montgomery",
+   "Lancaster",
+   "York",
+   "Philadelphia",
+   "Chester",
+   "Westmoreland"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Allegheny County\",283595],[\"Bucks County\",198722],[\"Montgomery County\",198311],[\"Lancaster County\",166261],[\"York County\",15",
+  "county_rows": [
+   "Pittsburgh city",
+   "Penn Hills township",
+   "Mount Lebanon township",
+   "Ross township",
+   "Bethel Park municipality",
+   "McCandless township",
+   "Monroeville municipality",
+   "Shaler township"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "town_rows": [
+   "Pittsburgh Ward 2 Dist 1",
+   "Pittsburgh Ward 1 Dist 1",
+   "Pittsburgh Ward 2 Dist 2",
+   "Pittsburgh Ward 6 Dist 1",
+   "Pittsburgh Ward 14 Dist 7",
+   "Pittsburgh Ward 4 Dist 8",
+   "Pittsburgh Ward 4 Dist 7",
+   "Pittsburgh Ward 14 Dist 31"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh Ward 2 Dist 1\",1215],[\"Pittsburgh Ward 1 Dist 1\",1074],[\"Pittsburgh Ward 2 Dist 2\",1047],[\"Pittsburgh Ward 6 Dis",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.6021,-79.9974,8]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.435,-80.0249,9]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "Allegheny County, PA",
+   "val": "",
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "pop": []
+  },
+  "cls": 0.01110224285855981,
+  "shifts": [
+   {
+    "v": 0.0072,
+    "t": 19150,
+    "src": [
+     "cfoot"
+    ]
+   },
+   {
+    "v": 0.0039,
+    "t": 19819,
+    "src": [
+     "listView"
+    ]
+   }
+  ],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x576": {
+  "lat": {
+   "open_institution": 41.1,
+   "list_all_states": 284.1,
+   "sort_flip": 37.3,
+   "sort_flip_back": 20,
+   "num_toggle": 17.3,
+   "num_pick": 35,
+   "time_open": 40.6,
+   "chart_menu": 21.6,
+   "chart_pie": 24,
+   "chart_menu_re": 19.6,
+   "chart_line": 154,
+   "chart_menu_single": 4.5,
+   "drill_PA": 7.2,
+   "drill_county": 17.5,
+   "drill_town": 72.6,
+   "back": 36.5,
+   "type_menu": 9.8,
+   "type_ushouse": 307.8,
+   "type_deselect": 75.5
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5580,
+   "list_all_states": 7380,
+   "sort_flip": 12931,
+   "sort_flip_back": 14400,
+   "num_toggle": 16668,
+   "time_open": 20615,
+   "chart_menu": 28493,
+   "chart_pie": 40225,
+   "chart_menu_re": 32479,
+   "chart_line": 33445,
+   "chart_menu_single": 39311,
+   "back": 61400,
+   "type_menu": 64488,
+   "type_ushouse": 65933,
+   "type_deselect": 70418
+  },
+  "rows_default": [
+   "WY | 72.3% | 26.1%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 2.45M | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI | 2.65M | 2.80M",
+   "NC | 2.76M | 2.68M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "pie",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "pie",
+    "pie"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "pie"
+  ],
+  "chart_now": "pie",
+  "PA_rows": [
+   "Allegheny",
+   "Bucks",
+   "Montgomery",
+   "Lancaster",
+   "York",
+   "Philadelphia",
+   "Chester",
+   "Westmoreland"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Allegheny County\",283595],[\"Bucks County\",198722],[\"Montgomery County\",198311],[\"Lancaster County\",166261],[\"York County\",15",
+  "county_rows": [
+   "Pittsburgh city",
+   "Penn Hills township",
+   "Mount Lebanon township",
+   "Ross township",
+   "Bethel Park municipality",
+   "McCandless township",
+   "Monroeville municipality",
+   "Shaler township"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "town_rows": [
+   "Pittsburgh Ward 2 Dist 1",
+   "Pittsburgh Ward 1 Dist 1",
+   "Pittsburgh Ward 2 Dist 2",
+   "Pittsburgh Ward 6 Dist 1",
+   "Pittsburgh Ward 14 Dist 7",
+   "Pittsburgh Ward 4 Dist 8",
+   "Pittsburgh Ward 4 Dist 7",
+   "Pittsburgh Ward 14 Dist 31"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh Ward 2 Dist 1\",1215],[\"Pittsburgh Ward 1 Dist 1\",1074],[\"Pittsburgh Ward 2 Dist 2\",1047],[\"Pittsburgh Ward 6 Dis",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.5186,-80.0112,9]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.435,-80.0249,10]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "Allegheny County, PA",
+   "val": "",
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x768": {
+  "lat": {
+   "open_institution": 51.9,
+   "list_all_states": 248.3,
+   "sort_flip": 24.2,
+   "sort_flip_back": 28.6,
+   "num_toggle": 19.4,
+   "num_pick": 23.8,
+   "time_open": 30.2,
+   "chart_menu": 9.4,
+   "chart_pie": 9.5,
+   "chart_menu_re": 39.2,
+   "chart_line": 152.7,
+   "chart_menu_single": 12.3,
+   "drill_PA": 12.6,
+   "drill_county": 18.9,
+   "drill_town": 60.9,
+   "back": 22.9,
+   "type_menu": 10.3,
+   "type_ushouse": 278.7,
+   "type_deselect": 67.4
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_pie": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5663,
+   "list_all_states": 7555,
+   "sort_flip": 13061,
+   "sort_flip_back": 14522,
+   "num_toggle": 16794,
+   "time_open": 20771,
+   "chart_menu": 28620,
+   "chart_pie": 40520,
+   "chart_menu_re": 32614,
+   "chart_line": 33595,
+   "chart_menu_single": 39548,
+   "back": 61821,
+   "type_menu": 64900,
+   "type_ushouse": 66337,
+   "type_deselect": 70832
+  },
+  "rows_default": [
+   "WY | 72.3% | 26.1%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 2.45M | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI | 2.65M | 2.80M",
+   "NC | 2.76M | 2.68M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "pie",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "pie",
+    "pie"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "pie"
+  ],
+  "chart_now": "pie",
+  "PA_rows": [
+   "Allegheny",
+   "Bucks",
+   "Montgomery",
+   "Lancaster",
+   "York",
+   "Philadelphia",
+   "Chester",
+   "Westmoreland"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Allegheny County\",283595],[\"Bucks County\",198722],[\"Montgomery County\",198311],[\"Lancaster County\",166261],[\"York County\",15",
+  "county_rows": [
+   "Pittsburgh city",
+   "Penn Hills township",
+   "Mount Lebanon township",
+   "Ross township",
+   "Bethel Park municipality",
+   "McCandless township",
+   "Monroeville municipality",
+   "Shaler township"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "town_rows": [
+   "Pittsburgh Ward 2 Dist 1",
+   "Pittsburgh Ward 1 Dist 1",
+   "Pittsburgh Ward 2 Dist 2",
+   "Pittsburgh Ward 6 Dist 1",
+   "Pittsburgh Ward 14 Dist 7",
+   "Pittsburgh Ward 4 Dist 8",
+   "Pittsburgh Ward 4 Dist 7",
+   "Pittsburgh Ward 14 Dist 31"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh Ward 2 Dist 1\",1215],[\"Pittsburgh Ward 1 Dist 1\",1074],[\"Pittsburgh Ward 2 Dist 2\",1047],[\"Pittsburgh Ward 6 Dis",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Pittsburgh city\",124291],[\"Penn Hills township\",16697],[\"Mount Lebanon township\",15284],[\"Ross township\",11139],[\"Bethel Pa",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.5186,-80.0112,9]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"pie\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.435,-80.0249,10]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "Allegheny County, PA",
+   "val": "",
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "pop": []
+  },
+  "cls": 0.006184518337249756,
+  "shifts": [
+   {
+    "v": 0.0062,
+    "t": 19848,
+    "src": [
+     "listView"
+    ]
+   }
+  ],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ }
+}

@@ -479,6 +479,39 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: top crumb says "Delaware counties", the bottom field shows the Delaware outline icon but the text "District of Columbia" (DC's `nameLock`/placeholder isn't cleared).
 - Screenshots: shots/b1576-thumbs-ch-1024x768-DE-after-DC.png, shots/b1576-thumbs-ch-390-DE-after-DC.png, shots/b1575-thumbs-ch-390-DE-after-DC.png (1575)
 
+## New on build 1576 (pass 11, Oct 18 ~11:50 AM-12:30 PM EDT)
+
+### QA-062 [Critical] Searching a DC address from a state or county moves the map but keeps the old place's name and numbers
+- Severity: Critical (wrong numbers shown for the place) | Build 1576 | Chromium 390x844 and 375x667, WebKit 1024x768 (touch)
+- Steps: type "Franklin County, OH" in the bottom geo field, Enter. Then type "1600 Pennsylvania Ave NW, Washington, DC 20500", Enter.
+- Expected: title, bottom field and thumbnails switch to DC (as they do from a fresh load, QA-004), or to the address.
+- Actual: the map flies to the White House (centre 38.8987, -77.0352, zoom 15), but the title stays "Franklin County", the field stays "Franklin County, OH", and the thumbnails keep Franklin County's 64% / 35%. Same from "Allegheny County, PA" (60% / 39%) and from "Pennsylvania" (50% / 49%). Both engines. A New York address from Allegheny County works (switches to New York County, 76% / 22%).
+- Screenshots: shots/b1576p11-ch-390-addr2-1.png (Franklin), shots/b1576p11-ch-390-addr2-2.png (Allegheny), shots/b1576p11-ch-390-addr2-3.png (Pennsylvania), shots/b1576p11-ch-375x667-addr-from-county.png, WebKit: shots/b1576p11-we-1024-addr2-{1,2,3}.png
+- Data: `qa/b1576p11-addr2-{chromium-390,webkit-1024}.json`, `qa/b1576p11-verify-chromium-375x667.json`
+
+### QA-063 [Medium] Address inside the current county: thumbnails show a precinct but the title still says the county
+- Severity: Medium | Build 1576 | Chromium 390x844, WebKit 1024x768
+- Steps: "Allegheny County, PA" > Enter; then "100 Ross St, Pittsburgh, PA 15219" > Enter.
+- Expected: the label matches the numbers (the address or "Pittsburgh Ward 1 Dist 1", as the New York case puts the address in the field).
+- Actual: popup "Pittsburgh Ward 1 Dist 1, Harris 76.4%, Trump 22.3%" and the thumbnails switch to 76% / 22%, but the title and bottom field still read "Allegheny County" / "Allegheny County, PA" (Allegheny is 60% / 39%).
+- Screenshot: shots/b1576p11-ch-390-addr2-4.png, shots/b1576p11-we-1024-addr2-4.png
+
+### QA-064 [Medium, recheck when the box is quiet] Picking State senate or State house inside a big state is slow
+- Severity: Medium (slow tap, over 100 ms) | Build 1576 | Chromium 390x844
+- Steps: type a state in the geo field > Enter > district-type button > State senate (or State house).
+- Actual tap-to-next-paint: Texas senate 952 / 804 ms, Texas house 1,102 ms, California senate 1,579 ms, California house 1,215 / 960 ms, New York 381-475 ms, Minnesota house 456 ms, Ohio 219-327 ms, Nebraska 143 ms. It grows with the state's size. At the US level the same picks were 118-156 ms (pass 9).
+- Caveat: other jobs on the test machine had the load average at 37-72 during these runs, so the absolute numbers are inflated; the size pattern is still clear. One Chromium renderer crash right after Texas > State senate happened under that load and did not repeat in a solo run (heap 188 MB, no errors).
+- Screenshots: shots/b1576p11-ch-390-senate-Texas-solo.png, shots/b1576p11-ch-390-statehouse-California-solo.png
+- Data: `qa/b1576p11-txcrash-chromium-390.json`, `qa/p11-dist2.py` output
+
+## Re-test status, build 1576 (pass 11, Chromium smoke at all 5 sizes, Oct 18 ~11:50 AM-12:30 PM EDT)
+- Live build still 202610181576. No v3 preview or live URL yet (`/us-districts/v3/` is 404).
+- Smoke flow (institution menu, All States, sort, `#`, slider, range, chart menu pie/line, PA > Allegheny > Pittsburgh drill-ins, back, US House type, reload, address): no console errors, page errors or failed requests at any size.
+- Still on 1576: QA-003 (same per-state gaps, ME 2020 Biden -4,599 is still the largest), QA-005 (US House from a county list: 0 rows, all sizes), QA-007 (All States 248-292 ms, US House pick 243-308 ms), QA-041 (Line 124-165 ms), QA-044 ("−1.83M" under the sort chip at 390/375), QA-009 (320: "CA" under the sort chip, "−1.83M" under Chart), QA-018 (OH bar tap stays on states), QA-034 (map view restores as list).
+- Layout-stability sweep (MA > Worcester County, US House, years, range, drill-in and back) at 390/375/320/1024x576: same jumps as before and nothing new. QA-054 (thumbnails 3 px map/list), QA-058 (23 px on a range), QA-053 (time button 5 px), QA-057 (chart button hidden on US House).
+- One CLS 0.229 shift on `.cpanel` at 375x667 around the `#` pick in the smoke flow did not reproduce in two focused runs (0 shift), so it is not logged.
+- Not done this pass: WebKit smoke (screenshots timed out under the machine load), school-district lists per state.
+
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
 - Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).

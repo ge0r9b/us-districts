@@ -1,0 +1,142 @@
+{
+ "senate:Texas": {
+  "exp": 31,
+  "lat_open": 123.5,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:California": {
+  "exp": 40,
+  "lat_open": 136.2,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:New York": {
+  "exp": 63,
+  "lat_open": 98.4,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:Ohio": {
+  "exp": 33,
+  "lat_open": 139,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:Florida": {
+  "exp": 40,
+  "lat_open": 142.9,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:Nebraska": {
+  "exp": 49,
+  "lat_open": 124.4,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:Minnesota": {
+  "exp": 67,
+  "lat_open": 104.6,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "senate:New Hampshire": {
+  "exp": 24,
+  "lat_open": 111.5,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:Texas": {
+  "exp": 150,
+  "lat_open": 127.6,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:California": {
+  "exp": 80,
+  "lat_open": 111.2,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:New York": {
+  "exp": 150,
+  "lat_open": 118.3,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:Ohio": {
+  "exp": 99,
+  "lat_open": 129.7,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:Florida": {
+  "exp": 120,
+  "lat_open": 132.5,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:Minnesota": {
+  "exp": 134,
+  "lat_open": 101,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "house:New Hampshire": {
+  "exp": null,
+  "lat_open": 98.5,
+  "l1_n": 0,
+  "l1_lv": "",
+  "err": "state row missing",
+  "l1_head": []
+ },
+ "school:Texas": {
+  "exp": null,
+  "err": "menu item missing"
+ },
+ "school:Ohio": {
+  "exp": null,
+  "err": "menu item missing"
+ },
+ "school:Hawaii": {
+  "exp": 1,
+  "err": "menu item missing"
+ },
+ "school:Florida": {
+  "exp": 67,
+  "err": "menu item missing"
+ },
+ "school:Nebraska": {
+  "exp": null,
+  "err": "menu item missing"
+ }
+}

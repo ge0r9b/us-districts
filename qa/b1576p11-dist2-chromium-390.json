@@ -1,0 +1,232 @@
+{
+ "keys": [
+  [
+   "ushouse",
+   "US House"
+  ],
+  [
+   "senate",
+   "State senate"
+  ],
+  [
+   "statehouse",
+   "State house"
+  ],
+  [
+   "schools",
+   "School districts"
+  ]
+ ],
+ "Texas:senate": {
+  "exp": 31,
+  "lat_type": 951.6,
+  "lat_list": null,
+  "st": {
+   "st": "Texas",
+   "co": "",
+   "ph": "Texas",
+   "crumb": "Texas",
+   "z": 5,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Texas:statehouse": {
+  "exp": 150,
+  "lat_type": 1102.4,
+  "lat_list": null,
+  "st": {
+   "st": "Texas",
+   "co": "",
+   "ph": "Texas",
+   "crumb": "Texas",
+   "z": 5,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "California:senate": {
+  "exp": 40,
+  "lat_type": 1578.7,
+  "lat_list": null,
+  "st": {
+   "st": "California",
+   "co": "",
+   "ph": "California",
+   "crumb": "California",
+   "z": 5,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "California:statehouse": {
+  "exp": 80,
+  "lat_type": 1215.3,
+  "lat_list": null,
+  "st": {
+   "st": "California",
+   "co": "",
+   "ph": "California",
+   "crumb": "California",
+   "z": 5,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "New York:senate": {
+  "exp": 63,
+  "lat_type": 380.5,
+  "lat_list": null,
+  "st": {
+   "st": "New York",
+   "co": "",
+   "ph": "New York",
+   "crumb": "New York",
+   "z": 5,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "New York:statehouse": {
+  "exp": 150,
+  "lat_type": 474.6,
+  "lat_list": null,
+  "st": {
+   "st": "New York",
+   "co": "",
+   "ph": "New York",
+   "crumb": "New York",
+   "z": 5,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Ohio:senate": {
+  "exp": 33,
+  "lat_type": 219.1,
+  "lat_list": null,
+  "st": {
+   "st": "Ohio",
+   "co": "",
+   "ph": "Ohio",
+   "crumb": "Ohio",
+   "z": 6,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Ohio:statehouse": {
+  "exp": 99,
+  "lat_type": 326.9,
+  "lat_list": null,
+  "st": {
+   "st": "Ohio",
+   "co": "",
+   "ph": "Ohio",
+   "crumb": "Ohio",
+   "z": 6,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Nebraska:senate": {
+  "exp": 49,
+  "lat_type": 142.8,
+  "lat_list": null,
+  "st": {
+   "st": "Nebraska",
+   "co": "",
+   "ph": "Nebraska",
+   "crumb": "Nebraska",
+   "z": 5,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Minnesota:statehouse": {
+  "exp": 134,
+  "lat_type": 455.6,
+  "lat_list": null,
+  "st": {
+   "st": "Minnesota",
+   "co": "",
+   "ph": "Minnesota",
+   "crumb": "Minnesota",
+   "z": 5,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "n": 0,
+  "dups": [],
+  "odd": [],
+  "head": [],
+  "err": []
+ },
+ "Florida:school": {
+  "exp": 67,
+  "err": "no layer btn"
+ },
+ "Hawaii:school": {
+  "exp": 1,
+  "err": "no layer btn"
+ },
+ "Ohio:school": {
+  "exp": null,
+  "err": "no layer btn"
+ }
+}

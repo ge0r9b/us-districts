@@ -1,0 +1,147 @@
+[
+ {
+  "i": 0,
+  "start": "Allegheny County, PA",
+  "q": "350 5th Ave, New York, NY 10118",
+  "before": [
+   "Allegheny County",
+   "Allegheny County, PA",
+   [
+    "60%",
+    "39%"
+   ]
+  ],
+  "after": [
+   "New York County",
+   "350 5TH AVE, NEW YORK",
+   "New York",
+   "New York County",
+   15,
+   [
+    "76%",
+    "22%"
+   ],
+   [
+    40.7517,
+    -73.985
+   ]
+  ],
+  "err": []
+ },
+ {
+  "i": 1,
+  "start": "Franklin County, OH",
+  "q": "1600 Pennsylvania Ave NW, Washington, DC 20500",
+  "before": [
+   "Franklin County",
+   "Franklin County, OH",
+   [
+    "64%",
+    "35%"
+   ]
+  ],
+  "after": [
+   "Franklin County",
+   "Franklin County, OH",
+   "Ohio",
+   "Franklin County",
+   15,
+   [
+    "64%",
+    "35%"
+   ],
+   [
+    38.8987,
+    -77.0352
+   ]
+  ],
+  "err": []
+ },
+ {
+  "i": 2,
+  "start": "Allegheny County, PA",
+  "q": "1600 Pennsylvania Ave NW, Washington, DC 20500",
+  "before": [
+   "Allegheny County",
+   "Allegheny County, PA",
+   [
+    "60%",
+    "39%"
+   ]
+  ],
+  "after": [
+   "Allegheny County",
+   "Allegheny County, PA",
+   "Pennsylvania",
+   "Allegheny County",
+   15,
+   [
+    "60%",
+    "39%"
+   ],
+   [
+    38.8987,
+    -77.0352
+   ]
+  ],
+  "err": []
+ },
+ {
+  "i": 3,
+  "start": "Pennsylvania",
+  "q": "1600 Pennsylvania Ave NW, Washington, DC 20500",
+  "before": [
+   "Pennsylvania",
+   "Pennsylvania",
+   [
+    "50%",
+    "49%"
+   ]
+  ],
+  "after": [
+   "Pennsylvania",
+   "Pennsylvania",
+   "Pennsylvania",
+   "",
+   15,
+   [
+    "50%",
+    "49%"
+   ],
+   [
+    38.8987,
+    -77.0352
+   ]
+  ],
+  "err": []
+ },
+ {
+  "i": 4,
+  "start": "Allegheny County, PA",
+  "q": "100 Ross St, Pittsburgh, PA 15219",
+  "before": [
+   "Allegheny County",
+   "Allegheny County, PA",
+   [
+    "60%",
+    "39%"
+   ]
+  ],
+  "after": [
+   "Allegheny County",
+   "Allegheny County, PA",
+   "Pennsylvania",
+   "Allegheny County",
+   15,
+   [
+    "76%",
+    "22%"
+   ],
+   [
+    40.4399,
+    -79.9994
+   ]
+  ],
+  "err": []
+ }
+]

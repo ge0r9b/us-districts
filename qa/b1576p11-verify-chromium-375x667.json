@@ -1,0 +1,67 @@
+{
+ "A0_opt": [
+  287,
+  587
+ ],
+ "A0_moves": [],
+ "A0_num": "num",
+ "A0_cls": [
+  0,
+  []
+ ],
+ "A1_opt": [
+  287,
+  587
+ ],
+ "A1_moves": [],
+ "A1_num": "num",
+ "A1_cls": [
+  0,
+  []
+ ],
+ "B_before": {
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "ph": "Allegheny County, PA",
+  "crumb": "Allegheny County",
+  "z": 6,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "B_sugg": [
+  "1600 PENNSYLVANIA AVE NW, WASHI\u2026 Address",
+  "White House, 1600, Pennsylvania\u2026 Address"
+ ],
+ "B_enter": {
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "ph": "Allegheny County, PA",
+  "crumb": "Allegheny County",
+  "z": 15,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "B_reload": {
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "ph": "Allegheny County, PA",
+  "crumb": "Allegheny County",
+  "z": 15,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "B_enter_after_reload": {
+  "st": "New York",
+  "co": "New York County",
+  "ph": "350 5TH AVE, NEW YORK",
+  "crumb": "New York County",
+  "z": 15,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "err": []
+}

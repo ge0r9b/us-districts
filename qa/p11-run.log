@@ -1,0 +1,18 @@
++ cd /workspace/w/lanes/qa/qa
++ timeout 900 python3 cmp.py
++ timeout 900 python3 p11-retest.py chromium
++ timeout 1500 python3 p11-flow.py chromium
++ for s in 390 375 320 1024x576 1024x768
++ timeout 900 python3 p11-layout.py chromium 390
++ for s in 390 375 320 1024x576 1024x768
++ timeout 900 python3 p11-layout.py chromium 375
++ for s in 390 375 320 1024x576 1024x768
++ timeout 900 python3 p11-layout.py chromium 320
++ for s in 390 375 320 1024x576 1024x768
++ timeout 900 python3 p11-layout.py chromium 1024x576
++ for s in 390 375 320 1024x576 1024x768
++ timeout 900 python3 p11-layout.py chromium 1024x768
++ timeout 900 python3 p11-restore.py
++ timeout 1500 python3 p11-flow.py webkit
++ echo ALLDONE
+ALLDONE
