@@ -14,8 +14,9 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brand_cleanliness.csv` | 31 | brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring for columns and rank order) |
-| `brands.csv` | 44 (33 brand, 11 company) | `entity` |
+| `locations/wawa.csv` | 1,320 | Wawa stores from the user's own list |
+| `brand_cleanliness.csv` | 32 | brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring for columns and rank order) |
+| `brands.csv` | 45 (34 brand, 11 company) | `entity` |
 | `brand_relationships.csv` | 34 | `entity_relation` |
 | `company_locations.csv.gz` | 36,675 | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
@@ -106,6 +107,9 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   **brand_qid** order: exact normalized-name match to a Wikidata item parented/owned by Marriott or Starwood (`brand_qid_from_wikidata_name_match`),
   else the matched ATP item's `brand:wikidata`, else a v5-brand → QID map learned from ≥ 5 MARSHA-matched rows with ≥ 90 % agreement (`brand_qid_from_brand_name`).
   **Provenance caveat:** v5 addresses were partly filled from OpenStreetMap/Photon (ODbL) and the ArcGIS World Geocoder (Esri terms restrict storing results); v5 does not record which rows, so no v5 address or coordinate is published: every kept row's address and point come from ATP or Marriott's feed. Full provenance of v5: `PROVENANCE-marriott-v5.md`.
+- **wawa.csv**: the user's own Wawa list (Apple Numbers file uploaded 2026-10-18, copied untouched to `raw/inputs/wawa-stores-user-2026-10-18.numbers`; its About sheet says it was collected 2026-09-16 from order.wawa.com's store API). The user checked it, so values are copied as-is: no validation, phone reformatting, flagging or geocoding.
+  Column map: Store ID → `store_id`, Name → `name`, Street → `address`, City, State, ZIP → `zip`, Phone, Latitude/Longitude → `lat`/`lon`, URL → `source_url`. Timezone and Schedule Type have no schema column and are not carried.
+  Added: `brand_qid` = wikidata:Q5936320 (Wawa; no P749 parent on Wikidata, so `parent_brand_qid` is blank), `location_id` = `wawa:<store id>`, county by point-in-polygon on cb_2024 (1,318 of 1,320; 2 points fall outside the 1:500k polygons and are not snapped further than 2 km).
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_coordinates_dropped` (row then dropped), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,

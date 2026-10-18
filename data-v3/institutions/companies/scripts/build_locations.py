@@ -400,11 +400,37 @@ summary["marriott"] = {"file": write(df, "marriott"), "rows": len(df), "input_ro
                        "rows_by_country": dict(Counter(df.country_code)),
                        "flags": dict(Counter(re.sub(r"_[\d.]+km$", "_km", f.split(":")[0]) for fl in df["flags"] for f in fl.split(";") if f))}
 
+# ---------------- Wawa (user-provided list, used as-is) ----------------
+# raw/inputs/wawa-stores-user-2026-10-18.numbers: the user's own list (sheet "Wawa Stores"; its "About" sheet says it was
+# collected 2026-09-16 from order.wawa.com's store API). The user checked it: values are copied unchanged, no validation
+# or geocoding; only the brand QID, location ids and a point-in-polygon county are added.
+from numbers_parser import Document  # noqa: E402
+WAWA_IN = INP / "wawa-stores-user-2026-10-18.numbers"
+S_WAWA = src("wawa-user-list-2026-10-18", "user-provided Wawa list, uploaded 2026-10-18 (its About sheet: order.wawa.com store API, collected 2026-09-16)",
+             "https://www.wawa.com/locations", "user-provided (wawa.com facts; not an open licence)", "2026-10-18", WAWA_IN)
+_wt = Document(str(WAWA_IN)).sheets[0].tables[0].rows(values_only=True)
+_hdr = next(r for r in _wt if r[0] == "Store ID")  # header row sits at the bottom of the sheet
+WQ = "Q5936320"
+rows = []
+for r in _wt:
+    if r is _hdr:
+        continue
+    x = dict(zip(_hdr, r))
+    v = lambda k: "" if x[k] is None else str(x[k])
+    rows.append(dict(store_id=v("Store ID"), brand="Wawa", brand_qid=qid(WQ), parent_brand_qid=parent_of(WQ), address=v("Street"),
+                     city=v("City"), state=v("State"), zip=v("ZIP"), county="", lat=x["Latitude"] if x["Latitude"] is not None else "",
+                     lon=x["Longitude"] if x["Longitude"] is not None else "", phone=v("Phone"), sub_brand="", flags=[],
+                     source=";".join([S_WAWA, S_CEN, S_WD]), source_url=v("URL"), source_date="2026-10-18", name=v("Name"),
+                     sub_brand_qid="", county_geoid="", country_code="US", status="", store_type=""))  # Timezone, Schedule Type: no schema column
+df = finish(rows, check_county=False)
+summary["wawa"] = {"file": write(df, "wawa"), "rows": len(df), "with_county_geoid": int((df.county_geoid != "").sum()),
+                   "input_columns": list(_hdr)}
+
 # ---------------- brands.csv ----------------
 used = Counter()
 files = defaultdict(set)
 LOC = {}
-for name in ("walgreens", "cvs", "mcdonalds", "marriott"):
+for name in ("walgreens", "cvs", "mcdonalds", "marriott", "wawa"):
     p = OUT / summary[name]["file"]
     d = pd.read_csv(p, dtype=str, keep_default_na=False)
     LOC[name] = d
