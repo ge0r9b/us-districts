@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181577";</script>
+<script>window.BUILD="202610181578";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -2984,19 +2984,27 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   let lastNom=0; const nominatim=q=>{ const wait=Math.max(0,1100-(Date.now()-lastNom)); return new Promise(r=>setTimeout(r,wait)).then(()=>{ lastNom=Date.now(); return fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&addressdetails=1&q="+encodeURIComponent(q),{headers:{Accept:"application/json"}}); })
       .then(r=>r.json()).then(a=>a.map(h=>({addr:h.display_name,lat:+h.lat,lon:+h.lon,st:(h.address&&h.address.state)||null}))).catch(()=>null); };
   const pinLayer=L.layerGroup().addTo(map);
-  const goAddr=m=>{ closeG(); nameLock=null; pinLayer.clearLayers(); L.circleMarker([m.lat,m.lon],{radius:8,color:"#fff",weight:3,fillColor:"#111",fillOpacity:1,pane:"markerPane"}).addTo(pinLayer);
+  const goAddr=m=>{ window.__xCrumb=null; closeG(); nameLock=null; pinLayer.clearLayers(); L.circleMarker([m.lat,m.lon],{radius:8,color:"#fff",weight:3,fillColor:"#111",fillOpacity:1,pane:"markerPane"}).addTo(pinLayer);
     const short=m.addr.split(",").slice(0,2).join(",").trim(); GQ.placeholder=t32(short); GQ.title=m.addr;
     const st=m.st&&allStates().includes(m.st)?m.st:null; const res={addr:m.addr,lat:m.lat,lon:m.lon,state:st,county:null,precinct:null,level:"point"}; window.__lastAddr=res;
+    /* build 1578 (QA-062): DC has no state/county pickers; an address inside DC opens DC itself (title, field, crumb, thumbnails and map together) */
+    if(!st&&(/,\s*DC\b|District of Columbia/i.test(m.addr)||(m.lat>38.79&&m.lat<38.996&&m.lon>-77.12&&m.lon<-76.909))){ res.state="District of Columbia"; res.county="District of Columbia"; res.level="county"; window.__goDC(short,[m.lat,m.lon]); return Promise.resolve(res); }
     if(!st){ map.setView([m.lat,m.lon],15); return Promise.resolve(res); }
     state.value=st; county.value=""; state.onchange();
     return loadState(st).then(()=>{ const cd=(GEOM.counties||[]).find(d=>d[0]===st&&pointInItem(d,m.lon,m.lat)); if(cd){ county.value=cd[1]; county.onchange(); res.county=cd[1]; res.level="county"; }
         return Promise.all([loadPrecincts(st), ym()==="2020"&&typeof loadPrec20==="function"?loadPrec20(st):null]).catch(()=>0).then(()=>{ const rows=(ym()==="2020"?(window.PREC20||{})[st]:PREC[st])||[];
           const r=rows.find(r=>(!cd||r[0]===cd[1])&&pointInItem(r.slice(0,6),m.lon,m.lat))||rows.find(r=>pointInItem(r.slice(0,6),m.lon,m.lat));
-          setTimeout(()=>{ if(r){ const c=zoomItem("precinct",r); res.precinct=r[1]; res.level="precinct"; setTimeout(()=>showArea({kind:"precinct",d:r,yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"},c),350); }
+          setTimeout(()=>{ if(r){ const c=zoomItem("precinct",r); res.precinct=r[1]; res.level="precinct"; setTimeout(()=>{ showArea({kind:"precinct",d:r,yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"},c); window.__xCrumb={lbl:r[1],st:st,co:county.value||"",t:Date.now()}; },350); }
             else map.setView([m.lat,m.lon],cd?13:12);
             GQ.placeholder=t32(short); GQ.title=m.addr; nameLock=short; if(view==="list") setTimeout(()=>{ try{ renderList(); renderCands(); }catch(_){} },500); },450); }); })
       .then(()=>res); };
   window.__goAddr=goAddr;
+  /* DC selected from a search: its crumb (DC has no state picker); cleared by any state pick or another search */
+  /* build 1578 (QA-062/063): a searched place below the pickers (DC, an address's precinct) gets its own crumb, so title, crumb, field and thumbnails name the same place; cleared by a pick, a map tap, a list tap or another search */
+  setInterval(()=>{ const cr=document.getElementById("crumbs"); if(!cr) return; const X=window.__xCrumb; const on=X&&state.value===X.st&&(county.value||"")===X.co; if(X&&!on) window.__xCrumb=null; let x=cr.querySelector(".crumb.dcx"); if(on&&x&&x.title!==X.lbl){ cr.querySelectorAll(".dcx").forEach(e=>e.remove()); x=null; } if(on&&!x){ const last=[...cr.querySelectorAll(".crumb.cur")].pop(); if(last) last.classList.remove("cur"); x=document.createElement("button"); x.className="crumb cur dcx"; x.title=X.lbl; x.textContent=t32(X.lbl); const sp=document.createElement("span"); sp.className="sep dcx"; sp.textContent="›"; cr.append(sp,x); } else if(!on&&x){ cr.querySelectorAll(".dcx").forEach(e=>e.remove()); } },150);
+  try{ map.on("click",()=>{ if(window.__xCrumb&&Date.now()-window.__xCrumb.t>800) window.__xCrumb=null; }); }catch(e){} document.addEventListener("click",e=>{ if(window.__xCrumb&&Date.now()-window.__xCrumb.t>800&&e.target.closest&&e.target.closest("#listView .lvrow,#geofs li,#sheet li")) window.__xCrumb=null; },true);
+  { const _nDC=navTo; navTo=function(q){ if(/^(district of columbia|washington,? ?d\.?c\.?)(,\s*(dc|district of columbia))?$/i.test(String(q).trim())){ window.__goDC("District of Columbia"); return Promise.resolve(); } window.__xCrumb=null; return _nDC.apply(this,arguments); }; }
+  window.__goDC=(lbl,ll)=>{ try{ window.__worldExit&&window.__worldExit(); }catch(e){} nameLock=null; if(state.value||county.value){ state.value=""; county.value=""; state.onchange&&state.onchange(); } const fin=()=>{ map.fitBounds([[38.79,-77.12],[38.995,-76.909]],{padding:[10,10]}); const t=lbl||"District of Columbia"; GQ.placeholder=t32(t); GQ.title=t; nameLock=t; window.__geoLock={lbl:t,t:Date.now(),st:""}; window.__selAt=Date.now(); try{ window.__xCrumb={lbl:"District of Columbia",st:"",co:"",t:Date.now()}; showArea({kind:"county",d:["District of Columbia","District of Columbia"],yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"},L.latLng(ll||[38.9,-77.03])); }catch(e){} try{ renderCands(); }catch(e){} }; setTimeout(fin,400); };
   /* one address lookup for the geo field and the universal search: Census one-line (as typed, normalised, without ZIP) -> Census street/city/state/ZIP endpoint -> OpenStreetMap Nominatim; results of both sources merged (Census first, OSM hits within ~100 m of a Census hit dropped); nationwide, never scoped to the selected state/county; null = every service unreachable */
   const lookupAddr=async(q,withNom=true)=>{ const n=normA(q); const vs=[...new Set([n, n.replace(ZIPRE,"").replace(/[\s,]+$/,""), String(q).trim()])].filter(x=>x.length>=5); let reach=false, out=[];
     for(const v of vs){ const m=await census(v); if(m) reach=true; if(m&&m.length){ out=m; break; } }
@@ -3589,7 +3597,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   /* build 1563: bar-segment value labels. Fit-or-hide: a label shows only when it fits completely inside its segment (% and # modes, any segment).
      A floating button is an obstacle only for the rows it overlaps vertically: there the label shifts left inside its own segment, or hides if it cannot clear it.
      Estimated rows (b.rn.est) prefix the first visible value with '≈' (class estp, drawn by CSS). Batched: all reads, then all writes; rows near the viewport only. */
-  function colRects(){ const o=[]; document.querySelectorAll(".rail .rbtn,#bGeo,#bGlobe,#bNum,#bLyr,#bTime,#bSearch,.xrow .lbtn,#barTime .rbtn,#bChart,.tlab:not([hidden])").forEach(b=>{ const r=b.getBoundingClientRect(); if(r.width>0&&r.height>0&&r.left>innerWidth*0.5&&getComputedStyle(b).display!=="none") o.push(r); }); return o; }
+  function colRects(){ const o=[]; document.querySelectorAll(".rail .rbtn,#bGeo,#bGlobe,#bNum,#bLyr,#bTime,#bSearch,.xrow .lbtn,#barTime .rbtn,#bChart,.tlab:not([hidden]),#laSort").forEach(b=>{ const r=b.getBoundingClientRect(); if(r.width>0&&r.height>0&&(r.left>innerWidth*0.5||b.id==="laSort")&&getComputedStyle(b).display!=="none") o.push(r); }); return o; } /* build 1578 (QA-009/033): the sort chip is an obstacle for bar labels too (at 320 it sits left of mid-screen) */
   function clampLabels(){ try{ const lv=document.getElementById("listView"); if(!lv) return; const ws=lv.querySelectorAll(".sbw:not(.dl)"); if(!ws.length) return; const ob=colRects(), vr=lv.getBoundingClientRect(), plan=[], est=[];
       ws.forEach(w0=>{ const row=w0.parentElement||w0, wr=row.getBoundingClientRect(), far=wr.bottom<vr.top-150||wr.top>vr.bottom+150; /* build 1564: the row box, not the label, so rows whose content is skipped (content-visibility) are not laid out */
         if(far&&row.__estChk) return; const isE=!!(w0.parentElement&&w0.parentElement.querySelector("b.rn.est")), bs=[...w0.querySelectorAll(".sg b")]; if(!bs.length) return; const first=bs.find(b=>b.textContent);
