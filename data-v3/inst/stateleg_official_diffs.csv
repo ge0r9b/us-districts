@@ -73,11 +73,11 @@ Vermont,upper,50ORA,Orange,openstates_member_not_in_official_roster,,Larry Hart 
 Vermont,upper,50ORL,Orleans,openstates_member_not_in_official_roster,,Sam Douglass (Republican)
 Maryland,lower,24036,36,openstates_member_not_in_official_roster,,Jay Jacobs (Republican)
 Maryland,lower,2434A,34A,openstates_member_not_in_official_roster,,Steve Johnson (Democratic)
-Mississippi,lower,28070,70,official_member_in_unit_openstates_leaves_empty,Bo Brown (D),
+Mississippi,lower,28070,70,session_roster_member_not_asserted_unit_empty_in_openstates,Bo Brown,
+Mississippi,lower,28077,77,session_roster_member_not_asserted_unit_empty_in_openstates,Price Wallace,
+Mississippi,upper,28034,34,session_roster_member_not_asserted_unit_empty_in_openstates,Juan Barnett,
 Mississippi,lower,28022,22,official_member_not_in_openstates_unit,Jonathan Ray Lancaster (R),Justin Crosby (Democratic)
 Mississippi,lower,28026,26,official_member_not_in_openstates_unit,Orlando Paden (D),Otha Williams (Democratic)
-Mississippi,lower,28077,77,official_member_in_unit_openstates_leaves_empty,Price Wallace (R),
-Mississippi,upper,28034,34,official_member_in_unit_openstates_leaves_empty,Juan Barnett (D),
 Mississippi,upper,28002,2,official_member_not_in_openstates_unit,David Parker (R),Theresa Gillespie Isom (Democratic)
 Mississippi,upper,28042,42,official_member_not_in_openstates_unit,Robin Robinson (R),Don Hartness (Republican)
 Mississippi,lower,28022,22,openstates_member_not_in_official_roster,,Justin Crosby (Democratic)
@@ -93,3 +93,7 @@ Oklahoma,lower,40089,89,official_member_not_in_openstates_unit,Arturo Alonso San
 Oklahoma,lower,40089,89,openstates_member_not_in_official_roster,,Arturo Alonso (Democratic)
 Louisiana,lower,22064,64,official_member_not_in_openstates_unit,Kellee Hennessy Dickerson (Republican),Kellee Hennessy (Republican)
 Louisiana,lower,22064,64,openstates_member_not_in_official_roster,,Kellee Hennessy (Republican)
+Arkansas,lower,05008,8,session_roster_member_not_asserted_unit_empty_in_openstates,Austin McCollum,
+Arkansas,upper,05018,18,session_roster_member_not_asserted_unit_empty_in_openstates,Jonathan Dismang,
+Arkansas,upper,05001,1,session_roster_member_not_asserted_unit_empty_in_openstates,Ben Gilmore,
+Ohio,lower,39089,89,openstates_member_not_in_official_roster,,D.J. Swearingen (Republican)

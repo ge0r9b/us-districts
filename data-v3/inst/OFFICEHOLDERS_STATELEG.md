@@ -277,3 +277,30 @@ Totals for the current file after batch 3:
 - 3,938 rows come from official rosters and 3,384 from the OpenStates fallback. The other 39 are vacant rows that the persons step added for units with no member in either source.
 - 94 diffs.
 - `persons.csv` has 8,188 rows and 957 aliases. 12 official IDs were matched to an OpenStates person and 12 were kept as `<st>-leg:` (VT 9, TX 1, OK 1, LA 1). The OK and LA cases are name changes: Alonso → Alonso Sandoval and Hennessy → Hennessy Dickerson. They are logged in `person_id_matches.csv`.
+
+## Official rosters, batch 4 (2026-10-18): KY, WV, AR, WI, OH, NJ, NM, ID, SD
+
+| State | Source | Official serving | Diffs |
+|---|---|---|---|
+| KY | apps.legislature.ky.gov members by district | 138 | 0 |
+| WV | wvlegislature.gov House + Senate rosters | 134 | 0 |
+| AR | arkleg.state.ar.us 2025 member lists (no party, no status) | 132 | 3 not asserted |
+| WI | docs.legis.wisconsin.gov 2025 Assembly + Senate | 132 | 0 |
+| OH | legislature.ohio.gov directories | 130 + 2 vacant | 1 |
+| NJ | njleg roster (JSON embedded in the page) | 120 | 0 |
+| NM | nmlegis.gov legislator lists | 110 | 0 |
+| ID | legislature.idaho.gov 2026 membership | 105 | 0 |
+| SD | sdlegislature.gov API, SessionMembers session 71 (InactiveDate used for status) | 105 | 0 |
+
+**New rule, applied to every undated session roster (AR, IA, MS, ND, TX, WA):** a member listed in a unit where OpenStates has nobody current is no longer asserted as serving. Such people may have left, and filling those units would be a guess. The row is not written, and the case is logged as diff kind `session_roster_member_not_asserted_unit_empty_in_openstates`. There are 6 such cases:
+- AR: McCollum (House 8), Dismang (Senate 18), Gilmore (Senate 1).
+- MS: Brown (House 70), Wallace (House 77), Barnett (Senate 34).
+
+This replaces the batch 2 MS fills, which were made under the older rule.
+
+Totals for the current file after batch 4:
+- 7,361 rows: 7,303 serving and 58 vacant. 41 of the vacant rows are for units with no member in either source.
+- 7,253 serving rows are joined, plus 48 NH floterial and 2 ME tribal rows.
+- 5,043 rows come from official rosters and 2,277 from the OpenStates fallback.
+- 98 diffs.
+- `persons.csv` has 8,188 rows and 954 aliases.

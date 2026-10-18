@@ -344,24 +344,23 @@
     "upper"
    ],
    "official_records": 172,
-   "official_serving": 171,
+   "official_serving": 168,
    "openstates_current_rows": 171,
-   "official_rows_written": 171,
-   "joined": 171,
+   "official_rows_written": 168,
+   "joined": 168,
    "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
-   "units_filled_official": 171,
+   "units_filled_official": 168,
    "units_filled_openstates": 171,
-   "units_newly_filled": [
-    "28034",
-    "28070",
-    "28077"
-   ],
+   "units_newly_filled": [],
    "units_empty_official": [
     "28024",
     "28026",
-    "28045"
+    "28034",
+    "28045",
+    "28070",
+    "28077"
    ],
    "diffs": 14,
    "vintage_2024_check": {
@@ -637,6 +636,242 @@
     "confirmed_session_roster": 141
    },
    "official_vacancies": []
+  },
+  "Kentucky": {
+   "source": "Kentucky General Assembly members by district (House, Senate)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 138,
+   "official_serving": 138,
+   "openstates_current_rows": 138,
+   "official_rows_written": 138,
+   "joined": 138,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 138,
+   "units_filled_openstates": 138,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 136,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "West Virginia": {
+   "source": "West Virginia Legislature House and Senate rosters (2025-2026)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 134,
+   "official_serving": 134,
+   "openstates_current_rows": 134,
+   "official_rows_written": 134,
+   "joined": 134,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 117,
+   "units_filled_openstates": 117,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 123,
+    "not_in_official_roster": 11
+   },
+   "official_vacancies": []
+  },
+  "Arkansas": {
+   "source": "Arkansas State Legislature member lists, 2025 session (party not listed there)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 138,
+   "official_serving": 132,
+   "openstates_current_rows": 132,
+   "official_rows_written": 132,
+   "joined": 132,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 132,
+   "units_filled_openstates": 132,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "05001",
+    "05008",
+    "05018"
+   ],
+   "diffs": 3,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 135
+   },
+   "official_vacancies": []
+  },
+  "Wisconsin": {
+   "source": "Wisconsin Legislature 2025 member lists (Assembly, Senate)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 132,
+   "official_serving": 132,
+   "openstates_current_rows": 132,
+   "official_rows_written": 132,
+   "joined": 132,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 132,
+   "units_filled_openstates": 132,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 132
+   },
+   "official_vacancies": []
+  },
+  "Ohio": {
+   "source": "Ohio General Assembly House and Senate directories",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 132,
+   "official_serving": 130,
+   "openstates_current_rows": 131,
+   "official_rows_written": 132,
+   "joined": 130,
+   "vacant_rows": 2,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 130,
+   "units_filled_openstates": 131,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "39013",
+    "39089"
+   ],
+   "diffs": 1,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 127,
+    "not_in_official_roster": 5
+   },
+   "official_vacancies": [
+    "lower 89",
+    "upper 13"
+   ]
+  },
+  "New Jersey": {
+   "source": "New Jersey Legislature legislative roster",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 120,
+   "official_serving": 120,
+   "openstates_current_rows": 120,
+   "official_rows_written": 120,
+   "joined": 120,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 80,
+   "units_filled_openstates": 80,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 108,
+    "not_in_official_roster": 12
+   },
+   "official_vacancies": []
+  },
+  "New Mexico": {
+   "source": "New Mexico Legislature legislator lists (House, Senate)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 110,
+   "official_serving": 110,
+   "openstates_current_rows": 110,
+   "official_rows_written": 110,
+   "joined": 110,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 110,
+   "units_filled_openstates": 110,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "35037",
+    "35041"
+   ],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 109,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": []
+  },
+  "Idaho": {
+   "source": "Idaho Legislature 2026 House and Senate membership pages",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 105,
+   "official_serving": 105,
+   "openstates_current_rows": 105,
+   "official_rows_written": 105,
+   "joined": 105,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 70,
+   "units_filled_openstates": 70,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 101,
+    "not_in_official_roster": 4
+   },
+   "official_vacancies": []
+  },
+  "South Dakota": {
+   "source": "South Dakota Legislature API, SessionMembers for session 71 (2026, 101st session)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 105,
+   "official_serving": 105,
+   "openstates_current_rows": 105,
+   "official_rows_written": 105,
+   "joined": 105,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 72,
+   "units_filled_openstates": 72,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "not_in_official_roster": 3,
+    "confirmed_current_roster": 102
+   },
+   "official_vacancies": []
   }
  },
  "fallback_reasons": {
@@ -657,7 +892,7 @@
   "Virginia/upper": "lis.virginia.gov is a client-side app; legacylis.virginia.gov member pages (legp604 ...+mbr+H/S) answer 'document does not exist' for the 2026 session",
   "Virginia/lower": "same as Virginia/upper"
  },
- "current_rows": 7322,
- "current_joined": 7272,
- "current_official_rows": 3938
+ "current_rows": 7320,
+ "current_joined": 7270,
+ "current_official_rows": 5043
 }
