@@ -1,0 +1,9 @@
+code,ref
+FEC16..FEC22,"FEC Federal Elections 2016/2018/2020/2022 xlsx, House/Senate results by state (fec.gov/documents/...)"
+FECS16..FECS22,FEC Federal Elections special-election sheets
+CLK24,"House Clerk, Statistics of the Presidential and Congressional Election of Nov 5, 2024"
+ED,"Election Data teammate, data-v3/results/{2022,2024}/senate/us_senate_*_state.csv (official; branch data/election, read only)"
+BPD,"Ballotpedia state-legislative district pages (votebox / RCV / 2016 bptable), fetched 2026-10-18"
+BPC,"Ballotpedia ""<court> elections, <year>"" and ""<court> elections"" pages, fetched 2026-10-18"
+KL,"Klarner, State Legislative Election Returns 1967-2022, Harvard Dataverse doi:10.7910/DVN/FJOGJB (file 127)"
+MEDSL,"MIT Election Lab, U.S. Senate 1976-2024, doi:10.7910/DVN/PEJ5QU (cross-check only)"

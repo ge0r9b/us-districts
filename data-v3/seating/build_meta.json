@@ -1,0 +1,31 @@
+{
+ "excluded_courts": [
+  "CT_SC",
+  "DE_SC",
+  "HI_SC",
+  "MA_SC",
+  "ME_SC",
+  "NH_SC",
+  "NJ_SC",
+  "NY_SC",
+  "RI_SC",
+  "SC_SC",
+  "VA_SC",
+  "VT_SC"
+ ],
+ "dropped_courts": [
+  "CA_SC",
+  "KS_SC",
+  "WV_SC"
+ ],
+ "court_min_year": 2017,
+ "skipped_cities": {
+  "1836003": "Indianapolis: consolidated city-county (Unigov); legislature is the Indianapolis City-County Council, not a city council",
+  "0667000": "San Francisco: consolidated city and county; legislature is the Board of Supervisors (no city council)",
+  "4752006": "Nashville-Davidson: consolidated metropolitan government; legislature is the Metro Council",
+  "1150000": "Washington, DC: federal district; legislature is the Council of the District of Columbia (state-equivalent, already modelled as dc_council in the repo)",
+  "2148006": "Louisville/Jefferson County: consolidated metro government; legislature is the Louisville Metro Council"
+ },
+ "city_estimates": "Census Vintage 2025 sub-est2025 SUMLEV 162",
+ "snapshot": "2026-10-18"
+}

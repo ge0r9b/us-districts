@@ -1,0 +1,546 @@
+body,check,ok,detail
+us-senate,snapshot vs senate.gov XML (bioguide set),1,100 vs 100; diff []
+us-house,snapshot vs House Clerk MemberData (bioguide set),1,433 vs 433; diff []
+us-house,composition 2017-01-03,1,D 193 R 241 I 0 vacant 1
+us-senate,composition by caucus 2017-01-03,1,D 48 R 52 I 0 vacant 0
+us-house,composition 2019-01-03,1,D 235 R 198 I 0 vacant 2
+us-senate,composition by caucus 2019-01-03,1,D 47 R 52 I 0 vacant 1
+us-house,composition 2021-01-03,1,D 222 R 211 I 0 vacant 2
+us-senate,composition by caucus 2021-01-03,1,D 48 R 51 I 0 vacant 1
+us-house,composition 2023-01-03,1,D 212 R 222 I 0 vacant 1
+us-senate,composition by caucus 2023-01-03,1,D 51 R 49 I 0 vacant 0
+us-house,composition 2025-01-03,1,D 215 R 219 I 0 vacant 1
+us-senate,composition by caucus 2025-01-03,1,D 47 R 52 I 0 vacant 1
+us-house,composition 2026-10-18,1,D 214 R 218 I 1 vacant 2
+us-senate,composition by caucus 2026-10-18,1,D 47 R 53 I 0 vacant 0
+us-ak-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (9, 11, 0, 0) infobox (9, 11, 0, 0)"
+us-ak-senate,seat count vs Open States metadata,1,20 vs 20
+us-ak-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D9 R11 filled 20 | BP D9 R11 filled 20
+us-ak-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 10 (unmatched 0), open-seat table 10"
+us-ak-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",0,"table (14, 21, 5, 0) infobox (14, 21, 4, 0)"
+us-ak-house,seat count vs Open States metadata,1,40 vs 40
+us-ak-house,filled seats and D/R vs Open States people repo (official sites),1,OS D14 R21 filled 40 | BP D14 R21 filled 40
+us-ak-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 40 (unmatched 0), open-seat table 40"
+us-al-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (8, 27, 0, 0) infobox (8, 27, 0, 0)"
+us-al-senate,seat count vs Open States metadata,1,35 vs 35
+us-al-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D8 R27 filled 35 | BP D8 R27 filled 35
+us-al-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 35 (unmatched 0), open-seat table 35"
+us-al-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 27–8"" | BP D8 R27 other 0 vacant 0"
+us-al-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (29, 76, 0, 0) infobox (29, 76, 0, 0)"
+us-al-house,seat count vs Open States metadata,1,105 vs 105
+us-al-house,filled seats and D/R vs Open States people repo (official sites),1,OS D29 R76 filled 105 | BP D29 R76 filled 105
+us-al-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 105 (unmatched 0), open-seat table 105"
+us-al-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 76–29"" | BP D29 R76 other 0 vacant 0"
+us-ar-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 27, 0, 2) infobox (6, 27, 0, 2)"
+us-ar-senate,seat count vs Open States metadata,1,35 vs 35
+us-ar-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R27 filled 33 | BP D6 R27 filled 33
+us-ar-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-ar-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 29–6"" | BP D6 R27 other 0 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ar-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (20, 79, 0, 1) infobox (20, 79, 0, 1)"
+us-ar-house,seat count vs Open States metadata,1,100 vs 100
+us-ar-house,filled seats and D/R vs Open States people repo (official sites),1,OS D20 R79 filled 99 | BP D20 R79 filled 99
+us-ar-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-ar-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 81–19"" | BP D20 R79 other 0 vacant 1 | REAL MISMATCH"
+us-az-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (13, 17, 0, 0) infobox (13, 17, 0, 0)"
+us-az-senate,seat count vs Open States metadata,1,30 vs 30
+us-az-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D13 R17 filled 30 | BP D13 R17 filled 30
+us-az-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 30 (unmatched 0), open-seat table 30"
+us-az-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 17–13"" | BP D13 R17 other 0 vacant 0"
+us-az-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (27, 33, 0, 0) infobox (27, 33, 0, 0)"
+us-az-house,seat count vs Open States metadata,1,60 vs 60
+us-az-house,filled seats and D/R vs Open States people repo (official sites),1,OS D27 R33 filled 60 | BP D27 R33 filled 60
+us-az-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 60 (unmatched 0), open-seat table 60"
+us-az-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 33–27"" | BP D27 R33 other 0 vacant 0"
+us-ca-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (29, 10, 0, 1) infobox (29, 10, 0, 1)"
+us-ca-senate,seat count vs Open States metadata,1,40 vs 40
+us-ca-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D29 R10 filled 39 | BP D29 R10 filled 39
+us-ca-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 20 (unmatched 0), open-seat table 20"
+us-ca-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 30–10"" | BP D29 R10 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ca-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (60, 19, 0, 1) infobox (60, 19, 0, 1)"
+us-ca-house,seat count vs Open States metadata,1,80 vs 80
+us-ca-house,filled seats and D/R vs Open States people repo (official sites),1,OS D60 R19 filled 79 | BP D60 R19 filled 79
+us-ca-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 80 (unmatched 0), open-seat table 80"
+us-ca-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 60–20"" | BP D60 R19 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-co-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (23, 12, 0, 0) infobox (23, 12, 0, 0)"
+us-co-senate,seat count vs Open States metadata,1,35 vs 35
+us-co-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D23 R12 filled 35 | BP D23 R12 filled 35
+us-co-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-co-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 23–12"" | BP D23 R12 other 0 vacant 0"
+us-co-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (43, 22, 0, 0) infobox (43, 22, 0, 0)"
+us-co-house,seat count vs Open States metadata,1,65 vs 65
+us-co-house,filled seats and D/R vs Open States people repo (official sites),0,OS D42 R22 filled 64 | BP D43 R22 filled 65
+us-co-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 65 (unmatched 0), open-seat table 65"
+us-co-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 43–22"" | BP D43 R22 other 0 vacant 0"
+us-ct-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (25, 11, 0, 0) infobox (25, 11, 0, 0)"
+us-ct-senate,seat count vs Open States metadata,1,36 vs 36
+us-ct-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D25 R11 filled 36 | BP D25 R11 filled 36
+us-ct-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 36 (unmatched 0), open-seat table 36"
+us-ct-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 25–11"" | BP D25 R11 other 0 vacant 0"
+us-ct-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (102, 49, 0, 0) infobox (102, 49, 0, 0)"
+us-ct-house,seat count vs Open States metadata,1,151 vs 151
+us-ct-house,filled seats and D/R vs Open States people repo (official sites),1,OS D102 R49 filled 151 | BP D102 R49 filled 151
+us-ct-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 151 (unmatched 0), open-seat table 151"
+us-ct-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 102–49"" | BP D102 R49 other 0 vacant 0"
+us-de-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (15, 6, 0, 0) infobox (15, 6, 0, 0)"
+us-de-senate,seat count vs Open States metadata,1,21 vs 21
+us-de-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D15 R6 filled 21 | BP D15 R6 filled 21
+us-de-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 11 (unmatched 0), open-seat table 11"
+us-de-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 15–6"" | BP D15 R6 other 0 vacant 0"
+us-de-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (27, 14, 0, 0) infobox (27, 14, 0, 0)"
+us-de-house,seat count vs Open States metadata,1,41 vs 41
+us-de-house,filled seats and D/R vs Open States people repo (official sites),1,OS D27 R14 filled 41 | BP D27 R14 filled 41
+us-de-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 41 (unmatched 0), open-seat table 41"
+us-de-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 27–14"" | BP D27 R14 other 0 vacant 0"
+us-fl-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (12, 26, 1, 1) infobox (12, 26, 1, 1)"
+us-fl-senate,seat count vs Open States metadata,1,40 vs 40
+us-fl-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D12 R26 filled 39 | BP D12 R26 filled 39
+us-fl-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 20 (unmatched 0), open-seat table 20"
+us-fl-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 28–11–1"" | BP D12 R26 other 1 vacant 1 | REAL MISMATCH"
+us-fl-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (34, 83, 0, 3) infobox (34, 83, 0, 3)"
+us-fl-house,seat count vs Open States metadata,1,120 vs 120
+us-fl-house,filled seats and D/R vs Open States people repo (official sites),0,OS D34 R82 filled 116 | BP D34 R83 filled 117
+us-fl-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 120 (unmatched 0), open-seat table 120"
+us-fl-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 87–33"" | BP D34 R83 other 0 vacant 3 | REAL MISMATCH"
+us-ga-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (22, 33, 0, 1) infobox (22, 33, 0, 1)"
+us-ga-senate,seat count vs Open States metadata,1,56 vs 56
+us-ga-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D22 R33 filled 55 | BP D22 R33 filled 55
+us-ga-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 56 (unmatched 0), open-seat table 56"
+us-ga-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 33–23"" | BP D22 R33 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ga-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (81, 99, 0, 0) infobox (81, 99, 0, 0)"
+us-ga-house,seat count vs Open States metadata,1,180 vs 180
+us-ga-house,filled seats and D/R vs Open States people repo (official sites),1,OS D81 R99 filled 180 | BP D81 R99 filled 180
+us-ga-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 180 (unmatched 0), open-seat table 180"
+us-ga-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 100–80"" | BP D81 R99 other 0 vacant 0 | REAL MISMATCH"
+us-hi-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (22, 3, 0, 0) infobox (22, 3, 0, 0)"
+us-hi-senate,seat count vs Open States metadata,1,25 vs 25
+us-hi-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D22 R3 filled 25 | BP D22 R3 filled 25
+us-hi-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 13 (unmatched 0), open-seat table 13"
+us-hi-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 22–3"" | BP D22 R3 other 0 vacant 0"
+us-hi-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (41, 10, 0, 0) infobox (41, 10, 0, 0)"
+us-hi-house,seat count vs Open States metadata,1,51 vs 51
+us-hi-house,filled seats and D/R vs Open States people repo (official sites),1,OS D41 R10 filled 51 | BP D41 R10 filled 51
+us-hi-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 51 (unmatched 0), open-seat table 51"
+us-hi-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Democratic 42–9"" | BP D41 R10 other 0 vacant 0 | REAL MISMATCH"
+us-ia-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (17, 32, 0, 1) infobox (17, 32, 0, 1)"
+us-ia-senate,seat count vs Open States metadata,1,50 vs 50
+us-ia-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D17 R32 filled 49 | BP D17 R32 filled 49
+us-ia-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 25 (unmatched 0), open-seat table 25"
+us-ia-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 33–17"" | BP D17 R32 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ia-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (33, 66, 0, 1) infobox (33, 66, 0, 1)"
+us-ia-house,seat count vs Open States metadata,1,100 vs 100
+us-ia-house,filled seats and D/R vs Open States people repo (official sites),1,OS D33 R66 filled 99 | BP D33 R66 filled 99
+us-ia-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-ia-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 67–33"" | BP D33 R66 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-id-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 29, 0, 0) infobox (6, 29, 0, 0)"
+us-id-senate,seat count vs Open States metadata,1,35 vs 35
+us-id-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R29 filled 35 | BP D6 R29 filled 35
+us-id-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 35 (unmatched 0), open-seat table 35"
+us-id-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 29–6"" | BP D6 R29 other 0 vacant 0"
+us-id-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (9, 61, 0, 0) infobox (9, 61, 0, 0)"
+us-id-house,seat count vs Open States metadata,1,70 vs 70
+us-id-house,filled seats and D/R vs Open States people repo (official sites),1,OS D9 R61 filled 70 | BP D9 R61 filled 70
+us-id-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 70 (unmatched 0), open-seat table 70"
+us-id-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 61–9"" | BP D9 R61 other 0 vacant 0"
+us-il-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (40, 19, 0, 0) infobox (40, 19, 0, 0)"
+us-il-senate,seat count vs Open States metadata,1,59 vs 59
+us-il-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D40 R19 filled 59 | BP D40 R19 filled 59
+us-il-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 39 (unmatched 0), open-seat table 39"
+us-il-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 40–19"" | BP D40 R19 other 0 vacant 0"
+us-il-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (78, 40, 0, 0) infobox (78, 40, 0, 0)"
+us-il-house,seat count vs Open States metadata,1,118 vs 118
+us-il-house,filled seats and D/R vs Open States people repo (official sites),1,OS D78 R40 filled 118 | BP D78 R40 filled 118
+us-il-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 118 (unmatched 0), open-seat table 118"
+us-il-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 78–40"" | BP D78 R40 other 0 vacant 0"
+us-in-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (10, 40, 0, 0) infobox (10, 40, 0, 0)"
+us-in-senate,seat count vs Open States metadata,1,50 vs 50
+us-in-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D10 R40 filled 50 | BP D10 R40 filled 50
+us-in-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 25 (unmatched 0), open-seat table 25"
+us-in-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 40–10"" | BP D10 R40 other 0 vacant 0"
+us-in-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (30, 70, 0, 0) infobox (30, 70, 0, 0)"
+us-in-house,seat count vs Open States metadata,1,100 vs 100
+us-in-house,filled seats and D/R vs Open States people repo (official sites),0,OS D30 R69 filled 100 | BP D30 R70 filled 100
+us-in-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-in-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 69–30-1"" | BP D30 R70 other 0 vacant 0 | REAL MISMATCH"
+us-ks-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (9, 31, 0, 0) infobox (9, 31, 0, 0)"
+us-ks-senate,seat count vs Open States metadata,1,40 vs 40
+us-ks-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D9 R31 filled 40 | BP D9 R31 filled 40
+us-ks-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-ks-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 31–9"" | BP D9 R31 other 0 vacant 0"
+us-ks-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (37, 88, 0, 0) infobox (37, 88, 0, 0)"
+us-ks-house,seat count vs Open States metadata,1,125 vs 125
+us-ks-house,filled seats and D/R vs Open States people repo (official sites),1,OS D37 R88 filled 125 | BP D37 R88 filled 125
+us-ks-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 125 (unmatched 0), open-seat table 125"
+us-ks-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 88–37"" | BP D37 R88 other 0 vacant 0"
+us-ky-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 32, 0, 0) infobox (6, 32, 0, 0)"
+us-ky-senate,seat count vs Open States metadata,1,38 vs 38
+us-ky-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R32 filled 38 | BP D6 R32 filled 38
+us-ky-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 19 (unmatched 0), open-seat table 19"
+us-ky-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 32–6"" | BP D6 R32 other 0 vacant 0"
+us-ky-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (20, 80, 0, 0) infobox (20, 80, 0, 0)"
+us-ky-house,seat count vs Open States metadata,1,100 vs 100
+us-ky-house,filled seats and D/R vs Open States people repo (official sites),1,OS D20 R80 filled 100 | BP D20 R80 filled 100
+us-ky-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-ky-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 80–20"" | BP D20 R80 other 0 vacant 0"
+us-la-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (10, 28, 0, 1) infobox (10, 28, 0, 1)"
+us-la-senate,seat count vs Open States metadata,1,39 vs 39
+us-la-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D10 R28 filled 38 | BP D10 R28 filled 38
+us-la-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-la-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 27–12"" | BP D10 R28 other 0 vacant 1 | REAL MISMATCH"
+us-la-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (32, 71, 0, 2) infobox (32, 71, 0, 2)"
+us-la-house,seat count vs Open States metadata,1,105 vs 105
+us-la-house,filled seats and D/R vs Open States people repo (official sites),1,OS D32 R71 filled 103 | BP D32 R71 filled 103
+us-la-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-la-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 71–33–1"" | BP D32 R71 other 0 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ma-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (35, 5, 0, 0) infobox (35, 5, 0, 0)"
+us-ma-senate,seat count vs Open States metadata,1,40 vs 40
+us-ma-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D35 R5 filled 40 | BP D35 R5 filled 40
+us-ma-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 40 (unmatched 0), open-seat table 40"
+us-ma-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 35–5"" | BP D35 R5 other 0 vacant 0"
+us-ma-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",0,"table (132, 25, 1, 2) infobox (132, 25, 0, 2)"
+us-ma-house,seat count vs Open States metadata,1,160 vs 160
+us-ma-house,filled seats and D/R vs Open States people repo (official sites),0,OS D131 R25 filled 157 | BP D132 R25 filled 158
+us-ma-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 160 (unmatched 0), open-seat table 160"
+us-ma-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 134–25–1"" | BP D132 R25 other 1 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-md-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (34, 13, 0, 0) infobox (34, 13, 0, 0)"
+us-md-senate,seat count vs Open States metadata,1,47 vs 47
+us-md-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D34 R13 filled 47 | BP D34 R13 filled 47
+us-md-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 47 (unmatched 0), open-seat table 47"
+us-md-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 34–13"" | BP D34 R13 other 0 vacant 0"
+us-md-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (102, 39, 0, 0) infobox (102, 39, 0, 0)"
+us-md-house,seat count vs Open States metadata,1,141 vs 141
+us-md-house,filled seats and D/R vs Open States people repo (official sites),1,OS D102 R39 filled 141 | BP D102 R39 filled 141
+us-md-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 141 (unmatched 0), open-seat table 141"
+us-md-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 102–39"" | BP D102 R39 other 0 vacant 0"
+us-me-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (20, 14, 1, 0) infobox (20, 14, 1, 0)"
+us-me-senate,seat count vs Open States metadata,1,35 vs 35
+us-me-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D20 R14 filled 35 | BP D20 R14 filled 35
+us-me-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 35 (unmatched 0), open-seat table 35"
+us-me-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 20–15"" | BP D20 R14 other 1 vacant 0 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-me-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",0,"table (75, 73, 3, 0) infobox (75, 73, 2, 0)"
+us-me-house,seat count vs Open States metadata,0,151 vs 153
+us-me-house,filled seats and D/R vs Open States people repo (official sites),0,OS D75 R73 filled 153 | BP D75 R73 filled 151
+us-me-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 151 (unmatched 0), open-seat table 151"
+us-me-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 76-73-2"" | BP D75 R73 other 3 vacant 0 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-mi-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (20, 18, 0, 0) infobox (20, 18, 0, 0)"
+us-mi-senate,seat count vs Open States metadata,1,38 vs 38
+us-mi-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D20 R18 filled 38 | BP D20 R18 filled 38
+us-mi-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 38 (unmatched 0), open-seat table 38"
+us-mi-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 20–18"" | BP D20 R18 other 0 vacant 0"
+us-mi-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (52, 58, 0, 0) infobox (52, 58, 0, 0)"
+us-mi-house,seat count vs Open States metadata,1,110 vs 110
+us-mi-house,filled seats and D/R vs Open States people repo (official sites),1,OS D52 R58 filled 110 | BP D52 R58 filled 110
+us-mi-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 110 (unmatched 0), open-seat table 110"
+us-mi-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 58–52"" | BP D52 R58 other 0 vacant 0"
+us-mn-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (34, 33, 0, 0) infobox (34, 33, 0, 0)"
+us-mn-senate,seat count vs Open States metadata,1,67 vs 67
+us-mn-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D34 R33 filled 67 | BP D34 R33 filled 67
+us-mn-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 67 (unmatched 0), open-seat table 67"
+us-mn-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic (DFL) 34–33"" | BP D34 R33 other 0 vacant 0"
+us-mn-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (67, 66, 0, 1) infobox (67, 66, 0, 1)"
+us-mn-house,seat count vs Open States metadata,1,134 vs 134
+us-mn-house,filled seats and D/R vs Open States people repo (official sites),1,OS D67 R66 filled 133 | BP D67 R66 filled 133
+us-mn-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 134 (unmatched 0), open-seat table 134"
+us-mn-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Tied 67-67"" | BP D67 R66 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-mo-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (10, 23, 0, 1) infobox (10, 23, 0, 1)"
+us-mo-senate,seat count vs Open States metadata,1,34 vs 34
+us-mo-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D10 R23 filled 33 | BP D10 R23 filled 33
+us-mo-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-mo-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 24–10"" | BP D10 R23 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-mo-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (52, 106, 0, 5) infobox (52, 106, 0, 5)"
+us-mo-house,seat count vs Open States metadata,1,163 vs 163
+us-mo-house,filled seats and D/R vs Open States people repo (official sites),0,OS D50 R105 filled 155 | BP D52 R106 filled 158
+us-mo-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 163 (unmatched 0), open-seat table 163"
+us-mo-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 111–52"" | BP D52 R106 other 0 vacant 5 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ms-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (17, 34, 0, 1) infobox (17, 34, 0, 1)"
+us-ms-senate,seat count vs Open States metadata,1,52 vs 52
+us-ms-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D17 R34 filled 51 | BP D17 R34 filled 51
+us-ms-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-ms-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 34–18"" | BP D17 R34 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ms-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (41, 77, 2, 2) infobox (41, 77, 2, 2)"
+us-ms-house,seat count vs Open States metadata,1,122 vs 122
+us-ms-house,filled seats and D/R vs Open States people repo (official sites),1,OS D41 R77 filled 120 | BP D41 R77 filled 120
+us-ms-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-ms-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 79–41–2"" | BP D41 R77 other 2 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-mt-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (18, 32, 0, 0) infobox (18, 32, 0, 0)"
+us-mt-senate,seat count vs Open States metadata,1,50 vs 50
+us-mt-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D18 R32 filled 50 | BP D18 R32 filled 50
+us-mt-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 25 (unmatched 0), open-seat table 25"
+us-mt-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 32–18"" | BP D18 R32 other 0 vacant 0"
+us-mt-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (42, 58, 0, 0) infobox (42, 58, 0, 0)"
+us-mt-house,seat count vs Open States metadata,1,100 vs 100
+us-mt-house,filled seats and D/R vs Open States people repo (official sites),1,OS D42 R58 filled 100 | BP D42 R58 filled 100
+us-mt-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-mt-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 58–42"" | BP D42 R58 other 0 vacant 0"
+us-nc-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (20, 30, 0, 0) infobox (20, 30, 0, 0)"
+us-nc-senate,seat count vs Open States metadata,1,50 vs 50
+us-nc-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D20 R30 filled 50 | BP D20 R30 filled 50
+us-nc-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 50 (unmatched 0), open-seat table 50"
+us-nc-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 30–20"" | BP D20 R30 other 0 vacant 0"
+us-nc-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (47, 71, 2, 0) infobox (47, 71, 2, 0)"
+us-nc-house,seat count vs Open States metadata,1,120 vs 120
+us-nc-house,filled seats and D/R vs Open States people repo (official sites),1,OS D47 R71 filled 120 | BP D47 R71 filled 120
+us-nc-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 120 (unmatched 0), open-seat table 120"
+us-nc-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 71–49"" | BP D47 R71 other 2 vacant 0 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-nd-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (5, 42, 0, 0) infobox (5, 42, 0, 0)"
+us-nd-senate,seat count vs Open States metadata,1,47 vs 47
+us-nd-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D5 R42 filled 47 | BP D5 R42 filled 47
+us-nd-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 24 (unmatched 0), open-seat table 24"
+us-nd-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 42–5"" | BP D5 R42 other 0 vacant 0"
+us-nd-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (11, 83, 0, 0) infobox (11, 83, 0, 0)"
+us-nd-house,seat count vs Open States metadata,1,94 vs 94
+us-nd-house,filled seats and D/R vs Open States people repo (official sites),1,OS D11 R83 filled 94 | BP D11 R83 filled 94
+us-nd-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,0,"up 48 (unmatched 0), open-seat table 46"
+us-nd-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 83–11"" | BP D11 R83 other 0 vacant 0"
+us-ne-legislature,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (14, 33, 2, 0) infobox (14, 33, 2, 0)"
+us-ne-legislature,seat count vs Open States metadata,1,49 vs 49
+us-ne-legislature,filled seats and D/R vs Open States people repo (official sites),0,OS D0 R0 filled 49 | BP D14 R33 filled 49
+us-ne-legislature,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 24 (unmatched 0), open-seat table 24"
+us-nh-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (8, 16, 0, 0) infobox (8, 16, 0, 0)"
+us-nh-senate,seat count vs Open States metadata,1,24 vs 24
+us-nh-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D8 R16 filled 24 | BP D8 R16 filled 24
+us-nh-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 24 (unmatched 0), open-seat table 24"
+us-nh-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 16–8"" | BP D8 R16 other 0 vacant 0"
+us-nh-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (169, 212, 1, 18) infobox (169, 212, 1, 18)"
+us-nh-house,seat count vs Open States metadata,1,400 vs 400
+us-nh-house,filled seats and D/R vs Open States people repo (official sites),0,OS D169 R211 filled 382 | BP D169 R212 filled 382
+us-nh-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 400 (unmatched 0), open-seat table 400"
+us-nh-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 222–178"" | BP D169 R212 other 1 vacant 18 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-nj-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (25, 15, 0, 0) infobox (25, 15, 0, 0)"
+us-nj-senate,seat count vs Open States metadata,1,40 vs 40
+us-nj-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D25 R15 filled 40 | BP D25 R15 filled 40
+us-nj-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-nj-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 25–15"" | BP D25 R15 other 0 vacant 0"
+us-nj-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (57, 23, 0, 0) infobox (57, 23, 0, 0)"
+us-nj-house,seat count vs Open States metadata,1,80 vs 80
+us-nj-house,filled seats and D/R vs Open States people repo (official sites),1,OS D57 R23 filled 80 | BP D57 R23 filled 80
+us-nj-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-nj-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 57–23"" | BP D57 R23 other 0 vacant 0"
+us-nm-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (26, 16, 0, 0) infobox (26, 16, 0, 0)"
+us-nm-senate,seat count vs Open States metadata,1,42 vs 42
+us-nm-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D26 R16 filled 42 | BP D26 R16 filled 42
+us-nm-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-nm-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 26–16"" | BP D26 R16 other 0 vacant 0"
+us-nm-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (42, 25, 0, 3) infobox (42, 25, 0, 3)"
+us-nm-house,seat count vs Open States metadata,1,70 vs 70
+us-nm-house,filled seats and D/R vs Open States people repo (official sites),0,OS D42 R26 filled 68 | BP D42 R25 filled 67
+us-nm-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 70 (unmatched 0), open-seat table 70"
+us-nm-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 44–26"" | BP D42 R25 other 0 vacant 3 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-nv-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (13, 8, 0, 0) infobox (13, 8, 0, 0)"
+us-nv-senate,seat count vs Open States metadata,1,21 vs 21
+us-nv-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D13 R8 filled 21 | BP D13 R8 filled 21
+us-nv-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 11 (unmatched 0), open-seat table 11"
+us-nv-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 13–8"" | BP D13 R8 other 0 vacant 0"
+us-nv-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (27, 15, 0, 0) infobox (27, 15, 0, 0)"
+us-nv-house,seat count vs Open States metadata,1,42 vs 42
+us-nv-house,filled seats and D/R vs Open States people repo (official sites),1,OS D27 R15 filled 42 | BP D27 R15 filled 42
+us-nv-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 42 (unmatched 0), open-seat table 42"
+us-nv-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 27–15"" | BP D27 R15 other 0 vacant 0"
+us-ny-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (41, 22, 0, 0) infobox (41, 22, 0, 0)"
+us-ny-senate,seat count vs Open States metadata,1,63 vs 63
+us-ny-senate,filled seats and D/R vs Open States people repo (official sites),0,OS D40 R22 filled 62 | BP D41 R22 filled 63
+us-ny-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 63 (unmatched 0), open-seat table 63"
+us-ny-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 41–22"" | BP D41 R22 other 0 vacant 0"
+us-ny-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (103, 47, 0, 0) infobox (103, 47, 0, 0)"
+us-ny-house,seat count vs Open States metadata,1,150 vs 150
+us-ny-house,filled seats and D/R vs Open States people repo (official sites),1,OS D103 R47 filled 150 | BP D103 R47 filled 150
+us-ny-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 150 (unmatched 0), open-seat table 150"
+us-ny-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 103–47"" | BP D103 R47 other 0 vacant 0"
+us-oh-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (9, 23, 0, 1) infobox (9, 23, 0, 1)"
+us-oh-senate,seat count vs Open States metadata,1,33 vs 33
+us-oh-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D9 R23 filled 32 | BP D9 R23 filled 32
+us-oh-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-oh-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 24–9"" | BP D9 R23 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-oh-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (34, 65, 0, 0) infobox (34, 65, 0, 0)"
+us-oh-house,seat count vs Open States metadata,1,99 vs 99
+us-oh-house,filled seats and D/R vs Open States people repo (official sites),1,OS D34 R65 filled 99 | BP D34 R65 filled 99
+us-oh-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 99 (unmatched 0), open-seat table 99"
+us-oh-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 65–34"" | BP D34 R65 other 0 vacant 0"
+us-ok-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (8, 39, 0, 1) infobox (8, 39, 0, 1)"
+us-ok-senate,seat count vs Open States metadata,1,48 vs 48
+us-ok-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D8 R39 filled 47 | BP D8 R39 filled 47
+us-ok-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 24 (unmatched 0), open-seat table 24"
+us-ok-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 40–8"" | BP D8 R39 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ok-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (18, 81, 0, 2) infobox (18, 81, 0, 2)"
+us-ok-house,seat count vs Open States metadata,1,101 vs 101
+us-ok-house,filled seats and D/R vs Open States people repo (official sites),1,OS D18 R81 filled 99 | BP D18 R81 filled 99
+us-ok-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 101 (unmatched 0), open-seat table 101"
+us-ok-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 81–20"" | BP D18 R81 other 0 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-or-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (18, 12, 0, 0) infobox (18, 12, 0, 0)"
+us-or-senate,seat count vs Open States metadata,1,30 vs 30
+us-or-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D18 R12 filled 30 | BP D18 R12 filled 30
+us-or-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 15 (unmatched 0), open-seat table 15"
+us-or-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 18–12"" | BP D18 R12 other 0 vacant 0"
+us-or-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (37, 23, 0, 0) infobox (37, 23, 0, 0)"
+us-or-house,seat count vs Open States metadata,1,60 vs 60
+us-or-house,filled seats and D/R vs Open States people repo (official sites),1,OS D37 R23 filled 60 | BP D37 R23 filled 60
+us-or-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 60 (unmatched 0), open-seat table 60"
+us-or-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Democratic 36–24"" | BP D37 R23 other 0 vacant 0 | REAL MISMATCH"
+us-pa-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (23, 27, 0, 0) infobox (23, 27, 0, 0)"
+us-pa-senate,seat count vs Open States metadata,1,50 vs 50
+us-pa-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D23 R27 filled 50 | BP D23 R27 filled 50
+us-pa-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 25 (unmatched 0), open-seat table 25"
+us-pa-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 27–23"" | BP D23 R27 other 0 vacant 0"
+us-pa-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (103, 100, 0, 0) infobox (103, 100, 0, 0)"
+us-pa-house,seat count vs Open States metadata,1,203 vs 203
+us-pa-house,filled seats and D/R vs Open States people repo (official sites),1,OS D103 R100 filled 203 | BP D103 R100 filled 203
+us-pa-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 203 (unmatched 0), open-seat table 203"
+us-pa-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Democratic 102–101"" | BP D103 R100 other 0 vacant 0 | REAL MISMATCH"
+us-ri-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (34, 4, 0, 0) infobox (34, 4, 0, 0)"
+us-ri-senate,seat count vs Open States metadata,1,38 vs 38
+us-ri-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D34 R4 filled 38 | BP D34 R4 filled 38
+us-ri-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 38 (unmatched 0), open-seat table 38"
+us-ri-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 34–4"" | BP D34 R4 other 0 vacant 0"
+us-ri-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (63, 10, 1, 1) infobox (63, 10, 1, 1)"
+us-ri-house,seat count vs Open States metadata,1,75 vs 75
+us-ri-house,filled seats and D/R vs Open States people repo (official sites),1,OS D63 R10 filled 74 | BP D63 R10 filled 74
+us-ri-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 75 (unmatched 0), open-seat table 75"
+us-ri-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 64–10-1"" | BP D63 R10 other 1 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-sc-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (12, 34, 0, 0) infobox (12, 34, 0, 0)"
+us-sc-senate,seat count vs Open States metadata,1,46 vs 46
+us-sc-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D12 R34 filled 46 | BP D12 R34 filled 46
+us-sc-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-sc-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 34–12"" | BP D12 R34 other 0 vacant 0"
+us-sc-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (35, 89, 0, 0) infobox (35, 89, 0, 0)"
+us-sc-house,seat count vs Open States metadata,1,124 vs 124
+us-sc-house,filled seats and D/R vs Open States people repo (official sites),1,OS D35 R89 filled 124 | BP D35 R89 filled 124
+us-sc-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 124 (unmatched 0), open-seat table 124"
+us-sc-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 88–36"" | BP D35 R89 other 0 vacant 0 | REAL MISMATCH"
+us-sd-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (3, 32, 0, 0) infobox (3, 32, 0, 0)"
+us-sd-senate,seat count vs Open States metadata,1,35 vs 35
+us-sd-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D3 R32 filled 35 | BP D3 R32 filled 35
+us-sd-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 35 (unmatched 0), open-seat table 35"
+us-sd-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 32–3"" | BP D3 R32 other 0 vacant 0"
+us-sd-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (5, 65, 0, 0) infobox (5, 65, 0, 0)"
+us-sd-house,seat count vs Open States metadata,1,70 vs 70
+us-sd-house,filled seats and D/R vs Open States people repo (official sites),1,OS D5 R65 filled 70 | BP D5 R65 filled 70
+us-sd-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 70 (unmatched 0), open-seat table 70"
+us-sd-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 64–6"" | BP D5 R65 other 0 vacant 0 | REAL MISMATCH"
+us-tn-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 27, 0, 0) infobox (6, 27, 0, 0)"
+us-tn-senate,seat count vs Open States metadata,1,33 vs 33
+us-tn-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R27 filled 33 | BP D6 R27 filled 33
+us-tn-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-tn-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 27–6"" | BP D6 R27 other 0 vacant 0"
+us-tn-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (23, 75, 0, 1) infobox (23, 75, 0, 1)"
+us-tn-house,seat count vs Open States metadata,1,99 vs 99
+us-tn-house,filled seats and D/R vs Open States people repo (official sites),1,OS D23 R75 filled 98 | BP D23 R75 filled 98
+us-tn-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 99 (unmatched 0), open-seat table 99"
+us-tn-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 75–24"" | BP D23 R75 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-tx-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (12, 18, 0, 1) infobox (12, 18, 0, 1)"
+us-tx-senate,seat count vs Open States metadata,1,31 vs 31
+us-tx-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D12 R18 filled 30 | BP D12 R18 filled 30
+us-tx-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 16 (unmatched 0), open-seat table 16"
+us-tx-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 20–11"" | BP D12 R18 other 0 vacant 1 | REAL MISMATCH"
+us-tx-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (62, 86, 0, 2) infobox (62, 86, 0, 2)"
+us-tx-house,seat count vs Open States metadata,1,150 vs 150
+us-tx-house,filled seats and D/R vs Open States people repo (official sites),1,OS D62 R86 filled 148 | BP D62 R86 filled 148
+us-tx-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 150 (unmatched 0), open-seat table 150"
+us-tx-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 88–62"" | BP D62 R86 other 0 vacant 2 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-ut-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 22, 1, 0) infobox (6, 22, 1, 0)"
+us-ut-senate,seat count vs Open States metadata,1,29 vs 29
+us-ut-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R22 filled 29 | BP D6 R22 filled 29
+us-ut-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 15 (unmatched 0), open-seat table 15"
+us-ut-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 22–6–1"" | BP D6 R22 other 1 vacant 0"
+us-ut-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (14, 60, 0, 1) infobox (14, 60, 0, 1)"
+us-ut-house,seat count vs Open States metadata,1,75 vs 75
+us-ut-house,filled seats and D/R vs Open States people repo (official sites),1,OS D14 R60 filled 74 | BP D14 R60 filled 74
+us-ut-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 75 (unmatched 0), open-seat table 75"
+us-ut-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 61–14"" | BP D14 R60 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-va-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (21, 19, 0, 0) infobox (21, 19, 0, 0)"
+us-va-senate,seat count vs Open States metadata,1,40 vs 40
+us-va-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D21 R19 filled 40 | BP D21 R19 filled 40
+us-va-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-va-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 21–19"" | BP D21 R19 other 0 vacant 0"
+us-va-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (63, 36, 0, 1) infobox (63, 36, 0, 1)"
+us-va-house,seat count vs Open States metadata,1,100 vs 100
+us-va-house,filled seats and D/R vs Open States people repo (official sites),1,OS D63 R36 filled 99 | BP D63 R36 filled 99
+us-va-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 0 (unmatched 0), open-seat table None"
+us-va-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 64–36"" | BP D63 R36 other 0 vacant 1 | difference within vacancies+others (Wikipedia credits vacant seats to last party)"
+us-vt-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (16, 13, 1, 0) infobox (16, 13, 1, 0)"
+us-vt-senate,seat count vs Open States metadata,1,30 vs 30
+us-vt-senate,filled seats and D/R vs Open States people repo (official sites),0,OS D17 R13 filled 30 | BP D16 R13 filled 30
+us-vt-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 30 (unmatched 0), open-seat table 30"
+us-vt-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 16–13–1"" | BP D16 R13 other 1 vacant 0"
+us-vt-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",0,"table (87, 56, 7, 0) infobox (87, 56, 3, 0)"
+us-vt-house,seat count vs Open States metadata,1,150 vs 150
+us-vt-house,filled seats and D/R vs Open States people repo (official sites),0,OS D90 R57 filled 150 | BP D87 R56 filled 150
+us-vt-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,0,"up 150 (unmatched 2), open-seat table 150"
+us-vt-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 87–56–4–3"" | BP D87 R56 other 7 vacant 0"
+us-wa-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (30, 19, 0, 0) infobox (30, 19, 0, 0)"
+us-wa-senate,seat count vs Open States metadata,1,49 vs 49
+us-wa-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D30 R19 filled 49 | BP D30 R19 filled 49
+us-wa-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 24 (unmatched 0), open-seat table 24"
+us-wa-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 30–19"" | BP D30 R19 other 0 vacant 0"
+us-wa-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (59, 39, 0, 0) infobox (59, 39, 0, 0)"
+us-wa-house,seat count vs Open States metadata,1,98 vs 98
+us-wa-house,filled seats and D/R vs Open States people repo (official sites),1,OS D59 R39 filled 98 | BP D59 R39 filled 98
+us-wa-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 98 (unmatched 0), open-seat table 98"
+us-wa-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Democratic 59–39"" | BP D59 R39 other 0 vacant 0"
+us-wi-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (15, 18, 0, 0) infobox (15, 18, 0, 0)"
+us-wi-senate,seat count vs Open States metadata,1,33 vs 33
+us-wi-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D15 R18 filled 33 | BP D15 R18 filled 33
+us-wi-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-wi-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 18–15"" | BP D15 R18 other 0 vacant 0"
+us-wi-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (45, 54, 0, 0) infobox (45, 54, 0, 0)"
+us-wi-house,seat count vs Open States metadata,1,99 vs 99
+us-wi-house,filled seats and D/R vs Open States people repo (official sites),1,OS D45 R54 filled 99 | BP D45 R54 filled 99
+us-wi-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 99 (unmatched 0), open-seat table 99"
+us-wi-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 54-45"" | BP D45 R54 other 0 vacant 0"
+us-wv-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (2, 32, 0, 0) infobox (2, 32, 0, 0)"
+us-wv-senate,seat count vs Open States metadata,1,34 vs 34
+us-wv-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D2 R32 filled 34 | BP D2 R32 filled 34
+us-wv-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 17 (unmatched 0), open-seat table 17"
+us-wv-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 32–2"" | BP D2 R32 other 0 vacant 0"
+us-wv-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (9, 91, 0, 0) infobox (9, 91, 0, 0)"
+us-wv-house,seat count vs Open States metadata,1,100 vs 100
+us-wv-house,filled seats and D/R vs Open States people repo (official sites),1,OS D9 R91 filled 100 | BP D9 R91 filled 100
+us-wv-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 100 (unmatched 0), open-seat table 100"
+us-wv-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 91–9"" | BP D9 R91 other 0 vacant 0"
+us-wy-senate,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (2, 29, 0, 0) infobox (2, 29, 0, 0)"
+us-wy-senate,seat count vs Open States metadata,1,31 vs 31
+us-wy-senate,filled seats and D/R vs Open States people repo (official sites),1,OS D2 R29 filled 31 | BP D2 R29 filled 31
+us-wy-senate,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 16 (unmatched 0), open-seat table 16"
+us-wy-senate,"D/R vs Wikipedia ""Political party strength in U.S. states""",0,"wiki ""Republican 28–2"" | BP D2 R29 other 0 vacant 0 | REAL MISMATCH"
+us-wy-house,"Ballotpedia member table vs Ballotpedia infobox (D,R,other,vacant)",1,"table (6, 56, 0, 0) infobox (6, 56, 0, 0)"
+us-wy-house,seat count vs Open States metadata,1,62 vs 62
+us-wy-house,filled seats and D/R vs Open States people repo (official sites),1,OS D6 R56 filled 62 | BP D6 R56 filled 62
+us-wy-house,2026 seats up: matched to seats vs Ballotpedia open-seat table total,1,"up 62 (unmatched 0), open-seat table 62"
+us-wy-house,"D/R vs Wikipedia ""Political party strength in U.S. states""",1,"wiki ""Republican 56–6"" | BP D6 R56 other 0 vacant 0"
+us-al-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-il-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-la-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-nm-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-nc-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-oh-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-pa-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-tx-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-tx-court-of-criminal-appeals,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-mi-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ar-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ga-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-id-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-ky-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-mn-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ms-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-mt-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-nv-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-nd-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-or-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-wa-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-wi-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ak-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-az-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-co-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-fl-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-in-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-ia-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-md-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-mo-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ne-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-ok-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 9, wiki rows 9, not found on wiki: []"
+us-sd-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-tn-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-ut-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 7, wiki rows 7, not found on wiki: []"
+us-wy-supreme-court,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-ok-court-of-criminal-appeals,justices: Ballotpedia vs Wikipedia current-court table,1,"BP filled 5, wiki rows 5, not found on wiki: []"
+us-nc-charlotte-mayor,mayor: city page vs top-100 list,0,city page Robert Harrington (since 2026) / list Vi Lyles (took 2017); city page kept
+us-co-denver-city-council,Denver at-large rows,1,BP generic At-large rows folded into Seat A/B (Seat B vacant since 2026-08-05; vacancy election 2026-11-03)

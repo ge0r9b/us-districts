@@ -1,0 +1,7 @@
+code,key,name
+0,none,Not a court
+1,partisan,Partisan election
+2,partisan_retention,"Partisan election, then retention elections for later terms"
+3,party_nominated_nonpartisan,"Party-nominated, nonpartisan ballot (Michigan)"
+4,nonpartisan,Nonpartisan election
+5,retention,"Appointment, then retention elections"

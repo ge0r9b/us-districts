@@ -1,0 +1,234 @@
+scope,item,ok,detail
+FEC id vs candidate name,2018 MN Mike Kuitu,0,FEC id S8MN00438 belongs to Al Franken in congress-legislators; ignored
+FEC winner flag vs max first-round votes,2018 ME us_house 02 general,1,flag ['Jared F. Golden'] | max votes Bruce L. Poliquin -> decided by runoff/RCV; flag kept
+FEC winner flag vs max first-round votes,2020 GA us_senate S general,1,flag ['Jon Ossoff'] | max votes David A. Perdue -> decided by runoff/RCV; flag kept
+FEC winner flag vs max first-round votes,2020 CA us_house 25 special,1,flag ['Mike Garcia'] | max votes Christy Smith -> decided by runoff/RCV; flag kept
+FEC winner flag vs max first-round votes,2020 NY us_house 27 special,0,"flag ['Nathan D. McMurray'] | max votes Chris Jacobs -> FEC flag error, max votes used (Jacobs won per congress-legislators)"
+FEC winner flag vs max first-round votes,2021 TX us_house 06 special,1,flag ['Jake Ellzey'] | max votes Susan Wright -> decided by runoff/RCV; flag kept
+FEC id vs candidate name,2022 FL Mario Diaz-Balart,0,FEC id H4FL20023 belongs to Debbie Wasserman Schultz in congress-legislators; ignored
+us-senate 2022 FEC vs Election Data teammate,AL us_senate,1,FEC Katie Britt 942154 | teammate Katie Britt 942154.0
+us-senate 2022 FEC vs Election Data teammate,AK us_senate,1,FEC Lisa Murkowski 113495 | teammate Lisa Murkowski 113495.0
+us-senate 2022 FEC vs Election Data teammate,AZ us_senate,1,FEC Mark Kelly 1322027 | teammate Mark Kelly 1322027.0
+us-senate 2022 FEC vs Election Data teammate,AR us_senate,1,FEC John Boozman 592437 | teammate John Boozman 592437.0
+us-senate 2022 FEC vs Election Data teammate,CA us_senate_special,1,FEC Alex Padilla 6559308 | teammate Alex Padilla 6559308.0
+us-senate 2022 FEC vs Election Data teammate,CA us_senate,1,FEC Alex Padilla 6621621 | teammate Alex Padilla 6621621.0
+us-senate 2022 FEC vs Election Data teammate,CO us_senate,1,FEC Michael Bennet 1397170 | teammate Michael F. Bennet 1397170.0
+us-senate 2022 FEC vs Election Data teammate,CT us_senate,1,FEC Blumenthal 723864 | teammate Richard Blumenthal 723864.0
+us-senate 2022 FEC vs Election Data teammate,FL us_senate,1,FEC Marco Rubio 4474847 | teammate Marco Rubio 4474847.0
+us-senate 2022 FEC vs Election Data teammate,GA us_senate,0,FEC Raphael Warnock 1946117 | teammate Raphael G. Warnock 1820633.0
+us-senate 2022 FEC vs Election Data teammate,HI us_senate,1,FEC Brian Schatz 290894 | teammate Brian Schatz 290894.0
+us-senate 2022 FEC vs Election Data teammate,ID us_senate,1,FEC Mike Crapo 358539 | teammate Mike Crapo 358539.0
+us-senate 2022 FEC vs Election Data teammate,IL us_senate,1,FEC Tammy Duckworth 2329136 | teammate Tammy Duckworth 2329136.0
+us-senate 2022 FEC vs Election Data teammate,IN us_senate,1,FEC Todd Young 1090390 | teammate Todd Young 1090165.0
+us-senate 2022 FEC vs Election Data teammate,IA us_senate,1,FEC Chuck Grassley 681501 | teammate Chuck Grassley 681501.0
+us-senate 2022 FEC vs Election Data teammate,KS us_senate,1,FEC Jerry Moran 602976 | teammate Jerry Moran 602976.0
+us-senate 2022 FEC vs Election Data teammate,KY us_senate,1,FEC Rand Paul 913326 | teammate Rand Paul 913326.0
+us-senate 2022 FEC vs Election Data teammate,LA us_senate,1,FEC John Kennedy 851568 | teammate John Kennedy 851568.0
+us-senate 2022 FEC vs Election Data teammate,MD us_senate,1,FEC Chris Van Hollen 1316897 | teammate Chris Van Hollen 1316897.0
+us-senate 2022 FEC vs Election Data teammate,MO us_senate,1,FEC Eric Schmitt 1146966 | teammate Eric Schmitt 1146966.0
+us-senate 2022 FEC vs Election Data teammate,NV us_senate,1,FEC Catherine Cortez Masto 498316 | teammate Catherine Cortez Masto 498316.0
+us-senate 2022 FEC vs Election Data teammate,NH us_senate,1,FEC Maggie Hassan 332490 | teammate Maggie Hassan 332193.0
+us-senate 2022 FEC vs Election Data teammate,NY us_senate,1,FEC Charles E. Schumer 3320561 | teammate Charles E. Schumer 3320561.0
+us-senate 2022 FEC vs Election Data teammate,NC us_senate,1,FEC Ted Budd 1905786 | teammate Ted Budd 1905786.0
+us-senate 2022 FEC vs Election Data teammate,ND us_senate,1,FEC John Hoeven 135474 | teammate John Hoeven 135474.0
+us-senate 2022 FEC vs Election Data teammate,OH us_senate,1,FEC JD Vance 2192114 | teammate JD Vance 2192114.0
+us-senate 2022 FEC vs Election Data teammate,OK us_senate_special,1,FEC Markwayne Mullin 710643 | teammate Markwayne Mullin 710643.0
+us-senate 2022 FEC vs Election Data teammate,OK us_senate,1,FEC James Lankford 739960 | teammate James Lankford 739960.0
+us-senate 2022 FEC vs Election Data teammate,OR us_senate,1,FEC Ron Wyden 1076424 | teammate Ron Wyden 1076424.0
+us-senate 2022 FEC vs Election Data teammate,PA us_senate,1,FEC John K. Fetterman 2751012 | teammate John Fetterman 2751012.0
+us-senate 2022 FEC vs Election Data teammate,SC us_senate,1,FEC Tim Scott 1066274 | teammate Tim Scott 1066274.0
+us-senate 2022 FEC vs Election Data teammate,SD us_senate,1,FEC John R. Thune 242316 | teammate John Thune 242316.0
+us-senate 2022 FEC vs Election Data teammate,UT us_senate,1,FEC Mike Lee 571974 | teammate Mike Lee 571974.0
+us-senate 2022 FEC vs Election Data teammate,VT us_senate,1,FEC Peter Welch 196575 | teammate Peter Welch 196575.0
+us-senate 2022 FEC vs Election Data teammate,WA us_senate,1,FEC Patty Murray 1741827 | teammate Patty Murray 1741827.0
+us-senate 2022 FEC vs Election Data teammate,WI us_senate,1,FEC Ron Johnson 1337185 | teammate Ron Johnson 1337185.0
+us-senate vs MEDSL,2016 AK us_senate,1,here Lisa Murkowski 138149 | MEDSL LISA MURKOWSKI 138149
+us-senate vs MEDSL,2016 AL us_senate,1,here Richard C. Shelby 1335104 | MEDSL RICHARD C. SHELBY 1335104
+us-senate vs MEDSL,2016 AR us_senate,1,here John Boozman 661984 | MEDSL JOHN BOOZMAN 661984
+us-senate vs MEDSL,2016 AZ us_senate,1,here John McCain 1359267 | MEDSL JOHN MCCAIN 1359267
+us-senate vs MEDSL,2016 CA us_senate,1,here Kamala D. Harris 7542759 | MEDSL KAMALA D. HARRIS 7542753
+us-senate vs MEDSL,2016 CO us_senate,1,here Michael F. Bennet 1370710 | MEDSL MICHAEL F. BENNET 1370710
+us-senate vs MEDSL,2016 CT us_senate,1,here Richard Blumenthal 1008714 | MEDSL RICHARD BLUMENTHAL 1008714
+us-senate vs MEDSL,2016 FL us_senate,1,here Marco Rubio 4835191 | MEDSL MARCO RUBIO 4835191
+us-senate vs MEDSL,2016 GA us_senate,1,here Johnny Isakson 2135806 | MEDSL JOHNNY ISAKSON 2135806
+us-senate vs MEDSL,2016 HI us_senate,1,here Brian Schatz 306604 | MEDSL BRIAN SCHATZ 306604
+us-senate vs MEDSL,2016 IA us_senate,1,here Chuck Grassley 926007 | MEDSL CHUCK GRASSLEY 926007
+us-senate vs MEDSL,2016 ID us_senate,1,here Mike Crapo 449017 | MEDSL MIKE CRAPO 449017
+us-senate vs MEDSL,2016 IL us_senate,1,here Tammy Duckworth 3012940 | MEDSL TAMMY DUCKWORTH 3012940
+us-senate vs MEDSL,2016 IN us_senate,1,here Todd Young 1423991 | MEDSL TODD C. YOUNG 1423991
+us-senate vs MEDSL,2016 KS us_senate,1,here Jerry Moran 732376 | MEDSL JERRY MORAN 732376
+us-senate vs MEDSL,2016 KY us_senate,1,here Rand Paul 1090177 | MEDSL RAND PAUL 1090177
+us-senate vs MEDSL,2016 LA us_senate,1,here John Kennedy 482591 | MEDSL JOHN KENNEDY 536191
+us-senate vs MEDSL,2016 MD us_senate,1,here Chris Van Hollen 1659907 | MEDSL CHRIS VAN HOLLEN 1659907
+us-senate vs MEDSL,2016 MO us_senate,1,here Roy Blunt 1378458 | MEDSL ROY BLUNT 1378458
+us-senate vs MEDSL,2016 NC us_senate,1,here Richard Burr 2395376 | MEDSL RICHARD BURR 2395376
+us-senate vs MEDSL,2016 ND us_senate,1,here John Hoeven 268788 | MEDSL JOHN HOEVEN 268788
+us-senate vs MEDSL,2016 NH us_senate,1,here Margaret Wood Hassan 354649 | MEDSL MAGGIE HASSAN 354649
+us-senate vs MEDSL,2016 NV us_senate,1,here Catherine Cortez Masto 521994 | MEDSL CATHERINE CORTEZ MASTO 521994
+us-senate vs MEDSL,2016 NY us_senate,1,here Charles E. Schumer 5221945 | MEDSL CHARLES E. SCHUMER 5221949
+us-senate vs MEDSL,2016 OH us_senate,1,here Rob Portman 3118567 | MEDSL ROB PORTMAN 3118567
+us-senate vs MEDSL,2016 OK us_senate,1,here James Lankford 980892 | MEDSL JAMES LANKFORD 980892
+us-senate vs MEDSL,2016 OR us_senate,1,here Ron Wyden 1105119 | MEDSL RON WYDEN 1105119
+us-senate vs MEDSL,2016 PA us_senate,1,here Patrick J. Toomey 2951702 | MEDSL PATRICK J. TOOMEY 2951702
+us-senate vs MEDSL,2016 SC us_senate,1,here Tim Scott 1241609 | MEDSL TIM SCOTT 1241609
+us-senate vs MEDSL,2016 SD us_senate,1,here John Thune 265516 | MEDSL JOHN R. THUNE 265516
+us-senate vs MEDSL,2016 UT us_senate,1,here Mike Lee 760241 | MEDSL MIKE LEE 760220
+us-senate vs MEDSL,2016 VT us_senate,1,here Patrick J. Leahy 192243 | MEDSL PATRICK J. LEAHY 192243
+us-senate vs MEDSL,2016 WA us_senate,1,here Patty Murray 1913979 | MEDSL PATTY MURRAY 1913979
+us-senate vs MEDSL,2016 WI us_senate,1,here Ron Johnson 1479471 | MEDSL RON JOHNSON 1479471
+us-senate vs MEDSL,2018 AZ us_senate,1,here Kyrsten Sinema 1191100 | MEDSL KYRSTEN SINEMA 1191100
+us-senate vs MEDSL,2018 CA us_senate,1,here Dianne Feinstein 6019422 | MEDSL DIANNE FEINSTEIN 6019422
+us-senate vs MEDSL,2018 CT us_senate,1,here Christopher Murphy 825579 | MEDSL CHRISTOPHER S MURPHY 825579
+us-senate vs MEDSL,2018 DE us_senate,1,here Thomas R. Carper 217385 | MEDSL THOMAS R CARPER 217385
+us-senate vs MEDSL,2018 FL us_senate,1,here Rick Scott 4099505 | MEDSL RICK SCOTT 4099505
+us-senate vs MEDSL,2018 HI us_senate,1,here Mazie K. Hirono 276316 | MEDSL MAZIE K. HIRONO 276316
+us-senate vs MEDSL,2018 IN us_senate,1,here Mike Braun 1158000 | MEDSL MIKE BRAUN 1158000
+us-senate vs MEDSL,2018 MA us_senate,1,here Elizabeth Warren 1633371 | MEDSL ELIZABETH A. WARREN 1633371
+us-senate vs MEDSL,2018 MD us_senate,1,here Benjamin L. Cardin 1491614 | MEDSL BEN CARDIN 1491614
+us-senate vs MEDSL,2018 ME us_senate,1,"here Angus S. King, Jr. 344575 | MEDSL ANGUS S. KING, JR. 344575"
+us-senate vs MEDSL,2018 MI us_senate,1,here Debbie Stabenow 2214478 | MEDSL DEBBIE STABENOW 2214478
+us-senate vs MEDSL,2018 MN us_senate,1,here Amy Klobuchar 1566174 | MEDSL AMY KLOBUCHAR 1566174
+us-senate vs MEDSL,2018 MN us_senate_special,1,here Tina Smith 1370540 | MEDSL TINA SMITH 1370540
+us-senate vs MEDSL,2018 MO us_senate,1,here Josh Hawley 1254927 | MEDSL JOSH HAWLEY 1254927
+us-senate vs MEDSL,2018 MS us_senate,1,here Roger F. Wicker 547619 | MEDSL ROGER F. WICKER 547619
+us-senate vs MEDSL,2018 MS us_senate_special,1,here Cindy Hyde-Smith 389995 | MEDSL CINDY HYDE-SMITH 486769
+us-senate vs MEDSL,2018 MT us_senate,1,here Jon Tester 253876 | MEDSL JON TESTER 253876
+us-senate vs MEDSL,2018 ND us_senate,1,here Kevin Cramer 179720 | MEDSL KEVIN CRAMER 179720
+us-senate vs MEDSL,2018 NE us_senate,1,here Deb Fischer 403151 | MEDSL DEB FISCHER 403151
+us-senate vs MEDSL,2018 NJ us_senate,1,here Robert Menendez 1711654 | MEDSL ROBERT MENENDEZ 1711654
+us-senate vs MEDSL,2018 NM us_senate,1,here Martin Heinrich 376998 | MEDSL MARTIN T HEINRICH 376998
+us-senate vs MEDSL,2018 NV us_senate,1,here Jacky Rosen 490071 | MEDSL JACKY ROSEN 490071
+us-senate vs MEDSL,2018 NY us_senate,1,here Kirsten E. Gillibrand 4056931 | MEDSL KIRSTEN E. GILLIBRAND 4056931
+us-senate vs MEDSL,2018 OH us_senate,1,here Sherrod Brown 2358508 | MEDSL SHERROD BROWN 2355923
+us-senate vs MEDSL,2018 PA us_senate,0,"here Robert P. Casey, Jr. 2792437 | MEDSL ROBERT P CASEY JR 2777680"
+us-senate vs MEDSL,2018 RI us_senate,1,here Sheldon Whitehouse 231477 | MEDSL SHELDON WHITEHOUSE 231477
+us-senate vs MEDSL,2018 TN us_senate,1,here Marsha Blackburn 1227483 | MEDSL MARSHA BLACKBURN 1227483
+us-senate vs MEDSL,2018 TX us_senate,1,here Ted Cruz 4260553 | MEDSL TED CRUZ 4260553
+us-senate vs MEDSL,2018 UT us_senate,1,here Mitt Romney 665215 | MEDSL MITT ROMNEY 665215
+us-senate vs MEDSL,2018 VA us_senate,1,here Tim Kaine 1910370 | MEDSL TIMOTHY M. KAINE 1910370
+us-senate vs MEDSL,2018 VT us_senate,1,here Bernard Sanders 183649 | MEDSL BERNIE SANDERS 183529
+us-senate vs MEDSL,2018 WA us_senate,1,here Maria Cantwell 1803364 | MEDSL MARIA CANTWELL 1803364
+us-senate vs MEDSL,2018 WI us_senate,1,here Tammy Baldwin 1472914 | MEDSL TAMMY BALDWIN 1472914
+us-senate vs MEDSL,2018 WV us_senate,0,"here Joe Manchin, III 290510 | MEDSL JOE MANCHIN 288808"
+us-senate vs MEDSL,2018 WY us_senate,1,here John Barrasso 136210 | MEDSL JOHN BARRASSO 136210
+us-senate vs MEDSL,2020 AK us_senate,1,here Dan Sullivan 191112 | MEDSL DAN SULLIVAN 191112
+us-senate vs MEDSL,2020 AL us_senate,1,here Tommy Tuberville 1392076 | MEDSL TOMMY TUBERVILLE 1392076
+us-senate vs MEDSL,2020 AR us_senate,1,here Tom Cotton 793871 | MEDSL TOM COTTON 793871
+us-senate vs MEDSL,2020 AZ us_senate_special,1,here Mark Kelly 1716467 | MEDSL MARK KELLY 1716467
+us-senate vs MEDSL,2020 CO us_senate,1,here John W. Hickenlooper 1731114 | MEDSL JOHN W. HICKENLOOPER 1731114
+us-senate vs MEDSL,2020 DE us_senate,1,here Christopher A. Coons 291804 | MEDSL CHRISTOPHER A. COONS 291804
+us-senate vs MEDSL,2020 GA us_senate,1,here David Perdue 2462617 | MEDSL DAVID A. PERDUE 2462617
+us-senate vs MEDSL,2020 GA us_senate_special,1,here Raphael G. Warnock 1617035 | MEDSL RAPHAEL WARNOCK 1617035
+us-senate vs MEDSL,2020 IA us_senate,1,here Joni Ernst 864997 | MEDSL JONI ERNST 864997
+us-senate vs MEDSL,2020 ID us_senate,1,here James E. Risch 538446 | MEDSL JIM RISCH 538446
+us-senate vs MEDSL,2020 IL us_senate,1,here Richard J. Durbin 3278930 | MEDSL RICHARD J. DURBIN 3278930
+us-senate vs MEDSL,2020 KS us_senate,1,here Roger Marshall 727962 | MEDSL ROGER MARSHALL 727962
+us-senate vs MEDSL,2020 KY us_senate,1,here Mitch McConnell 1233315 | MEDSL MITCH MCCONNELL 1233315
+us-senate vs MEDSL,2020 LA us_senate,1,"here Bill Cassidy 1228908 | MEDSL \BILL\"" CASSIDY"" 1228908"
+us-senate vs MEDSL,2020 MA us_senate,1,here Edward J. Markey 2357809 | MEDSL EDWARD J. MARKEY 2357809
+us-senate vs MEDSL,2020 ME us_senate,1,here Susan M. Collins 417645 | MEDSL SUSAN MARGARET COLLINS 417645
+us-senate vs MEDSL,2020 MI us_senate,1,here Gary C. Peters 2734573 | MEDSL GARY PETERS 2734568
+us-senate vs MEDSL,2020 MN us_senate,1,here Tina Smith 1566522 | MEDSL TINA SMITH 1566522
+us-senate vs MEDSL,2020 MS us_senate,1,here Cindy Hyde-Smith 709511 | MEDSL CINDY HYDE-SMITH 709511
+us-senate vs MEDSL,2020 MT us_senate,1,here Steve Daines 333174 | MEDSL STEVE DAINES 333174
+us-senate vs MEDSL,2020 NC us_senate,1,here Thom Tillis 2665598 | MEDSL THOM TILLIS 2665598
+us-senate vs MEDSL,2020 NE us_senate,1,here Ben Sasse 583507 | MEDSL BEN SASSE 583507
+us-senate vs MEDSL,2020 NH us_senate,1,here Jeanne Shaheen 450778 | MEDSL JEANNE SHAHEEN 450778
+us-senate vs MEDSL,2020 NJ us_senate,1,here Cory A. Booker 2541239 | MEDSL CORY BOOKER 2541178
+us-senate vs MEDSL,2020 NM us_senate,1,here Ben Ray Luján 474483 | MEDSL BEN R. LUJAN 474483
+us-senate vs MEDSL,2020 OK us_senate,1,here James M. Inhofe 979140 | MEDSL JIM INHOFE  979140
+us-senate vs MEDSL,2020 OR us_senate,1,here Jeff Merkley 1321047 | MEDSL JEFF MERKLEY 1321047
+us-senate vs MEDSL,2020 RI us_senate,1,here Jack Reed 328574 | MEDSL JOHN F. REED 328574
+us-senate vs MEDSL,2020 SC us_senate,1,here Lindsey Graham 1369137 | MEDSL LINDSEY GRAHAM 1369137
+us-senate vs MEDSL,2020 SD us_senate,1,here Mike Rounds 276232 | MEDSL MIKE ROUNDS 276232
+us-senate vs MEDSL,2020 TN us_senate,1,here Bill Hagerty 1840926 | MEDSL BILL HAGERTY 1840926
+us-senate vs MEDSL,2020 TX us_senate,1,here John Cornyn 5962983 | MEDSL JOHN CORNYN 5962983
+us-senate vs MEDSL,2020 VA us_senate,1,here Mark R. Warner 2466500 | MEDSL MARK R. WARNER 2466500
+us-senate vs MEDSL,2020 WV us_senate,1,here Shelley Moore Capito 547454 | MEDSL SHELLEY MOORE CAPITO 547454
+us-senate vs MEDSL,2020 WY us_senate,1,here Cynthia M. Lummis 198100 | MEDSL CYNTHIA M. LUMMIS 198100
+congress winners vs congress-legislators terms,2022|VA|us_house|04,0,winner p735 key bioguide:M001200
+congress winners vs congress-legislators terms,2024|FL|us_house|01,0,winner p825 key bioguide:G000578
+congress winners vs congress-legislators terms (summary),all,0,ok 2371 fail 2
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ak-house 2022 general 11,0,BP ['coulombe'] | Klarner ['featherly']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ak-house 2022 general 15,0,BP ['mckay'] | Klarner ['wells']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ak-house 2022 general 18,0,BP ['groh'] | Klarner ['nelson']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-az-house 2022 general 17,0,"BP ['keshel', 'mcgarr'] | Klarner ['jones', 'mcgarr']"
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ct-house 2018 general 100,0,BP ['williams'] | Klarner ['phipps']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ct-house 2020 general 100,0,BP ['williams'] | Klarner ['phipps']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ct-senate 2018 general 36,0,BP ['kasser'] | Klarner ['bergstein']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2018 general 139,0,BP ['stinson'] | Klarner ['bentley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2018 general 153,0,BP ['jackson'] | Klarner ['whitakerhopson']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2020 general 139,0,BP ['stinson'] | Klarner ['bentley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2020 general 153,0,BP ['jackson'] | Klarner ['whitakerhopson']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2022 general 130,0,BP ['heffner'] | Klarner ['gladney']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-house 2022 general 150,0,BP ['stinson'] | Klarner ['bentley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ga-senate 2022 general 7,0,BP ['parkes'] | Klarner ['islam']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-hi-house 2016 general 36,0,BP ['chang'] | Klarner ['fukumoto']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-id-house 2020 general 2,0,BP ['okuniewicz'] | Klarner ['kohles']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-il-house 2016 general 27,0,BP ['democratic'] | Klarner ['davis']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-il-senate 2016 general 5,0,BP ['watkins'] | Klarner ['vanpelt']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-il-senate 2018 general 24,0,BP ['hilton'] | Klarner ['glowiak']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-il-senate 2022 general 23,0,BP ['hilton'] | Klarner ['glowiak']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ks-house 2016 general 112,0,BP ['blew'] | Klarner ['arnberger']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ks-house 2018 general 112,0,BP ['blew'] | Klarner ['arnberger']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ks-house 2020 general 112,0,BP ['blew'] | Klarner ['arnberger']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ks-house 2020 general 6,0,BP ['parshall'] | Klarner ['poetter']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ks-house 2022 general 6,0,BP ['parshall'] | Klarner ['poetter']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ky-house 2018 general 81,0,BP ['gordon'] | Klarner ['frazier']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ky-house 2020 general 81,0,BP ['gordon'] | Klarner ['frazier']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ky-house 2020 general 82,0,BP ['huff'] | Klarner ['petreybunch']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ky-house 2022 general 81,0,BP ['gordon'] | Klarner ['frazier']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ma-house 2016 general hampshire 3,0,BP ['scibak'] | Klarner ['goldsteinrose']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ma-house 2020 general suffolk 12,0,BP ['fluker-reid'] | Klarner ['flukeroakley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ma-house 2022 general suffolk 12,0,BP ['fluker-reid'] | Klarner ['flukeroakley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ma-house 2022 general essex 2,0,BP ['kassner'] | Klarner ['mirra']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2016 general 29 B,0,BP ['rarick'] | Klarner ['oneill']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2018 general 29 B,0,BP ['rarick'] | Klarner ['oneill']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2018 general 32 B,0,BP ['brindley'] | Klarner ['neu']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2020 general 29 B,0,BP ['rarick'] | Klarner ['oneill']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2020 general 32 B,0,BP ['brindley'] | Klarner ['neu']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2022 general 28 B,0,BP ['brindley'] | Klarner ['neu']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2022 general 29 B,0,BP ['rarick'] | Klarner ['oneill']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mn-house 2022 general 65 B,0,BP ['perez-vega'] | Klarner ['perezhedges']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mo-house 2022 general 2,0,BP ['christensen'] | Klarner ['boyd']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2016 general 90,0,BP ['boldman'] | Klarner ['hillsmith']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2018 general 70,0,BP ['darling'] | Klarner ['dooling']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2020 general 3,0,BP ['mitchell'] | Klarner ['powers']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2020 general 70,0,BP ['darling'] | Klarner ['dooling']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2020 general 84,0,BP ['dunwell'] | Klarner ['hull']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-house 2022 general 70,0,BP ['darling'] | Klarner ['dooling']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-mt-senate 2020 general 45,0,BP ['boldman'] | Klarner ['hillsmith']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-nh-house 2016 general hillsborough 12,0,"BP ['bouldin', 'freeman'] | Klarner ['bouldin', 'gregoire']"
+state legislature: Ballotpedia vs Klarner SLERs winners,us-nh-house 2016 general hillsborough 28,0,"BP ['ferreira', 'schmidt', 'seidel'] | Klarner ['gale', 'schmidt', 'seidel']"
+state legislature: Ballotpedia vs Klarner SLERs winners,us-nh-house 2022 general hillsborough 20,0,"BP ['gibbons', 'murray'] | Klarner ['moulton', 'murray']"
+state legislature: Ballotpedia vs Klarner SLERs winners,us-nm-senate 2020 general 35,0,BP ['brantley'] | Klarner ['diamond']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ny-house 2016 general 42,0,BP ['hermelyn'] | Klarner ['bichotte']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ny-house 2018 general 18,0,BP ['darling'] | Klarner ['raynor']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ny-house 2018 general 42,0,BP ['hermelyn'] | Klarner ['bichotte']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ny-house 2020 general 42,0,BP ['hermelyn'] | Klarner ['bichotte']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-ny-house 2022 general 42,0,BP ['hermelyn'] | Klarner ['bichotte']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-or-house 2018 general 27,0,BP ['schouten'] | Klarner ['malstrom']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-or-senate 2018 general 17,0,BP ['hayward'] | Klarner ['steinerhaywood']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-or-senate 2018 general 8,0,BP ['blouin'] | Klarner ['gelser']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-or-senate 2022 general 17,0,BP ['hayward'] | Klarner ['steinerhaywood']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-or-senate 2022 general 8,0,BP ['blouin'] | Klarner ['gelser']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-sc-house 2018 general 117,0,BP ['matthews'] | Klarner ['simmons']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-tx-house 2018 general 107,0,BP ['criado'] | Klarner ['neave']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-tx-house 2020 general 107,0,BP ['criado'] | Klarner ['neave']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-tx-house 2022 general 107,0,BP ['criado'] | Klarner ['neave']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-tx-house 2022 general 22,0,BP ['manuel'] | Klarner ['hayes']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-va-house 2019 general 64,0,BP ['jordan'] | Klarner ['brewer']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-va-house 2021 general 64,0,BP ['jordan'] | Klarner ['brewer']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-vt-house 2018 general franklin 7,0,BP ['storm'] | Klarner ['leffler']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-vt-house 2020 general franklin 7,0,BP ['storm'] | Klarner ['leffler']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wa-house 2016 general 2,0,BP ['kloba'] | Klarner ['barkis']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wa-house 2018 general 1,0,BP ['barkis'] | Klarner ['kloba']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wa-house 2020 general 1,0,BP ['barkis'] | Klarner ['kloba']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wa-house 2022 general 1,0,BP ['barkis'] | Klarner ['kloba']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wv-senate 2016 general 3,0,BP ['azinger'] | Klarner ['boley']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wy-house 2018 general 33,0,BP ['lebeau'] | Klarner ['clifford']
+state legislature: Ballotpedia vs Klarner SLERs winners,us-wy-house 2020 general 33,0,BP ['lebeau'] | Klarner ['clifford']
+state legislature: Ballotpedia vs Klarner SLERs winners (summary),all,0,agree 22845 disagree 79
+holder timeline vs snapshot,last winner = current holder,1,6869
+holder timeline vs snapshot,winner term start earlier than BP assumed-office (kept BP),1,2533
+holder timeline vs snapshot,last winner != current holder (vacancy/appointment/resignation since),1,664

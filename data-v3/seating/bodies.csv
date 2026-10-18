@@ -1,0 +1,189 @@
+b,key,st,kind,office,name,seats,majority,unit_type,term,stagger,last_el,next_el,sel,complete_from,src,note,geoid,entity
+0,us-senate,US,L,us_senate,United States Senate,100,51,state,6,thirds,2024-11-05,2026-11-03,0,2017-01-03,congress-legislators;senate.gov,VP breaks 50-50 ties,,
+1,us-house,US,L,us_house,United States House of Representatives,435,218,cd,2,none,2024-11-05,2026-11-03,0,2017-01-03,congress-legislators;clerk.house.gov,delegates excluded (non-voting),,
+2,us-ak-senate,AK,L,state_senate,Alaska State Senate,20,11,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,bipartisan majority coalition (Wikipedia: Coalition 14–6 [ b ]),,
+3,us-ak-house,AK,L,state_house,Alaska House of Representatives,40,21,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,bipartisan majority coalition (Wikipedia: Coalition 21–19 [ b ]),,
+4,us-al-senate,AL,L,state_senate,Alabama State Senate,35,18,sldu,4,all,2022-11-08,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+5,us-al-house,AL,L,state_house,Alabama House of Representatives,105,53,sldl,4,all,2022-11-08,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+6,us-ar-senate,AR,L,state_senate,Arkansas State Senate,35,18,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+7,us-ar-house,AR,L,state_house,Arkansas House of Representatives,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+8,us-az-senate,AZ,L,state_senate,Arizona State Senate,30,16,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+9,us-az-house,AZ,L,state_house,Arizona House of Representatives,60,31,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+10,us-ca-senate,CA,L,state_senate,California State Senate,40,21,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+11,us-ca-house,CA,L,state_house,California State Assembly,80,41,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+12,us-co-senate,CO,L,state_senate,Colorado State Senate,35,18,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-04,ballotpedia;openstates,,,
+13,us-co-house,CO,L,state_house,Colorado House of Representatives,65,33,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+14,us-ct-senate,CT,L,state_senate,Connecticut State Senate,36,19,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+15,us-ct-house,CT,L,state_house,Connecticut House of Representatives,151,76,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-04,ballotpedia;openstates,,,
+16,us-de-senate,DE,L,state_senate,Delaware State Senate,21,11,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2018-11-07,ballotpedia;openstates,,,
+17,us-de-house,DE,L,state_house,Delaware House of Representatives,41,21,sldl,2,all,2024-11-05,2026-11-03,0,2016-11-09,ballotpedia;openstates,,,
+18,us-fl-senate,FL,L,state_senate,Florida State Senate,40,21,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+19,us-fl-house,FL,L,state_house,Florida House of Representatives,120,61,sldl,2,all,2024-11-05,2026-11-03,0,2021-01-01,ballotpedia;openstates,,,
+20,us-ga-senate,GA,L,state_senate,Georgia State Senate,56,29,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-09,ballotpedia;openstates,,,
+21,us-ga-house,GA,L,state_house,Georgia House of Representatives,180,91,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-09,ballotpedia;openstates,,,
+22,us-hi-senate,HI,L,state_senate,Hawaii State Senate,25,13,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2018-11-06,ballotpedia;openstates,,,
+23,us-hi-house,HI,L,state_house,Hawaii House of Representatives,51,26,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+24,us-ia-senate,IA,L,state_senate,Iowa State Senate,50,26,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+25,us-ia-house,IA,L,state_house,Iowa House of Representatives,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+26,us-id-senate,ID,L,state_senate,Idaho State Senate,35,18,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+27,us-id-house,ID,L,state_house,Idaho House of Representatives,70,36,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+28,us-il-senate,IL,L,state_senate,Illinois State Senate,59,30,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2019-01-09,ballotpedia;openstates,,,
+29,us-il-house,IL,L,state_house,Illinois House of Representatives,118,60,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+30,us-in-senate,IN,L,state_senate,Indiana State Senate,50,26,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+31,us-in-house,IN,L,state_house,Indiana House of Representatives,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+32,us-ks-senate,KS,L,state_senate,Kansas State Senate,40,21,sldu,4,none_2026,2024-11-05,2028-11-07,0,2017-01-09,ballotpedia;openstates,,,
+33,us-ks-house,KS,L,state_house,Kansas House of Representatives,125,63,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+34,us-ky-senate,KY,L,state_senate,Kentucky State Senate,38,20,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+35,us-ky-house,KY,L,state_house,Kentucky House of Representatives,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+36,us-la-senate,LA,L,state_senate,Louisiana State Senate,39,20,sldu,4,none_2026,2023-11-18,2027-11-20,0,2020-01-13,ballotpedia;openstates,,,
+37,us-la-house,LA,L,state_house,Louisiana House of Representatives,105,53,sldl,4,none_2026,2023-11-18,2027-11-20,0,2020-01-13,ballotpedia;openstates,,,
+38,us-ma-senate,MA,L,state_senate,Massachusetts State Senate,40,21,sldu,2,all,2024-11-05,2026-11-03,0,2023-01-04,ballotpedia;openstates,,,
+39,us-ma-house,MA,L,state_house,Massachusetts House of Representatives,160,81,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-04,ballotpedia;openstates,,,
+40,us-md-senate,MD,L,state_senate,Maryland State Senate,47,24,sldu,4,all,2022-11-08,2026-11-03,0,2019-01-09,ballotpedia;openstates,,,
+41,us-md-house,MD,L,state_house,Maryland House of Delegates,141,71,sldl,4,all,2022-11-08,2026-11-03,0,2023-01-11,ballotpedia;openstates,,,
+42,us-me-senate,ME,L,state_senate,Maine State Senate,35,18,sldu,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+43,us-me-house,ME,L,state_house,Maine House of Representatives,151,76,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,151 voting seats; non-voting tribal representatives excluded,,
+44,us-mi-senate,MI,L,state_senate,Michigan State Senate,38,20,sldu,4,all,2022-11-08,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+45,us-mi-house,MI,L,state_house,Michigan House of Representatives,110,56,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+46,us-mn-senate,MN,L,state_senate,Minnesota State Senate,67,34,sldu,2-4-4,all,2022-11-08,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+47,us-mn-house,MN,L,state_house,Minnesota House of Representatives,134,68,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+48,us-mo-senate,MO,L,state_senate,Missouri State Senate,34,18,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+49,us-mo-house,MO,L,state_house,Missouri House of Representatives,163,82,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+50,us-ms-senate,MS,L,state_senate,Mississippi State Senate,52,27,sldu,4,none_2026,2023-11-07,2027-11-02,0,2020-01-07,ballotpedia;openstates,,,
+51,us-ms-house,MS,L,state_house,Mississippi House of Representatives,122,62,sldl,4,none_2026,2023-11-07,2027-11-02,0,2020-01-07,ballotpedia;openstates,,,
+52,us-mt-senate,MT,L,state_senate,Montana State Senate,50,26,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-07,ballotpedia;openstates,,,
+53,us-mt-house,MT,L,state_house,Montana House of Representatives,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+54,us-nc-senate,NC,L,state_senate,North Carolina State Senate,50,26,sldu,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+55,us-nc-house,NC,L,state_house,North Carolina House of Representatives,120,61,sldl,2,all,2024-11-05,2026-11-03,0,2021-01-01,ballotpedia;openstates,,,
+56,us-nd-senate,ND,L,state_senate,North Dakota State Senate,47,24,sldu,4,partial,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+57,us-nd-house,ND,L,state_house,North Dakota House of Representatives,94,48,sldl,4,partial,2024-11-05,2026-11-03,0,2022-12-01,ballotpedia;openstates,,,
+58,us-ne-legislature,NE,L,state_senate,Nebraska State Senate,49,25,sldu,4,partial,2024-11-05,2026-11-03,0,2021-01-01,ballotpedia;openstates,officially nonpartisan; party = registration reported by Ballotpedia,,
+59,us-nh-senate,NH,L,state_senate,New Hampshire State Senate,24,13,sldu,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+60,us-nh-house,NH,L,state_house,New Hampshire House of Representatives,400,201,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,floterial districts have no TIGER polygon (geoid empty),,
+61,us-nj-senate,NJ,L,state_senate,New Jersey State Senate,40,21,sldu,2-4-4,none_2026,2023-11-07,2027-11-02,0,2018-01-01,ballotpedia;openstates,,,
+62,us-nj-house,NJ,L,state_house,New Jersey General Assembly,80,41,sldl,2,none_2026,2025-11-04,2027-11-02,0,2018-01-09,ballotpedia;openstates,,,
+63,us-nm-senate,NM,L,state_senate,New Mexico State Senate,42,22,sldu,4,none_2026,2024-11-05,2028-11-07,0,2017-01-01,ballotpedia;openstates,,,
+64,us-nm-house,NM,L,state_house,New Mexico House of Representatives,70,36,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+65,us-nv-senate,NV,L,state_senate,Nevada State Senate,21,11,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+66,us-nv-house,NV,L,state_house,Nevada State Assembly,42,22,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+67,us-ny-senate,NY,L,state_senate,New York State Senate,63,32,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+68,us-ny-house,NY,L,state_house,New York State Assembly,150,76,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+69,us-oh-senate,OH,L,state_senate,Ohio State Senate,33,17,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+70,us-oh-house,OH,L,state_house,Ohio House of Representatives,99,50,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+71,us-ok-senate,OK,L,state_senate,Oklahoma State Senate,48,25,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+72,us-ok-house,OK,L,state_house,Oklahoma House of Representatives,101,51,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+73,us-or-senate,OR,L,state_senate,Oregon State Senate,30,16,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+74,us-or-house,OR,L,state_house,Oregon House of Representatives,60,31,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-09,ballotpedia;openstates,,,
+75,us-pa-senate,PA,L,state_senate,Pennsylvania State Senate,50,26,sldu,4,partial,2024-11-05,2026-11-03,0,2018-12-01,ballotpedia;openstates,,,
+76,us-pa-house,PA,L,state_house,Pennsylvania House of Representatives,203,102,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+77,us-ri-senate,RI,L,state_senate,Rhode Island State Senate,38,20,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+78,us-ri-house,RI,L,state_house,Rhode Island House of Representatives,75,38,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+79,us-sc-senate,SC,L,state_senate,South Carolina State Senate,46,24,sldu,4,none_2026,2024-11-05,2028-11-07,0,2017-01-01,ballotpedia;openstates,,,
+80,us-sc-house,SC,L,state_house,South Carolina House of Representatives,124,63,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+81,us-sd-senate,SD,L,state_senate,South Dakota State Senate,35,18,sldu,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+82,us-sd-house,SD,L,state_house,South Dakota House of Representatives,70,36,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+83,us-tn-senate,TN,L,state_senate,Tennessee State Senate,33,17,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+84,us-tn-house,TN,L,state_house,Tennessee House of Representatives,99,50,sldl,2,all,2024-11-05,2026-11-03,0,2021-01-01,ballotpedia;openstates,,,
+85,us-tx-senate,TX,L,state_senate,Texas State Senate,31,16,sldu,2-4-4,partial,2024-11-05,2026-11-03,0,2019-01-08,ballotpedia;openstates,,,
+86,us-tx-house,TX,L,state_house,Texas House of Representatives,150,76,sldl,2,all,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+87,us-ut-senate,UT,L,state_senate,Utah State Senate,29,15,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+88,us-ut-house,UT,L,state_house,Utah House of Representatives,75,38,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-01,ballotpedia;openstates,,,
+89,us-va-senate,VA,L,state_senate,Virginia State Senate,40,21,sldu,4,none_2026,2023-11-07,2027-11-02,0,2020-01-01,ballotpedia;openstates,,,
+90,us-va-house,VA,L,state_house,Virginia House of Delegates,100,51,sldl,2,none_2026,2025-11-04,2027-11-02,0,2018-01-01,ballotpedia;openstates,,,
+91,us-vt-senate,VT,L,state_senate,Vermont State Senate,30,16,sldu,2,all,2024-11-05,2026-11-03,0,2023-01-04,ballotpedia;openstates,,,
+92,us-vt-house,VT,L,state_house,Vermont House of Representatives,150,76,sldl,2,all,2024-11-05,2026-11-03,0,2025-01-08,ballotpedia;openstates,,,
+93,us-wa-senate,WA,L,state_senate,Washington State Senate,49,25,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+94,us-wa-house,WA,L,state_house,Washington House of Representatives,98,50,sldl,2,all,2024-11-05,2026-11-03,0,2017-01-09,ballotpedia;openstates,,,
+95,us-wi-senate,WI,L,state_senate,Wisconsin State Senate,33,17,sldu,4,partial,2024-11-05,2026-11-03,0,2019-01-01,ballotpedia;openstates,,,
+96,us-wi-house,WI,L,state_house,Wisconsin State Assembly,99,50,sldl,2,all,2024-11-05,2026-11-03,0,2023-07-18,ballotpedia;openstates,,,
+97,us-wv-senate,WV,L,state_senate,West Virginia State Senate,34,18,sldu,4,partial,2024-11-05,2026-11-03,0,2026-01-28,ballotpedia;openstates,,,
+98,us-wv-house,WV,L,state_house,West Virginia House of Delegates,100,51,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-01,ballotpedia;openstates,,,
+99,us-wy-senate,WY,L,state_senate,Wyoming State Senate,31,16,sldu,4,partial,2024-11-05,2026-11-03,0,2023-01-02,ballotpedia;openstates,,,
+100,us-wy-house,WY,L,state_house,Wyoming House of Representatives,62,32,sldl,2,all,2024-11-05,2026-11-03,0,2023-01-02,ballotpedia;openstates,,,
+101,us-al-supreme-court,AL,C,state_supreme_court,Alabama Supreme Court,9,5,none,6,staggered,,,1,2025-11-10,ballotpedia;wikipedia,Ballotpedia method: Partisan elections; seats by Seat,,
+102,us-il-supreme-court,IL,C,state_supreme_court,Illinois Supreme Court,7,4,none,10,staggered,,,2,2026-01-30,ballotpedia;wikipedia,Ballotpedia method: Partisan election; seats by District,,
+103,us-la-supreme-court,LA,C,state_supreme_court,Louisiana Supreme Court,7,4,none,10,staggered,,,1,2025-03-10,ballotpedia;wikipedia,Ballotpedia method: Partisan election; seats by District,,
+104,us-nm-supreme-court,NM,C,state_supreme_court,New Mexico Supreme Court,5,3,none,8,staggered,,,2,2021-08-09,ballotpedia;wikipedia,Ballotpedia method: Partisan election,,
+105,us-nc-supreme-court,NC,C,state_supreme_court,North Carolina Supreme Court,7,4,none,8,staggered,,,1,2023-09-11,ballotpedia;wikipedia,Ballotpedia method: Partisan election; seats by Seat,,
+106,us-oh-supreme-court,OH,C,state_supreme_court,Ohio Supreme Court,7,4,none,6,staggered,,,1,2024-12-10,ballotpedia;wikipedia,Ballotpedia method: Partisan election,,
+107,us-pa-supreme-court,PA,C,state_supreme_court,Pennsylvania Supreme Court,7,4,none,10,staggered,,,2,2024-01-02,ballotpedia;wikipedia,Ballotpedia method: Partisan election,,
+108,us-tx-supreme-court,TX,C,state_supreme_court,Texas Supreme Court,9,5,none,6,staggered,,,1,2021-11-09,ballotpedia;wikipedia,Ballotpedia method: Partisan election; seats by Place,,
+109,us-tx-court-of-criminal-appeals,TX,C,state_court_criminal_appeals,Texas Court of Criminal Appeals,9,5,none,6,staggered,,,1,2021-01-01,ballotpedia;wikipedia,Ballotpedia method: Partisan election; seats by Place,,
+110,us-mi-supreme-court,MI,C,state_supreme_court,Michigan Supreme Court,7,4,none,8,staggered,,,3,2025-05-21,ballotpedia;wikipedia,Ballotpedia method: Michigan method,,
+111,us-ar-supreme-court,AR,C,state_supreme_court,Arkansas Supreme Court,7,4,none,8,staggered,,,4,2025-01-01,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan elections; seats by Position,,
+112,us-ga-supreme-court,GA,C,state_supreme_court,Georgia Supreme Court,9,5,none,6,staggered,,,4,2025-07-24,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+113,us-id-supreme-court,ID,C,state_supreme_court,Idaho Supreme Court,5,3,none,6,staggered,,,4,2024-01-05,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+114,us-ky-supreme-court,KY,C,state_supreme_court,Kentucky Supreme Court,7,4,none,8,staggered,,,4,2025-01-06,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election; seats by District,,
+115,us-mn-supreme-court,MN,C,state_supreme_court,Minnesota Supreme Court,7,4,none,6,staggered,,,4,2020-08-03,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election; seats by Seat,,
+116,us-ms-supreme-court,MS,C,state_supreme_court,Mississippi Supreme Court,9,5,none,8,staggered,,,4,2026-09-01,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election; seats by District/Place,,
+117,us-mt-supreme-court,MT,C,state_supreme_court,Montana Supreme Court,7,4,none,8,staggered,,,4,2025-01-01,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+118,us-nv-supreme-court,NV,C,state_supreme_court,Nevada Supreme Court,7,4,none,6,staggered,,,4,2023-01-02,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election; seats by Seat,,
+119,us-nd-supreme-court,ND,C,state_supreme_court,North Dakota Supreme Court,5,3,none,10,staggered,,,4,2026-03-09,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+120,us-or-supreme-court,OR,C,state_supreme_court,Oregon Supreme Court,7,4,none,6,staggered,,,4,2023-09-01,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+121,us-wa-supreme-court,WA,C,state_supreme_court,Washington Supreme Court,9,5,none,6,staggered,,,4,2026-04-04,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election of judges; seats by Seat,,
+122,us-wi-supreme-court,WI,C,state_supreme_court,Wisconsin Supreme Court,7,4,none,10,staggered,,,4,2026-08-01,ballotpedia;wikipedia,Ballotpedia method: Nonpartisan election,,
+123,us-ak-supreme-court,AK,C,state_supreme_court,Alaska Supreme Court,5,3,none,10,staggered,,,5,2025-01-31,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid),,
+124,us-az-supreme-court,AZ,C,state_supreme_court,Arizona Supreme Court,7,4,none,6,staggered,,,5,2025-02-03,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission),,
+125,us-co-supreme-court,CO,C,state_supreme_court,Colorado Supreme Court,7,4,none,10,staggered,,,5,2026-02-17,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission),,
+126,us-fl-supreme-court,FL,C,state_supreme_court,Florida Supreme Court,7,4,none,6,staggered,,,5,2026-01-14,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission); seats by District,,
+127,us-in-supreme-court,IN,C,state_supreme_court,Indiana Supreme Court,5,3,none,2,staggered,,,5,2022-09-01,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid),,
+128,us-ia-supreme-court,IA,C,state_supreme_court,Iowa Supreme Court,7,4,none,8,staggered,,,5,2022-08-19,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission),,
+129,us-md-supreme-court,MD,C,state_supreme_court,Maryland Supreme Court,7,4,none,10,staggered,,,5,2024-07-31,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission); seats by Circuit,,
+130,us-mo-supreme-court,MO,C,state_supreme_court,Missouri Supreme Court,7,4,none,12,staggered,,,5,2023-11-01,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid),,
+131,us-ne-supreme-court,NE,C,state_supreme_court,Nebraska Supreme Court,7,4,none,6,staggered,,,5,2026-01-02,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid); seats by District,,
+132,us-ok-supreme-court,OK,C,state_supreme_court,Oklahoma Supreme Court,9,5,none,"Initial term 1 year; if retained, 6 years",staggered,,,5,2021-01-01,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid); seats by District,,
+133,us-sd-supreme-court,SD,C,state_supreme_court,South Dakota Supreme Court,5,3,none,8,staggered,,,5,2021-01-05,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid); seats by District,,
+134,us-tn-supreme-court,TN,C,state_supreme_court,Tennessee Supreme Court,5,3,none,8,staggered,,,5,2026-07-01,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment; seats by Grand Division,,
+135,us-ut-supreme-court,UT,C,state_supreme_court,Utah Supreme Court,7,4,none,10,staggered,,,5,2026-09-24,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (governor-controlled commission),,
+136,us-wy-supreme-court,WY,C,state_supreme_court,Wyoming Supreme Court,5,3,none,8,staggered,,,5,2025-05-28,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (hybrid),,
+137,us-ok-court-of-criminal-appeals,OK,C,state_court_criminal_appeals,Oklahoma Court of Criminal Appeals,5,3,none,6,staggered,,,5,2019-01-01,ballotpedia;wikipedia,Ballotpedia method: Assisted appointment (Hybrid); seats by District,,
+138,us-ny-new-york-city-council,NY,M,city_council,New York City Council,51,26,council_district,4 (2-4-4 after redistricting),all,2025-11-04,2026-11-03,1,2026-05-12,ballotpedia;https://council.nyc.gov/,special for District 3 (term ends 2026-12-31); next regular general 2029-11-06,3651000,muni:place:3651000
+139,us-ny-new-york-mayor,NY,M,mayor,Mayor of New York,1,1,place,,none,,2029-11-06,1,2026-01-01,ballotpedia;https://council.nyc.gov/,mayor_role on council: none; veto: 1,3651000,muni:place:3651000
+140,us-ca-los-angeles-city-council,CA,M,city_council,Los Angeles City Council,15,8,council_district,4,partial,2024-11-05,2026-11-03,4,2024-12-09,ballotpedia;https://clerk.lacity.gov/,odd-numbered districts (primary 2026-06-02; seats won outright in the primary are decided),0644000,muni:place:0644000
+141,us-ca-los-angeles-mayor,CA,M,mayor,Mayor of Los Angeles,1,1,place,,none,,2026-11-03,4,2022-12-12,ballotpedia;https://clerk.lacity.gov/,mayor_role on council: none; veto: 1; 2026 mayoral primary was 2026-06-02; runoff (if any) 2026-11-03,0644000,muni:place:0644000
+142,us-il-chicago-city-council,IL,M,city_council,Chicago City Council,50,26,council_district,4,all,2023-02-28,2027-02-23,4,2025-09-25,ballotpedia;https://www.chicago.gov/city/en/about/wards.html,all 50 wards; runoff 2027-04-06,1714000,muni:place:1714000
+143,us-il-chicago-mayor,IL,M,mayor,Mayor of Chicago,1,1,place,,none,,2027-02-23,4,2023-05-15,ballotpedia;https://www.chicago.gov/city/en/about/wards.html,mayor_role on council: tie; veto: 1,1714000,muni:place:1714000
+144,us-tx-houston-city-council,TX,M,city_council,Houston City Council,17,9,council_district,4,all,2023-11-07,2027-11-02,4,2026-05-27,ballotpedia;https://www.houstontx.gov/council/,all 16 seats + mayor; runoff in December,4835000,muni:place:4835000
+145,us-tx-houston-mayor,TX,M,mayor,Mayor of Houston,1,1,place,,none,,2027-11-02,4,2024-01-02,ballotpedia;https://www.houstontx.gov/council/,mayor_role on council: member; veto: 0,4835000,muni:place:4835000
+146,us-az-phoenix-city-council,AZ,M,city_council,Phoenix City Council,9,5,council_district,4,partial,2024-11-05,2026-11-03,4,2025-04-21,ballotpedia;https://www.phoenix.gov/administration/mayorcouncil.html,even-numbered districts (terms start April 2027),0455000,muni:place:0455000
+147,us-az-phoenix-mayor,AZ,M,mayor,Mayor of Phoenix,1,1,place,,none,,2028-11-07,4,2019-03-21,ballotpedia;https://www.phoenix.gov/administration/mayorcouncil.html,mayor_role on council: member; veto: 0,0455000,muni:place:0455000
+148,us-pa-philadelphia-city-council,PA,M,city_council,Philadelphia City Council,17,9,council_district,4,all,2023-11-07,2027-11-02,1,2024-01-01,ballotpedia;https://phlcouncil.com/,all 17; at-large voters choose 5 of 7 (minority-party seats),4260000,muni:place:4260000
+149,us-pa-philadelphia-mayor,PA,M,mayor,Mayor of Philadelphia,1,1,place,,none,,2027-11-02,1,2024-01-01,ballotpedia;https://phlcouncil.com/,mayor_role on council: none; veto: 1,4260000,muni:place:4260000
+150,us-tx-san-antonio-city-council,TX,M,city_council,San Antonio City Council,11,6,council_district,4,all,2025-05-03,2029-05,4,2025-06-18,ballotpedia;https://www.sa.gov/Directory/Departments/Mayor-Council,all 10 districts + mayor (terms end 2029-06-01),4865000,muni:place:4865000
+151,us-tx-san-antonio-mayor,TX,M,mayor,Mayor of San Antonio,1,1,place,,none,,2027-05,4,2025-06-18,ballotpedia;https://www.sa.gov/Directory/Departments/Mayor-Council,mayor_role on council: member; veto: 0; Ballotpedia list gives mayor term end 2027 while council terms end 2029-06-01; unverified,4865000,muni:place:4865000
+152,us-ca-san-diego-city-council,CA,M,city_council,San Diego City Council,9,5,council_district,4,partial,2024-11-05,2026-11-03,4,2024-04-08,ballotpedia;https://www.sandiego.gov/citycouncil,even-numbered districts,0666000,muni:place:0666000
+153,us-ca-san-diego-mayor,CA,M,mayor,Mayor of San Diego,1,1,place,,none,,2028-11-07,4,2020-12-14,ballotpedia;https://www.sandiego.gov/citycouncil,mayor_role on council: none; veto: 1,0666000,muni:place:0666000
+154,us-tx-dallas-city-council,TX,M,city_council,Dallas City Council,15,8,council_district,2,all,2025-05-03,2027-05-01,4,2025-06-16,ballotpedia;https://dallascityhall.com/government/citycouncil/Pages/default.aspx,all 14 + mayor,4819000,muni:place:4819000
+155,us-tx-dallas-mayor,TX,M,mayor,Mayor of Dallas,1,1,place,,none,,2027-05-01,4,2019-01-01,ballotpedia;https://dallascityhall.com/government/citycouncil/Pages/default.aspx,mayor_role on council: member; veto: 0,4819000,muni:place:4819000
+156,us-tx-fort-worth-city-council,TX,M,city_council,Fort Worth City Council,11,6,council_district,2,all,2025-05-03,2027-05-01,4,2026-05-12,ballotpedia;https://www.fortworthtexas.gov/government/city-council,districts 2-11 + mayor,4827000,muni:place:4827000
+157,us-tx-fort-worth-mayor,TX,M,mayor,Mayor of Fort Worth,1,1,place,,none,,2027-05-01,4,2021-06-15,ballotpedia;https://www.fortworthtexas.gov/government/city-council,mayor_role on council: member; veto: 0,4827000,muni:place:4827000
+158,us-fl-jacksonville-city-council,FL,M,city_council,Jacksonville City Council,19,10,council_district,4,all,2023-05-16,2027-03,1,2026-08-31,ballotpedia;https://www.jacksonville.gov/city-council,"first (unitary) election March 2027, general May 2027",1235000,muni:place:1235000
+159,us-fl-jacksonville-mayor,FL,M,mayor,Mayor of Jacksonville,1,1,place,,none,,2027-03,1,2023-01-01,ballotpedia;https://www.jacksonville.gov/city-council,mayor_role on council: none; veto: 1,1235000,muni:place:1235000
+160,us-tx-austin-city-council,TX,M,city_council,Austin City Council,11,6,council_district,4,partial,2024-11-05,2026-11-03,4,2025-01-06,ballotpedia;https://www.austintexas.gov/council,"districts 1, 3, 5, 8, 9",4805000,muni:place:4805000
+161,us-tx-austin-mayor,TX,M,mayor,Mayor of Austin,1,1,place,,none,,2028-11-07,4,2023-01-06,ballotpedia;https://www.austintexas.gov/council,mayor_role on council: member; veto: 0,4805000,muni:place:4805000
+162,us-ca-san-jose-city-council,CA,M,city_council,San Jose City Council,11,6,council_district,4,partial,2024-11-05,2026-11-03,4,2025-08-12,ballotpedia;https://www.sanjoseca.gov/your-government/departments-offices/mayor-and-city-council,odd-numbered districts,0668000,muni:place:0668000
+163,us-ca-san-jose-mayor,CA,M,mayor,Mayor of San Jose,1,1,place,,none,,2028-11-07,4,2023-01-01,ballotpedia;https://www.sanjoseca.gov/your-government/departments-offices/mayor-and-city-council,mayor_role on council: member; veto: 0,0668000,muni:place:0668000
+164,us-nc-charlotte-city-council,NC,M,city_council,Charlotte City Council,11,6,council_district,2,all,2025-11-04,2027-11-02,1,2025-12-01,ballotpedia;https://www.charlottenc.gov/City-Government/City-Council,all 11 + mayor,3712000,muni:place:3712000
+165,us-nc-charlotte-mayor,NC,M,mayor,Mayor of Charlotte,1,1,place,,none,,2027-11-02,1,2026-07-01,ballotpedia;https://www.charlottenc.gov/City-Government/City-Council,mayor_role on council: tie; veto: 1; Rob Harrington appointed by council (6-5) after Vi Lyles resigned 2026-06-30 (charlottenc.gov Meet the Mayor),3712000,muni:place:3712000
+166,us-oh-columbus-city-council,OH,M,city_council,Columbus City Council,9,5,council_district,4,partial,2025-11-04,2027-11-02,4,2026-01-01,ballotpedia;https://www.columbus.gov/City-Council,"districts 2, 5, 6, 8, 9; members must reside in their district but are elected citywide",3918000,muni:place:3918000
+167,us-oh-columbus-mayor,OH,M,mayor,Mayor of Columbus,1,1,place,,none,,2027-11-02,4,2015-01-01,ballotpedia;https://www.columbus.gov/City-Council,mayor_role on council: none; veto: 1,3918000,muni:place:3918000
+168,us-wa-seattle-city-council,WA,M,city_council,Seattle City Council,9,5,council_district,4,partial,2025-11-04,2026-11-03,4,2026-01-01,ballotpedia;https://www.seattle.gov/council,special for District 5 (appointee); next regular general 2027-11-02 (districts 1-7),5363000,muni:place:5363000
+169,us-wa-seattle-mayor,WA,M,mayor,Mayor of Seattle,1,1,place,,none,,2029-11-06,4,2026-01-01,ballotpedia;https://www.seattle.gov/council,mayor_role on council: none; veto: 1,5363000,muni:place:5363000
+170,us-co-denver-city-council,CO,M,city_council,Denver City Council,13,7,council_district,4,all,2023-04-04,2026-11-03,4,2026-10-18,ballotpedia;https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-City-Council,vacancy election for At-large Seat B (Parady resigned 2026-08-05); regular municipal election 2027-04-06,0820000,muni:place:0820000
+171,us-co-denver-mayor,CO,M,mayor,Mayor of Denver,1,1,place,,none,,2027-04-06,4,2023-07-17,ballotpedia;https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-City-Council,mayor_role on council: none; veto: 1,0820000,muni:place:0820000
+172,us-ok-oklahoma-city-city-council,OK,M,city_council,Oklahoma City Council,9,5,council_district,4,partial,2025-02-11,2027-02,4,2025-04-29,ballotpedia;https://www.okc.gov/government/city-council,"wards 2, 5, 6, 8 (runoff April 2027)",4055000,muni:place:4055000
+173,us-ok-oklahoma-city-mayor,OK,M,mayor,Mayor of Oklahoma City,1,1,place,,none,,2030-02,4,2018-01-01,ballotpedia;https://www.okc.gov/government/city-council,mayor_role on council: member; veto: 0,4055000,muni:place:4055000
+174,us-tx-el-paso-city-council,TX,M,city_council,El Paso City Council,8,5,council_district,4,partial,2024-11-05,2026-11-03,4,2025-01-07,ballotpedia;https://www.elpasotexas.gov/government,"districts 1, 5, 6, 8",4824000,muni:place:4824000
+175,us-tx-el-paso-mayor,TX,M,mayor,Mayor of El Paso,1,1,place,,none,,2028-11-07,4,2025-01-07,ballotpedia;https://www.elpasotexas.gov/government,mayor_role on council: tie; veto: 1,4824000,muni:place:4824000
+176,us-nv-las-vegas-city-council,NV,M,city_council,Las Vegas City Council,7,4,council_district,4,partial,2024-11-05,2026-11-03,4,2025-09-30,ballotpedia;https://www.lasvegasnevada.gov/Government/Mayor-City-Council,Ward 2 (appointee's term ends 2026),3240000,muni:place:3240000
+177,us-nv-las-vegas-mayor,NV,M,mayor,Mayor of Las Vegas,1,1,place,,none,,2028-11,4,2024-12-04,ballotpedia;https://www.lasvegasnevada.gov/Government/Mayor-City-Council,mayor_role on council: member; veto: 0,3240000,muni:place:3240000
+178,us-ma-boston-city-council,MA,M,city_council,Boston City Council,13,7,council_district,2,all,2025-11-04,2027-11-02,4,2026-01-05,ballotpedia;https://www.boston.gov/departments/city-council,all 13,2507000,muni:place:2507000
+179,us-ma-boston-mayor,MA,M,mayor,Mayor of Boston,1,1,place,,none,,2029-11-06,4,2021-11-16,ballotpedia;https://www.boston.gov/departments/city-council,mayor_role on council: none; veto: 1,2507000,muni:place:2507000
+180,us-mi-detroit-city-council,MI,M,city_council,Detroit City Council,9,5,council_district,4,all,2025-11-04,2029-11-06,4,2026-01-01,ballotpedia;https://detroitmi.gov/government/city-council,all 9,2622000,muni:place:2622000
+181,us-mi-detroit-mayor,MI,M,mayor,Mayor of Detroit,1,1,place,,none,,2029-11-06,4,2026-01-01,ballotpedia;https://detroitmi.gov/government/city-council,mayor_role on council: none; veto: 1,2622000,muni:place:2622000
+182,us-or-portland-city-council,OR,M,city_council,Portland City Council,12,7,council_district,4 (districts 3-4 first term 2),partial,2024-11-05,2026-11-03,4,2025-01-01,ballotpedia;https://www.portland.gov/council,"districts 3 and 4 (3 seats each, ranked-choice STV)",4159000,muni:place:4159000
+183,us-or-portland-mayor,OR,M,mayor,Mayor of Portland,1,1,place,,none,,2028-11-07,4,2025-01-01,ballotpedia;https://www.portland.gov/council,mayor_role on council: tie; veto: 0,4159000,muni:place:4159000
+184,us-tn-memphis-city-council,TN,M,city_council,Memphis City Council,13,7,council_district,4,all,2023-10-05,2027-10,4,2024-01-01,ballotpedia;https://www.memphiscitycouncil.com/,all 13 + mayor,4748000,muni:place:4748000
+185,us-tn-memphis-mayor,TN,M,mayor,Mayor of Memphis,1,1,place,,none,,2027-10,4,2024-01-01,ballotpedia;https://www.memphiscitycouncil.com/,mayor_role on council: none; veto: 1,4748000,muni:place:4748000
+186,us-md-baltimore-city-council,MD,M,city_council,Baltimore City Council,15,8,council_district,4,all,2024-11-05,2028-11-07,1,2024-12-05,ballotpedia;https://baltimorecitycouncil.com/,all 14 districts + council president (primary May 2028),2404000,muni:place:2404000
+187,us-md-baltimore-mayor,MD,M,mayor,Mayor of Baltimore,1,1,place,,none,,2028-11-07,1,2020-01-01,ballotpedia;https://baltimorecitycouncil.com/,mayor_role on council: none; veto: 1,2404000,muni:place:2404000
