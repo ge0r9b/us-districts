@@ -1,0 +1,13 @@
+name = "us-districts-api"
+main = "worker/index.ts"
+compatibility_date = "2026-10-18"
+
+# Wrangler asks which Cloudflare account to use when you deploy.
+# DATABASE_URL is a secret, not a var:
+#   npx wrangler secret put DATABASE_URL
+# TILES_BASE is the PMTiles origin (an R2 public URL). Empty means same-origin /tiles.
+# PACKS_BASE is the pack origin. Empty means pack redirects stay unavailable on the Worker.
+
+[vars]
+TILES_BASE = ""
+PACKS_BASE = ""

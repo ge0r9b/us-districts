@@ -16,5 +16,5 @@
       "@usd/core": ["./packages/core/src/index.ts"]
     }
   },
-  "include": ["app", "api", "db", "ingest", "packages", "scripts", "tests", "vite.config.ts", "vitest.config.ts"]
+  "include": ["app", "api", "db", "ingest", "packages", "scripts", "tests", "worker", "env.d.ts", "vite.config.ts", "vitest.config.ts"]
 }

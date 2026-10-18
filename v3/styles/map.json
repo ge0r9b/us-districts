@@ -14,12 +14,13 @@
     },
     "state-2024": {
       "type": "vector",
-      "url": "pmtiles://{origin}/tiles/state-2024@1.pmtiles",
-      "attribution": "US Districts"
+      "url": "pmtiles://{tiles}/tiles/state-2024@1.pmtiles",
+      "attribution": "US Districts",
+      "promoteId": "id"
     },
     "state-geojson": {
       "type": "geojson",
-      "data": "{origin}/geo/states.geojson",
+      "data": "{geo}/geo/states.geojson",
       "promoteId": "key"
     }
   },

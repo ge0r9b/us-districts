@@ -1,6 +1,15 @@
-import { readFileSync } from "node:fs";
-import { isGray, shares, sortRows, type SortBy, type SortDir, type ValueFormat, applyFormat } from "@usd/core";
-import { estAt, locatePack, type PrecinctPack } from "../../ingest/precincts.ts";
+import { estBit, isGray, shares, sortRows, type SortBy, type SortDir, type ValueFormat, applyFormat } from "@usd/core";
+import type { PackStore } from "./sql.ts";
+
+type PrecinctPack = {
+  state: string;
+  answers: string[];
+  ids: string[];
+  names: string[];
+  votes: ([number, number, number] | null)[];
+  total: (number | null)[];
+  est: string;
+};
 
 export function contestParts(key: string): { year: number; office: string } | null {
   const [year, , office] = key.split("|");
@@ -9,8 +18,8 @@ export function contestParts(key: string): { year: number; office: string } | nu
   return { year: parsed, office };
 }
 
-export function precinctResults(opts: {
-  packsDir: string;
+export async function precinctResults(opts: {
+  packs: PackStore;
   contests: string[];
   state: string;
   fmt: ValueFormat | null;
@@ -19,19 +28,21 @@ export function precinctResults(opts: {
   sortAnswer: string | null;
   dv: number;
   boundary: string;
-}): { status: number; body: unknown } {
+}): Promise<{ status: number; body: unknown }> {
   const parts = opts.contests.map(contestParts);
   if (parts.some((part) => !part)) {
     return { status: 404, body: { error: { code: "contest_not_found", message: "Unknown contest" }, dv: opts.dv } };
   }
-  const packs = parts.map((part) => locatePack(opts.packsDir, opts.state.toUpperCase(), part!.year, part!.office));
-  if (packs.some((pack) => !pack)) {
+  const texts = await Promise.all(
+    parts.map((part) => opts.packs.readPrecinct(opts.state.toUpperCase(), part!.year, part!.office)),
+  );
+  if (texts.some((text) => !text)) {
     return {
       status: 404,
       body: { error: { code: "pack_not_found", message: "No precinct pack for that state and contest" }, dv: opts.dv },
     };
   }
-  const decoded = packs.map((pack) => JSON.parse(readFileSync(pack!.file, "utf8")) as PrecinctPack);
+  const decoded = texts.map((text) => JSON.parse(text!) as PrecinctPack);
   const primary = decoded[0]!;
   const answers: string[] = [...primary.answers];
   const sortKey = opts.sortAnswer && answers.includes(opts.sortAnswer) ? opts.sortAnswer : answers[0]!;
@@ -109,7 +120,7 @@ function cellOf(pack: PrecinctPack, index: number, answerCount: number) {
     votes,
     total,
     share: votes && total != null ? shares(votes, total) : null,
-    est: estAt(pack.est, index),
+    est: estBit(pack.est, index),
     gray: isGray(has, null),
   };
 }

@@ -1,7 +1,5 @@
-import { fileURLToPath } from "node:url";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import type pg from "pg";
 import {
   applyFormat,
   cacheControl,
@@ -16,26 +14,29 @@ import {
 } from "@usd/core";
 import { geocodeAddress, locatePoint } from "./geocode.ts";
 import { precinctResults } from "./precinct-results.ts";
-import { locateInstPack } from "../../ingest/inst-pack.ts";
-import { locatePack } from "../../ingest/precincts.ts";
-
-const defaultPacksDir = fileURLToPath(new URL("../../app/public/packs/precinct", import.meta.url));
-const defaultInstPacksDir = fileURLToPath(new URL("../../app/public/packs/inst", import.meta.url));
+import type { PackStore, Sql } from "./sql.ts";
 
 export type AppDeps = {
-  pool: pg.Pool;
+  sql: Sql;
   fetchImpl?: typeof fetch;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
-  packsDir?: string;
-  instPacksDir?: string;
+  packs?: PackStore;
+  /** PMTiles origin. Empty keeps root-relative `/tiles/...`. An R2 URL is absolute. */
+  tilesBase?: string;
 };
 
 type DvRow = { dv: number; built_at: Date | string };
 
-async function readDv(pool: pg.Pool): Promise<DvRow> {
-  const r = await pool.query<DvRow>("select dv, built_at from data_version where id = 1");
+async function readDv(sql: Sql): Promise<DvRow> {
+  const r = await sql.query<DvRow>("select dv, built_at from data_version where id = 1");
   return r.rows[0] ?? { dv: 1, built_at: new Date(0).toISOString() };
+}
+
+function tileUrl(base: string, path: string): string {
+  const root = base.replace(/\/$/, "");
+  if (!root) return path;
+  return `${root}${path}`;
 }
 
 function parseBbox(raw: string | undefined): [number, number, number, number] | null {
@@ -54,20 +55,20 @@ function iso(value: Date | string): string {
   return value instanceof Date ? value.toISOString() : new Date(value).toISOString();
 }
 
-async function manifest(pool: pg.Pool) {
-  const version = await readDv(pool);
-  const offices = await pool.query<{ key: string; label: string }>(
+async function manifest(sql: Sql, tilesBase: string) {
+  const version = await readDv(sql);
+  const offices = await sql.query<{ key: string; label: string }>(
     `select office_key as key, label from office order by office_key`,
   );
   return {
     dv: version.dv,
     built_at: iso(version.built_at),
     tiles: {
-      "state-2024": "/tiles/state-2024@1.pmtiles",
-      "county-2024": "/tiles/county-2024@1.pmtiles",
-      "ushouse-2024": "/tiles/ushouse-2024@1.pmtiles",
-      companies: "/tiles/companies.pmtiles",
-      "precinct-2024": "/tiles/precinct-2024/{ST}.pmtiles",
+      "state-2024": tileUrl(tilesBase, "/tiles/state-2024@1.pmtiles"),
+      "county-2024": tileUrl(tilesBase, "/tiles/county-2024@1.pmtiles"),
+      "ushouse-2024": tileUrl(tilesBase, "/tiles/ushouse-2024@1.pmtiles"),
+      companies: tileUrl(tilesBase, "/tiles/companies.pmtiles"),
+      "precinct-2024": tileUrl(tilesBase, "/tiles/precinct-2024/{ST}.pmtiles"),
     },
     packs: `/packs/${version.dv}/{contest_key}/{unit_type}.json`,
     precinct_packs: "/packs/precinct/{ST}/{year}/{office}/{sha}.json",
@@ -99,8 +100,7 @@ function answerJson(row: AnswerRow) {
 }
 
 export function createApp(deps: AppDeps) {
-  const packsDir = deps.packsDir ?? defaultPacksDir;
-  const instPacksDir = deps.instPacksDir ?? defaultInstPacksDir;
+  const tilesBase = deps.tilesBase ?? "";
   const app = new Hono();
   app.use(
     "*",
@@ -113,14 +113,14 @@ export function createApp(deps: AppDeps) {
   );
 
   app.use("/api/v1/*", async (c, next) => {
-    const version = await readDv(deps.pool);
+    const version = await readDv(deps.sql);
     const raw = c.req.query("dv");
     if (raw != null && raw !== "") {
       if (!/^\d+$/.test(raw)) {
         return c.json({ error: { code: "bad_dv", message: "dv must be an integer" }, dv: version.dv }, 400);
       }
       if (Number(raw) !== version.dv) {
-        const body = await manifest(deps.pool);
+        const body = await manifest(deps.sql, tilesBase);
         return c.json(
           { error: { code: "gone", message: "That data version is not current" }, dv: version.dv, manifest: body },
           410,
@@ -138,10 +138,10 @@ export function createApp(deps: AppDeps) {
     else c.header("cache-control", cacheControl(c.get("cacheKind") === "pinned" ? "pinned" : "open"));
   });
 
-  app.get("/api/v1/manifest", async (c) => c.json(await manifest(deps.pool)));
+  app.get("/api/v1/manifest", async (c) => c.json(await manifest(deps.sql, tilesBase)));
 
-  app.get("/api/v1/packs/institutions", (c) => {
-    const found = locateInstPack(instPacksDir);
+  app.get("/api/v1/packs/institutions", async (c) => {
+    const found = deps.packs ? await deps.packs.locateInst() : null;
     if (!found) {
       return c.json(
         { error: { code: "pack_not_found", message: "No institution pack" }, dv: c.get("dv") },
@@ -151,9 +151,11 @@ export function createApp(deps: AppDeps) {
     return c.redirect(found.publicPath, 302);
   });
 
-  app.get("/api/v1/packs/precinct/:state/:year/:office", (c) => {
+  app.get("/api/v1/packs/precinct/:state/:year/:office", async (c) => {
     const year = Number(c.req.param("year"));
-    const found = locatePack(packsDir, c.req.param("state") ?? "", year, c.req.param("office") ?? "");
+    const found = deps.packs
+      ? await deps.packs.locatePrecinct(c.req.param("state") ?? "", year, c.req.param("office") ?? "")
+      : null;
     if (!found) {
       return c.json(
         { error: { code: "pack_not_found", message: "No precinct pack for that state and contest" }, dv: c.get("dv") },
@@ -170,7 +172,7 @@ export function createApp(deps: AppDeps) {
     const stage = c.req.query("stage");
     const kind = c.req.query("kind");
     const limit = Math.min(Number(c.req.query("limit") ?? 100) || 100, 500);
-    const contests = await deps.pool.query<{
+    const contests = await deps.sql.query<{
       contest_key: string;
       year: number;
       stage: string;
@@ -194,7 +196,7 @@ export function createApp(deps: AppDeps) {
     );
     const keys = contests.rows.map((row) => row.contest_key);
     const answers = keys.length
-      ? await deps.pool.query<AnswerRow>(
+      ? await deps.sql.query<AnswerRow>(
           `select c.contest_key, a.answer_key, a.label, a.is_aggregate, a.color,
                   cand.candidate_key, p.party_key, p.color as party_color
            from answer a
@@ -206,7 +208,7 @@ export function createApp(deps: AppDeps) {
         )
       : { rows: [] as AnswerRow[] };
     const slots = keys.length
-      ? await deps.pool.query<{ contest_key: string; slot: string; answer_key: string }>(
+      ? await deps.sql.query<{ contest_key: string; slot: string; answer_key: string }>(
           `select c.contest_key, s.slot, a.answer_key
            from contest_display_slot s
            join contest c on c.id = s.contest_id
@@ -244,7 +246,7 @@ export function createApp(deps: AppDeps) {
 
   app.get("/api/v1/contests/:key", async (c) => {
     const key = c.req.param("key");
-    const one = await deps.pool.query(
+    const one = await deps.sql.query(
       `select c.contest_key from contest c where c.contest_key = $1`,
       [key],
     );
@@ -282,8 +284,11 @@ export function createApp(deps: AppDeps) {
       if (!state) {
         return c.json({ error: { code: "bad_request", message: "state is required for precincts" }, dv }, 400);
       }
-      const built = precinctResults({
-        packsDir,
+      if (!deps.packs) {
+        return c.json({ error: { code: "pack_not_found", message: "No precinct pack for that state and contest" }, dv }, 404);
+      }
+      const built = await precinctResults({
+        packs: deps.packs,
         contests: contestParams,
         state,
         fmt,
@@ -296,7 +301,7 @@ export function createApp(deps: AppDeps) {
       return c.json(built.body, built.status as 200);
     }
 
-    const contests = await deps.pool.query<{ contest_key: string }>(
+    const contests = await deps.sql.query<{ contest_key: string }>(
       `select contest_key from contest where contest_key = any($1::text[])`,
       [contestParams],
     );
@@ -304,14 +309,14 @@ export function createApp(deps: AppDeps) {
       return c.json({ error: { code: "contest_not_found", message: "Unknown contest" }, dv }, 404);
     }
 
-    const answerRows = await deps.pool.query<{ contest_key: string; answer_key: string }>(
+    const answerRows = await deps.sql.query<{ contest_key: string; answer_key: string }>(
       `select c.contest_key, a.answer_key
        from answer a join contest c on c.id = a.contest_id
        where c.contest_key = any($1::text[])`,
       [contestParams],
     );
     const answers = [...new Set(answerRows.rows.map((row) => row.answer_key))].sort(compareAnswerKeys);
-    const slotRows = await deps.pool.query<{ contest_key: string; slot: string; answer_key: string }>(
+    const slotRows = await deps.sql.query<{ contest_key: string; slot: string; answer_key: string }>(
       `select c.contest_key, s.slot, a.answer_key
        from contest_display_slot s
        join contest c on c.id = s.contest_id
@@ -320,7 +325,7 @@ export function createApp(deps: AppDeps) {
       [contestParams],
     );
 
-    const data = await deps.pool.query<{
+    const data = await deps.sql.query<{
       contest_key: string;
       unit_key: string;
       legacy_key: string | null;
@@ -449,7 +454,7 @@ export function createApp(deps: AppDeps) {
     const key = c.req.param("key");
     const boundary = c.req.query("boundary_set") ?? "v2-2024";
     const unitType = c.req.query("unit_type") ?? null;
-    const found = await deps.pool.query<{
+    const found = await deps.sql.query<{
       unit_key: string;
       legacy_key: string | null;
       name: string;
@@ -508,7 +513,7 @@ export function createApp(deps: AppDeps) {
     const dv = c.get("dv") as number;
     if (!box) return c.json({ error: { code: "bad_bbox", message: "bbox is west,south,east,north" }, dv }, 400);
     const limit = Math.min(Math.max(Number(c.req.query("limit") ?? 500) || 500, 1), 500);
-    const rows = await deps.pool.query<{
+    const rows = await deps.sql.query<{
       location_key: string;
       name: string | null;
       country_code: string | null;
@@ -532,7 +537,7 @@ export function createApp(deps: AppDeps) {
     if (!box) return c.json({ error: { code: "bad_bbox", message: "bbox is west,south,east,north" }, dv }, 400);
     const z = Math.min(6, Math.max(0, Number(c.req.query("z") ?? 4) || 4));
     const cell = 360 / 2 ** z;
-    const rows = await deps.pool.query<{ n: number; lon: number; lat: number }>(
+    const rows = await deps.sql.query<{ n: number; lon: number; lat: number }>(
       `select count(*)::int n,
               st_x(st_centroid(st_collect(geom))) lon,
               st_y(st_centroid(st_collect(geom))) lat
@@ -550,7 +555,7 @@ export function createApp(deps: AppDeps) {
     const q = c.req.query("q") ?? "";
     const dv = c.get("dv") as number;
     const result = await geocodeAddress(
-      { pool: deps.pool, fetchImpl: deps.fetchImpl, now: deps.now, sleep: deps.sleep },
+      { sql: deps.sql, fetchImpl: deps.fetchImpl, now: deps.now, sleep: deps.sleep },
       q,
       dv,
     );
@@ -565,7 +570,7 @@ export function createApp(deps: AppDeps) {
     if (!Number.isFinite(lon) || !Number.isFinite(lat)) {
       return c.json({ error: { code: "bad_request", message: "lon and lat are required" }, dv }, 400);
     }
-    return c.json(await locatePoint(deps.pool, lon, lat, dv));
+    return c.json(await locatePoint(deps.sql, lon, lat, dv));
   });
 
   return app;

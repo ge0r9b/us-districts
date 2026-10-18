@@ -18,6 +18,7 @@
     "db:size": "node --env-file-if-exists=.env --import tsx scripts/size.ts",
     "db:vacuum": "node --env-file-if-exists=.env --import tsx scripts/vacuum.ts",
     "precincts": "node --env-file-if-exists=.env --import tsx scripts/precincts.ts",
+    "export:static": "node --env-file-if-exists=.env --import tsx scripts/export-static.ts",
     "check:bundle": "tsx scripts/check-bundle.ts"
   },
   "dependencies": {

@@ -1,9 +1,8 @@
-import { createHash } from "node:crypto";
-import type pg from "pg";
 import { normalizeAddress, placeChain, type PlaceChain } from "@usd/core";
+import type { Sql } from "./sql.ts";
 
 export type GeocodeDeps = {
-  pool: pg.Pool;
+  sql: Sql;
   fetchImpl?: typeof fetch;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
@@ -31,8 +30,9 @@ export function parseAddressParts(q: string): { street: string; city: string; st
   return { street: match[1].trim(), city: match[2].trim(), state: match[3].toUpperCase(), zip: match[4] ?? "" };
 }
 
-function hashAddress(normalized: string): Buffer {
-  return createHash("sha256").update(normalized).digest();
+async function hashAddress(normalized: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(normalized));
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 function coordsFromCensus(body: unknown): Point | null {
@@ -71,10 +71,10 @@ async function nominatim(
   return { lon: Number(hit.lon), lat: Number(hit.lat), provider: "nominatim", match: "fallback" };
 }
 
-export async function locatePoint(pool: pg.Pool, lon: number, lat: number, dv: number): Promise<LocateHit> {
+export async function locatePoint(sql: Sql, lon: number, lat: number, dv: number): Promise<LocateHit> {
   const roundedLon = Math.round(lon * 1e5) / 1e5;
   const roundedLat = Math.round(lat * 1e5) / 1e5;
-  const found = await pool.query<{ unit_type: string; unit_key: string; state_abbr: string | null; name: string | null }>(
+  const found = await sql.query<{ unit_type: string; unit_key: string; state_abbr: string | null; name: string | null }>(
     `with p as (select st_setsrid(st_makepoint($1, $2), 4326) g)
      select u.unit_type, u.unit_key, btrim(u.state_abbr) state_abbr, u.name
      from p
@@ -107,14 +107,14 @@ export async function geocodeAddress(
   const normalized = normalizeAddress(q);
   if (!normalized) return { ok: false, status: 400, code: "empty_query", message: "Missing q" };
   if (/^\d{5}$/.test(normalized)) {
-    const zcta = await deps.pool.query(`select 1 from zcta_unit_share where zcta = $1 limit 1`, [normalized]);
+    const zcta = await deps.sql.query(`select 1 from zcta_unit_share where zcta = $1 limit 1`, [normalized]);
     if (zcta.rows.length === 0) {
       return { ok: false, status: 404, code: "no_zcta", message: "ZIP is not in the local ZCTA table" };
     }
   }
-  const digest = hashAddress(normalized);
-  const cached = await deps.pool.query<{ provider: string; lon: number; lat: number; match_quality: string }>(
-    `select provider, lon, lat, match_quality from geocode_cache where query_hash = $1`,
+  const digest = await hashAddress(normalized);
+  const cached = await deps.sql.query<{ provider: string; lon: number; lat: number; match_quality: string }>(
+    `select provider, lon, lat, match_quality from geocode_cache where query_hash = decode($1, 'hex')`,
     [digest],
   );
   let point: Point | null = cached.rows[0]
@@ -156,13 +156,13 @@ export async function geocodeAddress(
       point = point ?? null;
     }
     if (!point) return { ok: false, status: 404, code: "no_match", message: "No geocoder match" };
-    await deps.pool.query(
+    await deps.sql.query(
       `insert into geocode_cache (query_hash, provider, lon, lat, match_quality)
-       values ($1, $2, $3, $4, $5)
+       values (decode($1, 'hex'), $2, $3, $4, $5)
        on conflict (query_hash) do nothing`,
       [digest, point.provider, point.lon, point.lat, point.match],
     );
   }
-  const located = await locatePoint(deps.pool, point.lon, point.lat, dv);
+  const located = await locatePoint(deps.sql, point.lon, point.lat, dv);
   return { ok: true, body: { ...located, query: q, match: point.match, provider: point.provider } };
 }

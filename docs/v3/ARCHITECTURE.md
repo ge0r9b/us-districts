@@ -88,6 +88,12 @@ flowchart LR
 
 The client fetches the manifest once at load. Every later URL embeds its versions, so almost every request is a CDN hit and invalidation is just a new version number.
 
+## 5b. Cloudflare free hosting
+The app is a Vite build on Cloudflare Pages. `/api/v1` is a Worker (`v3/worker`, `v3/wrangler.toml`). PMTiles can live on R2. Neon stays the database. `wrangler.toml` has no account id and no secrets. `DATABASE_URL` is set with `wrangler secret put DATABASE_URL`. `TILES_BASE` (Worker) and `VITE_TILES_BASE` (the shell) are the PMTiles origin. Empty means the page origin, using `import.meta.env.BASE_URL`. `VITE_STATIC=1` skips the API: results come from content-hashed packs under `packs/static/`, and the address box searches bundled names instead of geocode and locate.
+
+## 5c. Range requests
+Cloudflare Pages returns **200** and the whole object for a `Range` request. R2 returns **206**. The shell treats both as a successful PMTiles header (`tileRangeOk`).
+
 ## 6. Restore strategy: milestone git tags
 Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok Bot … releases/tags"). The v3 lane **proposes** tags in its reports and never creates or moves them itself.
 

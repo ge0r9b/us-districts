@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import type pg from "pg";
-import { contestKey, stateName } from "@usd/core";
+import { contestKey, estBit, stateName } from "@usd/core";
 import { loadPrecinctState, precinctStateNames, type PrecinctFeature, type PrecinctState } from "./precinct-source.ts";
 import { writePrecinctPmtiles } from "./precinct-tiles.ts";
 import { catalogRowBytes } from "./row-width.ts";
@@ -78,8 +78,7 @@ export function encodeEst(flags: boolean[]): string {
 }
 
 export function estAt(est: string, index: number): boolean {
-  const bytes = Buffer.from(est, "base64");
-  return ((bytes[index >> 3] ?? 0) & (1 << (index & 7))) !== 0;
+  return estBit(est, index);
 }
 
 export function writePack(repo: string, abbr: string, year: number, built: { json: string; sha256: string }): string {

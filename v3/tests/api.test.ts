@@ -1,9 +1,10 @@
 import { afterAll, describe, expect, it } from "vitest";
 import { createApp } from "../api/src/app.ts";
+import { nodePacks } from "../api/src/node-packs.ts";
 import { createTestPool } from "./db.ts";
 
 const pool = createTestPool();
-const app = createApp({ pool, fetchImpl: fetch, sleep: async () => {} });
+const app = createApp({ sql: pool, packs: nodePacks(), fetchImpl: fetch, sleep: async () => {} });
 
 afterAll(async () => {
   await pool.end();
@@ -126,7 +127,7 @@ describe("/api/v1", () => {
       }
       return new Response("[]", { status: 200 });
     };
-    const local = createApp({ pool, fetchImpl, sleep: async () => {} });
+    const local = createApp({ sql: pool, packs: nodePacks(), fetchImpl, sleep: async () => {} });
     const first = await local.request("http://127.0.0.1/api/v1/geocode?q=1600%20Pennsylvania%20Ave%20NW");
     expect(first.status).toBe(200);
     const hit = (await first.json()) as { provider: string; point: { lon: number } };
@@ -139,7 +140,8 @@ describe("/api/v1", () => {
 
     const zipCalls: string[] = [];
     const zipApp = createApp({
-      pool,
+      sql: pool,
+      packs: nodePacks(),
       fetchImpl: async (input) => {
         zipCalls.push(String(input));
         return new Response("{}", { status: 200 });
@@ -163,7 +165,7 @@ describe("/api/v1", () => {
       }
       return new Response(JSON.stringify({ result: { addressMatches: [] } }), { status: 200 });
     };
-    const local = createApp({ pool, fetchImpl, sleep: async () => {} });
+    const local = createApp({ sql: pool, packs: nodePacks(), fetchImpl, sleep: async () => {} });
     const res = await local.request("http://127.0.0.1/api/v1/geocode?q=Somewhere%20Unknown%20Lane");
     expect(res.status).toBe(200);
     const body = (await res.json()) as { provider: string; units: Record<string, string>; chain: { stateAbbr: string; dc: boolean } };

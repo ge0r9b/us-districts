@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PMTiles, TileType } from "pmtiles";
 import { createApp } from "../api/src/app.ts";
+import { nodePacks } from "../api/src/node-packs.ts";
 import { cachedCommit, needsRefresh, stampCommit } from "../ingest/branch-cache.ts";
 import { buildClusterArchive, lonLatToTile } from "../ingest/cluster-tiles.ts";
 import { companyEstimateBytes, loadCompanyRows } from "../ingest/companies.ts";
@@ -285,7 +286,7 @@ describe("alpha.2 load and API", () => {
     );
     expect(row.rows[0]).toEqual({ country_code: "PR", source_record_id: "walgreens:177" });
 
-    const app = createApp({ pool });
+    const app = createApp({ sql: pool });
     const res = await app.request("http://127.0.0.1/api/v1/locations?bbox=-68,18,-67,19");
     expect(res.status).toBe(200);
     expect(res.headers.get("cache-control")).toContain("public");
@@ -350,7 +351,7 @@ describe("alpha.2 load and API", () => {
     expect(rollup.rows[0]?.total).toBe(String(packTotal));
     expect(body.names[body.ids.indexOf("VT:0")]).toBe("017-Chelsea");
 
-    const app = createApp({ pool, packsDir: `${root}/v3/app/public/packs/precinct` });
+    const app = createApp({ sql: pool, packs: nodePacks(`${root}/v3/app/public/packs/precinct`) });
     const res = await app.request("http://127.0.0.1/api/v1/results?contest=2024%7CUS%7Cpresident%7C&unit_type=precinct&state=VT");
     expect(res.status).toBe(200);
     const listed = (await res.json()) as { rows: { unit: string; name: string; votes: number[] }[] };

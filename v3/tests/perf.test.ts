@@ -1,9 +1,10 @@
 import { afterAll, describe, expect, it } from "vitest";
 import { createApp } from "../api/src/app.ts";
+import { nodePacks } from "../api/src/node-packs.ts";
 import { createTestPool } from "./db.ts";
 
 const pool = createTestPool();
-const app = createApp({ pool });
+const app = createApp({ sql: pool, packs: nodePacks() });
 
 afterAll(async () => {
   await pool.end();

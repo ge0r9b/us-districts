@@ -27,6 +27,7 @@ import {
   sortRows,
   stateName,
   thumbnailBox,
+  tileRangeOk,
   topInstitutionHit,
   warmOrder,
   type CameraView,
@@ -650,14 +651,25 @@ function colorMap(target: maplibregl.Map, source: string) {
     const row = body?.rows.find((item) => item.unit === String(id));
     const gray = !row || row.gray || row.share == null;
     const margin = gray ? 0 : (row.share?.[1] ?? 0) - (row.share?.[0] ?? 0);
-    const sourceLayer = source === "precinct-2024" ? "precincts" : undefined;
+    const sourceLayer =
+      source === "precinct-2024" ? "precincts" : source === "state-2024" ? "state" : source === "ushouse-2024" ? "districts" : undefined;
     target.setFeatureState(sourceLayer ? { source, sourceLayer, id } : { source, id }, { gray: gray ? 1 : 0, margin });
   }
 }
 
-async function styleFor(origin: string): Promise<maplibregl.StyleSpecification> {
+function tilesBase(): string {
+  const fromEnv = String(import.meta.env.VITE_TILES_BASE ?? "").replace(/\/$/, "");
+  if (fromEnv) return fromEnv;
+  return String(import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+}
+
+function geoBase(): string {
+  return String(import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+}
+
+async function styleFor(): Promise<maplibregl.StyleSpecification> {
   const style = structuredClone(mapStyle) as maplibregl.StyleSpecification;
-  const text = JSON.stringify(style).replaceAll("{origin}", origin);
+  const text = JSON.stringify(style).replaceAll("{tiles}", tilesBase()).replaceAll("{geo}", geoBase());
   const parsed = JSON.parse(text) as maplibregl.StyleSpecification;
   const tiles = parsed.sources?.["state-2024"];
   const url = tiles && "url" in tiles ? String(tiles.url).replace(/^pmtiles:\/\//, "") : "";
@@ -665,7 +677,7 @@ async function styleFor(origin: string): Promise<maplibregl.StyleSpecification> 
   if (url) {
     try {
       const head = await fetch(url, { headers: { range: "bytes=0-15" } });
-      if (head.ok || head.status === 206) {
+      if (tileRangeOk(head.status)) {
         const bytes = new Uint8Array(await head.arrayBuffer());
         pmtilesOk = String.fromCharCode(...bytes.slice(0, 7)) === "PMTiles";
       }
@@ -680,23 +692,30 @@ async function styleFor(origin: string): Promise<maplibregl.StyleSpecification> 
   return parsed;
 }
 
-async function syncPrecincts(state: string | null) {
+async function syncOverlay(kind: "precinct" | "ushouse" | null, state: string | null) {
   if (!map?.isStyleLoaded()) return;
-  if (map.getLayer("precinct-fill")) map.removeLayer("precinct-fill");
-  if (map.getSource("precinct-2024")) map.removeSource("precinct-2024");
-  if (!state) return;
-  const url = `${origin}/tiles/precinct-2024/${state}.pmtiles`;
+  for (const id of ["precinct-2024", "ushouse-2024"]) {
+    if (map.getLayer(`${id}-fill`)) map.removeLayer(`${id}-fill`);
+    if (map.getSource(id)) map.removeSource(id);
+  }
+  if (!kind) return;
+  const url =
+    kind === "precinct"
+      ? `${tilesBase()}/tiles/precinct-2024/${state}.pmtiles`
+      : `${tilesBase()}/tiles/ushouse-2024@1.pmtiles`;
   const head = await fetch(url, { headers: { range: "bytes=0-15" } });
-  if (!(head.ok || head.status === 206)) return;
+  if (!tileRangeOk(head.status)) return;
   const bytes = new Uint8Array(await head.arrayBuffer());
   if (String.fromCharCode(...bytes.slice(0, 7)) !== "PMTiles") return;
-  map.addSource("precinct-2024", { type: "vector", url: `pmtiles://${url}`, promoteId: "id" });
+  const sourceLayer = kind === "precinct" ? "precincts" : "districts";
+  const id = kind === "precinct" ? "precinct-2024" : "ushouse-2024";
+  map.addSource(id, { type: "vector", url: `pmtiles://${url}`, promoteId: "id" });
   map.addLayer({
-    id: "precinct-fill",
+    id: `${id}-fill`,
     type: "fill",
-    source: "precinct-2024",
-    "source-layer": "precincts",
-    minzoom: 8,
+    source: id,
+    "source-layer": sourceLayer,
+    minzoom: kind === "precinct" ? 8 : 0,
     paint: { "fill-color": marginPaint, "fill-opacity": 0.72 },
   });
 }
@@ -705,20 +724,30 @@ function warmKey(y: number, unitType: string, state: string | null): string {
   return `${y}|${unitType}|${state ?? ""}`;
 }
 
-async function fetchBody(y: number, view: { unitType: string; state: string | null }): Promise<{ ok: true; body: ResultsBody } | { ok: false; message: string }> {
-  const key = warmKey(y, view.unitType, view.state);
-  const cached = warmCache.get(key);
-  if (cached) return { ok: true, body: cached };
+async function fetchApiResults(
+  y: number,
+  view: { unitType: string; state: string | null },
+): Promise<{ ok: true; body: ResultsBody } | { ok: false; message: string }> {
   const params = new URLSearchParams({ contest: `${y}|US|president|`, unit_type: view.unitType });
   if (view.state && matchesState(view.state, view.state)) params.set("state", view.state);
-  const res = await fetch(`/api/v1/results?${params}`);
+  const res = await fetch(`${import.meta.env.BASE_URL}api/v1/results?${params}`);
   if (!res.ok) {
     const err = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
     return { ok: false, message: err?.error?.message || "No rows" };
   }
-  const body = (await res.json()) as ResultsBody;
-  warmCache.set(key, body);
-  return { ok: true, body };
+  return { ok: true, body: (await res.json()) as ResultsBody };
+}
+
+async function fetchBody(y: number, view: { unitType: string; state: string | null }): Promise<{ ok: true; body: ResultsBody } | { ok: false; message: string }> {
+  const key = warmKey(y, view.unitType, view.state);
+  const cached = warmCache.get(key);
+  if (cached) return { ok: true, body: cached };
+  const loaded =
+    import.meta.env.VITE_STATIC === "1"
+      ? await (await import("./static-mode.ts")).fetchStaticResults(y, view)
+      : await fetchApiResults(y, view);
+  if (loaded.ok) warmCache.set(key, loaded.body);
+  return loaded;
 }
 
 function scheduleWarm(state: string | null) {
@@ -763,7 +792,7 @@ async function load() {
     setThumbs(true);
     paintThumbs();
     paintChart();
-    await syncPrecincts(null);
+    await syncOverlay(null, null);
     return;
   }
   const scoped = scopeRows({
@@ -786,8 +815,14 @@ async function load() {
   paintLegend();
   paintThumbs();
   paintChart();
-  await syncPrecincts(view.unitType === "precinct" ? view.state : null);
-  if (map?.isStyleLoaded()) colorMap(map, map.getSource("precinct-2024") ? "precinct-2024" : activeSource);
+  const overlay = view.unitType === "precinct" ? "precinct" : view.unitType === "ushouse" ? "ushouse" : null;
+  await syncOverlay(overlay, view.state);
+  if (map?.isStyleLoaded()) {
+    if (map.getSource("precinct-2024")) colorMap(map, "precinct-2024");
+    if (map.getSource("ushouse-2024")) colorMap(map, "ushouse-2024");
+    if (map.getSource("state-2024")) colorMap(map, "state-2024");
+    colorMap(map, activeSource);
+  }
   scheduleWarm(view.state);
 }
 
@@ -835,7 +870,31 @@ addressEl.addEventListener("keydown", (ev) => {
   if (ev.key !== "Enter") return;
   ev.preventDefault();
   void (async () => {
-    const res = await fetch(`/api/v1/geocode?q=${encodeURIComponent(addressEl.value)}`);
+    if (import.meta.env.VITE_STATIC === "1") {
+      const hit = await (await import("./static-mode.ts")).lookupPlace(addressEl.value);
+      if (!hit) {
+        placeNote.hidden = false;
+        placeNote.textContent = "No place match";
+        return;
+      }
+      stateEdited = true;
+      applyPlace(
+        {
+          level: hit.level,
+          stateAbbr: hit.stateAbbr,
+          stateKey: hit.stateKey,
+          countyName: hit.countyName,
+          precinctLabel: null,
+          dc: hit.dc,
+          crumbs: hit.crumbs,
+          geographyPicked: true,
+        },
+        null,
+        hit.focus,
+      );
+      return;
+    }
+    const res = await fetch(`${import.meta.env.BASE_URL}api/v1/geocode?q=${encodeURIComponent(addressEl.value)}`);
     if (!res.ok) {
       placeNote.hidden = false;
       placeNote.textContent = "No place match";
@@ -883,7 +942,6 @@ paintChartButton();
 setThumbs(false);
 window.addEventListener("resize", alignSlider);
 
-const origin = location.origin;
 const activeSource = "state-geojson";
 map = new maplibregl.Map({
   container: "map",
@@ -893,9 +951,10 @@ map = new maplibregl.Map({
   attributionControl: {},
 });
 
-void styleFor(origin).then((style) => {
+void styleFor().then((style) => {
   map.setStyle(style);
   map.once("idle", () => {
+    if (map.getSource("state-2024")) colorMap(map, "state-2024");
     colorMap(map, activeSource);
   });
 });

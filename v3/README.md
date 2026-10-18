@@ -62,6 +62,19 @@ npm run db:load -- --include=institutions --allow-over-budget=institutions
 
 `db:load` prints `database`, which is `pg_database_size`, and one line per location slice. The institution dry-run prints a Postgres projection that includes indexes, page overhead, and toast. Use `--allow-over-budget=institutions` only when that projection is still over 350 MB.
 
+The API handlers are the Web Fetch API. `npm run dev` still serves them on 8861 with Node. `worker/` is the Cloudflare Worker entry. `wrangler.toml` has no account id and no secrets. Set the database with `npx wrangler secret put DATABASE_URL`. `TILES_BASE` and `VITE_TILES_BASE` are the PMTiles origin (an R2 public URL, or empty for same-origin files). `npm run export:static` writes content-hashed packs for 2016, 2020, and 2024 president, plus any 2024 US House contest, at state, county, and district, and builds `state-2024@1.pmtiles` and `ushouse-2024@1.pmtiles`. Each file stays under 25 MiB. `VITE_STATIC=1` builds the shell against those packs and searches bundled names instead of geocode and locate. Asset URLs use `import.meta.env.BASE_URL`. Cloudflare Pages returns 200 for a Range request; R2 returns 206. The map accepts both.
+
+```bash
+cd v3
+npm run export:static
+npm run build
+npm run check:bundle
+VITE_STATIC=1 npm run build
+npm run check:bundle
+# on your machine, not in the repo:
+# npx wrangler secret put DATABASE_URL
+```
+
 Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and 2024 show Pennsylvania counties. `%` / `#` re-sorts the list locally.
 
 `npm test` refuses a `neon.tech` host. It creates `usd_v3_test` from the same server (it swaps the database name), migrates, seeds, loads, and runs the schema, loader, API, and latency checks. `npm run build` then `npm run check:bundle` checks the gzipped JS budget.
@@ -71,7 +84,8 @@ Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and
 | Path | Role |
 |---|---|
 | `app/` | Vite + TypeScript + MapLibre shell |
-| `api/` | Hono router, `/api/v1` |
+| `api/` | Hono router, `/api/v1`, Web Fetch handlers |
+| `worker/` | Cloudflare Worker entry for `/api/v1` |
 | `packages/core` | Framework-free slot, sort, and filter rules |
 | `db/migrations/` | Ordered idempotent DDL, checksummed in `usd.schema_migration` |
 | `db/seed.sql` | Reference rows (tenant, licences, unit types, boundary sets, data_version) |

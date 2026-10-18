@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createApp } from "../api/src/app.ts";
+import { nodePacks } from "../api/src/node-packs.ts";
 import { applyResults, markSuperseded, sha256Hex } from "../ingest/apply.ts";
 import { originCommit } from "../ingest/branch-cache.ts";
 import { BUDGET_BYTES } from "../ingest/budget.ts";
@@ -260,7 +261,7 @@ describe("neon follow-up", () => {
       `select nid::text from entity where entity_id = 'county:48001'`,
     );
     expect(Number(nid.rows[0]?.nid)).toBeGreaterThan(0);
-    const app = createApp({ pool, instPacksDir: packsDir });
+    const app = createApp({ sql: pool, packs: nodePacks(undefined, packsDir) });
     const redirect = await app.request("http://127.0.0.1/api/v1/packs/institutions");
     expect(redirect.status).toBe(302);
     expect(redirect.headers.get("location")).toMatch(/^\/packs\/inst\/[0-9a-f]{12}\.json$/);
