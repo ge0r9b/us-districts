@@ -359,8 +359,46 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
     US territories are not loaded as nations, even where ISO gives them a code (`pr`, `gu`, ...).
   - Canadian provinces are kind `province`, `province:ca-<code>` (lowercase ISO 3166-2 code, e.g. `province:ca-on`), with `parent_id = nation:ca`.
-  - **Non-US places carry no unit or boundary_set.** They have no `entity_geoid` / `entity_unit` rows, and `entity_location.unit_id` / `boundary_set` stay null. Their geometry is the v2 Natural Earth / Canada shapes (§ v2 inputs), not TIGER.
+  - **Units exist for any country with a registered boundary set (Canada first, below).** Other non-US places stay entity-only. They have no `entity_geoid` / `entity_unit` rows, `entity_location.unit_id` / `boundary_set` stay null, and their outline is the v2 Natural Earth shape.
   - The SCHEMA.sql checks enforce these id patterns and parents (`nation:<iso2>`; the three territory forms with `nation:us` / `nation:ca` parents where fixed; `province:ca-<code>` under `nation:ca`).
+- **Canada (data/inst-canada b4dc491, `data-v3/inst/ca/`; D23 resolved: loads in v3.1, v3-only, no v2 JSON):**
+  - **Units are allowed for any country with a registered boundary set.** Canada is the first. This replaces the old "no non-US units" rule. Other non-US places stay entity-only.
+  - **Unit types** (prefixed in v3): the files say `fed`, `poll`, `ped`, `ppoll`, `cd` and `csd`, and the loader maps them to `ca_fed`, `ca_poll`, `ca_ped`, `ca_ppoll`, `ca_cd` and `ca_csd`. New categories are `federal_district` and `provincial_district`. Polls fall under `precinct`, CDs under `county` and CSDs under `town`.
+  - **Boundary sets:** the slug pattern is `<agency>-<boundary year>-<set>`. All 24 slugs in the files are registered in the SCHEMA.sql seed, with `country = 'ca'` and `province` on the provincial ones:
+
+    | Agency | Sets (units at b4dc491) |
+    |---|---|
+    | Elections Canada | `ec-2023-fed` (343, current), `ec-2013-fed` (338), `ec-2025-pd` (71,217, current), `ec-2021-pd` (69,797), `ec-2019-pd` (66,064) |
+    | ON | `eo-2022-ed` (124) |
+    | QC | `eq-2026-ced` (127), `eq-2026-sv` (16,756) |
+    | BC | `ebc-2023-ed` (93), `ebc-2024-va` (5,778) |
+    | AB | `ea-2019-ed` (87), `ea-2026-va` (4,904) |
+    | MB | `em-2018-ed` (57), `em-2023-va` (2,371) |
+    | SK | `esk-2022-ed` (61), `esk-2024-va` (783) |
+    | NB | `enb-2024-ed` (49), `enb-2024-pd` (1,753) |
+    | PE | `epei-2017-ed` (27), `epei-2017-poll` (241; vintage not stated by the source) |
+    | NL | `enl-2015-ed` (40), `enl-2019-poll` (1,438; not current, maybe superseded) |
+    | Statistics Canada | `statcan-2021-cd` (293), `statcan-2021-csd` (5,161) |
+
+    That is 247,902 units in total, with no duplicate keys. The current-set index is unique per (tenant, `unit_type`, `country`, `province`).
+  - **Units:** `units_ca_*.csv` (`boundary_set, unit_type, unit_key, name, name_fr, alias, country, province, parent_boundary_set, parent_unit_key, entity_id, attrs, source_id, source_record_id, geometry_ref, flags`) → `unit`:
+    - `name_fr` → `labels.fr`. `province` → `unit.province`. `source_record_id` (`FED_NUM=10001`) → `external_id`.
+    - `parent_boundary_set` + `parent_unit_key` → `parent_unit_id`, which may cross sets (`ec-2025-pd` → `ec-2023-fed`). `parent_boundary_set` is also kept on the unit.
+    - `entity_id` (the chamber) → `entity_unit`. `attrs`, `alias`, `geometry_ref` and `flags` → `meta`.
+  - **Entities:** `entities_ca_federal.csv` (2) and `entities_ca_provincial.csv` (13) add `country`, `province`, `name_fr` and `external_id`. These go to `entity.country`, `entity.province`, `entity.labels.fr` and `entity.external_id` (`seats=343(2023_rep_order)`).
+    - Chambers: `chamber:ca-house` (lower_chamber, parent `nation:ca`), `chamber:ca-senate` (upper_chamber, appointed, no units) and `chamber:ca-<iso>-legislature` for the 13 unicameral legislatures. Each legislature's parent is its province or territory entity.
+    - All rows have `feed = inst-lane` → `origin = inst`.
+  - **People and officeholders:**
+    - `persons_ca.csv` (337) → `person` with `scheme = ca-mp`, `person_id = ca-mp:<House of Commons PersonId>`. Provincial members come later as `ca-<iso>-leg:<id>`.
+    - `officeholders_ca_house_current.csv` (343: 337 serving, 6 vacant) → `officeholder`. `unit_id` is resolved from the Canadian unit key: (`boundary_set` `ec-2023-fed`, `unit_type` `ca_fed`, `unit_key` = FED_NUM). All 343 resolve. `unit_plan` = `rep-order-2023`.
+  - **Licences:** the `license` seed adds `OGL-CA`, `OGL-NB`, `StatCan-OL`, `EO-OUDPL`, `DGEQ-OD`, `EBC-OD`, `PEI-OD`, `not-stated` (AB, MB, SK, NL), `HoC-website`, `ca-public-record` (legislature sites) and `ca-federal-law`.
+    - `source.non_commercial` and `source.attribution_required` (and the same flags on `license`) are set from these.
+    - **Élections Québec data (DGEQ, non-commercial) is excluded from paid features.** Any paid tier filters out sources and boundary sets whose licence has `non_commercial = true`.
+  - **Tiles:** Canadian ridings and polls get PMTiles built from the source layers (Elections Canada, provincial agency and StatCan shapefiles named in `geometry_ref`). This is part of the **v3.1 tile build**, one archive per boundary set.
+  - **Gaps at b4dc491:**
+    - The StatCan boundary download answers HTTP 403, so `ca_cd` / `ca_csd` have no geometry yet, and CSD/CD types are unknown.
+    - Senators and provincial members are not built.
+    - NS has no provincial district or poll set.
 - **District seats are units, not entities.** Officeholders = chamber `entity_id` + unit + `seat` number.
 - Column mapping: `feed` is stored raw in `entity.feed` and **mapped to `entity.origin` on load**:
 

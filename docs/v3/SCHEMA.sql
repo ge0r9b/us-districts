@@ -31,8 +31,22 @@ create table license (
   url            text,
   commercial_ok  boolean,                            -- null = not verified yet (spec 9.3 'Check')
   attribution_required boolean not null default false,
-  share_alike    boolean not null default false
+  share_alike    boolean not null default false,
+  non_commercial boolean not null default false      -- licence forbids commercial use (DGEQ open-data metadata)
 );
+-- Canadian licences (data/inst-canada b4dc491 sources_ca.csv, CANADA_SCHEMA_PROPOSALS.md item 9).
+insert into license (code, name, url, commercial_ok, attribution_required, non_commercial) values
+  ('OGL-CA',         'Open Government Licence - Canada', 'https://open.canada.ca/en/open-government-licence-canada', true, true, false),
+  ('OGL-NB',         'Open Government Licence - New Brunswick', null, true, true, false),
+  ('StatCan-OL',     'Statistics Canada Open Licence', 'https://www.statcan.gc.ca/en/terms-conditions/open-licence', true, true, false),
+  ('EO-OUDPL',       'Elections Ontario Open Use Data Product Licence', null, true, true, false),
+  ('DGEQ-OD',        'Licence d''utilisation des données ouvertes du DGEQ (Élections Québec)', null, false, true, true),
+  ('EBC-OD',         'Elections BC Open Data Licence', null, true, true, false),
+  ('PEI-OD',         'Government of Prince Edward Island open data', null, null, true, false),
+  ('not-stated',     'No licence stated on the agency download page (AB, MB, SK, NL)', null, null, true, false),
+  ('HoC-website',    'House of Commons website (no reuse grant; factual fields only)', 'https://www.ourcommons.ca', null, true, false),
+  ('ca-public-record','Official legislature website (public record; factual fields only)', null, null, true, false),
+  ('ca-federal-law', 'Reproduction of Federal Law Order (SI/97-5)', 'https://laws-lois.justice.gc.ca/eng/const/page-1.html', true, true, false);
 
 -- One row per source (sources.csv; election rows mint one per distinct url + retrieved_at). Unique on source_id only.
 create table source (
@@ -44,6 +58,8 @@ create table source (
   commit        text,                                -- upstream commit (congress-legislators, OpenStates) when given
   license       text,                                -- license as stated by the source, verbatim (generic provenance)
   license_id    bigint references license(id),
+  non_commercial boolean not null default false,    -- no commercial use: never shown in paid features (Élections Québec data)
+  attribution_required boolean not null default false,
   license_verified boolean not null default false,   -- true once the license/terms page has been read (date in license_checked_at)
   license_checked_at date,
   robots_ok     boolean,                             -- scraped lists: robots.txt and terms of service allow it (DATA_LOADING §15.3)
@@ -81,7 +97,8 @@ create table unit_type_def (
 insert into unit_category (category, label) values
   ('country','Countries'), ('state','States'), ('county','Counties'), ('town','Towns'), ('place','Places'),
   ('precinct','Precincts'), ('congressional','US House districts'), ('legislative_upper','State senate districts'),
-  ('legislative_lower','State house districts'), ('school_district','School districts'), ('ward','Wards'), ('custom','Custom'), ('seat','Seats without a district');
+  ('legislative_lower','State house districts'), ('school_district','School districts'), ('ward','Wards'), ('custom','Custom'), ('seat','Seats without a district'),
+  ('federal_district','Federal electoral districts (Canada)'), ('provincial_district','Provincial electoral districts (Canada)');
 insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('country','country','Country',null), ('state','state','State','state'), ('county','county','County','county'),
   ('county_subdivision','town','Town / township','cousub'), ('place','place','Place','place'),
@@ -91,7 +108,14 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('school_elementary','school_district','Elementary school district','elsd'),
   ('school_secondary','school_district','Secondary school district','scsd'),
   ('ward','ward','Ward',null), ('custom','custom','Custom area',null),
-  ('seat','seat','Seat without a district polygon',null);   -- NH floterials, ME tribal seats, House delegates of territories
+  ('seat','seat','Seat without a district polygon',null),   -- NH floterials, ME tribal seats, House delegates of territories
+  -- Canada (prefixed ca_; the inst-canada files say fed/poll/ped/ppoll/cd/csd and the loader maps them)
+  ('ca_fed','federal_district','Federal electoral district (Canada)',null),            -- key FED_NUM ('35075')
+  ('ca_poll','precinct','Federal polling division (Canada)',null),                     -- '<FED_NUM>:<PD_NUM>-<SFX>' ('10001:78-0')
+  ('ca_ped','provincial_district','Provincial / territorial electoral district',null), -- agency code (ON ED_ID, QC CO_CEP, BC 'ABM')
+  ('ca_ppoll','precinct','Provincial polling division / voting area / section de vote',null),  -- '<district key>:<poll code>'
+  ('ca_cd','county','Census division (Canada)',null),                                  -- StatCan CDUID
+  ('ca_csd','town','Census subdivision (Canada)',null);                                -- StatCan CSDUID
 
 -- A coherent set of polygons of one unit type and vintage, e.g. 'tiger-2024-sldl',
 -- 'v2-2024' (incl. the ONE precinct set: 2016/2020 votes are placed onto the 2024 precinct polygons,
@@ -105,6 +129,8 @@ create table boundary_set (
                                                    -- 'tiger-2020-sldu' / 'tiger-2020-sldl' (2020 state legislature, 2018 plans), 'tiger-2020-county'
                                                    -- (2020 counties incl. the 8 old CT counties). Geometry joins on (slug, unit_type), NOT on year.
   unit_type        text not null references unit_type_def(unit_type),
+  country          char(2) not null default 'us',    -- ISO 3166-1 alpha-2, lowercase; units exist for any country with a registered set
+  province         text,                             -- ISO 3166-2 subdivision ('ON', 'QC') for provincial sets; null for national ones
   vintage_year     int  not null,                    -- boundary year (2024 = current)
   valid_from       date,
   valid_to         date,                             -- null = still in force
@@ -132,9 +158,23 @@ join unit_type_def t on
   or (v.slug = 'tiger-2020-sldu'   and t.unit_type = 'sldu')
   or (v.slug = 'tiger-2020-sldl'   and t.unit_type = 'sldl')
   or (v.slug = 'tiger-2020-county' and t.unit_type = 'county');   -- the 8 old CT counties (09001 ... 09015)
+-- Canada (b4dc491): 24 sets, slug pattern '<agency>-<boundary year>-<set>'.
+insert into boundary_set (slug, unit_type, country, province, vintage_year, is_current) values
+  ('ec-2023-fed','ca_fed','ca',null,2023,true),   ('ec-2013-fed','ca_fed','ca',null,2013,false),
+  ('ec-2025-pd','ca_poll','ca',null,2025,true),   ('ec-2021-pd','ca_poll','ca',null,2021,false), ('ec-2019-pd','ca_poll','ca',null,2019,false),
+  ('eo-2022-ed','ca_ped','ca','ON',2022,true),
+  ('eq-2026-ced','ca_ped','ca','QC',2026,true),   ('eq-2026-sv','ca_ppoll','ca','QC',2026,true),
+  ('ebc-2023-ed','ca_ped','ca','BC',2023,true),   ('ebc-2024-va','ca_ppoll','ca','BC',2024,true),
+  ('ea-2019-ed','ca_ped','ca','AB',2019,true),    ('ea-2026-va','ca_ppoll','ca','AB',2026,true),
+  ('em-2018-ed','ca_ped','ca','MB',2018,true),    ('em-2023-va','ca_ppoll','ca','MB',2023,true),
+  ('esk-2022-ed','ca_ped','ca','SK',2022,true),   ('esk-2024-va','ca_ppoll','ca','SK',2024,true),
+  ('enb-2024-ed','ca_ped','ca','NB',2024,true),   ('enb-2024-pd','ca_ppoll','ca','NB',2024,true),
+  ('epei-2017-ed','ca_ped','ca','PE',2017,true),  ('epei-2017-poll','ca_ppoll','ca','PE',2017,true),  -- vintage not stated by the source
+  ('enl-2015-ed','ca_ped','ca','NL',2015,true),   ('enl-2019-poll','ca_ppoll','ca','NL',2019,false), -- maybe superseded
+  ('statcan-2021-cd','ca_cd','ca',null,2021,true), ('statcan-2021-csd','ca_csd','ca',null,2021,true);
 create index boundary_set_type_year on boundary_set (unit_type, vintage_year);
 create unique index boundary_set_one_current
-  on boundary_set (owner_tenant_id, unit_type) where is_current;
+  on boundary_set (owner_tenant_id, unit_type, country, coalesce(province, '')) where is_current;   -- one current set per province
 
 -- Who else may read a 'shared' set.
 create table boundary_set_grant (
@@ -162,10 +202,15 @@ create table unit (
   legacy_key       text,                             -- v2 name key ('Pennsylvania|Erie County', 'Ohio|<school name> (<county>)'); unique per
                                                    -- boundary set in the national layers after the Geo renames - see DATA_LOADING.md §8
   name             text not null,
+  labels           jsonb not null default '{}',      -- names by language ({"fr": "Chambre des communes"}); no name_fr column
+  country          char(2) not null default 'us',    -- ISO 3166-1 alpha-2, lowercase
+  province         text,                             -- ISO 3166-2 subdivision for non-US units ('ON'); US units use state_fips/state_abbr
+  external_id      text,                             -- the agency's own id ('FED_NUM=10001', 'CSDUID=1001101')
   state_fips       char(2),
   state_abbr       char(2),
   geoid            text,                             -- Census GEOID where one exists
-  parent_unit_id   bigint references unit(id),       -- precinct -> county -> state (containment, same vintage)
+  parent_unit_id   bigint references unit(id),       -- containment: precinct -> county -> state; may cross sets (ec-2025-pd poll -> ec-2023-fed)
+  parent_boundary_set text,                          -- slug of the parent's set when it differs (files: parent_boundary_set + parent_unit_key)
   area_m2          double precision,
   centroid         geometry(Point, 4326),
   label_point      geometry(Point, 4326),            -- v2/data/points: state-icon star, always inside the shape (null for zero-area slivers)
@@ -253,6 +298,10 @@ create table entity (
                   'other')),
   state_fips    char(2),
   state         text,
+  country       char(2),                             -- ISO 3166-1 alpha-2, lowercase ('ca'); null = US registry row
+  province      text,                                -- ISO 3166-2 subdivision ('ON')
+  external_id   text,                                -- agency id / extra ('seats=343(2023_rep_order)' in the CA files)
+  labels        jsonb not null default '{}',         -- names by language ({"fr": "Assemblée législative de l'Alberta"})
   name          text not null,                       -- TIGER NAMELSAD
   label         text check (label in ('sovereign','incorporated','unincorporated')),
                                                    -- v2 wording rule: states sovereign; never 'incorporated state'
@@ -276,7 +325,8 @@ create table entity (
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
   -- World geography: nations are 'nation:<iso2>' lowercase (the existing US row is 'nation:us', 348f410); foreign
   -- dependencies are kind 'territory' with the sovereign nation as parent; provinces have parent 'nation:ca'.
-  -- Non-US places carry no unit or boundary_set (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
+  -- Units exist for any country with a registered boundary set (Canada first); other non-US places stay entity-only
+  -- (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
   -- territory ids: 'territory:<2-digit US FIPS>' (parent nation:us), 'territory:<iso2>' (foreign dependency, parent = sovereign),
   -- 'territory:ca-(nt|nu|yt)' (Canada's territories, parent nation:ca). Provinces: 'province:ca-<code>' (parent nation:ca).
@@ -610,7 +660,8 @@ create table contest_display_slot (
 create table person (
   person_id     text primary key,                    -- 'bioguide:B001323', 'ocd-person:a84a3fe8-...', 'vt-leg:vt-41827'
   scheme        text not null,                        -- 'bioguide' | 'ocd-person' | '<st>-leg' (e.g. 'vt-leg')
-  check (scheme in ('bioguide','ocd-person') or scheme ~ '^[a-z]{2}-leg$'),
+  check (scheme in ('bioguide','ocd-person','ca-mp') or scheme ~ '^[a-z]{2}-leg$' or scheme ~ '^ca-[a-z]{2}-leg$'),
+                                                      -- ca-mp:<House of Commons PersonId>; ca-<iso>-leg:<agency id>
   bioguide      text unique,
   ocd_person    text unique,
   official_ids  jsonb not null default '{}',          -- other official ids (state roster ids, FEC ...)
@@ -639,7 +690,8 @@ create table officeholder (
   unit_layer    text,                                 -- as in the file: 'cd','sldu','sldl' (resolved to unit_id, DATA_LOADING §13)
   unit_geoid    text,
   unit_vintage  smallint,
-  unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'
+  unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'; Canada 'rep-order-2023'
+  unit_key      text,                                 -- file unit_key: seat keys, Canadian keys (FED_NUM); unit_id = (boundary_set, unit_key)
   boundary_set  text,                                 -- file 'boundary_set' ('v2-2024', 'tiger-2020-cd116'); seat units use the same slug
   join_status   text,                                 -- 'joined','joined_unpaired_2020','no_v3_unit','no_v3_unit_floterial','no_v3_unit_tribal'
   source_record_id text,                              -- the record's id inside its source ('AK00', OpenStates file); was 'source_id'
