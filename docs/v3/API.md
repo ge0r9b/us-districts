@@ -60,7 +60,7 @@ The same data is pre-built as a static **pack** for every past contest × unit t
 
 ### `GET /aggregate`
 Bar-list rows for a scope, **sorted high to low**. This is the endpoint behind list-all and the list view's bars.
-Params: `contest` (1, or 2+ for delta/range: the first and last selected years define the delta), `scope` (unit or entity key: `us`, `PA`, `PA|Erie County`, `us-pa-house`), `child_type` (a unit type, or a category such as `school_district`, which lists all three school types as one list, as v2 does), `sort_answer` (answer key; default = the selected answer, else the leader), `sort` (`share`|`votes`|`delta_margin`), `dir` (`desc` default | `asc`), `fmt`, `limit`, `cursor`.
+Params: `contest` (1, or 2+ for delta/range: the first and last selected years define the delta), `scope` (unit or entity key: `us`, `PA`, `PA|Erie County`, `chamber:pa-lower`), `child_type` (a unit type, or a category such as `school_district`, which lists all three school types as one list, as v2 does), `sort_answer` (answer key; default = the selected answer, else the leader), `sort` (`share`|`votes`|`delta_margin`), `dir` (`desc` default | `asc`), `fmt`, `limit`, `cursor`.
 ```json
 {"dv":42,"scope":{"key":"PA","name":"Pennsylvania","total":{"votes":[3423042,3543308,67856],"est":false}},
  "child_type":"county","sort":{"answer":"rep_nominee","by":"share","dir":"desc"},
@@ -78,8 +78,8 @@ Served from `answer_share` (an index range scan; SCHEMA.md). Cache as `/results`
 ### `GET /units/{unit_key}`
 Name, type, parent chain (breadcrumb), bbox, centroid, the institutions linked through `entity_unit`, and a results summary for the requested `contest`. This is the source for map pop-ups. Pop-up numbers must equal list numbers (v2 test `district-consistency.py`).
 
-### `GET /entities/{entity_key}` and `GET /entities/{entity_key}/children`
-Institution filter: children of US (states, plus district-type rows), of a state (counties, or a chamber's districts), and so on. Each item has an icon descriptor (flag or type icon; v2 HANDOFF §3).
+### `GET /entities/{entity_id}` and `GET /entities/{entity_id}/children`
+`entity_id` is the registry's opaque id (`state:42`, `county:01001`, `chamber:pa-lower`, `school:4218990`, `us-house`); a merged-away id answers 301 to the survivor (`entity_merge`). Companies add `?rel=subsidiaries|parents` (from `entity_relation`, current by default, `as_of=` for history) and `locations` (HQ/sites). Institution filter: children of US (states, plus district-type rows), of a state (counties, or a chamber's districts), and so on. Each item has an icon descriptor (flag or type icon; v2 HANDOFF §3).
 
 ### `GET /search?q=&scope=&types=`
 Unisearch over entities, units, aliases, candidates, offices and ZIPs (pg_trgm plus alias prefix). A government-and-place entity returns two rows, `institution` and `place` (spec §5.3). A state abbreviation or name ranks the state first (`state_abbr_search.py`). p95 target 80 ms (PERFORMANCE.md).
@@ -103,3 +103,10 @@ Provenance and licences for attribution and the commercial-readiness tracker (sp
 ## Not in v1 (reserved)
 - `POST /votes` (live user votes, Auth, one vote per user per topic; spec §10.3)
 - Tenant endpoints for custom boundary sets (`/tenants/{t}/boundary-sets`, upload, re-tabulate)
+
+### Submissions (phase 3+, needs auth: DECISIONS D18; not in v3.0)
+All require a signed-in user. Rate-limited per user and IP hash (429 with `Retry-After`). Responses are `Cache-Control: no-store`.
+- `POST /v1/submissions`: one proposed entity / relation / location (`payload`, required `evidence_url`) → `201 {id, status:"pending", match:{entity_id, match_confidence}}`.
+- `POST /v1/submissions/upload` (CSV, same columns as the bots' files, ≤ 500 rows) → `202 {upload_id, rows, accepted, rejected:[{line, reason}]}`.
+- `GET /v1/submissions?status=pending&mine=1&cursor=`: own submissions; moderators see the queue.
+- `POST /v1/submissions/{id}/approve` and `/reject` (`{note}`), moderators only; each writes `moderation_log`.

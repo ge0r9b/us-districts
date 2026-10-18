@@ -175,6 +175,12 @@ Plan: copy the intent, not the selectors. Each v2 test becomes a v3 test with th
 
 - [ ] **Lazy loading per year** (v2 pattern to keep): v2 loads each year's results only when that year is shown (`loadE2020`, `loadPrec20(st)`, and the 2016 files are lazy-loaded the same way), so the default 2024 view never pays for 2016/2020. v3 keeps this with **per-year result packs** (one pack per contest = per year, per unit type, per state for precincts; ARCHITECTURE.md §4, PERFORMANCE.md).
 
+## L2. Bug Tester QA of v3 (Phase 2)
+- [ ] As soon as v3 has a **Vercel preview URL or a servable branch on ports 8850–8859** (local static server), hand it to the Bug Tester.
+- [ ] QA runs at **phone and iPad sizes** (the Bug Tester's harness: Chromium mobile + WebKit with touch, iOS UA; 320×568, 375, 390×844, 1024×576 and iPad portrait/landscape).
+- [ ] Findings are logged in **`BUGS.md` on `qa/bugs`** (QA-### ids, severity scale as there); v3 fixes cite the id, and the parity gate needs 0 open Critical.
+- [ ] The v3 lane's own Playwright port keeps using ports 8860–8899 so it never collides with QA.
+
 ## M. v2 intake alignment (UI and test side)
 See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] Every v2 row value shown in the UI (`[dem, rep, total]`, `est`/`e20`/`e24`/`cty`, null = gray) maps to `result` + `result_total` + `is_estimate`, and the v3 pop-up and list render identically. Gate: ported `district-consistency` and `est-*` pass on both v2 and v3 with identical numbers.

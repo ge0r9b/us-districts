@@ -113,6 +113,7 @@ Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok B
 - No raw addresses are stored or logged (only a SHA-256 for the cache).
 - Tenant data (custom sets) is filtered by tenant in the API, with Row Level Security on `unit`/`boundary_set` once tenants exist.
 - Licenses: `license.commercial_ok` blocks NYT C-UDA-derived rows from any paid product until they are replaced (spec §9.3, §12.6). The NYT credit stays while any NYT-derived row remains.
+- Scraped institution lists: public pages only, robots.txt and terms of service honoured, license recorded per source row (DATA_LOADING §15.3).
 
 ## 8. Repo layout (proposed; v3 lane only)
 ```
@@ -126,7 +127,7 @@ v3/ingest/      staging loader, validators, pack + tile builders
 Data files stay in the data lanes (`data-v3/results/`, `data-v3/geo/`, per REPO-RULES). v3 reads them and never writes them.
 
 ## 8b. Working process
-Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institution Data) directly and copies the orchestrator. The answers are recorded in DATA_LOADING §10 with dates. The geo merge build removes the last two `../data/` loads from v2.
+Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institution Data, Institutions, and from now on Companies 7e7bba2a and Governments a901cced) directly and copies the orchestrator. The answers are recorded in DATA_LOADING §10 with dates. The geo merge build removes the last two `../data/` loads from v2.
 
 ## 9. Beyond v3 (deliberately left room for, not built in v3.0)
 | Later capability | What already makes room for it |
@@ -136,4 +137,25 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **Paid custom boundary sets** | `boundary_set.owner_tenant_id`, `visibility` (public/shared/private), `boundary_set_grant`, `license_id`, `price_tier`; `unit_crosswalk` re-tabulates results into any new set; dynamic MVT path for private sets. Needs the commercial licence work first (NYT-derived data replaced, Vercel Pro) |
 | **More years** (2016 is v2's last vote data set; the 3-point slider 2016 / 2020 / 2024 is decided) | every year is a `contest` row with shared `answer_key`s; `boundary_set_default (unit_type, results_year)`; API takes any number of `contest` params |
 | **More offices and contest types** (US House, legislatures, school boards, ballot measures, multi-choice, primaries) | `office`, `contest.stage/kind/vote_for`, N answers per contest, `candidate_key` stable across offices; the bot row format already carries `office` and `district` |
-| **Non-geographic institutions** (companies, brands; spec §10.4) and other countries (Canada parked) | `entity.has_region = false`, `entity.kind` includes company/brand/subsidiary; `alias`; per-country config for district types |
+| **Scraped institution lists** (companies with parent/subsidiary trees; governments flagged sovereign or incorporated) from the Companies (7e7bba2a) and Governments (a901cced) bots in `data-v3/institutions/` | `entity.kind` `company` / `government_other`, `entity_relation` (ownership_pct, dates), `entity_location` (HQ/sites by GEOID or point), `entity_merge` + `alias.match_confidence` (dedupe), `entity_history` + `retraction` (refresh diffs). Pipeline in DATA_LOADING §15 |
+| **User add/upload with moderation** | `app_user`, `submission` (pending/approved/rejected, evidence URL), `moderation_log`, `rate_limit_bucket`; API `/submissions` (phase 3+). Needs auth (D18) |
+| Other countries (Canada parked) | `entity.kind` `nation`; per-country config for district types |
+
+### Roadmap: when each piece lands
+| Phase / version | Lands | Depends on |
+|---|---|---|
+| **Phase 1 (now)** | This plan: schema, API and loaders, on paper | — |
+| **Phase 2 → v3.0-alpha** | Neon `dev` branch; SCHEMA migrations; loaders for results (`data-v3/results`), geography (`data-v3/geo`), the entity registry (`data-v3/inst/entities.csv` + xwalk), persons and officeholders; static packs + PMTiles; SPA at v2 parity on open data; QA by the Bug Tester on a preview URL or a branch served on ports 8850–8859 | D1–D4, D17 accounts |
+| **v3.0** | Public launch at parity; milestone tag | v2.0 tag; QA sign-off |
+| **v3.1** | Scraped company and government lists ingested (one-off batches): `company` / `government_other`, `entity_relation`, `entity_location`, dedupe/merge with the registry | Companies + Governments bots' first files; scraped-data policy (DATA_LOADING §15.3) |
+| **v3.2** | Scheduled refresh: Vercel Cron (or a worker) runs the scrapers, diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Vercel Pro if cron frequency or duration exceeds Hobby |
+| **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
+| **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Vercel Pro |
+
+## 10. Phase 2 plan (summary)
+1. Merge-only from main; create the Neon project + `dev` branch when the user approves builds (D17).
+2. `v3/db`: SCHEMA.sql split into migrations; SQL fixture tests.
+3. `v3/ingest`: results loader (by header name; `boundary_set` col 14, `method` 15), geography loader, entity registry + xwalk loader, persons/officeholders loader, validations R01–R14, packs and tiles.
+4. `v3/app` + `v3/api`: parity features (MIGRATION_CHECKLIST), Playwright port.
+5. **QA:** the Bug Tester QAs v3 as soon as there is a Vercel preview URL or a servable branch on **ports 8850–8859** (local static server), at phone and iPad sizes. Findings go to `BUGS.md` on `qa/bugs`, and v3 fixes are tracked against those IDs. (The v3 lane's own Playwright runs keep using ports 8860–8899.)
+6. Parity gate: MIGRATION_CHECKLIST all green, QA open Criticals = 0, then the orchestrator tags `v3.0-alpha`.

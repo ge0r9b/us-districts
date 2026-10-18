@@ -2,6 +2,8 @@
 
 Each item has a **recommended default**. If the user says nothing, Phase 2 proceeds with the default. Data-format questions for the data lanes are listed separately in DATA_LOADING.md §10 (Q-E1…Q-E8, Q-G1…Q-G7).
 
+**Resolved Oct 18, 2026 (Institutions):** Q-I2 (person ids `bioguide:` > `ocd-person:` > `<st>-leg:`; `persons.csv` loads `person` + `person_alias`) and the entity registry (`entities.csv` + `entity_geoid_xwalk.csv`, seats are units); see DATA_LOADING §13 and §15.
+
 **Resolved Oct 18, 2026 (data lanes, via direct ask with the orchestrator copied):** Q-E5, Q-E6, Q-E12 (results keyed on year, office, stage, boundary_set, unit_type, unit_id; new `boundary_set` column), Q-E13 (Senate office tokens and the v2 d/r slot rule) and Q-I1 (person IDs: `bioguide` > `ocd-person` > `state-leg`, with `person`, `person_alias` and `officeholder` tables). Details are in DATA_LOADING §10, §12 and §13.
 
 **Resolved Oct 18, 2026 (orchestrator):** D11 (2016 in v2, 3-point slider) and Q-E8 (official values win over v2's, and v2's are kept in history). D13 / Q-G4 (three school types plus a parent category) also resolved. **Queued with the geo merge build:** the loader repoint to `v2/data/` and the Ohio / Union County "Washington township" duplicate key. **Pending:** D10 (orchestrator triage).
@@ -25,3 +27,4 @@ Each item has a **recommended default**. If the user says nothing, Phase 2 proce
 | D15 | Tags | as ARCHITECTURE.md §6 | **Adopt; the orchestrator creates them** (REPO-RULES: releases/tags are orchestrator-owned) | First needed: `v2.0` (prerequisite for any v3 deploy) and `v3.0-plan`. |
 | D16 | Custom/paid boundary sets | design only (now); build in v3.0; later | **Design only now (schema ready); build after v3.0** | Also requires commercial licensing work (NYT data replaced) and Vercel Pro. |
 | D17 | Accounts | Neon account created by the user (GitHub sign-in, Oct 18, 2026); no project yet; nothing else | **Neon: create the project and a `dev` branch first; the connection string reaches v3 only as a secret once builds are approved. Everything else: create nothing until the user approves D3–D5**; then the user (or the orchestrator with approval) creates Vercel, Neon and optionally Cloudflare/Geocodio | Task rule: no accounts. |
+| D18 | Auth provider (needed for user add/upload with moderation, phase 3+) | (a) Neon Auth / Better Auth (Postgres-native, same DB); (b) Clerk; (c) Supabase Auth; (d) Auth.js with GitHub + email magic link | **(a) Neon Auth (Better Auth) with GitHub + email magic link** when phase 3 starts; nothing before v3.3 | Keeps users in the same Postgres (`app_user.auth_subject`), no extra vendor; moderators can be GitHub accounts. Pending the user's decision. |

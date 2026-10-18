@@ -41,7 +41,11 @@ create table source (
   retrieved_at  timestamptz not null,
   publisher     text,                                -- 'MIT Election Data + Science Lab', 'Alaska Division of Elections'
   title         text,
+  license       text,                                -- license as stated by the source, verbatim (generic provenance)
   license_id    bigint references license(id),
+  license_verified boolean not null default false,   -- true once the license/terms page has been read (date in license_checked_at)
+  license_checked_at date,
+  robots_ok     boolean,                             -- scraped lists: robots.txt and terms of service allow it (DATA_LOADING §15.3)
   attribution   text,                                -- exact credit line to display
   sha256        text,                                -- of the raw download, when the data bot records it
   notes         text,
@@ -178,47 +182,143 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 -- 3. Institutions (top filter) vs geography (bottom filter)
 -- ---------------------------------------------------------------------------
 
--- Anything selectable in the institution filter: governments, chambers, school districts,
--- later companies/brands. May have no region at all (has_region = false).
+-- Entity registry (agreed with Institutions; data-v3/inst/entities.csv + entity_geoid_xwalk.csv).
+-- One row per government / institution, NO vintage. entity_id is opaque and frozen at first-seen
+-- kind + GEOID ('county:01001', 'muni:place:0107000', 'town:cousub:0900104720', 'school:0100003',
+-- 'state:01'); chambers and national bodies use slugs ('chamber:al-upper', 'us-house').
+-- The same entity_id carries across boundary vintages; a new id is minted only when the government
+-- itself changes (merger, dissolution, incorporation, CT planning regions), linked by predecessor/successor.
+-- District seats are UNITS, not entities (officeholder = chamber entity + unit + seat).
 create table entity (
-  id            bigint generated always as identity primary key,
-  entity_key    text not null unique,                -- 'us', 'us-pa', 'us-pa-house', 'us-pa-sch-4218990'
+  entity_id     text primary key,
   kind          text not null check (kind in (
-                  'country','state','province','county','city','town','township','borough','village',
-                  'legislature','chamber','school_district','office','company','brand','subsidiary','other')),
-  gov_kind      text check (gov_kind in ('sovereign','incorporated','body','private')),
-                                                   -- v2 wording rule: states/countries sovereign; counties, cities,
-                                                   -- towns, townships, boroughs incorporated; never 'incorporated state'
-  name          text not null,
-  short_name    text,                                -- 'PA'
-  parent_id     bigint references entity(id),        -- institution hierarchy (US > PA > PA House)
+                  'nation','territory','state','county','municipality','township',
+                  'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
+                  'chamber','dc_council',
+                  'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
+                  'company',                                                 -- Companies bot; brands/subsidiaries are companies linked by entity_relation
+                  'other')),
+  state_fips    char(2),
+  state         text,
+  name          text not null,                       -- TIGER NAMELSAD
+  label         text check (label in ('sovereign','incorporated','unincorporated')),
+                                                   -- v2 wording rule: states sovereign; never 'incorporated state'
+  gov_status    text check (gov_status in ('government','area_only','dependent')),  -- CoG 2022
+  parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
+                                                   -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
+  valid_from    date,
+  valid_to      date,
+  v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
+  v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
+  v2_row        text[],                              -- 'v2:counties#342' (informational; shifts between builds)
+  level         text,                                -- extras: federal / state / county / local
+  type          text,                                -- finer type (TIGER LSAD text, 'city'); companies: 'public','private','nonprofit'
+  cog_pid6      text,                                -- CoG 2022 unit id
+  flags         text[],                              -- review flags ('gov_status_unknown:...')
+  origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
+  source_id     bigint references source(id),        -- source, source_url, retrieved_at, license
   has_region    boolean not null default true,
-  icon_flag     text,                                -- institution-field icon (flag PNG / type icon)
+  icon_flag     text,
   owner_tenant_id bigint not null default 1 references tenant(id),
-  meta          jsonb not null default '{}'
+  meta          jsonb not null default '{}',
+  check (valid_to is null or valid_from is null or valid_to >= valid_from)
 );
 create index entity_parent on entity (parent_id);
-create index entity_kind on entity (kind);
+create index entity_kind on entity (kind, state_fips);
+create index entity_v2 on entity using gin (v2_key);
 create index entity_name_trgm on entity using gin (lower(name) gin_trgm_ops);
 
+-- Government changes (merger, dissolution, incorporation, CT planning regions): many-to-many.
+create table entity_succession (
+  predecessor_id text not null references entity(entity_id),
+  successor_id   text not null references entity(entity_id),
+  effective      date,
+  source_id      bigint references source(id),
+  primary key (predecessor_id, successor_id)
+);
+
+-- entity_geoid_xwalk.csv: one row per entity x unit_layer x vintage (the join to geography; governments).
+create table entity_geoid (
+  entity_id   text not null references entity(entity_id) on delete cascade,
+  unit_layer  text not null,                         -- = unit_type_def.tiger_set: 'state','county','cousub','place','unsd','elsd','scsd'
+  geoid       text not null,
+  vintage     smallint not null,
+  relation    text not null,                         -- 'primary','coextensive','also_cousub','consolidated_city_county',
+                                                   -- 'independent_city_county_equivalent','consolidated_town_city','federal_district_city'
+  overlap     text check (overlap in ('equal','split','contained')),
+  source_id   bigint references source(id),
+  primary key (entity_id, unit_layer, geoid, vintage)
+);
+create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
+
+-- Companies: parent/subsidiary ownership over time (the containment parent_id stays geographic/institutional).
+create table entity_relation (
+  parent_id     text not null references entity(entity_id),
+  child_id      text not null references entity(entity_id),
+  relation      text not null default 'subsidiary' check (relation in ('subsidiary','brand','division','joint_venture')),
+  ownership_pct numeric(5,2) check (ownership_pct is null or ownership_pct between 0 and 100),
+  valid_from    date,
+  valid_to      date,
+  source_id     bigint references source(id),
+  check (parent_id <> child_id),
+  check (valid_to is null or valid_from is null or valid_to >= valid_from),
+  unique nulls not distinct (parent_id, child_id, relation, valid_from)
+);
+create index entity_relation_child on entity_relation (child_id);
+
+-- Companies: where they are (HQ, sites). Either a point or a GEOID (or both).
+create table entity_location (
+  id          bigint generated always as identity primary key,
+  entity_id   text not null references entity(entity_id) on delete cascade,
+  role        text not null check (role in ('hq','site','registered_office','store','plant','other')),
+  geoid_layer text,                                  -- 'place','county','state' (resolved unit via geoid at load)
+  geoid       text,
+  point       geography(Point, 4326),
+  address_hash text,                                 -- no raw addresses stored (same rule as geocode_cache)
+  valid_from  date,
+  valid_to    date,
+  source_id   bigint references source(id),
+  check (geoid is not null or point is not null)
+);
+create index entity_location_entity on entity_location (entity_id);
+create index entity_location_geoid on entity_location (geoid_layer, geoid);
+create index entity_location_point on entity_location using gist (point);
+
+-- Dedupe / merge across data-v3/inst (registry), data-v3/institutions (bots) and user submissions.
+-- A merged-away id never disappears: it becomes an alias row pointing at the survivor (like person_alias).
+create table entity_merge (
+  from_id          text primary key,                 -- the id that was merged away (still resolvable)
+  into_id          text not null references entity(entity_id),
+  match_confidence numeric(4,3) not null check (match_confidence between 0 and 1),
+  match_rule       text not null,                    -- 'same_geoid','same_lei','same_cik','name+state+trgm>=0.9','manual'
+  decided_by       text not null,                    -- 'auto' (>= 0.95) or a moderator id
+  decided_at       timestamptz not null default now()
+);
+
 -- Shared names: both filters resolve aliases through one table (PA = Pennsylvania, USA = US).
+-- entities.csv 'alias' (;-list) loads here.
 create table alias (
   alias       text not null,                         -- lower(unaccent(...))
-  entity_id   bigint references entity(id) on delete cascade,
+  entity_id   text references entity(entity_id) on delete cascade,
   unit_id     bigint references unit(id) on delete cascade,
-  kind        text not null default 'abbr' check (kind in ('abbr','alt','historic','postal')),
+  kind        text not null default 'abbr' check (kind in ('abbr','alt','historic','postal','external_id','merged_id')),
+  scheme      text,                                  -- for external ids: 'lei','cik','ein','wikidata','cog_pid6','v2_key'
+  match_confidence numeric(4,3) check (match_confidence is null or match_confidence between 0 and 1),
+                                                   -- null = asserted by the source; < 1 = fuzzy match by the dedupe step
+  source_id   bigint references source(id),
   check ((entity_id is null) <> (unit_id is null))
 );
 create index alias_alias on alias (alias text_pattern_ops);
 create unique index alias_entity_uq on alias (alias, entity_id) where entity_id is not null;
 create unique index alias_unit_uq   on alias (alias, unit_id)   where unit_id   is not null;
 
--- How an institution relates to geography.
---  'jurisdiction'  : the entity governs this area (Pennsylvania -> PA state polygon; a county gov -> county)
---  'seat_district' : a chamber's seat area (PA House -> each sldl unit)
---  'same_as'       : entity and unit are the same thing (school district -> its polygon)
+-- Resolved entity -> unit links (derived at load time: entity_geoid joined to unit.geoid within the
+-- boundary sets of that vintage; chambers get one 'seat_district' row per seat unit).
+--  'jurisdiction'  : the entity governs this area (state:42 -> PA polygon; county:01001 -> county)
+--  'seat_district' : a chamber's seat area (chamber:pa-lower -> each sldl unit)
+--  'same_as'       : entity and unit are the same thing (school:0100003 -> its polygon)
 create table entity_unit (
-  entity_id  bigint not null references entity(id) on delete cascade,
+  entity_id  text not null references entity(entity_id) on delete cascade,
   unit_id    bigint not null references unit(id) on delete cascade,
   role       text not null check (role in ('jurisdiction','seat_district','same_as')),
   primary key (entity_id, unit_id, role)
@@ -255,8 +355,8 @@ create table office (
   id           bigint generated always as identity primary key,
   office_key   text not null unique,                 -- bot 'office' normalized: 'president','us_senate','us_house','state_senate','state_house','school_board','ballot_measure'
   label        text not null,                        -- 'President'
-  entity_id    bigint references entity(id),         -- institution it belongs to (US, PA House ...)
-  scope_entity_id bigint references entity(id),      -- v2 rule: topic scoped to its entity (President -> United States)
+  entity_id    text references entity(entity_id),    -- institution it belongs to (US, PA House ...)
+  scope_entity_id text references entity(entity_id),      -- v2 rule: topic scoped to its entity (President -> United States)
   district_unit_type text                            -- unit_type of the seat areas, null for at-large/statewide
 );
 
@@ -274,7 +374,7 @@ create table contest (
   state_abbr       char(2),                          -- null / 'US' for national
   district_code    text,                             -- bot 'district' ('' for statewide)
   district_unit_id bigint references unit(id),       -- seat polygon when known
-  jurisdiction_entity_id bigint references entity(id),
+  jurisdiction_entity_id text references entity(entity_id),
   vote_for         smallint not null default 1,      -- multi-seat / multi-choice
   title            text,                             -- ballot measure title
   is_static        boolean not null default true,    -- certified past election: served from static packs
@@ -365,15 +465,17 @@ create table contest_display_slot (
 -- ---------------------------------------------------------------------------
 -- 5b. People and officeholders (Q-I1; data-v3/inst/ on data/inst-officeholders)
 -- ---------------------------------------------------------------------------
--- One canonical person_id 'scheme:id' per person, chosen in priority order:
---   bioguide:<ID> (permanent) > ocd-person/<uuid> (OpenStates; stable, but can change on a duplicate merge)
---   > session-scoped state-legislature ids (resolved to ocd-person where possible).
+-- One canonical person_id 'scheme:id' per person, chosen in priority order (Q-I1/Q-I2, data/inst-officeholders 9d25f25):
+--   bioguide:<ID> (permanent) > ocd-person:<uuid> (OpenStates, normalized from 'ocd-person/'; can change on a
+--   duplicate merge) > <st>-leg:<id> (session-scoped). No state legislator is bioguide-canonical; no cross-level name matching.
 create table person (
-  person_id     text primary key,                    -- 'bioguide:B001323', 'ocd-person/a84a3fe8-...'
-  scheme        text not null check (scheme in ('bioguide','ocd-person','state-leg')),
+  person_id     text primary key,                    -- 'bioguide:B001323', 'ocd-person:a84a3fe8-...', 'vt-leg:vt-41827'
+  scheme        text not null,                        -- 'bioguide' | 'ocd-person' | '<st>-leg' (e.g. 'vt-leg')
+  check (scheme in ('bioguide','ocd-person') or scheme ~ '^[a-z]{2}-leg$'),
   bioguide      text unique,
   ocd_person    text unique,
   official_ids  jsonb not null default '{}',          -- other official ids (state roster ids, FEC ...)
+  sources       text,                                 -- persons.csv 'sources'
   name          text not null,
   candidate_id  bigint references candidate(id),      -- same human as an election candidate, when linked
   meta          jsonb not null default '{}'
@@ -393,12 +495,13 @@ create index person_alias_person on person_alias (person_id);
 create table officeholder (
   id            bigint generated always as identity primary key,
   unit_id       bigint not null references unit(id),  -- seat polygon (cd116/cd119, sldl2024 ... via boundary_set)
-  entity_id     bigint references entity(id),         -- chamber ('us-house', 'al-house')
-  seat          text,                                 -- multi-member seats
+  entity_id     text references entity(entity_id),    -- chamber entity ('us-house', 'chamber:al-upper')
+  seat          text,                                 -- seat number within a multi-member district (NH, VT, WV ...)
   person_id     text references person(person_id) on update cascade,
   name          text not null,                        -- name as recorded in the roster row
   party         text,
   status        text not null,                        -- 'elected','serving','serving_at_2025-04-01','vacant'
+  date_flags    text,                                 -- 'term_start_missing', 'term_end_open' (;-list)
   valid_from    date,
   valid_to      date,                                 -- null = open-ended / current
   elected_date  date,
@@ -492,6 +595,87 @@ create table stg_reject (
   rule          text not null,                       -- 'R03_votes_not_numeric', ...
   detail        text,
   primary key (load_batch_id, line_no, rule)
+);
+
+-- ---------------------------------------------------------------------------
+-- 7b. Institution list ingest, refresh history and retractions (scraped lists, DATA_LOADING §15)
+-- ---------------------------------------------------------------------------
+create unlogged table stg_entity_row (
+  batch_id      bigint not null references load_batch(id) on delete cascade,
+  line_no       integer not null,
+  origin        text not null,                       -- 'inst','governments_bot','companies_bot','user'
+  raw           jsonb not null,                      -- the CSV row as read (columns by header name)
+  proposed_id   text,                                -- entity_id from the file, or null
+  matched_id    text,                                -- set by the dedupe step
+  match_confidence numeric(4,3),
+  action        text check (action in ('insert','update','merge','retract','review','reject')),
+  primary key (batch_id, line_no)
+);
+
+-- Every applied change to an entity (refresh diffs, merges, moderation). Nothing is silently deleted.
+create table entity_history (
+  id          bigint generated always as identity primary key,
+  entity_id   text not null,
+  op          text not null check (op in ('insert','update','merge','retract','restore')),
+  before      jsonb,
+  after       jsonb,
+  batch_id    bigint references load_batch(id),
+  submission_id bigint,
+  at          timestamptz not null default now()
+);
+create index entity_history_entity on entity_history (entity_id, at);
+
+-- Explicit retract list (DECISIONS.md D7): a row missing from a newer scrape is NOT deleted; it is closed
+-- (valid_to set) only when listed here.
+create table retraction (
+  id          bigint generated always as identity primary key,
+  target      text not null check (target in ('entity','entity_relation','entity_location','result')),
+  target_key  text not null,
+  reason      text not null,
+  effective   date not null,
+  source_id   bigint references source(id),
+  batch_id    bigint references load_batch(id)
+);
+
+-- User add / upload with moderation (phase 3+, needs auth: DECISIONS.md D21).
+create table app_user (
+  id          bigint generated always as identity primary key,
+  auth_subject text not null unique,                 -- id from the auth provider
+  display_name text,
+  role        text not null default 'contributor' check (role in ('contributor','moderator','admin')),
+  created_at  timestamptz not null default now()
+);
+create table submission (
+  id            bigint generated always as identity primary key,
+  submitter_id  bigint not null references app_user(id),
+  channel       text not null check (channel in ('form','csv')),
+  upload_id     uuid,                                -- groups rows from one CSV upload
+  target_entity_id text references entity(entity_id),-- null = proposed new entity
+  payload       jsonb not null,                      -- proposed entity / relation / location fields
+  evidence_url  text not null,                       -- public source backing the claim
+  status        text not null default 'pending' check (status in ('pending','approved','rejected','withdrawn')),
+  match_confidence numeric(4,3),                     -- dedupe result against existing entities
+  created_at    timestamptz not null default now(),
+  decided_at    timestamptz,
+  decided_by    bigint references app_user(id),
+  decision_note text
+);
+create index submission_queue on submission (status, created_at) where status = 'pending';
+create index submission_submitter on submission (submitter_id, created_at);
+create table moderation_log (
+  id            bigint generated always as identity primary key,
+  submission_id bigint references submission(id),
+  actor_id      bigint not null references app_user(id),
+  action        text not null check (action in ('approve','reject','edit','merge','ban','unban','note')),
+  detail        jsonb,
+  at            timestamptz not null default now()
+);
+create table rate_limit_bucket (
+  subject     text not null,                         -- 'user:<id>' or 'ip:<hash>'
+  action      text not null,                         -- 'submit','upload'
+  window_start timestamptz not null,
+  count       integer not null default 0,
+  primary key (subject, action, window_start)
 );
 
 -- ---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 73 statements; re-checked after the Q-E12/Q-E13/Q-I1 update) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 94 statements; re-checked after the entity registry / institution lists update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
@@ -33,6 +33,9 @@
 | | `officeholder` | Who held a seat: `unit_id` + date range (`valid_from`, `valid_to`), `person_id` (null + `status = 'vacant'` for vacancies), party, source commit. Indexed on (unit, dates) for "who represented this district on date X". |
 | Aggregates | `unit_contest_agg`, `answer_share` (materialized) | Instant reads: one row per unit with all answers, and presorted bar-list rows. |
 | Staging | `load_batch`, `stg_result_row`, `stg_reject` | Ingest in the bot's exact row format (DATA_LOADING.md). |
+| Institutions (registry) | `entity` (text `entity_id`, no vintage), `entity_succession`, `entity_geoid`, `entity_unit` | Registry agreed with Institutions (`data-v3/inst/entities.csv` + `entity_geoid_xwalk.csv`, ENTITIES_SCHEMA.md 7250e8b): an opaque `entity_id` frozen at first-seen kind + GEOID (`county:01001`, `muni:place:0107000`, `school:0100003`, `chamber:al-upper`, `us-house`). Kinds `nation … dc_council`, plus `government_other` and `company`. The same id carries across vintages; a government change mints a new id linked by `entity_succession`. District seats are units. |
+| Institutions (lists) | `entity_relation`, `entity_location`, `entity_merge`, `alias.match_confidence` | Company parent/subsidiary trees (`ownership_pct`, dates); company HQ/sites by GEOID or point; dedupe/merge where merged ids stay resolvable. |
+| Refresh / moderation | `stg_entity_row`, `entity_history`, `retraction`, `app_user`, `submission`, `moderation_log`, `rate_limit_bucket` | Staging → validate → dedupe → upsert; history on every change, deletes only via the retract list; user submissions (phase 3+, auth D18). |
 | Geocoder | `geocode_cache` | Stores a hash of the address and the point only. Raw addresses are never stored. |
 
 ## Institution vs geography (the top and bottom filters)
@@ -40,8 +43,8 @@
 - **School districts (Q-G4, decided Oct 18, 2026):** three unit types `school_unified`, `school_elementary` and `school_secondary`, mapped 1:1 from TIGER UNSD / ELSD / SCSD (`schools.csv` `tiger_set`: unsd 10,872, elsd 1,952, scsd 481). All three belong to the parent category `school_district` (`unit_type_def.category`). Lists and aggregates group by category, so the UI keeps v2's single "School districts" list. Point-in-polygon may return one unified district, or one elementary plus one secondary district, for the same address.
 - An **entity** is something the institution filter can select: a country or state (sovereign); a county, city, town, township or borough (incorporated); a legislature or chamber, a school district or an office (body); later a company (private).
 - Most governments are both. The `Pennsylvania` entity points at the `PA` state unit through `entity_unit(role='jurisdiction')`. This is the spec's "two rows" unisearch rule (an institution row and a Place row), linked by shared names, not shared code.
-- **Legislatures:** the entity `us-pa-house` (chamber) has one `seat_district` link per `sldl` unit. A contest `2024|PA|state_house|101` points at that chamber's office and at its district unit.
-- **School districts:** the entity (kind `school_district`) is `same_as` its polygon unit. In v2 a district spanning counties is listed under each county it touches, marked ≈. In v3 that comes from `unit_crosswalk`/geometry overlap with counties at query time, not from duplicated rows.
+- **Legislatures:** the entity `chamber:pa-lower` (chamber) has one `seat_district` link per `sldl` unit. A contest `2024|PA|state_house|101` points at that chamber's office and at its district unit.
+- **School districts:** the entity (kind `school_unified` / `school_elementary` / `school_secondary`, e.g. `school:4218990`) is `same_as` its polygon unit. In v2 a district spanning counties is listed under each county it touches, marked ≈. In v3 that comes from `unit_crosswalk`/geometry overlap with counties at query time, not from duplicated rows.
 - **Precincts** are geography only (no entity). They are reporting units.
 
 ## Contests, answers, candidates

@@ -10,7 +10,7 @@
 3. **Precedence (confirmed by the orchestrator, Oct 18, 2026, Q-E8): official values win over v2's, and v2's are kept in history.** When both exist for the same (contest, unit, answer), the official `data-v3/` row is current, whatever its `retrieved_at`: the loader ranks `method = official` above `v2_import` before comparing timestamps. The legacy row is kept in `result_history`, and differences are written to a diff report for the data lanes (they already publish such audits, e.g. `PA/pa_v2_vs_official_mismatches.csv`).
 
 ## 1. Input: the Election Data bot's row format (exact)
-One CSV (UTF-8, header row, RFC 4180 quoting) per batch: the 13 base columns below, plus the optional `method` (already present as column 14 in the 2022/2024 Senate files on `data/election` 66ec3f5) and `boundary_set` (Q-E12, being added by the lane). **The loader maps columns by header name, not position**, so 13, 14 or 15 columns in either order of the optional pair all load. The "Observed" column is what the committed files on `origin/data/election` (7faa12d) actually contain. v3 follows the files, not the column names.
+One CSV (UTF-8, header row, RFC 4180 quoting) per batch: the 13 base columns below, then **`boundary_set` as column 14 and `method` as column 15** (confirmed by Election Data at `data/election` 06421a6 across 772,887 rows; verified, see §13a). **The loader maps columns by header name, not position**, so 13-, 14- and 15-column files all load. The 2016 FEC state file and the PA county files have 14 columns: `boundary_set` and no `method`.
 
 | # | Column | Observed in `data-v3/results/` | v3 rule | Maps to |
 |---|---|---|---|---|
@@ -27,8 +27,8 @@ One CSV (UTF-8, header row, RFC 4180 quoting) per batch: the 13 base columns bel
 | 11 | `weight` | `1` | number in (0, 1]; empty → 1. The 2016 README: "exact reported totals (weight = 1)"; ≈ only for area-weighted rows | `result.weight` |
 | 12 | `source_url` | a URL, sometimes **followed by a note**: `https://www.fec.gov/…/federalelections2016.xlsx (sheet "Table 2. Electoral &  Pop Vote")` | split on the first whitespace: URL → `source.url`, rest → `source.notes` | `source` |
 | 13 | `retrieved_at` | `2026-10-18T09:39:46Z` | ISO 8601 with zone | `source.retrieved_at`, `result.retrieved_at` |
-| opt | `method` | `official` (state rows), `retabulated`, `area_weighted` (2022 Senate) | as listed in §1 note | `result.method`; `is_estimate = (method = 'area_weighted')`; `official` and `retabulated` are exact |
-| opt | `boundary_set` | not yet in committed files (lane adding it) | lowercase-hyphen slug: `v2-2024` (2022/2024 Senate rows, 2016 presidential district rows), later e.g. `tiger-2020`; **if missing**, derived from the layer (`unit_type` + file → default set, `boundary_set_default`) | `boundary_set.slug`; geometry joins on it, **not on year** |
+| 15 (opt) | `method` | `official` (state rows), `retabulated`, `area_weighted` (2022 Senate) | as listed in §1 note | `result.method`; `is_estimate = (method = 'area_weighted')`; `official` and `retabulated` are exact |
+| 14 (opt) | `boundary_set` | `v2-2024` in every results file on `data/election` 50f5f5a | lowercase-hyphen slug: `v2-2024` (2022/2024 Senate rows, 2016 presidential district rows), later e.g. `tiger-2020`; **if missing**, derived from the layer (`unit_type` + file → default set, `boundary_set_default`) | `boundary_set.slug`; geometry joins on it, **not on year** |
 
 **Deriving `answer_key`** (stable across years, so deltas compare like with like):
 - Partisan offices (president, us_house, state legislature): `party=DEM` → `dem_nominee`, `REP` → `rep_nominee` (one per contest, else reject R10); `candidate_id=all-others` → `other` (`is_aggregate`); any other candidate → `cand:<candidate_id>`.
@@ -37,7 +37,7 @@ One CSV (UTF-8, header row, RFC 4180 quoting) per batch: the 13 base columns bel
 
 The **natural key** of a row is `(year, office, stage, boundary_set, unit_type, unit_id, candidate_id)` (Q-E12; `state` and `district` are implied: `district` is always `statewide` for Senate and President, Q-E5). One row per key per batch. Below the state level, `unit_id` is the boundary set's own ID: precincts `ST|v2county|v2precinct[|#n]` (the `#n` suffix splits repeated v2 names) and districts the 2024 GEOIDs from `data-v3/geo` (`0101` CD, `01001` SLD, `0100190` school). Precinct IDs are stable **only within a boundary set** (Q-E6). `stage` is derived from the office token: `*_special` → special, `*_runoff` → runoff, else general.
 
-`method` (estimate flag) is **not** in the bot format. Until decided (DECISIONS.md D6): `is_estimate = weight < 1`; `method = official` when weight = 1. Proposed: an optional 14th column `method`. The staging table has room for it, and the loader accepts 13 or 14 columns.
+`method` (estimate flag) is now column 15 where present (D6 is settled by the lane's files). Without it, `is_estimate = weight < 1`, and `method = official` when weight = 1.
 
 ## 2. Pipeline
 ```
@@ -253,7 +253,7 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 - ~~**Q-E12**~~ **Resolved (Oct 18, 2026):** rows are keyed by contest year + `unit_id`; below state level `unit_id` is the boundary set's own ID. The lane adds a `boundary_set` column (after `retrieved_at`) = `v2-2024` for the 2022/2024 Senate rows and 2016 presidential district rows; future values use the same lowercase-hyphen form (`tiger-2020`). v3 keys results on `(year, office, stage, boundary_set, unit_type, unit_id)` and joins geometry on `boundary_set`; a missing column is derived from the layer. **Note:** the committed Senate files already use column 14 for `method`, so `boundary_set` will be column 15, and the loader reads by header name.
 - ~~**Q-E13**~~ **Resolved (Oct 18, 2026):** Senate office tokens are `us_senate` (regular) and `us_senate_special` (unexpired terms: CA and NE 2024, CA and OK 2022). The **GA 2022 runoff token is `us_senate_runoff`** (read from `data-v3/results/2022/senate/us_senate_2022_*.csv` on `data/election` 66ec3f5). `district` is always `statewide`. The d/r rule is in §12.
 
-- **Q-I2** (new) The 15 session-scoped state-legislator IDs are written `mn-house-15367`, `vt-41827` and so on, not `<state>-leg:<id>`. Will the lane prefix them (`state-leg:…`) in `persons.csv`, and when is `persons.csv` committed?
+- ~~**Q-I2**~~ **Resolved (data/inst-officeholders 9d25f25):** every person_id is `scheme:id`: `bioguide:`, then `ocd-person:<uuid>` (normalized from `/`), then `<st>-leg:<id>`. 12 ids were mapped to OpenStates (`person_id_matches.csv`) and 12 kept as state-leg (VT 9, TX, OK, LA). `persons.csv` is committed (8,185 rows, 957 aliases). See §13.
 
 **Geo & Institution Data**
 - ~~**Q-G1**~~ **Resolved (done, bbc8854 / 9ff4c00):** `data-v3/geo/<layer>.csv`, one line per v2 row with `geoid`; every row matched, no GEOID reused within a layer. The 58 duplicate school keys were renamed `<name> (<county>)`; `v2_name_collisions.csv` maps `old_name → new_name → geoid` (use `old_name` for pre-rename main commits). The importer keys on `state|name` (post-rename) or `(layer, row)`, and the ≥ 90 % IoU fallback is dropped. Not covered yet: v1 towns/places → `v1_towns.csv` + places crosswalk (in progress). Note: the app's `normT()` hides same-named towns (IL 473, NY 197, IA 173, KS 154 …), so `state|county|name` is not unique for towns; use GEOID.
@@ -289,21 +289,60 @@ v2 shows two answers plus the total. For v3 this is **a view, not the data**: v3
 
 The loader fills `contest_display_slot` from the lane's race config (`data-v3/results/{2022,2024}/senate/tools/races22.py` / `races.py`, "d-slot rule"), records `rule` (`dem_nominee`, `independent_beat_dem`, `no_dem`) per contest, and the parity gate compares the v3 d/r/total with v2's numbers.
 
-## 13. Officeholders (Q-I1, resolved; `data-v3/inst/` on `data/inst-officeholders` 9295919)
+## 13. Officeholders and persons (Q-I1, Q-I2 resolved; `data-v3/inst/` on `data/inst-officeholders` 9d25f25)
 
-| File | Rows (verified) | person_id | Notes |
+| File | Rows (verified at 9d25f25) | person_id | Notes |
 |---|---|---|---|
-| `officeholders_house_2020.csv` | 441 (439 `bioguide:`, 2 vacant) | `bioguide:<ID>` (permanent) | `unit_geoid` + `unit_vintage` `cd116` |
-| `officeholders_house_2024.csv` | 441 (440 + 1 vacant) | same | `cd119` |
-| `officeholders_house_current.csv` | 441 (439 + 2 vacant) | same | House Clerk MemberData.xml |
-| `officeholders_stateleg_2024.csv` | 7,348 (all `ocd-person/<uuid>`) | OpenStates | `sldl2024`/`sldu2024`; OpenStates commit in `source` |
-| `officeholders_stateleg_current.csv` | 7,309 (7,294 `ocd-person/`, **15 session-scoped**) | OpenStates | the 15 are MN 3, NH 2, TX 1, VT 9 |
+| `persons.csv` | **8,185** (601 `bioguide:`, 7,572 `ocd-person:`, 12 `<st>-leg:`), **957 aliases** | canonical | columns `person_id, bioguide, ocd_person, official_ids, name, sources, aliases` → `person` + `person_alias` |
+| `person_id_matches.csv` | 24 (12 mapped to an OpenStates id, 12 kept as `<st>-leg`) | log | columns `file, state, chamber, district, official_id, official_name, ocd_person, openstates_name, openstates_file, rule` |
+| `officeholders_house_{2020,2024,current}.csv` | 441 each (439 / 440 / 439 `bioguide:`; 2 / 1 / 2 vacant) | `bioguide:<ID>` | `unit_geoid` + `unit_vintage` `cd116` / `cd119` |
+| `officeholders_stateleg_2024.csv` | 7,384 (7,348 `ocd-person:`, 36 vacant) | OpenStates | `sldl2024` / `sldu2024`; OpenStates commit in `source` |
+| `officeholders_stateleg_current.csv` | 7,361 (7,290 `ocd-person:`, 12 `<st>-leg:` = VT 9, TX 1, OK 1, LA 1; 59 vacant) | | |
 
-Common columns: `unit_geoid, unit_vintage, join_status, entity_id, seat, …, person_id, name, party, status, term_start, term_end, …, source, source_url, source_id, retrieved_at, sha256, license`. Vacancies: empty `person_id`, `status = vacant`.
+- **person_id = `scheme:id`**, one canonical ID per person, in priority order `bioguide:` > `ocd-person:<uuid>` (normalized from `ocd-person/`) > `<st>-leg:<id>` (e.g. `vt-leg:vt-41827`, `la-leg:la-l-64`). No state legislator is bioguide-canonical, and there is no cross-level name matching. `person.scheme` accepts `bioguide`, `ocd-person` or `^[a-z]{2}-leg$`.
+- `person_alias` loads from `persons.csv` `aliases` (former canonical IDs, including the MN/NH ids that were mapped to OpenStates).
+- **New `date_flags` column** in the officeholder files (`term_end_open`, `term_start_missing`, `;`-combined) → `officeholder.date_flags`. Missing dates stay null; they are never guessed.
+- Officeholder key = **chamber `entity_id` + unit (`boundary_set` / `unit_type` / `unit_id`, from `unit_layer` + `unit_geoid` + `unit_vintage`) + `seat`** (§16), with `valid_from = term_start`, `valid_to = term_end`. Vacancy = null `person_id` + `status = vacant`.
 
-**Design (agreed):** `person_id = scheme:id`, one canonical ID per person, priority **bioguide > ocd-person > state-leg**. A `persons.csv` crosswalk (`person_id, bioguide, ocd_person, official_ids, name, aliases`, where aliases = former canonical IDs) feeds `person` + `person_alias`. Officeholder rows load into `officeholder` keyed by **unit + date range** (`valid_from = term_start`, `valid_to = term_end`; `unit` resolved from `unit_geoid` in the boundary set for `unit_vintage`). When OpenStates merges duplicates, the old ID moves to `person_alias` (`on update cascade` keeps officeholder rows attached).
-
-**Mismatches with the description (to confirm with the lane):** (1) the 15 session-scoped IDs in the committed file look like `mn-house-15367`, `nh-seat-4092`, `tx-H_A4480`, `vt-41827`, not `<state>-leg:<id>`, and have no `scheme:` prefix; v3 will normalize them to `state-leg:<value>` unless the lane renames them (Q-I2). (2) `persons.csv` is not committed yet; until it is, v3 builds `person` from the officeholder files and leaves `person_alias` empty.
+### 13a. Column-order check (Election Data, verified Oct 18, 2026)
+At `06421a6` every results CSV has `boundary_set` as column 14, and the Senate files have `method` as column 15. Rows: 728,885 precinct rows (`.csv.gz`) + 43,514 Senate county/district/state rows + 153 (2016 FEC states) + 335 (PA 2016 county) = **772,887**, which matches the lane's figure. At that commit `PA/pa_president_county_official.csv` (469 rows) still had 13 columns. At the current head **50f5f5a** it has 14 (`boundary_set`), so the "PA 2020/2024 county files next" step has landed.
 
 ## 14. Process
-Since Oct 18, 2026 the v3 lane asks the data bots directly and copies the orchestrator. The geo merge build will remove the last two `../data/` loads from v2 (state geography files, `zcta2024.js`), together with the Ohio / Union County "Washington township" key fix.
+Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, Institutions, and from now on Companies 7e7bba2a and Governments a901cced) and copies the orchestrator. The geo merge build will remove the last two `../data/` loads from v2 (state geography files, `zcta2024.js`), together with the Ohio / Union County "Washington township" key fix.
+
+## 15. Institutions: entity registry, scraped lists, refresh and user submissions
+### 15.1 Inputs
+| Producer | Path | Format | Status |
+|---|---|---|---|
+| Institutions lane | `data-v3/inst/entities.csv` + `entity_geoid_xwalk.csv` (branch `data/inst-entities`, final column list in `ENTITIES_SCHEMA.md` at 7250e8b; CSVs not committed yet) | one row per entity, no vintage (~65k); xwalk one row per entity × `unit_layer` × vintage | schema agreed |
+| Governments bot (a901cced) | `data-v3/institutions/` | governments flagged sovereign / incorporated; `kind = government_other` where not in the registry | **no files on any remote branch yet** (checked Oct 18, 2026) |
+| Companies bot (7e7bba2a) | `data-v3/institutions/` (local lane has an empty `companies/` folder) | companies + parent/subsidiary trees + HQ/sites | **no files yet** |
+| Users (phase 3+) | `submission` table via form / CSV upload | moderated | needs auth (D18) |
+
+**Registry rules (agreed with Institutions):**
+- `entity_id` is opaque and frozen at first-seen kind + GEOID (`county:01001`, `muni:place:0107000`, `town:cousub:0900104720`, `school:0100003`, `state:01`, `nation:us`). Chambers and national bodies use slugs (`chamber:al-upper`, `us-house`, `chamber:dc-council`). The same id carries across boundary vintages. A new id is minted only when the government itself changes (merger, dissolution, incorporation, CT planning regions), linked through `predecessor_id` / `successor_id` (`;`-lists → `entity_succession`).
+- Kinds: `nation, territory, state, county, municipality, township, school_unified, school_elementary, school_secondary, chamber, dc_council`, plus `government_other` and `company` for the bots. School kinds follow Q-G4 under the `school_district` category.
+- **District seats are units, not entities.** Officeholders = chamber `entity_id` + unit + `seat` number.
+- Column mapping: `alias` (`;`, with `\;` escaped) → `alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source*` + `license` → `source`. Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk: `unit_layer` = `unit_type_def.tiger_set`, `relation`, `overlap` → `entity_geoid`, then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
+- Governments link to geography through `entity_geoid` (the xwalk). Companies link through `entity_location` (HQ, sites, by GEOID and/or point).
+
+### 15.2 Pipeline: staging → validation → dedupe/merge → upsert
+1. **Stage:** each file → `load_batch` + `stg_entity_row` (raw row as JSON, by header name).
+2. **Validate:** required columns; known `kind`; `entity_id` prefix matches `kind`; `parent_id`, `predecessor_id`, `successor_id` and `entity_relation` endpoints resolve (in the batch or the DB); no relation cycles; `ownership_pct` in 0–100; GEOID exists in `data-v3/geo` for that vintage; scraped sources have `robots_ok` and a recorded `license`.
+3. **Dedupe/merge:** the match order is the same `entity_id`, then a strong external id (GEOID + layer, CoG `cog_pid6`, LEI, SEC CIK, EIN, Wikidata QID, stored as `alias` rows with `kind = external_id`), then name + state + kind fuzzy match (`pg_trgm` similarity). From the score:
+   - **match_confidence ≥ 0.95:** auto-merge.
+   - **0.80–0.95:** `review` queue.
+   - **below 0.80:** new entity.
+   The registry (`data-v3/inst`) wins over bot rows for governments; bots add fields only where the registry is empty. A merge writes `entity_merge` (from_id → into_id, confidence, rule, decided_by) and an `alias` row of `kind = merged_id`, so **old ids keep resolving**. IDs are never reused.
+4. **Upsert:** `insert … on conflict (entity_id) do update` only when values changed; every change writes `entity_history` (before/after JSON).
+
+### 15.3 Refresh jobs (v3.2)
+- Later versions refresh automatically: scheduled scrapes run as server cron (**Vercel Cron**, or a worker if runs exceed function limits), with a separate writer role, never the API's read-only role.
+- Each run is a new `load_batch`. Diffs are applied **with history**: changed rows close the old relation/location (`valid_to`) and open a new one (`valid_from`). A row **missing** from a newer scrape is **not deleted**; it is closed only through an explicit **retract list** (`retraction`, D7). `entity_history` records every op.
+- Scraped-data policy: public sources only; honour robots.txt and terms of service; identify the crawler; rate-limit; no logins or paywalls; license recorded per source (`source.license`, `license_verified`, `robots_ok`).
+
+### 15.4 User add/upload with moderation (phase 3+, needs auth: D18)
+- Single **add form** and **CSV upload** (same columns as the bots' files) → `submission` rows (`pending`) with the submitter (`app_user`) and a required public `evidence_url`. Each row runs the same validation and dedupe as §15.2, and the `match_confidence` is shown to the moderator.
+- **Moderation queue** (`status = pending`, oldest first). Approve applies the row through the normal upsert with `entity.origin = 'user'`; reject keeps the row with a note. Every action → `moderation_log` (audit log).
+- **Rate limits** per user and per IP hash (`rate_limit_bucket`): e.g. 20 single adds/day, 2 uploads/day, max 500 rows per upload (defaults to confirm).
+- API: `POST /v1/submissions`, `GET /v1/submissions?status=`, `POST /v1/submissions/{id}/approve|reject` (API.md, **phase 3+**).
