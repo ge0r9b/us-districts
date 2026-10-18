@@ -974,3 +974,21 @@ Misses and exceptions:
 - Wisconsin town `Calumet County|Kaukauna city`: the v1 town shape (the one townsIn() draws) and the parts shape do not overlap, so the point lies inside the v1 shape only.
 - Wisconsin town `Monroe County|Ontario village`: the parts shape has zero area, so the point lies inside the v1 shape.
 Sizes: total 3.57 MB raw / 869 KB gzip; largest Illinois 240 KB / 54.9 KB gzip (level 6), median 10.5 KB gzip.
+
+## ZIP cross-reference (Oct 18, 2026, branch `data/geo`): ZCTA → place / town / county rows
+Files: `v2/data/zcta_xref/<first 3 ZIP digits>.js`, 891 files. Built by `tools/build_zcta_xref.py` from the Census 2020 ZCTA relationship files (`tab20_zcta520_{place20,cousub20,county20}_natl.txt`).
+Format: `__zxref("194",{"19405":{st:"PA",place:[[key,share]],town:[[key,share]],county:[[key,share]]},...});`
+- Keys are the geo-list keys within state `st`: the place row name, the town key `County|Name`, and the NAT county name.
+- An entry in a different state (137 ZCTAs cross a state line) carries a third element with that state, e.g. `[key,share,"NJ"]`.
+- The share is the part of the ZCTA's land area, to 2 decimals, sorted largest first. Parts under 1% are dropped unless nothing else is left.
+- Coverage: 33,642 ZCTAs (all 50 states + DC; Puerto Rico is not in v2). 33,642 have counties, 22,957 have places and 15,463 have towns. Towns only exist where v2 has town rows (MCD states).
+- Connecticut counties are summed from the town parts by 2024 planning region, because the 2020 county file still uses the old counties.
+
+Not listed, with reasons:
+- CDPs: not v2 place rows.
+- Statistical CCDs and unorganized territories: not v2 town rows.
+- 93 incorporated 2020 places and MCDs that no longer exist in 2024, so they have no v2 row. Examples: Bethel Heights AR (merged into Springdale), Cahokia, Alorton and Centreville IL (merged into Cahokia Heights), the dissolved Nebraska townships, WI towns Greenville, Rib Mountain and Madison (incorporated or dissolved), and DC "Washington city" (DC has no place rows). The full list is in `../geo-data-raw/zcta_xref_report.json` (`unmapped_incorporated`).
+- Renames between 2020 and 2024 are mapped: MA "X Town city" → "X city", TX "Pecos city" → "Town of Pecos city".
+
+Example: 19405 = place Bridgeport borough 0.56; towns Montgomery County|Bridgeport borough 0.56 and Montgomery County|Upper Merion township 0.44; county Montgomery County 1.0.
+Sizes: total 5.09 MB raw / 901 KB gzip. Per file: min 88 B / 93 B, median 3.7 KB / 691 B, max 29.1 KB / 4.8 KB (prefix 562).

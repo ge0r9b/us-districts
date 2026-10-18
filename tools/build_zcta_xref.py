@@ -15,7 +15,7 @@ Writes v2/data/zcta_xref/<first 3 ZIP digits>.js:
 Source: Census 2020 ZCTA relationship files (tab20_zcta520_{place20,cousub20,county20}_natl.txt, public domain).
 2020 -> v2 key: place and county subdivision GEOIDs through data-v3 places_2024 / towns_2024 GeoJSON (v2_places /
 v2_parts), falling back to data-v3/geo/v1_towns.csv and then to a unique (state, county, NAMELSAD) / (state, NAMELSAD)
-match; county GEOIDs through the 2024 county Gazetteer. Connecticut's 2020 counties no longer exist in v2 (planning
+match (also trying the 2020->2024 renames 'X Town city' -> 'X city' and 'X city' -> 'Town of X city'); county GEOIDs through the 2024 county Gazetteer. Connecticut's 2020 counties no longer exist in v2 (planning
 regions since 2022), so CT county shares are summed from the CT town parts by the 2024 planning region of each town.
 County subdivisions that are not v2 town rows (e.g. statistical CCDs / unorganized territories without a row) are not
 listed. ZCTA shapes, ZIP digits and shares are not invented: a ZCTA appears only with rows from the files.
@@ -81,6 +81,13 @@ with open(os.path.join(a.gaz, "2024_Gaz_counties_national.txt"), encoding="utf-8
     for line in f:
         v = [x.strip() for x in line.split("\t")]; CTYNAME[v[1]] = v[3]
 
+def variants(n):
+    """2020 -> 2024 renames seen in TIGER: MA 'Amesbury Town city' -> 'Amesbury city'; TX 'Pecos city' -> 'Town of Pecos city'"""
+    v = [n]
+    if " Town city" in n: v.append(n.replace(" Town city", " city"))
+    if n.endswith(" city"): v.append("Town of " + n)
+    return v
+
 def rel(fn):
     with open(os.path.join(a.rel, fn), encoding="utf-8-sig") as f:
         hdr = f.readline().rstrip("\n").split("|")
@@ -102,7 +109,9 @@ for r in rel("tab20_zcta520_place20_natl.txt"):
     k = None
     if g in PL_G and PL_G[g] in PLACEROWS[st]: k = PL_G[g]; how["place:geoid"] += 1
     elif ("places", g) in V1 and V1[("places", g)][1] in PLACEROWS[st]: k = V1[("places", g)][1]; how["place:v1_towns"] += 1
-    elif r["NAMELSAD_PLACE_20"] in PLACEROWS[st]: k = r["NAMELSAD_PLACE_20"]; how["place:name"] += 1
+    else:
+        for n in variants(r["NAMELSAD_PLACE_20"]):
+            if n in PLACEROWS[st]: k = n; how["place:name"] += 1; break
     if k is None: unmapped["place " + r["CLASSFP_PLACE_20"]] += 1; UNM["place"].append((st, r["NAMELSAD_PLACE_20"], g, r["CLASSFP_PLACE_20"])); continue
     X[z]["place"][(st, k)] += part(r)[0]; X[z]["place_t"][(st, k)] += part(r)[1]
 CT_T = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, 0]))
@@ -114,8 +123,10 @@ for r in rel("tab20_zcta520_cousub20_natl.txt"):
     elif ("towns", g) in V1 and V1[("towns", g)][1] in PARTROWS[st]: k = V1[("towns", g)][1]; how["town:v1_towns"] += 1
     else:
         c = CTYNAME.get(g[:5], "")
-        for nk in ((st, c, r["NAMELSAD_COUSUB_20"]), (st, r["NAMELSAD_COUSUB_20"])):
-            if len(set(TW_N.get(nk, []))) == 1: k = TW_N[nk][0]; how["town:name"] += 1; break
+        for n in variants(r["NAMELSAD_COUSUB_20"]):
+            for nk in ((st, c, n), (st, n)):
+                if len(set(TW_N.get(nk, []))) == 1: k = TW_N[nk][0]; how["town:name"] += 1; break
+            if k: break
     if k is None: unmapped["town " + r["CLASSFP_COUSUB_20"]] += 1; UNM["town"].append((st, r["NAMELSAD_COUSUB_20"], g, r["CLASSFP_COUSUB_20"])); continue
     X[z]["town"][(st, k)] += part(r)[0]; X[z]["town_t"][(st, k)] += part(r)[1]
     if st == "Connecticut":
