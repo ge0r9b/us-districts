@@ -1121,6 +1121,28 @@ Still gray, with reasons:
 - **NM Loving 2020:** recomputed on the full VEST 2020 layer (CC BY 4.0) as 748 votes. That fails the consistency rule against the stored 2024 figure of 509 (ratio 0.68).
 - **OR Pleasant Hill:** still blocked (licensed).
 
+**KY retry (Oct 18, 2026).** Tool: `tools/inst_gray2_ky.py`. Report: `data-v3/inst/gray2_ky_report.json`.
+
+Pulaski and Laurel precincts were rebuilt from official sources only:
+- Shapes: the Kentucky State Board of Elections / DGI layer `SBE_Voting_Precinct_Boundaries` (kygisserver.ky.gov; raw and sha256 in `inst-raw/ky_sbe/`).
+- Votes: MEDSL KY 2024 by precinct code.
+
+Checks:
+- The precinct codes match the official units one to one: Pulaski 19/19, Laurel 23/23.
+- The polygons hold 100 % of each county's 2020 population.
+- Each precinct must pass votes ≤ 90 % of its population and the 2020 rule on its own blocks.
+- The SBE layer is the current one (last edited Feb 2026). The identical code set and the per-precinct 2020 checks are what tie it to 2024.
+
+The stored 2020 figures for these rows were area-weighted (e20) and far too low: Somerset had 278 votes for 9,536 residents, and East Bernstadt 326 for 1,326. A population-weighted recomputation on the app's 2020 file replaces them (≈). Results:
+
+| Row | 2024 | 2020 |
+|---|---|---|
+| KY East Bernstadt ISD | **72 / 481 / 557 ≈** (filled) | 52 / 269 / 326 → **95 / 492 / 595 ≈** |
+| KY Laurel County SD for East Bernstadt ISD (same territory) | **72 / 481 / 557 ≈** (filled) | same correction |
+| KY Somerset ISD | still gray: it uses SBE precincts A105 "Somerset Library 13" (turnout ratio 0.64) and B102 "Huffaker-Harveys Hill 22" (R share 0.68 vs 0.81), which fail the 2020 rule. The likely cause is boundary changes in the current layer after 2024. | 50 / 224 / 278 → **831 / 3,731 / 4,627 ≈** |
+
+After the KY retry, schools 2024 gray is **67** (in scope 27). `ussch.js` is 4,750,954 bytes raw and 1,584,227 gzip -9.
+
 Sizes for pass 3: `ussch.js` went from 4,750,812 to 4,750,935 bytes raw and from 1,584,169 to 1,584,217 gzip -9. No new requests. Schools 2024 gray went from 77 to **69** (in scope: 37 → 29). Schools 2020 gray stays at 23.
 
 **Counts (gray cells, by layer and year):**
