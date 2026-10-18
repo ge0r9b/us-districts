@@ -128,6 +128,30 @@ def al(D):
         "source": "Shapes: Morgan County voting precincts, KCS GIS VAM/AL52_VAM_MS MapServer layer 9 (https://web4.kcsgis.com/kcsgis/rest/services/VAM/AL52_VAM_MS/MapServer/9); votes: Alabama Secretary of State, 2024 General Election precinct level results (2024-General Precinct Level Results.zip, 2024-General-Morgan.xls), https://www.sos.alabama.gov/alabama-votes/voter/election-data",
         "rows": rows, "not_located": nl, "unmatched_precincts": sorted(set(G) - set(MATCH))}}}
 
+def wy(D):
+    # Fremont County: county GIS Voter Precincts (Beacon static feature service, layer 15, 'Name N-M'); votes: Wyoming
+    # SOS, Fremont County Official Precinct-by-Precinct Summary, General Election Nov 5 2024 (text PDF). The PDF's
+    # Total row equals the official county result, so absentee ballots are inside the precincts.
+    import subprocess
+    t = subprocess.run(["pdftotext", "-layout", D + "/2024_Fremont_County_General_PbP.pdf", "-"], capture_output=True, text=True).stdout
+    sec = t[t.index("United States President"):t.index("United States Senator")]
+    V = {}
+    for ln in sec.splitlines():
+        m = re.match(r"^(\d\d-\d|Total)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s*$", ln)
+        if m:
+            n = [int(x.replace(",", "")) for x in m.groups()[1:]]
+            V[m.group(1)] = [n[1], n[0], n[0] + n[1] + n[2] + n[3]]  # dem, rep, total (R, D, L, write-ins; over/under excluded)
+    tot = V.pop("Total")
+    assert [sum(v[k] for v in V.values()) for k in range(3)] == tot, tot
+    G = {}
+    for f in json.load(open(D + "/fremont_voter_precincts.geojson"))["features"]:
+        a, b = re.search(r"(\d+)-(\d+)$", f["properties"]["Precincts"]).groups(); G["%02d-%s" % (int(a), b)] = (f["properties"]["Precincts"], shape(f["geometry"]).buffer(0))
+    assert set(G) == set(V), set(G) ^ set(V)
+    rows = [[G[k][0]] + V[k] + [mapping(G[k][1])] for k in sorted(V)]
+    return {"state": "Wyoming", "year": "2024", "counties": {"Fremont County": {
+        "source": "Shapes: Fremont County GIS, Voter Precincts (FremontCountyWY_BeaconStatic FeatureServer layer 15, https://services8.arcgis.com/rlGvD2ZEQWYJHMZp/arcgis/rest/services/FremontCountyWY_BeaconStatic/FeatureServer/15); votes: Wyoming Secretary of State, Fremont County Official Precinct-by-Precinct Summary, General Election Nov 5 2024 (https://sos.wyo.gov/Elections/Docs/2024/Results/General/2024_Fremont_County_General_PbP.pdf)",
+        "rows": rows, "not_located": {}}}}
+
 if __name__ == "__main__":
     D, st, o = sys.argv[1:4]
     R = globals()[st](D); json.dump(R, open(o, "w"))
