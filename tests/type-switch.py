@@ -17,7 +17,7 @@ async def run(b,tag,vp):
   await pg.evaluate("()=>document.querySelector('.lbtn[data-k=schools]').click()"); await pg.wait_for_timeout(4000)
   await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(5000)
   s0=await pg.evaluate(ST); ck(tag+" start: AL school districts list-all (state -> counties tier)",s0['la'] and s0["rows"]>60 and s0['lt']=='schools',s0)
-  for k,exp in (("senate",67),("statehouse",67),("ushouse",7),("schools",67)):
+  for k,exp in (("senate",35),("statehouse",105),("ushouse",7),("schools",141)):  # build 1564: Alabama lists its own districts of the type (was its 67 counties)
     await pg.evaluate(FR)
     await pg.evaluate("k=>{const x=document.querySelector('.lbtn[data-k='+k+']'); x.click()}",k); await pg.wait_for_timeout(3500)
     fr=await pg.evaluate("()=>{cancelAnimationFrame(window.__frid); return window.__fr}")

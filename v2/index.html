@@ -6,7 +6,13 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171563";</script>
+<script>window.BUILD="202610171564";</script>
+<script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
+   input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
+(()=>{ const _si=window.setInterval.bind(window), _ci=window.clearInterval.bind(window), P=new Map(); let qu=0; const mark=()=>{ qu=performance.now()+250; };
+  ["pointerdown","keydown","click","input","change"].forEach(t=>addEventListener(t,mark,{capture:true,passive:true})); window.__quiet=mark; window.__quietLeft=()=>Math.max(0,qu-performance.now());
+  window.setInterval=function(f,ms,...a){ if(typeof f!=="function"||!(ms>=100)) return _si(f,ms,...a); let id=0; id=_si(()=>{ const d=qu-performance.now(); if(d>0){ if(!P.has(id)) P.set(id,setTimeout(()=>{ P.delete(id); f(...a); },d)); return; } f(...a); },ms); return id; };
+  window.clearInterval=function(id){ if(P.has(id)){ clearTimeout(P.get(id)); P.delete(id); } return _ci(id); }; })();</script>
 <script>/* build 1560: new builds reach open tabs. GitHub Pages serves index.html with max-age=600 and iOS Safari keeps a tab's page alive for hours/days (resume, bfcache), so a tab could run an old build long after a push.
    Check the deployed BUILD (first 2 KB of this page, cache-busting query + no-store, Range request) on load, on return to the tab (visibilitychange/pageshow) and every 5 min; a newer build reloads once
    via ?v=<build> (a fresh URL for every cache) with the current view in the hash. Loop guard: at most one reload per target build per 5 min (sessionStorage); no sessionStorage = never auto-reload. */
@@ -1666,7 +1672,8 @@ function fix32(n){ const t=n.nodeValue; if(!t||t.trim().length<=MAXC) return; co
   if(p.closest(WRAPSEL)){ const f=document.createDocumentFragment(); wrap32(t).forEach((l,i)=>{ if(i) f.append(document.createElement("br")); f.append(document.createTextNode(l)); }); n.replaceWith(f); }
   else { if(!p.title) p.title=t.trim(); n.nodeValue=t32(t); } }
 function scan32(root){ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); const a=[]; while(w.nextNode()) a.push(w.currentNode); a.forEach(fix32); }
-new MutationObserver(ms=>ms.forEach(m=>{ if(m.type==="characterData") fix32(m.target); else m.addedNodes.forEach(n=>n.nodeType===3?fix32(n):n.nodeType===1&&scan32(n)); }))
+window.__lvOnly=ms=>{ const lv=document.getElementById("listView"); if(lv&&ms.every(m=>lv.contains(m.target))) return true; const S="input,select,textarea"; return ms.every(m=>[...m.addedNodes].every(n=>n.nodeType!==1||!(n.matches(S)||n.querySelector(S)))); }; /* true = no form control was added */ /* build 1564: list-row moves (sort) need none of the page-wide childList observers */
+new MutationObserver(ms=>ms.forEach(m=>{ if(m.type==="characterData") fix32(m.target); else m.addedNodes.forEach(n=>{ if(n.nodeType===3) fix32(n); else if(n.nodeType===1){ if(n.__s32&&n.classList.contains("lvrow")) return; scan32(n); if(n.classList.contains("lvrow")) n.__s32=1; } }); }))
   .observe(document.body,{childList:true,characterData:true,subtree:true});
 scan32(document.body);
 // breadcrumb line total <= 32: collapse leading crumbs to "…"
@@ -1919,8 +1926,9 @@ function scopeArea(){ if(cur) return cur; if(hier.dist&&state.value) return {kin
   if(county.value){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&d[1]===county.value); if(c) return {kind:"county",d:c}; }
   return {kind:"sum",st:state.value||""}; }
 function scopeVals(a,yr){ if(a.kind!=="sum") return vals(a,yr);
-  const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; let dem=0,rep=0,tot=0;
-  for(const k in E){ if(a.st&&!k.startsWith(a.st+"|")) continue; const v=E[k]; dem+=v[0]; rep+=v[1]; tot+=v[2]; } return tot?{dem,rep,tot}:null; }
+  const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; const C=scopeVals.__c||(scopeVals.__c=new WeakMap()); let m=C.get(E); if(!m){ m=new Map(); C.set(E,m); } const ck=a.st||"";
+  if(m.has(ck)){ const r=m.get(ck); return r&&{...r}; } /* build 1564: the state/US sum is computed once per dataset (it was re-summed over ~3,100 counties on every sort/row) */
+  let dem=0,rep=0,tot=0; for(const k in E){ if(a.st&&!k.startsWith(a.st+"|")) continue; const v=E[k]; dem+=v[0]; rep+=v[1]; tot+=v[2]; } const r=tot?{dem,rep,tot}:null; m.set(ck,r); return r&&{...r}; }
 renderCands=function(){ const lst=document.body.classList.contains("listmode"), yrs=yrsOn(), a=scopeArea();
   candBox.innerHTML=""; candBox.classList.toggle("two",yrs.length>1);
   yrs.forEach(yr=>{ const v=scopeVals(a,yr); const col=document.createElement("div"); col.className="ccol";
@@ -2365,7 +2373,9 @@ function natFill(d){ return ctyFill([d.st,d.nm]); }
 let natSeq=0;
 function drawNat(){ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
   const m=ym(); Promise.all([loadNat(), window.ELECTION2024?null:loadElection(), m!=="2024"?loadE2020():null]).then(()=>{ if(seq!==natSeq||!NAT) return;
-    const mk=m+"|"+JSON.stringify(heatSel()); if(!natGroup.__m||natGroup.__m!==mk){ natGroup.clearLayers(); natGroup.__m=mk; NAT.forEach(d=>L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}).addTo(natGroup)); }
+    const mk=m+"|"+JSON.stringify(heatSel()); if(!natGroup.__m||natGroup.__m!==mk){ const ls=natGroup.getLayers(); natGroup.__m=mk;
+      if(ls.length===NAT.length&&ls.every((l,i)=>l.__d===NAT[i])) ls.forEach(l=>{ const f=natFill(l.__d); if(l.options.fillColor!==f) l.setStyle({fillColor:f}); }); /* build 1564: a year/answer change recolours the existing shapes (no rebuild of ~3,000 polygons) */
+      else { natGroup.clearLayers(); NAT.forEach(d=>{ const l=L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}); l.__d=d; l.addTo(natGroup); }); } }
     natDetail(seq); }); }
 function statesInView(){ const b=map.getBounds(), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); const S=new Set(); (NAT||[]).forEach(d=>{ const q=d.bb; if(!(q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1)) S.add(d.st); }); return [...S]; }
 function natDetail(seq){ natPrec.clearLayers(); const m=ym(); if(map.getZoom()<9||m==="delta") return; const sts=statesInView().filter(s=>s!==state.value); if(sts.length>4) return;
@@ -2593,6 +2603,14 @@ map.on("dblclick",e=>{ const a=areaAt(e.latlng); if(!a||!a.d) return; { const k=
   const g=$("gq"), t=areaLabel(a); nameLock=t; g.value=""; g.placeholder=t32(t); g.title=t; });
 const _wai=whereAmI; whereAmI=function(){ const GL=window.__geoLock; if(GL&&state.value===GL.st&&(window.__userGesture?window.__userGesture():0)<=GL.t){ const g=$("gq"); g.placeholder=t32(GL.lbl); return; } if(nameLock){ const g=$("gq"); g.placeholder=t32(nameLock); return; } _wai(); };
 map.on("dragstart",()=>{ nameLock=null; }); map.on("zoomstart",e=>{ if(!map.__fitting) {} });
+/* build 1564: the bottom geography field follows the view, not the map centre. In the list view the list covers the lower map, so the centre
+   (reverse-looked-up) landed in a county of the list area or beyond it (iPhone, PA counties: 'Steuben County, NY'). There the field shows the
+   listed area (state, or county within a state); on the map a centre outside the selected state shows the state. */
+{ const _w2=whereAmI; whereAmI=function(){ const g=$("gq"); if(document.activeElement===g) return; const GL=window.__geoLock; if(GL&&state.value===GL.st&&(window.__userGesture?window.__userGesture():0)<=GL.t) return _w2();
+    const st=state.value||"", co=(typeof county!=="undefined"&&county.value)||"", lm=document.body.classList.contains("listmode")&&window.__LA&&window.__LA.on;
+    const lbl=co&&st?(co+", "+(ABBR[st]||st)):st;
+    if(lm&&!nameLock){ const t=lbl||"United States"; g.placeholder=t32(t); g.title=t; return; }
+    _w2(); if(st&&!nameLock){ const ph=g.placeholder||"", m=/, ([A-Z]{2})$/.exec(ph), ab=ABBR[st]||st; if(m&&m[1]!==ab){ g.placeholder=t32(lbl); g.title=lbl; } } }; }
 $("gq").addEventListener("focus",()=>{ nameLock=null; });
 // ===== district type drives the nationwide fill (US House: all 435 districts) =====
 let CD=null, cdL=null;
@@ -2617,7 +2635,21 @@ const _an14=aname; aname=function(a){ return a.kind==="natcd"?"District "+a.d[1]
 const _al14=areaLabel; areaLabel=function(a){ return a.kind==="natcd"?_al14({kind:"ushouse",d:a.d}):_al14(a); };
 // tap the active type again to turn district types off (county heat map)
 LYR.push(["N","none","Counties"]); TYPE_LBL.none="County";
-lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ setType(ltype===b.dataset.k?"none":b.dataset.k); drawNat(); lrow.hidden=true; const lb=document.getElementById("bLyr"); if(lb){ lb.classList.remove("on"); } try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); }; });
+/* build 1564: the open district-type menu stays open after a pick (another type switches the selection, label moves with it). It closes on
+   (a) a tap anywhere outside it (that tap is swallowed: it does not also hit the list/map under it), (b) the main type button, (c) the selected
+   type again (selection kept). A closed row keeps the old toggle semantics for programmatic clicks (deselect = click the selected type). */
+const lyrClose=()=>{ lrow.hidden=true; const lb=document.getElementById("bLyr"); if(lb) lb.classList.remove("on"); try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); };
+window.__lyrClose=lyrClose;
+lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ const k=b.dataset.k, open=!lrow.hidden;
+    if(open&&ltype===k&&b.classList.contains("on")){ lyrClose(); return; }
+    setType(open?k:(ltype===k?"none":k)); drawNat(); if(!open){ lyrClose(); return; } try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); }; });
+{ let eat=0; const inMenu=t=>!!(t&&t.closest&&(t.closest("#lyrRow")||t.closest("#bLyr")));
+  const down=e=>{ if(eat&&Date.now()-eat<700){ e.stopPropagation(); if(e.cancelable) e.preventDefault(); return; } eat=0; if(lrow.hidden||inMenu(e.target)) return;
+    eat=Date.now(); e.stopPropagation(); if(e.cancelable) e.preventDefault(); lyrClose(); };
+  ["pointerdown","touchstart","mousedown"].forEach(t=>window.addEventListener(t,down,{capture:true,passive:false}));
+  const after=e=>{ if(eat&&Date.now()-eat<700){ e.stopPropagation(); if(e.cancelable) e.preventDefault(); if(e.type==="click") eat=0; return; }
+    if(e.type==="click"&&!lrow.hidden&&!inMenu(e.target)&&e.isTrusted){ e.stopPropagation(); e.preventDefault(); lyrClose(); } };
+  ["pointerup","touchend","mouseup","click","dblclick"].forEach(t=>window.addEventListener(t,after,{capture:true,passive:false})); }
 drawNat();
 // ===== district-type label bubbles (restored, build 1550): a tap on a type button names the picked type in the
 // bubble above the type button it now shows on (bLyr); long-press names any type without picking it and tolerates
@@ -2746,7 +2778,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 // guard: a selected state keeps the map framed on it (prevents a stray world-zoom after selection)
 { let lastSt="", at=0; const stB=st=>{ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===st); if(!d) return null; let a=1e9,b=1e9,c=-1e9,e=-1e9; d.polys.forEach(p=>p[0].forEach(([x,y])=>{ if(st==="Alaska"&&x>0) x-=360; if(x<a)a=x; if(x>c)c=x; if(y<b)b=y; if(y>e)e=y; })); return L.latLngBounds([b,a],[e,c]); };
   setInterval(()=>{ const sv=(typeof state!=="undefined"&&state.value)||""; if(sv!==lastSt){ lastSt=sv; at=Date.now(); } if(!sv||document.body.classList.contains("worldmode")) return; if(Date.now()-at>2500) return; const B=map.getBounds(); const w=B.getEast()-B.getWest(); const sb=stB(sv); if(!sb) return; if(w>90||!B.intersects(sb)){ map.fitBounds(sb,{animate:false,padding:[20,20]}); } },250); }
-{ const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); } { const inj20=()=>{ if(!window.__ak||!__ak.boro2020||!window.ELECTION2020) return false; for(const [n,v] of Object.entries(__ak.boro2020)) if(!ELECTION2020["Alaska|"+n]) ELECTION2020["Alaska|"+n]=v; return true; }; const _le=loadE2020; loadE2020=function(){ return _le().then(()=>{ inj20(); }); }; window.__v2.loadE2020=loadE2020; let n=0; const t=setInterval(()=>{ if(inj20()||++n>400){ clearInterval(t); if(n<=400) try{ drawNat(); }catch(_){} } },300); }
+{ const injB=()=>{ if(!window.__ak||!__ak.boro2024||!window.ELECTION2024) return false; for(const [n,v] of Object.entries(__ak.boro2024)) if(!ELECTION2024["Alaska|"+n]) ELECTION2024["Alaska|"+n]=v; try{ scopeVals.__c=null; }catch(_){} return true; }; const t=setInterval(()=>{ if(injB()){ clearInterval(t); try{ drawNat(); }catch(_){} } },300); } { const inj20=()=>{ if(!window.__ak||!__ak.boro2020||!window.ELECTION2020) return false; for(const [n,v] of Object.entries(__ak.boro2020)) if(!ELECTION2020["Alaska|"+n]) ELECTION2020["Alaska|"+n]=v; try{ scopeVals.__c=null; }catch(_){} return true; }; const _le=loadE2020; loadE2020=function(){ return _le().then(()=>{ inj20(); }); }; window.__v2.loadE2020=loadE2020; let n=0; const t=setInterval(()=>{ if(inj20()||++n>400){ clearInterval(t); if(n<=400) try{ drawNat(); }catch(_){} } },300); }
 { const _aa16=areaAt; areaAt=function(ll){ const a=_aa16(ll); if(0&&a&&a.kind==="county"&&a.d[0]==="Alaska"&&!state.value) return {kind:"sum",st:"Alaska",d:["Alaska",(NAT||[]).filter(d=>d.st==="Alaska").map(d=>d.polys).flat()]}; return a; }; }
 // Local type removed (towns come from the bottom geography field)
 { const b=lrow.querySelector(".lbtn[data-k=towns]"); if(b) b.remove(); if(ltype==="towns") setType("ushouse"); }
@@ -2801,8 +2833,10 @@ window.__usdist=function(k,rows){ DS[k]=decRows(rows); }; window.__DS=DS; window
 window.__uscd=function(rows){ DS.ushouse=decRows(rows); CD=DS.ushouse; };
 function loadDS(k){ if(!TFILE[k]) return Promise.resolve(); return DSL[k]||(DSL[k]=new Promise(r=>{ const s=document.createElement("script"); s.src="data/"+TFILE[k]+"?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
 natTypeOn=function(){ return !!TFILE[ltype]; };
-drawCD=function(){ cdGroup.clearLayers(); if(!plotting()||!natTypeOn()) return; const k=ltype; loadDS(k).then(()=>{ if(ltype!==k||!DS[k]||!plotting()) return; cdGroup.clearLayers();
-  const w=k==="ushouse"?1.6:1.1, m0=ym(), has0=d=>m0==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m0]; DS[k].slice().sort((x,y)=>(has0(x)?1:0)-(has0(y)?1:0)).forEach(d=>{ { const l=L.polygon(natLL(d),{renderer:typeRenderer,pane:"typePane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:w,interactive:false}); l.__d=d; l.addTo(cdGroup); } }); restyleType(); }); };
+drawCD=function(){ if(!plotting()||!natTypeOn()){ cdGroup.clearLayers(); return; } const k=ltype; if(cdGroup.__k!==k) cdGroup.clearLayers(); loadDS(k).then(()=>{ if(ltype!==k||!DS[k]||!plotting()) return;
+  const w=k==="ushouse"?1.6:1.1, m0=ym(), has0=d=>m0==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m0], order=DS[k].slice().sort((x,y)=>(has0(x)?1:0)-(has0(y)?1:0));
+  { const ls=cdGroup.getLayers(); if(cdGroup.__k===k&&ls.length===order.length&&ls.every((l,i)=>l.__d===order[i])){ ls.forEach(l=>{ const f=cdFill(l.__d); if(l.options.fillColor!==f) l.setStyle({fillColor:f}); }); restyleType(); return; } } /* build 1564: same shapes in the same order -> recolour in place */
+  cdGroup.clearLayers(); cdGroup.__k=k; order.forEach(d=>{ { const l=L.polygon(natLL(d),{renderer:typeRenderer,pane:"typePane",fill:true,fillColor:cdFill(d),fillOpacity:0.75,color:"#1c1917",weight:w,interactive:false}); l.__d=d; l.addTo(cdGroup); } }); restyleType(); }); };
 function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1]&&ll.lat<=q[3]&&d.polys.some(p=>{ let ins=false; const r0=p[0]; for(let i=0,j=r0.length-1;i<r0.length;j=i++){ const [xi,yi]=r0[i],[xj,yj]=r0[j]; if(((yi>ll.lat)!==(yj>ll.lat))&&(ll.lng<(xj-xi)*(ll.lat-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }); }
 { const _aa18=areaAt; areaAt=function(ll){ let a=_aa18(ll); if(a&&a.kind==="natcd"&&(a.tk||"ushouse")===ltype) return a; if(a&&a.kind==="natcd") a=null; if(!natTypeOn()) return a; const k=ltype; if(!DS[k]) return a; if(a&&a.kind!=="county"&&a.kind!=="sum"&&a.kind!==k&&!(a.kind==="precinct"&&!window.__autoP)) return a;
   const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys,,,d.est],cd:d}:(a&&a.kind==="county"?null:a); }; }
@@ -2945,7 +2979,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
 { const ATTR={type:"search",inputmode:"search",enterkeyhint:"search",autocomplete:"off",autocorrect:"off",autocapitalize:"off",spellcheck:"false"};
   const prep=el=>{ if(el.__ios) return; el.__ios=1; if(el.tagName==="INPUT"&&!/checkbox|radio|range|button/.test(el.type)){ for(const k in ATTR) el.setAttribute(k,ATTR[k]); el.style.fontSize="max(16px, 1em)"; } };
   const all=()=>document.querySelectorAll("input,select,textarea");
-  new MutationObserver(()=>all().forEach(prep)).observe(document.body,{childList:true,subtree:true}); all().forEach(prep);
+  new MutationObserver(ms=>{ if(window.__lvOnly&&window.__lvOnly(ms)) return; all().forEach(prep); }).observe(document.body,{childList:true,subtree:true}); all().forEach(prep);
   document.querySelectorAll("form").forEach(f=>{ f.addEventListener("submit",e=>e.preventDefault()); });
   document.addEventListener("focusin",e=>{ const t=e.target; if(!t.matches||!t.matches("input:not([type=checkbox]):not([type=range]),textarea")) return;
     all().forEach(el=>{ if(el!==t&&!el.disabled){ el.__tmpDis=1; el.setAttribute("tabindex","-1"); if(el.tagName==="SELECT"||el.offsetParent===null) el.disabled=true; } }); });
@@ -3016,7 +3050,7 @@ document.addEventListener("input",e=>{ const inp=e.target; if(!inp||!inp.closest
 
 // ===== keep Safari accessory bar away: legacy controls never focusable =====
 { const kill=()=>document.querySelectorAll("select, #q, input[type=checkbox]:not(.sheet input), textarea").forEach(el=>{ if(el.closest(".sheet")) return; el.disabled=true; el.tabIndex=-1; el.setAttribute("aria-hidden","true"); });
-  kill(); new MutationObserver(kill).observe(document.body,{childList:true,subtree:true}); }
+  kill(); new MutationObserver(ms=>{ if(window.__lvOnly&&window.__lvOnly(ms)) return; kill(); }).observe(document.body,{childList:true,subtree:true}); }
 
 // ===== fuzzy-then-exact search (universal search, geo field, org filter) =====
 { const TYPEW=new Set(["county","city","town","township","twp","village","borough","boro","district","districts","school","schools","state","precinct","cdp","parish","census","area","municipality"]);
@@ -3160,9 +3194,9 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   const sync=()=>{ const w=vis();
     try{ if(B().contains("foldfs")){ const g=$("barGeo").getBoundingClientRect(); const fr=document.querySelector(".folds .lvrow"), rr=fr&&fr.getBoundingClientRect(); document.documentElement.style.setProperty("--bbTop",(rr&&rr.height>0&&rr.top>=g.bottom-1&&rr.top<g.bottom+80?Math.round(rr.top+rr.height/2-11):Math.round(g.bottom+2))+"px"); } }catch(e){}
     // list view: chevron centred on the left icon column (x) and on the chart button (time row expanded) or the clock button (collapsed) centre line (y); glyph = the round buttons' glyph size
-    try{ if(w&&!B().contains("foldfs")){ const ds=document.documentElement.style, tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), exp=tb&&tb.classList.contains("on"), ref=exp&&cb&&cb.getBoundingClientRect().height>0?cb:tb;
+    try{ if(w&&!B().contains("foldfs")){ const ds0=document.documentElement.style, ds={setProperty:(k,v)=>{ if(ds0.getPropertyValue(k)!==v) ds0.setProperty(k,v); }}, /* build 1564: unchanged values are not re-set (no style invalidation every 100ms) */ tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), exp=tb&&tb.classList.contains("on"), ref=exp&&cb&&cb.getBoundingClientRect().height>0?cb:tb;
         if(ref){ const gc=window.__glyphCy&&window.__glyphCy(); if(gc!=null) ds.setProperty("--bbCy",gc+"px"); }
-        const ic=[...document.querySelectorAll("body.lathumb #laCands .lact img, body.lathumb #laCands .lact .lacn"),...document.querySelectorAll("#listView .lvrow.la img")].find(i=>i.offsetParent&&i.getBoundingClientRect().width>0); if(ic){ const r=ic.getBoundingClientRect(); const icx=r.left+r.width/2, sal=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sal"))||0, gw=(document.querySelector("#bBack svg")||{getBoundingClientRect:()=>({width:17})}).getBoundingClientRect().width||17; /* half-way from the icon column centre to the screen edge, glyph kept >= 10px from the (safe-area) edge; the 44px target may overhang */ ds.setProperty("--bbCx",(Math.round(Math.max(sal+10+gw/2,icx-(icx-sal)/2)*2)/2)+"px"); }
+        const icF=L=>{ for(const i of L){ if(i.offsetParent&&i.getBoundingClientRect().width>0) return i; } return null; }, ic=icF(document.querySelectorAll("body.lathumb #laCands .lact img, body.lathumb #laCands .lact .lacn"))||(()=>{ const lv=$("listView"); if(!lv) return null; return icF([...lv.querySelectorAll(".lvrow.la:nth-child(-n+6) img")]); })(); /* build 1564: first visible icon without spreading all 436 rows every 100ms */ if(ic){ const r=ic.getBoundingClientRect(); const icx=r.left+r.width/2, sal=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sal"))||0, gw=(document.querySelector("#bBack svg")||{getBoundingClientRect:()=>({width:17})}).getBoundingClientRect().width||17; /* half-way from the icon column centre to the screen edge, glyph kept >= 10px from the (safe-area) edge; the 44px target may overhang */ ds.setProperty("--bbCx",(Math.round(Math.max(sal+10+gw/2,icx-(icx-sal)/2)*2)/2)+"px"); }
         const g=document.querySelector("#bTime svg"); if(g){ const r=g.getBoundingClientRect(); if(r.width>0) ds.setProperty("--bbG",(Math.round(r.width*2)/2)+"px"); } } }catch(e){}
     B().toggle("canback",w);
     if(w&&!sentinel&&!ign){ try{ history.pushState({fl:1},"",location.href); sentinel=1; }catch(_){} }
@@ -3336,7 +3370,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(!state.value&&LA.dc){ const nn=ltype==="schools"?"school districts":"wards"; return {id:"dcdist",label:"List all "+nn+" in District of Columbia",noun:nn}; }
     if(!state.value){ if(ltype==="ushouse") return {id:"districts",nat:true,label:"List all US House districts",noun:"US House districts"}; return {id:"states",label:"List all states",noun:"states"}; }
     if(hier.dist) return {id:"precincts",label:"List all precincts",noun:"precincts"};
-    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]&&dtier()){ if(!county.value) return {id:"counties",dt:true,label:"List all counties",noun:"counties"}; return {id:"districts",dt:true,label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())+" in "+county.value,noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; }
+    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]&&dtier()){ if(!county.value) return {id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; /* build 1564: a state lists its own school / state house / state senate districts ('Pennsylvania school districts'), not its counties */ return {id:"districts",dt:true,label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())+" in "+county.value,noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; }
     if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?null:{id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())};
     if(county.value) return {id:"townships",label:"List all townships",noun:"townships"};
     return {id:"counties",label:"List all counties",noun:"counties"}; }
@@ -3456,18 +3490,21 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   // ---- list rendering ----
   function dTot(a){ const yrs=yrsNow(); if(yrs.length<2) return 0; const v=vals(a,yrs[yrs.length-1]), v0=vals(a,"2020"); if(!v||!v0) return 0; const pr=parts(v), q=parts(v0), t=v.tot||1, t0=v0.tot||1; let s=0; ["rep","dem","oth"].forEach(k=>{ s+=Math.abs(numMode==="pct"?((pr[k]/t)-(q[k]/t0))*100:pr[k]-q[k]); }); return s; }
   function setDlen(){ try{ const g=document.querySelector("#listView .lvgrid"); if(!g||!(g.classList.contains("dl")||g.querySelector(".lnw,.sbw.ab"))) return; const n=g.querySelector(".lvrow.la .net")||g.querySelector(".lvrow.la b.rn"); if(!n) return; const L=colLeft()-6; const bl=n.getBoundingClientRect().right+8; if(!isFinite(L)) return; const v=Math.max(60,Math.floor(L-bl)); if(g.style.getPropertyValue("--dlen")!==v+"px") g.style.setProperty("--dlen",v+"px"); }catch(e){} }
-  function fitLabels(){ try{ document.querySelectorAll("#listView .sbw.dl .sg b").forEach(b=>{ const s=b.parentElement.getBoundingClientRect(), pl=parseFloat(getComputedStyle(b).marginLeft)||0; const fits=b.getBoundingClientRect().width+pl+3<=s.width; if(!fits) b.style.visibility="hidden"; else if(b.style.visibility==="hidden"&&!b.__clamp) b.style.visibility=""; }); }catch(e){} }
+  function fitLabels(){ try{ const lv=document.getElementById("listView"), vr=lv&&lv.getBoundingClientRect(); if(!vr) return; const near=new Map(); document.querySelectorAll("#listView .sbw.dl .sg b").forEach(b=>{ const row=b.closest(".lvrow")||b; let ok=near.get(row); if(ok===undefined){ const r=row.getBoundingClientRect(); ok=!(r.bottom<vr.top-150||r.top>vr.bottom+150); near.set(row,ok); } if(!ok) return; /* build 1564: rows near the viewport only (scroll re-runs it) */ const s=b.parentElement.getBoundingClientRect(), pl=parseFloat(getComputedStyle(b).marginLeft)||0; const fits=b.getBoundingClientRect().width+pl+3<=s.width; if(!fits) b.style.visibility="hidden"; else if(b.style.visibility==="hidden"&&!b.__clamp) b.style.visibility=""; }); }catch(e){} }
   /* value labels inside bar segments never sit under the floating button column: shift left of it inside their own segment, hide when they cannot fit (no layout change: transform/visibility only) */
   function colLeft(){ let L=Infinity; document.querySelectorAll(".rail .rbtn,#bGeo,#bGlobe,#bNum,#bLyr,#bTime,#bSearch,.xrow .lbtn,#barTime .rbtn,#bChart").forEach(b=>{ const r=b.getBoundingClientRect(); if(r.width>0&&r.height>0&&getComputedStyle(b).display!=="none"&&r.left>innerWidth*0.5&&r.left<L) L=r.left; }); return L; }
   /* build 1563: the name column is the longest name in the list (max 84px, ellipsis beyond; no minimum); the CSS adds a 6px gap after it */
-  function fitNames(g){ try{ if(!g||g.classList.contains("dl")) return; let m=0; const rg=document.createRange(); g.querySelectorAll(".lvrow.la.cmp b.rn .nmx").forEach(n=>{ rg.selectNodeContents(n); const w=rg.getBoundingClientRect().width; if(w>m) m=w; }); if(!m) return; const w=Math.min(84,Math.ceil(m))+"px"; if(g.style.getPropertyValue("--rnw")!==w) g.style.setProperty("--rnw",w); }catch(e){} }
+  const __fnCx=document.createElement("canvas").getContext("2d");
+  function fitNames(g){ try{ if(!g||g.classList.contains("dl")) return; let m=0; const ns=g.querySelectorAll(".lvrow.la.cmp b.rn .nmx"); if(!ns.length) return; /* build 1564: canvas text widths (no layout of the off-screen rows) */
+      const cs=getComputedStyle(ns[0]), ls=parseFloat(cs.letterSpacing)||0; __fnCx.font=cs.fontStyle+" "+cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily; ns.forEach(n=>{ const t=n.textContent, w=__fnCx.measureText(t).width+ls*t.length; if(w>m) m=w; }); if(!m) return; const w=Math.min(84,Math.ceil(m))+"px"; if(g.style.getPropertyValue("--rnw")!==w) g.style.setProperty("--rnw",w); }catch(e){} }
   /* build 1563: bar-segment value labels. Fit-or-hide: a label shows only when it fits completely inside its segment (% and # modes, any segment).
      A floating button is an obstacle only for the rows it overlaps vertically: there the label shifts left inside its own segment, or hides if it cannot clear it.
      Estimated rows (b.rn.est) prefix the first visible value with '≈' (class estp, drawn by CSS). Batched: all reads, then all writes; rows near the viewport only. */
   function colRects(){ const o=[]; document.querySelectorAll(".rail .rbtn,#bGeo,#bGlobe,#bNum,#bLyr,#bTime,#bSearch,.xrow .lbtn,#barTime .rbtn,#bChart,.tlab:not([hidden])").forEach(b=>{ const r=b.getBoundingClientRect(); if(r.width>0&&r.height>0&&r.left>innerWidth*0.5&&getComputedStyle(b).display!=="none") o.push(r); }); return o; }
   function clampLabels(){ try{ const lv=document.getElementById("listView"); if(!lv) return; const ws=lv.querySelectorAll(".sbw:not(.dl)"); if(!ws.length) return; const ob=colRects(), vr=lv.getBoundingClientRect(), plan=[], est=[];
-      ws.forEach(w0=>{ const isE=!!(w0.parentElement&&w0.parentElement.querySelector("b.rn.est")), bs=[...w0.querySelectorAll(".sg b")]; if(!bs.length) return; const first=bs.find(b=>b.textContent);
-        const wr=w0.getBoundingClientRect(); if(wr.bottom<vr.top-150||wr.top>vr.bottom+150){ if(isE&&first&&!w0.querySelector("b.estp")) est.push([bs,first]); return; } /* off-screen: default '≈' on the first value, refined when it scrolls into view */ const ESW=isE?8:0; /* the '≈' prefix is ~8px of the label's width */
+      ws.forEach(w0=>{ const row=w0.parentElement||w0, wr=row.getBoundingClientRect(), far=wr.bottom<vr.top-150||wr.top>vr.bottom+150; /* build 1564: the row box, not the label, so rows whose content is skipped (content-visibility) are not laid out */
+        if(far&&row.__estChk) return; const isE=!!(w0.parentElement&&w0.parentElement.querySelector("b.rn.est")), bs=[...w0.querySelectorAll(".sg b")]; if(!bs.length) return; const first=bs.find(b=>b.textContent);
+        if(far){ row.__estChk=1; if(isE&&first&&!w0.querySelector("b.estp")) est.push([bs,first]); return; } /* off-screen: default '≈' on the first value, refined when it scrolls into view */ const ESW=isE?8:0; /* the '≈' prefix is ~8px of the label's width */
         let pre=null;
         bs.forEach(b=>{ const s=b.parentElement.getBoundingClientRect(); if(!s.width||!b.textContent){ plan.push([b,"hidden",""]); return; }
           const pl=(parseFloat(getComputedStyle(b.parentElement).paddingLeft)||0)+(parseFloat(getComputedStyle(b).marginLeft)||0), has=b.classList.contains("estp"), ow=Math.max(b.offsetWidth,b.scrollWidth), w=(isE&&!pre)?(has?ow:ow+ESW):(has?ow-ESW:ow); /* width with the '≈' only for the label that will carry it */
@@ -3508,7 +3545,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       lvw.addEventListener("pointerout",e=>{ if(e.pointerType!=="mouse") return; const o=cut(e.target); if(o&&!(e.relatedTarget&&o.rn.contains(e.relatedTarget))){ try{ hideBub(); }catch(_){} } }); } }
   function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const dl=g.classList.contains("dl"), cmp=!!r.closest(".lvrow.cmp"); /* single-year chart rows: name text at x=52 = the top fields' text (the thumbnail column ends at 50) */ const d=(dl?44:52)+(document.body.classList.contains("lathumb")&&(dl||!cmp)?46:0)-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
   window.addEventListener("resize",()=>{ if(LA.on) setTimeout(()=>{ alignRows(); setDlen(); clampLabels(); fitLabels(); },60); });
-  function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); computeAgg(); drawMap();
+  function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); if(!LA.__noMap){ computeAgg(); drawMap(); } LA.__noMap=0; /* build 1564: a sort flip changes no map colour: skip the aggregate + map redraw */
     LA.sc=null; if(ym()!=="delta"){ try{ LA.sc=sortCand(ym()); }catch(e){} } { const k=[LA.sc&&LA.sc.id,numMode,ym(),scopeK()].join("|"); if(LA.skey!==undefined&&LA.skey!==k) LA.sort="desc"; LA.skey=k; } /* a new sort key (answer, %/#, year, list) starts high→low */
     nounSync();
     const rows=LA.items.map(a=>{ let s=null; try{ s=sortVal(a); }catch(e){} return {a,s}; }); const dir=LA.sort==="asc"?1:-1;
@@ -3517,14 +3554,32 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     document.body.classList.toggle("lasorthide",rows.filter(r=>r.s!=null).length<2); if(rows.filter(r=>r.s!=null).length<2){ const spp=document.getElementById("laSortPop"); if(spp) spp.hidden=true; }
     /* never reset the scroll position on a re-render: rows are built off-screen first; identical content leaves the DOM (and scrollTop) untouched, changed content is swapped in the same frame with scrollTop restored (a new list scope starts at the top) */
     const head="<div class='lvhead'>"+esc(t32(fmtN(LA.items.length)+" "+LA.noun))+"</div><div class='lvgrid'></div>", scope=[LA.lv&&LA.lv.id,LA.parent,state.value,county.value,ltype].join("|"), keepTop=lv.__laScope===scope?lv.scrollTop:0;
+    if(LA.__flip){ LA.__flip=0; const g0=lv.querySelector(".lvgrid"), n=Math.min(rows.length,2500); /* build 1564: sort flip = same rows, new order: move the existing row nodes, paint, then re-fit labels after the paint */
+      if(g0&&n&&lv.__laScope===scope&&lv.__laHead===head&&g0.children.length===n){ const M=new Map(); for(const el of g0.children){ if(!el.__a||el.__k===undefined) break; M.set(el.__a,el); }
+        const els=M.size===n?rows.slice(0,n).map(({a})=>M.get(a)):null; if(els&&els.every(Boolean)){ g0.replaceChildren(...els); lv.__laKey=head+"\u0001"+els.map(e=>e.__k).join("\u0001");
+          cancelAnimationFrame(LA.__fitRaf); LA.__fitRaf=requestAnimationFrame(()=>{ const f=()=>{ if(!LA.on) return; laThumbs(); place(); alignRows(); setDlen(); clampLabels(); fitLabels(); }; if(window.requestIdleCallback) requestIdleCallback(f,{timeout:120}); else setTimeout(f,40); }); return; /* next idle after the paint */ } } }
     LA.lr=null; if(window.chartMode==="line"&&yrsNow().length>1){ let lo=1e9,hi=-1e9; rows.forEach(({a})=>{ try{ const v1=vals(a,"2024"), v0=vals(a,"2020"); if(!v1||!v0) return; const p1=parts(v1), p0=parts(v0); ["rep","dem"].forEach(k=>{ [p1[k]/(v1.tot||1)*100,p0[k]/(v0.tot||1)*100].forEach(x=>{ if(x<lo) lo=x; if(x>hi) hi=x; }); }); }catch(e){} }); if(hi>lo) LA.lr=[Math.max(0,lo-2),Math.min(100,hi+2)]; }
     LA.tmax=0; if(yrsNow().length===1&&numMode!=="pct") rows.forEach(({a})=>{ try{ const v=vals(a,yrsNow()[0]); if(v&&v.tot>LA.tmax) LA.tmax=v.tot; }catch(e){} }); /* # mode: bar length = row total on one common scale */
     LA.dmax=0; if(yrsNow().length>1&&window.__topicOn&&window.__topicOn()) rows.forEach(({a})=>{ try{ const t=dTot(a); if(t>LA.dmax) LA.dmax=t; }catch(e){} });
-    const els=rows.slice(0,2500).map(({a})=>{ const el=document.createElement("div"); el.className="lvrow la"+(LA.selK&&kOf(a)===LA.selK&&LA.selScope===scopeK()?" lasel":""); el.__a=a; try{ el.innerHTML=rowHtml(a); if(el.querySelector(".sbw,.lnw,.pwr")) el.classList.add("cmp"); }catch(e){ el.innerHTML="<b class='rn'><span class='oic'></span>"+esc(t32(String(aname(a))))+"</b>"; } return el; });
-    const key=head+"\u0001"+els.map(e=>e.className+"|"+e.innerHTML).join("\u0001");
+    /* build 1564: rows are built as strings (one parse for the whole list instead of 436 element innerHTMLs), the change check compares strings, and a
+       list whose rows are the same but in a new order (sort flip) just moves the existing row nodes -> tap-to-paint ~350ms -> under 100ms at 4x throttle */
+    const CMP=/class=['"](?:[^'"]*\s)?(?:sbw|lnw|pwr)[\s'"]/;
+    const R2=rows.slice(0,2500).map(({a})=>{ let cls="lvrow la"+(LA.selK&&kOf(a)===LA.selK&&LA.selScope===scopeK()?" lasel":""), h; try{ h=rowHtml(a); if(CMP.test(h)) cls+=" cmp"; }catch(e){ h="<b class='rn'><span class='oic'></span>"+esc(t32(String(aname(a))))+"</b>"; } return {a,cls,h,k:cls+"|"+h}; });
+    const key=head+"\u0001"+R2.map(x=>x.k).join("\u0001");
     if(lv.__laKey===key&&lv.querySelector(".lvrow.la")){ restyle(); place(); laThumbs(); alignRows(); setDlen(); clampLabels(); return; }
-    lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw","84px"); /* build 1551: narrower name column, longer bars; a cut-off name shows its full text in a bubble */
-    g.classList.toggle("dl",yrsNow().length>1); els.forEach(el=>g.append(el)); fitNames(g);
+    { const g0=lv.querySelector(".lvgrid"); if(g0&&lv.__laScope===scope&&lv.__laHead===head&&R2.length&&g0.children.length===R2.length&&g0.classList.contains("dl")===(yrsNow().length>1)){
+        /* build 1564: same list, new values (year, %/#, answer): keep the row nodes, put them in the new order, refill the rows on screen now and the
+           off-screen rest (content-visibility skips them anyway) in idle slices */
+        const M=new Map(); for(const el of g0.children){ if(!el.__a||el.__k===undefined){ M.clear(); break; } M.set(el.__a,el); }
+        if(M.size===R2.length&&R2.every(x=>M.has(x.a))){ const els=R2.map(x=>M.get(x.a)), f0=g0.firstElementChild, rh=Math.max(12,(f0&&f0.getBoundingClientRect().height)||30), top=lv.scrollTop-(g0.offsetTop||0),
+            i0=Math.max(0,Math.floor(top/rh)-6), i1=Math.min(els.length,i0+Math.ceil(lv.clientHeight/rh)+14), put=i=>{ const el=els[i], x=R2[i]; el.__stale=0; if(el.__k===x.k) return; el.className=x.cls; el.innerHTML=x.h; el.__k=x.k; };
+          g0.replaceChildren(...els); for(let i=i0;i<i1;i++) put(i); const rest=[]; for(let i=0;i<els.length;i++){ if((i<i0||i>=i1)&&els[i].__k!==R2[i].k){ els[i].__stale=1; rest.push(i); } } lv.__laKey=key;
+          const tok=LA.__fillTok=(LA.__fillTok||0)+1, slice=dl=>{ if(tok!==LA.__fillTok) return; const t=performance.now(); while(rest.length&&(performance.now()-t<6||(dl&&dl.didTimeout))) put(rest.shift()); if(rest.length) (window.requestIdleCallback||(f=>setTimeout(f,30)))(slice,{timeout:300}); else { restyle(); clampLabels(); fitLabels(); } };
+          if(rest.length) (window.requestIdleCallback||(f=>setTimeout(f,30)))(slice,{timeout:300});
+          restyle(); place(); try{ renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); return; } } }
+    lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; lv.__laHead=head; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw","84px"); /* build 1551: narrower name column, longer bars; a cut-off name shows its full text in a bubble */
+    g.classList.toggle("dl",yrsNow().length>1); g.innerHTML=R2.map(x=>"<div class='"+x.cls+"'>"+x.h+"</div>").join(""); { let i=0; for(const el of g.children){ const x=R2[i++]; if(x){ el.__a=x.a; el.__k=x.k; } } } fitNames(g);
+    { const r0=g.firstElementChild; if(r0&&r0.classList.contains("lvrow")){ const cs=getComputedStyle(r0), h=r0.getBoundingClientRect().height-(parseFloat(cs.paddingTop)||0)-(parseFloat(cs.paddingBottom)||0)-(parseFloat(cs.borderTopWidth)||0)-(parseFloat(cs.borderBottomWidth)||0); if(h>0) g.style.setProperty("--rh",h.toFixed(1)+"px"); } } /* build 1564: placeholder height for rows whose content is skipped */
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
     if(keepTop) lv.scrollTop=keepTop; else if(lv.scrollTop) lv.scrollTop=0; /* a different list (drill-in, new level/scope) opens at the top; the browser would otherwise keep the old list's offset */
     restyle(); place(); try{ renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
@@ -3546,7 +3601,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(html!==lacKey){ lacBox.innerHTML=html; lacKey=html; }
       const bb=document.getElementById("bBack"), bv=bb&&getComputedStyle(bb).display!=="none"&&bb.getBoundingClientRect().height>0, br=bv&&bb.getBoundingClientRect();
       const tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), ref=tb&&tb.classList.contains("on")&&cb&&cb.getBoundingClientRect().height>0?cb:tb, q=ref&&ref.getBoundingClientRect(), cy=q&&q.height?q.top+q.height/2:(br?br.top+br.height/2:150);
-      let top=Math.round(cy+8.5+6); if(!bv&&q&&q.height){ /* build 1553: no back chevron: the first thumbnail mirrors the clock (time row closed) / chart button (open) across the screen, centre on its centre */ const f=lacBox.querySelector(".lact"), fr=f&&f.getBoundingClientRect(), lr=lacBox.getBoundingClientRect(); const off=fr&&fr.height&&lr.height?(fr.top-lr.top)+fr.height/2:18; top=Math.round(q.top+q.height/2-off); } const bot=($("barBottom")&&$("barBottom").getBoundingClientRect().top)||innerHeight; sSet(lacBox,"top",top+"px"); sSet(lacBox,"maxHeight",Math.max(44,bot-top-4)+"px"); lacBox.hidden=false; }catch(e){} }
+      let top=Math.round(cy+8.5+6); if(!bv&&q&&q.height){ /* build 1553: no back chevron: the first thumbnail mirrors the clock (time row closed) / chart button (open) across the screen, centre on its centre */ const f=lacBox.querySelector(".lact img, .lact .lacn")||lacBox.querySelector(".lact"), fr=f&&f.getBoundingClientRect(), lr=lacBox.getBoundingClientRect(); /* build 1564: the photo (the thumbnail now also holds its badge below) */ const mt=parseFloat(getComputedStyle(lacBox).marginTop)||0, off=fr&&fr.height&&lr.height?(fr.top-(lr.top-mt))+fr.height/2:18; top=Math.round(q.top+q.height/2-off); } const bot=($("barBottom")&&$("barBottom").getBoundingClientRect().top)||innerHeight; sSet(lacBox,"top",top+"px"); sSet(lacBox,"maxHeight",Math.max(44,bot-top-4)+"px"); lacBox.hidden=false; }catch(e){} }
   window.__laThumbs=laThumbs; try{ window.__PHOTO=PHOTO; }catch(e){} setInterval(()=>{ try{ laThumbs(); }catch(e){} },500);
   setTimeout(()=>{ const _lp=window.__laPick; if(typeof _lp!=="function") return; window.__laPick=function(a){ try{ if(a&&LA.on){ LA.selK=kOf(a); LA.selScope=scopeK(); } }catch(e){} const r=_lp.apply(this,arguments); setTimeout(()=>{ try{ if(LA.on) render(); laThumbs(); }catch(e){} },80); return r; }; },0);
   const _rl=renderList; renderList=function(){ if(LA.on) render(); else if(LA.pend) return; else _rl(); };
@@ -3589,7 +3644,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   /* one tap flips the direction at once (no menu); a small text bubble names the new direction for ~1.8s (overlay, no fade, no layout shift) */
   const bub=document.createElement("div"); bub.id="laSortBub"; bub.hidden=true; document.body.append(bub); let bubT=0;
   { const c=document.createElement("style"); c.textContent="#laSortBub{position:fixed;z-index:1003;padding:4px 8px;background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.25);font:600 11px/1.2 system-ui,sans-serif;color:#111;white-space:nowrap;pointer-events:none} #laSortBub[hidden]{display:none} body.foldfs #laSortBub{display:none!important}"; document.head.append(c); }
-  sb.addEventListener("click",e=>{ e.stopPropagation(); sp.hidden=true; LA.sort=LA.sort==="asc"?"desc":"asc"; LA.sig=sig(); render(); place(); bub.textContent=LA.sort==="asc"?"Low to high":"High to low"; bub.hidden=false; clearTimeout(bubT); bubT=setTimeout(()=>{ bub.hidden=true; },2000); }); /* build 1560: tap flips the sort -> bubble goes after 2 s */
+  sb.addEventListener("click",e=>{ e.stopPropagation(); sp.hidden=true; LA.sort=LA.sort==="asc"?"desc":"asc"; LA.sig=sig(); LA.__noMap=1; LA.__flip=1; render(); LA.__flip=0; bub.textContent=LA.sort==="asc"?"Low to high":"High to low"; bub.hidden=false; clearTimeout(bubT); bubT=setTimeout(()=>{ bub.hidden=true; },2000); }); /* build 1560: tap flips the sort -> bubble goes after 2 s */
   sp.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LA.sort=b.dataset.s; sp.hidden=true; LA.sig=sig(); render(); });
   document.addEventListener("pointerdown",e=>{ if(!sp.hidden&&!sp.contains(e.target)&&e.target!==sb&&!sb.contains(e.target)) sp.hidden=true; });
   function place(){ const t=$("barTime"), anchor=(t&&!t.hidden)?t:$("barGeo"); const r=anchor.getBoundingClientRect(); const gap=parseFloat(getComputedStyle($("barGeo")).gap)||8; const btn=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--btn"))||44;
@@ -3626,11 +3681,13 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     exit(); tomap();
     if(it){ if(it.pick){ it.pick(); return; } if(it.drill){ hier.dist=it.d; drawDist(); zoomItem(it.kind,it.d); crumbs(); return; } const c=zoomItem(it.kind,it.d); if(it.kind==="towns"||a.kind==="towns"){ try{ const lbl=nm+(ABBR[state.value]?", "+ABBR[state.value]:""), gq=$("gq"); gq.placeholder=lbl; gq.title=lbl; nameLock=lbl; window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; window.__selAt=Date.now(); }catch(e){} } setTimeout(()=>showArea({kind:it.kind==="precinct"?"precinct":it.kind,d:it.d,yr:ym()==="2020"?"2020":"2024"},c),350); return; }
     if(a.kind==="state"||typeof a.d==="string") navTo(String(a.d||nm)); }catch(e){ try{ console.error(e); }catch(_){} } };
+  /* build 1564: a tapped row shades at once (the drill-in's data load + zoom take longer; the press shows the tap landed) */
+  const press=r=>{ try{ r.classList.add("lapress"); clearTimeout(r.__prT); r.__prT=setTimeout(()=>r.classList.remove("lapress"),1500); }catch(e){} };
   { let ty=null,tx=0,done=0; const lvEl=()=>document.getElementById("listView");
     const hit=e=>{ if(e.target.closest&&e.target.closest("[data-party]")) return null; const r=e.target.closest&&e.target.closest(".lvrow.la"); return r&&r.__a?r:null; };
     document.addEventListener("touchstart",e=>{ const r=hit(e); ty=r?e.touches[0].clientY:null; tx=r?e.touches[0].clientX:0; },{passive:true,capture:true});
-    document.addEventListener("touchend",e=>{ const r=hit(e); if(!r||ty===null) return; const t=e.changedTouches[0]; const m=Math.abs(t.clientY-ty)+Math.abs(t.clientX-tx); ty=null; if(m>10) return; done=Date.now(); window.__laPick(r.__a); },{passive:true,capture:true});
-    document.addEventListener("click",e=>{ const r=hit(e); if(!r||Date.now()-done<600) return; e.stopPropagation(); window.__laPick(r.__a); },true); }
+    document.addEventListener("touchend",e=>{ const r=hit(e); if(!r||ty===null) return; const t=e.changedTouches[0]; const m=Math.abs(t.clientY-ty)+Math.abs(t.clientX-tx); ty=null; if(m>10) return; done=Date.now(); press(r); window.__laPick(r.__a); },{passive:true,capture:true});
+    document.addEventListener("click",e=>{ const r=hit(e); if(!r||Date.now()-done<600) return; e.stopPropagation(); press(r); window.__laPick(r.__a); },true); }
   window.__laEnsureRow=ensureRow;
   // ===== blank topic = no results: gate every results block on the topic synchronously (class set in __setTopic, no render-then-clear flash) =====
   { const css=document.createElement("style"); css.textContent="body.notopic .cands, body.notopic .cpanel, body.notopic .dmx, body.notopic .dlx, body.notopic .heatlegend, body.notopic #chartLg, body.notopic #lshift, body.notopic #partyBub { display: none !important; }"; document.head.append(css);
@@ -3767,6 +3824,10 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
 })();
 
 // ===== boundary color rule: WHITE when data shading is plotted, BLACK when only boundaries are viewed (no topic / no answers / no plot). Applied at draw time to every canvas boundary stroke; switches instantly (no fades) =====
+/* build 1564: right after a tap, map recolours (setStyle/add/remove) are drawn one frame later, so the tap's list/control change paints first.
+   Pan/zoom redraws (_updatePaths -> _redraw) are not affected. */
+(function(){ const _rq=L.Canvas.prototype._requestRedraw; L.Canvas.prototype._requestRedraw=function(layer){ if(!this._map) return; if(!(window.__quietLeft&&window.__quietLeft()>0)) return _rq.call(this,layer);
+    this._extendRedrawBounds(layer); if(this._redrawRequest) return; this._redrawRequest=L.Util.requestAnimFrame(()=>{ setTimeout(()=>{ if(this._map) this._redraw(); else this._redrawRequest=null; },0); }); }; })();
 (function(){ const BC=new Set(["#fff","#ffffff","#1c1917","#1f2937","#57534e"]);
   const shown=()=>{ try{ return !!(plotting()&&(!window.__topicOn||window.__topicOn())&&heatSel().m!=="none"); }catch(e){ return true; } };
   window.__boundShown=shown;
@@ -3805,11 +3866,10 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   content: ""; position: absolute; z-index: -1; pointer-events: none;
   left: calc(var(--gx, 50%) - var(--gw, 26px) / 2); top: calc(var(--gy, 50%) - var(--gh, 26px) / 2);
   width: var(--gw, 26px); height: var(--gh, 26px); box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.18) 55%, rgba(255,255,255,.24) 100%);
-  -webkit-backdrop-filter: blur(14px) saturate(185%); backdrop-filter: blur(14px) saturate(185%);
+  background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.14) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.12); backdrop-filter: blur(14px) saturate(180%) brightness(1.12); /* build 1564: the blurred backdrop lightens, not grays */
   border: 0.5px solid rgba(255,255,255,.75);
   box-shadow: inset 0 1px 0.5px rgba(255,255,255,.95),   /* top bevel highlight */
-              inset 0 -1px 1px rgba(0,0,0,.07),           /* bottom bevel */
               0 0 0 0.5px rgba(0,0,0,.07),                /* hairline edge on light rows */
               0 2px 8px rgba(0,0,0,.13), 0 1px 2px rgba(0,0,0,.08); /* soft lift */
 }
@@ -3832,20 +3892,20 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
    shaded = selected/active (.on, #bLyr.typed): darker smoky glass, white 1.5px outline, white glyph.
    :is() carries the strongest selector's specificity (#barTime #bTime), so it beats the app's own id/!important rules. */
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) {
-  background: linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.18) 55%, rgba(255,255,255,.24) 100%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(185%); backdrop-filter: blur(14px) saturate(185%);
+  background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.14) 100%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.12); backdrop-filter: blur(14px) saturate(180%) brightness(1.12); /* build 1564: the blurred backdrop lightens, not grays */
   border: 1.5px solid rgba(0,0,0,.75) !important; border-width: 1.5px !important;
-  box-shadow: inset 0 1px 0.5px rgba(255,255,255,.9), inset 0 -1px 1px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.14), 0 1px 2px rgba(0,0,0,.08) !important;
+  box-shadow: inset 0 1px 0.5px rgba(255,255,255,.9), 0 2px 8px rgba(0,0,0,.14), 0 1px 2px rgba(0,0,0,.08) !important;
   color: #111 !important;
 }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) svg { stroke: #111 !important; }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) svg text,
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) svg .f { fill: #111 !important; }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) {
-  background: linear-gradient(180deg, rgba(22,22,26,.72) 0%, rgba(0,0,0,.80) 100%) !important;   /* v2 was rgba(40,40,44,.50) -> rgba(0,0,0,.58) */
+  background: linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.92) 100%) !important;   /* build 1564: near-black, no gray tint (1563: rgba(22,22,26,.72) -> rgba(0,0,0,.80) read medium gray on iPhone) */
   -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%);
   border: 1.5px solid rgba(255,255,255,.95) !important; border-width: 1.5px !important;
-  box-shadow: inset 0 1px 0.5px rgba(255,255,255,.30), inset 0 -1px 1px rgba(0,0,0,.30), 0 2px 8px rgba(0,0,0,.26), 0 1px 2px rgba(0,0,0,.14) !important;
+  box-shadow: inset 0 1px 0.5px rgba(255,255,255,.34), inset 0 -1px 1px rgba(0,0,0,.30), 0 2px 8px rgba(0,0,0,.26), 0 1px 2px rgba(0,0,0,.14) !important;
   color: #fff !important;
 }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) svg { stroke: #fff !important; }
@@ -3867,7 +3927,7 @@ body:not(.foldfs) #crumbs .crumb.cur { max-width: var(--crmax, calc(100vw - 120p
 body:not(.foldfs) #crumbs { padding-right: 0; } /* the crumbs box already ends 8px before the button; its extra button-wide padding cut the text ~56px early */
 #barBottom .grow:not(:focus-within) #gq { text-overflow: ellipsis; }
 /* build 1563: the district-type label (one, above the selected type button) is dark like the selected glass; other bubbles stay white */
-html body .tlab { background: rgba(0,0,0,.80); color: #fff; border-color: rgba(255,255,255,.35); }
+html body .tlab { background: rgba(0,0,0,.90); color: #fff; border-color: rgba(255,255,255,.35); }
 html body .tlab svg text { fill: #fff !important; }
 /* build 1563: single-entity bar chart (one bar per answer) at the top of the content area, aligned like the list rows */
 .cpanel .sebar { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -3885,6 +3945,16 @@ html body .tlab svg text { fill: #fff !important; }
 #laCands { z-index: 1004 !important; padding-right: 40px; box-sizing: content-box; pointer-events: none; }
 #laCands .lact { pointer-events: auto; }
 #laCands .lact .cpt { z-index: 2; left: auto; right: 0; background: #fff !important; color: #111; max-width: none; overflow: visible; } /* right-aligned to the thumbnail column: % badges sit where they did, long # badges grow left under the photo instead of over the row names */
+/* build 1564: off-screen list rows skip layout and paint (content-visibility); a placeholder keeps the scroll height, then each row remembers its real size */
+#listView .lvgrid > .lvrow.la{content-visibility:auto;contain-intrinsic-size:auto var(--rh,23px)}
+#listView .lvgrid > .lvrow.la.lapress{background:rgba(0,0,0,.10)!important;transition:none!important}
+/* build 1564: list thumbnails fully visible. #laCands scrolls (overflow-y:auto also clips x), so the 2px ring and long '#' badges were cut at its
+   edges, and '3.46M' badges ran over the photo and the next thumbnail. Now: 4px inner padding on every side (box moved 4px up/left, so the photos
+   stay where they were), each thumbnail is photo + ring + its badge centred BELOW the photo inside the 42px column (never over the face, never into
+   the 52px name column), and the thumbnails are spaced so the badge fits before the next one. */
+#laCands { left: calc(4px + var(--sal, 0px)) !important; padding: 4px 40px 4px 4px !important; margin-top: -4px; gap: 5px !important; }
+#laCands .lact { height: 47px !important; width: 42px !important; }
+#laCands .lact .cpt { left: 19px !important; right: auto !important; top: 34px !important; transform: translateX(-50%); }
 </style>
 </body>
 </html>

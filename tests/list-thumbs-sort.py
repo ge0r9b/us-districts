@@ -49,4 +49,37 @@ async def main():
     ck(all(x['photos']==0 for x in r),"change bars: no per-row photos")
     ck(not er,"no page errors",er[:2])
     await b.close()
-asyncio.run(main()); print("FAILS",len(F)); sys.exit(1 if F else 0)
+# build 1564: thumbnails fully visible with their full 2px ring; badges entirely visible, below the photo (not on the face), clear of the
+# next thumbnail and of the row names -- PA US House districts, % and # mode, at 390 / 375 / 320 px phones and iPad.
+FIT="""()=>{const C=document.getElementById('laCands'),cr=C.getBoundingClientRect(),cl={l:cr.left+C.clientLeft,t:cr.top+C.clientTop,r:cr.left+C.clientLeft+C.clientWidth,b:cr.top+C.clientTop+C.clientHeight};
+ const nm=[...document.querySelectorAll('#listView .lvrow.la b.rn .nmx')].filter(n=>n.offsetParent).map(n=>{const g=document.createRange();g.selectNodeContents(n);return g.getBoundingClientRect().left}); const nameL=Math.min(...nm);
+ const th=[...C.querySelectorAll('.lact')].filter(e=>e.offsetParent).map(e=>{const i=e.querySelector('img,.lacn').getBoundingClientRect(),b=e.querySelector('.cpt'),q=b.getBoundingClientRect();
+   const hit=(x,y)=>{const h=document.elementFromPoint(x,y);return !!h&&e.contains(h)}; /* badge is pointer-events:none: the topmost hit must be its own thumbnail */
+   return {t:b.textContent,ring:[i.left-2,i.top-2,i.right+2,i.bottom+2],bd:[q.left,q.top,q.right,q.bottom],vis:b.textContent?[hit(q.left+1,q.top+1),hit(q.right-1,q.top+1),hit(q.left+1,q.bottom-1),hit(q.right-1,q.bottom-1)].every(Boolean):true}});
+ return {cl,nameL,th,W:innerWidth}}"""
+async def fit(b):
+  for W,H,mob in ((390,844,True),(375,667,True),(320,568,True),(1024,768,False)):
+    c=await b.new_context(viewport={'width':W,'height':H},device_scale_factor=3 if mob else 2,is_mobile=mob,has_touch=True); pg=await c.new_page()
+    await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+    await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1500)
+    await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(5000)
+    await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>r.querySelector('.nmx').textContent==='PA').click()"); await pg.wait_for_timeout(6000)
+    await pg.evaluate("()=>{ if(document.getElementById('lyrRow').hidden) document.getElementById('bLyr').click() }"); await pg.wait_for_timeout(700)
+    await pg.evaluate("()=>{const b=document.querySelector('#lyrRow .lbtn[data-k=ushouse]'); if(!b.classList.contains('on')) b.click()}"); await pg.wait_for_timeout(2500)
+    await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1500)
+    await pg.evaluate("()=>document.querySelector('#sheet li.la-row').click()"); await pg.wait_for_timeout(5000)
+    for m in ('pct','num'):
+      await pg.evaluate("m=>window.__setNum(m)",m); await pg.wait_for_timeout(1800)
+      f=await pg.evaluate(FIT); th=f['th']; cl=f['cl']; tag=f"thumbs {W}px {m}"
+      ck(len(th)>=2 and all(x['t'] for x in th),f"{tag}: {len(th)} thumbnails with badges {[x['t'] for x in th]}",f)
+      ck(all(x['ring'][0]>=max(0,cl['l'])-0.01 and x['ring'][1]>=cl['t']-0.01 and x['ring'][2]<=cl['r']+0.01 and x['ring'][3]<=cl['b']+0.01 for x in th),f"{tag}: every photo + its 2px ring inside the visible column (nothing clipped at the screen/list edge)",f)
+      ck(all(x['bd'][0]>=max(0,cl['l'])-0.01 and x['bd'][2]<=cl['r']+0.01 and x['bd'][3]<=cl['b']+0.01 and x['vis'] for x in th),f"{tag}: every badge entirely visible (on top, unclipped)",f)
+      ck(all(x['bd'][1]>=x['ring'][3]-0.5 for x in th),f"{tag}: badges sit below the photo (not over the face)",f)
+      ck(all(a['bd'][3]<=b2['ring'][1]-1 for a,b2 in zip(th,th[1:])),f"{tag}: a badge ends before the next thumbnail",f)
+      ck(all(x['bd'][2]<=f['nameL']-2 and x['ring'][2]<=f['nameL']-2 for x in th),f"{tag}: thumbnails and badges clear of the row names (x<{f['nameL']:.0f})",f)
+      if W==390 and m=='num': await pg.screenshot(path='/workspace/thumbs-fixed-num.png',clip={'x':0,'y':100,'width':390,'height':230})
+    await c.close()
+async def fitmain():
+  async with async_playwright() as p:
+    b=await p.chromium.launch(); await fit(b); await b.close()
+asyncio.run(main()); asyncio.run(fitmain()); print("FAILS",len(F)); sys.exit(1 if F else 0)

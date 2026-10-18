@@ -1,4 +1,4 @@
-# t241/t242/t244/t245: list view + a district type selected lists districts, never the consolidated total. US House nationwide (435), other types: states list then drill into the state's districts. Map mode unchanged.
+# t241/t242/t244/t245: list view + a district type selected lists districts, never the consolidated total. US House nationwide (435), other types: states list then drill into the state's districts (build 1564: straight to the state's district list). Map mode unchanged.
 import asyncio,sys
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -19,10 +19,8 @@ async def run(b,tag,vp,mobile):
       s=await pg.evaluate(S); ck(tag+" tap AL-01 -> Alabama's US House list (7 districts)",s['st']=='Alabama' and s['la'] and s['rows']==7,s)
     else:
       await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>{const b=r.querySelector('b.rn'); return b&&/Alabama/.test(b.title||b.textContent)}).click()"); await pg.wait_for_timeout(7000)
-      s=await pg.evaluate(S); ck(tag+" tap Alabama -> Alabama's counties (state -> counties -> districts), type %s kept"%k,s['st']=='Alabama' and s['la'] and s['rows']==67 and s['lt']==k,s)
-      await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>{const b=r.querySelector('b.rn'); return b&&/Mobile/.test(b.title||b.textContent)}).click()"); await pg.wait_for_timeout(7000)
-      s=await pg.evaluate(S); n={"senate":1,"statehouse":1,"schools":3}[k]
-      ck(tag+" tap Mobile County -> its %s (>=%d rows), same list view"%(k,n),s['la'] and s['rows']>=n and s['lt']==k and s['view']=='list',s)
+      s=await pg.evaluate(S); n,noun={"senate":(35,"state senate districts"),"statehouse":(105,"state house districts"),"schools":(100,"school districts")}[k]
+      ck(tag+" tap Alabama -> Alabama's own %s list (build 1564: a state lists its districts, not its counties), type kept"%noun,s['st']=='Alabama' and s['la'] and s['rows']>=n and noun in (s['head'] or '') and s['lt']==k and not s['cons'],s)
     # map mode unchanged: switching to the map leaves no list-all and the map visible
     await pg.evaluate("()=>window.__v2.setView('map')"); await pg.wait_for_timeout(1500); s=await pg.evaluate(S)
     ck(tag+" %s: map mode shows the map (no list overlay)"%k,s['view']=='map' and s['lay']!='hidden',s)

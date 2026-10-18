@@ -44,7 +44,7 @@ async def phone(b,W=430,H=932):
     await openRow(pg); L=await pg.evaluate(LABS); r=await pg.evaluate(RECT,k)
     ck("phone %d, %s selected + row open: exactly one label '%s'"%(W,k,EXP[k]),len(L)==1 and L[0]['t']==EXP[k] and L[0]['k']==k,L)
     lb=L[0] if L else None
-    ck("phone %d, %s label: dark smoky fill, white text, single line 10px, takes no taps"%(W,k),lb and lb['bg']=='rgba(0, 0, 0, 0.8)' and lb['col']=='rgb(255, 255, 255)' and lb['lines']==1 and lb['fs']==10 and lb['pe']=='none',lb)
+    ck("phone %d, %s label: near-black fill, white text, single line 10px, takes no taps"%(W,k),lb and lb['bg']=='rgba(0, 0, 0, 0.9)' and lb['col']=='rgb(255, 255, 255)' and lb['lines']==1 and lb['fs']==10 and lb['pe']=='none',lb)
     ck("phone %d, %s label centred above its button, ~4px gap"%(W,k),lb and abs((lb['l']+lb['r'])/2-r['x'])<=1 and 3<=r['top']-lb['b']<=5 and lb['l']>=0 and lb['r']<=W,[lb,r])
     if k=='ushouse' and W==390: await pg.screenshot(path="/workspace/glass-built-typelabel-local.png")
     await closeRow(pg)

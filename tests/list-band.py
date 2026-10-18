@@ -9,7 +9,7 @@ F=[]
 def ck(c,m,x=None): print(("OK   " if c else "FAIL ")+m+("" if c else " "+json.dumps(x)[:500])); (None if c else F.append(m))
 M="""()=>{const q=s=>{const e=document.querySelector(s); if(!e) return null; const r=e.getBoundingClientRect(); return r.height>0&&getComputedStyle(e).display!=='none'?{t:r.top,b:r.bottom,l:r.left,r:r.right,c:r.top+r.height/2}:null};
  const cr=[...document.querySelectorAll('#crumbs .crumb.cur')].pop();
- return {row:q('#listView .lvrow.la'),sort:q('#laSort svg'),back:q('#bBack svg'),backBtn:q('#bBack'),time:q('#bTime'),chart:q('button.rbtn.cmain'),th:q('#laCands .lact'),bar:q('#barTime'),open:!document.getElementById('barTime').hidden,crumb:cr&&cr.textContent,noun:cr&&cr.getAttribute('data-noun')}}"""
+ return {row:q('#listView .lvrow.la'),sort:q('#laSort svg'),back:q('#bBack svg'),backBtn:q('#bBack'),time:q('#bTime'),chart:q('button.rbtn.cmain'),th:q('#laCands .lact img, #laCands .lact .lacn'),bar:q('#barTime'),open:!document.getElementById('barTime').hidden,crumb:cr&&cr.textContent,noun:cr&&cr.getAttribute('data-noun')}}"""
 def sgl(w): w=''.join(ch for ch in (w or '').lower() if ch.isalpha()); w=w[:-3]+'y' if w.endswith('ies') else w; return w[:-1] if w.endswith('s') else w
 async def main():
   async with async_playwright() as p:
