@@ -78,6 +78,8 @@ SOURCE_COLS = ['source_id', 'source', 'source_url', 'license', 'retrieved_at', '
 # Full Stack ruling 6: set only from each licence's own text ('' = the licence text does not say, or there is no licence)
 LICENCE_FLAGS = [  # (source_id slug prefix, non_commercial, attribution_required, basis)
  ('ec-', 'false', 'true', 'OGL - Canada 2.0: "including for commercial purposes"; "Acknowledge the source"'),
+ ('isc-', 'false', 'true', 'OGL - Canada 2.0 (ISC open data): "including for commercial purposes"; "Acknowledge the source"'),
+ ('nrcan-', 'false', 'true', 'OGL - Canada 2.0 (NRCan CLSS open data): "including for commercial purposes"; "Acknowledge the source"'),
  ('statcan-', 'false', 'true', 'Statistics Canada Open Licence: "use ... or sell"; Acknowledgment of Source notice'),
  ('geonb-', 'false', 'true', 'OGL - New Brunswick: "including for commercial purposes"; "acknowledge the source"'),
  ('ebc-', 'false', 'true', 'Elections BC Open Data Licence v1.0: "including for commercial purposes"; attribution statement required'),

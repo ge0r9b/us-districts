@@ -43,4 +43,5 @@ R6 values (licence texts read 2026-10-18):
    `relation=part`, `overlap=split` with both shares ≈ population-weighted for Flin Flon / Lloydminster (docs/v3 5e561f6, applied).
 9. RULED: kind `indigenous_government`, ids `first_nation:ca-<band number>`, reserve / settlement / land `ca_csd` units linked by
    `entity_unit` role `reserve_of`, from an official band list + official reserve-to-band relation only. Entities built (638);
-   reserve_of links not made: the ISC relation has no CSDUID and no official reserve -> CSD crosswalk is available (CANADA_PLAN.md).
+   reserve_of: no official reserve -> CSD file exists, so Full Stack ruled (b): NRCan AL_TA x StatCan 2021 CSD equal-area overlay,
+   50% of CSD or reserve, all rows ≈ `method=overlay`; 1,092 links, rest in gaps_ca_reserve_overlay.csv (CANADA_PLAN.md).

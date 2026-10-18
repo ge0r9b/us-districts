@@ -56,7 +56,39 @@ indigenous_government,band_without_reserve,band:773,Gameti First Nation: no rese
 indigenous_government,band_without_reserve,band:774,Dechi Laot'i First Nations: no reserve in the ISC First Nation - reserve relation,isc-first-nation-reserve-6f6146a1
 indigenous_government,band_without_reserve,band:780,Inuvik Native: no reserve in the ISC First Nation - reserve relation,isc-first-nation-reserve-6f6146a1
 indigenous_government,band_without_reserve,band:88,Montagnais de Pakua Shipi: no reserve in the ISC First Nation - reserve relation,isc-first-nation-reserve-6f6146a1
-indigenous_government,reserve_csd_crosswalk_missing,all,ISC relation gives the ISC reserve number (ADMIN_LAND_ID = NRCan CLSS ALCODE) but no StatCan CSDUID; no official reserve -> CSD crosswalk on the box (StatCan 2021 First Nation/Indian band geography correspondence files are on www12.statcan.gc.ca); entity_unit reserve_of links not made; names are not matched,isc-first-nation-reserve-6f6146a1
+indigenous_government,fn_csd_without_band,csd:2485803,Hunter's Point (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:2485804,Winneway (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:2489802,Kitcisakik (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:2498802,Pakuashipi (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:3558076,Aroland (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:3560081,Lansdowne House (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:3560086,Summer Beaver (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:3560091,Peawanuck (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4622064,Ilford (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4623039,Granville Lake (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4623040,O-Pipon-Na-Piwin Cree Nation 1 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4718825,Brabant Lake (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4817854,Carcajou 187 (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:4817855,Desmarais (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5909848,Tipella 7 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5915802,Tsawwassen (TWL): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923803,Anacla 12 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923804,Clakamucus 2 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923805,Elhlateese 2 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923807,Ittatsoo 1 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923809,Numukamis 1 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923810,Macoah 1 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5923814,Sachsa 4 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5924806,Houpsitas 6 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5924813,Village Island 1 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5927802,Sliammon 1 (TAL): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5933803,Hamilton Creek 2 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5941838,Puntzi Lake 2 (IRI): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5957804,Good Hope Lake (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:5957813,Lower Post (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:6001019,Kloo Lake (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,fn_csd_without_band,csd:6001038,Champagne Landing 10 (S-É): no ISC reserve overlaps this 2021 CSD >= 50%; no reserve_of link,nrcan-al-ta-ca-071b8003;statcan-lcsd-2021-16ce580c
+indigenous_government,reserve_of_by_overlay,all,"no official ISC reserve number -> CSDUID crosswalk (StatCan 2021 correspondence files: DB / DA only); reserve_of links are an equal-area overlay (method=overlay, ≈), threshold 50% of CSD or reserve; 361 below-threshold overlaps and 2270 no_csd reserves in gaps_ca_reserve_overlay.csv",nrcan-al-ta-ca-071b8003;isc-first-nation-reserve-6f6146a1
 indigenous_government,shared_reserve,reserve:00017,"LILLOOET NO. 1A: held by 2 bands (590,593)",isc-first-nation-reserve-6f6146a1
 indigenous_government,shared_reserve,reserve:06027,"THE BROTHERS NO. 18: held by 4 bands (6,11,16,17)",isc-first-nation-reserve-6f6146a1
 indigenous_government,shared_reserve,reserve:06033,"FRANKLIN MANOR NO. 22 (PART): held by 2 bands (19,24)",isc-first-nation-reserve-6f6146a1

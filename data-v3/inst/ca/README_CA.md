@@ -13,8 +13,9 @@ Schema: CANADA_SCHEMA_PROPOSALS.md (Full Stack rulings R1-R6 accepted and applie
 | `entity_geoid_xwalk_ca.csv` | 3,547 | entity -> `ca_csd` / `ca_cd` unit, columns of `entity_geoid_xwalk.csv` + `is_estimate`, `share_basis`; Flin Flon / Lloydminster: 4 rows `relation=part`, `overlap=split`, both shares ≈ population-weighted (92-151-X block population); all other rows `primary` / `equal` / 1.0000 |
 | `statcan_types_ca.csv` | 78 | every StatCan CSD type (57) and CD type x province, with class, count and the quoted StatCan basis |
 | `entities_ca_indigenous.csv` | 638 | `first_nation:ca-<band number>`, kind `indigenous_government` (ISC band list), parent from the ISC location point (flagged) |
-| `first_nation_reserves_ca.csv` | 3,543 | ISC First Nation - reserve relation (band, ISC reserve number, names, bands_sharing); `csd_unit_key` empty until an official crosswalk exists |
-| `entity_unit_ca.csv` | 0 | `entity_id, boundary_set, unit_type, unit_key, role (reserve_of), source_id, source_record_id, flags`; empty: no official reserve -> CSD crosswalk |
+| `first_nation_reserves_ca.csv` | 3,543 | ISC First Nation - reserve relation (band, ISC reserve number, names, bands_sharing); kept as is (`csd_unit_key` empty; links are in `entity_unit_ca.csv`) |
+| `entity_unit_ca.csv` | 1,092 | `entity_id, boundary_set, unit_type, unit_key, role (reserve_of), method (overlay), share_of_geoid_in_entity, share_of_entity_in_geoid, is_estimate, share_basis, source_id, source_record_id (isc_reserve_no=), flags`; all ≈, NRCan AL_TA x StatCan 2021 CSD equal-area overlay, 50% rule |
+| `gaps_ca_reserve_overlay.csv` | 2,631 | 361 below-threshold reserve x CSD overlaps + 2,270 `no_csd` reserves |
 | `entities_ca_provincial.csv` | 13 | `chamber:ca-<iso>-legislature` (parent `province:ca-*` / `territory:ca-*`) |
 | `boundary_sets_ca.csv` | 26 | one row per boundary set: `boundary_set, country, province, unit_type, vintage, is_current, source_id` (`is_current` unique per country + province + unit_type; province empty for Canada-wide sets) |
 | `units_ca_fed.csv` | 681 | FEDs: `ec-2023-fed` 343, `ec-2013-fed` 338 |

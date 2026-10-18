@@ -63,7 +63,7 @@ Appendix A / B titles); `statcan_types_ca.csv` lists every type with its class, 
 - CD governments: MRC, RD, RM, UC, DM and Ontario CTY (geo008: legislated "group of neighbouring municipalities joined together for
   ... regional planning and managing common services"). CDR / TER are StatCan creations; NB CT, NS / PE CTY, ON DIS, REG and QC TÉ = gap.
 
-## First Nations governments (ruled; entities built, reserve links pending)
+## First Nations governments (ruled; reserve_of links by equal-area overlay)
 
 Full Stack ruled kind `indigenous_government`, ids `first_nation:ca-<band number>`, links `entity_unit` role `reserve_of` from the
 reserve / settlement / land `ca_csd` units. Built from ISC "First Nations Location" (OGL-Canada, open.canada.ca
@@ -71,7 +71,17 @@ b6567c5c-8339-4055-99fa-63f92114d9e4; browser download 2026-10-18, data.sac-isc.
 - `entities_ca_indigenous.csv`: 638 bands. Parent = province / territory of the StatCan 2021 CSD polygon containing the ISC band
   location point (all 638 fall in exactly one; flag `parent_from:isc_location_in_statcan_csd_2021`), else `nation:ca`.
 - `first_nation_reserves_ca.csv`: the ISC First Nation - reserve relation, 3,543 band x reserve rows (3,329 ISC reserves, 56 shared).
-- `entity_unit_ca.csv`: 0 rows. The relation gives the ISC reserve number (ADMIN_LAND_ID, = NRCan CLSS ALCODE) but no StatCan
-  CSDUID, and no official reserve -> CSD crosswalk is on the box. Names are never matched. Options for Full Stack: (a) StatCan 2021
-  First Nation/Indian band geography correspondence files (www12.statcan.gc.ca, browser download); (b) a geometry overlay of the
-  CLSS reserve polygons (AL_TA_CA_SHP_DCM_eng.zip, on the box, ALCODE) with lcsd000b21a_e, as an estimate needing a ruling.
+- `entity_unit_ca.csv`: 1,092 `reserve_of` rows, all ≈ (`method=overlay`, `is_estimate=true`). Full Stack ruling: (a) an official
+  StatCan 2021 reserve number -> CSDUID file was searched for and not found (StatCan 2021 correspondence files cover dissemination
+  blocks / areas only; ISC's CWB thematic data is keyed by CSDUID with names only), so (b): NRCan CLSS Aboriginal Lands polygons
+  (AL_TA_CA_SHP_DCM_eng.zip edition 2.189, CONFIRMED + MODIFIED + ADDED; ALCODE = ISC reserve number; source `nrcan-al-ta-ca`)
+  overlaid on the 1,028 StatCan 2021 CSDs of the eight First Nations types (IRI, S-É, IGD, TC, TK, NL, TWL, TAL), areas in Canada
+  Albers Equal Area (ESRI:102001). A reserve is linked to a CSD iff intersection / CSD area >= 0.5 ("the CSD is at least 50% inside
+  the reserve") or intersection / reserve area >= 0.5 ("the reserve is at least 50% in the CSD"). One row per band x CSD (a shared
+  reserve gives one row per band; several reserves of one band in one CSD are merged, record ids joined, areas summed);
+  `share_of_geoid_in_entity` = share of the CSD inside the reserve(s), `share_of_entity_in_geoid` = share of the reserve(s) inside the
+  CSD; `source_record_id` = `isc_reserve_no=<ALCODE>`. Bands without a reserve get no rows; names are never matched.
+- `gaps_ca_reserve_overlay.csv`: 361 below-threshold overlaps (not linked) + 2,270 reserves flagged `no_csd` (no 2021 First
+  Nations-type CSD overlaps >= 50%; mostly uninhabited reserves StatCan does not delineate as CSDs). They are never mapped to a parent
+  CSD. `first_nation_reserves_ca.csv` is kept unchanged. 1,059 distinct reserves linked; 996 of the 1,028 First Nations CSDs are
+  linked to at least one band (32 not, gap `fn_csd_without_band`: S-É 17, IRI 13, TWL 1, TAL 1).
