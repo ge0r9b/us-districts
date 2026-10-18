@@ -898,3 +898,72 @@ Baseline: `data/geo` a0c2262 (`tools/inst_audit.py`): 2024 gray school districts
 **Data discrepancy, logged:** Columbia County OR certified Harris/Trump is 12,895 / 17,227, but `data/election2024.js` (v1, not edited) has 12,865 / 17,184. The estimates are scaled to the v1 numbers (0.2 % lower). This should be reported to the Election Data lane.
 
 `v2/data/ussch.js` 4750432 → 4750567 bytes. Report: `data-v3/inst/fix3_report.json`.
+
+## Institutions lane, fix 4: Alaska and Maine school districts (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+### Alaska (`tools/inst_ak_schools.py`)
+
+Build 1533 rejected area-weighting for Alaska because a town sits inside a huge, nearly empty precinct. This fix places votes by **people** instead of by area. Rules:
+- Each district is the TIGER 2024 UNSD polygon at full resolution.
+- People are counted with Census 2020 P.L. 94-171 block population (`tl_2020_02_tabblock20`, block internal points; public domain).
+- Every precinct with more than 3 % of its population inside the district must have at least 97 % of its population inside it.
+- Those precincts together must hold at least 97 % of the district's population.
+- The district value is then the sum of those precincts. It comes from the app's own `data/precincts2024/Alaska.js` (official Division of Elections precinct results) or `data/precincts2020/Alaska.js` (VEST 2020).
+- Every result is still marked ≈. The precinct figures include absentee, early and question ballots, which the Division reports by House district and which were spread to precincts.
+- Results must also pass the 2020/2024 consistency rule: turnout ratio 0.7–1.4 and Republican share within 12 points.
+- Existing ≈ values are replaced only when they differ from the precinct sum by more than 3 % (or 2 points of Republican share). Exact rows are never overwritten.
+
+**4a, filled or corrected (all ≈):**
+
+| District | 2024 before → after | 2020 before → after |
+|---|---|---|
+| Kashunamiut (Chevak) | gray → 88 / 53 / 161 | gray → 123 / 80 / 211 |
+| Tanana City | gray → 100 / 23 / 123 | gray → 83 / 22 / 106 |
+| Yupiit (Akiachak, Akiak, Tuluksak) | 6 / 5 / 13 → 182 / 155 / 406 | gray → 214 / 153 / 405 |
+| Galena City | 1 / 0 / 1 → 125 / 98 / 228 | gray → 112 / 90 / 225 |
+| Unalaska City | 33 / 41 / 75 → 344 / 426 / 783 | gray → 478 / 489 / 989 |
+| Haines Borough | 952 / 802 / 1,878 → 907 / 791 / 1,820 | 1,019 / 708 / 1,779 → 968 / 700 / 1,715 |
+| Juneau Borough | (kept, within 3 %) | 10,610 / 6,208 / 17,464 → 11,414 / 6,588 / 18,671 |
+
+Another 18 borough-wide 2024 ≈ values (Anchorage, Mat-Su, Fairbanks and others) were confirmed within 3 % by the precinct sums and left unchanged.
+
+**4b, grayed (separate commit, can be dropped):** these ≈ values had more votes than the district's whole 2020 population, and no precinct sum confirms them:
+- Aleutian Region 2024 735 and 2020 1,098 (population 498)
+- Southeast Island 2024 2,421 and 2020 1,794 (population 1,512)
+- Chatham 2024 1,450 and 2020 2,566 (population 1,336)
+- Chugach 2020 955 (population 508)
+
+Alaska's voter rolls run high: Skagway and Denali reach about 80 % of population and match their precinct sums. So the bar is set at 100 %.
+
+**Still gray, and why:**
+- **Klawock City** (precinct 64 % / 90 % inside in 2024 / 2020), **Nenana City** (56 % / 58 %), **Pelican City** (74 % / 77 %), and in 2020 **Dillingham City** (96 %), **Hoonah City** (94 %), **Nome** (93 %) and **St. Marys City** (83 %): the town precinct also holds people outside the city district, so the precinct is not the district.
+- **Hydaburg City** and **Kake City**: the precinct sums exist (Hydaburg 204 in 2024 vs 135 in 2020; Kake 370 vs 241). The 2024/2020 turnout ratio (1.51 and 1.54) fails the consistency rule, and the Division's own 2024 precinct file could not be fetched to check (elections.alaska.gov returns 403 to the box). Both years were kept gray.
+- **Aleutian Region:** the precinct sums (27 in 2024 vs 109 in 2020) fail the consistency rule.
+- **Valdez City 2020:** the precinct sum of 2,068 vs 2024's ≈ 1,339 fails the consistency rule, so the old ≈ value was kept.
+- **Not overwritten, flagged for the Election Data lane:** Lower Kuskokwim and Pribilof hold unflagged (exact) values that differ from their precinct sums. Lower Kuskokwim is 3,045 vs 3,509 in 2024 and 4,752 vs 4,347 in 2020. Pribilof is 111 vs 165 in 2024.
+
+### Maine: no fill. Units are reported combined.
+
+The official SOS return, "U.S. President by County/Town" (`elec_20241105a.xlsx`, Dec 2024, via lldc.mainelegislature.org /Open/Elections/Returns/2024/20241105/), reports unorganized townships combined with a town. Examples:
+- `Albion/Unity Twp` (Kennebec UT)
+- `Bristol/Louds Island Twp` (Louds Island UT)
+- `Guilford/Kingsbury Plt` (Kingsbury Plantation)
+- the `<Town>/Twps` units in Franklin, Hancock, Penobscot, Piscataquis and Somerset. These units do not list which townships they include.
+
+No 2024 figure can be split out without estimating. The v2 row format has no note field the app renders: the flag slot only takes `est`, `e24`, `e20` and `cty`. So a "reported with <town>" note would need app code, which is not zero-cost. Following the ruling, the rows stay gray. The notes are recorded here:
+
+| District (2024 gray) | Reported with (official 2024 unit) |
+|---|---|
+| Kingsbury Plantation | Guilford/Kingsbury Plt |
+| Kennebec Unorganized Territory | Albion/Unity Twp |
+| Louds Island Unorganized Territory | Bristol/Louds Island Twp |
+| School Administrative District 41 | its towns are reported in Milo/Orneville Twp, Brownville/Twps and Lagrange/Orneville Twp, which also contain townships outside the district |
+| Franklin, Hancock, Penobscot, Piscataquis, Somerset UT | partly in separate township units, partly inside `<Town>/Twps` units with an unlisted township list |
+| Oxford UT | Albany Township, Bethel/Mason Twp, Woodstock/Milton Twp, and others not listed |
+| Indian Island (Penobscot Nation) | not a separate unit in the SOS return |
+| Lincoln UT, Knox UT | no separate unit in the SOS return |
+| Sagadahoc UT | no votes in either year |
+
+**Sizes / load cost:** `v2/data/ussch.js` was 4,750,567 bytes before 4a, 4,750,647 after 4a and 4,750,557 after 4b. Gzip -9 went 1,584,092 → 1,584,128 → 1,584,078. That is under 0.01 %, with no new requests. Reports: `data-v3/inst/fix4_ak_report.json` (74 KB) and `fix4b_ak_implausible.json` (2 KB). These are not loaded by the app.
+
+Sources: Census 2020 TIGER/Line tabblock20 (sha256 in `inst-raw/fix4/ak/SHA256SUMS`), TIGER 2024 UNSD, Alaska Division of Elections via `data/precincts2024/Alaska.js`, VEST 2020 AK (CC BY 4.0), and the Maine SOS 2024 president by town workbook.
