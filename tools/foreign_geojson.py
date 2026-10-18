@@ -228,10 +228,10 @@ def de_up(l, n, parent):
     L = cget("de_load"); S = cget("de_simpl"); ks = [d["ARS"] for d in L["GA"]]; m = collections.defaultdict(list)
     for i, k in enumerate(ks): m[k[:n]].append(i)
     A, G = L[l]; D = dissolve("de_" + l, m, S, [L["GG"][k] for k in ks], G); ar = L[l + "_area"]
-    write("de_%s_2026" % l, [(d["ARS"], {"ars": d["ARS"], "ags": d["AGS"], "name": d["GEN"], "type": d["BEZ"], "parent": parent(d["ARS"]), "n_gem": len(m[d["ARS"]]),
+    write("de_%s_2026" % l, [(d["ARS"], {"ars": d["ARS"], "ags": "" if d["AGS"].startswith("-") else d["AGS"], "name": d["GEN"], "type": d["BEZ"], "parent": parent(d["ARS"]), "n_gem": len(m[d["ARS"]]),
                            "area_km2": ar[d["ARS"]]}, D[d["ARS"]], DEC) for d in A])
     W("de_%s.csv" % l, ["code", "ags", "name", "type", "parent", "n_gem", "area_km2"],
-      [[d["ARS"], d["AGS"], d["GEN"], d["BEZ"], parent(d["ARS"]), len(m[d["ARS"]]), ar[d["ARS"]]] for d in A])
+      [[d["ARS"], "" if d["AGS"].startswith("-") else d["AGS"], d["GEN"], d["BEZ"], parent(d["ARS"]), len(m[d["ARS"]]), ar[d["ARS"]]] for d in A])
 def de_vwg(): de_up("vwg", 9, lambda k: k[:5])
 def de_krs(): de_up("krs", 5, lambda k: k[:2])
 def de_lan(): de_up("lan", 2, lambda k: "DE")
