@@ -470,6 +470,24 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **Images:**
     - Agency (`fr:*`) and BIA (`bia:*`) images stay **feed_only**: `entity_id` is null and `feed_entity_id` is set.
     - Hidden fair-use images (`public = false`) must carry licence, attribution and `source_url` (a CHECK enforces it). They may have no Commons file.
+- **Rulings to Institutions (Oct 18, 2026, 15:22 ET): foreign local governments (DE, FR, GB, ...):**
+  - **Ids** are frozen at minting as `<kind>:<cc>-<code at minting>`. Examples: `municipality:de-091620000000`, `municipality:fr-75056`, `county:fr-01`, `submunicipal:fr-comd-77316`.
+    - `gss:`, `de-ars:`, `fr-cog:<level>:` and `fr-siren:` are **feed ids only**. They go to `entity_feed_map` (`feed_id`) and `entity_alias` (`external_id`), never to `entity_id` (a CHECK rejects them).
+    - The **current** code goes in `entity.code_scheme` / `entity.code` (e.g. `de-ars` / `091620000000`, `fr-cog:commune` / `75056`).
+    - If the code changes but it is the same government, the id stays and only `code_scheme`/`code` are updated.
+    - A **new government** (merger, split, new commune) gets a new id plus an `entity_relation` `predecessor` row (`parent_id` = old, `child_id` = new). The same pair goes to `entity_succession`.
+  - **Kinds:** `county`, `municipality`, `local_authority`, `regional_authority`, `intermunicipal`, `submunicipal`, `parish`. Foreign rows of these kinds must have `country`, and their id must start `<kind>:<country>-`.
+    - A **kreisfreie Stadt** is a `municipality` with the flag `county_powers`.
+    - The **FR régions** are councils of kind `regional_authority`. The région **areas** stay `subdivision:<iso>`.
+    - **Regierungsbezirke** and **erfüllende Gemeinde** rows are feed-only: `entity_feed_map.status = 'feed_only'`, with no entity.
+  - **`gov_status`:**
+    - `government`: a body with a council, including indirectly elected ones.
+    - `administrative`: an intermunicipal body with no council.
+    - `dependent`: submunicipal.
+    - `unknown`: parish, until its council status is sourced.
+  - **Guadeloupe and Réunion:** `territory:gp` and `territory:re` stay the area. The département council (`county`) and the région council (`regional_authority`) are child entities (`parent_id` = the territory), and the communes sit under the département council.
+  - **Coverage:** all parishes and all FR sub-municipal units are minted. There are no caps.
+  - **Dates:** `valid_from` is carried with a required `valid_from_source` (a CHECK enforces it whenever `valid_from` is set). The predecessor can stay null; such rows get the flag `predecessor_pending`.
 - **Counts at data/inst-entities 1fde48d:**
   - 57,914 entities, 3,557 relations (`entity_relations.csv`), 5,553 images, 2,925 icons.
   - Kinds: municipality 19,525; township 18,076; school_unified 10,872; **subdivision 3,480**; county 3,080; school_elementary 1,952; school_secondary 481; nation 196; chamber 101 (incl. `us-senate`); territory 52; state 51; court 37; province 10; dc_council 1.

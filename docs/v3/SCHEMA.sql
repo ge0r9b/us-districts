@@ -316,8 +316,10 @@ create table entity (
                   'special_district',                                        -- 'special_district:<st>-<source>-<source_id>', frozen (first 305: tx-tceq)
                   'subdivision',                                             -- foreign first-level subdivisions: 'subdivision:<iso3166-2 lowercase>', frozen, no units
                   'court',                                                   -- 35 state supreme courts + TX/OK courts of criminal appeals
+                  'local_authority','regional_authority','intermunicipal',   -- foreign local government (Oct 18 ruling): county / municipality above
+                  'submunicipal','parish',                                   -- also take foreign rows ('municipality:de-091620000000', 'county:fr-01')
                   'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
-                  'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
+                  'government_other',                                        -- Governments bot leftovers not covered by a specific kind
                   'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
                   'other')),
   state_fips    char(2),
@@ -329,13 +331,19 @@ create table entity (
   name          text not null,                       -- TIGER NAMELSAD
   label         text check (label in ('sovereign','incorporated','unincorporated')),
                                                    -- v2 wording rule: states sovereign; never 'incorporated state'
-  gov_status    text check (gov_status in ('government','area_only','dependent')),  -- CoG 2022; Governments bot independent->government,
-                                                   -- federally_recognized->government (+ meta.recognition='federal')
+  gov_status    text check (gov_status in ('government','area_only','dependent','administrative','unknown')),
+                                                   -- CoG 2022; Governments bot independent->government,
+                                                   -- federally_recognized->government (+ meta.recognition='federal').
+                                                   -- Foreign (Oct 18 ruling): government = body with a council, incl. indirectly
+                                                   -- elected; administrative = intermunicipal body with no council; dependent =
+                                                   -- submunicipal; unknown = parish until its council status is sourced
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
   valid_from    date,                                -- start of the CURRENT form of government, only when a source states it
                                                    -- (TCEQ creation date, Census incorporation date); source in valid_from_source
-  valid_from_source text,                            -- entities.csv valid_from_source
+  valid_from_source text,                            -- entities.csv valid_from_source; required whenever valid_from is set
+  code_scheme   text,                                -- current official code scheme ('de-ars', 'fr-cog:commune', 'gss', 'fr-siren', ...)
+  code          text,                                -- current code in that scheme; may change while entity_id stays frozen
   inception     date,                                -- earliest sourced founding date (Wikidata P571)
   inception_precision text check (inception_precision in ('day','month','year')),   -- year precision stored as YYYY-01-01
   inception_source text,                             -- 'wikidata:P571' / source_id of the statement
@@ -350,7 +358,8 @@ create table entity (
   level         text,                                -- extras: federal / state / county / local
   type          text,                                -- finer type (TIGER LSAD text, 'city'); brands: Wikidata P31 class label
   cog_pid6      text,                                -- CoG 2022 unit id
-  flags         text[],                              -- review flags ('gov_status_unknown:...')
+  flags         text[],                              -- review flags ('gov_status_unknown:...', 'county_powers' = kreisfreie Stadt,
+                                                   -- 'predecessor_pending' = new government whose predecessor link is not sourced yet)
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
   -- World geography: nations are 'nation:<iso2>' lowercase (the existing US row is 'nation:us', 348f410); foreign
   -- dependencies are kind 'territory' with the sovereign nation as parent; provinces have parent 'nation:ca'.
@@ -360,6 +369,16 @@ create table entity (
   check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
   check (kind <> 'special_district' or entity_id ~ '^special_district:[a-z]{2}-[a-z0-9]+-[A-Za-z0-9._-]+$'),
   check (kind <> 'subdivision' or (entity_id ~ '^subdivision:[a-z]{2}-[a-z0-9]{1,3}$' and iso_3166_2 is not null)),
+  -- Foreign local governments (Oct 18 ruling): '<kind>:<cc>-<code at minting>', frozen at minting
+  -- ('municipality:de-091620000000', 'municipality:fr-75056', 'county:fr-01', 'submunicipal:fr-comd-77316').
+  -- A code change for the same government keeps the id (code_scheme/code hold the current code); a new government
+  -- gets a new id plus a 'predecessor' relation. Feed ids (gss:, de-ars:, fr-cog:<level>:, fr-siren:) are never entity ids.
+  check (country is null or country = 'us'
+         or kind not in ('county','municipality','local_authority','regional_authority','intermunicipal','submunicipal','parish')
+         or entity_id ~ ('^' || kind || ':' || country || '-[A-Za-z0-9-]+$')),
+  check (kind not in ('local_authority','regional_authority','intermunicipal','submunicipal','parish') or country is not null),
+  check (entity_id !~ '^(gss|de-ars|fr-cog|fr-siren):'),
+  check (code is null or code_scheme is not null),
   -- Canada: municipality:ca-<CSDUID>, county:ca-<CDUID> (county / regional governments), first_nation:ca-<band number>
   check (country is distinct from 'ca' or kind <> 'municipality' or entity_id ~ '^municipality:ca-[0-9]{7}$'),
   check (country is distinct from 'ca' or kind <> 'county' or entity_id ~ '^county:ca-[0-9]{4}$'),
@@ -381,14 +400,17 @@ create table entity (
                                                    -- seals / flags / logos: entity_image (replaces the old icon_flag column)
   owner_tenant_id bigint not null default 1 references tenant(id),
   meta          jsonb not null default '{}',
-  check (valid_to is null or valid_from is null or valid_to >= valid_from)
+  check (valid_to is null or valid_from is null or valid_to >= valid_from),
+  check (valid_from is null or valid_from_source is not null)
 );
 create index entity_parent on entity (parent_id);
+create index entity_code on entity (country, code_scheme, code);
 create index entity_kind on entity (kind, state_fips);
 create index entity_v2 on entity using gin (v2_key);
 create index entity_name_trgm on entity using gin (lower(name) gin_trgm_ops);
 
 -- Government changes (merger, dissolution, incorporation, CT planning regions): many-to-many.
+-- Mirrors entity_relation relation 'predecessor' (parent_id = predecessor, child_id = successor); both load from the same rows.
 create table entity_succession (
   predecessor_id text not null references entity(entity_id),
   successor_id   text not null references entity(entity_id),
@@ -419,9 +441,10 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county')),
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county','predecessor')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
-                                                   -- city-county's county entity (parent) and its place entity (child)
+                                                   -- city-county's county entity (parent) and its place entity (child);
+                                                   -- predecessor: parent_id = the old government, child_id = the new one
   valid_from    date,
   valid_to      date,
   source_id     text references source(source_id),   -- one source per link (Wikidata)
