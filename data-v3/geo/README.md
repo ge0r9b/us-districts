@@ -178,3 +178,121 @@ The 10 m generalization is a fifth of the 50 m output tolerance; coverage_clean 
 Uncompressed GeoJSON bytes: PR 52,927,419; CD 56,263,142; CSD 67,274,405; FED 2013 55,860,647; FED 2023 58,423,075. Reproducibility
 across two full runs was not re-verified for these files (the CSD file was rebuilt once after a properties change: 18,629,615 →
 18,625,942 bytes, `landarea_km2` now rounded to the source's 4 decimals).
+
+## Germany, BKG VG250 01.01.2026 (`tools/foreign_geojson.py … de`)
+
+Source and licence:
+- Bundesamt für Kartographie und Geodäsie (BKG), **VG250 Verwaltungsgebiete 1:250 000, Ebenen, Stand 01.01.2026**
+  (`vg250_01-01.utm32s.gpkg.ebenen.zip`, published 21 Jul 2026, `DE_VG250.gpkg`, ETRS89 / UTM 32N, EPSG:25832),
+  https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2026/. Edition: the 01.01. one (Gebietsstand 1 January 2026,
+  `dokumentation/aktualitaet.txt` = 01.01.2026); the 31.12.2025 edition is the earlier of the two. Licence **Datenlizenz
+  Deutschland – Namensnennung – Version 2.0** (https://www.govdata.de/dl-de/by-2-0).
+- Required attribution (BKG `nutzungsbedingungen_vg250.pdf`, Quellenvermerk; on a web page link "BKG" to https://www.bkg.bund.de
+  and "dl-de/by-2-0" to https://www.govdata.de/dl-de/by-2-0), plus a change note:
+  `© BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf`
+  — `Geometrie vereinfacht (10 m) und nach WGS84 umprojiziert` (geometry simplified at 10 m and reprojected to WGS84).
+
+| layer | features (official total) | CSV in git (key) | GeoJSON (not in git) | .gz bytes | .gz sha256 |
+|---|---|---|---|---|---|
+| Länder | 16 (16) | `de_lan.csv` (`code` = ARS, 2) | `de_lan_2026.geojson.gz` | 790,807 | `8a1312e4de9eac9c782419342a50fd295c3c379e602bfba6b8c65fd712fcdebf` |
+| Kreise | 401 (294 Landkreise + 107 kreisfreie Städte) | `de_krs.csv` (ARS, 5) | `de_krs_2026.geojson.gz` | 2,780,431 | `7f9c6f5d3a94b9e21e20a971d11916f496b75f4752244ad0b2992c13071ff2c0` |
+| Gemeindeverbände (VWG) | 4,580 (see below) | `de_vwg.csv` (ARS, 9) | `de_vwg_2026.geojson.gz` | 7,112,190 | `2e8e621f484b49c38a714321e8256f4d1561078ef84e1feb8b27c764d375a37d` |
+| Gemeinden | 10,939 = 10,747 Gemeinden (10,747) + 192 gemeindefreie Gebiete | `de_gem.csv` (ARS, 12; `ags` 8) | `de_gem_2026.geojson.gz` | 9,476,294 | `371d70d44a54199f13cf61e77bd8779a233ff61159c10b2be42c41af5fd71f1f` |
+
+CSV columns: `de_gem`: `code` (ARS), `ags`, `name` (GEN), `type` (BEZ: Stadt / Gemeinde / Gemeindefreies Gebiet), `parent_vwg`
+(ARS[:9]), `krs`, `lan`, `area_km2`. `de_vwg` / `de_krs` / `de_lan`: `code`, `ags` (blank for VWG; the source has `--------`), `name`,
+`type` (BEZ), `parent` (KRS for VWG, Land for KRS, `DE`), `n_gem`, `area_km2`.
+
+Counts checked: Gemeinden 10,747 = 2,057 Städte + 8,690 Gemeinden at 1 Jan 2026 (de.wikipedia "Gemeinde (Deutschland)", citing
+Destatis; our BEZ split is the same 2,057 / 8,690); Kreise 294 Landkreise + 107 kreisfreie Städte (de.wikipedia lists of
+Landkreise and kreisfreie Städte, Stand 2026; ours 252 Landkreis + 42 Kreis = 294, 98 Kreisfreie Stadt + 9 Stadtkreis = 107);
+16 Länder. Destatis' own Verwaltungsgliederung tables (31.12.2025 and 2026 quarters) were not reachable from the build box (TLS
+reset) or the fetch tool (timeout), so these totals are verified against secondary sources that cite Destatis, not against the
+Destatis file itself. VWG: VG250 carries every Gemeinde in a VWG unit, so the 4,580 are 1,202 Gemeindeverbände proper (Verwaltungs-
+gemeinschaft 573, Amt 209, Verbandsgemeinde 149, Verwaltungsverband 120, Samtgemeinde 114, Erfüllende Gemeinde 37) plus 3,378
+verband-free units (Einheitsgemeinde 2,084, Gemeinschaftsfreie Gemeinde 987, Amtsfreie Gemeinde 266, Verbandsfreie Gemeinde 41);
+a published national total for Gemeindeverbände was not verified. Gemeindefreie Gebiete: VG250 has 192; de.wikipedia
+"Gemeindefreies Gebiet" counts 194 at 1 Jan 2026 (difference not resolved).
+
+Geometry: land parts only (GF = 4; the 155 GEM / 93 VWG / 33 KRS water parts, GF = 2, of the North Sea, Baltic and Bodensee are
+dropped). Base coverage = the 10,939 Gemeinden, validated per Land (all valid, nothing cleaned), coverage_simplify at **10 m**
+(VG250 is already a 1:250,000 product: 1,908,596 → 1,747,829 vertices, area error 0.0013 %, Hausdorff median 1.1 m, max 6.9 m).
+VWG / KRS / LAN are unions of the simplified Gemeinden by ARS prefix (9 / 5 / 2), so all four layers nest exactly; the
+full-resolution unions equal BKG's own VWG / KRS / LAN polygons (symmetric difference 0.0000 % for every unit, no code missing or
+extra). `area_km2` = geodesic area of the full-resolution GF = 4 polygon (sum of Länder 357,184.67 km²; Destatis' official area
+includes water). Output WGS84, 5 decimals, gzip mtime 0; a rerun of `--stage lan` from the same cache gave the same sha256.
+
+Regenerate (input 64 MB zip, sha256 `6b096eb4862b4eafda9294e425fb5a6d0e7773eb5815a4d4edc78b639ec2728f`, BKG md5
+`912ebecfc58bade695cf31271f4e0e85`):
+
+```
+mkdir -p ../geo-data-raw/vg250 && cd ../geo-data-raw/vg250 && \
+  curl -O https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2026/vg250_01-01.utm32s.gpkg.ebenen.zip && \
+  unzip -o vg250_01-01.utm32s.gpkg.ebenen.zip -d x && cd -
+for s in load base vwg krs lan; do
+  python3 -W ignore tools/foreign_geojson.py . ../geo-data-raw de --out ../geo-data-raw/v3de --stage $s; done
+```
+
+Uncompressed GeoJSON bytes: LAN 2,573,446; KRS 9,195,565; VWG 25,970,089; GEM 36,540,967. Libraries: shapely 2.2.0 / GEOS 3.14.1,
+pyproj 3.8.0, pyogrio 0.13.0 / GDAL 3.12.4. Per-stage numbers in `../geo-data-raw/v3de/report.json`.
+
+## France, IGN ADMIN EXPRESS COG 2026 (`tools/foreign_geojson.py … fr`)
+
+Source and licence:
+- Institut national de l'information géographique et forestière (IGN), **ADMIN EXPRESS COG 4.0, édition 2026-01-01**
+  (INSEE Code officiel géographique **2026**, i.e. 1 January 2026; delivery `1_DONNEES_LIVRAISON_2026-06-00493`, feed updated
+  2026-07-01), the full-precision edition (not COG CARTO), from https://data.geopf.fr/telechargement/resource/ADMIN-EXPRESS-COG.
+  GeoPackages per territory: `ADMIN-EXPRESS-COG_4-0__GPKG_LAMB93_FXX_2026-01-01` (metropolitan France, EPSG:2154) and
+  `…_RGAF09UTM20_GLP`, `…_RGAF09UTM20_MTQ`, `…_UTM22RGFG95_GUF`, `…_RGR92UTM40S_REU`, `…_RGM04UTM38S_MYT` (the five DROM, each in
+  its local UTM CRS), plus `…_RGAF09UTM20_BLM`, `…_RGAF09UTM20_MAF`, `…_RGSPM06U21_SPM` (overseas collectivités).
+  Licence **Licence Ouverte / Open Licence 2.0** (Etalab, https://www.etalab.gouv.fr/licence-ouverte-open-licence).
+- Required attribution (Licence Ouverte: source and date of last update), plus a change note:
+  `Source : IGN – ADMIN EXPRESS COG, édition 2026-01-01 (COG 2026, mise à jour juillet 2026), Licence Ouverte 2.0 — données
+  modifiées (géométrie simplifiée à 20 m, reprojetée en WGS84)`.
+
+| layer | features (official total) | CSV in git (key) | GeoJSON (not in git) | .gz bytes | .gz sha256 |
+|---|---|---|---|---|---|
+| régions | 18 (13 + 5) | `fr_reg.csv` (`code` = INSEE, `siren`) | `fr_reg_2026.geojson.gz` | 1,728,368 | `17b9ba105c4db011213d1a5ff407be49b88ad14ac33cf67a641c1d881bc38a66` |
+| départements | 101 (96 + 5) | `fr_dep.csv` (INSEE, `siren`) | `fr_dep_2026.geojson.gz` | 3,455,906 | `f518230ab22ff341daff96a2befe1801caf0986e36e366d7bf2ecf853535f8de` |
+| EPCI | 1,264 = 1,252 EPCI à fiscalité propre (1,252) + Métropole de Lyon + 11 EPT | `fr_epci.csv` (`code` = SIREN) | `fr_epci_2026.geojson.gz` | 9,804,733 | `40a5f838f44c0ef537589c56075ed44b8c5ef72d9be717a1d48cf38e8126147c` |
+| communes | 34,875 (34,875) | `fr_com.csv` (INSEE, `siren`) | `fr_com_2026.geojson.gz` | 37,567,192 | `2b6a1e18dd8a3a62456acfb149a6f779b6fa50315dc8048b9d32eb0d39e39547` |
+| overseas collectivités BLM, MAF, SPM | 3 | `fr_com_om.csv` (INSEE 977, 978, 975) | `fr_com_om_2026.geojson.gz` | 29,098 | `4c283b1b40d12637ece01ee804521b9e50127e9d4b87cd220d0d6656cf960eba` |
+
+CSV columns: `fr_com`: `code` (INSEE), `siren`, `name`, `type` (IGN `statut`), `parent_dep`, `reg`, `epci_siren` (`/`-separated
+when a commune is in both the Métropole du Grand Paris and an EPT; `NR` for the 4 isolated communes), `zone` (FXX/GLP/MTQ/GUF/REU/MYT),
+`area_km2`. `fr_dep`: `code`, `siren`, `name`, `type`, `parent_reg`, `n_com`, `zone`, `area_km2`. `fr_reg`: same with `parent` = FR.
+`fr_epci`: `code` (SIREN), `name`, `type` (IGN `nature`), `deps` (member départements), `n_com`, `zone`, `area_km2`.
+
+Counts checked: communes 34,875 at 1 Jan 2026 (INSEE, COG 2026 announcement: "34 875 communes" in metropolitan France and the
+DROM; ours 34,746 FXX + 129 DROM); régions 18 and départements 101 (COG 2026); EPCI à fiscalité propre 1,252 (DGCL, BIS n° 206,
+January 2026: 21 métropoles, 14 CU, 230 CA, 987 CC; 4 isolated communes). IGN's EPCI layer has 1,264 rows: 22 "Métropole"
+(21 + the Métropole de Lyon, a collectivité with EPCI powers), 14 CU, 229 CA, 988 CC and 11 "Etablissement public territorial"
+(the Grand Paris EPTs); 1,264 − 12 = 1,252. CA 229 / CC 988 vs DGCL 230 / 987: IGN still types 243100781 Le Grand Ouest
+Toulousain as a CC; DGCL says it became a CA in 2025. The 4 isolated communes (Île-de-Bréhat, Île-de-Sein, Ouessant,
+L'Île-d'Yeu) carry `epci_siren` = `NR`, matching DGCL's 4. The 3 overseas collectivités (Saint-Barthélemy, Saint-Martin,
+Saint-Pierre-et-Miquelon) are outside the 34,875 and are a separate layer; SPM's 2 communes are not in `fr_com`.
+
+Geometry: base coverage = the 34,875 communes, each territory simplified in its own projected CRS, validated per département
+(all valid, nothing cleaned), coverage_simplify at **20 m**: FXX 27,180,904 → 6,234,511 vertices, area error 0.13 %, Hausdorff
+median 13.3 m (max 441 m, a single outlier; DROM medians 18–41 m, max 58–137 m). Départements and régions are unions of the
+simplified communes by their INSEE codes; EPCI are unions of the member communes listed in IGN's EPCI layer
+(`codes_insee_des_communes_membres`; every listed code found). The full-resolution unions equal IGN's own région, département and
+EPCI polygons (symmetric difference 0.0000 % for every unit; no code missing or extra). `area_km2` = geodesic area of the
+full-resolution polygon. Output WGS84, 5 decimals, gzip mtime 0.
+
+Regenerate (inputs about 247 MB of .7z; sha256 FXX `688eb44505d9b4a8e422ded2f4afaac799f10783de563132ca1a60e9491c6278`, GLP
+`53f6340c…e6e`, MTQ `3d04005f…327`, GUF `267721af…e2c`, REU `6e9e6aee…1de62`, MYT `86d5e746…7d0`, BLM `bddc87d6…169`, MAF
+`08fa723d…5be96`, SPM `75bad941…435`; full hashes in `../geo-data-raw/adminexpress/SHA256SUMS`):
+
+```
+mkdir -p ../geo-data-raw/adminexpress && cd ../geo-data-raw/adminexpress
+for z in LAMB93_FXX RGAF09UTM20_GLP RGAF09UTM20_MTQ UTM22RGFG95_GUF RGR92UTM40S_REU RGM04UTM38S_MYT RGAF09UTM20_BLM RGAF09UTM20_MAF RGSPM06U21_SPM; do
+  n=ADMIN-EXPRESS-COG_4-0__GPKG_${z}_2026-01-01
+  curl -O https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG/$n/$n.7z; done
+python3 -c "import py7zr,glob; [py7zr.SevenZipFile(f).extractall('x') for f in sorted(glob.glob('*.7z'))]"; cd -
+for s in load base dep reg epci om; do
+  python3 -W ignore tools/foreign_geojson.py . ../geo-data-raw fr --out ../geo-data-raw/v3fr --stage $s; done
+```
+
+Uncompressed GeoJSON bytes: REG 5,914,434; DEP 11,549,042; EPCI 32,743,757; COM 129,454,005; COM_OM 108,018. Per-stage
+numbers in `../geo-data-raw/v3fr/report.json`.
