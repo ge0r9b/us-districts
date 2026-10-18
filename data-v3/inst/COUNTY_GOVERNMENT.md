@@ -21,3 +21,13 @@ So 3,032 − 2 + 1 = 3,031, which accounts for the whole difference. The consoli
 
 - **Connecticut:** the 2024 rows are the 9 planning regions (09110–09190). CoG 2022 already assigns CT towns to these region codes. 8 extra `vintage=2020` rows cover the old counties 09001–09015 from the TIGER 2020 Gazetteer, with `has_own_government=no`, because CoG lists no county government in CT. 2020-vintage joins go town → planning region (`data-v3/geo/ALIGNMENT.md` §2). No other county differs between the 2020 and 2024 sets for the 50 states and DC. Puerto Rico is outside `counties.csv` in both years.
 - Summary: `county_government_summary.json`.
+
+## Columns, sources, licence (file-family README)
+
+`county_government.csv`, UTF-8, header row: `county_geoid` (TIGER county GEOID), `vintage` (TIGER year; 2020 rows only for
+CT's 8 old counties), `county_name`, `has_own_government` (yes/no/unknown), `government_kind` (county / municipal / none /
+none in this county area), `cog_pid6`, `cog_unit_name`, `cog_unit_type` (CoG 2022 unit), `tiger_funcstat`,
+`agrees_with_tiger`, `government_note`, `source`, `source_url`, `retrieved_at`, `sha256`, `license`.
+Sources: U.S. Census Bureau 2022 Census of Governments, Government Units Listing
+(https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP) and TIGER 2024 county FUNCSTAT
+(data-v3/geo/county_funcstat.csv). Licence: public domain (US government work). No OpenStates input, so no `source_commit`.

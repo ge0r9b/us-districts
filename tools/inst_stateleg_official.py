@@ -169,7 +169,7 @@ def main():
                 g, seat, js = "", "", "no_v3_unit_tribal"
                 osl = [r["district"] for r in cur if r["state"] == st and r["join_status"] == "no_v3_unit_tribal" and same(x["last"], r["name"])]
                 if osl: x["district"] = osl[0]   # use the tribe label OpenStates carries for this person (the official list gives only seat numbers)
-            x["unit"], x["seat"], x["js"] = g, seat, "joined" if js.startswith("joined") else js
+            x["unit"], x["seat"], x["js"] = g, (seat or x.get("seat_src", "")), "joined" if js.startswith("joined") else js   # seat: the source's own seat label (Idaho House Seat A/B)
         if any(x.get("nostatus") for x in recs):
             grp = collections.defaultdict(list)
             for x in recs: grp[(x["chamber"], x["unit"])].append(x)

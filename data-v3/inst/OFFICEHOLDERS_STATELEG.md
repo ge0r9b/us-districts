@@ -368,3 +368,10 @@ The 2024 file has 7,384 rows: 7,348 serving at 2025-04-01 and 36 vacant. Its cro
 - 601 bioguide, 7,572 ocd-person, 9 vt-leg, 1 tx-leg, 1 ok-leg and 1 la-leg;
 - 957 aliases, spread over 947 persons;
 - 0 state legislators are bioguide-canonical.
+
+## v3 format (step 4, `tools/inst_v3format.py`)
+
+Rows are keyed **chamber entity + unit + seat**: `entity_id` is now the chamber entity of `entities.csv` (`us-house`,
+`chamber:<ab>-upper|lower`; old slug in `entity_id_legacy`), the unit is `unit_layer` + `unit_geoid` + `unit_vintage`
+(TIGER year; the old `cd119`/`sldl2024` token is in `unit_plan`), and `seat` carries the source's seat label (Idaho House A/B).
+Every row has full `source_url`s, `retrieved_at` and `source_commit`. Columns: README_OFFICEHOLDERS.md.

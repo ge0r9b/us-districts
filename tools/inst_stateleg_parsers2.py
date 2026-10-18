@@ -228,8 +228,8 @@ def p_nm(R):
 def p_id(R):
     out = []
     for f, ch in (("id_house_2026.html", "lower"), ("id_senate_2026.html", "upper")):
-        for nm, pty, d in re.findall(r'<p><strong>([^<]+)</strong>\s*\((\w+)\)<br />.*?district=(\d+)">District \d+</a>', open(R + "/" + f, errors="ignore").read(), re.S):
-            out.append(rec(ch, d, html.unescape(nm).replace("\xa0", " "), pty, "id-%s-%s-%s" % (ch[0], d, fold(nm)[:12])))
+        for nm, pty, d, st in re.findall(r'<p><strong>([^<]+)</strong>\s*\((\w+)\)<br />.*?district=(\d+)">District \d+</a>(?:<br />\s*House Seat ([AB])<br />)?', open(R + "/" + f, errors="ignore").read(), re.S):
+            out.append(rec(ch, d, html.unescape(nm).replace("\xa0", " "), pty, "id-%s-%s-%s" % (ch[0], d, fold(nm)[:12]), **({"seat_src": st} if st else {})))
     return out, "Idaho Legislature 2026 House and Senate membership pages", "https://legislature.idaho.gov/house/membership/ ; https://legislature.idaho.gov/senate/membership/", ["id_house_2026.html", "id_senate_2026.html"]
 
 def p_sd(R):

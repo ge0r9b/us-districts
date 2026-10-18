@@ -27,3 +27,10 @@ Names and parties are written exactly as each source gives them: the Clerk uses 
   - `term_start_missing`: 0 rows in all three files.
   - `term_end_open`: 439 rows in the current file. The Clerk's member XML gives no term end.
   - The 2020 and 2024 files have full start and end dates from congress-legislators.
+
+## v3 format (step 4, `tools/inst_v3format.py`)
+
+Rows are keyed **chamber entity + unit + seat**: `entity_id` is now the chamber entity of `entities.csv` (`us-house`,
+`chamber:<ab>-upper|lower`; old slug in `entity_id_legacy`), the unit is `unit_layer` + `unit_geoid` + `unit_vintage`
+(TIGER year; the old `cd119`/`sldl2024` token is in `unit_plan`), and `seat` carries the source's seat label (Idaho House A/B).
+Every row has full `source_url`s, `retrieved_at` and `source_commit`. Columns: README_OFFICEHOLDERS.md.
