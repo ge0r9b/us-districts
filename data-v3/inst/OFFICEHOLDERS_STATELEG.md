@@ -247,3 +247,33 @@ Rules:
   - State legislature, current file: 105 `term_start_missing` and 7,302 `term_end_open`.
   - State legislature, 2024 file: 87 `term_start_missing` and 7,076 `term_end_open`.
   - Official rows now carry the matched OpenStates role's `term_end` where OpenStates has one.
+
+## Official rosters, batch 3 (2026-10-18): IA, MI, WA, OK House, LA, ND
+
+| State | Source | Official serving | OpenStates current | Diffs |
+|---|---|---|---|---|
+| IA | legis.iowa.gov lists, 91st GA | 148 | 148 | 0 |
+| MI | house.mi.gov AllRepresentatives + senate.michigan.gov all-senators | 147 | 148 | 1 |
+| WA | WSL web services `GetSponsors`, 2025-26 | 147 | 147 | 0 |
+| OK House | okhouse.gov representatives | 99 + 2 vacant | 99 | 2 |
+| LA | house.louisiana.gov + senate.la.gov full-info lists | 141 + 3 vacant | 141 | 2 |
+| ND | ndlegis.gov 69th Assembly, members by district | 141 | 141 | 0 |
+
+Source notes:
+- **IA:** members who have left show their service dates on the list. Their start and end dates are used: Dunwell in House 38 left on 2026-10-05, and Garrett in Senate 11 left on 2026-06-08. Both seats are now vacant rows.
+- **IA, WA, ND:** these lists carry no in-office status. Where a unit lists more people than it has seats (the seat count comes from OpenStates' current rows for that unit), the tool keeps the person OpenStates lists as current, and the row note says so.
+- **MI Senate:** the member list is a JSON array embedded in the page's HTML.
+
+Still on the OpenStates fallback, with reasons (also in `fallback_reasons`):
+- **IN, both chambers:** iga.in.gov is built in the browser. Its data API needs a registered key, and there is no other export.
+- **MT, both chambers:** the api.legmt.gov legislators endpoint answers, but its records don't give a consistent current roster. The 69th and 70th legislature tags are mixed with start/end dates, only 119 of 150 seats fall under the 69th tag, and there is a placeholder district 999.
+- **OK Senate:** Sucuri/Cloudproxy challenge, a block.
+- **AL, both chambers:** ALISON is built in the browser and has no roster export.
+- **VA, both chambers:** the new LIS is built in the browser, and legacy LIS says the 2026 member pages don't exist.
+
+Totals for the current file after batch 3:
+- 7,361 rows: 7,307 serving and 54 vacant.
+- 7,257 serving rows are joined, plus 48 NH floterial and 2 ME tribal rows.
+- 3,938 rows come from official rosters and 3,384 from the OpenStates fallback. The other 39 are vacant rows that the persons step added for units with no member in either source.
+- 94 diffs.
+- `persons.csv` has 8,188 rows and 957 aliases. 12 official IDs were matched to an OpenStates person and 12 were kept as `<st>-leg:` (VT 9, TX 1, OK 1, LA 1). The OK and LA cases are name changes: Alonso → Alonso Sandoval and Hennessy → Hennessy Dickerson. They are logged in `person_id_matches.csv`.

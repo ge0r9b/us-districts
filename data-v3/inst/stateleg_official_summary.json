@@ -471,6 +471,172 @@
    "official_vacancies": [
     "upper 39"
    ]
+  },
+  "Iowa": {
+   "source": "Iowa Legislature legislator lists (91st General Assembly)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 154,
+   "official_serving": 148,
+   "openstates_current_rows": 148,
+   "official_rows_written": 148,
+   "joined": 148,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 148,
+   "units_filled_openstates": 148,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "19011",
+    "19038"
+   ],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 149,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "Michigan": {
+   "source": "Michigan House all-representatives list; Michigan Senate all-senators list",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 147,
+   "official_serving": 147,
+   "openstates_current_rows": 148,
+   "official_rows_written": 147,
+   "joined": 147,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 147,
+   "units_filled_openstates": 148,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "26004"
+   ],
+   "diffs": 1,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 146,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "Washington": {
+   "source": "Washington Legislature web services, SponsorService.GetSponsors (biennium 2025-26)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 153,
+   "official_serving": 147,
+   "openstates_current_rows": 147,
+   "official_rows_written": 147,
+   "joined": 147,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 98,
+   "units_filled_openstates": 98,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 146
+   },
+   "official_vacancies": []
+  },
+  "Oklahoma": {
+   "source": "Oklahoma House of Representatives member list",
+   "chambers": [
+    "lower"
+   ],
+   "official_records": 101,
+   "official_serving": 99,
+   "openstates_current_rows": 99,
+   "official_rows_written": 101,
+   "joined": 99,
+   "vacant_rows": 2,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 99,
+   "units_filled_openstates": 99,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "40077",
+    "40099"
+   ],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 93,
+    "not_in_official_roster": 6
+   },
+   "official_vacancies": [
+    "lower 77",
+    "lower 99"
+   ]
+  },
+  "Louisiana": {
+   "source": "Louisiana House and Senate member lists",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 144,
+   "official_serving": 141,
+   "openstates_current_rows": 141,
+   "official_rows_written": 144,
+   "joined": 141,
+   "vacant_rows": 3,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 141,
+   "units_filled_openstates": 141,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "22014",
+    "22077",
+    "22092"
+   ],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 131,
+    "not_in_official_roster": 11
+   },
+   "official_vacancies": [
+    "lower 77",
+    "lower 92",
+    "upper 14"
+   ]
+  },
+  "North Dakota": {
+   "source": "North Dakota Legislative Assembly, 69th (2025) members by district",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 148,
+   "official_serving": 141,
+   "openstates_current_rows": 141,
+   "official_rows_written": 141,
+   "joined": 141,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 95,
+   "units_filled_openstates": 95,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 141
+   },
+   "official_vacancies": []
   }
  },
  "fallback_reasons": {
@@ -480,9 +646,18 @@
   "Georgia/lower": "same as Georgia/upper",
   "Florida/lower": "myfloridahouse.gov returns a WAF 'Request Rejected' page to the box (a block; not routed around)",
   "Illinois/upper": "ilga.gov returns 503 to the box on every member-list request this round (after supplying its missing TLS intermediate from the Mozilla CCADB list)",
-  "Illinois/lower": "same as Illinois/upper"
+  "Illinois/lower": "same as Illinois/upper",
+  "Indiana/upper": "iga.in.gov is a client-side app; the IGA data API requires a registered API key (not requested); no CSV/XML/PDF roster found",
+  "Indiana/lower": "same as Indiana/upper",
+  "Montana/upper": "api.legmt.gov/legislators/v1/legislators answers, but its 209 records do not give a consistent current roster (legislature tags 69/70 mixed with start/end dates; only 119 of 150 seats under the 69th tag; placeholder district 999), so it was not used",
+  "Montana/lower": "same as Montana/upper",
+  "Oklahoma/upper": "oksenate.gov answers with a Sucuri/Cloudproxy challenge (HTTP 307); a block, not routed around",
+  "Alabama/upper": "alison.legislature.state.al.us member pages are a client-side app with no member data in the HTML; no CSV/XML/PDF roster found",
+  "Alabama/lower": "same as Alabama/upper",
+  "Virginia/upper": "lis.virginia.gov is a client-side app; legacylis.virginia.gov member pages (legp604 ...+mbr+H/S) answer 'document does not exist' for the 2026 session",
+  "Virginia/lower": "same as Virginia/upper"
  },
- "current_rows": 7318,
- "current_joined": 7268,
- "current_official_rows": 3110
+ "current_rows": 7322,
+ "current_joined": 7272,
+ "current_official_rows": 3938
 }
