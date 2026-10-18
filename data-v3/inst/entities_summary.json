@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "29390cad3135f021ee8d3ab163f3997ed16d71dc",
+  "repo_head": "feaa84682f53808f429bd30460498aea15a20a6f",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -202,7 +202,7 @@
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
   "cog2022_unit_not_linked_by_code": 57,
-  "image_free_field_missing": 31
+  "image_free_field_missing": 1
  },
  "school_gov_status_fill": {
   "no_bot_row": 375,
@@ -253,18 +253,18 @@
    "wikidata_qid_via_home_part_rule|nation:dk"
   ],
   "images_icons": {
-   "icons": 3369,
+   "icons": 3381,
    "icons_by_kind_role": {
     "county|seal": 323,
-    "municipality|seal": 886,
+    "municipality|seal": 887,
     "nation|flag": 195,
-    "province|seal": 9,
+    "province|seal": 10,
     "state|seal": 51,
-    "subdivision|seal": 1528,
-    "territory|seal": 42,
+    "subdivision|seal": 1537,
+    "territory|seal": 43,
     "township|seal": 335
    },
-   "entities_with_images_no_icon": 4702
+   "entities_with_images_no_icon": 4690
   }
  },
  "special_districts": {
@@ -292,14 +292,27 @@
  },
  "commons_backfill": {
   "attribution|filled|commons_credit|was_unknown": 18,
-  "attribution|filled|commons_license": 113,
+  "attribution|filled|commons_license": 117,
   "attribution|filled|commons_license|was_unknown": 268,
-  "attribution|still_missing": 29,
-  "license|still_missing": 2,
-  "source_url|filled": 4726,
-  "switched_to_private": 31,
+  "attribution|filled|commons_uploader": 25,
+  "license|still_missing": 1,
+  "quebec_replaced": 1,
+  "source_url|filled": 4725,
+  "switched_to_private": 1,
   "unknown_attribution_rows": 286,
-  "cache_sha256": "1889e2b28290c60d5ef57380fad59b06cdb97f936c336a9e424f96f56902f8c6"
+  "cache_sha256": "a5e7734b4c10866b1b4bedccdfcc7ed7d178c3850a796a5723e0c4f08fd85ac3"
+ },
+ "licence_url": {
+  "commons_licenseurl": 1315
+ },
+ "quebec_replacement": {
+  "old": "Coat of arms of Quebec (without crown).svg",
+  "file": "Coat of arms of Quebec.svg",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Quebec.svg",
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Sodacan",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "replaces Coat of arms of Quebec (without crown).svg (no machine-readable licence, open deletion request May 2026); Coat of arms of Quebec.svg is the file it was extracted from, with {{Cc-by-sa-4.0}} and no deletion or no-licence category"
  },
  "images_fair_use_missing_field": {
   "license": [],
@@ -307,8 +320,8 @@
   "source_url": []
  },
  "images_missing_field_all_rows": {
-  "license": 2,
-  "attribution": 29,
+  "license": 1,
+  "attribution": 0,
   "source_url": 0
  },
  "feed_map_by_status": {
@@ -317,11 +330,11 @@
   "unmapped": 974
  },
  "images_by_public_role": {
-  "no|flag": 19,
+  "no|flag": 1,
   "no|logo": 141,
-  "no|seal": 4445,
-  "yes|flag": 1764,
-  "yes|seal": 3477
+  "no|seal": 4433,
+  "yes|flag": 1782,
+  "yes|seal": 3489
  },
  "governments_feed": {
   "ceased_applied": 24,

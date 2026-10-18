@@ -816,6 +816,7 @@ S_TCEQ = 'TCEQ Water Districts Database (Governments bot source tceq_wdd)'
 import inst_commons
 CM, CM_SHA, CM_AT = inst_commons.info(A.commons_cache)
 CM_AT = CM_AT + ' (v2: ' + open(os.path.join(A.commons_cache, 'v2_retrieved_at.txt')).read().strip() + ')'
+CM_AT = CM_AT[:-1] + '; v3: ' + open(os.path.join(A.commons_cache, 'v3_retrieved_at.txt')).read().strip() + ')'
 S_COMMONS = 'Wikimedia Commons API cache (tools/inst_commons.py)'
 SDGAPS, SDRELS, SDSTAT, _sdmint = [], [], C.Counter(), {}
 for sid_, r in inst_govfeed.special_districts(GOVF):
@@ -1079,6 +1080,28 @@ def _page_reason(t):
     r_ = f"Commons file page (revid {pg['revid']}) has no licence template: only " + ', '.join('{{' + x[len('Template:'):] + '}}' for x in pg['templates'] if x in ('Template:Insignia', 'Template:Non-copyright restriction'))
     r_ += '; categories: ' + ', '.join(c_[len('Category:'):] for c_ in pg['categories'] if 'license' in c_.lower() or 'deletion' in c_.lower())
     return r_ + '; licence not determined, not guessed'
+V3LIC, V3HIST, V3QC = inst_commons.v3(A.commons_cache)
+def _spdx(li): return li.upper().replace('CC0', 'CC0-1.0') if li.lower() == 'cc0' else li.upper()   # cc-by-sa-4.0 -> CC-BY-SA-4.0
+# Quebec arms (Full Stack, Oct 18): replace the file only by a Commons file of the same arms with a machine-readable free
+# licence template and no deletion / no-machine-readable-licence category. Candidate = the file the current one says it was
+# extracted from ({{Extracted from|1=...}} in its wikitext), checked against the cached namespace-6 search hit's templates.
+QCREP = {}
+_qc_old = 'Coat of arms of Quebec (without crown).svg'
+_m = re.search(r'\{\{Extracted from\|1=([^}|]+)\}\}', CMPG.get(_qc_old, {}).get('wikitext', ''))
+if _m:
+    _new = _m.group(1).strip(); _pg = next((p_ for p_ in V3QC if p_['title'] == 'File:' + _new), None)
+    if _pg:
+        _tpl = [x['title'] for x in _pg.get('templates', []) if re.match(r'Template:(PD-|Cc-|CC-|Cc0|Cc-zero|GFDL|FAL)', x['title'])]
+        _bad = [c_['title'] for c_ in _pg.get('categories', []) if 'machine-readable' in c_['title'] or 'eletion' in c_['title']]
+        _ii = _pg['imageinfo'][0]; _em = _ii.get('extmetadata') or {}
+        _g = lambda k: inst_commons.text((_em.get(k) or {}).get('value', ''))
+        if _tpl and not _bad and 'License template tag' in ' '.join(x['title'] for x in _pg.get('templates', [])) and _g('LicenseShortName') and _g('Artist'):
+            QCREP = {'old': _qc_old, 'file': _new, 'descriptionurl': _ii['descriptionurl'], 'license': _spdx(_g('License')), 'attribution': _g('Artist'), 'licence_url': _g('LicenseUrl'),
+                     'note': f"replaces {_qc_old} (no machine-readable licence, open deletion request May 2026); {_new} is the file it was extracted from, with {{{{{_tpl[0][len('Template:'):]}}}}} and no deletion or no-licence category"}
+for i in GIMG + FRES['imgs']:
+    if QCREP and i['file'] == QCREP['old'] and i['entity_id'] == 'province:ca-qc':
+        i.update(file=QCREP['file'], commons_url=QCREP['descriptionurl'], source_url=QCREP['descriptionurl'], license=QCREP['license'], attribution=QCREP['attribution'],
+                 attribution_source='commons_artist', licence_url=QCREP['licence_url'], note=QCREP['note']); i['_cm'] = True; CMSTAT['quebec_replaced'] += 1
 for i in GIMG + FRES['imgs']:
     if i['fair_use'] == 'yes': continue
     unk = inst_commons.is_unknown(i['attribution'])
@@ -1099,6 +1122,12 @@ for i in GIMG + FRES['imgs']:
                 elif art: v, how = art, 'commons_artist'
                 elif rec['Credit'] and not inst_commons.is_unknown(rec['Credit']): v, how = rec['Credit'], 'commons_credit'
                 elif _is_pd(rec): v, how = PD_TXT, 'commons_license'
+                elif rec['LicenseShortName'].lower() == 'cc0' or rec['License'].lower() == 'cc0': v, how = 'CC0, via Wikimedia Commons', 'commons_license'
+                elif rec['LicenseShortName'].lower() == 'copyrighted free use': v, how = 'Copyrighted free use, via Wikimedia Commons', 'commons_license'
+                elif rec['LicenseShortName'].upper().startswith('CC BY-SA') and t_ in V3HIST and V3HIST[t_] is not None:
+                    h_ = V3HIST[t_]   # earliest upload revision = original uploader (TASL: title/source via the file page URL)
+                    if h_.get('user') and 'userhidden' not in h_: v, how = f"{h_['user']}, {rec['descriptionurl']}, {rec['LicenseShortName']}", 'commons_uploader'
+                    else: v, how = f"Wikimedia Commons contributors, {rec['descriptionurl']}, {rec['LicenseShortName']}", 'commons_contributors'
         if v:
             i[c] = v; i['_cm'] = True; CMSTAT[f'{c}|filled' + (f'|{how}' if how else '') + ('|was_unknown' if unk and c == 'attribution' else '')] += 1
             if how: i['attribution_source'] = how
@@ -1111,6 +1140,18 @@ for i in GIMG + FRES['imgs']:
         priv = any(c in miss for c in ('license', 'attribution'))
         GAPS.append({'gap': 'image_free_field_missing', 'key': i['entity_id'] or i['feed_id'], 'detail': f"{i['role']} {i['file']}: missing {','.join(miss)} ({why})" + ('; set public=no' if priv else '; stays public (licence and attribution present)')})
         if priv: i['_private'] = True; CMSTAT['switched_to_private'] += 1
+def _cc_deed(l):
+    if l.upper() == 'CC0-1.0': return 'https://creativecommons.org/publicdomain/zero/1.0/'
+    m_ = re.fullmatch(r'CC-(BY(?:-SA|-NC|-ND|-NC-SA|-NC-ND)?)-(\d\.\d)(?:-([A-Z]{2}))?', l.upper())
+    return f"https://creativecommons.org/licenses/{m_.group(1).lower()}/{m_.group(2)}/" + (m_.group(3).lower() + '/' if m_.group(3) else '') if m_ else ''
+LICURL = C.Counter()
+for i in GIMG + FRES['imgs']:
+    if i.get('licence_url'): LICURL['commons_licenseurl'] += 1; continue
+    cu = (V3LIC.get(inst_commons.norm(i['file'])) or {}).get('LicenseUrl', '') if i['file'] and i['fair_use'] == 'no' else ''
+    is_cc = i['license'].upper().startswith(('CC-', 'CC0'))
+    i['licence_url'] = cu or (_cc_deed(i['license']) if is_cc else '')
+    if i['licence_url']: LICURL['commons_licenseurl' if cu else 'cc_canonical_deed'] += 1
+    elif is_cc: LICURL['cc_without_url'] += 1
 IMGMISS = {c: sorted(f"{i['feed_id']}|{i['role']}|{i['file'] or i['source_url']}" for i in GIMG + FRES['imgs'] if i['fair_use'] == 'yes' and not i[c]) for c in ('license', 'attribution', 'source_url')}
 IMGMISS_ALL = {c: sum(1 for i in GIMG + FRES['imgs'] if not i[c]) for c in ('license', 'attribution', 'source_url')}
 def gap_sid(g, ids_for, v2f, gapsrc):
@@ -1148,7 +1189,7 @@ for m in FRES['fmap']: m['source_id'] = IDS_FOR([S_GF[m['_file']]])
 GFMAP = GFMAP + FRES['fmap']
 with open(os.path.join(OUT, 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GFMAP)
-IMC = ['entity_id', 'role', 'file', 'license', 'fair_use', 'public', 'icon', 'usage_basis', 'source_url', 'attribution', 'attribution_source', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id']
+IMC = ['entity_id', 'role', 'file', 'license', 'licence_url', 'fair_use', 'public', 'icon', 'usage_basis', 'source_url', 'attribution', 'attribution_source', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id', 'note']
 for i in GIMG:
     i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
 _gfi = IDS_FOR([S_GF['images.csv']])
@@ -1250,7 +1291,7 @@ summ = {
   'special_districts': dict(sorted(SDSTAT.items())),
   'inception': {'rows': sum(1 for e in rows if e.get('inception')), 'by_precision': dict(sorted(C.Counter(e['inception_precision'] for e in rows if e.get('inception')).items())),
                 'by_kind': dict(sorted(C.Counter(e['kind'] for e in rows if e.get('inception')).items())), 'valid_from_rows': sum(1 for e in rows if e.get('valid_from'))},
-  'images_attribution_filled': dict(sorted(IMGATTR.items())), 'commons_backfill': dict(sorted(CMSTAT.items()), cache_sha256=CM_SHA), 'images_fair_use_missing_field': IMGMISS, 'images_missing_field_all_rows': IMGMISS_ALL,
+  'images_attribution_filled': dict(sorted(IMGATTR.items())), 'commons_backfill': dict(sorted(CMSTAT.items()), cache_sha256=CM_SHA), 'licence_url': dict(sorted(LICURL.items())), 'quebec_replacement': QCREP, 'images_fair_use_missing_field': IMGMISS, 'images_missing_field_all_rows': IMGMISS_ALL,
   'feed_map_by_status': dict(sorted(C.Counter(m['status'] for m in GFMAP).items())),
   'images_by_public_role': dict(sorted(C.Counter(f"{i['public']}|{i['role']}" for i in GIMG).items())),
   'governments_feed': dict(sorted((k, v) for k, v in GSTAT.items())), 'feed_map_rows': len(GFMAP), 'images_rows': len(GIMG),

@@ -11,6 +11,11 @@ fetch-v2 (Full Stack, Oct 18, second ruling): python3 tools/inst_commons.py fetc
         licence and the free rows whose attribution is only "Unknown" (UNKNOWN_RE); and for the files in PAGES reads the
         file page itself (prop=revisions wikitext + categories + templates). Files: v2_titles.txt, v2_batch_NNNN.json,
         v2_page_NNNN.json; SHA256SUMS is rewritten over every cache file. v2 answers override v1 for the same title.
+fetch-v3 (Full Stack, Oct 18, third ruling): python3 tools/inst_commons.py fetch-v3 --images ... --out DIR
+        (a) LicenseUrl / LicenseShortName / License for every free image file (v3_batch_NNNN.json); (b) the full upload
+        history (iiprop=user|timestamp|userhidden, iilimit=max) of each free CC BY-SA row without an author
+        (v3_hist_NNNN.json, one file per title, earliest revision = original uploader); (c) a namespace-6 search for
+        Quebec coat-of-arms files and the templates + categories of each hit (v3_qc_search.json, v3_qc_page_NNNN.json).
 load:   info(DIR) -> {file name (spaces, no 'File:'): {'descriptionurl', 'Artist', 'Credit', 'LicenseShortName'}} (plain text:
         HTML tags removed, entities unescaped, whitespace collapsed), plus the sha256 of SHA256SUMS.
 """
@@ -68,6 +73,46 @@ def fetch_v2(images_csv, out):
         open(os.path.join(out, f'v2_page_{n:04d}.json'), 'wb').write(body)
     open(os.path.join(out, 'v2_retrieved_at.txt'), 'w').write(time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()) + '\n')
     sums(out); print(len(titles), 'titles')
+
+def fetch_v3(images_csv, out):
+    rows = list(csv.DictReader(open(images_csv, encoding='utf-8')))
+    titles = sorted({norm(x['file']) for x in rows if x['fair_use'] == 'no' and x['file']})
+    open(os.path.join(out, 'v3_titles.txt'), 'w', encoding='utf-8').write('\n'.join(titles) + '\n')
+    for b in range(0, len(titles), 50):
+        body = _get({'action': 'query', 'prop': 'imageinfo', 'iiprop': 'extmetadata', 'iiextmetadatafilter': 'LicenseUrl|LicenseShortName|License',
+                     'titles': '|'.join('File:' + t for t in titles[b:b + 50])})
+        open(os.path.join(out, f'v3_batch_{b // 50:04d}.json'), 'wb').write(body)
+    hist = sorted({norm(x['file']) for x in rows if x['fair_use'] == 'no' and x['file'] and x['public'] == 'no' and x['license'].upper().startswith('CC-BY-SA')})
+    open(os.path.join(out, 'v3_hist_titles.txt'), 'w', encoding='utf-8').write('\n'.join(hist) + '\n')
+    for n, t in enumerate(hist):
+        body = _get({'action': 'query', 'prop': 'imageinfo', 'iiprop': 'user|timestamp|userhidden', 'iilimit': 'max', 'titles': 'File:' + t})
+        open(os.path.join(out, f'v3_hist_{n:04d}.json'), 'wb').write(body)
+    body = _get({'action': 'query', 'list': 'search', 'srnamespace': '6', 'srlimit': '50', 'srsearch': 'intitle:"coat of arms" intitle:Quebec'})
+    open(os.path.join(out, 'v3_qc_search.json'), 'wb').write(body)
+    hits = [h['title'] for h in json.loads(body)['query']['search']]
+    for b in range(0, len(hits), 50):
+        body = _get({'action': 'query', 'prop': 'categories|templates|imageinfo', 'iiprop': 'url|extmetadata', 'iiextmetadatafilter': 'LicenseShortName|License|LicenseUrl|Artist|Credit',
+                     'cllimit': 'max', 'tllimit': 'max', 'titles': '|'.join(hits[b:b + 50])})
+        open(os.path.join(out, f'v3_qc_page_{b // 50:04d}.json'), 'wb').write(body)
+    open(os.path.join(out, 'v3_retrieved_at.txt'), 'w').write(time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()) + '\n')
+    sums(out); print(len(titles), 'titles', len(hist), 'histories', len(hits), 'quebec hits')
+
+def v3(d):
+    lic = {}
+    for f in sorted(x for x in os.listdir(d) if x.startswith('v3_batch_')):
+        for p in json.load(open(os.path.join(d, f), encoding='utf-8'))['query']['pages']:
+            em = (p.get('imageinfo') or [{}])[0].get('extmetadata') or {}
+            if isinstance(em, list): em = {}
+            lic[p['title'][len('File:'):]] = {k: text(em.get(k, {}).get('value', '')) for k in ('LicenseUrl', 'LicenseShortName', 'License')}
+    hist = {}
+    for f in sorted(x for x in os.listdir(d) if x.startswith('v3_hist_') and x.endswith('.json')):
+        for p in json.load(open(os.path.join(d, f), encoding='utf-8'))['query']['pages']:
+            ii = sorted(p.get('imageinfo') or [], key=lambda r: r.get('timestamp', ''))
+            hist[p['title'][len('File:'):]] = ii[0] if ii else None
+    qc = []
+    for f in sorted(x for x in os.listdir(d) if x.startswith('v3_qc_page_')):
+        qc += json.load(open(os.path.join(d, f), encoding='utf-8'))['query']['pages']
+    return lic, hist, sorted(qc, key=lambda p: p['title'])
 
 def pages(d):
     res = {}
@@ -128,5 +173,4 @@ def info(d):
 if __name__ == '__main__':
     import argparse
     ap = argparse.ArgumentParser(); ap.add_argument('cmd'); ap.add_argument('--images'); ap.add_argument('--out')
-    a = ap.parse_args(); assert a.cmd in ('fetch', 'fetch-v2')
-    (fetch if a.cmd == 'fetch' else fetch_v2)(a.images, a.out)
+    a = ap.parse_args(); {'fetch': fetch, 'fetch-v2': fetch_v2, 'fetch-v3': fetch_v3}[a.cmd](a.images, a.out)

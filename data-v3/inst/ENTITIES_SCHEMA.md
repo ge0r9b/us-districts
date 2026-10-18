@@ -78,7 +78,7 @@ Full Stack ruled on all 10 earlier differences (b66f889); status here:
 Open with SCHEMA 365c8a1: `entities.csv` extras `source_record_id` / `wikidata` (col 23–24; `wikidata` → `entity_alias`
 external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SCHEMA has `entity_merge` / `entity_alias`
 kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
-text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
+text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`. Later rulings (Oct 18) add `licence_url` (Commons LicenseUrl, else the canonical creativecommons.org deed for CC licences), `public`, `icon`, `attribution_source` (feed / issuing_body_name:* / commons_artist / commons_credit / commons_license / commons_uploader / commons_contributors) and `note` (e.g. a replaced file).
 
 ## Kind `subdivision` (agreed Oct 18; applied)
 
