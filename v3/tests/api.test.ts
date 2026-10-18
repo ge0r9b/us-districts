@@ -101,8 +101,16 @@ describe("/api/v1", () => {
     );
     const row = point.rows[0]!;
     const res = await get(`/api/v1/locate?lon=${row.lon}&lat=${row.lat}`);
-    const body = (await res.json()) as { units: Record<string, string> };
+    const body = (await res.json()) as {
+      units: Record<string, string>;
+      chain: { stateAbbr: string; stateKey: string; dc: boolean; level: string; countyKey: string | null };
+    };
     expect(body.units.state).toBe("42");
+    expect(body.chain.stateAbbr).toBe("PA");
+    expect(body.chain.stateKey).toBe("42");
+    expect(body.chain.dc).toBe(false);
+    expect(body.chain.level).toBe(body.units.county ? "county" : "state");
+    if (body.units.county) expect(body.chain.countyKey).toBe(body.units.county);
   });
 
   it("geocodes through an injected fetch and never calls a provider for a ZIP", async () => {
@@ -158,9 +166,11 @@ describe("/api/v1", () => {
     const local = createApp({ pool, fetchImpl, sleep: async () => {} });
     const res = await local.request("http://127.0.0.1/api/v1/geocode?q=Somewhere%20Unknown%20Lane");
     expect(res.status).toBe(200);
-    const body = (await res.json()) as { provider: string; units: Record<string, string> };
+    const body = (await res.json()) as { provider: string; units: Record<string, string>; chain: { stateAbbr: string; dc: boolean } };
     expect(body.provider).toBe("nominatim");
     expect(body.units.state).toBe("42");
+    expect(body.chain.stateAbbr).toBe("PA");
+    expect(body.chain.dc).toBe(false);
     expect(calls.some((url) => url.includes("census"))).toBe(true);
     expect(calls.some((url) => url.includes("nominatim"))).toBe(true);
   });

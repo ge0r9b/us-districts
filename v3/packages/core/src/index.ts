@@ -5,3 +5,4 @@ export * from "./sort.ts";
 export * from "./filters.ts";
 export * from "./institution.ts";
 export * from "./cache.ts";
+export * from "./parity.ts";

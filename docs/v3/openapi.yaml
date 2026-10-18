@@ -308,6 +308,21 @@ components:
         units:
           type: object
           additionalProperties: { type: string }
+        chain:
+          type: object
+          description: One place, applied together. DC omits the county.
+          properties:
+            dc: { type: boolean }
+            stateAbbr: { type: string, nullable: true }
+            stateKey: { type: string, nullable: true }
+            countyKey: { type: string, nullable: true }
+            countyName: { type: string, nullable: true }
+            precinctKey: { type: string, nullable: true }
+            precinctLabel: { type: string, nullable: true }
+            level: { type: string }
+            crumbs:
+              type: array
+              items: { type: string }
     LocationList:
       type: object
       required: [dv, locations]

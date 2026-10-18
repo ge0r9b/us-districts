@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import type pg from "pg";
-import { normalizeAddress } from "@usd/core";
+import { normalizeAddress, placeChain, type PlaceChain } from "@usd/core";
 
 export type GeocodeDeps = {
   pool: pg.Pool;
@@ -13,6 +13,7 @@ export type LocateHit = {
   dv: number;
   point: { lon: number; lat: number };
   units: Record<string, string>;
+  chain: PlaceChain;
 };
 
 type Point = { lon: number; lat: number; provider: string; match: string };
@@ -73,9 +74,9 @@ async function nominatim(
 export async function locatePoint(pool: pg.Pool, lon: number, lat: number, dv: number): Promise<LocateHit> {
   const roundedLon = Math.round(lon * 1e5) / 1e5;
   const roundedLat = Math.round(lat * 1e5) / 1e5;
-  const found = await pool.query<{ unit_type: string; unit_key: string }>(
+  const found = await pool.query<{ unit_type: string; unit_key: string; state_abbr: string | null; name: string | null }>(
     `with p as (select st_setsrid(st_makepoint($1, $2), 4326) g)
-     select u.unit_type, u.unit_key
+     select u.unit_type, u.unit_key, btrim(u.state_abbr) state_abbr, u.name
      from p
      join unit_geom ug on ug.lod = 0 and st_covers(ug.geom, p.g)
      join unit u on u.id = ug.unit_id
@@ -87,7 +88,7 @@ export async function locatePoint(pool: pg.Pool, lon: number, lat: number, dv: n
   for (const row of found.rows) {
     if (!units[row.unit_type]) units[row.unit_type] = row.unit_key;
   }
-  return { dv, point: { lon: roundedLon, lat: roundedLat }, units };
+  return { dv, point: { lon: roundedLon, lat: roundedLat }, units, chain: placeChain(found.rows) };
 }
 
 /**

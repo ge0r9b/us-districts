@@ -31,3 +31,24 @@
 8. **Index-only dynamic queries.** Bar lists come from `answer_share_sorted` (range scan, already in high → low order), and point-in-polygon from a partial GiST index (SCHEMA.md).
 9. **Lazy per-year result files (kept from v2).** v2 loads a year's results only when that year is shown (`loadE2020`, `loadPrec20(st)`; 2016 arrives as separate `election2016.js` / `ds2016-*.js` / `precincts2016/` files instead of new row slots). v3 does the same: one pack per contest (= per year) × unit type (× state for precincts). The default 2024 view loads only 2024. The other slider years are prefetched at idle, so a slider tap stays local (v2 Build 1569: 2016 tap ≈ 30 ms).
 10. **Performance tests are gates.** Every budget above has a Playwright or CI check. A PR that breaks one does not merge (same discipline as v2's "core tests before any push", HANDOFF §6).
+
+## v2 measured baseline (perf/speed-baseline e6bd50c, Build 1575, Chromium 390×844 DPR 2, no throttle)
+The perf lane measured v2 and prototyped four fixes (`qa/perf/PROPOSALS.md`, `PERF_TABLE.md`). These are the numbers v3 has to beat, and each finding maps to a v3 rule above.
+
+| Finding in v2 | Measured | v3 rule |
+|---|---|---|
+| 5.27 MB of inline object literals (`PACK`, `XREF`) parsed before DOMContentLoaded | moving them to a content-hashed `pack.js` parsed with `JSON.parse`: DCL 1013 → 347 ms, first map 777 → 492 ms | no data inline in HTML; packs are separate content-hashed files (rule 4); JSON packs, not JS literals |
+| Every data URL is versioned by `window.BUILD`, which changes on every push | a returning user re-downloads 3.21 MB gz after a build bump; per-file data versions cut it to 198 KB (−94 %) | pack and tile URLs carry the **content hash of that file**, never the app build number; `/manifest` maps names to hashes (ARCHITECTURE.md §4). Add a CI check that an app-only change leaves every data URL unchanged |
+| `fitBounds` inside the tap handler re-projects every canvas path | All States cold 250 → 87 ms by fitting after the list paints | paint the list first, move the map in the next frame; camera moves never block the tap's first frame |
+| US House pick runs precinct → district point-in-polygon in the tap (239 ms) | not yet fixed in v2 | precinct → district (and every child → parent) membership is precomputed at load (`unit_contest_agg`, rule 3); a pick is a lookup |
+| About 60 `setInterval` pollers doing layout reads | source of random tap delay and idle drain | rule 6 (no polling, lint-enforced) stands |
+| iPad 820×1180 pan 45 fps, p95 33 ms (phones 57–60 fps) | weakest viewport | add an iPad-size pan check (≥ 55 fps) to the perf gates; MapLibre GL rendering should clear it, but measure |
+| Liquid Glass `backdrop-filter` | no measurable tap cost in headless Chromium | keep the glass; re-check on a real iPhone before release |
+
+Port the lane's tools (`qa/perf/tools/baseline.py`, `net.py`, `idle.py`, `prof.py`) as the v3 perf harness so v2 and v3 numbers come from the same scripts at the same viewports.
+
+## v2 re-measure at Build 1579 (perf/speed-baseline 1f8ae1f, Oct 18, 2026 14:00 EDT drift check)
+- US House pick regressed in Builds 1577–1579: median 81–96 ms became 123–131 ms (over 100 ms at every viewport), cold up to 465 ms at 390×844; back median 51–71 ms became 75–92 ms, cold first back over 100 ms at 390. The likely cause is tap-time work added in 1577 (thumbnails reading slot year, 2016-twin lookup, chart-menu rules). No perf proposal has landed in v2 (PACK/XREF still inline, `aggFor` still runs in the pick).
+- v3 lesson, already in the budget: anything a tap needs (2016 twins, slot-year values, child → parent membership) is precomputed at load and served as a lookup. The v3 Playwright perf gate adds a "US House pick ≤ 100 ms median, ≤ 150 ms cold at 390 with throttle" assertion so this class of regression can't ship.
+
+The in-process stand-in is `pickUnit`: 20,000 lookups of a 435-member index finish under 100 ms (`v3/tests/parity.test.ts`). The browser gate remains the Playwright assertion above.

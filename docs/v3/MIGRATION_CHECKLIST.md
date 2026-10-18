@@ -6,7 +6,7 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 
 The boxes below stay unchecked. Alpha.1 is a running foundation, not v2 parity.
 
-Alpha.3 adds institution and geography filters as separate controls, safe-area and layout-mode tokens, and a list band 16px below the geography band (Build 1575). This checklist has no Build 1576 heading. Boxes stay open.
+Alpha.3 adds institution and geography filters as separate controls, safe-area and layout-mode tokens, and a list band 16px below the geography band (Build 1575). Builds 1576–1583 are listed below: margin scale to ±90, chart menu, institution field, address chain, 2016 twins, slider, thumbnails, and pointerup. Boxes stay open.
 
 Done on `v3/build`:
 
@@ -37,7 +37,7 @@ Still open: full UI parity (filters, charts, time slider, back stack, hash links
 - [ ] Boundaries white with heatmap data, black without (HO §3). County lines 0.5 px, state 1.2 px; US House outlines 1.6 px, others 1.1 px (SPEC §6). Tests: `boundary-color`, `state-line-weight`.
 - [ ] Legend and attribution small, bottom left; colours plus tiny labels only; tap to magnify (HO §3; SPEC §6). Test: `legend-size`.
 - [ ] No instructional text on the map; no "No data yet" bubble (SPEC §8).
-- [ ] Colours: two answers on gives a red/blue margin scale (D+60…R+60; delta D+20…R+20). One answer on gives a single hue. None on gives no fill. No data is gray `#a8a29e` / `#d6d3d1`. < 50 % coverage stays gray (SPEC §6). Test: `single-candidate-shading`, `default-solid`.
+- [ ] Colours: two answers on gives a red/blue margin scale (D+90…R+90 linear since 1579, was ±60; delta D+20…R+20). One answer on gives a single hue. None on gives no fill. No data is gray `#a8a29e` / `#d6d3d1`. < 50 % coverage stays gray (SPEC §6). Test: `single-candidate-shading`, `default-solid`.
 - [ ] Wording: states and countries are *sovereign*; counties, cities, towns, townships and boroughs are *incorporated*; never "incorporated state" (HO §3).
 
 ## C. Filters (institution top, geography bottom; separate by design, SPEC §5)
@@ -230,3 +230,21 @@ See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] **Open QA items to re-check at parity (qa/bugs e9539af):** QA-039 (2016 state totals after a drill-in must be the official state result, not county sums), QA-040 (one 2016 total per unit everywhere), QA-041 (picking Line is slow again), QA-042 (2016 `#` bar segment numbers), QA-043 (picking Line in '16 > '24 must not move the start knob). In v3 the state total always comes from the state result row (unique on year, office, stage, boundary_set, unit), never a sum.
 - [ ] **Past-year precincts on 2024 polygons (after the `data/election` merge):** 2016 and 2020 precinct views draw the 2024 polygons with placed values, ≈ for split/merged rows and gray where nothing was placed (DATA_LOADING.md §9.4).
 - [ ] **Search and star (once v2 ships `geo_index` / `points`):** v3 search returns the same rows and labels as `v2/data/geo_index/`; the state-icon star sits at `unit.label_point`.
+
+## Added by the Oct 18, 2026 12:00 EDT drift check (main 615fa5a, Build 1576; qa/bugs 8086360)
+- [ ] **Thumbnails (1576, QA-045):** candidate thumbnails are a fixed 30 px with % badges in every state and DC from the first frame; the size never derives from the crumb flag image (AL's portrait flag once made them 14.7 px). In v3 the size is a design token, not a measured value. Test `regress-1576`.
+- [ ] **No list jumps (1576, QA-055):** switching results ↔ district list, or years, never moves the list box; space for the shift line is reserved; a new list starts at scroll top; hidden thumbnails never collapse the list's top offset. Test `no-jump` (frame-by-frame at 390 / 375 / 1024×653), part of the CLS = 0 gate.
+- [ ] **Geo filter county rows (1576):** a county row shows its state's silhouette with the star at the county's point (from `v2/data/points`, loaded lazily per state; v3: `unit.label_point`), with no placeholder glyph. The building glyph is reserved for companies (institution filter).
+- [ ] **Open QA at Build 1576 (qa/bugs 8086360):** QA-059 and QA-060 (list-view thumbnail jumps) and QA-061 (stale DC geo label) must be closed in v2 or re-checked as v3 parity tests.
+- [ ] **Perf gates from the v2 baseline:** see PERFORMANCE.md "v2 measured baseline" (data URLs keyed by content hash, fit after paint, iPad pan ≥ 55 fps).
+
+## Added by the Oct 18, 2026 14:00 EDT drift check (main e1f9ae3, Build 1583; 98 files in `tests/`; qa/bugs 110a672)
+- [ ] **Margin colour scale (1579, QA-046 option a):** the two-answer margin scale is linear to D+90…R+90 (was ±60, which clamped lopsided counties' precincts to one red). Both the full and compact legends read +90, and the 2016 legend names Clinton. This replaces the D+60…R+60 wording in §B; in v3 the scale end is a design token (`margin.max = 90`). Test `scale-90`.
+- [ ] **Chart menu rules (1577):** one year offers pie + bar; a range offers line + bar; an invalid pick falls back to bar. Line keeps '16>'24 / '16>'20 (QA-043), and '16>'24 plots '16, '20 and '24 with a change label per segment. Tests `line-16`, `chart-keep`.
+- [ ] **Institution field (1577):** always searches institutions from any level (US/USA/America, states, counties, countries, provinces), grouped, never blank, shows "No institutions match" on a miss, and Enter/tap takes the top match. Canada lists its 13 provinces/territories in gray with a v3 note (Canada units load in v3.1, D23). The unisearch button stays top-right in the institution filter, geo filter and chart menu. In v3 this is one `/api/v1/search?scope=institution` call with grouped results. Test `inst-field`.
+- [ ] **'16 ranges (1577):** the US map redraws for '16 ranges; thumbnails read their slot's year (badges and labels). A precinct's change at a '16 range reads its 2016 twin (by name, else the 2016 precinct containing the 2024 centre; about 99 % matched, interim until values-only `precincts2016`). In v3 the twin is a stored `unit_crosswalk` row built at load, never a tap-time point-in-polygon. Philadelphia ward-division 2016 twins (QA-048). Tests `y16-range`, `prec-philly`.
+- [ ] **Address search switches everything (1578, QA-062/063):** an address moves crumb, thumbnails, map and field to one place. DC addresses (no state/county picker) open DC; an address landing on a precinct adds the precinct crumb so title and thumbnails agree. Bar labels avoid the sort chip at 320 px (QA-009). In v3 the geocoder response carries the full unit chain (state → county → precinct) so the client never mixes old and new place. Test `addr-place`.
+- [ ] **Time slider (1580, QA-053):** endpoints come from live element rects with small '16 / '20 / '24 labels; the clock button stays fixed when the row opens or closes. Precinct names have no county prefix and are never cut (QA-065); the '16>'24 precinct list is restored on reload (QA-050). Test `slider-align`.
+- [ ] **Thumbnails never jump (1581–1582):** candidate thumbnails stay hidden until results are in (fresh load) or the restored place is applied (reload), in a fixed-width badge slot. Candidate icons keep the map view's fixed spot in list, pie, bar and line; no text or tooltip beside them in chart views; the single-year bar chart is visible at phone width and clear of the button column. Tests `thumb-load`, `fixed-icons`.
+- [ ] **Back chevron on WebKit touch (1583, QA-071):** acts on `pointerup` and ignores the follow-up click. v3 uses one pointer-event handler for every tap target (also needed by the native shell, NATIVE.md). Test `back-webkit` runs in WebKit and Chromium touch; v3's port must run in both engines.
+- [ ] **Open QA at Build 1581 (qa/bugs 110a672):** QA-051 (thumbnail labels in lists), QA-064, QA-068 (DC pin), QA-069, QA-070 (clock button frame jump, reproduces at 375) are open; re-check as v3 parity tests if not closed in v2.

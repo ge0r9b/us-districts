@@ -89,7 +89,7 @@ Name, type, parent chain (breadcrumb), bbox, centroid, the institutions linked t
 Unisearch over entities, units, aliases, candidates, offices and ZIPs (pg_trgm plus alias prefix). A government-and-place entity returns two rows, `institution` and `place` (spec §5.3). A state abbreviation or name ranks the state first (`state_abbr_search.py`). p95 target 80 ms (PERFORMANCE.md).
 
 ### `GET /geocode?q=` and `GET /locate?lon=&lat=`
-`/geocode` turns an address into a point (Census one-line, then Census components, then Nominatim) and then runs `/locate`. `/locate` is a PostGIS `ST_Covers` point-in-polygon against every current public boundary set.
+`/geocode` turns an address into a point (Census one-line, then Census components, then Nominatim) and then runs `/locate`. `/locate` is a PostGIS `ST_Covers` point-in-polygon against every current public boundary set. Both responses include `chain` (`stateAbbr`, `countyKey`, `precinctKey`, `dc`, `crumbs`, `level`) so the client applies one place. DC has no county crumb. A precinct hit adds the precinct crumb.
 ```json
 {"dv":42,"query":"…","point":{"lon":<lon>,"lat":<lat>},"match":"exact","provider":"census",
  "units":{"state":"PA","county":"PA|Erie County","county_subdivision":"PA|Erie County|<town>",

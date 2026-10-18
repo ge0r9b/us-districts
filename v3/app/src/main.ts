@@ -3,12 +3,29 @@ import { Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   GEOGRAPHY_LEVELS,
-  INSTITUTIONS,
+  chartMenu,
   geographyLevel,
-  matchesInstitution,
+  institutionField,
+  legendText,
+  lineYears,
+  marginColor,
   matchesState,
+  pickUnit,
+  pointerTap,
+  precinctLabel,
+  rangeStartVotes,
+  resolveChart,
+  searchInstitutions,
+  segmentChanges,
+  sliderFrame,
+  sliderLabelXs,
   sortRows,
+  stateName,
+  thumbnailBox,
+  topInstitutionHit,
+  type ChartKind,
   type GeographyLevel,
+  type PlaceChain,
 } from "@usd/core";
 import tokens from "../../design/tokens.json";
 import mapStyle from "../../styles/map.json";
@@ -31,6 +48,16 @@ type ResultsBody = {
   rows: ResultRow[];
 };
 type LayoutMode = keyof Tokens["layoutMode"];
+type Place = {
+  level: GeographyLevel;
+  stateAbbr: string;
+  stateKey: string | null;
+  countyName: string | null;
+  precinctLabel: string | null;
+  dc: boolean;
+  crumbs: string[];
+  geographyPicked: boolean;
+};
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -45,54 +72,204 @@ root.style.setProperty("--muted", color.textMuted);
 root.style.setProperty("--dem", color.dem);
 root.style.setProperty("--rep", color.rep);
 root.style.setProperty("--nodata", color.noDataFill);
+root.style.setProperty("--thumb", `${tokens.thumbPx}px`);
 root.style.setProperty("--sat", tokens.safeArea.top);
 root.style.setProperty("--sar", tokens.safeArea.right);
 root.style.setProperty("--sab", tokens.safeArea.bottom);
 root.style.setProperty("--sal", tokens.safeArea.left);
 
 const YEARS = [2016, 2020, 2024] as const;
-let year: (typeof YEARS)[number] = 2016;
+const marginPaint: maplibregl.ExpressionSpecification = [
+  "case",
+  ["==", ["feature-state", "gray"], 1],
+  color.noDataFill,
+  [
+    "interpolate",
+    ["linear"],
+    ["coalesce", ["feature-state", "margin"], 0],
+    tokens.marginScale.demStop,
+    color.dem,
+    tokens.marginScale.even,
+    color.mapNeutral,
+    tokens.marginScale.repStop,
+    color.rep,
+  ],
+];
+
+let yearStart: (typeof YEARS)[number] = 2016;
+let yearEnd: (typeof YEARS)[number] = 2016;
+let chart: ChartKind = "bar";
+let sliderOpen = true;
 let fmt: "pct" | "num" = "pct";
 let body: ResultsBody | null = null;
-let office = "president";
-let level: GeographyLevel = "state";
-let geographyPicked = false;
-let stateFilter = "";
+const yearBodies = new Map<number, ResultsBody | null>();
+let rowIndex = new Map<string, ResultRow>();
+let focusKey: string | null = null;
+const twins = new Map<string, string>();
+let place: Place = {
+  level: "state",
+  stateAbbr: "",
+  stateKey: null,
+  countyName: null,
+  precinctLabel: null,
+  dc: false,
+  crumbs: ["United States"],
+  geographyPicked: false,
+};
 let stateEdited = false;
-let layout: LayoutMode = "map";
+let committed = "United States";
 let emptyMessage = "No rows";
+let loadSeq = 0;
+let tapHandled = false;
+let map: maplibregl.Map | undefined;
 
 const yearsEl = document.querySelector<HTMLElement>("#years")!;
-const institutionEl = document.querySelector<HTMLElement>("#institution")!;
 const geographyEl = document.querySelector<HTMLElement>("#geography")!;
 const stateEl = document.querySelector<HTMLInputElement>("#state")!;
+const addressEl = document.querySelector<HTMLInputElement>("#address")!;
+const placeNote = document.querySelector<HTMLElement>("#place-note")!;
 const listEl = document.querySelector<HTMLOListElement>("#list")!;
 const fmtBtn = document.querySelector<HTMLButtonElement>("#fmt")!;
 const layoutBtn = document.querySelector<HTMLButtonElement>("#layout")!;
+const backBtn = document.querySelector<HTMLButtonElement>("#back")!;
+const clockBtn = document.querySelector<HTMLButtonElement>("#clock")!;
+const chartBtn = document.querySelector<HTMLButtonElement>("#chart")!;
+const chartMenuEl = document.querySelector<HTMLElement>("#chart-menu")!;
+const chartView = document.querySelector<HTMLElement>("#chart-view")!;
+const instInput = document.querySelector<HTMLInputElement>("#institution-q")!;
+const instMenu = document.querySelector<HTMLElement>("#inst-menu")!;
+const crumbEl = document.querySelector<HTMLElement>("#crumb")!;
+const legendEl = document.querySelector<HTMLElement>("#legend")!;
+const legendCompactEl = document.querySelector<HTMLElement>("#legend-compact")!;
+const thumbsEl = document.querySelector<HTMLElement>("#thumbs")!;
+let layout: LayoutMode = "map";
 document.body.dataset.layout = tokens.layoutMode[layout];
 
-function viewFor(y: number): { unitType: string; state: string | null } {
-  if (!geographyPicked) {
-    if (y === 2016) return { unitType: "state", state: stateFilter || null };
-    return { unitType: "county", state: stateFilter || "PA" };
-  }
-  if (level === "state") return { unitType: "state", state: stateFilter || null };
-  return { unitType: level, state: stateFilter || (level === "precinct" ? "VT" : "PA") };
+document.addEventListener("pointerdown", () => {
+  tapHandled = false;
+});
+
+function bindTap(el: HTMLElement, action: () => void) {
+  el.addEventListener("pointerup", (ev) => {
+    const decision = pointerTap("pointerup", tapHandled, ev.button);
+    if (decision.handled) tapHandled = true;
+    if (decision.act) action();
+  });
+  el.addEventListener("click", (ev) => {
+    const decision = pointerTap("click", tapHandled, 0);
+    tapHandled = false;
+    if (!decision.act) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      return;
+    }
+    action();
+  });
 }
 
-function paintInstitution() {
-  institutionEl.replaceChildren();
-  for (const choice of INSTITUTIONS) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "glass" + (matchesInstitution(choice.key, office) ? " on" : "");
-    btn.textContent = choice.label;
-    btn.addEventListener("click", () => {
-      office = choice.key;
-      paintInstitution();
-      void load();
+function span(): number[] {
+  return lineYears(yearStart, yearEnd);
+}
+
+function paintCrumbFor(view: { unitType: string; state: string | null }) {
+  if (place.geographyPicked) {
+    stateEl.value = place.stateAbbr;
+    crumbEl.textContent = place.crumbs.join(" · ") || "United States";
+    return;
+  }
+  if (view.unitType === "state" && !view.state) {
+    stateEl.value = "";
+    crumbEl.textContent = "United States";
+    return;
+  }
+  const abbr = view.state ?? "";
+  const name = abbr ? stateName(abbr) : null;
+  stateEl.value = abbr;
+  crumbEl.textContent = name || abbr || "United States";
+}
+
+function viewFor(y: number): { unitType: string; state: string | null } {
+  if (!place.geographyPicked) {
+    if (y === 2016) return { unitType: "state", state: place.stateAbbr || null };
+    return { unitType: "county", state: place.stateAbbr || "PA" };
+  }
+  if (place.level === "state") return { unitType: "state", state: place.stateAbbr || null };
+  return { unitType: place.level, state: place.stateAbbr || (place.level === "precinct" ? "VT" : "PA") };
+}
+
+function applyPlace(next: Place, point?: { lon: number; lat: number } | null, focus: string | null = null) {
+  focusKey = focus;
+  placeNote.hidden = true;
+  placeNote.textContent = "";
+  place = {
+    ...next,
+    crumbs: next.crumbs.length ? next.crumbs : ["United States"],
+    stateAbbr: next.stateAbbr.toUpperCase(),
+  };
+  stateEl.value = place.stateAbbr;
+  crumbEl.textContent = place.crumbs.join(" · ");
+  if (point && map) map.jumpTo({ center: [point.lon, point.lat], zoom: place.level === "precinct" ? 11 : place.level === "county" ? 8 : 5 });
+  paintGeography();
+  paintLegend();
+  void load();
+}
+
+function applyChain(chain: PlaceChain, point?: { lon: number; lat: number }) {
+  stateEdited = true;
+  const focus = chain.precinctKey || (chain.dc ? null : chain.countyKey) || chain.stateKey;
+  applyPlace(
+    {
+      level: chain.level,
+      stateAbbr: chain.stateAbbr ?? "",
+      stateKey: chain.stateKey,
+      countyName: chain.dc ? null : chain.countyName,
+      precinctLabel: chain.precinctLabel,
+      dc: chain.dc,
+      crumbs: chain.crumbs,
+      geographyPicked: true,
+    },
+    point,
+    focus,
+  );
+}
+
+function climb() {
+  if (place.level === "precinct") {
+    const dc = place.dc || place.stateAbbr === "DC";
+    applyPlace({
+      ...place,
+      level: dc ? "state" : "county",
+      precinctLabel: null,
+      countyName: dc ? null : place.countyName,
+      crumbs: dc ? ["District of Columbia"] : place.crumbs.slice(0, Math.max(1, place.crumbs.length - 1)),
+      geographyPicked: true,
     });
-    institutionEl.append(btn);
+    return;
+  }
+  if (place.level === "county") {
+    const name = place.stateAbbr ? stateName(place.stateAbbr) : null;
+    applyPlace({
+      ...place,
+      level: "state",
+      countyName: null,
+      precinctLabel: null,
+      crumbs: name ? [name] : ["United States"],
+      geographyPicked: true,
+    });
+    return;
+  }
+  if (place.stateAbbr) {
+    stateEdited = false;
+    applyPlace({
+      level: "state",
+      stateAbbr: "",
+      stateKey: null,
+      countyName: null,
+      precinctLabel: null,
+      dc: false,
+      crumbs: ["United States"],
+      geographyPicked: true,
+    });
   }
 }
 
@@ -101,37 +278,101 @@ function paintGeography() {
   for (const choice of GEOGRAPHY_LEVELS) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "glass" + (geographyPicked && geographyLevel(choice.key) === level ? " on" : "");
+    btn.className = "glass" + (place.geographyPicked && geographyLevel(choice.key) === place.level ? " on" : "");
     btn.textContent = choice.label;
-    btn.addEventListener("click", () => {
+    bindTap(btn, () => {
       const next = geographyLevel(choice.key);
       if (!next) return;
-      level = next;
-      geographyPicked = true;
-      if (!stateEdited) {
-        stateFilter = next === "precinct" ? "VT" : next === "county" ? "PA" : "";
-        stateEl.value = stateFilter;
-      }
-      paintGeography();
-      void load();
+      const abbr = stateEdited ? place.stateAbbr : next === "precinct" ? "VT" : next === "county" ? "PA" : "";
+      const name = abbr ? stateName(abbr) : null;
+      applyPlace({
+        level: next,
+        stateAbbr: abbr,
+        stateKey: null,
+        countyName: null,
+        precinctLabel: null,
+        dc: abbr === "DC",
+        crumbs: name ? [name] : ["United States"],
+        geographyPicked: true,
+      });
     });
     geographyEl.append(btn);
   }
 }
 
+function alignSlider() {
+  const buttons = Array.from(yearsEl.querySelectorAll<HTMLButtonElement>("button"));
+  const xs = sliderLabelXs(buttons.map((btn) => {
+    const rect = btn.getBoundingClientRect();
+    return { left: rect.left, width: rect.width };
+  }));
+  buttons.forEach((btn, i) => {
+    btn.dataset.labelX = String(Math.round(xs[i] ?? 0));
+  });
+}
+
 function paintYears() {
   yearsEl.replaceChildren();
+  const selected = new Set(span());
   for (const y of YEARS) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "glass" + (y === year ? " on" : "");
-    btn.textContent = String(y);
-    btn.addEventListener("click", () => {
-      year = y;
+    btn.dataset.year = String(y);
+    btn.className = "glass" + (selected.has(y) ? " on" : "");
+    btn.textContent = `'${String(y).slice(2)}`;
+    bindTap(btn, () => {
+      if (yearStart === yearEnd && y !== yearStart) {
+        yearStart = Math.min(yearStart, y) as (typeof YEARS)[number];
+        yearEnd = Math.max(yearEnd, y) as (typeof YEARS)[number];
+      } else {
+        yearStart = y;
+        yearEnd = y;
+      }
+      chart = resolveChart(chart, span());
+      document.body.dataset.chart = chart;
       paintYears();
+      paintChartButton();
       void load();
     });
     yearsEl.append(btn);
+  }
+  requestAnimationFrame(alignSlider);
+}
+
+function paintSlider() {
+  const frame = sliderFrame(sliderOpen);
+  yearsEl.dataset.open = sliderOpen ? "true" : "false";
+  yearsEl.style.visibility = frame.rowVisibility;
+}
+
+function paintLegend() {
+  legendEl.textContent = legendText(yearEnd, false);
+  legendCompactEl.textContent = legendText(yearEnd, true);
+}
+
+function setThumbs(ready: boolean) {
+  const box = thumbnailBox(ready);
+  thumbsEl.dataset.ready = ready ? "true" : "false";
+  thumbsEl.style.visibility = box.visibility;
+  thumbsEl.style.height = `${box.size}px`;
+  thumbsEl.style.minHeight = `${box.size}px`;
+}
+
+function focusRow(): ResultRow | null {
+  if (focusKey) return rowIndex.get(focusKey) ?? null;
+  return body?.rows[0] ?? null;
+}
+
+function paintThumbs() {
+  const row = focusRow();
+  const dem = row?.share?.[0] ?? 0;
+  const rep = row?.share?.[1] ?? 0;
+  const winnerDem = dem >= rep;
+  thumbsEl.replaceChildren();
+  for (const kind of winnerDem ? ["dem", "rep"] : ["rep", "dem"]) {
+    const icon = document.createElement("span");
+    icon.className = `thumb ${kind}`;
+    thumbsEl.append(icon);
   }
 }
 
@@ -164,14 +405,15 @@ function paintList() {
   const maxTotal = Math.max(...rows.map((row) => (row.gray ? 0 : (row.total ?? 0))), 1);
   for (const row of rows) {
     const li = document.createElement("li");
+    if (row.unit === focusKey) li.dataset.focus = "true";
     const swatch = document.createElement("span");
     swatch.className = "swatch";
-    const dem = row.share?.[0] ?? 0;
-    const rep = row.share?.[1] ?? 0;
-    if (!row.gray) swatch.style.background = dem >= rep ? color.dem : color.rep;
+    if (!row.gray && row.share) {
+      swatch.style.background = marginColor((row.share[1] ?? 0) - (row.share[0] ?? 0));
+    }
     const name = document.createElement("span");
-    name.className = "name";
-    name.textContent = row.name;
+    name.className = "name" + (place.level === "precinct" ? " whole" : "");
+    name.textContent = place.level === "precinct" ? precinctLabel(row.name) : row.name;
     const val = document.createElement("span");
     val.className = "val";
     if (row.gray) val.textContent = "—";
@@ -192,13 +434,164 @@ function paintList() {
       o.style.width = `${(row.share[2] ?? 0) * scale * 100}%`;
       bar.append(d, r, o);
     }
+    bindTap(li, () => {
+      const picked = pickUnit(rowIndex, row.unit);
+      if (!picked) return;
+      focusKey = picked.unit;
+      paintThumbs();
+      if (chart !== "bar") paintChart();
+    });
     li.append(swatch, name, val, bar);
     listEl.append(li);
   }
 }
 
-function colorMap(map: maplibregl.Map, source: string) {
-  const features = map.querySourceFeatures(source);
+function marginOf(year: number, unit: string): number | null {
+  const row = yearBodies.get(year)?.rows.find((item) => item.unit === unit);
+  if (!row || row.gray || !row.share) return null;
+  return (row.share[1] ?? 0) - (row.share[0] ?? 0);
+}
+
+function paintChartButton() {
+  chartBtn.textContent = chart === "pie" ? "Pie" : chart === "line" ? "Line" : "Bar";
+  document.body.dataset.chart = chart;
+}
+
+function paintChartMenu() {
+  chartMenuEl.replaceChildren();
+  for (const kind of chartMenu(span())) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "hit" + (kind === chart ? " on" : "");
+    btn.textContent = kind;
+    bindTap(btn, () => {
+      chart = resolveChart(kind, span());
+      chartMenuEl.hidden = true;
+      paintChartButton();
+      paintChart();
+    });
+    chartMenuEl.append(btn);
+  }
+}
+
+function paintPie() {
+  chartView.replaceChildren();
+  const row = focusRow();
+  const dem = row && !row.gray ? (row.share?.[0] ?? 0) : 0;
+  const rep = row && !row.gray ? (row.share?.[1] ?? 0) : 0;
+  const other = row && !row.gray ? (row.share?.[2] ?? 0) : 0;
+  const sum = dem + rep + other || 1;
+  const d = (dem / sum) * 100;
+  const r = (rep / sum) * 100;
+  const pie = document.createElement("div");
+  pie.className = "pie";
+  pie.style.background = `conic-gradient(var(--dem) 0 ${d}%, var(--rep) ${d}% ${d + r}%, #a8a29e ${d + r}% 100%)`;
+  chartView.append(pie);
+}
+
+function paintLine() {
+  chartView.replaceChildren();
+  const years = span();
+  const unit = focusKey;
+  const margins = years.map((year, index) => {
+    if (!unit) return null;
+    if (index === 0) {
+      return rangeStartVotes({
+        years,
+        unitKey: unit,
+        unitType: place.level,
+        twins,
+        votesAt: (atYear, key) => marginOf(atYear, key),
+      });
+    }
+    return marginOf(year, unit);
+  });
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.id = "line";
+  svg.setAttribute("viewBox", "0 0 300 100");
+  const coords = margins.map((margin, index) => {
+    if (margin == null) return null;
+    const x = years.length === 1 ? 150 : (index / (years.length - 1)) * 280 + 10;
+    const y = 90 - ((Math.max(-0.9, Math.min(0.9, margin)) + 0.9) / 1.8) * 80;
+    return `${x},${y}`;
+  });
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+  line.setAttribute("fill", "none");
+  line.setAttribute("stroke", "#111");
+  line.setAttribute("stroke-width", "2");
+  line.setAttribute("points", coords.filter((point): point is string => point != null).join(" "));
+  svg.append(line);
+  chartView.append(svg);
+  for (const change of segmentChanges(years, margins)) {
+    const label = document.createElement("p");
+    label.className = "seg";
+    label.textContent = change.label;
+    chartView.append(label);
+  }
+}
+
+function paintChart() {
+  const showList = chart === "bar";
+  listEl.hidden = !showList;
+  chartView.hidden = showList;
+  if (showList) {
+    chartView.replaceChildren();
+    paintList();
+    return;
+  }
+  if (chart === "pie") paintPie();
+  else paintLine();
+}
+
+function countyExtras() {
+  if (place.level !== "county" || !body) return [];
+  return body.rows.map((row) => ({ id: row.unit, label: row.name, group: "Counties" as const }));
+}
+
+function paintInstMenu() {
+  const found = searchInstitutions(instInput.value, countyExtras());
+  instMenu.replaceChildren();
+  if (found.message) {
+    const miss = document.createElement("p");
+    miss.className = "miss";
+    miss.textContent = found.message;
+    instMenu.append(miss);
+  }
+  for (const group of found.groups) {
+    const heading = document.createElement("p");
+    heading.className = "group-label";
+    heading.textContent = group.name;
+    instMenu.append(heading);
+    for (const hit of group.hits) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "hit" + (hit.gray ? " gray" : "");
+      btn.append(document.createTextNode(hit.label));
+      if (hit.note) {
+        const note = document.createElement("span");
+        note.className = "note";
+        note.textContent = hit.note;
+        btn.append(note);
+      }
+      bindTap(btn, () => {
+        committed = hit.label;
+        instInput.value = institutionField(hit.label, committed);
+        instMenu.hidden = true;
+      });
+      instMenu.append(btn);
+    }
+  }
+  instMenu.hidden = false;
+}
+
+function openInstitution() {
+  instInput.focus();
+  instInput.select();
+  paintInstMenu();
+}
+
+function colorMap(target: maplibregl.Map, source: string) {
+  const features = target.querySourceFeatures(source);
   const seen = new Set<string | number>();
   for (const feature of features) {
     const id = feature.id;
@@ -208,7 +601,7 @@ function colorMap(map: maplibregl.Map, source: string) {
     const gray = !row || row.gray || row.share == null;
     const margin = gray ? 0 : (row.share?.[1] ?? 0) - (row.share?.[0] ?? 0);
     const sourceLayer = source === "precinct-2024" ? "precincts" : undefined;
-    map.setFeatureState(sourceLayer ? { source, sourceLayer, id } : { source, id }, { gray: gray ? 1 : 0, margin });
+    target.setFeatureState(sourceLayer ? { source, sourceLayer, id } : { source, id }, { gray: gray ? 1 : 0, margin });
   }
 }
 
@@ -238,7 +631,7 @@ async function styleFor(origin: string): Promise<maplibregl.StyleSpecification> 
 }
 
 async function syncPrecincts(state: string | null) {
-  if (!map.isStyleLoaded()) return;
+  if (!map?.isStyleLoaded()) return;
   if (map.getLayer("precinct-fill")) map.removeLayer("precinct-fill");
   if (map.getSource("precinct-2024")) map.removeSource("precinct-2024");
   if (!state) return;
@@ -254,66 +647,149 @@ async function syncPrecincts(state: string | null) {
     source: "precinct-2024",
     "source-layer": "precincts",
     minzoom: 8,
-    paint: {
-      "fill-color": ["case", ["==", ["feature-state", "gray"], 1], color.noDataFill, color.mapNeutral],
-      "fill-opacity": 0.72,
-    },
+    paint: { "fill-color": marginPaint, "fill-opacity": 0.72 },
   });
 }
 
-async function load() {
-  const view = viewFor(year);
-  if (!matchesInstitution("president", office)) {
-    body = null;
-    paintList();
-    return;
-  }
-  const params = new URLSearchParams({
-    contest: `${year}|US|president|`,
-    unit_type: view.unitType,
-  });
+async function fetchBody(y: number, view: { unitType: string; state: string | null }): Promise<{ ok: true; body: ResultsBody } | { ok: false; message: string }> {
+  const params = new URLSearchParams({ contest: `${y}|US|president|`, unit_type: view.unitType });
   if (view.state && matchesState(view.state, view.state)) params.set("state", view.state);
   const res = await fetch(`/api/v1/results?${params}`);
   if (!res.ok) {
-    body = null;
     const err = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
-    emptyMessage = err?.error?.message || "No rows";
-    paintList();
+    return { ok: false, message: err?.error?.message || "No rows" };
+  }
+  return { ok: true, body: (await res.json()) as ResultsBody };
+}
+
+async function load() {
+  const seq = ++loadSeq;
+  setThumbs(false);
+  const years = span();
+  const end = years[years.length - 1] ?? yearEnd;
+  const view = viewFor(end);
+  paintCrumbFor(view);
+  const fetched = await Promise.all(years.map(async (year) => ({ year, result: await fetchBody(year, view) })));
+  if (seq !== loadSeq) return;
+  yearBodies.clear();
+  for (const item of fetched) yearBodies.set(item.year, item.result.ok ? item.result.body : null);
+  const endResult = fetched.find((item) => item.year === end)?.result;
+  if (!endResult || !endResult.ok) {
+    body = null;
+    rowIndex = new Map();
+    emptyMessage = endResult && !endResult.ok ? endResult.message : "No rows";
+    setThumbs(true);
+    paintThumbs();
+    paintChart();
     await syncPrecincts(null);
     return;
   }
   emptyMessage = "No rows";
-  body = (await res.json()) as ResultsBody;
-  paintList();
+  body = endResult.body;
+  rowIndex = new Map(body.rows.map((row) => [row.unit, row]));
+  if (focusKey && !rowIndex.has(focusKey)) focusKey = null;
+  setThumbs(true);
+  paintLegend();
+  paintThumbs();
+  paintChart();
   await syncPrecincts(view.unitType === "precinct" ? view.state : null);
-  if (map.isStyleLoaded()) colorMap(map, map.getSource("precinct-2024") ? "precinct-2024" : activeSource);
+  if (map?.isStyleLoaded()) colorMap(map, map.getSource("precinct-2024") ? "precinct-2024" : activeSource);
 }
 
-fmtBtn.addEventListener("click", () => {
+bindTap(fmtBtn, () => {
   fmt = fmt === "pct" ? "num" : "pct";
   fmtBtn.textContent = fmt === "pct" ? "%" : "#";
   fmtBtn.classList.toggle("on", fmt === "num");
-  paintList();
+  if (chart === "bar") paintList();
 });
-layoutBtn.addEventListener("click", () => {
+bindTap(layoutBtn, () => {
   layout = layout === "map" ? "list" : "map";
   document.body.dataset.layout = tokens.layoutMode[layout];
   layoutBtn.textContent = layout === "map" ? "List" : "Map";
 });
+bindTap(backBtn, climb);
+bindTap(clockBtn, () => {
+  sliderOpen = !sliderOpen;
+  paintSlider();
+});
+bindTap(chartBtn, () => {
+  const open = chartMenuEl.hidden;
+  if (open) paintChartMenu();
+  chartMenuEl.hidden = !open;
+});
+bindTap(document.querySelector<HTMLButtonElement>("#uni-inst")!, openInstitution);
+bindTap(document.querySelector<HTMLButtonElement>("#uni-geo")!, openInstitution);
+bindTap(document.querySelector<HTMLButtonElement>("#uni-chart")!, openInstitution);
+
 stateEl.addEventListener("input", () => {
-  stateFilter = stateEl.value.toUpperCase().slice(0, 2);
-  stateEl.value = stateFilter;
-  stateEdited = stateFilter.length > 0;
-  void load();
+  const abbr = stateEl.value.toUpperCase().slice(0, 2);
+  stateEl.value = abbr;
+  stateEdited = abbr.length > 0;
+  const name = stateName(abbr);
+  applyPlace({
+    ...place,
+    stateAbbr: abbr,
+    stateKey: null,
+    dc: abbr === "DC",
+    crumbs: name ? [name] : abbr ? [abbr] : ["United States"],
+    geographyPicked: place.geographyPicked || abbr.length > 0,
+  });
+});
+addressEl.addEventListener("keydown", (ev) => {
+  if (ev.key !== "Enter") return;
+  ev.preventDefault();
+  void (async () => {
+    const res = await fetch(`/api/v1/geocode?q=${encodeURIComponent(addressEl.value)}`);
+    if (!res.ok) {
+      placeNote.hidden = false;
+      placeNote.textContent = "No place match";
+      return;
+    }
+    const hit = (await res.json()) as { chain: PlaceChain; point: { lon: number; lat: number } };
+    if (!hit.chain?.stateAbbr && !hit.chain?.crumbs?.length) {
+      placeNote.hidden = false;
+      placeNote.textContent = "No place match";
+      return;
+    }
+    applyChain(hit.chain, hit.point);
+  })();
+});
+instInput.addEventListener("input", () => {
+  if (!instInput.value.trim()) instInput.value = institutionField("", committed);
+  paintInstMenu();
+});
+instInput.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape") {
+    instMenu.hidden = true;
+    instInput.value = institutionField(instInput.value, committed);
+    return;
+  }
+  if (ev.key !== "Enter") return;
+  ev.preventDefault();
+  const hit = topInstitutionHit(instInput.value, countyExtras());
+  if (!hit) {
+    paintInstMenu();
+    return;
+  }
+  committed = hit.label;
+  instInput.value = institutionField(hit.label, committed);
+  instMenu.hidden = true;
+});
+instInput.addEventListener("blur", () => {
+  instInput.value = institutionField(instInput.value, committed);
 });
 
-paintInstitution();
 paintGeography();
 paintYears();
+paintSlider();
+paintLegend();
+paintChartButton();
+setThumbs(false);
+window.addEventListener("resize", alignSlider);
 
 const origin = location.origin;
 const activeSource = "state-geojson";
-const map = new maplibregl.Map({
+map = new maplibregl.Map({
   container: "map",
   style: { version: 8, sources: {}, layers: [] },
   center: [-98.5, 39.5],

@@ -7,20 +7,38 @@
     <link rel="icon" href="data:," />
     <title>US Districts</title>
   </head>
-  <body data-layout="map">
+  <body data-layout="map" data-chart="bar">
     <div id="map"></div>
     <header class="top">
-      <h1>US Districts</h1>
-      <div class="filters" id="institution" role="group" aria-label="Institution"></div>
+      <button type="button" class="glass back" id="back" aria-label="Back">‹</button>
+      <h1 id="crumb">United States</h1>
+      <div class="inst-wrap">
+        <input id="institution-q" value="United States" aria-label="Institution" autocomplete="off" />
+        <button type="button" class="glass uni" id="uni-inst" aria-label="Search institutions">⌕</button>
+        <div id="inst-menu" class="menu" hidden></div>
+      </div>
     </header>
-    <div class="years" id="years" role="group" aria-label="Year"></div>
+    <button type="button" class="glass clock" id="clock" aria-label="Years">◷</button>
+    <div class="years" id="years" data-open="true" role="group" aria-label="Year"></div>
+    <div class="chart-dock">
+      <button type="button" class="glass" id="chart" aria-label="Chart">Bar</button>
+      <button type="button" class="glass uni" id="uni-chart" aria-label="Search institutions">⌕</button>
+      <div id="chart-menu" class="menu" hidden></div>
+    </div>
     <button type="button" class="glass layout" id="layout" aria-label="Map or list">List</button>
     <button type="button" class="glass" id="fmt" aria-label="Percent or count">%</button>
     <section class="sheet" id="sheet" aria-label="Results">
+      <div class="thumb-slot" id="thumbs" data-ready="false"></div>
+      <p class="legend" id="legend"></p>
+      <p class="legend compact" id="legend-compact"></p>
       <div class="geo-band">
         <div class="filters" id="geography" role="group" aria-label="Geography"></div>
         <input id="state" class="state" maxlength="2" inputmode="text" aria-label="State" placeholder="ST" />
+        <input id="address" class="address" aria-label="Address" placeholder="Address" autocomplete="off" />
+        <p id="place-note" class="place-note" hidden></p>
+        <button type="button" class="glass uni" id="uni-geo" aria-label="Search institutions">⌕</button>
       </div>
+      <div id="chart-view" hidden></div>
       <ol id="list"></ol>
     </section>
     <script type="module" src="/src/main.ts"></script>
