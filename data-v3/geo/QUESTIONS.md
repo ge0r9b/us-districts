@@ -88,3 +88,51 @@ Georgia 1, New Mexico 1. The source datasets (VEST, state files) also have their
 **Planned (proposal):** `data-v3/geo/precincts_<year>.csv` with `precinct_id = <USPS>-<year>-<county FIPS>-<row ordinal in the v2 file>`, plus
 `county, v2_name, source_id` (VEST/official code where it can be recovered) and a centroid. The ID would be stable for a given year
 and source file. Precincts are not stable across years, so a 2020↔2024 link would be an area crosswalk table, not shared IDs.
+
+## Q-G8: duplicate place and town keys (from v3, Oct 18, 2026)
+
+**Answer: 8 v2 rows renamed; 16 left alone because the app already hides them; 1 town key can't be fixed in v2.** Done with `tools/fix_dup_place_keys.py`.
+
+**Places.** Root `data/<State>.js` has 11 place names used twice in one state, 22 v1 rows in all:
+- MN: St. Anthony city.
+- OH: Oakwood village.
+- PA: Coaldale, Newburg, Liberty, Centerville, Pleasantville and Jefferson boroughs.
+- TX: Reno city, Oak Ridge town and Lakeside town.
+
+24 rows in `v2/data/parts/` carry these names. The v1 rows stay as they are (root `data/` is read-only).
+
+A parts row with no geometry borrows the v1 place polygon by (state, name), and the app takes the first match. So a second county could show the other place's shape and figures.
+
+**What was wrong before:**
+- TX Kaufman County's Oak Ridge town showed Cooke County's Oak Ridge.
+- TX Tarrant County's Lakeside town showed San Patricio County's Lakeside.
+
+**Renamed (8 rows), using the school convention "Name (County)", with "County" dropped like the school rows:**
+- OH: Oakwood village (Paulding).
+- TX: Reno city (Lamar), (Tarrant) and (Parker); Oak Ridge town (Cooke) and (Kaufman); Lakeside town (San Patricio) and (Tarrant).
+- Every renamed row that had no geometry now carries, verbatim, the v1 polygon of the same-named place in its own county.
+- All 8 are added to `v2_name_collisions.csv` with their TIGER 2024 place GEOID. For these rows, `row` is the index in `v2/data/parts/<State>.js`.
+
+**Left alone (16 rows): every MN and PA row, and OH Cuyahoga.** In each case a v1 town row of the same county with the same normT() name shows the right polygon, so the parts row is hidden. Renaming it would un-hide it and show the town twice. These keys don't break lookups in v2.
+
+**Towns.** There is one duplicate v1 town key (2 rows): Ohio, Union County, "Washington township". These are two different TIGER county subdivisions:
+- 3915981662: FUNCSTAT A, 27.7 sq mi.
+- 3915981242: FUNCSTAT C, 1.9 sq mi.
+
+Both rows are v1 (`data/Ohio.js`) and the app always shows v1 town rows. A rename can't be done in v2 without editing root data or `index.html`, so it is left for the orchestrator's move off v1. The fix would be to rename the second row "Washington township (3915981242)" or give it a county-unique label.
+
+**Towns added in this pass:** every new parts row gets a (county, name) that is unique in its file, and a (state, name) not already used by a v1 place. The fill tool checks this before writing.
+
+## Q-G9: town file size, 300 KB target (ruled by the orchestrator, Oct 18, 2026)
+
+Ruling: (a) keep v2/data/parts/ and places/ at coverage-simplification tolerance 0.002° (about 100-200 m median deviation)
+as built. GitHub Pages serves .js gzipped (the big-state parts files are 130-290 KB gzipped), so v2 gets no format change.
+The per-state size tables (raw and gzip at each tolerance) are in the build reports of tools/build_town_files.py.
+
+v3 note (not done in v2): per-row overhead (county name, town name, first absolute point, about 60 bytes) is a large share of a
+parts file (about 150 KB in Pennsylvania). A v3 town format could
+- store a county index (`counties:[...]` once, rows `[countyIndex, name, enc]`), or split files per county and load them lazily;
+- let a parts row of an incorporated place reference its places/ row instead of repeating the clipped geometry when the place lies
+  in one county (about half of the Texas parts bytes);
+- store shared arcs once (TopoJSON-style), since the coverage simplification already makes neighbouring rows share identical
+  vertices.
