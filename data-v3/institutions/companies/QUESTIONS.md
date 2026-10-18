@@ -9,7 +9,7 @@
 7. **More brands from All The Places.** Which chains next? ATP has ~5,600 spiders, most with `brand:wikidata`.
 
 ## Added 2026-10-18
-- **33 Marriott hotels dropped** (`no_open_coordinates_v5_only` in `locations/marriott_dropped_us.csv`): not in ATP or any fetched Marriott brand feed, no exact-name match. Many may have left the Marriott system. Keep them out, or accept another open source?
+- **33 Marriott hotels on v5 values** (`v5_user_approved`, restored 2026-10-18 per the user). Possible same building under two codes: CLEBR Renaissance Cleveland Hotel and CLEDK Hotel Cleveland, Autograph Collection are within 100 m but have different names, so the dedupe rule keeps both.
 - **CVS Pharmacy logo blank**: Wikidata has two normal-rank P154 values with no dates (CVS Logo 2016.svg, CVS Health heart.png). Picking one, or setting a preferred rank on Wikidata, would fill it.
 - **Wawa stores 9598 and 9599** (both "260 W. BALTIMORE PIKE, MEDIA PA") have coordinates 36.000282, -45.406712, which is in the Atlantic, so they have no county. Kept as-is per the user; they may be test or placeholder records.
 - **Brand logos**: 29 of 45 are filled (15 have no P154, 1 is ambiguous). Nearly all are "Public domain (PD textlogo)" on Commons with "restrictions: trademarked", so there is no copyright but a trademark still applies.

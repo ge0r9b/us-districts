@@ -71,6 +71,9 @@ S_WD = src(f"wikidata-brands-{read_meta('wikidata_brands')['retrieved_at']}", "W
 ATP_USED = ("mcdonalds", "marriott_hotels", "ritz_carlton")
 S_ATP = {s: src(f"atp-{s}-{ATP_DATE}", f"All The Places spider '{s}' (run {ATP['run_id']})", ATP["spiders"][s]["url"],
                 "CC0 1.0", ATP_DATE, RAW / "atp" / f"{s}.geojson") for s in ATP_USED}
+S_V5OK = src("marriott-v5-user-approved-2026-10-18", "Marriott property list v5 values (coordinates/address) kept where no ATP or Marriott-feed value exists; approved by the user on 2026-10-18",
+             "https://www.marriott.com/", "user-approved 2026-10-18; underlying v5 sources mixed (marriott.com, OSM ODbL, ArcGIS); see PROVENANCE-marriott-v5.md",
+             "2026-10-18", INP / "marriott-properties-v5.csv")
 # Marriott's own property feeds (first-party; see scripts/fetch_marriott_pacsys.py). sha256 is over the
 # brand files concatenated in sorted brand-code order.
 PAC_META = read_meta("marriott_pacsys")
@@ -352,11 +355,11 @@ for x in v5.itertuples(index=False):
         cc = cc or q.get("country_code") or ""
         phone = phone or q.get("phone") or ""
         url = url or f"https://pacsys.marriott.com/data/marriott_properties_{bc}_en-US.json"
-    if lat != "" and coord_src == "v5":  # v5 coordinates are never published (unknown licence)
-        lat = lon = ""
-        fl.append("v5_coordinates_dropped")
-    if addr and addr_src == "v5":
-        fl.append("v5_unknown_license:address")
+    if lat != "" and coord_src == "v5":  # no ATP / Marriott-feed point: v5 values kept, user-approved 2026-10-18
+        srcs.append(S_V5OK)
+        fl.append("v5_user_approved")
+    if addr and addr_src == "v5":  # kept: user approved v5 values on 2026-10-18
+        fl.append("v5_user_approved")
     if not bq and BRAND_Q.get(x.brand):
         bq = BRAND_Q[x.brand]
         fl.append("brand_qid_from_brand_name")
@@ -370,6 +373,25 @@ for x in v5.itertuples(index=False):
                      source=";".join(srcs + [S_CEN, S_WD]), source_url=url or (hit[1]["properties"].get("website", "") if hit else ""),
                      source_date=max(SOURCES[s]["retrieved_at"] for s in srcs), name=x.hotel_name, sub_brand_qid="",
                      county_geoid="", country_code=cc, status="", store_type=""))
+# v5-only rows (v5_user_approved) are dropped when they duplicate another row: same MARSHA code, or the same
+# normalized name and address with points within 100 m.
+_nm = lambda t: re.sub(r"[^a-z0-9]", "", (t or "").lower())
+_open = [x for x in rows if "v5_user_approved" not in x["flags"] and x["lat"] != ""]
+_by_code = Counter(x["store_id"] for x in rows if x["store_id"])
+_by_na = defaultdict(list)
+for x in _open:
+    _by_na[(_nm(x["name"]), _nm(x["address"]))].append(x)
+for x in rows:
+    if "v5_user_approved" not in x["flags"]:
+        continue
+    if x["store_id"] and _by_code[x["store_id"]] > 1:
+        x["dup_of"] = x["store_id"]
+        continue
+    for y in _by_na.get((_nm(x["name"]), _nm(x["address"])), []):
+        if km(x["lat"], x["lon"], y["lat"], y["lon"]) <= 0.1:
+            x["dup_of"] = y["store_id"]
+            break
+stats["v5_user_approved_duplicates"] = sum(1 for x in rows if x.get("dup_of"))
 # Scope: US + territories only (Full Stack 8639fe1). Rows that cannot load are dropped and listed.
 US_CC = {"US", "PR", "VI", "GU", "AS", "MP"}
 keep, dropped = [], []
@@ -379,7 +401,7 @@ for x in rows:
               "no_store_id" if not x["store_id"] else
               "no_brand_qid" if not x["brand_qid"] else
               "no_coordinates_no_address" if x["lat"] == "" and not x["address"] else
-              "no_open_coordinates_v5_only" if x["lat"] == "" and "v5_coordinates_dropped" in x["flags"] else
+              f"duplicate_of:{x['dup_of']}" if x.get("dup_of") else
               "no_coordinates" if x["lat"] == "" else "")
     (dropped if reason else keep).append((x, reason))
 stats["dropped"] = dict(Counter(r for _, r in dropped))
@@ -387,7 +409,10 @@ pd.DataFrame([dict(store_id=x["store_id"], brand=x["brand"], name=x["name"], cit
                    country_code=x["country_code"], reason=r, source_url=x["source_url"]) for x, r in dropped if r not in ("non_us", "no_country")]
              ).to_csv(OUT / "marriott_dropped_us.csv", index=False, lineterminator="\n")
 rows = [x for x, _ in keep]
+for x in rows:
+    x.pop("dup_of", None)
 df = finish(rows, check_county=False)
+stats["v5_user_approved_rows"] = int(df["flags"].str.contains("v5_user_approved").sum())
 v5_codes = set(v5.marsha)
 lic = Counter(f for fl in df["flags"] for f in fl.split(";") if f.startswith("v5_unknown_license"))
 stats["v5_unknown_license_rows"] = int(df["flags"].str.contains("v5_unknown_license").sum())
@@ -558,6 +583,8 @@ for fname, d in LOC.items():
         srcs = x.source.split(";")
         if "coordinates_from_atp" in x.flags:
             sid = next(s for s in srcs if s.startswith("atp-"))
+        elif "v5_user_approved" in x.flags:
+            sid = S_V5OK
         elif "coordinates_from_marriott_feed" in x.flags:
             sid = S_PAC
         else:
