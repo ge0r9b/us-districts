@@ -258,6 +258,7 @@ Source and licence:
 | EPCI | 1,264 = 1,252 EPCI à fiscalité propre (1,252) + Métropole de Lyon + 11 EPT | `fr_epci.csv` (`code` = SIREN) | `fr_epci_2026.geojson.gz` | 9,804,733 | `40a5f838f44c0ef537589c56075ed44b8c5ef72d9be717a1d48cf38e8126147c` |
 | communes | 34,875 (34,875) | `fr_com.csv` (INSEE, `siren`) | `fr_com_2026.geojson.gz` | 37,567,192 | `2b6a1e18dd8a3a62456acfb149a6f779b6fa50315dc8048b9d32eb0d39e39547` |
 | overseas collectivités BLM, MAF, SPM | 3 | `fr_com_om.csv` (INSEE 977, 978, 975) | `fr_com_om_2026.geojson.gz` | 29,098 | `4c283b1b40d12637ece01ee804521b9e50127e9d4b87cd220d0d6656cf960eba` |
+| communes associées (COMA) / déléguées (COMD) | 2,566 = 468 + 2,098 (COG 2026: 2,576 = 471 + 2,105; 10 missing, see below) | `fr_cad.csv` (`code` = INSEE + `type`) | `fr_cad_2026.geojson.gz` | 2,662,820 | `c0e32b8809f1108d7971fd8fc0898109058c19cfd58c2816694f1cb5c962476a` |
 
 CSV columns: `fr_com`: `code` (INSEE), `siren`, `name`, `type` (IGN `statut`), `parent_dep`, `reg`, `epci_siren` (`/`-separated
 when a commune is in both the Métropole du Grand Paris and an EPT; `NR` for the 4 isolated communes), `zone` (FXX/GLP/MTQ/GUF/REU/MYT),
@@ -282,6 +283,20 @@ simplified communes by their INSEE codes; EPCI are unions of the member communes
 EPCI polygons (symmetric difference 0.0000 % for every unit; no code missing or extra). `area_km2` = geodesic area of the
 full-resolution polygon. Output WGS84, 5 decimals, gzip mtime 0.
 
+Communes associées / déléguées (stage `cad`, added Oct 18, 2026): IGN publishes them in the same ADMIN EXPRESS COG 2026 FXX
+GeoPackage, layer `commune_associee_ou_deleguee` (none in the DROM packages). `fr_cad.csv`: `code` (INSEE), `siren` (mostly empty),
+`name`, `type` (commune associée / commune déléguée), `parent_com` (`code_insee_de_la_commune_de_rattach`, all 934 found in
+`fr_com`), `zone`, `area_km2`. **Join on (code, type)**: 582 rows share the INSEE code of their parent commune nouvelle (e.g. the
+chef-lieu déléguée), so `code` alone collides with `fr_com`. Geometry: per parent commune the units are coverage-simplified together
+at 20 m (2,000,181 → 451,612 vertices, area error 0.15 %, Hausdorff median 14 m), then clipped to the parent's simplified polygon,
+so they nest exactly in `fr_com`; no unit became empty. They do not always fill the parent: COMA cover only the associated part
+(578 of 934 parents ≥ 99 % covered). Check against INSEE `v_commune_2026.csv` (COG 2026, sha256
+`7be1153de3a63df48fa0ca77f8490c8a0c5c9c4eb12f5cec1ca7f70b0237b1d3`): no extra rows; 10 COG rows missing from IGN, all under 3 parents:
+COMD 25303 Hauterive-la-Fresse, 25347 La Longeville, 25390 Montbenoît, 25398 Montflovin, 25620 Ville-du-Pont (parent 25390);
+COMA 55294 Liouville, 55319 Marbotte, 55451 Saint-Agnant-sous-les-Côtes (parent 55012); COMD 69144 Nuelles, 69208
+Saint-Germain-sur-l'Arbresle (parent 69208). No other IGN product carries them (ADMIN EXPRESS COG CARTO is a generalization of the
+same data; BD TOPO's commune_associee_ou_deleguee is the same IGN source). Their area is inside the parent's `fr_com` polygon.
+
 Regenerate (inputs about 247 MB of .7z; sha256 of each, also in `../geo-data-raw/adminexpress/SHA256SUMS`):
 FXX `688eb44505d9b4a8e422ded2f4afaac799f10783de563132ca1a60e9491c6278`, GLP `53f6340c0143c17dd554fd3c191046dd2af288e255ca11d6cf8b480340c91e6e`,
 MTQ `3d04005ffad90eb82a4e53663d53a04940c4a5fad64e1f41e8e4abd568841327`, GUF `267721af2a6dd3e50990e8c6bd337392c7ebfeec10e5c79abf36ac2fb09ce098`,
@@ -295,11 +310,11 @@ for z in LAMB93_FXX RGAF09UTM20_GLP RGAF09UTM20_MTQ UTM22RGFG95_GUF RGR92UTM40S_
   n=ADMIN-EXPRESS-COG_4-0__GPKG_${z}_2026-01-01
   curl -O https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG/$n/$n.7z; done
 python3 -c "import py7zr,glob; [py7zr.SevenZipFile(f).extractall('x') for f in sorted(glob.glob('*.7z'))]"; cd -
-for s in load base dep reg epci om; do
+for s in load base dep reg epci om cad; do
   python3 -W ignore tools/foreign_geojson.py . ../geo-data-raw fr --out ../geo-data-raw/v3fr --stage $s; done
 ```
 
-Uncompressed GeoJSON bytes: REG 5,914,434; DEP 11,549,042; EPCI 32,743,757; COM 129,454,005; COM_OM 108,018. Per-stage
+Uncompressed GeoJSON bytes: REG 5,914,434; DEP 11,549,042; EPCI 32,743,757; COM 129,454,005; COM_OM 108,018; CAD 9,344,367. Per-stage
 numbers in `../geo-data-raw/v3fr/report.json`.
 
 ## United Kingdom, ONS Open Geography Portal BFC (`tools/ons_fetch.py`, `tools/foreign_geojson.py … gb`)

@@ -56,12 +56,16 @@ overseas départements/régions), plus BLM, MAF, SPM (overseas collectivités, k
 | Départements | `fr_dep.csv` | `IGN ADMIN-EXPRESS-COG departement` | COG 2026 | `code_insee` (2A/2B, 971–976); `code_siren` also given | 96 + 5 = 101 |
 | EPCI | `fr_epci.csv` | `IGN ADMIN-EXPRESS-COG epci` | COG 2026 | `code_siren` (9 digits) | 1,241 + 23 = 1,264 |
 | Communes | `fr_com.csv` | `IGN ADMIN-EXPRESS-COG commune` | COG 2026 | `code_insee` (5 chars); `code_siren` also given | 34,746 + 129 = 34,875 |
+| Communes associées / déléguées | `fr_cad.csv` | `IGN ADMIN-EXPRESS-COG commune_associee_ou_deleguee` | COG 2026 | (`code_insee`, `type`); parent `code_insee_de_la_commune_de_rattach` | 2,566 + 0 (468 COMA + 2,098 COMD) |
 
 EPCI: the IGN layer can include the Métropole de Lyon and the Grand Paris établissements publics territoriaux alongside the
 EPCI à fiscalité propre (DGCL total at 1 Jan 2026: 1,252). The `type` column carries IGN's `nature` so the two can be told
 apart. Built: 1,264 = 22 Métropole (21 + Métropole de Lyon) + 14 CU + 229 CA + 988 CC + 11 Etablissement public
 territorial; minus Lyon and the 11 EPT = 1,252. IGN still types 243100781 Le Grand Ouest Toulousain as a CC (DGCL: a CA since
 2025), hence CA 229 / CC 988 vs DGCL 230 / 987. The 4 communes in no EPCI carry `epci_siren` = `NR`.
+Communes associées/déléguées: 582 share their parent's INSEE code, so join on (code, type). INSEE COG 2026 lists 2,576; the 10
+IGN lacks (under parents 25390 Montbenoît, 55012 Apremont-la-Forêt, 69208 Saint-Germain-Nuelles) are listed in README.md; IGN
+publishes no other layer with them.
 Overseas collectivités Saint-Barthélemy (977), Saint-Martin (978), Saint-Pierre-et-Miquelon (975) are in `fr_com_om.csv`, keyed
 by INSEE code, outside the 34,875 communes.
 

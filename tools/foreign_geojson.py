@@ -15,7 +15,8 @@ identical edges:
       LAD26CD); CTYUA and CAUTH = unions of LADs (membership from full-resolution overlap with the ONS CTYUA / CAUTH layers).
   de  base = Gemeinden; VWG / KRS / LAN = unions by ARS prefix (9 / 5 / 2 digits).
   fr  base = communes (each territory simplified in its own CRS); départements and régions by the communes' INSEE codes; EPCI by
-      the IGN EPCI layer's member list (codes_insee_des_communes_membres).
+      the IGN EPCI layer's member list (codes_insee_des_communes_membres); communes associées/déléguées (stage cad) clipped to
+      their simplified parent commune.
 Each dissolved layer is checked against the publisher's own layer: per-unit area difference (full-resolution union vs published
 polygon) and missing / extra codes, in report.json.
 Areas: area_km2 = geodesic area (pyproj Geod, WGS84) of the full-resolution source polygon (land: clipped to the coast / GF = 4).
@@ -317,8 +318,36 @@ def fr_om():  # overseas collectivités BLM, MAF, SPM: the collectivité polygon
         rows.append([c, d["code_siren"], d["nom_officiel"], "collectivité d'outre-mer", "FR", z, ar])
     write("fr_com_om_2026", feats); W("fr_com_om.csv", ["code", "siren", "name", "type", "parent", "zone", "area_km2"], sorted(rows))
 
+def fr_cad():
+    """Communes associées (COMA) and déléguées (COMD), IGN layer commune_associee_ou_deleguee (FXX only in 2026). Not part of the
+    base coverage: per parent commune the full-resolution units are cleaned and coverage-simplified together (shared inner edges),
+    then clipped to the parent's simplified polygon, so they nest exactly inside fr_com. Code = INSEE code (unique in this layer,
+    but 582 share the code of their parent commune nouvelle, e.g. the chef-lieu), so join on (code, type)."""
+    L = cget("fr_load"); C = L["com"]; S = cget("fr_simpl"); idx = {d["code_insee"]: i for i, (z, c, d, g) in enumerate(C)}
+    A = []
+    for z, f in fr_gpkgs().items():
+        rows, crs = fr_read(f, "commune_associee_ou_deleguee"); A += [(z, crs, d, g) for d, g in rows]
+    assert len({d["code_insee"] for z, c, d, g in A}) == len(A)
+    grp = [d["code_insee_de_la_commune_de_rattach"] for z, c, d, g in A]
+    miss = sorted({p for p in grp if p not in idx}); R["fr_cad_parent_not_found"] = miss
+    Ssub = simp([g for *_, g in A], "fr_cad", grp); cover = {}
+    feats, rows = [], []
+    for (z, crs, d, g), s, p in zip(A, Ssub, grp):
+        if p in idx: s = polys(valid(s.intersection(S[idx[p]])))
+        ar = geod_km2(g, crs); t = {"COMA": "commune associée", "COMD": "commune déléguée"}[d["nature"]]
+        cover.setdefault(p, []).append(s)
+        feats.append((d["code_insee"], {"code": d["code_insee"], "siren": d["code_siren"] or "", "name": d["nom_officiel"], "type": t, "parent_com": p,
+                                        "population": d["population"], "zone": z, "area_km2": ar}, s, crs))
+        rows.append([d["code_insee"], d["code_siren"] or "", d["nom_officiel"], t, p, z, ar])
+    sh = {p: shapely.unary_union(v).area / S[idx[p]].area for p, v in cover.items() if p in idx}
+    R["fr_cad"] |= {"units": len(A), "by_type": dict(collections.Counter(d["nature"] for z, c, d, g in A)), "parents": len(sh),
+                    "parent_share_covered_min": round(min(sh.values()), 4), "parents_fully_covered_99pct": sum(v >= 0.99 for v in sh.values()),
+                    "empty_after_clip": [d["code_insee"] for (z, c, d, g), f in zip(A, feats) if f[2].is_empty]}
+    log("fr_cad", R["fr_cad"])
+    write("fr_cad_2026", feats); W("fr_cad.csv", ["code", "siren", "name", "type", "parent_com", "zone", "area_km2"], sorted(rows))
+
 ST = {"gb": {"load": gb_load, "base": gb_base, "lad": gb_lad, "ctyua": gb_ctyua, "cauth": gb_cauth},
       "de": {"load": de_load, "base": de_base, "vwg": de_vwg, "krs": de_krs, "lan": de_lan},
-      "fr": {"load": fr_load, "base": fr_base, "dep": fr_dep, "reg": fr_reg, "epci": fr_epci, "om": fr_om}}[CC]
+      "fr": {"load": fr_load, "base": fr_base, "dep": fr_dep, "reg": fr_reg, "epci": fr_epci, "om": fr_om, "cad": fr_cad}}[CC]
 for s in (list(ST) if STAGE == "all" else STAGE.split(",")):
     log("stage", CC, s); ST[s](); save_report(); log("stage", CC, s, "done")
