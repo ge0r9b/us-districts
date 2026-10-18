@@ -1,0 +1,48 @@
+{
+"file": "Hawaii.js",
+"bytes": 138051,
+"precincts": 247,
+"counties": 5,
+"dem": 266891,
+"rep": 128847,
+"total": 428937,
+"nearest_county": 0,
+"cap_bytes": 138827,
+"tol": 0.0004,
+"zero_vote_skipped": 17,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Hawaii County": [
+41259,
+17501,
+64867
+],
+"Kauai County": [
+16456,
+7574,
+26335
+],
+"Maui County": [
+33466,
+13445,
+51925
+],
+"Kalawao County": [
+14,
+1,
+20
+],
+"Honolulu County": [
+175696,
+90326,
+285790
+]
+},
+"vest_zip": "hi_2016.zip"
+}

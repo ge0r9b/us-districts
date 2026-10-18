@@ -1,0 +1,108 @@
+{
+"file": "Nevada.js",
+"bytes": 386844,
+"precincts": 1756,
+"counties": 17,
+"dem": 539260,
+"rep": 512058,
+"total": 1125385,
+"nearest_county": 0,
+"cap_bytes": 400292,
+"tol": 0.0004,
+"zero_vote_skipped": 311,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Clark County": [
+402227,
+320057,
+767156
+],
+"Washoe County": [
+97379,
+94758,
+209909
+],
+"Elko County": [
+3401,
+13551,
+18559
+],
+"Eureka County": [
+74,
+723,
+854
+],
+"Pershing County": [
+430,
+1403,
+1982
+],
+"Nye County": [
+5094,
+13324,
+19595
+],
+"Esmeralda County": [
+65,
+329,
+423
+],
+"Storey County": [
+752,
+1616,
+2558
+],
+"Humboldt County": [
+1386,
+4521,
+6433
+],
+"Douglas County": [
+8454,
+17415,
+27885
+],
+"Churchill County": [
+2210,
+7830,
+10938
+],
+"Carson City": [
+9610,
+13125,
+25016
+],
+"Lyon County": [
+6146,
+16005,
+23762
+],
+"Lander County": [
+403,
+1828,
+2413
+],
+"Lincoln County": [
+285,
+1671,
+2132
+],
+"Mineral County": [
+637,
+1179,
+1997
+],
+"White Pine County": [
+707,
+2723,
+3773
+]
+},
+"vest_zip": "nv_2016.zip"
+}

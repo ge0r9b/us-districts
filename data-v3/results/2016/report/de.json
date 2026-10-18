@@ -1,0 +1,38 @@
+{
+"file": "Delaware.js",
+"bytes": 99335,
+"precincts": 428,
+"counties": 3,
+"dem": 235603,
+"rep": 185127,
+"total": 441590,
+"nearest_county": 15,
+"cap_bytes": 113643,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"New Castle County": [
+162919,
+85525,
+261507
+],
+"Kent County": [
+33351,
+36991,
+74260
+],
+"Sussex County": [
+39333,
+62611,
+105823
+]
+},
+"vest_zip": "de_2016.zip"
+}

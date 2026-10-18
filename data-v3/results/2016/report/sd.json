@@ -1,0 +1,353 @@
+{
+"file": "South_Dakota.js",
+"bytes": 199673,
+"precincts": 747,
+"counties": 66,
+"dem": 117466,
+"rep": 227731,
+"total": 370111,
+"nearest_county": 0,
+"cap_bytes": 225720,
+"tol": 0.0006,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Brown County": [
+5452,
+9613,
+16114
+],
+"Butte County": [
+696,
+3357,
+4351
+],
+"Codington County": [
+3174,
+7764,
+11669
+],
+"Davison County": [
+2355,
+5157,
+7952
+],
+"Lawrence County": [
+3356,
+7411,
+11842
+],
+"Lincoln County": [
+8076,
+15499,
+25231
+],
+"Meade County": [
+2223,
+8441,
+11621
+],
+"Minnehaha County": [
+30618,
+42053,
+78281
+],
+"Pennington County": [
+14074,
+29804,
+47743
+],
+"Bennett County": [
+412,
+666,
+1149
+],
+"Miner County": [
+281,
+706,
+1064
+],
+"Jerauld County": [
+264,
+648,
+967
+],
+"Marshall County": [
+754,
+1056,
+1947
+],
+"Hanson County": [
+424,
+1497,
+2006
+],
+"Haakon County": [
+77,
+936,
+1044
+],
+"Clay County": [
+2608,
+2109,
+5069
+],
+"Oglala Lakota County": [
+2510,
+241,
+2905
+],
+"Lyman County": [
+369,
+977,
+1421
+],
+"Hand County": [
+334,
+1391,
+1818
+],
+"Gregory County": [
+391,
+1600,
+2091
+],
+"Spink County": [
+919,
+1854,
+2951
+],
+"Custer County": [
+1121,
+3293,
+4721
+],
+"Todd County": [
+1505,
+487,
+2125
+],
+"Moody County": [
+1043,
+1731,
+2933
+],
+"Walworth County": [
+457,
+1896,
+2477
+],
+"Hughes County": [
+2450,
+5174,
+8175
+],
+"Brookings County": [
+4879,
+6748,
+12680
+],
+"Day County": [
+974,
+1627,
+2747
+],
+"Campbell County": [
+105,
+704,
+831
+],
+"Lake County": [
+2314,
+4038,
+6786
+],
+"McPherson County": [
+192,
+892,
+1137
+],
+"Perkins County": [
+188,
+1333,
+1606
+],
+"Jones County": [
+69,
+450,
+558
+],
+"Edmunds County": [
+380,
+1433,
+1918
+],
+"Bon Homme County": [
+704,
+2105,
+2974
+],
+"Ziebach County": [
+353,
+368,
+767
+],
+"Sanborn County": [
+241,
+819,
+1123
+],
+"Roberts County": [
+1540,
+2144,
+3889
+],
+"Turner County": [
+961,
+2937,
+4150
+],
+"McCook County": [
+623,
+1794,
+2587
+],
+"Stanley County": [
+329,
+1148,
+1567
+],
+"Hutchinson County": [
+692,
+2517,
+3365
+],
+"Jackson County": [
+323,
+722,
+1095
+],
+"Charles Mix County": [
+935,
+2382,
+3433
+],
+"Douglas County": [
+214,
+1338,
+1605
+],
+"Deuel County": [
+570,
+1366,
+2080
+],
+"Hamlin County": [
+555,
+2051,
+2762
+],
+"Faulk County": [
+204,
+858,
+1118
+],
+"Fall River County": [
+821,
+2511,
+3563
+],
+"Dewey County": [
+888,
+723,
+1708
+],
+"Aurora County": [
+340,
+974,
+1407
+],
+"Corson County": [
+535,
+588,
+1175
+],
+"Harding County": [
+38,
+695,
+770
+],
+"Clark County": [
+398,
+1139,
+1657
+],
+"Beadle County": [
+1912,
+4455,
+6772
+],
+"Hyde County": [
+125,
+543,
+690
+],
+"Kingsbury County": [
+703,
+1680,
+2551
+],
+"Mellette County": [
+238,
+402,
+683
+],
+"Potter County": [
+215,
+1071,
+1337
+],
+"Sully County": [
+137,
+679,
+861
+],
+"Grant County": [
+971,
+2382,
+3564
+],
+"Brule County": [
+571,
+1565,
+2288
+],
+"Union County": [
+2227,
+5290,
+7897
+],
+"Buffalo County": [
+296,
+171,
+490
+],
+"Tripp County": [
+462,
+2069,
+2630
+],
+"Yankton County": [
+3301,
+5659,
+9623
+]
+},
+"vest_zip": "sd_2016.zip"
+}

@@ -1,0 +1,243 @@
+{
+"file": "Idaho.js",
+"bytes": 551780,
+"precincts": 925,
+"counties": 44,
+"dem": 189765,
+"rep": 409055,
+"total": 690433,
+"nearest_county": 0,
+"cap_bytes": 564219,
+"tol": 0.0004,
+"zero_vote_skipped": 1,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Blaine County": [
+6416,
+3340,
+10724
+],
+"Bonneville County": [
+8930,
+26699,
+44221
+],
+"Boundary County": [
+933,
+3789,
+5163
+],
+"Butte County": [
+160,
+914,
+1230
+],
+"Camas County": [
+110,
+410,
+590
+],
+"Canyon County": [
+16883,
+47222,
+72785
+],
+"Caribou County": [
+271,
+2275,
+3035
+],
+"Franklin County": [
+385,
+3901,
+5499
+],
+"Idaho County": [
+1196,
+6441,
+8233
+],
+"Jerome County": [
+1329,
+4644,
+6751
+],
+"Lincoln County": [
+360,
+1184,
+1748
+],
+"Owyhee County": [
+591,
+3052,
+3925
+],
+"Payette County": [
+1507,
+6489,
+8704
+],
+"Shoshone County": [
+1384,
+3297,
+5120
+],
+"Teton County": [
+2159,
+2167,
+4976
+],
+"Ada County": [
+75677,
+93752,
+195669
+],
+"Bannock County": [
+10342,
+17180,
+33416
+],
+"Adams County": [
+415,
+1556,
+2183
+],
+"Bingham County": [
+2924,
+10907,
+16625
+],
+"Cassia County": [
+1036,
+5949,
+8178
+],
+"Fremont County": [
+651,
+4090,
+5715
+],
+"Jefferson County": [
+976,
+8436,
+11475
+],
+"Kootenai County": [
+16264,
+44449,
+66310
+],
+"Latah County": [
+8093,
+7265,
+18173
+],
+"Madison County": [
+1201,
+8941,
+15688
+],
+"Minidoka County": [
+1167,
+4887,
+6871
+],
+"Nez Perce County": [
+4828,
+10699,
+17201
+],
+"Power County": [
+699,
+1666,
+2758
+],
+"Valley County": [
+1913,
+2906,
+5349
+],
+"Custer County": [
+427,
+1777,
+2414
+],
+"Lemhi County": [
+733,
+3011,
+4096
+],
+"Clark County": [
+44,
+203,
+283
+],
+"Gooding County": [
+930,
+3743,
+5191
+],
+"Lewis County": [
+270,
+1202,
+1590
+],
+"Boise County": [
+777,
+2673,
+3814
+],
+"Oneida County": [
+184,
+1531,
+2068
+],
+"Benewah County": [
+770,
+3103,
+4185
+],
+"Elmore County": [
+1814,
+5816,
+8522
+],
+"Gem County": [
+1229,
+5980,
+7954
+],
+"Clearwater County": [
+704,
+2852,
+3801
+],
+"Twin Falls County": [
+6233,
+19828,
+29874
+],
+"Washington County": [
+776,
+3283,
+4455
+],
+"Bonner County": [
+5819,
+13343,
+20943
+],
+"Bear Lake County": [
+255,
+2203,
+2928
+]
+},
+"vest_zip": "id_2016.zip"
+}

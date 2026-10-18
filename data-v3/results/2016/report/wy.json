@@ -1,0 +1,138 @@
+{
+"file": "Wyoming.js",
+"bytes": 310917,
+"precincts": 482,
+"counties": 23,
+"dem": 55973,
+"rep": 174419,
+"total": 255849,
+"nearest_county": 0,
+"cap_bytes": 340184,
+"tol": 0.0004,
+"zero_vote_skipped": 1,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME20",
+"county": {
+"Weston County": [
+299,
+3033,
+3526
+],
+"Uinta County": [
+1202,
+6154,
+8470
+],
+"Teton County": [
+7314,
+3921,
+12627
+],
+"Albany County": [
+6890,
+7602,
+17060
+],
+"Washakie County": [
+532,
+2911,
+3814
+],
+"Campbell County": [
+1324,
+15778,
+18199
+],
+"Converse County": [
+668,
+5520,
+6654
+],
+"Park County": [
+2535,
+11115,
+15095
+],
+"Lincoln County": [
+1105,
+6779,
+8875
+],
+"Laramie County": [
+11573,
+24847,
+40969
+],
+"Niobrara County": [
+115,
+1116,
+1314
+],
+"Big Horn County": [
+604,
+4067,
+5317
+],
+"Sublette County": [
+644,
+3409,
+4390
+],
+"Sheridan County": [
+2927,
+10266,
+14510
+],
+"Carbon County": [
+1279,
+4409,
+6374
+],
+"Crook County": [
+273,
+3348,
+3826
+],
+"Johnson County": [
+638,
+3477,
+4417
+],
+"Hot Springs County": [
+400,
+1939,
+2586
+],
+"Platte County": [
+719,
+3437,
+4529
+],
+"Goshen County": [
+924,
+4418,
+5796
+],
+"Natrona County": [
+6577,
+23552,
+33348
+],
+"Fremont County": [
+4200,
+11167,
+17023
+],
+"Sweetwater County": [
+3231,
+12154,
+17130
+]
+},
+"vest_zip": "wy_2016.zip"
+}

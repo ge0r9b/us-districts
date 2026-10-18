@@ -1,0 +1,358 @@
+{
+"file": "Florida.js",
+"bytes": 1493133,
+"precincts": 5887,
+"counties": 67,
+"dem": 4504975,
+"rep": 4617886,
+"total": 9497417,
+"nearest_county": 7,
+"cap_bytes": 1676993,
+"tol": 0.0006,
+"zero_vote_skipped": 228,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Lee County": [
+124908,
+191551,
+326421
+],
+"Lake County": [
+62838,
+102188,
+170462
+],
+"Lafayette County": [
+518,
+2809,
+3411
+],
+"Jackson County": [
+6397,
+14257,
+21159
+],
+"Indian River County": [
+29043,
+48620,
+80009
+],
+"Highlands County": [
+14937,
+29565,
+46011
+],
+"Gadsden County": [
+15020,
+6728,
+22113
+],
+"Gilchrist County": [
+1458,
+6740,
+8472
+],
+"Gulf County": [
+1720,
+5329,
+7331
+],
+"Flagler County": [
+22026,
+33850,
+57987
+],
+"Hendry County": [
+4615,
+6195,
+11182
+],
+"Hardee County": [
+2149,
+5242,
+7645
+],
+"Hamilton County": [
+1904,
+3443,
+5491
+],
+"Palm Beach County": [
+374673,
+272402,
+666213
+],
+"Union County": [
+1014,
+4568,
+5722
+],
+"Orange County": [
+329894,
+195216,
+551902
+],
+"Charlotte County": [
+33445,
+60218,
+97187
+],
+"Columbia County": [
+7601,
+20368,
+28864
+],
+"Alachua County": [
+75820,
+46834,
+130100
+],
+"Glades County": [
+1271,
+2996,
+4382
+],
+"Holmes County": [
+853,
+7483,
+8556
+],
+"Brevard County": [
+119679,
+181848,
+318141
+],
+"DeSoto County": [
+3781,
+6778,
+10903
+],
+"Hillsborough County": [
+307896,
+266870,
+603890
+],
+"Leon County": [
+92068,
+53821,
+153881
+],
+"Marion County": [
+62041,
+107833,
+175900
+],
+"Osceola County": [
+85458,
+50301,
+141468
+],
+"Putnam County": [
+10094,
+22138,
+33301
+],
+"Duval County": [
+205704,
+211672,
+436573
+],
+"Dixie County": [
+1270,
+5822,
+7246
+],
+"Collier County": [
+61085,
+105423,
+172510
+],
+"Citrus County": [
+22789,
+54456,
+80412
+],
+"Calhoun County": [
+1241,
+4655,
+6128
+],
+"Broward County": [
+553320,
+260951,
+837388
+],
+"Clay County": [
+27822,
+74963,
+107317
+],
+"Bay County": [
+21797,
+62194,
+88222
+],
+"Baker County": [
+2112,
+10294,
+12705
+],
+"Bradford County": [
+2924,
+8913,
+12158
+],
+"Pasco County": [
+90142,
+142101,
+243265
+],
+"Polk County": [
+117433,
+157430,
+286969
+],
+"Jefferson County": [
+3541,
+3930,
+7689
+],
+"Martin County": [
+30185,
+53204,
+86633
+],
+"Sarasota County": [
+97870,
+124438,
+231353
+],
+"Manatee County": [
+71224,
+101944,
+180757
+],
+"Hernando County": [
+31795,
+58970,
+94651
+],
+"Volusia County": [
+109091,
+143007,
+263278
+],
+"Sumter County": [
+22638,
+52730,
+77238
+],
+"St. Lucie County": [
+66881,
+70289,
+141993
+],
+"Escambia County": [
+57461,
+88808,
+154172
+],
+"Okaloosa County": [
+23780,
+71893,
+102096
+],
+"Levy County": [
+5101,
+13775,
+19499
+],
+"Miami-Dade County": [
+624146,
+333999,
+987191
+],
+"Santa Rosa County": [
+18464,
+65339,
+88684
+],
+"St. Johns County": [
+43099,
+88684,
+137846
+],
+"Suwannee County": [
+3964,
+14287,
+18787
+],
+"Taylor County": [
+2152,
+6930,
+9348
+],
+"Seminole County": [
+105914,
+109443,
+227526
+],
+"Wakulla County": [
+4348,
+10512,
+15444
+],
+"Walton County": [
+6876,
+25756,
+33898
+],
+"Washington County": [
+2264,
+8637,
+11211
+],
+"Madison County": [
+3526,
+4851,
+8540
+],
+"Nassau County": [
+10869,
+34266,
+46992
+],
+"Liberty County": [
+651,
+2543,
+3312
+],
+"Okeechobee County": [
+3959,
+9356,
+13761
+],
+"Franklin County": [
+1744,
+4125,
+6059
+],
+"Monroe County": [
+18971,
+21904,
+42977
+],
+"Pinellas County": [
+233701,
+239201,
+497485
+]
+},
+"vest_zip": "fl.zip"
+}

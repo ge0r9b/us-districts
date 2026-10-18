@@ -1,0 +1,98 @@
+{
+"file": "Arizona.js",
+"bytes": 618769,
+"precincts": 1464,
+"counties": 15,
+"dem": 1161167,
+"rep": 1252401,
+"total": 2604657,
+"nearest_county": 0,
+"cap_bytes": 646001,
+"tol": 0.0004,
+"zero_vote_skipped": 5,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCTNA",
+"county": {
+"Apache County": [
+17083,
+8240,
+27661
+],
+"Maricopa County": [
+702907,
+747361,
+1567834
+],
+"Cochise County": [
+17450,
+28092,
+50015
+],
+"Coconino County": [
+32404,
+21108,
+59784
+],
+"Gila County": [
+7003,
+14182,
+22515
+],
+"Graham County": [
+3301,
+8025,
+12281
+],
+"La Paz County": [
+1575,
+4003,
+5951
+],
+"Mohave County": [
+17455,
+58282,
+79943
+],
+"Pima County": [
+224661,
+167428,
+421640
+],
+"Pinal County": [
+47892,
+72819,
+129546
+],
+"Santa Cruz County": [
+11690,
+3897,
+16433
+],
+"Yavapai County": [
+35590,
+71330,
+114450
+],
+"Navajo County": [
+16459,
+20577,
+40294
+],
+"Yuma County": [
+24605,
+25165,
+53010
+],
+"Greenlee County": [
+1092,
+1892,
+3300
+]
+},
+"vest_zip": "az_2016.zip"
+}

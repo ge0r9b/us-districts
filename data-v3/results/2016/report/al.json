@@ -1,0 +1,358 @@
+{
+"file": "Alabama.js",
+"bytes": 1078066,
+"precincts": 1999,
+"counties": 67,
+"dem": 729607,
+"rep": 1318629,
+"total": 2123824,
+"nearest_county": 8,
+"cap_bytes": 1301829,
+"tol": 0.0006,
+"zero_vote_skipped": 1,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME16",
+"county": {
+"Butler County": [
+3726,
+4901,
+8732
+],
+"Escambia County": [
+4605,
+9935,
+14845
+],
+"Bibb County": [
+1874,
+6738,
+8819
+],
+"Barbour County": [
+4871,
+5454,
+10469
+],
+"Randolph County": [
+2291,
+7705,
+10187
+],
+"Conecuh County": [
+3080,
+3420,
+6585
+],
+"Hale County": [
+4775,
+3173,
+8040
+],
+"Jackson County": [
+3673,
+16672,
+20984
+],
+"Lowndes County": [
+4883,
+1751,
+6684
+],
+"Henry County": [
+2292,
+5632,
+8072
+],
+"Madison County": [
+62822,
+89520,
+163389
+],
+"Dale County": [
+4413,
+13808,
+18749
+],
+"Marion County": [
+1432,
+11274,
+12984
+],
+"Chilton County": [
+2911,
+15081,
+18369
+],
+"Perry County": [
+3824,
+1407,
+5278
+],
+"Crenshaw County": [
+1664,
+4513,
+6267
+],
+"Pickens County": [
+3972,
+5456,
+9542
+],
+"Dallas County": [
+12836,
+5789,
+18792
+],
+"Sumter County": [
+4746,
+1581,
+6411
+],
+"Franklin County": [
+2197,
+9466,
+12040
+],
+"Geneva County": [
+1525,
+9994,
+11758
+],
+"Cherokee County": [
+1547,
+8953,
+10733
+],
+"Clay County": [
+1237,
+5245,
+6624
+],
+"Coffee County": [
+4221,
+15875,
+20767
+],
+"Macon County": [
+7566,
+1431,
+9140
+],
+"Fayette County": [
+1362,
+6712,
+8249
+],
+"Covington County": [
+2387,
+13267,
+15940
+],
+"Monroe County": [
+4332,
+5795,
+10271
+],
+"Coosa County": [
+1782,
+3381,
+5252
+],
+"Wilcox County": [
+4339,
+1742,
+6123
+],
+"Winston County": [
+872,
+9228,
+10313
+],
+"Walker County": [
+4497,
+24266,
+29472
+],
+"Washington County": [
+2374,
+6042,
+8533
+],
+"Pike County": [
+5056,
+7693,
+13168
+],
+"Lauderdale County": [
+9952,
+27899,
+39525
+],
+"Lawrence County": [
+3627,
+10833,
+14829
+],
+"Lamar County": [
+1036,
+5823,
+6966
+],
+"Choctaw County": [
+3109,
+4106,
+7292
+],
+"Bullock County": [
+3530,
+1140,
+4710
+],
+"Cleburne County": [
+684,
+5764,
+6593
+],
+"Greene County": [
+4013,
+838,
+4880
+],
+"Talladega County": [
+12121,
+20614,
+33407
+],
+"Russell County": [
+9579,
+9210,
+19256
+],
+"Limestone County": [
+9468,
+29067,
+40294
+],
+"Tuscaloosa County": [
+31762,
+47723,
+82700
+],
+"Clarke County": [
+5749,
+7140,
+13031
+],
+"Blount County": [
+2156,
+22859,
+25588
+],
+"Colbert County": [
+7312,
+16746,
+24915
+],
+"Autauga County": [
+5936,
+18172,
+24973
+],
+"Baldwin County": [
+18458,
+72883,
+95215
+],
+"Calhoun County": [
+13242,
+32865,
+47864
+],
+"Chambers County": [
+5784,
+7843,
+13900
+],
+"Cullman County": [
+3798,
+32989,
+37873
+],
+"Elmore County": [
+8443,
+27634,
+37260
+],
+"Etowah County": [
+10442,
+32353,
+44164
+],
+"Houston County": [
+10664,
+30728,
+42639
+],
+"Lee County": [
+21230,
+34617,
+59191
+],
+"Marshall County": [
+4917,
+29233,
+35316
+],
+"Tallapoosa County": [
+5519,
+13594,
+19486
+],
+"Shelby County": [
+22977,
+73020,
+101254
+],
+"DeKalb County": [
+3682,
+21779,
+26278
+],
+"Jefferson County": [
+156873,
+134768,
+304191
+],
+"Marengo County": [
+5615,
+5233,
+10994
+],
+"Mobile County": [
+72186,
+95116,
+172737
+],
+"Montgomery County": [
+58916,
+34003,
+95878
+],
+"Morgan County": [
+11254,
+37486,
+50644
+],
+"St. Clair County": [
+5589,
+31651,
+38400
+]
+},
+"vest_zip": "al_2016.zip"
+}

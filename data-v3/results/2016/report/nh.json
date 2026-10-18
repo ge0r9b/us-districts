@@ -1,0 +1,73 @@
+{
+"file": "New_Hampshire.js",
+"bytes": 87167,
+"precincts": 302,
+"counties": 10,
+"dem": 348526,
+"rep": 345790,
+"total": 744296,
+"nearest_county": 1,
+"cap_bytes": 87194,
+"tol": 0.0004,
+"zero_vote_skipped": 19,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME20",
+"county": {
+"Sullivan County": [
+10210,
+10796,
+22683
+],
+"Carroll County": [
+12987,
+14635,
+29616
+],
+"Coos County": [
+6563,
+7952,
+15627
+],
+"Merrimack County": [
+40198,
+37674,
+83648
+],
+"Grafton County": [
+28510,
+19010,
+51191
+],
+"Cheshire County": [
+22064,
+16876,
+41895
+],
+"Strafford County": [
+34894,
+29072,
+69000
+],
+"Rockingham County": [
+79994,
+90447,
+181434
+],
+"Belknap County": [
+13517,
+19315,
+35045
+],
+"Hillsborough County": [
+99589,
+100013,
+214157
+]
+},
+"vest_zip": "nh_2016.zip"
+}

@@ -1,0 +1,93 @@
+{
+"file": "Massachusetts.js",
+"bytes": 491835,
+"precincts": 2174,
+"counties": 14,
+"dem": 1995196,
+"rep": 1090893,
+"total": 3325046,
+"nearest_county": 11,
+"cap_bytes": 559481,
+"tol": 0.0006,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Worcester County": [
+198778,
+157682,
+389951
+],
+"Bristol County": [
+129540,
+105443,
+252140
+],
+"Barnstable County": [
+72430,
+54099,
+135781
+],
+"Franklin County": [
+24478,
+10364,
+38821
+],
+"Hampden County": [
+112590,
+78685,
+206101
+],
+"Middlesex County": [
+519887,
+219671,
+796091
+],
+"Hampshire County": [
+55367,
+21790,
+84193
+],
+"Berkshire County": [
+43714,
+16839,
+65617
+],
+"Essex County": [
+222310,
+136316,
+385370
+],
+"Plymouth County": [
+134178,
+114628,
+268970
+],
+"Norfolk County": [
+224255,
+120951,
+371612
+],
+"Suffolk County": [
+245123,
+50056,
+312217
+],
+"Dukes County": [
+8400,
+2477,
+11674
+],
+"Nantucket County": [
+4146,
+1892,
+6508
+]
+},
+"vest_zip": "ma_2016.zip"
+}

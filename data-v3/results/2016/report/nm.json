@@ -1,0 +1,188 @@
+{
+"file": "New_Mexico.js",
+"bytes": 744286,
+"precincts": 1490,
+"counties": 33,
+"dem": 385234,
+"rep": 319667,
+"total": 798319,
+"nearest_county": 0,
+"cap_bytes": 1078801,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Catron County": [
+427,
+1464,
+2049
+],
+"Chaves County": [
+5534,
+12872,
+20271
+],
+"Cibola County": [
+3741,
+3195,
+8063
+],
+"Colfax County": [
+2129,
+2585,
+5332
+],
+"Curry County": [
+3121,
+9035,
+13370
+],
+"De Baca County": [
+193,
+620,
+910
+],
+"Grant County": [
+6276,
+5288,
+12811
+],
+"Guadalupe County": [
+970,
+595,
+1827
+],
+"Harding County": [
+156,
+311,
+527
+],
+"Hidalgo County": [
+784,
+910,
+1872
+],
+"Los Alamos County": [
+5562,
+3359,
+10885
+],
+"Luna County": [
+3195,
+3478,
+7295
+],
+"Mora County": [
+1536,
+665,
+2441
+],
+"Quay County": [
+1017,
+2212,
+3572
+],
+"Rio Arriba County": [
+9592,
+3599,
+14878
+],
+"Roosevelt County": [
+1454,
+3884,
+5950
+],
+"San Miguel County": [
+7285,
+2313,
+10751
+],
+"Sierra County": [
+1612,
+3010,
+5181
+],
+"Torrance County": [
+1785,
+3714,
+6324
+],
+"Union County": [
+320,
+1216,
+1702
+],
+"Eddy County": [
+5033,
+13147,
+19667
+],
+"Santa Fe County": [
+50793,
+14332,
+71434
+],
+"San Juan County": [
+12865,
+27946,
+46110
+],
+"Sandoval County": [
+27707,
+25905,
+61690
+],
+"Lea County": [
+3930,
+12495,
+17712
+],
+"Lincoln County": [
+2331,
+5896,
+8902
+],
+"McKinley County": [
+13576,
+5104,
+21703
+],
+"Otero County": [
+6124,
+11887,
+20060
+],
+"Socorro County": [
+3313,
+2616,
+6868
+],
+"Valencia County": [
+10841,
+13215,
+27592
+],
+"Bernalillo County": [
+143417,
+94698,
+274662
+],
+"Do\u00f1a Ana County": [
+37947,
+25374,
+70648
+],
+"Taos County": [
+10668,
+2727,
+15260
+]
+},
+"vest_zip": "nm_2016.zip"
+}

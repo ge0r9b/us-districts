@@ -1,0 +1,48 @@
+{
+"file": "Rhode_Island.js",
+"bytes": 16766,
+"precincts": 39,
+"counties": 5,
+"dem": 252525,
+"rep": 180543,
+"total": 464144,
+"nearest_county": 18,
+"cap_bytes": 23601,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME20",
+"county": {
+"Washington County": [
+33813,
+27234,
+66454
+],
+"Providence County": [
+143276,
+90913,
+248893
+],
+"Newport County": [
+22915,
+15084,
+41127
+],
+"Bristol County": [
+14650,
+8970,
+25528
+],
+"Kent County": [
+37871,
+38342,
+82142
+]
+},
+"vest_zip": "ri_2016.zip"
+}

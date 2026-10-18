@@ -1,0 +1,103 @@
+{
+"file": "Maine.js",
+"bytes": 165103,
+"precincts": 577,
+"counties": 16,
+"dem": 357735,
+"rep": 335593,
+"total": 747935,
+"nearest_county": 27,
+"cap_bytes": 185580,
+"tol": 0.0006,
+"zero_vote_skipped": 23,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Cumberland County": [
+103859,
+57823,
+172908
+],
+"Waldo County": [
+10530,
+10402,
+22827
+],
+"Kennebec County": [
+29551,
+31739,
+66558
+],
+"Sagadahoc County": [
+10753,
+9323,
+21734
+],
+"York County": [
+56321,
+50500,
+114902
+],
+"Androscoggin County": [
+23206,
+28279,
+55883
+],
+"Aroostook County": [
+13499,
+19454,
+35254
+],
+"Franklin County": [
+7075,
+7932,
+16566
+],
+"Hancock County": [
+16254,
+13730,
+32299
+],
+"Knox County": [
+12590,
+9172,
+23336
+],
+"Lincoln County": [
+10289,
+9739,
+21557
+],
+"Oxford County": [
+12278,
+16241,
+31352
+],
+"Penobscot County": [
+33117,
+41704,
+80934
+],
+"Piscataquis County": [
+3121,
+5417,
+9218
+],
+"Somerset County": [
+9168,
+15028,
+26175
+],
+"Washington County": [
+6124,
+9110,
+16432
+]
+},
+"vest_zip": "me_2016.zip"
+}

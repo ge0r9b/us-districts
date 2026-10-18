@@ -1,0 +1,458 @@
+{
+"file": "Minnesota.js",
+"bytes": 825132,
+"precincts": 4089,
+"counties": 87,
+"dem": 1367716,
+"rep": 1322951,
+"total": 2944813,
+"nearest_county": 1,
+"cap_bytes": 899216,
+"tol": 0.0006,
+"zero_vote_skipped": 31,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PCTNAME",
+"county": {
+"Aitkin County": [
+3134,
+5516,
+9231
+],
+"Anoka County": [
+75500,
+93339,
+185758
+],
+"Becker County": [
+5208,
+10880,
+17222
+],
+"Beltrami County": [
+8688,
+10783,
+21564
+],
+"Benton County": [
+5640,
+12872,
+20058
+],
+"Big Stone County": [
+921,
+1608,
+2755
+],
+"Blue Earth County": [
+14428,
+15666,
+33591
+],
+"Nicollet County": [
+7886,
+8438,
+18099
+],
+"Brown County": [
+3763,
+8708,
+13779
+],
+"Carlton County": [
+8460,
+8160,
+18211
+],
+"Carver County": [
+21508,
+29056,
+55696
+],
+"Cass County": [
+4949,
+9982,
+15999
+],
+"Chippewa County": [
+1978,
+3764,
+6222
+],
+"Chisago County": [
+9278,
+18441,
+30228
+],
+"Clay County": [
+12971,
+13543,
+29398
+],
+"Clearwater County": [
+1100,
+2925,
+4245
+],
+"Cook County": [
+1912,
+1156,
+3395
+],
+"Cottonwood County": [
+1678,
+3679,
+5721
+],
+"Crow Wing County": [
+10982,
+22287,
+35842
+],
+"Dakota County": [
+110483,
+99583,
+231440
+],
+"Dodge County": [
+3102,
+6527,
+10654
+],
+"Douglas County": [
+6227,
+13966,
+21785
+],
+"Faribault County": [
+2153,
+4659,
+7412
+],
+"Fillmore County": [
+3872,
+6271,
+11055
+],
+"Freeborn County": [
+6041,
+8808,
+16051
+],
+"Goodhue County": [
+9446,
+14041,
+25717
+],
+"Grant County": [
+1105,
+2063,
+3473
+],
+"Hennepin County": [
+429299,
+191786,
+680004
+],
+"Houston County": [
+4145,
+5616,
+10604
+],
+"Hubbard County": [
+3423,
+7261,
+11505
+],
+"Isanti County": [
+5657,
+13635,
+21016
+],
+"Itasca County": [
+9015,
+12920,
+23880
+],
+"Jackson County": [
+1492,
+3609,
+5484
+],
+"Kanabec County": [
+2327,
+5230,
+8177
+],
+"Kandiyohi County": [
+7266,
+12785,
+21772
+],
+"Kittson County": [
+823,
+1349,
+2385
+],
+"Koochiching County": [
+2306,
+3569,
+6363
+],
+"Lac qui Parle County": [
+1305,
+2293,
+3860
+],
+"Lake County": [
+3077,
+2932,
+6521
+],
+"Lake of the Woods County": [
+553,
+1540,
+2242
+],
+"Le Sueur County": [
+4623,
+9182,
+14971
+],
+"Lincoln County": [
+860,
+1931,
+3019
+],
+"Lyon County": [
+3825,
+7256,
+12215
+],
+"McLeod County": [
+4978,
+12155,
+18807
+],
+"Mahnomen County": [
+930,
+991,
+2088
+],
+"Marshall County": [
+1225,
+3208,
+4817
+],
+"Martin County": [
+2733,
+7062,
+10531
+],
+"Meeker County": [
+3191,
+8104,
+12282
+],
+"Mille Lacs County": [
+3710,
+8340,
+13017
+],
+"Morrison County": [
+3637,
+12925,
+17614
+],
+"Mower County": [
+7437,
+8823,
+17715
+],
+"Murray County": [
+1295,
+2974,
+4668
+],
+"Nobles County": [
+2733,
+5299,
+8632
+],
+"Norman County": [
+1264,
+1699,
+3261
+],
+"Olmsted County": [
+36268,
+35668,
+80129
+],
+"Otter Tail County": [
+9340,
+20939,
+32500
+],
+"Pennington County": [
+2147,
+4000,
+6715
+],
+"Pine County": [
+4580,
+8191,
+13811
+],
+"Pipestone County": [
+1127,
+3338,
+4808
+],
+"Polk County": [
+4712,
+8979,
+14796
+],
+"Pope County": [
+2106,
+3793,
+6319
+],
+"Ramsey County": [
+177738,
+70894,
+273143
+],
+"Red Lake County": [
+540,
+1141,
+1881
+],
+"Redwood County": [
+1887,
+5137,
+7611
+],
+"Renville County": [
+2117,
+4890,
+7606
+],
+"Rice County": [
+14437,
+15429,
+32443
+],
+"Rock County": [
+1373,
+3091,
+4839
+],
+"Roseau County": [
+1856,
+5451,
+7804
+],
+"St. Louis County": [
+57771,
+44630,
+112422
+],
+"Scott County": [
+28502,
+39948,
+75029
+],
+"Sherburne County": [
+13293,
+31053,
+48283
+],
+"Sibley County": [
+1954,
+5193,
+7774
+],
+"Stearns County": [
+25576,
+47617,
+79592
+],
+"Steele County": [
+6241,
+11198,
+19179
+],
+"Stevens County": [
+2116,
+2799,
+5398
+],
+"Swift County": [
+1686,
+2963,
+4994
+],
+"Todd County": [
+2783,
+8485,
+11993
+],
+"Traverse County": [
+630,
+1049,
+1798
+],
+"Wabasha County": [
+3866,
+6989,
+11832
+],
+"Wadena County": [
+1684,
+4837,
+6934
+],
+"Waseca County": [
+2838,
+5967,
+9653
+],
+"Washington County": [
+67086,
+64428,
+144235
+],
+"Watonwan County": [
+1814,
+2768,
+4998
+],
+"Wilkin County": [
+893,
+2129,
+3302
+],
+"Winona County": [
+11366,
+12122,
+26074
+],
+"Wright County": [
+20323,
+43258,
+69591
+],
+"Yellow Medicine County": [
+1524,
+3382,
+5276
+]
+},
+"vest_zip": "mn_2016.zip"
+}
