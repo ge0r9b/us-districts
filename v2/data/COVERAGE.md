@@ -967,3 +967,53 @@ No 2024 figure can be split out without estimating. The v2 row format has no not
 **Sizes / load cost:** `v2/data/ussch.js` was 4,750,567 bytes before 4a, 4,750,647 after 4a and 4,750,557 after 4b. Gzip -9 went 1,584,092 → 1,584,128 → 1,584,078. That is under 0.01 %, with no new requests. Reports: `data-v3/inst/fix4_ak_report.json` (74 KB) and `fix4b_ak_implausible.json` (2 KB). These are not loaded by the app.
 
 Sources: Census 2020 TIGER/Line tabblock20 (sha256 in `inst-raw/fix4/ak/SHA256SUMS`), TIGER 2024 UNSD, Alaska Division of Elections via `data/precincts2024/Alaska.js`, VEST 2020 AK (CC BY 4.0), and the Maine SOS 2024 president by town workbook.
+
+## Institutions lane, fix 5: the 37 identical-figure overlap pairs (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+Scope: the 37 school-district pairs that overlap only partly but stored identical figures. The list is `partial_pairs` in the a0c2262 audit: 30 Montana elementary/high-school pairs, plus 3 CA, 3 IL and 1 OR. The tool is `tools/inst_pairs_check.py`.
+
+**Method:**
+1. Count Census 2020 block population inside each district's full-resolution TIGER 2024 polygon. If the territory where the two districts differ holds ≤ 2 % of the pair's people, the identical figure is legitimate. Only Three Forks 2020 met this (2.0 %).
+2. Otherwise, recompute each row on its own polygon:
+   - Use the strict exact rule if it passes. It passed for none: in every case a precinct straddles the boundary.
+   - Otherwise use a **population-weighted ≈**. Each precinct in the app's file gives the district the share of its 2020 population that lives inside, scaled per county to the official county totals the way `fill_gray.py` does. At least 97 % of the district's people must fall in precincts with votes.
+   - The 2024 precincts are the app's `data/precincts2024` (official results via NYT/MEDSL). The 2020 precincts are `data/precincts2020` (MEDSL + Census VTDs).
+   - **Montana 2020 was cross-checked** with the same weighting on VEST 2020 MT precincts (official SOS returns, CC BY 4.0). All Montana rows agreed within 5 %, most to within 1–2 votes.
+   - Area-weighting (the method behind the old figures) is still reported in the tool's output but not used. It spreads ranch-land precincts evenly and lands town voters in the wrong district.
+3. Checks:
+   - A result above 90 % of the district's population is rejected (the highest legitimate value seen was 0.79, Gardiner).
+   - Results must pass the 2020/2024 consistency rule against the row's other-year figure. The check is skipped when that figure is itself above 90 % of population.
+   - A row is changed only if its stored figure is more than 3 % off its own recomputation.
+
+**5a:** 53 row-years were replaced by the population-weighted ≈ (flag `e24`/`e20`/`est`). 13 rows matched their own recomputation and were kept, so the copied figure was theirs and the partner's was wrong. Examples:
+- Drummond HS 2024: 545 → 818 (population 1,309)
+- Box Elder HS: 159 → 193
+- Fairfield elementary 2024: 1,007 → 794
+- Frazer elementary 2020: 1,620 → 300 (population 545; VEST gives 299)
+- Harney County SD 4 2020: 2,052 → 507
+- Big Creek elementary 2020: 1,933 → 187 (population 343)
+- Woodlawn 209 (9-12) part: 475 / 497 → 275 / 287
+
+Full before/after for each row is in `data-v3/inst/fix5_pairs_report.json`.
+
+**5b (separate commit, can be dropped):** other-year figures in these same rows had more votes than about 90 % of the residents. They were area-weighted, and Big Creek's 2024 figure was not even marked ≈. They were replaced by the same population-weighted ≈, each within 0.92–0.98 of its 2020 figure:
+
+| Row | Year | Before | After |
+|---|---|---|---|
+| Big Creek elementary (pop. 343) | 2024 | 1,274 | 177 |
+| Sierra Unified (9-12) (pop. 1,293) | 2024 | 1,221 | 666 |
+| Frazer elementary (pop. 545) | 2024 | 493 | 293 |
+| Frazer HS (pop. 750) | 2024 | 911 | 404 |
+| Harney Co. UHS 1J (pop. 1,444) | 2024 | 1,755 | 928 |
+
+Three Forks was verified identical, but its shared figure was wrong. In 2020 both rows held 1,962 (unflagged), against a population-weighted 2,470 / 2,460 (VEST: 2,458 / 2,448). In 2024 the rows held 1,183 (unflagged) and 1,746. All four are now ≈: 2020 2,470 / 2,460 and 2024 2,780 / 2,768. Details are in `data-v3/inst/fix5b_implausible.json`.
+
+**Left as is, and why:**
+- **Reed Point elementary / HS 2024** (both 239; 10 % of population differs): the population-weighted results (448 and 394 for 469 and 422 residents) fail the plausibility bar. The 2024 Stillwater precinct apparently has people outside its polygon. Still identical, logged.
+- **Conrad elementary / HS 2020** (both 1,827): each is within 3 % of its own recomputation (1,778 and 1,860). The difference is inside the estimate's tolerance, so both were kept.
+- **Savage HS 2024 and Richey elementary 2024:** cannot be recomputed (96 % and 90 % of population in precincts with votes). Each partner was recomputed and differs, so these rows now hold their own original figure and are no longer identical.
+- **Dinuba Unified (9-12) 2020 and Harlem HS 2020:** the recomputation (1,016 and 1,130) fails the consistency rule against the 2024 figure (589 and 1,447). Kept and logged. Both 2024 figures need a look.
+
+Gray counts are unchanged by fix 5. Sizes: `v2/data/ussch.js` went 4,750,557 → 4,750,717 (5a) → 4,750,718 (5b). Gzip -9 went 1,584,078 → 1,584,136 → 1,584,133. No new requests.
+
+Sources: Census 2020 TIGER/Line tabblock20 for MT, CA, IL and OR, and TIGER 2024 UNSD/ELSD/SCSD (sha256 in `inst-raw/fix5/SHA256SUMS`); the app's precinct files (2024: NYT from official county returns, MEDSL CC0; 2020: MEDSL CC0 + Census VTDs); VEST 2020 MT (Harvard Dataverse, CC BY 4.0); official county totals in `data/election2024.js` / `data/election2020.js`.
