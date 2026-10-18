@@ -15,7 +15,26 @@ congress-legislators CC0); no paywalled or press sources.
 Pipeline (idempotent): `inst_officeholders_house.py` → `inst_officeholders_stateleg.py` → `inst_stateleg_official.py` →
 `inst_persons.py` → `inst_v3format.py` (step 4: chamber entity ids, unit_layer/unit_plan, full URLs, commits) →
 **`inst_oh_sources.py`** (step 5: `sources.csv` + `source_id`; `--stability-test` rebuilds twice and compares) →
-**`inst_county_government_govbot.py --gov-ref <sha>`** (step 6: county_government.csv from the Governments bot).
+**`inst_county_government_govbot.py --gov-ref <sha>`** (step 6: county_government.csv from the Governments bot) →
+**`inst_oh_seat_units.py --rsa <dir> --gaz24 <dir>`** (step 7, SCHEMA b66f889: `unit_key`, `seat` units, `seat_member_units.csv`,
+county_government `source_record_id`; idempotent, a second run is byte-identical).
+
+### Seat units (step 7)
+- `unit_key` on every row: the TIGER GEOID, or for a seat with no TIGER district a **`seat` unit** (SCHEMA `unit_type` `seat`, no geometry):
+  `seat:<chamber slug>:<district label lowercased, non-alphanumerics → '-'>` (`seat:nh-lower:belknap-8`,
+  `seat:me-lower:passamaquoddy-tribe`); House delegates use the Clerk code (`seat:us-house:PR00`, `AQ00` = American Samoa).
+  Those rows have `unit_layer` = `seat`, empty `unit_geoid`, and `boundary_set` from `unit_plan` (cd116 → `tiger-2020-cd116`, else `v2-2024`).
+- Counts: 124 rows (5 per House file, 59 stateleg 2024, 50 stateleg current) → 46 distinct seat keys (5 delegates, 39 NH floterials,
+  2 ME tribal) → 51 seat units (key × boundary_set: the 5 delegates exist in both `tiger-2020-cd116` and `v2-2024`).
+  `entities.csv` gaps list 49 `officeholder_unit_without_tiger_geoid` (seat × vintage that the registry itself carries without a
+  Gazetteer GEOID): 39 NH + 2 ME + 8 delegate seat-vintages (AS, GU, MP, VI × 2020/2024). PR00 is not in that 49 because the
+  Gazetteer has a GEOID for it (7298), while the officeholder files key PR by the Clerk code.
+- `seat_member_units.csv`: NH floterial → base `sldl` units, from the official statute **RSA 662:5** (2022, 9:1;
+  https://gc.nh.gov/rsa/html/LXIII/662/662-5.htm). Members = the same county's districts whose towns/wards all lie in the
+  floterial's list and whose union is exactly that list (checked; any mismatch would be a row in `seat_member_unit_gaps.csv`).
+  Base district → TIGER 2024 SLDL GEOID by the Gazetteer label `State House District <County> <NN>`. 39 of 39 floterials linked,
+  109 links; RSA lists 203 districts = 164 TIGER SLDL + 39 floterials. Three RSA rows carry the representative count inside
+  the town cell (`Westmoreland 2`); the count is split off (never for a `Ward N` name).
 
 ## Key of an officeholder row
 
@@ -26,8 +45,9 @@ Pipeline (idempotent): `inst_officeholders_house.py` → `inst_officeholders_sta
 
 | column | meaning |
 |---|---|
-| `unit_layer` | `cd`, `sldu`, `sldl` (TIGER set token) |
+| `unit_layer` | `cd`, `sldu`, `sldl` (TIGER set token); `seat` for a seat unit without TIGER geography |
 | `unit_geoid` | TIGER GEOID of the district unit; empty for units without TIGER geography (NH floterials, ME tribal seats, House delegates of territories) |
+| `unit_key` | SCHEMA `unit.unit_key`: = `unit_geoid`, or `seat:<chamber>:<district>` for a seat unit (step 7) |
 | `unit_vintage` | TIGER vintage year of the unit (`2024`; `2020` = cd116) |
 | `unit_plan` | the former token: `cd119`, `cd116`, `sldu2024`, `sldl2024` |
 | `boundary_set` | boundary-set slug the unit belongs to (DATA_LOADING Q-E12, same tokens as Election): `tiger-2020-cd116` (House 2020), `tiger-2020-sldu` / `tiger-2020-sldl` (2018 state plans, none in these files yet), `v2-2024` (current and 2024 units: the v2 lines, TIGER 2024); empty when the unit has no TIGER geometry (`no_v3_unit*`) |
