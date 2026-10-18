@@ -195,7 +195,7 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 | `v2/data/zcta2024.js` (byte-for-byte copy on `data/geo` 6d8b443; main L1309 still loads root) | `window.ZCTA2024={"zip":[lat,lng]}` | **lat first** | **not used by v3**: v3 loads `data-v3/geo/zcta2024.csv` (ZCTA, internal point lat/lon, land area; TIGER 2024 Gazetteer; Q-G9) into a `zcta` lookup | v2 parity only |
 | `v2/data/countries.js`, `ctryshape.js`, `canada.js` | `window.COUNTRIES/CTRYSHAPE/CANADA` | Natural Earth bbox / silhouettes / provinces (`[name, code, S, W, N, E, rings]`) | `entity`(country/province) + icons; Canada parked | legacy (context only) |
 | Inline `PACK`, `XREF`, `STATE_FILES`, `OFFICES`, `PHOTO` in `v2/index.html` | JS constants | lists, cross-refs, office list (`[{id:"president",label:"President",letter:"Pr",scope:"us"}]`), candidate photos | `entity`, `entity_alias`, `office`, `candidate.photo_path` | one-off extraction (read-only) |
-| `v2/img/flags`, `stateflags`, candidate photos | PNG | | `entity.icon_flag`, `candidate.photo_path` + credit | copy |
+| `v2/img/flags`, `stateflags`, candidate photos | PNG | | `entity_image` (`role = flag`), `candidate.photo_path` + credit | copy |
 | `v2/data/COVERAGE.md` | Markdown | gap inventory, sources, licences | `source`/`license` seed; gap list = expected gray (parity gate) | manual + checks |
 | `/workspace/db/export/` (box only) | CSV + GeoJSON | §7 | cross-check only | export path |
 
@@ -322,7 +322,11 @@ The loader fills `contest_display_slot` from the lane's race config (`data-v3/re
     - House delegates use the `statedistrict` code: `seat:us-house:PR00`, `GU00`, `VI00`, `MP00`, `AQ00` (AQ00 is American Samoa in the Clerk file).
   - **Which boundary set:** the set named by the file's `unit_plan`, so `cd116` → `tiger-2020-cd116` and `cd119` / `sldl2024` → `v2-2024`.
   - **Counts at f1d64f6:** 124 rows have no TIGER unit (5 in each House file, 59 in stateleg 2024, 50 in stateleg current). They cover **46 distinct seats** (5 delegates, 39 NH floterial districts, 2 ME tribal seats), which makes **51 seat units** because the House delegates appear in both cd116 and cd119.
-  - **Member units:** `seat_member_unit` can link a floterial to the base `sldl` units it overlays, when a source lists them. No file does yet.
+  - **Member units (ffdf738):** `seat_member_units.csv` (`seat_unit_key, boundary_set, member_unit_layer, member_unit_key, member_boundary_set, member_label, towns, source_id`) → `seat_member_unit`.
+    - `seat_unit_key` + `boundary_set` give the seat unit. `member_unit_layer` (`sldl`) + `member_unit_key` (GEOID, e.g. `33003`) + `member_boundary_set` (`v2-2024`) give the member unit.
+    - `member_label` and `towns` go to the load report only.
+    - 109 links cover all 39 NH floterials, from NH RSA 662:5. `seat_member_unit_gaps.csv` is empty.
+  - **Seat keys in the files (ffdf738):** the officeholder files now carry a `unit_key` column. Seat rows have `unit_layer = seat`, `unit_key` = the seat key (`seat:us-house:AQ00`, `seat:nh-lower:belknap-8`) and `boundary_set` set (`tiger-2020-cd116` / `v2-2024`). This matches the pattern above.
   - Any other row whose unit doesn't resolve is rejected and reported, and is never attached to a different vintage. Without the column: `unit_type = unit_type_def` where `tiger_set = unit_layer`, and `boundary_set` from `boundary_set_default (unit_type, unit_vintage)`,
 
 ### 13a. Column-order check (Election Data, verified Oct 18, 2026)
@@ -335,7 +339,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 ### 15.1 Inputs
 | Producer | Path | Format | Status |
 |---|---|---|---|
-| Institutions lane | `data-v3/inst/entities.csv` (**54,144**), `entity_geoid_xwalk.csv` (**58,663**), `entity_v2_rows.csv` (131,310), `entity_gaps.csv` (254) on `data/inst-entities` **8e1db01** | one row per entity, no vintage; xwalk one row per entity × `unit_layer` × vintage | **built** |
+| Institutions lane | `data-v3/inst/entities.csv` (**54,359** at d332210: the 54,144 US rows + 215 world rows), `entity_geoid_xwalk.csv` (**58,663**), `entity_images.csv` (2,024), `entity_feed_map.csv` (93,278), `source_urls.csv` (126), `entity_v2_rows.csv`, `entity_gaps.csv` on `data/inst-entities` **d332210** | one row per entity, no vintage; xwalk one row per entity × `unit_layer` × vintage | **built** |
 | Governments bot (a901cced) | `data-v3/institutions/governments/` on `data/governments` **bc02908** (`states.csv`, `local/<ST>.csv`, `federal_agencies.csv`, `tribes.csv`, `governments_geoid_xwalk.csv`, `id_registry.csv`, `sources.csv`, `county_government_check.csv`) | ids `state:<FIPS>`, `cog:<PID6>`, `fr:<id>`, `bia:<slug>`, frozen in `id_registry.csv`; registry rows win, the rest become `government_other` (mapping in §9.4) | CoG 2022 92,150 units, 473 FR agencies, 577 BIA lines; GEOID rulings from Geo applied |
 | Companies bot (7e7bba2a) | `data-v3/institutions/companies/` on `data/companies` **30b1777** (loader files `brands.csv`, `brand_relationships.csv`, `company_locations.csv.gz`, `retracted_locations.csv`, `sources.csv`; `locations/<brand>.csv` = store detail; mapping update in §9.4; the 5faf8aa mapping below still describes the detail files) | **v3 scope (user decision, Oct 18, 2026): public-facing brands, establishments and organizations from Wikidata**, keyed `wikidata:Q<id>`, plus store/site locations. The first pull (0be48d0: SEC/GLEIF `companies.csv.gz`, `relationships.csv.gz`) is **out of scope and not loaded** | first Wikidata pull landed (5faf8aa) |
 | Users (phase 3+) | `submission` table via form / CSV upload | moderated | needs auth (D18) |
@@ -368,11 +372,13 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   | `user-upload` | `user` |
 
   Any other value is rejected and reported. `alias` (`;`, with `\;` escaped) → `entity_alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source_id` (`;`-list; 51,800 of 54,144 rows cite several) → `entity_source` (`ord` keeps the order). Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk (348f410: `entity_id, unit_layer, geoid, vintage, boundary_set, relation, source_id, overlap, share_of_geoid_in_entity, share_of_entity_in_geoid`): `unit_layer` = `unit_type_def.tiger_set`, and `boundary_set`, `relation`, `overlap`, `share_of_geoid_in_entity` and `share_of_entity_in_geoid` (same names, numeric 0–1) → `entity_geoid`. `source_id` (72 rows cite several) → `entity_geoid_source`. Each row is then then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
-- **Kinds present in 8e1db01:** municipality 19,525; township 18,076; school_unified 10,872; county 3,080; school_elementary 1,952; school_secondary 481; chamber 100 (`us-house` + 98 `chamber:<st>-lower|upper` + unicameral `chamber:ne-upper`); state 51; territory 5; nation 1 (`nation:us`); dc_council 1 (`chamber:dc-council`). All of them are in the `entity.kind` CHECK, which also allows `government_other` and `company` for the bots. Xwalk `unit_layer`s are cousub, place, unsd, county, elsd, scsd and state. Relations: primary 54,042, coextensive 4,219, also_cousub 306, independent_city_county_equivalent 42, consolidated_city_county 30, consolidated_town_city 23, federal_district_city 1.
+- **Kinds present in d332210 (54,359):** municipality 19,525; township 18,076; school_unified 10,872; county 3,080; school_elementary 1,952; school_secondary 481; **nation 194** (`nation:us` + 193 world nations); chamber 100 (`us-house` + 98 `chamber:<st>-lower|upper` + unicameral `chamber:ne-upper`); state 51; **territory 17** (5 US by FIPS, 9 foreign dependencies `territory:<iso2>`: aw, ax, cw, gg, gl, hk, je, mo, sx; 3 Canadian `territory:ca-nt|nu|yt`); **province 10** (`province:ca-*`); dc_council 1 (`chamber:dc-council`).
+  - The 215 new world rows (193 nations, 12 territories, 10 provinces) have no unit: no xwalk rows, flag `outside_v2_scope:no_unit_no_boundary_set`, `feed = inst-lane` (317 inst-lane rows in total).
+  - **`wikidata`** (new column, 38,835 rows, no duplicates) → `entity.wikidata`. The file gives a bare `Q228`, and the loader prefixes it to `wikidata:Q228` to satisfy the CHECK. All of them are in the `entity.kind` CHECK, which also allows `government_other` and `company` for the bots. Xwalk `unit_layer`s are cousub, place, unsd, county, elsd, scsd and state. Relations: primary 54,042, coextensive 4,219, also_cousub 306, independent_city_county_equivalent 42, consolidated_city_county 30, consolidated_town_city 23, federal_district_city 1.
 - **Sources:** `sources.csv` (348f410: 70 rows; `source_id, source, source_url, license, retrieved_at, commit, sha256`) → `source`:
   - `source_id` is the **text primary key**; uniqueness is on `source_id` only.
   - `source` → `title`. `commit` → `commit`. `publisher` stays null unless a file gives it.
-  - `source_url` is split on ` ; ` into **`source_url`** child rows (`ord`, `url`, optional `label`), and the first URL is also `source.url`. 26 sources have several URLs, at most 3.
+  - **`source_urls.csv`** (d332210: `source_id, ord, url, label`, 126 rows for all 97 sources; 27 sources have 2 URLs and 1 has 3; labels such as `house`, `senate`, `repo file (pinned commit)`) → **`source_url`**, column for column. `ord = 1` is also `source.url`. The loader no longer splits `sources.csv` `source_url` on ` ; `; that column is only cross-checked.
   - Rows that cite several sources use link tables: `entity_source`, `entity_geoid_source`, `officeholder_source`, `person_source`, `county_government_source` and `entity_location_source`.
   - Every id must exist in `sources.csv` (0 unknown across the inst files).
 - **Entity gaps (`entity_gaps.csv`, 254 rows):** **28 `orphan_v2_row`**, all `v2:parts` slivers (e.g. `Ida County|Cushing city`, `Ramsey County|Birchwood Village city`). Each is a v2 simplification sliver of a place that doesn't reach that county in TIGER 2024. These stay unlinked, so the v2 row has no entity and gets no fabricated link. Every other v2 row resolves (131,282 of 131,310 in `entity_v2_rows.csv`). The rest of the file is review flags, not missing entities: `gov_status_unknown` 63, `cog2022_unit_not_linked_by_code` 57, `excluded_not_defined` 49, `officeholder_unit_without_tiger_geoid` 49, `consolidated_county_cog_code_not_in_tiger` 6 and `same_code_place_cousub_overlap_unmeasured` 2. They load into `entity.flags` and the load report.
@@ -382,7 +388,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - Columns as in the file: `county_geoid, vintage, county_name, has_own_government, gov_status, government_kind, cog_pid6, govbot_entity_id, cog_unit_name, cog_unit_type, tiger_funcstat, agrees_with_tiger, government_note`.
   - Added on load: `entity_id = county:<county_geoid>`, which exists for all 3,152 rows; `boundary_set` (`v2-2024`, or `tiger-2020-county` for 2020); and `source_id` (`;`-list) → `county_government_source`.
   - `gov_status` (government 3,105, area_only 47) is also written to `entity.gov_status`. `govbot_entity_id` (`cog:100001`) → `entity_alias` (`external_id`).
-- **`source_record_id`** (the record's id inside its source) exists on `entity`, `entity_geoid`, `entity_relation`, `entity_location`, `person`, `officeholder` and `county_government`. It is filled where a file gives one; today only the officeholder files carry it.
+- **`source_record_id`** (the record's id inside its source) exists on `entity`, `entity_geoid`, `entity_relation`, `entity_location`, `person`, `officeholder` and `county_government`. It is filled where a file gives one: the officeholder files, and `entities.csv` since d332210 (54,257 of 54,359 rows).
 
 **Companies, brands and organizations (Companies bot; plan change Oct 18, 2026, user via orchestrator):**
 - **Scope:** v3 carries only **public-facing brands, establishments and organizations** from Wikidata, plus their locations. **SEC / GLEIF / LEI ingest is dropped from v3 entirely.** The user keeps a corporate database on their own server, and the bridge to it comes in v5/v6 (ARCHITECTURE roadmap). It stays off the public v3 surface.
@@ -433,35 +439,47 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
 - **Superseded:** the earlier notes about the SEC/GLEIF pull (`cik:` rows that had an LEI, missing `company_locations.csv` and LEI side file, GLEIF relationship columns, `type = other`) **no longer apply**; that data is not loaded in v3.
 
-- **Release scope (D21, resolved):**
-  - v3.0 ships the brand/location schema plus a **demo set**, loaded through the same §15.2 pipeline by filtering `company_locations.csv.gz` / `brands.csv` on `entity_id`:
-
-    | Brand | `entity_id` | Rows (67c8cef) | Coordinates |
-    |---|---|---|---|
-    | Wawa | `wikidata:Q5936320` | 1,320 | user-provided list (`wawa-user-list-2026-10-18`), loaded as-is |
-    | Walgreens | `wikidata:Q1591889` | 7,991 | Walgreens locator API (first-party) |
-    | Courtyard by Marriott | `wikidata:Q1053170` | 1,052 | All The Places (CC0) |
-    | *Alternate:* Residence Inn by Marriott | `wikidata:Q7315394` | 897 | All The Places (CC0) |
-
-    Each brand's parent rows (Walgreens Boots Alliance, Marriott International) load too, so `entity_relation` resolves.
-  - The full brand/location set stays on `data/companies` and loads in a later release: v3.1 or v4, the user decides.
-  - Size at 67c8cef: 38,059 locations in `company_locations.csv.gz` (1.4 MB gzipped), a few MB in Postgres.
+- **Release scope (D21, resolved by the user): the complete set.** v3.0 ships the brand/location schema. The v3.1 list ingest then loads **every brand and every location** from `data/companies` (b583b2c: 45 brands, 38,092 locations in `company_locations.csv.gz`).
+  - Size estimate: about 1.4 MB gzipped as a file, and roughly 10–20 MB in Postgres with the GIST index. This is an estimate, not a measurement.
 - **Points with no unit:** a location whose point falls in no unit (for example Wawa 9598 and 9599, both "260 W. Baltimore Pike, Media PA" at 36.000282, −45.406712, in the Atlantic) still loads. It gets `unit_id`, `geoid` and `boundary_set` null and the loader adds the flag `no_unit_resolved`. The row is listed in the load report, and the map shows it only if its point is inside the map extent. The user's Wawa list is loaded as-is, so the coordinates are not corrected.
-- **Logos (`brands.csv` `logo_*`, source `wikidata-commons-logos-<date>`) → `entity_logo`:**
+- **Images: seals, flags and logos → `entity_image`** (this replaces the old `icon_flag` column and `entity_logo` table):
+  - **Rule:** only freely licensed images are served publicly in v3. Rows with `fair_use = true` load with `public = false` (a CHECK enforces it), and showing them is DECISIONS D22.
+  - **`entity_images.csv`** (d332210, 2,024 rows: 1,967 seals and 57 flags; 821 fair use):
 
-  | `brands.csv` | `entity_logo` | Rule |
-  |---|---|---|
-  | `logo_file` | `logo_file` | Commons file name (Wikidata P154); a blank means no row |
-  | `logo_license` | `license` | verbatim; `is_trademark = true` when it contains `trademarked` |
-  | `logo_attribution` | `attribution` | Commons Artist / Credit |
-  | `logo_source_url` | `source_url` | Commons file page |
-  | `logo_flags` | `flags` | `logo_no_p154` (15 brands, incl. Wawa) and `logo_multiple_p154_no_rank_or_dates_review` (CVS) have no logo |
+    | file column | `entity_image` | Rule |
+    |---|---|---|
+    | `entity_id` | `entity_id` | empty on 6 rows: tribes known only to the Governments bot (`bia:*`), kept via `feed_entity_id` |
+    | `feed_entity_id` | `feed_entity_id` | |
+    | `image_kind` (`seal` / `flag`) | `role` | |
+    | `commons_file` | `file` | |
+    | `commons_url` | `file_url` | |
+    | `license` | `license` | verbatim (`LicenseRef-PublicDomain` 1,065, `fair-use` 821, `CC-BY-SA-4.0` 77, ...) |
+    | `fair_use` (`yes` / `no`) | `fair_use` | `public = not fair_use` |
+    | `usage_basis` | `usage_basis` | `identification icon, small size` on all fair-use rows |
+    | `attribution`, `source_url` | same | |
+    | `wikidata_qid` | `wikidata` | prefixed `wikidata:` |
+    | `retrieved_at` | `retrieved_at` | |
+    | `source_id` (`;`) | `entity_image_source` | every id exists in `sources.csv` |
 
-  - At 67c8cef, 29 of 45 brands have a logo, all public domain (26 `PD textlogo, restrictions: trademarked`). A `logo_not_free_or_unknown_licence:*` flag means the row is not loaded.
-  - **Serving as static assets:** a build step (not the request path) downloads each file from Commons (`Special:FilePath/<logo_file>`). SVGs are sanitised (scripts and external refs stripped) and optimised. Raster files are resized to 128 px PNG/WebP. The result is written to `public/logos/<entity_id with ':' → '-'>.<ext>`, and `asset_path` and `sha256` are recorded.
-  - Vercel serves the logos from its CDN with `Cache-Control: public, max-age=31536000, immutable`. A changed file gets a new `?v=<sha8>` query.
-  - The API returns `logo: {url, license, attribution, source_url}` with the entity. The UI shows the attribution and Commons link in the institution panel and the credits page. Logos are never recoloured or cropped, and trademarked logos carry a short trademark notice.
-  - Not loaded until a free logo exists: Wawa (no P154) and CVS (two P154 values with no rank or dates).
+  - **`brands.csv` logo columns** (b583b2c; 29 of 45 brands have a logo, all public domain):
+
+    | `brands.csv` | `entity_image` | Rule |
+    |---|---|---|
+    | (constant) | `role` | `logo` |
+    | `logo_file` | `file` | a blank means no row |
+    | `logo_license` | `license` | verbatim; `is_trademark = true` when it contains `trademarked` |
+    | `logo_attribution` | `attribution` | |
+    | `logo_source_url` | `source_url` | Commons file page |
+    | `logo_flags` | `flags` | `logo_no_p154` (15 brands, incl. Wawa) and `logo_multiple_p154_no_rank_or_dates_review` (CVS) have no logo; a `logo_not_free_or_unknown_licence:*` flag means the row is not loaded |
+    | (constant) | `fair_use` / `public` | false / true |
+    | — | `entity_image_source` | `wikidata-commons-logos-<date>` |
+
+  - **Serving as static assets:**
+    - A build step (not the request path) downloads each public file from Commons. SVGs are sanitised (scripts and external refs stripped) and optimised. Raster files are resized to 128 px PNG/WebP.
+    - The result is written to `public/img/<role>/<entity_id with ':' → '-'>.<ext>`, and `served_path` and `sha256` are recorded.
+    - Vercel's CDN serves it with `Cache-Control: public, max-age=31536000, immutable`. A changed file gets a new `?v=<sha8>`.
+    - Rows with `public = false` are never fetched into `public/`.
+    - The API returns `images: [{role, url, license, attribution, source_url}]` for public rows only. The UI shows the attribution and source link in the institution panel and the credits page. Images are never recoloured or cropped, and trademarked logos carry a short trademark notice.
 
 ### 15.2 Pipeline: staging → validation → dedupe/merge → upsert
 1. **Stage:** each file → `load_batch` + `stg_entity_row` (raw row as JSON, by header name).
@@ -503,16 +521,16 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 | `v2/data/geo_index/<a-z|0>.js` (115,745 rows) | `__geoIndex([[name,type,stateAbbr,key],…])`, labels as the app shows them ("District 1", "OH Senate 2") | parity source for the v3 search box: `GET /v1/search` must return the same rows (served from `unit` + `unit_name_trgm`, plus ZCTA rows); see GEOCODER.md |
 
 **Companies (30b1777, "Full Stack fixes").** The loader now reads the ready-made files:
-- `company_locations.csv.gz` (36,675 at 30b1777; 38,059 at 67c8cef, incl. Wawa; for Wawa `source_id` keeps only the coordinate source, while `wawa.csv` `source` lists 3 ids) → `entity_location`: `location_id` (`<file stem>:<store_id>`) → `location_key`; `entity_id`, `sub_entity_id`, `role` (`establishment_at`), `name`, `address`, `lat`/`lon` → `geom`, `geoid` + `boundary_set` (`v2-2024`, set only when the county is in v2's layer; PR/VI keep the point, `geoid` empty, flag `county_not_in_v2-2024:<geoid>`), `source_id`, `retrieved_at`; extras `brand_name`, `geoid_method`, `flags`. `locations/<brand>.csv` are joined by `location_id` only for `meta` (phone, status, store type).
+- `company_locations.csv.gz` (36,675 at 30b1777; 38,092 at b583b2c, incl. Wawa and the 33 restored Marriott rows; for Wawa `source_id` keeps only the coordinate source, while `wawa.csv` `source` lists 3 ids) → `entity_location`: `location_id` (`<file stem>:<store_id>`) → `location_key`; `entity_id`, `sub_entity_id`, `role` (`establishment_at`), `name`, `address`, `lat`/`lon` → `geom`, `geoid` + `boundary_set` (`v2-2024`, set only when the county is in v2's layer; PR/VI keep the point, `geoid` empty, flag `county_not_in_v2-2024:<geoid>`), `source_id`, `retrieved_at`; extras `brand_name`, `geoid_method`, `flags`. `locations/<brand>.csv` are joined by `location_id` only for `meta` (phone, status, store type).
 - `brand_relationships.csv` (34 P749 statements) → `entity_relation` (`relation = parent_org`, `valid_from`/`valid_to` from P580/P582, `current`, `wikidata_rank` → meta, `flags`). Sheraton and St. Regis keep both current parents with `multiple_current_parents_no_dates_review`.
 - `retracted_locations.csv` (`location_id, retracted_at, reason, source_id`; header only today) → `retraction` with target `entity_location`.
-- `brands.csv` (67c8cef: 45 rows, 34 `brand` and 11 `company`; `organization` is still accepted) → `entity`. `kind_review` → `flags`.
-- Marriott is US and territories only. At 67c8cef it has 6,261 rows: 5,797 with All The Places coordinates and 464 from Marriott's first-party pacsys feed.
+- `brands.csv` (b583b2c: 45 rows, 34 `brand` and 11 `company`; `organization` is still accepted) → `entity`. `kind_review` → `flags`.
+- Marriott is US and territories only. At b583b2c it has **6,294 rows**: 5,797 with All The Places coordinates, 464 from Marriott's first-party pacsys feed, and 33 with `v5_user_approved`.
   - **D20 (resolved by user decision):** all ~400 locations that earlier had coordinates only from the user's v5 list are kept, unless they are duplicates.
     - 367 of them are re-sourced from the pacsys feed and stay as they are.
-    - The other 33 come back after dedupe. Dedupe is on the MARSHA code, then name + point within 150 m, against the rest of `marriott.csv`.
-    - Those 33 use first-party or ATP coordinates where available. Otherwise they use the v5 values with the flag `v5_user_approved` and `source_id = marriott-properties-v5-2026-10-04`.
-  - The other rows in `marriott_dropped_us.csv` (23 with no coordinates and no address, 12 with no QID, 1 with no store_id) stay out under the existing rules.
+    - The other 33 are restored after dedupe (Companies' rule: the same MARSHA code, or the same normalized name and address **within 100 m**; a duplicate would be dropped as `duplicate_of:<store_id>`). None were duplicates.
+    - They use first-party or ATP coordinates where available. Otherwise they use the v5 values with the flag `v5_user_approved` and `source_id = marriott-v5-user-approved-2026-10-18`.
+  - `marriott_dropped_us.csv` now has 36 rows (23 with no coordinates and no address, 12 with no QID, 1 with no store_id). They stay out under the existing rules.
 
 **Governments (bc02908) → `entity`.**
 - IDs: `state:<FIPS>` equals the registry id (same row). `cog:<PID6>` units dedupe against registry rows by `cog_pid6` first, then GEOID + layer (§15.2); school districts by `nces_leaid` = school GEOID. `fr:<id>`, `bia:<slug>` are new entities. `id_registry.csv` (`entity_id, source_key, first_seen`) → `entity_alias` (`kind = external_id`), so a refresh never re-mints an id.
@@ -520,5 +538,29 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - `gov_status` (bot vocabulary `independent` / `dependent` / `federally_recognized`) → `entity.gov_status` `government` / `dependent` / `government` (+ `meta.recognition = 'federal'`).
 - `parent_id` (`state:..`, `fr:..`, `nation:us`), `valid_from`/`valid_to`, `flags` (`owner_unknown`, `qid_by_*`), `wikidata_qid` and `nces_leaid` (→ `entity_alias` external ids), `tiger_status`, `geoid_match` → columns / meta.
 - `governments_geoid_xwalk.csv` → `entity_geoid`. Its `relation` vocabulary is wider than the registry's (`balance_place`, `consolidated_city` on layer `concity`, `county_part`, `prior_vintage_code`, `predecessor_code`, `trust_land`, a `;shared_area` suffix), so `entity_geoid.relation` stays open text. Rows with `vintage` 2022/2020 (`tiger_status = absent_2024`) resolve to no current unit and are kept for history. `aiannh` GEOIDs have no v3 boundary set yet: kept in `entity_geoid`, no `entity_unit` until a tribal-areas set exists (v3.x).
+
+**Feed map (d332210) → `entity_feed_map`.**
+- `entity_feed_map.csv` (`feed, feed_entity_id, feed_type, entity_id, match, note, source_id`; 93,278 rows, all `governments-bot`) maps to `feed`, `feed_id`, `feed_type`, `entity_id`, `match`, `note` and `source_id`.
+- `status` is derived:
+
+  | `status` | Rule | Rows |
+  |---|---|---|
+  | `mapped` | `entity_id` filled | 51,695 |
+  | `feed_only` | note `feed_only:special_district` / `tribe` / `federal_agency` (39,555 / 577 / 473) | 40,605 |
+  | `unmapped` | note `no_geoid_or_cog_link` (973), plus the 5 `conflict(see entity_gaps)` rows before the consolidated rule below | 978 |
+
+- **Consolidated city-counties** are two entities: the county (`county:<GEOID>`) and the place (`muni:place:<GEOID>`, the "balance" place). They are linked by `entity_relation` with `relation = 'consolidated_with'` (parent = county, child = place).
+  - The CoG id maps to the **county** entity, with `status = mapped` and `note = consolidated`.
+  - The five CoG ids that `entity_feed_map.csv` still leaves unmapped as `conflict(see entity_gaps)` at d332210, and the loader maps this way:
+
+    | CoG id | Government | County entity | Place entity |
+    |---|---|---|---|
+    | `cog:161834` | Athens-Clarke County unified government, GA | `county:13059` | `muni:place:1303440` |
+    | `cog:164742` | Unified Government of Greeley County, KS | `county:20071` | `muni:place:2028412` |
+    | `cog:165866` | Louisville-Jefferson County metro government, KY | `county:21111` | `muni:place:2148006` |
+    | `cog:108124` | Butte-Silver Bow, MT | `county:30093` | `muni:place:3011397` |
+    | `cog:175728` | Nashville-Davidson metropolitan government, TN | `county:47037` | `muni:place:4752006` |
+
+  - Honolulu (`cog:183701`) is already mapped to `county:15003` in the file. Its only place entity is the Urban Honolulu CDP (`muni:place:1571550`, unincorporated). That is not a consolidated government, so it gets no `consolidated_with` row unless Institutions decides otherwise.
 
 **Officeholders (c830581, f1d64f6).** Rows now carry `boundary_set` (`tiger-2020-cd116` / `v2-2024`): the loader resolves `unit_id` through that slug (replaces the `unit_vintage` guess). `county_government.csv` is now derived from the Governments check, with `gov_status` `government` / `dependent` / `area_only` (matches the `entity.gov_status` CHECK) and `govbot_entity_id` → `entity_alias` (`external_id`) linking `county:<GEOID>` to `cog:<PID6>`.

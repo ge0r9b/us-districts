@@ -184,8 +184,8 @@ create table seat_member_unit (
   seat_unit_id   bigint not null references unit(id) on delete cascade,
   member_unit_id bigint not null references unit(id) on delete cascade,
   source_id      text references source(source_id),
-  primary key (seat_unit_id, member_unit_id)
-);
+  primary key (seat_unit_id, member_unit_id)       -- seat_member_units.csv (ffdf738): seat_unit_key + boundary_set -> seat_unit_id;
+);                                                 -- member_unit_layer + member_unit_key + member_boundary_set -> member_unit_id
 create index unit_centroid_gist on unit using gist (centroid);
 
 -- ZCTA -> place / town / county shares (v2/data/zcta_xref, Census 2020 relationship files), for ZIP search and lists.
@@ -288,8 +288,9 @@ create table entity (
   check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
+  wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (bare 'Q228' in the file; prefixed on load)
   has_region    boolean not null default true,
-  icon_flag     text,
+                                                   -- seals / flags / logos: entity_image (replaces the old icon_flag column)
   owner_tenant_id bigint not null default 1 references tenant(id),
   meta          jsonb not null default '{}',
   check (valid_to is null or valid_from is null or valid_to >= valid_from)
@@ -330,7 +331,9 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of')),  -- brands.csv parent_brand_id = P749 = parent_org
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with')),
+                                                   -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
+                                                   -- city-county's county entity (parent) and its place entity (child)
   valid_from    date,
   valid_to      date,
   source_id     text references source(source_id),   -- one source per link (Wikidata)
@@ -369,21 +372,53 @@ create index entity_location_entity on entity_location (entity_id) where not ret
 create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
 
--- Brand logos (Companies brands.csv logo_* columns: Wikidata P154 + Wikimedia Commons licence metadata).
--- Only freely licensed files are kept; the image itself is a static asset (/logos/<qid>.<ext>), not a DB blob.
-create table entity_logo (
-  entity_id     text primary key references entity(entity_id) on update cascade on delete cascade,
-  logo_file     text not null,                       -- brands.csv logo_file: Commons file name ('Walgreens 2020 primary logo.svg')
-  license       text not null,                       -- brands.csv logo_license, verbatim ('Public domain (PD textlogo), restrictions: trademarked')
-  attribution   text,                                -- brands.csv logo_attribution (Commons Artist / Credit)
-  source_url    text not null,                       -- brands.csv logo_source_url (Commons file description page)
-  is_trademark  boolean not null default false,      -- license mentions 'trademarked': show with a trademark notice, never altered
-  asset_path    text,                                -- '/logos/wikidata-Q1591889.svg' once the build step has fetched and optimised it
-  sha256        text,                                -- of the served asset (cache-busting + change detection)
-  flags         text[],                              -- brands.csv logo_flags ('logo_multiple_p154_no_rank_or_dates_review', ...)
-  source_id     text references source(source_id),   -- 'wikidata-commons-logos-<date>'
-  retrieved_at  timestamptz
+-- Seals, flags and logos: inst entity_images.csv (seals/flags) + Companies brands.csv logo_* (logos).
+-- The image is a static asset (/img/<role>/<entity_id>.<ext>), not a DB blob. Only freely licensed files are served
+-- publicly in v3; fair_use rows load with public = false until D22 is decided.
+create table entity_image (
+  id            bigint generated always as identity primary key,
+  entity_id     text references entity(entity_id) on update cascade on delete cascade,
+  feed_entity_id text,                               -- feed id when the image's entity is not in the registry ('bia:...'); see entity_feed_map
+  role          text not null check (role in ('seal','flag','logo')),
+  file          text,                                -- Commons / Wikipedia file name ('Walgreens 2020 primary logo.svg')
+  file_url      text,                                -- Commons file URL (entity_images.csv commons_url)
+  license       text not null,                       -- licence id or Commons wording, verbatim ('LicenseRef-PublicDomain', 'fair-use')
+  fair_use      boolean not null default false,
+  usage_basis   text,                                -- fair-use rationale ('identification icon, small size')
+  is_trademark  boolean not null default false,      -- licence mentions 'trademarked': trademark notice, never altered
+  public        boolean not null default true,       -- served publicly; forced false for fair_use rows (v3 rule)
+  attribution   text,
+  source_url    text,                                -- file description page / article the file came from
+  wikidata      text,                                -- 'wikidata:Q...' the image statement belongs to
+  served_path   text,                                -- '/img/logo/wikidata-Q1591889.svg' once the build step fetched and optimised it
+  sha256        text,                                -- checksum of the served asset (cache-busting + change detection)
+  flags         text[],                              -- brands.csv logo_flags, review flags
+  retrieved_at  timestamptz,                         -- sources: entity_image_source (';'-list)
+  check (entity_id is not null or feed_entity_id is not null),
+  check (not fair_use or not public),
+  unique nulls not distinct (entity_id, feed_entity_id, role)
 );
+create table entity_image_source (
+  image_id   bigint not null references entity_image(id) on delete cascade,
+  source_id  text not null references source(source_id),
+  ord        smallint not null default 1,
+  primary key (image_id, source_id)
+);
+
+-- Feed id -> registry entity (inst entity_feed_map.csv): which bot ids map to an entity, which stay feed-only.
+create table entity_feed_map (
+  feed           text not null,                      -- 'governments-bot' (raw feed value)
+  feed_id        text not null,                      -- entity_feed_map.csv feed_entity_id ('cog:161834', 'bia:cherokee-nation')
+  feed_type      text,                               -- 'special_district', 'municipality', 'tribe', ...
+  entity_id      text references entity(entity_id) on update cascade,
+  status         text not null check (status in ('mapped','feed_only','unmapped')),
+  match          text,                               -- 'geoid+cog_pid6', 'nces_leaid+cog_pid6', 'state_fips', 'geoid', 'nces_leaid'
+  note           text,                               -- file note ('feed_only:special_district', 'no_geoid_or_cog_link'); 'consolidated'
+  source_id      text references source(source_id),
+  primary key (feed, feed_id),
+  check ((status = 'mapped') = (entity_id is not null))
+);
+create index entity_feed_map_entity on entity_feed_map (entity_id);
 
 -- Dedupe / merge across data-v3/inst (registry), data-v3/institutions (bots) and user submissions.
 -- A merged-away id never disappears: it becomes an entity_alias row pointing at the survivor (like person_alias).
