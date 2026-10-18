@@ -61,7 +61,7 @@ class Registry:
     def check_ids(self):
         """stability test part 1: every id re-derives from its own url + commit."""
         bad = [sid for sid, r in self.rows.items() if make_id(sid.rsplit('-', 1)[0], r['source_url'], r['commit']) != sid
-               or (slug_for(r['source_url']) and slug_for(r['source_url']) != sid.rsplit('-', 1)[0])]
+               or (slug_for(r['source_url']) and slugify(slug_for(r['source_url'])) != sid.rsplit('-', 1)[0])]
         assert not bad, ('unstable source ids', bad[:5])
         return len(self.rows)
     def write(self, path, keep_existing=True):
