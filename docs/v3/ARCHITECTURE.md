@@ -117,12 +117,14 @@ Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok B
 
 ## 8. Repo layout (proposed; v3 lane only)
 ```
-docs/v3/        this plan
-v3/README.md    scaffold note (no app yet)
-v3/app/         SPA (Phase 2)
-v3/api/         Vercel functions (Phase 2)
-v3/db/          migrations (SCHEMA.sql split into numbered files) + SQL tests
-v3/ingest/      staging loader, validators, pack + tile builders
+docs/v3/           this plan, plus NATIVE.md and openapi.yaml
+v3/README.md       how to run alpha.1 locally
+v3/app/            Vite + TypeScript + MapLibre shell (alpha.1)
+v3/api/            Hono /api/v1, local only (alpha.1)
+v3/packages/core/  framework-free slot, sort, and filter rules
+v3/design/         tokens.json (light mode, Liquid Glass)
+v3/styles/map.json MapLibre style (PMTiles, GeoJSON fallback)
+v3/ingest/         SCHEMA.sql runner, boundary loader, result loader
 ```
 Data files stay in the data lanes (`data-v3/results/`, `data-v3/geo/`, per REPO-RULES). v3 reads them and never writes them.
 
@@ -149,7 +151,8 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **v3.0** | Public launch at parity; milestone tag. The brand/location schema ships empty; its data loads in v3.1 (D21) | v2.0 tag; QA sign-off |
 | **v3.1** | List ingest: **Wikidata brands + locations** (Companies bot; **the complete set**: all brands and all ~38,000 locations from `data/companies`, 38,092 at b583b2c; about 1.4 MB gz and roughly 10–20 MB in Postgres with the GIST index (estimate); D21) **plus governments** (Governments bot) **plus Canada** (D23: units, officeholders and people from `data/inst-canada`; v3-only, no v2 JSON; the v3.1 tile build adds PMTiles for the Canadian ridings and polls, built from the source layers), deduped and merged with the registry | Companies + Governments bots' files; scraped-data policy (DATA_LOADING §15.3) |
 | **v3.2** | Scheduled refresh: Vercel Cron (or a worker) runs the scrapers, diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Vercel Pro if cron frequency or duration exceeds Hobby |
-| **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
+| **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API. Tokens, not cookies (D24) | D18 auth provider |
+| **v4 / v5** | **Native macOS and iOS**, built in Cursor as cross-platform apps. They call the same `/api/v1`, read the same PMTiles, and share the result rules in `v3/packages/core` plus [design/tokens.json](../../v3/design/tokens.json). Not built in v3 | Stable versioned JSON ([NATIVE.md](NATIVE.md), D24) |
 | **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Vercel Pro |
 | **v5 / v6** | **Bridge to the user's private corporate database** (LEI/CIK crosswalk via `entity_alias` reserved schemes). It stays **off the public v3 surface**: no public API fields, no static packs, server-side only | User's server + auth; a separate private connection |
 

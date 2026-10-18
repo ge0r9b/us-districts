@@ -1,5 +1,8 @@
--- US Districts v3: Postgres 16 + PostGIS 3 schema (Phase 1 plan, NOT applied anywhere).
+-- US Districts v3: Postgres 16 + PostGIS 3 schema.
 -- Explanation: docs/v3/SCHEMA.md. Ingest: docs/v3/DATA_LOADING.md.
+-- Applied 2026-10-18 to PostgreSQL 16.15 + PostGIS 3.4 (alpha.1).
+-- Apply fix: seed the public tenant before boundary_set (owner_tenant_id defaults to 1).
+-- Addition: singleton data_version, the global dv from ARCHITECTURE.md §5 (there was no table).
 -- Conventions: text natural keys (stable, human readable) next to bigint surrogate ids;
 -- every fact row points at a source; nothing is deleted on reload (idempotent upserts).
 
@@ -23,6 +26,8 @@ create table tenant (
   kind        text not null default 'public' check (kind in ('public','customer','internal')),
   created_at  timestamptz not null default now()
 );
+-- id 1 is the default owner_tenant_id. This insert has to run before any boundary_set row.
+insert into tenant (slug, name, kind) values ('public', 'Public', 'public');
 
 create table license (
   id             bigint generated always as identity primary key,
@@ -951,6 +956,16 @@ create table geocode_cache (
   match_quality text,
   created_at   timestamptz not null default now()
 );
+
+-- ---------------------------------------------------------------------------
+-- 8b. Global data version (ARCHITECTURE.md §5). One row, bumped by ingest.
+-- ---------------------------------------------------------------------------
+create table data_version (
+  id        smallint primary key default 1 check (id = 1),
+  dv        integer not null default 1,
+  built_at  timestamptz not null default now()
+);
+insert into data_version (id, dv) values (1, 1);
 
 -- ---------------------------------------------------------------------------
 -- 9. Read-only role for the API (no writes from the web tier)

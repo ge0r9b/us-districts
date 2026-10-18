@@ -1,0 +1,34 @@
+{
+  "name": "us-districts-v3",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "US Districts v3 alpha.1: Vite + TypeScript + MapLibre shell, read-only /api/v1, PostGIS.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx scripts/dev.ts",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 8860",
+    "test": "vitest run",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:load": "tsx scripts/load.ts",
+    "check:bundle": "tsx scripts/check-bundle.ts"
+  },
+  "dependencies": {
+    "hono": "^4.10.3",
+    "@hono/node-server": "^1.19.6",
+    "maplibre-gl": "^5.15.0",
+    "pg": "^8.16.3",
+    "pmtiles": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "@types/pg": "^8.15.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.11",
+    "vitest": "^3.2.4"
+  }
+}

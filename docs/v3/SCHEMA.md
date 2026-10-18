@@ -1,6 +1,16 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 116 statements; re-checked after the source / seat / county_government update) but **has not been applied to any database**. No database account exists yet.
+> The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It was syntax-checked with the Postgres parser (`pglast` 8.6, 116 statements) and, on 2026-10-18, applied to PostgreSQL 16.15 + PostGIS 3.4.
+
+## Apply fixes (alpha.1, 2026-10-18)
+
+The file had only been parse-checked. Applying it to PostGIS failed once:
+
+1. **Public tenant seed.** `boundary_set.owner_tenant_id` defaults to `1` and the seed inserts do not name a tenant, but nothing inserted the `public` tenant. The first `insert into boundary_set` failed the foreign key. `SCHEMA.sql` now inserts `tenant (slug, name, kind) = ('public', 'Public', 'public')` immediately after `create table tenant`, so identity assigns id 1 before any boundary set.
+
+The rest of the DDL applied unchanged (42 boundary sets, 21 unit types, both materialized views).
+
+2. **`data_version` table (addition, not an apply failure).** ARCHITECTURE.md §5 and the API's `dv` field need one global integer. The DDL only had `contest.data_version`. Alpha.1 adds a one-row `data_version (id smallint check (id = 1), dv, built_at)`, seeded at `dv = 1`. Ingest bumps it when a batch changes rows.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:

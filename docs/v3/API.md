@@ -58,6 +58,8 @@ Params: `contest` (required, repeatable: any number of years, e.g. `contest=2016
 ```
 The same data is pre-built as a static **pack** for every past contest × unit type (ARCHITECTURE.md §4.3). The client tries the pack URL first and calls `/results` only for combinations that are not pre-built.
 
+**Alpha.1 shape.** `unit` is the Census GEOID (`42`, `42049`, `4201`). The v2 name (`Pennsylvania`, `Pennsylvania|Erie County`) is `legacy` on the same row. One `contest` matches the flat example above. Two or more contests return `series` on each row (one cell per contest, same vote fields) instead of a single `votes` array. The machine-readable contract is [openapi.yaml](openapi.yaml). CORS is `*` and `Authorization` is allowed; alpha.1 sets no cookie.
+
 ### `GET /aggregate`
 Bar-list rows for a scope, **sorted high to low**. This is the endpoint behind list-all and the list view's bars.
 Params: `contest` (1, or 2+ for delta/range: the first and last selected years define the delta), `scope` (unit or entity key: `us`, `PA`, `PA|Erie County`, `chamber:pa-lower`), `child_type` (a unit type, or a category such as `school_district`, which lists all three school types as one list, as v2 does), `sort_answer` (answer key; default = the selected answer, else the leader), `sort` (`share`|`votes`|`delta_margin`), `dir` (`desc` default | `asc`), `fmt`, `limit`, `cursor`.

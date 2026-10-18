@@ -13,3 +13,5 @@ Branch `v3/plan` (v3 lane, REPO-RULES). Plan only: no deploy, no accounts, v2 un
 | [PERFORMANCE.md](PERFORMANCE.md) | Budget (instant response first) and how to meet it |
 | [MIGRATION_CHECKLIST.md](MIGRATION_CHECKLIST.md) | v2 → v3 parity checklist, UI rules, the 78 Playwright tests, **v2 intake alignment** |
 | [DECISIONS.md](DECISIONS.md) | Open decisions with recommended defaults |
+| [NATIVE.md](NATIVE.md) | Why v3 stays API-first for native macOS/iOS around v4/v5 |
+| [openapi.yaml](openapi.yaml) | OpenAPI 3 for the alpha.1 `/api/v1` routes |

@@ -2,6 +2,21 @@
 
 Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text plus later builds), `docs/us-districts-spec.md` (SPEC), `v2/index.html` at build **202610181567** (`main` 509d31d), and the 80 Playwright tests in `tests/` (at 9ac59a9) (the de facto spec). Nothing here is invented. If an item has no source, it is not listed. **v3 reaches parity when every box is checked and each listed v2 test, ported to v3, passes.**
 
+## Alpha.1 status (2026-10-18)
+
+The boxes below stay unchecked. Alpha.1 is a running foundation, not v2 parity.
+
+Done on `v3/build`:
+
+- Vite + TypeScript + MapLibre shell (light mode, Liquid Glass year and %/# buttons, bars sorted high to low). Default view is 2016 president by state. 2020 and 2024 open Pennsylvania counties, because those years have no official state presidential totals and alpha.1 does not sum counties.
+- `docs/v3/SCHEMA.sql` applies on PostgreSQL 16 + PostGIS 3.4 (tenant seed and `data_version`; see SCHEMA.md).
+- Idempotent loaders: v2 presidential counties, 2016 state and district files, `uscd.js`, and the official CSVs on `data/election` (2016 FEC states, Pennsylvania president counties, 2022 and 2024 Senate). Boundary units for `v2-2024` states, counties, and congressional districts.
+- Read-only `/api/v1`: manifest, contests, results, unit lookup, geocode stub, locate. Cache headers follow ARCHITECTURE.md §5. OpenAPI is `docs/v3/openapi.yaml`.
+- Shared rules in `v3/packages/core` (slots, sort, filters). Design tokens and a MapLibre style a native client can reuse. See NATIVE.md and D24.
+- Tests: schema, loader round-trip, API contract, in-process results latency. GitHub Actions `.github/workflows/v3.yml` runs them against PostGIS.
+
+Left for alpha.2: full UI parity (filters, charts, time slider, back stack, hash links), precincts / schools / state legislative districts, PMTiles via tippecanoe (the shell uses GeoJSON states until an archive exists), result packs, entities and officeholders, R12–R14, ZCTA, a read-only database role, Playwright, and any Neon project.
+
 ## A. Process and global rules
 - [ ] **Instant response is the top priority in every UI change** (RR 7). Budgets in PERFORMANCE.md.
 - [ ] v2 stays a static app and v1 (root `index.html`, `US-districts.html`) and `/test` are never changed (RR 5). v3 does not deploy or merge to main until **v2.0 is tagged and the user approves** (RR 5).

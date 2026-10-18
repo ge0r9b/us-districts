@@ -1,0 +1,282 @@
+openapi: 3.0.3
+info:
+  title: US Districts API
+  version: "1.0.0"
+  description: >
+    Read-only /api/v1. Alpha.1 implements manifest, contests, results, units, geocode, and locate.
+    Unit keys are Census GEOIDs. The v2 name is returned as legacy.
+    One contest returns a flat row. Several contests return series.
+servers:
+  - url: /api/v1
+paths:
+  /manifest:
+    get:
+      summary: Current data version, tile URLs, and offices
+      responses:
+        "200":
+          description: Manifest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Manifest"
+  /contests:
+    get:
+      summary: Contests, answers, and display slots
+      parameters:
+        - $ref: "#/components/parameters/dv"
+        - { in: query, name: year, schema: { type: integer } }
+        - { in: query, name: office, schema: { type: string } }
+        - { in: query, name: state, schema: { type: string } }
+        - { in: query, name: stage, schema: { type: string } }
+        - { in: query, name: kind, schema: { type: string } }
+        - { in: query, name: limit, schema: { type: integer, maximum: 500 } }
+      responses:
+        "200":
+          description: Contest list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContestList"
+        "400":
+          $ref: "#/components/responses/Error"
+        "410":
+          $ref: "#/components/responses/Gone"
+  /contests/{key}:
+    get:
+      summary: One contest
+      parameters:
+        - { in: path, name: key, required: true, schema: { type: string }, example: "2016|US|president|" }
+        - $ref: "#/components/parameters/dv"
+      responses:
+        "200":
+          description: Contest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contest"
+        "404":
+          $ref: "#/components/responses/Error"
+  /results:
+    get:
+      summary: Results by unit, already sorted high to low
+      parameters:
+        - $ref: "#/components/parameters/dv"
+        - { in: query, name: contest, required: true, schema: { type: array, items: { type: string } }, style: form, explode: true }
+        - { in: query, name: unit_type, required: true, schema: { type: string } }
+        - { in: query, name: state, schema: { type: string } }
+        - { in: query, name: boundary_set, schema: { type: string, default: v2-2024 } }
+        - { in: query, name: fmt, schema: { type: string, enum: [pct, num] } }
+        - { in: query, name: sort_answer, schema: { type: string } }
+        - { in: query, name: sort, schema: { type: string, enum: [share, votes] } }
+        - { in: query, name: dir, schema: { type: string, enum: [desc, asc] } }
+      responses:
+        "200":
+          description: >
+            A single contest returns votes, total, and share on each row.
+            More than one contest returns series instead.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Results"
+  /units/{key}:
+    get:
+      summary: One unit by GEOID or legacy v2 name
+      parameters:
+        - { in: path, name: key, required: true, schema: { type: string } }
+        - { in: query, name: unit_type, schema: { type: string } }
+        - { in: query, name: boundary_set, schema: { type: string, default: v2-2024 } }
+        - { in: query, name: contest, schema: { type: string } }
+      responses:
+        "200":
+          description: Unit
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Unit"
+        "400":
+          $ref: "#/components/responses/Error"
+        "404":
+          $ref: "#/components/responses/Error"
+  /geocode:
+    get:
+      summary: Address to point to units
+      parameters:
+        - { in: query, name: q, required: true, schema: { type: string } }
+      responses:
+        "200":
+          description: Match
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Geocode"
+        "404":
+          $ref: "#/components/responses/Error"
+  /locate:
+    get:
+      summary: Point in polygon
+      parameters:
+        - { in: query, name: lon, required: true, schema: { type: number } }
+        - { in: query, name: lat, required: true, schema: { type: number } }
+      responses:
+        "200":
+          description: Units covering the point
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Locate"
+components:
+  parameters:
+    dv:
+      in: query
+      name: dv
+      schema: { type: integer }
+      description: Pin the data version from /manifest. A stale pin returns 410.
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Gone:
+      description: Pinned data version is not current
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    Error:
+      type: object
+      required: [error, dv]
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: string }
+            message: { type: string }
+        dv: { type: integer }
+    Manifest:
+      type: object
+      required: [dv, built_at, tiles, packs, offices]
+      properties:
+        dv: { type: integer }
+        built_at: { type: string, format: date-time }
+        tiles:
+          type: object
+          additionalProperties: { type: string }
+        packs: { type: string }
+        offices:
+          type: array
+          items:
+            type: object
+            properties:
+              key: { type: string }
+              label: { type: string }
+              scope: { type: string, nullable: true }
+    Answer:
+      type: object
+      properties:
+        key: { type: string }
+        label: { type: string }
+        candidate: { type: string, nullable: true }
+        party: { type: string, nullable: true }
+        color: { type: string, nullable: true }
+        aggregate: { type: boolean }
+    Contest:
+      type: object
+      properties:
+        dv: { type: integer }
+        key: { type: string }
+        office: { type: string }
+        label: { type: string }
+        year: { type: integer }
+        date: { type: string, nullable: true }
+        stage: { type: string }
+        kind: { type: string }
+        state: { type: string, nullable: true }
+        district: { type: string, nullable: true }
+        display_slots:
+          type: object
+          additionalProperties: { type: string }
+        answers:
+          type: array
+          items: { $ref: "#/components/schemas/Answer" }
+    ContestList:
+      type: object
+      properties:
+        dv: { type: integer }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Contest" }
+        next: { nullable: true }
+    ResultCell:
+      type: object
+      properties:
+        votes: { type: array, items: { type: number }, nullable: true }
+        total: { type: number, nullable: true }
+        share: { type: array, items: { type: number }, nullable: true }
+        est: { type: boolean }
+        gray: { type: boolean }
+        contest: { type: string }
+    Results:
+      type: object
+      properties:
+        dv: { type: integer }
+        contest: { type: array, items: { type: string } }
+        unit_type: { type: string }
+        boundary_set: { type: string }
+        answers: { type: array, items: { type: string } }
+        display_slots: {}
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              unit: { type: string, description: Census GEOID }
+              legacy: { type: string, nullable: true, description: v2 name key }
+              name: { type: string }
+              votes: { type: array, items: { type: number }, nullable: true }
+              total: { type: number, nullable: true }
+              share: { type: array, items: { type: number }, nullable: true }
+              est: { type: boolean }
+              gray: { type: boolean }
+              series:
+                type: array
+                items: { $ref: "#/components/schemas/ResultCell" }
+    Unit:
+      type: object
+      properties:
+        dv: { type: integer }
+        unit: { type: string }
+        legacy: { type: string, nullable: true }
+        name: { type: string }
+        unit_type: { type: string }
+        state: { type: string, nullable: true }
+        geoid: { type: string, nullable: true }
+        boundary_set: { type: string }
+        centroid:
+          type: object
+          nullable: true
+          properties:
+            lon: { type: number }
+            lat: { type: number }
+    Locate:
+      type: object
+      properties:
+        dv: { type: integer }
+        point:
+          type: object
+          properties:
+            lon: { type: number }
+            lat: { type: number }
+        units:
+          type: object
+          additionalProperties: { type: string }
+    Geocode:
+      allOf:
+        - $ref: "#/components/schemas/Locate"
+        - type: object
+          properties:
+            query: { type: string }
+            match: { type: string }
+            provider: { type: string, nullable: true }

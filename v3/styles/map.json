@@ -1,0 +1,101 @@
+{
+  "version": 8,
+  "name": "us-districts",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "basemap": {
+      "type": "raster",
+      "tiles": [
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+      ],
+      "tileSize": 256,
+      "attribution": "Tiles © Esri",
+      "maxzoom": 19
+    },
+    "state-2024": {
+      "type": "vector",
+      "url": "pmtiles://{origin}/tiles/state-2024@1.pmtiles",
+      "attribution": "US Districts"
+    },
+    "state-geojson": {
+      "type": "geojson",
+      "data": "{origin}/geo/states.geojson",
+      "promoteId": "key"
+    }
+  },
+  "layers": [
+    {
+      "id": "basemap",
+      "type": "raster",
+      "source": "basemap"
+    },
+    {
+      "id": "state-fill",
+      "type": "fill",
+      "source": "state-2024",
+      "source-layer": "state",
+      "paint": {
+        "fill-color": [
+          "case",
+          ["==", ["feature-state", "gray"], 1],
+          "#d6d3d1",
+          [
+            "interpolate",
+            ["linear"],
+            ["coalesce", ["feature-state", "margin"], 0],
+            -0.6,
+            "#2563eb",
+            0,
+            "#f5f5f4",
+            0.6,
+            "#dc2626"
+          ]
+        ],
+        "fill-opacity": 0.72
+      }
+    },
+    {
+      "id": "state-line",
+      "type": "line",
+      "source": "state-2024",
+      "source-layer": "state",
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": 1.2
+      }
+    },
+    {
+      "id": "state-geojson-fill",
+      "type": "fill",
+      "source": "state-geojson",
+      "paint": {
+        "fill-color": [
+          "case",
+          ["==", ["feature-state", "gray"], 1],
+          "#d6d3d1",
+          [
+            "interpolate",
+            ["linear"],
+            ["coalesce", ["feature-state", "margin"], 0],
+            -0.6,
+            "#2563eb",
+            0,
+            "#f5f5f4",
+            0.6,
+            "#dc2626"
+          ]
+        ],
+        "fill-opacity": 0.72
+      }
+    },
+    {
+      "id": "state-geojson-line",
+      "type": "line",
+      "source": "state-geojson",
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": 1.2
+      }
+    }
+  ]
+}

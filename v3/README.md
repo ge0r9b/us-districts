@@ -1,15 +1,43 @@
-# v3 (scaffold placeholder)
+# US Districts v3 (alpha.1)
 
-No application code yet. Phase 1 is planning only. See [`docs/v3/`](../docs/v3/README.md).
+Local only. Nothing here is deployed. The app listens on port **8860** and the API on **8861**. Do not use port 8765.
 
-Planned layout (Phase 2): `app/` (Vite SPA + MapLibre), `api/` (Vercel functions), `db/` (migrations from `docs/v3/SCHEMA.sql`), `ingest/` (bot-row loader, legacy v2 importer, pack and tile builders), `tests/` (Playwright ports of `tests/*.py`).
+Business rules (the d/r slot, sort, `%` / `#`) live in `packages/core` and behind `/api/v1`, so a later native macOS/iOS client can reuse them. See `docs/v3/NATIVE.md`.
 
-Rules: the v3 lane edits only `v3/` and `docs/v3/`. No deploy or merge to main until v2.0 is tagged and the user approves (REPO-RULES rule 5). Local ports 8860–8899.
+## What you need
 
-Roadmap (details in `docs/v3/ARCHITECTURE.md` §9):
-- **v3.0:** parity with v2. The brand/location schema ships empty; its data loads in v3.1 (D21).
-- **v3.1:** list ingest: Wikidata brands and locations (Companies bot) plus governments, plus Canada (D23; v3-only, with PMTiles for ridings and polls built from the source layers in the v3.1 tile build). This loads the complete brand/location set from `data/companies`: all brands and all ~38,000 locations (38,092 at b583b2c). That is about 1.4 MB gz and roughly 10–20 MB in Postgres with the GIST index (estimate; D21).
-- **v3.2:** scheduled refresh.
-- **v3.3:** auth and moderated add/upload.
-- **v4+:** live voting and custom boundary sets.
-- **v5/v6:** bridge to the user's private corporate database (LEI/CIK crosswalk via `entity_alias`). This stays off the public v3 surface.
+- Node 22 or newer
+- PostgreSQL 16 with PostGIS 3.4
+- A superuser-capable role for this dev database (the checked-in default is `usd` / `usd`)
+- `DATABASE_URL`, for example `postgresql://usd:usd@127.0.0.1:5432/usd_v3`
+
+The loader reads `v2/data` from this checkout and the election and geo files from `origin/data/election` and `origin/data/geo` (git archive into `v3/.cache`, which is gitignored).
+
+## Run
+
+```bash
+cd v3
+npm install
+createdb usd_v3   # once; or any empty database named in DATABASE_URL
+export DATABASE_URL=postgresql://usd:usd@127.0.0.1:5432/usd_v3
+npm run db:migrate
+npm run db:load
+npm run dev
+```
+
+Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and 2024 show Pennsylvania counties. `%` / `#` re-sorts the list locally.
+
+`npm test` creates `usd_v3_test` from the same host (it swaps the database name), migrates, loads, and runs the schema, loader, API, and latency checks. `npm run build` then `npm run check:bundle` checks the gzipped JS budget.
+
+## Layout
+
+| Path | Role |
+|---|---|
+| `app/` | Vite + TypeScript + MapLibre shell |
+| `api/` | Hono router, `/api/v1` |
+| `packages/core` | Framework-free slot, sort, and filter rules |
+| `ingest/` | Migration runner and loaders |
+| `design/tokens.json` | Light mode and Liquid Glass tokens |
+| `styles/map.json` | MapLibre style (PMTiles, GeoJSON fallback) |
+
+The schema is `docs/v3/SCHEMA.sql`. The HTTP contract is `docs/v3/API.md` and `docs/v3/openapi.yaml`.

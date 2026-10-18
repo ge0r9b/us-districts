@@ -1,0 +1,53 @@
+name: v3
+
+on:
+  pull_request:
+    paths:
+      - "v3/**"
+      - "docs/v3/**"
+      - ".github/workflows/v3.yml"
+  push:
+    branches:
+      - v3/build
+      - v3/plan
+    paths:
+      - "v3/**"
+      - "docs/v3/**"
+      - ".github/workflows/v3.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: v3
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: usd
+          POSTGRES_PASSWORD: usd
+          POSTGRES_DB: usd
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U usd -d usd"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgresql://usd:usd@127.0.0.1:5432/usd
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: v3/package-lock.json
+      - name: Fetch data branches
+        working-directory: .
+        run: git fetch --no-tags origin data/election data/geo
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run check:bundle
