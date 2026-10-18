@@ -252,7 +252,7 @@ create table candidate (
 -- An office / topic (US President, PA House, ballot question type, later polls).
 create table office (
   id           bigint generated always as identity primary key,
-  office_key   text not null unique,                 -- bot 'office' normalized: 'president','us_house','state_senate','state_house','school_board','ballot_measure'
+  office_key   text not null unique,                 -- bot 'office' normalized: 'president','us_senate','us_house','state_senate','state_house','school_board','ballot_measure'
   label        text not null,                        -- 'President'
   entity_id    bigint references entity(id),         -- institution it belongs to (US, PA House ...)
   scope_entity_id bigint references entity(id),      -- v2 rule: topic scoped to its entity (President -> United States)
@@ -444,3 +444,23 @@ create table geocode_cache (
 -- create role usd_api login password '...' (set at provisioning time, not here);
 -- grant usage on schema usd to usd_api; grant select on all tables in schema usd to usd_api;
 -- Private/shared boundary sets are filtered in the API by tenant (and later RLS on unit/boundary_set).
+
+
+-- Proposed (Oct 18, 2026 drift check; data-v3/inst on data/inst-officeholders).
+-- Who holds a seat, per unit and date range. Vintage-aware like results: a 2020 House
+-- member is joined to the cd116 unit, a current one to cd119.
+create table officeholder (
+  id           bigserial primary key,
+  unit_id      bigint not null references unit(id),
+  entity_id    bigint references entity(id),            -- chamber / body, e.g. us-house, pa-senate
+  seat         text,                                     -- multi-member seats (NH floterial etc.)
+  person_key   text not null,                            -- 'bioguide:B001323', 'ocd-person/<uuid>'
+  name         text not null,
+  party        text,
+  status       text not null default 'serving',          -- serving | vacant | ...
+  term_start   date,
+  term_end     date,
+  source_id    bigint references source(id),
+  unique (unit_id, seat, person_key, term_start)
+);
+create index officeholder_unit on officeholder (unit_id);
