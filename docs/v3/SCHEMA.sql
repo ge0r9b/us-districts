@@ -381,7 +381,7 @@ create table entity (
   check (kind <> 'territory' or entity_id !~ '^territory:ca-' or parent_id = 'nation:ca'),
   check (kind <> 'territory' or entity_id !~ '^territory:[0-9]{2}$' or parent_id = 'nation:us'),
   check (kind <> 'province' or (parent_id = 'nation:ca' and entity_id ~ '^province:ca-[a-z]{2}$')),
-  check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
+  check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36}|ipeds:[0-9]{6})$'),
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
   iso_3166_2    text,                                -- 'AD-02' (entities.csv iso_3166_2; subdivisions). Unique when set.
@@ -567,7 +567,7 @@ create table entity_merge (
   from_id          text primary key,                 -- the id that was merged away (still resolvable)
   into_id          text not null references entity(entity_id),
   match_confidence numeric(4,3) not null check (match_confidence between 0 and 1),
-  match_rule       text not null,                    -- 'same_geoid','same_qid','qid_redirect','usd_to_qid','name+state+trgm>=0.9','manual'
+  match_rule       text not null,                    -- 'same_geoid','same_qid','qid_redirect','usd_to_qid','ipeds_to_qid','name+state+trgm>=0.9','manual'
                                                    -- e.g. from_id 'usd:3f2c…' into_id 'wikidata:Q1046951'
   decided_by       text not null,                    -- 'auto' (>= 0.95) or a moderator id
   decided_at       timestamptz not null default now()
@@ -581,7 +581,7 @@ create table entity_alias (
   entity_id   text references entity(entity_id) on delete cascade,
   unit_id     bigint references unit(id) on delete cascade,
   kind        text not null default 'abbr' check (kind in ('abbr','alt','historic','postal','external_id','merged_id','former_qid','reserved')),
-  scheme      text,                                  -- external ids: 'wikidata','cog_pid6','v2_key','usd'; reserved (v5/v6): 'lei','cik'
+  scheme      text,                                  -- external ids: 'wikidata','cog_pid6','v2_key','usd','ipeds'; reserved (v5/v6): 'lei','cik'
   match_confidence numeric(4,3) check (match_confidence is null or match_confidence between 0 and 1),
                                                    -- null = asserted by the source; < 1 = fuzzy match by the dedupe step
   source_id   text references source(source_id),

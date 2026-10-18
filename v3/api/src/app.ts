@@ -326,13 +326,14 @@ export function createApp(deps: AppDeps) {
       legacy_key: string | null;
       name: string;
       state_abbr: string | null;
+      geoid: string | null;
       votes: Record<string, number> | null;
       mv_total: string | null;
       total_votes: string | null;
       is_estimate: boolean | null;
       coverage: number | null;
     }>(
-      `select c.contest_key, u.unit_key, u.legacy_key, u.name, btrim(u.state_abbr) as state_abbr,
+      `select c.contest_key, u.unit_key, u.legacy_key, u.name, btrim(u.state_abbr) as state_abbr, u.geoid,
               a.votes, a.total::text as mv_total, rt.total_votes::text, a.is_estimate, rt.coverage
        from unit u
        join boundary_set b on b.id = u.boundary_set_id
@@ -352,7 +353,7 @@ export function createApp(deps: AppDeps) {
       est: boolean;
       gray: boolean;
     };
-    const byUnit = new Map<string, { unit: string; legacy: string | null; name: string; state: string | null; cells: Cell[] }>();
+    const byUnit = new Map<string, { unit: string; legacy: string | null; name: string; state: string | null; geoid: string | null; cells: Cell[] }>();
     for (const row of data.rows) {
       if (state && !matchesState(row.state_abbr, state)) continue;
       const has = row.votes != null;
@@ -375,6 +376,7 @@ export function createApp(deps: AppDeps) {
           legacy: row.legacy_key,
           name: row.name,
           state: row.state_abbr,
+          geoid: row.geoid,
           cells: [cell],
         });
       }
@@ -412,6 +414,8 @@ export function createApp(deps: AppDeps) {
             unit: row.unit,
             legacy: row.legacy,
             name: row.name,
+            state: row.state,
+            geoid: row.geoid,
             votes: cell.votes,
             total: cell.total,
             share: cell.share,
@@ -434,6 +438,8 @@ export function createApp(deps: AppDeps) {
         unit: row.unit,
         legacy: row.legacy,
         name: row.name,
+        state: row.state,
+        geoid: row.geoid,
         series: row.cells.map((cell) => applyFormat(cell, fmt)),
       })),
     });

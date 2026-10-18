@@ -34,9 +34,9 @@ The rest of the DDL applied unchanged (42 boundary sets, 21 unit types, both mat
 | | `unit` | One polygon in one set. `unit_key` is the bot's `unit_id`, unique per set. Holds `parent_unit_id` (county → state), centroid and bbox. Precinct polygons are PMTiles, not rows here. |
 | | `unit_geom` | Geometry per level of detail: lod 0 is full detail, used for point-in-polygon and weighting; lods 1–3 are simplified for low zooms and the dynamic-tile fallback. |
 | | `unit_crosswalk` | Overlap weights between units: precinct → district, and 2020 precinct → 2024 precinct (the `x20` files in v2). |
-| Institutions | `entity` | Governments, chambers, school districts, and later companies or brands. `gov_kind`: sovereign / incorporated / body / private. `has_region=false` is allowed. |
+| Institutions | `entity` | Governments, chambers, school districts, and later companies or brands. `gov_kind`: sovereign / incorporated / body / private. `has_region=false` is allowed. A college with no Wikidata item uses `ipeds:<UNITID>`. |
 | | `entity_unit` | `jurisdiction` (PA → PA polygon), `seat_district` (PA House → each sldl unit), `same_as` (school district ↔ its polygon). |
-| | `entity_alias` | Shared names for both filters (plus external ids, former QIDs, `usd:` ids re-keyed to a QID, and the reserved `lei:`/`cik:` schemes kept only for the v5/v6 bridge) (PA = Pennsylvania, USA = United States), per spec §5.3. |
+| | `entity_alias` | Shared names for both filters (plus external ids, former QIDs, `usd:` ids re-keyed to a QID, an IPEDS UNITID with scheme `ipeds`, and the reserved `lei:`/`cik:` schemes kept only for the v5/v6 bridge) (PA = Pennsylvania, USA = United States), per spec §5.3. |
 | | `entity_location_unit` | County, state, and US House for one company point. `entity_location.unit_id` stays the county. Non-US points are not rows. A US point that hits nothing keeps `no_unit_resolved`. |
 | | `body_entity` | A council, mayor, chamber, court, or board, pointing at its entity. | |
 | Contests | `party`, `candidate`, `office`, `contest`, `answer` | See below. |

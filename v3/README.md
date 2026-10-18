@@ -37,15 +37,18 @@ The default load is core (states, counties, congressional districts, and the off
 ```bash
 cd v3
 npm run db:size
+npm run db:migrate
 npm run db:vacuum
 npm run db:size
 npm run db:load -- --include=institutions
 npm run db:vacuum
 npm run db:size
+npm run db:load -- --include=companies
+npm run db:size
 npm run precincts -- --dry-run
 ```
 
-`db:size` only reads. The first `db:vacuum` rewrites `entity_location` and `entity_relation`. `014_shrink.sql` already dropped `entity_id`, `sub_entity_id`, `parent_id`, and `child_id` after filling the bigint ids; those bytes stay in the heap until `VACUUM FULL`. `db:migrate` on an already-applied `014` prints that reminder and does not edit the file. The institution reload is already applied, so its projected net change is zero or negative: it writes the pack, then deletes `entity_extra`, `entity_image_text`, and `entity_image_source`. The second `db:vacuum` rewrites those emptied tables so the space shows up in `pg_database_size`. The precinct dry-run prices `precinct_rollup` only. It does not write. Run `npm run precincts` only after that dry-run looks right. Governments are still not inserted. Re-running these commands is safe. Nothing here deploys.
+`db:size` only reads. `db:migrate` applies `015_ipeds.sql` (college ids `ipeds:` plus the UNITID alias) and, when `014` bloat is still there, prints the `VACUUM FULL` reminder. It does not edit `014`. The first `db:vacuum` rewrites `entity_location` and `entity_relation`. `014_shrink.sql` already dropped `entity_id`, `sub_entity_id`, `parent_id`, and `child_id` after filling the bigint ids; those bytes stay in the heap until `VACUUM FULL`. The institution reload is already applied, so its projected net change is zero or negative: it writes the pack, then deletes `entity_extra`, `entity_image_text`, and `entity_image_source`. The second `db:vacuum` rewrites those emptied tables so the space shows up in `pg_database_size`. Companies then load store locations plus colleges, airlines, and telecoms. That command stays behind the live size gate: if `pg_database_size` is still over 350 MB it writes tiles and inserts nothing. The precinct dry-run prices `precinct_rollup` only. It does not write. Run `npm run precincts` only after that dry-run looks right. Governments are still not inserted. Re-running these commands is safe. Nothing here deploys.
 
 ```bash
 # one state while you check the rollup:

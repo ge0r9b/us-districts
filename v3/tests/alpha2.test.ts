@@ -221,7 +221,7 @@ describe("alpha.2 load and API", () => {
     expect(gap).toContain("npm run precincts");
     expect(gap).not.toContain("--allow-over-budget=precincts");
     expect(summary.results.some((row) => row.fileName.includes("/precincts/"))).toBe(false);
-    expect(companyEstimateBytes()).toBe(212_439 * 520);
+    expect(companyEstimateBytes()).toBe((212_439 + 11_740) * 520 + 14_573 * 365);
   });
 
   it("refuses governments even when the override is set", async () => {

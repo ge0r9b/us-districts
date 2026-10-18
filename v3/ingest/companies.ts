@@ -7,6 +7,15 @@ import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-c
 import { BUDGET_BYTES, COMPANY_LOCATION_ROWS, EST_LOCATION_BYTES, companyLoadAllowed, formatMb } from "./budget.ts";
 import { writeClusterPmtiles, type ClusterPoint } from "./cluster-tiles.ts";
 import { parseCsv, readFileText } from "./csv.ts";
+import {
+  EST_ORG_ENTITY_BYTES,
+  ORG_ENTITY_ID,
+  ORG_ENTITY_ROWS,
+  ORG_FILES,
+  ORG_LOCATION_ROWS,
+  readOrganizationBundle,
+  writeOrganizationEntities,
+} from "./organizations.ts";
 
 export type CompanyLoadReport = {
   status: "applied" | "skipped" | "tiles-only";
@@ -21,10 +30,12 @@ export type CompanyLoadReport = {
 const ENTITY_ID = /^wikidata:Q[0-9]+$/;
 const COMPANY_REL = "data-v3/institutions/companies/company_locations.csv.gz";
 const BRANDS_REL = "data-v3/institutions/companies/brands.csv";
+const CACHE_FILES = [COMPANY_REL, BRANDS_REL, ...ORG_FILES];
 const ENTITY_KINDS = new Set(["brand", "organization", "company", "nonprofit", "fund"]);
 
+/** Store points plus the organization entities and their hq / campus rows. */
 export function companyEstimateBytes(): number {
-  return COMPANY_LOCATION_ROWS * EST_LOCATION_BYTES;
+  return (COMPANY_LOCATION_ROWS + ORG_LOCATION_ROWS) * EST_LOCATION_BYTES + ORG_ENTITY_ROWS * EST_ORG_ENTITY_BYTES;
 }
 
 export function ensureCompaniesCache(root: string): string {
@@ -32,12 +43,12 @@ export function ensureCompaniesCache(root: string): string {
   const file = join(dest, COMPANY_REL);
   fetchOrigin(root, ["data/companies"]);
   const head = originCommit(root, "data/companies");
-  if (!needsRefresh(dest, head, [COMPANY_REL, BRANDS_REL])) return file;
+  if (!needsRefresh(dest, head, CACHE_FILES)) return file;
   mkdirSync(dest, { recursive: true });
-  const tar = execFileSync("git", ["archive", "origin/data/companies", COMPANY_REL, BRANDS_REL], {
+  const tar = execFileSync("git", ["archive", "origin/data/companies", ...CACHE_FILES], {
     cwd: root,
     encoding: "buffer",
-    maxBuffer: 64 * 1024 * 1024,
+    maxBuffer: 96 * 1024 * 1024,
   });
   execFileSync("tar", ["-x", "-C", dest], { input: tar });
   stampCommit(dest, head);
@@ -101,7 +112,7 @@ export async function loadCompanyRows(
   for (const row of rows) {
     const locationId = row.location_id.trim();
     const entityId = row.entity_id.trim();
-    if (!locationId || seen.has(locationId) || !ENTITY_ID.test(entityId)) {
+    if (!locationId || seen.has(locationId) || !ORG_ENTITY_ID.test(entityId)) {
       skipped++;
       continue;
     }
@@ -118,7 +129,7 @@ export async function loadCompanyRows(
     const brand = row.brand_name?.trim() || row.name?.trim() || entityId;
     remember(entityId, brand, country?.toLowerCase() ?? null);
     const subRaw = row.sub_entity_id?.trim() || "";
-    const subId = ENTITY_ID.test(subRaw) ? subRaw : "";
+    const subId = ORG_ENTITY_ID.test(subRaw) ? subRaw : "";
     if (subId) {
       remember(subId, names.get(subId)?.name ?? subId, null);
       if (subId !== entityId) relations.set(`${entityId}|${subId}`, { parent_id: entityId, child_id: subId });
@@ -136,7 +147,7 @@ export async function loadCompanyRows(
       lon: hasPoint ? lon : null,
       lat: hasPoint ? lat : null,
       geoid,
-      boundary_set: row.boundary_set?.trim() || "",
+      boundary_set: country && country !== "US" ? "" : row.boundary_set?.trim() || "",
       country_code: country,
       source_record_id: locationId,
       retrieved_at: timestamp(row.retrieved_at),
@@ -253,22 +264,31 @@ export async function loadCompanies(
       country_code: row.country_code,
     };
   });
+  const cacheDir = join(opts.root, "v3/.cache/companies");
+  const orgs = readOrganizationBundle(cacheDir);
+  for (const row of orgs.locations) {
+    const lat = Number(row.lat);
+    const lon = Number(row.lon);
+    if (Number.isFinite(lat) && Number.isFinite(lon)) points.push({ lon, lat });
+  }
   const tiles = points.length > 0 ? writeClusterPmtiles(points, opts.tilesPath) : 0;
   if (!companyLoadAllowed(opts.currentBytes, opts.allow)) {
     return {
       status: "tiles-only",
-      rows: parsed.rows.length,
+      rows: parsed.rows.length + orgs.locations.length,
       locations: 0,
       tiles,
       databaseBytes: opts.currentBytes,
       gap: `companies: database is ${formatMb(opts.currentBytes)} (pg_database_size), over ${formatMb(BUDGET_BYTES)}. Rows were not inserted. Tiles were written. Re-run with: npm run db:load -- --include=companies --allow-over-budget=companies`,
     };
   }
+  await writeOrganizationEntities(db, orgs.drafts);
   const loaded = await loadCompanyRows(db, inputs, names);
+  const orgLoaded = await loadCompanyRows(db, orgs.locations, names);
   return {
     status: "applied",
-    rows: parsed.rows.length,
-    locations: loaded.locations,
+    rows: parsed.rows.length + orgs.locations.length,
+    locations: loaded.locations + orgLoaded.locations,
     tiles,
     databaseBytes: opts.currentBytes,
     gap: null,

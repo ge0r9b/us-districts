@@ -444,6 +444,15 @@ function day(raw: string | undefined): string | null {
   return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text : null;
 }
 
+/** Institution history starts 2016-01-01. Earlier dates, and anything that is not a day, become null. */
+export const HISTORY_CUT = "2016-01-01";
+
+export function historyDate(raw: string | undefined): string | null {
+  const text = day(raw);
+  if (!text || text < HISTORY_CUT) return null;
+  return text;
+}
+
 function textList(raw: string | undefined): string[] | null {
   const items = (raw ?? "").split(";").map((part) => part.trim()).filter(Boolean);
   return items.length ? items : null;
@@ -610,7 +619,7 @@ export async function loadInstitutionTables(
       name,
       label: blank(row.label),
       gov_status: blank(row.gov_status),
-      valid_from: day(row.valid_from),
+      valid_from: historyDate(row.valid_from),
       valid_to: day(row.valid_to),
       feed: blank(row.feed),
       level: blank(row.level),
@@ -621,7 +630,7 @@ export async function loadInstitutionTables(
       wikidata: wikidataId(row.wikidata),
       iso_3166_2: blank(row.iso_3166_2),
       constituent_qid: /^Q[0-9]+$/.test((row.constituent_qid ?? "").trim()) ? row.constituent_qid.trim() : null,
-      inception: day(row.inception),
+      inception: historyDate(row.inception),
       inception_precision: PRECISIONS.has((row.inception_precision ?? "").trim()) ? row.inception_precision.trim() : null,
     });
     const v2Layer = textList(row.v2_layer);
@@ -769,9 +778,21 @@ export async function loadInstitutionTables(
              or entity.iso_3166_2 is distinct from excluded.iso_3166_2
              or entity.constituent_qid is distinct from excluded.constituent_qid
              or entity.inception is distinct from excluded.inception
-             or entity.inception_precision is distinct from excluded.inception_precision)`,
+             or entity.inception_precision is distinct from excluded.inception_precision
+             or 'feed_absent' = any(coalesce(entity.flags, '{}')))`,
       entities,
     );
+    if (entities.length > 0) {
+      await client.query(
+        `update entity
+         set flags = array_append(coalesce(flags, '{}'), 'feed_absent')
+         where origin = 'inst'
+           and feed is not null
+           and not (entity_id = any($1::text[]))
+           and not ('feed_absent' = any(coalesce(flags, '{}')))`,
+        [entities.map((row) => String(row.entity_id))],
+      );
+    }
     if (aliases.length > 0) {
       await insertJsonChunks(
         client,

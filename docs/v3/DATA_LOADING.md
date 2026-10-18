@@ -601,4 +601,16 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
   - Honolulu (`cog:183701`) is already mapped to `county:15003` in the file. Its only place entity is the Urban Honolulu CDP (`muni:place:1571550`, unincorporated). That is not a consolidated government, so it gets no `consolidated_with` row unless Institutions decides otherwise.
 
+### 9.7 Companies organizations (data/companies 7022011)
+
+`organizations/` adds one `entity` per organization plus `<stem>_locations.csv`, loaded only with `--include=companies` and the live size gate:
+
+- `colleges_us`: 5,731 Title IV institutions (nonprofit 3,591, company 2,140) and 5,731 `establishment_at` campuses. 2,450 entity ids are `ipeds:<UNITID>` (six digits). The UNITID is also `entity_alias` scheme `ipeds`. A later QID match records `entity_merge` rule `ipeds_to_qid` and keeps the old id.
+- `airlines_world`: 5,888 companies and 3,911 `hq_in` rows.
+- `telecoms_world`: 2,954 entries (1,982 company, 972 brand) and 2,098 `hq_in` rows.
+
+`hq_in` outside the US keeps `boundary_set` null and still stores the point. US rows keep `v2-2024` when the file says so. Source-specific columns go to `entity.meta`, except `inception` (`entity.inception`, source `wikidata:P571`; a year is kept, including years before 2016), `dissolved` (`valid_to`), `corporate_qid` / `ultimate_parent_qid` / `system_entity_id` / `main_campus_entity_id` / airline `parent_entity_id` (`entity_relation` `parent_org`, and only when that entity exists), and logos (`entity_image` under the public/attribution rules). `*_dropped.csv` and `*_summary.json` are not loaded.
+
+Institution history, separate from these company dates, is cut at 2016-01-01: `valid_from` and `inception` before that day are stored null. A row missing from a later institution feed is marked `feed_absent`. Its id is not deleted and not reused.
+
 **Officeholders (c830581, f1d64f6).** Rows now carry `boundary_set` (`tiger-2020-cd116` / `v2-2024`): the loader resolves `unit_id` through that slug (replaces the `unit_vintage` guess). `county_government.csv` is now derived from the Governments check, with `gov_status` `government` / `dependent` / `area_only` (matches the `entity.gov_status` CHECK) and `govbot_entity_id` → `entity_alias` (`external_id`) linking `county:<GEOID>` to `cog:<PID6>`.

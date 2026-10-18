@@ -3,7 +3,10 @@ import { Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   GEOGRAPHY_LEVELS,
+  WARM_TYPES,
   chartMenu,
+  deferCamera,
+  emptyScopeMessage,
   geographyLevel,
   institutionField,
   legendText,
@@ -15,6 +18,8 @@ import {
   precinctLabel,
   rangeStartVotes,
   resolveChart,
+  schoolLabels,
+  scopeRows,
   searchInstitutions,
   segmentChanges,
   sliderFrame,
@@ -23,6 +28,8 @@ import {
   stateName,
   thumbnailBox,
   topInstitutionHit,
+  warmOrder,
+  type CameraView,
   type ChartKind,
   type GeographyLevel,
   type PlaceChain,
@@ -36,6 +43,9 @@ type ResultRow = {
   unit: string;
   legacy: string | null;
   name: string;
+  state?: string | null;
+  geoid?: string | null;
+  county?: string | null;
   votes: number[] | null;
   total: number | null;
   share: number[] | null;
@@ -122,6 +132,9 @@ let emptyMessage = "No rows";
 let loadSeq = 0;
 let tapHandled = false;
 let map: maplibregl.Map | undefined;
+let pendingCamera: CameraView | null = null;
+const warmCache = new Map<string, ResultsBody>();
+const LAST_TYPE_KEY = "v3.lastType";
 
 const yearsEl = document.querySelector<HTMLElement>("#years")!;
 const geographyEl = document.querySelector<HTMLElement>("#geography")!;
@@ -194,7 +207,25 @@ function viewFor(y: number): { unitType: string; state: string | null } {
     return { unitType: "county", state: place.stateAbbr || "PA" };
   }
   if (place.level === "state") return { unitType: "state", state: place.stateAbbr || null };
+  if (place.level === "ushouse" || place.level === "school_unified") {
+    return { unitType: place.level, state: place.stateAbbr || null };
+  }
   return { unitType: place.level, state: place.stateAbbr || (place.level === "precinct" ? "VT" : "PA") };
+}
+
+function mapHidden(): boolean {
+  return document.body.dataset.layout === "list";
+}
+
+function cameraFor(level: GeographyLevel, point: { lon: number; lat: number }): CameraView {
+  const zoom = level === "precinct" ? 11 : level === "county" || level === "school_unified" ? 8 : level === "ushouse" ? 6 : 5;
+  return { lon: point.lon, lat: point.lat, zoom };
+}
+
+function moveCamera(next: CameraView | null) {
+  const step = deferCamera(mapHidden(), pendingCamera, next);
+  pendingCamera = step.pending;
+  if (step.apply && map) map.jumpTo({ center: [step.apply.lon, step.apply.lat], zoom: step.apply.zoom });
 }
 
 function applyPlace(next: Place, point?: { lon: number; lat: number } | null, focus: string | null = null) {
@@ -208,7 +239,7 @@ function applyPlace(next: Place, point?: { lon: number; lat: number } | null, fo
   };
   stateEl.value = place.stateAbbr;
   crumbEl.textContent = place.crumbs.join(" · ");
-  if (point && map) map.jumpTo({ center: [point.lon, point.lat], zoom: place.level === "precinct" ? 11 : place.level === "county" ? 8 : 5 });
+  if (point) moveCamera(cameraFor(place.level, point));
   paintGeography();
   paintLegend();
   void load();
@@ -283,7 +314,13 @@ function paintGeography() {
     bindTap(btn, () => {
       const next = geographyLevel(choice.key);
       if (!next) return;
-      const abbr = stateEdited ? place.stateAbbr : next === "precinct" ? "VT" : next === "county" ? "PA" : "";
+      const abbr = stateEdited
+        ? place.stateAbbr
+        : next === "precinct"
+          ? "VT"
+          : next === "county" || next === "ushouse" || next === "school_unified"
+            ? "PA"
+            : "";
       const name = abbr ? stateName(abbr) : null;
       applyPlace({
         level: next,
@@ -359,7 +396,7 @@ function setThumbs(ready: boolean) {
 }
 
 function focusRow(): ResultRow | null {
-  if (focusKey) return rowIndex.get(focusKey) ?? null;
+  if (focusKey) return pickUnit(rowIndex, focusKey) ?? null;
   return body?.rows[0] ?? null;
 }
 
@@ -394,6 +431,18 @@ function pct(n: number): string {
 
 function paintList() {
   const rows = sortedRows();
+  const schoolName = new Map<string, string>();
+  if (place.level === "school_unified") {
+    for (const labeled of schoolLabels(rows.map((row) => ({
+      geoid: row.geoid || row.unit,
+      unit: row.unit,
+      name: row.name,
+      state: row.state,
+      county: row.county,
+    })))) {
+      schoolName.set(labeled.geoid, labeled.label);
+    }
+  }
   listEl.replaceChildren();
   if (rows.length === 0) {
     const li = document.createElement("li");
@@ -413,7 +462,8 @@ function paintList() {
     }
     const name = document.createElement("span");
     name.className = "name" + (place.level === "precinct" ? " whole" : "");
-    name.textContent = place.level === "precinct" ? precinctLabel(row.name) : row.name;
+    const school = schoolName.get(row.geoid || row.unit);
+    name.textContent = place.level === "precinct" ? precinctLabel(row.name) : school ?? row.name;
     const val = document.createElement("span");
     val.className = "val";
     if (row.gray) val.textContent = "—";
@@ -651,7 +701,14 @@ async function syncPrecincts(state: string | null) {
   });
 }
 
+function warmKey(y: number, unitType: string, state: string | null): string {
+  return `${y}|${unitType}|${state ?? ""}`;
+}
+
 async function fetchBody(y: number, view: { unitType: string; state: string | null }): Promise<{ ok: true; body: ResultsBody } | { ok: false; message: string }> {
+  const key = warmKey(y, view.unitType, view.state);
+  const cached = warmCache.get(key);
+  if (cached) return { ok: true, body: cached };
   const params = new URLSearchParams({ contest: `${y}|US|president|`, unit_type: view.unitType });
   if (view.state && matchesState(view.state, view.state)) params.set("state", view.state);
   const res = await fetch(`/api/v1/results?${params}`);
@@ -659,7 +716,32 @@ async function fetchBody(y: number, view: { unitType: string; state: string | nu
     const err = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
     return { ok: false, message: err?.error?.message || "No rows" };
   }
-  return { ok: true, body: (await res.json()) as ResultsBody };
+  const body = (await res.json()) as ResultsBody;
+  warmCache.set(key, body);
+  return { ok: true, body };
+}
+
+function scheduleWarm(state: string | null) {
+  const abbr = (state ?? "").trim().toUpperCase();
+  if (!abbr) return;
+  let last: string | null = null;
+  try {
+    last = localStorage.getItem(LAST_TYPE_KEY);
+  } catch {
+    last = null;
+  }
+  const types = warmOrder(last);
+  const run = () => {
+    void (async () => {
+      for (const unitType of types) {
+        if (warmCache.has(warmKey(yearEnd, unitType, abbr))) continue;
+        await fetchBody(yearEnd, { unitType, state: abbr });
+      }
+    })();
+  };
+  const idle = window.requestIdleCallback;
+  if (idle) idle(() => run());
+  else setTimeout(run, 1);
 }
 
 async function load() {
@@ -684,9 +766,21 @@ async function load() {
     await syncPrecincts(null);
     return;
   }
-  emptyMessage = "No rows";
-  body = endResult.body;
+  const scoped = scopeRows({
+    stateAbbr: view.state ?? "",
+    unitType: view.unitType,
+    rows: endResult.body.rows,
+  });
+  emptyMessage = emptyScopeMessage(view.unitType, scoped.length) ?? "No rows";
+  body = { ...endResult.body, rows: scoped };
   rowIndex = new Map(body.rows.map((row) => [row.unit, row]));
+  if ((WARM_TYPES as readonly string[]).includes(view.unitType)) {
+    try {
+      localStorage.setItem(LAST_TYPE_KEY, view.unitType);
+    } catch {
+      /* private mode */
+    }
+  }
   if (focusKey && !rowIndex.has(focusKey)) focusKey = null;
   setThumbs(true);
   paintLegend();
@@ -694,6 +788,7 @@ async function load() {
   paintChart();
   await syncPrecincts(view.unitType === "precinct" ? view.state : null);
   if (map?.isStyleLoaded()) colorMap(map, map.getSource("precinct-2024") ? "precinct-2024" : activeSource);
+  scheduleWarm(view.state);
 }
 
 bindTap(fmtBtn, () => {
@@ -706,6 +801,7 @@ bindTap(layoutBtn, () => {
   layout = layout === "map" ? "list" : "map";
   document.body.dataset.layout = tokens.layoutMode[layout];
   layoutBtn.textContent = layout === "map" ? "List" : "Map";
+  if (layout === "map") moveCamera(null);
 });
 bindTap(backBtn, climb);
 bindTap(clockBtn, () => {

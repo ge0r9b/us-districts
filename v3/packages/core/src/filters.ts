@@ -31,6 +31,8 @@ export const GEOGRAPHY_LEVELS = [
   { key: "state", label: "States" },
   { key: "county", label: "Counties" },
   { key: "precinct", label: "Precincts" },
+  { key: "ushouse", label: "US House" },
+  { key: "school_unified", label: "School districts" },
 ] as const;
 
 export type GeographyLevel = (typeof GEOGRAPHY_LEVELS)[number]["key"];

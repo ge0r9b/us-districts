@@ -114,6 +114,7 @@ export const CANADA_PROVINCES: readonly { abbr: string; name: string }[] = [
 const COUNTRIES: { id: string; label: string; aliases: string[] }[] = [
   { id: "country:US", label: "United States", aliases: ["us", "usa", "america", "united states", "u.s.", "u.s.a."] },
   { id: "country:CA", label: "Canada", aliases: ["canada"] },
+  { id: "country:GE", label: "Georgia", aliases: ["republic of georgia"] },
 ];
 
 const GROUP_ORDER: InstitutionGroupName[] = ["Countries", "States", "Counties", "Provinces"];
@@ -156,7 +157,14 @@ export function searchInstitutions(query: string, extras: readonly InstitutionEx
       );
     }
   }
-  const groups = GROUP_ORDER.map((name) => ({
+  const exactState = q.length > 0 && scored.some((item) => {
+    if (item.hit.group !== "States") return false;
+    return norm(item.hit.label) === q || item.hit.id.toLowerCase().endsWith(`:${q}`);
+  });
+  const order: InstitutionGroupName[] = exactState
+    ? ["States", "Countries", "Counties", "Provinces"]
+    : GROUP_ORDER;
+  const groups = order.map((name) => ({
     name,
     hits: scored
       .filter((item) => item.hit.group === name)
@@ -172,8 +180,8 @@ export function topInstitutionHit(query: string, extras: readonly InstitutionExt
   const flat = found.groups.flatMap((group) => group.hits);
   if (flat.length === 0) return null;
   const q = norm(query);
-  const exact = flat.find((hit) => norm(hit.label) === q || hit.id.toLowerCase().endsWith(`:${q}`));
-  return exact ?? flat[0]!;
+  const exact = flat.filter((hit) => norm(hit.label) === q || hit.id.toLowerCase().endsWith(`:${q}`));
+  return exact.find((hit) => hit.group === "States") ?? exact[0] ?? flat[0]!;
 }
 
 /** Committed institution label. Never empty. */
@@ -316,4 +324,98 @@ export function pointerTap(
 /** A pick is a map lookup. Twins, slot years, and membership stay off this path. */
 export function pickUnit<T>(index: ReadonlyMap<string, T>, id: string): T | undefined {
   return index.get(id);
+}
+
+/**
+ * Build 1584 bar from PERF_TABLE.md. Back ~40 ms, US House pick ~70 ms,
+ * phone pan 60 fps. iPad pan stays a v3 gate at 55 fps or better.
+ */
+export const PERF_BAR = {
+  backMs: 40,
+  usHousePickMs: 70,
+  phonePanFps: 60,
+  ipadPanFps: 55,
+} as const;
+
+export const WARM_TYPES = ["ushouse", "sldu", "sldl", "school_unified"] as const;
+
+/** Last-used district list first, then the rest. Idle prefetch uses this order. */
+export function warmOrder(lastType: string | null | undefined): string[] {
+  const last = (lastType ?? "").trim();
+  const rest = WARM_TYPES.filter((type) => type !== last);
+  return (WARM_TYPES as readonly string[]).includes(last) ? [last, ...rest] : [...WARM_TYPES];
+}
+
+export type CameraView = { lon: number; lat: number; zoom: number };
+
+/**
+ * While the list hides the map, keep the last requested view and apply it when the map shows.
+ * A later request replaces the pending one.
+ */
+export function deferCamera(
+  hidden: boolean,
+  pending: CameraView | null,
+  next: CameraView | null,
+): { pending: CameraView | null; apply: CameraView | null } {
+  if (hidden) return { pending: next ?? pending, apply: null };
+  if (next) return { pending: null, apply: next };
+  if (pending) return { pending: null, apply: pending };
+  return { pending: null, apply: null };
+}
+
+const PARENT_SCOPE = new Set(["", "US", "USA"]);
+
+/**
+ * A state scope with no rows of this type stays empty.
+ * A US total, or a row with no state, is not shown under that state.
+ */
+export function scopeRows<T extends { state?: string | null; unit?: string }>(input: {
+  stateAbbr: string;
+  unitType: string;
+  rows: readonly T[];
+}): T[] {
+  const state = input.stateAbbr.trim().toUpperCase();
+  const districtList = input.unitType === "ushouse" || input.unitType.startsWith("school_") || input.unitType === "sldu" || input.unitType === "sldl";
+  if (!state || state === "US" || !districtList) return [...input.rows];
+  return input.rows.filter((row) => {
+    const rowState = (row.state ?? "").trim().toUpperCase();
+    if (PARENT_SCOPE.has(rowState) || row.unit === "US") return false;
+    return rowState === state;
+  });
+}
+
+export function emptyScopeMessage(unitType: string, count: number): string | null {
+  if (count > 0) return null;
+  if (unitType === "ushouse" || unitType.startsWith("school_") || unitType === "sldu" || unitType === "sldl") {
+    return "No districts";
+  }
+  return null;
+}
+
+export type SchoolLabelRow = {
+  geoid?: string | null;
+  unit?: string | null;
+  name: string;
+  county?: string | null;
+  state?: string | null;
+  lea?: string | null;
+};
+
+/** Same-name school districts gain a county, else a state, else an id. Duplicate GEOIDs drop. */
+export function schoolLabels(rows: readonly SchoolLabelRow[]): { geoid: string; label: string }[] {
+  const seen = new Set<string>();
+  const unique: (SchoolLabelRow & { geoid: string })[] = [];
+  for (const row of rows) {
+    const geoid = (row.geoid ?? row.unit ?? "").trim();
+    if (!geoid || seen.has(geoid)) continue;
+    seen.add(geoid);
+    unique.push({ ...row, geoid });
+  }
+  const counts = new Map<string, number>();
+  for (const row of unique) counts.set(row.name, (counts.get(row.name) ?? 0) + 1);
+  return unique.map((row) => {
+    if ((counts.get(row.name) ?? 0) < 2) return { geoid: row.geoid, label: row.name };
+    const extra = (row.county ?? "").trim() || (row.state ?? "").trim() || (row.lea ?? "").trim() || row.geoid;
+    return { geoid: row.geoid, label: `${row.name}, ${extra}` };
+  });
 }

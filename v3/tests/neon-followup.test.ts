@@ -4,9 +4,10 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createApp } from "../api/src/app.ts";
 import { applyResults, markSuperseded, sha256Hex } from "../ingest/apply.ts";
+import { originCommit } from "../ingest/branch-cache.ts";
 import { BUDGET_BYTES } from "../ingest/budget.ts";
 import { instPacksRoot, readInstPack } from "../ingest/inst-pack.ts";
-import { mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
+import { historyDate, mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
 import { assignLocationUnits, isConnectionDrop } from "../ingest/locations.ts";
 import { repoRoot } from "../ingest/load-all.ts";
 import { dryRunPrecincts } from "../ingest/precincts.ts";
@@ -351,7 +352,8 @@ describe("neon follow-up", () => {
     const after = await pool.query<{ n: string }>("select count(*)::text n from entity");
     expect(after.rows[0]?.n).toBe(before.rows[0]?.n);
     expect(report.status).toBe("dry-run");
-    expect(report.gitCommit?.startsWith("f0f1f6d")).toBe(true);
+    expect(report.gitCommit).toBe(originCommit(root, "data/inst-entities"));
+    expect(report.gitCommit).toMatch(/^[0-9a-f]{40}$/);
     expect(report.entities).toBeGreaterThan(50_000);
     expect(report.estimate.projectedBytes).not.toBeNull();
     const margin = (report.estimate.projectedBytes ?? 0) - 236 * 1024 * 1024;
@@ -428,6 +430,80 @@ describe("neon follow-up", () => {
       { file_sha256: "sha-stale-lonely", status: "rejected" },
       { file_sha256: "sha-stale-rejected", status: "superseded" },
     ]);
+  });
+
+  it("clears institution dates before 2016 and marks a missing feed row without reusing its id", async () => {
+    expect(historyDate("")).toBeNull();
+    expect(historyDate("2014")).toBeNull();
+    expect(historyDate("2015-12-31")).toBeNull();
+    expect(historyDate("2016-01-01")).toBe("2016-01-01");
+    const absentId = "county:feed-absent-demo";
+    await pool.query(
+      `insert into entity (entity_id, kind, name, origin, feed)
+       values ($1, 'county', 'Old County', 'inst', 'governments-bot')
+       on conflict (entity_id) do update set origin = 'inst', feed = 'governments-bot', flags = null`,
+      [absentId],
+    );
+    const before = await pool.query<{ nid: string }>(`select nid::text from entity where entity_id = $1`, [absentId]);
+    const packsDir = instPacksRoot(root);
+    const input = {
+      relations: [],
+      images: [],
+      bodies: [],
+      fileBytes: 40,
+      gitCommit: "history",
+    };
+    await loadInstitutionTables(pool, {
+      ...input,
+      entities: [
+        row("county:feed-present-demo", {
+          kind: "county",
+          name: "Present County",
+          feed: "governments-bot",
+          valid_from: "",
+          inception: "2014",
+        }),
+        row("county:feed-cut-demo", {
+          kind: "county",
+          name: "Cut County",
+          feed: "governments-bot",
+          valid_from: "2015-06-01",
+          inception: "2016-06-15",
+        }),
+      ],
+      files: [{ fileName: "fixture-history.csv", sha256: "fixture-history-sha", rows: 2 }],
+    }, { packsDir });
+    const absent = await pool.query<{ nid: string; flags: string[] | null }>(
+      `select nid::text, flags from entity where entity_id = $1`,
+      [absentId],
+    );
+    expect(absent.rows[0]?.nid).toBe(before.rows[0]?.nid);
+    expect(absent.rows[0]?.flags).toContain("feed_absent");
+    const present = await pool.query<{ valid_from: string | null; inception: string | null; flags: string[] | null }>(
+      `select valid_from::text, inception::text, flags from entity where entity_id = 'county:feed-present-demo'`,
+    );
+    expect(present.rows[0]?.valid_from).toBeNull();
+    expect(present.rows[0]?.inception).toBeNull();
+    expect(present.rows[0]?.flags ?? []).not.toContain("feed_absent");
+    const cut = await pool.query<{ valid_from: string | null; inception: string | null }>(
+      `select valid_from::text, inception::text from entity where entity_id = 'county:feed-cut-demo'`,
+    );
+    expect(cut.rows[0]).toEqual({ valid_from: null, inception: "2016-06-15" });
+    await loadInstitutionTables(pool, {
+      ...input,
+      entities: [
+        row(absentId, { kind: "county", name: "Old County", feed: "governments-bot", valid_from: "", inception: "" }),
+        row("county:feed-present-demo", { kind: "county", name: "Present County", feed: "governments-bot" }),
+        row("county:feed-cut-demo", { kind: "county", name: "Cut County", feed: "governments-bot" }),
+      ],
+      files: [{ fileName: "fixture-history.csv", sha256: "fixture-history-sha-2", rows: 3 }],
+    }, { packsDir });
+    const restored = await pool.query<{ nid: string; flags: string[] | null }>(
+      `select nid::text, flags from entity where entity_id = $1`,
+      [absentId],
+    );
+    expect(restored.rows[0]?.nid).toBe(before.rows[0]?.nid);
+    expect(restored.rows[0]?.flags ?? []).not.toContain("feed_absent");
   });
 });
 

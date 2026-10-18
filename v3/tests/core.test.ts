@@ -118,7 +118,7 @@ describe("answer keys and sort", () => {
     expect(INSTITUTIONS.map((item) => item.key)).toEqual(["president"]);
     expect(matchesInstitution("president", "president")).toBe(true);
     expect(matchesInstitution("sldu", "president")).toBe(false);
-    expect(GEOGRAPHY_LEVELS.map((item) => item.key)).toEqual(["state", "county", "precinct"]);
+    expect(GEOGRAPHY_LEVELS.map((item) => item.key)).toEqual(["state", "county", "precinct", "ushouse", "school_unified"]);
     expect(geographyLevel("precinct")).toBe("precinct");
     expect(geographyLevel("president")).toBeNull();
   });
