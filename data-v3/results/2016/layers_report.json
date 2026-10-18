@@ -1,0 +1,509 @@
+{
+"ushouse": {
+"districts": 435,
+"filled": 434,
+"est": 404,
+"gray": 1,
+"gray_items": [
+[
+"Florida",
+"20",
+"precinct cover 32%"
+]
+]
+},
+"senate": {
+"districts": 1942,
+"filled": 1935,
+"est": 1832,
+"gray": 7,
+"gray_items": [
+[
+"Florida",
+"026",
+"precinct cover 49%"
+],
+[
+"Florida",
+"035",
+"precinct cover 16%"
+],
+[
+"Hawaii",
+"018",
+"precinct cover 40%"
+],
+[
+"Maine",
+"001",
+"precinct cover 42%"
+],
+[
+"Maine",
+"004",
+"precinct cover 42%"
+],
+[
+"Nevada",
+"021",
+"precinct cover 39%"
+],
+[
+"Utah",
+"006",
+"precinct cover 15%"
+]
+]
+},
+"statehouse": {
+"districts": 4882,
+"filled": 4860,
+"est": 4611,
+"gray": 22,
+"gray_items": [
+[
+"Florida",
+"094",
+"precinct cover 41%"
+],
+[
+"Florida",
+"096",
+"precinct cover 4%"
+],
+[
+"Georgia",
+"164",
+"precinct cover 49%"
+],
+[
+"Hawaii",
+"037",
+"precinct cover 26%"
+],
+[
+"Hawaii",
+"039",
+"precinct cover 36%"
+],
+[
+"Louisiana",
+"057",
+"precinct cover 43%"
+],
+[
+"Louisiana",
+"094",
+"precinct cover 10%"
+],
+[
+"Louisiana",
+"100",
+"precinct cover 46%"
+],
+[
+"Louisiana",
+"089",
+"precinct cover 21%"
+],
+[
+"Maine",
+"072",
+"precinct cover 37%"
+],
+[
+"Maine",
+"030",
+"precinct cover 33%"
+],
+[
+"Maine",
+"001",
+"precinct cover 26%"
+],
+[
+"Montana",
+"015",
+"precinct cover 48%"
+],
+[
+"Nevada",
+"012",
+"precinct cover 31%"
+],
+[
+"New Hampshire",
+"306",
+"precinct cover 37%"
+],
+[
+"New York",
+"059",
+"precinct cover 44%"
+],
+[
+"New York",
+"085",
+"precinct cover 50%"
+],
+[
+"New York",
+"007",
+"precinct cover 43%"
+],
+[
+"Utah",
+"027",
+"precinct cover 47%"
+],
+[
+"Utah",
+"061",
+"precinct cover 17%"
+],
+[
+"Utah",
+"015",
+"precinct cover 12%"
+],
+[
+"Utah",
+"003",
+"precinct cover 10%"
+]
+]
+},
+"schools": {
+"districts": 13304,
+"filled": 13239,
+"est": 12142,
+"gray": 65,
+"gray_items": [
+[
+"Alaska",
+"Kashunamiut School District",
+"no votes"
+],
+[
+"Alaska",
+"Hydaburg City School District",
+"no votes"
+],
+[
+"Alaska",
+"Klawock City School District",
+"no votes"
+],
+[
+"Alaska",
+"Pelican City School District",
+"no votes"
+],
+[
+"Alaska",
+"Tanana City School District",
+"no votes"
+],
+[
+"Arizona",
+"Yuma Elementary District",
+"precinct cover 20%"
+],
+[
+"Arizona",
+"Yuma Union High School District",
+"precinct cover 26%"
+],
+[
+"California",
+"Sierra Sands Unified School District",
+"precinct cover 37%"
+],
+[
+"California",
+"Borrego Springs Unified School District",
+"precinct cover 35%"
+],
+[
+"California",
+"Silver Valley Unified School District",
+"precinct cover 34%"
+],
+[
+"California",
+"Coachella Valley Unified School District",
+"precinct cover 41%"
+],
+[
+"California",
+"Fillmore Unified School District",
+"precinct cover 33%"
+],
+[
+"California",
+"Oak Park Unified School District",
+"precinct cover 27%"
+],
+[
+"California",
+"Morongo Unified School District",
+"precinct cover 42%"
+],
+[
+"California",
+"Rim of the World Unified School District",
+"precinct cover 46%"
+],
+[
+"California",
+"Lake Tahoe Unified School District",
+"precinct cover 39%"
+],
+[
+"California",
+"Desert Sands Unified School District",
+"precinct cover 23%"
+],
+[
+"California",
+"Three Rivers Union Elementary School District",
+"precinct cover 45%"
+],
+[
+"California",
+"Silver Fork Elementary School District",
+"precinct cover 45%"
+],
+[
+"California",
+"Camino Union Elementary School District",
+"precinct cover 23%"
+],
+[
+"California",
+"Springville Union Elementary School District",
+"precinct cover 33%"
+],
+[
+"California",
+"Buttonwillow Union Elementary School District",
+"precinct cover 47%"
+],
+[
+"California",
+"Blochman Union Elementary School District",
+"precinct cover 19%"
+],
+[
+"California",
+"Los Olivos Elementary School District",
+"precinct cover 15%"
+],
+[
+"California",
+"Cucamonga Elementary School District",
+"precinct cover 49%"
+],
+[
+"California",
+"Hydesville Elementary School District",
+"precinct cover 41%"
+],
+[
+"California",
+"Oakley Union Elementary School District",
+"precinct cover 40%"
+],
+[
+"California",
+"Mupu Elementary School District",
+"precinct cover 25%"
+],
+[
+"California",
+"Allensworth Elementary School District",
+"precinct cover 27%"
+],
+[
+"California",
+"Woodlake Unified School District (9-12)",
+"precinct cover 45%"
+],
+[
+"Florida",
+"Broward County School District",
+"precinct cover 34%"
+],
+[
+"Georgia",
+"Fort Benning Schools",
+"precinct cover 32%"
+],
+[
+"Georgia",
+"Chattahoochee County for Fort Benning",
+"precinct cover 41%"
+],
+[
+"Georgia",
+"Muscogee County for Fort Benning",
+"precinct cover 8%"
+],
+[
+"Kentucky",
+"Fort Campbell Dependent Schools",
+"precinct cover 38%"
+],
+[
+"Maine",
+"School Administrative District 65",
+"no votes"
+],
+[
+"Maine",
+"Aroostook Unorganized Territory",
+"precinct cover 20%"
+],
+[
+"Maine",
+"Franklin Unorganized Territory",
+"precinct cover 31%"
+],
+[
+"Maine",
+"Sagadahoc Unorganized Territory",
+"precinct cover 4%"
+],
+[
+"Maine",
+"Knox Unorganized Territory",
+"no votes"
+],
+[
+"Maine",
+"Somerset Unorganized Territory",
+"precinct cover 31%"
+],
+[
+"Maine",
+"Piscataquis Unorganized Territory",
+"precinct cover 23%"
+],
+[
+"Maine",
+"Penobscot Unorganized Territory",
+"precinct cover 49%"
+],
+[
+"Maine",
+"Hancock Unorganized Territory",
+"precinct cover 48%"
+],
+[
+"Montana",
+"Columbia Falls Elementary School District",
+"precinct cover 46%"
+],
+[
+"Nevada",
+"Storey County School District",
+"precinct cover 49%"
+],
+[
+"New Jersey",
+"Edgewater Borough School District",
+"precinct cover 42%"
+],
+[
+"New York",
+"Seaford Union Free School District",
+"precinct cover 42%"
+],
+[
+"New York",
+"Massapequa Union Free School District",
+"precinct cover 47%"
+],
+[
+"New York",
+"Mattituck-Cutchogue Union Free School District",
+"precinct cover 46%"
+],
+[
+"New York",
+"Babylon Union Free School District",
+"precinct cover 37%"
+],
+[
+"New York",
+"Fire Island Union Free School District",
+"precinct cover 16%"
+],
+[
+"New York",
+"Islip Union Free School District",
+"precinct cover 49%"
+],
+[
+"New York",
+"Oceanside Union Free School District",
+"precinct cover 43%"
+],
+[
+"New York",
+"Bellmore Union Free School District",
+"precinct cover 44%"
+],
+[
+"New York",
+"Merrick Union Free School District",
+"precinct cover 38%"
+],
+[
+"Texas",
+"Boys Ranch Independent School District",
+"no votes"
+],
+[
+"Utah",
+"Davis School District",
+"precinct cover 42%"
+],
+[
+"Utah",
+"Emery School District",
+"precinct cover 35%"
+],
+[
+"Vermont",
+"Averys Gore School District",
+"precinct cover 2%"
+],
+[
+"Vermont",
+"Lewis School District",
+"precinct cover 1%"
+],
+[
+"Vermont",
+"Warners Grant School District",
+"precinct cover 1%"
+],
+[
+"Washington",
+"Mercer Island School District",
+"precinct cover 46%"
+],
+[
+"Washington",
+"Ocosta School District",
+"precinct cover 46%"
+],
+[
+"Washington",
+"Richland School District",
+"precinct cover 22%"
+]
+]
+}
+}
