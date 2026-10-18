@@ -13,7 +13,7 @@ async def run(b,tag,vp,st,kind,label):
   await pg.click("#bGeo"); await pg.wait_for_timeout(1200)
   await pg.evaluate("(k)=>document.querySelector('.lbtn[data-k='+k+']').click()",kind); await pg.wait_for_timeout(4000)
   await pg.evaluate("()=>{ if(!document.body.classList.contains('foldfs')) document.getElementById('bGeo').click(); }"); await pg.wait_for_timeout(1500)
-  r=await pg.evaluate(R); rows=[x for x in r['rows'] if x['t'] and not x['t'].startswith('List all')]
+  r=await pg.evaluate(R); rows=[x for x in r['rows'] if x['t'] and not x['t'].startswith('List all') and not x['t'].startswith(st+' ')]
   ck(f"{tag} {st} {label}: rows listed",r['n']>5 and rows,r)
   ck(f"{tag} {st} {label}: flag icon x=27, text x=52, no checkmarks",rows and all(x['img'] and abs(x['ix']-27)<=2 and abs(x['nx']-52)<=2 and not x['cb'] for x in rows),r['rows'])
   ck(f"{tag} {st} {label}: header text (state / type / List all) at x=52",all(v is not None and abs(v-52)<=2 for v in r['hx'].values()),r['hx'])

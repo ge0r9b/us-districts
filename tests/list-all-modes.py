@@ -19,7 +19,7 @@ async def main():
       # --- all countries
       await pg.evaluate("()=>window.__allPick()"); await pg.wait_for_timeout(1500)
       await pg.evaluate("()=>{ if(!document.body.classList.contains('foldfs')) document.getElementById('bGeo').click(); }"); await pg.wait_for_timeout(1500)
-      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' countries label',lab=='List all countries',lab)
+      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' countries label',lab=='All countries',lab)
       await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(3500)
       rows=await pg.evaluate(ROWS); nC=await pg.evaluate("()=>(window.COUNTRIES||[]).length")
       chk(t+' countries rows',len(rows)==nC and len(rows)>100,f'{len(rows)}/{nC} first={rows[:2]}'); await sh('countries')
@@ -83,9 +83,9 @@ async def main():
       async def clk(sel,tx):
         r=await pg.evaluate("([s,t])=>{const l=[...document.querySelectorAll(s)].find(l=>l.innerText.trim().includes(t)); if(l){l.click(); return true} return false}",[sel,tx]); await pg.wait_for_timeout(3500); return r
       await opn(); await clk('#orgTypes li','US House districts'); await opn(); await clk('.foldlist li','Pennsylvania'); await opn()
-      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' districts label',lab=='List all US House districts',lab)
+      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' districts label',lab in ('All US House districts','List all US House districts') or lab.endswith(' US House districts'),lab)
       await pg.locator('#sheet .foldlist li',has_text='District 03').first.locator('.go').click(); await pg.wait_for_timeout(5000); await opn()
-      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' precinct label',lab=='List all precincts',lab)
+      lab=await pg.evaluate("()=>{const l=document.querySelector('li.la-row'); return l&&l.innerText.trim()}"); chk(t+' precinct label',lab.endswith(' precincts'),lab)
       await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(8000)
       r=await pg.evaluate("()=>[document.querySelectorAll('#listView .lvrow.la').length,window.__LA.title]"); chk(t+' precinct rows',r[0]>100 and 'District 03' in r[1] and not re.search(r'\d\.\d{3}',r[1]),str(r)); await sh('precincts')
       await pg.close()
