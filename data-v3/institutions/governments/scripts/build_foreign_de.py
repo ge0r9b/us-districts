@@ -8,15 +8,15 @@ Sources:
     Samtgemeinde, Verwaltungsgemeinschaft, Verwaltungsverband, erfuellende Gemeinde), Gemeinden; WSK = date of legal effect.
   * Boundary crosswalk keyed to Geo's editions (data/geo data-v3/geo/FOREIGN_VINTAGES.md): VG250 Stand 01.01.2026,
     layers LAN/KRS/VWG/GEM.
-  * History: codes in VG250 01.01.2025 / 31.12.2025 but not 01.01.2026 (derived from the BKG editions; Destatis
-    Gebietsaenderungen is on www.destatis.de, unreachable from this host).
+  * History: only the 2026 changes: codes in VG250 31.12.2025 but not 01.01.2026 (derived from the BKG editions;
+    successors only where data/geo lists them). No earlier DE history is built.
 Bund = existing nation:de; Laender = existing subdivision:de-xx (ARS Land code -> ISO 3166-2, names checked); Berlin and
 Hamburg are Land and Gemeinde at once (mapped, not re-minted). New IDs: de-ars:<12-digit ARS> (shorter keys zero-padded).
 """
 import collections, os, re, sys, urllib.parse
 import xml.etree.ElementTree as ET
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import CACHE, ROOT, Registry, fetch, manifest, norm, write_csv
+from common import CACHE, ROOT, Registry, prune_history, fetch, manifest, norm, write_csv
 from wikidata import sparql, qv
 from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, check, existing_foreign, read_xlsx, wfs,
                            write_split)
@@ -33,8 +33,7 @@ VG250_VINTAGE = '2026-01-01'
 # (2009-01-01 -> 2008-12-31Z), so the downloads replace it.
 VG_DL = 'https://daten.gdz.bkg.bund.de/produkte/vg/'
 VG_EDITIONS = {'20260101': VG_DL + 'vg250_ebenen_0101/2026/vg250_01-01.ee.excel.ebenen.zip',
-               '20251231': VG_DL + 'vg250_ebenen_1231/2025/vg250_12-31.ee.excel.ebenen.zip',
-               '20250101': VG_DL + 'vg250_ebenen_0101/2025/vg250_01-01.ee.excel.ebenen.zip'}
+               '20251231': VG_DL + 'vg250_ebenen_1231/2025/vg250_12-31.ee.excel.ebenen.zip'}
 VG_ADE = {'sta': '1', 'lan': '2', 'rbz': '3', 'krs': '4', 'vwg': '5', 'gem': '6'}
 # Successors of codes that ended on 2025-12-31, as listed in data/geo README.md @ a92f2b0 (VG250 31.12.2025 vs
 # 01.01.2026) and in the request of 2026-10-18; BKG itself states no successor. Codes not listed get none.
@@ -232,16 +231,16 @@ def build(reg):
         stats['with_qid'] += bool(r['wikidata_qid'])
     # ---- history: codes in VG250 31.12.2025 (or 01.01.2025) that VG250 01.01.2026 no longer has, levels with
     # government rows (Kreis, Gemeindeverband association, Gemeinde; gemeindefreie Gebiete have no government)
-    eds = {ed: vg_edition(ed) for ed in ('20250101', '20251231')}
+    eds = {ed: vg_edition(ed) for ed in ('20251231',)}
     now = vg_edition('20260101')
     cur_ids = {r['entity_id'] for r in rows}
     ended = {}
-    for ed in ('20250101', '20251231'):                      # later edition wins
+    for ed in ('20251231',):
         for k, r in eds[ed].items():
             if k not in now and k[0] in ('4', '5', '6'):
                 ended[k] = dict(r, last=ed)
     ended_ids = set()
-    ra_h = max(manifest()[k]['retrieved_at'] for k in ('bkg_vg250_xlsx_20250101', 'bkg_vg250_xlsx_20251231'))
+    ra_h = max(manifest()[k]['retrieved_at'] for k in ('bkg_vg250_xlsx_20251231',))
     for (ade, a), r in sorted(ended.items()):
         if ade == '6' and GEMFREI.search(r['gen'] + ' ' + r['bez']):
             stats['ended_gemeindefrei_not_a_government'] += 1
@@ -288,6 +287,7 @@ def build(reg):
     for r in rows:
         if pred.get(r['entity_id']):
             r['predecessor_id'] = ';'.join(sorted(pred[r['entity_id']]))
+    rows = prune_history(rows, reg, stats)            # HISTORY_CUTOFF (common.py)
     check(rows, known)
     for a2, e in sorted(land.items()):
         xw.append(dict(entity_id=e, code_scheme='ars', code=a2, relation='same_government', note='Land',

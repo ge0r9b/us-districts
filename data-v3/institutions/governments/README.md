@@ -13,7 +13,7 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | `tribes.csv` | 577 | every line of the latest BIA list (FR 2026-01899, 91 FR 4102, Jan 30, 2026: 348 contiguous-48 lines + 229 Alaska lines; 4 of them are "(See …)" cross-references). The notice text says 575 entities. |
 | `governments_geoid_xwalk.csv` | 56,529 | every (entity, TIGER GEOID) pair, primary included |
 | `county_government_check.csv` | 3,222 | each TIGER 2024 county (incl. 78 PR municipios) and whether CoG 2022 lists a county government there |
-| `id_registry/<scope>.csv` | 160,278 | frozen entity IDs, split by scope: us 93,584, foreign 3,755, gb 11,739, de 12,261, fr 38,939 (see SCHEMA.md); committed and appended by every build |
+| `id_registry/<scope>.csv` | 167,931 | frozen entity IDs, split by scope: us 93,584, foreign 3,755, gb 15,141, de 12,268, fr 43,183 (see SCHEMA.md; 5,571 marked `pruned` by the history cutoff: gb 2,347, fr 3,224); committed and appended by every build |
 | `sources.csv` | 19 | stable source codes used in `source` columns |
 | `changes_since_cog2022.csv` | 131 | incorporations, dissolutions, mergers, consolidations, reclassifications after the CoG 2022 snapshot (see below) |
 | `images.csv` | 2,024 | seal (1,967) and flag (57) image records: Commons/Wikipedia file, license, attribution, QID (no binaries) |
@@ -23,6 +23,21 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | `scripts/` | | Python 3 stdlib + `openpyxl` (to read the CoG .xlsx) |
 
 Exact current counts are always in `summary.json`.
+
+## History cutoff (`HISTORY_CUTOFF = '2016-01-01'`, `scripts/common.py`)
+No history before 2016 is kept, in any layer (US, foreign, UK, Germany, France). One constant controls it; change it and
+rebuild. `prune_history()` runs on every entity table before it is written:
+* ended rows (`is_active` `N` / `false`) whose `code_valid_to` (or `valid_to`) is before the cutoff are not written
+  (this build: UK 2,347 terminated GSS codes, France 3,224 terminated commune codes; US 0, the ceased units all end
+  2019 or later; Germany 0, its 8 ended codes end 2025-12-31; nations/subdivisions 0);
+* `predecessor_id` / `successor_id` entries pointing to a removed row are dropped from the list (UK 2,716, FR 3,189
+  links); links to rows that are kept stay;
+* `valid_from` dates before the cutoff are cleared, with `valid_from_source` (170 Wikidata P571 dates on nations,
+  dependencies and subdivisions, e.g. Barbados 1623; 459 French communes);
+* the removed IDs stay in `id_registry/` with `pruned=history_before_2016-01-01`, so they are never reused (a later,
+  earlier cutoff brings them back under the same ID and clears the mark).
+Ended rows from 2016 on are kept with their links. `code_valid_from` (the register's operative date of the code, e.g.
+the 2009 GSS re-coding or the VG250 WSK) is not a history row and is not touched.
 
 ## Sources (open public records: U.S. Government works, plus the state records listed under Changes)
 | code | source | URL | date |
@@ -187,8 +202,8 @@ sovereign-state items themselves (Realm of New Zealand Q889033 and "realm of the
 sovereign states; the UK's four countries are subdivisions here, so no constituent). Images stay on the item they are on:
 the sovereign item first, then the constituent item (`images.csv` `wikidata_qid` says which); nation:dk's flag and coat
 of arms are the same files on Q756617, so only their `wikidata_qid` changed (Q35 -> Q756617).
-`valid_from`: Wikidata P571 with a P248/P854 reference only (174 rows: 21 nations, 5 dependencies, 148 subdivisions;
-7 with disagreeing referenced values left blank); `valid_to` blank. ISO changes go forward with frozen IDs: a code
+`valid_from`: Wikidata P571 with a P248/P854 reference only, and only from `HISTORY_CUTOFF` on (4 subdivisions; 170 earlier
+dates cleared; 7 with disagreeing referenced values left blank); `valid_to` blank. ISO changes go forward with frozen IDs: a code
 dropped by a later iso-codes release keeps its row (`is_active=N`, `iso_code_withdrawn`).
 Not done in this pass: CIA World Factbook government type (no column yet), INEGI (MX) and ONS (UK) codes as
 `external_ids`, local-language labels, an enwiki fair-use fallback for foreign seals.
@@ -224,11 +239,11 @@ which the RGC workbook has no sheets for; it also confirms the live LAD set: no 
 England (E92000001) maps to `subdivision:gb-eng` as an area only; it has no devolved government, so English councils
 sit under `nation:gb`. Not every parish/community has a council (some have only a parish meeting) and no ONS product
 says which (checked 2026-10-18: ONS geography, the RGC/CHD and the MHCLG planning.data.gov.uk parish dataset carry no
-governance type), so all keep `council_status_unknown`. History: 3,402 terminated RGC codes (is_active=N, flag
-`code_terminated`, `code_valid_to` = RGC TERM_DATE), with predecessor/successor links only where the ONS Code History
-Database (June 2026) `Changes` table records them (3,371 terminated codes have a successor; 2,697 rows carry a link); no
+governance type), so all keep `council_status_unknown`. History (from `HISTORY_CUTOFF` 2016-01-01): 1,055 terminated RGC codes (is_active=N, flag
+`code_terminated`, `code_valid_to` = RGC TERM_DATE on or after the cutoff; 2,347 earlier ones pruned), with predecessor/successor links only where the ONS Code History
+Database (June 2026) `Changes` table records them (1,040 terminated codes have a successor; 1,987 rows carry a link); no
 link is inferred (e.g. CHD lists the North Yorkshire districts, not the old county, as predecessors of E06000065). Terminated rows take a QID
-only by the same exact P836 rule (319); their ISO 3166-2 code stays on the row and is not put in `code_xwalk.csv`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
+only by the same exact P836 rule (181); their ISO 3166-2 code stays on the row and is not put in `code_xwalk.csv`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
 (P836) on a single item (QIDs for 10,619 rows; ISO 3166-2 for 180 councils). `boundary_xwalk.csv`, keyed to Geo's editions
 (FOREIGN_VINTAGES.md): every unit's code was found in its BFC product (LAD May 2026: 361/361; CTYUA Dec 2025: 21/21; CAUTH
 Dec 2025: 15/15; PARNCP May 2026: 11,341/11,341). The GLA and the countries have no Geo layer and no row. `gaps.csv` lists
@@ -264,15 +279,15 @@ layers LAN, KRS, VWG, GEM (Stand 2026-01-01, GF=4 features; FOREIGN_VINTAGES.md)
 
 History (8 rows, `is_active=N`, flags `code_terminated;derived_from_vg250_editions`, source `bkg_vg250_history`): no
 official change list was reachable (www.destatis.de, home of the Gebietsänderungen, refuses connections from this build
-host; XRepository has only snapshots of the key list; BKG publishes no change list). The ended codes are therefore derived
-from BKG: every Gemeinde / Gemeindeverband ARS present in VG250 Stand 31.12.2025 but not in Stand 01.01.2026
-(01.01.2025 → 31.12.2025: no changes), `code_valid_to` 2025-12-31. Ended: Gemeinden Bönebüttel 010570008008, Hanau
+host; XRepository has only snapshots of the key list; BKG publishes no change list), and no earlier DE history is
+pursued. The 2026 changes are derived from BKG: every Gemeinde / Gemeindeverband ARS present in VG250 Stand 31.12.2025
+but not in Stand 01.01.2026, `code_valid_to` 2025-12-31. Ended: Gemeinden Bönebüttel 010570008008, Hanau
 064350014014, Kiliansroda 160715008038, Kleinschwabhausen 160715008042, Mechelroda 160715008055, Dobitschen 160775052003,
 Schmölln 160775052043, and the erfüllende Gemeinde Schmölln 160775052000. `successor_id` only where Geo's
 FOREIGN_VINTAGES.md @ a92f2b0 states it (flag `successor_stated_by_geo`): Hanau → 064150000000 (kreisfrei, Kreis 06415),
 Bönebüttel → 010575785008, Dobitschen and Schmölln → 160770043043; the new codes carry the matching `predecessor_id`.
 Kiliansroda, Kleinschwabhausen, Mechelroda and the erfüllende Gemeinde have no stated successor and none is given. The 6
-dissolved gemeindefreie Gebiete are not government rows. Earlier changes are not covered (no dated official list).
+dissolved gemeindefreie Gebiete are not government rows. Changes before 2026 are not covered.
 Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published).
 
 ### France (`foreign/fr/`; units split in `units_upper.csv` and `units_communes_<région>.csv` for the 10 MB limit)
@@ -303,11 +318,11 @@ no QID (Q25362 / Q126125 are the collectivities' items, on `territory:bl/mf`); `
 `territory:bl/mf` as `same_government`. EPCI type: DGCL BANATIC `Nature juridique` (it is also the type INSEE uses); where
 IGN ADMIN EXPRESS differs it is noted on the row (Le Grand Ouest Toulousain 243100781: a CA since 2025, IGN still CC).
 
-History: 4,242 commune codes terminated since 1943 (all of `v_commune_depuis_1943`; `units_communes_terminated.csv`,
-is_active=N, `code_valid_to` = day before COG DATE_FIN), 4,240 with a successor from the COG 2026 movement file (2 without
-one in the COG, flag `no_successor_in_cog`); 2,989 current communes carry `predecessor_id` (the codes that merged into them,
-plus, for 331 communes created by splitting off, the commune(s) they were taken from per the same movement event).
-`valid_from` for 1,280 communes: only where the movement file shows the commune created (MOD 32 commune nouvelle, or a
+History (from `HISTORY_CUTOFF` 2016-01-01): 1,018 commune codes terminated on or after the cutoff
+(`units_communes_terminated.csv`, is_active=N, `code_valid_to` = day before COG DATE_FIN; 3,224 earlier ones from
+`v_commune_depuis_1943` pruned), all with a successor from the COG 2026 movement file; 852 current communes carry
+`predecessor_id` (the codes that merged into them since the cutoff, or the commune(s) a commune created since then was
+taken from per the same movement event). `valid_from` for 821 communes (created on or after the cutoff): only where the movement file shows the commune created (MOD 32 commune nouvelle, or a
 COM code that did not exist as COM before, or restored from its own déléguée/associée status); communes that only ceded
 territory (MOD 21 on the ceding side) get no `valid_from`. Commune SIREN (`alt_code`) comes from the DGCL INSEE/SIREN
 table (all 34,875); IGN ADMIN EXPRESS had put the SIREN of 31006 and 55039 on 46002 and 55102 as well (the cause of the

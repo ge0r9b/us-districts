@@ -15,7 +15,7 @@ its states/DC/territories already exist in the domestic files (nation:us, state:
 iso_domestic_crosswalk.csv instead of being duplicated here.
 """
 import collections, html, json, os, re
-from common import CACHE, ROOT, fetch, manifest, norm, write_csv
+from common import CACHE, ROOT, prune_history, fetch, manifest, norm, write_csv
 from wikidata import claims, commons_meta, qv, sparql
 from build_images import spdx, rank, text
 
@@ -383,7 +383,9 @@ def build(reg):
         r['retrieved_at'] = max(r['retrieved_at'], ra_wd)
     inception(rows, stats)
     subs += withdrawn(subs, stats)
-    rows = nations + deps + subs
+    rows = prune_history(nations + deps + subs, reg, stats)      # HISTORY_CUTOFF (common.py): P571 dates before it cleared
+    keep = {r['entity_id'] for r in rows}
+    nations, deps, subs = ([r for r in x if r['entity_id'] in keep] for x in (nations, deps, subs))
     for r in rows:
         lic = [LIC_ISO] + (['CC0 1.0 (Wikidata)'] if 'wikidata_foreign' in r['source'] else []) + \
               (['facts only (UN website)'] if ';un_' in r['source'] else []) + \

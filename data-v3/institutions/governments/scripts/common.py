@@ -11,6 +11,41 @@ ROOT = os.path.dirname(HERE)                      # data-v3/institutions/governm
 CACHE = os.path.join(ROOT, 'cache')
 MANIFEST = os.path.join(CACHE, 'manifest.json')
 
+# History cutoff (one place): ended rows (is_active N/false) whose code_valid_to / valid_to is before this date are not
+# written; links to them are dropped; valid_from dates before it are cleared (with valid_from_source). Their IDs stay in
+# id_registry with pruned=<PRUNED_TAG>, so they are never reused. Change it here and rebuild.
+HISTORY_CUTOFF = '2016-01-01'
+PRUNED_TAG = 'history_before_' + HISTORY_CUTOFF
+
+
+def prune_history(rows, reg=None, stats=None):
+    """Apply HISTORY_CUTOFF to a list of entity rows (any layer). Returns the kept rows."""
+    ended = lambda r: r.get('is_active') in ('N', 'false') and (r.get('code_valid_to') or r.get('valid_to') or '9') < HISTORY_CUTOFF
+    gone = {r['entity_id'] for r in rows if ended(r)}
+    kept = [r for r in rows if r['entity_id'] not in gone]
+    st = stats if stats is not None else collections.Counter()
+    st['history_pruned_rows'] = len(gone)
+    for r in kept:
+        assert r.get('parent_id', '') not in gone, ('parent pruned', r['entity_id'], r['parent_id'])
+        for k in ('predecessor_id', 'successor_id'):
+            if r.get(k):
+                xs = r[k].split(';')
+                left = [x for x in xs if x not in gone]
+                if len(left) < len(xs):
+                    st['history_links_dropped|' + k] += len(xs) - len(left)
+                    r[k] = ';'.join(left)
+        if r.get('valid_from') and r['valid_from'] < HISTORY_CUTOFF:
+            r['valid_from'] = ''
+            if 'valid_from_source' in r:
+                r['valid_from_source'] = ''
+            st['history_valid_from_cleared'] += 1
+    st['history_kept_ended_rows'] = sum(r.get('is_active') in ('N', 'false') for r in kept)
+    st['history_kept_current_with_predecessor'] = sum(bool(r.get('predecessor_id')) and r.get('is_active') not in ('N', 'false') for r in kept)
+    st['history_kept_with_valid_from'] = sum(bool(r.get('valid_from')) for r in kept)
+    if reg is not None:
+        reg.pruned |= gone
+    return kept
+
 GAZ = 'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_{}_national.zip'
 SOURCES = {
     'cog2022': ('https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP', 'govt_units_2022.zip'),
@@ -122,9 +157,9 @@ SOURCE_TABLE = {
     'bkg_vg250': ('BKG, Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, attribute table VGTB_ATT_VG of the Excel download '
                   '(vg250_01-01.ee.excel.ebenen.zip; the edition Geo builds from)', 'https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2026/',
                   ['bkg_vg250_xlsx_20260101']),
-    'bkg_vg250_history': ('BKG VG250 editions Stand 01.01.2025 and 31.12.2025 (Excel attribute tables), compared with 01.01.2026: ended '
+    'bkg_vg250_history': ('BKG VG250 edition Stand 31.12.2025 (Excel attribute table), compared with 01.01.2026: ended '
                           'codes of foreign/de rows (derived; successors only where listed by data/geo)',
-                          'https://daten.gdz.bkg.bund.de/produkte/vg/', ['bkg_vg250_xlsx_20250101', 'bkg_vg250_xlsx_20251231']),
+                          'https://daten.gdz.bkg.bund.de/produkte/vg/', ['bkg_vg250_xlsx_20251231']),
     'dgcl_banatic': ('DGCL (Ministère de l\'Intérieur), BANATIC export France (pre-generated xlsx, groupements and members): legal type '
                      '(Nature juridique) of each EPCI à fiscalité propre', 'https://www.banatic.interieur.gouv.fr/', ['dgcl_banatic']),
     'insee_cog2026': ('INSEE, Code officiel géographique au 1er janvier 2026 (CSV: régions, départements, CTCD, collectivités '
@@ -169,7 +204,7 @@ class Registry:
     for keys never seen before. Rows are never deleted. Split by scope (us, foreign, gb, de, fr) to keep every file
     under 10 MB; all scopes are loaded together, so reuse and uniqueness work across them. The scope comes from the
     source_key scheme (see SCOPES). A legacy single id_registry.csv is read once and migrated."""
-    COLS = ['entity_id', 'source_key', 'first_seen']
+    COLS = ['entity_id', 'source_key', 'first_seen', 'pruned']
     SCOPES = (('iso3166-', 'foreign'), ('gss:', 'gb'), ('de-ars:', 'de'), ('fr-cog:', 'fr'), ('fr-siren:', 'fr'))
 
     def __init__(self):
@@ -187,6 +222,7 @@ class Registry:
         assert len(self.by_key) == len(self.rows), 'source_key listed twice in id_registry'
         self.ids = {r['entity_id'] for r in self.rows}
         self.used = set()
+        self.pruned = set()               # IDs left out by prune_history in this build
 
     @classmethod
     def scope(cls, source_key):
@@ -210,6 +246,10 @@ class Registry:
         return eid
 
     def save(self):
+        for r in self.rows:               # pruned = left out by HISTORY_CUTOFF in the last build that saw the ID
+            if r['entity_id'] in self.used:
+                r['pruned'] = PRUNED_TAG if r['entity_id'] in self.pruned else ''
+            r.setdefault('pruned', '')
         self.rows.sort(key=lambda r: (r['entity_id'], r['source_key']))
         by = collections.defaultdict(list)
         for r in self.rows:

@@ -16,7 +16,7 @@ the COM). New IDs: fr-cog:<level>:<code> (reg, dep, ctcd, com, comd, coma, arm) 
 """
 import collections, csv, os, sys, zipfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import CACHE, ROOT, Registry, fetch, manifest, norm, write_csv
+from common import CACHE, ROOT, Registry, prune_history, fetch, manifest, norm, write_csv
 from wikidata import sparql, qv
 from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, check, existing_foreign, read_xlsx,
                            wfs, write_split)
@@ -49,7 +49,7 @@ CAD_NOT_IN_IGN = {'25303': '25390', '25347': '25390', '25390': '25390', '25398':
                   '55294': '55012', '55319': '55012', '55451': '55012', '69144': '69208', '69208': '69208'}
 LO = 'Licence Ouverte / Open Licence 2.0 (Etalab)'
 VINTAGE = '2026-01-01'
-HISTORY_FROM = '1943-01-01'   # terminated commune codes whose COG DATE_FIN is on or after this date (= all of the COG)
+HISTORY_FROM = '1943-01-01'   # read all of the COG history (links resolve through older codes); common.HISTORY_CUTOFF prunes what is written
 # reviewed: COG overseas collectivity code -> existing territory row (names checked in build except the two noted)
 COMER = {'975': 'territory:pm', '977': 'territory:bl', '978': 'territory:mf', '984': 'territory:tf', '986': 'territory:wf',
          '987': 'territory:pf', '988': 'territory:nc', '989': 'subdivision:fr-cp'}
@@ -484,6 +484,7 @@ def build(reg):
         rows.append(r)
         stats['terminated_commune'] += 1
         stats['terminated_commune_with_successor'] += bool(ss)
+    rows = prune_history(rows, reg, stats)            # HISTORY_CUTOFF (common.py)
     check(rows, known)
     # ---- boundary crosswalk: Geo's layers (IGN ADMIN EXPRESS COG 2026), codes present in each layer
     pairs = collections.defaultdict(list)

@@ -9,7 +9,7 @@ from build_changes import CHANGE_COLUMNS
 import wikidata, build_images, build_foreign
 import build_foreign_gb, build_foreign_de, build_foreign_fr
 COUNTRY_BUILDS = [('gb', build_foreign_gb), ('de', build_foreign_de), ('fr', build_foreign_fr)]   # foreign/<cc>/: every government level of one country
-from common import CACHE, ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
+from common import CACHE, ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, prune_history, write_csv, manifest, meta
 
 
 def sources_summary(man):
@@ -52,6 +52,11 @@ def main():
     lost = {r['entity_id'] for r in local if r['geoid_match'] == 'ceased_geoid_to_successor'}
     xl = [x for x in xl if not (x['entity_id'] in lost and x['relation'] == 'primary')]
     local = local + new_rows
+    n_before = {r['entity_id'] for r in local}
+    local = prune_history(local, reg)                # HISTORY_CUTOFF (common.py): ceased units ended before it, old dates
+    gone = n_before - {r['entity_id'] for r in local}
+    xl = [x for x in xl if x['entity_id'] not in gone]
+    changes = [c for c in changes if c['entity_id'] not in gone]
     # Wikidata QIDs from exact identifier links, then seal / flag image records (part D)
     qid_stats, terr = wikidata.assign_qids(states, local)
     fr_json = json.load(open(os.path.join(CACHE, 'fr_agencies.json'), encoding='utf-8'))

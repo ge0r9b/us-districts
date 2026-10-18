@@ -14,7 +14,7 @@ never re-minted. New IDs: gss:<GSS code> (frozen in id_registry/gb.csv).
 import collections, os, sys
 import openpyxl
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import CACHE, ROOT, Registry, fetch, manifest, write_csv
+from common import CACHE, ROOT, Registry, prune_history, fetch, manifest, write_csv
 from wikidata import sparql, qv
 from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, arcgis, check, existing_foreign,
                            write_split)
@@ -255,6 +255,7 @@ def build(reg):
                          retrieved_at=max(ra_rgc, ra_chd if link else '', ra_wd if q else ''), license=OGL))
         stats['terminated|' + sub] += 1
         stats['terminated_with_successor'] += bool(succ[c])
+    rows = prune_history(rows, reg, stats)            # HISTORY_CUTOFF (common.py)
     check(rows, known)
 
     # ---- code crosswalk: GSS country codes and ISO 3166-2 to existing rows; every new row's GSS and ISO code
