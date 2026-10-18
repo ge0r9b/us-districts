@@ -177,11 +177,22 @@ def main():
         pp = os.path.join(V, "parts", fn)
         if os.path.exists(pp): parts = jsargs(pp, r"__parts\(")[1]
         tn = {(r[1], r[2]) for r in towns}
-        extra = [(r[0], r[1]) for r in parts if (r[0], r[1]) not in tn]
+        # town layer = v1 town rows + parts rows the app adds in townsIn(); a parts row whose normT() name equals one
+        # already shown in that county is hidden by the app. Township parts rows (name "... township") count as towns.
+        normT = lambda n: re.sub(r"\s+(city|borough|town|township|village|cdp|municipality|charter township|plantation)$", "", str(n).lower()).strip()
+        shown = collections.defaultdict(set)
+        for r in towns: shown[r[1]].add(normT(r[2]))
+        hidden = []; twp = 0
+        for r in parts:
+            if (r[0], r[1]) in tn: continue
+            if normT(r[1]) in shown[r[0]]: hidden.append("%s / %s" % (r[0], r[1])); continue
+            shown[r[0]].add(normT(r[1]))
+            if str(r[1]).endswith(" township") and r[2]: twp += 1
         for yr in YEARS:
-            c = C(st, "towns", yr); c["n"] = len(towns); c["empty"] = sum(not nonempty(r[-1]) for r in towns)
+            c = C(st, "towns", yr); c["n"] = len(towns) + twp; c["empty"] = sum(not nonempty(r[-1]) for r in towns)
             c["filled"] = c["n"]  # town values are derived from precincts at runtime (area-weighted, ≈)
-            c["parts"] = len(parts); c["parts_nogeom"] = sum(1 for r in parts if not r[2])
+            c["parts"] = len(parts); c["parts_nogeom"] = sum(1 for r in parts if not r[2]); c["parts_township"] = twp
+            if hidden: c["info"] = "%d parts rows hidden by the app's name de-duplication (e.g. %s)" % (len(hidden), "; ".join(hidden[:3]))
         # cross-check: per-state geo file vs national layers
         for ly in ("ushouse","senate","statehouse","schools"):
             if ly in geo and st != "District of Columbia":
