@@ -1,0 +1,256 @@
+"""UK local and devolved government units (foreign/gb/): every council level with its GSS code.
+
+Sources (all ONS, Open Government Licence v3.0):
+  * Register of Geographic Codes (RGC) June 2026: live GSS codes, English and Welsh names, operative/termination dates and
+    parent codes for E04 civil parishes, W04 communities, E06/E07/E08/E09/W06 local authorities, E10 counties,
+    E47 combined authorities, E61 Greater London Authority, N09 NI local government districts.
+  * WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU (ward-to-LAD lookup, May 2026): S12 Scottish council areas (the RGC
+    workbook carries no Scottish entity sheets) and a cross-check of the live LAD set.
+  * LAD25_CAUTH25_EN_LU (May 2025): which combined authority area each local authority district lies in.
+  * Attribute tables (no geometry) of the BGC/BUC generalised boundary services, to record boundary codes for Geo.
+Units: one row per council area; the existing nation:gb and subdivision:gb-eng/sct/wls/nir rows are reused (crosswalk),
+never re-minted. New IDs: gss:<GSS code> (frozen in id_registry.csv).
+"""
+import collections, os, sys
+import openpyxl
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import CACHE, ROOT, Registry, fetch, manifest, write_csv
+from wikidata import sparql, qv
+from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, arcgis, check, existing_foreign,
+                           write_split)
+
+OUT = os.path.join(FOREIGN, 'gb')
+OGL = 'Open Government Licence v3.0 (ONS; contains public sector information licensed under the OGL)'
+ARC = 'https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services'
+RGC_ITEM = 'ef9bb98c8c62471684aaf42b8898f220'
+RGC_URL = 'https://www.arcgis.com/sharing/rest/content/items/{}/data'.format(RGC_ITEM)
+RGC_PAGE = 'https://geoportal.statistics.gov.uk/datasets/{}'.format(RGC_ITEM)
+RGC_FILE = 'Register_of_Geographic_Codes_(June_2026)_UK.xlsx'
+RGC_DATE = '2026-06-24'          # date of the workbook inside the zip
+LU_WD26 = 'WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU'
+LU_CAUTH = 'LAD25_CAUTH25_EN_LU'
+# entity -> (subtype, gov_status, note)
+ENTITIES = {
+    'E61': ('strategic_authority', 'self_governing', 'Greater London Authority (Mayor of London and London Assembly)'),
+    'E47': ('combined_authority', 'self_governing', 'combined authority or combined county authority (RGC E47 CAUTH)'),
+    'E10': ('county_council', 'self_governing', 'two-tier county (RGC E10 CTY)'),
+    'E06': ('unitary_authority', 'self_governing', ''),
+    'E07': ('non_metropolitan_district', 'self_governing', ''),
+    'E08': ('metropolitan_borough', 'self_governing', ''),
+    'E09': ('london_borough', 'self_governing', ''),
+    'W06': ('principal_council', 'self_governing', 'Welsh unitary authority (principal council)'),
+    'S12': ('council_area', 'self_governing', 'Scottish council area'),
+    'N09': ('district_council', 'self_governing', 'Northern Ireland local government district'),
+    'E04': ('civil_parish', 'parish', 'civil parish; may have a parish/town council or only a parish meeting (RGC does not say which)'),
+    'W04': ('community', 'parish', 'community; may or may not have a community/town council (RGC does not say which)'),
+}
+LAD = ('E06', 'E07', 'E08', 'E09', 'W06', 'S12', 'N09')
+COUNTRY = {'E92000001': 'subdivision:gb-eng', 'S92000003': 'subdivision:gb-sct', 'W92000004': 'subdivision:gb-wls',
+           'N92000002': 'subdivision:gb-nir', 'K02000001': 'nation:gb'}
+DEVOLVED = {'E': 'nation:gb', 'S': 'subdivision:gb-sct', 'W': 'subdivision:gb-wls', 'N': 'subdivision:gb-nir'}
+# (dataset, code field, vintage, entity prefixes, relation)
+BOUNDARIES = [
+    ('LAD_MAY_2025_UK_BGC_V2', 'LAD25CD', '2025-05', LAD, 'same_code'),
+    ('LAD_MAY_2025_UK_BUC', 'LAD25CD', '2025-05', LAD, 'same_code'),
+    ('Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC', 'CTYUA25CD', '2025-12', ('E10',), 'same_code'),
+    ('Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BUC', 'CTYUA25CD', '2025-12', ('E10',), 'same_code'),
+    ('CAUTH_MAY_2025_EN_BGC', 'CAUTH25CD', '2025-05', ('E47',), 'same_code'),
+    ('CAUTH_MAY_2025_EN_BUC', 'CAUTH25CD', '2025-05', ('E47',), 'same_code'),
+    ('PARNCP_MAY_2026_EW_BGC', 'PARNCP26CD', '2026-05', ('E04', 'W04'), 'same_code'),
+    ('Regions_December_2025_Boundaries_EN_BGC', 'RGN25CD', '2025-12', (), 'gla_area_is_london_region'),
+    ('Regions_December_2025_Boundaries_EN_BUC', 'RGN25CD', '2025-12', (), 'gla_area_is_london_region'),
+    ('Countries_December_2025_Boundaries_UK_BGC', 'CTRY25CD', '2025-12', (), 'country'),
+    ('Countries_December_2025_Boundaries_UK_BUC', 'CTRY25CD', '2025-12', (), 'country'),
+]
+LONDON_RGN = 'E12000007'
+
+
+def d(v):
+    return v.date().isoformat() if hasattr(v, 'date') else (v or '')
+
+
+def rgc():
+    fetch('ons_rgc', url=RGC_URL, fname='ons_rgc_jun2026.zip')
+    wb = openpyxl.load_workbook(os.path.join(CACHE, RGC_FILE), read_only=True)
+    out = {}
+    for ws in wb.worksheets:
+        if ws.title[:3] in ENTITIES:
+            it = ws.iter_rows(values_only=True)
+            h = next(it)
+            out[ws.title[:3]] = [dict(zip(h, r)) for r in it if r and r[0]]
+    return out
+
+
+def gss_qids():
+    """Wikidata items by exact GSS code (P836) and their ISO 3166-2 code (P300); only 1:1 links are used."""
+    bs = sparql('wd_gss', 'SELECT ?i ?g ?iso WHERE { ?i wdt:P836 ?g . '
+                'FILTER(REGEX(?g, "^(E0[46789]|E10|E47|E61|W0[46]|S12|N09)[0-9]{6}$")) OPTIONAL { ?i wdt:P300 ?iso } }')
+    by_code, by_item, iso = collections.defaultdict(set), collections.defaultdict(set), collections.defaultdict(set)
+    for b in bs:
+        by_code[b['g']['value']].add(qv(b, 'i'))
+        by_item[qv(b, 'i')].add(b['g']['value'])
+        if 'iso' in b:
+            iso[qv(b, 'i')].add(b['iso']['value'])
+    out = {}
+    for c, qs in by_code.items():
+        if len(qs) == 1:
+            q = next(iter(qs))
+            if len(by_item[q]) == 1:
+                isos = {x for x in iso[q] if x.startswith('GB-')}
+                out[c] = (q, next(iter(isos)) if len(isos) == 1 else '')
+    return out
+
+
+def build(reg):
+    os.makedirs(OUT, exist_ok=True)
+    R = rgc()
+    wd26 = arcgis('ons_lu_wd26', ARC, LU_WD26, fields='LAD26CD,LAD26NM,LAD26NMW,CTYUA26CD', page=1000)
+    cauth = arcgis('ons_lu_cauth25', ARC, LU_CAUTH, page=1000)
+    man = manifest()
+    ra_rgc = man['ons_rgc']['retrieved_at']
+    ra_lu = max(v['retrieved_at'] for k, v in man.items() if k.startswith('ons_lu_'))
+    qids = gss_qids()
+    ra_wd = manifest()['wd_gss']['retrieved_at']
+    known = existing_foreign()
+    for e in COUNTRY.values():
+        assert e in known, e
+    stats, gaps = collections.Counter(), []
+    lad26 = {r['LAD26CD']: r for r in wd26}
+    lad_cauth = {r['LAD25CD']: r['CAUTH25CD'] for r in cauth}
+
+    # ---- unit table from the RGC (live rows) + Scottish council areas from the 2026 lookup
+    units = {}
+    for ent, rs in R.items():
+        for r in rs:
+            if r['STATUS'] != 'live':
+                continue
+            si = r['SI_TITLE'] if r['SI_TITLE'] and r['SI_TITLE'] != 'GSS re-coding strategy' else ''
+            if r['GEOGCD'] in units:   # the same live code listed twice (one row per statutory instrument)
+                prev = units[r['GEOGCD']]
+                assert (prev['name'], prev['parent']) == (r['GEOGNM'], r['PARENTCD'] or ''), r['GEOGCD']
+                prev['si'] = '; '.join(sorted({x for x in (prev['si'], si) if x}))
+                continue
+            units[r['GEOGCD']] = dict(si=si, code=r['GEOGCD'], ent=ent, name=r['GEOGNM'], nmw=r['GEOGNMW'] or '', oper=d(r['OPER_DATE']),
+                                      term=d(r['TERM_DATE']), parent=r['PARENTCD'] or '', src='ons_rgc', url=RGC_PAGE,
+                                      sdate=RGC_DATE, ra=ra_rgc)
+    for c, r in lad26.items():
+        if c.startswith('S12'):
+            units[c] = dict(si='', code=c, ent='S12', name=r['LAD26NM'], nmw='', oper='', term='', parent='', src='ons_lookup',
+                            url='{}/{}/FeatureServer'.format(ARC, LU_WD26), sdate='2026-05', ra=ra_lu)
+    rgc_lad = {c for c, u in units.items() if u['ent'] in LAD}
+    for c in sorted(rgc_lad ^ set(lad26)):
+        gaps.append({'code': c, 'issue': 'LAD in {} but not in {}'.format(*(('RGC', LU_WD26) if c in rgc_lad else (LU_WD26, 'RGC')))})
+
+    # county of each two-tier district (RGC parent) and combined authority containing each area (ONS lookup)
+    county_cauth = collections.defaultdict(set)
+    for c, u in units.items():
+        if u['ent'] == 'E07':
+            county_cauth[u['parent']].add(lad_cauth.get(c, ''))
+    rows = []
+    for c, u in sorted(units.items()):
+        sub, gs, note = ENTITIES[u['ent']]
+        flags, member = [], ''
+        if u['ent'] in LAD:
+            member = lad_cauth.get(c, '')
+            if u['ent'] == 'E07':
+                parent = u['parent']
+            elif u['ent'] == 'E09':
+                parent = 'E61000001'
+            elif member:
+                parent = member
+            else:
+                parent = DEVOLVED[c[0]]
+        elif u['ent'] == 'E10':
+            cs = county_cauth.get(c, {''})
+            member = next(iter(cs)) if len(cs) == 1 else ''
+            if len(cs) > 1:
+                flags.append('districts_in_several_cauth')
+            elif member:
+                flags.append('cauth_from_district_lookup')
+            parent = member or 'nation:gb'
+        elif u['ent'] in ('E47', 'E61'):
+            parent = 'nation:gb'
+        else:   # parish / community -> its local authority
+            parent = u['parent']
+        if u['ent'] in ('E04', 'W04'):
+            flags.append('council_status_unknown')
+        if member and member not in units:
+            gaps.append({'code': c, 'issue': 'combined authority {} (2025 lookup) not live in RGC June 2026'.format(member)})
+            member = ''
+        pid = parent if parent.startswith(('nation:', 'subdivision:')) else 'gss:' + parent if parent else ''
+        if pid.startswith('gss:') and parent not in units:
+            gaps.append({'code': c, 'issue': 'parent {} not a live unit'.format(parent)})
+        if c == 'E09000001':
+            note = 'City of London Corporation (sui generis)'
+        if c == 'E06000053':
+            note = 'Council of the Isles of Scilly (sui generis)'
+        if u['si']:
+            note = '; '.join(x for x in (note, 'code introduced by ' + u['si']) if x)
+        q, iso = qids.get(c, ('', ''))
+        eid = reg.get(['gss:' + c], 'gss:' + c, u['ra'][:10])
+        src = u['src'] + (';ons_lookup' if member and u['src'] == 'ons_rgc' else '') + (';wikidata_foreign' if q else '')
+        rows.append(dict(entity_id=eid, name=u['name'], name_local=u['nmw'], name_en='', type='foreign', subtype=sub,
+                         gov_status=gs, parent_id=pid, member_of='gss:' + member if member else '', country='GB',
+                         code_scheme='gss', code=c, alt_code='', iso_3166_2=iso, wikidata_qid=q,
+                         code_valid_from=u['oper'], code_valid_to=u['term'], valid_from='', valid_to='', is_active='Y',
+                         note=note, flags=';'.join(flags), source=src, source_url=u['url'], source_date=u['sdate'],
+                         retrieved_at=max(u['ra'], ra_lu if member or u['src'] == 'ons_lookup' else '', ra_wd if q else ''), license=OGL))
+        stats[sub] += 1
+        if q:
+            stats['with_qid'] += 1
+        if iso:
+            stats['with_iso_3166_2'] += 1
+    check(rows, known)
+
+    # ---- code crosswalk: GSS country codes and ISO 3166-2 to existing rows; every new row's GSS and ISO code
+    xw = []
+    for c, e in sorted(COUNTRY.items()):
+        rel = 'same_government' if e != 'subdivision:gb-eng' else 'area_only'
+        nt = {'subdivision:gb-eng': 'England has no devolved government; English councils sit under nation:gb',
+              'subdivision:gb-sct': 'Scottish Government', 'subdivision:gb-wls': 'Welsh Government',
+              'subdivision:gb-nir': 'Northern Ireland Executive', 'nation:gb': 'UK Government'}[e]
+        xw.append(dict(entity_id=e, code_scheme='gss', code=c, relation=rel, note=nt, source='ons_rgc', source_url=RGC_PAGE))
+        if known[e]['iso_3166_2']:
+            xw.append(dict(entity_id=e, code_scheme='iso_3166_2', code=known[e]['iso_3166_2'], relation='same_government',
+                           note=nt, source='iso_codes', source_url=''))
+    for r in rows:
+        if r['iso_3166_2']:
+            xw.append(dict(entity_id=r['entity_id'], code_scheme='iso_3166_2', code=r['iso_3166_2'], relation='same_area',
+                           note='via Wikidata item with this GSS code (P836) and ISO 3166-2 code (P300)',
+                           source='wikidata_foreign', source_url='https://www.wikidata.org/wiki/' + r['wikidata_qid']))
+
+    # ---- boundary crosswalk: only codes actually present in the boundary attribute table
+    bx = []
+    by_code = {r['code']: r for r in rows}
+    for ds, fld, vint, ents, rel in BOUNDARIES:
+        have = {a[fld] for a in arcgis('ons_bnd_' + ds.lower()[:40], ARC, ds, fields=fld)}
+        url = '{}/{}/FeatureServer'.format(ARC, ds)
+        if rel == 'gla_area_is_london_region':
+            pairs = [('gss:E61000001', LONDON_RGN)]
+        elif rel == 'country':
+            pairs = [(e, c) for c, e in COUNTRY.items() if c != 'K02000001']
+        else:
+            pairs = [(r['entity_id'], r['code']) for r in rows if r['code'][:3] in ents]
+        for e, c in pairs:
+            if c in have:
+                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint,
+                               relation=rel if rel != 'same_code' else 'same_code', source_url=url))
+                stats['boundary|' + ds] += 1
+            elif ds.endswith(('BGC', 'BGC_V2')):
+                gaps.append({'code': c, 'issue': 'not in boundary dataset {}'.format(ds)})
+                stats['boundary_missing|' + ds] += 1
+    files = write_split(os.path.join(OUT, 'units'), rows, LOCAL_COLUMNS, lambda r: r['code'][0].lower())
+    write_csv(os.path.join(OUT, 'code_xwalk.csv'), xw, CODE_XW_COLUMNS)
+    write_csv(os.path.join(OUT, 'boundary_xwalk.csv'), bx, BOUNDARY_COLUMNS)
+    write_csv(os.path.join(OUT, 'gaps.csv'), sorted(gaps, key=lambda g: (g['issue'], g['code'])), ['code', 'issue'])
+    stats['units'] = len(rows)
+    stats['gaps'] = len(gaps)
+    return rows, dict(sorted(stats.items())), [os.path.relpath(f, ROOT) for f in files]
+
+
+if __name__ == '__main__':
+    reg = Registry()
+    rows, stats, files = build(reg)
+    reg.save()
+    import json
+    print(json.dumps(stats, indent=1), files)

@@ -7,6 +7,8 @@ import re, collections, json, os
 import build_cog, build_states, build_federal_agencies, build_tribes, build_changes
 from build_changes import CHANGE_COLUMNS
 import wikidata, build_images, build_foreign
+import build_foreign_gb
+COUNTRY_BUILDS = [('gb', build_foreign_gb)]   # foreign/<cc>/: every government level of one country
 from common import CACHE, ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
 
 
@@ -57,6 +59,12 @@ def main():
     images, img_gaps, img_stats = build_images.build(states, local, tribes, fed, terr, fr_json)
     # foreign nations, dependencies and first-level subdivisions (foreign/), their flags and seals
     foreign, f_images, f_gaps, f_stats = build_foreign.build(reg)
+    country_rows, country_stats, country_files = [], {}, {}
+    for cc, mod in COUNTRY_BUILDS:
+        rs, st, fs = mod.build(reg)
+        country_rows += rs
+        country_stats[cc] = st
+        country_files[cc] = fs
     images = sorted(images + f_images, key=lambda r: (r['entity_id'], r['image_kind']))
     img_gaps = img_gaps + [g for g in f_gaps if g['entity_id']]
     write_csv(os.path.join(ROOT, 'images.csv'), images, build_images.IMAGE_COLUMNS)
@@ -68,7 +76,7 @@ def main():
         if x['entity_id'] in src_of:
             x['source'] = src_of[x['entity_id']]
     n_reg = reg.save()
-    used = {s for r in states + local + fed + tribes + foreign for s in r['source'].split(';')} | \
+    used = {s for r in states + local + fed + tribes + foreign + country_rows for s in r['source'].split(';')} | \
            {s for x in xs + xl + xt for s in x['source'].split(';')}
     src_rows = []
     for sid in sorted(SOURCE_TABLE):
@@ -106,9 +114,9 @@ def main():
     ids = [r['entity_id'] for r in states + local + fed + tribes]
     assert len(ids) == len(set(ids)), 'duplicate entity_id'
     known = set(ids) | EXTERNAL_IDS
-    known |= {r['entity_id'] for r in foreign}
-    dangling = sorted({r['parent_id'] for r in states + local + fed + tribes + foreign if r['parent_id'] and r['parent_id'] not in known})
-    dup = [e for e, n in collections.Counter(ids + [r['entity_id'] for r in foreign]).items() if n > 1]
+    known |= {r['entity_id'] for r in foreign + country_rows}
+    dangling = sorted({r['parent_id'] for r in states + local + fed + tribes + foreign + country_rows if r['parent_id'] and r['parent_id'] not in known})
+    dup = [e for e, n in collections.Counter(ids + [r['entity_id'] for r in foreign + country_rows]).items() if n > 1]
     assert not dup, 'entity_id in more than one row: {}'.format(dup[:10])
     # verification of school GEOIDs against the Geography bot's v2 school table (data-v3/geo/schools.csv), if present
     geo_schools = os.path.join(ROOT, '..', '..', 'geo', 'schools.csv')
@@ -130,6 +138,8 @@ def main():
         'changes_since_cog2022': {'{}|{}'.format(*k): v for k, v in sorted(collections.Counter((c['change_type'], c['source_id']) for c in changes).items())},
         'wikidata_qid_assignment': dict(sorted(qid_stats.items())),
         'foreign': dict(sorted(f_stats.items())),
+        'foreign_country_units': country_stats,
+        'foreign_country_files': country_files,
         'foreign_not_built': [g['reason'] for g in f_gaps if not g['entity_id']],
         'images_by_kind_and_entity_type': dict(sorted(img_stats.items())),
         'foreign_images_by_kind_and_type': {k: v for k, v in sorted(f_stats.items()) if k.startswith(('flag|', 'seal|'))},

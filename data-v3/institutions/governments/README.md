@@ -190,6 +190,44 @@ dropped by a later iso-codes release keeps its row (`is_active=N`, `iso_code_wit
 Not done in this pass: CIA World Factbook government type (no column yet), INEGI (MX) and ONS (UK) codes as
 `external_ids`, local-language labels, an enwiki fair-use fallback for foreign seals.
 
+## UK, Germany, France: every government level (`foreign/gb/`, `foreign/de/`, `foreign/fr/`)
+One builder per country (`scripts/build_foreign_<cc>.py`, shared helpers in `scripts/foreign_local.py`), run by
+`build_all.py` (or alone: `python3 scripts/build_foreign_gb.py`). Columns, ID proposals and crosswalks: SCHEMA.md.
+The existing `nation:` and ISO first-level `subdivision:` rows are reused, never duplicated (`code_xwalk.csv`).
+
+### UK (`foreign/gb/`)
+Source: ONS Register of Geographic Codes (RGC) June 2026 (all live codes with name, Welsh name, operative date,
+statutory instrument and parent code), ONS ward lookup WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU (Scottish council areas,
+which the RGC workbook has no sheets for; it also confirms the live LAD set: no difference), ONS LAD25_CAUTH25_EN_LU
+(combined authority membership, May 2025; all 15 live combined authorities are covered). OGL v3.0.
+
+| level | GSS | rows | parent |
+|---|---|---|---|
+| UK Government | K02 | existing `nation:gb` | |
+| devolved governments | S92/W92/N92 | existing `subdivision:gb-sct/wls/nir` | `nation:gb` |
+| Greater London Authority | E61 | 1 | `nation:gb` |
+| combined (county) authorities | E47 | 15 | `nation:gb` |
+| county councils | E10 | 21 | combined authority if all its districts are in one (Cambridgeshire etc.), else `nation:gb` |
+| unitary authorities | E06 | 63 | combined authority or `nation:gb` |
+| non-metropolitan districts | E07 | 164 | county (`member_of` = combined authority) |
+| metropolitan boroughs | E08 | 36 | combined authority |
+| London boroughs + City of London | E09 | 33 | GLA |
+| Welsh principal councils | W06 | 22 | `subdivision:gb-wls` |
+| Scottish council areas | S12 | 32 | `subdivision:gb-sct` |
+| NI district councils | N09 | 11 | `subdivision:gb-nir` |
+| civil parishes (England) | E04 | 10,463 | local authority |
+| communities (Wales) | W04 | 878 | principal council |
+
+England (E92000001) maps to `subdivision:gb-eng` as an area only; it has no devolved government, so English councils
+sit under `nation:gb`. Not every parish/community has a council (some have only a parish meeting) and no ONS product
+says which, so all carry `council_status_unknown`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
+(P836) on a single item (QIDs for 10,619 rows; ISO 3166-2 for 180 councils). `boundary_xwalk.csv`: every unit's code was
+found in its BGC/BUC product (LAD May 2025: 361/361; parishes PARNCP May 2026 BGC: 11,341/11,341; counties Dec 2025,
+CAUTH May 2025, Regions Dec 2025 for the GLA, Countries Dec 2025). `gaps.csv` lists mismatches (none). The RGC lists
+parish E04013473 Westbury twice (two community-governance orders); it is one row.
+Not covered: Scottish Gaelic names (not in the RGC), community councils in Scotland and NI (not statutory local
+government, no GSS codes), parish council existence, abolished councils (only live codes).
+
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
 @ ed866a4 (read-only, via `git show`) and writes `aiannh_join_check.csv`: every tribe GEOID in `tribes.csv` and the
@@ -208,4 +246,4 @@ picks the newest BIA list notice from the Federal Register search, so a refresh 
 `cache/manifest.json` records URL, Last-Modified and retrieval time per file. Raw downloads are never committed.
 
 Scripts: `common.py` (download/cache, readers, column lists), `build_states.py`, `build_cog.py`,
-`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_all.py`.
+`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_foreign.py`, `foreign_local.py`, `build_foreign_gb.py`, `build_all.py`.

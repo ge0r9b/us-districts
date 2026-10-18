@@ -66,6 +66,9 @@ sources; empty for files served over HTTP).
 | `nces_leaid:` | NCES LEAID of a school district created after CoG 2022 | permanent |
 | `tceq_wdd:` | TCEQ Water Districts Database district ID (Texas special district created after CoG 2022) | frozen in the registry |
 | `wi_mds_incorporation:` | Wisconsin DOA Municipal Data System incorporation record ID (unit not yet in any Census file) | frozen in the registry |
+| `gss:` | **proposal for the Institution filter bot**: UK GSS code (ONS Register of Geographic Codes), e.g. `gss:E06000001`; one per council/parish/community area code (`foreign/gb/`) | frozen once minted; ONS issues a new code when an area is re-created, which is a new entity |
+| `de-ars:` | **proposal**: German 12-digit Amtlicher Regionalschlüssel (`foreign/de/`) | frozen once minted |
+| `fr-cog:<level>:` / `fr-siren:` | **proposal**: INSEE COG code with its level (`fr-cog:com:75056`, `fr-cog:dep:2A`) / SIREN of an EPCI (`foreign/fr/`) | frozen once minted |
 
 ## Types
 | type | definition | source | maps from Grok Bot's draft names |
@@ -128,6 +131,44 @@ head_of_government_office, external_ids, alias, is_active, note, flags, source, 
 
 `foreign/iso_domestic_crosswalk.csv`: `iso_code, iso_name, entity_id, relation (domestic_row | same_wikidata_item |
 duplicate_of_iso_3166_1), source, source_url`.
+
+## foreign/<cc>/: every government level of one country (gb, de, fr)
+`units.csv` (split `units_<region>.csv` only if over 10 MB): `entity_id, name, name_local, name_en, type, subtype, gov_status,
+parent_id, member_of, country, code_scheme, code, alt_code, iso_3166_2, wikidata_qid, code_valid_from, code_valid_to,
+valid_from, valid_to, is_active, note, flags, source, source_url, source_date, retrieved_at, license`.
+
+| column | values |
+|---|---|
+| `entity_id` | `gss:` / `de-ars:` / `fr-cog:` / `fr-siren:` (proposals above). The national government and the ISO 3166-2 first-level rows already in `foreign/` (`nation:gb`, `subdivision:gb-sct`, `subdivision:de-by`, `subdivision:fr-ara`, ...) are reused, never re-minted; `code_xwalk.csv` maps the official codes to them |
+| `name` | official name in the register (UK: English; DE, FR: the local-language official name) |
+| `name_local` | local-language name where it differs from `name` (UK: Welsh name from the RGC `GEOGNMW`) |
+| `name_en` | English name only where the register publishes an official one; blank otherwise (no translations made up) |
+| `type` | `foreign` |
+| `subtype` | UK: `strategic_authority` (GLA), `combined_authority`, `county_council`, `unitary_authority`, `non_metropolitan_district`, `metropolitan_borough`, `london_borough`, `principal_council` (Wales), `council_area` (Scotland), `district_council` (NI), `civil_parish`, `community` |
+| `gov_status` | `self_governing`; `parish` (UK parish/community: the register does not say whether it has an elected council or only a parish meeting); `administrative` (DE Regierungsbezirk: state administrative region, no elected body) |
+| `parent_id` | UK: parish/community → its local authority; two-tier district → county; London borough → GLA; other councils → the combined authority whose area contains them (ONS lookup), else the devolved government row (`subdivision:gb-sct/wls/nir`) or `nation:gb` (England has no devolved government); counties → combined authority if every district in them is in one, else `nation:gb`; combined authorities and GLA → `nation:gb` |
+| `member_of` | UK: combined authority (`gss:E47...`) containing the area, from the ONS LAD→CAUTH lookup |
+| `code_scheme`, `code`, `alt_code` | UK: `gss`, GSS code |
+| `iso_3166_2` | ISO 3166-2 code of the same area, only via an exact link (UK: the Wikidata item with this GSS code, P836, carries this P300) |
+| `wikidata_qid` | the single item whose exact official code (UK: P836 GSS) is this code, and which has no other code of these levels; usually the area item |
+| `code_valid_from`, `code_valid_to` | operative / termination date of the code in the register (UK RGC `OPER_DATE`/`TERM_DATE`; 2009-01-01 is the GSS re-coding date, not the date the council was created) |
+| `valid_from`, `valid_to` | establishment / abolition date of the government, only from an official dated source; blank otherwise |
+| `note` | UK: the statutory instrument that introduced the code, when it is not the 2009 re-coding |
+| `flags` | UK: `council_status_unknown` (parish/community), `cauth_from_district_lookup` (county's combined authority derived from its districts) |
+
+`code_xwalk.csv`: `entity_id, code_scheme, code, relation, note, source, source_url`: GSS country codes and ISO 3166-2 codes
+to the existing `nation:` / `subdivision:` rows (`same_government`; `area_only` for England, which has no devolved
+government), plus each new row's ISO 3166-2 code (`same_area`).
+
+`boundary_xwalk.csv`: `entity_id, boundary_dataset, boundary_code, vintage, relation, source_url`, for the Geo bot to join
+geometry (no geometry here). One row per entity and official boundary product whose attribute table actually contains
+the code (checked against the product's feature service). UK: ONS BGC and BUC generalised boundaries
+(`LAD_MAY_2025_UK_BGC_V2`/`_BUC`, `Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC/BUC` for counties,
+`CAUTH_MAY_2025_EN_BGC/BUC`, `PARNCP_MAY_2026_EW_BGC` for parishes and communities, `Regions_December_2025_Boundaries_EN_BGC/BUC`
+code E12000007 for the GLA (relation `gla_area_is_london_region`), `Countries_December_2025_Boundaries_UK_BGC/BUC`).
+`vintage` = `YYYY-MM` of the product.
+
+`gaps.csv`: `code, issue` (codes missing from a lookup or boundary product, register inconsistencies).
 
 ## images_gaps.csv
 `entity_id, image_kind, wikidata_qid, reason`: in-scope entities (nation, states, DC, territories, counties,

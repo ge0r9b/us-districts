@@ -99,14 +99,25 @@ SOURCE_TABLE = {
     'statcan_sgc': ('Statistics Canada, Standard Geographical Classification (SGC) 2021, classification structure CSV (province and territory codes)',
                     'https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv', ['statcan_sgc']),
     'wikidata_foreign': ('Wikidata SPARQL: items by exact ISO code (P297 alpha-2, P300 ISO 3166-2), UN membership (P463 Q1065), sovereign (P17/P131/P361), '
-                         'capital (P36), office of head of government (P1313), flag (P41), seal (P158), coat of arms (P94)',
-                         'https://query.wikidata.org/', ['wdf_*']),
+                         'capital (P36), office of head of government (P1313), flag (P41), seal (P158), coat of arms (P94); '
+                         'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300)',
+                         'https://query.wikidata.org/', ['wdf_*', 'wd_gss']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
                     'https://commons.wikimedia.org/w/api.php', ['commons_*']),
     'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
                    '(fair-use fallback for seals)', 'https://en.wikipedia.org/w/api.php', ['enwd_sl_*', 'enwp_*']),
+    'ons_rgc': ('Office for National Statistics, Register of Geographic Codes (June 2026) for the UK (live GSS codes, names, Welsh names, '
+                'operative/termination dates, statutory instrument, parent code)',
+                'https://geoportal.statistics.gov.uk/datasets/ef9bb98c8c62471684aaf42b8898f220', ['ons_rgc']),
+    'ons_lookup': ('Office for National Statistics, Open Geography Portal lookups: WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU (May 2026; '
+                   'Scottish council areas, LAD cross-check) and LAD25_CAUTH25_EN_LU (May 2025; local authority -> combined authority)',
+                   'https://geoportal.statistics.gov.uk/', ['ons_lu_*']),
+    'ons_boundaries': ('Office for National Statistics, Open Geography Portal BGC/BUC generalised boundary services, attribute tables only '
+                       '(codes present in each product; used for foreign/gb/boundary_xwalk.csv)', 'https://geoportal.statistics.gov.uk/',
+                       ['ons_bnd_*']),
 }
-LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
+LICENSES = {'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',
+            'ons_boundaries': 'Open Government Licence v3.0 (contains OS data (c) Crown copyright and database right)','wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
             'iso_codes': 'LGPL-2.1-or-later (Debian iso-codes); the codes themselves are ISO 3166 facts',
             'un_members': 'facts only (United Nations website, terms of use https://www.un.org/en/about-us/terms-of-use)',
             'un_observers': 'facts only (United Nations website, terms of use https://www.un.org/en/about-us/terms-of-use)',
