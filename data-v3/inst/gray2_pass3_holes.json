@@ -1,0 +1,1849 @@
+[
+ {
+  "state": "Alabama",
+  "name": "Guntersville City School District",
+  "year": "2024",
+  "geoid": "0101690",
+  "pop2020": 8553,
+  "how": "100 % of the district population lies in a hole of 4 official units (spanning 4 2020 precincts, 29392 residents) that the district only partly covers (29 %); the units cannot be apportioned inside it",
+  "counties": {
+   "Marshall County": {
+    "county": "Marshall County",
+    "hole_pop2020": 29392,
+    "county_pop2020": 97612,
+    "source": "/workspace/db/medsl24/al24.csv",
+    "official_units": 31,
+    "matched_by_name_votes_differ": [
+     {
+      "app": [
+       "ALBERTVILLE 1ST BAPT CH",
+       459,
+       2194
+      ],
+      "official": [
+       "ALBERTVILLE 1ST BAPT CH",
+       422,
+       2088,
+       2537
+      ]
+     },
+     {
+      "app": [
+       "ARAB SENIOR CTR",
+       722,
+       4547
+      ],
+      "official": [
+       "ARAB SENIOR CTR",
+       665,
+       4332,
+       5037
+      ]
+     },
+     {
+      "app": [
+       "ASBURY FIRE",
+       74,
+       799
+      ],
+      "official": [
+       "ASBURY FIRE",
+       68,
+       763,
+       838
+      ]
+     },
+     {
+      "app": [
+       "BOAZ PARK & REC",
+       445,
+       3219
+      ],
+      "official": [
+       "BOAZ PARK & REC",
+       411,
+       3072,
+       3497
+      ]
+     },
+     {
+      "app": [
+       "BUCKSNORT COMM_ CTR",
+       101,
+       445
+      ],
+      "official": [
+       "BUCKSNORT COMM CTR",
+       94,
+       426,
+       524
+      ]
+     },
+     {
+      "app": [
+       "CHEROKEE RIDGE",
+       227,
+       1128
+      ],
+      "official": [
+       "CHEROKEE RIDGE",
+       208,
+       1071,
+       1298
+      ]
+     },
+     {
+      "app": [
+       "CRANFORD VFD",
+       98,
+       878
+      ],
+      "official": [
+       "CRANFORD VFD",
+       90,
+       838,
+       937
+      ]
+     },
+     {
+      "app": [
+       "DOUGLAS CITY HALL",
+       64,
+       636
+      ],
+      "official": [
+       "DOUGLAS CITY HALL",
+       60,
+       611,
+       673
+      ]
+     },
+     {
+      "app": [
+       "FRIENDSHIP/PINE GROVE COMM CTR",
+       92,
+       663
+      ],
+      "official": [
+       "FRIENDSHIP/PINE GROVE COMM CTR",
+       86,
+       637,
+       728
+      ]
+     },
+     {
+      "app": [
+       "GEORGIA MTN REC_ CTR",
+       84,
+       673
+      ],
+      "official": [
+       "GEORGIA MTN REC CTR",
+       76,
+       633,
+       710
+      ]
+     },
+     {
+      "app": [
+       "GRANT CITY HALL",
+       70,
+       440
+      ],
+      "official": [
+       "GRANT CITY HALL",
+       65,
+       421,
+       490
+      ]
+     },
+     {
+      "app": [
+       "HEBRON COMM_ CTR",
+       48,
+       306
+      ],
+      "official": [
+       "HEBRON COMM CTR",
+       45,
+       296,
+       342
+      ]
+     },
+     {
+      "app": [
+       "HONEYCOMB BAPTIST",
+       108,
+       363
+      ],
+      "official": [
+       "HONEYCOMB BAPTIST",
+       98,
+       342,
+       443
+      ]
+     },
+     {
+      "app": [
+       "JAYBIRD/DIST 4 CO_ SHOP",
+       78,
+       705
+      ],
+      "official": [
+       "JAYBIRD/DIST 4 CO SHOP",
+       72,
+       672,
+       749
+      ]
+     },
+     {
+      "app": [
+       "LATTIWOOD COMM_ CTR",
+       91,
+       624
+      ],
+      "official": [
+       "LATTIWOOD COMM CTR",
+       84,
+       596,
+       686
+      ]
+     },
+     {
+      "app": [
+       "LIBERTY HILL",
+       113,
+       1018
+      ],
+      "official": [
+       "LIBERTY HILL",
+       105,
+       974,
+       1084
+      ]
+     },
+     {
+      "app": [
+       "MACK TRANSPORT",
+       28,
+       179
+      ],
+      "official": [
+       "MACK TRANSPORT",
+       26,
+       170,
+       197
+      ]
+     },
+     {
+      "app": [
+       "MT_ HEBRON FIRE",
+       55,
+       487
+      ],
+      "official": [
+       "MT HEBRON FIRE",
+       51,
+       469,
+       522
+      ]
+     },
+     {
+      "app": [
+       "NEW BRASHIERS CHAPEL",
+       189,
+       1269
+      ],
+      "official": [
+       "NEW BRASHIERS CHAPEL",
+       175,
+       1215,
+       1405
+      ]
+     },
+     {
+      "app": [
+       "PLEASANT GROVE VFD",
+       70,
+       686
+      ],
+      "official": [
+       "PLEASANT GROVE VFD",
+       64,
+       653,
+       722
+      ]
+     },
+     {
+      "app": [
+       "PROSPECT CEMETERY",
+       120,
+       652
+      ],
+      "official": [
+       "PROSPECT CEMETERY",
+       109,
+       616,
+       730
+      ]
+     },
+     {
+      "app": [
+       "SANCTUARY ON THE MTN",
+       108,
+       1132
+      ],
+      "official": [
+       "SANCTUARY ON THE MTN",
+       99,
+       1076,
+       1179
+      ]
+     },
+     {
+      "app": [
+       "SWEARENGIN COMM_ CTR",
+       116,
+       755
+      ],
+      "official": [
+       "SWEARENGIN COMM CTR",
+       108,
+       723,
+       838
+      ]
+     },
+     {
+      "app": [
+       "TOWN OF UNION GROVE",
+       118,
+       960
+      ],
+      "official": [
+       "TOWN OF UNION GROVE",
+       110,
+       922,
+       1037
+      ]
+     },
+     {
+      "app": [
+       "WAKEFIELD VFD",
+       45,
+       385
+      ],
+      "official": [
+       "WAKEFIELD VFD",
+       42,
+       368,
+       412
+      ]
+     }
+    ],
+    "pool": {
+     "ABSENTEE": [
+      351,
+      1356,
+      1714
+     ],
+     "PROVSIONAL": [
+      17,
+      83,
+      101
+     ]
+    },
+    "missing_units": {
+     "ALDER SPGS COMM CTR": [
+      102,
+      734,
+      842
+     ],
+     "GUNTERSVILLE REC CTR": [
+      886,
+      3576,
+      4504
+     ],
+     "HENRYVILLE METHODIST": [
+      107,
+      619,
+      732
+     ],
+     "MT CALVARY BAPTIST": [
+      657,
+      4082,
+      4769
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     1752,
+     9011,
+     10847
+    ],
+    "hole_components": [
+     {
+      "pop2020": 29392,
+      "v2020_popw": [
+       1917,
+       9057,
+       11137
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "ALDER SPGS COMM CTR": 0,
+      "GUNTERSVILLE REC CTR": 0,
+      "HENRYVILLE METHODIST": 0,
+      "MT CALVARY BAPTIST": 0
+     }
+    ]
+   }
+  },
+  "result": "gray",
+  "why": "100 % of the district population lies in a hole of 4 official units (spanning 4 2020 precincts, 29392 residents) that the district only partly covers (29 %); the units cannot be apportioned inside it"
+ },
+ {
+  "state": "Arkansas",
+  "name": "Jessieville School District",
+  "year": "2024",
+  "geoid": "0507920",
+  "pop2020": 7346,
+  "how": "population placed 78 %; no assignment of the 2 missing units to the 2 hole components passes the 2020 consistency rule (whole hole: ratio 0.59, R share 0.44 vs 0.56)",
+  "counties": {
+   "Garland County": {
+    "county": "Garland County",
+    "hole_pop2020": 5710,
+    "county_pop2020": 100180,
+    "source": "/workspace/db/medsl24/ar24.csv",
+    "official_units": 52,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "011": [
+      761,
+      580,
+      1395
+     ],
+     "111 01": [
+      9,
+      26,
+      35
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     770,
+     606,
+     1430
+    ],
+    "hole_components": [
+     {
+      "pop2020": 4006,
+      "v2020_popw": [
+       836,
+       629,
+       1509
+      ]
+     },
+     {
+      "pop2020": 1704,
+      "v2020_popw": [
+       200,
+       713,
+       934
+      ]
+     }
+    ],
+    "valid_assignments": [],
+    "why": "no assignment of the 2 missing units to the 2 hole components passes the 2020 consistency rule (whole hole: ratio 0.59, R share 0.44 vs 0.56)"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 78 %; no assignment of the 2 missing units to the 2 hole components passes the 2020 consistency rule (whole hole: ratio 0.59, R share 0.44 vs 0.56)"
+ },
+ {
+  "state": "Colorado",
+  "name": "Aspen School District 1",
+  "year": "2024",
+  "geoid": "0802280",
+  "pop2020": 13190,
+  "how": "population-weighted; 24 % of the district population from hole components",
+  "counties": {
+   "Pitkin County": {
+    "county": "Pitkin County",
+    "hole_pop2020": 3209,
+    "county_pop2020": 17358,
+    "source": "/workspace/db/medsl24/co24.csv",
+    "official_units": 12,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "3055749001": [
+      797,
+      283,
+      1109
+     ],
+     "3055749005": [
+      652,
+      290,
+      956
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     1449,
+     573,
+     2065
+    ],
+    "hole_components": [
+     {
+      "pop2020": 3209,
+      "v2020_popw": [
+       1743,
+       518,
+       2298
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "3055749001": 0,
+      "3055749005": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   6046,
+   2234,
+   8460
+  ]
+ },
+ {
+  "state": "Colorado",
+  "name": "Salida School District R-32",
+  "year": "2024",
+  "geoid": "0806330",
+  "pop2020": 10183,
+  "how": "population-weighted; 39 % of the district population from hole components",
+  "counties": {
+   "Chaffee County": {
+    "county": "Chaffee County",
+    "hole_pop2020": 3962,
+    "county_pop2020": 19476,
+    "source": "/workspace/db/medsl24/co24.csv",
+    "official_units": 11,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "7041308005": [
+      948,
+      839,
+      1823
+     ],
+     "7041308009": [
+      890,
+      436,
+      1360
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     1838,
+     1275,
+     3183
+    ],
+    "hole_components": [
+     {
+      "pop2020": 3962,
+      "v2020_popw": [
+       1603,
+       1194,
+       2860
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "7041308005": 0,
+      "7041308009": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   5076,
+   2967,
+   8250
+  ]
+ },
+ {
+  "state": "Kentucky",
+  "name": "Somerset Independent School District",
+  "year": "2024",
+  "geoid": "2105430",
+  "pop2020": 9536,
+  "how": "population placed 54 %; hole holds 62 % of the county population",
+  "counties": {
+   "Pulaski County": {
+    "county": "Pulaski County",
+    "hole_pop2020": 40539,
+    "county_pop2020": 65034,
+    "why": "hole holds 62 % of the county population"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 54 %; hole holds 62 % of the county population"
+ },
+ {
+  "state": "Kentucky",
+  "name": "East Bernstadt Independent School District",
+  "year": "2024",
+  "geoid": "2101590",
+  "pop2020": 1326,
+  "how": "population placed 85 %; hole holds 51 % of the county population",
+  "counties": {
+   "Laurel County": {
+    "county": "Laurel County",
+    "hole_pop2020": 31784,
+    "county_pop2020": 62613,
+    "why": "hole holds 51 % of the county population"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 85 %; hole holds 51 % of the county population"
+ },
+ {
+  "state": "Kentucky",
+  "name": "Laurel County School District for East Bernstadt ISD",
+  "year": "2024",
+  "geoid": "2121001",
+  "pop2020": 1326,
+  "how": "population placed 85 %; hole holds 51 % of the county population",
+  "counties": {
+   "Laurel County": {
+    "county": "Laurel County",
+    "hole_pop2020": 31784,
+    "county_pop2020": 62613,
+    "why": "hole holds 51 % of the county population"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 85 %; hole holds 51 % of the county population"
+ },
+ {
+  "state": "Mississippi",
+  "name": "South Delta School District",
+  "year": "2024",
+  "geoid": "2803960",
+  "pop2020": 5008,
+  "how": "population placed 76 %; unit ADDIE VOTING PRECINCT fails the 2020 consistency rule (ratio 0.72, R share 0.86 vs 0.44); unit TALLULA COMMUNITY CENTER fails the 2020 consistency rule (ratio 0.98, R share 0.44 vs 0.58); unit VALLEY PARK COMMUNITY CENTER fails the 2020 consistency rule (ratio 1.46, R share 0.67 vs 0.78)",
+  "counties": {
+   "Issaquena County": {
+    "county": "Issaquena County",
+    "method": "official 2024 units matched by name to the 2020 precinct polygons",
+    "source": "/workspace/db/medsl24/ms24.csv",
+    "units": [
+     {
+      "unit": "ADDIE VOTING PRECINCT",
+      "pop": 162,
+      "v": [
+       13,
+       83,
+       103
+      ],
+      "v2020": [
+       80,
+       62,
+       143
+      ],
+      "ratio": 0.72
+     },
+     {
+      "unit": "GRACE VOTING PRECINCT",
+      "pop": 180,
+      "v": [
+       53,
+       61,
+       123
+      ],
+      "v2020": [
+       46,
+       83,
+       131
+      ],
+      "ratio": 0.939
+     },
+     {
+      "unit": "MAYERSVILLE COURTHOUSE",
+      "pop": 773,
+      "v": [
+       105,
+       12,
+       126
+      ],
+      "v2020": [
+       151,
+       13,
+       170
+      ],
+      "ratio": 0.741
+     },
+     {
+      "unit": "TALLULA COMMUNITY CENTER",
+      "pop": 122,
+      "v": [
+       75,
+       58,
+       140
+      ],
+      "v2020": [
+       59,
+       82,
+       143
+      ],
+      "ratio": 0.979
+     },
+     {
+      "unit": "VALLEY PARK COMMUNITY CENTER",
+      "pop": 101,
+      "v": [
+       41,
+       82,
+       130
+      ],
+      "v2020": [
+       19,
+       68,
+       89
+      ],
+      "ratio": 1.461
+     }
+    ],
+    "pool": {},
+    "why": "unit ADDIE VOTING PRECINCT fails the 2020 consistency rule (ratio 0.72, R share 0.86 vs 0.44); unit TALLULA COMMUNITY CENTER fails the 2020 consistency rule (ratio 0.98, R share 0.44 vs 0.58); unit VALLEY PARK COMMUNITY CENTER fails the 2020 consistency rule (ratio 1.46, R share 0.67 vs 0.78)"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 76 %; unit ADDIE VOTING PRECINCT fails the 2020 consistency rule (ratio 0.72, R share 0.86 vs 0.44); unit TALLULA COMMUNITY CENTER fails the 2020 consistency rule (ratio 0.98, R share 0.44 vs 0.58); unit VALLEY PARK COMMUNITY CENTER fails the 2020 consistency rule (ratio 1.46, R share 0.67 vs 0.78)"
+ },
+ {
+  "state": "Missouri",
+  "name": "Cape Girardeau 63 School District",
+  "year": "2024",
+  "geoid": "2907120",
+  "pop2020": 39685,
+  "how": "population placed 76 %; no assignment of the 4 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.37, R share 0.83 vs 0.75)",
+  "counties": {
+   "Cape Girardeau County": {
+    "county": "Cape Girardeau County",
+    "hole_pop2020": 18819,
+    "county_pop2020": 81710,
+    "source": "/workspace/db/medsl24/mo24.csv",
+    "official_units": 28,
+    "matched_by_name_votes_differ": [
+     {
+      "app": [
+       "CAPE PRECINCT 5B AND 6",
+       1540,
+       2669
+      ],
+      "official": [
+       "107_CAPE PRECINCT 5B AND 6",
+       729,
+       1357,
+       2116
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 2A AND 3C",
+       739,
+       452
+      ],
+      "official": [
+       "101_CAPE PRECINCT 2A AND 3C",
+       380,
+       247,
+       641
+      ]
+     },
+     {
+      "app": [
+       "NELL HOLCOMB PRECINCT",
+       169,
+       1047
+      ],
+      "official": [
+       "33_NELL HOLCOMB PRECINCT",
+       97,
+       639,
+       743
+      ]
+     },
+     {
+      "app": [
+       "NEW WELLS PRECINCT",
+       25,
+       422
+      ],
+      "official": [
+       "36_NEW WELLS PRECINCT",
+       21,
+       357,
+       382
+      ]
+     },
+     {
+      "app": [
+       "BYRD 3 AND 4",
+       864,
+       3127
+      ],
+      "official": [
+       "108_BYRD 3 AND 4",
+       470,
+       1814,
+       2314
+      ]
+     },
+     {
+      "app": [
+       "DELTA PRECINCT",
+       102,
+       523
+      ],
+      "official": [
+       "38_DELTA PRECINCT",
+       81,
+       428,
+       512
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 5A",
+       587,
+       1177
+      ],
+      "official": [
+       "106_CAPE PRECINCT 5A",
+       326,
+       694,
+       1039
+      ]
+     },
+     {
+      "app": [
+       "GORDONVILLE PRECINCT",
+       248,
+       1271
+      ],
+      "official": [
+       "29_GORDONVILLE PRECINCT",
+       170,
+       910,
+       1094
+      ]
+     },
+     {
+      "app": [
+       "POCAHONTAS PRECINCT",
+       71,
+       450
+      ],
+      "official": [
+       "37_POCAHONTAS PRECINCT",
+       56,
+       367,
+       431
+      ]
+     },
+     {
+      "app": [
+       "BYRD 2 PRECINCT",
+       435,
+       1631
+      ],
+      "official": [
+       "22_BYRD 2 PRECINCT",
+       215,
+       866,
+       1096
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 3A AND 5C",
+       709,
+       967
+      ],
+      "official": [
+       "103_CAPE PRECINCT 3A AND 5C",
+       365,
+       531,
+       915
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 2B AND 3B",
+       764,
+       793
+      ],
+      "official": [
+       "102_CAPE PRECINCT 2B AND 3B",
+       365,
+       406,
+       791
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 4B",
+       685,
+       1138
+      ],
+      "official": [
+       "105_CAPE PRECINCT 4B",
+       364,
+       644,
+       1020
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 1",
+       780,
+       912
+      ],
+      "official": [
+       "100_CAPE PRECINCT 1",
+       442,
+       547,
+       1006
+      ]
+     },
+     {
+      "app": [
+       "BYRD 1 PRECINCT",
+       427,
+       1619
+      ],
+      "official": [
+       "21_BYRD 1 PRECINCT",
+       216,
+       878,
+       1116
+      ]
+     },
+     {
+      "app": [
+       "FRIEDHEIM PRECINCT",
+       41,
+       385
+      ],
+      "official": [
+       "41_FRIEDHEIM PRECINCT",
+       35,
+       335,
+       372
+      ]
+     },
+     {
+      "app": [
+       "FRUITLAND PRECINCT",
+       377,
+       1974
+      ],
+      "official": [
+       "35_FRUITLAND PRECINCT",
+       246,
+       1354,
+       1623
+      ]
+     },
+     {
+      "app": [
+       "BURFORDVILLE PRECINCT",
+       63,
+       564
+      ],
+      "official": [
+       "31_BURFORDVILLE PRECINCT",
+       48,
+       442,
+       493
+      ]
+     },
+     {
+      "app": [
+       "WHITEWATER PRECINCT",
+       61,
+       388
+      ],
+      "official": [
+       "30_WHITEWATER PRECINCT",
+       50,
+       328,
+       379
+      ]
+     },
+     {
+      "app": [
+       "CAPE PRECINCT 4A",
+       638,
+       1507
+      ],
+      "official": [
+       "104_CAPE PRECINCT 4A",
+       298,
+       759,
+       1083
+      ]
+     },
+     {
+      "app": [
+       "MILLERSVILLE PRECINCT",
+       92,
+       700
+      ],
+      "official": [
+       "39_MILLERSVILLE PRECINCT",
+       68,
+       538,
+       611
+      ]
+     },
+     {
+      "app": [
+       "OAK RIDGE PRECINCT",
+       98,
+       624
+      ],
+      "official": [
+       "42_OAK RIDGE PRECINCT",
+       76,
+       500,
+       579
+      ]
+     }
+    ],
+    "pool": {
+     "110_CENTRAL POLL": [
+      450,
+      650,
+      1120
+     ],
+     "111_ABSENTEE": [
+      4448,
+      10969,
+      15532
+     ]
+    },
+    "missing_units": {
+     "109_BYRD 5 & 6": [
+      264,
+      1476,
+      1747
+     ],
+     "27_BROWN OWL PRECINCT": [
+      49,
+      221,
+      273
+     ],
+     "28_CAMPSTER PRECINCT": [
+      78,
+      409,
+      495
+     ],
+     "32_HANOVER PRECINCT": [
+      154,
+      649,
+      813
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     545,
+     2755,
+     3328
+    ],
+    "hole_components": [
+     {
+      "pop2020": 18819,
+      "v2020_popw": [
+       2221,
+       6543,
+       8903
+      ]
+     }
+    ],
+    "valid_assignments": [],
+    "why": "no assignment of the 4 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.37, R share 0.83 vs 0.75)"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 76 %; no assignment of the 4 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.37, R share 0.83 vs 0.75)"
+ },
+ {
+  "state": "Missouri",
+  "name": "Delta C-7 School District",
+  "year": "2024",
+  "geoid": "2905730",
+  "pop2020": 681,
+  "how": "population placed 30 %; no assignment of the 1 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.70, R share 0.83 vs 0.77)",
+  "counties": {
+   "Pemiscot County": {
+    "county": "Pemiscot County",
+    "hole_pop2020": 478,
+    "county_pop2020": 15661,
+    "source": "/workspace/db/medsl24/mo24.csv",
+    "official_units": 14,
+    "matched_by_name_votes_differ": [
+     {
+      "app": [
+       "CARUTHERSVILLE 3 (2403)",
+       182,
+       452
+      ],
+      "official": [
+       "2403_CARUTHERSVILLE 3 (2403)",
+       121,
+       264,
+       387
+      ]
+     },
+     {
+      "app": [
+       "CARUTHERSVILLE 4 (2404)",
+       105,
+       409
+      ],
+      "official": [
+       "2404_CARUTHERSVILLE 4 (2404)",
+       79,
+       281,
+       361
+      ]
+     },
+     {
+      "app": [
+       "BUTLER-CONCORD-GODAIR",
+       27,
+       200
+      ],
+      "official": [
+       "4001_BUTLER-CONCORD-GODAIR",
+       22,
+       153,
+       177
+      ]
+     },
+     {
+      "app": [
+       "COOTER-TYLER-HOLLAND",
+       38,
+       427
+      ],
+      "official": [
+       "4002_COOTER-TYLER-HOLLAND",
+       32,
+       333,
+       366
+      ]
+     },
+     {
+      "app": [
+       "STEELE-VIRGINIA",
+       115,
+       656
+      ],
+      "official": [
+       "4003_STEELE-VIRGINIA",
+       102,
+       560,
+       664
+      ]
+     },
+     {
+      "app": [
+       "HAYTI-1-HAYTI HEIGHTS",
+       301,
+       273
+      ],
+      "official": [
+       "4004_HAYTI-1-HAYTI HEIGHTS",
+       229,
+       189,
+       421
+      ]
+     },
+     {
+      "app": [
+       "HAYTI-2",
+       157,
+       237
+      ],
+      "official": [
+       "4005_HAYTI-2",
+       130,
+       184,
+       315
+      ]
+     },
+     {
+      "app": [
+       "WARDELL-HOMESTOWN-PASCOLA/BRAGG CITY",
+       68,
+       326
+      ],
+      "official": [
+       "4006_WARDELL-HOMESTOWN-PASCOLA/BRAGG CITY",
+       57,
+       258,
+       315
+      ]
+     },
+     {
+      "app": [
+       "CARUTHERSVILLE 1-2",
+       272,
+       335
+      ],
+      "official": [
+       "4007_CARUTHERSVILLE 1-2",
+       211,
+       238,
+       455
+      ]
+     },
+     {
+      "app": [
+       "MCCARTY-COTTONWOOD",
+       24,
+       384
+      ],
+      "official": [
+       "4008_MCCARTY-COTTONWOOD",
+       19,
+       277,
+       296
+      ]
+     }
+    ],
+    "pool": {
+     "4009_ABSENTEE": [
+      293,
+      1008,
+      1303
+     ],
+     "4010_FEDERAL": [
+      0,
+      1,
+      1
+     ],
+     "4011_PROVISIONAL": [
+      1,
+      0,
+      1
+     ]
+    },
+    "missing_units": {
+     "4000_DEERING-BRAGGADOCIO": [
+      35,
+      171,
+      208
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     35,
+     171,
+     208
+    ],
+    "hole_components": [
+     {
+      "pop2020": 478,
+      "v2020_popw": [
+       68,
+       228,
+       299
+      ]
+     }
+    ],
+    "valid_assignments": [],
+    "why": "no assignment of the 1 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.70, R share 0.83 vs 0.77)"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 30 %; no assignment of the 1 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.70, R share 0.83 vs 0.77)"
+ },
+ {
+  "state": "Missouri",
+  "name": "Pettis County R-XII School District",
+  "year": "2024",
+  "geoid": "2924690",
+  "pop2020": 1504,
+  "how": "population placed 12 %; no assignment of the 3 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.56, R share 0.73 vs 0.72)",
+  "counties": {
+   "Pettis County": {
+    "county": "Pettis County",
+    "hole_pop2020": 16807,
+    "county_pop2020": 42980,
+    "source": "/workspace/db/medsl24/mo24.csv",
+    "official_units": 12,
+    "matched_by_name_votes_differ": [
+     {
+      "app": [
+       "2 WARD/CEDAR",
+       675,
+       1172
+      ],
+      "official": [
+       "102_2 WARD/CEDAR",
+       336,
+       646,
+       1005
+      ]
+     },
+     {
+      "app": [
+       "3 WARD/SED EAST",
+       777,
+       2402
+      ],
+      "official": [
+       "103_3 WARD/SED EAST",
+       435,
+       1470,
+       1935
+      ]
+     },
+     {
+      "app": [
+       "GREEN RIDGE/ELK FORK/WASH",
+       196,
+       1134
+      ],
+      "official": [
+       "107_GREEN RIDGE/ELK FORK/WASH",
+       134,
+       826,
+       969
+      ]
+     },
+     {
+      "app": [
+       "LONGWOOD/HEATH CREEK",
+       70,
+       459
+      ],
+      "official": [
+       "108_LONGWOOD/HEATH CREEK",
+       45,
+       318,
+       365
+      ]
+     },
+     {
+      "app": [
+       "HUGH/HOUS",
+       83,
+       389
+      ],
+      "official": [
+       "109_HUGH/HOUS",
+       58,
+       288,
+       349
+      ]
+     },
+     {
+      "app": [
+       "SMITHTON/LAKE CREEK/BP",
+       295,
+       1216
+      ],
+      "official": [
+       "110_SMITHTON/LAKE CREEK/BP",
+       173,
+       775,
+       959
+      ]
+     },
+     {
+      "app": [
+       "BOWLING GREEN",
+       56,
+       422
+      ],
+      "official": [
+       "32_BOWLING GREEN",
+       40,
+       319,
+       366
+      ]
+     },
+     {
+      "app": [
+       "PRAIRIE",
+       364,
+       1482
+      ],
+      "official": [
+       "45_PRAIRIE",
+       180,
+       814,
+       1006
+      ]
+     }
+    ],
+    "pool": {
+     "112_ABSENTEE": [
+      2200,
+      5481,
+      7770
+     ]
+    },
+    "missing_units": {
+     "101_1 WARD": [
+      372,
+      716,
+      1116
+     ],
+     "104_4 WARD/SED W/FLAT CREEK": [
+      579,
+      1628,
+      2249
+     ],
+     "105_BLACKWATER/LA MONTE/DRESDEN": [
+      151,
+      626,
+      788
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     1102,
+     2970,
+     4153
+    ],
+    "hole_components": [
+     {
+      "pop2020": 16807,
+      "v2020_popw": [
+       2063,
+       5185,
+       7455
+      ]
+     }
+    ],
+    "valid_assignments": [],
+    "why": "no assignment of the 3 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.56, R share 0.73 vs 0.72)"
+   }
+  },
+  "result": "gray",
+  "why": "population placed 12 %; no assignment of the 3 missing units to the 1 hole components passes the 2020 consistency rule (whole hole: ratio 0.56, R share 0.73 vs 0.72)"
+ },
+ {
+  "state": "Montana",
+  "name": "Lambert Elementary School District",
+  "year": "2024",
+  "geoid": "3015990",
+  "pop2020": 482,
+  "how": "population-weighted; 73 % of the district population from hole components",
+  "counties": {
+   "Richland County": {
+    "county": "Richland County",
+    "hole_pop2020": 498,
+    "county_pop2020": 11491,
+    "source": "/workspace/db/medsl24/mt24.csv",
+    "official_units": 14,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "PRECINCT 07A": [
+      33,
+      86,
+      123
+     ],
+     "PRECINCT 07B": [
+      19,
+      94,
+      122
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     52,
+     180,
+     245
+    ],
+    "hole_components": [
+     {
+      "pop2020": 498,
+      "v2020_popw": [
+       46,
+       179,
+       236
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "PRECINCT 07A": 0,
+      "PRECINCT 07B": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   44,
+   195,
+   253
+  ]
+ },
+ {
+  "state": "Montana",
+  "name": "Lambert High School District",
+  "year": "2024",
+  "geoid": "3016020",
+  "pop2020": 461,
+  "how": "population-weighted; 77 % of the district population from hole components",
+  "counties": {
+   "Richland County": {
+    "county": "Richland County",
+    "hole_pop2020": 498,
+    "county_pop2020": 11491,
+    "source": "/workspace/db/medsl24/mt24.csv",
+    "official_units": 14,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "PRECINCT 07A": [
+      33,
+      86,
+      123
+     ],
+     "PRECINCT 07B": [
+      19,
+      94,
+      122
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     52,
+     180,
+     245
+    ],
+    "hole_components": [
+     {
+      "pop2020": 498,
+      "v2020_popw": [
+       46,
+       179,
+       236
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "PRECINCT 07A": 0,
+      "PRECINCT 07B": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   43,
+   183,
+   240
+  ]
+ },
+ {
+  "state": "New York",
+  "name": "Bath Central School District",
+  "year": "2024",
+  "geoid": "3604050",
+  "pop2020": 10507,
+  "how": "population-weighted; 28 % of the district population from hole components",
+  "counties": {
+   "Steuben County": {
+    "county": "Steuben County",
+    "hole_pop2020": 3927,
+    "county_pop2020": 93584,
+    "source": "/workspace/w/inst-raw/gray2/medsl24/ny24.csv",
+    "official_units": 63,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "City of Hornell Ward 1": [
+      100,
+      224,
+      324
+     ],
+     "Town of Bath 1": [
+      342,
+      974,
+      1316
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     442,
+     1198,
+     1640
+    ],
+    "hole_components": [
+     {
+      "pop2020": 3079,
+      "v2020_popw": [
+       381,
+       1021,
+       1432
+      ]
+     },
+     {
+      "pop2020": 848,
+      "v2020_popw": [
+       93,
+       214,
+       314
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "City of Hornell Ward 1": 1,
+      "Town of Bath 1": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   1435,
+   3098,
+   4532
+  ]
+ },
+ {
+  "state": "New York",
+  "name": "Geneva City School District",
+  "year": "2024",
+  "geoid": "3611970",
+  "pop2020": 17208,
+  "how": "population-weighted; 9 % of the district population from hole components",
+  "counties": {
+   "Ontario County": {
+    "county": "Ontario County",
+    "hole_pop2020": 1505,
+    "county_pop2020": 112458,
+    "source": "/workspace/w/inst-raw/gray2/medsl24/ny24.csv",
+    "official_units": 92,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "Geneva 2": [
+      370,
+      323,
+      693
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     370,
+     323,
+     693
+    ],
+    "hole_components": [
+     {
+      "pop2020": 1505,
+      "v2020_popw": [
+       393,
+       308,
+       713
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "Geneva 2": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   4288,
+   2758,
+   7046
+  ]
+ },
+ {
+  "state": "Ohio",
+  "name": "Shelby City School District",
+  "year": "2024",
+  "geoid": "3910009",
+  "pop2020": 13114,
+  "how": "population-weighted; 10 % of the district population from hole components; 2 valid unit assignments agree within 3 %",
+  "counties": {
+   "Richland County": {
+    "county": "Richland County",
+    "hole_pop2020": 5187,
+    "county_pop2020": 124936,
+    "source": "/workspace/db/medsl24/oh24.csv",
+    "official_units": 83,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "PRECINCT MAD G": [
+      163,
+      686,
+      853
+     ],
+     "PRECINCT PLY": [
+      171,
+      710,
+      887
+     ],
+     "PRECINCT SHARON": [
+      103,
+      466,
+      572
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     437,
+     1862,
+     2312
+    ],
+    "hole_components": [
+     {
+      "pop2020": 2173,
+      "v2020_popw": [
+       169,
+       679,
+       859
+      ]
+     },
+     {
+      "pop2020": 2911,
+      "v2020_popw": [
+       272,
+       1186,
+       1480
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "PRECINCT MAD G": 0,
+      "PRECINCT PLY": 1,
+      "PRECINCT SHARON": 1
+     },
+     {
+      "PRECINCT MAD G": 1,
+      "PRECINCT PLY": 0,
+      "PRECINCT SHARON": 1
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   1495,
+   4721,
+   6274
+  ]
+ },
+ {
+  "state": "Ohio",
+  "name": "Carey Exempted Village School District",
+  "year": "2024",
+  "geoid": "3904526",
+  "pop2020": 5140,
+  "how": "population-weighted; 20 % of the district population from hole components",
+  "counties": {
+   "Wyandot County": {
+    "county": "Wyandot County",
+    "hole_pop2020": 3260,
+    "county_pop2020": 21900,
+    "source": "/workspace/db/medsl24/oh24.csv",
+    "official_units": 23,
+    "matched_by_name_votes_differ": [],
+    "pool": {},
+    "missing_units": {
+     "UPPER F": [
+      203,
+      444,
+      652
+     ],
+     "CRANE TS": [
+      125,
+      436,
+      566
+     ],
+     "CRAWFORD TS": [
+      132,
+      507,
+      642
+     ]
+    },
+    "app_rows_unmatched": [],
+    "hole_votes": [
+     460,
+     1387,
+     1860
+    ],
+    "hole_components": [
+     {
+      "pop2020": 3260,
+      "v2020_popw": [
+       426,
+       1339,
+       1802
+      ]
+     }
+    ],
+    "valid_assignments": [
+     {
+      "CRANE TS": 0,
+      "CRAWFORD TS": 0,
+      "UPPER F": 0
+     }
+    ]
+   }
+  },
+  "result": "estimate",
+  "value": [
+   703,
+   1864,
+   2584
+  ]
+ },
+ {
+  "state": "New Mexico",
+  "name": "Loving Municipal Schools",
+  "year": "2020",
+  "geoid": "3501710",
+  "pop2020": 1986,
+  "how": "population-weighted on VEST 2020 precinct polygons (3 precincts)",
+  "counties": {},
+  "result": "gray",
+  "why": "consistency rule failed vs other year [166, 343, 509] (ratio 0.68, R share 0.72 vs 0.67)",
+  "rejected": [
+   209,
+   532,
+   751
+  ]
+ }
+]
