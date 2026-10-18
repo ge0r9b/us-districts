@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171560";</script>
+<script>window.BUILD="202610171561";</script>
 <script>/* build 1560: new builds reach open tabs. GitHub Pages serves index.html with max-age=600 and iOS Safari keeps a tab's page alive for hours/days (resume, bfcache), so a tab could run an old build long after a push.
    Check the deployed BUILD (first 2 KB of this page, cache-busting query + no-store, Range request) on load, on return to the tab (visibilitychange/pageshow) and every 5 min; a newer build reloads once
    via ?v=<build> (a fresh URL for every cache) with the current view in the hash. Loop guard: at most one reload per target build per 5 min (sessionStorage); no sessionStorage = never auto-reload. */
@@ -3618,11 +3618,14 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
           if(typeof o.co==="string"&&o.co&&[...county.options].some(x=>x.value===o.co)){ county.value=o.co; county.onchange&&county.onchange(); bump(); await sleep(1200); }
           const g=document.getElementById("gq"); if(g){ const lbl=o.co?o.co+", "+(ABBR[o.st]||o.st):o.st; g.placeholder=lbl; g.title=lbl; try{ nameLock=lbl; }catch(e){} window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; } }catch(e){} }
       bump();
-      if(ok(o.ch,["bar","line","pie"])){ try{ const open=()=>document.querySelector("[aria-label=Chart]")&&document.querySelector("[aria-label=Chart]").click(); const find=()=>[...document.querySelectorAll("button")].find(b=>b.dataset&&b.dataset.ch===o.ch); if(window.chartMode!==o.ch){ open(); await sleep(400); const b=find(); if(b) b.click(); else console.warn("state restore: chart button missing"); await sleep(500); } }catch(e){ console.warn("state restore chart",e); } }
+      /* build 1561: bar belongs to plural lists -> a saved bar list gets its chart back after the list is re-entered (below) */
+      const applyCh=async()=>{ if(ok(o.ch,["bar","line","pie"])){ try{ const open=()=>document.querySelector("[aria-label=Chart]")&&document.querySelector("[aria-label=Chart]").click(); const find=()=>[...document.querySelectorAll("button")].find(b=>b.dataset&&b.dataset.ch===o.ch); if(window.chartMode!==o.ch){ open(); await sleep(400); const b=find(); if(b) b.click(); else console.warn("state restore: chart button missing"); await sleep(500); } }catch(e){ console.warn("state restore chart",e); } } };
+      if(!(o.ch==="bar"&&typeof o.la==="string")) await applyCh();
       if(ok(o.so,["asc","desc"])){ try{ LA.sort="desc"; }catch(e){} } /* build 1551: a reload starts high→low */
       if(o.vw==="list"&&view!=="list"){ try{ setView("list"); }catch(e){} }
       if(o.vw==="map"&&view==="list"&&!o.ch){ try{ setView("map"); }catch(e){} }
       if(typeof o.la==="string"&&o.vw==="list"){ try{ const lv=level(); if(lv&&lv.id===o.la){ await enter(); } }catch(e){} }
+      if(o.ch==="bar"&&typeof o.la==="string"){ for(let i=0;i<10&&!LA.on;i++) await sleep(300); if(LA.on&&window.chartMode!=="bar") await applyCh(); }
       if(Array.isArray(o.ll)&&o.ll.length===3&&o.ll.every(x=>typeof x==="number"&&isFinite(x))&&Math.abs(o.ll[0])<=85&&Math.abs(o.ll[1])<=180&&o.ll[2]>=1&&o.ll[2]<=19&&o.vw!=="list"){ bump(); try{ map.setView([o.ll[0],o.ll[1]],o.ll[2],{animate:false}); }catch(e){} bump(); }
     }catch(e){ try{ console.warn("state restore",e); }catch(_){} } await sleep(600); window.__selAt=Date.now(); restoring=false; last=""; save(); }
     window.__stateApply=apply; window.__stateRestoring=()=>restoring;

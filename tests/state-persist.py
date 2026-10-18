@@ -18,16 +18,22 @@ async def main():
     for W,H,t,touch in((1280,800,'dk',False),(430,800,'ph',True)):
       ctx=await b.new_context(viewport={"width":W,"height":H},has_touch=touch,is_mobile=touch,user_agent=UA if touch else None); pg=await ctx.new_page(); errs=[]; pg.on("pageerror",lambda e: errs.append(str(e)[:120]))
       await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
-      # 1 Florida + list view + bar chart
-      await typ(pg,"florida"); await chart(pg,"bar"); await pg.wait_for_timeout(2500)
+      # 1 Florida + list view + pie chart (build 1557: a single entity has no bar chart; it restores as pie)
+      await typ(pg,"florida"); await chart(pg,"pie"); await pg.wait_for_timeout(2500)
       s0=await pg.evaluate(S); h=await pg.evaluate("()=>location.hash")
       await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(9000); s1=await pg.evaluate(S)
-      chk(f'{t} reload restores Florida + list view + bar chart',s0['st']=='Florida' and h.startswith('#s=') and s1['st']=='Florida' and s1['list'] and s1['ch']=='bar' and 'Florida' in s1['ph'],[s0,s1,h[:40]])
+      chk(f'{t} reload restores Florida + list view + pie chart',s0['st']=='Florida' and h.startswith('#s=') and s1['st']=='Florida' and s1['list'] and s1['ch']=='pie' and 'Florida' in s1['ph'],[s0,s1,h[:40]])
       await pg.screenshot(path=f"/workspace/shots/sp-{tag}-{t}-florida.png")
       await pg.wait_for_timeout(4000); s1b=await pg.evaluate(S); chk(f'{t} stays Florida after restore (no stale clear)',s1b['st']=='Florida',s1b)
       # 2 localStorage fallback: no hash
       await pg.goto(base.split('#')[0],wait_until="networkidle"); await pg.wait_for_timeout(9000); s2=await pg.evaluate(S)
-      chk(f'{t} localStorage fallback restores with no hash',s2['st']=='Florida' and s2['ch']=='bar',s2)
+      chk(f'{t} localStorage fallback restores with no hash',s2['st']=='Florida' and s2['ch']=='pie',s2)
+      # 2b plural list: 'Florida counties' + bar chart restores as the bar list
+      await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1600); await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(6000)
+      await pg.evaluate("()=>{ if(window.chartMode!=='bar'){ const c=document.querySelector('[aria-label=Chart]'); c.click(); setTimeout(()=>{ const x=[...document.querySelectorAll('.copts button')].find(b=>b.dataset.ch==='bar'); if(x) x.click(); else if(c.dataset.ch==='bar') c.click(); },500); } }"); await pg.wait_for_timeout(2500)
+      s0=await pg.evaluate("()=>[window.__laInfo().on, window.__laInfo().lv, window.chartMode]")
+      await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(10000); s1=await pg.evaluate("()=>[window.__laInfo().on, window.__laInfo().lv, window.chartMode, state.value]")
+      chk(f'{t} reload restores the plural Florida counties list with the bar chart',s0==[True,'counties','bar'] and s1==[True,'counties','bar','Florida'],[s0,s1])
       await ctx.close()
       # 3 delta line chart
       ctx=await b.new_context(viewport={"width":W,"height":H},has_touch=touch,is_mobile=touch,user_agent=UA if touch else None); pg=await ctx.new_page(); await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
