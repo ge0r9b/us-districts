@@ -9,7 +9,7 @@ LOCAL_COLUMNS = ['entity_id', 'name', 'name_local', 'name_en', 'alt_name', 'type
                  'valid_from', 'valid_to', 'is_active', 'predecessor_id', 'successor_id', 'note', 'flags', 'source', 'source_url', 'source_date', 'retrieved_at',
                  'license']
 CODE_XW_COLUMNS = ['entity_id', 'code_scheme', 'code', 'relation', 'note', 'source', 'source_url']
-BOUNDARY_COLUMNS = ['entity_id', 'boundary_dataset', 'boundary_code', 'vintage', 'relation', 'source_url']
+BOUNDARY_COLUMNS = ['entity_id', 'boundary_dataset', 'boundary_code', 'boundary_type', 'vintage', 'relation', 'source_url']
 MAX_BYTES = 10 * 1000 * 1000
 
 

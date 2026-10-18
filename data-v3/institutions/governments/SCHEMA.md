@@ -157,30 +157,33 @@ valid_from, valid_to, is_active, predecessor_id, successor_id, note, flags, sour
 | `code_scheme`, `code`, `alt_code` | UK: `gss`, GSS code. DE: `ars`, 12-digit ARS (Land 2, RBZ 3, Kreis 5, Gemeindeverband 9 digits, zero-padded), `alt_code` = AGS (8 digits; Kreise: the 5-digit Kreisschlüssel). FR: `insee_reg`, `insee_ctcd` (e.g. `01D`, `69M`), `insee_com`, `insee_comd`, `insee_coma`, `insee_arm`, `siren` (EPCI, EPT); `alt_code` = commune SIREN from the DGCL (BANATIC) INSEE/SIREN table by INSEE code; IGN ADMIN EXPRESS `code_siren` only where DGCL has no row and the SIREN is on one commune (IGN repeats the SIREN of 31006, 55039 and 97416 on 46002, 55102 and 97502; those differences are in `gaps.csv`). Commune SIRENs are unique (asserted) |
 | `iso_3166_2` | ISO 3166-2 code of the same area, only via an exact link (UK: the Wikidata item with this GSS code, P836, carries this P300) |
 | `wikidata_qid` | the single item whose exact official code (UK: P836 GSS; DE: P1388 ARS, P440 Kreisschlüssel) is this code, and which has no other code of these levels; usually the area item |
-| `code_valid_from` (DE) | VG250 `WSK`: date from which the unit's current legal state is effective (last territorial/legal change), not its founding date |
+| `code_valid_from` (DE) | VG250 `WSK` (Stand 01.01.2026 Excel edition): date from which the unit's current legal state is effective (last territorial/legal change), not its founding date |
 | `code_valid_from`, `code_valid_to` | operative / termination date of the code in the register (UK RGC `OPER_DATE`/`TERM_DATE`; 2009-01-01 is the GSS re-coding date, not the date the council was created) |
-| `is_active`, `predecessor_id`, `successor_id` | `Y` for current codes; `N` for a terminated code kept as history (flag `code_terminated`; rows and IDs are never deleted). `predecessor_id` / `successor_id` = `;`-joined entity IDs, only from an official link table, never inferred: UK from the ONS Code History Database (June 2026) `Changes` table (code → the code(s) it replaced); FR from the COG 2026 movement file (the `COM` code(s) a commune became on its `DATE_FIN`). UK terminated rows: every RGC code with `STATUS=terminated` in the built entities, `code_valid_to` = RGC `TERM_DATE`. FR: every commune code whose last COG period ended on or after 2015-01-01 (`v_commune_depuis_1943`), `code_valid_to` = the day before `DATE_FIN` (COG dates are the effective date of the change), in `units_communes_terminated.csv`. DE: none yet (no reachable official change list) |
-| `valid_from`, `valid_to` | establishment / abolition date of the government, only from an official dated source; blank otherwise. FR: communes created, re-established or created as commune nouvelle (INSEE movement file, MOD 20/21/32, `DATE_EFF`) |
+| `is_active`, `predecessor_id`, `successor_id` | `Y` for current codes; `N` for a terminated code kept as history (flag `code_terminated`; rows and IDs are never deleted). `predecessor_id` / `successor_id` = `;`-joined entity IDs, only from an official link table, never inferred: UK from the ONS Code History Database (June 2026) `Changes` table (code → the code(s) it replaced); FR from the COG 2026 movement file (the `COM` code(s) a commune became on its `DATE_FIN`). UK terminated rows: every RGC code with `STATUS=terminated` in the built entities, `code_valid_to` = RGC `TERM_DATE`. FR: every commune code whose last COG period ended on or after 2015-01-01 (`v_commune_depuis_1943`), `code_valid_to` = the day before `DATE_FIN` (COG dates are the effective date of the change), in `units_communes_terminated.csv`; codes since 1943. DE: Gemeinde/Gemeindeverband ARS in BKG VG250 Stand 31.12.2025 but not 01.01.2026 (derived from the BKG editions, `code_valid_to` 2025-12-31, flag `derived_from_vg250_editions`), `successor_id` only where Geo's FOREIGN_VINTAGES.md states it (flag `successor_stated_by_geo`) |
+| `valid_from`, `valid_to` | establishment / abolition date of the government, only from an official dated source; blank otherwise. FR: communes created (MOD 32 commune nouvelle, a COM code new as COM, or restored from its own déléguée/associée status; INSEE movement file `DATE_EFF`); not for communes that only ceded territory |
 | `note` | UK: the statutory instrument that introduced the code, when it is not the 2009 re-coding |
-| `flags` | UK: `council_status_unknown` (parish/community), `cauth_from_district_lookup` (county's combined authority derived from its districts). DE: `kreisfrei_from_ars_structure` (kreisfreie Stadt new since VG250: ARS ends in 0000000), `verband_not_in_vg250`, `not_in_vg250`, `no_member_in_destatis_<date>` (Gemeindeverband in VG250 with no member in the newer Destatis list) |
+| `flags` | UK: `council_status_unknown` (parish/community), `cauth_from_district_lookup` (county's combined authority derived from its districts). DE: `kreisfrei_from_ars_structure` (kreisfreie Stadt new since VG250: ARS ends in 0000000), `verband_not_in_vg250`, `not_in_vg250`, `no_member_in_destatis_<date>` (Gemeindeverband in VG250 with no member in the newer Destatis list), `code_terminated`, `derived_from_vg250_editions`, `successor_stated_by_geo`. FR: `code_terminated`, `no_successor_in_cog`, `parent_boundary` (commune déléguée/associée not in IGN; boundary = parent commune), `epci_spans_regions`, `no_epci`, `qid_is_shared_area_item:<QID>` |
 
 `code_xwalk.csv`: `entity_id, code_scheme, code, relation, note, source, source_url`: GSS country codes and ISO 3166-2 codes
 to the existing `nation:` / `subdivision:` rows (`same_government`; `area_only` for England, which has no devolved
-government), plus each new row's ISO 3166-2 code (`same_area`).
+government; for FR `territory:gp/re` = the area of INSEE région 01/04 and département 971/974), plus each new row's ISO 3166-2 code (`same_area`).
 
-`boundary_xwalk.csv`: `entity_id, boundary_dataset, boundary_code, vintage, relation, source_url`, for the Geo bot to join
+`boundary_xwalk.csv`: `entity_id, boundary_dataset, boundary_code, boundary_type, vintage, relation, source_url`, for the Geo bot to join
 geometry (no geometry here). One row per entity and official boundary product whose attribute table actually contains
 the code (checked against the product's feature service). `boundary_dataset` and `vintage` are exactly the strings of
-Geo's `data-v3/geo/FOREIGN_VINTAGES.md` (branch data/geo); `boundary_code` is the bare key (GSS, ARS, INSEE or SIREN).
+Geo's `data-v3/geo/FOREIGN_VINTAGES.md` (branch data/geo); `boundary_code` is the bare key (GSS, ARS, INSEE or SIREN); `boundary_type` is the second key where Geo's layer needs
+one (FR `commune_associee_ou_deleguee`: `commune déléguée` / `commune associée`), blank otherwise. `relation`:
+`same_code`, `same_area`, `parent_boundary` (no own feature; the parent's boundary). Ended (`is_active=N`) rows have none.
 Only the layers Geo builds are keyed:
 UK: `ONS LAD_MAY_2026_UK_BFC` / `2026-05` (E06/E07/E08/E09, S12, W06, N09), `ONS CTYUA_DEC_2025_UK_BFC` / `2025-12` (E10),
 `ONS CAUTH_DEC_2025_EN_BFC` / `2025-12` (E47), `ONS PARNCP_MAY_2026_EW_BFC` / `2026-05` (E04, W04).
 DE: `BKG VG250 VG250_LAN|KRS|VWG|GEM` / `2026-01-01`, code = ARS (2/5/9/12 digits), present as a GF=4 feature; kreisfreie
 Städte and Berlin/Hamburg appear in KRS and GEM.
 FR: `IGN ADMIN-EXPRESS-COG region|departement|epci|commune` / `COG 2026` (checked against ADMIN EXPRESS COG 2026 full
-precision); departement only where one collectivity governs exactly that département (`same_area`); epci by SIREN.
+precision); departement only where one collectivity governs exactly that département (`same_area`); epci by SIREN;
+`commune_associee_ou_deleguee` by INSEE code + type (10 missing → parent commune, `parent_boundary`).
 No row for levels Geo has no layer for: the GLA and the UK countries, Regierungsbezirke, Staat, VG1000, the French CTCD
-layer, communes déléguées/associées and arrondissements municipaux.
+layer and arrondissements municipaux.
 
 `gaps.csv`: `code, issue` (codes missing from a lookup or boundary product, register inconsistencies).
 

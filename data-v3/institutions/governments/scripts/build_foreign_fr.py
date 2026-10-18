@@ -33,6 +33,8 @@ EPCI_PAGE = 'https://www.insee.fr/fr/information/2510634'
 DGCL_SIREN_URL = ('https://static.data.gouv.fr/resources/base-nationale-sur-les-intercommunalites/20250312-083024/'
                   'correspondance-code-commune-siren.csv')
 DGCL_PAGE = 'https://www.data.gouv.fr/datasets/base-nationale-sur-les-intercommunalites'
+BANATIC_URL = 'https://www.banatic.interieur.gouv.fr/consultation/api/export/pregenere/telecharger/France'
+BANATIC_PAGE = 'https://www.banatic.interieur.gouv.fr/'
 IGN = 'https://data.geopf.fr/wfs/ows'
 IGN_LAYER = 'ADMINEXPRESS-COG-CARTO.LATEST:{}'
 # Geo's exact boundary edition (data/geo data-v3/geo/FOREIGN_VINTAGES.md): ADMIN EXPRESS COG 4.0 full precision,
@@ -40,19 +42,29 @@ IGN_LAYER = 'ADMINEXPRESS-COG-CARTO.LATEST:{}'
 GEO_IGN_LAYER = 'ADMINEXPRESS-COG.2026:{}'
 GEO_LAYERS = {'region': 'code_insee', 'departement': 'code_insee', 'epci': 'code_siren', 'commune': 'code_insee'}
 GEO_VINTAGE = 'COG 2026'
+GEO_CAD = 'IGN ADMIN-EXPRESS-COG commune_associee_ou_deleguee'
+# COG 2026 communes déléguées/associées that ADMIN EXPRESS COG 2026 lacks, with the parent commune Geo lists
+# (data/geo FOREIGN_VINTAGES.md / README @ a92f2b0); the build asserts the INSEE COG gives the same parent
+CAD_NOT_IN_IGN = {'25303': '25390', '25347': '25390', '25390': '25390', '25398': '25390', '25620': '25390',
+                  '55294': '55012', '55319': '55012', '55451': '55012', '69144': '69208', '69208': '69208'}
 LO = 'Licence Ouverte / Open Licence 2.0 (Etalab)'
 VINTAGE = '2026-01-01'
-HISTORY_FROM = '2015-01-01'   # terminated commune codes whose COG DATE_FIN is on or after this date
+HISTORY_FROM = '1943-01-01'   # terminated commune codes whose COG DATE_FIN is on or after this date (= all of the COG)
 # reviewed: COG overseas collectivity code -> existing territory row (names checked in build except the two noted)
 COMER = {'975': 'territory:pm', '977': 'territory:bl', '978': 'territory:mf', '984': 'territory:tf', '986': 'territory:wf',
          '987': 'territory:pf', '988': 'territory:nc', '989': 'subdivision:fr-cp'}
 COMER_NAME_REVIEWED = {'984', '989'}   # ISO 'Terres australes françaises' / 'Clipperton' vs COG long forms
 # CTCD whose government is an existing row (single collectivities; ISO FR-971/974 departemental collectivities)
-CTCD_EXISTING = {'20R': 'subdivision:fr-20r', '972R': 'territory:mq', '973R': 'territory:gf', '976R': 'territory:yt',
-                 '971D': 'territory:gp', '974D': 'territory:re'}
+CTCD_EXISTING = {'20R': 'subdivision:fr-20r', '972R': 'territory:mq', '973R': 'territory:gf', '976R': 'territory:yt'}
+# Full Stack ruling (2026-10-18): territory:gp / territory:re are the AREA (département and région of one name); the
+# conseil départemental (fr-cog:dep:971/974) and the conseil régional (fr-cog:reg:01/04) are their own child rows
+AREA_TERRITORY = {'01': 'territory:gp', '04': 'territory:re'}          # région code -> territory row (area only)
+AREA_DEP = {'971': 'territory:gp', '974': 'territory:re'}
 PARIS = '75056'
 LYON_SIREN = '200046977'
 MGP_SIREN = '200054781'
+IGN_NATURE = {'metropole': 'Métropole', 'communaute_urbaine': 'Communauté urbaine',
+              'communaute_d_agglomeration': "Communauté d'agglomération", 'communaute_de_communes': 'Communauté de communes'}
 NATURE = {'METRO': 'metropole', 'ME': 'metropole', 'CU': 'communaute_urbaine', 'CA': 'communaute_d_agglomeration', 'CC': 'communaute_de_communes',
           'METLYON': 'metropole_de_lyon'}
 CTCD_SPECIAL = {'69M': 'metropole_de_lyon', '6AE': 'collectivite_europeenne_d_alsace', '75C': 'ville_de_paris'}
@@ -78,6 +90,38 @@ def dgcl_siren():
     rows = list(csv.DictReader(txt.splitlines(), delimiter=';'))
     out = {r['Code INSEE de la commune'].strip(): r['Siren'].strip() for r in rows}
     assert len(out) == len(rows) > 30000, len(rows)
+    return out
+
+
+def dgcl_banatic():
+    """SIREN -> (Nature juridique, Nom du groupement, Date de création, Date d'effet) from the DGCL BANATIC France export.
+    The sheet is ~1.5 GB of inline-string XML (one row per groupement member), so it is streamed once with a regex and
+    the per-groupement columns are cached as JSON next to the download (a derived file, not committed)."""
+    import html, json, re
+    p = fetch('dgcl_banatic', url=BANATIC_URL, fname='dgcl_banatic_france.xlsx')
+    out_p = p + '.groupements.json'
+    if os.path.exists(out_p) and os.path.getmtime(out_p) >= os.path.getmtime(p):
+        return json.load(open(out_p, encoding='utf-8'))
+    cell = re.compile(r'<c r="([A-Z]+)\d+"[^>]*?(?:/>|>(?:<is><t[^>]*>(.*?)</t></is>|<v>(.*?)</v>)?</c>)', re.S)
+    want = {'D': 'siren', 'E': 'name', 'F': 'nature', 'J': 'created', 'K': 'effective'}
+    out, buf, first = {}, '', True
+    with zipfile.ZipFile(p) as z, z.open('xl/worksheets/sheet1.xml') as f:
+        while True:
+            chunk = f.read(1 << 24)
+            buf += chunk.decode('utf-8', 'replace') if chunk else ''
+            parts = buf.split('</row>')
+            buf = parts.pop() if chunk else ''
+            for rowxml in parts:
+                vals = {want[c]: html.unescape(t or v or '') for c, t, v in cell.findall(rowxml) if c in want}
+                if first:
+                    assert vals.get('siren') == 'N° SIREN' and vals.get('nature') == 'Nature juridique', vals
+                    first = False
+                    continue
+                if vals.get('siren') and vals['siren'] not in out:
+                    out[vals['siren']] = vals
+            if not chunk:
+                break
+    json.dump(out, open(out_p, 'w', encoding='utf-8'), ensure_ascii=False, sort_keys=True)
     return out
 
 
@@ -126,11 +170,13 @@ def build(reg):
         ign[lay] = wfs('ign_adminexpress_' + lay, IGN, IGN_LAYER.format(lay), props)
     geo = {lay: {r[k] for r in wfs('ign_aecog2026_' + lay, IGN, GEO_IGN_LAYER.format(lay), [k])} for lay, k in GEO_LAYERS.items()}
     dg = dgcl_siren()
+    bn = dgcl_banatic()
     wd = wd_maps()
     man = manifest()
     ra_c, ra_e = man['insee_cog2026']['retrieved_at'], max(man['insee_epci2026']['retrieved_at'], man['insee_ept2026']['retrieved_at'])
     ra_i = max(v['retrieved_at'] for k, v in man.items() if k.startswith('ign_adminexpress_'))
     ra_dg = man['dgcl_siren']['retrieved_at']
+    ra_bn = man['dgcl_banatic']['retrieved_at']
     ra_w = max(v['retrieved_at'] for k, v in man.items() if k.startswith('wd_fr_'))
     known = existing_foreign()
     iso2 = {x['code']: x for x in __import__('json').load(open(os.path.join(CACHE, 'iso_3166-2.json'), encoding='utf-8'))['3166-2']}
@@ -158,16 +204,29 @@ def build(reg):
     stats['ign_commune_names_equal_cog2026'] = same
     assert same > 0.99 * len(com_cog), same
     # dated creations from the 2026 movement file: creation (20), re-establishment (21), commune nouvelle (32)
-    created = {}
+    # A MOD 20/21 event also lists the commune(s) that ceded territory (COM -> COM, same code): those were not created
+    # then. A commune counts as created on DATE_EFF only if it was not a COM just before, or was restored from one of its
+    # communes déléguées/associées; communes nouvelles (MOD 32) are new communes even when they keep a member's code.
+    ev = collections.defaultdict(list)
     for m in C['mvt_commune']:
         if m['MOD'] in ('20', '21', '32') and m['TYPECOM_AP'] == 'COM':
-            created[m['COM_AP']] = max(created.get(m['COM_AP'], ''), m['DATE_EFF'])
+            ev[(m['COM_AP'], m['DATE_EFF'], m['MOD'])].append(m)
+    created, split_from = {}, collections.defaultdict(set)
+    for (x, dt, mod), ms in ev.items():
+        was_com = any(m['COM_AV'] == x and m['TYPECOM_AV'] == 'COM' for m in ms)
+        from_sub = any(m['COM_AV'] == x and m['TYPECOM_AV'] in ('COMD', 'COMA') for m in ms)
+        if mod == '32' or not was_com or from_sub:
+            created[x] = max(created.get(x, ''), dt)
+            if mod != '32':
+                split_from[(x, dt)] |= {m['COM_AV'] for m in ms if m['TYPECOM_AV'] == 'COM' and m['COM_AV'] != x}
+        else:
+            stats['mvt_ceded_territory_not_created'] += 1
 
     def row(eid, name, sub, gs, parent, scheme, code, alt='', alt_name='', member='', iso='', q='', src='insee_cog2026',
             vf='', note='', flags=(), url=COG_PAGE):
         srcs = src + (';wikidata_foreign' if q else '')
         ra = max(ra_c if 'cog' in src else '', ra_e if 'epci' in src or 'ept' in src else '', ra_i if 'ign' in src else '',
-                 ra_w if q else '', ra_dg if 'dgcl' in src else '')
+                 ra_w if q else '', ra_dg if 'dgcl_siren' in src else '', ra_bn if 'dgcl_banatic' in src else '')
         return dict(entity_id=eid, name=name, name_local='', name_en='', alt_name=alt_name if alt_name != name else '',
                     type='foreign', subtype=sub, gov_status=gs, parent_id=parent, member_of=member, country='FR',
                     code_scheme=scheme, code=code, alt_code=alt, iso_3166_2=iso, wikidata_qid=q, code_valid_from='',
@@ -198,11 +257,16 @@ def build(reg):
             continue
         eid = reg.get(['fr-cog:reg:' + code], 'fr-cog:reg:' + code, ra_c[:10])
         reg_ent[code] = eid
-        rows.append(row(eid, r['LIBELLE'], 'region', 'self_governing', 'nation:fr', 'insee_reg', code,
+        terr = AREA_TERRITORY.get(code, '')
+        rows.append(row(eid, r['LIBELLE'], 'region', 'self_governing', terr or 'nation:fr', 'insee_reg', code,
                         alt=siren_ign['region'].get(code, ''), q='' if q_shared else q, src='insee_cog2026;ign_adminexpress',
                         flags=('qid_is_shared_area_item:' + q,) if q_shared else (),
-                        note='région (conseil régional); the département of the same name is {}'.format(
-                            CTCD_EXISTING.get(next((c for c, x in ctcd.items() if x['REG'] == code), ''), ''))))
+                        note='région (conseil régional) of {} (the area; the conseil départemental is a sibling row)'.format(terr)
+                        if terr else 'région (conseil régional)'))
+        if terr:
+            xw.append(dict(entity_id=terr, code_scheme='insee_reg', code=code, relation='area_only',
+                           note='{}: the territory row is the area; région council = {}'.format(r['LIBELLE'], eid),
+                           source='insee_cog2026', source_url=COG_PAGE))
     for r in C['region']:
         xw.append(dict(entity_id=reg_ent[r['REG']], code_scheme='siren', code=siren_ign['region'].get(r['REG'], ''),
                        relation='same_government', note='region SIREN (IGN ADMIN EXPRESS)', source='ign_adminexpress',
@@ -226,9 +290,14 @@ def build(reg):
         if dep:
             eid = reg.get(['fr-cog:dep:' + dep], 'fr-cog:dep:' + dep, ra_c[:10])
             depname = next(d['LIBELLE'] for d in C['departement'] if d['DEP'] == dep)
-            rows.append(row(eid, r['LIBELLE'], 'conseil_departemental', 'self_governing', reg_ent[r['REG']], 'insee_ctcd', c,
-                            alt=siren, alt_name=depname, iso=iso, src='insee_cog2026;ign_adminexpress',
-                            note='departement {} ({})'.format(dep, depname)))
+            terr = AREA_DEP.get(dep, '')
+            rows.append(row(eid, r['LIBELLE'], 'conseil_departemental', 'self_governing', terr or reg_ent[r['REG']], 'insee_ctcd', c,
+                            alt=siren, alt_name=depname, iso='' if terr else iso, src='insee_cog2026;ign_adminexpress',
+                            note='departement {} ({})'.format(dep, depname) + ('; council of {} (the area)'.format(terr) if terr else '')))
+            if terr:
+                xw.append(dict(entity_id=terr, code_scheme='insee_dep', code=dep, relation='area_only',
+                               note='département {}: the territory row is the area; conseil départemental = {}'.format(depname, eid),
+                               source='insee_cog2026', source_url=COG_PAGE))
         else:
             eid = reg.get(['fr-cog:ctcd:' + c], 'fr-cog:ctcd:' + c, ra_c[:10])
             rows.append(row(eid, r['LIBELLE'], CTCD_SPECIAL[c], 'self_governing', reg_ent[r['REG']], 'insee_ctcd', c,
@@ -278,6 +347,8 @@ def build(reg):
     ep_regs = collections.defaultdict(set)
     for c, s in comp.items():
         ep_regs[s].add(com_reg.get(c))
+    ign_nat = {r['code_siren']: r['nature'] for r in wfs('ign_aecog2026_epci_nature', IGN, GEO_IGN_LAYER.format('epci'),
+                                                          ['code_siren', 'nature'])}
     for s, r in sorted(epci.items()):
         if s == LYON_SIREN or s == 'ZZZZZZZZZ':
             continue
@@ -286,8 +357,19 @@ def build(reg):
         q = wd.get(('P1616', s), ('', ''))[0]
         eid = reg.get(['fr-siren:' + s], 'fr-siren:' + s, ra_e[:10])
         ep_ent[s] = eid
-        rows.append(row(eid, r['LIBEPCI'], NATURE[r['NATURE_EPCI']], 'intercommunal', parent, 'siren', s, q=q,
-                        src='insee_epci2026', url=EPCI_PAGE, note='EPCI à fiscalité propre ({} communes)'.format(r['NB_COM']),
+        sub, note = NATURE[r['NATURE_EPCI']], 'EPCI à fiscalité propre ({} communes)'.format(r['NB_COM'])
+        dn = bn.get(s, {}).get('nature', '')
+        if dn in NATURE:                                # DGCL BANATIC is the authority on the legal type
+            if NATURE[dn] != sub:
+                gaps.append({'code': s, 'issue': 'INSEE type {} vs DGCL BANATIC {}; DGCL used'.format(r['NATURE_EPCI'], dn)})
+            sub = NATURE[dn]
+        else:
+            gaps.append({'code': s, 'issue': 'EPCI not in DGCL BANATIC export; INSEE type used'})
+        if ign_nat.get(s) and ign_nat[s] != IGN_NATURE.get(sub):
+            note += '; DGCL BANATIC type {} (IGN ADMIN EXPRESS COG 2026 still has {})'.format(dn, ign_nat[s])
+            stats['epci_type_ign_differs_dgcl'] += 1
+        rows.append(row(eid, r['LIBEPCI'], sub, 'intercommunal', parent, 'siren', s, q=q,
+                        src='insee_epci2026;dgcl_banatic' if dn in NATURE else 'insee_epci2026', url=EPCI_PAGE, note=note,
                         flags=() if len(regs) == 1 else ('epci_spans_regions',)))
     for s, r in sorted(ept.items()):
         q = wd.get(('P1616', s), ('', ''))[0]
@@ -373,6 +455,10 @@ def build(reg):
         succ[c] -= bad
         for x in succ[c]:
             pred[x].add(c)
+    for (x, dt), cs in split_from.items():          # created / re-established: the commune(s) it was taken from
+        if x in known_codes and created.get(x) == dt:
+            pred[x] |= cs & known_codes
+            stats['commune_pred_from_creation_event'] += bool(cs & known_codes)
     cid = lambda cs: ';'.join('fr-cog:com:' + x for x in sorted(cs))
     for c, r in by_code.items():
         if pred[c]:
@@ -416,16 +502,47 @@ def build(reg):
         elif r['code_scheme'] == 'insee_com':
             pairs['commune'].append((r['entity_id'], r['code'], 'same_code'))
     pairs['epci'].append((ct_ent['69M'], LYON_SIREN, 'same_code'))
+    for code, terr in AREA_TERRITORY.items():          # the territory rows are the areas themselves
+        pairs['region'].append((terr, code, 'same_area'))
+    for dep, terr in AREA_DEP.items():
+        pairs['departement'].append((terr, dep, 'same_area'))
     bx = []
+    url_ign = IGN + '?SERVICE=WFS&REQUEST=GetCapabilities'
     for lay, ps in sorted(pairs.items()):
         for e, c, rel in ps:
             if c in geo[lay]:
-                bx.append(dict(entity_id=e, boundary_dataset='IGN ADMIN-EXPRESS-COG ' + lay, boundary_code=c, vintage=GEO_VINTAGE,
-                               relation=rel, source_url=IGN + '?SERVICE=WFS&REQUEST=GetCapabilities'))
+                bx.append(dict(entity_id=e, boundary_dataset='IGN ADMIN-EXPRESS-COG ' + lay, boundary_code=c, boundary_type='',
+                               vintage=GEO_VINTAGE, relation=rel, source_url=url_ign))
                 stats['boundary|' + lay] += 1
             else:
                 stats['boundary_missing|' + lay] += 1
                 gaps.append({'code': c, 'issue': 'not in IGN ADMIN-EXPRESS-COG {} ({})'.format(lay, e)})
+    # communes déléguées / associées: Geo's fr_cad joins on (code, type), as 582 share their parent commune's code.
+    # The ones IGN lacks are keyed to their parent commune's polygon (relation and flag parent_boundary), after checking
+    # the parent in the INSEE COG against the list Geo published.
+    cad = {(r['code_insee'], r['nature']): r['code_insee_de_la_commune_de_rattach']
+           for r in wfs('ign_aecog2026_cad', IGN, GEO_IGN_LAYER.format('commune_associee_ou_deleguee'),
+                        ['code_insee', 'nature', 'code_insee_de_la_commune_de_rattach'])}
+    cad_type = {'insee_comd': ('COMD', 'commune déléguée'), 'insee_coma': ('COMA', 'commune associée')}
+    missing = []
+    for r in rows:
+        if r['code_scheme'] not in cad_type or r['is_active'] != 'Y':
+            continue
+        nat, typ = cad_type[r['code_scheme']]
+        parent = r['parent_id'].split(':')[-1]
+        if (r['code'], nat) in cad:
+            assert cad[(r['code'], nat)] == parent, (r['code'], nat, parent)
+            bx.append(dict(entity_id=r['entity_id'], boundary_dataset=GEO_CAD, boundary_code=r['code'], boundary_type=typ,
+                           vintage=GEO_VINTAGE, relation='same_code', source_url=url_ign))
+            stats['boundary|commune_associee_ou_deleguee'] += 1
+        else:
+            missing.append((r['code'], parent))
+            assert parent in geo['commune'], (r['code'], parent)
+            bx.append(dict(entity_id=r['entity_id'], boundary_dataset='IGN ADMIN-EXPRESS-COG commune', boundary_code=parent,
+                           boundary_type='', vintage=GEO_VINTAGE, relation='parent_boundary', source_url=url_ign))
+            r['flags'] = ';'.join(x for x in (r['flags'], 'parent_boundary') if x)
+            stats['boundary|cad_parent_boundary'] += 1
+    assert sorted(missing) == sorted(CAD_NOT_IN_IGN.items()), sorted(missing)
     xw = [x for x in xw if x]
     xw.sort(key=lambda x: (x['entity_id'], x['code_scheme'], x['code']))
     # split for the 10 MB limit: upper levels in one file, communes (+ their children) by région

@@ -119,9 +119,14 @@ SOURCE_TABLE = {
     'destatis_rs': ('Statistisches Bundesamt (Destatis), Regionalschlüssel code list (all Gemeinden by ARS as in the Gemeindeverzeichnis '
                     'GV-ISys), version 2026-09-30, published on XRepository (urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs)',
                     'https://www.xrepository.de/details/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs', ['destatis_rs']),
-    'bkg_vg250': ('BKG, Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, WFS attribute tables (no geometry): Staat, Länder, '
-                  'Regierungsbezirke, Kreise, Gemeindeverbände, Gemeinden (ARS, AGS, name, designation BEZ, WSK)',
-                  'https://sgx.geodatenzentrum.de/wfs_vg250', ['bkg_vg250_*']),
+    'bkg_vg250': ('BKG, Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, attribute table VGTB_ATT_VG of the Excel download '
+                  '(vg250_01-01.ee.excel.ebenen.zip; the edition Geo builds from)', 'https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2026/',
+                  ['bkg_vg250_xlsx_20260101']),
+    'bkg_vg250_history': ('BKG VG250 editions Stand 01.01.2025 and 31.12.2025 (Excel attribute tables), compared with 01.01.2026: ended '
+                          'codes of foreign/de rows (derived; successors only where listed by data/geo)',
+                          'https://daten.gdz.bkg.bund.de/produkte/vg/', ['bkg_vg250_xlsx_20250101', 'bkg_vg250_xlsx_20251231']),
+    'dgcl_banatic': ('DGCL (Ministère de l\'Intérieur), BANATIC export France (pre-generated xlsx, groupements and members): legal type '
+                     '(Nature juridique) of each EPCI à fiscalité propre', 'https://www.banatic.interieur.gouv.fr/', ['dgcl_banatic']),
     'insee_cog2026': ('INSEE, Code officiel géographique au 1er janvier 2026 (CSV: régions, départements, CTCD, collectivités '
                       "d'outre-mer, communes, communes déléguées/associées, arrondissements municipaux, communes des COM, mouvements)",
                       'https://www.insee.fr/fr/information/8740222', ['insee_cog2026']),
@@ -145,7 +150,7 @@ SOURCE_TABLE = {
 }
 LICENSES = {'insee_cog2026': 'Licence Ouverte / Open Licence 2.0', 'insee_epci2026': 'Licence Ouverte / Open Licence 2.0',
             'insee_ept2026': 'Licence Ouverte / Open Licence 2.0', 'ign_adminexpress': 'Licence Ouverte / Open Licence 2.0 (IGN)',
-            'ign_aecog2026': 'Licence Ouverte / Open Licence 2.0 (IGN)', 'dgcl_siren': 'Licence Ouverte / Open Licence 2.0 (DGCL)', 'ons_chd': 'Open Government Licence v3.0',
+            'ign_aecog2026': 'Licence Ouverte / Open Licence 2.0 (IGN)', 'dgcl_siren': 'Licence Ouverte / Open Licence 2.0 (DGCL)', 'dgcl_banatic': 'Licence Ouverte / Open Licence 2.0 (DGCL)', 'bkg_vg250_history': 'dl-de/by-2-0 (BKG 2026)', 'ons_chd': 'Open Government Licence v3.0',
             'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
             'bkg_vg250': 'dl-de/by-2-0 (BKG 2026; Datenquellen https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)',
             'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',

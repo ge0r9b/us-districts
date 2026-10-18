@@ -285,7 +285,7 @@ def build(reg):
             if c[:3] not in ents or r['is_active'] != 'Y':   # terminated codes are not in the current boundaries
                 continue
             if c in have:
-                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint, relation='same_code', source_url=url))
+                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, boundary_type='', vintage=vint, relation='same_code', source_url=url))
                 stats['boundary|' + ds] += 1
             else:
                 gaps.append({'code': c, 'issue': 'not in boundary dataset {}'.format(ds)})

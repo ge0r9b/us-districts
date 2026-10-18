@@ -239,10 +239,12 @@ government, no GSS codes), parish council existence, abolished councils (only li
 
 ### Germany (`foreign/de/`)
 Sources: Destatis Regionalschlüssel code list 2026-09-30 (every Gemeinde by ARS, as in GV-ISys; Destatis publishes it on
-XRepository) and BKG VG250 Stand 01.01.2026 attribute tables via WFS (Länder, Regierungsbezirke, Kreise, Gemeindeverbände,
+XRepository) and the BKG VG250 attribute tables (Excel edition Stand 01.01.2026; Länder, Regierungsbezirke, Kreise, Gemeindeverbände,
 Gemeinden with designation `BEZ` and `WSK`), both dl-de/by-2-0. **Blocker:** www.destatis.de (GV100AD / GV-ISys Excel)
 refuses TLS connections from the build host, so the GV100AD file itself was not used; the XRepository list is Destatis's
-own key list and carries Gemeinden only, so the upper levels come from VG250 (BKG, built on the same ARS).
+own key list and carries Gemeinden only, so the upper levels come from VG250 (BKG, built on the same ARS). The VG250 WFS
+serves the 31.12.2025 state (before Hanau, Bönebüttel and Schmölln/Dobitschen changed), so the Excel download of the
+01.01.2026 edition is used instead.
 
 | level | rows | parent |
 |---|---|---|
@@ -251,29 +253,40 @@ own key list and carries Gemeinden only, so the upper levels come from VG250 (BK
 | Regierungsbezirke (`gov_status=administrative`) | 19 | Land |
 | Landkreise / Kreise | 252 + 42 | Regierungsbezirk or Land |
 | kreisfreie Städte / Stadtkreise | 96 + 9 (+ Berlin, Hamburg = their Land rows) | Regierungsbezirk or Land |
-| Gemeindeverbände: Verwaltungsgemeinschaft 573, Amt 209, Verbandsgemeinde 149, Verwaltungsverband 120, Samtgemeinde 114, erfüllende Gemeinde 38 | 1,203 | Kreis |
+| Gemeindeverbände: Verwaltungsgemeinschaft 573, Amt 209, Verbandsgemeinde 149, Verwaltungsverband 120, Samtgemeinde 114, erfüllende Gemeinde 37 | 1,202 | Kreis |
 | Gemeinden (Gemeinde 8,690, Stadt 1,950) | 10,640 | Gemeindeverband or Kreis |
 
 All 10,747 Gemeinden of the Destatis list are covered (10,640 + 105 kreisfreie Städte + Berlin + Hamburg); 197
 areas without a municipal government (gemeindefreie Gebiete, coastal waters, the German-Luxembourg condominium, Verband key
-9999) are left out. Changes between VG250 (Jan 2026) and Destatis (Sep 2026) are in `gaps.csv`: Hanau kreisfrei
-(06415, flag `kreisfrei_from_ars_structure`), Schmölln's erfüllende Gemeinde without members, a few Gemeinden with a new
-Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: Geo's VG250 layers LAN, KRS,
-VWG, GEM (Stand 2026-01-01, GF=4 features; FOREIGN_VINTAGES.md), only codes present in the layer (16 / 400 / 1,307 /
-10,744); no rows for Regierungsbezirke, Staat or VG1000 (Geo does not build them).
-Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units and code history (`predecessor_id`/`successor_id` empty, no `is_active=N` rows): the Destatis Gebietsänderungen lists are on www.destatis.de, which refuses connections from this build host, and BKG publishes no change list (VG250 carries only the current `WSK`); XRepository has only snapshots of the key list, which give neither dates nor links.
+9999) are left out. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: Geo's VG250
+layers LAN, KRS, VWG, GEM (Stand 2026-01-01, GF=4 features; FOREIGN_VINTAGES.md), current codes only (16 / 401 / 1,307 /
+10,747); no rows for Regierungsbezirke, Staat or VG1000 (Geo does not build them).
+
+History (8 rows, `is_active=N`, flags `code_terminated;derived_from_vg250_editions`, source `bkg_vg250_history`): no
+official change list was reachable (www.destatis.de, home of the Gebietsänderungen, refuses connections from this build
+host; XRepository has only snapshots of the key list; BKG publishes no change list). The ended codes are therefore derived
+from BKG: every Gemeinde / Gemeindeverband ARS present in VG250 Stand 31.12.2025 but not in Stand 01.01.2026
+(01.01.2025 → 31.12.2025: no changes), `code_valid_to` 2025-12-31. Ended: Gemeinden Bönebüttel 010570008008, Hanau
+064350014014, Kiliansroda 160715008038, Kleinschwabhausen 160715008042, Mechelroda 160715008055, Dobitschen 160775052003,
+Schmölln 160775052043, and the erfüllende Gemeinde Schmölln 160775052000. `successor_id` only where Geo's
+FOREIGN_VINTAGES.md @ a92f2b0 states it (flag `successor_stated_by_geo`): Hanau → 064150000000 (kreisfrei, Kreis 06415),
+Bönebüttel → 010575785008, Dobitschen and Schmölln → 160770043043; the new codes carry the matching `predecessor_id`.
+Kiliansroda, Kleinschwabhausen, Mechelroda and the erfüllende Gemeinde have no stated successor and none is given. The 6
+dissolved gemeindefreie Gebiete are not government rows. Earlier changes are not covered (no dated official list).
+Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published).
 
 ### France (`foreign/fr/`; units split in `units_upper.csv` and `units_communes_<région>.csv` for the 10 MB limit)
 Sources: INSEE COG au 1er janvier 2026, INSEE Base des EPCI à fiscalité propre et des EPT au 1er janvier 2026, IGN ADMIN
-EXPRESS COG CARTO (attribute tables via WFS, latest edition = COG 2026), all Licence Ouverte 2.0.
+EXPRESS COG CARTO (attribute tables via WFS, latest edition = COG 2026), DGCL BANATIC (France export: EPCI legal
+type; INSEE/SIREN table), all Licence Ouverte 2.0.
 
 | level | rows | parent |
 |---|---|---|
 | État | existing `nation:fr` | |
-| régions | 12 metropolitan → existing `subdivision:fr-*` (Wikidata item with INSEE code P2585 and ISO P300), Corse → `subdivision:fr-20r`, Martinique/Guyane/Mayotte → their single collectivity's `territory:` row; new: Guadeloupe, La Réunion (`fr-cog:reg:01/04`) | `nation:fr` |
-| département-level collectivities (CTCD) | 91 conseils départementaux (`fr-cog:dep:XX`), Métropole de Lyon, Collectivité européenne d'Alsace (`fr-cog:ctcd:69M/6AE`), Ville de Paris (= commune 75056); existing: Corse, Martinique, Guyane, Mayotte, and the départements of Guadeloupe and La Réunion (= `territory:gp/re`, ISO FR-971/974 "overseas departmental collectivity") | région |
+| régions | 12 metropolitan → existing `subdivision:fr-*` (Wikidata item with INSEE code P2585 and ISO P300), Corse → `subdivision:fr-20r`, Martinique/Guyane/Mayotte → their single collectivity's `territory:` row; new: conseils régionaux of Guadeloupe and La Réunion (`fr-cog:reg:01/04`, parent `territory:gp/re`) | `nation:fr` |
+| département-level collectivities (CTCD) | 91 conseils départementaux (`fr-cog:dep:XX`), Métropole de Lyon, Collectivité européenne d'Alsace (`fr-cog:ctcd:69M/6AE`), Ville de Paris (= commune 75056); existing: Corse, Martinique, Guyane, Mayotte. Conseils départementaux of Guadeloupe and La Réunion are `fr-cog:dep:971/974` with parent `territory:gp/re` | région |
 | collectivités d'outre-mer | existing `territory:pm/bl/mf/tf/wf/pf/nc`, `subdivision:fr-cp` (code_xwalk) | |
-| EPCI à fiscalité propre (SIREN) | 21 métropoles, 14 CU, 230 CA, 987 CC (+ Métropole de Lyon) | région or `nation:fr` |
+| EPCI à fiscalité propre (SIREN; type = DGCL BANATIC nature juridique) | 21 métropoles, 14 CU, 230 CA, 987 CC (+ Métropole de Lyon) | région or `nation:fr` |
 | EPT (Grand Paris) | 11 | Métropole du Grand Paris |
 | communes | 34,875 (incl. Paris) + 85 in the COM | CTCD / `territory:` row; `member_of` EPCI (+ EPT) |
 | communes déléguées / associées, arrondissements municipaux | 2,105 / 471 / 45 | commune |
@@ -281,20 +294,34 @@ EXPRESS COG CARTO (attribute tables via WFS, latest edition = COG 2026), all Lic
 Départements as territorial units are not separate rows: `code_xwalk.csv` maps each INSEE département code (and the
 ISO 3166-2 FR-XX code) to the collectivity that governs it (`same_government`, or `governs_departement` for 2A/2B, 67/68, 75,
 972, 973, 976; `governs_part` for Rhône 69, split between its conseil départemental and the Métropole de Lyon).
-The Guadeloupe and La Réunion région rows carry no QID (Wikidata's P2585 item is the area item already on `territory:gp/re`,
-flag `qid_is_shared_area_item`). `valid_from` for 1,508 communes from the INSEE movement file. Saint-Barthélemy (97701)
-and Saint-Martin (97801) commune rows carry no QID (Q25362 / Q126125 are the collectivities' items, on `territory:bl/mf`);
-`code_xwalk.csv` maps those commune codes to `territory:bl/mf` as `same_government`. History: 1,812 commune codes
-terminated since 2015-01-01 (`units_communes_terminated.csv`, is_active=N, `code_valid_to` = day before COG DATE_FIN),
-each with its successor from the COG movement file; 836 current communes carry `predecessor_id` (mostly communes
-nouvelles). Commune SIREN (`alt_code`) comes from the DGCL INSEE/SIREN table (all 34,875); IGN ADMIN EXPRESS had put the
-SIREN of 31006 and 55039 on 46002 and 55102 as well (the cause of the two SIRENs on two communes each; EPCI membership
-was always joined on the INSEE code via the INSEE composition file). Not covered: provinces of
-New Caledonia and the Wallis-et-Futuna circonscriptions/chefferies (not in the COG as communes), syndicats (SIVU, SIVOM,
-syndicats mixtes), Île des Faisans (condominium, no own government), SIREN for EPT/EPCI beyond the INSEE code
-(they are the SIREN). `boundary_xwalk.csv` is keyed to Geo's ADMIN EXPRESS COG 2026 layers
-(FOREIGN_VINTAGES.md): region 18, departement 96, epci 1,264, commune 34,875; communes déléguées/associées, arrondissements
-municipaux and the CTCD layer have no Geo layer and no row.
+Guadeloupe and La Réunion (Full Stack ruling): `territory:gp/re` is the AREA; `code_xwalk.csv` maps INSEE région 01/04,
+département 971/974 and ISO FR-971/974 to it as `area_only`. The région council (`fr-cog:reg:01/04`) and the conseil
+départemental (`fr-cog:dep:971/974`, `insee_dep` → `same_government`) are separate child rows of the territory; Guadeloupe
+communes sit under `fr-cog:dep:971`. The région rows carry no QID (Wikidata's P2585 item is the area item on
+`territory:gp/re`, flag `qid_is_shared_area_item`). Saint-Barthélemy (97701) and Saint-Martin (97801) commune rows carry
+no QID (Q25362 / Q126125 are the collectivities' items, on `territory:bl/mf`); `code_xwalk.csv` maps those commune codes to
+`territory:bl/mf` as `same_government`. EPCI type: DGCL BANATIC `Nature juridique` (it is also the type INSEE uses); where
+IGN ADMIN EXPRESS differs it is noted on the row (Le Grand Ouest Toulousain 243100781: a CA since 2025, IGN still CC).
+
+History: 4,242 commune codes terminated since 1943 (all of `v_commune_depuis_1943`; `units_communes_terminated.csv`,
+is_active=N, `code_valid_to` = day before COG DATE_FIN), 4,240 with a successor from the COG 2026 movement file (2 without
+one in the COG, flag `no_successor_in_cog`); 2,989 current communes carry `predecessor_id` (the codes that merged into them,
+plus, for 331 communes created by splitting off, the commune(s) they were taken from per the same movement event).
+`valid_from` for 1,280 communes: only where the movement file shows the commune created (MOD 32 commune nouvelle, or a
+COM code that did not exist as COM before, or restored from its own déléguée/associée status); communes that only ceded
+territory (MOD 21 on the ceding side) get no `valid_from`. Commune SIREN (`alt_code`) comes from the DGCL INSEE/SIREN
+table (all 34,875); IGN ADMIN EXPRESS had put the SIREN of 31006 and 55039 on 46002 and 55102 as well (the cause of the
+two SIRENs on two communes each; EPCI membership was always joined on the INSEE code via the INSEE composition file).
+Not covered: provinces of New Caledonia and the Wallis-et-Futuna circonscriptions/chefferies (not in the COG as communes),
+syndicats (SIVU, SIVOM, syndicats mixtes), Île des Faisans (condominium, no own government), SIREN for EPT/EPCI beyond the
+INSEE code (they are the SIREN).
+
+`boundary_xwalk.csv` is keyed to Geo's ADMIN EXPRESS COG 2026 layers (FOREIGN_VINTAGES.md @ a92f2b0): region 20 (18 +
+`territory:gp/re` `same_area`), departement 98, epci 1,264, commune 34,875, commune_associee_ou_deleguee 2,566 (joined on
+code AND `boundary_type` = `commune déléguée` / `commune associée`, since 582 share the parent commune's code). The 10
+déléguées/associées IGN does not have (25303, 25347, 25390, 25398, 25620; 55294, 55319, 55451; 69144, 69208) point to
+their parent commune's boundary (`relation=parent_boundary`, flag `parent_boundary`); parents checked against the INSEE
+COG (25390, 55012, 69208). Arrondissements municipaux and the CTCD layer have no Geo layer and no row.
 
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo

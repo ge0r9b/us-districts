@@ -100,6 +100,8 @@ fr-cog:dep:92,insee_dep,92,same_government,département Hauts-de-Seine: Conseil 
 fr-cog:dep:93,insee_dep,93,same_government,département Seine-Saint-Denis: Conseil départemental de La Seine-Saint-Denis,insee_cog2026,https://www.insee.fr/fr/information/8740222
 fr-cog:dep:94,insee_dep,94,same_government,département Val-de-Marne: Conseil départemental du Val-de-Marne,insee_cog2026,https://www.insee.fr/fr/information/8740222
 fr-cog:dep:95,insee_dep,95,same_government,département Val-d'Oise: Conseil départemental du Val-d'Oise,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:971,insee_dep,971,same_government,département Guadeloupe: Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:974,insee_dep,974,same_government,département La Réunion: Conseil départemental de La Réunion,insee_cog2026,https://www.insee.fr/fr/information/8740222
 subdivision:fr-20r,insee_ctcd,20R,same_government,Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
 subdivision:fr-20r,insee_dep,2A,governs_departement,département Corse-du-Sud: Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
 subdivision:fr-20r,insee_dep,2B,governs_departement,département Haute-Corse: Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
@@ -140,9 +142,8 @@ territory:gf,insee_dep,973,same_government,département Guyane: Collectivité te
 territory:gf,insee_reg,03,same_government,region and departement are one collectivity (Collectivité territoriale unique de La Guyane),insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:gf,siren,179730015,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
 territory:gf,siren,200052678,same_government,Collectivité territoriale unique de La Guyane,ign_adminexpress,https://data.geopf.fr/wfs/ows
-territory:gp,insee_ctcd,971D,same_government,Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
-territory:gp,insee_dep,971,same_government,département Guadeloupe: Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
-territory:gp,siren,229710017,same_government,Conseil départemental de La Guadeloupe,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:gp,insee_dep,971,area_only,département Guadeloupe: the territory row is the area; conseil départemental = fr-cog:dep:971,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gp,insee_reg,01,area_only,Guadeloupe: the territory row is the area; région council = fr-cog:reg:01,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mf,insee_com,97801,same_government,Saint-Martin = Saint-Martin (single-commune collectivity; commune row fr-cog:com:97801),insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mf,insee_comer,978,same_government,Saint-Martin,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mq,insee_ctcd,972R,same_government,Collectivité territoriale unique de La Martinique,insee_cog2026,https://www.insee.fr/fr/information/8740222
@@ -153,9 +154,8 @@ territory:mq,siren,200055507,same_government,Collectivité territoriale unique d
 territory:nc,insee_comer,988,same_government,Nouvelle-Calédonie,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:pf,insee_comer,987,same_government,Polynésie française,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:pm,insee_comer,975,same_government,Saint-Pierre-et-Miquelon,insee_cog2026,https://www.insee.fr/fr/information/8740222
-territory:re,insee_ctcd,974D,same_government,Conseil départemental de La Réunion,insee_cog2026,https://www.insee.fr/fr/information/8740222
-territory:re,insee_dep,974,same_government,département La Réunion: Conseil départemental de La Réunion,insee_cog2026,https://www.insee.fr/fr/information/8740222
-territory:re,siren,229740014,same_government,Conseil départemental de La Réunion,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:re,insee_dep,974,area_only,département La Réunion: the territory row is the area; conseil départemental = fr-cog:dep:974,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:re,insee_reg,04,area_only,La Réunion: the territory row is the area; région council = fr-cog:reg:04,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:tf,insee_comer,984,same_government,Terres australes et antarctiques françaises,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:wf,insee_comer,986,same_government,Wallis-et-Futuna,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:yt,insee_ctcd,976R,same_government,Département-Région de Mayotte,insee_cog2026,https://www.insee.fr/fr/information/8740222

@@ -3,11 +3,13 @@
 Sources:
   * Destatis, Regionalschluessel code list (all Gemeinden by ARS, as in the Gemeindeverzeichnis GV-ISys), version
     2026-09-30, published by Destatis on XRepository (www.destatis.de itself refuses connections from this build host).
-  * BKG Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, WFS attribute tables only (no geometry): Laender,
+  * BKG Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, attribute tables (Excel download; no geometry): Laender,
     Regierungsbezirke, Kreise (with their designation BEZ), Gemeindeverbaende (VWG layer: Amt, Verbandsgemeinde,
     Samtgemeinde, Verwaltungsgemeinschaft, Verwaltungsverband, erfuellende Gemeinde), Gemeinden; WSK = date of legal effect.
   * Boundary crosswalk keyed to Geo's editions (data/geo data-v3/geo/FOREIGN_VINTAGES.md): VG250 Stand 01.01.2026,
-    layers LAN/KRS/VWG/GEM, GF=4 features only.
+    layers LAN/KRS/VWG/GEM.
+  * History: codes in VG250 01.01.2025 / 31.12.2025 but not 01.01.2026 (derived from the BKG editions; Destatis
+    Gebietsaenderungen is on www.destatis.de, unreachable from this host).
 Bund = existing nation:de; Laender = existing subdivision:de-xx (ARS Land code -> ISO 3166-2, names checked); Berlin and
 Hamburg are Land and Gemeinde at once (mapped, not re-minted). New IDs: de-ars:<12-digit ARS> (shorter keys zero-padded).
 """
@@ -16,7 +18,7 @@ import xml.etree.ElementTree as ET
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import CACHE, ROOT, Registry, fetch, manifest, norm, write_csv
 from wikidata import sparql, qv
-from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, check, existing_foreign, wfs,
+from foreign_local import (FOREIGN, LOCAL_COLUMNS, CODE_XW_COLUMNS, BOUNDARY_COLUMNS, check, existing_foreign, read_xlsx, wfs,
                            write_split)
 
 OUT = os.path.join(FOREIGN, 'de')
@@ -26,6 +28,21 @@ RS_URL = 'https://www.xrepository.de/api/version_codeliste/{}_{}/genericode'.for
 RS_PAGE = 'https://www.xrepository.de/details/{}'.format(RS_URN)
 VG250 = 'https://sgx.geodatenzentrum.de/wfs_vg250'
 VG250_VINTAGE = '2026-01-01'
+# BKG VG250 attribute tables (Excel, table VGTB_ATT_VG), the same editions Geo builds from. The VG250 WFS
+# (sgx.geodatenzentrum.de/wfs_vg250) used before served the 31.12.2025 state (no Hanau 06415) and shifted WSK one day
+# (2009-01-01 -> 2008-12-31Z), so the downloads replace it.
+VG_DL = 'https://daten.gdz.bkg.bund.de/produkte/vg/'
+VG_EDITIONS = {'20260101': VG_DL + 'vg250_ebenen_0101/2026/vg250_01-01.ee.excel.ebenen.zip',
+               '20251231': VG_DL + 'vg250_ebenen_1231/2025/vg250_12-31.ee.excel.ebenen.zip',
+               '20250101': VG_DL + 'vg250_ebenen_0101/2025/vg250_01-01.ee.excel.ebenen.zip'}
+VG_ADE = {'sta': '1', 'lan': '2', 'rbz': '3', 'krs': '4', 'vwg': '5', 'gem': '6'}
+# Successors of codes that ended on 2025-12-31, as listed in data/geo README.md @ a92f2b0 (VG250 31.12.2025 vs
+# 01.01.2026) and in the request of 2026-10-18; BKG itself states no successor. Codes not listed get none.
+STATED_SUCCESSOR = {'064350014014': '064150000000',      # Hanau kreisfrei (Kreis 06415)
+                    '010570008008': '010575785008',      # Bönebüttel joins an Amt
+                    '160775052043': '160770043043',      # Schmölln, new code after Dobitschen merged in
+                    '160775052003': '160770043043'}      # Dobitschen merged into Schmölln
+GEO_NOTE = 'data/geo README.md @ a92f2b0'
 # Geo's exact boundary editions (FOREIGN_VINTAGES.md): layer key -> boundary_dataset
 GEO_LAYERS = {'lan': 'BKG VG250 VG250_LAN', 'krs': 'BKG VG250 VG250_KRS', 'vwg': 'BKG VG250 VG250_VWG',
               'gem': 'BKG VG250 VG250_GEM'}
@@ -49,14 +66,33 @@ def ars12(a):
     return a + '0' * (12 - len(a))
 
 
-def layer(svc, name, key):
-    rows = wfs(key, svc, name, ['{}:{}'.format(name.split(':')[0], p) for p in PROPS])
+def vg_edition(ed):
+    """(ADE, ARS) -> unit of the VG250 edition ed (attribute table VGTB_ATT_VG), with WSK as an ISO date."""
+    import datetime, zipfile
+    key = 'bkg_vg250_xlsx_' + ed
+    p = fetch(key, url=VG_EDITIONS[ed], fname=key + '.zipdata')
+    x = os.path.join(CACHE, key + '.xlsx')
+    if not os.path.exists(x) or os.path.getmtime(x) < os.path.getmtime(p):
+        with zipfile.ZipFile(p) as z:
+            n = next(n for n in z.namelist() if n.endswith('verwaltungsgebiete.xlsx'))
+            open(x, 'wb').write(z.read(n))
+    t = read_xlsx(x)['VGTB_ATT_VG']
     out = {}
-    for r in rows:
-        if r['gf'] in (4, 9):          # GF 4/9: land area (GF 1/2/3 = water parts of the same unit)
-            assert r['ars'] not in out or out[r['ars']]['gen'] == r['gen'], r['ars']
-            out[r['ars']] = r
-    GF4[key] = {r['ars'] for r in rows if r['gf'] == 4}
+    for v in t[1:]:
+        r = dict(zip(t[0], v))
+        w = r.get('WSK') or ''
+        wsk = (datetime.date(1899, 12, 30) + datetime.timedelta(days=int(float(w)))).isoformat() if w else ''
+        k = (r['ADE'], r['ARS'])
+        assert k not in out, k
+        out[k] = dict(ars=r['ARS'], ade=int(r['ADE']), gf=4, ags=r['AGS'], gen=r['GEN'], bez=r['BEZ'], nbd=r['NBD'], wsk=wsk)
+    return out
+
+
+def layer(svc, name, key):
+    lk = key.rsplit('_', 1)[-1]
+    ed = vg_edition('20260101')
+    out = {a: r for (ade, a), r in ed.items() if ade == VG_ADE[lk]}
+    GF4[key] = set(out)
     return out
 
 
@@ -87,7 +123,7 @@ def build(reg):
     wd = wd_codes()
     man = manifest()
     ra_d = man['destatis_rs']['retrieved_at']
-    ra_b = max(v['retrieved_at'] for k, v in man.items() if k.startswith('bkg_vg250_'))
+    ra_b = man['bkg_vg250_xlsx_20260101']['retrieved_at']
     ra_w = max(man['wd_de_p1388']['retrieved_at'], man['wd_de_p440']['retrieved_at'])
     known = existing_foreign()
     stats, gaps = collections.Counter(), []
@@ -97,7 +133,7 @@ def build(reg):
         assert norm(known[e]['name']) == norm(r['gen']), (e, r['gen'])
         land[a[:2]] = e
     assert len(land) == 16
-    url_b, url_d = '{}?service=WFS&request=GetCapabilities'.format(VG250), RS_PAGE
+    url_b, url_d = VG_EDITIONS['20260101'], RS_PAGE
 
     def row(eid, name, alt, sub, gs, parent, code, ags, q, wsk, src, note='', flags=()):
         srcs = src + (';wikidata_foreign' if q else '')
@@ -194,6 +230,64 @@ def build(reg):
     for r in rows:
         stats[r['subtype']] += 1
         stats['with_qid'] += bool(r['wikidata_qid'])
+    # ---- history: codes in VG250 31.12.2025 (or 01.01.2025) that VG250 01.01.2026 no longer has, levels with
+    # government rows (Kreis, Gemeindeverband association, Gemeinde; gemeindefreie Gebiete have no government)
+    eds = {ed: vg_edition(ed) for ed in ('20250101', '20251231')}
+    now = vg_edition('20260101')
+    cur_ids = {r['entity_id'] for r in rows}
+    ended = {}
+    for ed in ('20250101', '20251231'):                      # later edition wins
+        for k, r in eds[ed].items():
+            if k not in now and k[0] in ('4', '5', '6'):
+                ended[k] = dict(r, last=ed)
+    ended_ids = set()
+    ra_h = max(manifest()[k]['retrieved_at'] for k in ('bkg_vg250_xlsx_20250101', 'bkg_vg250_xlsx_20251231'))
+    for (ade, a), r in sorted(ended.items()):
+        if ade == '6' and GEMFREI.search(r['gen'] + ' ' + r['bez']):
+            stats['ended_gemeindefrei_not_a_government'] += 1
+            continue
+        if ade == '5' and r['bez'] not in ASSOC:
+            continue                                         # Einheitsgemeinde-type VWG units are not associations
+        if ade == '4':
+            sub, gs = KREIS[r['bez']], 'self_governing'
+        elif ade == '5':
+            sub = ASSOC[r['bez']]
+            gs = 'association' if sub != 'erfuellende_gemeinde' else 'administrative_arrangement'
+        else:
+            sub, gs = ('stadt' if r['bez'] == 'Stadt' else 'gemeinde'), 'self_governing'
+        eid_key = 'de-ars:' + ars12(a)
+        assert eid_key not in cur_ids, eid_key
+        succ = STATED_SUCCESSOR.get(a, '')
+        sid = 'de-ars:' + ars12(succ) if succ else ''
+        if sid and sid not in cur_ids:
+            gaps.append({'code': a, 'issue': 'stated successor {} has no current row'.format(succ)})
+            sid = ''
+        par = [p for p in ('de-ars:' + ars12(a[:9]), 'de-ars:' + ars12(a[:5])) if p in cur_ids | ended_ids or p == eid_key]
+        parent = next((p for p in par if p != eid_key), land[a[:2]])
+        end = '2025-12-31' if r['last'] == '20251231' else ''
+        note = 'code in BKG VG250 {} but not 01.01.2026 (derived from the BKG editions; ended {})'.format(
+            '31.12.2025' if r['last'] == '20251231' else '01.01.2025', end or 'during 2025')
+        if sid:
+            note += '; successor as listed in ' + GEO_NOTE
+        eid = reg.get([eid_key], eid_key, ra_h[:10])
+        rows.append(dict(entity_id=eid, name=r['gen'], name_local='', name_en='', alt_name='', type='foreign', subtype=sub,
+                         gov_status=gs, parent_id=parent, member_of='', country='DE', code_scheme='ars', code=ars12(a),
+                         alt_code=r['ags'] if ade == '6' else '', iso_3166_2='', wikidata_qid='', code_valid_from=r['wsk'],
+                         code_valid_to=end, valid_from='', valid_to='', is_active='N', predecessor_id='', successor_id=sid,
+                         note=note, flags=';'.join(['code_terminated', 'derived_from_vg250_editions'] +
+                                                   (['successor_stated_by_geo'] if sid else [])),
+                         source='bkg_vg250_history', source_url=VG_DL, source_date=end or '2025-12-31', retrieved_at=ra_h,
+                         license='dl-de/by-2-0 (BKG 2026)'))
+        ended_ids.add(eid)
+        stats['ended|' + sub] += 1
+        stats['ended_with_successor'] += bool(sid)
+    pred = collections.defaultdict(set)
+    for r in rows:
+        if r.get('successor_id'):
+            pred[r['successor_id']].add(r['entity_id'])
+    for r in rows:
+        if pred.get(r['entity_id']):
+            r['predecessor_id'] = ';'.join(sorted(pred[r['entity_id']]))
     check(rows, known)
     for a2, e in sorted(land.items()):
         xw.append(dict(entity_id=e, code_scheme='ars', code=a2, relation='same_government', note='Land',
@@ -210,6 +304,8 @@ def build(reg):
         by_ars['lan'].append((e, next(x for x in L['lan'] if x[:2] == a2)))
     for r in rows:
         c = r['code']
+        if r['is_active'] != 'Y':
+            continue                                          # ended codes are not in the 2026 boundaries
         if r['subtype'] == 'regierungsbezirk':
             by_ars['rbz'].append((r['entity_id'], c[:3]))
         elif r['subtype'] in KREIS.values():
@@ -229,7 +325,7 @@ def build(reg):
         for e, c in by_ars[lk]:
             if c in have:
                 bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=VG250_VINTAGE,
-                               relation='same_code', source_url=VG250))
+                               relation='same_code', boundary_type='', source_url=VG_EDITIONS['20260101']))
                 stats['boundary|' + ds] += 1
             else:
                 stats['boundary_missing|' + ds] += 1

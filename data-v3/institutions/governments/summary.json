@@ -5,8 +5,8 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry/*.csv": 165492,
-  "sources.csv": 41,
+  "id_registry/*.csv": 167931,
+  "sources.csv": 43,
   "changes_since_cog2022.csv": 449,
   "images.csv": 9846,
   "images_gaps.csv": 37584,
@@ -226,15 +226,17 @@
   },
   "de": {
    "amt": 209,
-   "boundary_missing|BKG VG250 VG250_GEM": 3,
-   "boundary_missing|BKG VG250 VG250_KRS": 1,
-   "boundary_missing|BKG VG250 VG250_VWG": 1,
-   "boundary|BKG VG250 VG250_GEM": 10744,
-   "boundary|BKG VG250 VG250_KRS": 400,
+   "boundary|BKG VG250 VG250_GEM": 10747,
+   "boundary|BKG VG250 VG250_KRS": 401,
    "boundary|BKG VG250 VG250_LAN": 16,
    "boundary|BKG VG250 VG250_VWG": 1307,
-   "erfuellende_gemeinde": 38,
-   "gaps": 8,
+   "ended_gemeindefrei_not_a_government": 6,
+   "ended_with_successor": 4,
+   "ended|erfuellende_gemeinde": 1,
+   "ended|gemeinde": 5,
+   "ended|stadt": 2,
+   "erfuellende_gemeinde": 37,
+   "gaps": 0,
    "gemeinde": 8690,
    "gemeindefrei_excluded": 197,
    "kreis": 42,
@@ -244,7 +246,7 @@
    "samtgemeinde": 114,
    "stadt": 1950,
    "stadtkreis": 9,
-   "units": 12261,
+   "units": 12268,
    "verbandsgemeinde": 149,
    "verwaltungsgemeinschaft": 573,
    "verwaltungsverband": 120,
@@ -252,10 +254,12 @@
   },
   "fr": {
    "arrondissement_municipal": 45,
+   "boundary|cad_parent_boundary": 10,
    "boundary|commune": 34875,
-   "boundary|departement": 96,
+   "boundary|commune_associee_ou_deleguee": 2566,
+   "boundary|departement": 98,
    "boundary|epci": 1264,
-   "boundary|region": 18,
+   "boundary|region": 20,
    "collectivite_europeenne_d_alsace": 1,
    "comer_commune_same_government": 2,
    "comer_zones_not_communes": 10,
@@ -265,21 +269,24 @@
    "commune": 34959,
    "commune_associee": 471,
    "commune_deleguee": 2105,
+   "commune_pred_from_creation_event": 331,
    "commune_siren_ign_differs_dgcl": 2,
-   "commune_with_predecessor": 836,
-   "conseil_departemental": 91,
+   "commune_with_predecessor": 2989,
+   "conseil_departemental": 93,
+   "epci_type_ign_differs_dgcl": 1,
    "etablissement_public_territorial": 11,
    "gaps": 3,
    "ign_commune_names_equal_cog2026": 34875,
    "metropole": 21,
    "metropole_de_lyon": 1,
+   "mvt_ceded_territory_not_created": 271,
    "region": 2,
-   "terminated_commune": 1812,
-   "terminated_commune_with_successor": 1812,
-   "units": 40751,
+   "terminated_commune": 4242,
+   "terminated_commune_with_successor": 4240,
+   "units": 43183,
    "ville_de_paris": 1,
    "with_qid": 34741,
-   "with_valid_from": 1508
+   "with_valid_from": 1280
   }
  },
  "foreign_country_files": {
@@ -508,6 +515,21 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:02:40Z"
   },
+  "bkg_vg250_xlsx_20250101": {
+   "url": "https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2025/vg250_01-01.ee.excel.ebenen.zip",
+   "last_modified": "2025-08-19",
+   "retrieved_at": "2026-10-18T19:52:44Z"
+  },
+  "bkg_vg250_xlsx_20251231": {
+   "url": "https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_1231/2025/vg250_12-31.ee.excel.ebenen.zip",
+   "last_modified": "2026-06-08",
+   "retrieved_at": "2026-10-18T19:52:53Z"
+  },
+  "bkg_vg250_xlsx_20260101": {
+   "url": "https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/2026/vg250_01-01.ee.excel.ebenen.zip",
+   "last_modified": "2026-07-21",
+   "retrieved_at": "2026-10-18T19:52:22Z"
+  },
   "cog2022": {
    "url": "https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP",
    "last_modified": "2023-08-24",
@@ -552,6 +574,11 @@
    "url": "https://www.xrepository.de/api/version_codeliste/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2026-09-30/genericode",
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:02:28Z"
+  },
+  "dgcl_banatic": {
+   "url": "https://www.banatic.interieur.gouv.fr/consultation/api/export/pregenere/telecharger/France",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:48:06Z"
   },
   "dgcl_siren": {
    "url": "https://static.data.gouv.fr/resources/base-nationale-sur-les-intercommunalites/20250312-083024/correspondance-code-commune-siren.csv",
@@ -723,6 +750,11 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:11:48Z"
   },
+  "ign_aecog2026_cad_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune_associee_ou_deleguee&propertyName=code_insee%2Cnature%2Ccode_insee_de_la_commune_de_rattach&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:50:09Z"
+  },
   "ign_aecog2026_commune_0": {
    "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
    "last_modified": "",
@@ -767,6 +799,11 @@
    "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Aepci&propertyName=code_siren&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_siren",
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:24:26Z"
+  },
+  "ign_aecog2026_epci_nature_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Aepci&propertyName=code_siren%2Cnature&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_siren",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:50:04Z"
   },
   "ign_aecog2026_region_0": {
    "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Aregion&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
