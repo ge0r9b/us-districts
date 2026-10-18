@@ -427,6 +427,11 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
 - **Superseded:** the earlier notes about the SEC/GLEIF pull (`cik:` rows that had an LEI, missing `company_locations.csv` and LEI side file, GLEIF relationship columns, `type = other`) **no longer apply**; that data is not loaded in v3.
 
+- **Release scope (D21, proposed):**
+  - v3.0 ships the brand/location schema plus a small **demo set**: Wawa (from the user's own list) and the one or two cleanest brands Companies names. The demo brands load through the same §15.2 pipeline.
+  - The full brand/location set stays on `data/companies` and loads in a later release: v3.1 or v4, the user decides.
+  - Size estimate for the full set: 36,675 locations, 1.4 MB gzipped, a few MB in Postgres.
+
 ### 15.2 Pipeline: staging → validation → dedupe/merge → upsert
 1. **Stage:** each file → `load_batch` + `stg_entity_row` (raw row as JSON, by header name).
 2. **Validate:** required columns; known `kind`; `entity_id` prefix matches `kind`; `parent_id`, `predecessor_id`, `successor_id` and `entity_relation` endpoints resolve (in the batch or the DB); no relation cycles; company entity_ids match `wikidata:Q[0-9]+` (else excluded) or `usd:<uuid>`; locations have a point or a GEOID; GEOID exists in `data-v3/geo` for that vintage; scraped sources have `robots_ok` and a recorded `license`.

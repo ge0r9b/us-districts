@@ -146,8 +146,8 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 |---|---|---|
 | **Phase 1 (now)** | This plan: schema, API and loaders, on paper | — |
 | **Phase 2 → v3.0-alpha** | Neon `dev` branch; SCHEMA migrations; loaders for results (`data-v3/results`), geography (`data-v3/geo`), the entity registry (`data-v3/inst/entities.csv` + xwalk), persons and officeholders; static packs + PMTiles; SPA at v2 parity on open data; QA by the Bug Tester on a preview URL or a branch served on ports 8850–8859 | D1–D4, D17 accounts |
-| **v3.0** | Public launch at parity; milestone tag | v2.0 tag; QA sign-off |
-| **v3.1** | List ingest: **Wikidata brands + locations** (Companies bot) **plus governments** (Governments bot), deduped and merged with the registry | Companies + Governments bots' files; scraped-data policy (DATA_LOADING §15.3) |
+| **v3.0** | Public launch at parity; milestone tag. Also ships the brand/location schema with a **small demo set**: Wawa (from the user's own list) plus the one or two cleanest brands Companies names (D21, proposed) | v2.0 tag; QA sign-off |
+| **v3.1** | List ingest: **Wikidata brands + locations** (Companies bot; the full set stays on `data/companies` until then, and loads in v3.1 or v4 as the user decides, D21: est. 36,675 locations, 1.4 MB gz, a few MB in Postgres) **plus governments** (Governments bot), deduped and merged with the registry | Companies + Governments bots' files; scraped-data policy (DATA_LOADING §15.3) |
 | **v3.2** | Scheduled refresh: Vercel Cron (or a worker) runs the scrapers, diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Vercel Pro if cron frequency or duration exceeds Hobby |
 | **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
 | **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Vercel Pro |
