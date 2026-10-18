@@ -1,0 +1,218 @@
+{
+"file": "Washington.js",
+"bytes": 1479257,
+"precincts": 7079,
+"counties": 39,
+"dem": 1742718,
+"rep": 1221747,
+"total": 3209214,
+"nearest_county": 12,
+"cap_bytes": 1631104,
+"tol": 0.0004,
+"zero_vote_skipped": 118,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECNAME",
+"county": {
+"King County": [
+718322,
+216339,
+998499
+],
+"Lincoln County": [
+1244,
+4108,
+5713
+],
+"Lewis County": [
+9654,
+21992,
+34149
+],
+"Kitsap County": [
+63156,
+49018,
+124317
+],
+"Okanogan County": [
+6243,
+9577,
+16997
+],
+"Mason County": [
+11993,
+13677,
+28073
+],
+"Snohomish County": [
+185210,
+128224,
+342123
+],
+"Skamania County": [
+2232,
+2928,
+5639
+],
+"Skagit County": [
+26690,
+24736,
+55968
+],
+"Douglas County": [
+4973,
+9636,
+15637
+],
+"San Juan County": [
+7172,
+2688,
+10774
+],
+"Pend Oreille County": [
+1934,
+4373,
+6802
+],
+"Island County": [
+20977,
+18496,
+42926
+],
+"Spokane County": [
+93767,
+113435,
+227246
+],
+"Thurston County": [
+68798,
+48624,
+129410
+],
+"Stevens County": [
+5767,
+15161,
+22677
+],
+"Whitman County": [
+8146,
+7403,
+17305
+],
+"Walla Walla County": [
+9694,
+13651,
+25419
+],
+"Wahkiakum County": [
+832,
+1344,
+2358
+],
+"Yakima County": [
+31291,
+41735,
+77750
+],
+"Pierce County": [
+172538,
+146824,
+348485
+],
+"Grays Harbor County": [
+12020,
+14067,
+28367
+],
+"Clallam County": [
+17677,
+18794,
+39457
+],
+"Kittitas County": [
+7489,
+10100,
+18955
+],
+"Pacific County": [
+4620,
+5360,
+10716
+],
+"Klickitat County": [
+4194,
+5789,
+10769
+],
+"Cowlitz County": [
+17921,
+24214,
+45741
+],
+"Whatcom County": [
+60340,
+40599,
+109673
+],
+"Chelan County": [
+13032,
+18114,
+33380
+],
+"Benton County": [
+26360,
+47194,
+80027
+],
+"Clark County": [
+92744,
+92412,
+200111
+],
+"Asotin County": [
+3134,
+5741,
+9736
+],
+"Adams County": [
+1299,
+3083,
+4644
+],
+"Franklin County": [
+8886,
+13206,
+23720
+],
+"Garfield County": [
+279,
+851,
+1246
+],
+"Ferry County": [
+1098,
+2202,
+3601
+],
+"Grant County": [
+7810,
+18518,
+28346
+],
+"Columbia County": [
+526,
+1497,
+2182
+],
+"Jefferson County": [
+12656,
+6037,
+20276
+]
+},
+"vest_zip": "wa_2016.zip"
+}

@@ -1,0 +1,383 @@
+{
+"file": "Wisconsin.js",
+"bytes": 1493900,
+"precincts": 6599,
+"counties": 72,
+"dem": 1382536,
+"rep": 1405284,
+"total": 2976150,
+"nearest_county": 1,
+"cap_bytes": 1510744,
+"tol": 0.0004,
+"zero_vote_skipped": 282,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "LABEL",
+"county": {
+"Jackson County": [
+3818,
+4906,
+9267
+],
+"Marathon County": [
+26481,
+39014,
+69518
+],
+"Columbia County": [
+13528,
+14163,
+29698
+],
+"Chippewa County": [
+11887,
+17916,
+31568
+],
+"Fond du Lac County": [
+17387,
+31022,
+51796
+],
+"Dodge County": [
+13968,
+26635,
+43078
+],
+"Green Lake County": [
+2693,
+6216,
+9416
+],
+"Brown County": [
+53382,
+67210,
+129011
+],
+"La Crosse County": [
+32406,
+26378,
+63674
+],
+"Polk County": [
+7565,
+13810,
+22745
+],
+"Kewaunee County": [
+3627,
+6618,
+10767
+],
+"Langlade County": [
+3250,
+6478,
+10186
+],
+"Adams County": [
+3745,
+5966,
+10130
+],
+"St. Croix County": [
+17482,
+26222,
+47508
+],
+"Sawyer County": [
+3503,
+5185,
+9137
+],
+"Rusk County": [
+2171,
+4564,
+7088
+],
+"Jefferson County": [
+16569,
+23417,
+43109
+],
+"Winnebago County": [
+37047,
+43445,
+87135
+],
+"Rock County": [
+39339,
+31493,
+76074
+],
+"Wood County": [
+14225,
+21498,
+37818
+],
+"Trempealeau County": [
+5636,
+7366,
+13687
+],
+"Waupaca County": [
+8451,
+16209,
+26095
+],
+"Waukesha County": [
+79224,
+142543,
+237593
+],
+"Waushara County": [
+3791,
+7667,
+12074
+],
+"Florence County": [
+665,
+1898,
+2656
+],
+"Eau Claire County": [
+27340,
+23331,
+55025
+],
+"Washington County": [
+20852,
+51740,
+76757
+],
+"Forest County": [
+1579,
+2787,
+4545
+],
+"Grant County": [
+10051,
+12350,
+24368
+],
+"Walworth County": [
+18710,
+28863,
+51391
+],
+"Green County": [
+9122,
+8693,
+18985
+],
+"Lafayette County": [
+3288,
+3977,
+7662
+],
+"Vernon County": [
+6371,
+7004,
+14275
+],
+"Iron County": [
+1275,
+2081,
+3513
+],
+"Crawford County": [
+3419,
+3836,
+7728
+],
+"Monroe County": [
+7052,
+11356,
+19699
+],
+"Pierce County": [
+8399,
+11272,
+21376
+],
+"Kenosha County": [
+35799,
+36037,
+76304
+],
+"Vilas County": [
+4770,
+8166,
+13611
+],
+"Taylor County": [
+2393,
+6579,
+9471
+],
+"Outagamie County": [
+38068,
+49879,
+93933
+],
+"Manitowoc County": [
+14538,
+23244,
+40786
+],
+"Dane County": [
+217697,
+71275,
+309354
+],
+"Ozaukee County": [
+20170,
+30464,
+54560
+],
+"Racine County": [
+42641,
+46681,
+94302
+],
+"Door County": [
+8014,
+8580,
+17592
+],
+"Sauk County": [
+14690,
+14799,
+31357
+],
+"Calumet County": [
+9642,
+15367,
+26595
+],
+"Sheboygan County": [
+23000,
+32514,
+59766
+],
+"Barron County": [
+7889,
+13614,
+22671
+],
+"Burnett County": [
+2949,
+5410,
+8738
+],
+"Dunn County": [
+9034,
+11486,
+22106
+],
+"Shawano County": [
+6068,
+12769,
+19810
+],
+"Washburn County": [
+3282,
+5436,
+9193
+],
+"Oconto County": [
+5940,
+13345,
+20206
+],
+"Oneida County": [
+8109,
+12132,
+21531
+],
+"Iowa County": [
+6669,
+4809,
+12275
+],
+"Marinette County": [
+6409,
+13122,
+20343
+],
+"Menominee County": [
+1002,
+267,
+1308
+],
+"Portage County": [
+18529,
+17305,
+38589
+],
+"Price County": [
+2667,
+4559,
+7568
+],
+"Juneau County": [
+4073,
+7130,
+11735
+],
+"Lincoln County": [
+5371,
+8401,
+14712
+],
+"Douglas County": [
+11357,
+9661,
+22536
+],
+"Ashland County": [
+4226,
+3303,
+8032
+],
+"Bayfield County": [
+4953,
+4124,
+9612
+],
+"Pepin County": [
+1344,
+2206,
+3735
+],
+"Buffalo County": [
+2525,
+4048,
+6981
+],
+"Richland County": [
+3569,
+4013,
+8069
+],
+"Clark County": [
+4221,
+8652,
+13673
+],
+"Marquette County": [
+2808,
+4709,
+7891
+],
+"Milwaukee County": [
+288822,
+126069,
+441053
+]
+},
+"vest_zip": "wi.zip"
+}

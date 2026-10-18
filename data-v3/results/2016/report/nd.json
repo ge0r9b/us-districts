@@ -1,0 +1,288 @@
+{
+"file": "North_Dakota.js",
+"bytes": 131832,
+"precincts": 432,
+"counties": 53,
+"dem": 93758,
+"rep": 216794,
+"total": 344360,
+"nearest_county": 0,
+"cap_bytes": 152978,
+"tol": 0.0006,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Dickey County": [
+554,
+1667,
+2407
+],
+"Kidder County": [
+179,
+1111,
+1376
+],
+"Sheridan County": [
+95,
+650,
+787
+],
+"Adams County": [
+216,
+909,
+1218
+],
+"Logan County": [
+114,
+888,
+1067
+],
+"Pembina County": [
+681,
+2208,
+3153
+],
+"Bowman County": [
+227,
+1446,
+1787
+],
+"LaMoure County": [
+502,
+1481,
+2151
+],
+"Walsh County": [
+1167,
+2995,
+4636
+],
+"Ramsey County": [
+1505,
+3217,
+5305
+],
+"Nelson County": [
+536,
+1025,
+1717
+],
+"Wells County": [
+419,
+1796,
+2383
+],
+"Towner County": [
+305,
+733,
+1157
+],
+"Hettinger County": [
+168,
+1050,
+1296
+],
+"Renville County": [
+201,
+993,
+1293
+],
+"Rolette County": [
+2099,
+1217,
+3755
+],
+"Mountrail County": [
+1220,
+2582,
+4106
+],
+"Eddy County": [
+355,
+791,
+1231
+],
+"Pierce County": [
+431,
+1437,
+2071
+],
+"Burke County": [
+119,
+895,
+1052
+],
+"Divide County": [
+245,
+867,
+1219
+],
+"Griggs County": [
+298,
+847,
+1265
+],
+"Burleigh County": [
+10881,
+32532,
+47979
+],
+"Billings County": [
+59,
+495,
+605
+],
+"Golden Valley County": [
+99,
+796,
+957
+],
+"McHenry County": [
+490,
+2050,
+2820
+],
+"Benson County": [
+842,
+929,
+2011
+],
+"Dunn County": [
+358,
+1771,
+2243
+],
+"Emmons County": [
+215,
+1677,
+1981
+],
+"Slope County": [
+43,
+362,
+430
+],
+"McIntosh County": [
+235,
+1100,
+1446
+],
+"Sioux County": [
+758,
+260,
+1232
+],
+"Foster County": [
+347,
+1241,
+1719
+],
+"Traill County": [
+1241,
+2265,
+3933
+],
+"Cass County": [
+31361,
+39816,
+80821
+],
+"Mercer County": [
+621,
+3759,
+4682
+],
+"Ransom County": [
+838,
+1210,
+2359
+],
+"Bottineau County": [
+736,
+2494,
+3494
+],
+"Steele County": [
+361,
+538,
+999
+],
+"Barnes County": [
+1597,
+3160,
+5344
+],
+"Ward County": [
+5806,
+18636,
+27412
+],
+"Richland County": [
+2064,
+4767,
+7592
+],
+"Stark County": [
+1753,
+9755,
+12322
+],
+"Grand Forks County": [
+10851,
+16340,
+30365
+],
+"Morton County": [
+3080,
+11336,
+15832
+],
+"Williams County": [
+1735,
+10069,
+12807
+],
+"McKenzie County": [
+698,
+3670,
+4672
+],
+"Stutsman County": [
+2498,
+6718,
+10155
+],
+"McLean County": [
+1081,
+3860,
+5315
+],
+"Grant County": [
+185,
+1108,
+1381
+],
+"Sargent County": [
+694,
+1088,
+1997
+],
+"Oliver County": [
+119,
+830,
+1017
+],
+"Cavalier County": [
+476,
+1357,
+2006
+]
+},
+"vest_zip": "nd_2016.zip"
+}

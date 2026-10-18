@@ -1,0 +1,68 @@
+{
+"file": "Connecticut.js",
+"bytes": 58232,
+"precincts": 169,
+"counties": 9,
+"dem": 897572,
+"rep": 673215,
+"total": 1644920,
+"nearest_county": 35,
+"cap_bytes": 80468,
+"tol": 0.0004,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME20",
+"county": {
+"Southeastern Connecticut Planning Region": [
+63705,
+53194,
+124146
+],
+"Northwest Hills Planning Region": [
+25787,
+30503,
+59344
+],
+"Naugatuck Valley Planning Region": [
+86541,
+107150,
+201807
+],
+"Western Connecticut Planning Region": [
+162678,
+108414,
+283517
+],
+"Lower Connecticut River Valley Planning Region": [
+48874,
+41433,
+95024
+],
+"Northeastern Connecticut Planning Region": [
+17036,
+24322,
+44301
+],
+"Capitol Planning Region": [
+263521,
+165761,
+450714
+],
+"Greater Bridgeport Planning Region": [
+79827,
+47048,
+131644
+],
+"South Central Connecticut Planning Region": [
+149603,
+95390,
+254423
+]
+},
+"vest_zip": "ct_2016.zip"
+}

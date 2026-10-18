@@ -1,0 +1,298 @@
+{
+"file": "West_Virginia.js",
+"bytes": 932599,
+"precincts": 1721,
+"counties": 55,
+"dem": 188792,
+"rep": 489371,
+"total": 713049,
+"nearest_county": 3,
+"cap_bytes": 1049324,
+"tol": 0.0004,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Brooke County": [
+2568,
+6625,
+9613
+],
+"Calhoun County": [
+456,
+2035,
+2617
+],
+"Gilmer County": [
+545,
+1896,
+2543
+],
+"Grant County": [
+512,
+4346,
+4956
+],
+"Kanawha County": [
+28263,
+43850,
+75690
+],
+"Marion County": [
+6964,
+14668,
+23029
+],
+"Marshall County": [
+2918,
+9666,
+13216
+],
+"Mineral County": [
+2050,
+9070,
+11564
+],
+"Roane County": [
+1222,
+3781,
+5247
+],
+"Tyler County": [
+507,
+2996,
+3654
+],
+"Wayne County": [
+3357,
+11152,
+15182
+],
+"Wood County": [
+8400,
+25434,
+35615
+],
+"Barbour County": [
+1222,
+4527,
+6054
+],
+"Fayette County": [
+4290,
+10357,
+15337
+],
+"Hancock County": [
+3262,
+8909,
+12702
+],
+"Hardy County": [
+1155,
+4274,
+5643
+],
+"Logan County": [
+2092,
+9897,
+12359
+],
+"Mercer County": [
+4704,
+17404,
+22982
+],
+"Monongalia County": [
+14699,
+18432,
+36048
+],
+"Ohio County": [
+5493,
+11139,
+17938
+],
+"Pendleton County": [
+729,
+2398,
+3225
+],
+"Raleigh County": [
+6443,
+22048,
+29618
+],
+"Randolph County": [
+2735,
+7629,
+10876
+],
+"Summers County": [
+1190,
+3455,
+4862
+],
+"Wirt County": [
+386,
+1911,
+2422
+],
+"Harrison County": [
+7694,
+18750,
+27960
+],
+"Putnam County": [
+5884,
+17788,
+24893
+],
+"Monroe County": [
+1111,
+4443,
+5805
+],
+"Nicholas County": [
+1840,
+7251,
+9491
+],
+"Morgan County": [
+1573,
+5732,
+7654
+],
+"Lewis County": [
+1347,
+5274,
+6928
+],
+"Mason County": [
+2081,
+7654,
+10186
+],
+"Berkeley County": [
+12321,
+28244,
+42850
+],
+"Hampshire County": [
+1580,
+6692,
+8608
+],
+"Upshur County": [
+1766,
+7005,
+9218
+],
+"Preston County": [
+2470,
+9538,
+12659
+],
+"Clay County": [
+568,
+2300,
+2972
+],
+"Jefferson County": [
+9518,
+13204,
+24147
+],
+"Boone County": [
+1790,
+6504,
+8683
+],
+"Pocahontas County": [
+928,
+2496,
+3646
+],
+"Taylor County": [
+1491,
+4733,
+6538
+],
+"Webster County": [
+554,
+2302,
+2976
+],
+"Wetzel County": [
+1359,
+4519,
+6265
+],
+"Doddridge County": [
+362,
+2358,
+2840
+],
+"Jackson County": [
+2663,
+9020,
+12187
+],
+"Pleasants County": [
+621,
+2358,
+3150
+],
+"Cabell County": [
+11447,
+19850,
+33085
+],
+"Lincoln County": [
+1459,
+5307,
+7066
+],
+"Tucker County": [
+751,
+2565,
+3475
+],
+"Wyoming County": [
+1062,
+6547,
+7831
+],
+"Mingo County": [
+1370,
+7911,
+9510
+],
+"Braxton County": [
+1321,
+3537,
+5090
+],
+"Ritchie County": [
+496,
+3405,
+4075
+],
+"Greenbrier County": [
+3765,
+9556,
+14066
+],
+"McDowell County": [
+1438,
+4629,
+6203
+]
+},
+"vest_zip": "wv_2016.zip"
+}

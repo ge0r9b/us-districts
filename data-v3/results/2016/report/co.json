@@ -1,0 +1,343 @@
+{
+"file": "Colorado.js",
+"bytes": 942671,
+"precincts": 2989,
+"counties": 64,
+"dem": 1338870,
+"rep": 1202484,
+"total": 2780247,
+"nearest_county": 0,
+"cap_bytes": 959265,
+"tol": 0.0004,
+"zero_vote_skipped": 21,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Mesa County": [
+21729,
+49779,
+77654
+],
+"Alamosa County": [
+3189,
+3046,
+6939
+],
+"Archuleta County": [
+2500,
+4264,
+7339
+],
+"Baca County": [
+283,
+1753,
+2153
+],
+"Bent County": [
+590,
+1188,
+1927
+],
+"Broomfield County": [
+19019,
+14028,
+36499
+],
+"Boulder County": [
+133046,
+41735,
+189336
+],
+"Cheyenne County": [
+132,
+925,
+1102
+],
+"Clear Creek County": [
+2729,
+2575,
+5866
+],
+"Conejos County": [
+1771,
+1914,
+4022
+],
+"Costilla County": [
+1125,
+588,
+1848
+],
+"Crowley County": [
+339,
+1079,
+1527
+],
+"Custer County": [
+797,
+2061,
+3066
+],
+"Dolores County": [
+242,
+944,
+1255
+],
+"Elbert County": [
+3134,
+11705,
+15980
+],
+"Grand County": [
+3358,
+4494,
+8588
+],
+"Hinsdale County": [
+197,
+339,
+589
+],
+"Huerfano County": [
+1633,
+1883,
+3783
+],
+"Jackson County": [
+171,
+629,
+861
+],
+"Kiowa County": [
+91,
+728,
+855
+],
+"Kit Carson County": [
+536,
+2967,
+3702
+],
+"Lake County": [
+1616,
+1270,
+3199
+],
+"Lincoln County": [
+409,
+1892,
+2436
+],
+"Logan County": [
+1851,
+7282,
+9722
+],
+"Mineral County": [
+237,
+344,
+652
+],
+"Moffat County": [
+874,
+5305,
+6525
+],
+"Montezuma County": [
+3973,
+7853,
+12858
+],
+"Montrose County": [
+5466,
+14382,
+21186
+],
+"Morgan County": [
+3151,
+8145,
+11960
+],
+"Otero County": [
+2943,
+4928,
+8452
+],
+"Ouray County": [
+1697,
+1351,
+3310
+],
+"Park County": [
+3421,
+6135,
+10417
+],
+"Phillips County": [
+436,
+1791,
+2332
+],
+"Rio Blanco County": [
+436,
+2791,
+3450
+],
+"Rio Grande County": [
+2001,
+3085,
+5534
+],
+"Routt County": [
+7600,
+5230,
+13986
+],
+"Saguache County": [
+1417,
+1147,
+2835
+],
+"San Juan County": [
+265,
+215,
+506
+],
+"San Miguel County": [
+2975,
+1033,
+4329
+],
+"Sedgwick County": [
+267,
+1015,
+1364
+],
+"Summit County": [
+9557,
+5100,
+16174
+],
+"Teller County": [
+3603,
+9745,
+14444
+],
+"Washington County": [
+296,
+2299,
+2733
+],
+"Yuma County": [
+726,
+3850,
+4791
+],
+"Prowers County": [
+1186,
+3531,
+5016
+],
+"Eagle County": [
+14099,
+8990,
+25223
+],
+"Pitkin County": [
+7333,
+2550,
+10523
+],
+"Gilpin County": [
+1634,
+1566,
+3576
+],
+"Garfield County": [
+11271,
+13132,
+26470
+],
+"Fremont County": [
+5297,
+15122,
+21973
+],
+"Gunnison County": [
+5128,
+3289,
+9412
+],
+"Chaffee County": [
+4888,
+5391,
+11250
+],
+"Delta County": [
+4087,
+11655,
+16790
+],
+"La Plata County": [
+15525,
+12587,
+31150
+],
+"Pueblo County": [
+35875,
+36265,
+78646
+],
+"Jefferson County": [
+161659,
+138953,
+330699
+],
+"Denver County": [
+246586,
+62672,
+333986
+],
+"Adams County": [
+96558,
+80082,
+193677
+],
+"Douglas County": [
+68657,
+102573,
+187500
+],
+"Larimer County": [
+93113,
+83430,
+195981
+],
+"Weld County": [
+46519,
+76651,
+135430
+],
+"Arapahoe County": [
+156967,
+116295,
+299098
+],
+"El Paso County": [
+108010,
+179228,
+318968
+],
+"Las Animas County": [
+2650,
+3710,
+6793
+]
+},
+"vest_zip": "co_2016.zip"
+}

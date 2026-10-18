@@ -1,0 +1,303 @@
+{
+"file": "Montana.js",
+"bytes": 485896,
+"precincts": 686,
+"counties": 56,
+"dem": 177709,
+"rep": 279240,
+"total": 494526,
+"nearest_county": 0,
+"cap_bytes": 649031,
+"tol": 0.0004,
+"zero_vote_skipped": 3,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Missoula County": [
+31543,
+22250,
+59026
+],
+"Jefferson County": [
+1998,
+4177,
+6668
+],
+"Madison County": [
+1180,
+3297,
+4743
+],
+"Powell County": [
+551,
+2029,
+2794
+],
+"Ravalli County": [
+6223,
+14810,
+22346
+],
+"Big Horn County": [
+2094,
+1853,
+4224
+],
+"Custer County": [
+1176,
+3657,
+5185
+],
+"Liberty County": [
+206,
+698,
+956
+],
+"Petroleum County": [
+30,
+278,
+322
+],
+"Dawson County": [
+787,
+3320,
+4331
+],
+"Prairie County": [
+100,
+556,
+689
+],
+"Musselshell County": [
+332,
+1967,
+2416
+],
+"Flathead County": [
+13293,
+30240,
+46494
+],
+"Silver Bow County": [
+8619,
+6376,
+16439
+],
+"Sheridan County": [
+477,
+1241,
+1832
+],
+"Carbon County": [
+1828,
+3748,
+5967
+],
+"Deer Lodge County": [
+2058,
+1763,
+4194
+],
+"Roosevelt County": [
+1560,
+1797,
+3648
+],
+"Fergus County": [
+1202,
+4269,
+5840
+],
+"Glacier County": [
+3121,
+1620,
+5061
+],
+"Broadwater County": [
+573,
+2348,
+3132
+],
+"Garfield County": [
+34,
+653,
+716
+],
+"Blaine County": [
+1202,
+1268,
+2671
+],
+"Beaverhead County": [
+1143,
+3353,
+4849
+],
+"Cascade County": [
+12175,
+19632,
+34384
+],
+"Golden Valley County": [
+71,
+365,
+471
+],
+"Daniels County": [
+168,
+730,
+955
+],
+"Pondera County": [
+738,
+1799,
+2716
+],
+"Treasure County": [
+59,
+351,
+443
+],
+"Powder River County": [
+127,
+884,
+1051
+],
+"Yellowstone County": [
+22171,
+40920,
+68544
+],
+"McCone County": [
+154,
+862,
+1060
+],
+"Meagher County": [
+193,
+729,
+975
+],
+"Park County": [
+3595,
+4980,
+9306
+],
+"Lake County": [
+4776,
+7530,
+13110
+],
+"Chouteau County": [
+732,
+1679,
+2589
+],
+"Teton County": [
+808,
+2170,
+3179
+],
+"Toole County": [
+402,
+1497,
+2030
+],
+"Granite County": [
+472,
+1192,
+1775
+],
+"Judith Basin County": [
+235,
+872,
+1201
+],
+"Gallatin County": [
+24246,
+23802,
+53292
+],
+"Lincoln County": [
+2041,
+6729,
+9284
+],
+"Sanders County": [
+1218,
+4286,
+5910
+],
+"Wheatland County": [
+179,
+702,
+944
+],
+"Rosebud County": [
+987,
+2253,
+3440
+],
+"Sweet Grass County": [
+402,
+1595,
+2100
+],
+"Carter County": [
+70,
+678,
+779
+],
+"Richland County": [
+671,
+3908,
+4847
+],
+"Hill County": [
+2371,
+3478,
+6426
+],
+"Mineral County": [
+519,
+1330,
+2003
+],
+"Lewis and Clark County": [
+14478,
+16895,
+34245
+],
+"Stillwater County": [
+908,
+3661,
+4866
+],
+"Wibaux County": [
+55,
+463,
+537
+],
+"Fallon County": [
+154,
+1279,
+1484
+],
+"Phillips County": [
+318,
+1723,
+2161
+],
+"Valley County": [
+886,
+2698,
+3876
+]
+},
+"vest_zip": "mt_2016.zip"
+}

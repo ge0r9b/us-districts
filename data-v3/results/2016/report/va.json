@@ -1,0 +1,688 @@
+{
+"file": "Virginia.js",
+"bytes": 1190935,
+"precincts": 2454,
+"counties": 133,
+"dem": 1981473,
+"rep": 1769443,
+"total": 3982752,
+"nearest_county": 43,
+"cap_bytes": 1198074,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Accomack County": [
+6740,
+8583,
+15818
+],
+"Albemarle County": [
+33345,
+19259,
+56726
+],
+"Alleghany County": [
+2166,
+4874,
+7325
+],
+"Amelia County": [
+2128,
+4708,
+7040
+],
+"Amherst County": [
+5057,
+9719,
+15396
+],
+"Appomattox County": [
+2023,
+5715,
+7997
+],
+"Arlington County": [
+92016,
+20186,
+121339
+],
+"Augusta County": [
+8177,
+26163,
+36343
+],
+"Bath County": [
+603,
+1548,
+2253
+],
+"Bedford County": [
+9768,
+30659,
+42525
+],
+"Bland County": [
+453,
+2573,
+3139
+],
+"Botetourt County": [
+4494,
+13375,
+18739
+],
+"Brunswick County": [
+4481,
+3046,
+7669
+],
+"Buchanan County": [
+1721,
+7296,
+9247
+],
+"Buckingham County": [
+3128,
+3950,
+7289
+],
+"Campbell County": [
+6664,
+19551,
+27535
+],
+"Caroline County": [
+6432,
+7147,
+14248
+],
+"Carroll County": [
+2559,
+10663,
+13655
+],
+"Charles City County": [
+2496,
+1476,
+4107
+],
+"Charlotte County": [
+2155,
+3479,
+5807
+],
+"Chesterfield County": [
+81482,
+86508,
+178326
+],
+"Clarke County": [
+3051,
+4661,
+8213
+],
+"Craig County": [
+541,
+2140,
+2791
+],
+"Culpeper County": [
+7759,
+13349,
+22218
+],
+"Cumberland County": [
+2036,
+2697,
+4906
+],
+"Dickenson County": [
+1335,
+4932,
+6440
+],
+"Dinwiddie County": [
+5765,
+7447,
+13575
+],
+"Essex County": [
+2542,
+2657,
+5372
+],
+"Fairfax County": [
+355133,
+157710,
+551183
+],
+"Fauquier County": [
+12971,
+22127,
+37460
+],
+"Floyd County": [
+2300,
+5293,
+8050
+],
+"Fluvanna County": [
+5760,
+7025,
+13592
+],
+"Franklin County": [
+7257,
+18569,
+26971
+],
+"Frederick County": [
+11932,
+26083,
+40440
+],
+"Giles County": [
+1950,
+5910,
+8212
+],
+"Gloucester County": [
+5404,
+13096,
+19619
+],
+"Goochland County": [
+4889,
+8384,
+14037
+],
+"Grayson County": [
+1558,
+6031,
+7897
+],
+"Greene County": [
+2924,
+5945,
+9607
+],
+"Greensville County": [
+2558,
+1737,
+4363
+],
+"Halifax County": [
+6897,
+9704,
+16994
+],
+"Hanover County": [
+19382,
+39630,
+62723
+],
+"Henrico County": [
+93935,
+59857,
+163536
+],
+"Henry County": [
+8198,
+15208,
+24091
+],
+"Highland County": [
+371,
+958,
+1391
+],
+"Isle of Wight County": [
+7881,
+12204,
+21075
+],
+"James City County": [
+19105,
+21306,
+43169
+],
+"King and Queen County": [
+1468,
+2099,
+3690
+],
+"King George County": [
+4007,
+7341,
+12050
+],
+"King William County": [
+2760,
+5975,
+9146
+],
+"Lancaster County": [
+2869,
+3523,
+6645
+],
+"Lee County": [
+1627,
+7543,
+9399
+],
+"Loudoun County": [
+100795,
+69949,
+183050
+],
+"Louisa County": [
+6212,
+10528,
+17612
+],
+"Lunenburg County": [
+2227,
+3204,
+5586
+],
+"Mathews County": [
+1563,
+3517,
+5311
+],
+"Mecklenburg County": [
+6285,
+8288,
+14945
+],
+"Middlesex County": [
+2108,
+3670,
+6017
+],
+"Montgomery County": [
+20021,
+19459,
+43031
+],
+"Nelson County": [
+3689,
+4154,
+8311
+],
+"New Kent County": [
+3546,
+8118,
+12233
+],
+"Northampton County": [
+3255,
+2686,
+6168
+],
+"Northumberland County": [
+2852,
+4302,
+7397
+],
+"Nottoway County": [
+2829,
+3712,
+6744
+],
+"Orange County": [
+5957,
+10521,
+17267
+],
+"Patrick County": [
+1768,
+6454,
+8525
+],
+"Pittsylvania County": [
+9199,
+21554,
+31598
+],
+"Powhatan County": [
+4060,
+11885,
+16888
+],
+"Prince George County": [
+6419,
+9157,
+16184
+],
+"Prince William County": [
+113144,
+71721,
+196442
+],
+"Pulaski County": [
+4172,
+10322,
+15165
+],
+"Rappahannock County": [
+1747,
+2539,
+4483
+],
+"Richmond County": [
+1347,
+2213,
+3661
+],
+"Roanoke County": [
+18007,
+32520,
+53517
+],
+"Rockbridge County": [
+3508,
+6680,
+10795
+],
+"Rockingham County": [
+9366,
+25990,
+37487
+],
+"Russell County": [
+2330,
+9521,
+12246
+],
+"Scott County": [
+1581,
+8247,
+10100
+],
+"Smyth County": [
+2665,
+9750,
+12890
+],
+"Southampton County": [
+3595,
+5035,
+8872
+],
+"Spotsylvania County": [
+24207,
+34623,
+62549
+],
+"Stafford County": [
+27908,
+33868,
+65934
+],
+"Surry County": [
+2272,
+1819,
+4228
+],
+"Sussex County": [
+2879,
+2055,
+5044
+],
+"Warren County": [
+5169,
+11773,
+17951
+],
+"Westmoreland County": [
+3836,
+4448,
+8574
+],
+"Wise County": [
+2701,
+12086,
+15163
+],
+"Wythe County": [
+2770,
+10046,
+13328
+],
+"Poquoson city": [
+2309,
+7315,
+10313
+],
+"York County": [
+12291,
+16614,
+30977
+],
+"Alexandria city": [
+57242,
+13285,
+75762
+],
+"Charlottesville city": [
+17901,
+2960,
+22467
+],
+"Chesapeake city": [
+52627,
+54047,
+112662
+],
+"Colonial Heights city": [
+1959,
+4218,
+6493
+],
+"Covington city": [
+914,
+1349,
+2382
+],
+"Danville city": [
+11059,
+7303,
+18940
+],
+"Fairfax city": [
+7367,
+3702,
+12028
+],
+"Falls Church city": [
+5819,
+1324,
+7757
+],
+"Franklin city": [
+2519,
+1421,
+4061
+],
+"Fredericksburg city": [
+6707,
+3744,
+11257
+],
+"Galax city": [
+530,
+1164,
+1764
+],
+"Hampton city": [
+41312,
+17902,
+62277
+],
+"Hopewell city": [
+4724,
+3885,
+9008
+],
+"Lexington city": [
+1514,
+766,
+2465
+],
+"Lynchburg city": [
+14792,
+17982,
+35657
+],
+"Martinsville city": [
+3533,
+2149,
+5907
+],
+"Newport News city": [
+45618,
+25468,
+75637
+],
+"Norfolk city": [
+57023,
+21552,
+83385
+],
+"Norton city": [
+383,
+1021,
+1460
+],
+"Petersburg city": [
+12021,
+1451,
+13786
+],
+"Portsmouth city": [
+28497,
+12795,
+43261
+],
+"Radford city": [
+2925,
+2638,
+6082
+],
+"Richmond city": [
+81259,
+15581,
+103406
+],
+"Roanoke city": [
+21479,
+13677,
+37438
+],
+"Salem city": [
+4202,
+7226,
+12225
+],
+"Staunton city": [
+5333,
+5133,
+11255
+],
+"Suffolk city": [
+23280,
+18006,
+43240
+],
+"Virginia Beach city": [
+91032,
+98224,
+203019
+],
+"Waynesboro city": [
+3764,
+4801,
+9204
+],
+"Winchester city": [
+5164,
+4790,
+10665
+],
+"Manassas city": [
+8423,
+5953,
+15411
+],
+"Emporia city": [
+1530,
+789,
+2366
+],
+"Shenandoah County": [
+5273,
+14094,
+20508
+],
+"Tazewell County": [
+2895,
+15168,
+18566
+],
+"Prince Edward County": [
+4591,
+4101,
+9143
+],
+"Manassas Park city": [
+3204,
+1733,
+5232
+],
+"Williamsburg city": [
+5206,
+1925,
+7626
+],
+"Bristol city": [
+1835,
+4892,
+7027
+],
+"Washington County": [
+5553,
+19320,
+25846
+],
+"Madison County": [
+2203,
+4419,
+6979
+],
+"Page County": [
+2514,
+7831,
+10740
+],
+"Buena Vista city": [
+693,
+1430,
+2407
+],
+"Harrisonburg city": [
+10212,
+6262,
+17987
+]
+},
+"vest_zip": "va_2016.zip"
+}

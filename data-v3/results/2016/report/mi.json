@@ -1,0 +1,438 @@
+{
+"file": "Michigan.js",
+"bytes": 948052,
+"precincts": 4811,
+"counties": 83,
+"dem": 2268838,
+"rep": 2279541,
+"total": 4790326,
+"nearest_county": 5,
+"cap_bytes": 999406,
+"tol": 0.0004,
+"zero_vote_skipped": 1,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Wayne County": [
+519444,
+228993,
+777177
+],
+"Alcona County": [
+1732,
+4201,
+6179
+],
+"Alger County": [
+1663,
+2585,
+4513
+],
+"Allegan County": [
+18050,
+34183,
+55658
+],
+"Alpena County": [
+4877,
+9090,
+14688
+],
+"Antrim County": [
+4448,
+8469,
+13572
+],
+"Arenac County": [
+2384,
+4950,
+7693
+],
+"Baraga County": [
+1156,
+2158,
+3486
+],
+"Barry County": [
+9114,
+19202,
+30277
+],
+"Bay County": [
+21642,
+28328,
+52934
+],
+"Benzie County": [
+4108,
+5539,
+10221
+],
+"Berrien County": [
+29495,
+38647,
+71882
+],
+"Branch County": [
+5061,
+11786,
+17641
+],
+"Calhoun County": [
+24157,
+31494,
+58801
+],
+"Cass County": [
+7270,
+14243,
+22574
+],
+"Charlevoix County": [
+5137,
+8674,
+14567
+],
+"Cheboygan County": [
+4302,
+8683,
+13650
+],
+"Chippewa County": [
+5379,
+9122,
+15437
+],
+"Clare County": [
+4249,
+8505,
+13382
+],
+"Clinton County": [
+16492,
+21636,
+40568
+],
+"Crawford County": [
+2110,
+4354,
+6833
+],
+"Delta County": [
+6436,
+11121,
+18481
+],
+"Dickinson County": [
+3923,
+8580,
+13140
+],
+"Eaton County": [
+24938,
+27609,
+56092
+],
+"Emmet County": [
+6972,
+10616,
+18774
+],
+"Genesee County": [
+102751,
+84175,
+196143
+],
+"Gladwin County": [
+3794,
+8124,
+12472
+],
+"Gogebic County": [
+2925,
+4018,
+7312
+],
+"Grand Traverse County": [
+20965,
+27413,
+51462
+],
+"Gratiot County": [
+5666,
+9880,
+16445
+],
+"Hillsdale County": [
+4799,
+14095,
+19881
+],
+"Houghton County": [
+6018,
+8475,
+15623
+],
+"Huron County": [
+4579,
+10692,
+15911
+],
+"Ingham County": [
+79110,
+43868,
+130735
+],
+"Ionia County": [
+8352,
+16635,
+26791
+],
+"Iosco County": [
+4345,
+8345,
+13351
+],
+"Iron County": [
+2004,
+3675,
+5910
+],
+"Isabella County": [
+11404,
+12338,
+25344
+],
+"Jackson County": [
+25795,
+39793,
+69567
+],
+"Kalamazoo County": [
+67148,
+51034,
+125976
+],
+"Kalkaska County": [
+2279,
+6114,
+8821
+],
+"Kent County": [
+138683,
+148180,
+306621
+],
+"Keweenaw County": [
+527,
+814,
+1429
+],
+"Lake County": [
+1939,
+3159,
+5328
+],
+"Lapeer County": [
+12734,
+30037,
+45126
+],
+"Leelanau County": [
+6774,
+7239,
+14757
+],
+"Lenawee County": [
+16750,
+26430,
+45897
+],
+"Livingston County": [
+34384,
+65680,
+105604
+],
+"Luce County": [
+681,
+1756,
+2576
+],
+"Mackinac County": [
+2085,
+3744,
+6092
+],
+"Macomb County": [
+176317,
+224665,
+418931
+],
+"Manistee County": [
+4979,
+6915,
+12598
+],
+"Marquette County": [
+16042,
+14646,
+32897
+],
+"Mason County": [
+5281,
+8505,
+14658
+],
+"Mecosta County": [
+5827,
+10305,
+17149
+],
+"Menominee County": [
+3539,
+6702,
+10763
+],
+"Midland County": [
+15635,
+23846,
+42319
+],
+"Missaukee County": [
+1565,
+5386,
+7301
+],
+"Monroe County": [
+26863,
+43261,
+74111
+],
+"Montcalm County": [
+7874,
+16907,
+26556
+],
+"Montmorency County": [
+1287,
+3498,
+5009
+],
+"Muskegon County": [
+37304,
+36127,
+77962
+],
+"Newaygo County": [
+6212,
+15173,
+22604
+],
+"Oceana County": [
+3973,
+7228,
+11903
+],
+"Ogemaw County": [
+3030,
+6827,
+10386
+],
+"Ontonagon County": [
+1176,
+2066,
+3418
+],
+"Osceola County": [
+2705,
+7336,
+10597
+],
+"Oscoda County": [
+1044,
+2843,
+4062
+],
+"Otsego County": [
+3556,
+8266,
+12529
+],
+"Ottawa County": [
+44973,
+88467,
+141905
+],
+"Presque Isle County": [
+2400,
+4488,
+7217
+],
+"Roscommon County": [
+4287,
+8141,
+13036
+],
+"Saginaw County": [
+44396,
+45469,
+94199
+],
+"St. Clair County": [
+24553,
+49051,
+77947
+],
+"St. Joseph County": [
+7526,
+14884,
+23757
+],
+"Sanilac County": [
+4873,
+13446,
+19243
+],
+"Schoolcraft County": [
+1369,
+2556,
+4151
+],
+"Shiawassee County": [
+12546,
+19230,
+34041
+],
+"Tuscola County": [
+7429,
+17102,
+25762
+],
+"Van Buren County": [
+13258,
+17890,
+33213
+],
+"Washtenaw County": [
+128483,
+50631,
+187994
+],
+"Wexford County": [
+4436,
+10000,
+15279
+],
+"Oakland County": [
+343070,
+289203,
+663435
+]
+},
+"vest_zip": "mi_2016.zip"
+}

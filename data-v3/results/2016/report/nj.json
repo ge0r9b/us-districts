@@ -1,0 +1,128 @@
+{
+"file": "New_Jersey.js",
+"bytes": 238285,
+"precincts": 578,
+"counties": 21,
+"dem": 2148278,
+"rep": 1601933,
+"total": 3874046,
+"nearest_county": 4,
+"cap_bytes": 257803,
+"tol": 0.0004,
+"zero_vote_skipped": 1,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "MUNINAME",
+"county": {
+"Atlantic County": [
+60924,
+52690,
+117291
+],
+"Bergen County": [
+231825,
+175850,
+420257
+],
+"Passaic County": [
+115961,
+72185,
+193253
+],
+"Camden County": [
+146253,
+72382,
+225857
+],
+"Burlington County": [
+122189,
+89521,
+219678
+],
+"Cape May County": [
+18750,
+28446,
+48722
+],
+"Cumberland County": [
+27771,
+24453,
+54004
+],
+"Essex County": [
+242126,
+63408,
+312490
+],
+"Gloucester County": [
+66870,
+67544,
+139542
+],
+"Hudson County": [
+163419,
+48812,
+218623
+],
+"Hunterdon County": [
+29130,
+38960,
+71331
+],
+"Mercer County": [
+104775,
+46193,
+156529
+],
+"Monmouth County": [
+137181,
+166723,
+314377
+],
+"Morris County": [
+115685,
+126624,
+251426
+],
+"Ocean County": [
+87150,
+179079,
+274362
+],
+"Salem County": [
+11904,
+16381,
+29494
+],
+"Somerset County": [
+85896,
+65272,
+157057
+],
+"Sussex County": [
+24212,
+46658,
+74126
+],
+"Union County": [
+145425,
+67518,
+219329
+],
+"Middlesex County": [
+193551,
+123376,
+327062
+],
+"Warren County": [
+17281,
+29858,
+49236
+]
+},
+"vest_zip": "nj.zip"
+}

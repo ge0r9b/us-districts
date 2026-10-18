@@ -1,0 +1,533 @@
+{
+"file": "Illinois.js",
+"bytes": 1515847,
+"precincts": 10088,
+"counties": 102,
+"dem": 3090729,
+"rep": 2146015,
+"total": 5589925,
+"nearest_county": 9,
+"cap_bytes": 1618074,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Champaign County": [
+50137,
+33368,
+91628
+],
+"Fulton County": [
+6133,
+8492,
+15797
+],
+"McDonough County": [
+5288,
+6795,
+13092
+],
+"Gallatin County": [
+657,
+1942,
+2707
+],
+"Alexander County": [
+1262,
+1496,
+2846
+],
+"Henderson County": [
+1155,
+2155,
+3518
+],
+"Cass County": [
+1621,
+3216,
+5124
+],
+"Pope County": [
+375,
+1678,
+2142
+],
+"Jefferson County": [
+4425,
+11695,
+16999
+],
+"Coles County": [
+7309,
+13003,
+21863
+],
+"Jasper County": [
+924,
+3975,
+5136
+],
+"Jo Daviess County": [
+4462,
+6121,
+11334
+],
+"Hardin County": [
+420,
+1653,
+2148
+],
+"Douglas County": [
+1949,
+5698,
+8169
+],
+"Piatt County": [
+2645,
+5634,
+9008
+],
+"Marshall County": [
+1789,
+3785,
+5984
+],
+"Stark County": [
+751,
+1778,
+2743
+],
+"White County": [
+1412,
+5640,
+7335
+],
+"Adams County": [
+7676,
+22790,
+31951
+],
+"Whiteside County": [
+11035,
+12615,
+25582
+],
+"Iroquois County": [
+2504,
+9750,
+13064
+],
+"Hancock County": [
+2139,
+6430,
+9121
+],
+"McHenry County": [
+60803,
+71612,
+141750
+],
+"Kendall County": [
+24884,
+24961,
+54055
+],
+"Lake County": [
+171095,
+109767,
+303520
+],
+"Shelby County": [
+2288,
+8229,
+11010
+],
+"Ogle County": [
+8050,
+14352,
+24193
+],
+"Pulaski County": [
+962,
+1675,
+2735
+],
+"De Witt County": [
+1910,
+5077,
+7543
+],
+"Edgar County": [
+1793,
+5645,
+7873
+],
+"Johnson County": [
+1142,
+4649,
+6089
+],
+"Calhoun County": [
+739,
+1721,
+2571
+],
+"Bond County": [
+2068,
+4888,
+7530
+],
+"Hamilton County": [
+802,
+3206,
+4166
+],
+"Putnam County": [
+1147,
+1767,
+3111
+],
+"Carroll County": [
+2447,
+4434,
+7445
+],
+"Macon County": [
+18343,
+26866,
+48060
+],
+"Cumberland County": [
+1031,
+4206,
+5567
+],
+"Christian County": [
+3992,
+10543,
+15459
+],
+"Crawford County": [
+1992,
+6277,
+8728
+],
+"Clinton County": [
+3945,
+12412,
+17419
+],
+"Clark County": [
+1877,
+5622,
+7928
+],
+"Knox County": [
+10083,
+10737,
+22503
+],
+"Henry County": [
+8871,
+13985,
+24643
+],
+"Edwards County": [
+434,
+2778,
+3347
+],
+"Winnebago County": [
+55713,
+55624,
+120055
+],
+"Schuyler County": [
+1075,
+2524,
+3828
+],
+"McLean County": [
+36196,
+37237,
+80985
+],
+"Jackson County": [
+11634,
+10843,
+24617
+],
+"Effingham County": [
+3083,
+13635,
+17609
+],
+"DeKalb County": [
+20466,
+19091,
+43600
+],
+"Lee County": [
+5528,
+8612,
+15489
+],
+"Moultrie County": [
+1481,
+4455,
+6283
+],
+"Kankakee County": [
+18971,
+25129,
+47305
+],
+"Lawrence County": [
+1290,
+4521,
+6094
+],
+"Livingston County": [
+4023,
+10208,
+15269
+],
+"Jersey County": [
+2679,
+7748,
+10991
+],
+"Montgomery County": [
+3504,
+8630,
+12978
+],
+"Randolph County": [
+3439,
+10023,
+14194
+],
+"Ford County": [
+1414,
+4480,
+6396
+],
+"Madison County": [
+50587,
+70490,
+130179
+],
+"Rock Island County": [
+32298,
+26998,
+63994
+],
+"Richland County": [
+1584,
+5739,
+7684
+],
+"Menard County": [
+1817,
+4231,
+6515
+],
+"Marion County": [
+4369,
+11859,
+17074
+],
+"Pike County": [
+1413,
+5754,
+7530
+],
+"Stephenson County": [
+7768,
+11083,
+20343
+],
+"Macoupin County": [
+6689,
+14322,
+22360
+],
+"Williamson County": [
+8581,
+21570,
+31852
+],
+"Greene County": [
+1205,
+4145,
+5585
+],
+"Washington County": [
+1448,
+5571,
+7427
+],
+"Mason County": [
+2014,
+4058,
+6486
+],
+"Woodford County": [
+5092,
+13207,
+19864
+],
+"Clay County": [
+1020,
+5021,
+6350
+],
+"Franklin County": [
+4727,
+13116,
+18711
+],
+"Wayne County": [
+1048,
+6967,
+8305
+],
+"Union County": [
+2402,
+5790,
+8629
+],
+"LaSalle County": [
+19543,
+26689,
+49743
+],
+"Saline County": [
+2572,
+8276,
+11384
+],
+"Will County": [
+151927,
+132720,
+304226
+],
+"Cook County": [
+1611946,
+453287,
+2180344
+],
+"Monroe County": [
+5535,
+12629,
+19354
+],
+"Mercer County": [
+3071,
+4807,
+8525
+],
+"Boone County": [
+8986,
+12282,
+23001
+],
+"Brown County": [
+476,
+1796,
+2379
+],
+"Bureau County": [
+6029,
+9281,
+16571
+],
+"Wabash County": [
+1151,
+4047,
+5464
+],
+"Grundy County": [
+8065,
+13454,
+23237
+],
+"Logan County": [
+3313,
+8181,
+12401
+],
+"Kane County": [
+103665,
+82734,
+199687
+],
+"Fayette County": [
+1819,
+7372,
+9585
+],
+"Warren County": [
+2987,
+4275,
+7807
+],
+"Scott County": [
+535,
+1966,
+2608
+],
+"Vermilion County": [
+10039,
+19087,
+30782
+],
+"Massac County": [
+1558,
+4846,
+6683
+],
+"Morgan County": [
+4696,
+9076,
+14800
+],
+"Perry County": [
+2462,
+6855,
+9853
+],
+"Tazewell County": [
+20685,
+38707,
+64400
+],
+"Sangamon County": [
+40907,
+49944,
+98373
+],
+"DuPage County": [
+228622,
+166415,
+428769
+],
+"St. Clair County": [
+60756,
+53857,
+121730
+],
+"Peoria County": [
+38060,
+35633,
+79102
+]
+},
+"vest_zip": "il.zip"
+}

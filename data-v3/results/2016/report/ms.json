@@ -1,0 +1,433 @@
+{
+"file": "Mississippi.js",
+"bytes": 804316,
+"precincts": 1797,
+"counties": 82,
+"dem": 485131,
+"rep": 700714,
+"total": 1209357,
+"nearest_county": 14,
+"cap_bytes": 828359,
+"tol": 0.0004,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME16",
+"county": {
+"Claiborne County": [
+3708,
+540,
+4272
+],
+"Coahoma County": [
+6378,
+2426,
+8912
+],
+"Covington County": [
+3276,
+5435,
+8811
+],
+"DeSoto County": [
+20591,
+43089,
+65695
+],
+"Forrest County": [
+11716,
+15461,
+28064
+],
+"Harrison County": [
+20421,
+40074,
+62272
+],
+"Jackson County": [
+15405,
+33909,
+50608
+],
+"Humphreys County": [
+3071,
+1151,
+4253
+],
+"Jefferson Davis County": [
+3720,
+2466,
+6237
+],
+"Lauderdale County": [
+11269,
+17741,
+29506
+],
+"Lawrence County": [
+2195,
+4091,
+6364
+],
+"Leake County": [
+3584,
+4782,
+8449
+],
+"Lee County": [
+10029,
+22220,
+32913
+],
+"Lincoln County": [
+4458,
+10550,
+15193
+],
+"Madison County": [
+20343,
+28265,
+49802
+],
+"Copiah County": [
+6741,
+6103,
+12982
+],
+"Grenada County": [
+4424,
+5970,
+10513
+],
+"Hinds County": [
+67164,
+25162,
+94098
+],
+"Rankin County": [
+14540,
+47291,
+63351
+],
+"Jones County": [
+7791,
+20133,
+28352
+],
+"Lafayette County": [
+7969,
+10872,
+19643
+],
+"Lowndes County": [
+11819,
+13271,
+25575
+],
+"Chickasaw County": [
+3649,
+4127,
+7890
+],
+"Jasper County": [
+4368,
+4038,
+8475
+],
+"Choctaw County": [
+1218,
+2788,
+4065
+],
+"Noxubee County": [
+4347,
+1200,
+5574
+],
+"Calhoun County": [
+1910,
+4390,
+6396
+],
+"Clay County": [
+5722,
+4150,
+10003
+],
+"Tallahatchie County": [
+3337,
+2462,
+5870
+],
+"Franklin County": [
+1502,
+2721,
+4290
+],
+"Union County": [
+2012,
+9235,
+11496
+],
+"Marshall County": [
+8023,
+6587,
+14839
+],
+"Adams County": [
+7757,
+5874,
+13836
+],
+"Leflore County": [
+7787,
+3212,
+11140
+],
+"Prentiss County": [
+2067,
+7648,
+9872
+],
+"Benton County": [
+1719,
+2251,
+4013
+],
+"Monroe County": [
+5524,
+10167,
+15884
+],
+"Jefferson County": [
+3337,
+490,
+3860
+],
+"Alcorn County": [
+2684,
+11819,
+14783
+],
+"Walthall County": [
+2790,
+4056,
+6919
+],
+"Washington County": [
+11380,
+5244,
+16825
+],
+"Sunflower County": [
+6725,
+2794,
+9598
+],
+"Amite County": [
+2697,
+4289,
+7050
+],
+"Holmes County": [
+6689,
+1309,
+8076
+],
+"Sharkey County": [
+1479,
+692,
+2190
+],
+"Quitman County": [
+2312,
+1001,
+3365
+],
+"Bolivar County": [
+9046,
+4590,
+13824
+],
+"Tate County": [
+3926,
+7495,
+11627
+],
+"Itawamba County": [
+1117,
+8470,
+9737
+],
+"Simpson County": [
+3874,
+7393,
+11419
+],
+"Kemper County": [
+2827,
+1778,
+4639
+],
+"Montgomery County": [
+2115,
+2818,
+4996
+],
+"Issaquena County": [
+395,
+298,
+699
+],
+"Pontotoc County": [
+2386,
+10336,
+12984
+],
+"Scott County": [
+4268,
+6122,
+10522
+],
+"Marion County": [
+3677,
+7836,
+11693
+],
+"Wilkinson County": [
+2857,
+1318,
+4218
+],
+"Lamar County": [
+5190,
+18751,
+24592
+],
+"George County": [
+1027,
+8696,
+9891
+],
+"Tishomingo County": [
+999,
+7166,
+8371
+],
+"Clarke County": [
+2585,
+5137,
+7791
+],
+"Smith County": [
+1617,
+5928,
+7627
+],
+"Newton County": [
+2756,
+6548,
+9438
+],
+"Winston County": [
+3850,
+4910,
+8881
+],
+"Hancock County": [
+3344,
+13811,
+17637
+],
+"Attala County": [
+3242,
+4897,
+8256
+],
+"Tippah County": [
+1842,
+7240,
+9235
+],
+"Wayne County": [
+3524,
+5990,
+9599
+],
+"Carroll County": [
+1680,
+3799,
+5528
+],
+"Stone County": [
+1573,
+5306,
+7045
+],
+"Webster County": [
+1019,
+3976,
+5069
+],
+"Greene County": [
+974,
+4335,
+5369
+],
+"Neshoba County": [
+2715,
+7679,
+10553
+],
+"Tunica County": [
+2667,
+853,
+3567
+],
+"Yalobusha County": [
+2582,
+3376,
+6077
+],
+"Oktibbeha County": [
+8859,
+8576,
+18124
+],
+"Panola County": [
+7431,
+7449,
+15064
+],
+"Pearl River County": [
+3604,
+17782,
+21883
+],
+"Perry County": [
+1220,
+4135,
+5432
+],
+"Pike County": [
+8043,
+8009,
+16310
+],
+"Warren County": [
+9284,
+9767,
+19416
+],
+"Yazoo County": [
+5369,
+4598,
+10070
+]
+},
+"vest_zip": "ms_2016.zip"
+}

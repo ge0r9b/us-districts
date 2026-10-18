@@ -1,0 +1,483 @@
+{
+"file": "Indiana.js",
+"bytes": 964603,
+"precincts": 5317,
+"counties": 92,
+"dem": 1033155,
+"rep": 1557240,
+"total": 2760528,
+"nearest_county": 3,
+"cap_bytes": 983255,
+"tol": 0.0004,
+"zero_vote_skipped": 61,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": null,
+"county": {
+"Benton County": [
+860,
+2579,
+3688
+],
+"Brown County": [
+2518,
+5016,
+8001
+],
+"Carroll County": [
+1892,
+6273,
+8701
+],
+"Crawford County": [
+1323,
+3015,
+4642
+],
+"Grant County": [
+7010,
+17008,
+25572
+],
+"LaGrange County": [
+2080,
+7025,
+9666
+],
+"Lawrence County": [
+4210,
+14035,
+19238
+],
+"Newton County": [
+1404,
+4074,
+5857
+],
+"Owen County": [
+1946,
+6153,
+8616
+],
+"Perry County": [
+3062,
+4556,
+8092
+],
+"Posey County": [
+3521,
+8404,
+12592
+],
+"Starke County": [
+2489,
+6367,
+9316
+],
+"Switzerland County": [
+930,
+2558,
+3709
+],
+"Tippecanoe County": [
+27282,
+30768,
+63342
+],
+"Wabash County": [
+3018,
+9819,
+13550
+],
+"Warrick County": [
+9086,
+19133,
+29959
+],
+"Blackford County": [
+1243,
+3350,
+4881
+],
+"Boone County": [
+10181,
+19654,
+32537
+],
+"Franklin County": [
+1969,
+8669,
+11097
+],
+"Henry County": [
+5124,
+13895,
+20290
+],
+"Jasper County": [
+3329,
+9382,
+13478
+],
+"Jennings County": [
+2364,
+8224,
+11231
+],
+"Martin County": [
+881,
+3697,
+4846
+],
+"Noble County": [
+3904,
+12198,
+17104
+],
+"Ohio County": [
+686,
+2118,
+2933
+],
+"Orange County": [
+2048,
+5803,
+8278
+],
+"Parke County": [
+1441,
+4863,
+6636
+],
+"Pike County": [
+1297,
+4399,
+6024
+],
+"Porter County": [
+33676,
+38832,
+78266
+],
+"Pulaski County": [
+1327,
+3854,
+5485
+],
+"Putnam County": [
+3356,
+10637,
+14818
+],
+"Tipton County": [
+1587,
+5589,
+7570
+],
+"Union County": [
+715,
+2445,
+3315
+],
+"Vigo County": [
+15931,
+21937,
+40127
+],
+"Warren County": [
+839,
+2896,
+3951
+],
+"Wells County": [
+2586,
+10005,
+13287
+],
+"White County": [
+2590,
+6887,
+10091
+],
+"Rush County": [
+1525,
+5292,
+7266
+],
+"Clay County": [
+2306,
+8528,
+11331
+],
+"Hamilton County": [
+57263,
+87404,
+155966
+],
+"Jay County": [
+1889,
+5697,
+8022
+],
+"Knox County": [
+3772,
+11077,
+15602
+],
+"Marshall County": [
+4798,
+12288,
+18241
+],
+"Montgomery County": [
+3362,
+11059,
+15272
+],
+"Ripley County": [
+2471,
+9806,
+12935
+],
+"Steuben County": [
+3744,
+10133,
+14714
+],
+"Vermillion County": [
+2081,
+4513,
+6973
+],
+"Vanderburgh County": [
+28530,
+40496,
+73375
+],
+"Elkhart County": [
+20740,
+41867,
+66239
+],
+"Cass County": [
+3759,
+9701,
+14209
+],
+"Floyd County": [
+13404,
+20825,
+36604
+],
+"Gibson County": [
+3721,
+11081,
+15484
+],
+"Randolph County": [
+2446,
+7517,
+10524
+],
+"Spencer County": [
+2861,
+6572,
+10048
+],
+"Miami County": [
+2766,
+9975,
+13601
+],
+"Morgan County": [
+6040,
+23674,
+31446
+],
+"Sullivan County": [
+2113,
+6138,
+8613
+],
+"Washington County": [
+2636,
+8209,
+11382
+],
+"Wayne County": [
+8322,
+16028,
+25579
+],
+"Decatur County": [
+2121,
+8490,
+11178
+],
+"Clark County": [
+19349,
+30642,
+53027
+],
+"Dearborn County": [
+4883,
+18113,
+24131
+],
+"Huntington County": [
+3506,
+11649,
+16181
+],
+"Whitley County": [
+3379,
+11358,
+15759
+],
+"Fountain County": [
+1476,
+5662,
+7534
+],
+"DeKalb County": [
+3941,
+12054,
+16995
+],
+"Fulton County": [
+1960,
+6010,
+8437
+],
+"Kosciusko County": [
+6313,
+23917,
+32423
+],
+"Delaware County": [
+18153,
+24263,
+45509
+],
+"Shelby County": [
+4247,
+12718,
+18080
+],
+"Scott County": [
+2642,
+6074,
+9147
+],
+"Daviess County": [
+1800,
+8545,
+10819
+],
+"Greene County": [
+2929,
+10277,
+13861
+],
+"Jefferson County": [
+4326,
+8546,
+13653
+],
+"Jackson County": [
+3843,
+12859,
+17667
+],
+"Dubois County": [
+5389,
+13365,
+20095
+],
+"Clinton County": [
+2819,
+8531,
+11991
+],
+"Harrison County": [
+4783,
+12943,
+18558
+],
+"Hancock County": [
+8904,
+25074,
+36496
+],
+"Johnson County": [
+17318,
+45456,
+67147
+],
+"Monroe County": [
+34236,
+20600,
+58480
+],
+"Bartholomew County": [
+9841,
+20639,
+32716
+],
+"Howard County": [
+11223,
+23685,
+37361
+],
+"Fayette County": [
+2252,
+6839,
+9598
+],
+"Marion County": [
+212899,
+130360,
+366879
+],
+"St. Joseph County": [
+52252,
+52021,
+111842
+],
+"Lake County": [
+116935,
+75625,
+202803
+],
+"Allen County": [
+55379,
+83867,
+148565
+],
+"Adams County": [
+2805,
+9648,
+13194
+],
+"Hendricks County": [
+22600,
+48337,
+76184
+],
+"Madison County": [
+18600,
+32389,
+54397
+],
+"LaPorte County": [
+19798,
+22687,
+45609
+]
+},
+"vest_zip": "in_2016.zip"
+}

@@ -1,0 +1,523 @@
+{
+"file": "North_Carolina.js",
+"bytes": 1273183,
+"precincts": 2704,
+"counties": 100,
+"dem": 2189316,
+"rep": 2362631,
+"total": 4741564,
+"nearest_county": 38,
+"cap_bytes": 1467174,
+"tol": 0.0004,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "ENR_DESC",
+"county": {
+"Alamance County": [
+29833,
+38815,
+71157
+],
+"Brunswick County": [
+23807,
+43523,
+69737
+],
+"Beaufort County": [
+8764,
+14543,
+23938
+],
+"Bertie County": [
+5778,
+3456,
+9347
+],
+"Alleghany County": [
+1306,
+3814,
+5315
+],
+"Avery County": [
+1689,
+6298,
+8249
+],
+"Alexander County": [
+3767,
+13893,
+18271
+],
+"Anson County": [
+5859,
+4506,
+10545
+],
+"Bladen County": [
+7058,
+8550,
+15897
+],
+"Davidson County": [
+18109,
+54317,
+74856
+],
+"Durham County": [
+121250,
+28350,
+156134
+],
+"Franklin County": [
+12874,
+16368,
+30368
+],
+"Catawba County": [
+21216,
+48324,
+72351
+],
+"Graham County": [
+768,
+3283,
+4168
+],
+"Perquimans County": [
+2319,
+4177,
+6708
+],
+"Harnett County": [
+16737,
+27614,
+46065
+],
+"Mitchell County": [
+1596,
+6282,
+8096
+],
+"Camden County": [
+1274,
+3546,
+5006
+],
+"Cabarrus County": [
+35521,
+53819,
+93289
+],
+"Edgecombe County": [
+16224,
+8261,
+24886
+],
+"Hoke County": [
+9726,
+7760,
+18230
+],
+"Northampton County": [
+6144,
+3582,
+9848
+],
+"Haywood County": [
+10473,
+18929,
+30727
+],
+"Duplin County": [
+8283,
+12217,
+20856
+],
+"Columbus County": [
+9063,
+14272,
+23732
+],
+"Yadkin County": [
+3160,
+13880,
+17624
+],
+"Craven County": [
+17630,
+27731,
+47001
+],
+"Madison County": [
+3926,
+6783,
+11269
+],
+"New Hanover County": [
+50454,
+54541,
+110519
+],
+"Polk County": [
+3735,
+6768,
+10934
+],
+"Buncombe County": [
+75452,
+55716,
+138947
+],
+"Stokes County": [
+4665,
+17116,
+22550
+],
+"Watauga County": [
+14138,
+13697,
+29985
+],
+"Gaston County": [
+31177,
+61798,
+96431
+],
+"Cherokee County": [
+2860,
+10844,
+14181
+],
+"Greene County": [
+3605,
+4374,
+8095
+],
+"Currituck County": [
+2913,
+9163,
+12669
+],
+"Hyde County": [
+965,
+1288,
+2304
+],
+"Caswell County": [
+4792,
+6026,
+11070
+],
+"Union County": [
+34337,
+66707,
+105710
+],
+"Pasquotank County": [
+8615,
+8180,
+17391
+],
+"Montgomery County": [
+4150,
+7130,
+11540
+],
+"Cleveland County": [
+14964,
+28479,
+44673
+],
+"Dare County": [
+7222,
+11460,
+19609
+],
+"Chowan County": [
+2992,
+4014,
+7228
+],
+"Granville County": [
+12909,
+13591,
+27353
+],
+"Jackson County": [
+7713,
+9870,
+18713
+],
+"Hertford County": [
+6910,
+3099,
+10186
+],
+"Martin County": [
+5846,
+5897,
+11964
+],
+"Onslow County": [
+17514,
+37122,
+57135
+],
+"Clay County": [
+1367,
+4437,
+6010
+],
+"Nash County": [
+23235,
+23319,
+47665
+],
+"Wayne County": [
+21770,
+27540,
+50689
+],
+"Rutherford County": [
+7512,
+21871,
+30307
+],
+"Cumberland County": [
+71605,
+51265,
+127506
+],
+"Person County": [
+7833,
+11185,
+19615
+],
+"Iredell County": [
+24734,
+54754,
+82567
+],
+"Wilson County": [
+19663,
+17531,
+38135
+],
+"Jones County": [
+2065,
+2974,
+5135
+],
+"Wake County": [
+302736,
+196082,
+527624
+],
+"Pamlico County": [
+2448,
+4258,
+6870
+],
+"Ashe County": [
+3500,
+9412,
+13424
+],
+"Wilkes County": [
+6638,
+23752,
+31296
+],
+"Robeson County": [
+19016,
+20762,
+40858
+],
+"Chatham County": [
+21065,
+17105,
+39849
+],
+"Moore County": [
+16329,
+30490,
+48692
+],
+"Yancey County": [
+3196,
+6385,
+9960
+],
+"Surry County": [
+7488,
+23671,
+32196
+],
+"Richmond County": [
+8501,
+10383,
+19328
+],
+"Randolph County": [
+13194,
+49430,
+64575
+],
+"Carteret County": [
+9939,
+26569,
+37781
+],
+"Lenoir County": [
+12634,
+13613,
+26807
+],
+"Sampson County": [
+10547,
+14838,
+25928
+],
+"Rowan County": [
+19400,
+42810,
+64369
+],
+"Caldwell County": [
+8425,
+26621,
+36320
+],
+"Lincoln County": [
+9897,
+28806,
+40023
+],
+"Pitt County": [
+41824,
+35691,
+80527
+],
+"Tyrrell County": [
+720,
+975,
+1739
+],
+"Johnston County": [
+28362,
+54372,
+85909
+],
+"Guilford County": [
+149248,
+98062,
+257405
+],
+"Mecklenburg County": [
+294562,
+155518,
+472857
+],
+"Henderson County": [
+19827,
+35809,
+58176
+],
+"Pender County": [
+9354,
+17639,
+27885
+],
+"Transylvania County": [
+6558,
+10520,
+17869
+],
+"Orange County": [
+59923,
+18557,
+82340
+],
+"Gates County": [
+2385,
+2874,
+5392
+],
+"Halifax County": [
+15748,
+9031,
+25167
+],
+"Warren County": [
+6413,
+3214,
+9842
+],
+"Vance County": [
+12229,
+7332,
+19977
+],
+"Forsyth County": [
+94464,
+75975,
+178312
+],
+"Rockingham County": [
+14228,
+26830,
+42278
+],
+"Swain County": [
+2196,
+3565,
+6124
+],
+"Washington County": [
+3510,
+2564,
+6165
+],
+"McDowell County": [
+4667,
+14568,
+19875
+],
+"Scotland County": [
+7319,
+6256,
+13928
+],
+"Davie County": [
+5270,
+15602,
+21756
+],
+"Stanly County": [
+7094,
+21964,
+29917
+],
+"Burke County": [
+11251,
+26238,
+38920
+],
+"Macon County": [
+4876,
+12127,
+17734
+],
+"Lee County": [
+10469,
+13712,
+25084
+]
+},
+"vest_zip": "nc_2016.zip"
+}

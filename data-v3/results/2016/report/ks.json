@@ -1,0 +1,548 @@
+{
+"file": "Kansas.js",
+"bytes": 622682,
+"precincts": 3384,
+"counties": 105,
+"dem": 427005,
+"rep": 671018,
+"total": 1193685,
+"nearest_county": 0,
+"cap_bytes": 626664,
+"tol": 0.0004,
+"zero_vote_skipped": 637,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAMELSAD",
+"county": {
+"Allen County": [
+1433,
+3651,
+5454
+],
+"Anderson County": [
+672,
+2435,
+3350
+],
+"Atchison County": [
+1989,
+4049,
+6575
+],
+"Barber County": [
+286,
+1850,
+2252
+],
+"Barton County": [
+1839,
+7888,
+10268
+],
+"Bourbon County": [
+1336,
+4424,
+6093
+],
+"Brown County": [
+863,
+2906,
+4036
+],
+"Butler County": [
+6573,
+19073,
+27657
+],
+"Chase County": [
+316,
+969,
+1369
+],
+"Chautauqua County": [
+197,
+1236,
+1481
+],
+"Cherokee County": [
+2005,
+6182,
+8620
+],
+"Cheyenne County": [
+181,
+1173,
+1407
+],
+"Clark County": [
+120,
+825,
+1005
+],
+"Clay County": [
+677,
+2891,
+3820
+],
+"Cloud County": [
+761,
+2919,
+3930
+],
+"Coffey County": [
+727,
+3050,
+4068
+],
+"Comanche County": [
+102,
+715,
+867
+],
+"Cowley County": [
+3551,
+8270,
+12621
+],
+"Crawford County": [
+5199,
+8624,
+14891
+],
+"Decatur County": [
+178,
+1210,
+1452
+],
+"Dickinson County": [
+1609,
+6029,
+8210
+],
+"Doniphan County": [
+587,
+2606,
+3378
+],
+"Douglas County": [
+31195,
+14688,
+50087
+],
+"Edwards County": [
+212,
+1037,
+1319
+],
+"Elk County": [
+160,
+1048,
+1259
+],
+"Ellis County": [
+2742,
+8466,
+11947
+],
+"Ellsworth County": [
+521,
+1969,
+2679
+],
+"Finney County": [
+3195,
+6350,
+10159
+],
+"Ford County": [
+2149,
+5114,
+7718
+],
+"Franklin County": [
+2892,
+7185,
+10965
+],
+"Gove County": [
+149,
+1140,
+1343
+],
+"Graham County": [
+188,
+1025,
+1284
+],
+"Grant County": [
+441,
+1804,
+2389
+],
+"Gray County": [
+263,
+1698,
+2066
+],
+"Greeley County": [
+83,
+534,
+650
+],
+"Greenwood County": [
+485,
+2160,
+2840
+],
+"Hamilton County": [
+121,
+705,
+876
+],
+"Harper County": [
+393,
+1996,
+2578
+],
+"Harvey County": [
+5068,
+8668,
+14916
+],
+"Haskell County": [
+245,
+1040,
+1354
+],
+"Hodgeman County": [
+124,
+855,
+1017
+],
+"Jackson County": [
+1512,
+3939,
+5818
+],
+"Jefferson County": [
+2518,
+5213,
+8337
+],
+"Jewell County": [
+180,
+1223,
+1494
+],
+"Kearny County": [
+174,
+1075,
+1316
+],
+"Kingman County": [
+599,
+2530,
+3334
+],
+"Kiowa County": [
+114,
+900,
+1079
+],
+"Labette County": [
+2291,
+5335,
+8107
+],
+"Lane County": [
+106,
+718,
+871
+],
+"Leavenworth County": [
+10209,
+17638,
+30301
+],
+"Lincoln County": [
+215,
+1179,
+1464
+],
+"Linn County": [
+736,
+3484,
+4427
+],
+"Logan County": [
+149,
+1132,
+1357
+],
+"Lyon County": [
+4649,
+6552,
+12288
+],
+"McPherson County": [
+3226,
+8549,
+12742
+],
+"Marion County": [
+1204,
+4003,
+5624
+],
+"Marshall County": [
+1072,
+3307,
+4673
+],
+"Meade County": [
+210,
+1415,
+1720
+],
+"Miami County": [
+3991,
+10003,
+15046
+],
+"Mitchell County": [
+477,
+2308,
+2942
+],
+"Montgomery County": [
+2637,
+8679,
+12004
+],
+"Morris County": [
+601,
+1820,
+2624
+],
+"Morton County": [
+147,
+995,
+1192
+],
+"Nemaha County": [
+725,
+4124,
+5122
+],
+"Neosho County": [
+1501,
+4431,
+6314
+],
+"Ness County": [
+162,
+1228,
+1454
+],
+"Norton County": [
+281,
+1840,
+2234
+],
+"Osage County": [
+1753,
+4826,
+7046
+],
+"Osborne County": [
+233,
+1460,
+1788
+],
+"Ottawa County": [
+424,
+2283,
+2903
+],
+"Pawnee County": [
+579,
+1904,
+2661
+],
+"Phillips County": [
+300,
+2233,
+2664
+],
+"Pottawatomie County": [
+2225,
+7612,
+10693
+],
+"Pratt County": [
+771,
+2838,
+3842
+],
+"Rawlins County": [
+163,
+1220,
+1472
+],
+"Reno County": [
+6837,
+15513,
+24210
+],
+"Republic County": [
+375,
+2024,
+2529
+],
+"Rice County": [
+695,
+2837,
+3804
+],
+"Rooks County": [
+275,
+2031,
+2419
+],
+"Rush County": [
+233,
+1197,
+1503
+],
+"Russell County": [
+461,
+2574,
+3193
+],
+"Saline County": [
+6317,
+13828,
+22064
+],
+"Scott County": [
+236,
+1865,
+2202
+],
+"Sedgwick County": [
+69627,
+104353,
+191798
+],
+"Seward County": [
+1628,
+3159,
+5038
+],
+"Shawnee County": [
+33926,
+35934,
+77107
+],
+"Sheridan County": [
+127,
+1197,
+1374
+],
+"Sherman County": [
+347,
+2089,
+2612
+],
+"Smith County": [
+297,
+1661,
+2042
+],
+"Stafford County": [
+304,
+1490,
+1896
+],
+"Stanton County": [
+115,
+492,
+637
+],
+"Stevens County": [
+220,
+1599,
+1891
+],
+"Sumner County": [
+2076,
+6984,
+9685
+],
+"Thomas County": [
+473,
+2908,
+3576
+],
+"Trego County": [
+198,
+1227,
+1482
+],
+"Wabaunsee County": [
+776,
+2372,
+3380
+],
+"Wallace County": [
+46,
+721,
+798
+],
+"Washington County": [
+387,
+2194,
+2765
+],
+"Wichita County": [
+140,
+769,
+956
+],
+"Wilson County": [
+594,
+2788,
+3591
+],
+"Woodson County": [
+273,
+1082,
+1443
+],
+"Wyandotte County": [
+30146,
+15806,
+49243
+],
+"Riley County": [
+9341,
+10107,
+21532
+],
+"Johnson County": [
+129852,
+137490,
+294208
+],
+"Geary County": [
+2722,
+4274,
+7504
+]
+},
+"vest_zip": "ks_2016.zip"
+}

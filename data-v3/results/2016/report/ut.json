@@ -1,0 +1,168 @@
+{
+"file": "Utah.js",
+"bytes": 625464,
+"precincts": 2195,
+"counties": 29,
+"dem": 310676,
+"rep": 515231,
+"total": 1131375,
+"nearest_county": 0,
+"cap_bytes": 635158,
+"tol": 0.0004,
+"zero_vote_skipped": 101,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Beaver County": [
+264,
+1838,
+2491
+],
+"Box Elder County": [
+2282,
+12230,
+19735
+],
+"Cache County": [
+8563,
+21139,
+46147
+],
+"Carbon County": [
+1717,
+5275,
+7952
+],
+"Daggett County": [
+77,
+331,
+474
+],
+"Davis County": [
+28776,
+62219,
+138396
+],
+"Duchesne County": [
+500,
+5508,
+6942
+],
+"Emery County": [
+380,
+3425,
+4288
+],
+"Garfield County": [
+358,
+1606,
+2344
+],
+"Iron County": [
+2450,
+11561,
+17654
+],
+"Grand County": [
+1960,
+1975,
+4532
+],
+"Juab County": [
+442,
+2827,
+4177
+],
+"Kane County": [
+741,
+2265,
+3505
+],
+"Millard County": [
+431,
+3860,
+5242
+],
+"Morgan County": [
+577,
+3188,
+5192
+],
+"Piute County": [
+47,
+626,
+729
+],
+"Rich County": [
+104,
+797,
+1109
+],
+"Salt Lake County": [
+175863,
+138043,
+418853
+],
+"San Juan County": [
+2042,
+2645,
+5447
+],
+"Sanpete County": [
+1061,
+6673,
+10162
+],
+"Sevier County": [
+695,
+6740,
+8654
+],
+"Summit County": [
+10503,
+7333,
+20641
+],
+"Tooele County": [
+4573,
+11169,
+21829
+],
+"Uintah County": [
+995,
+9810,
+12797
+],
+"Utah County": [
+28522,
+102182,
+201542
+],
+"Wasatch County": [
+3063,
+6115,
+12120
+],
+"Washington County": [
+10288,
+42650,
+61962
+],
+"Wayne County": [
+271,
+966,
+1421
+],
+"Weber County": [
+23131,
+40235,
+85038
+]
+},
+"vest_zip": "ut_2016.zip"
+}

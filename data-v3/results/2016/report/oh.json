@@ -1,0 +1,463 @@
+{
+"file": "Ohio.js",
+"bytes": 1886991,
+"precincts": 8887,
+"counties": 88,
+"dem": 2394164,
+"rep": 2841005,
+"total": 5480173,
+"nearest_county": 14,
+"cap_bytes": 2081859,
+"tol": 0.0004,
+"zero_vote_skipped": 8,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Butler County": [
+58642,
+106976,
+173147
+],
+"Clark County": [
+23328,
+35205,
+61265
+],
+"Wood County": [
+27318,
+32498,
+64113
+],
+"Holmes County": [
+1788,
+8720,
+10997
+],
+"Fairfield County": [
+24881,
+44314,
+72565
+],
+"Shelby County": [
+4243,
+18590,
+23684
+],
+"Logan County": [
+4647,
+15957,
+21517
+],
+"Knox County": [
+8171,
+19131,
+28610
+],
+"Scioto County": [
+9132,
+20550,
+30763
+],
+"Auglaize County": [
+3980,
+18658,
+23583
+],
+"Clermont County": [
+26716,
+67526,
+98796
+],
+"Guernsey County": [
+4359,
+11445,
+16536
+],
+"Wyandot County": [
+2515,
+7468,
+10568
+],
+"Gallia County": [
+2628,
+9822,
+12916
+],
+"Hocking County": [
+3775,
+8497,
+12811
+],
+"Morgan County": [
+1736,
+4431,
+6441
+],
+"Madison County": [
+4779,
+11631,
+17205
+],
+"Williams County": [
+4358,
+11939,
+17261
+],
+"Ashland County": [
+5740,
+17493,
+24507
+],
+"Huron County": [
+7192,
+16226,
+24777
+],
+"Jackson County": [
+3226,
+9949,
+13687
+],
+"Washington County": [
+8026,
+20514,
+29824
+],
+"Highland County": [
+3773,
+14020,
+18461
+],
+"Preble County": [
+4325,
+15446,
+20552
+],
+"Athens County": [
+16370,
+11354,
+29405
+],
+"Fayette County": [
+2739,
+7995,
+11136
+],
+"Lorain County": [
+66949,
+66818,
+140305
+],
+"Defiance County": [
+5368,
+11688,
+18119
+],
+"Miami County": [
+13120,
+37079,
+52580
+],
+"Ottawa County": [
+8285,
+12653,
+22182
+],
+"Medina County": [
+32182,
+54810,
+91071
+],
+"Van Wert County": [
+2697,
+10469,
+13769
+],
+"Mahoning County": [
+57381,
+53616,
+114908
+],
+"Coshocton County": [
+4013,
+10785,
+15499
+],
+"Pickaway County": [
+6529,
+17076,
+24655
+],
+"Crawford County": [
+4625,
+13611,
+19190
+],
+"Hardin County": [
+2920,
+8717,
+12261
+],
+"Meigs County": [
+2260,
+7309,
+9978
+],
+"Geauga County": [
+17569,
+30227,
+49859
+],
+"Carroll County": [
+3154,
+9254,
+13035
+],
+"Darke County": [
+4470,
+20012,
+25403
+],
+"Monroe County": [
+1662,
+4868,
+6792
+],
+"Fulton County": [
+6069,
+13709,
+21108
+],
+"Wayne County": [
+15031,
+32270,
+49616
+],
+"Belmont County": [
+8785,
+21108,
+31079
+],
+"Union County": [
+7718,
+18096,
+27261
+],
+"Morrow County": [
+3761,
+11948,
+16481
+],
+"Lucas County": [
+110833,
+75698,
+197050
+],
+"Montgomery County": [
+122016,
+123909,
+257499
+],
+"Adams County": [
+2326,
+8659,
+11320
+],
+"Columbiana County": [
+12432,
+31676,
+46057
+],
+"Cuyahoga County": [
+398271,
+184211,
+602595
+],
+"Brown County": [
+4353,
+14573,
+19555
+],
+"Henry County": [
+3756,
+9301,
+13926
+],
+"Lake County": [
+46397,
+64255,
+115953
+],
+"Muskingum County": [
+11123,
+24056,
+36924
+],
+"Marion County": [
+7928,
+16961,
+26271
+],
+"Delaware County": [
+40872,
+57568,
+103557
+],
+"Hancock County": [
+9609,
+24183,
+35863
+],
+"Sandusky County": [
+9929,
+16316,
+28009
+],
+"Licking County": [
+27376,
+51241,
+82512
+],
+"Seneca County": [
+7404,
+14825,
+23960
+],
+"Richland County": [
+16085,
+36590,
+55052
+],
+"Warren County": [
+33730,
+77643,
+116764
+],
+"Summit County": [
+134256,
+112026,
+257125
+],
+"Putnam County": [
+2922,
+14961,
+18712
+],
+"Pike County": [
+3539,
+7902,
+11865
+],
+"Allen County": [
+13294,
+30487,
+45815
+],
+"Franklin County": [
+351198,
+199331,
+578226
+],
+"Champaign County": [
+4594,
+12631,
+18058
+],
+"Harrison County": [
+1688,
+5098,
+7067
+],
+"Clinton County": [
+4066,
+13838,
+18625
+],
+"Paulding County": [
+2093,
+6500,
+9028
+],
+"Mercer County": [
+3384,
+17506,
+21682
+],
+"Jefferson County": [
+9675,
+21117,
+32023
+],
+"Greene County": [
+28943,
+48540,
+81742
+],
+"Vinton County": [
+1351,
+3883,
+5502
+],
+"Noble County": [
+1221,
+4549,
+6009
+],
+"Ashtabula County": [
+15577,
+23318,
+40806
+],
+"Erie County": [
+16057,
+19648,
+37501
+],
+"Portage County": [
+32397,
+39971,
+76034
+],
+"Trumbull County": [
+43014,
+49024,
+95911
+],
+"Tuscarawas County": [
+12188,
+26918,
+41260
+],
+"Stark County": [
+68146,
+98388,
+174682
+],
+"Lawrence County": [
+6974,
+18689,
+26554
+],
+"Hamilton County": [
+215718,
+173657,
+407508
+],
+"Ross County": [
+10356,
+18652,
+30314
+],
+"Perry County": [
+4138,
+10228,
+14979
+]
+},
+"vest_zip": "oh.zip"
+}
