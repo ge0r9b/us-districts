@@ -1,0 +1,809 @@
+{
+ "iphone390 states pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": null
+ },
+ "iphone390 states pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone390 states pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone390 states pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone390 states num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone390 states num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone390 states num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone390 states num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone390 PA pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Susquehanna"
+  ],
+  "ntrunc": 1,
+  "mode": "bar"
+ },
+ "iphone390 PA pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone390 PA pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone390 PA pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Susquehanna"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone390 PA num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "bar"
+ },
+ "iphone390 PA num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "pie"
+ },
+ "iphone390 PA num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "line"
+ },
+ "iphone390 PA num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone390 err": [],
+ "iphone375 states pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": null
+ },
+ "iphone375 states pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone375 states pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone375 states pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone375 states num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone375 states num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone375 states num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone375 states num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone375 PA pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone375 PA pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone375 PA pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone375 PA pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Susquehanna"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone375 PA num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "bar"
+ },
+ "iphone375 PA num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "pie"
+ },
+ "iphone375 PA num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery"
+  ],
+  "ntrunc": 1,
+  "mode": "line"
+ },
+ "iphone375 PA num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone375 err": [],
+ "iphone320 states pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": null
+ },
+ "iphone320 states pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone320 states pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone320 states pct range-bar": {
+  "over": [
+   "+5.9 x Chart"
+  ],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone320 states num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone320 states num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone320 states num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone320 states num range-bar": {
+  "over": [
+   "\u22121.83M x Chart"
+  ],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone320 PA pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone320 PA pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "iphone320 PA pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "iphone320 PA pct range-bar": {
+  "over": [
+   "+3.7 x Chart"
+  ],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "iphone320 PA num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone320 PA num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland"
+  ],
+  "ntrunc": 2,
+  "mode": "pie"
+ },
+ "iphone320 PA num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery"
+  ],
+  "ntrunc": 1,
+  "mode": "line"
+ },
+ "iphone320 PA num range-bar": {
+  "over": [
+   "\u221235K x Chart"
+  ],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "iphone320 err": [],
+ "ipad1024x576 states pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": null
+ },
+ "ipad1024x576 states pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x576 states pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x576 states pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x576 states num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x576 states num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x576 states num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x576 states num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x576 PA pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x576 PA pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x576 PA pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x576 PA pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x576 PA num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "ipad1024x576 PA num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland"
+  ],
+  "ntrunc": 2,
+  "mode": "pie"
+ },
+ "ipad1024x576 PA num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery"
+  ],
+  "ntrunc": 1,
+  "mode": "line"
+ },
+ "ipad1024x576 PA num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "ipad1024x576 err": [],
+ "ipad1024x768 states pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": null
+ },
+ "ipad1024x768 states pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x768 states pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x768 states pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x768 states num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x768 states num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x768 states num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x768 states num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x768 PA pct bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "bar"
+ },
+ "ipad1024x768 PA pct pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "pie"
+ },
+ "ipad1024x768 PA pct range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [],
+  "ntrunc": 0,
+  "mode": "line"
+ },
+ "ipad1024x768 PA pct range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Susquehanna"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "ipad1024x768 PA num bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "bar"
+ },
+ "ipad1024x768 PA num pie": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Westmoreland",
+   "Northampton"
+  ],
+  "ntrunc": 3,
+  "mode": "pie"
+ },
+ "ipad1024x768 PA num range-line": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "line"
+ },
+ "ipad1024x768 PA num range-bar": {
+  "over": [],
+  "clip": [],
+  "off": [],
+  "tt": [],
+  "trunc": [
+   "Montgomery",
+   "Northampton"
+  ],
+  "ntrunc": 2,
+  "mode": "bar"
+ },
+ "ipad1024x768 err": []
+}

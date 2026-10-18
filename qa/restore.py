@@ -40,4 +40,4 @@ async def main():
     await cycle(pg,'map-view-cleveland',o)
     o['err']=log['pageerr']+log['console']; await c.close(); await b.close()
   for k,v in o.items(): print(k,':',json.dumps(v)[:900])
-asyncio.run(main())
+if __name__=='__main__': asyncio.run(main())

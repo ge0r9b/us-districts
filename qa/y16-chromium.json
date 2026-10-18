@@ -1,0 +1,471 @@
+{
+ "ipad1024x768": {
+  "states16": [
+   {
+    "ym": "2024",
+    "chart": null,
+    "lv": "states",
+    "loading": false,
+    "thumbs": [
+     "Hillary Clinton 2016",
+     "Donald Trump 2016"
+    ],
+    "cpanel": null,
+    "hdr": "All States"
+   },
+   {
+    "n": 51,
+    "nodigit": 0,
+    "first": [
+     "DC | 90.9%",
+     "HI | 30.0% | 62.2%",
+     "CA | 31.6% | 61.7%",
+     "MD | 33.9% | 60.3%",
+     "MA | 32.8% | 60.0%",
+     "NY | 36.5% | 59.0%"
+    ]
+   }
+  ],
+  "tot16": {
+   "AL": [
+    772412,
+    1462616,
+    2256352
+   ],
+   "AK": null,
+   "AZ": [
+    1582860,
+    1770242,
+    3389319
+   ],
+   "AR": [
+    396905,
+    759241,
+    1182676
+   ],
+   "CA": [
+    9276179,
+    6081697,
+    15862536
+   ],
+   "CO": [
+    1728159,
+    1377441,
+    3190873
+   ],
+   "CT": [
+    992053,
+    736918,
+    1758429
+   ],
+   "DE": [
+    289758,
+    214351,
+    511697
+   ],
+   "DC": [
+    294185,
+    21076,
+    325869
+   ],
+   "FL": [
+    4683038,
+    6110125,
+    10893547
+   ],
+   "GA": [
+    2548017,
+    2663117,
+    5250047
+   ],
+   "HI": [
+    313044,
+    193661,
+    516701
+   ],
+   "ID": [
+    274972,
+    605246,
+    904812
+   ],
+   "IL": [
+    3062863,
+    2449079,
+    5592368
+   ],
+   "IN": [
+    1163603,
+    1720347,
+    2933700
+   ],
+   "IA": [
+    707278,
+    927019,
+    1656849
+   ],
+   "KS": [
+    544853,
+    758802,
+    1327591
+   ],
+   "KY": [
+    704043,
+    1337494,
+    2073309
+   ],
+   "LA": [
+    766870,
+    1208505,
+    2006975
+   ],
+   "ME": [
+    435652,
+    377977,
+    831375
+   ],
+   "MD": [
+    1902577,
+    1035550,
+    3015650
+   ],
+   "MA": [
+    2126545,
+    1251308,
+    3453437
+   ],
+   "MI": [
+    2736533,
+    2816636,
+    5662504
+   ],
+   "MN": [
+    1656979,
+    1519032,
+    3240916
+   ],
+   "MS": [
+    466668,
+    747744,
+    1228008
+   ],
+   "MO": [
+    1200599,
+    1751986,
+    2993596
+   ],
+   "MT": [
+    231906,
+    352079,
+    602963
+   ],
+   "NE": [
+    369995,
+    564816,
+    947159
+   ],
+   "NV": [
+    705197,
+    751205,
+    1484840
+   ],
+   "NH": [
+    418496,
+    395578,
+    822153
+   ],
+   "NJ": [
+    2220713,
+    1968215,
+    4272725
+   ],
+   "NM": [
+    478802,
+    423391,
+    923403
+   ],
+   "NY": [
+    4619195,
+    3578899,
+    8198094
+   ],
+   "NC": [
+    2715375,
+    2898423,
+    5679647
+   ],
+   "ND": [
+    112327,
+    246505,
+    365059
+   ],
+   "OH": [
+    2533699,
+    3180116,
+    5765017
+   ],
+   "OK": [
+    499599,
+    1036213,
+    1566173
+   ],
+   "OR": [
+    1240600,
+    919480,
+    2244493
+   ],
+   "PA": [
+    3423042,
+    3543308,
+    7034206
+   ],
+   "RI": [
+    285156,
+    214406,
+    510659
+   ],
+   "SC": [
+    1028452,
+    1483747,
+    2548140
+   ],
+   "SD": [
+    146859,
+    272081,
+    428922
+   ],
+   "TN": [
+    1056265,
+    1966865,
+    3063942
+   ],
+   "TX": [
+    4835250,
+    6393597,
+    11380105
+   ],
+   "UT": [
+    562566,
+    883818,
+    1487951
+   ],
+   "VT": [
+    235791,
+    119395,
+    366389
+   ],
+   "VA": [
+    2335395,
+    2075085,
+    4482576
+   ],
+   "WA": [
+    2245849,
+    1530923,
+    3898835
+   ],
+   "WV": [
+    214309,
+    533556,
+    762390
+   ],
+   "WI": [
+    1668229,
+    1697626,
+    3415213
+   ],
+   "WY": [
+    69527,
+    192633,
+    266353
+   ]
+  },
+  "states16num": {
+   "n": 51,
+   "nodigit": 0,
+   "first": [
+    "CA | 4.48M | 8.75M",
+    "NY | 2.82M | 4.56M",
+    "FL | 4.62M | 4.50M",
+    "TX | 4.69M | 3.88M",
+    "IL | 2.15M | 3.09M",
+    "PA | 2.97M | 2.93M"
+   ]
+  },
+  "chart16 pie": {
+   "ym": "2024",
+   "chart": "pie",
+   "lv": "states",
+   "loading": false,
+   "thumbs": [
+    "Hillary Clinton 2016",
+    "Donald Trump 2016"
+   ],
+   "cpanel": [
+    "block",
+    0,
+    "62.98M65.85M"
+   ],
+   "hdr": "All States"
+  },
+  "chart16 pie ->20": "pie",
+  "chart16 pie ->24": "pie",
+  "chart16 bar": {
+   "ym": "2024",
+   "chart": "bar",
+   "lv": "states",
+   "loading": false,
+   "thumbs": [
+    "Hillary Clinton 2016",
+    "Donald Trump 2016"
+   ],
+   "cpanel": [
+    "block",
+    0,
+    "Republican62.98MDemocratic65.85MOther7.83MCandidate2016VotesDonald Trump Republican62,984,828Hillary Clinton Democratic6"
+   ],
+   "hdr": "All States"
+  },
+  "chart16 bar ->20": "bar",
+  "chart16 bar ->24": "bar",
+  "range": [
+   {
+    "ym": "delta",
+    "chart": "bar",
+    "lv": "states",
+    "loading": false,
+    "thumbs": [
+     "Donald Trump 2020",
+     "Joe Biden 2020",
+     "Donald Trump 2024",
+     "Kamala Harris 2024"
+    ],
+    "cpanel": [
+     "block",
+     0,
+     "Republican+3.08MDemocratic\u22126.26MOther\u2212332KChange 2020 \u2192 2024Candidate20202024VotesVotesDonald Trump Republican74,222,839"
+    ],
+    "hdr": "All States"
+   },
+   {
+    "n": 51,
+    "nodigit": 0,
+    "first": [
+     "CA | R +1.91M | \u22121.83M | +124K",
+     "FL | R +1.06M | +441K | \u2212614K",
+     "NY | R +953K | +327K | \u2212626K | \u2212122K",
+     "TX | R +927K | +503K | \u2212424K",
+     "NJ | R +473K | \u2212388K",
+     "IL | R +411K | \u2212409K"
+    ]
+   }
+  ],
+  "range line": "line",
+  "back16": {
+   "ym": "2024",
+   "chart": "bar",
+   "lv": "states",
+   "loading": false,
+   "thumbs": [
+    "Hillary Clinton 2016",
+    "Donald Trump 2016"
+   ],
+   "cpanel": [
+    "block",
+    0,
+    "Republican62.98MDemocratic65.85MOther7.83MCandidate2016VotesDonald Trump Republican62,984,828Hillary Clinton Democratic6"
+   ],
+   "hdr": "All States"
+  },
+  "PA16": [
+   true,
+   {
+    "ym": "2024",
+    "chart": "bar",
+    "lv": "counties",
+    "loading": false,
+    "thumbs": [
+     "Donald Trump 2016",
+     "Hillary Clinton 2016"
+    ],
+    "cpanel": [
+     "block",
+     0,
+     "Republican2.97MDemocratic2.93MOther218KCandidate2016VotesDonald Trump Republican2,971,303Hillary Clinton Democratic2,926"
+    ],
+    "hdr": "Pennsylvania"
+   },
+   {
+    "n": 67,
+    "nodigit": 12,
+    "first": [
+     "Allegheny | 260K | 368K",
+     "Bucks | 164K | 167K",
+     "Montgomery | 163K | 256K",
+     "Lancaster | 138K | 91K",
+     "York | 129K | 69K | 206K",
+     "Chester | 116K | 141K"
+    ]
+   }
+  ],
+  "Phila16": [
+   true,
+   {
+    "ym": "2024",
+    "chart": "bar",
+    "lv": "townships",
+    "loading": false,
+    "thumbs": [
+     "Hillary Clinton 2016",
+     "Donald Trump 2016"
+    ],
+    "cpanel": [
+     "block",
+     0,
+     "Republican109KDemocratic583KOther15KCandidate2016VotesDonald Trump Republican108,945Hillary Clinton Democratic582,909Oth"
+    ],
+    "hdr": "Philadelphia County"
+   },
+   {
+    "n": 2,
+    "nodigit": 0,
+    "first": [
+     "Philadelphia city | 583K",
+     "Rockledge borough | 464"
+    ]
+   }
+  ],
+  "lvl4_16": [
+   "Philadelphia city",
+   {
+    "ym": "2024",
+    "chart": "bar",
+    "lv": "precincts",
+    "loading": false,
+    "thumbs": [
+     "Hillary Clinton 2016",
+     "Donald Trump 2016"
+    ],
+    "cpanel": [
+     "block",
+     0,
+     "Republican109KDemocratic584KOther15KCandidate2016VotesDonald Trump Republican108,748Hillary Clinton Democratic584,025Oth"
+    ],
+    "hdr": "Philadelphia County Philadelphi\u2026"
+   },
+   {
+    "n": 1686,
+    "nodigit": 1631,
+    "first": [
+     "Philadelphia 5-21 | 1K",
+     "Philadelphia 30-17 | 1K",
+     "Philadelphia 5-17 | 1K",
+     "Philadelphia 8-26 | 984",
+     "Philadelphia 27-22 | 973",
+     "Philadelphia 8-5 | 971"
+    ]
+   }
+  ],
+  "err": [],
+  "http": []
+ }
+}

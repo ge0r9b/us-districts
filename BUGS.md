@@ -1,6 +1,6 @@
 # BUGS: us-districts v2 (QA lane)
 
-Tested: live https://ge0r9b.github.io/us-districts/v2/ , **build 202610181566** (`window.BUILD`, line 9 of the live v2/index.html).
+Tested (pass 1): live https://ge0r9b.github.io/us-districts/v2/ , **build 202610181566** (`window.BUILD`, line 9 of the live v2/index.html).
 Date: Oct 18, 2026, ~5:40-6:20 AM EDT. Branch `qa/bugs` from `08d298c`.
 Harness: Playwright (Python) 1.x, Chromium (isMobile + hasTouch, iOS UA) and WebKit (hasTouch, iOS UA). Scripts in `qa/` (`flow.py`, `cmp.py`, `nums.py`, `load.py`).
 Official sources: FEC "Official 2024 Presidential General Election Results" (https://www.fec.gov/documents/5644/2024presgeresults.pdf, compiled from state election offices, Jan 16 2025) and FEC "Official 2020 Presidential General Election Results" (https://www.fec.gov/resources/cms-content/documents/2020presgeresults.pdf). PA and GA 2024 also confirmed against the PA DOS certification and GA SOS results pages.
@@ -30,16 +30,28 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - QA-009 also hits more rows at 320x568: "+5.9" (states, % delta bar), "+3.7" and "−35K" (PA counties, delta bar) under the Chart button (shots/b1569-ch-320-sw-*-rangebar.png).
 - QA-030 at 4x CPU, 1569, more sizes. List median/max ms: US House 95.5/**185** (375), 77/139 (320), 82.5/128 (1024x576); county 95/147 (375), 93/115 (320), 90.5/98 (1024x576). Map median/max ms: US House 164/504 (375), 131/231 (320), 137.5/266 (1024x576); county 232/340 (375), 243/278 (320), 221/431 (1024x576). Fast drags always end consistent on 2020.
 
+## Re-test status, build 1571 (pass 5, Oct 18 ~8:05-8:35 AM EDT)
+- Live build moved 1569 > 1570 (07:12) > 1571 (08:02). Smoke flow at all 5 sizes in Chromium and WebKit (touch), FEC compare, 2016 checks (`qa/y16.py`, `qa/y16b.py`, `qa/y16c.py`).
+- QA-001: **fixed on 1571** (OR 2024 matches FEC). QA-002: **fixed on 1571** (KS 2020 matches FEC).
+- QA-003: RI 2020 now matches. **Still on 1571**: ME 2020 Biden -4,599 / Trump -838; PA 2020 +1,694 / +589; CA 2020 -486 / -468; WI 2020 -193 / -119; IN 2020 +79 / +333; AL 2020 +24 / -2; VA 2024 +1,617 / +988; MA 2024 +27 / +5; NH 2024 +8 / +55. NY 2020 changed: now Biden 5,244,886 / Trump 3,251,997, which is +13,901 / +7,199 against the FEC table (was +13,021 / +5,432); needs a check against the NY BOE certification. National 2024 badges 77.30M / 75.02M now match FEC.
+- 2016 US total (thumbnails and bar panel): Clinton 65,853,514 / Trump 62,984,828 = FEC exactly. The 2016 state table (`DS16.states`) matches FEC for all 51.
+- 2016 at every level shows numbers now (states, PA counties, Philadelphia towns, precincts). Chart type pie and bar stays when the slider moves '16 > '20 > '24 (1571 fix verified).
+- QA-005: **still on 1571**, all 5 sizes, both engines (US House from a county list: 0 rows).
+- QA-007: **still on 1571**. All States 200-298 ms (Chromium), 294-432 ms (WebKit); US House pick 208-350 ms (Chromium), 230-405 ms (WebKit).
+- QA-009: **still on 1571** at 320x568 ("−1.83M" under the Chart button), both engines.
+- QA-015 / QA-034: unchanged on 1571 (2016 list reload moves the map centre 0.05 degrees; map view reloads as list).
+- No console errors, page errors or failed requests in any run.
+
 ## Critical
 
-### QA-001 [Fix pending deploy (per orchestrator: fixed on data/election, ships with the 2016 build); still wrong on live 1569 at 6:55 AM EDT] Oregon 2024 state totals are short of the official count (~1%)
+### QA-001 [Fixed on 1571 (verified 8:10 AM EDT)] Oregon 2024 state totals are short of the official count (~1%)
 - Severity: Critical (wrong numbers) | Build 1566 | All sizes (data, seen in list at 1024x768)
 - Steps: Institution filter > All States > `#` mode, 2024; find OR (or `__stTot('Oregon','2024')`).
 - Expected (FEC 2024): Harris 1,240,600, Trump 919,480.
 - Actual: Harris 1,228,410 (-12,190), Trump 910,702 (-8,778). List shows OR 1.23M / 911K instead of 1.24M / 919K.
 - Screenshot: shots/chromium-ipad1024x768-allstates-2024-num.png
 
-### QA-002 [Fix pending deploy (per orchestrator); still wrong on live 1569 at 6:55 AM EDT] Kansas 2020 state totals are short of the official count (~2%)
+### QA-002 [Fixed on 1571 (verified 8:10 AM EDT)] Kansas 2020 state totals are short of the official count (~2%)
 - Severity: Critical | Build 1566 | All sizes
 - Steps: All States > time slider to '20 > `#` mode; KS (or `__stTot('Kansas','2020')`).
 - Expected (FEC 2020): Biden 570,323, Trump 771,406.
@@ -251,3 +263,45 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar}: no text overlapping other text, no text off-screen; issues only as in QA-009 and QA-035.
 - 400 random taps: no errors, no failed requests.
 - Not done: official totals for the 4 counties above, WebKit monkey and sweep, and reload restore in WebKit.
+
+## New on build 1571 (pass 5)
+
+### QA-038 A time range that starts at '16 never shows the change view, and Line is not offered
+- Severity: Critical (broken flow) | Build 1571 | 390x844, 320x568, 1024x768 (Chromium, touch)
+- Steps: All States list > open the time row > drag the left knob to '16 so the range is '16 > '24 > wait 10 s > open the chart menu.
+- Expected (1571 notes): shows 2016 only until the 2016 change view lands, then the '16 > '24 change rows and change thumbnails; Line is offered for a range.
+- Actual: both knobs show '16 > '24, but after 10 s the list and thumbnails still show 2016 single-year values ("DC 90.9%", Hillary Clinton 2016 / Donald Trump 2016). The chart menu offers only Pie and Bar; picking Line does nothing (chart mode stays empty). Reload restores the same stuck state. No "Loading 2016 results" text, no errors.
+- Screenshots: shots/b1571-ch-390-y16-range16-10000ms.png, shots/b1571-ch-390-y16-range16-line.png, shots/b1571-ch-320-y16-range16-10000ms.png, shots/b1571-ch-1024-y16-range16-10000ms.png
+
+### QA-039 2016 state totals after a drill-in are county sums, not the official state result
+- Severity: Critical (wrong numbers, small) | Build 1571 | All sizes (data; seen at 1024x768)
+- Steps: All States > slider '16 > `#` > tap PA; read the bar panel.
+- Expected (FEC 2016, `qa/fec16.json`): Trump 2,970,733, Clinton 2,926,441 (the app's own `DS16.states` has these).
+- Actual: Trump 2,971,303 (+570), which is the sum of the PA rows in `ELECTION2016` (Clinton sum 2,926,156, -285). Same as QA-017, but for 2016 drill-ins.
+- Other states whose 2016 county rows do not add up to FEC (D / R difference): CA -1,726 / -513, AL +60 / +374, TX -3 / -191, IN +29 / -46, NY +13 / +19, SD +8 / +10, KY -7 / -14, MI -1 / -2, WV -2 / 0.
+- Screenshot: shots/b1571-ch-1024x768-y16-PA-counties.png
+
+### QA-040 Philadelphia County shows three different 2016 totals
+- Severity: Critical (wrong numbers, small) | Build 1571 | 1024x768 (Chromium)
+- Steps: '16 > All States > PA > Philadelphia > Philadelphia city; read the bar panel at each level.
+- Expected: one total for the same area at every level.
+- Actual: county table `ELECTION2016` Clinton 582,697 / Trump 108,711; panel at the county's towns list Clinton 582,909 / Trump 108,945; panel at Philadelphia city precincts Clinton 584,025 / Trump 108,748. (Rockledge borough still listed under Philadelphia, QA-006.)
+- Screenshots: shots/b1571-ch-1024x768-y16-phila.png, shots/b1571-ch-1024x768-y16-lvl4.png
+
+### QA-041 Picking Line in the chart menu is slow again (regression)
+- Severity: Medium (slow tap) | Build 1571 | All 5 sizes, Chromium and WebKit
+- Steps: list view, 2020 > 2024 range > chart button > Line.
+- Expected: under 100 ms tap-to-paint (it was 9-29 ms on 1566-1569).
+- Actual: 137-197 ms in Chromium (390: 197, 375: 137.5, 320: 141, 1024x576: 147, 1024x768: 155) and 141-184 ms in WebKit.
+- Evidence: `qa/flow-chromium-.json`, `qa/flow-webkit-.json` (`lat.chart_line`).
+
+### QA-042 2016 `#` bar: Philadelphia's Trump segment has no number
+- Severity: Low | Build 1571 | 1024x768
+- Steps: '16 > All States > `#` > PA counties.
+- Actual: the Philadelphia row's red segment is about 125 px wide but shows no "109K" label (2024 shows "144K" in the same spot). In the Philadelphia towns list, "Philadelphia city" shows only "583K".
+- Screenshot: shots/b1571-ch-1024x768-y16-PA-counties.png
+
+## Passed on 1571 (pass 5)
+- Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
+- Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).
+- Not done: random-tap monkey (harness argument error, rerun next pass), WebKit range-from-'16 (needs a touch drag that WebKit's driver lacks).

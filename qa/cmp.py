@@ -25,4 +25,4 @@ async def main():
   print('app national',tot)
   print('fec 24 D R T',sum(f24['HARRIS'].values()),sum(f24['TRUMP'].values()),sum(f24['TOTAL_VOTES'].values()))
   print('fec 20 D R T',sum(f20['BIDEN'].values()),sum(f20['TRUMP'].values()),sum(f20['TOTAL_VOTES'].values()))
-asyncio.run(main())
+if __name__=='__main__': asyncio.run(main())
