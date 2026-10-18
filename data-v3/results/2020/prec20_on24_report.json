@@ -1,0 +1,1833 @@
+{
+ "Alabama": {
+  "approx": 316,
+  "bytes": 103209,
+  "drt_2020": [
+   849624,
+   1441170,
+   2323282
+  ],
+  "exact": 1593,
+  "exact_vote_share": 0.7499,
+  "file": "v2/data/precincts2020/Alabama.js",
+  "gray": 2,
+  "how": {
+   "name": 749,
+   "sliver_only": 27,
+   "split": 169,
+   "whole": 1026
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   828233,
+   1392721,
+   2252463
+  ],
+  "polygons_2024": 1911,
+  "precincts_2020": 1971,
+  "unplaced": [
+   21388,
+   48451,
+   70813
+  ]
+ },
+ "Alaska": {
+  "approx": 220,
+  "bytes": 23250,
+  "drt_2020": [
+   153778,
+   189951,
+   357569
+  ],
+  "exact": 179,
+  "exact_vote_share": 0.3206,
+  "file": "v2/data/precincts2020/Alaska.js",
+  "gray": 3,
+  "how": {
+   "split": 155,
+   "whole": 285
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   153783,
+   189947,
+   357566
+  ],
+  "polygons_2024": 402,
+  "precincts_2020": 440,
+  "unplaced": [
+   0,
+   0,
+   0
+  ]
+ },
+ "Arizona": {
+  "approx": 596,
+  "bytes": 72402,
+  "drt_2020": [
+   1672022,
+   1661494,
+   3384980
+  ],
+  "exact": 1072,
+  "exact_vote_share": 0.6528,
+  "file": "v2/data/precincts2020/Arizona.js",
+  "gray": 26,
+  "how": {
+   "name": 266,
+   "sliver_only": 1,
+   "split": 312,
+   "whole": 903
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1672019,
+   1661488,
+   3384974
+  ],
+  "polygons_2024": 1694,
+  "precincts_2020": 1482,
+  "unplaced": [
+   1,
+   1,
+   2
+  ]
+ },
+ "Arkansas": {
+  "approx": 703,
+  "bytes": 114957,
+  "drt_2020": [
+   423881,
+   760394,
+   1218760
+  ],
+  "exact": 1797,
+  "exact_vote_share": 0.6602,
+  "file": "v2/data/precincts2020/Arkansas.js",
+  "gray": 149,
+  "how": {
+   "name": 1602,
+   "no_overlap": 1,
+   "sliver_only": 25,
+   "split": 323,
+   "whole": 604
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   420337,
+   751178,
+   1205611
+  ],
+  "polygons_2024": 2649,
+  "precincts_2020": 2555,
+  "unplaced": [
+   3548,
+   9222,
+   13145
+  ]
+ },
+ "California": {
+  "approx": 15622,
+  "bytes": 991182,
+  "drt_2020": [
+   11086799,
+   6000697,
+   17466979
+  ],
+  "exact": 3808,
+  "exact_vote_share": 0.1624,
+  "file": "v2/data/precincts2020/California.js",
+  "gray": 4772,
+  "how": {
+   "name": 3945,
+   "split": 8500,
+   "whole": 5062
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   11086751,
+   6000690,
+   17466951
+  ],
+  "polygons_2024": 24202,
+  "precincts_2020": 17507,
+  "unplaced": [
+   7,
+   3,
+   11
+  ]
+ },
+ "Colorado": {
+  "approx": 1333,
+  "bytes": 142060,
+  "drt_2020": [
+   1804352,
+   1364607,
+   3256980
+  ],
+  "exact": 1780,
+  "exact_vote_share": 0.5325,
+  "file": "v2/data/precincts2020/Colorado.js",
+  "gray": 31,
+  "how": {
+   "name": 296,
+   "sliver_only": 15,
+   "split": 943,
+   "whole": 1946
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1789903,
+   1353392,
+   3230726
+  ],
+  "polygons_2024": 3144,
+  "precincts_2020": 3200,
+  "unplaced": [
+   14453,
+   11224,
+   26256
+  ]
+ },
+ "Connecticut": {
+  "approx": 0,
+  "bytes": 12383,
+  "drt_2020": [
+   1080831,
+   714717,
+   1823857
+  ],
+  "exact": 167,
+  "exact_vote_share": 0.9823,
+  "file": "v2/data/precincts2020/Connecticut.js",
+  "gray": 0,
+  "how": {
+   "name": 167,
+   "sliver_only": 2
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1064163,
+   699628,
+   1791535
+  ],
+  "polygons_2024": 167,
+  "precincts_2020": 169,
+  "unplaced": [
+   16668,
+   15089,
+   32322
+  ]
+ },
+ "Delaware": {
+  "approx": 339,
+  "bytes": 22591,
+  "drt_2020": [
+   295032,
+   199464,
+   501604
+  ],
+  "exact": 179,
+  "exact_vote_share": 0.3865,
+  "file": "v2/data/precincts2020/Delaware.js",
+  "gray": 7,
+  "how": {
+   "name": 5,
+   "split": 191,
+   "whole": 234
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   293793,
+   198330,
+   499208
+  ],
+  "polygons_2024": 525,
+  "precincts_2020": 430,
+  "unplaced": [
+   1238,
+   1133,
+   2396
+  ]
+ },
+ "District of Columbia": {
+  "approx": 4,
+  "bytes": 8114,
+  "drt_2020": [
+   317323,
+   18586,
+   344356
+  ],
+  "exact": 140,
+  "exact_vote_share": 0.9621,
+  "file": "v2/data/precincts2020-DC.js",
+  "gray": 0,
+  "how": {
+   "name": 142,
+   "split": 2
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   317323,
+   18586,
+   344356
+  ],
+  "polygons_2024": 144,
+  "precincts_2020": 144,
+  "unplaced": [
+   0,
+   0,
+   0
+  ]
+ },
+ "Florida": {
+  "approx": 2255,
+  "bytes": 224586,
+  "drt_2020": [
+   5295261,
+   5667348,
+   11087666
+  ],
+  "exact": 3069,
+  "exact_vote_share": 0.5436,
+  "file": "v2/data/precincts2020/Florida.js",
+  "gray": 222,
+  "how": {
+   "name": 2684,
+   "no_overlap": 32,
+   "sliver_only": 113,
+   "split": 1203,
+   "whole": 1920
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   5164308,
+   5475638,
+   10761660
+  ],
+  "polygons_2024": 5546,
+  "precincts_2020": 5952,
+  "unplaced": [
+   130937,
+   191708,
+   326026
+  ]
+ },
+ "Georgia": {
+  "approx": 858,
+  "bytes": 109515,
+  "drt_2020": [
+   2431383,
+   2430439,
+   4923010
+  ],
+  "exact": 1712,
+  "exact_vote_share": 0.6665,
+  "file": "v2/data/precincts2020/Georgia.js",
+  "gray": 66,
+  "how": {
+   "name": 843,
+   "sliver_only": 23,
+   "split": 490,
+   "whole": 1253
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2406197,
+   2404611,
+   4871206
+  ],
+  "polygons_2024": 2636,
+  "precincts_2020": 2609,
+  "unplaced": [
+   25194,
+   25823,
+   51798
+  ]
+ },
+ "Hawaii": {
+  "approx": 197,
+  "bytes": 10892,
+  "drt_2020": [
+   366130,
+   196864,
+   574469
+  ],
+  "exact": 29,
+  "exact_vote_share": 0.0981,
+  "file": "v2/data/precincts2020/Hawaii.js",
+  "gray": 7,
+  "how": {
+   "name": 33,
+   "no_overlap": 1,
+   "sliver_only": 1,
+   "split": 136,
+   "whole": 79
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   360178,
+   193766,
+   565168
+  ],
+  "polygons_2024": 233,
+  "precincts_2020": 250,
+  "unplaced": [
+   5951,
+   3106,
+   9300
+  ]
+ },
+ "Idaho": {
+  "approx": 627,
+  "bytes": 38983,
+  "drt_2020": [
+   287021,
+   554119,
+   867281
+  ],
+  "exact": 345,
+  "exact_vote_share": 0.2935,
+  "file": "v2/data/precincts2020/Idaho.js",
+  "gray": 0,
+  "how": {
+   "name": 202,
+   "sliver_only": 1,
+   "split": 444,
+   "whole": 287
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   286879,
+   553608,
+   866624
+  ],
+  "polygons_2024": 972,
+  "precincts_2020": 934,
+  "unplaced": [
+   148,
+   508,
+   659
+  ]
+ },
+ "Illinois": {
+  "approx": 3917,
+  "bytes": 365837,
+  "drt_2020": [
+   3469195,
+   2444803,
+   6032878
+  ],
+  "exact": 4535,
+  "exact_vote_share": 0.4696,
+  "file": "v2/data/precincts2020/Illinois.js",
+  "gray": 46,
+  "how": {
+   "name": 4090,
+   "no_overlap": 2,
+   "sliver_only": 28,
+   "split": 3131,
+   "whole": 2819
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   3459889,
+   2433047,
+   6011298
+  ],
+  "polygons_2024": 8498,
+  "precincts_2020": 10070,
+  "unplaced": [
+   9341,
+   11740,
+   21573
+  ]
+ },
+ "Indiana": {
+  "approx": 492,
+  "bytes": 215403,
+  "drt_2020": [
+   1240292,
+   1729102,
+   3028256
+  ],
+  "exact": 4528,
+  "exact_vote_share": 0.881,
+  "file": "v2/data/precincts2020/Indiana.js",
+  "gray": 33,
+  "how": {
+   "name": 3440,
+   "sliver_only": 23,
+   "split": 277,
+   "whole": 1368
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1234555,
+   1720106,
+   3013217
+  ],
+  "polygons_2024": 5053,
+  "precincts_2020": 5108,
+  "unplaced": [
+   5742,
+   8997,
+   15045
+  ]
+ },
+ "Iowa": {
+  "approx": 921,
+  "bytes": 81514,
+  "drt_2020": [
+   759061,
+   897672,
+   1690871
+  ],
+  "exact": 714,
+  "exact_vote_share": 0.3868,
+  "file": "v2/data/precincts2020/Iowa.js",
+  "gray": 15,
+  "how": {
+   "name": 446,
+   "sliver_only": 1,
+   "split": 605,
+   "whole": 609
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   757627,
+   896110,
+   1687821
+  ],
+  "polygons_2024": 1650,
+  "precincts_2020": 1661,
+  "unplaced": [
+   1423,
+   1570,
+   3041
+  ]
+ },
+ "Kansas": {
+  "approx": 819,
+  "bytes": 161443,
+  "drt_2020": [
+   570196,
+   770931,
+   1371690
+  ],
+  "exact": 2720,
+  "exact_vote_share": 0.7334,
+  "file": "v2/data/precincts2020/Kansas.js",
+  "gray": 126,
+  "how": {
+   "name": 43,
+   "no_overlap": 1,
+   "sliver_only": 24,
+   "split": 395,
+   "whole": 2930
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   566187,
+   763723,
+   1360202
+  ],
+  "polygons_2024": 3665,
+  "precincts_2020": 3393,
+  "unplaced": [
+   4013,
+   7212,
+   11484
+  ]
+ },
+ "Kentucky": {
+  "approx": 1801,
+  "bytes": 116047,
+  "drt_2020": [
+   772403,
+   1326601,
+   2135315
+  ],
+  "exact": 402,
+  "exact_vote_share": 0.1172,
+  "file": "v2/data/precincts2020/Kentucky.js",
+  "gray": 997,
+  "how": {
+   "name": 45,
+   "sliver_only": 5,
+   "split": 532,
+   "whole": 641
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   762775,
+   1284992,
+   2083311
+  ],
+  "polygons_2024": 3200,
+  "precincts_2020": 1223,
+  "unplaced": [
+   9623,
+   41623,
+   51985
+  ]
+ },
+ "Louisiana": {
+  "approx": 671,
+  "bytes": 150897,
+  "drt_2020": [
+   855945,
+   1255308,
+   2147501
+  ],
+  "exact": 2854,
+  "exact_vote_share": 0.8192,
+  "file": "v2/data/precincts2020/Louisiana.js",
+  "gray": 107,
+  "how": {
+   "name": 2741,
+   "sliver_only": 15,
+   "split": 290,
+   "whole": 673
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   853666,
+   1248453,
+   2138258
+  ],
+  "polygons_2024": 3632,
+  "precincts_2020": 3719,
+  "unplaced": [
+   2280,
+   6851,
+   9253
+  ]
+ },
+ "Maine": {
+  "approx": 59,
+  "bytes": 23358,
+  "drt_2020": [
+   435070,
+   360767,
+   819369
+  ],
+  "exact": 431,
+  "exact_vote_share": 0.8032,
+  "file": "v2/data/precincts2020/Maine.js",
+  "gray": 0,
+  "how": {
+   "no_overlap": 5,
+   "sliver_only": 10,
+   "split": 44,
+   "whole": 484
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   432350,
+   355928,
+   811630
+  ],
+  "polygons_2024": 490,
+  "precincts_2020": 543,
+  "unplaced": [
+   2721,
+   4837,
+   7740
+  ]
+ },
+ "Maryland": {
+  "approx": 836,
+  "bytes": 91695,
+  "drt_2020": [
+   1983799,
+   976259,
+   3035629
+  ],
+  "exact": 1083,
+  "exact_vote_share": 0.5826,
+  "file": "v2/data/precincts2020/Maryland.js",
+  "gray": 32,
+  "how": {
+   "name": 262,
+   "sliver_only": 14,
+   "split": 445,
+   "whole": 1308
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1967389,
+   971156,
+   3013674
+  ],
+  "polygons_2024": 1951,
+  "precincts_2020": 2029,
+  "unplaced": [
+   16415,
+   5106,
+   21956
+  ]
+ },
+ "Massachusetts": {
+  "approx": 1403,
+  "bytes": 136175,
+  "drt_2020": [
+   2381098,
+   1166650,
+   3629707
+  ],
+  "exact": 904,
+  "exact_vote_share": 0.4169,
+  "file": "v2/data/precincts2020/Massachusetts.js",
+  "gray": 30,
+  "how": {
+   "no_overlap": 2,
+   "sliver_only": 20,
+   "split": 999,
+   "whole": 1151
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2336099,
+   1143283,
+   3559865
+  ],
+  "polygons_2024": 2337,
+  "precincts_2020": 2172,
+  "unplaced": [
+   44986,
+   23385,
+   69854
+  ]
+ },
+ "Michigan": {
+  "approx": 1036,
+  "bytes": 251448,
+  "drt_2020": [
+   2803571,
+   2649178,
+   5537048
+  ],
+  "exact": 2938,
+  "exact_vote_share": 0.6485,
+  "file": "v2/data/precincts2020/Michigan.js",
+  "gray": 1,
+  "how": {
+   "no_overlap": 13,
+   "sliver_only": 62,
+   "split": 592,
+   "whole": 4083
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2768008,
+   2631629,
+   5483214
+  ],
+  "polygons_2024": 3975,
+  "precincts_2020": 4750,
+  "unplaced": [
+   35566,
+   17551,
+   53835
+  ]
+ },
+ "Minnesota": {
+  "approx": 1072,
+  "bytes": 192289,
+  "drt_2020": [
+   1717077,
+   1484065,
+   3277171
+  ],
+  "exact": 2972,
+  "exact_vote_share": 0.5449,
+  "file": "v2/data/precincts2020/Minnesota.js",
+  "gray": 23,
+  "how": {
+   "name": 3055,
+   "sliver_only": 2,
+   "split": 627,
+   "whole": 393
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1712611,
+   1480230,
+   3268616
+  ],
+  "polygons_2024": 4067,
+  "precincts_2020": 4077,
+  "unplaced": [
+   4462,
+   3841,
+   8548
+  ]
+ },
+ "Mississippi": {
+  "approx": 212,
+  "bytes": 79693,
+  "drt_2020": [
+   539332,
+   756749,
+   1313677
+  ],
+  "exact": 1481,
+  "exact_vote_share": 0.8364,
+  "file": "v2/data/precincts2020/Mississippi.js",
+  "gray": 10,
+  "how": {
+   "name": 1127,
+   "no_overlap": 2,
+   "sliver_only": 34,
+   "split": 107,
+   "whole": 493
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   529749,
+   744667,
+   1291682
+  ],
+  "polygons_2024": 1703,
+  "precincts_2020": 1763,
+  "unplaced": [
+   9577,
+   12081,
+   21995
+  ]
+ },
+ "Missouri": {
+  "approx": 1211,
+  "bytes": 139402,
+  "drt_2020": [
+   1251811,
+   1717999,
+   3023191
+  ],
+  "exact": 1765,
+  "exact_vote_share": 0.5449,
+  "file": "v2/data/precincts2020/Missouri.js",
+  "gray": 45,
+  "how": {
+   "name": 1477,
+   "sliver_only": 43,
+   "split": 669,
+   "whole": 1291
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1232941,
+   1684418,
+   2969660
+  ],
+  "polygons_2024": 3021,
+  "precincts_2020": 3480,
+  "unplaced": [
+   18880,
+   33582,
+   53537
+  ]
+ },
+ "Montana": {
+  "approx": 354,
+  "bytes": 33280,
+  "drt_2020": [
+   244786,
+   343602,
+   603640
+  ],
+  "exact": 354,
+  "exact_vote_share": 0.3067,
+  "file": "v2/data/precincts2020/Montana.js",
+  "gray": 12,
+  "how": {
+   "name": 308,
+   "sliver_only": 3,
+   "split": 224,
+   "whole": 128
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   243888,
+   341183,
+   600252
+  ],
+  "polygons_2024": 720,
+  "precincts_2020": 663,
+  "unplaced": [
+   897,
+   2420,
+   3388
+  ]
+ },
+ "Nebraska": {
+  "approx": 768,
+  "bytes": 62348,
+  "drt_2020": [
+   372129,
+   553482,
+   945800
+  ],
+  "exact": 548,
+  "exact_vote_share": 0.3412,
+  "file": "v2/data/precincts2020/Nebraska.js",
+  "gray": 10,
+  "how": {
+   "name": 407,
+   "split": 522,
+   "whole": 444
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   371981,
+   552629,
+   944777
+  ],
+  "polygons_2024": 1326,
+  "precincts_2020": 1373,
+  "unplaced": [
+   147,
+   855,
+   1018
+  ]
+ },
+ "Nevada": {
+  "approx": 624,
+  "bytes": 47486,
+  "drt_2020": [
+   703282,
+   669614,
+   1404669
+  ],
+  "exact": 586,
+  "exact_vote_share": 0.3566,
+  "file": "v2/data/precincts2020/Nevada.js",
+  "gray": 26,
+  "how": {
+   "name": 737,
+   "no_overlap": 59,
+   "sliver_only": 76,
+   "split": 250,
+   "whole": 740
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   698858,
+   665007,
+   1395595
+  ],
+  "polygons_2024": 1236,
+  "precincts_2020": 1862,
+  "unplaced": [
+   4429,
+   4607,
+   9075
+  ]
+ },
+ "New Hampshire": {
+  "approx": 12,
+  "bytes": 12746,
+  "drt_2020": [
+   424937,
+   365660,
+   803833
+  ],
+  "exact": 226,
+  "exact_vote_share": 0.7284,
+  "file": "v2/data/precincts2020/New_Hampshire.js",
+  "gray": 0,
+  "how": {
+   "no_overlap": 1,
+   "sliver_only": 2,
+   "whole": 299
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   424932,
+   365656,
+   803824
+  ],
+  "polygons_2024": 238,
+  "precincts_2020": 302,
+  "unplaced": [
+   5,
+   4,
+   9
+  ]
+ },
+ "New Jersey": {
+  "approx": 4065,
+  "bytes": 383650,
+  "drt_2020": [
+   2608335,
+   1883274,
+   4549353
+  ],
+  "exact": 75,
+  "exact_vote_share": 0.0123,
+  "file": "v2/data/precincts2020/New_Jersey.js",
+  "gray": 2238,
+  "how": {
+   "sliver_only": 2,
+   "split": 646,
+   "whole": 78
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2605851,
+   1881102,
+   4544631
+  ],
+  "polygons_2024": 6378,
+  "precincts_2020": 726,
+  "unplaced": [
+   2493,
+   2171,
+   4717
+  ]
+ },
+ "New Mexico": {
+  "approx": 310,
+  "bytes": 88204,
+  "drt_2020": [
+   501486,
+   401848,
+   908366
+  ],
+  "exact": 1736,
+  "exact_vote_share": 0.8654,
+  "file": "v2/data/precincts2020/New_Mexico.js",
+  "gray": 118,
+  "how": {
+   "name": 623,
+   "sliver_only": 4,
+   "split": 167,
+   "whole": 1129
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   501260,
+   401745,
+   908049
+  ],
+  "polygons_2024": 2164,
+  "precincts_2020": 1923,
+  "unplaced": [
+   226,
+   98,
+   320
+  ]
+ },
+ "New York": {
+  "approx": 8117,
+  "bytes": 592366,
+  "drt_2020": [
+   5244886,
+   3251997,
+   8632253
+  ],
+  "exact": 4731,
+  "exact_vote_share": 0.3409,
+  "file": "v2/data/precincts2020/New_York.js",
+  "gray": 54,
+  "how": {
+   "no_overlap": 9,
+   "sliver_only": 43,
+   "split": 6277,
+   "whole": 8864
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   5211621,
+   3236553,
+   8582724
+  ],
+  "polygons_2024": 12902,
+  "precincts_2020": 15193,
+  "unplaced": [
+   33237,
+   15472,
+   49534
+  ]
+ },
+ "North Carolina": {
+  "approx": 96,
+  "bytes": 118899,
+  "drt_2020": [
+   2682750,
+   2758560,
+   5523005
+  ],
+  "exact": 2543,
+  "exact_vote_share": 0.9542,
+  "file": "v2/data/precincts2020/North_Carolina.js",
+  "gray": 4,
+  "how": {
+   "name": 2050,
+   "sliver_only": 10,
+   "split": 33,
+   "whole": 568
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2673720,
+   2749836,
+   5504992
+  ],
+  "polygons_2024": 2643,
+  "precincts_2020": 2661,
+  "unplaced": [
+   9030,
+   8725,
+   18013
+  ]
+ },
+ "North Dakota": {
+  "approx": 250,
+  "bytes": 15704,
+  "drt_2020": [
+   115042,
+   235751,
+   362024
+  ],
+  "exact": 111,
+  "exact_vote_share": 0.1706,
+  "file": "v2/data/precincts2020/North_Dakota.js",
+  "gray": 18,
+  "how": {
+   "name": 84,
+   "sliver_only": 2,
+   "split": 186,
+   "whole": 150
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   115018,
+   235473,
+   361710
+  ],
+  "polygons_2024": 379,
+  "precincts_2020": 422,
+  "unplaced": [
+   22,
+   277,
+   307
+  ]
+ },
+ "Ohio": {
+  "approx": 1419,
+  "bytes": 436951,
+  "drt_2020": [
+   2678910,
+   3154075,
+   5919356
+  ],
+  "exact": 7350,
+  "exact_vote_share": 0.8186,
+  "file": "v2/data/precincts2020/Ohio.js",
+  "gray": 17,
+  "how": {
+   "name": 4258,
+   "no_overlap": 3,
+   "sliver_only": 86,
+   "split": 915,
+   "whole": 3668
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2648347,
+   3108778,
+   5842386
+  ],
+  "polygons_2024": 8786,
+  "precincts_2020": 8930,
+  "unplaced": [
+   30555,
+   45294,
+   76972
+  ]
+ },
+ "Oklahoma": {
+  "approx": 891,
+  "bytes": 81221,
+  "drt_2020": [
+   503890,
+   1020280,
+   1560699
+  ],
+  "exact": 1029,
+  "exact_vote_share": 0.4816,
+  "file": "v2/data/precincts2020/Oklahoma.js",
+  "gray": 60,
+  "how": {
+   "name": 1040,
+   "split": 459,
+   "whole": 439
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   503890,
+   1020292,
+   1560711
+  ],
+  "polygons_2024": 1980,
+  "precincts_2020": 1938,
+  "unplaced": [
+   0,
+   0,
+   0
+  ]
+ },
+ "Oregon": {
+  "approx": 401,
+  "bytes": 50483,
+  "drt_2020": [
+   1340383,
+   958448,
+   2374321
+  ],
+  "exact": 801,
+  "exact_vote_share": 0.4751,
+  "file": "v2/data/precincts2020/Oregon.js",
+  "gray": 42,
+  "how": {
+   "name": 771,
+   "no_overlap": 1,
+   "sliver_only": 35,
+   "split": 257,
+   "whole": 256
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1295146,
+   920255,
+   2288005
+  ],
+  "polygons_2024": 1244,
+  "precincts_2020": 1320,
+  "unplaced": [
+   45234,
+   38184,
+   86325
+  ]
+ },
+ "Pennsylvania": {
+  "approx": 599,
+  "bytes": 441677,
+  "drt_2020": [
+   3457439,
+   3378366,
+   6924589
+  ],
+  "exact": 8499,
+  "exact_vote_share": 0.9265,
+  "file": "v2/data/precincts2020/Pennsylvania.js",
+  "gray": 2,
+  "how": {
+   "name": 446,
+   "sliver_only": 43,
+   "split": 335,
+   "whole": 8336
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   3439467,
+   3352306,
+   6879913
+  ],
+  "polygons_2024": 9100,
+  "precincts_2020": 9160,
+  "unplaced": [
+   17972,
+   26064,
+   44675
+  ]
+ },
+ "Rhode Island": {
+  "approx": 37,
+  "bytes": 3305,
+  "drt_2020": [
+   305785,
+   199168,
+   515251
+  ],
+  "exact": 2,
+  "exact_vote_share": 0.0068,
+  "file": "v2/data/precincts2020/Rhode_Island.js",
+  "gray": 0,
+  "how": {
+   "whole": 418
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   305785,
+   199168,
+   515251
+  ],
+  "polygons_2024": 39,
+  "precincts_2020": 418,
+  "unplaced": [
+   0,
+   0,
+   0
+  ]
+ },
+ "South Carolina": {
+  "approx": 98,
+  "bytes": 109585,
+  "drt_2020": [
+   1089244,
+   1381264,
+   2507042
+  ],
+  "exact": 2174,
+  "exact_vote_share": 0.9612,
+  "file": "v2/data/precincts2020/South_Carolina.js",
+  "gray": 30,
+  "how": {
+   "name": 2126,
+   "sliver_only": 8,
+   "split": 42,
+   "whole": 81
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1085828,
+   1378447,
+   2500738
+  ],
+  "polygons_2024": 2302,
+  "precincts_2020": 2257,
+  "unplaced": [
+   3416,
+   2817,
+   6303
+  ]
+ },
+ "South Dakota": {
+  "approx": 289,
+  "bytes": 26094,
+  "drt_2020": [
+   150471,
+   261043,
+   422609
+  ],
+  "exact": 322,
+  "exact_vote_share": 0.3967,
+  "file": "v2/data/precincts2020/South_Dakota.js",
+  "gray": 12,
+  "how": {
+   "name": 275,
+   "no_overlap": 68,
+   "sliver_only": 41,
+   "split": 171,
+   "whole": 182
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   123214,
+   214272,
+   346325
+  ],
+  "polygons_2024": 623,
+  "precincts_2020": 737,
+  "unplaced": [
+   27261,
+   46771,
+   76285
+  ]
+ },
+ "Tennessee": {
+  "approx": 898,
+  "bytes": 89387,
+  "drt_2020": [
+   1143657,
+   1852119,
+   3052626
+  ],
+  "exact": 928,
+  "exact_vote_share": 0.3996,
+  "file": "v2/data/precincts2020/Tennessee.js",
+  "gray": 19,
+  "how": {
+   "name": 715,
+   "sliver_only": 12,
+   "split": 622,
+   "whole": 608
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1140041,
+   1839492,
+   3036098
+  ],
+  "polygons_2024": 1845,
+  "precincts_2020": 1957,
+  "unplaced": [
+   3632,
+   12626,
+   16521
+  ]
+ },
+ "Texas": {
+  "approx": 2201,
+  "bytes": 365886,
+  "drt_2020": [
+   5219505,
+   5858967,
+   11248020
+  ],
+  "exact": 6850,
+  "exact_vote_share": 0.7198,
+  "file": "v2/data/precincts2020/Texas.js",
+  "gray": 661,
+  "how": {
+   "name": 4857,
+   "split": 1055,
+   "whole": 2950
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   5219504,
+   5858974,
+   11248027
+  ],
+  "polygons_2024": 9712,
+  "precincts_2020": 8862,
+  "unplaced": [
+   0,
+   0,
+   0
+  ]
+ },
+ "Utah": {
+  "approx": 2110,
+  "bytes": 108762,
+  "drt_2020": [
+   560282,
+   865139,
+   1487676
+  ],
+  "exact": 483,
+  "exact_vote_share": 0.1658,
+  "file": "v2/data/precincts2020/Utah.js",
+  "gray": 77,
+  "how": {
+   "name": 296,
+   "no_overlap": 4,
+   "sliver_only": 38,
+   "split": 1331,
+   "whole": 593
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   554897,
+   851495,
+   1467807
+  ],
+  "polygons_2024": 2670,
+  "precincts_2020": 2262,
+  "unplaced": [
+   5380,
+   13662,
+   19887
+  ]
+ },
+ "Vermont": {
+  "approx": 25,
+  "bytes": 12942,
+  "drt_2020": [
+   242820,
+   112704,
+   367428
+  ],
+  "exact": 222,
+  "exact_vote_share": 0.676,
+  "file": "v2/data/precincts2020/Vermont.js",
+  "gray": 0,
+  "how": {
+   "name": 87,
+   "split": 5,
+   "whole": 183
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   241872,
+   111978,
+   365702
+  ],
+  "polygons_2024": 247,
+  "precincts_2020": 275,
+  "unplaced": [
+   948,
+   727,
+   1725
+  ]
+ },
+ "Virginia": {
+  "approx": 1063,
+  "bytes": 134638,
+  "drt_2020": [
+   2415215,
+   1960100,
+   4459747
+  ],
+  "exact": 1448,
+  "exact_vote_share": 0.575,
+  "file": "v2/data/precincts2020/Virginia.js",
+  "gray": 7,
+  "how": {
+   "name": 186,
+   "sliver_only": 14,
+   "split": 684,
+   "whole": 1592
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2371371,
+   1924994,
+   4379138
+  ],
+  "polygons_2024": 2518,
+  "precincts_2020": 2476,
+  "unplaced": [
+   43836,
+   35112,
+   80618
+  ]
+ },
+ "Washington": {
+  "approx": 1350,
+  "bytes": 326132,
+  "drt_2020": [
+   2363958,
+   1582357,
+   4079396
+  ],
+  "exact": 6188,
+  "exact_vote_share": 0.8184,
+  "file": "v2/data/precincts2020/Washington.js",
+  "gray": 374,
+  "how": {
+   "name": 5626,
+   "no_overlap": 11,
+   "sliver_only": 82,
+   "split": 727,
+   "whole": 929
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   2334592,
+   1558994,
+   4024932
+  ],
+  "polygons_2024": 7912,
+  "precincts_2020": 7375,
+  "unplaced": [
+   29366,
+   23346,
+   54473
+  ]
+ },
+ "West Virginia": {
+  "approx": 589,
+  "bytes": 58183,
+  "drt_2020": [
+   235984,
+   545382,
+   794652
+  ],
+  "exact": 952,
+  "exact_vote_share": 0.5722,
+  "file": "v2/data/precincts2020/West_Virginia.js",
+  "gray": 70,
+  "how": {
+   "name": 1152,
+   "sliver_only": 26,
+   "split": 307,
+   "whole": 186
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   230371,
+   534057,
+   777407
+  ],
+  "polygons_2024": 1611,
+  "precincts_2020": 1671,
+  "unplaced": [
+   5612,
+   11325,
+   17240
+  ]
+ },
+ "Wisconsin": {
+  "approx": 4181,
+  "bytes": 402672,
+  "drt_2020": [
+   1630866,
+   1610184,
+   3298041
+  ],
+  "exact": 2564,
+  "exact_vote_share": 0.3369,
+  "file": "v2/data/precincts2020/Wisconsin.js",
+  "gray": 74,
+  "how": {
+   "sliver_only": 5,
+   "split": 2750,
+   "whole": 3940
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   1629141,
+   1610004,
+   3296104
+  ],
+  "polygons_2024": 6819,
+  "precincts_2020": 6695,
+  "unplaced": [
+   1716,
+   180,
+   1922
+  ]
+ },
+ "Wyoming": {
+  "approx": 126,
+  "bytes": 19264,
+  "drt_2020": [
+   73491,
+   193559,
+   276765
+  ],
+  "exact": 283,
+  "exact_vote_share": 0.5367,
+  "file": "v2/data/precincts2020/Wyoming.js",
+  "gray": 6,
+  "how": {
+   "name": 104,
+   "no_overlap": 1,
+   "sliver_only": 16,
+   "split": 83,
+   "whole": 276
+  },
+  "no_geom_2020": [
+   0,
+   0,
+   0
+  ],
+  "placed": [
+   69941,
+   182754,
+   261940
+  ],
+  "polygons_2024": 415,
+  "precincts_2020": 480,
+  "unplaced": [
+   3555,
+   10806,
+   14829
+  ]
+ }
+}
