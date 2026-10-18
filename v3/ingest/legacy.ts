@@ -173,3 +173,156 @@ export function uscdResultRows(source: string, ctx: LegacyContext): RawResult[] 
 export function readLegacy(path: string): string {
   return readFileSync(path, "utf8");
 }
+
+/** Dem, Rep, total. The optional fourth flag on a 2016 row is not part of this. */
+export type VoteTriple = [number, number, number];
+
+const DC_COUNTY_KEY = "District of Columbia|District of Columbia";
+const DC_HOUSE_KEY = "District of Columbia|00";
+
+function voteTriple(value: unknown): VoteTriple | null {
+  const triple = asTriple(value);
+  if (!triple) return null;
+  return [triple[0], triple[1], triple[2]];
+}
+
+/** County or state name → triple. Blank and non-triples are dropped. */
+export function readPresTable(source: string): Record<string, VoteTriple> {
+  const data = unwrapJson(source) as Record<string, unknown>;
+  const out: Record<string, VoteTriple> = {};
+  for (const [key, value] of Object.entries(data)) {
+    const triple = voteTriple(value);
+    if (triple) out[key] = triple;
+  }
+  return out;
+}
+
+/** Official Alaska state totals and the 30 boroughs. Borough sums are not the state total. */
+export function readAkPres(source: string): {
+  boroughs: { 2020: Record<string, VoteTriple>; 2024: Record<string, VoteTriple> };
+  state: { 2020: VoteTriple; 2024: VoteTriple };
+} {
+  const data = unwrapJson(source) as Record<string, unknown>;
+  const mapOf = (key: string): Record<string, VoteTriple> => {
+    const raw = data[key];
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error(`ak.js missing ${key}`);
+    const out: Record<string, VoteTriple> = {};
+    for (const [name, value] of Object.entries(raw as Record<string, unknown>)) {
+      const triple = voteTriple(value);
+      if (!triple) throw new Error(`ak.js ${key} ${name} is not a triple`);
+      out[name] = triple;
+    }
+    return out;
+  };
+  const stateOf = (key: string): VoteTriple => {
+    const triple = voteTriple(data[key]);
+    if (!triple) throw new Error(`ak.js missing ${key}`);
+    return triple;
+  };
+  return {
+    boroughs: { 2020: mapOf("boro2020"), 2024: mapOf("boro2024") },
+    state: { 2020: stateOf("state2020"), 2024: stateOf("state2024") },
+  };
+}
+
+/** Citywide DC presidential totals. dc.js is an IIFE, so this reads the A20/A24 literals and does not eval. */
+export function readDcCity(source: string): { 2020: VoteTriple; 2024: VoteTriple } {
+  const tripleOf = (token: "A20" | "A24"): VoteTriple => {
+    const match = source.match(new RegExp(`${token}=\\s*\\[\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\s*\\]`));
+    if (!match) throw new Error(`dc.js missing ${token}`);
+    return [Number(match[1]), Number(match[2]), Number(match[3])];
+  };
+  return { 2020: tripleOf("A20"), 2024: tripleOf("A24") };
+}
+
+/**
+ * Keys missing from election2020.js and election2024.js.
+ * Alaska boroughs use the names in ak.js. DC is the citywide county key.
+ * 2016 already has both in election2016.js, so this is only for 2020 and 2024.
+ */
+export function countyPresOverlay(
+  year: 2020 | 2024,
+  akSource: string,
+  dcSource: string,
+): Record<string, VoteTriple> {
+  const ak = readAkPres(akSource);
+  const dc = readDcCity(dcSource);
+  const out: Record<string, VoteTriple> = {};
+  for (const [name, triple] of Object.entries(ak.boroughs[year])) out[`Alaska|${name}`] = triple;
+  out[DC_COUNTY_KEY] = dc[year];
+  return out;
+}
+
+/**
+ * State totals for 2020 and 2024: sum of county triples, with the DC city row included.
+ * Alaska is the official state triple from ak.js, not the sum of boroughs.
+ * 2016 state totals stay on ds2016-states.js.
+ */
+export function statePresTotals(
+  electionSource: string,
+  year: 2020 | 2024,
+  akSource: string,
+  dcSource: string,
+): Record<string, VoteTriple> {
+  const merged: Record<string, VoteTriple> = { ...readPresTable(electionSource) };
+  for (const [key, triple] of Object.entries(countyPresOverlay(year, akSource, dcSource))) {
+    if (!merged[key]) merged[key] = triple;
+  }
+  const sums = new Map<string, VoteTriple>();
+  for (const [key, triple] of Object.entries(merged)) {
+    const state = key.split("|")[0] ?? "";
+    if (!state) continue;
+    const cur = sums.get(state) ?? [0, 0, 0];
+    sums.set(state, [cur[0] + triple[0], cur[1] + triple[1], cur[2] + triple[2]]);
+  }
+  sums.set("Alaska", readAkPres(akSource).state[year]);
+  return Object.fromEntries(sums);
+}
+
+export function rowsFromVoteMap(
+  ctx: LegacyContext,
+  input: {
+    triples: Record<string, VoteTriple>;
+    unitType: string;
+    year: number;
+    stateName: (legacyKey: string) => string;
+  },
+): RawResult[] {
+  const out: RawResult[] = [];
+  let n = 0;
+  for (const [legacyKey, triple] of Object.entries(input.triples)) {
+    n++;
+    out.push(
+      ...rowsFromTriple(ctx, {
+        lineNo: n,
+        stateName: input.stateName(legacyKey),
+        legacyKey,
+        unitType: input.unitType,
+        year: input.year,
+        triple,
+        estimate: false,
+      }),
+    );
+  }
+  return out;
+}
+
+/** DC at-large presidential triples. uscd.js has Alaska at-large and no DC row. */
+export function dcUshouseRows(dcSource: string, ctx: LegacyContext): RawResult[] {
+  const city = readDcCity(dcSource);
+  const out: RawResult[] = [];
+  for (const year of [2024, 2020] as const) {
+    out.push(
+      ...rowsFromTriple(ctx, {
+        lineNo: year,
+        stateName: "District of Columbia",
+        legacyKey: DC_HOUSE_KEY,
+        unitType: "ushouse",
+        year,
+        triple: city[year],
+        estimate: false,
+      }),
+    );
+  }
+  return out;
+}

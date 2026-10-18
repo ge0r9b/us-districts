@@ -10,7 +10,17 @@ import { loadCompanies, type CompanyLoadReport } from "./companies.ts";
 import { loadInstitutions, type InstitutionLoadReport } from "./inst-entities.ts";
 import { assignLocationUnits, type LocationAssignReport } from "./locations.ts";
 import { missingResultHeaders, parseCsv, readFileText } from "./csv.ts";
-import { countyPresRows, ds2016Rows, readLegacy, uscdResultRows, type LegacyContext } from "./legacy.ts";
+import {
+  countyPresOverlay,
+  countyPresRows,
+  dcUshouseRows,
+  ds2016Rows,
+  readLegacy,
+  rowsFromVoteMap,
+  statePresTotals,
+  uscdResultRows,
+  type LegacyContext,
+} from "./legacy.ts";
 import { ensureUnits, unitsFromGeoCsv } from "./units.ts";
 import { formatRejectRules, type RawResult } from "./validate.ts";
 
@@ -394,6 +404,82 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
       if (gap) gaps.push(gap);
       results.push(report);
     }
+    // 2020/2024 county files omit Alaska and DC. A new batch sha (not the raw
+    // election file hash) so an already-applied election*.js does not skip these rows.
+    const akPath = join(v2, "ak.js");
+    const dcPath = join(v2, "dc.js");
+    const akSource = readLegacy(akPath);
+    const dcSource = readLegacy(dcPath);
+    const akMeta = gitFileTime(root, akPath);
+    const dcMeta = gitFileTime(root, dcPath);
+    const applyExtra = async (
+      fileName: string,
+      shaBody: string,
+      meta: { sha: string; iso: string },
+      sourceFile: string,
+      unitType: "county" | "state" | "ushouse",
+      build: (ctx: LegacyContext) => RawResult[],
+    ) => {
+      const ctx: LegacyContext = {
+        fileName,
+        sourceUrl: `https://github.com/ge0r9b/us-districts/blob/${meta.sha}/v2/data/${sourceFile}`,
+        retrievedAt: meta.iso,
+        unitIdByLegacy: unitType === "state" ? stateLegacy : unitType === "ushouse" ? cdLegacy : countyLegacy,
+        gaps,
+      };
+      const report = await applyResults(
+        pool,
+        { fileName, sha256: sha256Hex(shaBody), gitCommit: meta.sha },
+        build(ctx),
+        { refreshAggregates: false },
+      );
+      if (report.changed > 0) changed = true;
+      const gap = resultGap(report);
+      if (gap) gaps.push(gap);
+      results.push(report);
+    };
+    for (const year of [2020, 2024] as const) {
+      const electionFile = `election${year}.js`;
+      const electionPath = join(v2, electionFile);
+      const electionSource = readLegacy(electionPath);
+      const electionMeta = gitFileTime(root, electionPath);
+      await applyExtra(
+        `v2/data/${electionFile}#ak-dc`,
+        `ak-dc:${year}\n${akSource}\n${dcSource}`,
+        akMeta,
+        "ak.js",
+        "county",
+        (ctx) =>
+          rowsFromVoteMap(ctx, {
+            triples: countyPresOverlay(year, akSource, dcSource),
+            unitType: "county",
+            year,
+            stateName: (key) => key.split("|")[0] ?? "",
+          }),
+      );
+      await applyExtra(
+        `v2/data/${electionFile}#states`,
+        `states:${year}\n${electionSource}\n${akSource}\n${dcSource}`,
+        electionMeta,
+        electionFile,
+        "state",
+        (ctx) =>
+          rowsFromVoteMap(ctx, {
+            triples: statePresTotals(electionSource, year, akSource, dcSource),
+            unitType: "state",
+            year,
+            stateName: (key) => key,
+          }),
+      );
+    }
+    await applyExtra(
+      "v2/data/dc.js#ushouse",
+      `ushouse\n${dcSource}`,
+      dcMeta,
+      "dc.js",
+      "ushouse",
+      (ctx) => dcUshouseRows(dcSource, ctx),
+    );
     for (const rel of ELECTION_FILES) {
       const report = await loadElectionFile(pool, join(cache.election, rel), {
         fileName: rel,

@@ -82,6 +82,52 @@ describe("loaders", () => {
     }
   });
 
+  it("loads 2020 and 2024 Alaska, DC, and state president totals", async () => {
+    const counties = await pool.query<{ year: string; n: string }>(
+      `select c.year::text, count(distinct u.unit_key)::text n
+       from result r
+       join contest c on c.id = r.contest_id
+       join unit u on u.id = r.unit_id
+       where c.contest_key in ('2020|US|president|', '2024|US|president|')
+         and u.unit_type = 'county' and btrim(u.state_abbr) in ('AK', 'DC')
+         and r.method = 'v2_import'
+       group by c.year`,
+    );
+    for (const row of counties.rows) expect(Number(row.n)).toBe(31);
+    const alaska = await pool.query<{ year: string; votes: string }>(
+      `select c.year::text, r.votes::text
+       from result r
+       join contest c on c.id = r.contest_id
+       join unit u on u.id = r.unit_id
+       join answer a on a.id = r.answer_id
+       join party p on p.id = a.party_id
+       where c.contest_key in ('2020|US|president|', '2024|US|president|')
+         and u.unit_type = 'state' and u.legacy_key = 'Alaska' and p.party_key = 'dem'`,
+    );
+    const dem = (year: string) => Number(alaska.rows.find((row) => row.year === year)?.votes);
+    expect(dem("2020")).toBe(153778);
+    expect(dem("2024")).toBe(140026);
+    const states = await pool.query<{ n: string }>(
+      `select count(distinct u.unit_key)::text n
+       from result r
+       join contest c on c.id = r.contest_id
+       join unit u on u.id = r.unit_id
+       where c.contest_key = '2024|US|president|' and u.unit_type = 'state'`,
+    );
+    expect(Number(states.rows[0]?.n)).toBe(51);
+    const house = await pool.query<{ votes: string }>(
+      `select r.votes::text
+       from result r
+       join contest c on c.id = r.contest_id
+       join unit u on u.id = r.unit_id
+       join answer a on a.id = r.answer_id
+       join party p on p.id = a.party_id
+       where c.contest_key = '2024|US|president|' and u.unit_type = 'ushouse'
+         and u.legacy_key = 'District of Columbia|00' and p.party_key = 'dem'`,
+    );
+    expect(Number(house.rows[0]?.votes)).toBe(294185);
+  });
+
   it("keeps Alabama 2024 counties on the v2 import", async () => {
     const r = await pool.query<{ n: string; method: string }>(
       `select count(*)::text n, min(r.method) method
