@@ -328,7 +328,7 @@ Source notes:
 
 ### Final state of the swap
 
-Switched to official rosters: 41 states, 76 chambers. Both chambers in:
+Switched to official rosters: 41 states, 78 chambers (37 states with both chambers, plus NE and one chamber each in FL, NY and OK). Both chambers in:
 
 AK, AR, AZ, CA, CO, CT, IA, ID, IL, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, NC, ND, NH, NJ, NM, NV, OH, OR, PA, SC, SD, TN, TX, UT, VT, WA, WI and WV.
 
