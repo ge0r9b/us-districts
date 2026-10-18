@@ -90,8 +90,76 @@ def p_me(R):
         out.append(rec("upper", d, nm, pty, "me-sen-" + d))
     return out, "Maine Legislature: House member listing by district (132nd, with deceased/resigned marked); 132nd Senate senator list", "https://legislature.maine.gov/house/house/MemberProfiles/List?sort=district ; https://legislature.maine.gov/senate/senators/9536", ["me_house_bydist.html", "me_senate_list.html"]
 
-PARSERS = {"Maine": p_me, "Maryland": p_md, "Connecticut": p_ct, "Mississippi": p_ms, "North Carolina": p_nc, "South Carolina": p_sc, "Kansas": p_ks, "Florida": p_fl}
-CHAMBERS = {"Florida": {"upper"}}
+def p_ia(R):
+    out = []
+    for f, ch in (("ia_house.html", "lower"), ("ia_senate.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for _, ga, pid, nm, d, pty in re.findall(r'<td>(House|Senate)</td>\s*<td[^>]*><a href="/legislators/legislator\?ga=(\d+)&personID=(\d+)"[^>]*>([^<]+)</a></td>\s*<td><a[^>]*>(\d+)</a></td>\s*<td>([^<]*)</td>', t):
+            dm = re.search(r"\((\d\d)/(\d\d)/(\d{4})\s*-\s*(?:(\d\d)/(\d\d)/(\d{4}))?\s*\)", nm)
+            k = dict(nostatus=True, session=True, status_src="91st General Assembly list")
+            if dm:
+                g = dm.groups(); nm = nm[:dm.start()].strip()
+                k["term_start"] = "%s-%s-%s" % (g[2], g[0], g[1])
+                if g[5]: k.update(serving=False, term_end="%s-%s-%s" % (g[5], g[3], g[4]), status_src="91st General Assembly list: served %s to %s-%s-%s" % (k["term_start"], g[5], g[3], g[4]))
+                else: k["status_src"] = "91st General Assembly list: serving since %s" % k["term_start"]
+            out.append(dict(rec(ch, d, nm, pty, "ia-" + pid), **k))
+    return out, "Iowa Legislature legislator lists (91st General Assembly)", "https://www.legis.iowa.gov/legislators/house ; .../senate", ["ia_house.html", "ia_senate.html"]
+
+def p_mi(R):
+    out = []; seen = set()
+    t = open(R + "/mi_house.html", errors="ignore").read()
+    for nm, pty, d in re.findall(r'page-search-target"[^>]*>\s*([^<]+?)\s*\((\w[^)]*)\)\s*District-(\d+)', t):
+        if (nm, d) in seen: continue
+        seen.add((nm, d)); out.append(rec("lower", int(d), nm.replace("Rep. ", ""), pty, "mi-house-%s" % d))
+    t = open(R + "/mi_senate.html", errors="ignore").read()
+    m = re.search(r'"(\[\{&quot;id&quot;.*?\}\])"', t)
+    for x in json.loads(html.unescape(m.group(1))):
+        nm = " ".join(v for v in (x["firstName"], x.get("middleInitial") or "", x["lastName"], x.get("suffix") or "") if v)
+        out.append(dict(rec("upper", x["district"], nm, x["party"], "mi-sen-%s" % x["id"]), last=fold(x["lastName"].split()[-1])))
+    return out, "Michigan House all-representatives list; Michigan Senate all-senators list", "https://www.house.mi.gov/AllRepresentatives ; https://senate.michigan.gov/senators/all-senators/", ["mi_house.html", "mi_senate.html"]
+
+def p_wa(R):
+    out = []
+    t = open(R + "/wa_sponsors_2025-26.xml", encoding="utf-8").read()
+    for m in re.findall(r"<Member>(.*?)</Member>", t, re.S):
+        g = lambda k: (re.search(r"<%s>([^<]*)</%s>" % (k, k), m) or [None, ""])[1].strip()
+        if g("Agency") not in ("House", "Senate") or not g("District"): continue
+        out.append(dict(rec("upper" if g("Agency") == "Senate" else "lower", g("District"), g("Name"), g("Party"), "wa-%s" % g("Id"), nostatus=True, session=True,
+                            status_src="2025-26 biennium sponsor list (no in-office dates)"), last=fold(g("LastName").split()[-1])))
+    return out, "Washington Legislature web services, SponsorService.GetSponsors (biennium 2025-26)", "https://wslwebservices.leg.wa.gov/SponsorService.asmx/GetSponsors?biennium=2025-26", ["wa_sponsors_2025-26.xml"]
+
+def p_ok(R):
+    out = []; seen = set()
+    t = open(R + "/ok_house.html", errors="ignore").read()
+    for slug, title, fn, ln, suf, d, _, pty in re.findall(r'"slug":"([^"]*)","title":([^,]*),"firstName":"([^"]*)","lastName":"([^"]*)","suffix":([^,]*),.*?"District","state":null,"number":(\d+)\}\}\},"party":\{"__typename":"PartyEntityResponse","data":(null|\{"__typename":"PartyEntity","id":"\d+","attributes":\{"__typename":"Party","color":"[^"]*","name":"([^"]*)")', t):
+        if slug in seen: continue
+        seen.add(slug); vac = ln.upper() == "VACANT" or slug.lower().startswith("vacant")
+        nm = "" if vac else " ".join(v for v in (fn, ln, suf.strip('"') if suf != "null" else "") if v)
+        out.append(dict(rec("lower", d, nm, pty, "ok-house-" + slug, vacant=vac), last="" if vac else fold(ln.split()[-1])))
+    return out, "Oklahoma House of Representatives member list", "https://www.okhouse.gov/representatives", ["ok_house.html"]
+
+def p_la(R):
+    out = []
+    for f, ch in (("la_house.html", "lower"), ("la_senate.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for i, nm, d, pty in re.findall(r'LASTFIRSTLabel_(\d+)">([^<]+)</span>.*?DISTRICTNUMBERLabel\w*_\1">(\d+)</span>.*?PARTYAFFILIATIONLabel\w*_\1">([^<]*)</span>', t, re.S):
+            out.append(dict(rec(ch, d, nm, pty, "la-%s-%s" % (ch[0], d), vacant=bool(re.search("vacant", nm, re.I))), last=fold(re.sub(r"\s+(Jr|Sr|II|III|IV)\.?$", "", nm.split(",")[0].strip()).split()[-1])))
+    return out, "Louisiana House and Senate member lists", "https://house.louisiana.gov/H_Reps/H_Reps_FullInfo ; https://senate.la.gov/Senators_FullInfo", ["la_house.html", "la_senate.html"]
+
+def p_nd(R):
+    out = []
+    t = open(R + "/nd_members_by_district.html", errors="ignore").read()
+    for it in re.findall(r'<li class="member-item.*?</li>', t, re.S):
+        bio = re.search(r'href="/biography/([^"]+)"', it); chm = re.search(r'member-chamber">(\w+)<', it); nm = re.search(r'member-name">([^<]+)<', it)
+        d = re.search(r'District (\d+[AB]?)\s*\|\s*<span class="sr-only">([^<]*)</span>', it)
+        if not (bio and chm and nm and d): continue
+        out.append(rec("upper" if chm.group(1) == "Senator" else "lower", d.group(1), nm.group(1), d.group(2), "nd-" + bio.group(1), nostatus=True, session=True,
+                       status_src="69th Legislative Assembly members by district (no in-office dates)"))
+    return out, "North Dakota Legislative Assembly, 69th (2025) members by district", "https://ndlegis.gov/assembly/69-2025/regular/members/members-by-district", ["nd_members_by_district.html"]
+
+PARSERS = {"Maine": p_me, "Maryland": p_md, "Connecticut": p_ct, "Mississippi": p_ms, "North Carolina": p_nc, "South Carolina": p_sc, "Kansas": p_ks, "Florida": p_fl,
+           "Iowa": p_ia, "Michigan": p_mi, "Washington": p_wa, "Oklahoma": p_ok, "Louisiana": p_la, "North Dakota": p_nd}
+CHAMBERS = {"Florida": {"upper"}, "Oklahoma": {"lower"}}
 EXTRA = {"California": p_ca_sen}   # additional chamber for a state whose first parser is in inst_stateleg_official.py
 FALLBACK = {
     "Georgia/upper": "legis.ga.gov member pages are an Angular app; its member API (legis.ga.gov/api/members/list) returns 401 without the app's session token; no CSV/XML/PDF roster found",
@@ -99,4 +167,13 @@ FALLBACK = {
     "Florida/lower": "myfloridahouse.gov returns a WAF 'Request Rejected' page to the box (a block; not routed around)",
     "Illinois/upper": "ilga.gov returns 503 to the box on every member-list request this round (after supplying its missing TLS intermediate from the Mozilla CCADB list)",
     "Illinois/lower": "same as Illinois/upper",
+    "Indiana/upper": "iga.in.gov is a client-side app; the IGA data API requires a registered API key (not requested); no CSV/XML/PDF roster found",
+    "Indiana/lower": "same as Indiana/upper",
+    "Montana/upper": "api.legmt.gov/legislators/v1/legislators answers, but its 209 records do not give a consistent current roster (legislature tags 69/70 mixed with start/end dates; only 119 of 150 seats under the 69th tag; placeholder district 999), so it was not used",
+    "Montana/lower": "same as Montana/upper",
+    "Oklahoma/upper": "oksenate.gov answers with a Sucuri/Cloudproxy challenge (HTTP 307); a block, not routed around",
+    "Alabama/upper": "alison.legislature.state.al.us member pages are a client-side app with no member data in the HTML; no CSV/XML/PDF roster found",
+    "Alabama/lower": "same as Alabama/upper",
+    "Virginia/upper": "lis.virginia.gov is a client-side app; legacylis.virginia.gov member pages (legp604 ...+mbr+H/S) answer 'document does not exist' for the 2026 session",
+    "Virginia/lower": "same as Virginia/upper",
 }

@@ -175,8 +175,8 @@ def main():
             grp = collections.defaultdict(list)
             for x in recs: grp[(x["chamber"], x["unit"])].append(x)
             for k, xs in grp.items():
-                if len(xs) > 1:
-                    osn = [r["name"] for r in cur if r["state"] == st and r["unit_geoid"] == k[1]]
+                osn = [r["name"] for r in cur if r["state"] == st and r["unit_geoid"] == k[1] and (("upper" if r["chamber"] in ("upper", "legislature") else "lower") == k[0])]
+                if len(xs) > max(1, len(osn)):   # more listed members than seats (seat count taken from OpenStates current rows of the unit)
                     keep = [x for x in xs if any(same(x["last"], n) for n in osn)]
                     for x in xs:
                         if keep and x not in keep: x["serving"] = False; x["status_src"] += "; another listed member of this district is the current one (official list gives no status; resolved with OpenStates current)"
@@ -214,7 +214,7 @@ def main():
             rows.append({"unit_geoid": x["unit"], "unit_vintage": "sldu2024" if x["chamber"] == "upper" else "sldl2024", "join_status": x["js"],
                          "entity_id": "%s-%s" % (L.AB[L.ST.index(st.replace(" ", "_"))].lower(), "senate" if x["chamber"] == "upper" else "house"), "seat": x["seat"],
                          "state": st, "chamber": x["chamber"], "district": x["district"], "person_id": m["person_id"] if m else x["oid"], "name": x["name"], "party": x["party"] or (m["party"] if m else ""),
-                         "status": "serving", "term_start": m["term_start"] if m else "", "term_end": m["term_end"] if m else "", "note": "; ".join(note), "source": srcname, "source_url": url,
+                         "status": "serving", "term_start": x.get("term_start") or (m["term_start"] if m else ""), "term_end": x.get("term_end") or (m["term_end"] if m else ""), "note": "; ".join(note), "source": srcname, "source_url": url,
                          "upstream_url": url, "source_id": x["oid"], "retrieved_at": retrieved, "sha256": sha, "license": "official state legislature website (public record)",
                          "official_check": "official"})
         for r in os_cur:
