@@ -1,4 +1,4 @@
-"""Apply the approved county-table fixes to data/election2020.js and data/election2024.js in place.
+"""Apply the approved county-table fixes to v2/data/election2020.js and v2/data/election2024.js in place (root data/ is v1 and never changes).
 Only the listed entries are rewritten; key order and compact format stay the same.
   OR 2024        : Oregon SOS official abstract of votes (rows in table_fix_proposals.csv)
   KS, RI 2020    : VEST 2020 county sums (d, r, t), which match certified statewide
@@ -28,7 +28,7 @@ for r in list(ws.iter_rows(values_only=True))[3:]:
         a = me[r[0]]; a[0] += r[2]; a[1] += r[6]; a[2] += sum(r[2:8])   # Biden, Trump, all candidates incl. Others (write-ins); Blank excluded
 for c, a in me.items(): fix[2020][f'Maine|{CTY[c]} County'] = a
 for y in (2020, 2024):
-    fn = f'{ROOT}/data/election{y}.js'; s = open(fn).read()
+    fn = f'{ROOT}/v2/data/election{y}.js'; s = open(fn).read()
     d = json.loads(s[s.index('{'):s.rindex('}') + 1])
     def tot(st): return [sum(v[i] for k, v in d.items() if k.split('|')[0] == st) for i in range(3)]
     states = sorted({k.split('|')[0] for k in fix[y]}); before = {st: tot(st) for st in states}
