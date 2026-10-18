@@ -376,7 +376,36 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots: shots/b1575-thumbs-ch-1024x768-{AL,GA,OH,NE,DC,DE-after-DC}.png, shots/b1575-thumbs-ch-390-{AL,GA,OH,NE,DC,DE-after-DC}.png, earlier shots/b1575-saf-we-1440-Al-county.png, shots/b1575-saf-we-1440-Ge-county.png
 - Data: `qa/b1575-thumbs-1024a.json` (AL..NH), `qa/b1575-thumbs-1024b.json` (NH..WY), `qa/b1575-thumbs-390.json`, `qa/b1575-dc.json`, logs `qa/b1575-th-a.log`, `qa/b1575-th-b.log`; scripts `qa/b1575-thumbs.py`, `qa/b1575-dc.py`
 
-### QA-046 [HIGH] 338 counties in 26 states (plus DC) render as one solid colour because every precinct is past the colour scale's end
+### QA-046 [Fixed on 1579, verified on 1583 (pass 15, 2:35 PM EDT)] 338 counties in 26 states (plus DC) render as one solid colour because every precinct is past the colour scale's end
+- **Re-check on 1583** (live line 9 = 202610181583; Chromium only). Live `marginColor` stops are now ±0.15 / ±0.45 / **±0.9** (comment: "build 1579 (QA-046, option a): linear to +-90"). The precinct fill still goes through `heatC` > `marginColor`. Precinct data is unchanged since 1575 (`v2/data/precincts2024*` has no diff from 615fa5a), so I recounted from the same files with `qa/b1583-clamp.py` (> `qa/b1583-clamp90.json`, same method, clamp 0.9).
+  - **Solid counties at ±90 (n >= 2, all or all-but-one precincts beyond): 2, down from 338.** Both are all-but-one, and **0 counties have every precinct clamped** (212 before). TX 1 (Roberts County 4/5, lowest R+87.8); ND 1 (Nelson County 1/2, a 2-precinct county). Every other state has 0. **DC: 0**, with 7 of 144 precincts beyond D+90 and the rest D+54 to D+90 (143/144 beyond ±60 before). So the worst-10 list is just these two. Highest share beyond ±90 among counties with 5+ precincts: Roberts TX 4/5, LaSalle Parish LA 13/21, Borden TX 3/5, Sherman TX 4/7, Harding SD 4/8, Niobrara WY 3/6, Motley TX 3/6, Lamar AL 10/24, Logan KS 5/12, Sheridan KS 6/15. 562 counties have at least one precinct beyond ±90.
+  - **The four counties from 1575, now:**
+
+    | County | Precincts | Margin range | Distinct colours (computed) | 1575 > 1583 |
+    |---|---|---|---|---|
+    | Campbell WY | 36 | R+60.9 to R+92.5 (2 beyond ±90) | 31 | 1 > 31 |
+    | Jackson AL | 30 | R+60.8 to R+89.2 | 24 | 1 > 24 |
+    | Jefferson ID | 21 | R+61.1 to R+86.3 | 18 | 1 > 18 |
+    | Blount AL | 23 | R+74.7 to R+88.2 | 17 | 1 > 17 |
+
+    Blount's colour span is the narrowest (36 levels on one channel, vs 66-77 for the other three), so its shading is visible but subtle.
+  - **Screenshot pixel variance**, same views and zooms as 1575 (centre crop; distinct fill colours; luminance s.d. of fill pixels; `qa/b1583-variance.json`):
+
+    | County | z | Fill colours 1575 > 1583 | Lum s.d. 1575 > 1583 |
+    |---|---|---|---|
+    | Campbell WY | 1 | 145 > 212 | 7.9 > 8.7 |
+    | Campbell WY | 2 | 114 > 195 | 9.0 > 10.3 |
+    | Jackson AL | 1 | 95 > 192 | 7.9 > 11.5 |
+    | Jackson AL | 2 | 58 > 119 | 6.0 > 10.6 |
+    | Jefferson ID | 1 | 43 > 105 | 5.2 > 13.4 |
+    | Jefferson ID | 2 | 35 > 87 | 4.2 > 13.6 |
+    | Blount AL (1440) | 2 | 118 > 157 | 10.1 > 10.6 |
+    | Blount AL (1440) | 3 | 55 > 76 | 4.2 > 5.4 |
+
+    Visually, Jackson, Jefferson and Campbell now show distinct precinct shades, and Blount shows a few lighter and darker precincts.
+  - **Competitive counties are not washed out:** Lancaster PA still has 206 distinct computed precinct colours (197 at ±60). The screenshot is lighter but clearly shaded: z2 fill colours 454 > 369, lum s.d. 31.9 > 23.8 (-25%). Cobb GA: z2 203 > 165, s.d. 33.9 > 28.4 (-16%). Blue cores and red edges are both still clear.
+  - Shots, 1583 (same names as 1575): shots/b1583-solid-ch-1024x768-{Wy,Al,Id}-county{,-z1,-z2}.png (Campbell, Jackson, Jefferson), shots/b1583-saf-ch-1440-{Al,Pe,Ge}-county{,-z1,-z2,-z3}.png (Blount, Lancaster, Cobb). Side by side 1575 | 1583: shots/b1583-cmp-Jackson-AL-z1-1575-vs-1583.png, shots/b1583-cmp-Campbell-WY-z1-1575-vs-1583.png, shots/b1583-cmp-Jefferson-ID-z1-1575-vs-1583.png, shots/b1583-cmp-Blount-AL-z2-1575-vs-1583.png, shots/b1583-cmp-Lancaster-PA-z2-1575-vs-1583.png, shots/b1583-cmp-Cobb-GA-z2-1575-vs-1583.png
+  - Verdict: fixed. Optional polish (not filed): Blount-type counties (all precincts between R+75 and R+88) are distinguishable but low-contrast. A perceptual or steeper top segment would help without affecting competitive counties.
 - Severity: HIGH (as reported; it is the colour scale clamping, not missing data) | Build 1575 (same on 1574) | all engines and sizes
 - Steps: Alabama > Blount County (or Wyoming > Campbell County, Alabama > Jackson County, Idaho > Jefferson County) and zoom in 1-3 levels.
 - Expected: precincts shaded by their own result, as in Lancaster PA or Cobb GA.

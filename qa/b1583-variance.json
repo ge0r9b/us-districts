@@ -1,0 +1,296 @@
+{
+ "Campbell WY county": {
+  "1575": {
+   "ncol": 52,
+   "fillcols": 170,
+   "fill_lum_sd": 21.6,
+   "fill_pct": 98
+  },
+  "1583": {
+   "ncol": 72,
+   "fillcols": 260,
+   "fill_lum_sd": 28.9,
+   "fill_pct": 99
+  }
+ },
+ "Campbell WY-z1": {
+  "1575": {
+   "ncol": 79,
+   "fillcols": 145,
+   "fill_lum_sd": 7.9,
+   "fill_pct": 82
+  },
+  "1583": {
+   "ncol": 92,
+   "fillcols": 212,
+   "fill_lum_sd": 8.7,
+   "fill_pct": 82
+  }
+ },
+ "Campbell WY-z2": {
+  "1575": {
+   "ncol": 31,
+   "fillcols": 114,
+   "fill_lum_sd": 9.0,
+   "fill_pct": 99
+  },
+  "1583": {
+   "ncol": 46,
+   "fillcols": 195,
+   "fill_lum_sd": 10.3,
+   "fill_pct": 99
+  }
+ },
+ "Jackson AL county": {
+  "1575": {
+   "ncol": 76,
+   "fillcols": 192,
+   "fill_lum_sd": 10.9,
+   "fill_pct": 84
+  },
+  "1583": {
+   "ncol": 99,
+   "fillcols": 367,
+   "fill_lum_sd": 13.1,
+   "fill_pct": 86
+  }
+ },
+ "Jackson AL-z1": {
+  "1575": {
+   "ncol": 23,
+   "fillcols": 95,
+   "fill_lum_sd": 7.9,
+   "fill_pct": 99
+  },
+  "1583": {
+   "ncol": 40,
+   "fillcols": 192,
+   "fill_lum_sd": 11.5,
+   "fill_pct": 100
+  }
+ },
+ "Jackson AL-z2": {
+  "1575": {
+   "ncol": 17,
+   "fillcols": 58,
+   "fill_lum_sd": 6.0,
+   "fill_pct": 99
+  },
+  "1583": {
+   "ncol": 26,
+   "fillcols": 119,
+   "fill_lum_sd": 10.6,
+   "fill_pct": 100
+  }
+ },
+ "Jefferson ID county": {
+  "1575": {
+   "ncol": 29,
+   "fillcols": 125,
+   "fill_lum_sd": 15.6,
+   "fill_pct": 99
+  },
+  "1583": {
+   "ncol": 53,
+   "fillcols": 233,
+   "fill_lum_sd": 20.2,
+   "fill_pct": 99
+  }
+ },
+ "Jefferson ID-z1": {
+  "1575": {
+   "ncol": 12,
+   "fillcols": 43,
+   "fill_lum_sd": 5.2,
+   "fill_pct": 100
+  },
+  "1583": {
+   "ncol": 22,
+   "fillcols": 105,
+   "fill_lum_sd": 13.4,
+   "fill_pct": 100
+  }
+ },
+ "Jefferson ID-z2": {
+  "1575": {
+   "ncol": 10,
+   "fillcols": 35,
+   "fill_lum_sd": 4.2,
+   "fill_pct": 100
+  },
+  "1583": {
+   "ncol": 19,
+   "fillcols": 87,
+   "fill_lum_sd": 13.6,
+   "fill_pct": 100
+  }
+ },
+ "Blount AL (1440) county": {
+  "1575": {
+   "ncol": 64,
+   "fillcols": 245,
+   "fill_lum_sd": 25.7,
+   "fill_pct": 96
+  },
+  "1583": {
+   "ncol": 80,
+   "fillcols": 350,
+   "fill_lum_sd": 27.9,
+   "fill_pct": 97
+  }
+ },
+ "Blount AL (1440)-z1": {
+  "1575": {
+   "ncol": 39,
+   "fillcols": 161,
+   "fill_lum_sd": 18.6,
+   "fill_pct": 98
+  },
+  "1583": {
+   "ncol": 47,
+   "fillcols": 223,
+   "fill_lum_sd": 18.2,
+   "fill_pct": 98
+  }
+ },
+ "Blount AL (1440)-z2": {
+  "1575": {
+   "ncol": 26,
+   "fillcols": 118,
+   "fill_lum_sd": 10.1,
+   "fill_pct": 99
+  },
+  "1583": {
+   "ncol": 36,
+   "fillcols": 157,
+   "fill_lum_sd": 10.6,
+   "fill_pct": 99
+  }
+ },
+ "Blount AL (1440)-z3": {
+  "1575": {
+   "ncol": 18,
+   "fillcols": 55,
+   "fill_lum_sd": 4.2,
+   "fill_pct": 100
+  },
+  "1583": {
+   "ncol": 22,
+   "fillcols": 76,
+   "fill_lum_sd": 5.4,
+   "fill_pct": 100
+  }
+ },
+ "Lancaster PA (1440) county": {
+  "1575": {
+   "ncol": 162,
+   "fillcols": 688,
+   "fill_lum_sd": 28.8,
+   "fill_pct": 63
+  },
+  "1583": {
+   "ncol": 148,
+   "fillcols": 601,
+   "fill_lum_sd": 23.1,
+   "fill_pct": 62
+  }
+ },
+ "Lancaster PA (1440)-z1": {
+  "1575": {
+   "ncol": 117,
+   "fillcols": 559,
+   "fill_lum_sd": 33.5,
+   "fill_pct": 89
+  },
+  "1583": {
+   "ncol": 105,
+   "fillcols": 463,
+   "fill_lum_sd": 26.7,
+   "fill_pct": 85
+  }
+ },
+ "Lancaster PA (1440)-z2": {
+  "1575": {
+   "ncol": 95,
+   "fillcols": 454,
+   "fill_lum_sd": 31.9,
+   "fill_pct": 84
+  },
+  "1583": {
+   "ncol": 86,
+   "fillcols": 369,
+   "fill_lum_sd": 23.8,
+   "fill_pct": 76
+  }
+ },
+ "Lancaster PA (1440)-z3": {
+  "1575": {
+   "ncol": 73,
+   "fillcols": 297,
+   "fill_lum_sd": 22.9,
+   "fill_pct": 85
+  },
+  "1583": {
+   "ncol": 69,
+   "fillcols": 232,
+   "fill_lum_sd": 19.6,
+   "fill_pct": 85
+  }
+ },
+ "Cobb GA (1440) county": {
+  "1575": {
+   "ncol": 136,
+   "fillcols": 572,
+   "fill_lum_sd": 29.8,
+   "fill_pct": 90
+  },
+  "1583": {
+   "ncol": 114,
+   "fillcols": 451,
+   "fill_lum_sd": 25.0,
+   "fill_pct": 86
+  }
+ },
+ "Cobb GA (1440)-z1": {
+  "1575": {
+   "ncol": 68,
+   "fillcols": 298,
+   "fill_lum_sd": 35.0,
+   "fill_pct": 97
+  },
+  "1583": {
+   "ncol": 61,
+   "fillcols": 225,
+   "fill_lum_sd": 29.0,
+   "fill_pct": 92
+  }
+ },
+ "Cobb GA (1440)-z2": {
+  "1575": {
+   "ncol": 40,
+   "fillcols": 203,
+   "fill_lum_sd": 33.9,
+   "fill_pct": 100
+  },
+  "1583": {
+   "ncol": 39,
+   "fillcols": 165,
+   "fill_lum_sd": 28.4,
+   "fill_pct": 100
+  }
+ },
+ "Cobb GA (1440)-z3": {
+  "1575": {
+   "ncol": 26,
+   "fillcols": 167,
+   "fill_lum_sd": 32.1,
+   "fill_pct": 100
+  },
+  "1583": {
+   "ncol": 27,
+   "fillcols": 142,
+   "fill_lum_sd": 26.1,
+   "fill_pct": 100
+  }
+ }
+}

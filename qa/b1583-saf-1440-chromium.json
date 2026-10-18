@@ -1,0 +1,452 @@
+{
+ "chromium-1440": {
+  "build": "202610181583",
+  "US": {
+   "thumbs": [
+    {
+     "lab": "FLAG US.png?v=202610181583",
+     "btn": [
+      0,
+      0,
+      30,
+      22
+     ],
+     "img": [
+      68,
+      36
+     ]
+    },
+    {
+     "lab": "Donald Trump 2024",
+     "btn": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ]
+    },
+    {
+     "lab": "Kamala Harris 2024",
+     "btn": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ]
+    }
+   ]
+  },
+  "Alabama": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Alabama.png?v=202610181583",
+      "btn": [
+       0,
+       0,
+       14.7,
+       22
+      ],
+      "img": [
+       32,
+       48
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       166,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 55
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 35
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 23
+   },
+   "z3": {
+    "map": {
+     "z": 13,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 12
+   }
+  },
+  "Pennsylvania": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Pennsylvania.png?v=20261018158",
+      "btn": [
+       0,
+       0,
+       30,
+       22
+      ],
+      "img": [
+       48,
+       30
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       166,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      40.0192,
+      -76.2973
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Lancaster County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 122
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      40.0192,
+      -76.2973
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Lancaster County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 92
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      40.0192,
+      -76.2973
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Lancaster County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 79
+   },
+   "z3": {
+    "map": {
+     "z": 13,
+     "c": [
+      40.0192,
+      -76.2973
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Lancaster County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 66
+   }
+  },
+  "Georgia": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Georgia.png?v=202610181583",
+      "btn": [
+       0,
+       0,
+       19.3,
+       22
+      ],
+      "img": [
+       42,
+       48
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       122,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       166,
+       42,
+       36
+      ],
+      "img": [
+       30,
+       30
+      ]
+     }
+    ],
+    "map": {
+     "z": 11,
+     "c": [
+      33.9132,
+      -84.557
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Cobb County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 101
+   },
+   "z1": {
+    "map": {
+     "z": 12,
+     "c": [
+      33.9132,
+      -84.557
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Cobb County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 55
+   },
+   "z2": {
+    "map": {
+     "z": 13,
+     "c": [
+      33.9132,
+      -84.557
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Cobb County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 33
+   },
+   "z3": {
+    "map": {
+     "z": 14,
+     "c": [
+      33.9132,
+      -84.557
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Cobb County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 25
+   }
+  },
+  "US_list_thumbs_3s": [
+   {
+    "lab": "FLAG US.png?v=202610181583",
+    "btn": [
+     0,
+     0,
+     30,
+     22
+    ],
+    "img": [
+     68,
+     36
+    ]
+   },
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   }
+  ],
+  "US_list_thumbs": [
+   {
+    "lab": "FLAG US.png?v=202610181583",
+    "btn": [
+     0,
+     0,
+     30,
+     22
+    ],
+    "img": [
+     68,
+     36
+    ]
+   },
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   }
+  ],
+  "err": []
+ }
+}

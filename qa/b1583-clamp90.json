@@ -1,0 +1,326 @@
+{
+ "Alabama": {
+  "counties": 67,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Alaska": {
+  "counties": 30,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Arizona": {
+  "counties": 15,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Arkansas": {
+  "counties": 75,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "California": {
+  "counties": 58,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Colorado": {
+  "counties": 64,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Connecticut": {
+  "counties": 9,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Delaware": {
+  "counties": 3,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "District of Columbia": {
+  "counties": 0,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Florida": {
+  "counties": 67,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Georgia": {
+  "counties": 159,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Hawaii": {
+  "counties": 4,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Idaho": {
+  "counties": 44,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Illinois": {
+  "counties": 102,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Indiana": {
+  "counties": 92,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Iowa": {
+  "counties": 99,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Kansas": {
+  "counties": 105,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Kentucky": {
+  "counties": 120,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Louisiana": {
+  "counties": 64,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Maine": {
+  "counties": 16,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Maryland": {
+  "counties": 24,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Massachusetts": {
+  "counties": 14,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Michigan": {
+  "counties": 83,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Minnesota": {
+  "counties": 87,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Mississippi": {
+  "counties": 81,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Missouri": {
+  "counties": 115,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Montana": {
+  "counties": 56,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Nebraska": {
+  "counties": 93,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Nevada": {
+  "counties": 17,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New Hampshire": {
+  "counties": 10,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New Jersey": {
+  "counties": 21,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New Mexico": {
+  "counties": 33,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New York": {
+  "counties": 62,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "North Carolina": {
+  "counties": 100,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "North Dakota": {
+  "counties": 53,
+  "solid": 1,
+  "all": 0,
+  "list": [
+   {
+    "state": "North Dakota",
+    "county": "Nelson County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 31.8
+   }
+  ]
+ },
+ "Ohio": {
+  "counties": 88,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Oklahoma": {
+  "counties": 77,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Oregon": {
+  "counties": 36,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Pennsylvania": {
+  "counties": 67,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Rhode Island": {
+  "counties": 5,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "South Carolina": {
+  "counties": 46,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "South Dakota": {
+  "counties": 58,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Tennessee": {
+  "counties": 95,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Texas": {
+  "counties": 254,
+  "solid": 1,
+  "all": 0,
+  "list": [
+   {
+    "state": "Texas",
+    "county": "Roberts County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 87.8
+   }
+  ]
+ },
+ "Utah": {
+  "counties": 29,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Vermont": {
+  "counties": 14,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Virginia": {
+  "counties": 133,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Washington": {
+  "counties": 39,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "West Virginia": {
+  "counties": 55,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Wisconsin": {
+  "counties": 72,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Wyoming": {
+  "counties": 23,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ }
+}
