@@ -499,6 +499,10 @@ CHAINS = {
                      inputs=[("circle_k", None, "*cc"), ("circle_k_dk", None, "dk"), ("circle_k_ireland", None, "ie"),
                              ("circle_k_no", None, "no"), ("circle_k_pl", None, "pl"), ("circle_k_se", None, "se"), ("circle_k_vn", None, "vn")]),
     "bucees": dict(qid="Q4982335", inputs=[("bucees_us", "2026-10-03-13-32-35", "us")]),
+    # Hotel groups: one file per group; brand_qid = the hotel brand ATP tags on each property (its parent group via P749).
+    "hilton": dict(qid="", brand_from_feature=True, inputs=[("hilton", "2026-08-29-13-32-18", None)]),
+    "ihg": dict(qid="", brand_from_feature=True, ref_re=r"/([a-z0-9]{5})/hoteldetail", inputs=[("ihg_hotels", None, None)]),
+    "choice": dict(qid="", brand_from_feature=True, inputs=[("choice_hotels", "2026-09-19-13-32-18", None)]),
     # McDonald's: the US rows come from the section above (bare-ref ids, unchanged); every other country is added here.
     "mcdonalds": dict(qid="Q38076", accept={"Q38076", "Q12061542"}, sub_by_qid={"Q12061542": "Q12061542"},
                       prepend_rows=MCD_US_ROWS,
@@ -536,6 +540,9 @@ for fname, cfg in CHAINS.items():
         for f in json.loads(t)["features"] if t else []:
             p = f["properties"]
             st[f"features:{spider}" + (f"@{run[:10]}" if run else "")] += 1
+            if cfg.get("brand_from_feature"):
+                q = p.get("brand:wikidata") or ""
+                accept = {q} if q else set()
             if p.get("brand:wikidata") not in accept:
                 st[f"excluded_brand:{p.get('brand')}:{p.get('brand:wikidata')}"] += 1
                 continue
@@ -546,6 +553,9 @@ for fname, cfg in CHAINS.items():
             if p.get("addr:country", "") in opts.get("skip_cc", ()):
                 continue
             ref = str(p.get("ref") or "")
+            if cfg.get("ref_re"):
+                m = re.search(cfg["ref_re"], ref)
+                ref = m.group(1).upper() if m else ""
             if cfg.get("ref_strip"):
                 ref = re.sub(cfg["ref_strip"], "", ref)
             if ref.startswith("http"):  # URL ref: trailing store number, else the last path segment
@@ -554,7 +564,7 @@ for fname, cfg in CHAINS.items():
             if not ref:
                 st["excluded_no_ref"] += 1
                 continue
-            sid = f"{(p.get('addr:country') or 'xx').lower() if ns == '*cc' else ns}-{ref}"
+            sid = ref if ns is None else f"{(p.get('addr:country') or 'xx').lower() if ns == '*cc' else ns}-{ref}"
             if sid in seen:
                 st["duplicate_store_id_dropped"] += 1
                 continue
@@ -576,7 +586,7 @@ for fname, cfg in CHAINS.items():
                              source=";".join([sid_src, S_CEN, S_WD]) if cc == "US" else ";".join([sid_src, S_WD]),
                              source_url=p.get("website") or p.get("@source_uri", ""), source_date=SOURCES[sid_src]["retrieved_at"],
                              name=nm, sub_brand_qid=qid(subq) if subq else "", county_geoid="", country_code=cc, status="",
-                             store_type=nm))
+                             store_type="" if cfg.get("brand_from_feature") else nm))
     df = finish(rows, check_county=True)
     _nonus = df.country_code != "US"
     df.loc[_nonus, ["county", "county_geoid"]] = ""

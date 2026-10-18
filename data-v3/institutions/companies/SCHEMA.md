@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 59 (47 brand, 12 company) | `entity` |
-| `brand_relationships.csv` | 38 | `entity_relation` |
-| `company_locations.csv.gz` | 173,832 (77,507 with a v2-2024 county geoid; 96,310 outside the US) | `entity_location` |
+| `brands.csv` | 80 (66 brand, 14 company) | `entity` |
+| `brand_relationships.csv` | 58 | `entity_relation` |
+| `company_locations.csv.gz` | 180,761 (81,835 with a v2-2024 county geoid; 98,911 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | best_buy 1,204; bucees 50; circle_k 8,196; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/<brand>.csv` | best_buy 1,204; bucees 50; circle_k 8,196; cvs 9,001; hilton 6,929; home_depot 2,212; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 43 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 88 | `source` |
+| `brand_cleanliness.csv` | 62 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 89 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -141,6 +141,8 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   - **circle_k.csv**: wikidata:Q3268010 Circle K. Spiders `circle_k` (US + CA), `_dk`, `_ireland` (IE + GB), `_no`, `_pl`, `_se`, `_vn`. URL refs keep their last path segment (station slug). Excluded: 607 Couche-Tard-branded stores in Quebec (brand Q2836957, Alimentation Couche-Tard). `circle_k_vn` refs are list positions (`vn-0`, `vn-1`, ...), so those ids may not be stable between runs.
 
   - **bucees.csv**: wikidata:Q4982335 Buc-ee's. `bucees_us` returned 0 features in the latest run, so the file uses run 2026-10-03 (50 features); every row is flagged `atp_older_run_2026-10-03`.
+
+  - **hilton.csv**: Hilton hotels worldwide. `brand_qid` = the brand ATP tags on each hotel (Hampton, Hilton Garden Inn, Home2, DoubleTree, Homewood, Tru, Embassy Suites, Curio, Tapestry, Conrad, Waldorf Astoria, Canopy, LXR, Motto, Tempo, Signia, Graduate, Hilton Grand Vacations, Hilton), parent from Wikidata P749. `store_id` = Hilton's property code (ATP ref). `hilton` returned 0 features in every run since 2026-09-05, so the file uses run 2026-08-29 (7,722 features; `atp_older_run_2026-08-29`). Excluded, because there is no brand QID to key on: 522 Small Luxury Hotels of the World (a partner network, not a Hilton brand), 241 Spark by Hilton, 5 AutoCamp, 1 NoMad and 24 untagged.
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
