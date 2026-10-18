@@ -1,8 +1,9 @@
-"""City councils + mayors of the 25 most populous US cities with a city council (imported by build_v3data.py).
+"""City councils + mayors of the 30 most populous US cities (incl. consolidated city-county/metro councils and the DC Council; imported by build_v3data.py).
 Inputs (all cached under src/city/): cities.json (curated structure/calendar), sub-est2025.csv (Census Vintage 2025
 place estimates), bp/<City,_ST>.html (Ballotpedia city pages: council member table, mayor), bp/mayors100.html (Ballotpedia
-list of current mayors of the top 100 cities). Keys are deterministic: us-<st>-<place-slug>-city-council / -mayor, where
-place-slug = Census place NAME minus the trailing LSAD word ('city'), lowercased, non-alphanumerics -> '-'.
+list of current mayors of the top 100 cities). Keys are deterministic: us-<st>-<place-slug>-<body-slug> / -mayor, where
+place-slug = Census place NAME minus the trailing LSAD word (city, metropolitan government, metro government, '(balance)'),
+NFKD-ascii, lowercased, non-alphanumerics -> '-'; body-slug = 'city-council' unless cities.json sets body_slug.
 """
 import json, re, csv, datetime, unicodedata
 from bs4 import BeautifulSoup
@@ -25,9 +26,11 @@ def census_rank():
     rows.sort(key=lambda r: -int(r['POPESTIMATE2025']))
     return {r['STATE'] + r['PLACE']: (i + 1, int(r['POPESTIMATE2025']), r['NAME']) for i, r in enumerate(rows)}
 
-def seat_label(office):
-    t = office.split('Council', 1)[-1].strip()
-    m = re.match(r'(?i)at-large(?: (?:position|seat) (\w+))?$', t)
+def seat_label(office, match='City Council'):
+    t = office.split(match, 1)[-1].strip() if match in office else office.split('Council', 1)[-1].strip()
+    if re.match(r'(?i)chair(man|person)?$', t): return ('CHAIR', 'chair')
+    if re.match(r'(?i)vice[- ]mayor$', t): return ('VM', 'vice-mayor')
+    m = re.match(r'(?i)at[- ]large(?: (?:position|seat) (\w+))?$', t)
     if m: return ('AL' + (m.group(1) or ''), 'at-large')
     m = re.match(r'(?i)position (\d+) at-large$', t)
     if m: return ('AL' + m.group(1), 'at-large')
@@ -56,7 +59,7 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
     city_bodies, city_detail, xc = [], [], []
     for c in cfg['cities']:
         rk, pop, cname = rank[c['geoid']]
-        place = re.sub(r'\s+(city|town|village|municipality|metropolitan government|consolidated government)(\s+\(balance\))?$', '', cname)
+        place = re.sub(r'\s+(city|town|village|municipality|metropolitan government|metro government|consolidated government)(\s+\(balance\))?$', '', cname)
         base = f"us-{c['st'].lower()}-{slug(place)}"
         page = BeautifulSoup(open(f"{CITY}/bp/{c['bp']}.html").read(), 'lxml'); txt = page.get_text(' ', strip=True)
         # council table = first Office/Name table whose offices contain 'City Council'
@@ -70,7 +73,14 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
                 a = cs[1].find('a') if len(cs) > 1 else None
                 rr.append(dict(office=v[0], name=v[1], party=v[2] if len(v) > 2 else '', since=v[3] if len(v) > 3 else '', ends=v[4] if len(v) > 4 else '',
                                bp=a['href'].rstrip('/').split('/')[-1] if a and a.has_attr('href') else ''))
-            if any('City Council' in x['office'] or 'Oklahoma City Council' in x['office'] for x in rr): rows = rr; break
+            if any(c.get('match', 'City Council') in x['office'] or 'Oklahoma City Council' in x['office'] for x in rr): rows = rr; break
+        ovr_notes = []
+        for r in rows:
+            o = c.get('overrides', {}).get(r['office'])
+            if o:
+                ovr_notes.append(f"{r['office']}: {r['name']} -> {o.get('name', r['name'])} ({o['src']})")
+                r.update({k: v for k, v in o.items() if k != 'src'})
+                xc.append(dict(body=base + '-' + c.get('body_slug', 'city-council'), check='official site vs Ballotpedia', ok=False, detail=f"{r['office']}: {o['src']}"))
         # Denver: Ballotpedia lists a generic 'At-large' vacancy row besides 'Seat A'/'Seat B' -> keep the lettered rows;
         # the filled generic at-large row is Seat A (official site / 2027 filings: Gonzales-Gutierrez = Seat A)
         if c['bp'].startswith('Denver'):
@@ -86,7 +96,7 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
         mname = (mm.group(1).strip() if mm else '') or (ib.group(1).strip() if ib else '') or L.get('name', '')
         msince = iso(ib.group(3)) if ib and ib.group(1).strip() == mname else (mm.group(3) if mm else L.get('took', ''))
         aff = re.search(r'has an? (Democratic|Republican|independent|nonpartisan|Libertarian) mayor', txt)
-        mparty_lbl = (aff.group(1) if aff else '') or L.get('party', '')
+        mparty_lbl = (aff.group(1) if aff else '') or L.get('party', '') or ({'D': 'Democrat', 'R': 'Republican', 'I': 'Independent'}.get(mm.group(2), '') if mm else '')
         mparty_lbl = {'Democratic': 'Democrat', 'independent': 'Independent', 'nonpartisan': 'Nonpartisan'}.get(mparty_lbl, mparty_lbl)
         same = L and L.get('name', '').split(' (')[0].split()[-1].lower() == mname.split()[-1].lower()
         mbp = L.get('bp', '') if same else ''
@@ -96,19 +106,20 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
         # ---- council body
         cseats = []
         for r in rows:
-            lab, typ = seat_label(r['office']); cseats.append((lab, typ, r))
+            lab, typ = seat_label(r['office'], c.get('match', 'City Council')); cseats.append((lab, typ, r))
         pos = {}
         for i, (lab, typ, r) in enumerate(cseats):
             pos[lab] = pos.get(lab, 0) + 1
         n_mayor = 1 if c['mayor_role'] == 'member' else 0
         n = len(cseats) + n_mayor
-        nd = sum(1 for x in cseats if x[1] in ('district', 'super-district')); na = sum(1 for x in cseats if x[1] in ('at-large', 'president-at-large'))
+        nd = sum(1 for x in cseats if x[1] in ('district', 'super-district')); na = sum(1 for x in cseats if x[1] in ('at-large', 'president-at-large', 'chair', 'vice-mayor'))
         mix = 'district' if na == 0 else ('mixed' if nd else 'at-large')
         sel = SELC['partisan'] if c['partisan'] else SELC['nonpartisan']
-        nb = place + ' City Council' if 'Oklahoma City' not in place else 'Oklahoma City Council'
-        b = add_body(key=base + '-city-council', st=c['st'], kind='M', office='city_council', name=nb, seats=n, majority=n // 2 + 1,
+        nb = c.get('name') or (place + ' City Council' if 'Oklahoma City' not in place else 'Oklahoma City Council')
+        ckey = base + '-' + c.get('body_slug', 'city-council')
+        b = add_body(key=ckey, st=c['st'], kind='M', office='city_council', name=nb, seats=n, majority=n // 2 + 1,
                      unit_type='council_district', term=c['term'], stagger=c['stagger'], last_el=c['last_el'], next_el=c['next_el'], sel=sel,
-                     complete_from=SNAP, src='ballotpedia;' + c['url'], note=c['next_note'], geoid=c['geoid'], entity='muni:place:' + c['geoid'])
+                     complete_from=SNAP, src='ballotpedia;' + c['url'], note=c['next_note'] + (f"; {c['consolidated']}" if c.get('consolidated') else ''), geoid=c['geoid'], entity=c.get('entity', 'muni:place:' + c['geoid']))
         up_by = '2027-04-30'
         cnt = {}
         s_i = 0
@@ -117,12 +128,12 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
             k = cnt[lab] if pos[lab] > 1 or lab.startswith('SD') else 1
             ends = iso(r['ends'])
             up = 1 if (c['next_el'].startswith('2026') and (r['name'] == 'Vacant' or (ends and (len(ends) == 4 and ends <= '2026' or len(ends) > 4 and ends <= up_by)))) else 0
-            role = {'at-large': 'at-large', 'president-at-large': 'president', 'super-district': 'super-district'}.get(typ, '')
+            role = {'at-large': 'at-large', 'president-at-large': 'president', 'super-district': 'super-district', 'chair': 'chair', 'vice-mayor': 'vice-mayor'}.get(typ, '')
             label = r['office'].split('Council', 1)[-1].strip()
             seats.append(dict(b=b, s=s_i, dist=lab, geoid='', pos=k, label=label, valid_from='', valid_to='', up26=up, role=role))
             if r['name'] != 'Vacant':
                 key = 'bp:' + r['bp'] if r['bp'] else 'bp:' + r['name'].replace(' ', '_')
-                plbl = r['party']
+                plbl = r['party'] or ('' if c['partisan'] else 'Nonpartisan')
                 code = P.get(PARTY_MAP.get(plbl, 'oth'), P['oth'])
                 p = person(key, r['name'])
                 terms.append(dict(b=b, s=s_i, start=iso(r['since']), end='', p=p, party=code, caucus='', how='', appt=''))
@@ -132,9 +143,9 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
         if n_mayor:
             seats.append(dict(b=b, s=s_i, dist='MAYOR', geoid='', pos=1, label='Mayor (ex officio, voting)', valid_from='', valid_to='', up26=0, role='mayor'))
         # ---- mayor body (1 seat); mayor elections are nonpartisan except NYC/Philadelphia/Charlotte/Jacksonville/Baltimore -> party = affiliation
-        mb = add_body(key=base + '-mayor', st=c['st'], kind='M', office='mayor', name='Mayor of ' + place, seats=1, majority=1, unit_type='place',
+        mb = add_body(key=base + '-mayor', st=c['st'], kind='M', office='mayor', name=c.get('mayor_name', 'Mayor of ' + place), seats=1, majority=1, unit_type='place',
                       term='', stagger='none', last_el='', next_el=c['mayor_next'], sel=sel, complete_from=SNAP, src='ballotpedia;' + c['url'],
-                      note=f"mayor_role on council: {c['mayor_role']}; veto: {c['veto']}" + (f"; {c['mayor_note']}" if c.get('mayor_note') else ''), geoid=c['geoid'], entity='muni:place:' + c['geoid'])
+                      note=f"mayor_role on council: {c['mayor_role']}; veto: {c['veto']}" + (f"; {c['mayor_note']}" if c.get('mayor_note') else ''), geoid=c['geoid'], entity=c.get('mayor_entity', 'muni:place:' + c['geoid']))
         seats.append(dict(b=mb, s=0, dist='', geoid=c['geoid'], pos=1, label='Mayor', valid_from='', valid_to='', up26=1 if c['mayor_next'].startswith('2026') else 0, role='mayor'))
         mkey = 'bp:' + mbp if mbp else 'bp:' + mname.replace(' ', '_')
         mp = person(mkey, mname)
@@ -145,7 +156,7 @@ def build(add_body, seats, terms, person, P, SELC, SNAP):
                                 term_ends=c.get('mayor_ends') or mends, office='Mayor'))
         if n_mayor:
             terms.append(dict(b=b, s=s_i, start=c.get('mayor_since') or msince, end='', p=mp, party=mcode, caucus='', how='', appt=''))
-        city_bodies.append(dict(b=b, mayor_b=mb, geoid=c['geoid'], entity='muni:place:' + c['geoid'], place=cname, pop2025=pop, census_rank=rk,
+        city_bodies.append(dict(b=b, mayor_b=mb, geoid=c['geoid'], entity=c.get('entity', 'muni:place:' + c['geoid']), place=cname, pop2025=pop, census_rank=rk,
                                 n_district=nd, n_atlarge=na, n_mayor_seat=n_mayor, seat_mix=mix, partisan=c['partisan'], mayor_role=c['mayor_role'], mayor_veto=c['veto'],
-                                council_url=c['url'], bp_page='https://ballotpedia.org/' + c['bp']))
+                                council_url=c['url'], bp_page='https://ballotpedia.org/' + c['bp'], consolidated=c.get('consolidated', ''), corrections='; '.join(ovr_notes)))
     return city_bodies, city_detail, xc, cfg['skipped']

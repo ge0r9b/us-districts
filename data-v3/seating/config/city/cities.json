@@ -1,12 +1,6 @@
 {
- "_doc": "Curated structure for the 25 most populous US cities with a city council (Census Vintage 2025 place estimates, SUMLEV 162). Members/mayors come from the cached Ballotpedia pages; this file holds structure, roles and election calendar. mayor_role: member = full voting member of council (ex officio seat added), tie = presides/votes only to break ties, none = not a council member. next_el: next scheduled council general/vacancy election (ISO date, or YYYY-MM when the exact day is not fixed).",
- "skipped": {
-  "1836003": "Indianapolis: consolidated city-county (Unigov); legislature is the Indianapolis City-County Council, not a city council",
-  "0667000": "San Francisco: consolidated city and county; legislature is the Board of Supervisors (no city council)",
-  "4752006": "Nashville-Davidson: consolidated metropolitan government; legislature is the Metro Council",
-  "1150000": "Washington, DC: federal district; legislature is the Council of the District of Columbia (state-equivalent, already modelled as dc_council in the repo)",
-  "2148006": "Louisville/Jefferson County: consolidated metro government; legislature is the Louisville Metro Council"
- },
+ "_doc": "Curated structure for the 25 most populous US cities with a city council (Census Vintage 2025 place estimates, SUMLEV 162). Members/mayors come from the cached Ballotpedia pages; this file holds structure, roles and election calendar. mayor_role: member = full voting member of council (ex officio seat added), tie = presides/votes only to break ties, none = not a council member. next_el: next scheduled council general/vacancy election (ISO date, or YYYY-MM when the exact day is not fixed). Optional per-city fields: match (office text that identifies council rows), body_slug/name (non-'City Council' bodies), entity/mayor_entity (repo entity ids), consolidated (note), overrides (official-site corrections to Ballotpedia rows: office -> fields).",
+ "skipped": {},
  "cities": [
   {
    "geoid": "3651000",
@@ -388,6 +382,145 @@
    "next_el": "2028-11-07",
    "next_note": "all 14 districts + council president (primary May 2028)",
    "mayor_next": "2028-11-07"
+  },
+  {
+   "geoid": "1836003",
+   "st": "IN",
+   "bp": "Indianapolis,_Indiana",
+   "url": "https://www.indy.gov/activity/city-county-council-members",
+   "partisan": 1,
+   "mayor_role": "none",
+   "veto": 1,
+   "term": "4",
+   "stagger": "all",
+   "last_el": "2023-11-07",
+   "next_el": "2027-11-02",
+   "next_note": "all 25 districts",
+   "match": "City Council",
+   "body_slug": "city-county-council",
+   "name": "Indianapolis City-County Council",
+   "consolidated": "Unigov consolidated city-county (Marion County)",
+   "mayor_next": "2027-11-02",
+   "mayor_since": "2016-01-01",
+   "mayor_ends": "January 1, 2028",
+   "overrides": {
+    "Indianapolis City Council District 10": {
+     "name": "Shaila Mulholland",
+     "party": "Democratic",
+     "since": "October 5, 2026",
+     "ends": "January 1, 2028",
+     "bp": "",
+     "src": "indy.gov council list; WFYI 2026-10-05 (Democratic precinct caucus pick, replaces Ali Brown)"
+    },
+    "Indianapolis City Council District 21": {
+     "name": "Josh Masquelier",
+     "party": "Republican",
+     "since": "September 2, 2026",
+     "ends": "January 1, 2028",
+     "bp": "",
+     "src": "indy.gov council list; Mirror Indy 2026-09-03 (Republican caucus pick, replaces Joshua Bain)"
+    },
+    "Indianapolis City Council District 11": {
+     "name": "Crista Lee Wells",
+     "src": "indy.gov lists Crista Lee Wells; Ballotpedia lists Crista Carlino (same seat, assumed office 2024-01-01); official name kept"
+    }
+   }
+  },
+  {
+   "geoid": "0667000",
+   "st": "CA",
+   "bp": "San_Francisco,_California",
+   "url": "https://www.sf.gov/departments--board-supervisors",
+   "partisan": 0,
+   "mayor_role": "none",
+   "veto": 1,
+   "term": "4",
+   "stagger": "partial",
+   "last_el": "2024-11-05",
+   "next_el": "2026-11-03",
+   "next_note": "even-numbered districts (2, 4, 6, 8, 10; D2 and D4 appointees)",
+   "match": "Board of Supervisors",
+   "body_slug": "board-of-supervisors",
+   "name": "San Francisco Board of Supervisors",
+   "consolidated": "consolidated City and County of San Francisco",
+   "mayor_next": "2028-11-07",
+   "mayor_since": "2025-01-08",
+   "mayor_ends": "January 8, 2029"
+  },
+  {
+   "geoid": "4752006",
+   "st": "TN",
+   "bp": "Nashville,_Tennessee",
+   "url": "https://www.nashville.gov/departments/council/metro-council-members",
+   "partisan": 0,
+   "mayor_role": "none",
+   "veto": 1,
+   "term": "4",
+   "stagger": "all",
+   "last_el": "2023-08-03",
+   "next_el": "2027-08",
+   "next_note": "all 40 members + vice mayor (runoff September 2027); the vice mayor presides and votes only to break ties",
+   "match": "Metro Council",
+   "body_slug": "metro-council",
+   "name": "Metropolitan Council of Nashville and Davidson County",
+   "consolidated": "Metropolitan Government of Nashville and Davidson County",
+   "mayor_next": "2027-08",
+   "mayor_since": "2023-09-25",
+   "mayor_ends": "2027",
+   "mayor_name": "Mayor of the Metropolitan Government of Nashville and Davidson County"
+  },
+  {
+   "geoid": "1150000",
+   "st": "DC",
+   "bp": "Washington,_D.C.",
+   "url": "https://dccouncil.gov/councilmembers/",
+   "partisan": 1,
+   "mayor_role": "none",
+   "veto": 1,
+   "term": "4",
+   "stagger": "partial",
+   "last_el": "2024-11-05",
+   "next_el": "2026-11-03",
+   "next_note": "Wards 1, 3, 5, 6, chairman and two at-large seats (incl. the special-election seat held since 2026-07-17)",
+   "match": "City Council",
+   "body_slug": "council",
+   "name": "Council of the District of Columbia",
+   "entity": "chamber:dc-council",
+   "mayor_entity": "state:11",
+   "consolidated": "federal district (state-equivalent); repo entity chamber:dc-council (kind dc_council)",
+   "mayor_next": "2026-11-03",
+   "mayor_since": "2015-01-02",
+   "mayor_ends": "January 2, 2027",
+   "mayor_note": "open seat in 2026 (primary 2026-06-16)",
+   "mayor_name": "Mayor of the District of Columbia"
+  },
+  {
+   "geoid": "2148006",
+   "st": "KY",
+   "bp": "Louisville,_Kentucky",
+   "url": "https://louisvilleky.gov/government/metro-council/districts-1-26",
+   "partisan": 1,
+   "mayor_role": "none",
+   "veto": 1,
+   "term": "4",
+   "stagger": "partial",
+   "last_el": "2024-11-05",
+   "next_el": "2026-11-03",
+   "next_note": "odd-numbered districts",
+   "match": "Metro Council",
+   "body_slug": "metro-council",
+   "name": "Louisville Metro Council",
+   "consolidated": "Louisville/Jefferson County Metro Government",
+   "mayor_next": "2026-11-03",
+   "mayor_since": "2023-01-02",
+   "mayor_ends": "January 2027",
+   "overrides": {
+    "Louisville Metro Council District 7": {
+     "party": "Independent",
+     "src": "official Metro Council agenda 2026-06-25 lists Paula McCraney (I-7); Ballotpedia still lists Democratic"
+    }
+   },
+   "mayor_name": "Mayor of Louisville Metro"
   }
  ]
 }

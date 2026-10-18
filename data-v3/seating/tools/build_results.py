@@ -145,7 +145,7 @@ GEN = {2016: '2016-11-08', 2017: '2017-11-07', 2018: '2018-11-06', 2019: '2019-1
 # ---------------- Congress
 cong = json.load(open(f'{R}/congress_contests.json'))
 REGCLASS = {2016: 3, 2018: 1, 2020: 2, 2022: 3, 2024: 1}
-ST50 = {b['st'] for b in bodies if b['st'] != 'US'}
+ST50 = {b['st'] for b in bodies if b['kind'] == 'L' and b['st'] != 'US'}   # states with a legislature (excludes DC: delegate is non-voting)
 seen = set(); fec22sen = []
 # specials held on the general-election date appear both in the main sheets and the special sheets: keep one, as stage general + special office
 def sig_(x):
@@ -687,7 +687,7 @@ topics = dict(
     house=dict(label='House', primary=BK['us-house'], bodies=[BK['us-house']] + ids(lambda b: b['office'] == 'state_house'), offices=['us_house', 'state_house']),
     courts=dict(label='High courts', primary=None, bodies=ids(lambda b: b['kind'] == 'C'), offices=['state_supreme_court', 'state_court_criminal_appeals']),
     city_councils=dict(label='City councils', primary=None, bodies=ids(lambda b: b['office'] == 'city_council'), offices=['city_council'],
-                       mayors=ids(lambda b: b['office'] == 'mayor'), note='25 most populous cities with a city council (Census V2025); mayor bodies listed under mayors; city_bodies.csv links council b <-> mayor_b'))
+                       mayors=ids(lambda b: b['office'] == 'mayor'), note='30 most populous US cities (Census V2025): city councils plus the consolidated city-county/metro councils (Indianapolis, San Francisco, Nashville, Louisville) and the Council of the District of Columbia; mayor bodies listed under mayors; city_bodies.csv links council b <-> mayor_b'))
 json.dump(topics, open(f'{OUT}/topics.json', 'w'), indent=1)
 wcsv('results_crosscheck.csv', XC, ['scope', 'item', 'ok', 'detail'])
 tl_bad = [(a, s_, PREMAP.get(int(p1), p1), PREMAP.get(int(p2), p2), d1, d2) for a, s_, p1, p2, d1, d2 in tl_bad]

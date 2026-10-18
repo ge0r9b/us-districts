@@ -310,7 +310,7 @@ for k, sel in METHOD.items():
     xcheck.append(dict(body=bodies[b]['key'], check='justices: Ballotpedia vs Wikipedia current-court table', ok=not miss and nw >= nb,
                        detail=f'BP filled {nb}, wiki rows {nw}, not found on wiki: {miss}'))
 
-# ---------------- City councils + mayors (25 most populous cities with a city council) ----------------
+# ---------------- City councils + mayors (30 most populous cities, incl. consolidated and DC councils) ----------------
 import city_councils as CC
 city_bodies, city_detail, cxc, city_skipped = CC.build(add_body, seats, terms, person, P, SELC, SNAP)
 xcheck += cxc
@@ -330,7 +330,7 @@ terms.sort(key=lambda t: (t['b'], t['s'], t['start']))
 wcsv('terms.csv', terms, ['b', 's', 'start', 'end', 'p', 'party', 'caucus', 'how', 'appt'])
 wcsv('court_detail.csv', court_detail, ['b', 's', 'p', 'appointer', 'appt_party', 'chief', 'term_ends', 'wiki_party'])
 wcsv('contests_2026.csv', contests, ['b', 'year', 'geoid', 'district', 'n_up', 'slot', 'party', 'incumbent', 'name', 'bp'])
-wcsv('city_bodies.csv', city_bodies, ['b', 'mayor_b', 'geoid', 'entity', 'place', 'pop2025', 'census_rank', 'n_district', 'n_atlarge', 'n_mayor_seat', 'seat_mix', 'partisan', 'mayor_role', 'mayor_veto', 'council_url', 'bp_page'])
+wcsv('city_bodies.csv', city_bodies, ['b', 'mayor_b', 'geoid', 'entity', 'place', 'pop2025', 'census_rank', 'n_district', 'n_atlarge', 'n_mayor_seat', 'seat_mix', 'partisan', 'mayor_role', 'mayor_veto', 'council_url', 'bp_page', 'consolidated', 'corrections'])
 wcsv('city_detail.csv', city_detail, ['b', 's', 'p', 'party_label', 'affil', 'assumed', 'term_ends', 'office'])
 wcsv('parties.csv', [dict(code=c, key=k, bot=b_, name=n) for c, k, b_, n in PARTIES], ['code', 'key', 'bot', 'name'])
 wcsv('selection_methods.csv', [dict(code=c, key=k, name=n) for c, k, n in SEL], ['code', 'key', 'name'])

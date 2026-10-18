@@ -23,9 +23,11 @@ Exclusions (user request): CA, KS and WV supreme courts are removed entirely, an
 These are build-time filters (`DROP_COURTS` in build_v3data.py, `COURT_MIN_YEAR` in build_results.py), so every rebuild stays consistent.
 Orphaned people are pruned on every build. Always run the full pipeline in order.
 
-## City councils and mayors (25 most populous cities with a city council)
+## City councils and mayors (30 most populous cities)
 
 Ranking: Census Bureau Vintage 2025 city/town population estimates (sub-est2025.csv, SUMLEV 162, https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/). Members and mayors: Ballotpedia city pages and the Ballotpedia list of current mayors of the top 100 cities (fetched 2026-10-18), with Charlotte's mayor and Denver's at-large vacancy confirmed on the official city sites.
+
+All 30 of the most populous cities are included. Five have a consolidated or district legislature that is not called a city council; they use the same schema (`office` = city_council, plus a `…-mayor` body) with a body-specific key slug: Indianapolis City-County Council (Unigov), San Francisco Board of Supervisors (City and County), Nashville Metro Council (Metropolitan Government; the vice mayor presides and votes only to break ties, seat VM), Louisville Metro Council, and the Council of the District of Columbia (`us-dc-washington-council` = repo entity `chamber:dc-council`; DC mayor `us-dc-washington-mayor` = repo `state:11`). Their b ids (188–197) were appended, so the first 25 cities' keys and ids are unchanged.
 
 | Census rank | city | council key | seats (voting) | districts / at-large / mayor seat | election | mayor's council role | next council election | official council site |
 |---|---|---|---|---|---|---|---|---|
@@ -44,18 +46,23 @@ Ranking: Census Bureau Vintage 2025 city/town population estimates (sub-est2025.
 | 13 | San Jose, CA | `us-ca-san-jose-city-council` | 11 | 10 / 0 / 1 | nonpartisan | member | 2026-11-03 | https://www.sanjoseca.gov/your-government/departments-offices/mayor-and-city-council |
 | 14 | Charlotte, NC | `us-nc-charlotte-city-council` | 11 | 7 / 4 / 0 | partisan | tie (veto) | 2027-11-02 | https://www.charlottenc.gov/City-Government/City-Council |
 | 15 | Columbus, OH | `us-oh-columbus-city-council` | 9 | 9 / 0 / 0 | nonpartisan | none (veto) | 2027-11-02 | https://www.columbus.gov/City-Council |
+| 16 | Indianapolis, IN (City-County Council) | `us-in-indianapolis-city-county-council` | 25 | 25 / 0 / 0 | partisan | none (veto) | 2027-11-02 | https://www.indy.gov/activity/city-county-council-members |
+| 17 | San Francisco, CA (Board of Supervisors) | `us-ca-san-francisco-board-of-supervisors` | 11 | 11 / 0 / 0 | nonpartisan | none (veto) | 2026-11-03 | https://www.sf.gov/departments--board-supervisors |
 | 18 | Seattle, WA | `us-wa-seattle-city-council` | 9 | 7 / 2 / 0 | nonpartisan | none (veto) | 2026-11-03 | https://www.seattle.gov/council |
 | 19 | Denver, CO | `us-co-denver-city-council` | 13 | 11 / 2 / 0 | nonpartisan | none (veto) | 2026-11-03 | https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Denver-City-Council |
+| 20 | Nashville-Davidson, TN (Metro Council) | `us-tn-nashville-davidson-metro-council` | 41 | 35 / 6 / 0 | nonpartisan | none (veto) | 2027-08 | https://www.nashville.gov/departments/council/metro-council-members |
 | 21 | Oklahoma City, OK | `us-ok-oklahoma-city-city-council` | 9 | 8 / 0 / 1 | nonpartisan | member | 2027-02 | https://www.okc.gov/government/city-council |
+| 22 | Washington, DC (Council of the District of Columbia) | `us-dc-washington-council` | 13 | 8 / 5 / 0 | partisan | none (veto) | 2026-11-03 | https://dccouncil.gov/councilmembers/ |
 | 23 | El Paso, TX | `us-tx-el-paso-city-council` | 8 | 8 / 0 / 0 | nonpartisan | tie (veto) | 2026-11-03 | https://www.elpasotexas.gov/government |
 | 24 | Las Vegas, NV | `us-nv-las-vegas-city-council` | 7 | 6 / 0 / 1 | nonpartisan | member | 2026-11-03 | https://www.lasvegasnevada.gov/Government/Mayor-City-Council |
 | 25 | Boston, MA | `us-ma-boston-city-council` | 13 | 9 / 4 / 0 | nonpartisan | none (veto) | 2027-11-02 | https://www.boston.gov/departments/city-council |
 | 26 | Detroit, MI | `us-mi-detroit-city-council` | 9 | 7 / 2 / 0 | nonpartisan | none (veto) | 2029-11-06 | https://detroitmi.gov/government/city-council |
+| 27 | Louisville/Jefferson County, KY (Metro Council) | `us-ky-louisville-jefferson-county-metro-council` | 26 | 26 / 0 / 0 | partisan | none (veto) | 2026-11-03 | https://louisvilleky.gov/government/metro-council/districts-1-26 |
 | 28 | Portland, OR | `us-or-portland-city-council` | 12 | 12 / 0 / 0 | nonpartisan | tie | 2026-11-03 | https://www.portland.gov/council |
 | 29 | Memphis, TN | `us-tn-memphis-city-council` | 13 | 13 / 0 / 0 | nonpartisan | none (veto) | 2027-10 | https://www.memphiscitycouncil.com/ |
 | 30 | Baltimore, MD | `us-md-baltimore-city-council` | 15 | 14 / 1 / 0 | partisan | none (veto) | 2028-11-07 | https://baltimorecitycouncil.com/ |
 
-Skipped (no body called a city council): Indianapolis: consolidated city-county (Unigov); legislature is the Indianapolis City-County Council, not a city council; San Francisco: consolidated city and county; legislature is the Board of Supervisors (no city council); Nashville-Davidson: consolidated metropolitan government; legislature is the Metro Council; Washington, DC: federal district; legislature is the Council of the District of Columbia (state-equivalent, already modelled as dc_council in the repo); Louisville/Jefferson County: consolidated metro government; legislature is the Louisville Metro Council.
+Official-site verification of the five added bodies (2026-10-18): San Francisco (sf.gov Board of Supervisors) and DC (dccouncil.gov) match Ballotpedia for every member; Nashville: all 40 council members match nashville.gov (the vice mayor is not on that page; Ballotpedia used). Indianapolis: indy.gov lists District 10 Shaila Mulholland (D, Democratic caucus pick, WFYI 2026-10-05) and District 21 Josh Masquelier (R, Republican caucus pick, Mirror Indy 2026-09-03), shown vacant on Ballotpedia, and District 11 as Crista Lee Wells (Ballotpedia: Crista Carlino); the official values are kept. Louisville: louisvilleky.gov blocks automated fetches (HTTP 403), so the roster was checked against indexed official council pages and Metro budget/agenda PDFs; District 7 Paula McCraney is listed as Independent (I-7) on the 2026-06-25 council agenda (Ballotpedia: Democratic). Every override is recorded in `city_bodies.corrections` and as `official site vs Ballotpedia` rows in `crosscheck.csv`.
 
 
 ## Layout in the repo (branch data/seating)

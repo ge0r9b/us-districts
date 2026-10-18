@@ -5,3 +5,4 @@ Done: Congress 2016-2024 (+specials/runoffs), state chambers (Ballotpedia distri
 - 10:19 rerun done: FL/WA/ID 2024 linked fully; docs updated
 - 10:30 dropped CA/KS/WV courts + pre-2017 court contests (build filters), orphan people pruned; validated
 - 12:03 city councils + mayors added (50 bodies); validated; keys stable
+- 12:16 added Indianapolis, San Francisco, Nashville, DC, Louisville councils + mayors (b 188-197, 10 bodies; 198 total); DC delegate contests kept out of results (ST50 = legislature states); validated (0 replay mismatches, 0 overlaps, 0 orphans/dangling, first 188 keys unchanged)

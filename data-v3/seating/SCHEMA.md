@@ -7,8 +7,8 @@ one-file client bundle built from them; `holders.lite.json.gz` is the same bundl
 
 | file | key | columns |
 |---|---|---|
-| `bodies.csv` | `b` | `key` (stable string id, see *Body keys*), `st`, `kind` (L = legislature, C = court, M = municipal: city council or mayor), `office` (us_senate, us_house, state_senate, state_house, state_legislature, state_supreme_court, state_court_criminal_appeals, city_council, mayor), `name`, `seats` (voting seats in force today), `majority` (floor(n/2)+1), `unit_type` (state, cd, sldu, sldl, none, council_district, place), `term` (years; `2-4-4` = IL/TX-style senate cycle), `stagger` (all/partial/none_2026/thirds/staggered/none), `last_el`, `next_el`, `sel` (selection_methods code), `complete_from` (holders are complete from this date onward), `src`, `note`, `geoid` (Census place GEOID SSPPPPP for city bodies), `entity` (repo entity id `muni:place:SSPPPPP`, city bodies only) |
-| `seats.csv` | (`b`,`s`) | `s` (0-based seat index inside the body; this is the "seat slot" a chart draws), `dist` (district label normalised to the repo's tiger_name/v2_name), `geoid` (repo GEOID: CD `SSDD`, SLDU/SLDL `SS`+3 chars, state FIPS for the Senate, empty for courts and NH floterials), `pos` (1..k inside a multi-member district; Senate = class), `label`, `valid_from`/`valid_to` (only for House slots that exist in a single apportionment), `up26` (1 = seat on the 2026 ballot), `role` ('' / at-large / super-district / president / mayor) |
+| `bodies.csv` | `b` | `key` (stable string id, see *Body keys*), `st`, `kind` (L = legislature, C = court, M = municipal: city council or mayor), `office` (us_senate, us_house, state_senate, state_house, state_legislature, state_supreme_court, state_court_criminal_appeals, city_council, mayor), `name`, `seats` (voting seats in force today), `majority` (floor(n/2)+1), `unit_type` (state, cd, sldu, sldl, none, council_district, place), `term` (years; `2-4-4` = IL/TX-style senate cycle), `stagger` (all/partial/none_2026/thirds/staggered/none), `last_el`, `next_el`, `sel` (selection_methods code), `complete_from` (holders are complete from this date onward), `src`, `note`, `geoid` (Census place GEOID SSPPPPP for city bodies), `entity` (repo entity id, city bodies only: `muni:place:SSPPPPP`; DC Council `chamber:dc-council`, DC mayor `state:11`) |
+| `seats.csv` | (`b`,`s`) | `s` (0-based seat index inside the body; this is the "seat slot" a chart draws), `dist` (district label normalised to the repo's tiger_name/v2_name), `geoid` (repo GEOID: CD `SSDD`, SLDU/SLDL `SS`+3 chars, state FIPS for the Senate, empty for courts and NH floterials), `pos` (1..k inside a multi-member district; Senate = class), `label`, `valid_from`/`valid_to` (only for House slots that exist in a single apportionment), `up26` (1 = seat on the 2026 ballot), `role` ('' / at-large / super-district / president / chair / vice-mayor / mayor) |
 | `people.csv` | `p` (contiguous; renumbered each build) | `key` (`bioguide:X` / `fec:ID` / `cid:<Election-Data slug>` / `os:<openstates uuid>` / `bp:<ballotpedia slug>` / `kl:<Klarner candid>` / `name:ST:slug`), `name`, `cid` (surname-first slug = Election Data `candidate_id`; their slugs are reused verbatim) |
 | `terms.csv` | (`b`,`s`,`start`) | `end` (empty = serving), `p`, `party` (code), `caucus` (code, empty = same as party), `how` (E = elected, S = special, A = appointed, R = retained), `appt` (party code of the appointing governor), `approx` (1 = start/end inferred from election date, not a sworn-in date), `src` (snapshot / results contest id) |
 | `court_detail.csv` | (`b`,`s`) | `p`, `appointer`, `appt_party`, `chief`, `term_ends`, `wiki_party` |
@@ -20,8 +20,9 @@ one-file client bundle built from them; `holders.lite.json.gz` is the same bundl
 
 Integrity rules: a seat has at most one open term at a time. An unoccupied seat is a vacancy (party 0).
 `sum(seats active at date) == bodies.seats`. Body ids are 0 = US Senate, 1 = US House, 2–100 = the 99 state
-chambers (alphabetical by state, upper before lower; NE unicameral), 101–137 = courts (37), 138–187 = city council / mayor pairs
-(council b even, its mayor b+1, in Census population order). Integer `b` ids may shift when bodies are added or removed; pin to `key`.
+chambers (alphabetical by state, upper before lower; NE unicameral), 101–137 = courts (37), 138–197 = city council / mayor pairs
+(council b even, its mayor b+1): 138–187 = the first 25 cities in Census population order, 188–197 = Indianapolis,
+San Francisco, Nashville, DC, Louisville (appended 2026-10-18 so earlier ids did not shift). Integer `b` ids may shift when bodies are added or removed; pin to `key`.
 
 ## Body keys (stable; pin to these, not to `b`)
 
@@ -33,25 +34,32 @@ Keys are derived deterministically from source identifiers and never from row or
 | US Senate / House | `us-senate`, `us-house` | |
 | state chamber | `us-{st}-{senate\|house\|legislature}` (NE = `us-ne-legislature`) | `us-pa-house` |
 | state high court | `us-{st}-supreme-court`, `us-{st}-court-of-criminal-appeals` | `us-tx-court-of-criminal-appeals` |
-| city council | `us-{st}-{place-slug}-city-council` | `us-ny-new-york-city-council` |
-| mayor | `us-{st}-{place-slug}-mayor` | `us-ok-oklahoma-city-mayor` |
+| city council | `us-{st}-{place-slug}-{body-slug}`; `{body-slug}` = `city-council` unless the body has another name | `us-ny-new-york-city-council` |
+| consolidated city-county / metro council | same grammar, `{body-slug}` = `city-county-council`, `board-of-supervisors`, `metro-council` | `us-in-indianapolis-city-county-council`, `us-ca-san-francisco-board-of-supervisors`, `us-tn-nashville-davidson-metro-council`, `us-ky-louisville-jefferson-county-metro-council` |
+| Council of the District of Columbia | `us-dc-washington-council` (`{st}` = dc, place = "Washington city", `{body-slug}` = `council`) | repo entity `chamber:dc-council` (kind dc_council) |
+| mayor | `us-{st}-{place-slug}-mayor` | `us-ok-oklahoma-city-mayor`, `us-dc-washington-mayor` (repo entity `state:11`) |
 
-`{st}` = lowercase USPS code. `{place-slug}` = Census place NAME with the trailing LSAD word removed ("Oklahoma City city" ->
-"Oklahoma City"), NFKD-ascii, lowercased, runs of non-alphanumerics -> `-`. Seats are addressed by (`key`, `dist`, `pos`).
+`{st}` = lowercase USPS code. `{place-slug}` = Census place NAME with the trailing LSAD word and "(balance)" removed ("Oklahoma City city" ->
+"Oklahoma City"; "Nashville-Davidson metropolitan government (balance)" -> "Nashville-Davidson";
+"Louisville/Jefferson County metro government (balance)" -> "Louisville/Jefferson County"), NFKD-ascii, lowercased, runs of non-alphanumerics -> `-`. Seats are addressed by (`key`, `dist`, `pos`).
 
 ## City councils and mayors (`city_bodies.csv`, `city_detail.csv`)
 
-* Scope: the 25 most populous US cities **that have a city council**, ranked by Census Vintage 2025 place estimates
-  (`sub-est2025.csv`, SUMLEV 162). Skipped (no city council): Indianapolis (City-County Council), San Francisco (Board of
-  Supervisors), Nashville-Davidson (Metro Council), Washington DC (Council of the District of Columbia), Louisville (Metro
-  Council); listed in `build_meta.json:skipped_cities`. Jacksonville and Philadelphia are consolidated too but their body is
-  a City Council, so they are in.
+* Scope: the 30 most populous US cities, ranked by Census Vintage 2025 place estimates (`sub-est2025.csv`, SUMLEV 162).
+  `office` = city_council for every local legislature, including the consolidated city-county / metro councils
+  (Indianapolis City-County Council, San Francisco Board of Supervisors, Nashville Metro Council, Louisville Metro Council)
+  and the Council of the District of Columbia; `city_bodies.consolidated` describes the consolidation. No city is skipped
+  (`build_meta.json:skipped_cities` = {}).
+* Nashville: the vice mayor (elected countywide) presides over the Metro Council and votes only to break ties; the seat is
+  kept (`dist` VM, `role` vice-mayor) and counted in `seats` = 41 (majority 21, the same as for 40). DC: the chair is
+  elected at-large and is a full voting member (`dist` CHAIR, `role` chair).
 * Each city has two bodies: `…-city-council` (seats = voting members) and `…-mayor` (1 seat). Where the mayor is a full voting
   council member (`mayor_role` = member: Houston, Phoenix, San Antonio, Dallas, Fort Worth, Austin, San Jose, Oklahoma City, Las Vegas)
   the council also has an ex officio seat `dist`=`MAYOR`, `role`=mayor, held by the same person; `seats`/`majority` count it.
   `tie` = presides and votes only to break ties (Chicago, Charlotte, El Paso, Portland); `none` = not a member.
 * `city_bodies.csv` (`b` council, `mayor_b`, `geoid`, `entity`, `place`, `pop2025`, `census_rank`, `n_district`, `n_atlarge`,
-  `n_mayor_seat`, `seat_mix` district/mixed/at-large, `partisan` 1/0, `mayor_role`, `mayor_veto`, `council_url` (official site), `bp_page`).
+  `n_mayor_seat`, `seat_mix` district/mixed/at-large, `partisan` 1/0, `mayor_role`, `mayor_veto`, `council_url` (official site), `bp_page`, `consolidated` (consolidated government, if any), `corrections` (where the
+  official site overrides Ballotpedia: seat: Ballotpedia value -> kept value (source))).
 * `city_detail.csv` (`b`,`s`): `p`, `party_label` (as listed: Democratic, Working Families, For All of Us, Nonpartisan …), `affil`
   (`ballot` = partisan election; `nonpartisan office`; `known affiliation (Ballotpedia)` for mayors in nonpartisan races), `assumed`,
   `term_ends`, `office`. `terms.party` uses the code of that label (Working Families / For All of Us -> 10 oth; unknown -> 9).
