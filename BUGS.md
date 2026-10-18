@@ -17,16 +17,23 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - QA-007: in WebKit at 375/320/1024x576, All States is 273-388 ms and the US House pick 219-285 ms, so these still reproduce. Deselecting the type is 107 ms at 320 and opening the institution menu 180 ms at 375. Drill-ins are now fast (6-45 ms), except the cases in QA-020.
 - QA-009 reproduces in WebKit at 320x568.
 
+## Re-test status, build 1569 (Oct 18 ~6:35-6:55 AM EDT)
+- QA-001/002: fix pending deploy. Live 1569 still shows OR 2024 1,228,410 / 910,702 and KS 2020 558,669 / 758,100. Re-verify when the data build ships.
+- QA-004: **fixed in Chromium and WebKit** (390x844): Enter on the White House address goes to DC at zoom 15; the NYC address goes to New York County.
+- QA-005: **still on 1569 in Chromium** (390x844). Allegheny townships list (131 rows) > US House: 0 rows, header "Pennsylvania", county still Allegheny. shots/b1569-ch-390-qa005-ushouse.png
+- QA-017: **still on 1569**, and the state house list differs as well (see QA-029).
+- QA-018: **still on 1569** (tapping the OH bar stays on `states`).
+
 ## Critical
 
-### QA-001 Oregon 2024 state totals are short of the official count (~1%)
+### QA-001 [Fix pending deploy (per orchestrator: fixed on data/election, ships with the 2016 build); still wrong on live 1569 at 6:55 AM EDT] Oregon 2024 state totals are short of the official count (~1%)
 - Severity: Critical (wrong numbers) | Build 1566 | All sizes (data, seen in list at 1024x768)
 - Steps: Institution filter > All States > `#` mode, 2024; find OR (or `__stTot('Oregon','2024')`).
 - Expected (FEC 2024): Harris 1,240,600, Trump 919,480.
 - Actual: Harris 1,228,410 (-12,190), Trump 910,702 (-8,778). List shows OR 1.23M / 911K instead of 1.24M / 919K.
 - Screenshot: shots/chromium-ipad1024x768-allstates-2024-num.png
 
-### QA-002 Kansas 2020 state totals are short of the official count (~2%)
+### QA-002 [Fix pending deploy (per orchestrator); still wrong on live 1569 at 6:55 AM EDT] Kansas 2020 state totals are short of the official count (~2%)
 - Severity: Critical | Build 1566 | All sizes
 - Steps: All States > time slider to '20 > `#` mode; KS (or `__stTot('Kansas','2020')`).
 - Expected (FEC 2020): Biden 570,323, Trump 771,406.
@@ -96,7 +103,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: nothing happens (still `states`). Tapping the name "OH" drills in. All 8 combinations behave the same.
 - Screenshots: shots/b1567-ch-1024-line-rowtap.png, shots/b1567-we-390-bar-rowtap.png, shots/b1567-ch-1024x768-drill-PA.png
 
-### QA-019 State senate and school district lists skip the county level
+### QA-019 [By design (per orchestrator), not counted as open] State senate and school district lists skip the county level
 - Severity: High (spec 7.3 / HANDOFF: school, state house and state senate list as states > counties > districts) | Build 1568 | 390x844
 - Steps: institution menu > State senate districts > menu > All States > PA.
 - Expected: PA counties, then districts.
@@ -202,7 +209,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: after Enter or a suggestion tap, the geo field shows "DC 20220". The White House ZIP is 20500.
 - Screenshot: shots/b1568-ch-390-addr-wh-enter.png
 
-### QA-027 US House list has 436 rows
+### QA-027 [By design (per orchestrator), not counted as open] US House list has 436 rows
 - Severity: Low | Build 1568 | all sizes
 - Actual: the list starts "DC-00 | 92.1%". HANDOFF says 435. Decide whether the DC delegate belongs in it.
 
@@ -225,3 +232,10 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Searches: "16501" gives a ZIP; "Erie County" lists NY, OH and PA; "PA" and "Ohio" go to the state; "Cook County, IL" works; "PA-07" opens the US House district.
 - No console or page errors anywhere; only aborted Esri tiles during map moves.
 - Not done: the slider timings with 4x CPU throttle (the orchestrator's numbers likely use it), and the state house list (senate and school only).
+
+## Passed on 1569 (pass 3)
+- State house list: drill timing PA > districts 26 ms, district > precincts 43 ms (390, Chromium). It goes states > districts with no county level (QA-019, by design).
+- WebKit slider on 1569 (no throttle). List median/max ms: US House 44.5/60 (390), 40.5/98 (1024x768); county 28.5/40 (390), 27.5/33 (1024x768). Map median/max ms: US House 95.5/118 (390), 112.5/133 (1024x768); county 85.5/108 (390), 99.5/163 (1024x768).
+- Fast repeated drags (Chromium 4x and WebKit): list, thumbnails and map pop-up all end on 2020. No layout shift except the knob itself (WebKit has no layout-shift API, so 0 there means not measured).
+- 2016 shows names only, no numbers (no fabricated data).
+- Not done: CPU throttling in WebKit (Playwright has no WebKit CPU throttle), slider timing at 375/320/1024x576 throttled, reload restore of 2016.
