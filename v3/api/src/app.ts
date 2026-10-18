@@ -16,9 +16,11 @@ import {
 } from "@usd/core";
 import { geocodeAddress, locatePoint } from "./geocode.ts";
 import { precinctResults } from "./precinct-results.ts";
+import { locateInstPack } from "../../ingest/inst-pack.ts";
 import { locatePack } from "../../ingest/precincts.ts";
 
 const defaultPacksDir = fileURLToPath(new URL("../../app/public/packs/precinct", import.meta.url));
+const defaultInstPacksDir = fileURLToPath(new URL("../../app/public/packs/inst", import.meta.url));
 
 export type AppDeps = {
   pool: pg.Pool;
@@ -26,6 +28,7 @@ export type AppDeps = {
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
   packsDir?: string;
+  instPacksDir?: string;
 };
 
 type DvRow = { dv: number; built_at: Date | string };
@@ -68,6 +71,7 @@ async function manifest(pool: pg.Pool) {
     },
     packs: `/packs/${version.dv}/{contest_key}/{unit_type}.json`,
     precinct_packs: "/packs/precinct/{ST}/{year}/{office}/{sha}.json",
+    institution_pack: "/packs/inst/{sha}.json",
     offices: offices.rows.map((row) => ({ key: row.key, label: row.label, scope: row.key === "president" ? "us" : null })),
   };
 }
@@ -96,6 +100,7 @@ function answerJson(row: AnswerRow) {
 
 export function createApp(deps: AppDeps) {
   const packsDir = deps.packsDir ?? defaultPacksDir;
+  const instPacksDir = deps.instPacksDir ?? defaultInstPacksDir;
   const app = new Hono();
   app.use(
     "*",
@@ -134,6 +139,17 @@ export function createApp(deps: AppDeps) {
   });
 
   app.get("/api/v1/manifest", async (c) => c.json(await manifest(deps.pool)));
+
+  app.get("/api/v1/packs/institutions", (c) => {
+    const found = locateInstPack(instPacksDir);
+    if (!found) {
+      return c.json(
+        { error: { code: "pack_not_found", message: "No institution pack" }, dv: c.get("dv") },
+        404,
+      );
+    }
+    return c.redirect(found.publicPath, 302);
+  });
 
   app.get("/api/v1/packs/precinct/:state/:year/:office", (c) => {
     const year = Number(c.req.param("year"));

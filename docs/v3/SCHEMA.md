@@ -31,7 +31,7 @@ The rest of the DDL applied unchanged (42 boundary sets, 21 unit types, both mat
 | | `boundary_set_grant` | Lets other tenants read a `shared` set. |
 | | `boundary_set_default` | Maps a bot row's (unit_type, year) to the boundary set it lands on. |
 | | `unit_type_def`, `unit_category` | Unit types and their parent category. The three school types `school_unified` / `school_elementary` / `school_secondary` (TIGER UNSD / ELSD / SCSD) share the category `school_district`, which is the one "School districts" list in the UI (Q-G4). |
-| | `unit` | One polygon in one set. `unit_key` is the bot's `unit_id`, unique per set. Holds `parent_unit_id` (precinct → county → state), centroid and bbox. |
+| | `unit` | One polygon in one set. `unit_key` is the bot's `unit_id`, unique per set. Holds `parent_unit_id` (county → state), centroid and bbox. Precinct polygons are PMTiles, not rows here. |
 | | `unit_geom` | Geometry per level of detail: lod 0 is full detail, used for point-in-polygon and weighting; lods 1–3 are simplified for low zooms and the dynamic-tile fallback. |
 | | `unit_crosswalk` | Overlap weights between units: precinct → district, and 2020 precinct → 2024 precinct (the `x20` files in v2). |
 | Institutions | `entity` | Governments, chambers, school districts, and later companies or brands. `gov_kind`: sovereign / incorporated / body / private. `has_region=false` is allowed. |

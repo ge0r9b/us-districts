@@ -10,6 +10,7 @@ info:
     Company locations are also a clustered PMTiles archive at /tiles/companies.pmtiles.
     Precinct geometry is /tiles/precinct-2024/{ST}.pmtiles. Precinct results are content-hashed packs.
     GET /results?unit_type=precinct reads the pack. GET /packs/precinct/{state}/{year}/{office} redirects to it.
+    GET /packs/institutions redirects to /packs/inst/{sha}.json (v2 keys and image attribution).
 servers:
   - url: /api/v1
 paths:

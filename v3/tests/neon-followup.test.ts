@@ -2,7 +2,9 @@ import { afterAll, describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createApp } from "../api/src/app.ts";
 import { applyResults, markSuperseded } from "../ingest/apply.ts";
+import { instPacksRoot, readInstPack } from "../ingest/inst-pack.ts";
 import { mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
 import { assignLocationUnits, isConnectionDrop } from "../ingest/locations.ts";
 import { repoRoot } from "../ingest/load-all.ts";
@@ -25,20 +27,24 @@ describe("neon follow-up", () => {
        on conflict (entity_id) do nothing`,
     );
     await pool.query(
-      `insert into entity_location (location_key, entity_id, role, geom, country_code)
-       select 'pip:inside', 'wikidata:Q1591889', 'establishment_at', st_pointonsurface(g.geom), 'US'
+      `insert into entity_location (location_key, entity_nid, role, geom, country_code)
+       select 'pip:inside', e.nid, 'establishment_at', st_pointonsurface(g.geom), 'US'
        from unit_geom g
        join unit u on u.id = g.unit_id
        join boundary_set b on b.id = u.boundary_set_id
+       join entity e on e.entity_id = 'wikidata:Q1591889'
        where b.slug = 'v2-2024' and u.unit_type = 'county' and g.lod = 0
        limit 1
        on conflict (location_key) do nothing`,
     );
     await pool.query(
-      `insert into entity_location (location_key, entity_id, role, geom, country_code)
-       values
-         ('pip:outside', 'wikidata:Q1591889', 'establishment_at', st_setsrid(st_makepoint(0, 0), 4326), 'US'),
-         ('pip:pr', 'wikidata:Q1591889', 'establishment_at', st_setsrid(st_makepoint(-66.5, 18.2), 4326), 'PR')
+      `insert into entity_location (location_key, entity_nid, role, geom, country_code)
+       select x.key, e.nid, 'establishment_at', x.geom, x.country_code
+       from (values
+         ('pip:outside', st_setsrid(st_makepoint(0, 0), 4326), 'US'),
+         ('pip:pr', st_setsrid(st_makepoint(-66.5, 18.2), 4326), 'PR')
+       ) as x(key, geom, country_code)
+       join entity e on e.entity_id = 'wikidata:Q1591889'
        on conflict (location_key) do nothing`,
     );
     const first = await assignLocationUnits(pool);
@@ -102,17 +108,18 @@ describe("neon follow-up", () => {
     expect(estimate.databaseBytes).toBeGreaterThan(0);
     expect(estimate.note).toContain("Precinct result facts stay out of Postgres");
     expect(estimate.note).toContain("PMTiles");
-    const unit = estimate.parts.find((part) => part.table === "unit");
-    expect(unit?.bytes).not.toBeNull();
-    expect(unit?.bytesPerRow ?? 999).toBeLessThan(450);
-    expect(estimate.parts.find((part) => part.table === "unit_crosswalk")?.bytes).not.toBeNull();
-    expect(estimate.parts.find((part) => part.table === "precinct_rollup")?.bytes).not.toBeNull();
-    expect(estimate.estimatedBytes).not.toBeNull();
-    const emptyWidth = await catalogRowBytes(pool, "usd.unit_crosswalk", {
-      textBytes: { method: 8, source_id: 8 },
+    expect(estimate.note).toContain("unit_crosswalk");
+    expect(estimate.parts.find((part) => part.table === "unit")?.bytes).toBe(0);
+    expect(estimate.parts.find((part) => part.table === "unit_crosswalk")?.bytes).toBe(0);
+    const rollup = estimate.parts.find((part) => part.table === "precinct_rollup");
+    expect(rollup?.bytes).toBeGreaterThan(0);
+    expect(estimate.estimatedBytes).toBe(rollup?.bytes);
+    const width = await catalogRowBytes(pool, "usd.precinct_rollup", {
+      textBytes: { contest_key: 28 },
       indexBytes: 48,
     });
-    expect(emptyWidth).toBeGreaterThan(24);
+    expect(width).toBeGreaterThan(24);
+    expect(width).toBeLessThan(400);
   });
 
   it("loads institution entities, relations, image metadata, and bodies", async () => {
@@ -126,6 +133,7 @@ describe("neon follow-up", () => {
     expect(mapRelationMethod("tceq_wdd_primary_county")).toEqual({ method: "sourced", token: "tceq_wdd_primary_county" });
     expect(mapRelationMethod("")).toEqual({ method: null, token: null });
 
+    const packsDir = instPacksRoot(root);
     const loaded = await loadInstitutionTables(pool, {
       entities: [
         row("state:48", { kind: "state", name: "Texas", state_fips: "48", state: "Texas" }),
@@ -191,7 +199,7 @@ describe("neon follow-up", () => {
       files: [{ fileName: "fixture-inst.csv", sha256: "fixture-inst-sha", rows: 3 }],
       fileBytes: 120,
       gitCommit: "4215fab",
-    });
+    }, { packsDir });
     expect(loaded.entities).toBe(3);
     expect(loaded.images).toBe(1);
     expect(loaded.imagesSkipped).toBe(1);
@@ -202,9 +210,11 @@ describe("neon follow-up", () => {
     );
     expect(parent.rows[0]?.parent_id).toBe("state:48");
     const link = await pool.query<{ parent_id: string; child_id: string; method: string; source_record_id: string }>(
-      `select parent_id, child_id, method, source_record_id
-       from entity_relation
-       where relation = 'in_county' and child_id = 'special_district:tx-tceq-101265'`,
+      `select p.entity_id parent_id, c.entity_id child_id, r.method, r.source_record_id
+       from entity_relation r
+       join entity p on p.nid = r.parent_nid
+       join entity c on c.nid = r.child_nid
+       where r.relation = 'in_county' and c.entity_id = 'special_district:tx-tceq-101265'`,
     );
     expect(link.rows[0]).toMatchObject({
       parent_id: "county:48001",
@@ -226,24 +236,32 @@ describe("neon follow-up", () => {
     expect(hot.rows[0]?.file_url).toBeNull();
     expect(hot.rows[0]?.state).toBeNull();
     expect(hot.rows[0]?.v2_key).toBeNull();
-    const text = await pool.query<{ attribution: string; source_url: string }>(
-      `select t.attribution, t.source_url
-       from entity_image_text t
-       join entity_image i on i.id = t.image_id
-       where i.entity_id = 'state:48' and i.role = 'flag'`,
-    );
-    expect(text.rows[0]).toEqual({
+    const stored = readInstPack(packsDir);
+    expect(stored?.images["state:48||flag"]).toMatchObject({
       attribution: "State of Texas",
       source_url: "https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg",
+      sources: ["wikidata_images"],
     });
+    expect(stored?.extra["county:48001"]?.v2_key).toEqual(["Texas|Anderson County"]);
+    const side = await pool.query<{ extras: string; texts: string; sources: string }>(
+      `select
+         (select count(*) from entity_extra)::text extras,
+         (select count(*) from entity_image_text)::text texts,
+         (select count(*) from entity_image_source)::text sources`,
+    );
+    expect(side.rows[0]).toEqual({ extras: "0", texts: "0", sources: "0" });
     const deed = await pool.query<{ url: string }>(
       `select url from license where code = 'LicenseRef-PublicDomain'`,
     );
     expect(deed.rows[0]?.url).toBe("https://creativecommons.org/publicdomain/zero/1.0/");
-    const extra = await pool.query<{ v2_key: string[] }>(
-      `select v2_key from entity_extra where entity_id = 'county:48001'`,
+    const nid = await pool.query<{ nid: string }>(
+      `select nid::text from entity where entity_id = 'county:48001'`,
     );
-    expect(extra.rows[0]?.v2_key).toEqual(["Texas|Anderson County"]);
+    expect(Number(nid.rows[0]?.nid)).toBeGreaterThan(0);
+    const app = createApp({ pool, instPacksDir: packsDir });
+    const redirect = await app.request("http://127.0.0.1/api/v1/packs/institutions");
+    expect(redirect.status).toBe(302);
+    expect(redirect.headers.get("location")).toMatch(/^\/packs\/inst\/[0-9a-f]{12}\.json$/);
     const alias = await pool.query<{ alias: string }>(
       `select alias from entity_alias where entity_id = 'county:48001'`,
     );

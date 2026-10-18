@@ -7,6 +7,32 @@ import { insertJsonChunks } from "./batch.ts";
 import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
 import { BUDGET_BYTES, formatMb, overMeasuredBudget } from "./budget.ts";
 import { parseCsv, readFileText } from "./csv.ts";
+import { imagePackKey, instPacksRoot, writeInstPack, type InstPack } from "./inst-pack.ts";
+import {
+  MEASURED_ENTITY_DEAD_TUPLES,
+  MEASURED_ENTITY_HEAP_BYTES,
+  MEASURED_ENTITY_INDEX_BYTES,
+  MEASURED_INSTITUTION_DELTA_BYTES,
+  MEASURED_TOAST_BYTES,
+  SLIM_ALIAS_BYTES_PER_ROW,
+  SLIM_BODY_BYTES_PER_ROW,
+  SLIM_ENTITY_BYTES_PER_ROW,
+  SLIM_IMAGE_BYTES_PER_ROW,
+  SLIM_RELATION_BYTES_PER_ROW,
+  slimInstitutionBytes,
+} from "./size-plan.ts";
+
+const RELATION_INSERT = `insert into entity_relation (parent_nid, child_nid, relation, method, source_id, source_record_id)
+ select p.nid, c.nid, x.relation, x.method, x.source_id, x.source_record_id
+ from jsonb_to_recordset($1::jsonb) as x(
+   parent_id text, child_id text, relation text, method text, source_id text, source_record_id text
+ )
+ join entity p on p.entity_id = x.parent_id
+ join entity c on c.entity_id = x.child_id
+ on conflict (parent_nid, child_nid, relation, valid_from) do update
+   set method = excluded.method, source_record_id = excluded.source_record_id
+   where entity_relation.method is distinct from excluded.method
+      or entity_relation.source_record_id is distinct from excluded.source_record_id`;
 
 const WIKIDATA = /^wikidata:Q[0-9]+$/;
 const BARE_Q = /^Q[0-9]+$/;
@@ -236,7 +262,7 @@ function imagePayload(row: MappedImage): Record<string, unknown> {
   };
 }
 
-/** Licence deeds are one `license` row. Long image text is `entity_image_text`, not the hot row. */
+/** Licence deeds are one `license` row. Attribution is the institution pack, not a second table. */
 async function writeImageRows(client: pg.PoolClient, ready: MappedImage[]): Promise<number> {
   if (ready.length === 0) return 0;
   const licences = new Map<string, string | null>();
@@ -272,27 +298,6 @@ async function writeImageRows(client: pg.PoolClient, ready: MappedImage[]): Prom
            wikidata = excluded.wikidata, attribution = null, source_url = null, usage_basis = null`,
     ready.map(imagePayload),
   );
-  await insertJsonChunks(
-    client,
-    `insert into entity_image_text (image_id, attribution, source_url, usage_basis, note)
-     select i.id, x.attribution, x.source_url, x.usage_basis, x.note
-     from jsonb_to_recordset($1::jsonb) as x(
-       entity_id text, feed_entity_id text, role text, attribution text, source_url text,
-       usage_basis text, note text
-     )
-     join entity_image i
-       on i.role = x.role
-      and i.entity_id is not distinct from nullif(x.entity_id, '')
-      and i.feed_entity_id is not distinct from nullif(x.feed_entity_id, '')
-     on conflict (image_id) do update
-       set attribution = excluded.attribution, source_url = excluded.source_url,
-           usage_basis = excluded.usage_basis, note = excluded.note
-       where entity_image_text.attribution is distinct from excluded.attribution
-          or entity_image_text.source_url is distinct from excluded.source_url
-          or entity_image_text.usage_basis is distinct from excluded.usage_basis
-          or entity_image_text.note is distinct from excluded.note`,
-    ready.map(imagePayload),
-  );
   return written;
 }
 
@@ -322,19 +327,7 @@ export async function applyInstRelations(
       client,
       mapped.relations.map((row) => row.source_id ?? ""),
     );
-    const written = await insertJsonChunks(
-      client,
-      `insert into entity_relation (parent_id, child_id, relation, method, source_id, source_record_id)
-       select parent_id, child_id, relation, method, source_id, source_record_id
-       from jsonb_to_recordset($1::jsonb) as x(
-         parent_id text, child_id text, relation text, method text, source_id text, source_record_id text
-       )
-       on conflict (parent_id, child_id, relation, valid_from) do update
-         set method = excluded.method, source_record_id = excluded.source_record_id
-         where entity_relation.method is distinct from excluded.method
-            or entity_relation.source_record_id is distinct from excluded.source_record_id`,
-      mapped.relations,
-    );
+    const written = await insertJsonChunks(client, RELATION_INSERT, mapped.relations);
     if (mapped.parents.length > 0) {
       await client.query(
         `update entity e set parent_id = x.parent_id
@@ -377,31 +370,6 @@ export async function applyInstImages(
       ready.flatMap((row) => row.source_ids),
     );
     const written = await writeImageRows(client, ready);
-    const links = ready.flatMap((row) =>
-      row.source_ids.map((source_id, ord) => ({
-        entity_id: row.entity_id ?? "",
-        feed_entity_id: row.feed_entity_id ?? "",
-        role: row.role,
-        source_id,
-        ord: ord + 1,
-      })),
-    );
-    if (links.length > 0) {
-      await insertJsonChunks(
-        client,
-        `insert into entity_image_source (image_id, source_id, ord)
-         select i.id, x.source_id, x.ord
-         from jsonb_to_recordset($1::jsonb) as x(
-           entity_id text, feed_entity_id text, role text, source_id text, ord int
-         )
-         join entity_image i
-           on i.role = x.role
-          and i.entity_id is not distinct from nullif(x.entity_id, '')
-          and i.feed_entity_id is not distinct from nullif(x.feed_entity_id, '')
-         on conflict (image_id, source_id) do nothing`,
-        links,
-      );
-    }
     await client.query("commit");
     return { images: written, skipped };
   } catch (err) {
@@ -423,6 +391,7 @@ const ENTITY_KINDS = new Set([
   "nation", "territory", "province", "state", "county", "municipality", "township",
   "school_unified", "school_elementary", "school_secondary",
   "chamber", "dc_council", "subdivision", "court", "special_district", "indigenous_government",
+  "local_authority", "regional_authority", "intermunicipal", "submunicipal", "parish",
   "government_other", "brand", "organization", "company", "nonprofit", "fund", "other",
 ]);
 
@@ -479,17 +448,11 @@ function textList(raw: string | undefined): string[] | null {
   return items.length ? items : null;
 }
 
-function chars(value: string | null | undefined): number {
-  const text = value?.trim() ?? "";
-  return text ? text.length + 1 : 0;
-}
-
 /**
- * Bytes we will actually write: tuple header plus the stored strings.
- * v2 text and image attribution are on the side tables. State is omitted when
- * state_fips is set. The name trigram index is two bytes per name character.
- * A live pg_total_relation_size / count is not used: a small table's indexes
- * make that average far larger than a new institution row.
+ * Postgres bytes for the shrunk institution load: tuple header, alignment,
+ * page overhead, indexes, and one toast allowance. Calibrated on f0f1f6d,
+ * where the string-length model said about 31.5 MB and the database grew by
+ * 77,037,568 bytes. v2 text and image attribution are pack bytes, priced at 0.
  */
 export function projectInstitutionBytes(
   input: InstInputs,
@@ -497,48 +460,14 @@ export function projectInstitutionBytes(
   alreadyLoaded: boolean,
 ): InstitutionEstimate & { imagesSkipped: number } {
   let entities = 0;
-  let entityBytes = 0;
-  let extras = 0;
-  let extraBytes = 0;
   let aliasRows = 0;
-  let aliasBytes = 0;
   for (const row of input.entities) {
     const entityId = (row.entity_id ?? "").trim();
     const kind = (row.kind ?? "").trim();
     const name = (row.name ?? "").trim();
     if (!entityId || !name || !ENTITY_KINDS.has(kind)) continue;
     entities++;
-    const stateFips = /^\d{2}$/.test((row.state_fips ?? "").trim());
-    const nameBytes = chars(name);
-    entityBytes +=
-      24 +
-      48 +
-      chars(entityId) +
-      chars(kind) +
-      (stateFips ? 0 : chars(row.state)) +
-      nameBytes +
-      chars(row.label) +
-      chars(row.gov_status) +
-      chars(row.parent_id) +
-      chars(row.feed) +
-      chars(row.level) +
-      chars(row.type) +
-      chars(row.cog_pid6) +
-      chars(row.flags) +
-      chars(row.wikidata) +
-      chars(row.iso_3166_2) +
-      nameBytes * 2 +
-      64;
-    const side =
-      chars(row.v2_layer) + chars(row.v2_key) + chars(row.v2_row) + chars(row.valid_from_source) + chars(row.inception_source);
-    if (side > 0) {
-      extras++;
-      extraBytes += 24 + chars(entityId) + side;
-    }
-    for (const alias of textList(row.alias) ?? []) {
-      aliasRows++;
-      aliasBytes += 24 + chars(alias) + chars(entityId) + 8;
-    }
+    aliasRows += textList(row.alias)?.length ?? 0;
   }
   const relations = mapInstRelations(
     input.relations.map((row) => ({
@@ -549,69 +478,61 @@ export function projectInstitutionBytes(
       source_id: row.source_id,
     })),
   );
-  let relationBytes = 0;
-  for (const row of relations.relations) {
-    relationBytes +=
-      24 +
-      32 +
-      chars(row.parent_id) +
-      chars(row.child_id) +
-      chars(row.relation) +
-      chars(row.method) +
-      chars(row.source_id) +
-      chars(row.source_record_id);
-  }
   let images = 0;
   let imagesSkipped = 0;
-  let imageBytes = 0;
-  let imageTextBytes = 0;
   for (const row of input.images) {
-    const mapped = mapInstImage(row);
-    if (!mapped) {
+    if (!mapInstImage(row)) {
       imagesSkipped++;
       continue;
     }
     images++;
-    imageBytes += 24 + 40 + chars(mapped.entity_id) + chars(mapped.feed_entity_id) + chars(mapped.file) + chars(mapped.file_url) + chars(mapped.license) + chars(mapped.wikidata);
-    imageTextBytes += 24 + 8 + chars(mapped.attribution) + chars(mapped.source_url) + chars(mapped.usage_basis) + chars(mapped.note);
   }
   let bodies = 0;
-  let bodyBytes = 0;
   for (const row of input.bodies) {
     const role = (row.role ?? "").trim();
     const entityId = (row.entity_id ?? "").trim();
     const bodyKey = (row.body_key ?? "").trim();
     if (!bodyKey || !entityId || !BODY_ROLES.has(role)) continue;
     bodies++;
-    bodyBytes += 24 + chars(bodyKey) + chars(entityId) + chars(role) + chars(row.source_record_id);
   }
-  const part = (table: string, rows: number, raw: number) => ({
+  const counts = {
+    entities,
+    relations: relations.relations.length,
+    images,
+    aliases: aliasRows,
+    bodies,
+  };
+  const slim = slimInstitutionBytes(counts);
+  const part = (table: string, rows: number, bytesPerRow: number) => ({
     table,
     rows,
-    bytesPerRow: rows > 0 ? raw / rows : 0,
-    bytes: alreadyLoaded ? 0 : Math.round(raw),
+    bytesPerRow,
+    bytes: alreadyLoaded ? 0 : rows * bytesPerRow,
   });
   const parts = [
-    part("entity", entities, entityBytes),
-    part("entity_extra", extras, extraBytes),
-    part("entity_alias", aliasRows, aliasBytes),
-    part("entity_relation", relations.relations.length, relationBytes),
-    part("entity_image", images, imageBytes),
-    part("entity_image_text", images, imageTextBytes),
-    part("body_entity", bodies, bodyBytes),
+    part("entity", entities, SLIM_ENTITY_BYTES_PER_ROW),
+    part("entity_relation", counts.relations, SLIM_RELATION_BYTES_PER_ROW),
+    part("entity_image", images, SLIM_IMAGE_BYTES_PER_ROW),
+    part("entity_alias", aliasRows, SLIM_ALIAS_BYTES_PER_ROW),
+    part("body_entity", bodies, SLIM_BODY_BYTES_PER_ROW),
+    part("toast", alreadyLoaded ? 0 : 1, MEASURED_TOAST_BYTES),
+    { table: "entity_extra", rows: 0, bytesPerRow: 0, bytes: 0 },
+    { table: "entity_image_text", rows: 0, bytesPerRow: 0, bytes: 0 },
+    { table: "entity_image_source", rows: 0, bytesPerRow: 0, bytes: 0 },
   ];
-  const added = alreadyLoaded ? 0 : parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0);
+  const added = alreadyLoaded ? 0 : slim;
   const note = [
     `Source files are ${input.fileBytes} bytes on disk. That number is the CSV size, not a Postgres estimate.`,
-    "Projected Postgres bytes are the slim row width: v2 keys and long source notes are in entity_extra with no index, image attribution is in entity_image_text, a repeated commons URL is not stored twice, and licence_url is one license row.",
-    "State text is omitted when state_fips is set. Image binaries are not loaded.",
+    `The cc8f628 load grew the database by ${MEASURED_INSTITUTION_DELTA_BYTES} bytes. Entity heap was ${MEASURED_ENTITY_HEAP_BYTES} bytes, indexes ${MEASURED_ENTITY_INDEX_BYTES} bytes, and ${MEASURED_ENTITY_DEAD_TUPLES} dead tuples. Toast was ${MEASURED_TOAST_BYTES} bytes.`,
+    `This projection is the shrunk shape: ${SLIM_ENTITY_BYTES_PER_ROW} bytes per entity including indexes and page overhead, relation ids stored as entity.nid, and v2 text plus image attribution in the pack (0 database bytes).`,
+    "State text is omitted when state_fips is set. Image binaries are not loaded. A second run does not insert another copy.",
     alreadyLoaded
-      ? "These files are already applied, so the projection adds nothing."
-      : "Upper bound if these rows are not loaded yet. A second run does not insert another copy.",
+      ? "These files are already applied, so the projection adds nothing. The reload still writes the pack and deletes the side-table rows; npm run db:vacuum returns that space."
+      : "Upper bound if these rows are not loaded yet.",
   ].join(" ");
   return {
     entities,
-    relations: relations.relations.length,
+    relations: counts.relations,
     images,
     bodies,
     fileBytes: input.fileBytes,
@@ -664,6 +585,7 @@ function readInst(root: string): InstInputs {
 export async function loadInstitutionTables(
   db: pg.Pool,
   input: InstInputs,
+  opts: { packsDir: string },
 ): Promise<Omit<InstitutionLoadReport, "estimate" | "gap"> & { imagesSkipped: number }> {
   const entityIds = new Set(input.entities.map((row) => row.entity_id.trim()).filter(Boolean));
   const entities: Record<string, unknown>[] = [];
@@ -762,6 +684,33 @@ export async function loadInstitutionTables(
     sourceIds.push(...(textList(row.source_id) ?? []));
     return [{ body_key: bodyKey, entity_id: entityId, role, source_record_id: blank(row.source_record_id) }];
   });
+  const parentOf = new Map(parents.map((row) => [row.entity_id, row.parent_id]));
+  for (const row of mappedRelations.parents) parentOf.set(row.entity_id, row.parent_id);
+  for (const entity of entities) entity.parent_id = parentOf.get(String(entity.entity_id)) ?? null;
+  const pack: InstPack = { v: 3, extra: {}, images: {} };
+  for (const extra of extras) {
+    const entityId = String(extra.entity_id);
+    pack.extra[entityId] = {
+      v2_layer: (extra.v2_layer as string[] | null) ?? null,
+      v2_key: (extra.v2_key as string[] | null) ?? null,
+      v2_row: (extra.v2_row as string[] | null) ?? null,
+      valid_from_source: (extra.valid_from_source as string | null) ?? null,
+      inception_source: (extra.inception_source as string | null) ?? null,
+    };
+  }
+  for (const image of readyImages) {
+    pack.images[imagePackKey(image.entity_id, image.feed_entity_id, image.role)] = {
+      entity_id: image.entity_id,
+      feed_entity_id: image.feed_entity_id,
+      role: image.role,
+      attribution: image.attribution,
+      source_url: image.source_url,
+      usage_basis: image.usage_basis,
+      note: image.note,
+      sources: image.source_ids,
+    };
+  }
+  writeInstPack(opts.packsDir, pack);
 
   const client = await db.connect();
   try {
@@ -771,18 +720,18 @@ export async function loadInstitutionTables(
     const entityWrites = await insertJsonChunks(
       client,
       `insert into entity (
-         entity_id, kind, state_fips, state, name, label, gov_status, valid_from, valid_to,
+         entity_id, kind, state_fips, state, name, label, gov_status, parent_id, valid_from, valid_to,
          feed, level, type, cog_pid6, flags, origin,
          source_record_id, wikidata, iso_3166_2, constituent_qid,
          inception, inception_precision
        )
-       select entity_id, kind, state_fips, state, name, label, gov_status, valid_from, valid_to,
+       select entity_id, kind, state_fips, state, name, label, gov_status, parent_id, valid_from, valid_to,
               feed, level, type, cog_pid6, flags, 'inst',
               source_record_id, wikidata, iso_3166_2, constituent_qid,
               inception, inception_precision
        from jsonb_to_recordset($1::jsonb) as x(
          entity_id text, kind text, state_fips text, state text, name text, label text, gov_status text,
-         valid_from date, valid_to date,
+         parent_id text, valid_from date, valid_to date,
          feed text, level text, type text, cog_pid6 text, flags text[], source_record_id text,
          wikidata text, iso_3166_2 text, constituent_qid text, inception date,
          inception_precision text
@@ -790,6 +739,7 @@ export async function loadInstitutionTables(
        on conflict (entity_id) do update
          set kind = excluded.kind, state_fips = excluded.state_fips, state = excluded.state,
              name = excluded.name, label = excluded.label, gov_status = excluded.gov_status,
+             parent_id = excluded.parent_id,
              valid_from = excluded.valid_from, valid_to = excluded.valid_to,
              v2_layer = null, v2_key = null, v2_row = null, inception_source = null,
              valid_from_source = null,
@@ -798,29 +748,29 @@ export async function loadInstitutionTables(
              wikidata = excluded.wikidata, iso_3166_2 = excluded.iso_3166_2,
              constituent_qid = excluded.constituent_qid, inception = excluded.inception,
              inception_precision = excluded.inception_precision
-         where entity.origin = 'inst'`,
+         where entity.origin = 'inst'
+           and (entity.kind is distinct from excluded.kind
+             or entity.state_fips is distinct from excluded.state_fips
+             or entity.state is distinct from excluded.state
+             or entity.name is distinct from excluded.name
+             or entity.label is distinct from excluded.label
+             or entity.gov_status is distinct from excluded.gov_status
+             or entity.parent_id is distinct from excluded.parent_id
+             or entity.valid_from is distinct from excluded.valid_from
+             or entity.valid_to is distinct from excluded.valid_to
+             or entity.feed is distinct from excluded.feed
+             or entity.level is distinct from excluded.level
+             or entity.type is distinct from excluded.type
+             or entity.cog_pid6 is distinct from excluded.cog_pid6
+             or entity.flags is distinct from excluded.flags
+             or entity.source_record_id is distinct from excluded.source_record_id
+             or entity.wikidata is distinct from excluded.wikidata
+             or entity.iso_3166_2 is distinct from excluded.iso_3166_2
+             or entity.constituent_qid is distinct from excluded.constituent_qid
+             or entity.inception is distinct from excluded.inception
+             or entity.inception_precision is distinct from excluded.inception_precision)`,
       entities,
     );
-    if (extras.length > 0) {
-      await insertJsonChunks(
-        client,
-        `insert into entity_extra (entity_id, v2_layer, v2_key, v2_row, valid_from_source, inception_source)
-         select entity_id, v2_layer, v2_key, v2_row, valid_from_source, inception_source
-         from jsonb_to_recordset($1::jsonb) as x(
-           entity_id text, v2_layer text[], v2_key text[], v2_row text[],
-           valid_from_source text, inception_source text
-         )
-         on conflict (entity_id) do update
-           set v2_layer = excluded.v2_layer, v2_key = excluded.v2_key, v2_row = excluded.v2_row,
-               valid_from_source = excluded.valid_from_source, inception_source = excluded.inception_source
-           where entity_extra.v2_key is distinct from excluded.v2_key
-              or entity_extra.v2_row is distinct from excluded.v2_row
-              or entity_extra.v2_layer is distinct from excluded.v2_layer
-              or entity_extra.inception_source is distinct from excluded.inception_source
-              or entity_extra.valid_from_source is distinct from excluded.valid_from_source`,
-        extras,
-      );
-    }
     if (aliases.length > 0) {
       await insertJsonChunks(
         client,
@@ -829,24 +779,6 @@ export async function loadInstitutionTables(
          from jsonb_to_recordset($1::jsonb) as x(alias text, entity_id text)
          on conflict (alias, entity_id) where entity_id is not null do nothing`,
         aliases,
-      );
-    }
-    if (parents.length > 0) {
-      await insertJsonChunks(
-        client,
-        `update entity e set parent_id = x.parent_id
-         from jsonb_to_recordset($1::jsonb) as x(entity_id text, parent_id text)
-         where e.entity_id = x.entity_id and e.origin = 'inst' and e.parent_id is distinct from x.parent_id`,
-        parents,
-      );
-    }
-    if (mappedRelations.parents.length > 0) {
-      await insertJsonChunks(
-        client,
-        `update entity e set parent_id = x.parent_id
-         from jsonb_to_recordset($1::jsonb) as x(entity_id text, parent_id text)
-         where e.entity_id = x.entity_id and e.origin = 'inst' and e.parent_id is distinct from x.parent_id`,
-        mappedRelations.parents,
       );
     }
     if (succession.length > 0) {
@@ -860,45 +792,12 @@ export async function loadInstitutionTables(
       );
     }
     const relationWrites = mappedRelations.relations.length
-      ? await insertJsonChunks(
-          client,
-          `insert into entity_relation (parent_id, child_id, relation, method, source_id, source_record_id)
-           select parent_id, child_id, relation, method, source_id, source_record_id
-           from jsonb_to_recordset($1::jsonb) as x(
-             parent_id text, child_id text, relation text, method text, source_id text, source_record_id text
-           )
-           on conflict (parent_id, child_id, relation, valid_from) do update
-             set method = excluded.method, source_record_id = excluded.source_record_id
-             where entity_relation.method is distinct from excluded.method
-                or entity_relation.source_record_id is distinct from excluded.source_record_id`,
-          mappedRelations.relations,
-        )
+      ? await insertJsonChunks(client, RELATION_INSERT, mappedRelations.relations)
       : 0;
     const imageWrites = await writeImageRows(client, readyImages);
-    if (readyImages.some((row) => row.source_ids.length > 0)) {
-      await insertJsonChunks(
-        client,
-        `insert into entity_image_source (image_id, source_id, ord)
-         select i.id, x.source_id, x.ord
-         from jsonb_to_recordset($1::jsonb) as x(
-           entity_id text, feed_entity_id text, role text, source_id text, ord int
-         )
-         join entity_image i
-           on i.role = x.role
-          and i.entity_id is not distinct from nullif(x.entity_id, '')
-          and i.feed_entity_id is not distinct from nullif(x.feed_entity_id, '')
-         on conflict (image_id, source_id) do nothing`,
-        readyImages.flatMap((row) =>
-          row.source_ids.map((source_id, ord) => ({
-            entity_id: row.entity_id ?? "",
-            feed_entity_id: row.feed_entity_id ?? "",
-            role: row.role,
-            source_id,
-            ord: ord + 1,
-          })),
-        ),
-      );
-    }
+    await client.query("delete from entity_image_text");
+    await client.query("delete from entity_image_source");
+    await client.query("delete from entity_extra");
     const bodyWrites = bodies.length
       ? await insertJsonChunks(
           client,
@@ -994,6 +893,6 @@ export async function loadInstitutions(
       gap,
     };
   }
-  const loaded = await loadInstitutionTables(db, input);
+  const loaded = await loadInstitutionTables(db, input, { packsDir: instPacksRoot(opts.root) });
   return { ...loaded, estimate, gap: null };
 }

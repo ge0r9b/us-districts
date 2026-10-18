@@ -318,6 +318,8 @@ create table entity (
                   'court',                                                   -- 'court:<st>-<slug>' (state supreme courts and criminal appeals)
                   'special_district',                                        -- 'special_district:<st>-<source>-<source_id>', frozen (first 305: tx-tceq)
                   'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
+                  'local_authority','regional_authority','intermunicipal',   -- foreign local government: also county and municipality above
+                  'submunicipal','parish',                                   -- ('municipality:de-091620000000', 'county:fr-01', 'submunicipal:fr-comd-77316')
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
                   'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
                   'other')),
@@ -330,9 +332,14 @@ create table entity (
   name          text not null,                       -- TIGER NAMELSAD
   label         text check (label in ('sovereign','incorporated','unincorporated')),
                                                    -- v2 wording rule: states sovereign; never 'incorporated state'
-  gov_status    text check (gov_status in ('government','area_only','dependent')),  -- CoG 2022; Governments bot independent->government,
-                                                   -- federally_recognized->government (+ meta.recognition='federal')
+  gov_status    text check (gov_status in ('government','area_only','dependent','administrative','unknown')),
+                                                   -- CoG 2022; Governments bot independent->government,
+                                                   -- federally_recognized->government (+ meta.recognition='federal').
+                                                   -- Foreign: administrative = no council; unknown = parish until sourced
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
+  nid           bigint,                              -- surrogate for hot joins; entity_id stays the one text key
+  code_scheme   text,                                -- current official code scheme ('de-ars', 'fr-cog:commune', 'gss')
+  code          text,                                -- current code; may change while entity_id stays frozen
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
   valid_from    date,                                -- start of the current form of government, only when a source states it
   valid_from_source text,                            -- entities.csv valid_from_source, when the file has that column
@@ -360,6 +367,13 @@ create table entity (
   check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
   check (kind <> 'subdivision' or (entity_id ~ '^subdivision:[a-z]{2}-[a-z0-9]{1,3}$' and iso_3166_2 is not null)),
   check (kind <> 'special_district' or entity_id ~ '^special_district:[a-z]{2}-[a-z0-9]+-[A-Za-z0-9._-]+$'),
+  -- Foreign local governments: '<kind>:<cc>-<code at minting>', frozen. Feed ids are never entity ids.
+  check (country is null or btrim(country) = 'us'
+         or kind not in ('county','municipality','local_authority','regional_authority','intermunicipal','submunicipal','parish')
+         or entity_id ~ ('^' || kind || ':' || btrim(country) || '-[A-Za-z0-9-]+$')),
+  check (kind not in ('local_authority','regional_authority','intermunicipal','submunicipal','parish') or country is not null),
+  check (entity_id !~ '^(gss|de-ars|fr-cog|fr-siren):'),
+  check (code is null or code_scheme is not null),
   -- territory ids: 'territory:<2-digit US FIPS>' (parent nation:us), 'territory:<iso2>' (foreign dependency, parent = sovereign),
   -- 'territory:ca-(nt|nu|yt)' (Canada's territories, parent nation:ca). Provinces: 'province:ca-<code>' (parent nation:ca).
   check (kind <> 'territory' or (parent_id like 'nation:%'
@@ -372,7 +386,7 @@ create table entity (
                                                    -- sources: entity_source (sources.csv ';'-list)
   iso_3166_2    text,                                -- 'AD-02' (entities.csv iso_3166_2; subdivisions). Unique when set.
   constituent_qid text check (constituent_qid is null or constituent_qid ~ '^Q[0-9]+$'),  -- bare Q id where the constituent country differs ('nation:dk' Q35)
-  wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (already 'wikidata:Q228' at 1fde48d; a bare Q id is prefixed once)
+  wikidata      text check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (already 'wikidata:Q228' at 1fde48d; a bare Q id is prefixed once)
   has_region    boolean not null default true,
                                                    -- seals / flags / logos: entity_image (replaces the old icon_flag column)
   owner_tenant_id bigint not null default 1 references tenant(id),
@@ -380,12 +394,15 @@ create table entity (
   check (valid_to is null or valid_from is null or valid_to >= valid_from)
 );
 create index entity_parent on entity (parent_id);
-create unique index entity_iso_3166_2 on entity (iso_3166_2);
+create unique index entity_nid on entity (nid);
+create index entity_code on entity (country, code_scheme, code);
+create unique index entity_iso_3166_2 on entity (iso_3166_2) where iso_3166_2 is not null;
+create unique index entity_wikidata_key on entity (wikidata) where wikidata is not null;
 create index entity_kind on entity (kind, state_fips);
-create index entity_v2 on entity using gin (v2_key);
 create index entity_name_trgm on entity using gin (lower(name) gin_trgm_ops);
 
--- Institution load keeps v2 keys and long source notes off the hot entity row. No secondary index.
+-- v2 keys and long source notes are not stored here. The institution pack holds them.
+-- The table remains so a reload can delete rows that an earlier load wrote.
 create table entity_extra (
   entity_id         text primary key references entity(entity_id) on delete cascade,
   v2_layer          text[],
@@ -424,8 +441,8 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 -- Brands/organizations: brand -> parent QID links over time (Wikidata P749 parent organization / P127 owned by).
 -- No ownership percentages in v3 (corporate ownership detail stays in the user's private database, v5/v6 bridge).
 create table entity_relation (
-  parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
-  child_id      text not null references entity(entity_id),   -- the brand
+  parent_nid    bigint not null references entity(nid),  -- entity.nid; the text id stays unique on entity
+  child_nid     bigint not null references entity(nid),
   relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
                                                    -- city-county's county entity (parent) and its place entity (child).
@@ -436,19 +453,19 @@ create table entity_relation (
   valid_to      date,
   source_id     text references source(source_id),   -- one source per link (Wikidata)
   source_record_id text,                              -- e.g. the Wikidata statement id of the P749 claim
-  check (parent_id <> child_id),
+  check (parent_nid <> child_nid),
   check (valid_to is null or valid_from is null or valid_to >= valid_from),
-  unique nulls not distinct (parent_id, child_id, relation, valid_from)
+  unique nulls not distinct (parent_nid, child_nid, relation, valid_from)
 );
-create index entity_relation_child on entity_relation (child_id);
+create index entity_relation_child on entity_relation (child_nid);
 
 -- Locations / establishments: one row per site (store, branch, venue) or HQ. Point-in-polygon by GIST.
 create table entity_location (
   location_id  bigint generated always as identity primary key,
   location_key text unique,                          -- '<brand file stem>:<store_id>' ('walgreens:15196', 'marriott:NYCMQ');
                                                    -- store_id is unique only within a brand file
-  entity_id    text not null references entity(entity_id) on delete cascade,   -- brand_qid ('wikidata:Q1591889')
-  sub_entity_id text references entity(entity_id),  -- sub_brand_qid (Duane Reade, CVS Pharmacy y más), when given
+  entity_nid   bigint not null references entity(nid) on delete cascade,  -- brand; text id is entity.entity_id
+  sub_entity_nid bigint references entity(nid),    -- sub-brand, when given
   role         text not null check (role in ('hq_in','establishment_at')),
   name         text,                                 -- site name ('Target Store T-1234')
   address      text,                                 -- public business address as published: address, city, state zip
@@ -467,7 +484,7 @@ create table entity_location (
   retracted    boolean not null default false,       -- set via the retract list; never deleted
   check (geom is not null or geoid is not null)
 );
-create index entity_location_entity on entity_location (entity_id) where not retracted;
+create index entity_location_entity on entity_location (entity_nid) where not retracted;
 create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
 create index entity_location_country on entity_location (country_code);
@@ -512,8 +529,9 @@ create table entity_image (
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
 create unique index entity_image_one_icon on entity_image (coalesce(entity_id, feed_entity_id)) where icon;   -- at most one icon per entity
--- Long image text. A public row still needs attribution; the loader writes it here.
+-- Attribution used to live here. The loader now writes it to the institution pack and deletes these rows.
 -- Licence deed URLs are license.url, one row per code, not a copy on every image.
+-- entity_id on entity_image stays text: the unique key mixes feed ids that are not entity ids.
 create table entity_image_text (
   image_id    bigint primary key references entity_image(id) on delete cascade,
   attribution text,

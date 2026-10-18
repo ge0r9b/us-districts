@@ -418,7 +418,7 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
   if (include.has("precincts")) {
     estimates.push({ group: "precincts", bytes: 0, action: "packs and PMTiles, not Postgres" });
     gaps.push(
-      "precincts: kept out of Postgres. Geometry is PMTiles and results are content-hashed packs keyed by precinct id. The database stores precinct-to-district membership and rolled-up aggregates only. Run: npm run precincts",
+      "precincts: kept out of Postgres. Geometry is PMTiles and results are content-hashed packs keyed by precinct id. The database stores precinct_rollup only, not precinct units or unit_crosswalk. Run: npm run precincts",
     );
   } else {
     estimates.push({ group: "precincts", bytes: 0, action: "not requested (npm run precincts)" });

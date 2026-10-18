@@ -15,6 +15,8 @@
     "db:migrate": "node --env-file-if-exists=.env --import tsx scripts/migrate.ts",
     "db:seed": "node --env-file-if-exists=.env --import tsx scripts/seed.ts",
     "db:load": "node --env-file-if-exists=.env --import tsx scripts/load.ts",
+    "db:size": "node --env-file-if-exists=.env --import tsx scripts/size.ts",
+    "db:vacuum": "node --env-file-if-exists=.env --import tsx scripts/vacuum.ts",
     "precincts": "node --env-file-if-exists=.env --import tsx scripts/precincts.ts",
     "check:bundle": "tsx scripts/check-bundle.ts"
   },

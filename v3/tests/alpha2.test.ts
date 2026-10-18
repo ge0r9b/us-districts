@@ -151,10 +151,13 @@ describe("alpha.2 load and API", () => {
     ]);
     expect(applied.parents).toBe(1);
     const links = await pool.query<{ relation: string; parent_id: string; child_id: string }>(
-      `select relation, parent_id, child_id from entity_relation
-       where (child_id = 'court:ak-supreme' and relation = 'parent')
-          or (parent_id = 'state:02' and child_id = 'court:ak-supreme' and relation = 'consolidated_with')
-       order by relation`,
+      `select r.relation, p.entity_id parent_id, c.entity_id child_id
+       from entity_relation r
+       join entity p on p.nid = r.parent_nid
+       join entity c on c.nid = r.child_nid
+       where (c.entity_id = 'court:ak-supreme' and r.relation = 'parent')
+          or (p.entity_id = 'state:02' and c.entity_id = 'court:ak-supreme' and r.relation = 'consolidated_with')
+       order by r.relation`,
     );
     expect(links.rows).toEqual([
       { relation: "consolidated_with", parent_id: "state:02", child_id: "court:ak-supreme" },
@@ -265,9 +268,11 @@ describe("alpha.2 load and API", () => {
     );
     expect(sub.relations).toBe(1);
     const linked = await pool.query<{ parent_id: string; child_id: string; name: string }>(
-      `select r.parent_id, r.child_id, e.name
-       from entity_relation r join entity e on e.entity_id = r.child_id
-       where r.relation = 'brand_of' and r.child_id = 'wikidata:Q5310380'`,
+      `select p.entity_id parent_id, c.entity_id child_id, c.name
+       from entity_relation r
+       join entity p on p.nid = r.parent_nid
+       join entity c on c.nid = r.child_nid
+       where r.relation = 'brand_of' and c.entity_id = 'wikidata:Q5310380'`,
     );
     expect(linked.rows[0]).toEqual({
       parent_id: "wikidata:Q1591889",
@@ -325,14 +330,13 @@ describe("alpha.2 load and API", () => {
       `select count(*)::text n from result r join unit u on u.id = r.unit_id where u.unit_type = 'precinct'`,
     );
     expect(facts.rows[0]?.n).toBe("0");
-    const members = await pool.query<{ n: string }>(
-      `select count(*)::text n
-       from unit_crosswalk x
-       join unit p on p.id = x.from_unit_id
-       join unit c on c.id = x.to_unit_id
-       where p.unit_type = 'precinct' and c.unit_type = 'county' and x.method = 'exact' and btrim(p.state_abbr) = 'VT'`,
+    const members = await pool.query<{ units: string; links: string }>(
+      `select
+         (select count(*) from unit where unit_type = 'precinct' and btrim(state_abbr) = 'VT')::text units,
+         (select count(*) from unit_crosswalk x join unit p on p.id = x.from_unit_id
+           where p.unit_type = 'precinct' and btrim(p.state_abbr) = 'VT')::text links`,
     );
-    expect(Number(members.rows[0]?.n)).toBe(first.features);
+    expect(members.rows[0]).toEqual({ units: "0", links: "0" });
     const rollup = await pool.query<{ total: string }>(
       `select coalesce(sum(r.total_votes), 0)::text total
        from precinct_rollup r

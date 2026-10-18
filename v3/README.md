@@ -32,29 +32,31 @@ A host ending in `neon.tech` is opened with `@neondatabase/serverless` over WebS
 
 `db:load` uses the same host switch. A `neon.tech` host goes through `@neondatabase/serverless` over WebSocket. Any other host uses `pg`. It reads `v3/.env` when that file exists. Inserts are chunked multi-row statements (the WebSocket driver has no COPY). Each source file is its own transaction: an applied or rejected sha is skipped on the next run, and `data_version` moves when a file changes rows. `result.source_record_id` is the CSV line number. `unit.source_record_id` is the geo `row`, or the precinct key.
 
-The default load is core (states, counties, congressional districts, and the official result files from alpha.1), state legislative districts, the 2022 and 2024 US House Senate files (1,023 rows each), and schools. It then assigns each US company location to its county, state, and US House district, in slices of about 10,000 ids. Each slice commits on its own and prints a progress line. A dropped connection retries that slice once; run `db:load` again to resume, and a second pass changes nothing when the hits are unchanged. `entity_location.unit_id` is the county. Points that hit nothing are flagged `no_unit_resolved`. Non-US rows stay unit-less. Institutions are a later command, after locations. Precinct facts stay out of Postgres. `npm run precincts` writes per-state PMTiles under `app/public/tiles/precinct-2024/`, content-hashed packs under `app/public/packs/precinct/`, and precinct-to-district membership plus rolled-up aggregates. Precinct polygons are not stored on `unit`. Those directories are generated and gitignored. `precincts --dry-run` prints the row counts and a size. The unit price skips geometry and the long legacy name. An empty crosswalk or rollup table is priced from catalog row width. It writes nothing. Companies and institutions stay behind flags. The 350 MB check is the live database size plus the institution projection when that load is requested. Companies, when loaded, also write clustered PMTiles at `app/public/tiles/companies.pmtiles`. Institutions load entities, relations, image metadata, and `body_entity` from `origin/data/inst-entities` at run time, with no image files. Read the institution dry-run before that load. Governments, seating, and people still print a gap and do not insert. A rejected file's gap lists each rule with its count. Migration `013` marks a rejected `load_batch` superseded when a later applied batch for the same file already exists.
+The default load is core (states, counties, congressional districts, and the official result files from alpha.1), state legislative districts, the 2022 and 2024 US House Senate files (1,023 rows each), and schools. It then assigns each US company location to its county, state, and US House district, in slices of about 10,000 ids. Each slice commits on its own and prints a progress line. A dropped connection retries that slice once; run `db:load` again to resume, and a second pass changes nothing when the hits are unchanged. `entity_location.unit_id` is the county. Points that hit nothing are flagged `no_unit_resolved`. Non-US rows stay unit-less. Institutions are a later command, after locations. Precinct facts, precinct units, and `unit_crosswalk` stay out of Postgres. `npm run precincts` writes per-state PMTiles under `app/public/tiles/precinct-2024/`, content-hashed packs under `app/public/packs/precinct/`, and `precinct_rollup` only. Those directories are generated and gitignored. `precincts --dry-run` prices the rollup and reports unit and crosswalk counts at 0 database bytes. It writes nothing. Companies and institutions stay behind flags. The 350 MB check is the live database size plus the institution projection when that load is requested. Companies, when loaded, also write clustered PMTiles at `app/public/tiles/companies.pmtiles`. Institutions load entities, relations, image metadata, and `body_entity` from `origin/data/inst-entities` at run time, with no image files. v2 keys and image attribution go to `app/public/packs/inst/`. `npm run db:size` prints heap, index, toast, and dead tuples. Migration `014` adds `entity.nid` and vacuums after the DDL commits. Read the institution dry-run before that load. Governments, seating, and people still print a gap and do not insert. A rejected file's gap lists each rule with its count. Migration `013` marks a rejected `load_batch` superseded when a later applied batch for the same file already exists.
 
 ```bash
 cd v3
+npm run db:size
 npm run db:migrate
-npm run db:seed
-npm run db:load
-# precinct geometry, packs, membership, and rollups (not result rows).
-# Read the dry-run first. It does not write.
-npm run precincts -- --dry-run
-npm run db:load -- --include=institutions --dry-run
 npm run db:load -- --include=institutions
-# after the precinct dry-run looks right:
-npm run precincts
-# one state while you check it:
+npm run db:vacuum
+npm run db:size
+npm run precincts -- --dry-run
+```
+
+`db:size` only reads. `db:migrate` applies `014_shrink.sql`, then `VACUUM FULL` on `entity` and `entity_location_unit` after the DDL commits. The institution load writes the pack first, then deletes `entity_extra`, `entity_image_text`, and `entity_image_source`. `db:vacuum` rewrites those emptied tables so the space shows up in `pg_database_size`. The precinct dry-run prices `precinct_rollup` only. It does not write. Run `npm run precincts` only after that dry-run looks right. Governments are still not inserted. Re-running these commands is safe. Nothing here deploys.
+
+```bash
+# one state while you check the rollup:
 npm run precincts -- --state=Vermont
 # companies are not in the default load:
 npm run db:load -- --include=companies
 # add the flag only if pg_database_size is already over 350 MB:
 npm run db:load -- --include=companies --allow-over-budget=companies
+npm run db:load -- --include=institutions --allow-over-budget=institutions
 ```
 
-`db:load` prints `database`, which is `pg_database_size`, and one line per location slice. The institution dry-run prints a Postgres projection from the slim row width and does not insert. Use `--allow-over-budget=institutions` only when that projection is still over 350 MB. Governments, seating, and people are still not inserted. Re-running `db:load` is safe. It does not deploy.
+`db:load` prints `database`, which is `pg_database_size`, and one line per location slice. The institution dry-run prints a Postgres projection that includes indexes, page overhead, and toast. Use `--allow-over-budget=institutions` only when that projection is still over 350 MB.
 
 Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and 2024 show Pennsylvania counties. `%` / `#` re-sorts the list locally.
 

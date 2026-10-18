@@ -2,7 +2,8 @@ import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { splitSql } from "./sql.ts";
+import { splitSql, stripComments } from "./sql.ts";
+import { isVacuumStatement } from "./vacuum.ts";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const migrationsDir = join(root, "migrations");
@@ -55,9 +56,12 @@ export async function applyMigrations(db: Queryable): Promise<MigrationReport> {
       skipped.push(filename);
       continue;
     }
+    const statements = splitSql(sql);
+    const ddl = statements.filter((statement) => !isVacuumStatement(stripComments(statement)));
+    const vacuums = statements.filter((statement) => isVacuumStatement(stripComments(statement)));
     await db.query("begin");
     try {
-      for (const statement of splitSql(sql)) {
+      for (const statement of ddl) {
         await db.query(statement);
       }
       await db.query("insert into usd.schema_migration (filename, checksum) values ($1, $2)", [filename, checksum]);
@@ -66,6 +70,16 @@ export async function applyMigrations(db: Queryable): Promise<MigrationReport> {
       await rollback(db);
       const message = err instanceof Error ? err.message : String(err);
       throw new Error(`${filename}: ${message}`);
+    }
+    for (const statement of vacuums) {
+      try {
+        await db.query(statement);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        throw new Error(
+          `${filename} is applied, but VACUUM failed outside the transaction (${message}). Re-run npm run db:vacuum.`,
+        );
+      }
     }
     applied.push(filename);
   }

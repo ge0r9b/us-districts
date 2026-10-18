@@ -176,20 +176,22 @@ export async function loadCompanyRows(
       );
       await insertJsonChunks(
         client,
-        `insert into entity_relation (parent_id, child_id, relation, source_id, source_record_id)
-         select parent_id, child_id, 'brand_of', 'companies-bot', parent_id || '|' || child_id
+        `insert into entity_relation (parent_nid, child_nid, relation, source_id, source_record_id)
+         select p.nid, c.nid, 'brand_of', 'companies-bot', x.parent_id || '|' || x.child_id
          from jsonb_to_recordset($1::jsonb) as x(parent_id text, child_id text)
-         on conflict (parent_id, child_id, relation, valid_from) do nothing`,
+         join entity p on p.entity_id = x.parent_id
+         join entity c on c.entity_id = x.child_id
+         on conflict (parent_nid, child_nid, relation, valid_from) do nothing`,
         [...relations.values()],
       );
     }
     const written = await insertJsonChunks(
       client,
       `insert into entity_location (
-         location_key, entity_id, sub_entity_id, role, name, address, geom, geoid, boundary_set,
+         location_key, entity_nid, sub_entity_nid, role, name, address, geom, geoid, boundary_set,
          country_code, source_record_id, retrieved_at
        )
-       select x.location_key, x.entity_id, nullif(x.sub_entity_id, ''), x.role, x.name, x.address,
+       select x.location_key, e.nid, s.nid, x.role, x.name, x.address,
               case when x.lon is not null and x.lat is not null
                 then st_setsrid(st_makepoint(x.lon, x.lat), 4326) end,
               nullif(x.geoid, ''), nullif(x.boundary_set, ''),
@@ -199,9 +201,11 @@ export async function loadCompanyRows(
          lon float8, lat float8, geoid text, boundary_set text, country_code text,
          source_record_id text, retrieved_at timestamptz
        )
+       join entity e on e.entity_id = x.entity_id
+       left join entity s on s.entity_id = nullif(x.sub_entity_id, '')
        on conflict (location_key) do update
          set country_code = excluded.country_code, geom = excluded.geom, name = excluded.name,
-             sub_entity_id = excluded.sub_entity_id,
+             sub_entity_nid = excluded.sub_entity_nid,
              address = excluded.address, source_record_id = excluded.source_record_id, geoid = excluded.geoid`,
       locations,
     );

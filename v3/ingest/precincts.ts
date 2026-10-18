@@ -6,7 +6,6 @@ import { contestKey, stateName } from "@usd/core";
 import { loadPrecinctState, precinctStateNames, type PrecinctFeature, type PrecinctState } from "./precinct-source.ts";
 import { writePrecinctPmtiles } from "./precinct-tiles.ts";
 import { catalogRowBytes } from "./row-width.ts";
-import { ensureUnits } from "./units.ts";
 
 export type PrecinctPack = {
   v: 3;
@@ -121,20 +120,20 @@ export async function buildPrecinctState(
   if (opts.tiles !== false && state.features.some((feature) => feature.coordinates.length > 0)) {
     writePrecinctPmtiles(state.features, tilesPath(repo, state.abbr));
   }
-  await storeMembership(db, state);
+  await storeRollup(db, state);
   return { abbr: state.abbr, features: state.features.length, gaps: state.gaps };
 }
 
 export type PrecinctGrowth = {
   states: number;
-  /** Precinct unit keys this command would write. */
+  /** Precinct feature ids. They stay in the pack and the PMTiles archive. */
   units: number;
-  /** Upper bound: one county membership and one US House membership per precinct. */
+  /** County and US House parents implied by each feature. Not stored as unit_crosswalk. */
   crosswalk: number;
-  /** Upper bound: county and US House parents, times the three presidential years. */
+  /** County and US House parents, times the three presidential years. This is the Postgres write. */
   rollup: number;
   databaseBytes: number;
-  /** Sum of the part estimates. Empty tables use catalog row width, so this is not null. */
+  /** precinct_rollup only. Units and unit_crosswalk add nothing. */
   estimatedBytes: number | null;
   projectedBytes: number | null;
   parts: { table: string; rows: number; bytesPerRow: number | null; bytes: number | null }[];
@@ -142,8 +141,8 @@ export type PrecinctGrowth = {
 };
 
 /**
- * Count precinct units, crosswalk rows, and rollup rows, and price the ones
- * whose tables already have rows. Writes nothing: no units, no packs, no tiles.
+ * Count precinct features and price precinct_rollup. Writes nothing.
+ * Units and unit_crosswalk are not a Postgres cost: feature ids stay in the pack and in PMTiles.
  */
 export async function dryRunPrecincts(
   db: pg.Pool,
@@ -171,57 +170,33 @@ export async function dryRunPrecincts(
   );
   const crosswalk = units * 2;
   const rollup = Number(parents.rows[0]?.n ?? 0) * YEARS.length;
-  const sized = await db.query<{
-    db: string;
-    unit_bytes: string;
-    unit_rows: string;
-    crosswalk_bytes: string;
-    crosswalk_rows: string;
-    rollup_bytes: string;
-    rollup_rows: string;
-  }>(
+  const sized = await db.query<{ db: string; rollup_bytes: string; rollup_rows: string }>(
     `select pg_database_size(current_database())::text db,
-            pg_total_relation_size('usd.unit')::text unit_bytes,
-            (select count(*)::text from unit) unit_rows,
-            pg_total_relation_size('usd.unit_crosswalk')::text crosswalk_bytes,
-            (select count(*)::text from unit_crosswalk) crosswalk_rows,
             pg_total_relation_size('usd.precinct_rollup')::text rollup_bytes,
             (select count(*)::text from precinct_rollup) rollup_rows`,
   );
   const size = sized.rows[0];
-  const unitWidth = await catalogRowBytes(db, "usd.unit", {
-    skip: ["centroid", "label_point", "bbox", "legacy_key", "area_m2", "parent_boundary_set"],
-    textBytes: { name: 48, unit_key: 16, unit_type: 12, source_record_id: 8, meta: 8, labels: 8 },
-    indexBytes: 96,
-  });
-  const widthOrLive = async (table: string, relBytes: string | undefined, relRows: string | undefined) => {
-    const rows = Number(relRows ?? 0);
-    if (rows > 0) return Number(relBytes ?? 0) / rows;
-    return catalogRowBytes(db, table, {
-      textBytes: { method: 8, source_id: 8, contest_key: 28 },
-      indexBytes: 48,
-    });
-  };
-  const part = (table: string, addRows: number, bytesPerRow: number) => ({
-    table,
-    rows: addRows,
-    bytesPerRow,
-    bytes: Math.round(addRows * bytesPerRow),
-  });
+  const liveRows = Number(size?.rollup_rows ?? 0);
+  const rollupWidth =
+    liveRows > 0
+      ? Number(size?.rollup_bytes ?? 0) / liveRows
+      : await catalogRowBytes(db, "usd.precinct_rollup", {
+          textBytes: { contest_key: 28 },
+          indexBytes: 48,
+        });
+  const rollupBytes = Math.round(rollup * rollupWidth);
   const parts = [
-    part("unit", units, unitWidth),
-    part("unit_crosswalk", crosswalk, await widthOrLive("usd.unit_crosswalk", size?.crosswalk_bytes, size?.crosswalk_rows)),
-    part("precinct_rollup", rollup, await widthOrLive("usd.precinct_rollup", size?.rollup_bytes, size?.rollup_rows)),
+    { table: "unit", rows: units, bytesPerRow: 0, bytes: 0 },
+    { table: "unit_crosswalk", rows: crosswalk, bytesPerRow: 0, bytes: 0 },
+    { table: "precinct_rollup", rows: rollup, bytesPerRow: rollupWidth, bytes: rollupBytes },
   ];
-  const estimatedBytes = parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0);
   const databaseBytes = Number(size?.db ?? 0);
-  const measured = parts.map((row) => `${row.table} ${row.bytes} bytes`);
   const note = [
-    "Upper bound if these precinct rows are not loaded yet. A second run does not insert another copy.",
-    "Precinct result facts stay out of Postgres. This counts unit keys, unit_crosswalk membership, and precinct_rollup only.",
-    "Precinct polygons stay in PMTiles. The unit estimate skips centroid and legacy_key, so it is not the blended size of state and county rows.",
-    "Empty crosswalk and rollup tables use catalog row width.",
-    `Measured: ${measured.join("; ")}.`,
+    "Precinct units and unit_crosswalk stay out of Postgres. Feature ids live in the content-hashed pack and in the PMTiles archive.",
+    "Postgres keeps precinct_rollup only. The US House parent is chosen from lon/lat in that transaction and is not stored as a unit row.",
+    "Precinct result facts stay out of Postgres.",
+    "Upper bound if these rollup rows are not loaded yet. A second run does not insert another copy.",
+    `Measured: precinct_rollup ${rollupBytes} bytes at ${Math.round(rollupWidth)} bytes per row. unit 0 bytes. unit_crosswalk 0 bytes.`,
   ].join(" ");
   return {
     states: names.length,
@@ -229,8 +204,8 @@ export async function dryRunPrecincts(
     crosswalk,
     rollup,
     databaseBytes,
-    estimatedBytes,
-    projectedBytes: estimatedBytes == null ? null : databaseBytes + estimatedBytes,
+    estimatedBytes: rollupBytes,
+    projectedBytes: databaseBytes + rollupBytes,
     parts,
     note,
   };
@@ -250,93 +225,22 @@ export async function buildPrecincts(
   return { states: names.length, gaps };
 }
 
-async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void> {
-  const fips = await db.query<{ fips: string }>(
-    `select btrim(u.state_fips) fips
-     from unit u join boundary_set b on b.id = u.boundary_set_id
-     where b.slug = 'v2-2024' and u.unit_type = 'state' and btrim(u.state_abbr) = $1`,
-    [state.abbr],
-  );
-  await ensureUnits(
-    db,
-    state.features.map((feature) => ({
-      unit_type: "precinct",
-      unit_key: feature.id,
-      legacy_key: null,
-      name: feature.name,
-      state_fips: fips.rows[0]?.fips ?? null,
-      state_abbr: state.abbr,
-      geoid: null,
-      source_record_id: String(feature.ordinal),
-    })),
-  );
+async function storeRollup(db: pg.Pool, state: PrecinctState): Promise<void> {
   const client = await db.connect();
   try {
     await client.query("begin");
     await client.query(
-      `create temp table precinct_point on commit drop as
-       select u.id, st_setsrid(st_makepoint(x.lon, x.lat), 4326) geom
-       from jsonb_to_recordset($1::jsonb) as x(unit_key text, lon float8, lat float8)
-       join unit u on u.unit_key = x.unit_key
-       join boundary_set b on b.id = u.boundary_set_id and b.slug = 'v2-2024' and b.unit_type = 'precinct'
-       where x.lon is not null and x.lat is not null`,
-      [
-        JSON.stringify(state.features.map((feature) => ({
-          unit_key: feature.id,
-          lon: feature.lon,
-          lat: feature.lat,
-        }))),
-      ],
-    );
-    await client.query(
-      `update unit u
-       set parent_unit_id = c.id,
-           centroid = null,
-           legacy_key = null
-       from jsonb_to_recordset($1::jsonb) as x(unit_key text, county text)
-       join boundary_set bp on bp.slug = 'v2-2024' and bp.unit_type = 'precinct'
-       join boundary_set bc on bc.slug = 'v2-2024' and bc.unit_type = 'county'
-       join unit c on c.boundary_set_id = bc.id and btrim(c.state_abbr) = $2 and c.name = x.county
-       where u.boundary_set_id = bp.id and u.unit_key = x.unit_key
-         and (u.parent_unit_id is distinct from c.id
-           or u.centroid is not null
-           or u.legacy_key is not null)`,
-      [
-        JSON.stringify(state.features.map((feature) => ({
-          unit_key: feature.id,
-          county: feature.county,
-        }))),
-        state.abbr,
-      ],
-    );
-    await client.query(
-      `insert into unit_crosswalk (from_unit_id, to_unit_id, weight, method)
-       select u.id, u.parent_unit_id, 1, 'exact'
-       from unit u
-       join boundary_set b on b.id = u.boundary_set_id
-       where b.slug = 'v2-2024' and u.unit_type = 'precinct' and btrim(u.state_abbr) = $1
-         and u.parent_unit_id is not null
-       on conflict (from_unit_id, to_unit_id) do nothing`,
-      [state.abbr],
-    );
-    await client.query(
-      `insert into unit_crosswalk (from_unit_id, to_unit_id, weight, method)
-       select picked.from_id, picked.to_id, 1, 'area'
-       from (
-         select distinct on (p.id) p.id as from_id, d.id as to_id
-         from unit p
-         join boundary_set bp on bp.id = p.boundary_set_id
-         join unit d on d.unit_type = 'ushouse' and btrim(d.state_abbr) = btrim(p.state_abbr)
-         join boundary_set bd on bd.id = d.boundary_set_id and bd.slug = 'v2-2024'
-         join unit_geom g on g.unit_id = d.id and g.lod = 0
-         join precinct_point pt on pt.id = p.id
-         where bp.slug = 'v2-2024' and bp.unit_type = 'precinct'
-           and btrim(p.state_abbr) = $1
-           and st_covers(g.geom, pt.geom)
-         order by p.id, st_area(g.geom)
-       ) picked
-       on conflict (from_unit_id, to_unit_id) do nothing`,
-      [state.abbr],
+      `create temp table precinct_vote (
+         unit_key text,
+         county text,
+         lon float8,
+         lat float8,
+         d int,
+         r int,
+         o int,
+         total int,
+         gray boolean
+       ) on commit drop`,
     );
     let rollupChanged = 0;
     for (const year of YEARS) {
@@ -345,6 +249,9 @@ async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void>
         const vote = feature.votes[year];
         return {
           unit_key: feature.id,
+          county: feature.county,
+          lon: feature.lon,
+          lat: feature.lat,
           d: vote?.d ?? 0,
           r: vote?.r ?? 0,
           o: vote?.other ?? 0,
@@ -352,21 +259,45 @@ async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void>
           gray: vote == null,
         };
       });
+      await client.query("truncate precinct_vote");
+      await client.query(
+        `insert into precinct_vote (unit_key, county, lon, lat, d, r, o, total, gray)
+         select unit_key, county, lon, lat, d, r, o, total, gray
+         from jsonb_to_recordset($1::jsonb) as v(
+           unit_key text, county text, lon float8, lat float8, d int, r int, o int, total int, gray boolean
+         )`,
+        [JSON.stringify(votes)],
+      );
       const written = await client.query(
         `insert into precinct_rollup (contest_key, parent_unit_id, votes_d, votes_r, votes_o, total_votes, precincts)
-         select $1, x.to_unit_id, sum(v.d)::bigint, sum(v.r)::bigint, sum(v.o)::bigint, sum(v.total)::bigint, count(*)::int
-         from jsonb_to_recordset($2::jsonb) as v(unit_key text, d int, r int, o int, total int, gray boolean)
-         join unit p on p.unit_key = v.unit_key and p.unit_type = 'precinct'
-         join boundary_set b on b.id = p.boundary_set_id and b.slug = 'v2-2024'
-         join unit_crosswalk x on x.from_unit_id = p.id
-         where v.gray is not true and btrim(p.state_abbr) = $3
-         group by x.to_unit_id
+         select $1, parent_id, sum(d)::bigint, sum(r)::bigint, sum(o)::bigint, sum(total)::bigint, count(*)::int
+         from (
+           select c.id as parent_id, v.d, v.r, v.o, v.total
+           from precinct_vote v
+           join boundary_set bc on bc.slug = 'v2-2024' and bc.unit_type = 'county'
+           join unit c on c.boundary_set_id = bc.id and btrim(c.state_abbr) = $2 and c.name = v.county
+           where v.gray is not true
+           union all
+           select picked.parent_id, picked.d, picked.r, picked.o, picked.total
+           from (
+             select distinct on (v.unit_key) d.id as parent_id, v.d, v.r, v.o, v.total
+             from precinct_vote v
+             join unit d on d.unit_type = 'ushouse' and btrim(d.state_abbr) = $2
+             join boundary_set bd on bd.id = d.boundary_set_id and bd.slug = 'v2-2024'
+             join unit_geom g on g.unit_id = d.id and g.lod = 0
+             where v.gray is not true
+               and v.lon is not null and v.lat is not null
+               and st_covers(g.geom, st_setsrid(st_makepoint(v.lon, v.lat), 4326))
+             order by v.unit_key, st_area(g.geom)
+           ) picked
+         ) linked
+         group by parent_id
          on conflict (contest_key, parent_unit_id) do update
            set votes_d = excluded.votes_d, votes_r = excluded.votes_r, votes_o = excluded.votes_o,
                total_votes = excluded.total_votes, precincts = excluded.precincts
            where precinct_rollup.total_votes is distinct from excluded.total_votes
               or precinct_rollup.precincts is distinct from excluded.precincts`,
-        [key, JSON.stringify(votes), state.abbr],
+        [key, state.abbr],
       );
       rollupChanged += written.rowCount ?? 0;
     }
