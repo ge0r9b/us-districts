@@ -1,6 +1,6 @@
 # v3 hosting and cost plan (Phase 1)
 
-> **Accounts (Oct 18, 2026):** the user has created a **Neon account** (signed in with GitHub). **No Neon project exists yet.** The plan is a `dev` branch in Neon first, and the connection string reaches v3 only as a secret, once builds are approved. **Hosting decision (D3, 2026-10-18): Cloudflare free plan (Pages + a Worker for `/api/v1` + R2 for PMTiles) with Neon; Vercel is superseded.** No Cloudflare account exists yet; the user creates it after the static GitHub Pages preview (ARCHITECTURE §5c). No Geocodio or other accounts exist, and this lane creates none. Prices were read from the vendors' public pages on **Oct 18, 2026**; check again before signing up. All prices are USD before tax.
+> **Accounts (Oct 18, 2026):** the user has created a **Neon account** (signed in with GitHub). The Neon project is **`ultrevote`** (database `neondb`, PostGIS 3.6), created after builds were approved on 2026-10-18; its connection string is only a box secret (`DATABASE_URL`). **Hosting decision (D3, 2026-10-18): Cloudflare free plan (Pages + a Worker for `/api/v1` + R2 for PMTiles) with Neon; Vercel is superseded.** No Cloudflare account exists yet; the user creates it later, and the first v3 preview goes live there, not on the us-districts site (ARCHITECTURE §5c). No Geocodio or other accounts exist, and this lane creates none. Prices were read from the vendors' public pages on **Oct 18, 2026**; check again before signing up. All prices are USD before tax.
 
 ## Sources (read Oct 18, 2026)
 - Cloudflare Workers limits: https://developers.cloudflare.com/workers/platform/limits/ (updated Oct 12, 2026); pricing: https://developers.cloudflare.com/workers/platform/pricing/ (Oct 2, 2026)
@@ -57,14 +57,14 @@ Map tiles are many small requests (a pan or zoom session easily fetches 100–30
 | Vercel static deploy / Blob (superseded by D3) | 1M requests, 100 GB transfer (Hobby); Blob 1 GB store | Pro overage per request/GB | Was the dev-time default; request cap was the trigger |
 | **Cloudflare R2** + custom domain cache | 10 GB-month storage, 10M Class B reads/month, **egress free** | $0.015/GB-month, $0.36 per 1M reads | Best fit for PMTiles range reads; needs a Cloudflare account (D3) |
 | Cloudflare Pages (packs, app, images) | static requests free and unlimited; 25 MiB per file; 20,000 files | — | **Chosen for everything except PMTiles** |
-| GitHub Pages (where v2 lives) | 1 GB site limit (spec §2); 100 MB per file; serves Range | — | **Static `/v3-preview/` first** (ARCHITECTURE §5c), with bundled data and no live API; not the production host |
+| GitHub Pages (where v2 lives) | 1 GB site limit (spec §2); 100 MB per file; serves Range | — | Not used for v3: v2 stays here, and the v3 preview goes on Cloudflare (ARCHITECTURE §5c) |
 
 Expected sizes: PMTiles for all current sets plus 2020/2024 precincts at about 200–600 MB (estimated from the 390 MB of uncompressed simplified GeoJSON in the v2 export; tippecanoe output is usually smaller). Result packs under 100 MB per `dv`.
 
 ## Expected usage and cost
 | Phase | Assumption | Hosting (Cloudflare; the Vercel column is superseded) | Neon | Tiles | Total / month |
 |---|---|---|---|---|---|
-| Phase 2 dev and preview (now → parity) | Only the user and bots; < 50 sessions/day | GitHub Pages preview, then Cloudflare Free $0 | Free $0 if the DB fits 1 GB, else Launch: ~1.5 GB × $0.35 = $0.53 + ~20 CU-h × $0.106 = $2.12 | bundled in the preview, then R2 free | **$0 – $3** |
+| Phase 2 dev and preview (now → parity) | Only the user and bots; < 50 sessions/day | Local only, then Cloudflare Free $0 | Free $0 if the DB fits 1 GB, else Launch: ~1.5 GB × $0.35 = $0.53 + ~20 CU-h × $0.106 = $2.12 | local, then R2 free | **$0 – $3** |
 | Public non-commercial launch (personal project) | ~1,000 sessions/day; packs and tiles are CDN hits; DB only for geocode and search | Cloudflare Free $0 while the API stays under 100,000 requests/day (tiles and packs are not Worker requests) | Launch ~$3–8 (storage ~$0.50–1, compute 0.25–0.5 CU, ~30–60 CU-h) | R2 free (< 10M reads) | **≈ $3 – $8** |
 | Commercial (paid custom boundary sets, any revenue) | Same traffic | Free plan is allowed; Workers Paid $5 only if the API passes 100,000/day or needs more than 10 ms CPU | Launch ~$5–15 | R2 ~$0–5 | **≈ $5 – $25** |
 

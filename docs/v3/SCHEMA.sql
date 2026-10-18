@@ -528,6 +528,9 @@ create table entity_image_source (
 );
 
 -- Feed id -> registry entity (inst entity_feed_map.csv): which bot ids map to an entity, which stay feed-only.
+-- Since inst-entities 7b9a726 (Oct 18, 2026) this map ships as pack/entity_feed_map.csv and is NOT loaded;
+-- the table stays empty. source_set / load_group / enum_* tables: see v3/build migration 017_inst_manifest.sql
+-- and SCHEMA.md ("Provenance sets and load groups").
 create table entity_feed_map (
   feed           text not null,                      -- 'governments-bot' (raw feed value)
   feed_id        text not null,                      -- entity_feed_map.csv feed_entity_id ('cog:161834', 'bia:cherokee-nation')
