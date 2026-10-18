@@ -40,7 +40,7 @@ def same(a_last, full):
     return False
 def npty(p):
     p = p.strip().upper()
-    if p in ("U", "UNENROLLED", "NO PARTY AFFILIATION", "NPA", "I", "INDEPENDENT", "UNAFFILIATED", "NONPARTISAN"): return "I"
+    if p in ("U", "UNENROLLED", "NO PARTY AFFILIATION", "NPA", "I", "INDEPENDENT", "UNAFFILIATED", "NONPARTISAN", "NOT AFFILIATED", "NO PARTY", "NP"): return "I"
     if p == "DFL" or p.startswith("DEMOCRAT"): return "D"
     return p[0]
 def txt(s): return html.unescape(re.sub(r"<[^>]+>", " ", s)).strip()
@@ -138,7 +138,6 @@ for _st, _f in P2.EXTRA.items():
 PARSERS.update(P2.PARSERS); CHAMBERS.update(P2.CHAMBERS)
 FALLBACK = {
     "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box; the official alternative, the NY Senate Open Legislation API (legislation.nysenate.gov/api/3/members), returns 401 without an API key, and a key needs an account sign-up (not done)",
-    "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round",
 }
 
 FALLBACK.update(P2.FALLBACK)
