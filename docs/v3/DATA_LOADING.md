@@ -6,7 +6,7 @@
 1. **Primary: `data-v3/`** at the repo root (read-only for v3).
    - `data-v3/results/**.csv`: long rows in the Election Data bot format (§1). In flight on `origin/data/election` (7faa12d): `PA/pa_president_county_official.csv` (2020 + 2024), `PA/pa_president_county_official_2016.csv`, `2016/us_president_2016_state_fec.csv`, plus audit CSVs that are **not** result rows (`*_mismatches.csv`, `states/v2_state_totals_vs_official.csv`; skipped by header check R01).
    - `data-v3/geo/`: boundaries with stable TIGER GEOIDs (planned by the Geo & Institution Data lane; nothing committed yet on `origin/data/geo` 28a7426, which so far adds `tools/coverage_audit.py` and a COVERAGE.md audit). Format to be agreed (Q-G2).
-2. **Legacy fallback: `v2/data/*.js` + `data/*.js`** (global-loader JS, wide `[dem, rep, total]`), read by the legacy v2 importer (§8). Used for everything `data-v3/` does not cover yet, and as the parity reference.
+2. **Legacy fallback: `v2/data/*.js` only** (global-loader JS, wide `[dem, rep, total]`), read by the legacy v2 importer (§8). It is used for everything `data-v3/` does not cover yet, and as the **only parity source**. The root `data/` folder (`data/<State>.js`, `data/election20XX.js`, `data/precincts20XX/`, `data/zcta2024.js`) is **v1 and out of scope** (orchestrator, Oct 18, 2026): v2 is moving off it, it will not be renamed, and v3 never reads it.
 3. **Precedence (confirmed by the orchestrator, Oct 18, 2026, Q-E8): official values win over v2's, and v2's are kept in history.** When both exist for the same (contest, unit, answer), the official `data-v3/` row is current, whatever its `retrieved_at`: the loader ranks `method = official` above `v2_import` before comparing timestamps. The legacy row is kept in `result_history`, and differences are written to a diff report for the data lanes (they already publish such audits, e.g. `PA/pa_v2_vs_official_mismatches.csv`).
 
 ## 1. Input: the Election Data bot's row format (exact)
@@ -105,7 +105,7 @@ on conflict (contest_id, unit_id, answer_id) do update
 4. Run the parity checks: totals per state and county equal v2's for 2020 and 2024 (§8).
 
 ## 7. Importing v2's existing data via the flat export (alternative path)
-v2's data is the inline `PACK`/`XREF` plus JS-wrapped files (`v2/data/*.js`, `data/<State>.js`, `data/precincts2020|2024/*.js`, `data/election2020|2024.js`; spec §4.1). A **flat export** of all v2 results and boundaries already exists on the box at `/workspace/db/export/` (HANDOFF §5). It is convenient (CSV and GeoJSON), but it is a derived copy that was not regenerated since Oct 17 06:14. The **legacy importer in §8 reads the v2 files directly and is the recommended path**. The export is a cross-check.
+v2's data is the inline `PACK`/`XREF` plus JS-wrapped files (`v2/data/*.js`; the root `data/` files are v1 and out of scope, see §0. Original list: `data/<State>.js`, `data/precincts2020|2024/*.js`, `data/election2020|2024.js`; spec §4.1). A **flat export** of all v2 results and boundaries already exists on the box at `/workspace/db/export/` (HANDOFF §5). It is convenient (CSV and GeoJSON), but it is a derived copy that was not regenerated since Oct 17 06:14. The **legacy importer in §8 reads the v2 files directly and is the recommended path**. The export is a cross-check.
 
 | Export file | Rows | Becomes |
 |---|---|---|
@@ -133,7 +133,7 @@ Reads the v2 global-loader JS files **directly** from a pinned `main` commit, so
 
 **Geometry decoding** (matches `decodePolys` / `dec()` in v2 and `tools/build_vest2016.py`): each ring is `[x0, y0, dx1, dy1, …]` integer deltas of lng/lat.
 - National layers (`v2/data/us*.js`, `dc.js`, `parts/`): **÷ 1000** (`add_tiger_schools.py`: "coordinates x1000 as integer deltas").
-- Per-state `data/<State>.js` and precinct files `data/precincts20XX/*.js`, `v2/data/precincts20XX-DC.js`: **÷ 10000** (SPEC §4.1 `SCALE=1e4`; `build_vest2016.py` `S=10000`).
+- Precinct files `v2/data/precincts20XX/*.js` and `v2/data/precincts20XX-DC.js`: **÷ 10000** (SPEC §4.1 `SCALE=1e4`; `build_vest2016.py` `S=10000`).
 - Polygon nesting `[[ring, hole…], …]` → MultiPolygon. Then `ST_MakeValid`, then lod 1–3 via `ST_SimplifyPreserveTopology`. Precision is about 100 m (÷1000) or 10 m (÷10000), so **for production geometry, prefer TIGER/precinct sources from `data-v3/geo/`** and use v2 geometry only as the fallback (Q-G3).
 
 **Deriving the missing row fields** (the v2 files have no candidate_id, office, weight, source_url or retrieved_at):
@@ -153,7 +153,7 @@ Reads the v2 global-loader JS files **directly** from a pinned `main` commit, so
 | `result_total` | `tot` (all presidential candidates incl. write-ins where reported); `coverage` unknown → null; `null` result slot = gray (no row) |
 
 **Duplicates and the crosswalk.** The Geo lane renamed the 132 duplicate school rows to `Name (County)` (on `origin/data/geo` a0c2262 and in `cfef4cc`; not yet on main 9ac59a9, which still has 58 duplicate keys / 132 rows, Ohio 49). With the rename, **`state|name` is unique in every national v2 layer** (`usstates`, `uscounties`, `uscd`, `ussldu`, `ussldl`, `ussch`: 0 duplicate keys, verified), and the 2016 `ds2016-*` keys match those rows exactly (0 orphans). The importer therefore uses `state|name` (`state|district` for CD/SLD) as `unit.legacy_key`, **unique per boundary set**, and the crosswalk to TIGER GEOIDs is a plain 1:1 table `legacy_key → geoid` (Q-G1). Geometry matching (≥ 90 % IoU) is only a cross-check, and for rows the table does not cover.
-Still **not** unique (verified on `origin/data/geo`): the per-state geometry files `data/<State>.js` still use the old school names (132 duplicate rows, not renamed), `places` have 22 duplicate `state|name` rows (e.g. Minnesota St. Anthony city, Ohio Oakwood village, Pennsylvania Coaldale borough), and `towns` have 2 duplicate `state|county|name` rows. For those, the importer keys on `state|county|name` and matches geometry; ambiguous rows go to the gap report (Q-G8).
+Root `data/<State>.js` (v1, out of scope) still has the old school names and some duplicate place and town names. ~~Q-G8~~ is resolved: the v1 files get no renames, and v3 does not read them.
 
 **2016 (resolved Q-E9; files on `origin/data/election` cfef4cc, README `data-v3/results/2016/README.md`):**
 | File (v2/data/) | Global | Shape (verified) | v3 |
@@ -167,7 +167,7 @@ Still **not** unique (verified on `origin/data/geo`): the per-state geometry fil
 | `precincts2016/<State>.js` (50) + `precincts2016-DC.js` | `__prec(state,[[county,precinct,d,r,t,polys÷10000]],credit)` | same as `precincts2020`; VEST 2016, CC BY 4.0 | precinct units (`precincts-2016` set) + results |
 Rules: 4th element `1` → `is_estimate = true`, `method = area_weighted` (the README: 2016 precincts weighted into 2024 lines); 3 elements → exact; **missing key → no row (gray)**, never zero. `[d, r, t]` → `dem_nominee` = Clinton (`clinton-hillary`), `rep_nominee` = Trump, `other = t − d − r`. Source: the VEST 2016 / FEC 2016 citations in the README (`source_url` doi:10.7910/DVN/NH5S2I and the FEC xlsx URL).
 
-**County tables:** the corrected 2020/2024 county tables are `v2/data/election2020.js` / `v2/data/election2024.js` (on `origin/data/election` a63e17e; county-table fixes for OR 2024, KS/RI/NY/ME 2020 in 5a563d7). v2 will stop reading `../data/`. The importer reads `v2/data/` first and falls back to root `data/` only while main still has the old paths (at 9ac59a9 `v2/index.html` still loads `../data/election20XX.js`). Root `data/` is v1 territory and is never modified (REPO-RULES rule 5).
+**County tables:** the corrected 2020/2024 county tables are `v2/data/election2020.js` / `v2/data/election2024.js` (on `origin/data/election` a63e17e; county-table fixes for OR 2024, KS/RI/NY/ME 2020 in 5a563d7). v2 will stop reading `../data/`. The importer reads **only** `v2/data/`. Root `data/` is v1 and out of scope: there is no fallback, even though main 9ac59a9 still loads `../data/election20XX.js` until the branches merge.
 
 ## 9. v2 intake alignment: every current and in-flight artifact → v3
 Verified against the files at `main` 509d31d (build 202610181567), `origin/data/election` 7faa12d, `origin/data/geo` 28a7426, and the uncommitted files in the lane clones on the box (read-only), Oct 18, 2026 about 05:55 EDT.
@@ -177,20 +177,20 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 |---|---|---|---|---|
 | `v2/data/usstates.js` | `window.__usst([...])` | `[state, polys(÷1000)]` | `unit`(state) + `unit_geom` | legacy |
 | `v2/data/uscounties.js` | `window.__uscty([...])` | `[state, county, polys]` (3,143 rows; **no results in the file**) | `unit`(county) + geom | legacy |
-| `v2/data/election2020.js`, `v2/data/election2024.js` (corrected; on `data/election` a63e17e) — fallback `data/election2020.js`, `data/election2024.js` (root, v1, what main 9ac59a9 still loads) | `window.ELECTION20XX={...}` | `"State|County": [d, r, tot]` (no source in file) | `result` + `result_total` (county) | legacy; `v2/data/` preferred; superseded per state by official `data-v3/results` rows (PA already; official wins, Q-E8) |
+| `v2/data/election2020.js`, `v2/data/election2024.js` (corrected; on `data/election` a63e17e, merging to main with upcoming builds) | `window.ELECTION20XX={...}` | `"State|County": [d, r, tot]` (no source in file) | `result` + `result_total` (county) | legacy; superseded per state by official `data-v3/results` rows (PA already; official wins, Q-E8) |
 | `v2/data/election2016.js`, `ds2016-{states,cd,sldu,sldl,sch}.js`, `precincts2016/*.js`, `precincts2016-DC.js` (on `data/election` cfef4cc) | `ELECTION2016`, `__ds2016(layer,{key:[d,r,t(,1)]})`, `__prec` | see §8 "2016" | 2016 contest results + `precincts-2016` units | legacy (lazy per-year files) |
 | `v2/data/uscd.js` | `window.__uscd([...])` | `[state, "01", polys, a24, a20, "est"?]` (435; 73 `est`) | unit(ushouse) + results | legacy |
 | `v2/data/ussldu.js` | `window.__usdist("senate",[...])` | `[state, "002", polys, a24, a20, flag?]` (1,942; flags est 509, e24 30, e20 32, cty 4) | unit(sldu) + results | legacy |
 | `v2/data/ussldl.js` | `window.__usdist("statehouse",[...])` | same (4,882; est 1,187, e20 109, e24 54) | unit(sldl) + results | legacy |
 | `v2/data/ussch.js` | `window.__usdist("schools",[...])` | same (main 9ac59a9: 13,208 rows, est 4,719, e24 160, e20 90, cty 54, explicit null 104; `a24` null 84, `a20` null 26 = gray; 58 duplicate keys. `origin/data/geo`: **13,304 rows** (+96 OK elementary), duplicates renamed `Name (County)`, **0 duplicate keys**) | unit(school) + results | legacy + `legacy_key → geoid` table |
-| `data/<State>.js` (50) | `__geo("State",{schools,ushouse,senate,statehouse,places,towns,counties})` | each `[state, name, polys(÷10000)]`, geometry only | higher-precision geometry for the same units; `places` → unit(place); `towns` → unit(county_subdivision) | legacy (geometry preferred over the national ÷1000 files) |
+| ~~`data/<State>.js` (50)~~ | root, **v1, out of scope** | (was: per-state ÷10000 geometry for schools, districts, places, towns, counties) | — | not read. Town/place geometry comes from `v2/data/parts/`, the geo lane's `data-v3/geo/`, or TIGER (Q-G5) |
 | `v2/data/parts/<State>.js` | `__parts("State",[...])` | `[county, town, polys|null]`: the **county part of a town split across counties** (geometry or null), **not results** (`window.__parts` in `v2/index.html`) | `unit`(county_subdivision part) with `parent_unit_id` = county; `unit_crosswalk` town↔county | legacy |
-| `data/precincts2024/*.js` (51 files incl. state files) + `v2/data/precincts2024-DC.js` | `__prec("State",[...],{credits})` | `[county, precinct, d, r, tot, polys(÷10000)]` + per-county credit dict | unit(precinct, set `precincts-2024`) + results + `source` per county | legacy |
-| `data/precincts2020/*.js` (50) + `v2/data/precincts2020-DC.js` | same | same | unit(precinct, set `precincts-2020`) + results | legacy |
+| `v2/data/precincts2024/*.js` (expected when v2 moves off root `data/`; on main 9ac59a9 only `v2/data/precincts2024-DC.js` exists, and v2 still loads root `../data/precincts2024/`) | `__prec("State",[...],{credits})` | `[county, precinct, d, r, tot, polys(÷10000)]` + per-county credit dict | unit(precinct, set `precincts-2024`) + results + `source` per county | legacy; wait for the `v2/data/` copy (Q-E11) |
+| `v2/data/precincts2020/*.js` (expected; on main only `v2/data/precincts2020-DC.js`) | same | same | unit(precinct, set `precincts-2020`) + results | legacy; wait for the `v2/data/` copy (Q-E11) |
 | `v2/data/x20/<State>.js` | `window.__x20("State",{"County|precinct":[d,r,tot]})` | 2020 votes **estimated on 2024 precincts** | `result` for the 2020 contest on `precincts-2024` units, `is_estimate=true`, `method=area_weighted` (some exact same-shape: Q-E3) | legacy |
 | `v2/data/dc.js` | IIFE with header comment | 8 wards: geometry + `[d,r,tot]` 2024 (2022 plan) and 2020 (2012 plan) | unit(ward) + `entity_unit(seat_district)` for **both** DC "chambers" + DCPS school unit | legacy |
 | `v2/data/ak.js` | `window.__ak={...}` | `hd2024`/`hd2020` (40 House districts `[d,r,tot]`), `state2024/2020`, `boro2024/2020` (30) + `src`, `boroNote*` | results for sldl (AK) and county (boroughs, ≈) | legacy |
-| `data/zcta2024.js` | `window.ZCTA2024={"zip":[lat,lng]}` | **lat first** | `unit`(zcta centroid) or a `zcta` lookup table for the geocoder | legacy |
+| `v2/data/zcta2024.js` (expected; main still loads root `../data/zcta2024.js`) | `window.ZCTA2024={"zip":[lat,lng]}` | **lat first** | a `zcta` lookup for the geocoder | legacy, or from TIGER ZCTA directly (Q-G9) |
 | `v2/data/countries.js`, `ctryshape.js`, `canada.js` | `window.COUNTRIES/CTRYSHAPE/CANADA` | Natural Earth bbox / silhouettes / provinces (`[name, code, S, W, N, E, rings]`) | `entity`(country/province) + icons; Canada parked | legacy (context only) |
 | Inline `PACK`, `XREF`, `STATE_FILES`, `OFFICES`, `PHOTO` in `v2/index.html` | JS constants | lists, cross-refs, office list (`[{id:"president",label:"President",letter:"Pr",scope:"us"}]`), candidate photos | `entity`, `alias`, `office`, `candidate.photo_path` | one-off extraction (read-only) |
 | `v2/img/flags`, `stateflags`, candidate photos | PNG | | `entity.icon_flag`, `candidate.photo_path` + credit | copy |
@@ -224,15 +224,17 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 - **Q-E7** "All others" vs individual minor candidates: the FEC files use one `all-others` row, while PA DOS lists each ballot candidate but no write-ins (2016 PA total 6,115,402 vs FEC 6,165,478). Which should v3 show as "total of all candidates" when both exist for the same unit and year?
 - ~~**Q-E8**~~ **Resolved (orchestrator, Oct 18, 2026): official values win and v2's are kept in history.** Original question: when `data-v3` official totals differ from v2 (e.g. PA 2020 Allegheny, `PA/GAPS.md`), confirm v3 should show the official value and keep v2's in history (the planned precedence).
 
+- **Q-E11** 2020/2024 precincts: main still loads root `../data/precincts2020|2024/`. Will they move to `v2/data/precincts2020|2024/` like 2016 (v3 reads only `v2/data/`)?
 - **Q-E10** The 2016 README says ≈ is "`e16`, or a 4th element `1` in `ds2016.js`", but only the 4th element occurs in the committed files. Confirm `e16` is unused (or where it will appear).
 
 **Geo & Institution Data**
 - **Q-G1** Name → TIGER GEOID crosswalk for every v2 unit. With the `Name (County)` renames `state|name` is unique in every national layer, so a 1:1 `legacy_key, geoid` table is enough. Will `data-v3/geo/` ship it (and when do the renames reach main)?
-- **Q-G8** The per-state geometry files `data/<State>.js` still carry the old school names (132 duplicate rows) and `places` has 22 duplicate `state|name` rows: will they be renamed too, or should v3 rely on the national layers plus `state|county|name` keys for places/towns?
+- ~~**Q-G8**~~ **Resolved (orchestrator, Oct 18, 2026):** root `data/<State>.js` is v1. It gets no renames and is out of scope for v3.
 - **Q-G2** `data-v3/geo/` format: GeoJSON, GeoPackage, or FlatGeobuf? Fields? CRS (EPSG:4326)? Full TIGER resolution or simplified (and at what tolerance)? One file per layer × vintage?
 - **Q-G3** Precision: v2 national layers are ÷1000 (~100 m) and per-state files ÷10000. Will `data-v3/geo/` provide full-resolution TIGER for point-in-polygon accuracy?
 - **Q-G4** School district types: unified / elementary / secondary as separate unit types (TIGER UNSD/ELSD/SCSD), or one `school` type? Overlapping elementary and secondary districts mean one point can be in two school districts.
-- **Q-G5** Towns: `data/<State>.js` `towns` vs `places` vs `parts/` (town parts split by county). Which is the canonical county-subdivision layer, and do IA townships (in flight) follow the same keys?
+- **Q-G9** ZIP centroids: will `zcta2024.js` move to `v2/data/`, or should v3 build ZCTA centroids from TIGER?
+- **Q-G5** Towns and places: their full geometry only exists in root `data/<State>.js` (v1, out of scope). `v2/data/parts/` holds only town parts split by county. Will `data-v3/geo/` (or `v2/data/`) provide the town and place layers, and which is the canonical county-subdivision layer, and do IA townships (in flight) follow the same keys?
 - **Q-G6** Institution data: will the lane provide the entity side (governments, chambers, school boards, aliases such as PA/USA, `sovereign`/`incorporated` labels) as a file, or should v3 derive it from `PACK`/`XREF` in `v2/index.html`?
 - **Q-G7** Precinct boundaries by year (2016 / 2020 / 2024): will they live in `data-v3/geo/` with stable precinct ids, or stay embedded in the results JS?
 
