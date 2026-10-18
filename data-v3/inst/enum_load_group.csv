@@ -1,0 +1,3 @@
+load_group,name,description
+1,core,"US, domestic, nations / territories / provinces / ISO subdivisions; load first"
+2,gb_de_fr,"GB / DE / FR country layers (tools/inst_foreign_local.py); load later, behind a flag"

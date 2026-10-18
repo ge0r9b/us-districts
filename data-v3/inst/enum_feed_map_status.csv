@@ -1,0 +1,4 @@
+status,name,description
+1,mapped,feed id is a registry entity
+2,feed_only,feed id deliberately not an entity (feed_only:<why> in note)
+3,unmapped,feed id not resolved to an entity (reason in note)

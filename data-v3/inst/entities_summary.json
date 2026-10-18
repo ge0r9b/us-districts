@@ -1,6 +1,75 @@
 {
+ "slimming": {
+  "source_sets": 152,
+  "source_set_members": 392,
+  "by_file": {
+   "body_entity.csv": {
+    "rows": 198,
+    "source_id_bytes": 5520,
+    "source_set_bytes": 1584
+   },
+   "body_key_gaps.csv": {
+    "rows": 0,
+    "source_id_bytes": 0,
+    "source_set_bytes": 0
+   },
+   "entities.csv": {
+    "rows": 122329,
+    "source_id_bytes": 9012566,
+    "source_set_bytes": 978632
+   },
+   "entity_gaps.csv": {
+    "rows": 1881,
+    "source_id_bytes": 57280,
+    "source_set_bytes": 15048
+   },
+   "entity_geoid_xwalk.csv": {
+    "rows": 58663,
+    "source_id_bytes": 2082968,
+    "source_set_bytes": 469304
+   },
+   "entity_images.csv": {
+    "rows": 9846,
+    "source_id_bytes": 527395,
+    "source_set_bytes": 78768
+   },
+   "entity_relations.csv": {
+    "rows": 40554,
+    "source_id_bytes": 1234281,
+    "source_set_bytes": 324432
+   },
+   "entity_v2_rows.csv": {
+    "rows": 131310,
+    "source_id_bytes": 5684049,
+    "source_set_bytes": 1050480
+   },
+   "pack/entity_feed_map.csv": {
+    "rows": 197797,
+    "source_id_bytes": 5246823,
+    "source_set_bytes": 1582376
+   }
+  },
+  "feed_map": {
+   "multi_target_feed_ids": 1,
+   "note_prefix_dropped": 3516
+  },
+  "gov_status_unknown": {
+   "empty_left|gov_status_na:judicial_body": 37,
+   "empty_left|gov_status_na:legislative_body_of_state": 1,
+   "empty_left|gov_status_na:legislative_chamber": 101,
+   "set_unknown|county": 1,
+   "set_unknown|municipality": 33,
+   "set_unknown|province": 10,
+   "set_unknown|school_elementary": 115,
+   "set_unknown|school_secondary": 189,
+   "set_unknown|school_unified": 71,
+   "set_unknown|subdivision": 3466,
+   "set_unknown|territory": 50,
+   "set_unknown|township": 24
+  }
+ },
  "built_from": {
-  "repo_head": "f0f1f6de52e18b829696ece1e70327a187667215",
+  "repo_head": "04227d30ef5e267e7573d04c79535ffc6b95edb6",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -54,41 +123,41 @@
  },
  "by_kind_gov_status": {
   "chamber|": 101,
-  "county|": 1,
   "county|area_only": 43,
   "county|government": 3452,
+  "county|unknown": 1,
   "court|": 37,
   "dc_council|": 1,
-  "intermunicipal|": 1165,
   "intermunicipal|government": 1263,
+  "intermunicipal|unknown": 1165,
   "local_authority|government": 403,
-  "municipality|": 33,
   "municipality|area_only": 28,
   "municipality|government": 66184,
+  "municipality|unknown": 33,
   "nation|government": 196,
-  "parish|": 11490,
-  "province|": 10,
+  "parish|unknown": 11490,
+  "province|unknown": 10,
   "regional_authority|government": 32,
-  "school_elementary|": 115,
   "school_elementary|dependent": 132,
   "school_elementary|government": 1705,
-  "school_secondary|": 189,
+  "school_elementary|unknown": 115,
   "school_secondary|dependent": 3,
   "school_secondary|government": 289,
-  "school_unified|": 71,
+  "school_secondary|unknown": 189,
   "school_unified|dependent": 924,
   "school_unified|government": 9877,
+  "school_unified|unknown": 71,
   "special_district|government": 305,
   "state|government": 51,
-  "subdivision|": 3466,
   "subdivision|area_only": 14,
+  "subdivision|unknown": 3466,
   "submunicipal|dependent": 2621,
-  "territory|": 50,
   "territory|area_only": 2,
-  "township|": 24,
+  "territory|unknown": 50,
   "township|area_only": 272,
   "township|dependent": 1603,
-  "township|government": 16177
+  "township|government": 16177,
+  "township|unknown": 24
  },
  "xwalk_rows": 58663,
  "xwalk_by_layer_vintage": {
@@ -288,7 +357,11 @@
   "minted": 305
  },
  "country_layers": {
+  "corse_area_parent_kept|communaute_d_agglomeration": 2,
+  "corse_area_parent_kept|communaute_de_communes": 17,
+  "corse_commune_parent_to_council": 360,
   "feed_id_area_only_shadowed": 2,
+  "feed_id_roles_assigned": 2,
   "feed_id_two_targets": 1,
   "feed_only|erfuellende_gemeinde": 38,
   "feed_only|regierungsbezirk": 19,
@@ -326,6 +399,8 @@
   "pruned_registry_ids": 5571,
   "qid_carried": 57721,
   "relations_area": 17,
+  "relations_member_of|fr": 35000,
+  "relations_member_of|gb": 112,
   "relations_predecessor": 1272,
   "reparented_past_feed_only|erfuellende_gemeinde": 127,
   "reparented_past_feed_only|regierungsbezirk": 220,
@@ -633,6 +708,7 @@
    "area": 17,
    "consolidated_with": 5,
    "in_county": 291,
+   "member_of": 35112,
    "parent": 3857,
    "predecessor": 1272
   },

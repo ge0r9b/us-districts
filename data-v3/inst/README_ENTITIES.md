@@ -1,10 +1,10 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
 Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`,
-`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`, `body_entity.csv`, `body_key_gaps.csv`.
+`source_urls.csv`, `source_sets.csv`, `enum_*.csv`, `load_manifest.csv`, `pack/entity_feed_map.csv` (a pack, not a DB table), `entity_images.csv`, `entity_relations.csv`, `body_entity.csv`, `body_key_gaps.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
 Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
-family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
+family has `source_set` (a key into `source_sets.csv`, whose ordered `source_id`s are keys of `sources.csv`; until 04227d3 a `source_id` `;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
 README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `license` text columns are gone. Ids are
 `<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
 
@@ -102,11 +102,16 @@ crosswalk. GP/RE:
   asserts no minted id equals one derived from a pruned id); dates the feed clears (valid_from, P571 inceptions) are
   cleared here too; communes nouvelles created on the cutoff date whose predecessors were pruned carry no flag (not
   `predecessor_pending`). DE history is limited upstream to the 2026 VG250 change; no DE row carries a `valid_from`.
-Not carried (pending a ruling): the bot's `member_of` (UK combined authority, FR EPCI / EPT membership; 34,983 rows).
+- member_of (ruling on 04227d3): the bot's `member_of` column → `entity_relations.csv` relation `member_of`, method
+  sourced (commune → EPCI / EPT, UK council → combined authority); a `;`-list gives one relation per body.
+- Corse (ruling on 04227d3): the 360 communes' parent is the Collectivité de Corse council (`regional_authority:fr-94`, minted
+  from the bot's code_xwalk insee_ctcd row, `county_powers`), which has an `area` relation to `subdivision:fr-20r`; the 19
+  Corse EPCIs keep the bot's parent `subdivision:fr-20r` (like the mainland EPCIs, which sit under their région area).
+- GF / MQ / YT (ruling on 04227d3): the bot's mapping is kept (the collectivité unique is the territory row).
 
 ## Governments bot feed (tools/inst_govfeed.py)
-`entity_feed_map.csv` (`feed, feed_id, entity_id` (empty when not mapped), `status` = mapped / feed_only / unmapped, `note`
-(`match=<rule>`, `type=<bot type>`, `consolidated`, `conflict(...)`), `source_id`) maps **every** Governments id (`state:`, `territory:`, `cog:`, `gcn:`, `fr:`, `bia:`, ...) to its registry
+`pack/entity_feed_map.csv` (`feed, feed_id, role, is_primary, entity_id` (empty when not mapped), `status` = 1 mapped / 2 feed_only / 3 unmapped, `note`
+(`match=<rule>`, `type=<bot type>`, `consolidated`, `conflict(...)`), `source_set`; feed / status are smallint codes, see ENTITIES_SCHEMA.md "Load plan") maps **every** Governments id (`state:`, `territory:`, `cog:`, `gcn:`, `fr:`, `bia:`, ...) to its registry
 entity, in this order: same state/territory FIPS id (the bot's older `state:60/66/69/72/78` → `territory:<FIPS>`, logged);
 school `nces_leaid` → `school:<leaid>`; GEOID (layer + geoid, TIGER 2024) → the entity holding it; CoG `cog_id` → the entity
 carrying that `cog_pid6`. GEOID and CoG must agree, else a `govbot_mapping_conflict` gap and no link. Nothing is renamed on either
@@ -323,8 +328,8 @@ entities.csv like this:
 | `not_un_member(wikidata_P463)`, `not_sovereign_state(wikidata_P31)`, `sovereign_via_wikidata_<P17/P361/P300>:<QIDs>`, `wikidata_p297_item_is_home_part:<QID>(...)` | world rows: Wikidata status used (see World institutions) |
 | `outside_v2_scope:no_unit_no_boundary_set` | world row: no xwalk unit, no boundary_set (SCHEMA 62cb622) |
 | `gov_status_unknown:outside_cog2022_scope` | foreign territory / Canadian province or territory: no CoG-type government status source |
-| `council_status_unknown` | UK civil parish / Welsh community: the register does not say whether it has an elected council or only a parish meeting; `gov_status` empty |
-| `gov_status_unknown:council_not_in_feed` | DE Gemeindeverband: the feed gives its designation only, not whether it has a council; `gov_status` empty, gap `intermunicipal_council_unknown` |
+| ~~`council_status_unknown`~~ | dropped (04227d3 ruling): UK civil parishes / Welsh communities now carry `gov_status` `unknown`, which says the same |
+| `gov_status_unknown:council_not_in_feed` | DE Gemeindeverband: the feed gives its designation only, not whether it has a council; `gov_status` `unknown`, gap `intermunicipal_council_unknown` |
 | `county_powers` | a municipality that also carries county / département powers (DE kreisfreie Stadt / Stadtkreis, Ville de Paris) or a région council governing départements (Collectivité de Corse) |
 | `is_active_false:code_terminated` | country layers: a distinct government that ended (terminated code, not a code change); `valid_to` = the code's end date |
 | `predecessor_none_in_source` | the row has a sourced `valid_from` (FR creation / commune nouvelle) and the COG lists no predecessor (e.g. DOM communes 1946, Mayotte 2011) |
@@ -352,11 +357,11 @@ Counts in the current build (122,329 entities: nation 196, state 51, territory 5
 court 37, subdivision 3,480, county 3,496, municipality 66,245, township 18,076, school_unified 10,872, school_elementary
 1,952, school_secondary 481, special_district 305, regional_authority 32, local_authority 403, intermunicipal 2,428,
 submunicipal 2,621, parish 11,490; country layers GB 11,937 / DE 12,208 / FR 39,965, of them 1,215 ended
-(is_active_false:code_terminated); 1,881 gap rows; 197,797 feed-map rows (feed_only 40,691, mapped 156,132, unmapped 974); 9,846 images
+(is_active_false:code_terminated); 1,881 gap rows; 197,797 pack feed-map rows (feed_only 40,691, mapped 156,132, unmapped 974); gov_status unknown 16,614, empty (not applicable) 139; load_group 1: 58,219 entities, 2: 64,110; 9,846 images
 (no|flag 1, no|logo 141, no|seal 4,433, yes|flag 1,782, yes|seal 3,489 as public|role; 3,381 icons; licence_url on 1,315 rows (all from Commons
 LicenseUrl); Commons backfill: source_url 4,725; attribution: 385 commons_license (PD 381 incl. 268 Unknown, CC0 2,
 Copyrighted free use 2), 25 commons_uploader, 18 Commons Credit for an Unknown author; Quebec arms: the feed now carries
-Coat of arms of Quebec.svg (override dropped); 1 free row private: subdivision:jp-34 flag, no determinable licence); 5,442 relations (parent 3,857, predecessor 1,272, in_county 291, area 17, consolidated_with 5); 198 body_entity rows, 0 body_key
+Coat of arms of Quebec.svg (override dropped); 1 free row private: subdivision:jp-34 flag, no determinable licence); 40,554 relations (member_of 35,112, parent 3,857, predecessor 1,272, in_county 291, area 17, consolidated_with 5); 198 body_entity rows, 0 body_key
 gaps; wikidata on 42,249 entities; valid_from on 321 entities (305 special districts:
 TCEQ creation date; 16 new units: incorporation dates; valid_from_source on all 321); inception on 173 (day 139, year 34), all foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before the first `:`:
 `outside_v2_scope:no_unit_no_boundary_set` 4,037; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;

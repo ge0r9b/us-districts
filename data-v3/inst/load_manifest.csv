@@ -1,0 +1,17 @@
+file,target,load_order,group_column,note
+enum_feed.csv,db,1,,lookup for entities.feed / pack feed
+enum_feed_map_status.csv,db,1,,lookup for the pack status
+enum_load_group.csv,db,1,,lookup for load_group
+sources.csv,db,1,,source table
+source_urls.csv,db,1,,URLs of each source
+source_sets.csv,db,1,,source_set -> its sources (ordered)
+entities.csv,db,2,load_group,load_group 1 first; 2 behind the GB/DE/FR flag
+entity_relations.csv,db,3,load_group,load_group 2 = either end is a GB/DE/FR row
+entity_images.csv,db,3,load_group,
+pack/entity_feed_map.csv,pack,,,"feed id -> entity map; ships as a separate artifact, NOT loaded into Postgres (the DB keeps code_scheme / code on entities)"
+entity_gaps.csv,repo,,,build log of gaps; not in this load plan
+entity_geoid_xwalk.csv,repo,,,not in this load plan
+entity_v2_rows.csv,repo,,,v2 / v1 back-links (holds v2_row; v2_key derivable); not in this load plan
+body_entity.csv,repo,,,not in this load plan
+body_key_gaps.csv,repo,,,not in this load plan
+entities_summary.json,repo,,,build summary

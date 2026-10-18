@@ -55,6 +55,7 @@ LEVEL = {'regional_authority': 'subnational', 'county': 'county'}   # everything
 COUNTY_POWERS = {'kreisfreie_stadt', 'stadtkreis', 'ville_de_paris'}
 DUP_REGISTRY = {'fr-cog:com:97701': 'territory:bl', 'fr-cog:com:97801': 'territory:mf'}
 BAD_SIREN = {'215500398': ('fr-cog:com:55039', 'fr-cog:com:55102'), '213100068': ('fr-cog:com:31006', 'fr-cog:com:46002')}
+CORSE_AREA = 'subdivision:fr-20r'
 GPRE = {'territory:gp': ('971', '01'), 'territory:re': ('974', '04')}   # area -> (département code, région code)
 PENDING = ('territory:gf', 'territory:mq', 'territory:yt')   # single collectivities (CTU): not ruled; bot mapping kept, parked
 XW_PREFIX = {'insee_com': 'insee_com', 'gss': 'gss', 'ars': 'de-ars', 'iso_3166_2': 'iso3166', 'insee_dep': 'insee_dep', 'insee_reg': 'insee_reg', 'insee_ctcd': 'insee_ctcd',
@@ -198,7 +199,18 @@ def integrate(L, ents, new_row):
     for fid, t in code_change.items(): f2e[fid] = f2e[t]
     gpre_county = {a: f'county:fr-{d}' for a, (d, _) in GPRE_ACT.items()}
     gpre_reg = {f'fr-cog:reg:{g}': a for a, (_, g) in GPRE_ACT.items()}
+    # Corse (ruling on 04227d3): the communes' parent is the Collectivité de Corse council (minted from the bot's
+    # code_xwalk insee_ctcd row of subdivision:fr-20r, as regional_authority:fr-<insee_reg>), which has an `area` relation to
+    # subdivision:fr-20r (the GP/RE pattern)
+    cx = {x['code_scheme']: x for x in L['xwalk']['fr'] if x['entity_id'] == CORSE_AREA}
+    corse_council = f"regional_authority:fr-{cx['insee_reg']['code']}" if 'insee_reg' in cx and 'insee_ctcd' in cx else ''
     def parent_of(cc, r):
+        p_ = parent_of_(cc, r)
+        if corse_council and p_ == CORSE_AREA:
+            if r['entity_id'].startswith('fr-cog:com:'): st['corse_commune_parent_to_council'] += 1; return corse_council
+            st[f'corse_area_parent_kept|{r["subtype"]}'] += 1
+        return p_
+    def parent_of_(cc, r):
         p, hops = r['parent_id'], []
         while p in feed_only: hops.append(feed_only[p]['subtype']); p = feed_only[p]['parent_id']
         if hops: st['reparented_past_feed_only|' + hops[0]] += 1
@@ -239,9 +251,10 @@ def integrate(L, ents, new_row):
             if r['gov_status'] in ('self_governing', 'intercommunal'): gs = 'government'
             elif r['gov_status'] in ('delegated', 'sub_municipal'): gs = 'dependent'
             elif r['gov_status'] == 'association':
-                fl.append('gov_status_unknown:council_not_in_feed')
+                gs = 'unknown'; fl.append('gov_status_unknown:council_not_in_feed')
                 gaps.append({'gap': 'intermunicipal_council_unknown', 'key': eid, 'detail': f"{r['subtype']}: the feed (VG250 BEZ / Destatis) gives the designation only, not whether the body has a council; gov_status left empty"})
-            elif r['gov_status'] == 'parish': assert 'council_status_unknown' in fl
+            elif r['gov_status'] == 'parish':   # ruling on 04227d3: literal 'unknown'; the bot flag only restated it -> dropped
+                assert 'council_status_unknown' in fl; gs = 'unknown'; fl.remove('council_status_unknown')
             else: raise ValueError(r['gov_status'])
             if r['subtype'] in COUNTY_POWERS: fl.append('county_powers')
             e = new_row(entity_id=eid, kind=k, name=r['name'], alias=al if al and al != r['name'] else '', gov_status=gs,
@@ -257,11 +270,11 @@ def integrate(L, ents, new_row):
             e['_src'] = [f'GOVLOCAL:{r["_file"]}'] + [f'GOVSRC:{s}' for s in r['source'].split(';') if s]
             carry_qid(e, r['wikidata_qid'], fid)
             ents[eid] = e; rows.append(e); st[f'minted|{cc}|{k}'] += 1
-            fmap.append(dict(base, entity_id=eid, status='mapped', note='minted;ended' if fid in ended else 'minted'))
+            fmap.append(dict(base, entity_id=eid, status='mapped', note='ended' if fid in ended else ''))   # boilerplate 'minted' dropped (ruling on 04227d3)
             if cc == 'fr' and r['alt_code']:
                 if r['alt_code'] in bad_siren:
                     fmap[-1]['note'] = f"minted;siren_dropped:{r['alt_code']}(bad_join)"; st['siren_dropped'] += 1
-                else: fmap.append(dict(base, feed_id=f"fr-siren:{r['alt_code']}", entity_id=eid, status='mapped', note='alt_code'))
+                else: fmap.append(dict(base, feed_id=f"fr-siren:{r['alt_code']}", entity_id=eid, status='mapped', note=''))   # boilerplate 'alt_code' dropped
     for s, pair in BAD_SIREN.items():
         if s not in bad_siren: continue
         who = ' and '.join(p + ' ' + units[p][1]['name'] for p in pair)
@@ -346,6 +359,18 @@ def integrate(L, ents, new_row):
         if cur: e['_flags'].append('predecessor_is_current:' + '|'.join(cur)); st['predecessor_is_current'] += 1
         else: e['_flags'].append('predecessor_none_in_source'); st['predecessor_none_in_source'] += 1
     st['relations_predecessor'] = len(pred)
+    # member_of (ruling on 04227d3): the bot's member_of column (UK combined authority, FR EPCI / EPT, DE Amt /
+    # Verbandsgemeinde ...) -> relation member_of, method sourced; minted rows only, resolved through f2e
+    mem = {}
+    for fid, (cc, r) in units.items():
+        a = f2e.get(fid)
+        if not a or fid in code_change or fid in xsame: continue
+        for m_ in [x for x in (r.get('member_of') or '').split(';') if x]:
+            b_ = f2e.get(m_)
+            if b_ and b_ != a: mem.setdefault((a, b_), r['_file'])
+            else: st[f'member_of_unresolved|{cc}'] += 1
+    for (a, b_), f_ in sorted(mem.items()):
+        rels.append({'entity_id': a, 'relation': 'member_of', 'related_entity_id': b_, 'note': '', '_file': f_}); st[f'relations_member_of|{f_[:2]}'] += 1
     # dedupe feed ids (a code can be both a unit's alt_code and a crosswalk row): same target required, first kept
     # a code the bot crosswalks both same_government (to the council) and area_only (to the area it governs; GP/RE since
     # 310086f): the council row is kept, the area_only row dropped (the council->area link is the `area` relation)
@@ -358,6 +383,18 @@ def integrate(L, ents, new_row):
         if k in seen:   # one area code governed in parts by two bodies (insee_dep:69: Métropole de Lyon + Rhône council): both kept
             assert 'governs_part' in m['note'] + seen_note[k], (k, seen[k], m['entity_id']); st['feed_id_two_targets'] += 1
         seen.setdefault(k, m['entity_id']); seen_note.setdefault(k, m['note']); out.append(m)
+    # feed-map key (feed, feed_id, role) + is_primary (ruling on 04227d3): a feed id with one target has role '' and is
+    # primary; with several targets each gets the role of its target body, and the primary is the one the bot crosswalks
+    # same_government (the others govern part of it: governs_part)
+    ROLE = {'metropole_de_lyon': 'territorial_collectivity', 'conseil_departemental': 'departmental_council'}
+    grp = C.defaultdict(list)
+    for m in out: grp[m['feed_id']].append(m)
+    for k, ms in grp.items():
+        if len(ms) == 1: ms[0]['role'], ms[0]['is_primary'] = '', '1'; continue
+        for m in ms:
+            m['role'] = ROLE[ents[m['entity_id']]['type']]; m['is_primary'] = '1' if m['note'].endswith(':same_government') else '0'
+        assert sum(m['is_primary'] == '1' for m in ms) == 1 and len({m['role'] for m in ms}) == len(ms), k
+        st['feed_id_roles_assigned'] += len(ms)
     # area rows: subdivision:gb-eng, the FR région subdivisions and territory:gp / territory:re are areas only now
     areas = ['subdivision:gb-eng'] + sorted(a for a in council)
     for a in areas:

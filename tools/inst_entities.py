@@ -1013,20 +1013,45 @@ def build_registry():
     return reg, ids_for, (lambda l: V2SRC.get(l, geo)), GAPSRC
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
-         'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2', 'constituent_qid', 'inception', 'inception_precision', 'inception_source', 'valid_from_source', 'code_scheme', 'code', 'code_valid_from']
+         'predecessor_id', 'successor_id', 'v2_layer', 'source_id',
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2', 'constituent_qid', 'inception', 'inception_precision', 'inception_source', 'valid_from_source', 'code_scheme', 'code', 'code_valid_from', 'load_group']
+# Full Stack ruling on 04227d3 (slimming + load plan):
+#  (b) v2_row / v2_key live in entity_v2_rows only (entities.v2_row = that table's (v2_layer, v2_row) rows of the entity;
+#      v2_key = state|v2_name, or state|v2_row for v2:parts / v2:towns(IA townships), of its v2: rows not @2020)
+#  (c) feed / status are smallint codes; lookups enum_feed.csv / enum_feed_map_status.csv / enum_load_group.csv (fixed codes)
+#  load_group: 1 = US + domestic + national / ISO subdivision rows (load first), 2 = the GB / DE / FR country layers (later, behind a flag)
+FEED_CODE = {'tiger/cog': 1, 'inst-lane': 2, 'governments-bot': 3, 'companies-bot': 4, 'user-upload': 5}
+FEED_DESC = {'tiger/cog': 'Census TIGER/Line + Census of Governments 2022 (built here)', 'inst-lane': 'built by this lane from its own sources (world layer, chambers, courts)',
+             'governments-bot': 'the Governments bot (data/governments)', 'companies-bot': 'reserved (DATA_LOADING §15.1)', 'user-upload': 'reserved (DATA_LOADING §15.1)'}
+STATUS_CODE = {'mapped': 1, 'feed_only': 2, 'unmapped': 3}
+STATUS_DESC = {'mapped': 'feed id is a registry entity', 'feed_only': 'feed id deliberately not an entity (feed_only:<why> in note)', 'unmapped': 'feed id not resolved to an entity (reason in note)'}
+LOAD_GROUP = {1: ('core', 'US, domestic, nations / territories / provinces / ISO subdivisions; load first'), 2: ('gb_de_fr', 'GB / DE / FR country layers (tools/inst_foreign_local.py); load later, behind a flag')}
 ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'subdivision', 'regional_authority', 'county', 'local_authority',
          'intermunicipal', 'municipality', 'submunicipal', 'parish', 'township', 'school_unified', 'school_elementary', 'school_secondary', 'special_district']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
+LOCAL_IDS = {e['entity_id'] for e in LRES['rows']}
+UNKN = C.Counter()
 for e in OUTROWS:
     e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
+    e['load_group'] = 2 if e['entity_id'] in LOCAL_IDS else 1
+    # ruling on 04227d3: gov_status unknown is the literal 'unknown' (was empty + a flag); empty now means not applicable
+    # (gov_status_na:* flags: chambers, courts, district seats). A flag that only restated it (council_status_unknown) is dropped;
+    # gov_status_unknown:<reason> flags carry the reason and stay.
+    fl_ = [f_ for f_ in e['flags'].split(';') if f_]
+    if e['gov_status'] in ('', 'unknown') and any(f_.startswith('gov_status_unknown:') or f_ == 'council_status_unknown' for f_ in fl_):
+        if e['gov_status'] == '': UNKN['set_unknown|' + e['kind']] += 1
+        e['gov_status'] = 'unknown'
+    if e['gov_status'] == 'unknown' and 'council_status_unknown' in fl_:
+        fl_.remove('council_status_unknown'); UNKN['flag_dropped|council_status_unknown'] += 1; e['flags'] = ';'.join(fl_)
+    if e['gov_status'] == '': UNKN['empty_left|' + (next((f_.split(':')[0] + ':' + f_.split(':')[1] for f_ in fl_ if f_.startswith('gov_status_na:')), 'no_flag'))] += 1
     assert not e.get('valid_from') or e.get('valid_from_source'), ('valid_from without valid_from_source', e['entity_id'])
     assert e['feed'] in FEEDS, (e['entity_id'], e['feed'])
 rows = sorted(OUTROWS, key=lambda e: (ORDER.index(e['kind']), e['state_fips'], e['entity_id']))
 for e in rows:
     assert e['parent_id'] == '' or e['parent_id'] in set(ids), (e['entity_id'], e['parent_id'])
+    assert e['load_group'] == 2 or e['parent_id'] not in LOCAL_IDS, ('group-1 row with a group-2 parent', e['entity_id'])
 with open(os.path.join(OUT, 'entities.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, COLS2, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(rows)
+    w = csv.DictWriter(fh, COLS2, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(dict(e, feed=FEED_CODE[e['feed']]) for e in rows)
 # xwalk: entity x unit_layer x vintage (district-seat units are not entities -> not in the xwalk)
 RELMAP = {('primary', ''): 'primary'}
 def relname(x):
@@ -1209,14 +1234,26 @@ _coll = sorted(set(GOVSRC) & set(REG.rows))
 GSTAT['source_id_collisions'] = len(_coll)
 for k in _coll:
     if {c: REG.rows[k][c] for c in ('source_url', 'commit')} != {c: GOVSRC[k][c] for c in ('source_url', 'commit')}: raise SystemExit('source_id collision with the Governments bot: ' + k)
-FMC = ['feed', 'feed_id', 'entity_id', 'status', 'note', 'source_id']
+FMC = ['feed', 'feed_id', 'role', 'is_primary', 'entity_id', 'status', 'note', 'source_id']
 for m in GFMAP: m['source_id'] = GV_ID
 for m in FRES['fmap']: m['source_id'] = IDS_FOR([S_GF[m['_file']]])
 for m in LRES['fmap']: m['source_id'] = IDS_FOR(['GOVLOCAL:' + m['_file']])
 GFMAP = GFMAP + FRES['fmap'] + LRES['fmap']
-with open(os.path.join(OUT, 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GFMAP)
-IMC = ['entity_id', 'role', 'file', 'license', 'licence_url', 'fair_use', 'public', 'icon', 'usage_basis', 'source_url', 'attribution', 'attribution_source', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id', 'note']
+# (d) boilerplate notes dropped ('minted', 'alt_code'; 'minted;' prefix); key (feed, feed_id, role) unique, one is_primary per (feed, feed_id)
+FMSTAT = C.Counter()
+for m in GFMAP:
+    m.setdefault('role', ''); m.setdefault('is_primary', '1')
+    if m['note'] in ('minted', 'alt_code'): m['note'] = ''; FMSTAT['note_dropped'] += 1
+    elif m['note'].startswith('minted;'): m['note'] = m['note'][len('minted;'):]; FMSTAT['note_prefix_dropped'] += 1
+_k3 = C.Counter((m['feed'], m['feed_id'], m['role']) for m in GFMAP); assert max(_k3.values()) == 1, [k for k, v in _k3.items() if v > 1][:5]
+_p = C.Counter((m['feed'], m['feed_id']) for m in GFMAP if m['is_primary'] == '1'); _a = {(m['feed'], m['feed_id']) for m in GFMAP}
+assert set(_p) == _a and max(_p.values()) == 1
+FMSTAT['multi_target_feed_ids'] = sum(1 for k, v in C.Counter((m['feed'], m['feed_id']) for m in GFMAP).items() if v > 1)
+os.makedirs(os.path.join(OUT, 'pack'), exist_ok=True)
+with open(os.path.join(OUT, 'pack', 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:   # a pack, not a DB table (load plan)
+    w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader()
+    w.writerows(dict(m, feed=FEED_CODE[m['feed']], status=STATUS_CODE[m['status']]) for m in GFMAP)
+IMC = ['entity_id', 'role', 'file', 'license', 'licence_url', 'fair_use', 'public', 'icon', 'usage_basis', 'source_url', 'attribution', 'attribution_source', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id', 'note', 'load_group']
 for i in GIMG:
     i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
 _gfi = IDS_FOR([S_GF['images.csv']])
@@ -1236,8 +1273,8 @@ for eid_, c_ in _cand.items(): GIMG[min(c_)[1]]['icon'] = 'yes'
 ICONSTAT = {'icons': sum(1 for i in GIMG if i['icon'] == 'yes'), 'icons_by_kind_role': dict(sorted(C.Counter(f"{_kind.get(i['entity_id'])}|{i['role']}" for i in GIMG if i['icon'] == 'yes').items())),
             'entities_with_images_no_icon': len({i['entity_id'] for i in GIMG if i['entity_id']} - set(_cand))}
 with open(os.path.join(OUT, 'entity_images.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GIMG)
-RC = ['entity_id', 'relation', 'related_entity_id', 'method', 'note', 'source_id']
+    w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(dict(i, load_group=2 if i['entity_id'] in LOCAL_IDS else 1) for i in GIMG)
+RC = ['entity_id', 'relation', 'related_entity_id', 'method', 'note', 'source_id', 'load_group']
 _rsid = ';'.join([IDS_FOR([S_COG]), GV_ID, IDS_FOR([S_CG])][:1] + [GV_ID] + IDS_FOR([S_CG]).split(';'))
 _rsid = ';'.join(dict.fromkeys(x for x in _rsid.split(';') if x))
 for r_ in GRELS: r_['source_id'] = _rsid
@@ -1252,7 +1289,8 @@ for r_ in RELS:
     if not r_.get('method'): r_['method'] = 'sourced'
     assert r_['method'] in ('sourced', 'overlay', 'point_in_polygon', 'manual'), r_
 with open(os.path.join(OUT, 'entity_relations.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(RELS, key=lambda r: (r['entity_id'], r['relation'])))
+    w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader()
+    w.writerows(sorted((dict(r, load_group=2 if r['entity_id'] in LOCAL_IDS or r['related_entity_id'] in LOCAL_IDS else 1) for r in RELS), key=lambda r: (r['entity_id'], r['relation'])))
 for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
 # source_urls.csv (SCHEMA source_url): every URL of every source, ord = position in the ' ; '-list, label for multi-URL sources
@@ -1292,7 +1330,50 @@ if A.stability_test:   # rebuild the registry and every row's ids a second time 
     n = REG.check_ids(); REG.rows.update(_bak); n = f'{n} own + {len(_bak)} Governments-bot'
     print(f'stability test: {n} sources; second build identical: {same}; ids re-derive from url+commit: OK')
     assert same
+# ---- (a) source sets (ruling on 04227d3): every table's ';'-list source_id -> source_set, a short key derived from the
+# sources' deterministic ids only (first 8 hex of sha256 of the exact ';'-joined id list; independent of row order, stable
+# across builds); source_sets.csv lists the members (source_set, ord, source_id -> sources.csv). sources.csv /
+# source_urls.csv keep source_id (they are the source table).
+def _sskey(v): return hashlib.sha256(v.encode('utf-8')).hexdigest()[:8]
+SSETS, SSTAT = {}, {}
+_rewrite = [os.path.join(d_, f_) for d_ in (OUT, os.path.join(OUT, 'pack')) for f_ in sorted(os.listdir(d_)) if f_.endswith('.csv') and f_ not in ('sources.csv', 'source_urls.csv')]
+for path_ in _rewrite:
+    with open(path_, newline='', encoding='utf-8') as fh: rr = list(csv.reader(fh))
+    if 'source_id' not in rr[0]: continue
+    j = rr[0].index('source_id'); rr[0][j] = 'source_set'; before_, after_ = 0, 0
+    for r_ in rr[1:]:
+        v = r_[j]
+        if not v: continue
+        k = _sskey(v); assert SSETS.setdefault(k, v) == v, ('source_set key collision', k); before_ += len(v); after_ += len(k); r_[j] = k
+    with open(path_, 'w', newline='', encoding='utf-8') as fh: csv.writer(fh, lineterminator='\n').writerows(rr)
+    SSTAT[os.path.relpath(path_, OUT)] = {'rows': len(rr) - 1, 'source_id_bytes': before_, 'source_set_bytes': after_}
+for k, v in SSETS.items(): assert all(i in REG.rows for i in v.split(';')), (k, v)
+with open(os.path.join(OUT, 'source_sets.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.writer(fh, lineterminator='\n'); w.writerow(['source_set', 'ord', 'source_id'])
+    for k in sorted(SSETS):
+        for n_, i in enumerate(SSETS[k].split(';'), 1): w.writerow([k, n_, i])
+# (c) enum lookups + the load manifest (which file goes where)
+for fn_, hdr_, rows_ in [('enum_feed.csv', ['feed', 'name', 'description'], [(c_, k_, FEED_DESC[k_]) for k_, c_ in FEED_CODE.items()]),
+                         ('enum_feed_map_status.csv', ['status', 'name', 'description'], [(c_, k_, STATUS_DESC[k_]) for k_, c_ in STATUS_CODE.items()]),
+                         ('enum_load_group.csv', ['load_group', 'name', 'description'], [(c_, *LOAD_GROUP[c_]) for c_ in sorted(LOAD_GROUP)])]:
+    with open(os.path.join(OUT, fn_), 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh, lineterminator='\n'); w.writerow(hdr_); w.writerows(rows_)
+MANIFEST = [('enum_feed.csv', 'db', 1, '', 'lookup for entities.feed / pack feed'), ('enum_feed_map_status.csv', 'db', 1, '', 'lookup for the pack status'),
+            ('enum_load_group.csv', 'db', 1, '', 'lookup for load_group'), ('sources.csv', 'db', 1, '', 'source table'), ('source_urls.csv', 'db', 1, '', 'URLs of each source'),
+            ('source_sets.csv', 'db', 1, '', 'source_set -> its sources (ordered)'),
+            ('entities.csv', 'db', 2, 'load_group', 'load_group 1 first; 2 behind the GB/DE/FR flag'), ('entity_relations.csv', 'db', 3, 'load_group', 'load_group 2 = either end is a GB/DE/FR row'),
+            ('entity_images.csv', 'db', 3, 'load_group', ''), ('pack/entity_feed_map.csv', 'pack', '', '', 'feed id -> entity map; ships as a separate artifact, NOT loaded into Postgres (the DB keeps code_scheme / code on entities)'),
+            ('entity_gaps.csv', 'repo', '', '', 'build log of gaps; not in this load plan'), ('entity_geoid_xwalk.csv', 'repo', '', '', 'not in this load plan'),
+            ('entity_v2_rows.csv', 'repo', '', '', 'v2 / v1 back-links (holds v2_row; v2_key derivable); not in this load plan'), ('body_entity.csv', 'repo', '', '', 'not in this load plan'),
+            ('body_key_gaps.csv', 'repo', '', '', 'not in this load plan'), ('entities_summary.json', 'repo', '', '', 'build summary')]
+with open(os.path.join(OUT, 'load_manifest.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.writer(fh, lineterminator='\n'); w.writerow(['file', 'target', 'load_order', 'group_column', 'note']); w.writerows(MANIFEST)
+_listed = {m_[0] for m_ in MANIFEST} | {'load_manifest.csv'}
+_present = {os.path.relpath(os.path.join(d_, f_), OUT) for d_, _, fs_ in os.walk(OUT) for f_ in fs_}
+assert _present - {'entities_summary.json'} <= _listed, _present - _listed
 summ = {
+  'slimming': {'source_sets': len(SSETS), 'source_set_members': sum(len(v.split(';')) for v in SSETS.values()), 'by_file': SSTAT, 'feed_map': dict(sorted(FMSTAT.items())),
+               'gov_status_unknown': dict(sorted(UNKN.items()))},
   'built_from': {'repo_head': subprocess.run(['git', '-C', R, 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip(),
                  'officeholder_ref': f'{A.oh_ref} {OH_SHA}',
                  'gazetteer_2024': {f: sha(os.path.join(A.gaz24, f)) for f in sorted(os.listdir(A.gaz24)) if f.endswith('.txt')},
