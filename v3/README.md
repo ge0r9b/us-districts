@@ -67,16 +67,15 @@ npm run db:load -- --include=institutions-foreign --allow-over-budget=institutio
 
 `db:load` prints `database`, which is `pg_database_size`, and one line per location slice. The institution dry-run prints a Postgres projection that includes indexes, page overhead, and toast. Use `--allow-over-budget=institutions` only when that projection is still over 350 MB.
 
-The API handlers are the Web Fetch API. `npm run dev` still serves them on 8861 with Node. `worker/` is the Cloudflare Worker entry. `wrangler.toml` has no account id and no secrets. Set the database with `npx wrangler secret put DATABASE_URL`. `TILES_BASE` and `VITE_TILES_BASE` are the PMTiles origin (an R2 public URL, or empty for same-origin files). `npm run export:static` writes content-hashed packs for 2016, 2020, and 2024 president, plus any 2024 US House contest, at state, county, and district, and builds `state-2024@1.pmtiles` and `ushouse-2024@1.pmtiles`. Each file stays under 25 MiB. `VITE_STATIC=1` builds the shell against those packs and searches bundled names instead of geocode and locate. Asset URLs use `import.meta.env.BASE_URL`. Cloudflare Pages returns 200 for a Range request; R2 returns 206. The map accepts both.
+The API handlers are the Web Fetch API. `npm run dev` still serves them on 8861 with Node. `worker/` is the Cloudflare Worker entry. `wrangler.toml` has no account id and no secrets. Deploy the database with `npx wrangler secret put DATABASE_URL`. Locally, `npx wrangler dev` reads `DATABASE_URL` from `v3/.dev.vars`. That file is gitignored. Do not commit it. The Worker uses `@neondatabase/serverless`, so a query completes against Neon. A local Postgres URL loads from `.dev.vars` and the request returns 502 without the URL in the body. `TILES_BASE` and `VITE_TILES_BASE` are the PMTiles origin (an R2 public URL, or empty for same-origin files). `npm run export:static` writes content-hashed packs for 2016, 2020, and 2024 president, plus any 2024 US House contest, at state, county, and district, and builds `state-2024@1.pmtiles` and `ushouse-2024@1.pmtiles`. Each file stays under 25 MiB. Asset URLs use `import.meta.env.BASE_URL`. Cloudflare Pages returns 200 for a Range request; R2 returns 206. The map accepts both.
 
 ```bash
 cd v3
 npm run export:static
 npm run build
 npm run check:bundle
-VITE_STATIC=1 npm run build
-npm run check:bundle
-# on your machine, not in the repo:
+# v3/.dev.vars is gitignored. One line, the same DATABASE_URL as db:load. Then:
+# npx wrangler dev
 # npx wrangler secret put DATABASE_URL
 ```
 

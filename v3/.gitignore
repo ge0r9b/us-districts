@@ -6,3 +6,5 @@ app/public/tiles/
 app/public/packs/
 *.log
 .env*
+.dev.vars
+.wrangler/

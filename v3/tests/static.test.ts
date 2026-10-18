@@ -16,6 +16,7 @@ import {
   type ResultPack,
 } from "@usd/core";
 import { exportStaticSample, sampleContestKeys, STATIC_FILE_LIMIT } from "../ingest/static-export.ts";
+import worker from "../worker/index.ts";
 import { buildUnitArchive } from "../ingest/unit-tiles.ts";
 import { createTestPool } from "./db.ts";
 
@@ -89,7 +90,37 @@ describe("static packs", () => {
     expect(toml).toContain("worker/index.ts");
     const worker = readFileSync(join(root, "worker/index.ts"), "utf8");
     expect(worker).toContain("wrangler secret put DATABASE_URL");
+    expect(worker).toContain(".dev.vars");
     expect(worker).not.toContain("postgres://");
+    const ignore = readFileSync(join(root, ".gitignore"), "utf8");
+    expect(ignore).toMatch(/^\.dev\.vars$/m);
+    expect(readFileSync(join(root, "app/src/main.ts"), "utf8")).not.toContain("VITE_STATIC");
+  });
+
+  it("returns a config error when the Worker has no DATABASE_URL", async () => {
+    const res = await worker.fetch(new Request("http://127.0.0.1/api/v1/manifest"), {
+      DATABASE_URL: "",
+      TILES_BASE: "",
+      PACKS_BASE: "",
+    });
+    expect(res.status).toBe(500);
+    const body = (await res.json()) as { error: { code: string; message: string } };
+    expect(body.error).toEqual({ code: "config", message: "DATABASE_URL is not set" });
+    expect(JSON.stringify(body)).not.toContain("postgres");
+  });
+
+  it("fails a non-Neon DATABASE_URL before connecting and does not echo it", async () => {
+    const secret = "postgresql://user:local-secret@127.0.0.1:5432/usd_v3";
+    const res = await worker.fetch(new Request("http://127.0.0.1/api/v1/manifest"), {
+      DATABASE_URL: secret,
+      TILES_BASE: "",
+      PACKS_BASE: "",
+    });
+    expect(res.status).toBe(502);
+    const text = await res.text();
+    expect(text).not.toContain("local-secret");
+    expect(text).not.toContain("127.0.0.1");
+    expect(text).toContain("Database request failed");
   });
 
   it("builds a state archive under 25 MiB", () => {

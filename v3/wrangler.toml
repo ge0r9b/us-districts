@@ -5,6 +5,8 @@ compatibility_date = "2026-10-18"
 # Wrangler asks which Cloudflare account to use when you deploy.
 # DATABASE_URL is a secret, not a var:
 #   npx wrangler secret put DATABASE_URL
+# Locally, put the same variable in .dev.vars (gitignored) and run:
+#   npx wrangler dev
 # TILES_BASE is the PMTiles origin (an R2 public URL). Empty means same-origin /tiles.
 # PACKS_BASE is the pack origin. Empty means pack redirects stay unavailable on the Worker.
 

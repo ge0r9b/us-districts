@@ -10,15 +10,29 @@ export type WorkerEnv = {
 
 neonConfig.webSocketConstructor = WebSocket;
 
+/** The Worker driver speaks Neon's websocket protocol. Any other host fails closed, without connecting. */
+function neonHost(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === "neon.tech" || host.endsWith(".neon.tech");
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Cloudflare Worker for /api/v1.
  * DATABASE_URL is a secret (`wrangler secret put DATABASE_URL`), never a var in wrangler.toml.
+ * `npx wrangler dev` reads it from `.dev.vars`, which is gitignored.
  * One Neon client per request so `search_path` applies to the queries in that request.
  */
 export default {
   async fetch(request: Request, env: WorkerEnv): Promise<Response> {
     if (!env.DATABASE_URL) {
       return Response.json({ error: { code: "config", message: "DATABASE_URL is not set" } }, { status: 500 });
+    }
+    if (!neonHost(env.DATABASE_URL)) {
+      return Response.json({ error: { code: "upstream", message: "Database request failed" } }, { status: 502 });
     }
     const client = new Client(env.DATABASE_URL);
     try {

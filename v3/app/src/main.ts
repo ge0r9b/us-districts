@@ -732,10 +732,7 @@ async function fetchBody(y: number, view: { unitType: string; state: string | nu
   const key = warmKey(y, view.unitType, view.state);
   const cached = warmCache.get(key);
   if (cached) return { ok: true, body: cached };
-  const loaded =
-    import.meta.env.VITE_STATIC === "1"
-      ? await (await import("./static-mode.ts")).fetchStaticResults(y, view)
-      : await fetchApiResults(y, view);
+  const loaded = await fetchApiResults(y, view);
   if (loaded.ok) warmCache.set(key, loaded.body);
   return loaded;
 }
@@ -828,30 +825,6 @@ addressEl.addEventListener("keydown", (ev) => {
   if (ev.key !== "Enter") return;
   ev.preventDefault();
   void (async () => {
-    if (import.meta.env.VITE_STATIC === "1") {
-      const hit = await (await import("./static-mode.ts")).lookupPlace(addressEl.value);
-      if (!hit) {
-        placeNote.hidden = false;
-        placeNote.textContent = "No place match";
-        return;
-      }
-      stateEdited = true;
-      applyPlace(
-        {
-          level: hit.level,
-          stateAbbr: hit.stateAbbr,
-          stateKey: hit.stateKey,
-          countyName: hit.countyName,
-          precinctLabel: null,
-          dc: hit.dc,
-          crumbs: hit.crumbs,
-          geographyPicked: true,
-        },
-        null,
-        hit.focus,
-      );
-      return;
-    }
     const res = await fetch(`${import.meta.env.BASE_URL}api/v1/geocode?q=${encodeURIComponent(addressEl.value)}`);
     if (!res.ok) {
       placeNote.hidden = false;
