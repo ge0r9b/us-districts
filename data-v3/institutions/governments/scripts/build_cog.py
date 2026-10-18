@@ -7,7 +7,7 @@ GEOID rules (Geography bot conventions, TIGER 2024 vintage, strings with leading
   county        -> counties  SS+CCC from FIPS_STATE+FIPS_COUNTY, kept only if it exists in the 2024 Gazetteer
   municipality  -> place     SS+PPPPP if in the 2024 place Gazetteer (+ coextensive cousub / independent-city county /
                    consolidated city-county in the crosswalk). CoG codes that are TIGER CONCITY codes take the
-                   '(balance)' place (Greeley County KS takes its county, Geography bot ruling); 'CITY AND COUNTY OF X'
+                   '(balance)' place (county + CONCITY in the crosswalk); 'CITY AND COUNTY OF X'
                    without a place takes county X (Honolulu).
   township      -> cousub    SS+CCC+CCCCC if in the 2024 cousub Gazetteer (other county parts -> county_part); else the
                    same code once elsewhere in the state (fips_other_county)
@@ -40,9 +40,8 @@ ABBR = {'SCH': 'SCHOOL', 'SCHS': 'SCHOOLS', 'DIST': 'DISTRICT', 'DISTS': 'DISTRI
         'USD': 'UNIFIED SCHOOL DISTRICT', 'UFSD': 'UNION FREE SCHOOL DISTRICT', 'CSD': 'CENTRAL SCHOOL DISTRICT',
         'SD': 'SCHOOL DISTRICT', 'TWN': 'TOWN', 'VLG': 'VILLAGE', 'UF': 'UNION FREE', 'MUN': 'MUNICIPAL',
         'SEP': 'SEPARATE', 'NO': '', 'NUMBER': ''}
-# Geography bot ruling (Oct 18, 2026): Greeley County KS unified government takes its county GEOID as primary;
-# the other consolidated governments take the TIGER '(balance)' place. Keyed by the TIGER CONCITY GEOID.
-CONSOLIDATED_COUNTY_PRIMARY = {'2028410'}
+# CONCITY GEOIDs whose government takes the county GEOID as primary instead of the '(balance)' place.
+CONSOLIDATED_COUNTY_PRIMARY = set()   # Greeley County KS moved to its balance place (Geography bot, Oct 18, 2026)
 GENERIC = {'SCHOOL', 'SCHOOLS', 'DISTRICT', 'DISTRICTS', 'PUBLIC', 'INDEPENDENT', 'THE', 'OF', 'BOARD', 'EDUCATION', 'SYSTEM'}
 
 
@@ -65,10 +64,10 @@ def sheet(wb, name):
         yield {h: ('' if v is None else str(v).strip()) for h, v in zip(hdr, r)}
 
 
-def build():
+def build(reg):
     m = meta('cog2022')
     st = state_table()
-    base = {'source': SRC, 'source_url': m['url'], 'source_date': m['last_modified'],
+    base = {'source': 'cog2022', 'source_url': '', 'source_date': m['last_modified'],
             'retrieved_at': m['retrieved_at'], 'license': PUBLIC_DOMAIN}
     gaz = {g: {r['GEOID']: r for r in read_gaz(g)} for g in ('counties', 'place', 'cousubs', 'unsd', 'elsd', 'scsd')}
     cousub_by_code = collections.defaultdict(list)          # (SS, 5-digit cousub code) -> [GEOID]
@@ -110,6 +109,20 @@ def build():
                 if pid and pid not in f33:
                     f33[pid] = (y, nces)
     school_layer_of = {g: l for l in ('unsd', 'elsd', 'scsd') for g in gaz[l]}
+    unsd_by_name = collections.defaultdict(list)
+    for g, r0 in gaz['unsd'].items():
+        unsd_by_name[(g[:2], r0['NAME'])].append(g)
+    secondary_of = {}                                   # unsd GEOID -> (scsd GEOID, grades) for 'X (9-12)' areas
+    # pairs confirmed by the Geography bot where the unsd name is not unique in the state (Oct 18, 2026)
+    SECONDARY_PAIRS = {'0601415': '0606018'}            # Washington Unified SD (Fresno Co.) CA -> its (9-12) area
+    for u, sc in SECONDARY_PAIRS.items():
+        mm = re.match(r'^(.*) \((\d+)-(\d+)\)$', gaz['scsd'][sc]['NAME'])
+        assert mm and mm.group(1) == gaz['unsd'][u]['NAME'], (u, sc)
+        secondary_of[u] = (sc, '{}_{}'.format(mm.group(2), mm.group(3)))
+    for g, r0 in gaz['scsd'].items():
+        mm = re.match(r'^(.*) \((\d+)-(\d+)\)$', r0['NAME'])
+        if mm and len(unsd_by_name.get((g[:2], mm.group(1)), [])) == 1 and unsd_by_name[(g[:2], mm.group(1))][0] not in secondary_of:
+            secondary_of[unsd_by_name[(g[:2], mm.group(1))][0]] = (g, '{}_{}'.format(mm.group(2), mm.group(3)))
 
     wb = openpyxl.load_workbook(os.path.join(CACHE, 'Govt_Units_2022_Final.xlsx'), read_only=True)
     rows, xw = [], []
@@ -119,7 +132,8 @@ def build():
         usps = st[ss][0] if ss in st else r['STATE']
         cty = (ss + r['FIPS_COUNTY']) if r.get('FIPS_COUNTY') else ''
         # parent = the state government; DC has no state government, so DC units get no parent
-        return dict(base, entity_id='cog:' + r['CENSUS_ID_PID6'], name=r['UNIT_NAME'], type=typ,
+        eid = reg.get(['cog_pid6:' + r['CENSUS_ID_PID6']], 'cog:' + r['CENSUS_ID_PID6'], m['retrieved_at'][:10])
+        return dict(base, entity_id=eid, name=r['UNIT_NAME'], type=typ,
                     parent_id='' if ss == '11' else 'state:' + ss, state_fips=ss, state=usps, county_geoid=cty,
                     cog_id=r['CENSUS_ID_PID6'], cog_gidid=r['CENSUS_ID_GIDID'],
                     is_active=r['IS_ACTIVE'], geoid_vintage='')
@@ -211,6 +225,8 @@ def build():
                 return
         if not name_fallback(row, typ, r, ss, cc):
             row['geoid_match'] = 'not_in_tiger_2020_2024'
+            addnote(row, 'CoG FIPS_PLACE {} equals no TIGER 2020/2022/2024 place or cousub code in the state and no unique '
+                         'same-name feature exists; left blank (code-only rule, Geography bot Oct 18, 2026)'.format(pp))
 
     for r in sheet(wb, 'General Purpose'):
         typ = GP_TYPE[r['UNIT_TYPE'][:1]]
@@ -307,6 +323,11 @@ def build():
             row['nces_leaid'] = nces
             if nces in school_layer_of:
                 setgeo(row, school_layer_of[nces], nces, 'f33_ncesid_' + y)
+                # TIGER splits some unified LEAs into a unified area and a separate 'NAME (9-12)' secondary area
+                if school_layer_of[nces] == 'unsd':
+                    sec = secondary_of.get(nces)
+                    if sec:
+                        addx(row, 'scsd', sec[0], 'secondary_' + sec[1], 'tiger_name')
             else:
                 row['geoid_match'] = 'f33_ncesid_not_in_tiger_2024'
             return row
@@ -331,6 +352,7 @@ def build():
         rows.append(school(r, 'independent'))
     for r in sheet(wb, 'DEP School Dist'):
         row = school(r, 'dependent')
+        row['flags'] = 'owner_unknown'
         row['note'] = 'dependent school system of a {} government (CoG UNIT_TYPE {}); parent government not identified in source'.format(
             DEP_ON.get(r['UNIT_TYPE'][:1], '?'), r['UNIT_TYPE'])
         rows.append(row)

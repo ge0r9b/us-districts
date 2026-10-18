@@ -39,13 +39,85 @@ F33_YEARS = ('2024', '2023', '2022')            # newest first; a unit takes the
 for y in F33_YEARS:
     SOURCES['f33_' + y] = (F33.format(y, y[2:]), 'elsec{}.txt'.format(y[2:]))
 
+SOURCES['wikidata_tribes'] = ('https://query.wikidata.org/sparql?format=json&query=' + __import__('urllib.parse').parse.quote(
+    'SELECT ?i ?label ?off WHERE { ?i wdt:P31 wd:Q7840353 . OPTIONAL { ?i rdfs:label ?label FILTER(LANG(?label)="en") } '
+    'OPTIONAL { ?i wdt:P1448 ?off } }'), 'wd_tribes.json')
+
 PUBLIC_DOMAIN = 'public domain (U.S. Government work, 17 U.S.C. 105)'
 COLUMNS = ['entity_id', 'name', 'type', 'subtype', 'gov_status', 'parent_id', 'state_fips', 'state',
            'county_geoid', 'geoid', 'geoid_layer', 'geoid_vintage', 'geoid_match', 'cog_id', 'cog_gidid',
            'fips_place', 'alias', 'gnis_id', 'ocd_id', 'wikidata_qid', 'is_active', 'note',
            'source', 'source_url', 'source_date', 'retrieved_at', 'license',
-           'nces_leaid', 'tiger_status']     # appended Oct 18, 2026 (columns are only ever appended)
+           'nces_leaid', 'tiger_status',     # appended Oct 18, 2026 (columns are only ever appended)
+           'flags', 'valid_from', 'valid_to']
 XWALK_COLUMNS = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'relation', 'match', 'source', 'source_date']  # source = short code, see README
+
+
+EXTERNAL_IDS = {'nation:us'}   # defined in data-v3/inst/entities.csv (branch data/inst-entities), not here
+
+# stable source codes -> (description, landing/file URL, license, manifest keys whose retrieval time applies)
+SOURCE_TABLE = {
+    'cog2022': ('U.S. Census Bureau, 2022 Census of Governments: Organization, Government Units Listing (Govt_Units_2022_Final.xlsx)',
+                'https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP', ['cog2022']),
+    'gaz2024': ('U.S. Census Bureau, TIGER 2024 Gazetteer national files (counties, cousubs, place, unsd, elsd, scsd)',
+                'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/', ['gaz_counties', 'gaz_cousubs', 'gaz_place', 'gaz_unsd', 'gaz_elsd', 'gaz_scsd']),
+    'gaz2022': ('U.S. Census Bureau, 2022 Gazetteer national files (cousubs, place)',
+                'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2022_Gazetteer/', ['gaz2022_cousubs', 'gaz2022_place']),
+    'gaz2020': ('U.S. Census Bureau, 2020 Gazetteer national files (cousubs, place)',
+                'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2020_Gazetteer/', ['gaz2020_cousubs', 'gaz2020_place']),
+    'concity2024': ('U.S. Census Bureau, TIGER/Line 2024 consolidated cities (attribute tables)',
+                    'https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/', ['concity_' + s for s in CONCITY_STATES]),
+    'tiger2024_aiannh': ('U.S. Census Bureau, TIGER/Line 2024 American Indian/Alaska Native/Native Hawaiian Areas (attribute table)',
+                         'https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip', ['tiger_aiannh']),
+    'census_state_codes': ('U.S. Census Bureau, 2020 FIPS state codes (national_state2020.txt)',
+                           'https://www2.census.gov/geo/docs/reference/codes2020/national_state2020.txt', ['states']),
+    'fr_agencies': ('Federal Register API v1, agencies endpoint', 'https://www.federalregister.gov/api/v1/agencies', ['fr_agencies']),
+    'f33_2024': ('U.S. Census Bureau, Annual Survey of School System Finances FY2024 (elsec24.txt)', F33.format('2024', '24'), ['f33_2024']),
+    'f33_2023': ('U.S. Census Bureau, Annual Survey of School System Finances FY2023 (elsec23.txt)', F33.format('2023', '23'), ['f33_2023']),
+    'f33_2022': ('U.S. Census Bureau, Annual Survey of School System Finances FY2022 (elsec22.txt)', F33.format('2022', '22'), ['f33_2022']),
+    'wikidata_tribes': ('Wikidata SPARQL: items with P31 = Q7840353 (federally recognized Native American tribe), English label and P1448 official name',
+                        'https://query.wikidata.org/', ['wikidata_tribes']),
+}
+LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)'}
+
+
+class Registry:
+    """id_registry.csv: frozen entity IDs. One row per (entity_id, source_key); an entity may have several keys
+    (e.g. a tribe's former and current listed names). Registered IDs are always reused; new IDs are only minted
+    for keys never seen before. Rows are never deleted."""
+    COLS = ['entity_id', 'source_key', 'first_seen']
+
+    def __init__(self):
+        self.path = os.path.join(ROOT, 'id_registry.csv')
+        self.rows = []
+        if os.path.exists(self.path):
+            with open(self.path, encoding='utf-8') as f:
+                self.rows = list(csv.DictReader(f))
+        self.by_key = {r['source_key']: r['entity_id'] for r in self.rows}
+        self.ids = {r['entity_id'] for r in self.rows}
+        self.used = set()
+
+    def get(self, keys, proposed, first_seen):
+        eid = next((self.by_key[k] for k in keys if k in self.by_key), None)
+        if eid is None:
+            eid, n = proposed, 1
+            while eid in self.ids or eid in self.used:
+                n += 1
+                eid = '{}-{}'.format(proposed, n)
+            self.ids.add(eid)
+        if eid in self.used:
+            raise ValueError('entity_id {} claimed twice in one build (keys {})'.format(eid, keys))
+        self.used.add(eid)
+        for k in keys:
+            if k not in self.by_key:
+                self.by_key[k] = eid
+                self.rows.append({'entity_id': eid, 'source_key': k, 'first_seen': first_seen})
+        return eid
+
+    def save(self):
+        self.rows.sort(key=lambda r: (r['entity_id'], r['source_key']))
+        write_csv(self.path, self.rows, self.COLS)
+        return len(self.rows)
 
 
 def manifest():

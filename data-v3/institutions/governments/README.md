@@ -13,6 +13,8 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | `tribes.csv` | 577 | every line of the latest BIA list (FR 2026-01899, 91 FR 4102, Jan 30, 2026: 348 contiguous-48 lines + 229 Alaska lines; 4 of them are "(See …)" cross-references). The notice text says 575 entities. |
 | `governments_geoid_xwalk.csv` | 56,484 | every (entity, TIGER GEOID) pair, primary included |
 | `county_government_check.csv` | 3,222 | each TIGER 2024 county (incl. 78 PR municipios) and whether CoG 2022 lists a county government there |
+| `id_registry.csv` | 93,251 | frozen entity IDs (see SCHEMA.md); committed and appended by every build |
+| `sources.csv` | 13 | stable source codes used in `source` columns |
 | `summary.json` | | row counts, match counts, source URLs/dates (written by the build) |
 | `scripts/` | | Python 3 stdlib + `openpyxl` (to read the CoG .xlsx) |
 
@@ -31,7 +33,8 @@ Exact current counts are always in `summary.json`.
 | `fr_agencies` | Federal Register API v1 agencies | https://www.federalregister.gov/api/v1/agencies | retrieved 2026-10-18 |
 | `bia:2026-01899` | BIA, "Indian Entities Recognized by and Eligible To Receive Services From the United States Bureau of Indian Affairs", 91 FR 4102 | https://www.federalregister.gov/documents/2026/01/30/2026-01899/ | published 2026-01-30 |
 
-Every entity row carries `source`, `source_url`, `source_date`, `retrieved_at` and `license`.
+Every entity row carries `source` (codes from `sources.csv`), `source_date`, `retrieved_at` and `license`;
+`source_url` only where it is row-specific.
 No paid data, no NYT data.
 
 ## How GEOIDs are assigned (`geoid_match`)
@@ -43,16 +46,16 @@ Code joins first; name matching only as a labeled `fallback_*`; anything else bl
 | state | 2-digit FIPS | `fips` 50 |
 | county | CoG `FIPS_STATE+FIPS_COUNTY` in the 2024 county Gazetteer | `fips` 3,031 |
 | municipality | `FIPS_STATE+FIPS_PLACE` in the 2024 place Gazetteer (crosswalk adds `coextensive_cousub`, `independent_city_county_equivalent` for VA/MD/MO/NV cities, `consolidated_city_county` for "City and County of X" and consolidated cities, and `consolidated_city` = TIGER CONCITY GEOID) | `fips` 19,465 |
-| | CoG code is a TIGER 2024 CONCITY code → the TIGER `<CONCITY NAMELSAD> (balance)` place: Athens-Clarke 1303440, Louisville/Jefferson 2148006, Nashville-Davidson 4752006, Butte-Silver Bow 3011397 (CONCITY GEOID + county in the crosswalk) | `concity_balance` 4 |
-| | Greeley County KS unified government → county 20071 (Geography bot ruling; balance place 2028412 and CONCITY 2028410 in the crosswalk) | `concity_county` 1 |
+| | CoG code is a TIGER 2024 CONCITY code → the TIGER `<CONCITY NAMELSAD> (balance)` place: Athens-Clarke 1303440, Louisville/Jefferson 2148006, Nashville-Davidson 4752006, Butte-Silver Bow 3011397, Greeley County KS 2028412 (CONCITY GEOID + county in the crosswalk) | `concity_balance` 5 |
 | | "CITY AND COUNTY OF X" whose place code is not in TIGER → county X (Honolulu → 15003) | `city_and_county_name` 1 |
 | township | `FIPS_STATE+FIPS_COUNTY+FIPS_PLACE` in the 2024 cousub Gazetteer (other county parts → `county_part`); if the code exists exactly once elsewhere in the state → `fips_other_county` (Pomfret CT: CoG county 09180 looks like a coding slip for 09150 Northeastern CT planning region) | `fips` 16,176, `fips_other_county` 1 |
 | municipality / township not in TIGER 2024 | (1) code in the 2022, then 2020 Gazetteer, followed into 2024 by the same ANSI code (MA "city known as the town of" renames, TX Pecos → "Town of Pecos city", IN DeMotte, MN Minnetonka Beach…) | `ansi_via_2022` 9, `ansi_via_2020` 1 |
 | | (2) labeled fallback: unique TIGER 2024 feature with the same core name and compatible kind in the same state (cousubs: same county); predecessor code kept in the crosswalk | `fallback_name_2024` 7 |
 | | (3) otherwise the old GEOID is carried: `geoid_vintage` 2022/2020, `tiger_status=absent_2024` (dissolved or merged units, e.g. 14 Nebraska 31099 townships, WI towns Madison, Rib Mountain, Greenville, Lisbon, Weeki Wachee FL) | `fips_2022` 35, `fips_2020` 1 |
-| | in no vintage, no unique name: North Rich township KS, Bellerive MO, Grandfather NC, Millican TX | `not_in_tiger_2020_2024` 4 |
+| | code-only rule for the rest: CoG code equals no TIGER 2020/2022/2024 code (Bellerive MO 04240 vs TIGER Bellerive Acres 04248, Grandfather NC 27320 vs Grandfather Village 27324, North Rich twp KS 51325, Millican TX 48516), left blank with the reason in `note` | `not_in_tiger_2020_2024` 4 |
 | school_district | code join: CoG `CENSUS_ID_PID6` = F-33 `PID6` → `NCESID` (`nces_leaid` column), which is the TIGER unsd/elsd/scsd GEOID. Newest F-33 file that lists the unit wins | `f33_ncesid_2024` 12,920, `f33_ncesid_2023` 8; `f33_ncesid_not_in_tiger_2024` 274 (LEAID kept in `nces_leaid`, geoid blank: mostly regional/vocational/charter-type LEAs with no TIGER polygon) |
 | | units absent from F-33: name match in the state against the TIGER layer for the CoG level, unique only (abbreviations expanded; tiers exact → core) | `fallback_name_exact` 5, `fallback_name_core` 5, `no_name_match` 114 |
+| | TIGER secondary areas of a unified LEA (`NAME (9-12)` / `(7-12)` scsd with a unique same-named unsd in the state, plus Washington Unified CA 0601415 → 0606018 confirmed by Geo) go to the crosswalk as `secondary_9_12` / `secondary_7_12` | 29 rows |
 | | post-secondary / vocational units not in F-33 | `no_tiger_layer` 529 |
 | | one NCESID claimed by several CoG units (SC: Clarendon 1/2/3 → 4503915, Bamberg 1 → 4503916, consolidated after 2022) | `ambiguous` 4 |
 | special_district | TIGER has no special-district layer | `no_tiger_layer` 39,555 |

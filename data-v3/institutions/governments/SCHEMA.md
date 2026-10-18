@@ -7,7 +7,7 @@ two overlap, and the Geography bot's GEOID conventions (TIGER 2024, strings with
 ## Entity files (same columns in every file)
 `states.csv`, `local/<USPS>.csv`, `federal_agencies.csv`, `tribes.csv`. UTF-8, header row, comma separated,
 RFC 4180 quoting, `\n` line ends. Empty string = unknown / not applicable. Column names are stable; new columns
-are only ever appended (`nces_leaid`, `tiger_status` added Oct 18, 2026).
+are only ever appended (`nces_leaid`, `tiger_status`, then `flags`, `valid_from`, `valid_to` added Oct 18, 2026).
 
 | column | example | meaning |
 |---|---|---|
@@ -16,7 +16,7 @@ are only ever appended (`nces_leaid`, `tiger_status` added Oct 18, 2026).
 | `type` | `county` | fixed list, see Types |
 | `subtype` | `unified`, `water supply utility`, `alaska_native` | type-specific detail, see Types |
 | `gov_status` | `independent` / `dependent` / `federally_recognized` | CoG independent vs dependent flag; `federally_recognized` for BIA rows |
-| `parent_id` | `state:01`, `fr:538` | containment only where the source gives it (never inferred) |
+| `parent_id` | `state:01`, `fr:538`, `nation:us` | containment only where the source gives it (never inferred). Local units → their state (DC units: empty). States and top-level federal agencies → `nation:us` (defined in `data-v3/inst/entities.csv`, branch `data/inst-entities`; no nation row is created here). Tribes: empty. Dependent school systems keep the state and carry the flag `owner_unknown` (CoG does not name the owning government). |
 | `state_fips`, `state` | `01`, `AL` | |
 | `county_geoid` | `01001` | CoG `COUNTY_AREA_NAME` county (the county area the unit mainly serves or is headquartered in). Not a parent. |
 | `geoid` | `0100124` | primary TIGER GEOID (string). County 5, place 7, cousub 10, school 7 (= NCES LEAID), state 2, AIANNH as TIGER prints it (`0010R`) |
@@ -28,16 +28,32 @@ are only ever appended (`nces_leaid`, `tiger_status` added Oct 18, 2026).
 | `fips_place` | `07000` | CoG `FIPS_PLACE` as given (general-purpose governments only) |
 | `alias` | `AO;administrative-office-...` | `;`-separated other names from the source (FR short name + slug; BIA former / aka names; state USPS) |
 | `gnis_id` | `02403054` | ANSI/GNIS feature code of the matched TIGER feature (TIGER `ANSICODE` / `AIANNHNS` / `STATENS`) |
-| `ocd_id`, `wikidata_qid` | | optional, empty in this first pull |
+| `ocd_id` | | optional, empty |
+| `wikidata_qid` | `Q356979` | tribes: only when the BIA current name equals exactly one Wikidata item's English label or official name (P1448) among instances of Q7840353 (federally recognized Native American tribe), and no other BIA line matches that item (`flags` says `qid_by_p1448` or `qid_by_label`). Wikidata has no BIA-ID property. Other types: from exact identifier links only (see images part) |
 | `is_active` | `Y` / `N` | CoG `IS_ACTIVE` (`N` = dormant but still a government) |
 | `note` | | free text (why a value is blank, cross-reference text, etc.) |
-| `source` | `U.S. Census Bureau, 2022 Census of Governments ...` | human-readable citation |
-| `source_url` | | URL of the exact file/document read |
+| `source` | `cog2022;f33_2024;gaz2024` | `;`-separated stable source codes, defined in `sources.csv`: the record's source first, then the source(s) of its GEOID / QID |
+| `source_url` | | only when row-specific (FR agency page, change records); otherwise empty and the URL is in `sources.csv` |
 | `source_date` | `2023-08-24` | publication date (server Last-Modified for Census files, FR publication date). The FR agencies API has no date, so its retrieval date is used. |
 | `retrieved_at` | `2026-10-18T13:16:51Z` | UTC time the cached copy was downloaded |
 | `license` | `public domain (U.S. Government work, 17 U.S.C. 105)` | |
 | `nces_leaid` | `0100270` | school districts: NCES LEAID from the F-33 file (filled even when TIGER 2024 has no polygon for it) |
+| `flags` | `owner_unknown` | `;`-separated machine flags: `owner_unknown` (dependent school system, owning government not given by CoG), `qid_by_p1448` / `qid_by_label` (how a tribe QID was matched) |
+| `valid_from`, `valid_to` | `2023-04-01` | ISO dates from a cited change record (`changes_since_cog2022.csv`); empty = in force at the CoG 2022 snapshot / still in force |
 | `tiger_status` | `current_2024` / `absent_2024` | whether `geoid` exists in TIGER 2024; `absent_2024` = an older-vintage GEOID was carried (dissolved / merged / re-coded unit) |
+
+### Frozen IDs: id_registry.csv
+`entity_id, source_key, first_seen`. Every build looks each record's source key up in the registry and reuses the
+registered `entity_id`; a new ID is minted only for a key never seen before, and registry rows are never deleted.
+Source keys: `fips_state:SS`, `cog_pid6:<PID6>`, `fr_agency:<id>`, `bia_name:<normalized current name>`, and for
+units added from state registries `<registry code>:<registry id or normalized name>`. A renamed tribe is looked up by
+the former name the BIA list prints in parentheses, keeps its ID, and gains a registry row for the new name; the
+former name stays in `alias`.
+
+### sources.csv
+`source_id, source, source_url, license, retrieved_at, commit`. One row per stable source code used anywhere in this
+folder. `retrieved_at` = latest retrieval of the cached file(s); `commit` = upstream version (only for git-hosted
+sources; empty for files served over HTTP).
 
 ### entity_id schemes
 | scheme | id | stability |
@@ -45,7 +61,7 @@ are only ever appended (`nces_leaid`, `tiger_status` added Oct 18, 2026).
 | `state:` | 2-digit state FIPS | permanent |
 | `cog:` | CoG `CENSUS_ID_PID6` | Census internal unit ID, kept across CoG cycles |
 | `fr:` | Federal Register API agency `id` | permanent in the API |
-| `bia:` | slug of the current listed name | the BIA list has no numeric ID; a rename creates a new slug (the old name stays in `alias` for several years, so a refresh can link them). Open question below. |
+| `bia:` | slug of the listed name at first registration | frozen in `id_registry.csv`; renames keep the ID (former name in `alias`) |
 
 ## Types
 | type | definition | source | maps from Grok Bot's draft names |

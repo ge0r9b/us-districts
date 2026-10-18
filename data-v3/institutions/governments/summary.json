@@ -3,8 +3,10 @@
   "states.csv": 50,
   "federal_agencies.csv": 473,
   "tribes.csv": 577,
-  "governments_geoid_xwalk.csv": 56484,
+  "governments_geoid_xwalk.csv": 56514,
   "county_government_check.csv": 3222,
+  "id_registry.csv": 93250,
+  "sources.csv": 13,
   "local/AK.csv": 236,
   "local/AL.csv": 1208,
   "local/AR.csv": 1562,
@@ -78,8 +80,7 @@
   "municipality|ansi_via_2020": 1,
   "municipality|ansi_via_2022": 9,
   "municipality|city_and_county_name": 1,
-  "municipality|concity_balance": 4,
-  "municipality|concity_county": 1,
+  "municipality|concity_balance": 5,
   "municipality|fallback_name_2024": 4,
   "municipality|fips": 19465,
   "municipality|fips_2020": 1,
@@ -253,6 +254,11 @@
    "url": "https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip",
    "last_modified": "2025-06-27",
    "retrieved_at": "2026-10-18T13:25:07Z"
+  },
+  "wikidata_tribes": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Flabel%20%3Foff%20WHERE%20%7B%20%3Fi%20wdt%3AP31%20wd%3AQ7840353%20.%20OPTIONAL%20%7B%20%3Fi%20rdfs%3Alabel%20%3Flabel%20FILTER%28LANG%28%3Flabel%29%3D%22en%22%29%20%7D%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP1448%20%3Foff%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T13:44:48Z"
   }
  }
 }

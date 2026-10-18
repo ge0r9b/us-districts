@@ -5,14 +5,48 @@
 """
 import collections, json, os
 import build_cog, build_states, build_federal_agencies, build_tribes
-from common import ROOT, COLUMNS, XWALK_COLUMNS, write_csv, manifest
+from common import ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
 
 
 def main():
-    states, xs = build_states.build()
-    local, xl, per_state, chk = build_cog.build()
-    fed = build_federal_agencies.build()
-    tribes, xt, n_lines = build_tribes.build()
+    reg = Registry()
+    states, xs = build_states.build(reg)
+    local, xl, per_state, chk = build_cog.build(reg)
+    fed = build_federal_agencies.build(reg)
+    tribes, xt, n_lines = build_tribes.build(reg)
+    # geoid provenance: add the TIGER / F-33 source code to rows whose geoid came from it
+    geo_src = [('f33_ncesid_', None), ('ansi_via_2022', 'gaz2022;gaz2024'), ('ansi_via_2020', 'gaz2020;gaz2024'),
+               ('fips_2022', 'gaz2022'), ('fips_2020', 'gaz2020'), ('concity', 'concity2024;gaz2024')]
+    for r in local:
+        g = r.get('geoid_match', '')
+        if not r.get('geoid'):
+            continue
+        add = next((v if v else 'f33_' + g.rsplit('_', 1)[-1] + ';gaz2024' for p, v in geo_src if g.startswith(p)), 'gaz2024')
+        r['source'] = r['source'] + ';' + add
+    src_of = {r['entity_id']: r['source'] for r in local}
+    for x in xl:                         # crosswalk rows carry the same geoid provenance as their entity
+        if x['entity_id'] in src_of:
+            x['source'] = src_of[x['entity_id']]
+    n_reg = reg.save()
+    used = {s for r in states + local + fed + tribes for s in r['source'].split(';')} | \
+           {s for x in xs + xl + xt for s in x['source'].split(';')}
+    src_rows = []
+    for sid in sorted(SOURCE_TABLE):
+        desc, url, keys = SOURCE_TABLE[sid]
+        ra = sorted(meta(k)['retrieved_at'] for k in keys)
+        src_rows.append({'source_id': sid, 'source': desc, 'source_url': url, 'license': LICENSES.get(sid, PUBLIC_DOMAIN),
+                         'retrieved_at': ra[-1] if ra else '', 'commit': ''})
+    for sid in sorted(used - set(SOURCE_TABLE)):
+        if sid.startswith('bia_'):
+            bm = meta('bia_notice')
+            import json as _j
+            bl = _j.load(open(os.path.join(ROOT, 'cache', 'bia_latest.json')))
+            src_rows.append({'source_id': sid, 'source': 'Bureau of Indian Affairs, Federal Register {} ({}), {}: "{}"'.format(
+                bl['document_number'], bl['publication_date'], bl['citation'], bl['title']), 'source_url': bl['html_url'],
+                'license': PUBLIC_DOMAIN, 'retrieved_at': bm['retrieved_at'], 'commit': ''})
+    missing = used - {r['source_id'] for r in src_rows}
+    assert not missing, 'source codes without a sources.csv row: {}'.format(missing)
+    write_csv(os.path.join(ROOT, 'sources.csv'), src_rows, ['source_id', 'source', 'source_url', 'license', 'retrieved_at', 'commit'])
     out = {}
     out['states.csv'] = write_csv(os.path.join(ROOT, 'states.csv'), states, COLUMNS)
     out['federal_agencies.csv'] = write_csv(os.path.join(ROOT, 'federal_agencies.csv'), fed, COLUMNS)
@@ -20,11 +54,13 @@ def main():
     xw = sorted(xs + xl + xt, key=lambda x: (x['entity_id'], x['relation'] != 'primary', x['unit_layer'], x['geoid']))
     out['governments_geoid_xwalk.csv'] = write_csv(os.path.join(ROOT, 'governments_geoid_xwalk.csv'), xw, XWALK_COLUMNS)
     out['county_government_check.csv'] = len(chk)
+    out['id_registry.csv'] = n_reg
+    out['sources.csv'] = len(src_rows)
     for k, v in per_state.items():
         out['local/{}.csv'.format(k)] = v
     ids = [r['entity_id'] for r in states + local + fed + tribes]
     assert len(ids) == len(set(ids)), 'duplicate entity_id'
-    known = set(ids)
+    known = set(ids) | EXTERNAL_IDS
     dangling = sorted({r['parent_id'] for r in states + local + fed + tribes if r['parent_id'] and r['parent_id'] not in known})
     # verification of school GEOIDs against the Geography bot's v2 school table (data-v3/geo/schools.csv), if present
     geo_schools = os.path.join(ROOT, '..', '..', 'geo', 'schools.csv')

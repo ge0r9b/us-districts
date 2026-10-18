@@ -89,7 +89,7 @@ def ak_core(name):
     return n
 
 
-def build():
+def build(reg):
     m, bl = meta('bia_notice'), json.load(open(os.path.join(CACHE, 'bia_latest.json')))
     tm = meta('tiger_aiannh')
     areas = read_dbf(os.path.join(CACHE, 'tl_2024_us_aiannh.dbf'))
@@ -108,21 +108,43 @@ def build():
             if nl.endswith(' Pueblo'):
                 keys[noind('Pueblo of ' + nl[:-7])].add(a['AIANNHCE'])
 
-    src = 'Federal Register {}, {} ({}), "{}"'.format(bl['citation'], bl['document_number'], bl['publication_date'], bl['title'])
-    rows, xw, seen = [], [], collections.Counter()
+    src = 'bia_' + bl['document_number'].replace('-', '_')
+    # Wikidata: QID only when the BIA current name equals exactly one item's English label or official name (P1448)
+    # among items that are instances of Q7840353, and that item is matched by no other BIA line
+    wd = collections.defaultdict(set)
+    wd_off = collections.defaultdict(set)
+    for b in json.load(open(os.path.join(CACHE, 'wd_tribes.json')))['results']['bindings']:
+        q = b['i']['value'].rsplit('/', 1)[-1]
+        for k in ('label', 'off'):
+            if k in b:
+                wd[norm(b[k]['value'])].add(q)
+                if k == 'off':
+                    wd_off[norm(b[k]['value'])].add(q)
+    wd_hits = collections.Counter()
+    for sec, line in entries():
+        cur = split_name(line)[0]
+        if len(wd.get(norm(cur), ())) == 1:
+            wd_hits[next(iter(wd[norm(cur)]))] += 1
+    rows, xw = [], []
     ents = entries()
     for sec, line in ents:
         cur, aliases, see = split_name(line)
-        eid = 'bia:' + slug(cur)
-        seen[eid] += 1
-        if seen[eid] > 1:
-            eid += '-{}'.format(seen[eid])
+        # frozen IDs: reuse the registered ID of the current name, or of a former name listed in parentheses
+        # (only the current-name key is registered; a former name is used for lookup only, so a rename keeps its ID)
+        cur_key = 'bia_name:' + norm(cur)
+        old = [k for k in ('bia_name:' + norm(a) for a in aliases if norm(a)) if k in reg.by_key and k != cur_key]
+        rkeys = [cur_key] if cur_key in reg.by_key or not old else [old[0], cur_key]
+        eid = reg.get(rkeys, 'bia:' + slug(cur), m['retrieved_at'][:10])
+        qs = wd.get(norm(cur), set())
+        qid = next(iter(qs)) if len(qs) == 1 and wd_hits[next(iter(qs))] == 1 else ''
         row = {'entity_id': eid, 'name': cur, 'type': 'tribe', 'subtype': 'cross_reference' if see else sec,
                'gov_status': 'federally_recognized', 'parent_id': 'bia:' + slug(see) if see else '',
                'alias': ';'.join(aliases), 'state_fips': '02' if sec == 'alaska_native' else '',
                'state': 'AK' if sec == 'alaska_native' else '',
                'note': 'listed as: ' + line if line != cur else '',
-               'source': src, 'source_url': bl.get('html_url') or m['url'], 'source_date': bl['publication_date'],
+               'wikidata_qid': qid,
+               'flags': ('qid_by_p1448' if qid in wd_off.get(norm(cur), ()) else 'qid_by_label') if qid else '', 'source': src + (';wikidata_tribes' if qid else ''), 'source_url': '',
+               'source_date': bl['publication_date'],
                'retrieved_at': m['retrieved_at'], 'license': PUBLIC_DOMAIN, 'geoid_match': ''}
         ces = set()
         if see:
@@ -153,7 +175,7 @@ def build():
             for p in parts:
                 xw.append({'entity_id': eid, 'unit_layer': 'aiannh', 'geoid': p['GEOID'], 'vintage': '2024',
                            'relation': 'primary' if p is prim else ('trust_land' if p['GEOID'].endswith('T') else 'area_part'),
-                           'match': how, 'source': 'bia:{};tiger2024_aiannh'.format(bl['document_number']),
+                           'match': how, 'source': src + ';tiger2024_aiannh',
                            'source_date': bl['publication_date']})
         rows.append(row)
     # areas matched by more than one tribe
