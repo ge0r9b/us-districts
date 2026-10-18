@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181571";</script>
+<script>window.BUILD="202610181572";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -2812,10 +2812,10 @@ function focusUnit(){ const b=map.getBounds(), c=map.getCenter(), W=b.getEast()-
   if(TFILE[k]&&DS[k]) d=DS[k].find(x=>pip(x,c)); else if(k==="none") d=(NAT||[]).find(x=>pip(x,c));
   const fd=window.__focusD; if(fd&&fd.k===k&&b.contains(L.latLng((fd.d.bb[1]+fd.d.bb[3])/2,(fd.d.bb[0]+fd.d.bb[2])/2))) d=fd.d;
   const H=b.getNorth()-b.getSouth(); if(fd&&d===fd.d&&((d.bb[2]-d.bb[0])>=0.25*W||(d.bb[3]-d.bb[1])>=0.3*H)) return d; return d&&((d.bb[2]-d.bb[0])>=0.5*W||(d.bb[3]-d.bb[1])>=0.6*H)?d:null; }
-function precFor(s,m){ return m==="2020"?(window.PREC20||{})[s]:PREC[s]; }
+function precFor(s,m){ if(m==="2016") return (window.PREC16||{})[s]; return m==="2020"?(window.PREC20||{})[s]:PREC[s]; } /* build 1572: 2016 precinct detail reads PREC16 (was 2024) */
 natDetail=function(seq){ natPrec.clearLayers(); const m=ym(); window.__autoP=false; restyleType();
   if(!plotting()||natTypeOn()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
-  Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
+  Promise.all(sts.map(s=>m==="2016"?(window.__loadPrec16?window.__loadPrec16(s):null):m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
     const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m==="delta"?"2024":m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
       L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
     window.__autoPS=drawn; window.__autoP=n>0; restyleType(); }).catch(()=>{}); };
@@ -3516,7 +3516,9 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     LA.agg=n?sum:null; LA.nData=n; LA.title="Total of "+LA.items.length+" "+LA.noun+(LA.parent?" in "+LA.parent:""); }
   function colorAgg(){ if(!LA.agg) return "#d6d3d1"; const m=ym(); if(m==="delta"){ const a=LA.agg["2020"],b=LA.agg["2024"]; if(!a||!b||!a.tot||!b.tot) return "#d6d3d1"; return deltaColor((b.rep-b.dem)/b.tot-(a.rep-a.dem)/a.tot); } const v=LA.agg[m]; if(!v||!v.tot) return "#d6d3d1"; return heatC(v.dem,v.rep,v.tot); }
   function drawMap(){ if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; if(!LA.on||(LA.lv&&LA.lv.nat)) return; const col=colorAgg(); const g=L.layerGroup(); const none=!LA.agg;
-    LA.items.forEach(a=>{ if(a.kind==="ctry"||none&&false) return; const rs=ringsOf(a); rs.forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,stroke:true,color:"#1c1917",weight:1,fillColor:col,fillOpacity:none?0.35:0.82}).addTo(g); }); });
+    /* build 1572: each unit is filled with its OWN result (a real heat map, any year incl. 2016), gray only when it has none; was one aggregate colour for the whole list */
+    const ufill=a=>{ try{ const m=ym(); if(m==="delta"){ const v0=vals(a,"2020"), v1=vals(a,"2024"); return v0&&v1&&v0.tot&&v1.tot?deltaColor((v1.rep-v1.dem)/v1.tot-(v0.rep-v0.dem)/v0.tot):"#d6d3d1"; } const v=vals(a,m); return v&&v.tot?heatC(v.dem,v.rep,v.tot):"#d6d3d1"; }catch(e){ return col; } };
+    LA.items.forEach(a=>{ if(a.kind==="ctry"||none&&false) return; const rs=ringsOf(a); const fc=a.kind==="laagg"?col:ufill(a); rs.forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,stroke:true,color:"#1c1917",weight:1,fillColor:fc,fillOpacity:0.82}).addTo(g); }); });
     if(LA.lv&&LA.lv.id==="countries"){ LA.items.forEach(a=>{ ringsOf(a).forEach(r=>{ LA.polys.push(r); L.polygon(r,{renderer:laR,pane:"laPane",interactive:false,color:"#1c1917",weight:0.8,fillColor:"#d6d3d1",fillOpacity:0.5}).addTo(g); }); }); }
     LA.layer=g.addTo(map); }
   // ---- list rendering ----
