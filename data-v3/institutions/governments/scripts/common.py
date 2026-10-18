@@ -60,7 +60,7 @@ COLUMNS = ['entity_id', 'name', 'type', 'subtype', 'gov_status', 'parent_id', 's
 XWALK_COLUMNS = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'relation', 'match', 'source', 'source_date']  # source = short code, see README
 
 
-EXTERNAL_IDS = {'nation:us'}   # defined in data-v3/inst/entities.csv (branch data/inst-entities), not here
+EXTERNAL_IDS = {'nation:us', 'territory:60', 'territory:66', 'territory:69', 'territory:72', 'territory:78'}   # defined on data/inst-entities (territories: kind territory, parent nation:us), not here
 
 # stable source codes -> (description, landing/file URL, license, manifest keys whose retrieval time applies)
 SOURCE_TABLE = {

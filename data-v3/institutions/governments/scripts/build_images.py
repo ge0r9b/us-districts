@@ -48,7 +48,7 @@ def build(states, local, tribes, fed, terr_qids):
     ents += [(r['entity_id'], r['wikidata_qid'], 'state') for r in states]
     for ss, qs in sorted(terr_qids.items()):
         if len(qs) == 1:
-            ents.append(('state:' + ss, next(iter(qs)), 'territory'))
+            ents.append(('territory:' + ss, next(iter(qs)), 'territory'))
     for r in local:
         if r['type'] in ('county', 'municipality', 'township'):
             ents.append((r['entity_id'], r.get('wikidata_qid', ''), 'dc' if r['state_fips'] == '11' and r['type'] == 'municipality' else r['type']))

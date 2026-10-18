@@ -84,7 +84,7 @@ Seal and flag image records, long format, one row per (entity, image_kind). URLs
 
 | column | meaning |
 |---|---|
-| `entity_id` | entity row (`nation:us` = Q30, defined on `data/inst-entities`; `state:60/66/69/72/78` = territories, which have no entity row here yet) |
+| `entity_id` | entity row (`nation:us` = Q30, defined on `data/inst-entities`; `territory:60/66/69/72/78` = US territories, kind `territory`, parent `nation:us`, rows kept outside this folder per docs/v3/SCHEMA.md 62cb622 on v3/plan; ID conventions for future foreign work: `nation:<iso2>`, `territory:<iso2>`, `province:ca-<code>`, `territory:ca-<code>`) |
 | `image_kind` | `seal` (Wikidata P158) or `flag` (P41; nation, states, DC, territories only) |
 | `commons_file`, `commons_url` | Commons file name and description page (empty for files hosted only on English Wikipedia) |
 | `license` | SPDX-style id from Commons `LicenseShortName` (`LicenseRef-PublicDomain`, `CC0-1.0`, `CC-BY-SA-4.0`, ...), or `fair-use` |
