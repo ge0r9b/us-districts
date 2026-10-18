@@ -88,3 +88,27 @@ GEOS 3.14.1 and pyshp 3.1.6 (other GEOS versions may simplify differently):
 | `places_2024.geojson` (uncompressed) | 61,936,814 | `4fc408a76f89fc9d9e5f303e22b0c4c03ec2b611e167ab4c352b6c4a3a4a2d96` |
 
 The two files were committed once (b06c280) and removed in the next commit, so their blobs remain in the `data/geo` history.
+
+## Tribal areas, TIGER 2024 (`tools/v3_aiannh_2024.py`)
+
+Source: Census TIGER/Line 2024 (public domain), https://www2.census.gov/geo/tiger/TIGER2024/ `AIANNH/tl_2024_us_aiannh.zip`,
+`ANRC/tl_2024_02_anrc.zip`, `AITSN/tl_2024_us_aitsn.zip`. ANVSAs (Alaska Native village statistical areas) are not a separate
+TIGER file: they are the 221 CLASSFP `E1` features of AIANNH. ANRCs (Alaska Native regional corporations) are separate.
+
+| layer | features | CSV in git (id = GEOID) | GeoJSON (not in git) | bytes | sha256 |
+|---|---|---|---|---|---|
+| AIANNH (643 reservations / trust lands / OTSA / SDTSA / TDSA / state & Hawaiian areas + 221 ANVSA) | 864 | `aiannh_2024.csv` (79,759 B) | `aiannh_2024.geojson` | 2,745,550 | `6e2379258bf6333e42a147ed7de9bbacc200c0bbf06b17a495b1a501472030f7` |
+| ANRC | 12 | `anrc_2024.csv` (1,587 B) | `anrc_2024.geojson` | 488,931 | `43e311511688af49da4a45396d658a6bff7b75d2f7e9aa17f6c8bb702d61c99f` |
+| AITSN (tribal subdivisions, e.g. Navajo chapters) | 484 | `aitsn_2024.csv` (39,974 B) | `aitsn_2024.geojson` | 1,605,560 | `16354fa8f04803c0a8844bcf4e933af938bf4cabcfe844314a1a260fb7e3854b` |
+
+GEOID: AIANNH = AIANNHCE + `R` (reservation / statistical area) or `T` (off-reservation trust land), so one tribe can have two
+features; ANRC = state + ANRCFP; AITSN = AIANNHCE + TRSUBCE. Properties/columns: the TIGER fields (lowercased) plus
+`states` and `counties` (TIGER 2024 county GEOIDs the feature overlaps by at least 0.1% of its area or about 1 km²), the
+alignment hook to state and county institutions. AIANNH features overlap one another by design (OTSA/SDTSA vs reservations),
+so AIANNH and AITSN are simplified per feature (topology-preserving, 0.0005°, as towns_2024) and neighbouring edges are not
+guaranteed identical; ANRC is a valid coverage and uses coverage_simplify. Coordinates snapped to 5 decimals, all valid.
+Each file is under 5 MB so none is gzipped; they stay out of git anyway (`.gitignore`). Deterministic (two runs, identical sha256):
+
+```
+python3 tools/v3_aiannh_2024.py . ../geo-data-raw/tiger2024/aiannh ../geo-data-raw/tiger2024/tl_2024_us_county.zip --out ../geo-data-raw/v3
+```

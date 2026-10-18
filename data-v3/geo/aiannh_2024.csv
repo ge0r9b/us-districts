@@ -1,0 +1,865 @@
+geoid,aiannhce,name,namelsad,lsad,classfp,comptyp,aiannhr,mtfcc,funcstat,aland,awater,states,counties
+0010R,0010,Acoma,Acoma Pueblo,84,D8,R,F,G2101,A,1069592709,331928,35,35006
+0010T,0010,Acoma,Acoma Off-Reservation Trust Land,OT,D5,T,F,G2102,A,491297765,94718,35,35003;35006;35053
+0020R,0020,Agua Caliente,Agua Caliente Indian Reservation,96,D8,R,F,G2101,A,126557032,749226,06,06065
+0020T,0020,Agua Caliente,Agua Caliente Off-Reservation Trust Land,OT,D5,T,F,G2102,A,15300492,0,06,06065
+0050R,0050,Alabama-Coushatta,Alabama-Coushatta Reservation,86,D8,R,F,G2101,A,18437652,83761,48,48373
+0050T,0050,Alabama-Coushatta,Alabama-Coushatta Off-Reservation Trust Land,OT,D5,T,F,G2102,A,18307153,0,48,48373
+0080R,0080,Allegany,Allegany Reservation,86,D2,R,F,G2101,A,105878329,19745207,36,36009
+0095R,0095,Alturas,Alturas Indian Rancheria,97,D2,R,F,G2101,A,100606,0,06,06049
+0110R,0110,Annette Island,Annette Island Reserve,87,D2,R,F,G2101,A,343617420,243670419,02,02198
+0115T,0115,Aroostook Band of Micmac,Aroostook Band of Micmac Trust Land,89,D3,T,F,G2102,A,4235781,0,23,23003
+0120R,0120,Auburn,Auburn Rancheria,85,D8,R,F,G2101,A,279781,0,06,06061
+0120T,0120,Auburn,Auburn Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4347622,0,06,06061
+0125R,0125,Augustine,Augustine Reservation,86,D2,R,F,G2101,A,2271942,0,06,06065
+0140R,0140,Bad River,Bad River Reservation,86,D2,R,F,G2101,A,500160677,10301346,55,55003;55051
+0155R,0155,Barona,Barona Reservation,86,D8,R,F,G2101,A,24563916,0,06,06073
+0155T,0155,Barona,Barona Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5537631,0,06,06073
+0165R,0165,Battle Mountain,Battle Mountain Reservation,86,D8,R,F,G2101,A,2727704,0,32,32015
+0165T,0165,Battle Mountain,Battle Mountain Off-Reservation Trust Land,OT,D5,T,F,G2102,A,6030,0,32,32015
+0170R,0170,Bay Mills,Bay Mills Reservation,86,D8,R,F,G2101,A,14316713,291386,26,26033
+0170T,0170,Bay Mills,Bay Mills Off-Reservation Trust Land,OT,D5,T,F,G2102,A,88291,0,26,26033
+0185R,0185,Benton Paiute,Benton Paiute Reservation,86,D8,R,F,G2101,A,625276,0,06,06051
+0185T,0185,Benton Paiute,Benton Paiute Off-Reservation Trust Land,OT,D5,T,F,G2102,A,871283,0,06,06051
+0200R,0200,Berry Creek,Berry Creek Rancheria,85,D8,R,F,G2101,A,155925,0,06,06007
+0200T,0200,Berry Creek,Berry Creek Off-Reservation Trust Land,OT,D5,T,F,G2102,A,523800,0,06,06007
+0215R,0215,Big Bend,Big Bend Rancheria,85,D2,R,F,G2101,A,182728,0,06,06089
+0225R,0225,Big Cypress,Big Cypress Reservation,86,D2,R,F,G2101,A,213414818,262489,12,12011;12051
+0240R,0240,Big Lagoon,Big Lagoon Rancheria,85,D2,R,F,G2101,A,21072,0,06,06023
+0250R,0250,Big Pine,Big Pine Reservation,86,D8,R,F,G2101,A,1120996,0,06,06027
+0250T,0250,Big Pine,Big Pine Off-Reservation Trust Land,OT,D5,T,F,G2102,A,60027,0,06,06027
+0265R,0265,Big Sandy,Big Sandy Rancheria,85,D8,R,F,G2101,A,1064142,0,06,06019
+0265T,0265,Big Sandy,Big Sandy Off-Reservation Trust Land,OT,D5,T,F,G2102,A,311957,0,06,06019
+0275R,0275,Big Valley,Big Valley Rancheria,85,D2,R,F,G2101,A,482651,0,06,06033
+0290R,0290,Bishop,Bishop Reservation,86,D2,R,F,G2101,A,3537784,0,06,06027
+0305R,0305,Blackfeet,Blackfeet Indian Reservation,96,D8,R,F,G2101,A,6143233841,70872238,30,30035;30073
+0305T,0305,Blackfeet,Blackfeet Off-Reservation Trust Land,OT,D5,T,F,G2102,A,300363,0,30,30035;30073
+0325R,0325,Blue Lake,Blue Lake Rancheria,85,D8,R,F,G2101,A,134798,0,06,06023
+0325T,0325,Blue Lake,Blue Lake Off-Reservation Trust Land,OT,D5,T,F,G2102,A,222683,9301,06,06023
+0335R,0335,Bois Forte,Bois Forte Reservation,86,D8,R,F,G2101,A,517129310,31548528,27,27061;27071;27137
+0335T,0335,Bois Forte,Bois Forte Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5451646,0,27,27137
+0350R,0350,Bridgeport,Bridgeport Reservation,86,D8,R,F,G2101,A,175286,0,06,06051
+0350T,0350,Bridgeport,Bridgeport Off-Reservation Trust Land,OT,D5,T,F,G2102,A,157206,0,06,06051
+0360R,0360,Brighton,Brighton Reservation,86,D2,R,F,G2101,A,148183275,58129,12,12043
+0400R,0400,Burns Paiute,Burns Paiute Indian Colony,98,D8,R,F,G2101,A,3304478,0,41,41025
+0400T,0400,Burns Paiute,Burns Paiute Off-Reservation Trust Land,OT,D5,T,F,G2102,A,45758474,67875,41,41025
+0415R,0415,Cabazon,Cabazon Reservation,86,D2,R,F,G2101,A,6425053,0,06,06065
+0435R,0435,Cahuilla,Cahuilla Reservation,86,D2,R,F,G2101,A,74936001,0,06,06065
+0440R,0440,Campbell,Campbell Ranch,91,D2,R,F,G2101,A,6708986,0,32,32019
+0450R,0450,Campo,Campo Indian Reservation,96,D2,R,F,G2101,A,66733613,0,06,06073
+0495R,0495,Capitan Grande,Capitan Grande Reservation,86,D2,R,F,G2101,A,64429182,832,06,06073
+0510R,0510,Carson,Carson Colony,81,D2,R,F,G2101,A,730858,0,32,32510
+0525R,0525,Catawba,Catawba Reservation,86,D8,R,F,G2101,A,4123352,0,45,45091
+0525T,0525,Catawba,Catawba Off-Reservation Trust Land,OT,D5,T,F,G2102,A,53636,0,45,45091
+0540R,0540,Cattaraugus,Cattaraugus Reservation,86,D2,R,F,G2101,A,86904146,2226868,36,36009;36013;36029
+0555R,0555,Cedarville,Cedarville Rancheria,85,D8,R,F,G2101,A,94077,0,06,06049
+0555T,0555,Cedarville,Cedarville Off-Reservation Trust Land,OT,D5,T,F,G2102,A,35270,0,06,06049
+0560T,0560,Celilo,Celilo Village,94,D3,T,F,G2102,A,460479,0,41,41065
+0575R,0575,Chehalis,Chehalis Reservation,86,D8,R,F,G2101,A,18039476,631336,53,53027;53067
+0575T,0575,Chehalis,Chehalis Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5107267,51996,53,53027;53041;53067
+0585R,0585,Chemehuevi,Chemehuevi Reservation,86,D2,R,F,G2101,A,124704707,0,06,06071
+0605R,0605,Cheyenne River,Cheyenne River Reservation,86,D8,R,F,G2101,A,11030683849,394073207,46,46041;46137
+0605T,0605,Cheyenne River,Cheyenne River Off-Reservation Trust Land,OT,D5,T,F,G2102,A,17703287,2842475,46,46055;46093;46117;46119
+0620R,0620,Chicken Ranch,Chicken Ranch Rancheria,85,D8,R,F,G2101,A,43193,0,06,06109
+0620T,0620,Chicken Ranch,Chicken Ranch Off-Reservation Trust Land,OT,D5,T,F,G2102,A,367279,0,06,06109
+0635R,0635,Chitimacha,Chitimacha Reservation,86,D2,R,F,G2101,A,1819465,0,22,22101
+0680R,0680,Cochiti,Pueblo de Cochiti,99,D2,R,F,G2101,A,207828421,4836770,35,35043;35049
+0690T,0690,Coconut Creek,Coconut Creek Trust Land,89,D3,T,F,G2102,A,24456,1388,12,12011
+0695R,0695,Cocopah,Cocopah Reservation,86,D2,R,F,G2101,A,25835842,77685,04,04027
+0705R,0705,Coeur d'Alene,Coeur d'Alene Reservation,86,D2,R,F,G2101,A,1356763276,32638424,16,16009;16055
+0720R,0720,Cold Springs,Cold Springs Rancheria,85,D2,R,F,G2101,A,416760,0,06,06019
+0735R,0735,Colorado River,Colorado River Indian Reservation,96,D2,R,F,G2101,A,1184916287,17241251,04;06,04012;06065;06071
+0750R,0750,Colusa,Colusa Rancheria,85,D2,R,F,G2101,A,871475,0,06,06011
+0760R,0760,Colville,Colville Reservation,86,D8,R,F,G2101,A,5479870579,179044507,53,53019;53047
+0760T,0760,Colville,Colville Off-Reservation Trust Land,OT,D5,T,F,G2102,A,579829,23757,53,53007
+0770R,0770,"Coos, Lower Umpqua, and Siuslaw","Coos, Lower Umpqua, and Siuslaw Reservation",86,D8,R,F,G2101,A,82966,0,41,41011;41015;41039
+0770T,0770,"Coos, Lower Umpqua, and Siuslaw","Coos, Lower Umpqua, and Siuslaw Off-Reservation Trust Land",OT,D5,T,F,G2102,A,494199,6823,41,41011;41039
+0775R,0775,Coquille,Coquille Reservation,86,D8,R,F,G2101,A,26226440,102615,41,41011
+0775T,0775,Coquille,Coquille Off-Reservation Trust Land,OT,D5,T,F,G2102,A,207518,3326,41,41011
+0780R,0780,Cortina,Cortina Indian Rancheria,97,D2,R,F,G2101,A,3077765,0,06,06011
+0795R,0795,Coushatta,Coushatta Reservation,86,D8,R,F,G2101,A,2761190,0,22,22003
+0795T,0795,Coushatta,Coushatta Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3639566,18952,22,22003
+0815R,0815,Cow Creek,Cow Creek Reservation,86,D2,R,F,G2101,A,92523351,0,41,41019
+0820R,0820,Cowlitz,Cowlitz Reservation,86,D2,R,F,G2101,A,679587,0,53,53011
+0825R,0825,Coyote Valley,Coyote Valley Reservation,86,D2,R,F,G2101,A,347178,0,06,06045
+0845R,0845,Crow,Crow Reservation,86,D8,R,F,G2101,A,9232680033,29590356,30,30003;30111
+0845T,0845,Crow,Crow Off-Reservation Trust Land,OT,D5,T,F,G2102,A,81286574,388787,30,30003;30103;30111
+0855R,0855,Crow Creek,Crow Creek Reservation,86,D2,R,F,G2101,A,1094324657,100590103,46,46017;46065;46069
+0940R,0940,Dresslerville,Dresslerville Colony,81,D2,R,F,G2101,A,3226855,0,32,32005
+0955R,0955,Dry Creek,Dry Creek Rancheria,85,D8,R,F,G2101,A,326073,0,06,06097
+0955T,0955,Dry Creek,Dry Creek Off-Reservation Trust Land,OT,D5,T,F,G2102,A,74574,0,06,06097
+0965R,0965,Duck Valley,Duck Valley Reservation,86,D8,R,F,G2101,A,1166184646,5247212,16;32,16073;32007
+0965T,0965,Duck Valley,Duck Valley Off-Reservation Trust Land,OT,D5,T,F,G2102,A,377305,3586,32,32007
+0975R,0975,Duckwater,Duckwater Reservation,86,D2,R,F,G2101,A,16137153,57666,32,32023
+0990R,0990,Eastern Cherokee,Eastern Cherokee Reservation,86,D8,R,F,G2101,A,211715338,47477,37,37039;37075;37087;37099;37173
+0990T,0990,Eastern Cherokee,Eastern Cherokee Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2639958,0,37,37173
+1005R,1005,Elko,Elko Colony,81,D2,R,F,G2101,A,781013,0,32,32007
+1010R,1010,Elk Valley,Elk Valley Rancheria,85,D8,R,F,G2101,A,361169,0,06,06015
+1010T,1010,Elk Valley,Elk Valley Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1607512,0,06,06015
+1040R,1040,Ely,Ely Reservation,86,D2,R,F,G2101,A,14668846,0,32,32033
+1055R,1055,Enterprise,Enterprise Rancheria,85,D8,R,F,G2101,A,168285,0,06,06007
+1055T,1055,Enterprise,Enterprise Off-Reservation Trust Land,OT,D5,T,F,G2102,A,166809,0,06,06115
+1065R,1065,Ewiiaapaayp,Ewiiaapaayp Reservation,86,D2,R,F,G2101,A,22137381,0,06,06073
+1070R,1070,Fallon Paiute-Shoshone,Fallon Paiute-Shoshone Colony,81,D8,R,F,G2101,A,228531,0,32,32001
+1070T,1070,Fallon Paiute-Shoshone (Colony),Fallon Paiute-Shoshone (Colony) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,205478,0,32,32001;32019
+1075R,1075,Fallon Paiute-Shoshone,Fallon Paiute-Shoshone Reservation,86,D8,R,F,G2101,A,33125605,0,32,32001
+1075T,1075,Fallon Paiute-Shoshone (Reservation),Fallon Paiute-Shoshone (Reservation) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,646923,0,32,32001
+1100R,1100,Flandreau,Flandreau Reservation,86,D2,R,F,G2101,A,8973397,86662,46,46101
+1110R,1110,Flathead,Flathead Reservation,86,D2,R,F,G2101,A,5013467061,316267874,30,30029;30047;30063;30089
+1125R,1125,Fond du Lac,Fond du Lac Reservation,86,D8,R,F,G2101,A,398715441,12651748,27,27017;27137
+1125T,1125,Fond du Lac,Fond du Lac Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1406259,13353,27;55,27137;55031
+1135R,1135,Forest County Potawatomi,Forest County Potawatomi Community,82,D8,R,F,G2101,A,49292136,183379,55,55041;55083
+1135T,1135,Forest County Potawatomi,Forest County Potawatomi Off-Reservation Trust Land,OT,D5,T,F,G2102,A,9364887,8,55,55039;55041;55079
+1140R,1140,Fort Apache,Fort Apache Reservation,86,D2,R,F,G2101,A,6799419203,15498630,04,04001;04007;04017
+1150R,1150,Fort Belknap,Fort Belknap Reservation,86,D8,R,F,G2101,A,2510969954,9481328,30,30005;30071
+1150T,1150,Fort Belknap,Fort Belknap Off-Reservation Trust Land,OT,D5,T,F,G2102,A,117340663,381758,30,30005;30071
+1160R,1160,Fort Berthold,Fort Berthold Reservation,86,D2,R,F,G2101,A,3416540441,682427847,38,38025;38053;38055;38057;38061;38101
+1170R,1170,Fort Bidwell,Fort Bidwell Reservation,86,D8,R,F,G2101,A,13858176,14695,06,06049
+1170T,1170,Fort Bidwell,Fort Bidwell Off-Reservation Trust Land,OT,D5,T,F,G2102,A,342312,0,06,06049
+1185R,1185,Fort Hall,Fort Hall Reservation,86,D8,R,F,G2101,A,2107598954,106370524,16,16005;16011;16029;16077
+1185T,1185,Fort Hall,Fort Hall Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1081229,987161,16,16005;16029
+1195R,1195,Fort Independence,Fort Independence Reservation,86,D2,R,F,G2101,A,2261363,0,06,06027
+1210R,1210,Fort McDermitt,Fort McDermitt Indian Reservation,96,D2,R,F,G2101,A,140874984,0,32;41,32013;41045
+1220R,1220,Fort McDowell Yavapai Nation,Fort McDowell Yavapai Nation Reservation,86,D2,R,F,G2101,A,99912830,934540,04,04013
+1235R,1235,Fort Mojave,Fort Mojave Reservation,86,D8,R,F,G2101,A,133565269,2784365,04;06;32,04015;06071;32003
+1235T,1235,Fort Mojave,Fort Mojave Off-Reservation Trust Land,OT,D5,T,F,G2102,A,201955,11714,06,06071
+1250R,1250,Fort Peck,Fort Peck Indian Reservation,96,D8,R,F,G2101,A,8516690146,35225928,30,30019;30085;30091;30105
+1250T,1250,Fort Peck,Fort Peck Off-Reservation Trust Land,OT,D5,T,F,G2102,A,948678,0,30,30085;30105
+1260R,1260,Fort Pierce,Fort Pierce Reservation,86,D2,R,F,G2101,A,244942,0,12,12111
+1270R,1270,Fort Sill Apache,Fort Sill Apache Indian Reservation,96,D2,R,F,G2101,A,121466,0,35,35029
+1280R,1280,Fort Yuma,Fort Yuma Indian Reservation,96,D2,R,F,G2101,A,177504855,3453666,04;06,04027;06025
+1310R,1310,Gila River,Gila River Indian Reservation,96,D2,R,F,G2101,A,1510990671,937536,04,04013;04021
+1340R,1340,Goshute,Goshute Reservation,86,D2,R,F,G2101,A,486449507,13114,32;49,32033;49023;49045
+1355R,1355,Grand Portage,Grand Portage Reservation,86,D8,R,F,G2101,A,192878779,3189582,27,27031
+1355T,1355,Grand Portage,Grand Portage Off-Reservation Trust Land,OT,D5,T,F,G2102,A,145754,0,27,27031
+1365R,1365,Grand Ronde,Grand Ronde Community,82,D8,R,F,G2101,A,45921221,0,41,41053;41071
+1365T,1365,Grand Ronde,Grand Ronde Off-Reservation Trust Land,OT,D5,T,F,G2102,A,868774,69520,41,41039;41053;41057;41071
+1370R,1370,Grand Traverse,Grand Traverse Reservation,86,D8,R,F,G2101,A,74273,0,26,26089
+1370T,1370,Grand Traverse,Grand Traverse Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3703765,0,26,26009;26019;26029;26055;26089
+1380R,1380,Greenville,Greenville Rancheria,85,D2,R,F,G2101,A,284692,0,06,06063
+1395R,1395,Grindstone,Grindstone Indian Rancheria,97,D2,R,F,G2101,A,326144,22791,06,06021
+1400R,1400,Guidiville,Guidiville Rancheria,85,D8,R,F,G2101,A,175438,0,06,06045
+1400T,1400,Guidiville,Guidiville Off-Reservation Trust Land,OT,D5,T,F,G2102,A,9493,0,06,06045
+1410R,1410,Hannahville,Hannahville Indian Community,95,D8,R,F,G2101,A,14424818,0,26,26109
+1410T,1410,Hannahville,Hannahville Off-Reservation Trust Land,OT,D5,T,F,G2102,A,9250376,0,26,26041;26109
+1440R,1440,Havasupai,Havasupai Reservation,86,D2,R,F,G2101,A,714393134,0,04,04005
+1450R,1450,Ho-Chunk Nation,Ho-Chunk Nation Reservation,86,D8,R,F,G2101,A,8896297,72893,55,55025;55053;55057;55081;55111;55115;55141
+1450T,1450,Ho-Chunk Nation,Ho-Chunk Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,34423146,171187,27;55,27055;55001;55019;55023;55035;55053;55057;55063;55073;55081;55105;55111;55115;55123;55141
+1460R,1460,Hoh,Hoh Indian Reservation,96,D8,R,F,G2101,A,1769173,12010,53,53031
+1460T,1460,Hoh,Hoh Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1755019,0,53,53031
+1475R,1475,Hollywood,Hollywood Reservation,86,D2,R,F,G2101,A,2033907,14020,12,12011
+1490R,1490,Hoopa Valley,Hoopa Valley Reservation,86,D2,R,F,G2101,A,364418754,2369202,06,06023
+1505R,1505,Hopi,Hopi Reservation,86,D8,R,F,G2101,A,6557347200,2407606,04,04005;04017
+1505T,1505,Hopi,Hopi Off-Reservation Trust Land,OT,D5,T,F,G2102,A,683834,0,04,04005;04017
+1515R,1515,Hopland,Hopland Rancheria,85,D2,R,F,G2101,A,8151731,3794,06,06033;06045
+1530R,1530,Houlton Maliseet,Houlton Maliseet Reservation,86,D8,R,F,G2101,A,3321526,22653,23,23003
+1530T,1530,Houlton Maliseet,Houlton Maliseet Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1894727,0,23,23003
+1545R,1545,Hualapai,Hualapai Indian Reservation,96,D8,R,F,G2101,A,4121300377,8118941,04,04005;04015;04025
+1545T,1545,Hualapai,Hualapai Off-Reservation Trust Land,OT,D5,T,F,G2102,A,28178717,0,04,04015
+1550R,1550,Huron Potawatomi,Huron Potawatomi Reservation,86,D8,R,F,G2101,A,502190,18193,26,26025
+1550T,1550,Huron Potawatomi,Huron Potawatomi Off-Reservation Trust Land,OT,D5,T,F,G2102,A,695436,18025,26,26025
+1555R,1555,Immokalee,Immokalee Reservation,86,D2,R,F,G2101,A,2471270,21068,12,12021
+1560R,1560,Inaja and Cosmit,Inaja and Cosmit Reservation,86,D2,R,F,G2101,A,3484656,0,06,06073
+1575R,1575,Indian Township,Indian Township Reservation,86,D2,R,F,G2101,A,97216884,17867564,23,23029
+1590R,1590,Iowa (KS-NE),Iowa (KS-NE) Reservation,86,D8,R,F,G2101,A,50874765,24927,20;31,20013;20043;31147
+1590T,1590,Iowa (KS-NE),Iowa (KS-NE) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,639440,0,20,20013
+1610R,1610,Isabella,Isabella Reservation,86,D8,R,F,G2101,A,560500426,4425892,26,26011;26073
+1610T,1610,Isabella,Isabella Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4438931,27650,26,26011;26069;26073
+1625R,1625,Isleta,Isleta Pueblo,84,D2,R,F,G2101,A,1213731170,2532020,35,35001;35053;35057;35061
+1640R,1640,Jackson,Jackson Rancheria,85,D2,R,F,G2101,A,1185332,0,06,06005
+1655R,1655,Jamestown S'Klallam,Jamestown S'Klallam Reservation,86,D8,R,F,G2101,A,46220,18375,53,53009
+1655T,1655,Jamestown S'Klallam,Jamestown S'Klallam Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3436548,52211,53,53009;53031
+1670R,1670,Jamul,Jamul Indian Village,93,D2,R,F,G2101,A,59534,0,06,06073
+1685R,1685,Jemez,Jemez Pueblo,84,D2,R,F,G2101,A,361712281,13020,35,35043
+1690R,1690,Jena Band of Choctaw,Jena Band of Choctaw Reservation,86,D2,R,F,G2101,A,1749154,13607,22,22043;22059
+1700R,1700,Jicarilla Apache Nation,Jicarilla Apache Nation Reservation,86,D8,R,F,G2101,A,3408648506,10123188,35,35039;35043
+1700T,1700,Jicarilla Apache Nation,Jicarilla Apache Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,143699744,450828,35,35039
+1720R,1720,Kaibab,Kaibab Indian Reservation,96,D2,R,F,G2101,A,489295372,19920,04,04005;04015
+1735R,1735,Kalispel,Kalispel Reservation,86,D8,R,F,G2101,A,18866475,310450,53,53051;53063
+1735T,1735,Kalispel,Kalispel Off-Reservation Trust Land,OT,D5,T,F,G2102,A,10028115,187920,53,53051;53063
+1750R,1750,Karuk,Karuk Reservation,86,D8,R,F,G2101,A,67101,0,06,06023;06093
+1750T,1750,Karuk,Karuk Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4240735,80783,06,06023;06093
+1770R,1770,Kickapoo (KS),Kickapoo (KS) Reservation,86,D2,R,F,G2101,A,611934196,1457962,20,20005;20013;20085
+1775R,1775,Kickapoo (TX),Kickapoo (TX) Reservation,86,D8,R,F,G2101,A,704948,1492,48,48323
+1775T,1775,Kickapoo (TX),Kickapoo (TX) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,128436,0,48,48323
+1785R,1785,Klamath,Klamath Reservation,86,D2,R,F,G2101,A,1287381,0,41,41035
+1800R,1800,Kootenai,Kootenai Reservation,86,D8,R,F,G2101,A,90700,0,16,16021
+1800T,1800,Kootenai,Kootenai Off-Reservation Trust Land,OT,D5,T,F,G2102,A,12279951,229787,16,16021
+1815R,1815,Lac Courte Oreilles,Lac Courte Oreilles Reservation,86,D8,R,F,G2101,A,277671659,41346283,55,55113
+1815T,1815,Lac Courte Oreilles,Lac Courte Oreilles Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2887386,56225,55,55013;55113;55129
+1825R,1825,Lac du Flambeau,Lac du Flambeau Reservation,86,D2,R,F,G2101,A,277303837,73007138,55,55051;55085;55125
+1830R,1830,Lac Vieux Desert,Lac Vieux Desert Reservation,86,D8,R,F,G2101,A,1166810,0,26,26053
+1830T,1830,Lac Vieux Desert,Lac Vieux Desert Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1798191,0,26,26053
+1840R,1840,Laguna,Laguna Pueblo,84,D8,R,F,G2101,A,1986973002,2068014,35,35001;35006;35043;35061
+1840T,1840,Laguna,Laguna Off-Reservation Trust Land,OT,D5,T,F,G2102,A,39155930,169266,35,35001;35006
+1850R,1850,La Jolla,La Jolla Reservation,86,D2,R,F,G2101,A,34958063,0,06,06073
+1860R,1860,Lake Traverse,Lake Traverse Reservation,86,D8,R,F,G2101,A,3753377641,153531502,38;46,38077;38081;46029;46037;46051;46091;46109
+1860T,1860,Lake Traverse,Lake Traverse Off-Reservation Trust Land,OT,D5,T,F,G2102,A,562744,0,38;46,38077;46029
+1880R,1880,L'Anse,L'Anse Reservation,86,D8,R,F,G2101,A,237863100,46825041,26,26013
+1880T,1880,L'Anse,L'Anse Off-Reservation Trust Land,OT,D5,T,F,G2102,A,362712,0,26,26013;26103
+1895R,1895,La Posta,La Posta Indian Reservation,96,D2,R,F,G2101,A,16560558,0,06,06073
+1915R,1915,Las Vegas,Las Vegas Indian Colony,98,D2,R,F,G2101,A,15849277,0,32,32003
+1925R,1925,Laytonville,Laytonville Rancheria,85,D2,R,F,G2101,A,788337,0,06,06045
+1940R,1940,Leech Lake,Leech Lake Reservation,86,D8,R,F,G2101,A,2520991575,872828139,27,27007;27021;27057;27061
+1940T,1940,Leech Lake,Leech Lake Off-Reservation Trust Land,OT,D5,T,F,G2102,A,216159,38149,27,27021
+1955R,1955,Likely,Likely Rancheria,85,D2,R,F,G2101,A,6237,0,06,06049
+1960R,1960,Little River,Little River Reservation,86,D8,R,F,G2101,A,702364,7307,26,26101
+1960T,1960,Little River,Little River Off-Reservation Trust Land,OT,D5,T,F,G2102,A,11796465,0,26,26101;26105
+1963R,1963,Little Traverse Bay,Little Traverse Bay Reservation,86,D8,R,F,G2101,A,2236756,928,26,26029;26047
+1963T,1963,Little Traverse Bay,Little Traverse Bay Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2768961,9574,26,26029;26031;26041;26047
+1970R,1970,Lone Pine,Lone Pine Reservation,86,D2,R,F,G2101,A,952613,0,06,06027
+1980R,1980,Lookout,Lookout Rancheria,85,D2,R,F,G2101,A,163356,0,06,06049
+1995R,1995,Los Coyotes,Los Coyotes Reservation,86,D2,R,F,G2101,A,101560614,0,06,06073
+2015R,2015,Lovelock,Lovelock Indian Colony,98,D2,R,F,G2101,A,83593,0,32,32027
+2030R,2030,Lower Brule,Lower Brule Reservation,86,D8,R,F,G2101,A,874857750,119530275,46,46085;46117
+2030T,2030,Lower Brule,Lower Brule Off-Reservation Trust Land,OT,D5,T,F,G2102,A,14565492,0,46,46085;46117
+2040R,2040,Lower Elwha,Lower Elwha Reservation,86,D8,R,F,G2101,A,5587489,217741,53,53009
+2040T,2040,Lower Elwha,Lower Elwha Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1642625,31298,53,53009
+2055R,2055,Lower Sioux,Lower Sioux Indian Community,95,D8,R,F,G2101,A,7794766,100633,27,27127;27129
+2055T,2055,Lower Sioux,Lower Sioux Off-Reservation Trust Land,OT,D5,T,F,G2102,A,475772,0,27,27127
+2070R,2070,Lummi,Lummi Reservation,86,D2,R,F,G2101,A,54073467,43289278,53,53073
+2075R,2075,Lytton,Lytton Rancheria,85,D2,R,F,G2101,A,20547,0,06,06013
+2085R,2085,Makah,Makah Indian Reservation,96,D2,R,F,G2101,A,121162245,599608,53,53009
+2100R,2100,Manchester-Point Arena,Manchester-Point Arena Rancheria,85,D2,R,F,G2101,A,1524364,0,06,06045
+2115R,2115,Manzanita,Manzanita Reservation,86,D8,R,F,G2101,A,18572897,0,06,06073
+2115T,2115,Manzanita,Manzanita Off-Reservation Trust Land,OT,D5,T,F,G2102,A,11818,0,06,06073
+2130R,2130,Maricopa (Ak Chin),Maricopa (Ak Chin) Indian Reservation,96,D8,R,F,G2101,A,84966066,0,04,04021
+2130T,2130,Maricopa (Ak Chin),Maricopa (Ak Chin) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4168440,19164,04,04021
+2145R,2145,Mashantucket Pequot,Mashantucket Pequot Reservation,86,D8,R,F,G2101,A,5454689,0,09,09180
+2145T,2145,Mashantucket Pequot,Mashantucket Pequot Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1159790,0,09,09180
+2147T,2147,Mashpee Wampanoag,Mashpee Wampanoag Trust Land,89,D3,T,F,G2102,A,1276676,16972,25,25001;25005
+2150R,2150,Match-e-be-nash-she-wish Band of Pottawatomi,Match-e-be-nash-she-wish Band of Pottawatomi Reservation,86,D8,R,F,G2101,A,632863,0,26,26005
+2150T,2150,Match-e-be-nash-she-wish Band of Pottawatomi,Match-e-be-nash-she-wish Band of Pottawatomi Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3026992,55582,26,26005
+2175R,2175,Menominee,Menominee Reservation,86,D8,R,F,G2101,A,915522061,19016881,55,55078
+2175T,2175,Menominee,Menominee Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5072834,4848,55,55115
+2190R,2190,Mesa Grande,Mesa Grande Reservation,86,D2,R,F,G2101,A,7058522,0,06,06073
+2205R,2205,Mescalero,Mescalero Reservation,86,D2,R,F,G2101,A,1862762807,1469791,35,35027;35035
+2240R,2240,Miccosukee,Miccosukee Reservation,86,D8,R,F,G2101,A,309790742,374308,12,12011;12086
+2240T,2240,Miccosukee,Miccosukee Off-Reservation Trust Land,OT,D5,T,F,G2102,A,20268766,72020,12,12051;12055;12086
+2255R,2255,Middletown,Middletown Rancheria,85,D2,R,F,G2101,A,489059,0,06,06033
+2270R,2270,Mille Lacs,Mille Lacs Reservation,86,D8,R,F,G2101,A,249939660,162812071,27,27001;27035;27095;27115
+2270T,2270,Mille Lacs,Mille Lacs Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5854134,34165,27,27001;27115
+2285T,2285,Minnesota Chippewa,Minnesota Chippewa Trust Land,89,D3,T,F,G2102,A,1162889,0,27,27005;27021;27111;27137
+2300R,2300,Mississippi Choctaw,Mississippi Choctaw Reservation,86,D8,R,F,G2101,A,121700351,251055,28,28007;28059;28067;28069;28079;28099;28101;28159
+2300T,2300,Mississippi Choctaw,Mississippi Choctaw Off-Reservation Trust Land,OT,D5,T,F,G2102,A,15545529,43919,28;47,28015;28067;28079;28099;28101;28159;47097
+2315R,2315,Moapa River,Moapa River Indian Reservation,96,D2,R,F,G2101,A,287401217,0,32,32003
+2320R,2320,Mohegan,Mohegan Reservation,86,D2,R,F,G2101,A,2457041,123,09,09180
+2330R,2330,Montgomery Creek,Montgomery Creek Rancheria,85,D2,R,F,G2101,A,311113,0,06,06089
+2340R,2340,Mooretown,Mooretown Rancheria,85,D8,R,F,G2101,A,132773,0,06,06007
+2340T,2340,Mooretown,Mooretown Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1064825,0,06,06007
+2360R,2360,Morongo,Morongo Reservation,86,D8,R,F,G2101,A,138854349,0,06,06065
+2360T,2360,Morongo,Morongo Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2131951,0,06,06065
+2375R,2375,Muckleshoot,Muckleshoot Reservation,86,D8,R,F,G2101,A,15125501,601769,53,53033;53053
+2375T,2375,Muckleshoot,Muckleshoot Off-Reservation Trust Land,OT,D5,T,F,G2102,A,300054,1829,53,53033
+2400R,2400,Nambe,Nambe Pueblo,84,D8,R,F,G2101,A,82969955,192797,35,35049
+2400T,2400,Nambe,Nambe Off-Reservation Trust Land,OT,D5,T,F,G2102,A,748650,0,35,35049
+2415R,2415,Narragansett,Narragansett Reservation,86,D2,R,F,G2101,A,8325218,5485,44,44009
+2430R,2430,Navajo Nation,Navajo Nation Reservation,86,D8,R,F,G2101,A,58370037602,59942926,04;35;49,04001;04005;04017;35001;35006;35031;35043;35045;35053;49037
+2430T,2430,Navajo Nation,Navajo Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4902162673,1839283,04;35,04001;04005;04017;35006;35031;35039;35043;35045
+2445R,2445,Nez Perce,Nez Perce Reservation,86,D2,R,F,G2101,A,3093948255,26933856,16,16035;16049;16061;16069
+2460R,2460,Nisqually,Nisqually Reservation,86,D2,R,F,G2101,A,20459261,808442,53,53053;53067
+2475R,2475,Nooksack,Nooksack Reservation,86,D8,R,F,G2101,A,29191,0,53,53073
+2475T,2475,Nooksack,Nooksack Off-Reservation Trust Land,OT,D5,T,F,G2102,A,11280519,332795,53,53073
+2490R,2490,Northern Cheyenne,Northern Cheyenne Indian Reservation,96,D8,R,F,G2101,A,1805204353,300819,30,30003;30087
+2490T,2490,Northern Cheyenne,Northern Cheyenne Off-Reservation Trust Land,OT,D5,T,F,G2102,A,26446649,31616,30;46,30003;30087;46093
+2495R,2495,North Fork,North Fork Rancheria,85,D8,R,F,G2101,A,267979,0,06,06039
+2495T,2495,North Fork,North Fork Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1583085,0,06,06039
+2505R,2505,Northwestern Shoshone,Northwestern Shoshone Reservation,86,D2,R,F,G2101,A,787666,0,49,49003
+2510R,2510,Ohkay Owingeh,Ohkay Owingeh,00,D2,R,F,G2101,A,68397940,787290,35,35039
+2535R,2535,Oil Springs,Oil Springs Reservation,86,D2,R,F,G2101,A,2487842,28100,36,36003;36009
+2550R,2550,Omaha,Omaha Reservation,86,D2,R,F,G2101,A,795218123,7661115,19;31,19133;31021;31039;31173
+2555R,2555,Oneida Indian Nation,Oneida Indian Nation Reservation,86,D2,R,F,G2101,A,1095724359,8467177,36,36053;36065
+2560R,2560,Oneida (WI),Oneida (WI) Reservation,86,D8,R,F,G2101,A,264535498,332210,55,55009;55087
+2560T,2560,Oneida (WI),Oneida (WI) Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1339489,0,55,55009;55087
+2570R,2570,Onondaga Nation,Onondaga Nation Reservation,86,D2,R,F,G2101,A,23927477,119791,36,36067
+2580R,2580,Ontonagon,Ontonagon Reservation,86,D2,R,F,G2101,A,9679643,0,26,26131
+2595R,2595,Osage,Osage Reservation,86,D2,R,F,G2101,A,5818878289,148530638,40,40113
+2625R,2625,Paiute (UT),Paiute (UT) Reservation,86,D2,R,F,G2101,A,131131216,29024,49,49021;49027;49041;49053
+2635R,2635,Pala,Pala Reservation,86,D2,R,F,G2101,A,54833492,0,06,06073
+2680R,2680,Pascua Pueblo Yaqui,Pascua Pueblo Yaqui Reservation,86,D8,R,F,G2101,A,3621549,0,04,04019
+2680T,2680,Pascua Pueblo Yaqui,Pascua Pueblo Yaqui Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5750345,0,04,04019
+2685R,2685,Paskenta,Paskenta Rancheria,85,D2,R,F,G2101,A,8662058,9053,06,06103
+2695T,2695,Passamaquoddy,Passamaquoddy Trust Land,89,D3,T,F,G2102,A,376245881,15428674,23,23007;23009;23017;23019;23025;23029
+2715R,2715,Pauma and Yuima,Pauma and Yuima Reservation,86,D2,R,F,G2101,A,24411825,0,06,06073
+2745R,2745,Pechanga,Pechanga Reservation,86,D8,R,F,G2101,A,18978665,6136,06,06065
+2745T,2745,Pechanga,Pechanga Off-Reservation Trust Land,OT,D5,T,F,G2102,A,9804379,0,06,06065;06073
+2760R,2760,Penobscot,Penobscot Reservation,86,D8,R,F,G2101,A,19622632,38211558,23,23003;23019
+2760T,2760,Penobscot,Penobscot Off-Reservation Trust Land,OT,D5,T,F,G2102,A,378569023,20006248,23,23007;23019;23021
+2775R,2775,Picayune,Picayune Rancheria,85,D8,R,F,G2101,A,280520,0,06,06039
+2775T,2775,Picayune,Picayune Off-Reservation Trust Land,OT,D5,T,F,G2102,A,504904,1787,06,06039
+2785R,2785,Picuris,Picuris Pueblo,84,D2,R,F,G2101,A,70893923,7083,35,35055
+2810R,2810,Pine Ridge,Pine Ridge Reservation,86,D2,R,F,G2101,A,11247589184,27448125,31;46,31161;46007;46071;46102
+2820R,2820,Pinoleville,Pinoleville Rancheria,85,D2,R,F,G2101,A,422090,0,06,06045
+2835T,2835,Pit River,Pit River Trust Land,89,D3,T,F,G2102,A,1086963,522,06,06089
+2850R,2850,Pleasant Point,Pleasant Point Reservation,86,D2,R,F,G2101,A,1462308,1055604,23,23029
+2865R,2865,Poarch Creek,Poarch Creek Reservation,86,D8,R,F,G2101,A,1071074,7844,01,01051;01053
+2865T,2865,Poarch Creek,Poarch Creek Off-Reservation Trust Land,OT,D5,T,F,G2102,A,536310,0,01;12,01053;01099;01101;12033
+2890R,2890,Pokagon,Pokagon Reservation,86,D8,R,F,G2101,A,2709373,12445,26,26021
+2890T,2890,Pokagon,Pokagon Off-Reservation Trust Land,OT,D5,T,F,G2102,A,11296671,189691,18;26,18141;26027;26159
+2900T,2900,Ponca (NE),Ponca (NE) Trust Land,89,D3,T,F,G2102,A,828880,0,19;31,19155;31107;31109
+2910R,2910,Port Gamble,Port Gamble Reservation,86,D8,R,F,G2101,A,6576747,0,53,53035
+2910T,2910,Port Gamble,Port Gamble Off-Reservation Trust Land,OT,D5,T,F,G2102,A,249117,0,53,53035
+2925R,2925,Port Madison,Port Madison Reservation,86,D2,R,F,G2101,A,31289129,0,53,53035
+2980R,2980,Prairie Band of Potawatomi Nation,Prairie Band of Potawatomi Nation Reservation,86,D2,R,F,G2101,A,316106930,174485,20,20085
+2985R,2985,Prairie Island,Prairie Island Indian Community,95,D8,R,F,G2101,A,2283959,51695,27,27049
+2985T,2985,Prairie Island,Prairie Island Off-Reservation Trust Land,OT,D5,T,F,G2102,A,8128879,3285116,27,27037;27049
+2990R,2990,Pojoaque,Pueblo of Pojoaque,9C,D8,R,F,G2101,A,54598797,0,35,35049
+2990T,2990,Pojoaque,Pojoaque Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2037386,0,35,35049
+3000R,3000,Puyallup,Puyallup Reservation,86,D8,R,F,G2101,A,73799587,1965127,53,53033;53053
+3000T,3000,Puyallup,Puyallup Off-Reservation Trust Land,OT,D5,T,F,G2102,A,166853,177379,53,53033;53053
+3010R,3010,Pyramid Lake Paiute,Pyramid Lake Paiute Reservation,86,D2,R,F,G2101,A,1438777179,450651614,32,32019;32029;32031
+3020R,3020,Quartz Valley,Quartz Valley Reservation,86,D8,R,F,G2101,A,2451478,0,06,06093
+3020T,3020,Quartz Valley,Quartz Valley Off-Reservation Trust Land,OT,D5,T,F,G2102,A,420838,15011,06,06093
+3030R,3030,Quileute,Quileute Reservation,86,D2,R,F,G2101,A,7398907,1384031,53,53009
+3040R,3040,Quinault,Quinault Reservation,86,D2,R,F,G2101,A,809805131,29517409,53,53027;53031
+3070R,3070,Ramona,Ramona Village,94,D2,R,F,G2101,A,2195131,14944,06,06065
+3085R,3085,Red Cliff,Red Cliff Reservation,86,D8,R,F,G2101,A,56845216,351028,55,55007
+3085T,3085,Red Cliff,Red Cliff Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2150439,0,55,55007
+3095R,3095,Redding,Redding Rancheria,85,D2,R,F,G2101,A,454326,21130,06,06089
+3100R,3100,Red Lake,Red Lake Reservation,86,D2,R,F,G2101,A,2285640599,977322416,27,27007;27029;27071;27077;27089;27113;27125;27135
+3115R,3115,Redwood Valley,Redwood Valley Rancheria,85,D2,R,F,G2101,A,1095256,0,06,06045
+3130R,3130,Reno-Sparks,Reno-Sparks Indian Colony,98,D8,R,F,G2101,A,62698009,0,32,32031
+3130T,3130,Reno-Sparks,Reno-Sparks Off-Reservation Trust Land,OT,D5,T,F,G2102,A,85452,0,32,32031
+3145R,3145,Resighini,Resighini Rancheria,85,D2,R,F,G2101,A,996253,0,06,06015
+3165R,3165,Rincon,Rincon Reservation,86,D8,R,F,G2101,A,16258175,0,06,06073
+3165T,3165,Rincon,Rincon Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2449868,0,06,06073
+3185R,3185,Roaring Creek,Roaring Creek Rancheria,85,D2,R,F,G2101,A,331930,234,06,06089
+3195R,3195,Robinson,Robinson Rancheria,85,D8,R,F,G2101,A,725296,6661,06,06033
+3195T,3195,Robinson,Robinson Off-Reservation Trust Land,OT,D5,T,F,G2102,A,92040,0,06,06033
+3205R,3205,Rocky Boy's,Rocky Boy's Reservation,86,D8,R,F,G2101,A,228802688,319526,30,30015;30041
+3205T,3205,Rocky Boy's,Rocky Boy's Off-Reservation Trust Land,OT,D5,T,F,G2102,A,215127885,133221,30,30015;30041
+3220T,3220,Rohnerville (Rancheria),Rohnerville (Rancheria) Trust Land,89,D3,T,F,G2102,A,737013,0,06,06023
+3235R,3235,Rosebud,Rosebud Indian Reservation,96,D8,R,F,G2101,A,3596439528,5855476,46,46121
+3235T,3235,Rosebud,Rosebud Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1819415122,5733209,46,46053;46085;46095;46123
+3250R,3250,Round Valley,Round Valley Reservation,86,D8,R,F,G2101,A,30320904,11491,06,06045;06105
+3250T,3250,Round Valley,Round Valley Off-Reservation Trust Land,OT,D5,T,F,G2102,A,63383191,115967,06,06045
+3265R,3265,Rumsey,Rumsey Indian Rancheria,97,D2,R,F,G2101,A,1954498,0,06,06113
+3280R,3280,Sac and Fox/Meskwaki,Sac and Fox/Meskwaki Settlement,9D,D8,R,F,G2101,A,26187671,0,19,19171
+3280T,3280,Sac and Fox/Meskwaki,Sac and Fox/Meskwaki Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1673481,0,19,19171
+3285R,3285,Sac and Fox Nation,Sac and Fox Nation Reservation,86,D8,R,F,G2101,A,59692908,0,20;31,20013;31147
+3285T,3285,Sac and Fox Nation,Sac and Fox Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1450542,0,20;31,20013;31147
+3305R,3305,St. Croix,St. Croix Reservation,86,D8,R,F,G2101,A,8116405,147462,55,55005;55013;55095
+3305T,3305,St. Croix,St. Croix Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1482986,112902,55,55013;55095
+3320R,3320,St. Regis Mohawk,St. Regis Mohawk Reservation,86,D2,R,F,G2101,A,49104980,5232431,36,36033
+3340R,3340,Salt River,Salt River Reservation,86,D2,R,F,G2101,A,213594623,7201921,04,04013
+3355R,3355,San Carlos,San Carlos Reservation,86,D2,R,F,G2101,A,7516878015,62469236,04,04007;04009;04021
+3370R,3370,Sandia,Sandia Pueblo,84,D8,R,F,G2101,A,99594765,916825,35,35001;35043
+3370T,3370,Sandia,Sandia Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5917802,0,35,35001;35043
+3400R,3400,San Felipe,San Felipe Pueblo,84,D2,R,F,G2101,A,206204426,1030782,35,35043
+3415R,3415,San Ildefonso,San Ildefonso Pueblo,84,D8,R,F,G2101,A,113165283,621646,35,35043;35049
+3415T,3415,San Ildefonso,San Ildefonso Off-Reservation Trust Land,OT,D5,T,F,G2102,A,8710682,0,35,35049
+3445R,3445,San Manuel,San Manuel Reservation,86,D2,R,F,G2101,A,4510445,0,06,06071
+3460R,3460,San Pasqual,San Pasqual Reservation,86,D8,R,F,G2101,A,5731024,0,06,06073
+3460T,3460,San Pasqual,San Pasqual Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2366483,0,06,06073
+3480R,3480,Santa Ana,Santa Ana Pueblo,84,D2,R,F,G2101,A,261508403,358738,35,35043
+3495R,3495,Santa Clara,Santa Clara Pueblo,84,D8,R,F,G2101,A,228657714,646661,35,35039;35043;35049
+3495T,3495,Santa Clara,Santa Clara Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4945585,0,35,35039
+3520R,3520,Santa Rosa,Santa Rosa Rancheria,85,D2,R,F,G2101,A,1620467,0,06,06031
+3525R,3525,Santa Rosa,Santa Rosa Reservation,86,D2,R,F,G2101,A,46073065,0,06,06065
+3540R,3540,Santa Ynez,Santa Ynez Reservation,86,D2,R,F,G2101,A,629386,0,06,06083
+3550R,3550,Santa Ysabel,Santa Ysabel Reservation,86,D2,R,F,G2101,A,60672775,0,06,06073
+3565R,3565,Santee,Santee Reservation,86,D2,R,F,G2101,A,447827855,30051352,31,31107
+3585R,3585,Santo Domingo,Santo Domingo Pueblo,84,D2,R,F,G2101,A,274758133,641684,35,35043;35049
+3625R,3625,Sauk-Suiattle,Sauk-Suiattle Reservation,86,D2,R,F,G2101,A,188279,0,53,53057;53061
+3635R,3635,Sault Ste. Marie,Sault Ste. Marie Reservation,86,D8,R,F,G2101,A,2290468,45259,26,26033
+3635T,3635,Sault Ste. Marie,Sault Ste. Marie Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2788767,0,26,26003;26033;26041;26095;26097;26153
+3665T,3665,Seminole (FL),Seminole (FL) Trust Land,89,D3,T,F,G2102,A,3544,0,12,12011
+3680R,3680,Shakopee Mdewakanton Sioux,Shakopee Mdewakanton Sioux Community,82,D8,R,F,G2101,A,1039603,0,27,27139
+3680T,3680,Shakopee Mdewakanton Sioux,Shakopee Mdewakanton Sioux Off-Reservation Trust Land,OT,D5,T,F,G2102,A,19892748,11383,27;46,27139;46103
+3695T,3695,Shawnee,Shawnee Trust Land,89,D3,T,F,G2102,A,430298,0,40,40139
+3735R,3735,Sherwood Valley,Sherwood Valley Rancheria,85,D8,R,F,G2101,A,1422993,0,06,06045
+3735T,3735,Sherwood Valley,Sherwood Valley Off-Reservation Trust Land,OT,D5,T,F,G2102,A,580810,0,06,06045
+3750R,3750,Shingle Springs,Shingle Springs Rancheria,85,D8,R,F,G2101,A,641958,0,06,06017
+3750T,3750,Shingle Springs,Shingle Springs Off-Reservation Trust Land,OT,D5,T,F,G2102,A,368884,0,06,06017
+3780R,3780,Shoalwater Bay,Shoalwater Bay Indian Reservation,96,D8,R,F,G2101,A,2711568,595212,53,53049
+3780T,3780,Shoalwater Bay,Shoalwater Bay Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1112299,0,53,53049
+3795R,3795,Siletz,Siletz Reservation,86,D8,R,F,G2101,A,16073089,1164,41,41041
+3795T,3795,Siletz,Siletz Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3155393,0,41,41041;41047
+3825R,3825,Skokomish,Skokomish Reservation,86,D8,R,F,G2101,A,23837330,671861,53,53045
+3825T,3825,Skokomish,Skokomish Off-Reservation Trust Land,OT,D5,T,F,G2102,A,811564,0,53,53045
+3840R,3840,Skull Valley,Skull Valley Reservation,86,D2,R,F,G2101,A,72932870,0,49,49045
+3855R,3855,Smith River,Smith River Rancheria,85,D8,R,F,G2101,A,657825,0,06,06015
+3855T,3855,Smith River,Smith River Off-Reservation Trust Land,OT,D5,T,F,G2102,A,241696,0,06,06015
+3860R,3860,Snoqualmie,Snoqualmie Reservation,86,D8,R,F,G2101,A,232182,0,53,53033
+3860T,3860,Snoqualmie,Snoqualmie Off-Reservation Trust Land,OT,D5,T,F,G2102,A,31205,0,53,53033
+3870R,3870,Soboba,Soboba Reservation,86,D8,R,F,G2101,A,25784234,399496,06,06065
+3870T,3870,Soboba,Soboba Off-Reservation Trust Land,OT,D5,T,F,G2102,A,6018262,54533,06,06065
+3885R,3885,Sokaogon Chippewa,Sokaogon Chippewa Community,82,D8,R,F,G2101,A,7636965,887257,55,55041
+3885T,3885,Sokaogon Chippewa,Sokaogon Chippewa Off-Reservation Trust Land,OT,D5,T,F,G2102,A,5940672,0,55,55041
+3925R,3925,Southern Ute,Southern Ute Reservation,86,D2,R,F,G2101,A,2747090610,12071074,08,08007;08067;08083
+3930R,3930,South Fork,South Fork Reservation,86,D8,R,F,G2101,A,39443126,10727,32,32007
+3930T,3930,South Fork,South Fork Off-Reservation Trust Land,OT,D5,T,F,G2102,A,29336928,0,32,32007
+3935R,3935,Spirit Lake,Spirit Lake Reservation,86,D2,R,F,G2101,A,1009175804,25326523,38,38005;38027;38063;38071
+3940R,3940,Spokane,Spokane Reservation,86,D8,R,F,G2101,A,615340765,31967209,53,53043;53065
+3940T,3940,Spokane,Spokane Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1323747,0,53,53063;53065
+3955R,3955,Squaxin Island,Squaxin Island Reservation,86,D8,R,F,G2101,A,6482703,0,53,53045
+3955T,3955,Squaxin Island,Squaxin Island Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2189540,79427,53,53045
+3970R,3970,Standing Rock,Standing Rock Reservation,86,D2,R,F,G2101,A,9242111058,243965994,38;46,38085;46031;46041;46137
+3980R,3980,Stewart,Stewart Community,82,D2,R,F,G2101,A,11447759,6001,32,32005;32510
+3985R,3985,Stewarts Point,Stewarts Point Rancheria,85,D8,R,F,G2101,A,171784,0,06,06097
+3985T,3985,Stewarts Point,Stewarts Point Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2057011,0,06,06097
+4000R,4000,Stillaguamish,Stillaguamish Reservation,86,D8,R,F,G2101,A,113680,0,53,53061
+4000T,4000,Stillaguamish,Stillaguamish Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3876022,0,53,53061
+4015R,4015,Stockbridge Munsee,Stockbridge Munsee Community,82,D8,R,F,G2101,A,62799256,95781,55,55115
+4015T,4015,Stockbridge Munsee,Stockbridge Munsee Off-Reservation Trust Land,OT,D5,T,F,G2102,A,7631780,27194,55,55115
+4030R,4030,Sulphur Bank,Sulphur Bank Rancheria,85,D2,R,F,G2101,A,193613,23476,06,06033
+4045R,4045,Summit Lake,Summit Lake Reservation,86,D8,R,F,G2101,A,48222494,1837377,32,32013
+4045T,4045,Summit Lake,Summit Lake Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1034333,0,32,32013
+4060R,4060,Susanville,Susanville Indian Rancheria,97,D8,R,F,G2101,A,4145410,0,06,06035
+4060T,4060,Susanville,Susanville Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1495466,0,06,06035
+4075R,4075,Swinomish,Swinomish Reservation,86,D8,R,F,G2101,A,30848083,23644767,53,53057
+4075T,4075,Swinomish,Swinomish Off-Reservation Trust Land,OT,D5,T,F,G2102,A,304,277,53,53057
+4090R,4090,Sycuan,Sycuan Reservation,86,D8,R,F,G2101,A,2580297,0,06,06073
+4090T,4090,Sycuan,Sycuan Off-Reservation Trust Land,OT,D5,T,F,G2102,A,6631138,0,06,06073
+4095R,4095,Table Bluff,Table Bluff Reservation,86,D2,R,F,G2101,A,305520,0,06,06023
+4110R,4110,Table Mountain,Table Mountain Rancheria,85,D8,R,F,G2101,A,371387,0,06,06019
+4110T,4110,Table Mountain,Table Mountain Off-Reservation Trust Land,OT,D5,T,F,G2102,A,2926017,0,06,06019
+4130R,4130,Tampa,Tampa Reservation,86,D2,R,F,G2101,A,179740,1837,12,12057
+4140R,4140,Taos,Taos Pueblo,84,D8,R,F,G2101,A,401232488,154305,35,35055
+4140T,4140,Taos,Taos Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3167759,0,35,35055
+4170R,4170,Tesuque,Tesuque Pueblo,84,D8,R,F,G2101,A,68548062,0,35,35049
+4170T,4170,Tesuque,Tesuque Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1202721,0,35,35049
+4180R,4180,Timbi-Sha Shoshone,Timbi-Sha Shoshone Reservation,86,D8,R,F,G2101,A,31762611,0,06;32,06027;32009;32023
+4180T,4180,Timbi-Sha Shoshone,Timbi-Sha Shoshone Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1353586,0,06,06027
+4200R,4200,Tohono O'odham Nation,Tohono O'odham Nation Reservation,86,D8,R,F,G2101,A,11534915791,883039,04,04013;04019;04021
+4200T,4200,Tohono O'odham Nation,Tohono O'odham Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,159818,0,04,04013
+4225R,4225,Tonawanda,Tonawanda Reservation,86,D2,R,F,G2101,A,30561278,180036,36,36029;36037;36063
+4235R,4235,Tonto Apache,Tonto Apache Reservation,86,D8,R,F,G2101,A,391178,0,04,04007
+4235T,4235,Tonto Apache,Tonto Apache Off-Reservation Trust Land,OT,D5,T,F,G2102,A,1111003,0,04,04007
+4255R,4255,Torres-Martinez,Torres-Martinez Reservation,86,D8,R,F,G2101,A,88059730,41260593,06,06025;06065
+4255T,4255,Torres-Martinez,Torres-Martinez Off-Reservation Trust Land,OT,D5,T,F,G2102,A,786117,0,06,06065
+4275R,4275,Trinidad,Trinidad Rancheria,85,D8,R,F,G2101,A,230909,0,06,06023
+4275T,4275,Trinidad,Trinidad Off-Reservation Trust Land,OT,D5,T,F,G2102,A,139583,0,06,06023
+4290R,4290,Tulalip,Tulalip Reservation,86,D8,R,F,G2101,A,89874473,45270942,53,53061
+4290T,4290,Tulalip,Tulalip Off-Reservation Trust Land,OT,D5,T,F,G2102,A,107325,0,53,53061
+4300R,4300,Tule River,Tule River Reservation,86,D8,R,F,G2101,A,218116280,927,06,06107
+4300T,4300,Tule River,Tule River Off-Reservation Trust Land,OT,D5,T,F,G2102,A,206279,0,06,06107
+4315R,4315,Tunica-Biloxi,Tunica-Biloxi Reservation,86,D8,R,F,G2101,A,1689745,0,22,22009
+4315T,4315,Tunica-Biloxi,Tunica-Biloxi Off-Reservation Trust Land,OT,D5,T,F,G2102,A,4225566,62015,22,22009
+4330R,4330,Tuolumne,Tuolumne Rancheria,85,D2,R,F,G2101,A,1539777,0,06,06109
+4345R,4345,Turtle Mountain,Turtle Mountain Reservation,86,D8,R,F,G2101,A,174815372,11228748,38,38079
+4345T,4345,Turtle Mountain,Turtle Mountain Off-Reservation Trust Land,OT,D5,T,F,G2102,A,420472815,15081514,30;38;46,30005;30011;30015;30019;30055;30071;30085;30091;30105;38013;38019;38023;38049;38055;38061;38079;38105;46105
+4360R,4360,Tuscarora Nation,Tuscarora Nation Reservation,86,D2,R,F,G2101,A,23524722,0,36,36063
+4375R,4375,Twenty-Nine Palms,Twenty-Nine Palms Reservation,86,D8,R,F,G2101,A,1645483,0,06,06065;06071
+4375T,4375,Twenty-Nine Palms,Twenty-Nine Palms Off-Reservation Trust Land,OT,D5,T,F,G2102,A,205724,0,06,06065
+4390R,4390,Uintah and Ouray,Uintah and Ouray Reservation,86,D8,R,F,G2101,A,17539778842,131609947,49,49007;49013;49019;49047;49049;49051
+4390T,4390,Uintah and Ouray,Uintah and Ouray Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3302701,32455,49,49007;49015;49019
+4405R,4405,Umatilla,Umatilla Reservation,86,D8,R,F,G2101,A,701493476,0,41,41059;41061
+4405T,4405,Umatilla,Umatilla Off-Reservation Trust Land,OT,D5,T,F,G2102,A,60673726,43067,41;53,41059;53013;53071
+4430R,4430,Upper Lake,Upper Lake Rancheria,85,D2,R,F,G2101,A,1918813,8580,06,06033
+4445R,4445,Upper Sioux,Upper Sioux Community,82,D8,R,F,G2101,A,5200533,115487,27,27023;27173
+4445T,4445,Upper Sioux,Upper Sioux Off-Reservation Trust Land,OT,D5,T,F,G2102,A,764361,0,27,27173
+4455R,4455,Upper Skagit,Upper Skagit Reservation,86,D8,R,F,G2101,A,470879,0,53,53057
+4455T,4455,Upper Skagit,Upper Skagit Off-Reservation Trust Land,OT,D5,T,F,G2102,A,3125475,0,53,53057
+4470R,4470,Ute Mountain,Ute Mountain Reservation,86,D8,R,F,G2101,A,2302794373,354826,08;35;49,08067;08083;35045;49037
+4470T,4470,Ute Mountain,Ute Mountain Off-Reservation Trust Land,OT,D5,T,F,G2102,A,30157108,0,49,49037
+4500R,4500,Viejas,Viejas Reservation,86,D8,R,F,G2101,A,6495773,0,06,06073
+4500T,4500,Viejas,Viejas Off-Reservation Trust Land,OT,D5,T,F,G2102,A,370690,0,06,06073
+4515R,4515,Walker River,Walker River Reservation,86,D2,R,F,G2101,A,1367747006,7783673,32,32001;32019;32021
+4530T,4530,Wampanoag-Aquinnah,Wampanoag-Aquinnah Trust Land,89,D3,T,F,G2102,A,1963189,21663,25,25007
+4545R,4545,Warm Springs,Warm Springs Reservation,86,D8,R,F,G2101,A,2617013715,10698881,41,41005;41031;41047;41065
+4545T,4545,Warm Springs,Warm Springs Off-Reservation Trust Land,OT,D5,T,F,G2102,A,22064556,0,41,41021;41027;41055;41065
+4560T,4560,Washoe Ranches,Washoe Ranches Trust Land,89,D3,T,F,G2102,A,375665433,2570519,06;32,06003;32005;32019;32510
+4580R,4580,Wells,Wells Colony,81,D2,R,F,G2101,A,328255,0,32,32007
+4595R,4595,White Earth,White Earth Reservation,86,D8,R,F,G2101,A,2832819364,179359907,27,27005;27029;27087
+4595T,4595,White Earth,White Earth Off-Reservation Trust Land,OT,D5,T,F,G2102,A,10149151,186669,27,27029
+4610R,4610,Wind River,Wind River Reservation,86,D8,R,F,G2101,A,8978352500,150318742,56,56013;56017
+4610T,4610,Wind River,Wind River Off-Reservation Trust Land,OT,D5,T,F,G2102,A,20438904,0,56,56017
+4625R,4625,Winnebago,Winnebago Reservation,86,D8,R,F,G2101,A,457258924,2881906,19;31,19193;31051;31173
+4625T,4625,Winnebago,Winnebago Off-Reservation Trust Land,OT,D5,T,F,G2102,A,464635,0,31,31021
+4635R,4635,Winnemucca,Winnemucca Indian Colony,98,D2,R,F,G2101,A,1456522,0,32,32013
+4665R,4665,Woodfords,Woodfords Community,82,D2,R,F,G2101,A,1578715,0,06,06003
+4680R,4680,XL Ranch,XL Ranch Rancheria,85,D2,R,F,G2101,A,39457216,41930,06,06049
+4690R,4690,Yakama Nation,Yakama Nation Reservation,86,D8,R,F,G2101,A,5575538266,4239523,53,53039;53041;53077
+4690T,4690,Yakama Nation,Yakama Nation Off-Reservation Trust Land,OT,D5,T,F,G2102,A,85301230,0,53,53039
+4700R,4700,Yankton,Yankton Reservation,86,D2,R,F,G2101,A,1722653111,50280500,46,46023
+4708R,4708,Yavapai-Apache Nation,Yavapai-Apache Nation Reservation,86,D2,R,F,G2101,A,7437922,0,04,04025
+4710R,4710,Yavapai-Prescott,Yavapai-Prescott Reservation,86,D2,R,F,G2101,A,5603325,0,04,04025
+4725R,4725,Yerington,Yerington Colony,81,D2,R,F,G2101,A,81231,0,32,32019
+4740R,4740,Yomba,Yomba Reservation,86,D2,R,F,G2101,A,18911932,11308,32,32023
+4755R,4755,Ysleta del Sur,Ysleta del Sur Pueblo,84,D8,R,F,G2101,A,299406,0,48,48141
+4755T,4755,Ysleta del Sur,Ysleta del Sur Off-Reservation Trust Land,OT,D5,T,F,G2102,A,12759583,0,48,48141
+4760R,4760,Yurok,Yurok Reservation,86,D2,R,F,G2101,A,217781926,8668698,06,06015;06023
+4770R,4770,Zia,Zia Pueblo,84,D8,R,F,G2101,A,486398590,115707,35,35043
+4770T,4770,Zia,Zia Off-Reservation Trust Land,OT,D5,T,F,G2102,A,8525601,0,35,35043
+4785R,4785,Zuni,Zuni Reservation,86,D8,R,F,G2101,A,1706156197,1981383,04;35,04001;35003;35006;35031
+4785T,4785,Zuni,Zuni Off-Reservation Trust Land,OT,D5,T,F,G2102,A,167265173,0,35,35006
+4910R,4910,Kickapoo (KS) Reservation/Sac and Fox Nation Trust Land,Kickapoo (KS) Reservation/Sac and Fox Nation Trust Land joint-use area,83,D0,R,F,G2170,A,1060454,0,20,20013
+4930R,4930,San Felipe Pueblo/Santa Ana Pueblo,San Felipe Pueblo/Santa Ana Pueblo joint-use area,83,D0,R,F,G2170,A,2785129,0,35,35043
+4940R,4940,San Felipe Pueblo/Santo Domingo Pueblo,San Felipe Pueblo/Santo Domingo Pueblo joint-use area,83,D0,R,F,G2170,A,3207218,0,35,35043
+5003T,5003,Anahola (Agricultural),Anahola (Agricultural) Hawaiian Home Land,78,F1,T,F,G2120,N,2096765,428,15,15007
+5004T,5004,Anahola (Residential),Anahola (Residential) Hawaiian Home Land,78,F1,T,F,G2120,N,14648111,48047,15,15007
+5008T,5008,East Kapolei,East Kapolei Hawaiian Home Land,78,F1,T,F,G2120,N,857893,0,15,15003
+5009T,5009,Haiku,Haiku Hawaiian Home Land,78,F1,T,F,G2120,N,584613,0,15,15003
+5011T,5011,Hanapepe,Hanapepe Hawaiian Home Land,78,F1,T,F,G2120,N,1446094,0,15,15007
+5018T,5018,Homuula-Upper Piihonua,Homuula-Upper Piihonua Hawaiian Home Land,78,F1,T,F,G2120,N,250978086,13642,15,15001
+5026T,5026,Honokaia,Honokaia Hawaiian Home Land,78,F1,T,F,G2120,N,13019793,0,15,15001
+5029T,5029,Honokowai,Honokowai Hawaiian Home Land,78,F1,T,F,G2120,N,3244061,5142,15,15009
+5030T,5030,Honolulu Makai,Honolulu Makai Hawaiian Home Land,78,F1,T,F,G2120,N,94192,0,15,15003
+5031T,5031,Honomu,Honomu Hawaiian Home Land,78,F1,T,F,G2120,N,3091503,48050,15,15001
+5033T,5033,Hoolehua-Palaau,Hoolehua-Palaau Hawaiian Home Land,78,F1,T,F,G2120,N,55963215,0,15,15009
+5041T,5041,Kahikinui,Kahikinui Hawaiian Home Land,78,F1,T,F,G2120,N,96495595,0,15,15009
+5043T,5043,Kakaina-Kumuhau,Kakaina-Kumuhau Hawaiian Home Land,78,F1,T,F,G2120,N,84090,0,15,15003
+5044T,5044,Kalaeloa,Kalaeloa Hawaiian Home Land,78,F1,T,F,G2120,N,2318081,0,15,15003
+5046T,5046,Kalamaula,Kalamaula Hawaiian Home Land,78,F1,T,F,G2120,N,20578985,0,15,15009
+5048T,5048,Kalaoa,Kalaoa Hawaiian Home Land,78,F1,T,F,G2120,N,1944850,0,15,15001
+5051T,5051,Kalaupapa,Kalaupapa Hawaiian Home Land,78,F1,T,F,G2120,N,5027873,0,15,15005;15009
+5053T,5053,Kalawahine,Kalawahine Hawaiian Home Land,78,F1,T,F,G2120,N,191538,0,15,15003
+5056T,5056,Kamaoa-Puueo,Kamaoa-Puueo Hawaiian Home Land,78,F1,T,F,G2120,N,45555656,0,15,15001
+5061T,5061,Kamiloloa-Makakupaia,Kamiloloa-Makakupaia Hawaiian Home Land,78,F1,T,F,G2120,N,13149034,158134,15,15009
+5066T,5066,Kamoku-Kapulena,Kamoku-Kapulena Hawaiian Home Land,78,F1,T,F,G2120,N,19349738,6270,15,15001
+5067T,5067,Kanehili,Kanehili Hawaiian Home Land,78,F1,T,F,G2120,N,272116,0,15,15003
+5069T,5069,Kaohe-Olaa,Kaohe-Olaa Hawaiian Home Land,78,F1,T,F,G2120,N,2753098,0,15,15001
+5071T,5071,Kapaa,Kapaa Hawaiian Home Land,78,F1,T,F,G2120,N,70237,0,15,15007
+5076T,5076,Kapaakea,Kapaakea Hawaiian Home Land,78,F1,T,F,G2120,N,7918049,0,15,15009
+5083T,5083,Kapolei,Kapolei Hawaiian Home Land,78,F1,T,F,G2120,N,370654,0,15,15003
+5086T,5086,Kaumana,Kaumana Hawaiian Home Land,78,F1,T,F,G2120,N,72612,0,15,15001
+5088T,5088,Kaupea,Kaupea Hawaiian Home Land,78,F1,T,F,G2120,N,216739,0,15,15003
+5091T,5091,Kawaihae,Kawaihae Hawaiian Home Land,78,F1,T,F,G2120,N,41407083,0,15,15001
+5098T,5098,Keahuolu,Keahuolu Hawaiian Home Land,78,F1,T,F,G2120,N,613892,0,15,15001
+5101T,5101,Kealakehe,Kealakehe Hawaiian Home Land,78,F1,T,F,G2120,N,2884021,0,15,15001
+5104T,5104,Keanae-Wailuanui,Keanae-Wailuanui Hawaiian Home Land,78,F1,T,F,G2120,N,995339,0,15,15009
+5106T,5106,Keaukaha,Keaukaha Hawaiian Home Land,78,F1,T,F,G2120,N,6833041,0,15,15001
+5111T,5111,Kekaha,Kekaha Hawaiian Home Land,78,F1,T,F,G2120,N,220342,0,15,15007
+5114T,5114,Keokea (Agricultural),Keokea (Agricultural) Hawaiian Home Land,78,F1,T,F,G2120,N,9981356,0,15,15009
+5116T,5116,Keoniki,Keoniki Hawaiian Home Land,78,F1,T,F,G2120,N,934537,0,15,15001
+5120T,5120,Kewalo,Kewalo Hawaiian Home Land,78,F1,T,F,G2120,N,51428,0,15,15003
+5133T,5133,Lalamilo,Lalamilo Hawaiian Home Land,78,F1,T,F,G2120,N,1004345,0,15,15001
+5134T,5134,Lanai City,Lanai City Hawaiian Home Land,78,F1,T,F,G2120,N,190176,0,15,15009
+5135T,5135,Leialii,Leialii Hawaiian Home Land,78,F1,T,F,G2120,N,296200,0,15,15009
+5136T,5136,Lualualei,Lualualei Hawaiian Home Land,78,F1,T,F,G2120,N,1947518,0,15,15003
+5138T,5138,Maili,Maili Hawaiian Home Land,78,F1,T,F,G2120,N,362369,0,15,15003
+5146T,5146,Makuu,Makuu Hawaiian Home Land,78,F1,T,F,G2120,N,8898121,0,15,15001
+5148T,5148,Maluohai,Maluohai Hawaiian Home Land,78,F1,T,F,G2120,N,153042,0,15,15003
+5156T,5156,Moloaa,Moloaa Hawaiian Home Land,78,F1,T,F,G2120,N,1398328,0,15,15007
+5161T,5161,Nanakuli,Nanakuli Hawaiian Home Land,78,F1,T,F,G2120,N,9342732,6041,15,15003
+5166T,5166,Nienie,Nienie Hawaiian Home Land,78,F1,T,F,G2120,N,28726576,0,15,15001
+5176T,5176,Panaewa (Agricultural),Panaewa (Agricultural) Hawaiian Home Land,78,F1,T,F,G2120,N,6864219,19097,15,15001
+5177T,5177,Panaewa (Residential),Panaewa (Residential) Hawaiian Home Land,78,F1,T,F,G2120,N,493997,0,15,15001
+5179T,5179,Papakolea,Papakolea Hawaiian Home Land,78,F1,T,F,G2120,N,499996,0,15,15003
+5181T,5181,Pauahi,Pauahi Hawaiian Home Land,78,F1,T,F,G2120,N,2237110,0,15,15001
+5186T,5186,Paukukalo,Paukukalo Hawaiian Home Land,78,F1,T,F,G2120,N,252395,0,15,15009
+5193T,5193,Piihonua,Piihonua Hawaiian Home Land,78,F1,T,F,G2120,N,21251,0,15,15001
+5196T,5196,Ponohawaii,Ponohawaii Hawaiian Home Land,78,F1,T,F,G2120,N,3727,0,15,15001
+5198T,5198,Princess Kahanu Estates,Princess Kahanu Estates Hawaiian Home Land,78,F1,T,F,G2120,N,215014,0,15,15003
+5199T,5199,Pulehunui,Pulehunui Hawaiian Home Land,78,F1,T,F,G2120,N,1587124,0,15,15009
+5201T,5201,Puukapu,Puukapu Hawaiian Home Land,78,F1,T,F,G2120,N,48826569,47815,15,15001
+5213T,5213,South Maui,South Maui Hawaiian Home Land,78,F1,T,F,G2120,N,890437,0,15,15009
+5216T,5216,Ualapue,Ualapue Hawaiian Home Land,78,F1,T,F,G2120,N,1658281,0,15,15009
+5222T,5222,Upolu,Upolu Hawaiian Home Land,78,F1,T,F,G2120,N,142285,0,15,15001
+5223T,5223,Waiahole,Waiahole Hawaiian Home Land,78,F1,T,F,G2120,N,74572,0,15,15003
+5236T,5236,Waiakea,Waiakea Hawaiian Home Land,78,F1,T,F,G2120,N,5606783,0,15,15001
+5238T,5238,Waianae,Waianae Hawaiian Home Land,78,F1,T,F,G2120,N,1497782,0,15,15003
+5239T,5239,Waianae Kai,Waianae Kai Hawaiian Home Land,78,F1,T,F,G2120,N,101577,0,15,15003
+5240T,5240,Waiawa,Waiawa Hawaiian Home Land,78,F1,T,F,G2120,N,94785,0,15,15003
+5241T,5241,Waiehu,Waiehu Hawaiian Home Land,78,F1,T,F,G2120,N,524527,0,15,15009
+5248T,5248,Waiku-Hana,Waiku-Hana Hawaiian Home Land,78,F1,T,F,G2120,N,2981190,0,15,15009
+5251T,5251,Wailau,Wailau Hawaiian Home Land,78,F1,T,F,G2120,N,258239,0,15,15001
+5256T,5256,Wailua,Wailua Hawaiian Home Land,78,F1,T,F,G2120,N,2201777,0,15,15007
+5271T,5271,Waimanalo,Waimanalo Hawaiian Home Land,78,F1,T,F,G2120,N,8174586,0,15,15003
+5276T,5276,Waimanu,Waimanu Hawaiian Home Land,78,F1,T,F,G2120,N,835382,0,15,15001
+5281T,5281,Waimea,Waimea Hawaiian Home Land,78,F1,T,F,G2120,N,61023810,13039,15,15007
+5283T,5283,Waiohinu,Waiohinu Hawaiian Home Land,78,F1,T,F,G2120,N,1116534,0,15,15001
+5286T,5286,Waiohuli (Residential),Waiohuli (Residential) Hawaiian Home Land,78,F1,T,F,G2120,N,14917552,0,15,15009
+5540R,5540,Caddo-Wichita-Delaware,Caddo-Wichita-Delaware OTSA,88,D6,R,F,G2140,S,2658855408,29498124,40,40011;40015;40017;40051
+5550R,5550,Cherokee,Cherokee OTSA,88,D6,R,F,G2140,S,17337536390,697143095,40,40001;40021;40035;40041;40091;40097;40101;40105;40115;40131;40135;40143;40145;40147
+5560R,5560,Cheyenne and Arapaho,Cheyenne and Arapaho OTSA,88,D6,R,F,G2140,S,21022187658,154026718,40,40009;40011;40015;40017;40039;40043;40045;40073;40129;40149
+5580R,5580,Chickasaw,Chickasaw OTSA,88,D6,R,F,G2140,S,18758522508,486341530,40,40013;40019;40029;40049;40051;40067;40069;40085;40087;40095;40099;40123;40137
+5590R,5590,Choctaw,Choctaw OTSA,88,D6,R,F,G2140,S,27534663392,733623634,40,40005;40013;40023;40029;40061;40063;40069;40077;40079;40089;40121;40123;40127
+5600R,5600,Citizen Potawatomi Nation-Absentee Shawnee,Citizen Potawatomi Nation-Absentee Shawnee OTSA,88,D6,R,F,G2140,S,2893719528,44384859,40,40027;40109;40125
+5620R,5620,Creek,Creek OTSA,88,D6,R,F,G2140,S,11988117611,406112856,40,40037;40063;40091;40097;40101;40107;40111;40131;40143;40145
+5640R,5640,Eastern Shawnee,Eastern Shawnee OTSA,88,D6,R,F,G2140,S,52696545,992842,40,40115
+5670R,5670,Iowa,Iowa OTSA,88,D6,R,F,G2140,S,924198490,8417006,40,40081;40083;40109;40119
+5690R,5690,Kaw,Kaw OTSA,88,D6,R,F,G2140,S,1233419998,53310198,40,40071
+5700R,5700,Kickapoo,Kickapoo OTSA,88,D6,R,F,G2140,S,825188998,7873017,40,40081;40109;40125
+5720R,5720,Kiowa-Comanche-Apache-Fort Sill Apache,Kiowa-Comanche-Apache-Fort Sill Apache OTSA,88,D6,R,F,G2140,S,16453955579,197145793,40,40015;40031;40033;40051;40055;40057;40065;40067;40075;40137;40141
+5730R,5730,Miami,Miami OTSA,88,D6,R,F,G2140,S,71767197,921910,40,40115
+5740R,5740,Modoc,Modoc OTSA,88,D6,R,F,G2140,S,16173615,0,40,40115
+5760R,5760,Otoe-Missouria,Otoe-Missouria OTSA,88,D6,R,F,G2140,S,498303828,25410660,40,40103;40117
+5770R,5770,Ottawa,Ottawa OTSA,88,D6,R,F,G2140,S,60617979,1494092,40,40115
+5780R,5780,Pawnee,Pawnee OTSA,88,D6,R,F,G2140,S,1333914345,56388096,40,40117
+5795R,5795,Peoria,Peoria OTSA,88,D6,R,F,G2140,S,101764864,364779,40,40115
+5800R,5800,Ponca,Ponca OTSA,88,D6,R,F,G2140,S,423608946,8788737,40,40071;40103
+5810R,5810,Quapaw,Quapaw OTSA,88,D6,R,F,G2140,S,223772445,1225798,40,40115
+5820R,5820,Sac and Fox,Sac and Fox OTSA,88,D6,R,F,G2140,S,1917994061,28560470,40,40081;40119;40125
+5830R,5830,Seminole,Seminole OTSA,88,D6,R,F,G2140,S,1470106440,19135994,40,40133
+5835R,5835,Seneca-Cayuga,Seneca-Cayuga OTSA,88,D6,R,F,G2140,S,187260467,28390934,40,40041;40115
+5860R,5860,Tonkawa,Tonkawa OTSA,88,D6,R,F,G2140,S,369046070,2754555,40,40071
+5890R,5890,Wyandotte,Wyandotte OTSA,88,D6,R,F,G2140,S,84411861,3943307,40,40115
+5915R,5915,Creek/Seminole,Creek/Seminole joint-use OTSA,90,D0,R,F,G2170,S,168887447,824713,40,40133
+5950R,5950,Kaw/Ponca,Kaw/Ponca joint-use OTSA,90,D0,R,F,G2170,S,281632345,4399656,40,40071
+5955R,5955,Kiowa-Comanche-Apache-Ft Sill Apache/Caddo-Wichita-Delaware,Kiowa-Comanche-Apache-Ft Sill Apache/Caddo-Wichita-Delaware joint-use OTSA,90,D0,R,F,G2170,S,499488939,1557225,40,40015;40051
+5970R,5970,Miami/Peoria,Miami/Peoria joint-use OTSA,90,D0,R,F,G2170,S,32248316,439829,40,40115
+6015R,6015,Akhiok,Akhiok ANVSA,79,E1,R,F,G2130,S,19166808,5724762,02,02150
+6020R,6020,Akiachak,Akiachak ANVSA,79,E1,R,F,G2130,S,39883583,2333665,02,02050
+6025R,6025,Akiak,Akiak ANVSA,79,E1,R,F,G2130,S,2131166,15267,02,02050
+6030R,6030,Akutan,Akutan ANVSA,79,E1,R,F,G2130,S,3743357,233235,02,02013
+6035R,6035,Alakanuk,Alakanuk ANVSA,79,E1,R,F,G2130,S,83395396,24862278,02,02158
+6040R,6040,Alatna,Alatna ANVSA,79,E1,R,F,G2130,S,47632695,621028,02,02290
+6045R,6045,Aleknagik,Aleknagik ANVSA,79,E1,R,F,G2130,S,33326829,17639041,02,02070
+6065R,6065,Algaaciq,Algaaciq ANVSA,79,E1,R,F,G2130,S,5565945,670705,02,02158
+6070R,6070,Allakaket,Allakaket ANVSA,79,E1,R,F,G2130,S,22812544,1093303,02,02290
+6075R,6075,Ambler,Ambler ANVSA,79,E1,R,F,G2130,S,26755201,3929584,02,02188
+6080R,6080,Anaktuvuk Pass,Anaktuvuk Pass ANVSA,79,E1,R,F,G2130,S,13407365,139518,02,02185
+6095R,6095,Andreafsky,Andreafsky ANVSA,79,E1,R,F,G2130,S,66905507,6000827,02,02158
+6100R,6100,Angoon,Angoon ANVSA,79,E1,R,F,G2130,S,63542449,37389728,02,02105
+6105R,6105,Aniak,Aniak ANVSA,79,E1,R,F,G2130,S,29470408,6428836,02,02050
+6125R,6125,Anvik,Anvik ANVSA,79,E1,R,F,G2130,S,24829108,6058271,02,02290
+6140R,6140,Arctic Village,Arctic Village ANVSA,79,E1,R,F,G2130,S,30236536,9762731,02,02290
+6150R,6150,Atka,Atka ANVSA,79,E1,R,F,G2130,S,20650664,168,02,02016
+6160R,6160,Atmautluak,Atmautluak ANVSA,79,E1,R,F,G2130,S,1565431,1164413,02,02050
+6165R,6165,Atqasuk,Atqasuk ANVSA,79,E1,R,F,G2130,S,101319314,9365008,02,02185
+6175R,6175,Barrow,Barrow ANVSA,79,E1,R,F,G2130,S,48627170,7001569,02,02185
+6190R,6190,Beaver,Beaver ANVSA,79,E1,R,F,G2130,S,53142251,1362789,02,02290
+6195R,6195,Belkofski,Belkofski ANVSA,79,E1,R,F,G2130,S,6911440,2007141,02,02013
+6205R,6205,Bethel,Bethel ANVSA,79,E1,R,F,G2130,S,116732874,13047474,02,02050
+6225R,6225,Bill Moore's,Bill Moore's ANVSA,79,E1,R,F,G2130,S,6556865,0,02,02158
+6235R,6235,Birch Creek,Birch Creek ANVSA,79,E1,R,F,G2130,S,20679782,765596,02,02290
+6240R,6240,Brevig Mission,Brevig Mission ANVSA,79,E1,R,F,G2130,S,6065991,439766,02,02180
+6250R,6250,Buckland,Buckland ANVSA,79,E1,R,F,G2130,S,1851361,739521,02,02188
+6255R,6255,Cantwell,Cantwell ANVSA,79,E1,R,F,G2130,S,261826376,150364,02,02068
+6257R,6257,Canyon Village,Canyon Village ANVSA,79,E1,R,F,G2130,S,79631130,8156778,02,02290
+6265R,6265,Chalkyitsik,Chalkyitsik ANVSA,79,E1,R,F,G2130,S,22413581,265788,02,02290
+6275R,6275,Chefornak,Chefornak ANVSA,79,E1,R,F,G2130,S,13560880,1951696,02,02050
+6280R,6280,Chenega,Chenega ANVSA,79,E1,R,F,G2130,S,75848718,716581,02,02063
+6285R,6285,Chevak,Chevak ANVSA,79,E1,R,F,G2130,S,2961595,0,02,02158
+6290R,6290,Chickaloon,Chickaloon ANVSA,79,E1,R,F,G2130,S,15429569042,157218459,02,02170
+6295R,6295,Chignik,Chignik ANVSA,79,E1,R,F,G2130,S,28352067,12704462,02,02164
+6300R,6300,Chignik Lagoon,Chignik Lagoon ANVSA,79,E1,R,F,G2130,S,34319191,0,02,02164
+6305R,6305,Chignik Lake,Chignik Lake ANVSA,79,E1,R,F,G2130,S,40605809,9482720,02,02164
+6310R,6310,Chilkat,Chilkat ANVSA,79,E1,R,F,G2130,S,4042108,252798,02,02100;02105
+6315R,6315,Chilkoot,Chilkoot ANVSA,79,E1,R,F,G2130,S,1223953,0,02,02100
+6325R,6325,Chistochina,Chistochina ANVSA,79,E1,R,F,G2130,S,69332417,63188,02,02066
+6330R,6330,Chitina,Chitina ANVSA,79,E1,R,F,G2130,S,308832259,476310,02,02066
+6335R,6335,Chuathbaluk,Chuathbaluk ANVSA,79,E1,R,F,G2130,S,11572727,4547257,02,02050
+6340R,6340,Chuloonawick,Chuloonawick ANVSA,79,E1,R,F,G2130,S,92519994,26596223,02,02158
+6350R,6350,Circle,Circle ANVSA,79,E1,R,F,G2130,S,274512569,1473374,02,02290
+6360R,6360,Clarks Point,Clarks Point ANVSA,79,E1,R,F,G2130,S,8609624,2033385,02,02070
+6365R,6365,Copper Center,Copper Center ANVSA,79,E1,R,F,G2130,S,39000397,26445,02,02066
+6380R,6380,Council,Council ANVSA,79,E1,R,F,G2130,S,55911410,1434327,02,02180
+6385R,6385,Craig,Craig ANVSA,79,E1,R,F,G2130,S,36262117,7300139,02,02198
+6390R,6390,Crooked Creek,Crooked Creek ANVSA,79,E1,R,F,G2130,S,260517283,17617338,02,02050
+6400R,6400,Deering,Deering ANVSA,79,E1,R,F,G2130,S,12975872,205728,02,02188
+6405R,6405,Dillingham,Dillingham ANVSA,79,E1,R,F,G2130,S,183720628,7184748,02,02070
+6415R,6415,Dot Lake,Dot Lake ANVSA,79,E1,R,F,G2130,S,11332509,0,02,02240
+6420R,6420,Douglas,Douglas ANVSA,79,E1,R,F,G2130,S,198446963,102630,02,02110
+6430R,6430,Eagle,Eagle ANVSA,79,E1,R,F,G2130,S,44053517,0,02,02240
+6440R,6440,Eek,Eek ANVSA,79,E1,R,F,G2130,S,1611768,308492,02,02050
+6445R,6445,Egegik,Egegik ANVSA,79,E1,R,F,G2130,S,76536210,98729602,02,02164
+6450R,6450,Eklutna,Eklutna ANVSA,79,E1,R,F,G2130,S,11685279,10414292,02,02020
+6455R,6455,Ekuk,Ekuk ANVSA,79,E1,R,F,G2130,S,11150319,0,02,02070
+6460R,6460,Ekwok,Ekwok ANVSA,79,E1,R,F,G2130,S,43625011,3011638,02,02070
+6470R,6470,Elim,Elim ANVSA,79,E1,R,F,G2130,S,785681189,32131296,02,02180
+6480R,6480,Emmonak,Emmonak ANVSA,79,E1,R,F,G2130,S,12861563,2443486,02,02158
+6490R,6490,Evansville,Evansville ANVSA,79,E1,R,F,G2130,S,15392530,425093,02,02290
+6495R,6495,Eyak,Eyak ANVSA,79,E1,R,F,G2130,S,35611642,1798509,02,02063
+6500R,6500,False Pass,False Pass ANVSA,79,E1,R,F,G2130,S,31840701,0,02,02013
+6515R,6515,Fort Yukon,Fort Yukon ANVSA,79,E1,R,F,G2130,S,17379232,595435,02,02290
+6520R,6520,Gakona,Gakona ANVSA,79,E1,R,F,G2130,S,94789640,29592,02,02066
+6525R,6525,Galena,Galena ANVSA,79,E1,R,F,G2130,S,44740226,17482397,02,02290
+6530R,6530,Gambell,Gambell ANVSA,79,E1,R,F,G2130,S,27209192,4351985,02,02180
+6535R,6535,Georgetown,Georgetown ANVSA,79,E1,R,F,G2130,S,113478824,2978638,02,02050
+6540R,6540,Golovin,Golovin ANVSA,79,E1,R,F,G2130,S,10696140,12980,02,02180
+6545R,6545,Goodnews Bay,Goodnews Bay ANVSA,79,E1,R,F,G2130,S,8624229,9783,02,02050
+6550R,6550,Grayling,Grayling ANVSA,79,E1,R,F,G2130,S,29082579,16515,02,02290
+6560R,6560,Gulkana,Gulkana ANVSA,79,E1,R,F,G2130,S,11235574,0,02,02066
+6570R,6570,Hamilton,Hamilton ANVSA,79,E1,R,F,G2130,S,14400066,0,02,02158
+6575R,6575,Healy Lake,Healy Lake ANVSA,79,E1,R,F,G2130,S,122684047,21452186,02,02240
+6585R,6585,Holy Cross,Holy Cross ANVSA,79,E1,R,F,G2130,S,75576922,17824534,02,02290
+6590R,6590,Hoonah,Hoonah ANVSA,79,E1,R,F,G2130,S,15197401,3276590,02,02105
+6595R,6595,Hooper Bay,Hooper Bay ANVSA,79,E1,R,F,G2130,S,19418102,78618,02,02158
+6605R,6605,Hughes,Hughes ANVSA,79,E1,R,F,G2130,S,10223745,2327927,02,02290
+6610R,6610,Huslia,Huslia ANVSA,79,E1,R,F,G2130,S,81144785,1727356,02,02290
+6615R,6615,Hydaburg,Hydaburg ANVSA,79,E1,R,F,G2130,S,755589,7081,02,02198
+6620R,6620,Igiugig,Igiugig ANVSA,79,E1,R,F,G2130,S,54582330,2714517,02,02164
+6625R,6625,Iliamna,Iliamna ANVSA,79,E1,R,F,G2130,S,96392427,1213528,02,02164
+6630R,6630,Inalik,Inalik ANVSA,79,E1,R,F,G2130,S,6297821,0,02,02180
+6650R,6650,Ivanof Bay,Ivanof Bay ANVSA,79,E1,R,F,G2130,S,10860667,0,02,02164
+6670R,6670,Kake,Kake ANVSA,79,E1,R,F,G2130,S,19872185,15107530,02,02198
+6680R,6680,Kaktovik,Kaktovik ANVSA,79,E1,R,F,G2130,S,2005413,704200,02,02185
+6685R,6685,Kalskag,Kalskag ANVSA,79,E1,R,F,G2130,S,9339393,1020303,02,02050
+6690R,6690,Kaltag,Kaltag ANVSA,79,E1,R,F,G2130,S,59837772,11529685,02,02290
+6700R,6700,Karluk,Karluk ANVSA,79,E1,R,F,G2130,S,63843525,2133122,02,02150
+6705R,6705,Kasaan,Kasaan ANVSA,79,E1,R,F,G2130,S,15703414,1904849,02,02198
+6710R,6710,Kasigluk,Kasigluk ANVSA,79,E1,R,F,G2130,S,30582375,2752178,02,02050
+6720R,6720,Kenaitze,Kenaitze ANVSA,79,E1,R,F,G2130,S,5074066706,251834306,02,02122
+6725R,6725,Ketchikan,Ketchikan ANVSA,79,E1,R,F,G2130,S,56094966,233112,02,02130
+6730R,6730,Kiana,Kiana ANVSA,79,E1,R,F,G2130,S,2787951,17061,02,02188
+6735R,6735,King Cove,King Cove ANVSA,79,E1,R,F,G2130,S,31254776,6899987,02,02013
+6740R,6740,King Salmon,King Salmon ANVSA,79,E1,R,F,G2130,S,26048092,302763,02,02060
+6750R,6750,Kipnuk,Kipnuk ANVSA,79,E1,R,F,G2130,S,52483689,798572,02,02050
+6755R,6755,Kivalina,Kivalina ANVSA,79,E1,R,F,G2130,S,4225349,6551943,02,02188
+6765R,6765,Klawock,Klawock ANVSA,79,E1,R,F,G2130,S,1609236,886869,02,02198
+6785R,6785,Knik,Knik ANVSA,79,E1,R,F,G2130,S,18094155590,980992646,02,02170
+6790R,6790,Kobuk,Kobuk ANVSA,79,E1,R,F,G2130,S,39701990,1795655,02,02188
+6795R,6795,Kodiak,Kodiak ANVSA,79,E1,R,F,G2130,S,126122332,972778,02,02150
+6800R,6800,Kokhanok,Kokhanok ANVSA,79,E1,R,F,G2130,S,54328807,292043,02,02164
+6810R,6810,Kongiganak,Kongiganak ANVSA,79,E1,R,F,G2130,S,34297704,349650,02,02050
+6815R,6815,Kotlik,Kotlik ANVSA,79,E1,R,F,G2130,S,7754326,1310529,02,02158
+6820R,6820,Kotzebue,Kotzebue ANVSA,79,E1,R,F,G2130,S,63219704,5428482,02,02188
+6825R,6825,Koyuk,Koyuk ANVSA,79,E1,R,F,G2130,S,13210994,8841,02,02180
+6830R,6830,Koyukuk,Koyukuk ANVSA,79,E1,R,F,G2130,S,14880639,269376,02,02290
+6835R,6835,Kwethluk,Kwethluk ANVSA,79,E1,R,F,G2130,S,26269876,4345802,02,02050
+6840R,6840,Kwigillingok,Kwigillingok ANVSA,79,E1,R,F,G2130,S,61624065,90404,02,02050
+6845R,6845,Kwinhagak,Kwinhagak ANVSA,79,E1,R,F,G2130,S,11008323,1129307,02,02050
+6850R,6850,Lake Minchumina,Lake Minchumina ANVSA,79,E1,R,F,G2130,S,9899312,1102256,02,02290
+6855R,6855,Larsen Bay,Larsen Bay ANVSA,79,E1,R,F,G2130,S,10444884,5890617,02,02150
+6860R,6860,Lesnoi,Lesnoi ANVSA,79,E1,R,F,G2130,S,6250339,313897,02,02150
+6865R,6865,Levelock,Levelock ANVSA,79,E1,R,F,G2130,S,43319611,0,02,02164
+6875R,6875,Lime Village,Lime Village ANVSA,79,E1,R,F,G2130,S,198192670,5673660,02,02050
+6890R,6890,Lower Kalskag,Lower Kalskag ANVSA,79,E1,R,F,G2130,S,3197530,1335510,02,02050
+6895R,6895,McGrath,McGrath ANVSA,79,E1,R,F,G2130,S,111980943,12188148,02,02290
+6900R,6900,Manley Hot Springs,Manley Hot Springs ANVSA,79,E1,R,F,G2130,S,39050792,0,02,02290
+6905R,6905,Manokotak,Manokotak ANVSA,79,E1,R,F,G2130,S,92293050,944924,02,02070
+6910R,6910,Marshall,Marshall ANVSA,79,E1,R,F,G2130,S,10517019,8501,02,02158
+6915R,6915,Mary's Igloo,Mary's Igloo ANVSA,79,E1,R,F,G2130,S,1123881,134374,02,02180
+6935R,6935,Mekoryuk,Mekoryuk ANVSA,79,E1,R,F,G2130,S,18303028,33631,02,02050
+6945R,6945,Mentasta Lake,Mentasta Lake ANVSA,79,E1,R,F,G2130,S,97448596,4825148,02,02066
+6965R,6965,Minto,Minto ANVSA,79,E1,R,F,G2130,S,7499535,0,02,02290
+6975R,6975,Mountain Village,Mountain Village ANVSA,79,E1,R,F,G2130,S,280033260,82346109,02,02158
+6990R,6990,Naknek,Naknek ANVSA,79,E1,R,F,G2130,S,210840183,2073496,02,02060
+6995R,6995,Nanwalek,Nanwalek ANVSA,79,E1,R,F,G2130,S,21716632,35731,02,02122
+7005R,7005,Napaimute,Napaimute ANVSA,79,E1,R,F,G2130,S,65563590,7999382,02,02050
+7010R,7010,Napakiak,Napakiak ANVSA,79,E1,R,F,G2130,S,4886625,246244,02,02050
+7020R,7020,Napaskiak,Napaskiak ANVSA,79,E1,R,F,G2130,S,7377678,633906,02,02050
+7025R,7025,Nelson Lagoon,Nelson Lagoon ANVSA,79,E1,R,F,G2130,S,11780945,230843,02,02013
+7030R,7030,Nenana,Nenana ANVSA,79,E1,R,F,G2130,S,15160606,89035,02,02290
+7035R,7035,Newhalen,Newhalen ANVSA,79,E1,R,F,G2130,S,15624671,6386436,02,02164
+7040R,7040,New Koliganek,New Koliganek ANVSA,79,E1,R,F,G2130,S,43323371,877663,02,02070
+7050R,7050,New Stuyahok,New Stuyahok ANVSA,79,E1,R,F,G2130,S,87327089,5797082,02,02070
+7055R,7055,Newtok,Newtok ANVSA,79,E1,R,F,G2130,S,21570624,288060,02,02050
+7065R,7065,Nightmute,Nightmute ANVSA,79,E1,R,F,G2130,S,13548581,36178,02,02050
+7070R,7070,Nikolai,Nikolai ANVSA,79,E1,R,F,G2130,S,11293051,881028,02,02290
+7075R,7075,Nikolski,Nikolski ANVSA,79,E1,R,F,G2130,S,50874844,1898730,02,02016
+7080R,7080,Ninilchik,Ninilchik ANVSA,79,E1,R,F,G2130,S,2327594230,1373298050,02,02122
+7085R,7085,Noatak,Noatak ANVSA,79,E1,R,F,G2130,S,41448865,2201120,02,02188
+7095R,7095,Nome,Nome ANVSA,79,E1,R,F,G2130,S,322376925,23680126,02,02180
+7100R,7100,Nondalton,Nondalton ANVSA,79,E1,R,F,G2130,S,17451147,704233,02,02164
+7110R,7110,Noorvik,Noorvik ANVSA,79,E1,R,F,G2130,S,2388206,890077,02,02188
+7115R,7115,Northway,Northway ANVSA,79,E1,R,F,G2130,S,91666376,6668936,02,02240
+7125R,7125,Nuiqsut,Nuiqsut ANVSA,79,E1,R,F,G2130,S,22362778,657625,02,02185
+7130R,7130,Nulato,Nulato ANVSA,79,E1,R,F,G2130,S,106425938,6977298,02,02290
+7133R,7133,Nunam Iqua,Nunam Iqua ANVSA,79,E1,R,F,G2130,S,29964345,16909273,02,02158
+7135R,7135,Nunapitchuk,Nunapitchuk ANVSA,79,E1,R,F,G2130,S,18105035,2501657,02,02050
+7145R,7145,Ohogamiut,Ohogamiut ANVSA,79,E1,R,F,G2130,S,23208194,66140,02,02158
+7150R,7150,Old Harbor,Old Harbor ANVSA,79,E1,R,F,G2130,S,41927386,16571186,02,02150
+7175R,7175,Oscarville,Oscarville ANVSA,79,E1,R,F,G2130,S,6503874,434562,02,02050
+7180R,7180,Ouzinkie,Ouzinkie ANVSA,79,E1,R,F,G2130,S,33576583,3971670,02,02150
+7185R,7185,Paimiut,Paimiut ANVSA,79,E1,R,F,G2130,S,65575906,0,02,02158
+7205R,7205,Pedro Bay,Pedro Bay ANVSA,79,E1,R,F,G2130,S,50452871,9868797,02,02164
+7215R,7215,Perryville,Perryville ANVSA,79,E1,R,F,G2130,S,28926603,17584,02,02164
+7220R,7220,Petersburg,Petersburg ANVSA,79,E1,R,F,G2130,S,6416224,256368,02,02195
+7225R,7225,Pilot Point,Pilot Point ANVSA,79,E1,R,F,G2130,S,21997043,21429,02,02164
+7230R,7230,Pilot Station,Pilot Station ANVSA,79,E1,R,F,G2130,S,4159455,711574,02,02158
+7235R,7235,Pitkas Point,Pitkas Point ANVSA,79,E1,R,F,G2130,S,4160639,0,02,02158
+7245R,7245,Platinum,Platinum ANVSA,79,E1,R,F,G2130,S,67245633,4100504,02,02050
+7250R,7250,Point Hope,Point Hope ANVSA,79,E1,R,F,G2130,S,12999942,187666,02,02185
+7255R,7255,Point Lay,Point Lay ANVSA,79,E1,R,F,G2130,S,73835222,9794265,02,02185
+7260R,7260,Portage Creek,Portage Creek ANVSA,79,E1,R,F,G2130,S,34111654,0,02,02070
+7263R,7263,Port Alsworth,Port Alsworth ANVSA,79,E1,R,F,G2130,S,58425289,385782,02,02164
+7265R,7265,Port Graham,Port Graham ANVSA,79,E1,R,F,G2130,S,16559024,0,02,02122
+7270R,7270,Port Heiden,Port Heiden ANVSA,79,E1,R,F,G2130,S,121120570,1568005,02,02164
+7275R,7275,Port Lions,Port Lions ANVSA,79,E1,R,F,G2130,S,216084874,57061332,02,02150
+7300R,7300,Rampart,Rampart ANVSA,79,E1,R,F,G2130,S,16777290,1473673,02,02290
+7305R,7305,Red Devil,Red Devil ANVSA,79,E1,R,F,G2130,S,65162436,6552639,02,02050
+7310R,7310,Ruby,Ruby ANVSA,79,E1,R,F,G2130,S,18194545,0,02,02290
+7315R,7315,Russian Mission,Russian Mission ANVSA,79,E1,R,F,G2130,S,13918340,910701,02,02158
+7340R,7340,St. George,St. George ANVSA,79,E1,R,F,G2130,S,90081542,382086105,02,02016
+7375R,7375,St. Michael,St. Michael ANVSA,79,E1,R,F,G2130,S,56272426,16416637,02,02180
+7390R,7390,St. Paul,St. Paul ANVSA,79,E1,R,F,G2130,S,109514405,5385553,02,02016
+7400R,7400,Salamatof,Salamatof ANVSA,79,E1,R,F,G2130,S,20800329,439434,02,02122
+7410R,7410,Sand Point,Sand Point ANVSA,79,E1,R,F,G2130,S,25410214,467414,02,02013
+7415R,7415,Savoonga,Savoonga ANVSA,79,E1,R,F,G2130,S,15208027,0,02,02180
+7420R,7420,Saxman,Saxman ANVSA,79,E1,R,F,G2130,S,2503987,0,02,02130
+7425R,7425,Scammon Bay,Scammon Bay ANVSA,79,E1,R,F,G2130,S,1212565,0,02,02158
+7430R,7430,Selawik,Selawik ANVSA,79,E1,R,F,G2130,S,5126584,2497908,02,02188
+7435R,7435,Seldovia,Seldovia ANVSA,79,E1,R,F,G2130,S,34320809,3271852,02,02122
+7440R,7440,Shageluk,Shageluk ANVSA,79,E1,R,F,G2130,S,26696567,3087320,02,02290
+7450R,7450,Shaktoolik,Shaktoolik ANVSA,79,E1,R,F,G2130,S,2765146,23272,02,02180
+7465R,7465,Shishmaref,Shishmaref ANVSA,79,E1,R,F,G2130,S,42910017,15212,02,02180
+7470R,7470,Shungnak,Shungnak ANVSA,79,E1,R,F,G2130,S,20814120,2449640,02,02188
+7475R,7475,Sitka,Sitka ANVSA,79,E1,R,F,G2130,S,6845543,900477,02,02220
+7485R,7485,Skagway,Skagway ANVSA,79,E1,R,F,G2130,S,210141923,10902293,02,02230
+7495R,7495,Sleetmute,Sleetmute ANVSA,79,E1,R,F,G2130,S,58203269,9666518,02,02050
+7500R,7500,Solomon,Solomon ANVSA,79,E1,R,F,G2130,S,9700374,12751019,02,02180
+7505R,7505,South Naknek,South Naknek ANVSA,79,E1,R,F,G2130,S,228507177,6106715,02,02060
+7510R,7510,Stebbins,Stebbins ANVSA,79,E1,R,F,G2130,S,84421616,3972760,02,02180
+7520R,7520,Stevens Village,Stevens Village ANVSA,79,E1,R,F,G2130,S,30526548,1986163,02,02290
+7525R,7525,Stony River,Stony River ANVSA,79,E1,R,F,G2130,S,8207213,3654773,02,02050
+7530R,7530,Takotna,Takotna ANVSA,79,E1,R,F,G2130,S,60527109,68608,02,02290
+7535R,7535,Tanacross,Tanacross ANVSA,79,E1,R,F,G2130,S,204889957,4205175,02,02240
+7540R,7540,Tanana,Tanana ANVSA,79,E1,R,F,G2130,S,27636124,11208201,02,02290
+7555R,7555,Tatitlek,Tatitlek ANVSA,79,E1,R,F,G2130,S,18782038,7281147,02,02063
+7560R,7560,Tazlina,Tazlina ANVSA,79,E1,R,F,G2130,S,31875183,2206775,02,02066
+7565R,7565,Telida,Telida ANVSA,79,E1,R,F,G2130,S,4342391,0,02,02290
+7570R,7570,Teller,Teller ANVSA,79,E1,R,F,G2130,S,3870059,482766,02,02180
+7580R,7580,Tetlin,Tetlin ANVSA,79,E1,R,F,G2130,S,473948505,28316360,02,02240
+7605R,7605,Togiak,Togiak ANVSA,79,E1,R,F,G2130,S,122590080,215448095,02,02070
+7625R,7625,Toksook Bay,Toksook Bay ANVSA,79,E1,R,F,G2130,S,27232451,81777,02,02050
+7630R,7630,Tuluksak,Tuluksak ANVSA,79,E1,R,F,G2130,S,7594911,230180,02,02050
+7640R,7640,Tuntutuliak,Tuntutuliak ANVSA,79,E1,R,F,G2130,S,4847049,853819,02,02050
+7645R,7645,Tununak,Tununak ANVSA,79,E1,R,F,G2130,S,157437897,411998,02,02050
+7650R,7650,Twin Hills,Twin Hills ANVSA,79,E1,R,F,G2130,S,59318572,348444,02,02070
+7655R,7655,Tyonek,Tyonek ANVSA,79,E1,R,F,G2130,S,32960617,1695007,02,02122
+7665R,7665,Ugashik,Ugashik ANVSA,79,E1,R,F,G2130,S,247620490,2205172,02,02164
+7690R,7690,Unalakleet,Unalakleet ANVSA,79,E1,R,F,G2130,S,30613623,5528631,02,02180
+7695R,7695,Unalaska,Unalaska ANVSA,79,E1,R,F,G2130,S,194747811,7251517,02,02016
+7705R,7705,Uyak,Uyak ANVSA,79,E1,R,F,G2130,S,5519112,0,02,02150
+7725R,7725,Venetie,Venetie ANVSA,79,E1,R,F,G2130,S,30296028,0,02,02290
+7735R,7735,Wainwright,Wainwright ANVSA,79,E1,R,F,G2130,S,26712261,0,02,02185
+7740R,7740,Wales,Wales ANVSA,79,E1,R,F,G2130,S,5799682,166489,02,02180
+7745R,7745,White Mountain,White Mountain ANVSA,79,E1,R,F,G2130,S,4671947,628412,02,02180
+7755R,7755,Wrangell,Wrangell ANVSA,79,E1,R,F,G2130,S,2414801,0,02,02275
+7765R,7765,Yakutat,Yakutat ANVSA,79,E1,R,F,G2130,S,259941576,8716334,02,02282
+8100R,8100,Cayuga Nation,Cayuga Nation TDSA,80,D6,R,F,G2160,S,98021166,92234599,36,36011;36099
+8150R,8150,Chickahominy,Chickahominy TDSA,80,D6,R,F,G2160,S,134292952,64589,51,51036
+8160R,8160,Eastern Chickahominy,Eastern Chickahominy TDSA,80,D6,R,F,G2160,S,5781538,0,51,51127
+8300R,8300,Ione Band of Miwok,Ione Band of Miwok TDSA,80,D6,R,F,G2160,S,5445270,0,06,06005
+8450R,8450,Mechoopda,Mechoopda TDSA,80,D6,R,F,G2160,S,3394673,0,06,06007
+8700R,8700,Rappahannock,Rappahannock TDSA,80,D6,R,F,G2160,S,176065013,687303,51,51057;51097
+8750R,8750,Samish,Samish TDSA,80,D6,R,F,G2160,S,581850197,1402706499,53,53055;53057
+9100R,9100,Golden Hill Paugussett,Golden Hill Paugussett (state) Reservation,86,D4,R,S,G2101,A,399343,0,09,09120;09180
+9150R,9150,Hassanamisco,Hassanamisco (state) Reservation,86,D4,R,S,G2101,A,20909,0,25,25027
+9230R,9230,Mattaponi,Mattaponi (state) Reservation,86,D4,R,S,G2101,A,279160,31696,51,51101
+9240R,9240,MOWA Choctaw,MOWA Choctaw (state) Reservation,86,D4,R,S,G2101,A,2694225,0,01,01097;01129
+9260R,9260,Pamunkey,Pamunkey (state) Reservation,86,D4,R,S,G2101,A,4421855,1958558,51,51101
+9280R,9280,Paucatuck Eastern Pequot,Paucatuck Eastern Pequot (state) Reservation,86,D4,R,S,G2101,A,924356,59004,09,09180
+9300R,9300,Poospatuck,Poospatuck (state) Reservation,86,D4,R,S,G2101,A,292590,148143,36,36103
+9350R,9350,Schaghticoke,Schaghticoke (state) Reservation,86,D4,R,S,G2101,A,1122120,0,09,09160
+9370R,9370,Shinnecock,Shinnecock (state) Reservation,86,D4,R,S,G2101,A,3494293,0,36,36103
+9400R,9400,Tama,Tama (state) Reservation,86,D4,R,S,G2101,A,365137,2118,13,13131
+9510R,9510,Adai Caddo,Adai Caddo SDTSA,92,D9,R,S,G2150,S,378845135,4686067,22,22069
+9515R,9515,Apache Choctaw,Apache Choctaw SDTSA,92,D9,R,S,G2150,S,221767806,2632531,22,22085
+9520R,9520,Bayou Lafourche,Bayou Lafourche SDTSA,92,D9,R,S,G2150,S,97286070,2670713,22,22057
+9525R,9525,Beaver Creek,Beaver Creek SDTSA,92,D9,R,S,G2150,S,64936540,265588,45,45003;45075
+9550R,9550,Cher-O-Creek,Cher-O-Creek SDTSA,92,D9,R,S,G2150,S,798402808,2767459,01,01069
+9560R,9560,Cherokee Tribe of Northeast Alabama,Cherokee Tribe of Northeast Alabama SDTSA,92,D9,R,S,G2150,S,88056047,376168,01,01095
+9630R,9630,Clifton Choctaw,Clifton Choctaw SDTSA,92,D9,R,S,G2150,S,126394825,268159,22,22079;22115
+9635R,9635,Coharie,Coharie SDTSA,92,D9,R,S,G2150,S,624038296,8189679,37,37051;37085;37163
+9680R,9680,Echota Cherokee,Echota Cherokee SDTSA,92,D9,R,S,G2150,S,1318545528,7791079,01,01043;01079;01089
+9690R,9690,Edisto Natchez Kusso,Edisto Natchez Kusso SDTSA,92,D9,R,S,G2150,S,181794650,389964,45,45035
+9720R,9720,Four Winds Cherokee,Four Winds Cherokee SDTSA,92,D9,R,S,G2150,S,567375614,5149167,22,22011;22115
+9730R,9730,Georgia Tribe of Eastern Cherokee,Georgia Tribe of Eastern Cherokee SDTSA,92,D9,R,S,G2150,S,87241473,340200,13,13187
+9735R,9735,Grand Caillou/Dulac,Grand Caillou/Dulac SDTSA,92,D9,R,S,G2150,S,175865631,46138495,22,22109
+9745R,9745,Haliwa-Saponi,Haliwa-Saponi SDTSA,92,D9,R,S,G2150,S,458415678,1216803,37,37069;37083;37127;37185
+9775R,9775,Isle de Jean Charles,Isle de Jean Charles SDTSA,92,D9,R,S,G2150,S,6709087,157484,22,22109
+9800R,9800,Lenape Indian Tribe of Delaware,Lenape Indian Tribe of Delaware SDTSA,92,D9,R,S,G2150,S,5783186,0,10,10001
+9815R,9815,Lumbee,Lumbee SDTSA,92,D9,R,S,G2150,S,5286655552,23709649,37,37051;37093;37155;37165
+9820R,9820,MaChis Lower Creek,MaChis Lower Creek SDTSA,92,D9,R,S,G2150,S,1680757341,6816076,01,01031;01039;01061;01069;01109
+9825R,9825,Meherrin,Meherrin SDTSA,92,D9,R,S,G2150,S,84382357,1255588,37,37091
+9830R,9830,Nanticoke Indian Tribe,Nanticoke Indian Tribe SDTSA,92,D9,R,S,G2150,S,70421093,188809,10,10005
+9835R,9835,Nanticoke Lenni Lenape,Nanticoke Lenni Lenape SDTSA,92,D9,R,S,G2150,S,49499484,643610,34,34011
+9836R,9836,Natchitoches,Natchitoches SDTSA,92,D9,R,S,G2150,S,335096777,18032138,22,22069
+9838R,9838,Occaneechi-Saponi,Occaneechi-Saponi SDTSA,92,D9,R,S,G2150,S,241844940,4305503,37,37001;37135
+9844R,9844,Pee Dee,Pee Dee SDTSA,92,D9,R,S,G2150,S,132007506,1831757,45,45069
+9849R,9849,Pointe-au-Chien,Pointe-au-Chien SDTSA,92,D9,R,S,G2150,S,135445299,12829686,22,22057;22109
+9850R,9850,Ramapough,Ramapough SDTSA,92,D9,R,S,G2150,S,18619479,265409,34,34003;34031
+9865R,9865,Sappony,Sappony SDTSA,92,D9,R,S,G2150,S,111353416,10556446,37,37145
+9875R,9875,Santee,Santee SDTSA,92,D9,R,S,G2150,S,19887949,0,45,45075
+9880R,9880,Southeastern Mvskoke Nation,Southeastern Mvskoke Nation SDTSA,92,D9,R,S,G2150,S,291982136,810262,01,01041;01109
+9950R,9950,United Cherokee Ani-Yun-Wiya Nation,United Cherokee Ani-Yun-Wiya Nation SDTSA,92,D9,R,S,G2150,S,21916928,2152751,01,01095
+9960R,9960,United Houma Nation,United Houma Nation SDTSA,92,D9,R,S,G2150,S,1482521705,54217560,22,22007;22057;22101;22109
+9963R,9963,Upper South Carolina Pee Dee,Upper South Carolina Pee Dee SDTSA,92,D9,R,S,G2150,S,102270829,90857,45,45033
+9967R,9967,Waccamaw,Waccamaw SDTSA,92,D9,R,S,G2150,S,3315950,10884,45,45051
+9970R,9970,Waccamaw Siouan,Waccamaw Siouan SDTSA,92,D9,R,S,G2150,S,84407639,4394,37,37017;37047
+9975R,9975,Wassamasaw,Wassamasaw SDTSA,92,D9,R,S,G2150,S,31985566,6945,45,45015

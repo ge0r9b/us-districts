@@ -136,3 +136,11 @@ parts file (about 150 KB in Pennsylvania). A v3 town format could
   in one county (about half of the Texas parts bytes);
 - store shared arcs once (TopoJSON-style), since the coverage simplification already makes neighbouring rows share identical
   vertices.
+
+## Q-G10: tribal areas (AIANNH, Oct 18, 2026), open points
+
+- Overlaps: an AIANNH feature can overlap others (OTSA/SDTSA vs reservations; `R` and `T` parts of one tribe are separate
+  GEOIDs). v3 should draw it as an overlay layer, not a tiling, and join an institution to AIANNHCE (the tribe) rather than GEOID
+  when both parts should count.
+- No institution data is attached yet; tribal governments are an Institutions question (which tribes elect councils/chapters).
+- ANRCs are corporations, not governments; included for completeness and for Alaska address lookups.
