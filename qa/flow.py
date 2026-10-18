@@ -20,7 +20,7 @@ async def main():
     for tag,W,H,mob in VPS:
       if which and tag not in which: continue
       c,pg,log=await ctx(b,W,H,mob,eng); R={'lat':{},'layout':{},'notes':[]}
-      async def shot(n): await pg.screenshot(path=f"../shots/{eng}-{tag}-{n}.png")
+      async def shot(n): await pg.screenshot(path=f"../shots/b1567-{eng[:2]}-{tag.replace("iphone","").replace("ipad","")}-{n.split("-",1)[1]}.png")
       async def tap(sel,name,wait=1500):
         xy=await center(pg,sel)
         if not xy: R['notes'].append(f'{name}: {sel} not visible'); return False

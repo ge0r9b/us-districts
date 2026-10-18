@@ -8,6 +8,15 @@ Tap latency = touch/pointer event timestamp -> first rAF + task after it (headle
 
 Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = spec violation that breaks a flow. Medium = visible spec violation. Low = polish.
 
+## Re-test status (builds 1567 / 1568, Oct 18 ~6:00-6:40 AM EDT)
+- QA-001, QA-002, QA-003: **still reproduce on 1568** (same numbers, `qa/cmp.py`).
+- QA-004: **not reproduced on 1568** in Chromium 390x844. Enter on the White House address now goes to DC at zoom 15, Enter on "350 5th Ave, New York, NY 10118" goes to New York County, and tapping a suggestion also works. The WebKit run at 375/320/1024x576, made while the build switched from 1567 to 1568, still failed (b1567-we-375-addr-result.png). Recheck in WebKit.
+- QA-005: reproduces in WebKit at all 5 sizes (1566 and the 1567/1568 switchover run). Not rechecked in Chromium on 1568.
+- QA-006 (Rockledge in Philadelphia County): **still on 1567**, all sizes (b1567-ch-390-drill-county.png).
+- QA-011 (names cut off): **still on 1567**. The name column is 84 px wide; "Philadelphia city" needs 107 px, "Rockledge borough" 129, "Philadelphia Precinct 5844" 173 (b1567-ch-390-drill-county.png, b1567-ch-390-drill-town.png).
+- QA-007: in WebKit at 375/320/1024x576, All States is 273-388 ms and the US House pick 219-285 ms, so these still reproduce. Deselecting the type is 107 ms at 320 and opening the institution menu 180 ms at 375. Drill-ins are now fast (6-45 ms), except the cases in QA-020.
+- QA-009 reproduces in WebKit at 320x568.
+
 ## Critical
 
 ### QA-001 Oregon 2024 state totals are short of the official count (~1%)
@@ -49,7 +58,13 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual (Chromium and WebKit): the list is replaced by a single-entity chart. The institution field says **"Pennsylvania"** but the numbers are the county's (Allegheny: Harris 429,916 / Trump 283,595; Philadelphia line: -35K / +12K). No district rows (`.lvrow.la` count 0). 
 - Screenshots: shots/chromium-iphone375-16-type-ushouse.png, shots/chromium-iphone390-16-type-ushouse.png
 
-## High
+### QA-017 The same state shows different totals depending on the district type
+- Severity: Critical (wrong numbers) | Build 1568 | 390x844 (Chromium)
+- Steps: institution menu > State senate districts > reopen menu > All States. Do the same with School districts. Compare with plain All States.
+- Expected: one state total everywhere (WY 2024: Trump 72.3%, Harris 26.1% in the plain list, already computed without write-ins; FEC: 71.6% / 25.8%).
+- Actual: State senate list WY 71.5% / 26.4%, ND 67.0% / 30.5%. School list WY 71.8%, ND 67.0% / 30.4%. Plain list WY 72.3% / 26.1%, ND 67.5% / 30.8%. The state rows seem to be sums of district estimates, not the state result.
+- Evidence: `qa/last.py` output (senate/school level 1). Screenshot of the end state: shots/b1568-ch-390-senate-list.png
+
 
 ### QA-006 Rockledge borough (Montgomery County) listed under Philadelphia County
 - Severity: High (wrong geography in results list) | Build 1566 | 390x844 (data issue, all sizes)
@@ -74,7 +89,28 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: CA row bar shows "−1.83M" (Harris change) inside the bar.
 - Screenshots: shots/chromium-iphone390-08-allstates-delta.png, shots/chromium-iphone320-08-allstates-delta.png
 
-## Medium
+### QA-018 Tapping a row's bar or line does not drill in; only the name works
+- Severity: High (broken tap target; rule "tapping a row drills down") | Build 1567 | 390x844 and 1024x768, Chromium and WebKit, bar and line lists
+- Steps: All States > tap the OH row on its bar or line (55% across the row).
+- Expected: drills into Ohio counties.
+- Actual: nothing happens (still `states`). Tapping the name "OH" drills in. All 8 combinations behave the same.
+- Screenshots: shots/b1567-ch-1024-line-rowtap.png, shots/b1567-we-390-bar-rowtap.png, shots/b1567-ch-1024x768-drill-PA.png
+
+### QA-019 State senate and school district lists skip the county level
+- Severity: High (spec 7.3 / HANDOFF: school, state house and state senate list as states > counties > districts) | Build 1568 | 390x844
+- Steps: institution menu > State senate districts > menu > All States > PA.
+- Expected: PA counties, then districts.
+- Actual: goes straight to "districts" (50 PA senate districts; 500 PA school districts). One more tap opens precincts.
+- Screenshots: shots/b1568-ch-390-senate-list.png, shots/b1568-ch-390-school-list.png
+
+### QA-020 Slow taps that remain after the 1567 drill rewrite
+- Severity: High (REPO-RULES 7) | Builds 1567/1568
+- Town > precincts drill-in (Philadelphia city): first frame 145 ms (390), 177 ms (375), 205 ms (320) in Chromium on 1567.
+- Back from townships to counties: first frame 253-313 ms (phones, 1567).
+- State senate district > precincts: 222 ms. School district > precincts: 103 ms (390, 1568).
+- Measured from the touch event to the first animation frame. The new rows themselves appear 440-1070 ms after the tap (old rows stay up until then; no skeleton was seen).
+- Data: `qa/drill-chromium.json`, `qa/last.py` output
+
 
 ### QA-009 320x568: delta label "−1.83M" sits under the floating chart button
 - Severity: Medium (values under the button column) | Build 1566 | 320x568
@@ -103,7 +139,34 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: values hide when the scaled bar is too short; at 320x568 PA, OH, NC, MI rows show no numbers (only NY shows one of two); at 375x667 MI shows none.
 - Screenshots: shots/chromium-iphone320-05-allstates-num.png, shots/chromium-iphone375-05-allstates-num.png
 
-## Low
+### QA-021 Thumbnails disappear for a few frames on some drill-ins and backs
+- Severity: Medium (no jumps / one-frame rule from 1567) | Build 1567 | 390, 375, 320 (Chromium)
+- Steps: delta line list > PA > Philadelphia > Philadelphia city, then back.
+- Actual: `#laCands` goes 4,221 > hidden > 4,221 on the town drill-in and on the back to counties. On the back to states it ends at 4,191 with the chevron hidden (expected: chevron hidden at US level).
+- Data: `qa/drill-chromium.json` (pos_seq)
+
+### QA-022 iPad line list: the sort chip sits on the first row's lines; change labels collide
+- Severity: Medium | Build 1567 | 1024x768 (Chromium)
+- Actual: the sort chip (862,185) covers the MO row's red and blue lines. On the WY row, "+2.4" and "−0.5" overlap.
+- Screenshot: shots/b1567-ch-1024x768-drill-PA.png
+
+### QA-023 Geo search "Pittsburgh" + Enter goes to East Pittsburgh borough
+- Severity: Medium | Build 1568 | 390x844
+- Expected: Pittsburgh city (the closest name, far more votes).
+- Actual: the top suggestion and the Enter result is "East Pittsburgh borough, Allegheny County".
+- Screenshot: shots/b1568-ch-390-geo-Pittsburgh.png
+
+### QA-024 Universal search "Allegheny" + Enter: geo field and map do not follow
+- Severity: Medium | Build 1568 | 390x844
+- Actual: the institution becomes Allegheny County, but the geo field says "Clinton County, PA" and the map stays at zoom 6.
+- Screenshot: shots/b1568-ch-390-search-Allegheny.png (suggestions; end state in `qa/gaps.log`)
+
+### QA-025 Double-tap on the map zooms out and clears the state
+- Severity: Medium (spec 6: double-tap zooms to the area and puts its name in the geo field) | Build 1568 | 390x844 (Chromium touch emulation: 2 taps 120 ms apart)
+- Steps: Erie County, PA view (zoom 6) > double-tap the map.
+- Actual: zoom 6 > 4, state cleared, geo field "Albemarle County, VA". Real-device check needed.
+- Screenshot: shots/b1568-ch-390-dbltap.png
+
 
 ### QA-013 % bars run under the floating buttons
 - Severity: Low | Build 1566 | 390x844
@@ -133,3 +196,32 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Chart menu: range offers line + bar, single year offers pie + bar; choices apply.
 - 2024 D and R totals exact for 46 states + DC (all but OR, VA, MA, NH), incl. PA, GA, MI, WI, AZ, NV, NC, AK.
 - Light mode only and Liquid Glass round buttons (visual check).
+
+### QA-026 White House address is named "DC 20220"
+- Severity: Low | Build 1568 | 390x844
+- Actual: after Enter or a suggestion tap, the geo field shows "DC 20220". The White House ZIP is 20500.
+- Screenshot: shots/b1568-ch-390-addr-wh-enter.png
+
+### QA-027 US House list has 436 rows
+- Severity: Low | Build 1568 | all sizes
+- Actual: the list starts "DC-00 | 92.1%". HANDOFF says 435. Decide whether the DC delegate belongs in it.
+
+### QA-028 ZIP search shows "16501", not "Near ZIP 16501"
+- Severity: Low (spec 5.2) | Build 1568 | 390x844
+- Screenshot: shots/b1568-ch-390-geo-16501.png
+
+## Passed on 1568 (time slider, list view, Chromium, no CPU throttle)
+| Size | US House list ms (median/max) | US House map ms | County list ms | County map ms |
+|---|---|---|---|---|
+| 390x844 | 19.5 / 22 | 33 / 52 | 22 / 26 | 58.5 / 155 |
+| 375x667 | 18 / 29 | 30 / 59 | 23.5 / 37 | 63 / 123 |
+| 320x568 | 17 / 20 | 29.5 / 77 | 23 / 25 | 62.5 / 84 |
+| 1024x576 | 19 / 22 | 36.5 / 50 | 23.5 / 34 | 62.5 / 150 |
+| 1024x768 | 19.5 / 36 | 31.5 / 50 | 23 / 61 | 68 / 104 |
+- 8 changes per cell (2020 <> 2024). Time = input event to the first frame where the list text or the map fill colours changed. List first, map later, every time. Everything is under 150 ms except the county map at 390 (max 155 ms) and 1024x576 (150 ms).
+- Fast repeated drags (16 changes, 25 ms apart, ending at 2020): list, thumbnails ("Joe Biden 2020") and map popup (KS-01 Biden 34.1% / Trump 63.7%; PA total Biden 50.0% / Trump 48.8%) all show 2020.
+- Layout shift during slider changes: only the slider knob itself (`kn a`, 0.005-0.026 per run, programmatic input). No list or thumbnail shifts.
+- Map popup = data: Cumberland County, PA popup Harris 66,255 / Trump 80,267 = ELECTION2024 table.
+- Searches: "16501" gives a ZIP; "Erie County" lists NY, OH and PA; "PA" and "Ohio" go to the state; "Cook County, IL" works; "PA-07" opens the US House district.
+- No console or page errors anywhere; only aborted Esri tiles during map moves.
+- Not done: the slider timings with 4x CPU throttle (the orchestrator's numbers likely use it), and the state house list (senate and school only).
