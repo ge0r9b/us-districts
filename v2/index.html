@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181582";</script>
+<script>window.BUILD="202610181583";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -3282,7 +3282,11 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   function back(){ if(B().contains("ctxedit")){ const i=inp(); if(i) i.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true,cancelable:true})); return true; }
     if(!vis()) return false; const T=stack.pop(); nav=1; navT=Date.now(); cur=T; window.__slideDir="r"; restore(T); return true; }
   window.__filterBack=back; window.__backDepth=()=>stack.length; window.__backVisible=vis;
-  btn.addEventListener("pointerdown",e=>e.preventDefault()); btn.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); back(); });
+  /* build 1583 (QA-071): WebKit touch sometimes never sends the click (pointerdown/up and touchstart/end do fire), so the chevron acts on pointerup itself; the click that may follow is ignored (no double back) */
+  let pd=null, upAt=0; btn.addEventListener("pointerdown",e=>{ e.preventDefault(); pd={id:e.pointerId,x:e.clientX,y:e.clientY,t:Date.now()}; });
+  btn.addEventListener("pointercancel",()=>{ pd=null; });
+  btn.addEventListener("pointerup",e=>{ const d=pd; pd=null; if(!d||d.id!==e.pointerId||Date.now()-d.t>1500||Math.hypot(e.clientX-d.x,e.clientY-d.y)>24) return; e.preventDefault(); upAt=Date.now(); back(); });
+  btn.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); if(Date.now()-upAt<800) return; back(); });
   let sentinel=0, ign=0;
   const sync=()=>{ const w=vis();
     try{ if(B().contains("foldfs")){ const g=$("barGeo").getBoundingClientRect(); const fr=document.querySelector(".folds .lvrow"), rr=fr&&fr.getBoundingClientRect(); document.documentElement.style.setProperty("--bbTop",(rr&&rr.height>0&&rr.top>=g.bottom-1&&rr.top<g.bottom+80?Math.round(rr.top+rr.height/2-11):Math.round(g.bottom+2))+"px"); } }catch(e){}
