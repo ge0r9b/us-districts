@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 50 (39 brand, 11 company) | `entity` |
+| `brands.csv` | 51 (40 brand, 11 company) | `entity` |
 | `brand_relationships.csv` | 35 | `entity_relation` |
-| `company_locations.csv.gz` | 81,993 (62,955 with a v2-2024 county geoid; 19,023 outside the US) | `entity_location` |
+| `company_locations.csv.gz` | 83,175 (63,986 with a v2-2024 county geoid; 19,174 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | cvs 9,001; home_depot 2,212; lowes 1,763; marriott 6,294; mcdonalds 13,486; starbucks 35,075 (`.csv.gz`); walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/<brand>.csv` | best_buy 1,182; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 6,294; mcdonalds 13,486; starbucks 35,075 (`.csv.gz`); walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
 | `locations/marriott_dropped_us.csv` | 36 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 36 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 35 | `source` |
+| `brand_cleanliness.csv` | 37 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 37 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -125,6 +125,8 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   - **home_depot.csv**: wikidata:Q864407 The Home Depot (no P749 parent). Spiders `home_depot` (US; ATP reads storelocators.com's list, and the ref is an address slug, not a store number) + `home_depot_ca` (CA). 4 US points have no coordinates in ATP (`missing_coordinates`).
 
   - **lowes.csv**: wikidata:Q1373493 Lowe's (no P749 parent). `lowes_us` returned 0 features in the latest run (and only 0–38 in every run since 2026-07-18), so the file uses run 2026-07-11 (1,763 features, the last complete run); every row is flagged `atp_older_run_2026-07-11`. Not included: Lowes Foods (`lowes_foods`, Q6693991) and Lowe's Market (`lowes_market_us`, Q6693107), which are unrelated grocery chains.
+
+  - **best_buy.csv**: wikidata:Q533415 (no P749 parent). Spiders `best_buy` (US + PR) and `best_buy_ca`. Excluded: 4 "Best Buy Distribution Center" points (not stores) and 165 "Best Buy Express" points in Canada (brand Q3212934, formerly The Source, tagged as a separate brand). Best Buy Warehouse and Outlet stores are kept; see `store_type`.
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
