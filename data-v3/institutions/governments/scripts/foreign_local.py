@@ -4,7 +4,7 @@ from common import CACHE, ROOT, fetch, manifest, write_csv
 
 FOREIGN = os.path.join(ROOT, 'foreign')
 # one column set for all three countries; country-specific codes go in code / alt_code / member_of
-LOCAL_COLUMNS = ['entity_id', 'name', 'name_local', 'name_en', 'type', 'subtype', 'gov_status', 'parent_id', 'member_of',
+LOCAL_COLUMNS = ['entity_id', 'name', 'name_local', 'name_en', 'alt_name', 'type', 'subtype', 'gov_status', 'parent_id', 'member_of',
                  'country', 'code_scheme', 'code', 'alt_code', 'iso_3166_2', 'wikidata_qid', 'code_valid_from', 'code_valid_to',
                  'valid_from', 'valid_to', 'is_active', 'note', 'flags', 'source', 'source_url', 'source_date', 'retrieved_at',
                  'license']
@@ -41,6 +41,22 @@ def arcgis(key, base, service, where='1=1', fields='*', page=2000):
         off += len(feats)
 
 
+def wfs(key, base, typename, props, page=5000):
+    """All features of a WFS 2.0 layer, selected properties only (no geometry), GeoJSON, cached page by page."""
+    rows, start = [], 0
+    while True:
+        q = urllib.parse.urlencode({'service': 'WFS', 'version': '2.0.0', 'request': 'GetFeature', 'typeNames': typename,
+                                    'propertyName': ','.join(props), 'outputFormat': 'application/json', 'count': page,
+                                    'startIndex': start, 'sortBy': props[0]})
+        k = '{}_{}'.format(key, start)
+        p = fetch(k, url='{}?{}'.format(base, q), fname=k + '.json')
+        feats = [f['properties'] for f in json.load(open(p, encoding='utf-8'))['features']]
+        rows += feats
+        if len(feats) < page:
+            return rows
+        start += page
+
+
 def write_split(path_base, rows, columns, region_key):
     """Write rows to <base>.csv, or split by region_key into <base>_<region>.csv if over 10 MB."""
     path = path_base + '.csv'
@@ -66,3 +82,39 @@ def check(rows, known_parents):
     known = set(ids) | set(known_parents)
     dangling = sorted({r['parent_id'] for r in rows if r['parent_id'] and r['parent_id'] not in known})
     assert not dangling, ('dangling parent_id', dangling[:5])
+
+
+def read_xlsx(path):
+    """Minimal stdlib .xlsx reader (values only) for workbooks openpyxl cannot open: {sheet name: [row tuples]}."""
+    import re as _re, zipfile
+    import xml.etree.ElementTree as ET
+    ns = {'m': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main',
+          'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'}
+    z = zipfile.ZipFile(path)
+    ss = []
+    if 'xl/sharedStrings.xml' in z.namelist():
+        for si in ET.fromstring(z.read('xl/sharedStrings.xml')).findall('m:si', ns):
+            ss.append(''.join(t.text or '' for t in si.iter('{%s}t' % ns['m'])))
+    rels = {r.get('Id'): r.get('Target') for r in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}
+    out = {}
+    for sh in ET.fromstring(z.read('xl/workbook.xml')).find('m:sheets', ns):
+        target = rels[sh.get('{%s}id' % ns['r'])].lstrip('/')
+        target = target if target.startswith('xl/') else 'xl/' + target
+        rows = []
+        for row in ET.fromstring(z.read(target)).iter('{%s}row' % ns['m']):
+            vals = {}
+            for c in row.findall('m:c', ns):
+                col = 0
+                for ch in _re.match(r'[A-Z]+', c.get('r')).group():
+                    col = col * 26 + ord(ch) - 64
+                t, v = c.get('t'), c.find('m:v', ns)
+                if t == 's':
+                    val = ss[int(v.text)]
+                elif t == 'inlineStr':
+                    val = ''.join(x.text or '' for x in c.iter('{%s}t' % ns['m']))
+                else:
+                    val = v.text if v is not None else None
+                vals[col - 1] = val
+            rows.append(tuple(vals.get(i) for i in range(max(vals) + 1)) if vals else ())
+        out[sh.get('name')] = rows
+    return out

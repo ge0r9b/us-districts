@@ -133,7 +133,7 @@ head_of_government_office, external_ids, alias, is_active, note, flags, source, 
 duplicate_of_iso_3166_1), source, source_url`.
 
 ## foreign/<cc>/: every government level of one country (gb, de, fr)
-`units.csv` (split `units_<region>.csv` only if over 10 MB): `entity_id, name, name_local, name_en, type, subtype, gov_status,
+`units.csv` (split `units_<region>.csv` only if over 10 MB): `entity_id, name, name_local, name_en, alt_name, type, subtype, gov_status,
 parent_id, member_of, country, code_scheme, code, alt_code, iso_3166_2, wikidata_qid, code_valid_from, code_valid_to,
 valid_from, valid_to, is_active, note, flags, source, source_url, source_date, retrieved_at, license`.
 
@@ -143,18 +143,21 @@ valid_from, valid_to, is_active, note, flags, source, source_url, source_date, r
 | `name` | official name in the register (UK: English; DE, FR: the local-language official name) |
 | `name_local` | local-language name where it differs from `name` (UK: Welsh name from the RGC `GEOGNMW`) |
 | `name_en` | English name only where the register publishes an official one; blank otherwise (no translations made up) |
+| `alt_name` | DE: the VG250 short name (`GEN`) where it differs from the Destatis listing form in `name` (`München, Landeshauptstadt` / `München`) |
 | `type` | `foreign` |
-| `subtype` | UK: `strategic_authority` (GLA), `combined_authority`, `county_council`, `unitary_authority`, `non_metropolitan_district`, `metropolitan_borough`, `london_borough`, `principal_council` (Wales), `council_area` (Scotland), `district_council` (NI), `civil_parish`, `community` |
-| `gov_status` | `self_governing`; `parish` (UK parish/community: the register does not say whether it has an elected council or only a parish meeting); `administrative` (DE Regierungsbezirk: state administrative region, no elected body) |
+| `subtype` | UK: `strategic_authority` (GLA), `combined_authority`, `county_council`, `unitary_authority`, `non_metropolitan_district`, `metropolitan_borough`, `london_borough`, `principal_council` (Wales), `council_area` (Scotland), `district_council` (NI), `civil_parish`, `community`. DE: `regierungsbezirk`, `landkreis`, `kreis`, `kreisfreie_stadt`, `stadtkreis`, `amt`, `verbandsgemeinde`, `samtgemeinde`, `verwaltungsgemeinschaft`, `verwaltungsverband`, `erfuellende_gemeinde`, `gemeinde`, `stadt` (from VG250 `BEZ`, else the Destatis name suffix `Stadt`/`St`) |
+| `gov_status` | `self_governing`; `association` (DE Gemeindeverband); `administrative_arrangement` (DE erfüllende Gemeinde: one member municipality administers the others); `parish` (UK parish/community: the register does not say whether it has an elected council or only a parish meeting); `administrative` (DE Regierungsbezirk: state administrative region, no elected body) |
 | `parent_id` | UK: parish/community → its local authority; two-tier district → county; London borough → GLA; other councils → the combined authority whose area contains them (ONS lookup), else the devolved government row (`subdivision:gb-sct/wls/nir`) or `nation:gb` (England has no devolved government); counties → combined authority if every district in them is in one, else `nation:gb`; combined authorities and GLA → `nation:gb` |
+| `parent_id` (DE) | Regierungsbezirk → Land; Kreis / kreisfreie Stadt → Regierungsbezirk if the Land has one, else Land (`subdivision:de-xx`); Gemeindeverband → Kreis; Gemeinde → its Gemeindeverband (ARS digits 1-9) if that is an association, else the Kreis. Berlin and Hamburg (Land = Gemeinde) are the existing `subdivision:de-be/hh` rows |
 | `member_of` | UK: combined authority (`gss:E47...`) containing the area, from the ONS LAD→CAUTH lookup |
-| `code_scheme`, `code`, `alt_code` | UK: `gss`, GSS code |
+| `code_scheme`, `code`, `alt_code` | UK: `gss`, GSS code. DE: `ars`, 12-digit ARS (Land 2, RBZ 3, Kreis 5, Gemeindeverband 9 digits, zero-padded), `alt_code` = AGS (8 digits; Kreise: the 5-digit Kreisschlüssel) |
 | `iso_3166_2` | ISO 3166-2 code of the same area, only via an exact link (UK: the Wikidata item with this GSS code, P836, carries this P300) |
-| `wikidata_qid` | the single item whose exact official code (UK: P836 GSS) is this code, and which has no other code of these levels; usually the area item |
+| `wikidata_qid` | the single item whose exact official code (UK: P836 GSS; DE: P1388 ARS, P440 Kreisschlüssel) is this code, and which has no other code of these levels; usually the area item |
+| `code_valid_from` (DE) | VG250 `WSK`: date from which the unit's current legal state is effective (last territorial/legal change), not its founding date |
 | `code_valid_from`, `code_valid_to` | operative / termination date of the code in the register (UK RGC `OPER_DATE`/`TERM_DATE`; 2009-01-01 is the GSS re-coding date, not the date the council was created) |
 | `valid_from`, `valid_to` | establishment / abolition date of the government, only from an official dated source; blank otherwise |
 | `note` | UK: the statutory instrument that introduced the code, when it is not the 2009 re-coding |
-| `flags` | UK: `council_status_unknown` (parish/community), `cauth_from_district_lookup` (county's combined authority derived from its districts) |
+| `flags` | UK: `council_status_unknown` (parish/community), `cauth_from_district_lookup` (county's combined authority derived from its districts). DE: `kreisfrei_from_ars_structure` (kreisfreie Stadt new since VG250: ARS ends in 0000000), `verband_not_in_vg250`, `not_in_vg250`, `no_member_in_destatis_<date>` (Gemeindeverband in VG250 with no member in the newer Destatis list) |
 
 `code_xwalk.csv`: `entity_id, code_scheme, code, relation, note, source, source_url`: GSS country codes and ISO 3166-2 codes
 to the existing `nation:` / `subdivision:` rows (`same_government`; `area_only` for England, which has no devolved
@@ -166,7 +169,9 @@ the code (checked against the product's feature service). UK: ONS BGC and BUC ge
 (`LAD_MAY_2025_UK_BGC_V2`/`_BUC`, `Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC/BUC` for counties,
 `CAUTH_MAY_2025_EN_BGC/BUC`, `PARNCP_MAY_2026_EW_BGC` for parishes and communities, `Regions_December_2025_Boundaries_EN_BGC/BUC`
 code E12000007 for the GLA (relation `gla_area_is_london_region`), `Countries_December_2025_Boundaries_UK_BGC/BUC`).
-`vintage` = `YYYY-MM` of the product.
+DE: BKG `VG250_<layer>` (sta, lan, rbz, krs, vwg, gem; Stand 2026-01-01) and `VG1000_<layer>` (sta, lan, rbz, krs; Stand
+2025-12-31), code = the layer's `ARS` (2/3/5/9/12 digits); kreisfreie Städte and Berlin/Hamburg appear in krs and gem.
+`vintage` = `YYYY-MM` (UK) or the Stand date (DE) of the product.
 
 `gaps.csv`: `code, issue` (codes missing from a lookup or boundary product, register inconsistencies).
 

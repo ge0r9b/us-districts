@@ -5,8 +5,8 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry.csv": 109078,
-  "sources.csv": 32,
+  "id_registry.csv": 121339,
+  "sources.csv": 35,
   "changes_since_cog2022.csv": 449,
   "images.csv": 9846,
   "images_gaps.csv": 37584,
@@ -219,11 +219,47 @@
    "units": 11739,
    "with_iso_3166_2": 180,
    "with_qid": 10619
+  },
+  "de": {
+   "amt": 209,
+   "boundary_missing|VG1000_krs": 1,
+   "boundary_missing|VG250_gem": 3,
+   "boundary_missing|VG250_krs": 1,
+   "boundary_missing|VG250_vwg": 1,
+   "boundary|VG1000_krs": 400,
+   "boundary|VG1000_lan": 16,
+   "boundary|VG1000_rbz": 19,
+   "boundary|VG1000_sta": 1,
+   "boundary|VG250_gem": 10744,
+   "boundary|VG250_krs": 400,
+   "boundary|VG250_lan": 16,
+   "boundary|VG250_rbz": 19,
+   "boundary|VG250_sta": 1,
+   "boundary|VG250_vwg": 1307,
+   "erfuellende_gemeinde": 38,
+   "gaps": 8,
+   "gemeinde": 8690,
+   "gemeindefrei_excluded": 197,
+   "kreis": 42,
+   "kreisfreie_stadt": 96,
+   "landkreis": 252,
+   "regierungsbezirk": 19,
+   "samtgemeinde": 114,
+   "stadt": 1950,
+   "stadtkreis": 9,
+   "units": 12261,
+   "verbandsgemeinde": 149,
+   "verwaltungsgemeinschaft": 573,
+   "verwaltungsverband": 120,
+   "with_qid": 12196
   }
  },
  "foreign_country_files": {
   "gb": [
    "foreign/gb/units.csv"
+  ],
+  "de": [
+   "foreign/de/units.csv"
   ]
  },
  "foreign_not_built": [
@@ -361,6 +397,66 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T13:16:52Z"
   },
+  "bkg_vg1000_krs_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg1000?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg1000%3Avg1000_krs&propertyName=vg1000%3Aars%2Cvg1000%3Aade%2Cvg1000%3Agf%2Cvg1000%3Aags%2Cvg1000%3Agen%2Cvg1000%3Abez%2Cvg1000%3Anbd%2Cvg1000%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg1000%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:29Z"
+  },
+  "bkg_vg1000_lan_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg1000?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg1000%3Avg1000_lan&propertyName=vg1000%3Aars%2Cvg1000%3Aade%2Cvg1000%3Agf%2Cvg1000%3Aags%2Cvg1000%3Agen%2Cvg1000%3Abez%2Cvg1000%3Anbd%2Cvg1000%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg1000%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:16Z"
+  },
+  "bkg_vg1000_rbz_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg1000?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg1000%3Avg1000_rbz&propertyName=vg1000%3Aars%2Cvg1000%3Aade%2Cvg1000%3Agf%2Cvg1000%3Aags%2Cvg1000%3Agen%2Cvg1000%3Abez%2Cvg1000%3Anbd%2Cvg1000%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg1000%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:26Z"
+  },
+  "bkg_vg1000_sta_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg1000?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg1000%3Avg1000_sta&propertyName=vg1000%3Aars%2Cvg1000%3Aade%2Cvg1000%3Agf%2Cvg1000%3Aags%2Cvg1000%3Agen%2Cvg1000%3Abez%2Cvg1000%3Anbd%2Cvg1000%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg1000%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:15Z"
+  },
+  "bkg_vg250_gem_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_gem&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:48Z"
+  },
+  "bkg_vg250_gem_10000": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_gem&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=10000&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:12Z"
+  },
+  "bkg_vg250_gem_5000": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_gem&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=5000&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:03:38Z"
+  },
+  "bkg_vg250_krs_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_krs&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:36Z"
+  },
+  "bkg_vg250_lan_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_lan&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:31Z"
+  },
+  "bkg_vg250_rbz_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_rbz&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:33Z"
+  },
+  "bkg_vg250_sta_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_sta&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:30Z"
+  },
+  "bkg_vg250_vwg_0": {
+   "url": "https://sgx.geodatenzentrum.de/wfs_vg250?service=WFS&version=2.0.0&request=GetFeature&typeNames=vg250%3Avg250_vwg&propertyName=vg250%3Aars%2Cvg250%3Aade%2Cvg250%3Agf%2Cvg250%3Aags%2Cvg250%3Agen%2Cvg250%3Abez%2Cvg250%3Anbd%2Cvg250%3Awsk&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=vg250%3Aars",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:40Z"
+  },
   "cog2022": {
    "url": "https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP",
    "last_modified": "2023-08-24",
@@ -400,6 +496,11 @@
    "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_47_concity.zip",
    "last_modified": "2025-06-27",
    "retrieved_at": "2026-10-18T13:34:09Z"
+  },
+  "destatis_rs": {
+   "url": "https://www.xrepository.de/api/version_codeliste/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2026-09-30/genericode",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:02:28Z"
   },
   "f33_2022": {
    "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2022/secondary-education-finance/elsec22.txt",
@@ -665,6 +766,16 @@
    "url": "https://www.un.org/en/about-us/non-member-states",
    "last_modified": "2026-10-18",
    "retrieved_at": "2026-10-18T16:52:55Z"
+  },
+  "wd_de_p1388": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20WHERE%20%7B%20%3Fi%20wdt%3AP1388%20%3Fv%20.%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:31Z"
+  },
+  "wd_de_p440": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20WHERE%20%7B%20%3Fi%20wdt%3AP440%20%3Fv%20.%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:04:33Z"
   },
   "wd_gss": {
    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fg%20%3Fiso%20WHERE%20%7B%20%3Fi%20wdt%3AP836%20%3Fg%20.%20FILTER%28REGEX%28%3Fg%2C%20%22%5E%28E0%5B46789%5D%7CE10%7CE47%7CE61%7CW0%5B46%5D%7CS12%7CN09%29%5B0-9%5D%7B6%7D%24%22%29%29%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP300%20%3Fiso%20%7D%20%7D",

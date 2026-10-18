@@ -228,6 +228,31 @@ parish E04013473 Westbury twice (two community-governance orders); it is one row
 Not covered: Scottish Gaelic names (not in the RGC), community councils in Scotland and NI (not statutory local
 government, no GSS codes), parish council existence, abolished councils (only live codes).
 
+### Germany (`foreign/de/`)
+Sources: Destatis Regionalschlüssel code list 2026-09-30 (every Gemeinde by ARS, as in GV-ISys; Destatis publishes it on
+XRepository) and BKG VG250 Stand 01.01.2026 attribute tables via WFS (Länder, Regierungsbezirke, Kreise, Gemeindeverbände,
+Gemeinden with designation `BEZ` and `WSK`), both dl-de/by-2-0. **Blocker:** www.destatis.de (GV100AD / GV-ISys Excel)
+refuses TLS connections from the build host, so the GV100AD file itself was not used; the XRepository list is Destatis's
+own key list and carries Gemeinden only, so the upper levels come from VG250 (BKG, built on the same ARS).
+
+| level | rows | parent |
+|---|---|---|
+| Bund | existing `nation:de` | |
+| Länder | existing `subdivision:de-xx` (16; ARS Land code → ISO checked by name) | `nation:de` |
+| Regierungsbezirke (`gov_status=administrative`) | 19 | Land |
+| Landkreise / Kreise | 252 + 42 | Regierungsbezirk or Land |
+| kreisfreie Städte / Stadtkreise | 96 + 9 (+ Berlin, Hamburg = their Land rows) | Regierungsbezirk or Land |
+| Gemeindeverbände: Verwaltungsgemeinschaft 573, Amt 209, Verbandsgemeinde 149, Verwaltungsverband 120, Samtgemeinde 114, erfüllende Gemeinde 38 | 1,203 | Kreis |
+| Gemeinden (Gemeinde 8,690, Stadt 1,950) | 10,640 | Gemeindeverband or Kreis |
+
+All 10,747 Gemeinden of the Destatis list are covered (10,640 + 105 kreisfreie Städte + Berlin + Hamburg); 197
+areas without a municipal government (gemeindefreie Gebiete, coastal waters, the German-Luxembourg condominium, Verband key
+9999) are left out. Changes between VG250 (Jan 2026) and Destatis (Sep 2026) are in `gaps.csv`: Hanau kreisfrei
+(06415, flag `kreisfrei_from_ars_structure`), Schmölln's erfüllende Gemeinde without members, a few Gemeinden with a new
+Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: VG250 (all levels) and
+VG1000 (Staat, Länder, RBZ, Kreise), only codes present in the layer.
+Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units.
+
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
 @ ed866a4 (read-only, via `git show`) and writes `aiannh_join_check.csv`: every tribe GEOID in `tribes.csv` and the
@@ -246,4 +271,4 @@ picks the newest BIA list notice from the Federal Register search, so a refresh 
 `cache/manifest.json` records URL, Last-Modified and retrieval time per file. Raw downloads are never committed.
 
 Scripts: `common.py` (download/cache, readers, column lists), `build_states.py`, `build_cog.py`,
-`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_foreign.py`, `foreign_local.py`, `build_foreign_gb.py`, `build_all.py`.
+`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_foreign.py`, `foreign_local.py`, `build_foreign_gb.py`, `build_foreign_de.py`, `build_all.py`.

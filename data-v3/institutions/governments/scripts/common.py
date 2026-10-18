@@ -100,8 +100,8 @@ SOURCE_TABLE = {
                     'https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv', ['statcan_sgc']),
     'wikidata_foreign': ('Wikidata SPARQL: items by exact ISO code (P297 alpha-2, P300 ISO 3166-2), UN membership (P463 Q1065), sovereign (P17/P131/P361), '
                          'capital (P36), office of head of government (P1313), flag (P41), seal (P158), coat of arms (P94); '
-                         'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300)',
-                         'https://query.wikidata.org/', ['wdf_*', 'wd_gss']),
+                         'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300); German units by exact ARS (P1388) and Kreisschlüssel (P440)',
+                         'https://query.wikidata.org/', ['wdf_*', 'wd_gss', 'wd_de_*']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
                     'https://commons.wikimedia.org/w/api.php', ['commons_*']),
     'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
@@ -115,8 +115,19 @@ SOURCE_TABLE = {
     'ons_boundaries': ('Office for National Statistics, Open Geography Portal BGC/BUC generalised boundary services, attribute tables only '
                        '(codes present in each product; used for foreign/gb/boundary_xwalk.csv)', 'https://geoportal.statistics.gov.uk/',
                        ['ons_bnd_*']),
+    'destatis_rs': ('Statistisches Bundesamt (Destatis), Regionalschlüssel code list (all Gemeinden by ARS as in the Gemeindeverzeichnis '
+                    'GV-ISys), version 2026-09-30, published on XRepository (urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs)',
+                    'https://www.xrepository.de/details/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs', ['destatis_rs']),
+    'bkg_vg250': ('BKG, Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, WFS attribute tables (no geometry): Staat, Länder, '
+                  'Regierungsbezirke, Kreise, Gemeindeverbände, Gemeinden (ARS, AGS, name, designation BEZ, WSK)',
+                  'https://sgx.geodatenzentrum.de/wfs_vg250', ['bkg_vg250_*']),
+    'bkg_vg1000': ('BKG, Verwaltungsgebiete 1:1 000 000 (VG1000), Stand 31.12.2025, WFS attribute tables (codes present; '
+                   'foreign/de/boundary_xwalk.csv)', 'https://sgx.geodatenzentrum.de/wfs_vg1000', ['bkg_vg1000_*']),
 }
-LICENSES = {'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',
+LICENSES = {'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
+            'bkg_vg250': 'dl-de/by-2-0 (BKG 2026; Datenquellen https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)',
+            'bkg_vg1000': 'dl-de/by-2-0 (BKG 2026)',
+            'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',
             'ons_boundaries': 'Open Government Licence v3.0 (contains OS data (c) Crown copyright and database right)','wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
             'iso_codes': 'LGPL-2.1-or-later (Debian iso-codes); the codes themselves are ISO 3166 facts',
             'un_members': 'facts only (United Nations website, terms of use https://www.un.org/en/about-us/terms-of-use)',
