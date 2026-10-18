@@ -40,12 +40,12 @@ Each item has a **recommended default**. If the user says nothing, Phase 2 proce
 These are not new product decisions. They record what the first build did where the plan was silent.
 
 - The shell is vanilla TypeScript (D1a without React). MapLibre and the list call `/api/v1`. `%` / `#` re-sorts with `packages/core` and does not refetch.
-- `docs/v3/SCHEMA.sql` is the migration. The runner records its checksum in `usd.schema_migration`. Apply fixes are in SCHEMA.md (public tenant seed, `data_version`).
+- Runtime DDL is `v3/db/migrations/`. Each file's checksum is stored in `usd.schema_migration`. Reference rows are `v3/db/seed.sql` and can be applied again. `docs/v3/SCHEMA.sql` remains the design document. Apply fixes are in SCHEMA.md (public tenant seed, `data_version`).
 - `unit` is the Census GEOID. The v2 name is `legacy`. One contest on `/results` is the flat shape in API.md. Several contests use `series`.
 - Official rows supersede `v2_import` for the same contest and unit (history kept), so a v2 `other` bucket is not added to official third parties.
 - `dem_nominee` / `rep_nominee` only when that party has one candidate. Otherwise the key is `cand:<id>`.
 - R02–R10 run in TypeScript and land in `stg_reject`. R12–R14 wait for alpha.2. Materialized views refresh inside the load transaction (not `CONCURRENTLY`).
-- The dev role is a superuser. A read-only role stays the production plan. No Neon URL is read; only `DATABASE_URL`.
+- The dev role is a superuser. A read-only role stays the production plan. No connection string is stored in the repo. `db:migrate` and `db:seed` read `DATABASE_URL` at runtime. A `neon.tech` host uses `@neondatabase/serverless` over WebSocket, because TCP 5432 is blocked where those commands run. Local Postgres, the loaders, and tests use `pg` on TCP. Tests refuse a Neon host. The user's free Neon project is `ultrevote` (database `neondb`, PostGIS 3.6). Unlogged staging tables on Neon live on compute-local disk and are cleared when the compute suspends.
 - State polygons come from `v2/data` (÷1000). `data/geo` has no state file and no committed GeoJSON. Precincts, schools, state legislative districts, and tippecanoe PMTiles wait for alpha.2. The style still points at PMTiles and falls back to GeoJSON states.
 - 2020 and 2024 presidential state totals are not summed from counties. The shell shows 2016 states, then Pennsylvania counties.
 - Senate results are loaded for state and county. The 2022 and 2024 US House Senate files stay out of the default load: dozens of `all-others` rows are negative (a residual, not a count), which is over the 0.5% hard-reject rate. Those rows are not rewritten as zero.

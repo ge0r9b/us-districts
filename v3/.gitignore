@@ -3,3 +3,4 @@ dist/
 .cache/
 app/public/geo/
 *.log
+.env*

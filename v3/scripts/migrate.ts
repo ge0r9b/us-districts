@@ -1,5 +1,15 @@
-import { databaseUrl } from "../ingest/db.ts";
-import { migrate } from "../ingest/migrate.ts";
+import { applyMigrations } from "../db/apply.ts";
+import { requireDatabaseUrl, withDatabase } from "../db/connect.ts";
 
-const result = await migrate(databaseUrl());
-console.log(result.applied ? `applied ${result.checksum}` : `already applied ${result.checksum}`);
+try {
+  const result = await withDatabase(requireDatabaseUrl(), applyMigrations);
+  if (result.applied.length === 0) {
+    console.log(`already applied (${result.skipped.length} files)`);
+  } else {
+    console.log(`applied ${result.applied.join(", ")}`);
+    if (result.skipped.length > 0) console.log(`already present ${result.skipped.join(", ")}`);
+  }
+} catch (err) {
+  console.error(err instanceof Error ? err.message : err);
+  process.exit(1);
+}

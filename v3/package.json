@@ -12,20 +12,24 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 8860",
     "test": "vitest run",
-    "db:migrate": "tsx scripts/migrate.ts",
+    "db:migrate": "node --env-file-if-exists=.env --import tsx scripts/migrate.ts",
+    "db:seed": "node --env-file-if-exists=.env --import tsx scripts/seed.ts",
     "db:load": "tsx scripts/load.ts",
     "check:bundle": "tsx scripts/check-bundle.ts"
   },
   "dependencies": {
-    "hono": "^4.10.3",
     "@hono/node-server": "^1.19.6",
+    "@neondatabase/serverless": "^1.2.0",
+    "hono": "^4.10.3",
     "maplibre-gl": "^5.15.0",
     "pg": "^8.16.3",
-    "pmtiles": "^4.3.0"
+    "pmtiles": "^4.3.0",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
     "@types/pg": "^8.15.5",
+    "@types/ws": "^8.18.2",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vite": "^7.1.11",

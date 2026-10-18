@@ -9,13 +9,13 @@ The boxes below stay unchecked. Alpha.1 is a running foundation, not v2 parity.
 Done on `v3/build`:
 
 - Vite + TypeScript + MapLibre shell (light mode, Liquid Glass year and %/# buttons, bars sorted high to low). Default view is 2016 president by state. 2020 and 2024 open Pennsylvania counties, because those years have no official state presidential totals and alpha.1 does not sum counties.
-- `docs/v3/SCHEMA.sql` applies on PostgreSQL 16 + PostGIS 3.4 (tenant seed and `data_version`; see SCHEMA.md).
+- Ordered idempotent DDL in `v3/db/migrations/` (derived from `docs/v3/SCHEMA.sql`) and reference rows in `v3/db/seed.sql`. `npm run db:migrate` and `npm run db:seed`. Tests apply them on PostgreSQL 16 + PostGIS 3 (CI image 3.4; Neon is 3.6).
 - Idempotent loaders: v2 presidential counties, 2016 state and district files, `uscd.js`, and the official CSVs on `data/election` (2016 FEC states, Pennsylvania president counties, 2022 and 2024 Senate). Boundary units for `v2-2024` states, counties, and congressional districts.
 - Read-only `/api/v1`: manifest, contests, results, unit lookup, geocode stub, locate. Cache headers follow ARCHITECTURE.md §5. OpenAPI is `docs/v3/openapi.yaml`.
 - Shared rules in `v3/packages/core` (slots, sort, filters). Design tokens and a MapLibre style a native client can reuse. See NATIVE.md and D24.
 - Tests: schema, loader round-trip, API contract, in-process results latency. GitHub Actions `.github/workflows/v3.yml` runs them against PostGIS.
 
-Left for alpha.2: full UI parity (filters, charts, time slider, back stack, hash links), precincts / schools / state legislative districts, PMTiles via tippecanoe (the shell uses GeoJSON states until an archive exists), result packs, entities and officeholders, R12–R14, ZCTA, a read-only database role, Playwright, and any Neon project.
+Left for alpha.2: full UI parity (filters, charts, time slider, back stack, hash links), precincts / schools / state legislative districts, PMTiles via tippecanoe (the shell uses GeoJSON states until an archive exists), result packs, entities and officeholders, R12–R14, ZCTA, a read-only database role, and Playwright. The Neon project `ultrevote` exists; this repo does not connect to it. The user runs migrate and seed there.
 
 ## A. Process and global rules
 - [ ] **Instant response is the top priority in every UI change** (RR 7). Budgets in PERFORMANCE.md.

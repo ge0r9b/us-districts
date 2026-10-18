@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It was syntax-checked with the Postgres parser (`pglast` 8.6, 116 statements) and, on 2026-10-18, applied to PostgreSQL 16.15 + PostGIS 3.4.
+> The design DDL is in [`SCHEMA.sql`](SCHEMA.sql). It was syntax-checked with the Postgres parser (`pglast` 8.6, 116 statements) and, on 2026-10-18, applied to PostgreSQL 16.15 + PostGIS 3.4. Runtime DDL is the ordered, idempotent files in `v3/db/migrations/`, applied by `npm run db:migrate`. Reference inserts (the public tenant, licences, unit types, boundary sets, and `data_version`) are `v3/db/seed.sql`, applied by `npm run db:seed` and safe to run again. A change to an applied migration is a new numbered file.
 
 ## Apply fixes (alpha.1, 2026-10-18)
 

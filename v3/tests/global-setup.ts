@@ -1,7 +1,7 @@
 import pg from "pg";
 import { createPool } from "../ingest/db.ts";
 import { loadAll } from "../ingest/load-all.ts";
-import { migrate } from "../ingest/migrate.ts";
+import { migrate, seed } from "../ingest/migrate.ts";
 import { databaseUrl, testDatabaseUrl } from "./db.ts";
 
 export async function setup(): Promise<void> {
@@ -18,6 +18,7 @@ export async function setup(): Promise<void> {
 
   const url = testDatabaseUrl();
   await migrate(url);
+  await seed(url);
   const pool = createPool(url);
   try {
     const summary = await loadAll(pool);

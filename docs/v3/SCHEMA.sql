@@ -1,6 +1,8 @@
 -- US Districts v3: Postgres 16 + PostGIS 3 schema.
 -- Explanation: docs/v3/SCHEMA.md. Ingest: docs/v3/DATA_LOADING.md.
 -- Applied 2026-10-18 to PostgreSQL 16.15 + PostGIS 3.4 (alpha.1).
+-- Runtime DDL is v3/db/migrations/ (ordered, idempotent) plus v3/db/seed.sql.
+-- This file stays the design document. Do not edit an applied migration in place.
 -- Apply fix: seed the public tenant before boundary_set (owner_tenant_id defaults to 1).
 -- Addition: singleton data_version, the global dv from ARCHITECTURE.md §5 (there was no table).
 -- Conventions: text natural keys (stable, human readable) next to bigint surrogate ids;
