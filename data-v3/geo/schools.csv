@@ -529,8 +529,8 @@ schools,Arkansas,526,Gurdon School District,0507110,Gurdon School District,unsd,
 schools,Arkansas,527,Guy-Perkins Schools,0507140,Guy-Perkins Schools,unsd,name+point
 schools,Arkansas,528,Hackett Public Schools,0507170,Hackett Public Schools,unsd,name+point
 schools,Arkansas,529,Hampton School District,0507230,Hampton School District,unsd,name+point
-schools,Arkansas,530,Harmony Grove School District,0507290,Harmony Grove School District,unsd,name+point
-schools,Arkansas,531,Harmony Grove School District,0507320,Harmony Grove School District,unsd,name+point
+schools,Arkansas,530,Harmony Grove School District (Dallas),0507290,Harmony Grove School District,unsd,name+point
+schools,Arkansas,531,Harmony Grove School District (Saline),0507320,Harmony Grove School District,unsd,name+point
 schools,Arkansas,532,Harrisburg School District,0507350,Harrisburg School District,unsd,name+point
 schools,Arkansas,533,Harrison School District,0507380,Harrison School District,unsd,name+point
 schools,Arkansas,534,Hazen School District,0507530,Hazen School District,unsd,name+point
@@ -552,8 +552,8 @@ schools,Arkansas,549,Junction City School District,0508340,Junction City School 
 schools,Arkansas,550,Riverview School District,0508400,Riverview School District,unsd,name+point
 schools,Arkansas,551,Kirby School District,0508490,Kirby School District,unsd,name+point
 schools,Arkansas,552,Lake Hamilton School District,0508610,Lake Hamilton School District,unsd,name+point
-schools,Arkansas,553,Lakeside School District,0508640,Lakeside School District,unsd,name+point
-schools,Arkansas,554,Lakeside School District,0508670,Lakeside School District,unsd,name+point
+schools,Arkansas,553,Lakeside School District (Chicot),0508640,Lakeside School District,unsd,name+point
+schools,Arkansas,554,Lakeside School District (Garland),0508670,Lakeside School District,unsd,name+point
 schools,Arkansas,555,Lamar School District,0508700,Lamar School District,unsd,name+point
 schools,Arkansas,556,Lavaca Public Schools,0508730,Lavaca Public Schools,unsd,name+point
 schools,Arkansas,557,Lincoln School District,0508940,Lincoln School District,unsd,name+point
@@ -654,7 +654,7 @@ schools,California,651,Los Molinos Unified School District,0622860,Los Molinos U
 schools,California,652,St. Helena Unified School District,0637830,St. Helena Unified School District,unsd,name+point
 schools,California,653,Calistoga Joint Unified School District,0607020,Calistoga Joint Unified School District,unsd,name+point
 schools,California,654,Esparto Unified School District,0612930,Esparto Unified School District,unsd,name+point
-schools,California,655,Washington Unified School District,0641580,Washington Unified School District,unsd,name+point
+schools,California,655,Washington Unified School District (Yolo),0641580,Washington Unified School District,unsd,name+point
 schools,California,656,Woodland Joint Unified School District,0643080,Woodland Joint Unified School District,unsd,name+point
 schools,California,657,Reef-Sunset Unified School District,0632270,Reef-Sunset Unified School District,unsd,name+point
 schools,California,658,Corcoran Joint Unified School District,0609690,Corcoran Joint Unified School District,unsd,name+point
@@ -787,7 +787,7 @@ schools,California,784,Azusa Unified School District,0603600,Azusa Unified Schoo
 schools,California,785,Bassett Unified School District,0604110,Bassett Unified School District,unsd,name+point
 schools,California,786,Covina-Valley Unified School District,0610050,Covina-Valley Unified School District,unsd,name+point
 schools,California,787,Duarte Unified School District,0611520,Duarte Unified School District,unsd,name+point
-schools,California,788,Washington Unified School District,0601415,Washington Unified School District,unsd,name+point
+schools,California,788,Washington Unified School District (Fresno),0601415,Washington Unified School District,unsd,name+point
 schools,California,789,Santa Barbara Unified School District,0601414,Santa Barbara Unified School District,unsd,name+point
 schools,California,790,Chawanakee Unified School District,0600116,Chawanakee Unified School District,unsd,name+point
 schools,California,791,El Rancho Unified School District,0612180,El Rancho Unified School District,unsd,name+point
@@ -1008,7 +1008,7 @@ schools,California,1005,Placerville Union Elementary School District,0630780,Pla
 schools,California,1006,Pollock Pines Elementary School District,0631290,Pollock Pines Elementary School District,elsd,name+point
 schools,California,1007,Gold Oak Union Elementary School District,0615390,Gold Oak Union Elementary School District,elsd,name+point
 schools,California,1008,Latrobe Elementary School District,0621180,Latrobe Elementary School District,elsd,name+point
-schools,California,1009,Pioneer Union Elementary School District,0630480,Pioneer Union Elementary School District,elsd,name+point
+schools,California,1009,Pioneer Union Elementary School District (El Dorado),0630480,Pioneer Union Elementary School District,elsd,name+point
 schools,California,1010,Indian Diggings Elementary School District,0618240,Indian Diggings Elementary School District,elsd,name+point
 schools,California,1011,Camino Union Elementary School District,0607170,Camino Union Elementary School District,elsd,name+point
 schools,California,1012,Ross Valley Elementary School District,0600006,Ross Valley Elementary School District,elsd,name+point
@@ -1056,7 +1056,7 @@ schools,California,1053,Fallbrook Union Elementary School District,0613500,Fallb
 schools,California,1054,Jamul-Dulzura Union Elementary School District,0618730,Jamul-Dulzura Union Elementary School District,elsd,name+point
 schools,California,1055,Julian Union Elementary School District,0619140,Julian Union Elementary School District,elsd,name+point
 schools,California,1056,La Mesa-Spring Valley School District,0620250,La Mesa-Spring Valley School District,elsd,name+point
-schools,California,1057,Lakeside Union Elementary School District,0620790,Lakeside Union Elementary School District,elsd,name+point
+schools,California,1057,Lakeside Union Elementary School District (San Diego),0620790,Lakeside Union Elementary School District,elsd,name+point
 schools,California,1058,Lemon Grove Elementary School District,0621330,Lemon Grove Elementary School District,elsd,name+point
 schools,California,1059,National Elementary School District,0626670,National Elementary School District,elsd,name+point
 schools,California,1060,Rancho Santa Fe Elementary School District,0631740,Rancho Santa Fe Elementary School District,elsd,name+point
@@ -1074,7 +1074,7 @@ schools,California,1071,Los Nietos Elementary School District,0622890,Los Nietos
 schools,California,1072,Whittier City Elementary School District,0642450,Whittier City Elementary School District,elsd,name+point
 schools,California,1073,Little Lake City Elementary School District,0621930,Little Lake City Elementary School District,elsd,name+point
 schools,California,1074,Hawthorne Elementary School District,0616680,Hawthorne Elementary School District,elsd,name+point
-schools,California,1075,Mountain View Elementary School District,0626190,Mountain View Elementary School District,elsd,name+point
+schools,California,1075,Mountain View Elementary School District (Los Angeles),0626190,Mountain View Elementary School District,elsd,name+point
 schools,California,1076,Valle Lindo Elementary School District,0640650,Valle Lindo Elementary School District,elsd,name+point
 schools,California,1077,Eastside Union Elementary School District,0611910,Eastside Union Elementary School District,elsd,name+point
 schools,California,1078,Newhall Elementary School District,0627180,Newhall Elementary School District,elsd,name+point
@@ -1095,7 +1095,7 @@ schools,California,1092,Belmont-Redwood Shores Elementary School District,060453
 schools,California,1093,Brisbane Elementary School District,0606060,Brisbane Elementary School District,elsd,name+point
 schools,California,1094,Burlingame Elementary School District,0606480,Burlingame Elementary School District,elsd,name+point
 schools,California,1095,Hillsborough City Elementary School District,0617190,Hillsborough City Elementary School District,elsd,name+point
-schools,California,1096,Jefferson Elementary School District,0618870,Jefferson Elementary School District,elsd,name+point
+schools,California,1096,Jefferson Elementary School District (San Mateo),0618870,Jefferson Elementary School District,elsd,name+point
 schools,California,1097,Pacifica School District,0620460,Pacifica School District,elsd,name
 schools,California,1098,Las Lomitas Elementary School District,0622380,Las Lomitas Elementary School District,elsd,name+point
 schools,California,1099,Menlo Park City Elementary School District,0624570,Menlo Park City Elementary School District,elsd,name+point
@@ -1120,7 +1120,7 @@ schools,California,1117,Ravendale-Termo Elementary School District,0631830,Raven
 schools,California,1118,Richmond Elementary School District,0632520,Richmond Elementary School District,elsd,name+point
 schools,California,1119,Shaffer Union Elementary School District,0636420,Shaffer Union Elementary School District,elsd,name+point
 schools,California,1120,Susanville Elementary School District,0638550,Susanville Elementary School District,elsd,name+point
-schools,California,1121,Jefferson Elementary School District,0618840,Jefferson Elementary School District,elsd,name+point
+schools,California,1121,Jefferson Elementary School District (San Joaquin),0618840,Jefferson Elementary School District,elsd,name+point
 schools,California,1122,New Hope Elementary School District,0626970,New Hope Elementary School District,elsd,name+point
 schools,California,1123,New Jerusalem Elementary School District,0627030,New Jerusalem Elementary School District,elsd,name+point
 schools,California,1124,Oak View Union Elementary School District,0627930,Oak View Union Elementary School District,elsd,name+point
@@ -1156,14 +1156,14 @@ schools,California,1153,Grant Elementary School District,0615690,Grant Elementar
 schools,California,1154,Monroe Elementary School District,0625290,Monroe Elementary School District,elsd,name+point
 schools,California,1155,Monson-Sultana Joint Union Elementary School District,0625350,Monson-Sultana Joint Union Elementary School District,elsd,name+point
 schools,California,1156,Orange Center Elementary School District,0628530,Orange Center Elementary School District,elsd,name+point
-schools,California,1157,Pacific Union Elementary School District,0629400,Pacific Union Elementary School District,elsd,name+point
+schools,California,1157,Pacific Union Elementary School District (Fresno),0629400,Pacific Union Elementary School District,elsd,name+point
 schools,California,1158,Pine Ridge Elementary School District,0630390,Pine Ridge Elementary School District,elsd,name+point
 schools,California,1159,Raisin City Elementary School District,0631680,Raisin City Elementary School District,elsd,name+point
 schools,California,1160,Washington Colony Elementary School District,0641460,Washington Colony Elementary School District,elsd,name+point
 schools,California,1161,Big Springs Union Elementary School District,0604980,Big Springs Union Elementary School District,elsd,name+point
 schools,California,1162,Happy Valley Union Elementary School District,0616570,Happy Valley Union Elementary School District,elsd,name+point
 schools,California,1163,"Igo, Ono, Platina Union Elementary School District",0618160,"Igo, Ono, Platina Union Elementary School District",elsd,name+point
-schools,California,1164,Junction Elementary School District,0619200,Junction Elementary School District,elsd,name+point
+schools,California,1164,Junction Elementary School District (Shasta),0619200,Junction Elementary School District,elsd,name+point
 schools,California,1165,Millville Elementary School District,0624930,Millville Elementary School District,elsd,name+point
 schools,California,1166,Mountain Union Elementary School District,0627040,Mountain Union Elementary School District,elsd,name+point
 schools,California,1167,North Cow Creek Elementary School District,0627510,North Cow Creek Elementary School District,elsd,name+point
@@ -1193,7 +1193,7 @@ schools,California,1190,Gazelle Union Elementary School District,0614970,Gazelle
 schools,California,1191,Grenada Elementary School District,0616110,Grenada Elementary School District,elsd,name+point
 schools,California,1192,Happy Camp Union Elementary School District,0616530,Happy Camp Union Elementary School District,elsd,name+point
 schools,California,1193,Hornbrook Elementary School District,0617620,Hornbrook Elementary School District,elsd,name+point
-schools,California,1194,Junction Elementary School District,0619230,Junction Elementary School District,elsd,name+point
+schools,California,1194,Junction Elementary School District (Siskiyou),0619230,Junction Elementary School District,elsd,name+point
 schools,California,1195,Klamath River Union Elementary School District,0619920,Klamath River Union Elementary School District,elsd,name+point
 schools,California,1196,Little Shasta Elementary School District,0621960,Little Shasta Elementary School District,elsd,name+point
 schools,California,1197,McCloud Union Elementary School District,0624210,McCloud Union Elementary School District,elsd,name+point
@@ -1220,7 +1220,7 @@ schools,California,1217,Cold Spring Elementary School District,0609270,Cold Spri
 schools,California,1218,College Elementary School District,0609330,College Elementary School District,elsd,name+point
 schools,California,1219,Goleta Union Elementary School District,0615510,Goleta Union Elementary School District,elsd,name+point
 schools,California,1220,Guadalupe Union Elementary School District,0616260,Guadalupe Union Elementary School District,elsd,name+point
-schools,California,1221,Hope Elementary School District,0617490,Hope Elementary School District,elsd,name+point
+schools,California,1221,Hope Elementary School District (Santa Barbara),0617490,Hope Elementary School District,elsd,name+point
 schools,California,1222,Los Olivos Elementary School District,0622920,Los Olivos Elementary School District,elsd,name+point
 schools,California,1223,Montecito Union Elementary School District,0625500,Montecito Union Elementary School District,elsd,name+point
 schools,California,1224,Orcutt Union Elementary School District,0628710,Orcutt Union Elementary School District,elsd,name+point
@@ -1248,19 +1248,19 @@ schools,California,1245,Hanford Elementary School District,0616470,Hanford Eleme
 schools,California,1246,Island Union Elementary School District,0618510,Island Union Elementary School District,elsd,name+point
 schools,California,1247,Kings River-Hardwick Union Elementary School District,0619770,Kings River-Hardwick Union Elementary School District,elsd,name+point
 schools,California,1248,Kit Carson Union Elementary School District,0619890,Kit Carson Union Elementary School District,elsd,name+point
-schools,California,1249,Lakeside Union Elementary School District,0620760,Lakeside Union Elementary School District,elsd,name+point
+schools,California,1249,Lakeside Union Elementary School District (Kings),0620760,Lakeside Union Elementary School District,elsd,name+point
 schools,California,1250,Lemoore Union Elementary School District,0621360,Lemoore Union Elementary School District,elsd,name+point
 schools,California,1251,Victor Elementary School District,0641040,Victor Elementary School District,elsd,name+point
 schools,California,1252,Adelanto Elementary School District,0601710,Adelanto Elementary School District,elsd,name+point
 schools,California,1253,Oro Grande Elementary School District,0628950,Oro Grande Elementary School District,elsd,name+point
 schools,California,1254,Cucamonga Elementary School District,0616300,Cucamonga Elementary School District,elsd,name+point
-schools,California,1255,Mountain View Elementary School District,0626220,Mountain View Elementary School District,elsd,name+point
+schools,California,1255,Mountain View Elementary School District (San Bernardino),0626220,Mountain View Elementary School District,elsd,name+point
 schools,California,1256,Central Elementary School District,0607950,Central Elementary School District,elsd,name+point
 schools,California,1257,Etiwanda Elementary School District,0612960,Etiwanda Elementary School District,elsd,name+point
 schools,California,1258,Ontario-Montclair School District,0628470,Ontario-Montclair School District,elsd,name+point
 schools,California,1259,Alta Loma Elementary School District,0602160,Alta Loma Elementary School District,elsd,name+point
 schools,California,1260,Helendale Elementary School District,0616860,Helendale Elementary School District,elsd,name+point
-schools,California,1261,Pioneer Union Elementary School District,0630510,Pioneer Union Elementary School District,elsd,name+point
+schools,California,1261,Pioneer Union Elementary School District (Kings),0630510,Pioneer Union Elementary School District,elsd,name+point
 schools,California,1262,Traver Joint Elementary School District,0639600,Traver Joint Elementary School District,elsd,name+point
 schools,California,1263,Alta-Dutch Flat Union Elementary School District,0602250,Alta-Dutch Flat Union Elementary School District,elsd,name+point
 schools,California,1264,Colfax Elementary School District,0609300,Colfax Elementary School District,elsd,name+point
@@ -1299,7 +1299,7 @@ schools,California,1296,Loleta Union Elementary School District,0622320,Loleta U
 schools,California,1297,Maple Creek Elementary School District,0623730,Maple Creek Elementary School District,elsd,name+point
 schools,California,1298,McKinleyville Union Elementary School District,0624300,McKinleyville Union Elementary School District,elsd,name+point
 schools,California,1299,Orick Elementary School District,0628830,Orick Elementary School District,elsd,name+point
-schools,California,1300,Pacific Union Elementary School District,0629430,Pacific Union Elementary School District,elsd,name+point
+schools,California,1300,Pacific Union Elementary School District (Humboldt),0629430,Pacific Union Elementary School District,elsd,name+point
 schools,California,1301,Brentwood Union Elementary School District,0605910,Brentwood Union Elementary School District,elsd,name+point
 schools,California,1302,Byron Union Elementary School District,0606750,Byron Union Elementary School District,elsd,name+point
 schools,California,1303,Peninsula Union Elementary School District,0630090,Peninsula Union Elementary School District,elsd,name+point
@@ -1329,7 +1329,7 @@ schools,California,1326,Kirkwood Elementary School District,0619860,Kirkwood Ele
 schools,California,1327,Lassen View Union Elementary School District,0621090,Lassen View Union Elementary School District,elsd,name+point
 schools,California,1328,Mesa Union Elementary School District,0624720,Mesa Union Elementary School District,elsd,name+point
 schools,California,1329,Mupu Elementary School District,0626460,Mupu Elementary School District,elsd,name+point
-schools,California,1330,Ocean View Elementary School District,0628170,Ocean View Elementary School District,elsd,name+point
+schools,California,1330,Ocean View Elementary School District (Ventura),0628170,Ocean View Elementary School District,elsd,name+point
 schools,California,1331,Oxnard Elementary School District,0629220,Oxnard Elementary School District,elsd,name+point
 schools,California,1332,Pleasant Valley Elementary School District,0630990,Pleasant Valley Elementary School District,elsd,name+point
 schools,California,1333,Rio Elementary School District,0632760,Rio Elementary School District,elsd,name+point
@@ -1372,7 +1372,7 @@ schools,California,1369,Guerneville Elementary School District,0616320,Guernevil
 schools,California,1370,Harmony Union School District,0616620,Harmony Union School District,elsd,name+point
 schools,California,1371,Horicon Elementary School District,0617580,Horicon Elementary School District,elsd,name+point
 schools,California,1372,Kenwood Elementary School District,0619410,Kenwood Elementary School District,elsd,name+point
-schools,California,1373,Liberty Elementary School District,0621540,Liberty Elementary School District,elsd,name+point
+schools,California,1373,Liberty Elementary School District (Sonoma),0621540,Liberty Elementary School District,elsd,name+point
 schools,California,1374,Mark West Union Elementary School District,0624000,Mark West Union Elementary School District,elsd,name+point
 schools,California,1375,Monte Rio Union Elementary School District,0625410,Monte Rio Union Elementary School District,elsd,name+point
 schools,California,1376,Montgomery Elementary School District,0625650,Montgomery Elementary School District,elsd,name+point
@@ -1399,7 +1399,7 @@ schools,California,1396,Golden Feather Union Elementary School District,0615480,
 schools,California,1397,Manzanita Elementary School District,0623700,Manzanita Elementary School District,elsd,name+point
 schools,California,1398,Oroville City Elementary School District,0629100,Oroville City Elementary School District,elsd,name+point
 schools,California,1399,Palermo Union Elementary School District,0629540,Palermo Union Elementary School District,elsd,name+point
-schools,California,1400,Pioneer Union Elementary School District,0630520,Pioneer Union Elementary School District,elsd,name+point
+schools,California,1400,Pioneer Union Elementary School District (Butte),0630520,Pioneer Union Elementary School District,elsd,name+point
 schools,California,1401,Thermalito Union School District,0639180,Thermalito Union School District,elsd,name+point
 schools,California,1402,Brittan Elementary School District,0606090,Brittan Elementary School District,elsd,name+point
 schools,California,1403,Browns Elementary School District,0606100,Browns Elementary School District,elsd,name+point
@@ -1451,8 +1451,8 @@ schools,California,1448,Oak Valley Union Elementary School District,0627900,Oak 
 schools,California,1449,Saucelito Elementary School District,0635940,Saucelito Elementary School District,elsd,name+point
 schools,California,1450,Pleasant View Elementary School District,0631050,Pleasant View Elementary School District,elsd,name+point
 schools,California,1451,Buena Vista Elementary School District,0606420,Buena Vista Elementary School District,elsd,name+point
-schools,California,1452,Hope Elementary School District,0617520,Hope Elementary School District,elsd,name+point
-schools,California,1453,Liberty Elementary School District,0621570,Liberty Elementary School District,elsd,name+point
+schools,California,1452,Hope Elementary School District (Tulare),0617520,Hope Elementary School District,elsd,name+point
+schools,California,1453,Liberty Elementary School District (Tulare),0621570,Liberty Elementary School District,elsd,name+point
 schools,California,1454,Alta Vista Elementary School District,0602220,Alta Vista Elementary School District,elsd,name+point
 schools,California,1455,Linns Valley-Poso Flat Union School District,0621900,Linns Valley-Poso Flat Union School District,elsd,name+point
 schools,California,1456,Sundale Union Elementary School District,0638340,Sundale Union Elementary School District,elsd,name+point
@@ -1477,7 +1477,7 @@ schools,California,1474,Raymond-Knowles Union Elementary School District,0631920
 schools,California,1475,Allensworth Elementary School District,0601980,Allensworth Elementary School District,elsd,name+point
 schools,California,1476,Cienega Union Elementary School District,0608640,Cienega Union Elementary School District,elsd,name+point
 schools,California,1477,Hollister School District,0617340,Hollister School District,elsd,name+point
-schools,California,1478,Jefferson Elementary School District,0618810,Jefferson Elementary School District,elsd,name+point
+schools,California,1478,Jefferson Elementary School District (San Benito),0618810,Jefferson Elementary School District,elsd,name+point
 schools,California,1479,North County Joint Union Elementary School District,0627480,North County Joint Union Elementary School District,elsd,name+point
 schools,California,1480,Panoche Elementary School District,0629770,Panoche Elementary School District,elsd,name+point
 schools,California,1481,Southside Elementary School District,0637650,Southside Elementary School District,elsd,name+point
@@ -1501,7 +1501,7 @@ schools,California,1498,Fullerton Elementary School District,0614730,Fullerton E
 schools,California,1499,Huntington Beach City Elementary School District,0618030,Huntington Beach City Elementary School District,elsd,name+point
 schools,California,1500,La Habra City Elementary School District,0620190,La Habra City Elementary School District,elsd,name+point
 schools,California,1501,Magnolia Elementary School District,0623430,Magnolia Elementary School District,elsd,name+point
-schools,California,1502,Ocean View Elementary School District,0628140,Ocean View Elementary School District,elsd,name+point
+schools,California,1502,Ocean View Elementary School District (Orange),0628140,Ocean View Elementary School District,elsd,name+point
 schools,California,1503,Savanna Elementary School District,0636030,Savanna Elementary School District,elsd,name+point
 schools,California,1504,Westminster School District,0642150,Westminster School District,elsd,name+point
 schools,California,1505,Oroville Union High School District,0629130,Oroville Union High School District,scsd,name+point
@@ -2778,7 +2778,7 @@ schools,Illinois,2775,Itasca School District 10,1720220,Itasca School District 1
 schools,Illinois,2776,Keeneyville School District 20,1720880,Keeneyville School District 20,elsd,name+point
 schools,Illinois,2777,Monroe School District 70,1726490,Monroe School District 70,elsd,name+point
 schools,Illinois,2778,Norwood Elementary School District 63,1729040,Norwood Elementary School District 63,elsd,name+point
-schools,Illinois,2779,Oak Grove School District 68,1729100,Oak Grove School District 68,elsd,name+point
+schools,Illinois,2779,Oak Grove School District 68 (Peoria),1729100,Oak Grove School District 68,elsd,name+point
 schools,Illinois,2780,Pleasant Hill School District 69,1731860,Pleasant Hill School District 69,elsd,name+point
 schools,Illinois,2781,Pleasant Valley School District 62,1731950,Pleasant Valley School District 62,elsd,name+point
 schools,Illinois,2782,Taft School District 90,1738520,Taft School District 90,elsd,name+point
@@ -2946,7 +2946,7 @@ schools,Illinois,2943,Lincolnshire-Prairieview School District 103,1723090,Linco
 schools,Illinois,2944,McHenry Community Consolidated School District 15,1725290,McHenry Community Consolidated School District 15,elsd,name+point
 schools,Illinois,2945,Millburn Community Consolidated School District 24,1726100,Millburn Community Consolidated School District 24,elsd,name+point
 schools,Illinois,2946,Mundelein Elementary School District 75,1727540,Mundelein Elementary School District 75,elsd,name+point
-schools,Illinois,2947,Oak Grove School District 68,1729130,Oak Grove School District 68,elsd,name+point
+schools,Illinois,2947,Oak Grove School District 68 (Lake),1729130,Oak Grove School District 68,elsd,name+point
 schools,Illinois,2948,Newark Community Consolidated School District 66,1728270,Newark Community Consolidated School District 66,elsd,name+point
 schools,Illinois,2949,Lincolnwood School District 74,1723100,Lincolnwood School District 74,elsd,name+point
 schools,Illinois,2950,Lyons School District 103,1723850,Lyons School District 103,elsd,name+point
@@ -6133,7 +6133,7 @@ schools,Missouri,6130,Carl Junction R-I School District,2907350,Carl Junction R-
 schools,Missouri,6131,Raymore-Peculiar R-II School District,2923730,Raymore-Peculiar R-II School District,unsd,name+point
 schools,Missouri,6132,Archie R-V School District,2903200,Archie R-V School District,unsd,name+point
 schools,Missouri,6133,Adrian R-III School District,2902850,Adrian R-III School District,unsd,name+point
-schools,Missouri,6134,Miami R-I School District,2920820,Miami R-I School District,unsd,name+point
+schools,Missouri,6134,Miami R-I School District (Bates),2920820,Miami R-I School District,unsd,name+point
 schools,Missouri,6135,Drexel R-IV School District,2911070,Drexel R-IV School District,unsd,name+point
 schools,Missouri,6136,Chillicothe R-II School District,2908760,Chillicothe R-II School District,unsd,name+point
 schools,Missouri,6137,Mountain View-Birch Tree R-III School District,2921540,Mountain View-Birch Tree R-III School District,unsd,name+point
@@ -6441,7 +6441,7 @@ schools,Missouri,6438,Leesville R-IX School District,2918330,Leesville R-IX Scho
 schools,Missouri,6439,Lonedell R-XIV School District,2919200,Lonedell R-XIV School District,elsd,name+point
 schools,Missouri,6440,Manes R-V School District,2919950,Manes R-V School District,elsd,name+point
 schools,Missouri,6441,Mark Twain R-VIII School District,2920340,Mark Twain R-VIII School District,elsd,name+point
-schools,Missouri,6442,Miami R-I School District,2920840,Miami R-I School District,elsd,name+point
+schools,Missouri,6442,Miami R-I School District (Saline),2920840,Miami R-I School District,elsd,name+point
 schools,Missouri,6443,Middle Grove C-1 School District,2920880,Middle Grove C-1 School District,elsd,name+point
 schools,Missouri,6444,Mirabile C-1 School District,2921030,Mirabile C-1 School District,elsd,name+point
 schools,Missouri,6445,Missouri City 56 School District,2921060,Missouri City 56 School District,elsd,name+point
@@ -6610,7 +6610,7 @@ schools,Montana,6607,Box Elder Elementary School District,3004440,Box Elder Elem
 schools,Montana,6608,Davey Elementary School District,3008310,Davey Elementary School District,elsd,name+point
 schools,Montana,6609,Gildford Colony Elementary School District,3012350,Gildford Colony Elementary School District,elsd,name+point
 schools,Montana,6610,Havre Elementary School District,3013560,Havre Elementary School District,elsd,name+point
-schools,Montana,6611,Cottonwood Elementary School District,3014150,Cottonwood Elementary School District,elsd,name+point
+schools,Montana,6611,Cottonwood Elementary School District (Hill),3014150,Cottonwood Elementary School District,elsd,name+point
 schools,Montana,6612,Arrowhead Elementary School District,3002300,Arrowhead Elementary School District,elsd,name+point
 schools,Montana,6613,Cooke City Elementary School District,3007350,Cooke City Elementary School District,elsd,name+point
 schools,Montana,6614,Gardiner Elementary School District,3011820,Gardiner Elementary School District,elsd,name+point
@@ -6689,7 +6689,7 @@ schools,Montana,6686,Amsterdam Elementary School District,3001980,Amsterdam Elem
 schools,Montana,6687,Anderson Elementary School District,3002070,Anderson Elementary School District,elsd,name+point
 schools,Montana,6688,Belgrade Elementary School District,3003290,Belgrade Elementary School District,elsd,name+point
 schools,Montana,6689,Bozeman Elementary School District,3004560,Bozeman Elementary School District,elsd,name+point
-schools,Montana,6690,Cottonwood Elementary School District,3007500,Cottonwood Elementary School District,elsd,name+point
+schools,Montana,6690,Cottonwood Elementary School District (Gallatin),3007500,Cottonwood Elementary School District,elsd,name+point
 schools,Montana,6691,Gallatin Gateway Elementary School District,3011790,Gallatin Gateway Elementary School District,elsd,name+point
 schools,Montana,6692,Basin Elementary School District,3002820,Basin Elementary School District,elsd,name+point
 schools,Montana,6693,Boulder Elementary School District,3004380,Boulder Elementary School District,elsd,name+point
@@ -7309,7 +7309,7 @@ schools,New Hampshire,7306,Profile School District,3305830,Profile School Distri
 schools,New Hampshire,7307,Souhegan Cooperative School District,3306260,Souhegan Cooperative School District,scsd,name+point
 schools,New Hampshire,7308,Winnacunnet Cooperative School District,3307230,Winnacunnet Cooperative School District,scsd,name+point
 schools,New Hampshire,7309,Pemi-Baker Regional School District,3399965,Pemi-Baker Regional School District,scsd,name+point
-schools,New Jersey,7310,Franklin Township School District,3405490,Franklin Township School District,unsd,name+point
+schools,New Jersey,7310,Franklin Township School District (Somerset),3405490,Franklin Township School District,unsd,name+point
 schools,New Jersey,7311,Hillsborough Township School District,3407230,Hillsborough Township School District,unsd,name+point
 schools,New Jersey,7312,Edison Township School District,3404500,Edison Township School District,unsd,name+point
 schools,New Jersey,7313,Old Bridge Township School District,3409270,Old Bridge Township School District,unsd,name+point
@@ -7333,15 +7333,15 @@ schools,New Jersey,7330,Sayreville Borough School District,3414640,Sayreville Bo
 schools,New Jersey,7331,South Plainfield Borough School District,3415360,South Plainfield Borough School District,unsd,name+point
 schools,New Jersey,7332,South River Borough School District,3415390,South River Borough School District,unsd,name+point
 schools,New Jersey,7333,East Brunswick Township School District,3404110,East Brunswick Township School District,unsd,name+point
-schools,New Jersey,7334,Monroe Township School District,3410500,Monroe Township School District,unsd,name+point
+schools,New Jersey,7334,Monroe Township School District (Middlesex),3410500,Monroe Township School District,unsd,name+point
 schools,New Jersey,7335,Dumont Borough School District,3403990,Dumont Borough School District,unsd,name+point
 schools,New Jersey,7336,Elmwood Park Borough School District,3404660,Elmwood Park Borough School District,unsd,name+point
 schools,New Jersey,7337,Emerson Borough School District,3404710,Emerson Borough School District,unsd,name+point
 schools,New Jersey,7338,Green Township School District,3406090,Green Township School District,unsd,name+point
 schools,New Jersey,7339,Folsom Borough School District,3405280,Folsom Borough School District,unsd,name+point
 schools,New Jersey,7340,Garwood Borough School District,3405790,Garwood Borough School District,unsd,name+point
-schools,New Jersey,7341,Greenwich Township School District,3406180,Greenwich Township School District,unsd,name+point
-schools,New Jersey,7342,Greenwich Township School District,3406210,Greenwich Township School District,unsd,name+point
+schools,New Jersey,7341,Greenwich Township School District (Gloucester),3406180,Greenwich Township School District,unsd,name+point
+schools,New Jersey,7342,Greenwich Township School District (Warren),3406210,Greenwich Township School District,unsd,name+point
 schools,New Jersey,7343,Englewood City School District,3404740,Englewood City School District,unsd,name+point
 schools,New Jersey,7344,Fort Lee Borough School District,3405310,Fort Lee Borough School District,unsd,name+point
 schools,New Jersey,7345,Atlantic City School District,3400960,Atlantic City School District,unsd,name+point
@@ -7371,7 +7371,7 @@ schools,New Jersey,7368,Winslow Township School District,3418060,Winslow Townshi
 schools,New Jersey,7369,Manasquan Borough School District,3409420,Manasquan Borough School District,unsd,name+point
 schools,New Jersey,7370,Lake Como Borough School District,3415150,Lake Como Borough School District,unsd,name+point
 schools,New Jersey,7371,Upper Freehold Regional School District,3416560,Upper Freehold Regional School District,unsd,name+point
-schools,New Jersey,7372,Ocean Township School District,3412060,Ocean Township School District,unsd,name+point
+schools,New Jersey,7372,Ocean Township School District (Monmouth),3412060,Ocean Township School District,unsd,name+point
 schools,New Jersey,7373,Middle Township School District,3410020,Middle Township School District,unsd,name+point
 schools,New Jersey,7374,Tenafly Borough School District,3416110,Tenafly Borough School District,unsd,name+point
 schools,New Jersey,7375,Waldwick Borough School District,3416860,Waldwick Borough School District,unsd,name+point
@@ -7397,7 +7397,7 @@ schools,New Jersey,7394,Bayonne City School District,3401260,Bayonne City School
 schools,New Jersey,7395,Harrison Town School District,3406870,Harrison Town School District,unsd,name+point
 schools,New Jersey,7396,Millburn Township School District,3410200,Millburn Township School District,unsd,name+point
 schools,New Jersey,7397,Verona Borough School District,3416740,Verona Borough School District,unsd,name+point
-schools,New Jersey,7398,Monroe Township School District,3410470,Monroe Township School District,unsd,name+point
+schools,New Jersey,7398,Monroe Township School District (Gloucester),3410470,Monroe Township School District,unsd,name+point
 schools,New Jersey,7399,West Deptford Township School District,3417430,West Deptford Township School District,unsd,name+point
 schools,New Jersey,7400,Clayton Borough School District,3403180,Clayton Borough School District,unsd,name+point
 schools,New Jersey,7401,Hoboken City School District,3407350,Hoboken City School District,unsd,name+point
@@ -7432,7 +7432,7 @@ schools,New Jersey,7429,Loch Arbour School District,3400790,Loch Arbour School D
 schools,New Jersey,7430,Rahway City School District,3413530,Rahway City School District,unsd,name+point
 schools,New Jersey,7431,Roselle Borough School District,3414280,Roselle Borough School District,unsd,name+point
 schools,New Jersey,7432,Roselle Park Borough School District,3414310,Roselle Park Borough School District,unsd,name+point
-schools,New Jersey,7433,Springfield Township School District,3415630,Springfield Township School District,unsd,name+point
+schools,New Jersey,7433,Springfield Township School District (Union),3415630,Springfield Township School District,unsd,name+point
 schools,New Jersey,7434,Burlington City School District,3402430,Burlington City School District,unsd,name+point
 schools,New Jersey,7435,Delran Township School District,3403780,Delran Township School District,unsd,name+point
 schools,New Jersey,7436,Moorestown Township School District,3410710,Moorestown Township School District,unsd,name+point
@@ -7446,8 +7446,8 @@ schools,New Jersey,7443,Camden City School District,3402640,Camden City School D
 schools,New Jersey,7444,Pine Hill Borough School District,3412990,Pine Hill Borough School District,unsd,name+point
 schools,New Jersey,7445,Lindenwold Borough School District,3408640,Lindenwold Borough School District,unsd,name+point
 schools,New Jersey,7446,Haddon Township School District,3406360,Haddon Township School District,unsd,name+point
-schools,New Jersey,7447,Hamilton Township School District,3406540,Hamilton Township School District,unsd,name+point
-schools,New Jersey,7448,Lawrence Township School District,3408400,Lawrence Township School District,unsd,name+point
+schools,New Jersey,7447,Hamilton Township School District (Mercer),3406540,Hamilton Township School District,unsd,name+point
+schools,New Jersey,7448,Lawrence Township School District (Mercer),3408400,Lawrence Township School District,unsd,name+point
 schools,New Jersey,7449,West Windsor-Plainsboro Regional School District,3417700,West Windsor-Plainsboro Regional School District,unsd,name+point
 schools,New Jersey,7450,Clark Township School District,3403150,Clark Township School District,unsd,name+point
 schools,New Jersey,7451,Westfield Town School District,3417760,Westfield Town School District,unsd,name+point
@@ -7463,7 +7463,7 @@ schools,New Jersey,7460,Berkeley Heights Township School District,3401530,Berkel
 schools,New Jersey,7461,Elizabeth City School District,3404590,Elizabeth City School District,unsd,name+point
 schools,New Jersey,7462,Linden City School District,3408610,Linden City School District,unsd,name+point
 schools,New Jersey,7463,Scotch Plains-Fanwood Regional School District,3414670,Scotch Plains-Fanwood Regional School District,unsd,name+point
-schools,New Jersey,7464,Union Township School District,3416500,Union Township School District,unsd,name+point
+schools,New Jersey,7464,Union Township School District (Union),3416500,Union Township School District,unsd,name+point
 schools,New Jersey,7465,Cranford Township School District,3403570,Cranford Township School District,unsd,name+point
 schools,New Jersey,7466,Belleville Town School District,3401350,Belleville Town School District,unsd,name+point
 schools,New Jersey,7467,Bloomfield Township School District,3401830,Bloomfield Township School District,unsd,name+point
@@ -7473,7 +7473,7 @@ schools,New Jersey,7470,Caldwell-West Caldwell School District,3402580,Caldwell-
 schools,New Jersey,7471,Cedar Grove Township School District,3402850,Cedar Grove Township School District,unsd,name+point
 schools,New Jersey,7472,East Orange City School District,3404230,East Orange City School District,unsd,name+point
 schools,New Jersey,7473,Woodbury City School District,3418150,Woodbury City School District,unsd,name+point
-schools,New Jersey,7474,Washington Township School District,3417070,Washington Township School District,unsd,name+point
+schools,New Jersey,7474,Washington Township School District (Gloucester),3417070,Washington Township School District,unsd,name+point
 schools,New Jersey,7475,Glen Ridge Borough School District,3405940,Glen Ridge Borough School District,unsd,name+point
 schools,New Jersey,7476,Irvington Township School District,3407680,Irvington Township School District,unsd,name+point
 schools,New Jersey,7477,Guttenberg Town School District,3406240,Guttenberg Town School District,unsd,name+point
@@ -7489,7 +7489,7 @@ schools,New Jersey,7486,Montclair Town School District,3410560,Montclair Town Sc
 schools,New Jersey,7487,Nutley Town School District,3411880,Nutley Town School District,unsd,name+point
 schools,New Jersey,7488,Lavallette Borough School District,3408310,Lavallette Borough School District,unsd,name+point
 schools,New Jersey,7489,Lawnside Borough School District,3408340,Lawnside Borough School District,unsd,name+point
-schools,New Jersey,7490,Lawrence Township School District,3408370,Lawrence Township School District,unsd,name+point
+schools,New Jersey,7490,Lawrence Township School District (Cumberland),3408370,Lawrence Township School District,unsd,name+point
 schools,New Jersey,7491,Lincoln Park Borough School District,3408580,Lincoln Park Borough School District,unsd,name+point
 schools,New Jersey,7492,Little Ferry Borough School District,3408760,Little Ferry Borough School District,unsd,name+point
 schools,New Jersey,7493,Logan Township School District,3408880,Logan Township School District,unsd,name+point
@@ -7509,7 +7509,7 @@ schools,New Jersey,7506,Barnegat Township School District,3416470,Barnegat Towns
 schools,New Jersey,7507,Upper Pittsgrove Township School District,3416590,Upper Pittsgrove Township School District,unsd,name+point
 schools,New Jersey,7508,Upper Township School District,3416650,Upper Township School District,unsd,name+point
 schools,New Jersey,7509,Ventnor City School District,3416680,Ventnor City School District,unsd,name+point
-schools,New Jersey,7510,Washington Township School District,3417040,Washington Township School District,unsd,name+point
+schools,New Jersey,7510,Washington Township School District (Burlington),3417040,Washington Township School District,unsd,name+point
 schools,New Jersey,7511,Robbinsville Township School District,3417100,Robbinsville Township School District,unsd,name+point
 schools,New Jersey,7512,Waterford Township School District,3417250,Waterford Township School District,unsd,name+point
 schools,New Jersey,7513,Weymouth Township School District,3417850,Weymouth Township School District,unsd,name+point
@@ -7586,7 +7586,7 @@ schools,New Jersey,7583,Montville Township School District,3410650,Montville Tow
 schools,New Jersey,7584,Boonton Town School District,3401950,Boonton Town School District,unsd,name+point
 schools,New Jersey,7585,Butler Borough School District,3402520,Butler Borough School District,unsd,name+point
 schools,New Jersey,7586,North Wildwood City School District,3411670,North Wildwood City School District,unsd,name+point
-schools,New Jersey,7587,Ocean Township School District,3412090,Ocean Township School District,unsd,name+point
+schools,New Jersey,7587,Ocean Township School District (Ocean),3412090,Ocean Township School District,unsd,name+point
 schools,New Jersey,7588,Oldmans Township School District,3412210,Oldmans Township School District,unsd,name+point
 schools,New Jersey,7589,Dover Town School District,3403930,Dover Town School District,unsd,name+point
 schools,New Jersey,7590,Madison Borough School District,3409240,Madison Borough School District,unsd,name+point
@@ -7649,15 +7649,15 @@ schools,New Jersey,7646,Bound Brook Borough School District,3402100,Bound Brook 
 schools,New Jersey,7647,Manville Borough School District,3409630,Manville Borough School District,unsd,name+point
 schools,New Jersey,7648,Somerville Borough School District,3415090,Somerville Borough School District,unsd,name+point
 schools,New Jersey,7649,West Wildwood Borough School District,3417670,West Wildwood Borough School District,unsd,name+point
-schools,New Jersey,7650,Greenwich Township School District,3406150,Greenwich Township School District,elsd,name+point
+schools,New Jersey,7650,Greenwich Township School District (Cumberland),3406150,Greenwich Township School District,elsd,name+point
 schools,New Jersey,7651,Hopewell Township School District,3407500,Hopewell Township School District,elsd,name+point
 schools,New Jersey,7652,Stow Creek Township School District,3415840,Stow Creek Township School District,elsd,name+point
 schools,New Jersey,7653,Upper Deerfield Township School District,3416530,Upper Deerfield Township School District,elsd,name+point
 schools,New Jersey,7654,Deerfield Township School District,3403660,Deerfield Township School District,elsd,name+point
-schools,New Jersey,7655,Fairfield Township School District,3405040,Fairfield Township School District,elsd,name+point
+schools,New Jersey,7655,Fairfield Township School District (Cumberland),3405040,Fairfield Township School District,elsd,name+point
 schools,New Jersey,7656,Egg Harbor City School District,3404530,Egg Harbor City School District,elsd,name+point
 schools,New Jersey,7657,Galloway Township School District,3405730,Galloway Township School District,elsd,name+point
-schools,New Jersey,7658,Hamilton Township School District,3406510,Hamilton Township School District,elsd,name+point
+schools,New Jersey,7658,Hamilton Township School District (Atlantic),3406510,Hamilton Township School District,elsd,name+point
 schools,New Jersey,7659,Linwood City School District,3408670,Linwood City School District,elsd,name+point
 schools,New Jersey,7660,Mullica Township School District,3411070,Mullica Township School District,elsd,name+point
 schools,New Jersey,7661,Northfield City School District,3411790,Northfield City School District,elsd,name+point
@@ -7679,7 +7679,7 @@ schools,New Jersey,7676,Clinton Township School District,3403360,Clinton Townshi
 schools,New Jersey,7677,Delaware Township School District,3403720,Delaware Township School District,elsd,name+point
 schools,New Jersey,7678,East Amwell Township School District,3404080,East Amwell Township School District,elsd,name+point
 schools,New Jersey,7679,Flemington-Raritan Regional School District,3405190,Flemington-Raritan Regional School District,elsd,name+point
-schools,New Jersey,7680,Franklin Township School District,3405460,Franklin Township School District,elsd,name+point
+schools,New Jersey,7680,Franklin Township School District (Hunterdon),3405460,Franklin Township School District,elsd,name+point
 schools,New Jersey,7681,Lower Township School District,3409150,Lower Township School District,elsd,name+point
 schools,New Jersey,7682,West Cape May Borough School District,3417400,West Cape May Borough School District,elsd,name+point
 schools,New Jersey,7683,Frenchtown Borough School District,3405700,Frenchtown Borough School District,elsd,name+point
@@ -7707,9 +7707,9 @@ schools,New Jersey,7704,Woodcliff Lake Borough School District,3418210,Woodcliff
 schools,New Jersey,7705,Knowlton Township School District,3408070,Knowlton Township School District,elsd,name+point
 schools,New Jersey,7706,Frelinghuysen Township School District,3405670,Frelinghuysen Township School District,elsd,name+point
 schools,New Jersey,7707,Blairstown Township School District,3401800,Blairstown Township School District,elsd,name+point
-schools,New Jersey,7708,Washington Township School District,3417160,Washington Township School District,elsd,name+point
-schools,New Jersey,7709,Mansfield Township School District,3409540,Mansfield Township School District,elsd,name+point
-schools,New Jersey,7710,Franklin Township School District,3405520,Franklin Township School District,elsd,name+point
+schools,New Jersey,7708,Washington Township School District (Warren),3417160,Washington Township School District,elsd,name+point
+schools,New Jersey,7709,Mansfield Township School District (Warren),3409540,Mansfield Township School District,elsd,name+point
+schools,New Jersey,7710,Franklin Township School District (Warren),3405520,Franklin Township School District,elsd,name+point
 schools,New Jersey,7711,Washington Borough School District,3417010,Washington Borough School District,elsd,name+point
 schools,New Jersey,7712,Byram Township School District,3402550,Byram Township School District,elsd,name+point
 schools,New Jersey,7713,Frankford Township School District,3405340,Frankford Township School District,elsd,name+point
@@ -7735,11 +7735,11 @@ schools,New Jersey,7732,Netcong Borough School District,3411190,Netcong Borough 
 schools,New Jersey,7733,Long Hill Township School District,3412660,Long Hill Township School District,elsd,name+point
 schools,New Jersey,7734,Rockaway Borough School District,3414100,Rockaway Borough School District,elsd,name+point
 schools,New Jersey,7735,Rockaway Township School District,3414130,Rockaway Township School District,elsd,name+point
-schools,New Jersey,7736,Washington Township School District,3417130,Washington Township School District,elsd,name+point
+schools,New Jersey,7736,Washington Township School District (Morris),3417130,Washington Township School District,elsd,name+point
 schools,New Jersey,7737,Wharton Borough School District,3417880,Wharton Borough School District,elsd,name+point
 schools,New Jersey,7738,Warren Township School District,3416980,Warren Township School District,elsd,name+point
 schools,New Jersey,7739,Watchung Borough School District,3417190,Watchung Borough School District,elsd,name+point
-schools,New Jersey,7740,Fairfield Township School District,3405010,Fairfield Township School District,elsd,name+point
+schools,New Jersey,7740,Fairfield Township School District (Essex),3405010,Fairfield Township School District,elsd,name+point
 schools,New Jersey,7741,North Caldwell Borough School District,3411520,North Caldwell Borough School District,elsd,name+point
 schools,New Jersey,7742,Roseland Borough School District,3414250,Roseland Borough School District,elsd,name+point
 schools,New Jersey,7743,High Bridge Borough School District,3407110,High Bridge Borough School District,elsd,name+point
@@ -7755,14 +7755,14 @@ schools,New Jersey,7752,Gloucester Township School District,3406030,Gloucester T
 schools,New Jersey,7753,Voorhees Township School District,3416830,Voorhees Township School District,elsd,name+point
 schools,New Jersey,7754,Bellmawr Borough School District,3401380,Bellmawr Borough School District,elsd,name+point
 schools,New Jersey,7755,Magnolia Borough School District,3409300,Magnolia Borough School District,elsd,name+point
-schools,New Jersey,7756,Union Township School District,3416440,Union Township School District,elsd,name+point
+schools,New Jersey,7756,Union Township School District (Hunterdon),3416440,Union Township School District,elsd,name+point
 schools,New Jersey,7757,Stratford Borough School District,3415870,Stratford Borough School District,elsd,name+point
 schools,New Jersey,7758,Runnemede Borough School District,3414430,Runnemede Borough School District,elsd,name+point
 schools,New Jersey,7759,Somerdale Borough School District,3415000,Somerdale Borough School District,elsd,name+point
 schools,New Jersey,7760,Gibbsboro Borough School District,3405850,Gibbsboro Borough School District,elsd,name+point
 schools,New Jersey,7761,Mantua Township School District,3409600,Mantua Township School District,elsd,name+point
 schools,New Jersey,7762,Elk Township School District,3404620,Elk Township School District,elsd,name+point
-schools,New Jersey,7763,Franklin Township School District,3405430,Franklin Township School District,elsd,name+point
+schools,New Jersey,7763,Franklin Township School District (Gloucester),3405430,Franklin Township School District,elsd,name+point
 schools,New Jersey,7764,East Greenwich Township School District,3404140,East Greenwich Township School District,elsd,name+point
 schools,New Jersey,7765,Swedesboro-Woolwich School District,3415990,Swedesboro-Woolwich School District,elsd,name+point
 schools,New Jersey,7766,Westville Borough School District,3417790,Westville Borough School District,elsd,name+point
@@ -7797,7 +7797,7 @@ schools,New Jersey,7794,Eastampton Township School District,3404350,Eastampton T
 schools,New Jersey,7795,Evesham Township School District,3404890,Evesham Township School District,elsd,name+point
 schools,New Jersey,7796,Hainesport Township School District,3406420,Hainesport Township School District,elsd,name+point
 schools,New Jersey,7797,Lumberton Township School District,3409180,Lumberton Township School District,elsd,name+point
-schools,New Jersey,7798,Mansfield Township School District,3409510,Mansfield Township School District,elsd,name+point
+schools,New Jersey,7798,Mansfield Township School District (Burlington),3409510,Mansfield Township School District,elsd,name+point
 schools,New Jersey,7799,Medford Lakes Borough School District,3409840,Medford Lakes Borough School District,elsd,name+point
 schools,New Jersey,7800,Beach Haven Borough School District,3401290,Beach Haven Borough School District,elsd,name+point
 schools,New Jersey,7801,Berkeley Township School District,3401560,Berkeley Township School District,elsd,name+point
@@ -7816,7 +7816,7 @@ schools,New Jersey,7813,Mount Laurel Township School District,3410950,Mount Laur
 schools,New Jersey,7814,North Hanover Township School District,3411580,North Hanover Township School District,elsd,name+point
 schools,New Jersey,7815,Shamong Township School District,3414880,Shamong Township School District,elsd,name+point
 schools,New Jersey,7816,Southampton Township School District,3415420,Southampton Township School District,elsd,name+point
-schools,New Jersey,7817,Springfield Township School District,3415660,Springfield Township School District,elsd,name+point
+schools,New Jersey,7817,Springfield Township School District (Burlington),3415660,Springfield Township School District,elsd,name+point
 schools,New Jersey,7818,Tabernacle Township School District,3416020,Tabernacle Township School District,elsd,name+point
 schools,New Jersey,7819,Westampton Township School District,3417730,Westampton Township School District,elsd,name+point
 schools,New Jersey,7820,Woodland Township School District,3418240,Woodland Township School District,elsd,name+point
@@ -8932,11 +8932,11 @@ schools,Ohio,8929,Bucyrus City School District,3904368,Bucyrus City School Distr
 schools,Ohio,8930,Mohawk Local School District,3905074,Mohawk Local School District,unsd,name+point
 schools,Ohio,8931,Wickliffe City School District,3904508,Wickliffe City School District,unsd,name+point
 schools,Ohio,8932,Dalton Local School District,3905054,Dalton Local School District,unsd,name+point
-schools,Ohio,8933,Green Local School District,3905055,Green Local School District,unsd,name+point
+schools,Ohio,8933,Green Local School District (Wayne),3905055,Green Local School District,unsd,name+point
 schools,Ohio,8934,Claymont City School District,3904377,Claymont City School District,unsd,name+point
 schools,Ohio,8935,Painesville City Local School District,3910015,Painesville City Local School District,unsd,name+point
 schools,Ohio,8936,Howland Local School District,3905016,Howland Local School District,unsd,name+point
-schools,Ohio,8937,Springfield Local School District,3904837,Springfield Local School District,unsd,name+point
+schools,Ohio,8937,Springfield Local School District (Mahoning),3904837,Springfield Local School District,unsd,name+point
 schools,Ohio,8938,Willoughby-Eastlake City School District,3904510,Willoughby-Eastlake City School District,unsd,name+point
 schools,Ohio,8939,Union Local School District,3904601,Union Local School District,unsd,name+point
 schools,Ohio,8940,Barnesville Exempted Village School District,3904520,Barnesville Exempted Village School District,unsd,name+point
@@ -8954,7 +8954,7 @@ schools,Ohio,8951,Columbiana Exempted Village School District,3904532,Columbiana
 schools,Ohio,8952,West Branch Local School District,3904838,West Branch Local School District,unsd,name+point
 schools,Ohio,8953,Stow-Munroe Falls City School District,3904483,Stow-Munroe Falls City School District,unsd,name+point
 schools,Ohio,8954,Field Local School District,3904919,Field Local School District,unsd,name+point
-schools,Ohio,8955,Southeast Local School District,3904922,Southeast Local School District,unsd,name+point
+schools,Ohio,8955,Southeast Local School District (Portage),3904922,Southeast Local School District,unsd,name+point
 schools,Ohio,8956,Holgate Local School District,3904757,Holgate Local School District,unsd,name+point
 schools,Ohio,8957,Patrick Henry Local School District,3904759,Patrick Henry Local School District,unsd,name+point
 schools,Ohio,8958,Wolf Creek Local School District,3905051,Wolf Creek Local School District,unsd,name+point
@@ -9025,9 +9025,9 @@ schools,Ohio,9022,Mansfield City School District,3904429,Mansfield City School D
 schools,Ohio,9023,Lucas Local School District,3904944,Lucas Local School District,unsd,name+point
 schools,Ohio,9024,Bowling Green City School District,3904363,Bowling Green City School District,unsd,name+point
 schools,Ohio,9025,Northwood Local School District,3905071,Northwood Local School District,unsd,name+point
-schools,Ohio,9026,Crestview Local School District,3904942,Crestview Local School District,unsd,name+point
+schools,Ohio,9026,Crestview Local School District (Richland),3904942,Crestview Local School District,unsd,name+point
 schools,Ohio,9027,Shelby City School District,3910009,Shelby City School District,unsd,name+point
-schools,Ohio,9028,Northeastern Local School District,3904672,Northeastern Local School District,unsd,name+point
+schools,Ohio,9028,Northeastern Local School District (Defiance),3904672,Northeastern Local School District,unsd,name+point
 schools,Ohio,9029,Crestline Exempted Village School District,3910008,Crestline Exempted Village School District,unsd,name+point
 schools,Ohio,9030,Graham Local School District,3904619,Graham Local School District,unsd,name+point
 schools,Ohio,9031,Lorain City School District,3904426,Lorain City School District,unsd,name+point
@@ -9053,7 +9053,7 @@ schools,Ohio,9050,Bryan City School District,3904367,Bryan City School District,
 schools,Ohio,9051,North Central Local School District,3905064,North Central Local School District,unsd,name+point
 schools,Ohio,9052,Orange City School District,3910016,Orange City School District,unsd,name+point
 schools,Ohio,9053,Conneaut Area City School District,3904381,Conneaut Area City School District,unsd,name+point
-schools,Ohio,9054,Buckeye Local School District,3904847,Buckeye Local School District,unsd,name+point
+schools,Ohio,9054,Buckeye Local School District (Medina),3904847,Buckeye Local School District,unsd,name+point
 schools,Ohio,9055,Brunswick City School District,3904366,Brunswick City School District,unsd,name+point
 schools,Ohio,9056,Wadsworth City School District,3910029,Wadsworth City School District,unsd,name+point
 schools,Ohio,9057,Jefferson Area Local School District,3904587,Jefferson Area Local School District,unsd,name+point
@@ -9075,7 +9075,7 @@ schools,Ohio,9072,Austintown Local School District,3904829,Austintown Local Scho
 schools,Ohio,9073,Canfield Local School District,3904831,Canfield Local School District,unsd,name+point
 schools,Ohio,9074,South Range Local School District,3904836,South Range Local School District,unsd,name+point
 schools,Ohio,9075,Circleville City School District,3904376,Circleville City School District,unsd,name+point
-schools,Ohio,9076,Western Reserve Local School District,3904839,Western Reserve Local School District,unsd,name+point
+schools,Ohio,9076,Western Reserve Local School District (Mahoning),3904839,Western Reserve Local School District,unsd,name+point
 schools,Ohio,9077,Bay Village City School District,3904354,Bay Village City School District,unsd,name+point
 schools,Ohio,9078,Beachwood City School District,3904355,Beachwood City School District,unsd,name+point
 schools,Ohio,9079,New Miami Local School District,3904613,New Miami Local School District,unsd,name+point
@@ -9100,13 +9100,13 @@ schools,Ohio,9097,Garfield Heights City School District,3904404,Garfield Heights
 schools,Ohio,9098,Lakewood City School District,3904419,Lakewood City School District,unsd,name+point
 schools,Ohio,9099,Woodridge Local School District,3904997,Woodridge Local School District,unsd,name+point
 schools,Ohio,9100,Copley-Fairlawn City School District,3904998,Copley-Fairlawn City School District,unsd,name+point
-schools,Ohio,9101,Green Local School District,3905001,Green Local School District,unsd,name+point
+schools,Ohio,9101,Green Local School District (Summit),3905001,Green Local School District,unsd,name+point
 schools,Ohio,9102,Pettisville Local School District,3904707,Pettisville Local School District,unsd,name+point
 schools,Ohio,9103,Liberty Center Local School District,3904758,Liberty Center Local School District,unsd,name+point
 schools,Ohio,9104,Versailles Exempted Village School District,3904563,Versailles Exempted Village School District,unsd,name+point
 schools,Ohio,9105,Anna Local School District,3910004,Anna Local School District,unsd,name+point
 schools,Ohio,9106,Hillsboro City School District,3904412,Hillsboro City School District,unsd,name+point
-schools,Ohio,9107,Eastern Local School District,3904603,Eastern Local School District,unsd,name+point
+schools,Ohio,9107,Eastern Local School District (Brown),3904603,Eastern Local School District,unsd,name+point
 schools,Ohio,9108,Bright Local School District,3904761,Bright Local School District,unsd,name+point
 schools,Ohio,9109,Adams County/Ohio Valley Local School District,3906190,Adams County/Ohio Valley Local School District,unsd,name+point
 schools,Ohio,9110,Cardington-Lincoln Local School District,3904879,Cardington-Lincoln Local School District,unsd,name+point
@@ -9132,9 +9132,9 @@ schools,Ohio,9129,Wyoming City School District,3904514,Wyoming City School Distr
 schools,Ohio,9130,Forest Hills Local School District,3904734,Forest Hills Local School District,unsd,name+point
 schools,Ohio,9131,Madeira City School District,3904428,Madeira City School District,unsd,name+point
 schools,Ohio,9132,North College Hill City School District,3904451,North College Hill City School District,unsd,name+point
-schools,Ohio,9133,Eastern Local School District,3904912,Eastern Local School District,unsd,name+point
+schools,Ohio,9133,Eastern Local School District (Pike),3904912,Eastern Local School District,unsd,name+point
 schools,Ohio,9134,Bloom-Vernon Local School District,3904959,Bloom-Vernon Local School District,unsd,name+point
-schools,Ohio,9135,Green Local School District,3904961,Green Local School District,unsd,name+point
+schools,Ohio,9135,Green Local School District (Scioto),3904961,Green Local School District,unsd,name+point
 schools,Ohio,9136,Valley Local School District,3904964,Valley Local School District,unsd,name+point
 schools,Ohio,9137,Clay Local School District,3910026,Clay Local School District,unsd,name+point
 schools,Ohio,9138,Antwerp Local School District,3904899,Antwerp Local School District,unsd,name+point
@@ -9144,7 +9144,7 @@ schools,Ohio,9141,Edgewood City School District,3904609,Edgewood City School Dis
 schools,Ohio,9142,Valley View Local School District,3904874,Valley View Local School District,unsd,name+point
 schools,Ohio,9143,Tri-County North Local School District,3904926,Tri-County North Local School District,unsd,name+point
 schools,Ohio,9144,Preble Shawnee Local School District,3904928,Preble Shawnee Local School District,unsd,name+point
-schools,Ohio,9145,Madison Local School District,3904612,Madison Local School District,unsd,name+point
+schools,Ohio,9145,Madison Local School District (Butler),3904612,Madison Local School District,unsd,name+point
 schools,Ohio,9146,Westfall Local School District,3904910,Westfall Local School District,unsd,name+point
 schools,Ohio,9147,Norwood City School District,3904457,Norwood City School District,unsd,name+point
 schools,Ohio,9148,Reading Community City School District,3904469,Reading Community City School District,unsd,name+point
@@ -9155,7 +9155,7 @@ schools,Ohio,9152,Loudonville-Perrysville Exempted Village School District,39045
 schools,Ohio,9153,Buckeye Central Local School District,3904650,Buckeye Central Local School District,unsd,name+point
 schools,Ohio,9154,South Central Local School District,3904773,South Central Local School District,unsd,name+point
 schools,Ohio,9155,Clear Fork Valley Local School District,3904941,Clear Fork Valley Local School District,unsd,name+point
-schools,Ohio,9156,Madison Local School District,3904945,Madison Local School District,unsd,name+point
+schools,Ohio,9156,Madison Local School District (Richland),3904945,Madison Local School District,unsd,name+point
 schools,Ohio,9157,Plymouth-Shiloh Local School District,3904946,Plymouth-Shiloh Local School District,unsd,name+point
 schools,Ohio,9158,Ontario Local School District,3904947,Ontario Local School District,unsd,name+point
 schools,Ohio,9159,Monroe Local School District,3900094,Monroe Local School District,unsd,name+point
@@ -9166,7 +9166,7 @@ schools,Ohio,9163,Kings Local School District,3905043,Kings Local School Distric
 schools,Ohio,9164,Wayne Local School District,3905046,Wayne Local School District,unsd,name+point
 schools,Ohio,9165,Nelsonville-York City School District,3904444,Nelsonville-York City School District,unsd,name+point
 schools,Ohio,9166,Finneytown Local School District,3904733,Finneytown Local School District,unsd,name+point
-schools,Ohio,9167,Northwest Local School District,3904736,Northwest Local School District,unsd,name+point
+schools,Ohio,9167,Northwest Local School District (Hamilton),3904736,Northwest Local School District,unsd,name+point
 schools,Ohio,9168,Mariemont City School District,3904431,Mariemont City School District,unsd,name+point
 schools,Ohio,9169,Indian Hill Exempted Village School District,3904543,Indian Hill Exempted Village School District,unsd,name+point
 schools,Ohio,9170,Coshocton City School District,3904382,Coshocton City School District,unsd,name+point
@@ -9174,15 +9174,15 @@ schools,Ohio,9171,Ridgewood Local School District,3904647,Ridgewood Local School
 schools,Ohio,9172,East Knox Local School District,3910013,East Knox Local School District,unsd,name+point
 schools,Ohio,9173,Heath City School District,3904411,Heath City School District,unsd,name+point
 schools,Ohio,9174,Granville Exempted Village School District,3904539,Granville Exempted Village School District,unsd,name+point
-schools,Ohio,9175,Northridge Local School District,3904803,Northridge Local School District,unsd,name+point
+schools,Ohio,9175,Northridge Local School District (Licking),3904803,Northridge Local School District,unsd,name+point
 schools,Ohio,9176,Huron City School District,3904413,Huron City School District,unsd,name+point
 schools,Ohio,9177,Margaretta Local School District,3904680,Margaretta Local School District,unsd,name+point
-schools,Ohio,9178,Western Reserve Local School District,3904774,Western Reserve Local School District,unsd,name+point
+schools,Ohio,9178,Western Reserve Local School District (Huron),3904774,Western Reserve Local School District,unsd,name+point
 schools,Ohio,9179,Bellevue City School District,3904359,Bellevue City School District,unsd,name+point
 schools,Ohio,9180,Monroeville Local School District,3904771,Monroeville Local School District,unsd,name+point
 schools,Ohio,9181,Harrison Hills City School District,3904524,Harrison Hills City School District,unsd,name+point
 schools,Ohio,9182,Conotton Valley Union Local School District,3904754,Conotton Valley Union Local School District,unsd,name+point
-schools,Ohio,9183,Buckeye Local School District,3904778,Buckeye Local School District,unsd,name+point
+schools,Ohio,9183,Buckeye Local School District (Jefferson),3904778,Buckeye Local School District,unsd,name+point
 schools,Ohio,9184,Norwalk City School District,3904456,Norwalk City School District,unsd,name+point
 schools,Ohio,9185,Willard City School District,3904509,Willard City School District,unsd,name+point
 schools,Ohio,9186,New London Local School District,3904772,New London Local School District,unsd,name+point
@@ -9193,14 +9193,14 @@ schools,Ohio,9190,Coventry Local School District,3904999,Coventry Local School D
 schools,Ohio,9191,Revere Local School District,3905005,Revere Local School District,unsd,name+point
 schools,Ohio,9192,Greenfield Exempted Village School District,3904540,Greenfield Exempted Village School District,unsd,name+point
 schools,Ohio,9193,Adena Local School District,3904949,Adena Local School District,unsd,name+point
-schools,Ohio,9194,Southeastern Local School District,3904952,Southeastern Local School District,unsd,name+point
+schools,Ohio,9194,Southeastern Local School District (Ross),3904952,Southeastern Local School District,unsd,name+point
 schools,Ohio,9195,Union-Scioto Local School District,3904953,Union-Scioto Local School District,unsd,name+point
 schools,Ohio,9196,Ridgemont Local School District,3904750,Ridgemont Local School District,unsd,name+point
 schools,Ohio,9197,Milford Exempted Village School District,3904550,Milford Exempted Village School District,unsd,name+point
 schools,Ohio,9198,Bethel-Tate Local School District,3904631,Bethel-Tate Local School District,unsd,name+point
 schools,Ohio,9199,Clermont Northeastern Local School District,3904632,Clermont Northeastern Local School District,unsd,name+point
 schools,Ohio,9200,Williamsburg Local School District,3904636,Williamsburg Local School District,unsd,name+point
-schools,Ohio,9201,Lakota Local School District,3904611,Lakota Local School District,unsd,name+point
+schools,Ohio,9201,Lakota Local School District (Butler),3904611,Lakota Local School District,unsd,name+point
 schools,Ohio,9202,Southwest Local School District,3904738,Southwest Local School District,unsd,name+point
 schools,Ohio,9203,Hicksville Exempted Village School District,3904541,Hicksville Exempted Village School District,unsd,name+point
 schools,Ohio,9204,Ayersville Local School District,3904670,Ayersville Local School District,unsd,name+point
@@ -9220,7 +9220,7 @@ schools,Ohio,9217,Arcanum-Butler Local School District,3904663,Arcanum-Butler Lo
 schools,Ohio,9218,Mississinawa Valley Local School District,3904667,Mississinawa Valley Local School District,unsd,name+point
 schools,Ohio,9219,Tri-Village Local School District,3904668,Tri-Village Local School District,unsd,name+point
 schools,Ohio,9220,Western Brown Local School District,3904606,Western Brown Local School District,unsd,name+point
-schools,Ohio,9221,Northwest Local School District,3904963,Northwest Local School District,unsd,name+point
+schools,Ohio,9221,Northwest Local School District (Scioto),3904963,Northwest Local School District,unsd,name+point
 schools,Ohio,9222,Wheelersburg Local School District,3904966,Wheelersburg Local School District,unsd,name+point
 schools,Ohio,9223,Oakwood City School District,3904458,Oakwood City School District,unsd,name+point
 schools,Ohio,9224,West Carrollton City School District,3904505,West Carrollton City School District,unsd,name+point
@@ -9228,7 +9228,7 @@ schools,Ohio,9225,Brookville Local School District,3904867,Brookville Local Scho
 schools,Ohio,9226,Tiffin City School District,3904489,Tiffin City School District,unsd,name+point
 schools,Ohio,9227,Kenton City School District,3910025,Kenton City School District,unsd,name+point
 schools,Ohio,9228,Mechanicsburg Exempted Village School District,3904548,Mechanicsburg Exempted Village School District,unsd,name+point
-schools,Ohio,9229,Northridge Local School District,3904873,Northridge Local School District,unsd,name+point
+schools,Ohio,9229,Northridge Local School District (Montgomery),3904873,Northridge Local School District,unsd,name+point
 schools,Ohio,9230,Huber Heights City School District,3904875,Huber Heights City School District,unsd,name+point
 schools,Ohio,9231,Dayton City School District,3904384,Dayton City School District,unsd,name+point
 schools,Ohio,9232,Franklin City School District,3904400,Franklin City School District,unsd,name+point
@@ -9244,20 +9244,20 @@ schools,Ohio,9241,Franklin Monroe Local School District,3904664,Franklin Monroe 
 schools,Ohio,9242,Bethel Local School District,3904861,Bethel Local School District,unsd,name+point
 schools,Ohio,9243,Miami East Local School District,3904862,Miami East Local School District,unsd,name+point
 schools,Ohio,9244,Northmont City School District,3904872,Northmont City School District,unsd,name+point
-schools,Ohio,9245,Northwestern Local School District,3904626,Northwestern Local School District,unsd,name+point
+schools,Ohio,9245,Northwestern Local School District (Clark),3904626,Northwestern Local School District,unsd,name+point
 schools,Ohio,9246,New Riegel Local School District,3904971,New Riegel Local School District,unsd,name+point
 schools,Ohio,9247,Mathews Local School District,3905015,Mathews Local School District,unsd,name+point
 schools,Ohio,9248,Buckeye Valley Local School District,3904675,Buckeye Valley Local School District,unsd,name+point
 schools,Ohio,9249,Fayette Local School District,3904706,Fayette Local School District,unsd,name+point
 schools,Ohio,9250,Swanton Local School District,3904709,Swanton Local School District,unsd,name+point
 schools,Ohio,9251,Pike-Delta-York Local School District,3904708,Pike-Delta-York Local School District,unsd,name+point
-schools,Ohio,9252,Lakota Local School District,3904956,Lakota Local School District,unsd,name+point
+schools,Ohio,9252,Lakota Local School District (Sandusky),3904956,Lakota Local School District,unsd,name+point
 schools,Ohio,9253,Seneca East Local School District,3904968,Seneca East Local School District,unsd,name+point
 schools,Ohio,9254,Hopewell-Loudon Local School District,3904970,Hopewell-Loudon Local School District,unsd,name+point
 schools,Ohio,9255,Clyde-Green Springs Exempted Village School District,3910020,Clyde-Green Springs Exempted Village School District,unsd,name+point
 schools,Ohio,9256,Urbana City School District,3904494,Urbana City School District,unsd,name+point
 schools,Ohio,9257,Franklin Local School District,3904884,Franklin Local School District,unsd,name+point
-schools,Ohio,9258,Southern Local School District,3904906,Southern Local School District,unsd,name+point
+schools,Ohio,9258,Southern Local School District (Perry),3904906,Southern Local School District,unsd,name+point
 schools,Ohio,9259,Crooksville Exempted Village School District,3904535,Crooksville Exempted Village School District,unsd,name+point
 schools,Ohio,9260,Fairfield Union Local School District,3904687,Fairfield Union Local School District,unsd,name+point
 schools,Ohio,9261,Maumee City School District,3904436,Maumee City School District,unsd,name+point
@@ -9275,7 +9275,7 @@ schools,Ohio,9272,Athens City School District,3904352,Athens City School Distric
 schools,Ohio,9273,East Clinton Local School District,3904640,East Clinton Local School District,unsd,name+point
 schools,Ohio,9274,Washington Court House City School District,3910011,Washington Court House City School District,unsd,name+point
 schools,Ohio,9275,Sandy Valley Local School District,3904994,Sandy Valley Local School District,unsd,name+point
-schools,Ohio,9276,Southeast Local School District,3905058,Southeast Local School District,unsd,name+point
+schools,Ohio,9276,Southeast Local School District (Wayne),3905058,Southeast Local School District,unsd,name+point
 schools,Ohio,9277,Sidney City School District,3910003,Sidney City School District,unsd,name+point
 schools,Ohio,9278,Fairlawn Local School District,3904977,Fairlawn Local School District,unsd,name+point
 schools,Ohio,9279,North Ridgeville City School District,3904453,North Ridgeville City School District,unsd,name+point
@@ -9284,7 +9284,7 @@ schools,Ohio,9281,Avon Local School District,3904811,Avon Local School District,
 schools,Ohio,9282,Columbia Local School District,3904814,Columbia Local School District,unsd,name+point
 schools,Ohio,9283,Wellsville Local School District,3904503,Wellsville Local School District,unsd,name+point
 schools,Ohio,9284,Hillsdale Local School District,3904582,Hillsdale Local School District,unsd,name+point
-schools,Ohio,9285,Northwest Local School District,3904990,Northwest Local School District,unsd,name+point
+schools,Ohio,9285,Northwest Local School District (Stark),3904990,Northwest Local School District,unsd,name+point
 schools,Ohio,9286,Canton City School District,3904371,Canton City School District,unsd,name+point
 schools,Ohio,9287,Louisville City School District,3904987,Louisville City School District,unsd,name+point
 schools,Ohio,9288,Edgerton Local School District,3905061,Edgerton Local School District,unsd,name+point
@@ -9298,7 +9298,7 @@ schools,Ohio,9295,Xenia Community City School District,3904515,Xenia Community C
 schools,Ohio,9296,Greeneview Local School District,3904726,Greeneview Local School District,unsd,name+point
 schools,Ohio,9297,Fairfield Local School District,3904762,Fairfield Local School District,unsd,name+point
 schools,Ohio,9298,Clinton-Massie Local School District,3904639,Clinton-Massie Local School District,unsd,name+point
-schools,Ohio,9299,Manchester Local School District,3900537,Manchester Local School District,unsd,name+point
+schools,Ohio,9299,Manchester Local School District (Adams),3900537,Manchester Local School District,unsd,name+point
 schools,Ohio,9300,Hudson City School District,3905002,Hudson City School District,unsd,name+point
 schools,Ohio,9301,East Liverpool City School District,3904391,East Liverpool City School District,unsd,name+point
 schools,Ohio,9302,North Canton City School District,3904450,North Canton City School District,unsd,name+point
@@ -9315,13 +9315,13 @@ schools,Ohio,9312,Olentangy Local School District,3904676,Olentangy Local School
 schools,Ohio,9313,Gallipolis City School District,3904403,Gallipolis City School District,unsd,name+point
 schools,Ohio,9314,Massillon City School District,3904435,Massillon City School District,unsd,name+point
 schools,Ohio,9315,Canton Local School District,3904983,Canton Local School District,unsd,name+point
-schools,Ohio,9316,Perry Local School District,3904992,Perry Local School District,unsd,name+point
+schools,Ohio,9316,Perry Local School District (Stark),3904992,Perry Local School District,unsd,name+point
 schools,Ohio,9317,Bridgeport Exempted Village School District,3904523,Bridgeport Exempted Village School District,unsd,name+point
 schools,Ohio,9318,St. Clairsville-Richland City School District,3904599,St. Clairsville-Richland City School District,unsd,name+point
 schools,Ohio,9319,New Philadelphia City School District,3904448,New Philadelphia City School District,unsd,name+point
 schools,Ohio,9320,Indian Valley Local School District,3905028,Indian Valley Local School District,unsd,name+point
 schools,Ohio,9321,Tuscarawas Valley Local School District,3905030,Tuscarawas Valley Local School District,unsd,name+point
-schools,Ohio,9322,Springfield Local School District,3905006,Springfield Local School District,unsd,name+point
+schools,Ohio,9322,Springfield Local School District (Summit),3905006,Springfield Local School District,unsd,name+point
 schools,Ohio,9323,Wynford Local School District,3904652,Wynford Local School District,unsd,name+point
 schools,Ohio,9324,Colonel Crawford Local School District,3904651,Colonel Crawford Local School District,unsd,name+point
 schools,Ohio,9325,Lordstown Local School District,3905020,Lordstown Local School District,unsd,name+point
@@ -9331,10 +9331,10 @@ schools,Ohio,9328,Liberty Local School District,3905019,Liberty Local School Dis
 schools,Ohio,9329,Gibsonburg Exempted Village School District,3904538,Gibsonburg Exempted Village School District,unsd,name+point
 schools,Ohio,9330,Danbury Local School District,3904893,Danbury Local School District,unsd,name+point
 schools,Ohio,9331,North Bass Local School District,3904896,North Bass Local School District,unsd,name+point
-schools,Ohio,9332,Lake Local School District,3905069,Lake Local School District,unsd,name+point
+schools,Ohio,9332,Lake Local School District (Wood),3905069,Lake Local School District,unsd,name+point
 schools,Ohio,9333,East Palestine City School District,3904392,East Palestine City School District,unsd,name+point
 schools,Ohio,9334,Lisbon Exempted Village School District,3904545,Lisbon Exempted Village School District,unsd,name+point
-schools,Ohio,9335,Crestview Local School District,3904643,Crestview Local School District,unsd,name+point
+schools,Ohio,9335,Crestview Local School District (Columbiana),3904643,Crestview Local School District,unsd,name+point
 schools,Ohio,9336,United Local School District,3904645,United Local School District,unsd,name+point
 schools,Ohio,9337,Salem City School District,3910006,Salem City School District,unsd,name+point
 schools,Ohio,9338,South-Western City School District,3904480,South-Western City School District,unsd,name+point
@@ -9345,11 +9345,11 @@ schools,Ohio,9342,Anthony Wayne Local School District,3904820,Anthony Wayne Loca
 schools,Ohio,9343,Washington Local School District,3904823,Washington Local School District,unsd,name+point
 schools,Ohio,9344,Otsego Local School District,3905072,Otsego Local School District,unsd,name+point
 schools,Ohio,9345,Hilliard City School District,3904701,Hilliard City School District,unsd,name+point
-schools,Ohio,9346,Crestview Local School District,3905035,Crestview Local School District,unsd,name+point
+schools,Ohio,9346,Crestview Local School District (Van Wert),3905035,Crestview Local School District,unsd,name+point
 schools,Ohio,9347,Caldwell Exempted Village School District,3904525,Caldwell Exempted Village School District,unsd,name+point
 schools,Ohio,9348,Vermilion Local School District,3904682,Vermilion Local School District,unsd,name+point
 schools,Ohio,9349,Archbold Area Local School District,3904704,Archbold Area Local School District,unsd,name+point
-schools,Ohio,9350,Springfield Local School District,3904822,Springfield Local School District,unsd,name+point
+schools,Ohio,9350,Springfield Local School District (Lucas),3904822,Springfield Local School District,unsd,name+point
 schools,Ohio,9351,Carlisle Local School District,3905041,Carlisle Local School District,unsd,name+point
 schools,Ohio,9352,Cuyahoga Falls City School District,3904383,Cuyahoga Falls City School District,unsd,name+point
 schools,Ohio,9353,Girard City School District,3904406,Girard City School District,unsd,name+point
@@ -9364,7 +9364,7 @@ schools,Ohio,9361,Niles City School District,3904449,Niles City School District,
 schools,Ohio,9362,Cardinal Local School District,3904717,Cardinal Local School District,unsd,name+point
 schools,Ohio,9363,Switzerland of Ohio Local School District,3904865,Switzerland of Ohio Local School District,unsd,name+point
 schools,Ohio,9364,Noble Local School District,3904890,Noble Local School District,unsd,name+point
-schools,Ohio,9365,Manchester Local School District,3905000,Manchester Local School District,unsd,name+point
+schools,Ohio,9365,Manchester Local School District (Summit),3905000,Manchester Local School District,unsd,name+point
 schools,Ohio,9366,Nordonia Hills City School District,3905004,Nordonia Hills City School District,unsd,name+point
 schools,Ohio,9367,Twinsburg City School District,3905007,Twinsburg City School District,unsd,name+point
 schools,Ohio,9368,Barberton City School District,3904353,Barberton City School District,unsd,name+point
@@ -9376,9 +9376,9 @@ schools,Ohio,9373,Worthington City School District,3904513,Worthington City Scho
 schools,Ohio,9374,Groveport Madison Local School District,3904697,Groveport Madison Local School District,unsd,name+point
 schools,Ohio,9375,Gahanna-Jefferson City School District,3904696,Gahanna-Jefferson City School District,unsd,name+point
 schools,Ohio,9376,Beaver Local School District,3904642,Beaver Local School District,unsd,name+point
-schools,Ohio,9377,Eastern Local School District,3904851,Eastern Local School District,unsd,name+point
+schools,Ohio,9377,Eastern Local School District (Meigs),3904851,Eastern Local School District,unsd,name+point
 schools,Ohio,9378,Meigs Local School District,3904852,Meigs Local School District,unsd,name+point
-schools,Ohio,9379,Southern Local School District,3904853,Southern Local School District,unsd,name+point
+schools,Ohio,9379,Southern Local School District (Meigs),3904853,Southern Local School District,unsd,name+point
 schools,Ohio,9380,Bloomfield-Mespo Local School District,3905009,Bloomfield-Mespo Local School District,unsd,name+point
 schools,Ohio,9381,Brookfield Local School District,3905012,Brookfield Local School District,unsd,name+point
 schools,Ohio,9382,Champion Local School District,3905013,Champion Local School District,unsd,name+point
@@ -9386,11 +9386,11 @@ schools,Ohio,9383,Crestwood Local School District,3904918,Crestwood Local School
 schools,Ohio,9384,James A. Garfield Local School District,3904920,James A. Garfield Local School District,unsd,name+point
 schools,Ohio,9385,Streetsboro City School District,3904923,Streetsboro City School District,unsd,name+point
 schools,Ohio,9386,Waterloo Local School District,3904924,Waterloo Local School District,unsd,name+point
-schools,Ohio,9387,Lake Local School District,3904986,Lake Local School District,unsd,name+point
+schools,Ohio,9387,Lake Local School District (Stark),3904986,Lake Local School District,unsd,name+point
 schools,Ohio,9388,Paint Valley Local School District,3904951,Paint Valley Local School District,unsd,name+point
 schools,Ohio,9389,Zane Trace Local School District,3904954,Zane Trace Local School District,unsd,name+point
 schools,Ohio,9390,Galion City School District,3904402,Galion City School District,unsd,name+point
-schools,Ohio,9391,Highland Local School District,3904880,Highland Local School District,unsd,name+point
+schools,Ohio,9391,Highland Local School District (Morrow),3904880,Highland Local School District,unsd,name+point
 schools,Ohio,9392,Mount Gilead Exempted Village School District,3904553,Mount Gilead Exempted Village School District,unsd,name+point
 schools,Ohio,9393,Northmor Local School District,3904881,Northmor Local School District,unsd,name+point
 schools,Ohio,9394,Lexington Local School District,3904943,Lexington Local School District,unsd,name+point
@@ -9408,14 +9408,14 @@ schools,Ohio,9405,Zanesville City School District,3904517,Zanesville City School
 schools,Ohio,9406,Maysville Local School District,3904885,Maysville Local School District,unsd,name+point
 schools,Ohio,9407,Gallia County Local School District,3906568,Gallia County Local School District,unsd,name+point
 schools,Ohio,9408,Liberty Union-Thurston Local School District,3904688,Liberty Union-Thurston Local School District,unsd,name+point
-schools,Ohio,9409,Northwestern Local School District,3910033,Northwestern Local School District,unsd,name+point
+schools,Ohio,9409,Northwestern Local School District (Wayne),3910033,Northwestern Local School District,unsd,name+point
 schools,Ohio,9410,Fremont City School District,3904401,Fremont City School District,unsd,name+point
 schools,Ohio,9411,Walnut Township Local School District,3904690,Walnut Township Local School District,unsd,name+point
 schools,Ohio,9412,Mapleton Local School District,3904583,Mapleton Local School District,unsd,name+point
 schools,Ohio,9413,Black River Local School District,3904846,Black River Local School District,unsd,name+point
 schools,Ohio,9414,West Holmes Local School District,3904769,West Holmes Local School District,unsd,name+point
 schools,Ohio,9415,Chardon Local School District,3904718,Chardon Local School District,unsd,name+point
-schools,Ohio,9416,Riverside Local School District,3910014,Riverside Local School District,unsd,name+point
+schools,Ohio,9416,Riverside Local School District (Lake),3910014,Riverside Local School District,unsd,name+point
 schools,Ohio,9417,Cincinnati City School District,3904375,Cincinnati City School District,unsd,name+point
 schools,Ohio,9418,Mount Healthy City School District,3904441,Mount Healthy City School District,unsd,name+point
 schools,Ohio,9419,Sycamore Community City School District,3904486,Sycamore Community City School District,unsd,name+point
@@ -9428,7 +9428,7 @@ schools,Ohio,9425,Alexander Local School District,3904590,Alexander Local School
 schools,Ohio,9426,Wellington Exempted Village School District,3904565,Wellington Exempted Village School District,unsd,name+point
 schools,Ohio,9427,Edison Local (formerly Berlin-Milan) School District,3904678,Edison Local (formerly Berlin-Milan) School District,unsd,name+point
 schools,Ohio,9428,Allen East Local School District,3904575,Allen East Local School District,unsd,name+point
-schools,Ohio,9429,Perry Local School District,3904578,Perry Local School District,unsd,name+point
+schools,Ohio,9429,Perry Local School District (Allen),3904578,Perry Local School District,unsd,name+point
 schools,Ohio,9430,Mentor Exempted Village School District,3904549,Mentor Exempted Village School District,unsd,name+point
 schools,Ohio,9431,Kirtland Local School District,3904787,Kirtland Local School District,unsd,name+point
 schools,Ohio,9432,St. Henry Consolidated Local School District,3904858,St. Henry Consolidated Local School District,unsd,name+point
@@ -9439,7 +9439,7 @@ schools,Ohio,9436,Clark-Shawnee Local School District,3904628,Clark-Shawnee Loca
 schools,Ohio,9437,Springfield City School District,3904481,Springfield City School District,unsd,name+point
 schools,Ohio,9438,Greenon Local School District,3904623,Greenon Local School District,unsd,name+point
 schools,Ohio,9439,Ashtabula Area City School District,3904351,Ashtabula Area City School District,unsd,name+point
-schools,Ohio,9440,Buckeye Local School District,3904585,Buckeye Local School District,unsd,name+point
+schools,Ohio,9440,Buckeye Local School District (Ashtabula),3904585,Buckeye Local School District,unsd,name+point
 schools,Ohio,9441,Pymatuning Valley Local School District,3904588,Pymatuning Valley Local School District,unsd,name+point
 schools,Ohio,9442,Grand Valley Local School District,3904586,Grand Valley Local School District,unsd,name+point
 schools,Ohio,9443,Geneva Area City School District,3904405,Geneva Area City School District,unsd,name+point
@@ -9450,7 +9450,7 @@ schools,Ohio,9447,Batavia Local School District,3904630,Batavia Local School Dis
 schools,Ohio,9448,New Richmond Exempted Village School District,3904555,New Richmond Exempted Village School District,unsd,name+point
 schools,Ohio,9449,Felicity-Franklin Local School District,3904633,Felicity-Franklin Local School District,unsd,name+point
 schools,Ohio,9450,West Clermont Local School District,3904635,West Clermont Local School District,unsd,name+point
-schools,Ohio,9451,Perry Local School District,3904790,Perry Local School District,unsd,name+point
+schools,Ohio,9451,Perry Local School District (Lake),3904790,Perry Local School District,unsd,name+point
 schools,Ohio,9452,Bellefontaine City School District,3904358,Bellefontaine City School District,unsd,name+point
 schools,Ohio,9453,Greenville City School District,3904409,Greenville City School District,unsd,name+point
 schools,Ohio,9454,Ansonia Local School District,3904662,Ansonia Local School District,unsd,name+point
@@ -9470,7 +9470,7 @@ schools,Ohio,9467,Miller City-New Cleveland Local School District,3904936,Miller
 schools,Ohio,9468,Kalida Local School District,3904934,Kalida Local School District,unsd,name+point
 schools,Ohio,9469,McComb Local School District,3904745,McComb Local School District,unsd,name+point
 schools,Ohio,9470,Yellow Springs Exempted Village School District,3904567,Yellow Springs Exempted Village School District,unsd,name+point
-schools,Ohio,9471,Southeastern Local School District,3904627,Southeastern Local School District,unsd,name+point
+schools,Ohio,9471,Southeastern Local School District (Clark),3904627,Southeastern Local School District,unsd,name+point
 schools,Ohio,9472,Cedar Cliff Local School District,3904725,Cedar Cliff Local School District,unsd,name+point
 schools,Ohio,9473,Waverly City School District,3904914,Waverly City School District,unsd,name+point
 schools,Ohio,9474,South Euclid-Lyndhurst City School District,3904479,South Euclid-Lyndhurst City School District,unsd,name+point
@@ -9505,11 +9505,11 @@ schools,Ohio,9502,Brecksville-Broadview Heights City School District,3904364,Bre
 schools,Ohio,9503,Cleveland Municipal School District,3904378,Cleveland Municipal School District,unsd,name+point
 schools,Ohio,9504,Chillicothe City School District,3904374,Chillicothe City School District,unsd,name+point
 schools,Ohio,9505,Huntington Local School District,3904950,Huntington Local School District,unsd,name+point
-schools,Ohio,9506,Southern Local School District,3904644,Southern Local School District,unsd,name+point
+schools,Ohio,9506,Southern Local School District (Columbiana),3904644,Southern Local School District,unsd,name+point
 schools,Ohio,9507,Steubenville City School District,3904482,Steubenville City School District,unsd,name+point
 schools,Ohio,9508,Kenston Local School District,3904719,Kenston Local School District,unsd,name+point
-schools,Ohio,9509,Madison Local School District,3904788,Madison Local School District,unsd,name+point
-schools,Ohio,9510,Riverside Local School District,3904809,Riverside Local School District,unsd,name+point
+schools,Ohio,9509,Madison Local School District (Lake),3904788,Madison Local School District,unsd,name+point
+schools,Ohio,9510,Riverside Local School District (Logan),3904809,Riverside Local School District,unsd,name+point
 schools,Ohio,9511,Euclid City School District,3904395,Euclid City School District,unsd,name+point
 schools,Ohio,9512,Mayfield City School District,3904437,Mayfield City School District,unsd,name+point
 schools,Ohio,9513,Strongsville City School District,3904484,Strongsville City School District,unsd,name+point
@@ -9517,7 +9517,7 @@ schools,Ohio,9514,Chagrin Falls Exempted Village School District,3904528,Chagrin
 schools,Ohio,9515,Cuyahoga Heights Local School District,3904655,Cuyahoga Heights Local School District,unsd,name+point
 schools,Ohio,9516,West Liberty-Salem Local School District,3904621,West Liberty-Salem Local School District,unsd,name+point
 schools,Ohio,9517,Triad Local School District,3904620,Triad Local School District,unsd,name+point
-schools,Ohio,9518,Northeastern Local School District,3904625,Northeastern Local School District,unsd,name+point
+schools,Ohio,9518,Northeastern Local School District (Clark),3904625,Northeastern Local School District,unsd,name+point
 schools,Ohio,9519,Cambridge City School District,3904369,Cambridge City School District,unsd,name+point
 schools,Ohio,9520,East Guernsey Local School District,3906968,East Guernsey Local School District,unsd,name+point
 schools,Ohio,9521,London City School District,3904425,London City School District,unsd,name+point
@@ -9527,7 +9527,7 @@ schools,Ohio,9524,Beavercreek City School District,3904724,Beavercreek City Scho
 schools,Ohio,9525,Trotwood-Madison City School District,3904869,Trotwood-Madison City School District,unsd,name+point
 schools,Ohio,9526,Mad River Local School District,3904870,Mad River Local School District,unsd,name+point
 schools,Ohio,9527,Medina City School District,3904438,Medina City School District,unsd,name+point
-schools,Ohio,9528,Highland Local School District,3904849,Highland Local School District,unsd,name+point
+schools,Ohio,9528,Highland Local School District (Medina),3904849,Highland Local School District,unsd,name+point
 schools,Ohio,9529,Norwayne Local School District,3905056,Norwayne Local School District,unsd,name+point
 schools,Ohio,9530,Cloverleaf Local School District,3904848,Cloverleaf Local School District,unsd,name+point
 schools,Ohio,9531,Rittman Exempted Village School District,3910028,Rittman Exempted Village School District,unsd,name+point
@@ -9549,7 +9549,7 @@ schools,Oklahoma,9546,Ketchum Public Schools,4016380,Ketchum Public Schools,unsd
 schools,Oklahoma,9547,Welch Public Schools,4032190,Welch Public Schools,unsd,name+point
 schools,Oklahoma,9548,Chelsea Public Schools,4007380,Chelsea Public Schools,unsd,name+point
 schools,Oklahoma,9549,Liberty Public Schools,4017760,Liberty Public Schools,unsd,name+point
-schools,Oklahoma,9550,Wilson Public Schools,4032880,Wilson Public Schools,unsd,name+point
+schools,Oklahoma,9550,Wilson Public Schools (Okmulgee),4032880,Wilson Public Schools,unsd,name+point
 schools,Oklahoma,9551,Aline-Cleo Public Schools,4002720,Aline-Cleo Public Schools,unsd,name+point
 schools,Oklahoma,9552,Burlington Public Schools,4005910,Burlington Public Schools,unsd,name+point
 schools,Oklahoma,9553,Chandler Public Schools,4007290,Chandler Public Schools,unsd,name+point
@@ -9913,7 +9913,7 @@ schools,Oklahoma,9910,LeFlore Public Schools,4017280,LeFlore Public Schools,unsd
 schools,Oklahoma,9911,Duncan Public Schools,4010290,Duncan Public Schools,unsd,name+point
 schools,Oklahoma,9912,Elmore City-Pernell Schools,4010860,Elmore City-Pernell Schools,unsd,name+point
 schools,Oklahoma,9913,Marietta Public School,4018990,Marietta Public School,unsd,name+point
-schools,Oklahoma,9914,Wilson Public Schools,4032940,Wilson Public Schools,unsd,name+point
+schools,Oklahoma,9914,Wilson Public Schools (Carter),4032940,Wilson Public Schools,unsd,name+point
 schools,Oklahoma,9915,Thackerville Public Schools,4029850,Thackerville Public Schools,unsd,name+point
 schools,Oklahoma,9916,Prague Public Schools,4024930,Prague Public Schools,unsd,name+point
 schools,Oklahoma,9917,Perkins-Tryon Public Schools,4023800,Perkins-Tryon Public Schools,unsd,name+point
@@ -11195,13 +11195,13 @@ schools,Texas,11192,Sheldon Independent School District,4839990,Sheldon Independ
 schools,Texas,11193,Tomball Independent School District,4842960,Tomball Independent School District,unsd,name+point
 schools,Texas,11194,Lackland Independent School District,4826370,Lackland Independent School District,unsd,name+point
 schools,Texas,11195,Southside Independent School District,4840920,Southside Independent School District,unsd,name+point
-schools,Texas,11196,Edgewood Independent School District,4818150,Edgewood Independent School District,unsd,name+point
+schools,Texas,11196,Edgewood Independent School District (Bexar),4818150,Edgewood Independent School District,unsd,name+point
 schools,Texas,11197,Thorndale Independent School District,4842630,Thorndale Independent School District,unsd,name+point
 schools,Texas,11198,Archer City Independent School District,4808610,Archer City Independent School District,unsd,name+point
 schools,Texas,11199,Windthorst Independent School District,4846080,Windthorst Independent School District,unsd,name+point
 schools,Texas,11200,Bowie Independent School District,4810990,Bowie Independent School District,unsd,name+point
 schools,Texas,11201,Highland Independent School District,4823190,Highland Independent School District,unsd,name+point
-schools,Texas,11202,Midway Independent School District,4830660,Midway Independent School District,unsd,name+point
+schools,Texas,11202,Midway Independent School District (Clay),4830660,Midway Independent School District,unsd,name+point
 schools,Texas,11203,Burkburnett Independent School District,4812120,Burkburnett Independent School District,unsd,name+point
 schools,Texas,11204,Beckville Independent School District,4809690,Beckville Independent School District,unsd,name+point
 schools,Texas,11205,Tatum Independent School District,4842240,Tatum Independent School District,unsd,name+point
@@ -11226,7 +11226,7 @@ schools,Texas,11223,Lamar Consolidated Independent School District,4826580,Lamar
 schools,Texas,11224,Needville Independent School District,4832310,Needville Independent School District,unsd,name+point
 schools,Texas,11225,Fort Bend Independent School District,4819650,Fort Bend Independent School District,unsd,name+point
 schools,Texas,11226,Loraine Independent School District,4828170,Loraine Independent School District,unsd,name+point
-schools,Texas,11227,Centerville Independent School District,4813380,Centerville Independent School District,unsd,name+point
+schools,Texas,11227,Centerville Independent School District (Trinity),4813380,Centerville Independent School District,unsd,name+point
 schools,Texas,11228,Spearman Independent School District,4841010,Spearman Independent School District,unsd,name+point
 schools,Texas,11229,Texhoma Independent School District,4842540,Texhoma Independent School District,unsd,name+point
 schools,Texas,11230,Priddy Independent School District,4835820,Priddy Independent School District,unsd,name+point
@@ -11235,7 +11235,7 @@ schools,Texas,11232,Canyon Independent School District,4812810,Canyon Independen
 schools,Texas,11233,Clint Independent School District,4814430,Clint Independent School District,unsd,name+point
 schools,Texas,11234,Fabens Independent School District,4818900,Fabens Independent School District,unsd,name+point
 schools,Texas,11235,Ysleta Independent School District,4846680,Ysleta Independent School District,unsd,name+point
-schools,Texas,11236,Chapel Hill Independent School District,4813680,Chapel Hill Independent School District,unsd,name+point
+schools,Texas,11236,Chapel Hill Independent School District (Titus),4813680,Chapel Hill Independent School District,unsd,name+point
 schools,Texas,11237,Bluff Dale Independent School District,4810620,Bluff Dale Independent School District,unsd,name+point
 schools,Texas,11238,Sweeny Independent School District,4841970,Sweeny Independent School District,unsd,name+point
 schools,Texas,11239,Angleton Independent School District,4808310,Angleton Independent School District,unsd,name+point
@@ -11272,7 +11272,7 @@ schools,Texas,11269,Wellington Independent School District,4844890,Wellington In
 schools,Texas,11270,Eden Consolidated Independent School District,4818070,Eden Consolidated Independent School District,unsd,name+point
 schools,Texas,11271,Paint Rock Independent School District,4833980,Paint Rock Independent School District,unsd,name+point
 schools,Texas,11272,Slaton Independent School District,4840440,Slaton Independent School District,unsd,name+point
-schools,Texas,11273,Big Sandy Independent School District,4810170,Big Sandy Independent School District,unsd,name+point
+schools,Texas,11273,Big Sandy Independent School District (Polk),4810170,Big Sandy Independent School District,unsd,name+point
 schools,Texas,11274,Corrigan-Camden Independent School District,4815300,Corrigan-Camden Independent School District,unsd,name+point
 schools,Texas,11275,Leggett Independent School District,4827120,Leggett Independent School District,unsd,name+point
 schools,Texas,11276,Kaufman Independent School District,4825200,Kaufman Independent School District,unsd,name+point
@@ -11284,7 +11284,7 @@ schools,Texas,11281,Hunt Independent School District,4823970,Hunt Independent Sc
 schools,Texas,11282,Galveston Independent School District,4820280,Galveston Independent School District,unsd,name+point
 schools,Texas,11283,Silverton Independent School District,4840290,Silverton Independent School District,unsd,name+point
 schools,Texas,11284,Post Independent School District,4835490,Post Independent School District,unsd,name+point
-schools,Texas,11285,Dawson Independent School District,4816350,Dawson Independent School District,unsd,name+point
+schools,Texas,11285,Dawson Independent School District (Dawson),4816350,Dawson Independent School District,unsd,name+point
 schools,Texas,11286,New Home Independent School District,4832490,New Home Independent School District,unsd,name+point
 schools,Texas,11287,Wilson Independent School District,4845990,Wilson Independent School District,unsd,name+point
 schools,Texas,11288,O'Donnell Independent School District,4833390,O'Donnell Independent School District,unsd,name+point
@@ -11329,7 +11329,7 @@ schools,Texas,11326,New Deal Independent School District,4832430,New Deal Indepe
 schools,Texas,11327,Burnet Consolidated Independent School District,4812220,Burnet Consolidated Independent School District,unsd,name+point
 schools,Texas,11328,Commerce Independent School District,4814820,Commerce Independent School District,unsd,name+point
 schools,Texas,11329,Lake Dallas Independent School District,4826430,Lake Dallas Independent School District,unsd,name+point
-schools,Texas,11330,Northside Independent School District,4833090,Northside Independent School District,unsd,name+point
+schools,Texas,11330,Northside Independent School District (Wilbarger),4833090,Northside Independent School District,unsd,name+point
 schools,Texas,11331,Follett Independent School District,4819500,Follett Independent School District,unsd,name+point
 schools,Texas,11332,Gholson Independent School District,4820610,Gholson Independent School District,unsd,name+point
 schools,Texas,11333,London Independent School District,4827990,London Independent School District,unsd,name+point
@@ -11374,7 +11374,7 @@ schools,Texas,11371,Beaumont Independent School District,4809670,Beaumont Indepe
 schools,Texas,11372,Port Arthur Independent School District,4835400,Port Arthur Independent School District,unsd,name+point
 schools,Texas,11373,Rockport-Fulton Independent School District,4808550,Rockport-Fulton Independent School District,unsd,name
 schools,Texas,11374,Natalia Independent School District,4832130,Natalia Independent School District,unsd,name+point
-schools,Texas,11375,Northside Independent School District,4833120,Northside Independent School District,unsd,name+point
+schools,Texas,11375,Northside Independent School District (Bexar),4833120,Northside Independent School District,unsd,name+point
 schools,Texas,11376,San Marcos Consolidated Independent School District,4838970,San Marcos Consolidated Independent School District,unsd,name+point
 schools,Texas,11377,Waelder Independent School District,4844310,Waelder Independent School District,unsd,name+point
 schools,Texas,11378,Quanah Independent School District,4836180,Quanah Independent School District,unsd,name+point
@@ -11421,7 +11421,7 @@ schools,Texas,11418,Palmer Independent School District,4834110,Palmer Independen
 schools,Texas,11419,Forestburg Independent School District,4819530,Forestburg Independent School District,unsd,name+point
 schools,Texas,11420,Valentine Independent School District,4843740,Valentine Independent School District,unsd,name+point
 schools,Texas,11421,River Road Independent School District,4837260,River Road Independent School District,unsd,name+point
-schools,Texas,11422,Highland Park Independent School District,4835560,Highland Park Independent School District,unsd,name+point
+schools,Texas,11422,Highland Park Independent School District (Potter),4835560,Highland Park Independent School District,unsd,name+point
 schools,Texas,11423,Bandera Independent School District,4809360,Bandera Independent School District,unsd,name+point
 schools,Texas,11424,Medina Independent School District,4830030,Medina Independent School District,unsd,name+point
 schools,Texas,11425,Booker Independent School District,4810830,Booker Independent School District,unsd,name+point
@@ -11471,7 +11471,7 @@ schools,Texas,11468,Bullard Independent School District,4812060,Bullard Independ
 schools,Texas,11469,Arp Independent School District,4808730,Arp Independent School District,unsd,name+point
 schools,Texas,11470,Whitehouse Independent School District,4845600,Whitehouse Independent School District,unsd,name+point
 schools,Texas,11471,Lindale Independent School District,4827510,Lindale Independent School District,unsd,name+point
-schools,Texas,11472,Chapel Hill Independent School District,4813650,Chapel Hill Independent School District,unsd,name+point
+schools,Texas,11472,Chapel Hill Independent School District (Smith),4813650,Chapel Hill Independent School District,unsd,name+point
 schools,Texas,11473,Winona Independent School District,4846230,Winona Independent School District,unsd,name+point
 schools,Texas,11474,Bland Independent School District,4810350,Bland Independent School District,unsd,name+point
 schools,Texas,11475,Farmersville Independent School District,4819080,Farmersville Independent School District,unsd,name+point
@@ -11527,7 +11527,7 @@ schools,Texas,11524,Leonard Independent School District,4827210,Leonard Independ
 schools,Texas,11525,Melissa Independent School District,4830120,Melissa Independent School District,unsd,name+point
 schools,Texas,11526,Van Alstyne Independent School District,4843890,Van Alstyne Independent School District,unsd,name+point
 schools,Texas,11527,Whitewright Independent School District,4845670,Whitewright Independent School District,unsd,name+point
-schools,Texas,11528,Wylie Independent School District,4846530,Wylie Independent School District,unsd,name+point
+schools,Texas,11528,Wylie Independent School District (Collin),4846530,Wylie Independent School District,unsd,name+point
 schools,Texas,11529,Floydada Collegiate Independent School District,4819440,Floydada Collegiate Independent School District,unsd,name+point
 schools,Texas,11530,Lockney Independent School District,4827890,Lockney Independent School District,unsd,name+point
 schools,Texas,11531,Turkey-Quitaque Independent School District,4843400,Turkey-Quitaque Independent School District,unsd,name+point
@@ -11553,7 +11553,7 @@ schools,Texas,11550,White Deer Independent School District,4845450,White Deer In
 schools,Texas,11551,Boerne Independent School District,4810710,Boerne Independent School District,unsd,name+point
 schools,Texas,11552,Comal Independent School District,4814730,Comal Independent School District,unsd,name+point
 schools,Texas,11553,New Braunfels Independent School District,4832370,New Braunfels Independent School District,unsd,name+point
-schools,Texas,11554,Edgewood Independent School District,4818120,Edgewood Independent School District,unsd,name+point
+schools,Texas,11554,Edgewood Independent School District (Van Zandt),4818120,Edgewood Independent School District,unsd,name+point
 schools,Texas,11555,Martins Mill Independent School District,4829220,Martins Mill Independent School District,unsd,name+point
 schools,Texas,11556,Canton Independent School District,4812750,Canton Independent School District,unsd,name+point
 schools,Texas,11557,Grand Saline Independent School District,4821450,Grand Saline Independent School District,unsd,name+point
@@ -11637,7 +11637,7 @@ schools,Texas,11634,Gainesville Independent School District,4820220,Gainesville 
 schools,Texas,11635,Walnut Bend Independent School District,4844490,Walnut Bend Independent School District,unsd,name+point
 schools,Texas,11636,Abbott Independent School District,4807380,Abbott Independent School District,unsd,name+point
 schools,Texas,11637,Bynum Independent School District,4812360,Bynum Independent School District,unsd,name+point
-schools,Texas,11638,Hubbard Independent School District,4823730,Hubbard Independent School District,unsd,name+point
+schools,Texas,11638,Hubbard Independent School District (Hill),4823730,Hubbard Independent School District,unsd,name+point
 schools,Texas,11639,Malone Independent School District,4828800,Malone Independent School District,unsd,name+point
 schools,Texas,11640,Mount Calm Independent School District,4831620,Mount Calm Independent School District,unsd,name+point
 schools,Texas,11641,Buena Vista Independent School District,4811910,Buena Vista Independent School District,unsd,name+point
@@ -11717,7 +11717,7 @@ schools,Texas,11714,Sherman Independent School District,4840080,Sherman Independ
 schools,Texas,11715,Grapevine-Colleyville Independent School District,4821660,Grapevine-Colleyville Independent School District,unsd,name+point
 schools,Texas,11716,Leon Independent School District,4827180,Leon Independent School District,unsd,name+point
 schools,Texas,11717,Oakwood Independent School District,4833340,Oakwood Independent School District,unsd,name+point
-schools,Texas,11718,Centerville Independent School District,4813410,Centerville Independent School District,unsd,name+point
+schools,Texas,11718,Centerville Independent School District (Leon),4813410,Centerville Independent School District,unsd,name+point
 schools,Texas,11719,Paradise Independent School District,4834260,Paradise Independent School District,unsd,name+point
 schools,Texas,11720,Bridgeport Independent School District,4811340,Bridgeport Independent School District,unsd,name+point
 schools,Texas,11721,Matagorda Independent School District,4829370,Matagorda Independent School District,unsd,name+point
@@ -11768,7 +11768,7 @@ schools,Texas,11765,Baird Independent School District,4809280,Baird Independent 
 schools,Texas,11766,Tyler Independent School District,4843470,Tyler Independent School District,unsd,name+point
 schools,Texas,11767,Monte Alto Independent School District,4831230,Monte Alto Independent School District,unsd,name+point
 schools,Texas,11768,Sharyland Independent School District,4839930,Sharyland Independent School District,unsd,name+point
-schools,Texas,11769,Valley View Independent School District,4843800,Valley View Independent School District,unsd,name+point
+schools,Texas,11769,Valley View Independent School District (Hidalgo),4843800,Valley View Independent School District,unsd,name+point
 schools,Texas,11770,Weslaco Independent School District,4844960,Weslaco Independent School District,unsd,name+point
 schools,Texas,11771,Carrollton-Farmers Branch Independent School District,4813050,Carrollton-Farmers Branch Independent School District,unsd,name+point
 schools,Texas,11772,Dallas Independent School District,4816230,Dallas Independent School District,unsd,name+point
@@ -11781,7 +11781,7 @@ schools,Texas,11778,Pottsboro Independent School District,4835580,Pottsboro Inde
 schools,Texas,11779,S and S Consolidated Independent School District,4838400,S and S Consolidated Independent School District,unsd,name+point
 schools,Texas,11780,Trenton Independent School District,4843140,Trenton Independent School District,unsd,name+point
 schools,Texas,11781,Pilot Point Independent School District,4834920,Pilot Point Independent School District,unsd,name+point
-schools,Texas,11782,Dawson Independent School District,4816380,Dawson Independent School District,unsd,name+point
+schools,Texas,11782,Dawson Independent School District (Navarro),4816380,Dawson Independent School District,unsd,name+point
 schools,Texas,11783,Mildred Independent School District,4830720,Mildred Independent School District,unsd,name+point
 schools,Texas,11784,San Felipe-Del Rio Consolidated Independent School District,4838900,San Felipe-Del Rio Consolidated Independent School District,unsd,name+point
 schools,Texas,11785,Odem-Edroy Independent School District,4833360,Odem-Edroy Independent School District,unsd,name+point
@@ -11905,14 +11905,14 @@ schools,Texas,11902,Lindsay Independent School District,4827570,Lindsay Independ
 schools,Texas,11903,Saint Jo Independent School District,4838520,Saint Jo Independent School District,unsd,name+point
 schools,Texas,11904,Bosqueville Independent School District,4810910,Bosqueville Independent School District,unsd,name+point
 schools,Texas,11905,Hallsburg Independent School District,4822140,Hallsburg Independent School District,unsd,name+point
-schools,Texas,11906,Midway Independent School District,4830640,Midway Independent School District,unsd,name+point
+schools,Texas,11906,Midway Independent School District (McLennan),4830640,Midway Independent School District,unsd,name+point
 schools,Texas,11907,Cedar Hill Independent School District,4813230,Cedar Hill Independent School District,unsd,name+point
 schools,Texas,11908,Lancaster Independent School District,4826670,Lancaster Independent School District,unsd,name+point
 schools,Texas,11909,Mesquite Independent School District,4830390,Mesquite Independent School District,unsd,name+point
 schools,Texas,11910,Boles Independent School District,4810740,Boles Independent School District,unsd,name+point
 schools,Texas,11911,Greenville Independent School District,4821720,Greenville Independent School District,unsd,name+point
 schools,Texas,11912,Eula Independent School District,4818690,Eula Independent School District,unsd,name+point
-schools,Texas,11913,Wylie Independent School District,4846500,Wylie Independent School District,unsd,name+point
+schools,Texas,11913,Wylie Independent School District (Taylor),4846500,Wylie Independent School District,unsd,name+point
 schools,Texas,11914,Chireno Independent School District,4813980,Chireno Independent School District,unsd,name+point
 schools,Texas,11915,San Augustine Independent School District,4838760,San Augustine Independent School District,unsd,name+point
 schools,Texas,11916,Anderson-Shiro Consolidated Independent School District,4808230,Anderson-Shiro Consolidated Independent School District,unsd,name+point
@@ -11986,7 +11986,7 @@ schools,Texas,11983,La Feria Independent School District,4826040,La Feria Indepe
 schools,Texas,11984,Rio Hondo Independent School District,4837170,Rio Hondo Independent School District,unsd,name+point
 schools,Texas,11985,Santa Rosa Independent School District,4839360,Santa Rosa Independent School District,unsd,name+point
 schools,Texas,11986,Point Isabel Independent School District,4835250,Point Isabel Independent School District,unsd,name+point
-schools,Texas,11987,Highland Park Independent School District,4823250,Highland Park Independent School District,unsd,name+point
+schools,Texas,11987,Highland Park Independent School District (Dallas),4823250,Highland Park Independent School District,unsd,name+point
 schools,Texas,11988,Duncanville Independent School District,4817640,Duncanville Independent School District,unsd,name+point
 schools,Texas,11989,Jasper Independent School District,4824630,Jasper Independent School District,unsd,name+point
 schools,Texas,11990,Vidor Independent School District,4844160,Vidor Independent School District,unsd,name+point
@@ -12018,7 +12018,7 @@ schools,Texas,12015,Victoria Independent School District,4844150,Victoria Indepe
 schools,Texas,12016,Grandview Independent School District,4821540,Grandview Independent School District,unsd,name+point
 schools,Texas,12017,Keene Independent School District,4825230,Keene Independent School District,unsd,name+point
 schools,Texas,12018,Rio Vista Independent School District,4837200,Rio Vista Independent School District,unsd,name+point
-schools,Texas,12019,Big Sandy Independent School District,4810140,Big Sandy Independent School District,unsd,name+point
+schools,Texas,12019,Big Sandy Independent School District (Upshur),4810140,Big Sandy Independent School District,unsd,name+point
 schools,Texas,12020,Union Hill Independent School District,4843560,Union Hill Independent School District,unsd,name+point
 schools,Texas,12021,Sudan Independent School District,4841760,Sudan Independent School District,unsd,name+point
 schools,Texas,12022,Kirbyville Consolidated Independent School District,4825710,Kirbyville Consolidated Independent School District,unsd,name+point
@@ -12091,7 +12091,7 @@ schools,Texas,12088,City View Independent School District,4814130,City View Inde
 schools,Texas,12089,Henrietta Independent School District,4822980,Henrietta Independent School District,unsd,name+point
 schools,Texas,12090,Huntsville Independent School District,4824030,Huntsville Independent School District,unsd,name+point
 schools,Texas,12091,Wink-Loving Independent School District,4846170,Wink-Loving Independent School District,unsd,name+point
-schools,Texas,12092,Hubbard Independent School District,4823700,Hubbard Independent School District,unsd,name+point
+schools,Texas,12092,Hubbard Independent School District (Bowie),4823700,Hubbard Independent School District,unsd,name+point
 schools,Texas,12093,Pleasant Grove Independent School District,4835130,Pleasant Grove Independent School District,unsd,name+point
 schools,Texas,12094,Simms Independent School District,4840320,Simms Independent School District,unsd,name+point
 schools,Texas,12095,Cross Plains Independent School District,4815810,Cross Plains Independent School District,unsd,name+point
@@ -12138,7 +12138,7 @@ schools,Texas,12135,Columbus Independent School District,4814700,Columbus Indepe
 schools,Texas,12136,Callisburg Independent School District,4812510,Callisburg Independent School District,unsd,name+point
 schools,Texas,12137,Muenster Independent School District,4831860,Muenster Independent School District,unsd,name+point
 schools,Texas,12138,Slidell Independent School District,4840470,Slidell Independent School District,unsd,name+point
-schools,Texas,12139,Valley View Independent School District,4843860,Valley View Independent School District,unsd,name+point
+schools,Texas,12139,Valley View Independent School District (Cooke),4843860,Valley View Independent School District,unsd,name+point
 schools,Texas,12140,Sivells Bend Independent School District,4840380,Sivells Bend Independent School District,unsd,name+point
 schools,Texas,12141,Timpson Independent School District,4842840,Timpson Independent School District,unsd,name+point
 schools,Texas,12142,Zapata County Independent School District,4846710,Zapata County Independent School District,unsd,name+point

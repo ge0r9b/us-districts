@@ -1,75 +1,133 @@
-state,name,rows_with_name,shadowed_geoid,shown_instead_geoid,shadowed_2024,shown_2024,shadowed_2020,shown_2020,wrong_2024,wrong_2020,wrong_est_flag
-Arkansas,Harmony Grove School District,2,0507290,0507320,"[397, 1279, 1702]","[331, 1356, 1722]","[533, 1292, 1881]","[312, 1361, 1714]",yes,yes,no
-Arkansas,Lakeside School District,2,0508640,0508670,"[1335, 1416, 2783]","[2563, 5708, 8473]","[1665, 1490, 3232]","[2856, 6258, 9314]",yes,yes,no
-California,Washington Unified School District,2,0641580,0601415,"[12840, 7960, 21572]","[1497, 1028, 2597]",null,"[1572, 760, 2369]",yes,yes,no
-California,Pioneer Union Elementary School District,3,0630480,0630520,"[113, 247, 364]","[113, 247, 364]","[1089, 1858, 3024]","[239, 376, 625]",no,yes,no
-California,Pioneer Union Elementary School District,3,0630510,0630520,"[2331, 4930, 7418]","[113, 247, 364]","[2522, 4186, 6851]","[239, 376, 625]",yes,yes,no
-California,Lakeside Union Elementary School District,2,0620790,0620760,"[52, 204, 263]","[52, 204, 263]","[7617, 14367, 22551]","[242, 278, 539]",no,yes,no
-California,Mountain View Elementary School District,2,0626190,0626220,"[6294, 3417, 10010]","[8110, 6877, 15371]",null,"[8485, 5179, 13922]",yes,yes,no
-California,Jefferson Elementary School District,3,0618870,0618810,"[20420, 8009, 29400]","[76, 123, 204]","[28667, 7964, 37185]","[152, 188, 348]",yes,yes,no
-California,Jefferson Elementary School District,3,0618840,0618810,"[4120, 3495, 7901]","[76, 123, 204]","[5036, 3319, 8515]","[152, 188, 348]",yes,yes,no
-California,Pacific Union Elementary School District,2,0629400,0629430,"[244, 383, 636]","[1843, 629, 2614]","[431, 465, 913]","[2123, 666, 2904]",yes,yes,no
-California,Junction Elementary School District,2,0619200,0619230,"[717, 2165, 2944]","[109, 138, 258]","[635, 1885, 2576]","[104, 101, 215]",yes,yes,no
-California,Hope Elementary School District,2,0617490,0617520,"[6313, 2197, 8810]","[69, 196, 270]","[6576, 2331, 9095]","[161, 267, 434]",yes,yes,no
-California,Ocean View Elementary School District,2,0628170,0628140,"[22009, 25523, 48859]","[22009, 25523, 48859]",null,"[25682, 26558, 53463]",no,yes,no
-California,Liberty Elementary School District,2,0621540,0621570,"[723, 435, 1199]","[405, 972, 1405]","[985, 511, 1535]","[377, 720, 1116]",yes,yes,no
-Illinois,Oak Grove School District 68,2,1729100,1729130,"[664, 856, 1553]","[1889, 1433, 3490]","[690, 861, 1589]","[2313, 1661, 4073]",yes,yes,no
-Missouri,Miami R-I School District,2,2920820,2920840,"[135, 591, 734]","[199, 499, 706]","[149, 655, 823]","[224, 503, 738]",yes,yes,no
-Montana,Cottonwood Elementary School District,2,3014150,3007500,"[63, 191, 268]","[317, 306, 638]","[137, 284, 437]","[169, 126, 303]",yes,yes,no
-New Jersey,Franklin Township School District,4,3405490,3405430,"[22069, 9714, 32923]","[3246, 6036, 9450]","[25587, 9040, 35023]","[3649, 5948, 9746]",yes,yes,yes
-New Jersey,Franklin Township School District,4,3405460,3405430,"[807, 1306, 2155]","[3246, 6036, 9450]","[840, 1300, 2183]","[3649, 5948, 9746]",yes,yes,yes
-New Jersey,Franklin Township School District,4,3405520,3405430,"[593, 1215, 1844]","[3246, 6036, 9450]","[626, 1159, 1827]","[3649, 5948, 9746]",yes,yes,yes
-New Jersey,Monroe Township School District,2,3410500,3410470,"[16677, 16345, 33637]","[9910, 10479, 20755]","[16593, 13841, 30691]","[10502, 10261, 21078]",yes,yes,no
-New Jersey,Greenwich Township School District,3,3406180,3406150,"[1244, 1700, 2999]","[206, 264, 474]","[1321, 1742, 3112]","[226, 261, 498]",yes,yes,yes
-New Jersey,Greenwich Township School District,3,3406210,3406150,"[1388, 1756, 3203]","[206, 264, 474]","[1503, 1786, 3335]","[226, 261, 498]",yes,yes,no
-New Jersey,Ocean Township School District,2,3412060,3412090,"[7405, 7507, 15216]","[1939, 4085, 6110]","[8717, 7426, 16336]",null,yes,yes,yes
-New Jersey,Springfield Township School District,2,3415630,3415660,"[5110, 3792, 9117]","[770, 1213, 2012]","[6006, 3710, 9838]","[870, 1251, 2148]",yes,yes,yes
-New Jersey,Hamilton Township School District,2,3406540,3406510,"[24133, 21211, 46138]","[6927, 6803, 13976]","[26875, 21584, 49139]","[7847, 6567, 14643]",yes,yes,no
-New Jersey,Lawrence Township School District,2,3408400,3408370,"[11519, 4875, 16833]","[392, 1092, 1495]","[12300, 4879, 17444]","[468, 1063, 1542]",yes,yes,yes
-New Jersey,Union Township School District,2,3416500,3416440,"[19183, 9620, 29517]","[1318, 1628, 3013]","[21027, 8314, 29596]","[1443, 1644, 3151]",yes,yes,yes
-New Jersey,Washington Township School District,4,3417070,3417130,"[12347, 15279, 28095]","[4681, 6047, 10936]","[14265, 15908, 30567]","[5602, 6505, 12308]",yes,yes,no
-New Jersey,Washington Township School District,4,3417040,3417130,"[152, 274, 430]","[4681, 6047, 10936]","[171, 242, 420]","[5602, 6505, 12308]",yes,yes,yes
-New Jersey,Washington Township School District,4,3417160,3417130,"[1565, 2640, 4266]","[4681, 6047, 10936]","[1561, 2462, 4088]","[5602, 6505, 12308]",yes,yes,yes
-New Jersey,Fairfield Township School District,2,3405040,3405010,"[1294, 696, 2004]","[1191, 3454, 4711]","[1621, 721, 2359]","[1452, 3436, 4918]",yes,yes,yes
-New Jersey,Mansfield Township School District,2,3409540,3409510,"[1590, 2477, 4156]","[2678, 2780, 5541]","[1674, 2260, 4021]","[3044, 3058, 6169]",yes,yes,no
-Ohio,Green Local School District,3,3905055,3904961,"[933, 3072, 4032]","[389, 1496, 1891]","[978, 2949, 3987]","[490, 1424, 1925]",yes,yes,yes
-Ohio,Green Local School District,3,3905001,3904961,"[6078, 8851, 15049]","[389, 1496, 1891]","[6401, 9148, 15761]","[490, 1424, 1925]",yes,yes,yes
-Ohio,Springfield Local School District,3,3904837,3904822,"[1511, 3244, 4789]","[7759, 7749, 15631]","[1602, 3260, 4913]","[8246, 7691, 16184]",yes,yes,no
-Ohio,Springfield Local School District,3,3905006,3904822,"[3457, 6106, 9657]","[7759, 7749, 15631]","[3483, 5932, 9553]","[8246, 7691, 16184]",yes,yes,no
-Ohio,Southeast Local School District,2,3904922,3905058,"[1538, 4355, 5938]","[732, 3626, 4389]","[1583, 4273, 5942]","[791, 3761, 4604]",yes,yes,no
-Ohio,Crestview Local School District,3,3904942,3905035,"[654, 3001, 3679]","[499, 2135, 2652]","[724, 2935, 3700]","[520, 2142, 2692]",yes,yes,no
-Ohio,Crestview Local School District,3,3904643,3905035,"[731, 2436, 3192]","[499, 2135, 2652]","[872, 2736, 3664]","[520, 2142, 2692]",yes,yes,no
-Ohio,Northeastern Local School District,2,3904672,3904625,"[1307, 2988, 4335]","[3315, 8128, 11544]","[1395, 2987, 4451]","[4608, 9288, 14095]",yes,yes,no
-Ohio,Buckeye Local School District,3,3904847,3904585,"[3034, 6595, 9722]","[1833, 3349, 5222]","[2947, 6272, 9341]","[2019, 3248, 5359]",yes,yes,yes
-Ohio,Buckeye Local School District,3,3904778,3904585,"[1863, 4526, 6433]","[1833, 3349, 5222]","[2205, 4752, 7076]","[2019, 3248, 5359]",yes,yes,no
-Ohio,Western Reserve Local School District,2,3904839,3904774,"[608, 1865, 2490]","[930, 2612, 3573]","[648, 1729, 2400]","[926, 2376, 3355]",yes,yes,no
-Ohio,Eastern Local School District,3,3904603,3904851,"[829, 3724, 4575]","[493, 2245, 2758]","[887, 3457, 4394]","[543, 2228, 2806]",yes,yes,no
-Ohio,Eastern Local School District,3,3904912,3904851,"[430, 1760, 2200]","[493, 2245, 2758]","[503, 1798, 2324]","[543, 2228, 2806]",yes,yes,no
-Ohio,Madison Local School District,3,3904612,3904788,"[936, 3885, 4846]","[3218, 5685, 8985]","[952, 3738, 4749]","[3443, 5749, 9340]",yes,yes,no
-Ohio,Madison Local School District,3,3904945,3904788,"[3226, 8413, 11733]","[3218, 5685, 8985]","[3470, 8226, 11877]","[3443, 5749, 9340]",yes,yes,no
-Ohio,Northwest Local School District,3,3904736,3904990,"[17292, 22004, 39692]","[2591, 5108, 7755]","[17691, 23538, 41814]","[2706, 5038, 7868]",yes,yes,no
-Ohio,Northwest Local School District,3,3904963,3904990,"[984, 3324, 4339]","[2591, 5108, 7755]","[1087, 3177, 4315]","[2706, 5038, 7868]",yes,yes,no
-Ohio,Northridge Local School District,2,3904803,3904873,"[1617, 4914, 6579]","[1114, 1821, 2959]","[1531, 4827, 6446]","[1187, 1881, 3124]",yes,yes,no
-Ohio,Southeastern Local School District,2,3904952,3904627,"[753, 2600, 3366]","[650, 2048, 2723]","[843, 2501, 3389]","[694, 1941, 2674]",yes,yes,no
-Ohio,Lakota Local School District,2,3904611,3904956,"[24694, 33999, 59296]","[1209, 2815, 4052]","[25225, 34477, 60616]","[1251, 2642, 3960]",yes,yes,no
-Ohio,Northwestern Local School District,2,3904626,3910033,"[1564, 4579, 6206]","[903, 3355, 4297]","[1832, 4516, 6442]","[849, 3187, 4094]",yes,yes,no
-Ohio,Southern Local School District,3,3904906,3904644,"[475, 1477, 1973]","[555, 2308, 2889]","[533, 1442, 1998]","[627, 2280, 2958]",yes,yes,no
-Ohio,Southern Local School District,3,3904853,3904644,"[392, 1862, 2264]","[555, 2308, 2889]","[458, 1870, 2349]","[627, 2280, 2958]",yes,yes,no
-Ohio,Manchester Local School District,2,3900537,3905000,"[360, 1500, 1870]","[1680, 3258, 4977]","[388, 1521, 1928]","[1749, 3086, 4903]",yes,yes,no
-Ohio,Perry Local School District,3,3904992,3904790,"[6233, 9820, 16183]","[1805, 3443, 5298]","[6464, 9739, 16452]","[1702, 3229, 4996]",yes,yes,no
-Ohio,Perry Local School District,3,3904578,3904790,"[588, 1353, 1960]","[1805, 3443, 5298]","[706, 1322, 2049]","[1702, 3229, 4996]",yes,yes,no
-Ohio,Lake Local School District,2,3905069,3904986,"[2223, 3226, 5507]","[3592, 8068, 11766]","[2662, 3467, 6240]","[3675, 7844, 11665]",yes,yes,no
-Ohio,Highland Local School District,2,3904880,3904849,"[1239, 4615, 5896]","[4643, 8746, 13519]","[1212, 4386, 5691]","[4724, 8685, 13585]",yes,yes,no
-Ohio,Riverside Local School District,2,3910014,3904809,"[8462, 14048, 22725]","[192, 1222, 1426]","[8725, 14330, 23343]","[266, 1664, 1956]",yes,yes,no
-Oklahoma,Wilson Public Schools,2,4032880,4032940,"[55, 289, 350]","[110, 963, 1080]","[196, 574, 793]","[113, 926, 1050]",yes,yes,no
-Texas,Edgewood Independent School District,2,4818150,4818120,"[7938, 3661, 11710]","[346, 2491, 2856]","[10700, 3015, 13924]","[347, 2302, 2669]",yes,yes,no
-Texas,Midway Independent School District,2,4830660,4830640,"[65, 871, 944]","[8011, 17176, 25504]","[63, 800, 869]","[8417, 16871, 25695]",yes,yes,no
-Texas,Centerville Independent School District,2,4813380,4813410,"[72, 408, 481]","[284, 2229, 2526]","[81, 405, 487]","[327, 2129, 2476]",yes,yes,no
-Texas,Chapel Hill Independent School District,2,4813680,4813650,"[247, 1045, 1302]","[2807, 6811, 9743]","[300, 990, 1305]","[2815, 6668, 9627]",yes,yes,no
-Texas,Big Sandy Independent School District,2,4810170,4810140,"[184, 1314, 1508]","[328, 1792, 2142]","[176, 981, 1167]","[355, 1725, 2112]",yes,yes,no
-Texas,Dawson Independent School District,2,4816350,4816380,"[31, 222, 255]","[220, 1257, 1486]","[11, 98, 109]","[224, 1193, 1431]",yes,yes,no
-Texas,Northside Independent School District,2,4833090,4833120,"[69, 199, 271]","[148564, 119436, 271141]","[143, 426, 574]","[159825, 108281, 272497]",yes,yes,no
-Texas,Highland Park Independent School District,2,4835560,4823250,"[348, 939, 1305]","[6099, 12278, 18808]","[401, 916, 1343]","[7678, 13065, 21042]",yes,yes,no
-Texas,Wylie Independent School District,2,4846530,4846500,"[14121, 20513, 36087]","[2595, 11611, 14353]","[15104, 19040, 34819]","[2227, 10088, 12505]",yes,yes,no
-Texas,Hubbard Independent School District,2,4823730,4823700,"[164, 605, 777]","[17, 240, 257]","[176, 639, 821]","[25, 227, 254]",yes,yes,no
-Texas,Valley View Independent School District,2,4843800,4843860,"[1477, 2080, 3600]","[286, 1551, 1846]","[2609, 2049, 4723]","[274, 1369, 1656]",yes,yes,no
+state,old_name,new_name,geoid,county,county_area_share,row,rows_in_group,showed_other_row_figures_before,wrong_2024_before,wrong_2020_before,wrong_est_flag_before
+Arkansas,Harmony Grove School District,Harmony Grove School District (Dallas),0507290,Dallas County,0.618,530,2,yes,yes,yes,no
+Arkansas,Harmony Grove School District,Harmony Grove School District (Saline),0507320,Saline County,1.0,531,2,no,no,no,no
+Arkansas,Lakeside School District,Lakeside School District (Chicot),0508640,Chicot County,0.958,553,2,yes,yes,yes,no
+Arkansas,Lakeside School District,Lakeside School District (Garland),0508670,Garland County,0.998,554,2,no,no,no,no
+California,Hope Elementary School District,Hope Elementary School District (Santa Barbara),0617490,Santa Barbara County,1.0,1221,2,yes,yes,yes,no
+California,Hope Elementary School District,Hope Elementary School District (Tulare),0617520,Tulare County,1.0,1452,2,no,no,no,no
+California,Jefferson Elementary School District,Jefferson Elementary School District (San Mateo),0618870,San Mateo County,1.0,1096,3,yes,yes,yes,no
+California,Jefferson Elementary School District,Jefferson Elementary School District (San Joaquin),0618840,San Joaquin County,0.999,1121,3,yes,yes,yes,no
+California,Jefferson Elementary School District,Jefferson Elementary School District (San Benito),0618810,San Benito County,0.999,1478,3,no,no,no,no
+California,Junction Elementary School District,Junction Elementary School District (Shasta),0619200,Shasta County,1.0,1164,2,yes,yes,yes,no
+California,Junction Elementary School District,Junction Elementary School District (Siskiyou),0619230,Siskiyou County,0.998,1194,2,no,no,no,no
+California,Lakeside Union Elementary School District,Lakeside Union Elementary School District (San Diego),0620790,San Diego County,1.0,1057,2,yes,no,yes,no
+California,Lakeside Union Elementary School District,Lakeside Union Elementary School District (Kings),0620760,Kings County,1.0,1249,2,no,no,no,no
+California,Liberty Elementary School District,Liberty Elementary School District (Sonoma),0621540,Sonoma County,1.0,1373,2,yes,yes,yes,no
+California,Liberty Elementary School District,Liberty Elementary School District (Tulare),0621570,Tulare County,1.0,1453,2,no,no,no,no
+California,Mountain View Elementary School District,Mountain View Elementary School District (Los Angeles),0626190,Los Angeles County,1.0,1075,2,yes,yes,yes,no
+California,Mountain View Elementary School District,Mountain View Elementary School District (San Bernardino),0626220,San Bernardino County,0.999,1255,2,no,no,no,no
+California,Ocean View Elementary School District,Ocean View Elementary School District (Ventura),0628170,Ventura County,1.0,1330,2,yes,no,yes,no
+California,Ocean View Elementary School District,Ocean View Elementary School District (Orange),0628140,Orange County,1.0,1502,2,no,no,no,no
+California,Pacific Union Elementary School District,Pacific Union Elementary School District (Fresno),0629400,Fresno County,1.0,1157,2,yes,yes,yes,no
+California,Pacific Union Elementary School District,Pacific Union Elementary School District (Humboldt),0629430,Humboldt County,0.992,1300,2,no,no,no,no
+California,Pioneer Union Elementary School District,Pioneer Union Elementary School District (El Dorado),0630480,El Dorado County,0.998,1009,3,yes,no,yes,no
+California,Pioneer Union Elementary School District,Pioneer Union Elementary School District (Kings),0630510,Kings County,1.0,1261,3,yes,yes,yes,no
+California,Pioneer Union Elementary School District,Pioneer Union Elementary School District (Butte),0630520,Butte County,0.997,1400,3,no,no,no,no
+California,Washington Unified School District,Washington Unified School District (Yolo),0641580,Yolo County,0.992,655,2,yes,yes,yes,no
+California,Washington Unified School District,Washington Unified School District (Fresno),0601415,Fresno County,1.0,788,2,no,no,no,no
+Illinois,Oak Grove School District 68,Oak Grove School District 68 (Peoria),1729100,Peoria County,1.0,2779,2,yes,yes,yes,no
+Illinois,Oak Grove School District 68,Oak Grove School District 68 (Lake),1729130,Lake County,1.0,2947,2,no,no,no,no
+Missouri,Miami R-I School District,Miami R-I School District (Bates),2920820,Bates County,1.0,6134,2,yes,yes,yes,no
+Missouri,Miami R-I School District,Miami R-I School District (Saline),2920840,Saline County,0.996,6442,2,no,no,no,no
+Montana,Cottonwood Elementary School District,Cottonwood Elementary School District (Hill),3014150,Hill County,1.0,6611,2,yes,yes,yes,no
+Montana,Cottonwood Elementary School District,Cottonwood Elementary School District (Gallatin),3007500,Gallatin County,1.0,6690,2,no,no,no,no
+New Jersey,Fairfield Township School District,Fairfield Township School District (Cumberland),3405040,Cumberland County,0.996,7655,2,yes,yes,yes,yes
+New Jersey,Fairfield Township School District,Fairfield Township School District (Essex),3405010,Essex County,0.952,7740,2,no,no,no,no
+New Jersey,Franklin Township School District,Franklin Township School District (Somerset),3405490,Somerset County,0.994,7310,4,yes,yes,yes,yes
+New Jersey,Franklin Township School District,Franklin Township School District (Hunterdon),3405460,Hunterdon County,1.0,7680,4,yes,yes,yes,yes
+New Jersey,Franklin Township School District,Franklin Township School District (Warren),3405520,Warren County,0.991,7710,4,yes,yes,yes,yes
+New Jersey,Franklin Township School District,Franklin Township School District (Gloucester),3405430,Gloucester County,0.999,7763,4,no,no,no,no
+New Jersey,Greenwich Township School District,Greenwich Township School District (Gloucester),3406180,Gloucester County,0.99,7341,3,yes,yes,yes,yes
+New Jersey,Greenwich Township School District,Greenwich Township School District (Warren),3406210,Warren County,0.995,7342,3,yes,yes,yes,no
+New Jersey,Greenwich Township School District,Greenwich Township School District (Cumberland),3406150,Cumberland County,0.994,7650,3,no,no,no,no
+New Jersey,Hamilton Township School District,Hamilton Township School District (Mercer),3406540,Mercer County,0.993,7447,2,yes,yes,yes,no
+New Jersey,Hamilton Township School District,Hamilton Township School District (Atlantic),3406510,Atlantic County,1.0,7658,2,no,no,no,no
+New Jersey,Lawrence Township School District,Lawrence Township School District (Mercer),3408400,Mercer County,1.0,7448,2,yes,yes,yes,yes
+New Jersey,Lawrence Township School District,Lawrence Township School District (Cumberland),3408370,Cumberland County,1.0,7490,2,no,no,no,no
+New Jersey,Mansfield Township School District,Mansfield Township School District (Warren),3409540,Warren County,0.999,7709,2,yes,yes,yes,no
+New Jersey,Mansfield Township School District,Mansfield Township School District (Burlington),3409510,Burlington County,1.0,7798,2,no,no,no,no
+New Jersey,Monroe Township School District,Monroe Township School District (Middlesex),3410500,Middlesex County,0.998,7334,2,yes,yes,yes,no
+New Jersey,Monroe Township School District,Monroe Township School District (Gloucester),3410470,Gloucester County,1.0,7398,2,no,no,no,no
+New Jersey,Ocean Township School District,Ocean Township School District (Monmouth),3412060,Monmouth County,1.0,7372,2,yes,yes,yes,yes
+New Jersey,Ocean Township School District,Ocean Township School District (Ocean),3412090,Ocean County,1.0,7587,2,no,no,no,no
+New Jersey,Springfield Township School District,Springfield Township School District (Union),3415630,Union County,0.952,7433,2,yes,yes,yes,yes
+New Jersey,Springfield Township School District,Springfield Township School District (Burlington),3415660,Burlington County,1.0,7817,2,no,no,no,no
+New Jersey,Union Township School District,Union Township School District (Union),3416500,Union County,1.0,7464,2,yes,yes,yes,yes
+New Jersey,Union Township School District,Union Township School District (Hunterdon),3416440,Hunterdon County,1.0,7756,2,no,no,no,no
+New Jersey,Washington Township School District,Washington Township School District (Gloucester),3417070,Gloucester County,0.983,7474,4,yes,yes,yes,no
+New Jersey,Washington Township School District,Washington Township School District (Burlington),3417040,Burlington County,0.995,7510,4,yes,yes,yes,yes
+New Jersey,Washington Township School District,Washington Township School District (Warren),3417160,Warren County,0.996,7708,4,yes,yes,yes,yes
+New Jersey,Washington Township School District,Washington Township School District (Morris),3417130,Morris County,0.995,7736,4,no,no,no,no
+Ohio,Buckeye Local School District,Buckeye Local School District (Medina),3904847,Medina County,0.998,9054,3,yes,yes,yes,yes
+Ohio,Buckeye Local School District,Buckeye Local School District (Jefferson),3904778,Jefferson County,0.891,9183,3,yes,yes,yes,no
+Ohio,Buckeye Local School District,Buckeye Local School District (Ashtabula),3904585,Ashtabula County,0.999,9440,3,no,no,no,no
+Ohio,Crestview Local School District,Crestview Local School District (Richland),3904942,Richland County,0.742,9026,3,yes,yes,yes,no
+Ohio,Crestview Local School District,Crestview Local School District (Columbiana),3904643,Columbiana County,1.0,9335,3,yes,yes,yes,no
+Ohio,Crestview Local School District,Crestview Local School District (Van Wert),3905035,Van Wert County,1.0,9346,3,no,no,no,no
+Ohio,Eastern Local School District,Eastern Local School District (Brown),3904603,Brown County,0.99,9107,3,yes,yes,yes,no
+Ohio,Eastern Local School District,Eastern Local School District (Pike),3904912,Pike County,0.827,9133,3,yes,yes,yes,no
+Ohio,Eastern Local School District,Eastern Local School District (Meigs),3904851,Meigs County,0.998,9377,3,no,no,no,no
+Ohio,Green Local School District,Green Local School District (Wayne),3905055,Wayne County,1.0,8933,3,yes,yes,yes,yes
+Ohio,Green Local School District,Green Local School District (Summit),3905001,Summit County,0.995,9101,3,yes,yes,yes,yes
+Ohio,Green Local School District,Green Local School District (Scioto),3904961,Scioto County,0.993,9135,3,no,no,no,no
+Ohio,Highland Local School District,Highland Local School District (Morrow),3904880,Morrow County,0.977,9391,2,yes,yes,yes,no
+Ohio,Highland Local School District,Highland Local School District (Medina),3904849,Medina County,0.977,9528,2,no,no,no,no
+Ohio,Lake Local School District,Lake Local School District (Wood),3905069,Wood County,0.991,9332,2,yes,yes,yes,no
+Ohio,Lake Local School District,Lake Local School District (Stark),3904986,Stark County,0.998,9387,2,no,no,no,no
+Ohio,Lakota Local School District,Lakota Local School District (Butler),3904611,Butler County,0.998,9201,2,yes,yes,yes,no
+Ohio,Lakota Local School District,Lakota Local School District (Sandusky),3904956,Sandusky County,0.474,9252,2,no,no,no,no
+Ohio,Madison Local School District,Madison Local School District (Butler),3904612,Butler County,1.0,9145,3,yes,yes,yes,no
+Ohio,Madison Local School District,Madison Local School District (Richland),3904945,Richland County,0.999,9156,3,yes,yes,yes,no
+Ohio,Madison Local School District,Madison Local School District (Lake),3904788,Lake County,0.983,9509,3,no,no,no,no
+Ohio,Manchester Local School District,Manchester Local School District (Adams),3900537,Adams County,0.994,9299,2,yes,yes,yes,no
+Ohio,Manchester Local School District,Manchester Local School District (Summit),3905000,Summit County,0.993,9365,2,no,no,no,no
+Ohio,Northeastern Local School District,Northeastern Local School District (Defiance),3904672,Defiance County,1.0,9028,2,yes,yes,yes,no
+Ohio,Northeastern Local School District,Northeastern Local School District (Clark),3904625,Clark County,0.962,9518,2,no,no,no,no
+Ohio,Northridge Local School District,Northridge Local School District (Licking),3904803,Licking County,0.906,9175,2,yes,yes,yes,no
+Ohio,Northridge Local School District,Northridge Local School District (Montgomery),3904873,Montgomery County,1.0,9229,2,no,no,no,no
+Ohio,Northwest Local School District,Northwest Local School District (Hamilton),3904736,Hamilton County,0.98,9167,3,yes,yes,yes,no
+Ohio,Northwest Local School District,Northwest Local School District (Scioto),3904963,Scioto County,0.999,9221,3,yes,yes,yes,no
+Ohio,Northwest Local School District,Northwest Local School District (Stark),3904990,Stark County,0.664,9285,3,no,no,no,no
+Ohio,Northwestern Local School District,Northwestern Local School District (Clark),3904626,Clark County,0.987,9245,2,yes,yes,yes,no
+Ohio,Northwestern Local School District,Northwestern Local School District (Wayne),3910033,Wayne County,0.902,9409,2,no,no,no,no
+Ohio,Perry Local School District,Perry Local School District (Stark),3904992,Stark County,1.0,9316,3,yes,yes,yes,no
+Ohio,Perry Local School District,Perry Local School District (Allen),3904578,Allen County,1.0,9429,3,yes,yes,yes,no
+Ohio,Perry Local School District,Perry Local School District (Lake),3904790,Lake County,0.992,9451,3,no,no,no,no
+Ohio,Riverside Local School District,Riverside Local School District (Lake),3910014,Lake County,0.981,9416,2,yes,yes,yes,no
+Ohio,Riverside Local School District,Riverside Local School District (Logan),3904809,Logan County,0.987,9510,2,no,no,no,no
+Ohio,Southeast Local School District,Southeast Local School District (Portage),3904922,Portage County,1.0,8955,2,yes,yes,yes,no
+Ohio,Southeast Local School District,Southeast Local School District (Wayne),3905058,Wayne County,0.762,9276,2,no,no,no,no
+Ohio,Southeastern Local School District,Southeastern Local School District (Ross),3904952,Ross County,1.0,9194,2,yes,yes,yes,no
+Ohio,Southeastern Local School District,Southeastern Local School District (Clark),3904627,Clark County,0.928,9471,2,no,no,no,no
+Ohio,Southern Local School District,Southern Local School District (Perry),3904906,Perry County,0.976,9258,3,yes,yes,yes,no
+Ohio,Southern Local School District,Southern Local School District (Meigs),3904853,Meigs County,0.997,9379,3,yes,yes,yes,no
+Ohio,Southern Local School District,Southern Local School District (Columbiana),3904644,Columbiana County,0.986,9506,3,no,no,no,no
+Ohio,Springfield Local School District,Springfield Local School District (Mahoning),3904837,Mahoning County,1.0,8937,3,yes,yes,yes,no
+Ohio,Springfield Local School District,Springfield Local School District (Summit),3905006,Summit County,0.949,9322,3,yes,yes,yes,no
+Ohio,Springfield Local School District,Springfield Local School District (Lucas),3904822,Lucas County,1.0,9350,3,no,no,no,no
+Ohio,Western Reserve Local School District,Western Reserve Local School District (Mahoning),3904839,Mahoning County,1.0,9076,2,yes,yes,yes,no
+Ohio,Western Reserve Local School District,Western Reserve Local School District (Huron),3904774,Huron County,0.999,9178,2,no,no,no,no
+Oklahoma,Wilson Public Schools,Wilson Public Schools (Okmulgee),4032880,Okmulgee County,1.0,9550,2,yes,yes,yes,no
+Oklahoma,Wilson Public Schools,Wilson Public Schools (Carter),4032940,Carter County,0.872,9914,2,no,no,no,no
+Texas,Big Sandy Independent School District,Big Sandy Independent School District (Polk),4810170,Polk County,0.998,11273,2,yes,yes,yes,no
+Texas,Big Sandy Independent School District,Big Sandy Independent School District (Upshur),4810140,Upshur County,0.866,12019,2,no,no,no,no
+Texas,Centerville Independent School District,Centerville Independent School District (Trinity),4813380,Trinity County,1.0,11227,2,yes,yes,yes,no
+Texas,Centerville Independent School District,Centerville Independent School District (Leon),4813410,Leon County,0.997,11718,2,no,no,no,no
+Texas,Chapel Hill Independent School District,Chapel Hill Independent School District (Titus),4813680,Titus County,0.996,11236,2,yes,yes,yes,no
+Texas,Chapel Hill Independent School District,Chapel Hill Independent School District (Smith),4813650,Smith County,1.0,11472,2,no,no,no,no
+Texas,Dawson Independent School District,Dawson Independent School District (Dawson),4816350,Dawson County,0.709,11285,2,yes,yes,yes,no
+Texas,Dawson Independent School District,Dawson Independent School District (Navarro),4816380,Navarro County,0.985,11782,2,no,no,no,no
+Texas,Edgewood Independent School District,Edgewood Independent School District (Bexar),4818150,Bexar County,1.0,11196,2,yes,yes,yes,no
+Texas,Edgewood Independent School District,Edgewood Independent School District (Van Zandt),4818120,Van Zandt County,0.997,11554,2,no,no,no,no
+Texas,Highland Park Independent School District,Highland Park Independent School District (Potter),4835560,Potter County,1.0,11422,2,yes,yes,yes,no
+Texas,Highland Park Independent School District,Highland Park Independent School District (Dallas),4823250,Dallas County,1.0,11987,2,no,no,no,no
+Texas,Hubbard Independent School District,Hubbard Independent School District (Hill),4823730,Hill County,0.873,11638,2,yes,yes,yes,no
+Texas,Hubbard Independent School District,Hubbard Independent School District (Bowie),4823700,Bowie County,1.0,12092,2,no,no,no,no
+Texas,Midway Independent School District,Midway Independent School District (Clay),4830660,Clay County,0.92,11202,2,yes,yes,yes,no
+Texas,Midway Independent School District,Midway Independent School District (McLennan),4830640,McLennan County,1.0,11906,2,no,no,no,no
+Texas,Northside Independent School District,Northside Independent School District (Wilbarger),4833090,Wilbarger County,0.996,11330,2,yes,yes,yes,no
+Texas,Northside Independent School District,Northside Independent School District (Bexar),4833120,Bexar County,0.903,11375,2,no,no,no,no
+Texas,Valley View Independent School District,Valley View Independent School District (Hidalgo),4843800,Hidalgo County,1.0,11769,2,yes,yes,yes,no
+Texas,Valley View Independent School District,Valley View Independent School District (Cooke),4843860,Cooke County,1.0,12139,2,no,no,no,no
+Texas,Wylie Independent School District,Wylie Independent School District (Collin),4846530,Collin County,0.997,11528,2,yes,yes,yes,no
+Texas,Wylie Independent School District,Wylie Independent School District (Taylor),4846500,Taylor County,1.0,11913,2,no,no,no,no
