@@ -1,0 +1,33 @@
+{
+ "bands": 638,
+ "gaps": {
+  "band_without_reserve": 57,
+  "reserve_csd_crosswalk_missing": 1,
+  "shared_reserve": 56
+ },
+ "isc_reserve_links": 3543,
+ "isc_reserves": 3329,
+ "parents": {
+  "province:ca-ab": 48,
+  "province:ca-bc": 201,
+  "province:ca-mb": 63,
+  "province:ca-nb": 15,
+  "province:ca-nl": 4,
+  "province:ca-ns": 13,
+  "province:ca-on": 139,
+  "province:ca-pe": 2,
+  "province:ca-qc": 41,
+  "province:ca-sk": 70,
+  "territory:ca-nt": 26,
+  "territory:ca-yt": 16
+ },
+ "reserve_of_links": 0,
+ "retrieved_at": "2026-10-18",
+ "rows": {
+  "entities_ca_indigenous.csv": 638,
+  "entity_unit_ca.csv": 0,
+  "first_nation_reserves_ca.csv": 3543,
+  "gaps_ca_indigenous.csv": 114
+ },
+ "shared_reserves": 56
+}

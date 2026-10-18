@@ -197,8 +197,7 @@ cnt = collections.Counter(t for _, t, _, _ in csd.values())
 for t in sorted(GAP_CSD):
     if cnt[t]: gap('municipality', 'csd_type_ambiguous', t, '%d CSDs (%s): %s; unit only, no entity' % (cnt[t], ','.join(sorted({SGC[p_] for _, tt, _, p_ in csd.values() if tt == t})), GAP_CSD[t]), S_DCSD)
 fnn = sum(cnt[t] for t in FN)
-gap('indigenous_government', 'blocked_source', 'data.sac-isc.gc.ca', 'ISC First Nations Location band list + First Nation-reserve relation (OGL-Canada): TLS refused from this box (also geo.sac-isc.gc.ca, data.aadnc-aandc.gc.ca); not bypassed; first_nation:ca-<band number> entities and reserve_of links wait for a browser download', '')
-gap('municipality', 'first_nations_kind_proposal', '+'.join(sorted(FN)), '%d CSDs of the eight First Nations types (geo012) not minted as municipalities; kind indigenous_government ruled (first_nation:ca-<band number>, entity_unit reserve_of), waiting for the ISC band list' % fnn, S_DCSD)
+gap('municipality', 'first_nations_kind_proposal', '+'.join(sorted(FN)), '%d CSDs of the eight First Nations types (geo012) not minted as municipalities; kind indigenous_government ruled (first_nation:ca-<band number>, entity_unit reserve_of), bands in entities_ca_indigenous.csv' % fnn, S_DCSD)
 gap('school_board', 'not_built', 'all', 'no national list; provincial lists exist (e.g. Ontario school board list, BC school districts, Alberta school authorities) - see CANADA_PLAN.md', '')
 
 types = []

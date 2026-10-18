@@ -11,7 +11,7 @@ sys.path.insert(0, HERE)
 from inst_sources import Registry
 import collections, re
 from inst_ca_common import SOURCE_COLS, BSET_COLS, NOT_CURRENT, licence_flags, write_csv
-BUILDERS = ['inst_ca_federal.py', 'inst_ca_provincial.py', 'inst_ca_municipal.py']
+BUILDERS = ['inst_ca_federal.py', 'inst_ca_provincial.py', 'inst_ca_municipal.py', 'inst_ca_indigenous.py']
 
 def build(out, order):
     os.makedirs(out, exist_ok=True)
