@@ -19,7 +19,7 @@ The plan names the official legislature rosters first. Those rosters (50 differe
 
 **Why April 1, 2025 for the 2024 snapshot:** OpenStates closes many outgoing members' roles on 2025-02-03, the date its scrapers saw the change. A February date would double-count seats, as it did for 17 Nebraska districts and 3 Missouri duplicate person records. On Apr 1, no single-member unit has two members.
 
-**Start dates:** a role with no start date in OpenStates is kept and flagged as `start date not recorded`. That applies mostly to SC (32) and AL (13).
+**Start dates:** a role with no start date in OpenStates is kept and flagged as `start date not recorded`. That applies to 87 rows in the 2024 file, mostly SC (33) and AL (13).
 
 **`no_v3_unit`:**
 - **Maine:** the tribal representatives (Passamaquoddy Tribe, Houlton Band of Maliseet Indians) have no district.
