@@ -326,42 +326,7 @@ export function pickUnit<T>(index: ReadonlyMap<string, T>, id: string): T | unde
   return index.get(id);
 }
 
-/**
- * Build 1584 bar from PERF_TABLE.md. Back ~40 ms, US House pick ~70 ms,
- * phone pan 60 fps. iPad pan stays a v3 gate at 55 fps or better.
- */
-export const PERF_BAR = {
-  backMs: 40,
-  usHousePickMs: 70,
-  phonePanFps: 60,
-  ipadPanFps: 55,
-} as const;
-
-export const WARM_TYPES = ["ushouse", "sldu", "sldl", "school_unified"] as const;
-
-/** Last-used district list first, then the rest. Idle prefetch uses this order. */
-export function warmOrder(lastType: string | null | undefined): string[] {
-  const last = (lastType ?? "").trim();
-  const rest = WARM_TYPES.filter((type) => type !== last);
-  return (WARM_TYPES as readonly string[]).includes(last) ? [last, ...rest] : [...WARM_TYPES];
-}
-
 export type CameraView = { lon: number; lat: number; zoom: number };
-
-/**
- * While the list hides the map, keep the last requested view and apply it when the map shows.
- * A later request replaces the pending one.
- */
-export function deferCamera(
-  hidden: boolean,
-  pending: CameraView | null,
-  next: CameraView | null,
-): { pending: CameraView | null; apply: CameraView | null } {
-  if (hidden) return { pending: next ?? pending, apply: null };
-  if (next) return { pending: null, apply: next };
-  if (pending) return { pending: null, apply: pending };
-  return { pending: null, apply: null };
-}
 
 const PARENT_SCOPE = new Set(["", "US", "USA"]);
 

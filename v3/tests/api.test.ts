@@ -176,4 +176,89 @@ describe("/api/v1", () => {
     expect(calls.some((url) => url.includes("census"))).toBe(true);
     expect(calls.some((url) => url.includes("nominatim"))).toBe(true);
   });
+
+  it("keeps DC school and US House totals inside DC and labels same-name units", async () => {
+    const house = await get("/api/v1/results?contest=2024%7CUS%7Cpresident%7C&unit_type=ushouse&state=DC");
+    expect(house.status).toBe(200);
+    const houseBody = (await house.json()) as {
+      rows: { unit: string; state: string | null; name: string; total: number | null; label: string }[];
+    };
+    expect(houseBody.rows).toHaveLength(1);
+    expect(houseBody.rows[0]?.state).toBe("DC");
+    expect(houseBody.rows[0]?.unit).not.toBe("US");
+    expect(houseBody.rows[0]?.total).toBe(325869);
+
+    const counties = await pool.query<{ id: string; name: string }>(
+      `select u.id::text, u.name
+       from unit u join boundary_set b on b.id = u.boundary_set_id
+       where b.slug = 'v2-2024' and u.unit_type = 'county' and btrim(u.state_abbr) = 'CA'
+         and u.name in ('Alpine County', 'Alameda County')`,
+    );
+    const alpine = counties.rows.find((row) => row.name === "Alpine County");
+    const alameda = counties.rows.find((row) => row.name === "Alameda County");
+    expect(alpine?.id).toBeTruthy();
+    expect(alameda?.id).toBeTruthy();
+    const set = await pool.query<{ id: string }>(
+      `insert into boundary_set (slug, unit_type, vintage_year)
+       values ('v2-2024', 'school_unified', 2024)
+       on conflict (slug, unit_type) do update set vintage_year = excluded.vintage_year
+       returning id::text`,
+    );
+    const setId = set.rows[0]!.id;
+    const keys = ["060001", "060001b", "060002", "480010", "1100030", "US"];
+    await pool.query(
+      `insert into unit (boundary_set_id, unit_type, unit_key, name, state_abbr, geoid, parent_unit_id)
+       values
+         ($1, 'school_unified', '060001', 'Washington', 'CA', '060001', $2),
+         ($1, 'school_unified', '060001b', 'Washington', 'CA', '060001', $2),
+         ($1, 'school_unified', '060002', 'Washington', 'CA', '060002', $3),
+         ($1, 'school_unified', '480010', 'Austin', 'TX', '480010', null),
+         ($1, 'school_unified', '1100030', 'District of Columbia Public Schools', 'DC', '1100030', null),
+         ($1, 'school_unified', 'US', 'United States', 'DC', 'US', null)`,
+      [setId, alpine!.id, alameda!.id],
+    );
+    await pool.query(
+      `insert into result_total (contest_id, unit_id, total_votes)
+       select c.id, u.id, case u.unit_key when 'US' then 160000000 else 325869 end
+       from contest c
+       join unit u on u.boundary_set_id = $1 and u.unit_key in ('1100030', 'US')
+       where c.contest_key = '2024|US|president|'`,
+      [setId],
+    );
+    try {
+      const schools = await get("/api/v1/results?contest=2024%7CUS%7Cpresident%7C&unit_type=school_unified&state=DC");
+      expect(schools.status).toBe(200);
+      const schoolBody = (await schools.json()) as { rows: { unit: string; state: string | null; total: number | null; label: string }[] };
+      expect(schoolBody.rows.map((row) => row.unit)).toEqual(["1100030"]);
+      expect(schoolBody.rows[0]?.state).toBe("DC");
+      expect(schoolBody.rows[0]?.total).toBe(325869);
+
+      const named = await get("/api/v1/results?contest=2024%7CUS%7Cpresident%7C&unit_type=school_unified&state=CA");
+      const namedBody = (await named.json()) as { rows: { unit: string; geoid: string | null; label: string }[] };
+      expect(namedBody.rows.map((row) => row.geoid).sort()).toEqual(["060001", "060002"]);
+      expect(namedBody.rows.map((row) => row.label).sort()).toEqual([
+        "Washington, Alameda County",
+        "Washington, Alpine County",
+      ]);
+    } finally {
+      await pool.query(
+        `delete from result_total where unit_id in (
+           select id from unit where boundary_set_id = $1 and unit_key = any($2::text[])
+         )`,
+        [setId, keys],
+      );
+      await pool.query(`delete from unit where boundary_set_id = $1 and unit_key = any($2::text[])`, [setId, keys]);
+    }
+  });
+
+  it("ranks the state Georgia ahead of the country", async () => {
+    const res = await get("/api/v1/search?q=Georgia");
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { groups: { name: string; hits: { id: string; label: string }[] }[] };
+    const hits = body.groups.flatMap((group) => group.hits);
+    expect(hits[0]?.id).toBe("state:GA");
+    expect(hits[1]?.id).toBe("country:GE");
+    expect(hits[1]?.label).toBe("Georgia");
+    expect(body.groups[0]?.name).toBe("States");
+  });
 });

@@ -6,6 +6,9 @@ import {
   compareAnswerKeys,
   isGray,
   matchesState,
+  schoolLabels,
+  scopeRows,
+  searchInstitutions,
   shares,
   sortRows,
   type SortBy,
@@ -264,6 +267,12 @@ export function createApp(deps: AppDeps) {
     return c.json({ dv: c.get("dv"), ...item });
   });
 
+  app.get("/api/v1/search", (c) => {
+    const q = c.req.query("q") ?? "";
+    const found = searchInstitutions(q);
+    return c.json({ dv: c.get("dv"), q, groups: found.groups, message: found.message });
+  });
+
   app.get("/api/v1/results", async (c) => {
     const contestParams = c.req.queries("contest") ?? [];
     const unitType = c.req.query("unit_type");
@@ -332,6 +341,7 @@ export function createApp(deps: AppDeps) {
       name: string;
       state_abbr: string | null;
       geoid: string | null;
+      county: string | null;
       votes: Record<string, number> | null;
       mv_total: string | null;
       total_votes: string | null;
@@ -339,10 +349,12 @@ export function createApp(deps: AppDeps) {
       coverage: number | null;
     }>(
       `select c.contest_key, u.unit_key, u.legacy_key, u.name, btrim(u.state_abbr) as state_abbr, u.geoid,
+              parent.name as county,
               a.votes, a.total::text as mv_total, rt.total_votes::text, a.is_estimate, rt.coverage
        from unit u
        join boundary_set b on b.id = u.boundary_set_id
        join contest c on c.contest_key = any($1::text[])
+       left join unit parent on parent.id = u.parent_unit_id and parent.unit_type = 'county'
        left join unit_contest_agg a on a.contest_id = c.id and a.unit_id = u.id
        left join result_total rt on rt.contest_id = c.id and rt.unit_id = u.id
        where b.slug = $2 and u.unit_type = $3
@@ -358,7 +370,7 @@ export function createApp(deps: AppDeps) {
       est: boolean;
       gray: boolean;
     };
-    const byUnit = new Map<string, { unit: string; legacy: string | null; name: string; state: string | null; geoid: string | null; cells: Cell[] }>();
+    const byUnit = new Map<string, { unit: string; legacy: string | null; name: string; state: string | null; geoid: string | null; county: string | null; cells: Cell[] }>();
     for (const row of data.rows) {
       if (state && !matchesState(row.state_abbr, state)) continue;
       const has = row.votes != null;
@@ -382,6 +394,7 @@ export function createApp(deps: AppDeps) {
           name: row.name,
           state: row.state_abbr,
           geoid: row.geoid,
+          county: row.county,
           cells: [cell],
         });
       }
@@ -398,7 +411,20 @@ export function createApp(deps: AppDeps) {
         gray: primary?.gray ?? true,
       };
     });
-    const sorted = sortRows(shaped, by, dir);
+    const sorted = scopeRows({
+      stateAbbr: state ?? "",
+      unitType,
+      rows: sortRows(shaped, by, dir),
+    });
+    const firstByGeoid = new Map<string, (typeof sorted)[number]>();
+    for (const row of sorted) {
+      const key = (row.geoid ?? row.unit).trim();
+      if (key && !firstByGeoid.has(key)) firstByGeoid.set(key, row);
+    }
+    const listed = schoolLabels(sorted).flatMap((item) => {
+      const row = firstByGeoid.get(item.geoid);
+      return row ? [{ ...row, label: item.label }] : [];
+    });
     const displayFor = (key: string) => {
       const display: Record<string, string> = {};
       for (const slot of slotRows.rows.filter((s) => s.contest_key === key)) display[slot.slot] = slot.answer_key;
@@ -413,12 +439,13 @@ export function createApp(deps: AppDeps) {
         boundary_set: boundary,
         answers,
         display_slots: displayFor(contestParams[0]!),
-        rows: sorted.map((row) => {
+        rows: listed.map((row) => {
           const cell = row.cells[0]!;
           const payload = {
             unit: row.unit,
             legacy: row.legacy,
             name: row.name,
+            label: row.label,
             state: row.state,
             geoid: row.geoid,
             votes: cell.votes,
@@ -439,10 +466,11 @@ export function createApp(deps: AppDeps) {
       boundary_set: boundary,
       answers,
       display_slots: Object.fromEntries(contestParams.map((key) => [key, displayFor(key)])),
-      rows: sorted.map((row) => ({
+      rows: listed.map((row) => ({
         unit: row.unit,
         legacy: row.legacy,
         name: row.name,
+        label: row.label,
         state: row.state,
         geoid: row.geoid,
         series: row.cells.map((cell) => applyFormat(cell, fmt)),

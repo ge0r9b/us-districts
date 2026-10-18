@@ -3,9 +3,7 @@ import { Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   GEOGRAPHY_LEVELS,
-  WARM_TYPES,
   chartMenu,
-  deferCamera,
   emptyScopeMessage,
   geographyLevel,
   institutionField,
@@ -29,7 +27,6 @@ import {
   thumbnailBox,
   tileRangeOk,
   topInstitutionHit,
-  warmOrder,
   type CameraView,
   type ChartKind,
   type GeographyLevel,
@@ -133,9 +130,7 @@ let emptyMessage = "No rows";
 let loadSeq = 0;
 let tapHandled = false;
 let map: maplibregl.Map | undefined;
-let pendingCamera: CameraView | null = null;
 const warmCache = new Map<string, ResultsBody>();
-const LAST_TYPE_KEY = "v3.lastType";
 
 const yearsEl = document.querySelector<HTMLElement>("#years")!;
 const geographyEl = document.querySelector<HTMLElement>("#geography")!;
@@ -214,19 +209,14 @@ function viewFor(y: number): { unitType: string; state: string | null } {
   return { unitType: place.level, state: place.stateAbbr || (place.level === "precinct" ? "VT" : "PA") };
 }
 
-function mapHidden(): boolean {
-  return document.body.dataset.layout === "list";
-}
-
 function cameraFor(level: GeographyLevel, point: { lon: number; lat: number }): CameraView {
   const zoom = level === "precinct" ? 11 : level === "county" || level === "school_unified" ? 8 : level === "ushouse" ? 6 : 5;
   return { lon: point.lon, lat: point.lat, zoom };
 }
 
 function moveCamera(next: CameraView | null) {
-  const step = deferCamera(mapHidden(), pendingCamera, next);
-  pendingCamera = step.pending;
-  if (step.apply && map) map.jumpTo({ center: [step.apply.lon, step.apply.lat], zoom: step.apply.zoom });
+  if (!next || !map) return;
+  map.jumpTo({ center: [next.lon, next.lat], zoom: next.zoom });
 }
 
 function applyPlace(next: Place, point?: { lon: number; lat: number } | null, focus: string | null = null) {
@@ -750,29 +740,6 @@ async function fetchBody(y: number, view: { unitType: string; state: string | nu
   return loaded;
 }
 
-function scheduleWarm(state: string | null) {
-  const abbr = (state ?? "").trim().toUpperCase();
-  if (!abbr) return;
-  let last: string | null = null;
-  try {
-    last = localStorage.getItem(LAST_TYPE_KEY);
-  } catch {
-    last = null;
-  }
-  const types = warmOrder(last);
-  const run = () => {
-    void (async () => {
-      for (const unitType of types) {
-        if (warmCache.has(warmKey(yearEnd, unitType, abbr))) continue;
-        await fetchBody(yearEnd, { unitType, state: abbr });
-      }
-    })();
-  };
-  const idle = window.requestIdleCallback;
-  if (idle) idle(() => run());
-  else setTimeout(run, 1);
-}
-
 async function load() {
   const seq = ++loadSeq;
   setThumbs(false);
@@ -803,13 +770,6 @@ async function load() {
   emptyMessage = emptyScopeMessage(view.unitType, scoped.length) ?? "No rows";
   body = { ...endResult.body, rows: scoped };
   rowIndex = new Map(body.rows.map((row) => [row.unit, row]));
-  if ((WARM_TYPES as readonly string[]).includes(view.unitType)) {
-    try {
-      localStorage.setItem(LAST_TYPE_KEY, view.unitType);
-    } catch {
-      /* private mode */
-    }
-  }
   if (focusKey && !rowIndex.has(focusKey)) focusKey = null;
   setThumbs(true);
   paintLegend();
@@ -823,7 +783,6 @@ async function load() {
     if (map.getSource("state-2024")) colorMap(map, "state-2024");
     colorMap(map, activeSource);
   }
-  scheduleWarm(view.state);
 }
 
 bindTap(fmtBtn, () => {
@@ -836,7 +795,6 @@ bindTap(layoutBtn, () => {
   layout = layout === "map" ? "list" : "map";
   document.body.dataset.layout = tokens.layoutMode[layout];
   layoutBtn.textContent = layout === "map" ? "List" : "Map";
-  if (layout === "map") moveCamera(null);
 });
 bindTap(backBtn, climb);
 bindTap(clockBtn, () => {

@@ -1,26 +1,19 @@
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   CANADA_PROVINCES,
   chartMenu,
-  deferCamera,
-  emptyScopeMessage,
   institutionField,
   legendText,
   lineYears,
   marginColor,
   MARGIN_MAX,
-  PERF_BAR,
   pickUnit,
   placeChain,
   pointerTap,
   precinctLabel,
   rangeStartVotes,
   resolveChart,
-  schoolLabels,
-  scopeRows,
   searchInstitutions,
   segmentChanges,
   sliderFrame,
@@ -29,7 +22,6 @@ import {
   THUMB_PX,
   topInstitutionHit,
   twinKey,
-  warmOrder,
 } from "@usd/core";
 
 const tokens = JSON.parse(readFileSync(new URL("../design/tokens.json", import.meta.url), "utf8")) as {
@@ -197,56 +189,7 @@ describe("pick latency", () => {
   });
 });
 
-describe("Build 1584 and open QA", () => {
-  it("QA-072 keeps a US total out of DC school districts and US House", () => {
-    const us = { unit: "US", name: "United States", state: "US" };
-    for (const unitType of ["school_unified", "ushouse"]) {
-      const scoped = scopeRows({ stateAbbr: "DC", unitType, rows: [us] });
-      expect(scoped).toEqual([]);
-      expect(emptyScopeMessage(unitType, scoped.length)).toBe("No districts");
-    }
-    const kept = scopeRows({
-      stateAbbr: "DC",
-      unitType: "school_unified",
-      rows: [us, { unit: "1100030", name: "District of Columbia Public Schools", state: "DC" }],
-    });
-    expect(kept.map((row) => row.unit)).toEqual(["1100030"]);
-  });
-
-  it("QA-074 distinguishes same-name school districts and drops a repeated GEOID", () => {
-    const labels = schoolLabels([
-      { geoid: "060001", name: "Washington", county: "Franklin County", state: "CA" },
-      { geoid: "060001", name: "Washington", county: "Other County", state: "CA" },
-      { geoid: "060002", name: "Washington", county: "Alpine County", state: "CA" },
-      { geoid: "480010", name: "Austin", state: "TX" },
-    ]);
-    expect(labels).toEqual([
-      { geoid: "060001", label: "Washington, Franklin County" },
-      { geoid: "060002", label: "Washington, Alpine County" },
-      { geoid: "480010", label: "Austin" },
-    ]);
-  });
-
-  it("QA-075 ranks the US state Georgia ahead of the country", () => {
-    const hits = searchInstitutions("Georgia").groups.flatMap((group) => group.hits);
-    expect(hits[0]?.id).toBe("state:GA");
-    expect(hits[1]?.id).toBe("country:GE");
-    expect(hits[1]?.label).toBe("Georgia");
-    expect(topInstitutionHit("Georgia")?.id).toBe("state:GA");
-    expect(topInstitutionHit("GA")?.id).toBe("state:GA");
-  });
-
-  it("defers a hidden map move and warms district lists with the last type first", () => {
-    const hidden = deferCamera(true, null, { lon: -77, lat: 38.9, zoom: 6 });
-    expect(hidden.apply).toBeNull();
-    const shown = deferCamera(false, hidden.pending, null);
-    expect(shown.pending).toBeNull();
-    expect(shown.apply).toEqual({ lon: -77, lat: 38.9, zoom: 6 });
-    expect(warmOrder("school_unified")).toEqual(["school_unified", "ushouse", "sldu", "sldl"]);
-    expect(warmOrder(null)).toEqual(["ushouse", "sldu", "sldl", "school_unified"]);
-    expect(PERF_BAR).toEqual({ backMs: 40, usHousePickMs: 70, phonePanFps: 60, ipadPanFps: 55 });
-    expect(PERF_BAR.ipadPanFps).toBeGreaterThanOrEqual(55);
-    const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../app/src/style.css"), "utf8");
-    expect(css).not.toMatch(/:has\(/);
-  });
+it("keeps style.css free of :has()", () => {
+  const css = readFileSync(new URL("../app/src/style.css", import.meta.url), "utf8");
+  expect(css).not.toMatch(/:has\(/);
 });
