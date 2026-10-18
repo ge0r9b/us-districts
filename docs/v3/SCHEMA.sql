@@ -245,7 +245,7 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 create table entity (
   entity_id     text primary key,
   kind          text not null check (kind in (
-                  'nation','territory','state','county','municipality','township',
+                  'nation','territory','province','state','county','municipality','township',  -- province: Canadian provinces (parent nation:ca)
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
@@ -274,6 +274,12 @@ create table entity (
   cog_pid6      text,                                -- CoG 2022 unit id
   flags         text[],                              -- review flags ('gov_status_unknown:...')
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
+  -- World geography: nations are 'nation:<iso2>' lowercase (the existing US row is 'nation:us', 348f410); foreign
+  -- dependencies are kind 'territory' with the sovereign nation as parent; provinces have parent 'nation:ca'.
+  -- Non-US places carry no unit or boundary_set (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
+  check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
+  check (kind <> 'territory' or parent_id like 'nation:%'),
+  check (kind <> 'province' or parent_id = 'nation:ca'),
   check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
