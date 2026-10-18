@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181585";</script>
+<script>window.BUILD="202610181586";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -426,7 +426,7 @@
   #chartBox .copts { position: absolute; right: calc(100% + var(--gap)); top: 0; display: flex; gap: var(--gap); transform-origin: 100% 50%; transform: translateX(30px) scaleX(.2); opacity: 0; pointer-events: none; transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s; }
   #chartBox .copts { visibility: hidden; } #chartBox.open .copts { transform: none; opacity: 1; pointer-events: auto; visibility: visible; }
   #chartBox.open { z-index: 1012 !important; }
-  #chartDim { position: fixed; inset: 0; z-index: 1011; background: rgba(0,0,0,.28); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  #chartDim { position: fixed; inset: 0; z-index: 1011; background: transparent; /* build 1586 (user): menus never dim the screen; the layer only catches the tap that closes the menu */ opacity: 0; pointer-events: none; transition: opacity .2s; }
   #chartDim.on { opacity: 1; pointer-events: auto; }
   body.foldfs #crumbs .sep { display: none !important; }
   body.foldfs #crumbs { gap: 10px; }
@@ -2158,7 +2158,7 @@ crumbs();
 // ===== clock button inside the time row when open =====
 const clockHome=rail; const yrRow=document.querySelector("#barTime .yr");
 /* build 1580 (QA-053, user): the clock button never moves when the time row opens or closes: it keeps its closed-state spot (offset from the geo bar) and the row opens beside it */
-let __clkOff=null; window.__clockKeep=function(){ const b=$("bTime"), tb=$("barTime"); if(tb.hidden||b.parentElement!==tb||__clkOff==null){ if(b.style.translate) b.style.translate=""; if(tb.hidden&&b.parentElement!==tb){ const r=b.getBoundingClientRect(); if(r.width>0) __clkOff=[r.left,r.top]; } return; } const r=b.getBoundingClientRect(); const cur=(b.style.translate||"0px 0px").split(" ").map(parseFloat); const nx=r.left-(cur[0]||0), ny=r.top-(cur[1]||0); const dx=Math.round((__clkOff[0]-nx)*2)/2, dy=Math.round((__clkOff[1]-ny)*2)/2; const t=dx+"px "+dy+"px"; if(b.style.translate!==t) b.style.translate=(dx||dy)?t:""; };
+let __clkOff=null; window.__clockKeep=function(){ const b=$("bTime"), tb=$("barTime"); if(tb.hidden||b.parentElement!==tb||__clkOff==null){ if(b.style.translate) b.style.translate=""; if(tb.hidden&&b.parentElement!==tb){ const r=b.getBoundingClientRect(); if(r.width>0) __clkOff=[r.left,r.top]; } return; } const r=b.getBoundingClientRect(); const cur=(b.style.translate||"0px 0px").split(" ").map(parseFloat); const nx=r.left-(cur[0]||0), ny=r.top-(cur[1]||0); const dx=Math.round((__clkOff[0]-nx)*2)/2, dy=Math.round((__clkOff[1]-ny)*2)/2; if(!r.width||Math.abs(dx)>60||Math.abs(dy)>60) return; /* build 1586 (QA-070): the time row is mid-reflow (e.g. All States opening): keep the button where it is instead of chasing a far-off natural spot (it went off screen 228-340 ms) */ const t=dx+"px "+dy+"px"; if(b.style.translate!==t) b.style.translate=(dx||dy)?t:""; };
 $("bTime").addEventListener("click",()=>{ const b=$("bTime"); if($("barTime").hidden&&b.parentElement!==$("barTime")){ const r=b.getBoundingClientRect(); if(r.width>0) __clkOff=[r.left,r.top]; } },true); addEventListener("resize",()=>{ if($("barTime").hidden) __clkOff=null; });
 function placeClock(){ const b=$("bTime"), tb=$("barTime");
   if(!tb.hidden){ if(b.parentElement!==tb){ yrRow.after(b); } tb.style.paddingRight=""; tb.classList.add("hasclock"); window.__clockKeep(); }
@@ -3378,7 +3378,9 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
 // keep thumbnail column == flag icon box (measured), for every view
 { const th=()=>{ const f0=document.querySelector("#crumbs .cic img"), f=f0&&(f0.closest(".cic")||f0), c=document.getElementById("cands"); if(!f||!c||!f.offsetWidth) return; /* build 1576 (QA-045): thumbnails are a fixed 30px, whatever the flag beside the place name (Alabama's portrait flag made them 14.7px, Georgia's 19.3px; the size stuck after leaving the state) */ const fb=f.getBoundingClientRect(), cb=c.getBoundingClientRect(); const R=document.documentElement.style;
     const im=[...c.querySelectorAll(".cand.ph img")].find(i=>i.offsetParent); const cur=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--thx"))||0; const x=(im?Math.round((cur+fb.left+(fb.width-30)/2-im.getBoundingClientRect().left)*10)/10:Math.round((fb.left+(fb.width-30)/2-cb.left)*10)/10)+"px", w="30px"; if(R.getPropertyValue("--thx")!==x) R.setProperty("--thx",x); if(R.getPropertyValue("--thw")!==w) R.setProperty("--thw",w); };
-  setInterval(th,700); addEventListener("resize",th); setTimeout(th,0); }
+  setInterval(th,700); addEventListener("resize",th); setTimeout(th,0);
+  /* build 1586 (QA-060): re-measure in the same frame as a map/list switch (a body class change), not up to 700 ms later (icons went 12 > 4 > 12 px) */
+  { let lm0=null; new MutationObserver(()=>{ const lm=document.body.classList.contains("listmode"); if(lm!==lm0){ lm0=lm; th(); } }).observe(document.body,{attributes:true,attributeFilter:["class"]}); } }
 // ===== pie chart mode in list view: real share of total per year column =====
 { const _rcP=renderCands; renderCands=function(){ _rcP(); candBox.querySelectorAll(".cpie").forEach(x=>x.remove()); return;
     let a; try{ a=scopeArea(); }catch(e){ return; } const yrs=yrsOn(); const cols=[...candBox.querySelectorAll(".ccol")];
@@ -3464,8 +3466,8 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       const th=[...candBox.querySelectorAll("img")].filter(e=>!pn.contains(e)).map(visR).filter(Boolean).sort((a,b)=>a.top-b.top);
       const bb=document.getElementById("barBottom"), bbr=bb&&!bb.hidden&&getComputedStyle(bb).display!=="none"&&bb.getBoundingClientRect(), bot=((bbr&&bbr.height>0&&bbr.top<innerHeight)?bbr.top:innerHeight)-G; /* fixed-position bar: no offsetParent */
       const top=Math.round(th.length?th[0].top:t0+4), L=th.length?Math.max(...th.map(r=>r.right))+G:M;
-      const btn=[...document.querySelectorAll("button.rbtn, .rail .rbtn")].map(visR).filter(r=>r&&r.left>vw*0.5&&r.bottom>top&&r.top<bot), R=(btn.length?Math.min(...btn.map(r=>r.left)):vw-M)-G;
-      const S=Math.max(80,Math.floor(Math.min(R-L,bot-top))), ml=Math.round(L+(R-L-S)/2-cl), mt=top-Math.round(t0);
+      const btn=[...document.querySelectorAll("button.rbtn, .rail .rbtn")].filter(e=>!e.closest(".copts")).map(visR) /* build 1586 (user): menu options are an overlay; opening a menu never resizes the pie */.filter(r=>r&&r.left>vw-90&&r.bottom>top&&r.top<bot) /* only the right button column itself: any menu's option buttons (chart, district type, ...) fan out to the left as an overlay */, R=(btn.length?Math.min(...btn.map(r=>r.left)):vw-M)-G;
+      let S=Math.max(80,Math.floor(Math.min(R-L,bot-top))); if(!Number.isFinite(S)) S=200; /* build 1586: never a NaN size (an unmeasurable rect must not hide the pie) */ let ml=Math.round(L+(R-L-S)/2-cl), mt=top-Math.round(t0); if(!Number.isFinite(ml)) ml=0; if(!Number.isFinite(mt)) mt=0;
       h='<div class="cblk cbig" style="margin:0;padding:0"><div class="cpie1 big" style="align-items:flex-start;height:'+Math.max(0,S+mt)+'px;overflow:visible">'+pieSvg(v0,null).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'" style="width:'+S+'px;height:'+S+'px;max-width:none;flex:none;margin-left:'+ml+'px;margin-top:'+mt+'px"').replace(/font-size="11"/g,'font-size="'+(S>=260?9:11)+'"')+'</div></div>'; }
     else if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
     else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);
@@ -4222,6 +4224,8 @@ html body .tlab svg text { fill: #fff !important; }
   window.__need16=k=>{ window.__load16(k); };
   const P16={}; window.__loadPrec16=st=>{ if(!st) return Promise.resolve(); if(window.PREC16&&(st in window.PREC16)) return Promise.resolve(); return P16[st]||(P16[st]=new Promise(r=>{ const s=document.createElement("script"); s.src=st==="District of Columbia"?"data/precincts2016-DC.js?v="+window.BUILD:"data/precincts2016/"+st.replace(/ /g,"_")+".js?v="+window.BUILD; s.onload=()=>{ (window.PREC16=window.PREC16||{}); if(!(st in window.PREC16)) window.PREC16[st]=null; r(); }; s.onerror=()=>{ (window.PREC16=window.PREC16||{})[st]=null; r(); }; document.head.append(s); })); };
   window.__has16=k=>have(k); window.__ok16=()=>{ if(window.__y16&&!document.body.classList.contains("y16d")&&(window.ELECTION2016||Object.keys(window.DS16).length)) rerender(); };
+  /* build 1586 (live 1585: PA/AL '16 pie and bar blank): coming back to '16 when the 2016 files are already loaded never re-added y16d, so the chart stayed display:none. Re-check whenever the body class changes. */
+  new MutationObserver(()=>{ try{ window.__ok16(); }catch(e){} }).observe(document.body,{attributes:true,attributeFilter:["class"]}); { const _l=window.__load16; window.__load16=k=>{ const r=_l(k); try{ window.__ok16(); }catch(e){} return r; }; }
 })();</script>
 </body>
 </html>
