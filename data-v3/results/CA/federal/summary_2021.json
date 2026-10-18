@@ -6,10 +6,22 @@
  "by_join": {
   "pd_polygon": 10147493,
   "no_pd_polygon": 0,
-  "advance": 5852391,
-  "special": 1034359
+  "advance_area": 5852349,
+  "special": 1034359,
+  "advance": 42
  },
  "pct_on_pd_polygon": 59.57,
+ "pct_on_pd_or_advance_area": 93.93,
+ "advance_areas": 6425,
+ "advance_polls_without_members": [
+  "10004:601",
+  "24047:622",
+  "35013:621",
+  "35014:622",
+  "35048:613",
+  "35069:613",
+  "47008:603"
+ ],
  "ridings_mismatch": 0,
  "unjoined_stations": 269,
  "unjoined_examples": [

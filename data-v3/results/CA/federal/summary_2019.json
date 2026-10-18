@@ -5,10 +5,13 @@
  "votes": 18170880,
  "by_join": {
   "pd_polygon": 12687118,
-  "advance": 4840300,
+  "advance_area": 4840300,
   "special": 643462
  },
  "pct_on_pd_polygon": 69.82,
+ "pct_on_pd_or_advance_area": 96.46,
+ "advance_areas": 6172,
+ "advance_polls_without_members": [],
  "ridings_mismatch": 0,
  "unjoined_stations": 0,
  "unjoined_examples": [],

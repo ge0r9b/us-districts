@@ -5,11 +5,24 @@
  "votes": 19641663,
  "by_join": {
   "pd_polygon": 10962783,
-  "advance": 7462823,
+  "advance_area": 7462823,
   "special": 1216057,
-  "no_pd_polygon": 0
+  "no_pd_polygon": 0,
+  "advance": 0
  },
  "pct_on_pd_polygon": 55.81,
+ "pct_on_pd_or_advance_area": 93.81,
+ "advance_areas": 7762,
+ "advance_polls_without_members": [
+  "35018:608",
+  "35018:609",
+  "35018:610",
+  "35044:632",
+  "61001:639",
+  "61001:640",
+  "61001:641",
+  "61001:642"
+ ],
  "ridings_mismatch": 0,
  "unjoined_stations": 35,
  "unjoined_examples": [

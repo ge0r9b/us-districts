@@ -1,10 +1,10 @@
 # Gaps and caveats
 Every riding total matches its official source (0 mismatches in all 8 elections); the gaps are about polygons, not counts.
 
-1. **Advance and special votes have no poll polygon** (federal 6xx and S/R; provincial advance/special). They are rows on the
-   riding (`boundary_set` = riding set). Federal share of votes on a PD polygon: 2025 55.81%, 2021 59.57%, 2019 69.82%
-   (advance: 38.0% / 34.4% / 26.6%; special: 6.2% / 6.1% / 3.5%). Not estimated onto PDs on purpose. Exact option: advance
-   poll = union of PDs with that `adv_poll` (attr in the units).
+1. **Federal advance votes are on advance areas** (union of member PDs, lookup `federal/advance_areas_<year>.csv.gz`); share of
+   votes on a polygon (polls + advance areas): 2025 93.81%, 2021 93.93%, 2019 96.46%. Still without a polygon: special-voting-rule
+   (S/R) votes 6.2% / 6.1% / 3.5%, and advance polls with no member PD (2025 0 votes, 2021 42 votes). Provincial advance/special
+   rows remain on the riding.
 2. **Federal stations with no PD unit**: 2025 35 stations, 2021 269, 2019 0, all with 0 votes (void / combined mobile stations).
 3. **Combined polls**: a station `combined_with=n` reports 0; its ballots are in poll n. The PD polygon of that station shows only
    its other stations (2025: 35,104 combined candidate rows at PD level). Exact as published.
