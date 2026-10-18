@@ -38,3 +38,8 @@
 - **When the user approves an account (D5):** add Geocodio as the second provider (its 2,500/day free tier probably covers all real use), and keep Census first for cost.
 - **Autocomplete:** suggestions come from our own place index (states, counties, towns, ZIPs). Street-address autocomplete would need a paid provider. It stays out of v1, matching v2, which only fires address lookups after 650 ms.
 - Latency: Census at about 1.3 s dominates. v2 has the same wait. The UI shows the place or ZIP result instantly and adds the address row when Census answers, without moving rows that are already shown (no layout jumps).
+
+## Intake from the Geo lane (Oct 18, 2026 10:00 EDT check, `data/geo` fd003ab)
+- **Name search parity:** `v2/data/geo_index/<a-z|0>.js` (`__geoIndex([[name,type,stateAbbr,key],…])`, 115,745 rows: state, county, town, place, sch, cd, sldu, sldl, zcta) is what v2's search box will match. v3 serves the same rows from `unit` (`unit_name_trgm`, display labels such as "District 1" or "OH Senate 2" stored in `unit.meta.label`) plus ZCTA rows, and the parity test compares top results for a fixed query list against the v2 index.
+- **ZIP lookups:** `v2/data/zcta_xref/` → `zcta_unit_share`. A typed ZIP resolves locally (no provider call) to its county/place/town units with land shares; the external geocoder is only for street addresses.
+- **Result pin / star:** `unit.label_point` (from `v2/data/points/`) is the point a name result zooms to and the state-icon star; it always lies inside the shape.

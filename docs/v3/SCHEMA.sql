@@ -87,7 +87,8 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('ward','ward','Ward',null), ('custom','custom','Custom area',null);
 
 -- A coherent set of polygons of one unit type and vintage, e.g. 'tiger-2024-sldl',
--- 'precincts-2024', 'precincts-2020'. Custom (paid) sets later: owner_tenant_id <> 1,
+-- 'v2-2024' (incl. the ONE precinct set: 2016/2020 votes are placed onto the 2024 precinct polygons,
+-- DATA_LOADING.md §9.4; no 'precincts-2016'/'precincts-2020' sets). Custom (paid) sets later: owner_tenant_id <> 1,
 -- visibility 'private' or 'shared', license 'proprietary'.
 create table boundary_set (
   id               bigint generated always as identity primary key,
@@ -145,6 +146,7 @@ create table unit (
   parent_unit_id   bigint references unit(id),       -- precinct -> county -> state (containment, same vintage)
   area_m2          double precision,
   centroid         geometry(Point, 4326),
+  label_point      geometry(Point, 4326),            -- v2/data/points: state-icon star, always inside the shape (null for zero-area slivers)
   bbox             box2d,
   meta             jsonb not null default '{}',
   unique (boundary_set_id, unit_key)
@@ -155,6 +157,16 @@ create index unit_geoid on unit (geoid);
 create index unit_state_type on unit (state_abbr, unit_type);
 create index unit_name_trgm on unit using gin (lower(name) gin_trgm_ops);
 create index unit_centroid_gist on unit using gist (centroid);
+
+-- ZCTA -> place / town / county shares (v2/data/zcta_xref, Census 2020 relationship files), for ZIP search and lists.
+create table zcta_unit_share (
+  zcta       char(5) not null,
+  unit_id    bigint  not null references unit(id),
+  share      numeric(3,2) not null check (share > 0 and share <= 1),  -- share of the ZCTA's land area
+  source_id  bigint,                                  -- references source(id); declared after source below
+  primary key (zcta, unit_id)
+);
+create index zcta_unit_share_unit on zcta_unit_share (unit_id);
 
 -- Geometry per level of detail. lod 0 = full detail used for point-in-polygon and
 -- area weighting; lod 1..3 = simplified copies for low zooms / dynamic MVT fallback.
@@ -214,7 +226,8 @@ create table entity (
   name          text not null,                       -- TIGER NAMELSAD
   label         text check (label in ('sovereign','incorporated','unincorporated')),
                                                    -- v2 wording rule: states sovereign; never 'incorporated state'
-  gov_status    text check (gov_status in ('government','area_only','dependent')),  -- CoG 2022
+  gov_status    text check (gov_status in ('government','area_only','dependent')),  -- CoG 2022; Governments bot independent->government,
+                                                   -- federally_recognized->government (+ meta.recognition='federal')
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
   valid_from    date,
