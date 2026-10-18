@@ -14,6 +14,7 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
+| `brand_cleanliness.csv` | 31 | brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring for columns and rank order) |
 | `brands.csv` | 44 (33 brand, 11 company) | `entity` |
 | `brand_relationships.csv` | 34 | `entity_relation` |
 | `company_locations.csv.gz` | 36,675 | `entity_location` |
@@ -117,6 +118,7 @@ cd data-v3/institutions/companies/scripts
 python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton
 python3 fetch_marriott_pacsys.py AK WI TX JW WH LC MV SV WV PR XR RZ BR MD EB DE EL OX GE ER BG FI CY RI MC TS SH FP SI AR DS AL XE
 python3 fetch_wikidata_brands.py <brand QIDs…>      # list in summary.json / brands.csv
+python3 rank_brands.py                              # after build_locations.py -> brand_cleanliness.csv
 python3 fetch_logos.py                              # P154 + Commons licences for the entities in brands.csv
 # copy inputs to raw/inputs/: all_stores.csv, marriott-properties-v5.csv, cb_2024_us_county_500k.*
 python3 build_locations.py

@@ -1,0 +1,32 @@
+rank,entity_id,name,locations,states_covered,pct_with_geoid,pct_coords_cc0,pct_coords_cc0_or_first_party,has_qid,has_parent,parent,has_free_logo,coordinate_sources
+1,wikidata:Q7315394,Residence Inn by Marriott,897,51,99.9,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+2,wikidata:Q1053170,Courtyard by Marriott,1052,51,99.8,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+3,wikidata:Q7830092,TownePlace Suites,596,49,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+4,wikidata:Q7580351,SpringHill Suites,600,48,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+5,wikidata:Q5653536,AC Hotels,152,40,99.3,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+6,wikidata:Q634831,Sheraton Hotels and Resorts,140,39,99.3,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+7,wikidata:Q4734166,Aloft Hotels,169,35,98.8,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+8,wikidata:Q91948072,Element Hotels,105,34,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+9,wikidata:Q2143252,Renaissance Hotels,89,30,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+10,wikidata:Q5254663,Delta Hotels,55,27,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+11,wikidata:Q70287020,Moxy Hotels,48,26,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+12,wikidata:Q782200,Ritz-Carlton,47,18,93.6,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+13,wikidata:Q261077,Le Méridien,24,16,100.0,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+14,wikidata:Q30715430,St. Regis Hotels & Resorts,10,8,100.0,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+15,wikidata:Q3099664,Gaylord Hotels,7,6,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+16,wikidata:Q91218404,Edition Hotels,5,3,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+17,wikidata:Q2078880,CVS Pharmacy,9001,51,100.0,0.0,100.0,True,True,CVS Health,False,cvs-store-locator-2026-10-17
+18,wikidata:Q1591889,Walgreens,7991,51,98.7,0.0,100.0,True,True,Walgreens Boots Alliance,True,walgreens-locator-api-2026-10-12
+19,wikidata:Q92021343,Tribute Portfolio,107,36,99.1,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
+20,wikidata:Q19872869,Autograph Collection Hotels,136,36,97.8,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+21,wikidata:Q1969162,Westin Hotels & Resorts,125,31,98.4,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+22,wikidata:Q2412604,The Luxury Collection,22,15,100.0,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
+23,wikidata:Q7958488,W Hotels,20,13,100.0,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+24,wikidata:Q38076,McDonald's,13486,51,100.0,100.0,100.0,True,False,,True,atp-mcdonalds-2026-10-10
+25,wikidata:Q5430314,Fairfield by Marriott,1205,50,99.9,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+26,wikidata:Q3918608,Marriott Hotels & Resorts,327,41,99.1,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+27,wikidata:Q1439966,Four Points by Sheraton,117,37,99.1,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+28,wikidata:Q109329542,City Express,49,24,98.0,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+29,wikidata:Q5264274,Design Hotels,48,15,100.0,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+30,wikidata:Q6772996,Marriott Vacation Club International,74,14,97.3,74.3,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
+31,wikidata:Q1067636,JW Marriott Hotels,35,16,100.0,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
