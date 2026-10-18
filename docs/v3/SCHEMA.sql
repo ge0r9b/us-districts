@@ -41,7 +41,7 @@ create table source (
   retrieved_at  timestamptz not null,
   publisher     text,                                -- 'MIT Election Data + Science Lab', 'Alaska Division of Elections'
   title         text,
-  source_key    text unique,                         -- sources.csv source_id (Institutions lane), when that file exists
+  source_key    text unique,                         -- sources.csv source_id ('census-cog2022-0fba3401'); entity/officeholder/location/relation rows carry it
   source_commit text,                                -- upstream commit (congress-legislators, OpenStates) when given
   license       text,                                -- license as stated by the source, verbatim (generic provenance)
   license_id    bigint references license(id),
@@ -92,7 +92,8 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
 create table boundary_set (
   id               bigint generated always as identity primary key,
   slug             text not null unique,             -- = the bot rows' boundary_set token (Q-E12): lowercase-hyphen,
-                                                   -- e.g. 'v2-2024' (v2's 2024 polygons/GEOIDs), 'tiger-2020'. Geometry joins on this, NOT on year.
+                                                   -- e.g. 'v2-2024' (v2's 2024 polygons/GEOIDs; current + 2024), 'tiger-2020-cd116' (2020 House),
+                                                   -- 'tiger-2020-sldu' / 'tiger-2020-sldl' (2020 state legislature, 2018 plans). Geometry joins on this, NOT on year.
   unit_type        text not null references unit_type_def(unit_type),
   vintage_year     int  not null,                    -- boundary year (2024 = current)
   valid_from       date,
@@ -188,6 +189,8 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 -- One row per government / institution, NO vintage. entity_id is opaque and frozen at first-seen
 -- kind + GEOID ('county:01001', 'muni:place:0107000', 'town:cousub:0911001080', 'school:0100003',
 -- 'state:01', 'nation:us', 'territory:72'); chambers use 'chamber:<st>-lower' / 'chamber:<st>-upper' ('chamber:al-lower');
+-- Bot entities use bare scheme:id (like person ids): companies 'lei:<LEI>' > 'cik:<CIK>' > other documented scheme
+-- (the non-canonical ids go to alias, kind='external_id'); governments 'cog:<id>', 'fr:<id>', 'bia:<slug>'.
 -- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house'.
 -- Verified on data/inst-entities 8e1db01: 54,144 entities (municipality 19,525, township 18,076, school_unified 10,872,
 -- county 3,080, school_elementary 1,952, school_secondary 481, chamber 100, state 51, territory 5, nation 1, dc_council 1).
@@ -201,7 +204,7 @@ create table entity (
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
-                  'company',                                                 -- Companies bot; brands/subsidiaries are companies linked by entity_relation
+                  'company','nonprofit','fund',                              -- Companies bot; subsidiaries/brands are companies linked by entity_relation
                   'other')),
   state_fips    char(2),
   state         text,
@@ -216,6 +219,8 @@ create table entity (
   v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
   v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
   v2_row        text[],                              -- 'v2:counties#342' (informational; shifts between builds)
+  legal_form_code text,                              -- ISO 20275 ELF code (GLEIF 'legal_form_code', e.g. 'XTIQ'); companies/nonprofits/funds
+  legal_form    text,                                -- ELF label ('Corporation', 'Business Corporation'), else GLEIF OtherLegalForm
   feed          text,                                -- which build fed the row: 'tiger/cog' (54,042) or 'inst-lane' (102)
   level         text,                                -- extras: federal / state / county / local
   type          text,                                -- finer type (TIGER LSAD text, 'city'); companies: 'public','private','nonprofit'
@@ -261,7 +266,8 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),
   child_id      text not null references entity(entity_id),
-  relation      text not null default 'subsidiary' check (relation in ('subsidiary','brand','division','joint_venture')),
+  relation      text not null default 'direct_parent' check (relation in ('direct_parent','ultimate_parent','ex21_subsidiary',
+                                                   'fund_managed_by','subfund_of','feeder_to','brand','division','joint_venture')),
   ownership_pct numeric(5,2) check (ownership_pct is null or ownership_pct between 0 and 100),
   valid_from    date,
   valid_to      date,
@@ -276,10 +282,12 @@ create index entity_relation_child on entity_relation (child_id);
 create table entity_location (
   id          bigint generated always as identity primary key,
   entity_id   text not null references entity(entity_id) on delete cascade,
-  role        text not null check (role in ('hq','site','registered_office','store','plant','other')),
+  role        text not null check (role in ('hq_in','site_in','registered_office','other')),  -- company_locations.csv 'relation'
   geoid_layer text,                                  -- 'place','county','state' (resolved unit via geoid at load)
   geoid       text,
-  point       geography(Point, 4326),
+  boundary_set text,                                 -- slug from the file ('v2-2024'); with geoid resolves unit_id
+  unit_id     bigint references unit(id),
+  point       geography(Point, 4326),                -- from lat/lon
   address_hash text,                                 -- no raw addresses stored (same rule as geocode_cache)
   valid_from  date,
   valid_to    date,
@@ -297,6 +305,7 @@ create table entity_merge (
   into_id          text not null references entity(entity_id),
   match_confidence numeric(4,3) not null check (match_confidence between 0 and 1),
   match_rule       text not null,                    -- 'same_geoid','same_lei','same_cik','name+state+trgm>=0.9','manual'
+                                                   -- e.g. from_id 'cik:1750' into_id 'lei:MP76T5YQX3YK5VVAQ802'
   decided_by       text not null,                    -- 'auto' (>= 0.95) or a moderator id
   decided_at       timestamptz not null default now()
 );
@@ -506,6 +515,7 @@ create table officeholder (
   unit_geoid    text,
   unit_vintage  smallint,
   unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'
+  source_record_id text,                              -- the record's id inside its source ('AK00', OpenStates file); was 'source_id'
   seat          text,                                 -- seat number within a multi-member district (NH, VT, WV ...)
   person_id     text references person(person_id) on update cascade,
   name          text not null,                        -- name as recorded in the roster row
