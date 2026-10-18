@@ -1,0 +1,402 @@
+{
+ "prec": {
+  "build": "202610181581",
+  "prec_16_24": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Kamala Harris 2024 [79%]",
+    "Donald Trump 2024 [20%]"
+   ],
+   "candImgs": [
+    " harris.jpg?v=202610181581",
+    " trump.jpg?v=202610181581"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Precinct 5802 | R +53.2 | +27.3",
+    "Precinct 3301 | R +47.8",
+    "Precinct 717 | R +46.5",
+    "Precinct 5836 | R +45.9",
+    "Precinct 3304 | R +45.8",
+    "Precinct 3527 | R +45.6",
+    "Precinct 1902 | R +45.2",
+    "Precinct 3312 | R +45.0"
+   ],
+   "cls": 0.2142
+  },
+  "prec_lbl": [
+   [
+    "Kamala Harris 2024",
+    "Kamala Harris 2024",
+    "79%",
+    "harris.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "20%",
+    "trump.jpg"
+   ]
+  ],
+  "prec_all": [
+   [
+    "Precinct 5802",
+    "R +53.2",
+    "+27.3"
+   ],
+   [
+    "Precinct 3301",
+    "R +47.8"
+   ],
+   [
+    "Precinct 717",
+    "R +46.5"
+   ],
+   [
+    "Precinct 5836",
+    "R +45.9"
+   ],
+   [
+    "Precinct 3304",
+    "R +45.8"
+   ],
+   [
+    "Precinct 3527",
+    "R +45.6"
+   ],
+   [
+    "Precinct 1902",
+    "R +45.2"
+   ],
+   [
+    "Precinct 3312",
+    "R +45.0"
+   ],
+   [
+    "Precinct 3306",
+    "R +44.2"
+   ],
+   [
+    "Precinct 718",
+    "R +44.1"
+   ],
+   [
+    "Precinct 4204",
+    "R +43.6"
+   ],
+   [
+    "Precinct 3916",
+    "R +43.2"
+   ],
+   [
+    "Precinct 4223",
+    "R +42.6"
+   ],
+   [
+    "Precinct 714",
+    "R +42.5"
+   ],
+   [
+    "Precinct 5801",
+    "R +42.5"
+   ],
+   [
+    "Precinct 3308",
+    "R +42.4"
+   ],
+   [
+    "Precinct 5815",
+    "R +42.4"
+   ],
+   [
+    "Precinct 706",
+    "R +42.3"
+   ],
+   [
+    "Precinct 721",
+    "R +42.3"
+   ],
+   [
+    "Precinct 1904",
+    "R +42.3"
+   ],
+   [
+    "Precinct 4208",
+    "R +41.8"
+   ],
+   [
+    "Precinct 5844",
+    "R +41.5"
+   ],
+   [
+    "Precinct 2520",
+    "R +41.3"
+   ],
+   [
+    "Precinct 3310",
+    "R +41.0"
+   ],
+   [
+    "Precinct 1909",
+    "R +40.3"
+   ],
+   [
+    "Precinct 707",
+    "R +39.7",
+    "+19.8",
+    "\u221219.8",
+    "\u22120.0"
+   ],
+   [
+    "Precinct 3303",
+    "R +39.6",
+    "+19.5",
+    "\u221220.1",
+    "+0.6"
+   ],
+   [
+    "Precinct 4202",
+    "R +39.6",
+    "+19.4",
+    "\u221220.2",
+    "+0.7"
+   ],
+   [
+    "Precinct 711",
+    "R +39.4",
+    "+20.3",
+    "\u221219.0",
+    "\u22121.3"
+   ],
+   [
+    "Precinct 4206",
+    "R +39.0",
+    "+19.0",
+    "\u221220.0",
+    "+1.1"
+   ],
+   [
+    "Precinct 5640",
+    "R +39.0",
+    "+18.4",
+    "\u221220.7",
+    "+2.3"
+   ],
+   [
+    "Precinct 1905",
+    "R +38.8",
+    "+20.0",
+    "\u221218.8",
+    "\u22121.2"
+   ],
+   [
+    "Precinct 722",
+    "R +38.4",
+    "+19.3",
+    "\u221219.1",
+    "\u22120.2"
+   ],
+   [
+    "Precinct 2517",
+    "R +38.4",
+    "+19.3",
+    "\u221219.0",
+    "\u22120.3"
+   ],
+   [
+    "Precinct 3316",
+    "R +37.6",
+    "+19.1",
+    "\u221218.5",
+    "\u22120.6"
+   ],
+   [
+    "Precinct 2311",
+    "R +37.4",
+    "+19.8",
+    "\u221217.6",
+    "\u22122.2"
+   ],
+   [
+    "Precinct 3302",
+    "R +37.3",
+    "+18.3",
+    "\u221219.0",
+    "+0.7"
+   ],
+   [
+    "Precinct 4222",
+    "R +37.3",
+    "+18.9",
+    "\u221218.4",
+    "\u22120.5"
+   ],
+   [
+    "Precinct 4320",
+    "R +37.0",
+    "+18.4",
+    "\u221218.6",
+    "+0.3"
+   ],
+   [
+    "Precinct 709",
+    "R +36.9",
+    "+18.7",
+    "\u221218.3",
+    "\u22120.4"
+   ]
+  ],
+  "prec_num": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "num",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Kamala Harris 2024 [566K]",
+    "Donald Trump 2024 [144K]"
+   ],
+   "candImgs": [
+    " harris.jpg?v=202610181581",
+    " trump.jpg?v=202610181581"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Precinct 534 | R +613 | \u2212703",
+    "Precinct 528 | D +511 | +603",
+    "Precinct 536 | R +473 | \u2212514",
+    "Precinct 533 | R +435 | \u2212491",
+    "Precinct 805 | R +415 | \u2212477",
+    "Precinct 510 | D +413 | +460",
+    "Precinct 830 | D +411 | +533",
+    "Precinct 521 | R +400 | \u2212555"
+   ],
+   "cls": 0.2142
+  },
+  "prec_16_20": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 1,
+   "ysl": [
+    0,
+    1
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Joe Biden 2024 [81%]",
+    "Donald Trump 2024 [18%]"
+   ],
+   "candImgs": [
+    " biden.jpg?v=202610181581",
+    " trump.jpg?v=202610181581"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Precinct 707 | R +35.7 | +18.0",
+    "Precinct 5205 | D +34.2 | +18.3",
+    "Precinct 5802 | R +33.3",
+    "Precinct 702 | R +32.4",
+    "Precinct 723 | R +29.3",
+    "Precinct 4202 | R +29.2",
+    "Precinct 3316 | R +28.8",
+    "Precinct 3916 | R +28.5"
+   ],
+   "cls": 0.2154
+  },
+  "prec_lbl_16_20": [
+   [
+    "Joe Biden 2024",
+    "Joe Biden 2024",
+    "81%",
+    "biden.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "18%",
+    "trump.jpg"
+   ]
+  ],
+  "prec_reload": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "precincts",
+   "body": "y16 y16d listmode listall lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Kamala Harris 2024 [79%]",
+    "Donald Trump 2024 [20%]"
+   ],
+   "candImgs": [
+    " harris.jpg?v=202610181581",
+    " trump.jpg?v=202610181581"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Precinct 5802 | R +53.2 | +27.3",
+    "Precinct 3301 | R +47.8",
+    "Precinct 717 | R +46.5",
+    "Precinct 5836 | R +45.9",
+    "Precinct 3304 | R +45.8",
+    "Precinct 3527 | R +45.6",
+    "Precinct 1902 | R +45.2",
+    "Precinct 3312 | R +45.0"
+   ],
+   "cls": 0
+  },
+  "err": []
+ }
+}

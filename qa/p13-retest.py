@@ -163,7 +163,7 @@ async def run(eng,size,parts):
   async with async_playwright() as p:
     b=await getattr(p,eng).launch()
     for part in parts:
-      c,pg,log=await ctx(b,W,H,mob,eng); pre=f"../shots/b1580p13-{eng[:2]}-{size}"
+      c,pg,log=await ctx(b,W,H,mob,eng); pre=f"../shots/b1581p13-{eng[:2]}-{size}"
       X=R[part]={}
       try:
         await gt(pg); await pg.wait_for_timeout(4000); X['build']=await pg.evaluate("window.BUILD")
@@ -172,7 +172,7 @@ async def run(eng,size,parts):
       X['err']=log['pageerr'][:6]+[x for x in log['console'] if x.startswith('error')][:4]
       print(eng,size,part,'done',X.get('EXC',''),flush=True)
       await c.close()
-      json.dump(R,open(f"b1580p13-{eng}-{size}.json",'w'),indent=1)
+      json.dump(R,open(f"b1581p13-{eng}-{size}.json",'w'),indent=1)
     await b.close()
 async def main():
   eng=sys.argv[1]; sizes=sys.argv[2].split(','); parts=sys.argv[3].split(',') if len(sys.argv)>3 else ['us','line','prec','inst']
