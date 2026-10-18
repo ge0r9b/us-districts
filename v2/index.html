@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171551";</script>
+<script>window.BUILD="202610171552";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3387,7 +3387,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw",(LA.lv&&LA.lv.id==="states")?"34px":"84px"); /* build 1551: narrower name column, longer bars; a cut-off name shows its full text in a bubble */
     g.classList.toggle("dl",yrsNow().length>1); els.forEach(el=>g.append(el));
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
-    if(keepTop) lv.scrollTop=keepTop;
+    if(keepTop) lv.scrollTop=keepTop; else if(lv.scrollTop) lv.scrollTop=0; /* a different list (drill-in, new level/scope) opens at the top; the browser would otherwise keep the old list's offset */
     restyle(); place(); try{ renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
     if(rows.length&&!g.querySelector('.lvrow.la')&&!LA.__retry){ LA.__retry=1; setTimeout(()=>{ LA.__retry=0; if(LA.on) render(); },300); } }
 
