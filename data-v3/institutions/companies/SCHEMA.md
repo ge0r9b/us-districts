@@ -18,13 +18,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 |---|---|---|
 | `brands.csv` | 213 (179 brand, 34 company) | `entity` |
 | `brand_relationships.csv` | 136 | `entity_relation` |
-| `company_locations.csv.gz` | 218,170 (115,597 with a v2-2024 county geoid; 102,544 outside the US) | `entity_location` |
+| `company_locations.csv.gz` | 222,081 (116,076 with a v2-2024 county geoid; 105,952 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
 | `locations/<brand>.csv` | ahold_delhaize 2,068; albertsons 2,230; aldi 2,750; bashas 98; best_buy 1,204; bjs 261; brookshires 107; bucees 50; choice 5,612; circle_k 8,196; costco 660; cvs 9,001; fareway 143; festival_foods 42; food_city 154; giant_eagle 231; grocery_outlet 568; heb 346; hilton 6,929; home_depot 2,212; hy_vee 272; ihg 6,828; ingles 188; kroger 2,374; lidl 203; lowes 1,763; lunds_byerlys 28; market_basket 92; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); meijer 205; piggly_wiggly 486; publix 1,451; raleys 98; sams_club 602; save_a_lot 604; schnucks 112; seven_eleven 54,167 (`.csv.gz`); shoprite 316; smart_and_final 253; spartannash 97; sprouts 519; starbucks 35,075 (`.csv.gz`); target 2,026; tops 146; trader_joes 666; walgreens 7,991; walmart 4,904; wawa 1,320; wegmans 114; whole_foods 535; winn_dixie 254 | source tables for company_locations (full store detail) |
+| `organizations/airlines_world.csv` | 5,888 | `entity` (one row per organization; loader rows in `organizations/airlines_world_locations.csv`) |
 | `organizations/colleges_us.csv` | 5,731 | `entity` (one row per organization; loader rows in `organizations/colleges_us_locations.csv`) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
 | `brand_cleanliness.csv` | 172 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 138 | `source` |
+| `sources.csv` | 141 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -123,6 +124,28 @@ Scope: active in the current year (`CYACTIVE=1`) and Title IV postsecondary (`PS
 | `flags` | `non_degree_granting`, `us_territory_<cc>`, `county_not_in_v2-2024:<code>`, `no_county_in_ipeds`, `ipeds_closing:<date>`, `system_name_matches_several_ipeds_rows`, `branch_opeid_main_campus_not_in_ipeds`, `wikidata_p1771_several_items_review:<Q|Q>`, `wikidata_item_has_several_ipeds_ids_review:<Q>` |
 | `source`, `source_url`, `source_date` | sources.csv ids; the College Navigator page; IPEDS retrieval date |
 Every row also has a `company_locations` row: `location_id = colleges_us:<unitid>`, `role = establishment_at`, the IPEDS point and address, `geoid_method = ipeds_countycd` (from `organizations/colleges_us_locations.csv`). Counts are in `organizations/colleges_us_summary.json`.
+
+## organizations/airlines_world.csv: every airline on Wikidata, active and defunct
+Built by `scripts/build_airlines.py` from Wikidata (items whose P31 is airline Q46970 or a subclass of it; `scripts/fetch_wikidata_orgs.py airlines Q46970 P229,P230,P432,P113`), with OpenFlights `airlines.dat` used only to cross-check or fill `active`. One row per Wikidata item, sorted by country and then name (rows with no country come last). Items with no English or multilingual label are skipped (counted in the summary).
+| column | meaning |
+|---|---|
+| `country`, `country_code`, `country_qid` | P17 country label, its ISO 3166-1 alpha-2 (P297; blank for historical states such as the Soviet Union, flag `country_no_iso_code`) and QID. With several P17 values: the one matching the HQ's country, else the first alphabetically, flag `multiple_p17_countries:<list>` |
+| `entity_id`, `kind`, `name`, `description` | `wikidata:Q…`, `company`, English (or `mul`) label, description |
+| `iata`, `icao`, `callsign` | P229, P230, P432 (`;`-list when several) |
+| `active` | `no` when the item has a P576 dissolved date. Otherwise taken from OpenFlights (`Y`→`yes`, `N`→`no`, flag `active_from_openflights`). Blank when neither source says (flag `active_unknown`). OpenFlights saying active for a dissolved airline is flagged `openflights_active_but_wikidata_dissolved` |
+| `inception`, `dissolved` | P571, P576 at Wikidata's precision (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`); earliest when several |
+| `hq_name`, `hq_qid`, `hq_country_code` | the item's single current P159 (headquarters location). Several current values → blank, flag `hq_several_p159_review:<list>` |
+| `lat`, `lon` | the P159 statement's P625 qualifier, else the HQ item's P625 (coordinates). Several → blank, flag `hq_several_coordinates_review` |
+| `county`, `county_geoid` | US HQs only: point-in-polygon on Census 2024 counties; geoid only when in the v2-2024 set |
+| `parent_entity_id`, `parent_name` | P749 (`;`-list) |
+| `hubs`, `hub_qids` | P113 airline hubs |
+| `website` | P856 |
+| `logo_file`, `logo_license`, `logo_attribution`, `logo_source_url` | P154 plus Commons licence, same rules as brands.csv (filled only for a free licence) |
+| `instance_of` | P31 labels |
+| `openflights_id`, `openflights_active` | the OpenFlights row matched by unique ICAO code, else unique IATA code + exact name |
+| `flags`, `source`, `source_url`, `source_date` | review flags; sources.csv ids; the Wikidata item page; Wikidata retrieval date |
+OpenFlights data is © OpenFlights.org contributors under the Open Database License (ODbL 1.0), https://openflights.org/data. It is attributed in sources.csv, and only two columns (`active` where it is the source, and `openflights_*`) derive from it.
+Each airline with HQ coordinates has a `company_locations` row: `location_id = airlines_world:hq:<Q>`, `role = hq_in`, address `<HQ>, <country>`. Counts are in `organizations/airlines_world_summary.json`.
 ## Per-brand notes
 - **walgreens.csv**: walgreens.com locator API (Oct 12, 2026), US + PR + VI. Phones reformatted from `(787) 8828044` to `(787) 882-8044`.
   Independent pharmacies under the Walgreens name are kept, flagged, and no operator is assumed:
