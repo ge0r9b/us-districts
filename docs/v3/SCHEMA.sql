@@ -34,15 +34,14 @@ create table license (
   share_alike    boolean not null default false
 );
 
--- One row per distinct source document / download (URL + retrieval time).
+-- One row per source (sources.csv; election rows mint one per distinct url + retrieved_at). Unique on source_id only.
 create table source (
-  id            bigint generated always as identity primary key,
-  url           text not null,
-  retrieved_at  timestamptz not null,
-  publisher     text,                                -- 'MIT Election Data + Science Lab', 'Alaska Division of Elections'
-  title         text,
-  source_key    text unique,                         -- sources.csv source_id ('census-cog2022-0fba3401'); entity/officeholder/location/relation rows carry it
-  source_commit text,                                -- upstream commit (congress-legislators, OpenStates) when given
+  source_id     text primary key,                    -- sources.csv source_id, stable '<slug>-<sha8(url|commit)>' ('census-cog2022-0fba3401')
+  title         text,                                -- sources.csv 'source' (human-readable description)
+  publisher     text,                                -- 'U.S. Census Bureau', 'OpenStates' (optional)
+  url           text,                                -- first / primary URL; every URL (incl. this one) is in source_url
+  retrieved_at  timestamptz,
+  commit        text,                                -- upstream commit (congress-legislators, OpenStates) when given
   license       text,                                -- license as stated by the source, verbatim (generic provenance)
   license_id    bigint references license(id),
   license_verified boolean not null default false,   -- true once the license/terms page has been read (date in license_checked_at)
@@ -50,8 +49,15 @@ create table source (
   robots_ok     boolean,                             -- scraped lists: robots.txt and terms of service allow it (DATA_LOADING §15.3)
   attribution   text,                                -- exact credit line to display
   sha256        text,                                -- of the raw download, when the data bot records it
-  notes         text,
-  unique (url, retrieved_at)
+  notes         text
+);
+-- Sources with several URLs (sources.csv 'source_url' as a ' ; '-list, e.g. a legislature's House + Senate pages).
+create table source_url (
+  source_id   text not null references source(source_id) on delete cascade,
+  ord         smallint not null,                     -- position in the ' ; '-list (1 = source.url)
+  url         text not null,
+  label       text,                                  -- optional ('house', 'senate', 'cousub', 'place')
+  primary key (source_id, ord)
 );
 
 -- ---------------------------------------------------------------------------
@@ -75,7 +81,7 @@ create table unit_type_def (
 insert into unit_category (category, label) values
   ('country','Countries'), ('state','States'), ('county','Counties'), ('town','Towns'), ('place','Places'),
   ('precinct','Precincts'), ('congressional','US House districts'), ('legislative_upper','State senate districts'),
-  ('legislative_lower','State house districts'), ('school_district','School districts'), ('ward','Wards'), ('custom','Custom');
+  ('legislative_lower','State house districts'), ('school_district','School districts'), ('ward','Wards'), ('custom','Custom'), ('seat','Seats without a district');
 insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('country','country','Country',null), ('state','state','State','state'), ('county','county','County','county'),
   ('county_subdivision','town','Town / township','cousub'), ('place','place','Place','place'),
@@ -84,7 +90,8 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('school_unified','school_district','Unified school district','unsd'),
   ('school_elementary','school_district','Elementary school district','elsd'),
   ('school_secondary','school_district','Secondary school district','scsd'),
-  ('ward','ward','Ward',null), ('custom','custom','Custom area',null);
+  ('ward','ward','Ward',null), ('custom','custom','Custom area',null),
+  ('seat','seat','Seat without a district polygon',null);   -- NH floterials, ME tribal seats, House delegates of territories
 
 -- A coherent set of polygons of one unit type and vintage, e.g. 'tiger-2024-sldl',
 -- 'v2-2024' (incl. the ONE precinct set: 2016/2020 votes are placed onto the 2024 precinct polygons,
@@ -92,9 +99,11 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
 -- visibility 'private' or 'shared', license 'proprietary'.
 create table boundary_set (
   id               bigint generated always as identity primary key,
-  slug             text not null unique,             -- = the bot rows' boundary_set token (Q-E12): lowercase-hyphen,
+  slug             text not null,                    -- = the bot rows' boundary_set token (Q-E12): lowercase-hyphen; one row per
+                                                   -- (slug, unit_type), since 'v2-2024' spans every v2 layer,
                                                    -- e.g. 'v2-2024' (v2's 2024 polygons/GEOIDs; current + 2024), 'tiger-2020-cd116' (2020 House),
-                                                   -- 'tiger-2020-sldu' / 'tiger-2020-sldl' (2020 state legislature, 2018 plans). Geometry joins on this, NOT on year.
+                                                   -- 'tiger-2020-sldu' / 'tiger-2020-sldl' (2020 state legislature, 2018 plans), 'tiger-2020-county'
+                                                   -- (2020 counties incl. the 8 old CT counties). Geometry joins on (slug, unit_type), NOT on year.
   unit_type        text not null references unit_type_def(unit_type),
   vintage_year     int  not null,                    -- boundary year (2024 = current)
   valid_from       date,
@@ -103,13 +112,26 @@ create table boundary_set (
   owner_tenant_id  bigint not null default 1 references tenant(id),
   visibility       text not null default 'public' check (visibility in ('public','shared','private')),
   license_id       bigint references license(id),
-  source_id        bigint references source(id),
+  source_id        text references source(source_id),
   price_tier       text,                             -- null for free/public; reserved for paid custom sets
   feature_count    int,
   tiles_url        text,                             -- versioned PMTiles archive on the CDN
   built_at         timestamptz,
   meta             jsonb not null default '{}'
 );
+create unique index boundary_set_slug_type on boundary_set (slug, unit_type);
+-- Agreed registry (Election + Institutions, Oct 18, 2026). Units are loaded per (slug, unit_type).
+insert into boundary_set (slug, unit_type, vintage_year, is_current)
+select v.slug, t.unit_type, v.yr, v.cur
+from (values ('v2-2024', 2024, true), ('tiger-2020-cd116', 2020, false), ('tiger-2020-sldu', 2020, false),
+             ('tiger-2020-sldl', 2020, false), ('tiger-2020-county', 2020, false)) as v(slug, yr, cur)
+join unit_type_def t on
+     (v.slug = 'v2-2024'           and t.unit_type in ('state','county','county_subdivision','place','precinct','ushouse','sldu','sldl',
+                                                       'school_unified','school_elementary','school_secondary','ward','seat'))
+  or (v.slug = 'tiger-2020-cd116'  and t.unit_type in ('ushouse','seat'))
+  or (v.slug = 'tiger-2020-sldu'   and t.unit_type = 'sldu')
+  or (v.slug = 'tiger-2020-sldl'   and t.unit_type = 'sldl')
+  or (v.slug = 'tiger-2020-county' and t.unit_type = 'county');   -- the 8 old CT counties (09001 ... 09015)
 create index boundary_set_type_year on boundary_set (unit_type, vintage_year);
 create unique index boundary_set_one_current
   on boundary_set (owner_tenant_id, unit_type) where is_current;
@@ -156,6 +178,14 @@ create unique index unit_legacy on unit (boundary_set_id, legacy_key) where lega
 create index unit_geoid on unit (geoid);
 create index unit_state_type on unit (state_abbr, unit_type);
 create index unit_name_trgm on unit using gin (lower(name) gin_trgm_ops);
+
+-- 'seat' units (no polygon): optional link to the TIGER units they cover (an NH floterial -> its base sldl districts).
+create table seat_member_unit (
+  seat_unit_id   bigint not null references unit(id) on delete cascade,
+  member_unit_id bigint not null references unit(id) on delete cascade,
+  source_id      text references source(source_id),
+  primary key (seat_unit_id, member_unit_id)
+);
 create index unit_centroid_gist on unit using gist (centroid);
 
 -- ZCTA -> place / town / county shares (v2/data/zcta_xref, Census 2020 relationship files), for ZIP search and lists.
@@ -163,7 +193,7 @@ create table zcta_unit_share (
   zcta       char(5) not null,
   unit_id    bigint  not null references unit(id),
   share      numeric(3,2) not null check (share > 0 and share <= 1),  -- share of the ZCTA's land area
-  source_id  bigint,                                  -- references source(id); declared after source below
+  source_id  text references source(source_id),
   primary key (zcta, unit_id)
 );
 create index zcta_unit_share_unit on zcta_unit_share (unit_id);
@@ -188,7 +218,7 @@ create table unit_crosswalk (
   to_unit_id   bigint not null references unit(id) on delete cascade,
   weight       numeric(9,8) not null check (weight > 0 and weight <= 1),
   method       text not null check (method in ('exact','area','population','votes_in_split','official')),
-  source_id    bigint references source(id),
+  source_id    text references source(source_id),
   primary key (from_unit_id, to_unit_id)
 );
 create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
@@ -238,14 +268,15 @@ create table entity (
   brand_name    text,                                -- public-facing brand / label (Wikidata label), shown in the institution filter
   legal_form_code text,                              -- optional ISO 20275 ELF code when Wikidata states one (P1454); no GLEIF ingest in v3
   legal_form    text,                                -- optional legal-form label
-  feed          text,                                -- which build fed the row: 'tiger/cog' (54,042) or 'inst-lane' (102)
+  feed          text,                                -- raw file value; mapped to origin on load (DATA_LOADING §15.1)
   level         text,                                -- extras: federal / state / county / local
   type          text,                                -- finer type (TIGER LSAD text, 'city'); brands: Wikidata P31 class label
   cog_pid6      text,                                -- CoG 2022 unit id
   flags         text[],                              -- review flags ('gov_status_unknown:...')
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
   check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
-  source_id     bigint references source(id),        -- source, source_url, retrieved_at, license
+  source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
+                                                   -- sources: entity_source (sources.csv ';'-list)
   has_region    boolean not null default true,
   icon_flag     text,
   owner_tenant_id bigint not null default 1 references tenant(id),
@@ -262,7 +293,7 @@ create table entity_succession (
   predecessor_id text not null references entity(entity_id),
   successor_id   text not null references entity(entity_id),
   effective      date,
-  source_id      bigint references source(id),
+  source_id      text references source(source_id),
   primary key (predecessor_id, successor_id)
 );
 
@@ -274,9 +305,12 @@ create table entity_geoid (
   vintage     smallint not null,
   relation    text not null,                         -- 'primary','coextensive','also_cousub','consolidated_city_county',
                                                    -- 'independent_city_county_equivalent','consolidated_town_city','federal_district_city'
+  boundary_set text not null,                       -- xwalk 'boundary_set': 'v2-2024' (58,655 rows), 'tiger-2020-county' (8, old CT counties)
   overlap     text check (overlap in ('equal','split','contained')),
-  source_id   bigint references source(id),
-  primary key (entity_id, unit_layer, geoid, vintage)
+  share_of_geoid_in_entity numeric(5,4) check (share_of_geoid_in_entity between 0 and 1),
+  share_of_entity_in_geoid numeric(5,4) check (share_of_entity_in_geoid between 0 and 1),
+  source_record_id text,
+  primary key (entity_id, unit_layer, geoid, vintage)  -- sources: entity_geoid_source
 );
 create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 
@@ -288,7 +322,8 @@ create table entity_relation (
   relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of')),  -- brands.csv parent_brand_id = P749 = parent_org
   valid_from    date,
   valid_to      date,
-  source_id     bigint references source(id),
+  source_id     text references source(source_id),   -- one source per link (Wikidata)
+  source_record_id text,                              -- e.g. the Wikidata statement id of the P749 claim
   check (parent_id <> child_id),
   check (valid_to is null or valid_from is null or valid_to >= valid_from),
   unique nulls not distinct (parent_id, child_id, relation, valid_from)
@@ -311,8 +346,7 @@ create table entity_location (
   unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load
   valid_from   date,
   valid_to     date,
-  source_id    bigint references source(id),         -- first source_id in the row's 'source' list
-  source_keys  text[],                               -- the full ';'-list of sources.csv source_ids
+  source_record_id text,                             -- store_id / MARSHA code inside the brand's source; sources: entity_location_source
   retrieved_at timestamptz,                          -- source_date
   flags        text[],                               -- the bot's review flags ('coordinates_from_atp', ...)
   meta         jsonb not null default '{}',          -- phone, sub_brand, status, store_type, country_code, source_url
@@ -346,7 +380,7 @@ create table entity_alias (
   scheme      text,                                  -- external ids: 'wikidata','cog_pid6','v2_key','usd'; reserved (v5/v6): 'lei','cik'
   match_confidence numeric(4,3) check (match_confidence is null or match_confidence between 0 and 1),
                                                    -- null = asserted by the source; < 1 = fuzzy match by the dedupe step
-  source_id   bigint references source(id),
+  source_id   text references source(source_id),
   check ((entity_id is null) <> (unit_id is null)),
   check (scheme not in ('lei','cik') or kind = 'reserved')   -- reserved schemes: stored only for the future bridge
 );
@@ -461,7 +495,7 @@ create table result (
   method         text not null default 'official' check (method in (
                    'official','whole_county','area_weighted','allocated','town_apportioned',
                    'votes_in_split','retabulated','v2_import')),
-  source_id      bigint not null references source(id),
+  source_id      text not null references source(source_id),
   retrieved_at   timestamptz not null,
   load_batch_id  bigint,
   updated_at     timestamptz not null default now(),
@@ -478,14 +512,14 @@ create table result_total (
   total_votes  numeric(16,6) not null,
   coverage     real check (coverage between 0 and 1),  -- v2: < 0.5 coverage stays gray
   is_estimate  boolean not null default false,
-  source_id    bigint references source(id),
+  source_id    text references source(source_id),
   primary key (contest_id, unit_id)
 );
 
 -- History of overwritten values (audit; never lose what a source said).
 create table result_history (
   contest_id bigint not null, unit_id bigint not null, answer_id bigint not null,
-  votes numeric(14,4), weight numeric(9,8), source_id bigint, retrieved_at timestamptz,
+  votes numeric(14,4), weight numeric(9,8), source_id text, retrieved_at timestamptz,
   replaced_at timestamptz not null default now()
 );
 create index result_history_key on result_history (contest_id, unit_id, answer_id);
@@ -517,7 +551,8 @@ create table person (
   bioguide      text unique,
   ocd_person    text unique,
   official_ids  jsonb not null default '{}',          -- other official ids (state roster ids, FEC ...)
-  sources       text,                                 -- persons.csv 'sources'
+  sources       text,                                 -- persons.csv 'sources' (which officeholder files list the person)
+  source_record_id text,                              -- id inside the primary source, when given; sources: person_source
   name          text not null,
   candidate_id  bigint references candidate(id),      -- same human as an election candidate, when linked
   meta          jsonb not null default '{}'
@@ -542,6 +577,8 @@ create table officeholder (
   unit_geoid    text,
   unit_vintage  smallint,
   unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'
+  boundary_set  text,                                 -- file 'boundary_set' ('v2-2024', 'tiger-2020-cd116'); seat units use the same slug
+  join_status   text,                                 -- 'joined','joined_unpaired_2020','no_v3_unit','no_v3_unit_floterial','no_v3_unit_tribal'
   source_record_id text,                              -- the record's id inside its source ('AK00', OpenStates file); was 'source_id'
   seat          text,                                 -- seat number within a multi-member district (NH, VT, WV ...)
   person_id     text references person(person_id) on update cascade,
@@ -552,14 +589,78 @@ create table officeholder (
   valid_from    date,
   valid_to      date,                                 -- null = open-ended / current
   elected_date  date,
-  source_id     bigint references source(id),
-  source_commit text,                                 -- upstream commit (congress-legislators, OpenStates)
+                                                      -- sources: officeholder_source; the upstream commit comes from source.commit
   check (status <> 'vacant' or person_id is null),
   unique nulls not distinct (unit_id, seat, person_id, valid_from),
   check (valid_to is null or valid_from is null or valid_to >= valid_from)
 );
 create index officeholder_unit_dates on officeholder (unit_id, valid_from, valid_to);
 create index officeholder_person on officeholder (person_id);
+
+-- County government status (data-v3/inst/county_government.csv, f1d64f6): one row per county GEOID x vintage
+-- (3,144 for 2024 + 8 for the 2020 CT counties).
+create table county_government (
+  entity_id          text not null references entity(entity_id),   -- 'county:<county_geoid>' (exists for all 3,152 rows)
+  county_geoid       char(5) not null,
+  vintage            smallint not null,
+  boundary_set       text not null,                  -- 'v2-2024' (2024) / 'tiger-2020-county' (2020)
+  county_name        text not null,
+  has_own_government text not null check (has_own_government in ('yes','no','unknown')),
+  gov_status         text check (gov_status in ('government','area_only','dependent')),
+  government_kind    text,                           -- 'county', 'consolidated_city_county', ...
+  cog_pid6           text,
+  govbot_entity_id   text,                           -- Governments bot id ('cog:100001')
+  cog_unit_name      text,
+  cog_unit_type      text,                           -- '1 - COUNTY'
+  tiger_funcstat     char(1),
+  agrees_with_tiger  text,                           -- 'yes' / 'no'
+  government_note    text,
+  source_record_id   text,
+  primary key (county_geoid, vintage)                -- sources: county_government_source
+);
+create index county_government_entity on county_government (entity_id);
+
+-- Row <-> source link tables (files cite a ';'-list of sources.csv source_ids per row).
+create table entity_source (
+  entity_id  text not null references entity(entity_id) on delete cascade,
+  source_id  text not null references source(source_id),
+  ord        smallint not null default 1,            -- position in the row's ';'-list
+  primary key (entity_id, source_id)
+);
+create table entity_geoid_source (
+  entity_id text not null, unit_layer text not null, geoid text not null, vintage smallint not null,
+  source_id text not null references source(source_id),
+  ord       smallint not null default 1,
+  primary key (entity_id, unit_layer, geoid, vintage, source_id),
+  foreign key (entity_id, unit_layer, geoid, vintage) references entity_geoid on delete cascade
+);
+create table entity_location_source (
+  location_id bigint not null references entity_location(location_id) on delete cascade,
+  source_id   text not null references source(source_id),
+  ord         smallint not null default 1,
+  primary key (location_id, source_id)
+);
+create table officeholder_source (
+  officeholder_id bigint not null references officeholder(id) on delete cascade,
+  source_id       text not null references source(source_id),
+  ord             smallint not null default 1,
+  primary key (officeholder_id, source_id)
+);
+create table person_source (
+  person_id  text not null references person(person_id) on update cascade on delete cascade,
+  source_id  text not null references source(source_id),
+  ord        smallint not null default 1,
+  primary key (person_id, source_id)
+);
+create table county_government_source (
+  county_geoid char(5) not null, vintage smallint not null,
+  source_id    text not null references source(source_id),
+  ord          smallint not null default 1,
+  primary key (county_geoid, vintage, source_id),
+  foreign key (county_geoid, vintage) references county_government on delete cascade
+);
+create index entity_source_source on entity_source (source_id);
+create index officeholder_source_source on officeholder_source (source_id);
 
 -- ---------------------------------------------------------------------------
 -- 6. Precomputed aggregates (instant reads)
@@ -680,7 +781,7 @@ create table retraction (
   target_key  text not null,
   reason      text not null,
   effective   date not null,
-  source_id   bigint references source(id),
+  source_id   text references source(source_id),
   batch_id    bigint references load_batch(id)
 );
 

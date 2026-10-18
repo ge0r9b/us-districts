@@ -97,7 +97,7 @@ on conflict (contest_id, unit_id, answer_id) do update
         (excluded.votes, excluded.weight, excluded.source_id, excluded.method);
 ```
 - Running the same batch again changes 0 rows. A newer batch changes only rows whose values differ. Rows absent from a newer batch are **not** deleted; withdrawals need an explicit `retract` list (D7).
-- Dimension rows (`contest`, `answer`, `candidate`, `party`, `source`) are upserted on their natural keys (`contest_key`, `(contest_id, answer_key)`, `candidate_key`, `party_key`, `(url, retrieved_at)`) before facts.
+- Dimension rows (`contest`, `answer`, `candidate`, `party`, `source`) are upserted on their natural keys (`contest_key`, `(contest_id, answer_key)`, `candidate_key`, `party_key`, `source_id`) before facts. Election rows carry no `source_id`, so the loader mints one per distinct (url, retrieved_at) in the same `<slug>-<sha8>` form the inst lane uses; `source` is unique on `source_id` only.
 - Everything for one batch runs in one transaction. Aggregates are refreshed with `refresh materialized view concurrently` after commit, so readers never see a half-loaded contest.
 
 ## 6. After load
@@ -302,7 +302,7 @@ The loader fills `contest_display_slot` from the lane's race config (`data-v3/re
 - **person_id = `scheme:id`**, one canonical ID per person, in priority order `bioguide:` > `ocd-person:<uuid>` (prefix normalized to `ocd-person:`) > `<st>-leg:<id>` (e.g. `vt-leg:vt-41827`, `la-leg:la-l-64`). No state legislator is bioguide-canonical, and there is no cross-level name matching. `person.scheme` accepts `bioguide`, `ocd-person` or `^[a-z]{2}-leg$`.
 - `person_alias` loads from `persons.csv` `aliases` (former canonical IDs, including the MN/NH ids that were mapped to OpenStates).
 - **New `date_flags` column** in the officeholder files (`term_end_open`, `term_start_missing`, `;`-combined) → `officeholder.date_flags`. Missing dates stay null; they are never guessed.
-- **Provenance (c830581):** each officeholder row carries `source_id` → `sources.csv` (49 rows: `source_id, source, source_url, license, retrieved_at, commit, sha256`) → `source.source_key`. The record's id inside its source is now `source_record_id` (renamed from `source_id`) → `officeholder.source_record_id`.
+- **Provenance (f1d64f6):** each officeholder row carries `source_id` (a `;`-list allowed) → `officeholder_source` link rows → `source.source_id` (`sources.csv`, 48 rows on this branch, all identical to the 70-row file on `data/inst-entities` 348f410). The upstream commit comes from `source.commit`; `officeholder.source_commit` is dropped. The record's id inside its source is `source_record_id` (e.g. `AK00`) → `officeholder.source_record_id`. `boundary_set` and `join_status` are stored as given.
 - **Officeholder key (4a08453):** chamber `entity_id` + `unit_layer` + `unit_geoid` + `unit_vintage` + `seat`. The files also carry `unit_plan` (`cd116`, `cd119`, `sldl2024`, `sldu2024`) and `entity_id_legacy` (`al-house` → alias). `valid_from = term_start`, `valid_to = term_end`. A vacancy has a null `person_id` and `status = vacant`. `seat` is filled on 70 of the 7,361 current state-legislature rows (multi-member seats, Idaho House A/B).
 - **Unit resolution** (`unit_layer` + `unit_geoid` + `unit_vintage` → `boundary_set` / `unit_type` / `unit_id`):
 
@@ -314,7 +314,16 @@ The loader fills `contest_display_slot` from the lane's race config (`data-v3/re
   | `sldu` / `2024` / `sldu2024` (1,973 rows in each stateleg file) | `sldu` | `v2-2024` | `unit_geoid` (`01001`) |
   | `sldl` / `2024` / `sldl2024` (5,388 current, 5,411 in 2024) | `sldl` | `v2-2024` | `unit_geoid` |
 
-  **The files now carry `boundary_set` themselves (c830581):** house_2020 has `tiger-2020-cd116` on 436 rows and the stateleg current file has `v2-2024` on 7,311. The rows with it empty (5 and 50) are the vacant or unresolved seats, and they are rejected or reported, never guessed. When the column is present, the loader uses it. Otherwise: `unit_type = unit_type_def` where `tiger_set = unit_layer`, and `boundary_set` from `boundary_set_default (unit_type, unit_vintage)`, with `unit_plan` as a tiebreak when a vintage has two plans. A row whose unit does not resolve is rejected and reported; it is never attached to a different vintage. The lane lists 49 such rows itself (`officeholder_unit_without_tiger_geoid` in `entity_gaps.csv`).
+  **The files carry `boundary_set` themselves (c830581).** The loader uses it with `unit_type` and `unit_geoid` to find the unit.
+  - **Seats with no TIGER district** (`join_status` `no_v3_unit`, `no_v3_unit_floterial`, `no_v3_unit_tribal`; empty `unit_geoid` and `boundary_set`) get registered **`seat` units** with no geometry, so `officeholder.unit_id` stays NOT NULL.
+  - **Unit key pattern:** `seat:<chamber slug>:<district label, lowercased, spaces to '-'>`, for example:
+    - `seat:nh-lower:belknap-8`
+    - `seat:me-lower:passamaquoddy-tribe`, `seat:me-lower:houlton-band-of-maliseet-indians`
+    - House delegates use the `statedistrict` code: `seat:us-house:PR00`, `GU00`, `VI00`, `MP00`, `AQ00` (AQ00 is American Samoa in the Clerk file).
+  - **Which boundary set:** the set named by the file's `unit_plan`, so `cd116` → `tiger-2020-cd116` and `cd119` / `sldl2024` → `v2-2024`.
+  - **Counts at f1d64f6:** 124 rows have no TIGER unit (5 in each House file, 59 in stateleg 2024, 50 in stateleg current). They cover **46 distinct seats** (5 delegates, 39 NH floterial districts, 2 ME tribal seats), which makes **51 seat units** because the House delegates appear in both cd116 and cd119.
+  - **Member units:** `seat_member_unit` can link a floterial to the base `sldl` units it overlays, when a source lists them. No file does yet.
+  - Any other row whose unit doesn't resolve is rejected and reported, and is never attached to a different vintage. Without the column: `unit_type = unit_type_def` where `tiger_set = unit_layer`, and `boundary_set` from `boundary_set_default (unit_type, unit_vintage)`,
 
 ### 13a. Column-order check (Election Data, verified Oct 18, 2026)
 At `06421a6` every results CSV has `boundary_set` as column 14, and the Senate files have `method` as column 15. Rows: 728,885 precinct rows (`.csv.gz`) + 43,514 Senate county/district/state rows + 153 (2016 FEC states) + 335 (PA 2016 county) = **772,887**, which matches the lane's figure. At that commit `PA/pa_president_county_official.csv` (469 rows) still had 13 columns. At the current head **50f5f5a** it has 14 (`boundary_set`), so the "PA 2020/2024 county files next" step has landed.
@@ -335,12 +344,31 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - `entity_id` is opaque and frozen at first-seen kind + GEOID (`county:01001`, `muni:place:0107000`, `town:cousub:0911001080`, `school:0100003`, `state:01`, `nation:us`). Chambers and national bodies use slugs (`chamber:al-upper`, `us-house`, `chamber:dc-council`). The same id carries across boundary vintages. A new id is minted only when the government itself changes (merger, dissolution, incorporation, CT planning regions), linked through `predecessor_id` / `successor_id` (`;`-lists → `entity_succession`).
 - Kinds: `nation, territory, state, county, municipality, township, school_unified, school_elementary, school_secondary, chamber, dc_council`, plus `government_other`, `company`, `nonprofit` and `fund` for the bots. School kinds follow Q-G4 under the `school_district` category.
 - **District seats are units, not entities.** Officeholders = chamber `entity_id` + unit + `seat` number.
-- Column mapping: `feed` (`tiger/cog` 54,042, `inst-lane` 102) → `entity.feed`. `alias` (`;`, with `\;` escaped) → `entity_alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source*` + `license` → `source`. Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk: `unit_layer` = `unit_type_def.tiger_set`, `relation`, `overlap` → `entity_geoid`, then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
+- Column mapping: `feed` is stored raw in `entity.feed` and **mapped to `entity.origin` on load**:
+
+  | `feed` | `origin` |
+  |---|---|
+  | `tiger/cog` (54,042), `inst-lane` (102) | `inst` |
+  | `governments-bot` | `governments_bot` |
+  | `companies-bot` | `companies_bot` |
+  | `user-upload` | `user` |
+
+  Any other value is rejected and reported. `alias` (`;`, with `\;` escaped) → `entity_alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source_id` (`;`-list; 51,800 of 54,144 rows cite several) → `entity_source` (`ord` keeps the order). Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk (348f410: `entity_id, unit_layer, geoid, vintage, boundary_set, relation, source_id, overlap, share_of_geoid_in_entity, share_of_entity_in_geoid`): `unit_layer` = `unit_type_def.tiger_set`, and `boundary_set`, `relation`, `overlap`, `share_of_geoid_in_entity` and `share_of_entity_in_geoid` (same names, numeric 0–1) → `entity_geoid`. `source_id` (72 rows cite several) → `entity_geoid_source`. Each row is then then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
 - **Kinds present in 8e1db01:** municipality 19,525; township 18,076; school_unified 10,872; county 3,080; school_elementary 1,952; school_secondary 481; chamber 100 (`us-house` + 98 `chamber:<st>-lower|upper` + unicameral `chamber:ne-upper`); state 51; territory 5; nation 1 (`nation:us`); dc_council 1 (`chamber:dc-council`). All of them are in the `entity.kind` CHECK, which also allows `government_other` and `company` for the bots. Xwalk `unit_layer`s are cousub, place, unsd, county, elsd, scsd and state. Relations: primary 54,042, coextensive 4,219, also_cousub 306, independent_city_county_equivalent 42, consolidated_city_county 30, consolidated_town_city 23, federal_district_city 1.
-- **Sources:** `sources.csv` (`source_id, source, source_url, license, retrieved_at, commit`) loads into `source` (`source_key = source_id`, `url`, `title = source`, `license`, `retrieved_at`, `source_commit = commit`), and each row's `source_id` resolves to `entity.source_id` / `officeholder.source_id`. **Committed on `data/inst-officeholders` c830581 (49 rows, plus a `sha256` column); still in progress on `data/inst-entities`.** Until it is, the loader builds the same rows by de-duplicating each row's inline `source`, `source_url`, `retrieved_at`, `license` (+ `source_commit` in the officeholder files). URLs in `;`-lists are split one per source. In the officeholder files, the record's id inside its source is now `source_record_id` (e.g. `AK00`) → `officeholder.source_record_id`.
+- **Sources:** `sources.csv` (348f410: 70 rows; `source_id, source, source_url, license, retrieved_at, commit, sha256`) → `source`:
+  - `source_id` is the **text primary key**; uniqueness is on `source_id` only.
+  - `source` → `title`. `commit` → `commit`. `publisher` stays null unless a file gives it.
+  - `source_url` is split on ` ; ` into **`source_url`** child rows (`ord`, `url`, optional `label`), and the first URL is also `source.url`. 26 sources have several URLs, at most 3.
+  - Rows that cite several sources use link tables: `entity_source`, `entity_geoid_source`, `officeholder_source`, `person_source`, `county_government_source` and `entity_location_source`.
+  - Every id must exist in `sources.csv` (0 unknown across the inst files).
 - **Entity gaps (`entity_gaps.csv`, 254 rows):** **28 `orphan_v2_row`**, all `v2:parts` slivers (e.g. `Ida County|Cushing city`, `Ramsey County|Birchwood Village city`). Each is a v2 simplification sliver of a place that doesn't reach that county in TIGER 2024. These stay unlinked, so the v2 row has no entity and gets no fabricated link. Every other v2 row resolves (131,282 of 131,310 in `entity_v2_rows.csv`). The rest of the file is review flags, not missing entities: `gov_status_unknown` 63, `cog2022_unit_not_linked_by_code` 57, `excluded_not_defined` 49, `officeholder_unit_without_tiger_geoid` 49, `consolidated_county_cog_code_not_in_tiger` 6 and `same_code_place_cousub_overlap_unmeasured` 2. They load into `entity.flags` and the load report.
 - Governments link to geography through `entity_geoid` (the xwalk). Companies link through `entity_location` (HQ, sites, by GEOID and/or point).
-- **Xwalk `boundary_set`:** the Institutions lane is adding a `boundary_set` column to `entity_geoid_xwalk.csv` (not in 8e1db01 yet). The agreed sets are `v2-2024` (current + 2024), `tiger-2020-cd116`, and `tiger-2020-sldu` / `tiger-2020-sldl` (2018 plans).
+- **Xwalk `boundary_set` (348f410):** `v2-2024` on 58,655 rows, and **`tiger-2020-county`** on 8 rows (the old CT counties `county:09001`…`09015`, vintage 2020). The registered boundary sets (SCHEMA.sql seed, unique on `(slug, unit_type)`) are `v2-2024` (every v2 layer plus `seat`), `tiger-2020-cd116` (`ushouse`, `seat`), `tiger-2020-sldu`, `tiger-2020-sldl` (2018 plans) and `tiger-2020-county`.
+- **`county_government.csv` (f1d64f6, 3,152 rows: 3,144 for 2024 + 8 for 2020 CT)** → `county_government`:
+  - Columns as in the file: `county_geoid, vintage, county_name, has_own_government, gov_status, government_kind, cog_pid6, govbot_entity_id, cog_unit_name, cog_unit_type, tiger_funcstat, agrees_with_tiger, government_note`.
+  - Added on load: `entity_id = county:<county_geoid>`, which exists for all 3,152 rows; `boundary_set` (`v2-2024`, or `tiger-2020-county` for 2020); and `source_id` (`;`-list) → `county_government_source`.
+  - `gov_status` (government 3,105, area_only 47) is also written to `entity.gov_status`. `govbot_entity_id` (`cog:100001`) → `entity_alias` (`external_id`).
+- **`source_record_id`** (the record's id inside its source) exists on `entity`, `entity_geoid`, `entity_relation`, `entity_location`, `person`, `officeholder` and `county_government`. It is filled where a file gives one; today only the officeholder files carry it.
 
 **Companies, brands and organizations (Companies bot; plan change Oct 18, 2026, user via orchestrator):**
 - **Scope:** v3 carries only **public-facing brands, establishments and organizations** from Wikidata, plus their locations. **SEC / GLEIF / LEI ingest is dropped from v3 entirely.** The user keeps a corporate database on their own server, and the bridge to it comes in v5/v6 (ARCHITECTURE roadmap). It stays off the public v3 surface.
@@ -365,7 +393,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
   | Column | → | Rule |
   |---|---|---|
-  | file stem + `store_id` | `location_key` | `walgreens:15196`; `store_id` is unique only within a file. A row with an empty `store_id` is rejected and reported |
+  | file stem + `store_id` | `location_key` (also `source_record_id = store_id`) | `walgreens:15196`; `store_id` is unique only within a file. A row with an empty `store_id` is rejected and reported |
   | (constant) | `role` | `establishment_at` (no HQ rows in these files) |
   | `brand_qid` | `entity_id` | an empty `brand_qid` means no entity, so the row is excluded |
   | `sub_brand_qid` | `sub_entity_id` | `sub_brand` text → `meta.sub_brand` |
@@ -374,7 +402,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   | `lat`, `lon` | `geom` | `ST_SetSRID(ST_MakePoint(lon, lat), 4326)`; empty → null |
   | `county_geoid` | `geoid` | county FIPS (5 digits) |
   | (constant) | `boundary_set` | `v2-2024` when `geoid` is in v2's county layer; `unit_id` = that county unit, then refined by PostGIS point-in-polygon. PR (72) and VI (78) GEOIDs are not in v2's county layer, so `boundary_set` and `unit_id` stay null and the point is kept |
-  | `source` (`;`) | `source_id` (first) + `source_keys` | every id must exist in `sources.csv` |
+  | `source` (`;`) | `entity_location_source` rows | every id must exist in `sources.csv` |
   | `source_date` | `retrieved_at` | |
   | `flags` (`;`) | `flags` | |
   | `phone`, `status`, `store_type`, `country_code`, `source_url` | `meta` | |
