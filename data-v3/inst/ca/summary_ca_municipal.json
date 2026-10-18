@@ -1,6 +1,27 @@
 {
  "cd": 293,
+ "cd_by_class": {
+  "gap": 68,
+  "government": 139,
+  "statistical": 86
+ },
+ "cd_governments_by_type": {
+  "County": 20,
+  "District municipality": 1,
+  "Municipalité régionale de comté": 81,
+  "Regional district": 28,
+  "Regional municipality": 6,
+  "United counties": 3
+ },
  "csd": 5161,
+ "csd_by_class": {
+  "first_nations": 1028,
+  "gap": 442,
+  "municipality": 3408,
+  "settlement": 25,
+  "statistical_equivalent": 120,
+  "unorganized": 138
+ },
  "csd_by_province": {
   "AB": 423,
   "BC": 751,
@@ -16,9 +37,59 @@
   "SK": 951,
   "YT": 35
  },
+ "entities_by_kind": {
+  "county": 139,
+  "municipality": 3406
+ },
+ "municipalities_by_province": {
+  "AB": 326,
+  "BC": 160,
+  "MB": 136,
+  "NB": 96,
+  "NL": 277,
+  "NS": 40,
+  "NT": 6,
+  "NU": 1,
+  "ON": 414,
+  "PE": 59,
+  "QC": 1121,
+  "SK": 762,
+  "YT": 8
+ },
+ "municipalities_by_type": {
+  "Canton (municipalité de)": 42,
+  "Cantons unis (municipalité de)": 2,
+  "City": 150,
+  "City / Cité": 11,
+  "City / Ville": 2,
+  "District municipality": 49,
+  "Island municipality": 1,
+  "Municipal district": 74,
+  "Municipality": 102,
+  "Municipality / Municipalité": 3,
+  "Municipalité": 652,
+  "Northern village": 11,
+  "Paroisse (municipalité de)": 139,
+  "Regional Municipality / Municipalité regionale": 1,
+  "Regional municipality": 4,
+  "Resort Municipality": 1,
+  "Resort village": 40,
+  "Rural municipality": 405,
+  "Specialized municipality": 6,
+  "Summer village": 51,
+  "Town": 698,
+  "Town / Ville": 27,
+  "Township": 195,
+  "Village": 497,
+  "Village nordique": 14,
+  "Ville": 229
+ },
  "retrieved_at": "2026-10-18",
  "rows": {
-  "gaps_ca_municipal.csv": 5,
+  "entities_ca_municipal.csv": 3545,
+  "entity_geoid_xwalk_ca.csv": 3547,
+  "gaps_ca_municipal.csv": 33,
+  "statcan_types_ca.csv": 78,
   "units_ca_cd.csv": 293,
   "units_ca_csd.csv": 5161
  }

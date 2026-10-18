@@ -1,6 +1,34 @@
 level,gap,key,detail,source_id
-municipality,blocked_source,www12.statcan.gc.ca,"boundary-file download answers HTTP 403 ""Security Check"" (bot challenge); not bypassed. Needed for CSDTYPE / CDTYPE (incorporated flag, which CSDs/CDs are governments)",statcan-boundary-2021-b9ee3a85
-municipality,blocked_source,www150.statcan.gc.ca,"TLS connection refused from this box (unexpected EOF, 3 tries); table 98-10-0002 gives every CSD name with its type; not bypassed",statcan-tbl-98100002-065e5f90
-municipality,browser_download_missing,lcsd000b21a_e.zip+2021_92-151_X.zip,reported downloaded to /home/box/Downloads on 2026-10-18 but not on the box at 11:02 EDT (box restart; only a stalled 86 MB .crdownload left); curl to www12 still HTTP 403; re-download needed,statcan-boundary-2021-b9ee3a85
-municipality,entities_not_minted,csd+cd,"5161 CSDs and 293 CDs loaded as units only; municipal / county / regional government entities wait for the 2021 type table (entity ids are frozen at first sight, so they are not minted on a guess)",statcan-sgc2021-structure-2b799b81
+county,cd_type_ambiguous,CT,"15 CDs (NB): County / Comté (NB): StatCan does not say it has a council; units only, no entity",statcan-dict2021-cd-031af8a7
+county,cd_type_ambiguous,CTY,"21 CDs (NS,PE): County outside Ontario (NS, PE): StatCan does not say it has a council; NS county municipalities are CSDs (MU / MD); units only, no entity",statcan-dict2021-cd-031af8a7
+county,cd_type_ambiguous,DIS,"10 CDs (ON): District (ON): StatCan does not say it has a council; units only, no entity",statcan-dict2021-cd-031af8a7
+county,cd_type_ambiguous,REG,"10 CDs (BC,NT,NU): Region (BC, NT, NU): StatCan does not say it has a council; units only, no entity",statcan-dict2021-cd-031af8a7
+county,cd_type_ambiguous,TÉ,"12 CDs (QC): Territoire équivalent (QC): equivalent of an MRC; StatCan does not say whether a regional council exists; units only, no entity",statcan-dict2021-cd-031af8a7
+municipality,csd_type_ambiguous,CC,"3 CSDs (NT): chartered community (NT): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,CG,"4 CSDs (NT): community government (NT): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,CN,"1 CSDs (SK): crown colony (1 CSD, SK): StatCan does not define it; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,FD,"35 CSDs (PE): fire district (PE): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,GR,"1 CSDs (QC): gouvernement régional (QC, 1 CSD): a regional government at CSD level, StatCan does not define it; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,HAM,"37 CSDs (NT,NU,YT): hamlet: YT, NT, NU; StatCan does not say which are incorporated municipalities; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,ID,"8 CSDs (AB): improvement district (AB): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,LGD,"2 CSDs (MB): local government district (MB): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,NH,"11 CSDs (SK): northern hamlet (SK): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,P,"142 CSDs (NB): title ""Parish / Paroisse (municipalité de)"" but StatCan does not say New Brunswick parishes are incorporated; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,RCR,"8 CSDs (NB): rural community (NB): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,RDA,"160 CSDs (BC): regional district electoral area (BC): part of a regional district (CD), StatCan does not call it a municipality; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,SA,"3 CSDs (AB): special area (AB): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,SG,"4 CSDs (YT): self-government (YT): First Nation self-government lands? not in geo012 on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,TI,"13 CSDs (QC): terre inuite (QC): Inuit lands, not a municipality and not a First Nations type in geo012; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,TL,"1 CSDs (YT): Teslin land (YT): First Nation lands? not in geo012 on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,VC,"8 CSDs (QC): village cri (QC): geo012 describes it with the Terres réservées aux Cris, set aside for Cree bands; not in the on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,csd_type_ambiguous,VK,"1 CSDs (QC): village naskapi (QC): geo012 describes it with the Terres réservées aux Naskapis; not in the on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
+municipality,first_nations_kind_proposal,IGD+IRI+NL+S-É+TAL+TC+TK+TWL,1028 CSDs of the eight First Nations types (geo012) not minted; proposed new kind for First Nations / band governments (bands are not CSDs: one band can hold several reserves) - CANADA_SCHEMA_PROPOSALS.md,statcan-dict2021-csd-c21352ae
+municipality,name_differs_from_sgc,1307005,'Beaubassin East / Beaubassin-est' vs SGC 'Beaubassin East',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,name_differs_from_sgc,1312019,'Grand Falls / Grand-Sault' vs SGC 'Grand Falls',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,name_differs_from_sgc,3502025,'The Nation / La Nation' vs SGC 'The Nation',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,name_differs_from_sgc,3548055,'West Nipissing / Nipissing Ouest' vs SGC 'West Nipissing',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,name_differs_from_sgc,3552001,'French River / Rivière des Français' vs SGC 'French River',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,name_differs_from_sgc,3553005,'Greater Sudbury / Grand Sudbury' vs SGC 'Greater Sudbury',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
+municipality,straddles_provinces,4621064;4718052,"Flin Flon: one municipality, a CSD in each province (geo012); entity keyed on the larger part 4621064 (pop 4940), parent MB; parent province to confirm",statcan-dict2021-csd-c21352ae
+municipality,straddles_provinces,4717029;4810039,"Lloydminster: one municipality, a CSD in each province (geo012); entity keyed on the larger part 4810039 (pop 19739), parent AB; parent province to confirm",statcan-dict2021-csd-c21352ae
 school_board,not_built,all,"no national list; provincial lists exist (e.g. Ontario school board list, BC school districts, Alberta school authorities) - see CANADA_PLAN.md",
