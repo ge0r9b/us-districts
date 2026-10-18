@@ -35,6 +35,7 @@ gaz2020,1,https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2020_Gazette
 gaz2022,1,https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2022_Gazetteer/,
 gaz2024,1,https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/,
 house-clerk-memberdata-f5a438ef,1,https://clerk.house.gov/xml/lists/MemberData.xml,
+iso_codes,1,https://salsa.debian.org/iso-codes-team/iso-codes/-/tree/v4.20.1/data,
 me_legislature,1,https://legislature.maine.gov/,
 ne_kearney_election,1,https://countyelectionresults.nebraska.gov/,
 nh-rsa-662-5-9037ed52,1,https://gc.nh.gov/rsa/html/LXIII/662/662-5.htm,
@@ -47,17 +48,17 @@ repo-city-bodies-a3a8d3a1,1,https://github.com/ge0r9b/us-districts/blob/06a2cc39
 repo-countries-24f28312,1,https://github.com/ge0r9b/us-districts/blob/b0e6f922a8477c52ff548dde6f4103a276125d90/v2/data/countries.js,repo file (pinned commit)
 repo-countries-24f28312,2,https://www.naturalearthdata.com/downloads/50m-cultural-vectors/,upstream (Natural Earth)
 repo-dc-54d4ab99,1,https://github.com/ge0r9b/us-districts/blob/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/dc.js,
-repo-dependencies-0b5f6159,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/dependencies.csv,
+repo-dependencies-f5ba8572,1,https://github.com/ge0r9b/us-districts/blob/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments/foreign/dependencies.csv,
 repo-geo-dfd55777,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/data-v3/geo,
+repo-governments-226a9939,1,https://github.com/ge0r9b/us-districts/tree/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments,
 repo-governments-6dd77539,1,https://github.com/ge0r9b/us-districts/tree/93b7a90d2ee0d2056be23ae3430fcd8398940729/data-v3/institutions/governments,
-repo-governments-e4797d09,1,https://github.com/ge0r9b/us-districts/tree/bc2466e4d78edf035ab1400aacb28557fe5146ec/data-v3/institutions/governments,
-repo-images-74c60d19,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/images.csv,
+repo-images-3c81861f,1,https://github.com/ge0r9b/us-districts/blob/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments/images.csv,
 repo-inst-44a3d841,1,https://github.com/ge0r9b/us-districts/tree/ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f/data-v3/inst,
-repo-iso-domestic-crosswalk-a212b063,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/iso_domestic_crosswalk.csv,
-repo-nations-aac563e1,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/nations.csv,
+repo-iso-domestic-crosswalk-f35a89cb,1,https://github.com/ge0r9b/us-districts/blob/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments/foreign/iso_domestic_crosswalk.csv,
+repo-nations-e24e3a47,1,https://github.com/ge0r9b/us-districts/blob/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments/foreign/nations.csv,
 repo-parts-f7a3e90c,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/parts,
 repo-places-29d6ddf6,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/places,
-repo-subdivisions-5692495c,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/subdivisions.csv,
+repo-subdivisions-2bd3aef9,1,https://github.com/ge0r9b/us-districts/blob/bb5e3423c5897be09aa5d9442890b812cc10971c/data-v3/institutions/governments/foreign/subdivisions.csv,
 roster-ak-2932b34d,1,https://akleg.gov/house.php,house
 roster-ak-2932b34d,2,https://akleg.gov/senate.php,senate
 roster-ar-dcb558a1,1,https://arkleg.state.ar.us/Legislators/List?chamber=House&ddBienniumSession=2025%2F2025R,house
@@ -126,10 +127,15 @@ roster-wi-04df837f,2,https://docs.legis.wisconsin.gov/2025/legislators/senate,se
 roster-wv-70fc74da,1,https://www.wvlegislature.gov/House/roster.cfm,house
 roster-wv-70fc74da,2,https://www.wvlegislature.gov/Senate1/roster.cfm,senate
 sc_legislature,1,https://www.scstatehouse.gov/,
+statcan_sgc,1,https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv,
+tceq_wdd,1,https://www14.tceq.texas.gov/iwud/,
 tiger2024_aiannh,1,https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip,
+un_members,1,https://www.un.org/en/about-us/member-states,
+un_observers,1,https://www.un.org/en/about-us/non-member-states,
 us-constitution-e445508b,1,https://www.archives.gov/founding-docs/constitution-transcript,
 wi_mds,1,https://mds.wi.gov/View/Incorporations,
 wikidata-sparql-c3447bcc,1,https://query.wikidata.org/sparql,
+wikidata_foreign,1,https://query.wikidata.org/,
 wikidata_ids,1,https://query.wikidata.org/,
 wikidata_images,1,https://query.wikidata.org/,
 wikidata_tribes,1,https://query.wikidata.org/,

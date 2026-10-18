@@ -432,69 +432,599 @@ nation_not_un_member,nation:tw,"Taiwan (Q865): current sovereign state (P31 Q362
 nation_not_un_member,nation:va,"Vatican City (Q237): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
 not_in_source_list,Kosovo,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide); Governments bot: not in nations/dependencies; ISO 3166-2 RS-KM (Kosovo-Metohija) is a Serbian subdivision row, minted as subdivision:rs-km under nation:rs; pending the user",repo-countries-24f28312;wikidata-sparql-c3447bcc
 not_in_source_list,Western Sahara,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide); Governments bot nations.csv has nation:eh flagged review_status: feed_only, not minted; pending the user",repo-countries-24f28312;wikidata-sparql-c3447bcc
-wikidata_qid_conflict,nation:dk,registry Q756617 vs governments-bot foreign Q35; kept registry value,repo-governments-e4797d09
-image_entity_unmapped,nation:tw,"flag Flag of the Republic of China.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,nation:tw,"seal National Emblem of the Republic of China.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cha,"flag Flag of Changhua County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cha,"seal Emblem of Changhua County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cyi,"flag Flag of Chiayi City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cyi,"seal Emblem of Chiayi City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cyq,"flag Flag of Chiayi County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-cyq,"seal Emblem of Chiayi County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-hsq,"flag Flag of Hsinchu County (2010-2019).png; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-hsq,"seal Hsinchu County Emblem.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-hsz,"seal Emblem of Hsinchu City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-hua,"flag Flag of Hualien County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-hua,"seal Emblem of Hualien County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-ila,"flag Flag of Yilan County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-ila,"seal Seal of Yilan County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-kee,"flag Flag of Keelung City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-kee,"seal Seal of Keelung.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-khh,"flag Flag of Kaohsiung City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-khh,"seal Emblem of Kaohsiung City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-kin,"flag Flag of Kinmen County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-kin,"seal Emblem of Kinmen County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-mia,"flag Flag of Miaoli County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-mia,"seal Emblem of Miaoli County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-nan,"flag Flag of Nantou County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-nan,"seal Seal of Nantou County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-nwt,"flag Flag of New Taipei City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-nwt,"seal New Taipei City seal.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-pen,"flag Flag of Penghu County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-pen,"seal Seal of Penghu County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-pif,"flag Flag of Pingtung County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-pif,"seal Emblem of Pingtung County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tao,"flag Flag of Taoyuan City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tao,"seal Emblem of Taoyuan City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tnn,"flag Flag of Tainan City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tnn,"seal Tainan City Government Logo.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tpe,"flag Flag of Taipei City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-tpe,"seal Emblem of Taipei City.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-ttt,"flag Flag of Taitung County (2014).svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-ttt,"seal Emblem of Taitung County (2014).svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-txg,"flag Flag of Taichung City old.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-txg,"seal Seal of Taichung.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-yun,"flag Flag of Yunlin County.svg; review_status, pending user",repo-governments-e4797d09
-image_entity_unmapped,subdivision:tw-yun,"seal Emblem of Yunlin County.svg; review_status, pending user",repo-governments-e4797d09
-govbot_ceased_partial,school:4503916,"ceased cog:112946 of nces_leaid:4503916,cog:112946; entity kept active",repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:0139832,Kilpatrick town (AL); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:0160264,Pine Level town (AL); valid_from 2025-08-12; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:0518880,Diamond Head city (AR); valid_from 2024-03-01; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:0464210,San Tan Valley town (AZ); valid_from 2025-09-24; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:0649582,Mountain House city (CA); valid_from 2024-07-01; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:1353706,Mulberry city (GA); valid_from 2025-01-01; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:2703282,Baldwin city (MN); valid_from 2025-01-01; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:2724533,Goodwill township (MN); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:4808800,Bloomington city (TX); valid_from 2025-08-18; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:4870070,Starbase city (TX); valid_from 2025-05-20; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,gcn:5531375,Greenleaf village (WI); valid_from 2024-04-05; geoid none,repo-governments-e4797d09
-govbot_new_unit_not_in_registry,wi_mds_incorporation:13,Village of French Island (WI); valid_from 2026-05-21; geoid none,repo-governments-e4797d09
-image_entity_unmapped,bia:cherokee-nation,seal Great seal of the cherokee nation.svg,repo-governments-e4797d09
-image_entity_unmapped,bia:chuloonawick-native-village,"seal Seal of Chuloonawick, Alaska.svg",repo-governments-e4797d09
-image_entity_unmapped,bia:eastern-band-of-cherokee-indians,seal ,repo-governments-e4797d09
-image_entity_unmapped,bia:ewiiaapaayp-band-of-kumeyaay-indians,seal Ewiiaapaayp band seal.png,repo-governments-e4797d09
-image_entity_unmapped,bia:oneida-nation,seal ,repo-governments-e4797d09
-image_entity_unmapped,bia:ute-mountain-ute-tribe,seal ,repo-governments-e4797d09
+image_entity_unmapped,nation:tw,"flag Flag of the Republic of China.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,nation:tw,"seal National Emblem of the Republic of China.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cha,"flag Flag of Changhua County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cha,"seal Emblem of Changhua County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cyi,"flag Flag of Chiayi City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cyi,"seal Emblem of Chiayi City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cyq,"flag Flag of Chiayi County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-cyq,"seal Emblem of Chiayi County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-hsq,"flag Flag of Hsinchu County (2010-2019).png; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-hsq,"seal Hsinchu County Emblem.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-hsz,"seal Emblem of Hsinchu City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-hua,"flag Flag of Hualien County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-hua,"seal Emblem of Hualien County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-ila,"flag Flag of Yilan County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-ila,"seal Seal of Yilan County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-kee,"flag Flag of Keelung City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-kee,"seal Seal of Keelung.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-khh,"flag Flag of Kaohsiung City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-khh,"seal Emblem of Kaohsiung City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-kin,"flag Flag of Kinmen County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-kin,"seal Emblem of Kinmen County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-mia,"flag Flag of Miaoli County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-mia,"seal Emblem of Miaoli County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-nan,"flag Flag of Nantou County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-nan,"seal Seal of Nantou County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-nwt,"flag Flag of New Taipei City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-nwt,"seal New Taipei City seal.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-pen,"flag Flag of Penghu County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-pen,"seal Seal of Penghu County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-pif,"flag Flag of Pingtung County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-pif,"seal Emblem of Pingtung County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tao,"flag Flag of Taoyuan City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tao,"seal Emblem of Taoyuan City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tnn,"flag Flag of Tainan City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tnn,"seal Tainan City Government Logo.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tpe,"flag Flag of Taipei City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-tpe,"seal Emblem of Taipei City.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-ttt,"flag Flag of Taitung County (2014).svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-ttt,"seal Emblem of Taitung County (2014).svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-txg,"flag Flag of Taichung City old.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-txg,"seal Seal of Taichung.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-yun,"flag Flag of Yunlin County.svg; review_status, pending user",repo-governments-226a9939
+image_entity_unmapped,subdivision:tw-yun,"seal Emblem of Yunlin County.svg; review_status, pending user",repo-governments-226a9939
+govbot_ceased_partial,school:4503916,"ceased cog:112946 of nces_leaid:4503916,cog:112946; entity kept active",repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:0139832,Kilpatrick town (AL); valid_from 2025-12-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:0160264,Pine Level town (AL); valid_from 2025-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:0518880,Diamond Head city (AR); valid_from 2024-03-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:0464210,San Tan Valley town (AZ); valid_from 2025-09-24; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:0649582,Mountain House city (CA); valid_from 2024-07-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:1353706,Mulberry city (GA); valid_from 2025-01-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:2703282,Baldwin city (MN); valid_from 2025-01-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:2724533,Goodwill township (MN); valid_from 2025-12-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,sc_act:2020-183:clarendon_4,CLARENDON COUNTY SCHOOL DISTRICT NO. 4 (SC); valid_from 2021-07-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:4808800,Bloomington city (TX); valid_from 2025-08-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:4870070,Starbase city (TX); valid_from 2025-05-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101792,BLUE MEADOW MUD 2 OF COLLIN COUNTY (TX); valid_from 2023-05-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101793,BLUE MEADOW MUD 3 OF COLLIN COUNTY (TX); valid_from 2023-05-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101545,DRIPPING SPRINGS MUD 1 (TX); valid_from 2022-07-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101962,ELM FORK MUD 1 OF COOKE COUNTY (TX); valid_from 2023-06-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101857,FIREFLY MUD 1 (TX); valid_from 2023-05-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102691,FORT BEND COUNTY MUD 219B (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102692,FORT BEND COUNTY MUD 219C (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102061,FORT BEND COUNTY MUD 257 (TX); valid_from 2024-01-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102556,LAKE TEXOMA MUD 1A (TX); valid_from 2025-01-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101832,LAKESHORE MUD (TX); valid_from 2023-05-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101830,LEGACY MMD (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102282,SOUTHARD FARM MUD 1 (TX); valid_from 2024-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101797,TWO CHIMNEYS MUD (TX); valid_from 2023-06-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102281,WALLER COUNTY MUD 60 (TX); valid_from 2024-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101670,ATASCOSA COUNTY MUD 1 (TX); valid_from 2023-01-26; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101697,BASTROP COUNTY MUD 4 (TX); valid_from 2023-02-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102494,BASTROP COUNTY MUD 7 (TX); valid_from 2025-02-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101644,CENTEX DRAINAGE DISTRICT (TX); valid_from 2023-01-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102265,LUND FARM MUD (TX); valid_from 2024-08-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102686,SAYERS RANCH MUD (TX); valid_from 2025-08-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101983,MEDINA STONEHILL SPECIAL IMPROVEMENT DISTRICT (TX); valid_from 2022-02-10; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102671,BRAZORIA COUNTY MUD 48A (TX); valid_from 2025-07-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102010,BRAZORIA COUNTY MUD 63A (TX); valid_from 2023-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102758,BRAZORIA COUNTY MUD 63B-1 (TX); valid_from 2025-09-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101291,BRAZORIA COUNTY MUD 81 (TX); valid_from 2022-01-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101487,BRAZORIA COUNTY MUD 87 (TX); valid_from 2022-06-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102144,BRAZORIA COUNTY MUD 88 (TX); valid_from 2024-03-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101559,BRAZORIA COUNTY MUD 89 (TX); valid_from 2022-09-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102621,BRAZORIA COUNTY MUD 90 (TX); valid_from 2025-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101878,BRAZORIA COUNTY MUD 92 (TX); valid_from 2023-07-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102457,PRESERVATION CREEK MUD 1 (TX); valid_from 2025-01-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101781,BRAZOS COUNTY MUD 6 (TX); valid_from 2023-04-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102132,CIMARRON SHORES WCID (TX); valid_from 2022-08-23; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102463,MOONLIGHT BEND MUD (TX); valid_from 2025-01-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101565,BOLLINGER MUD (TX); valid_from 2022-10-10; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102104,CALDWELL COUNTY MUD 7 (TX); valid_from 2024-02-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102171,CALDWELL COUNTY MUD 8 (TX); valid_from 2024-04-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102278,CALDWELL COUNTY MUD 9 (TX); valid_from 2024-08-14; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101913,CHISHOLM MUD 1 (TX); valid_from 2023-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102481,LADERA MUD (TX); valid_from 2025-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102253,LANTANA MUD OF CALDWELL COUNTY (TX); valid_from 2024-07-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101416,CHAMBERS COUNTY MUD 4 (TX); valid_from 2022-02-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101648,RICELAND MANAGEMENT DISTRICT (TX); valid_from 2022-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101518,RICELAND MUD 1 (TX); valid_from 2022-08-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101519,RICELAND MUD 2 (TX); valid_from 2022-08-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101520,RICELAND MUD 3 (TX); valid_from 2022-08-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101901,WINDCRESS MUD OF CHAMBERS COUNTY (TX); valid_from 2023-08-04; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101348,BLUE MEADOW MUD 1 (TX); valid_from 2023-05-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102928,BLUE MEADOW MUD 4 OF COLLIN COUNTY (TX); valid_from 2025-12-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102789,CITY OF WESTON MUD 1 (TX); valid_from 2025-11-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101900,COLLIN COUNTY MUD 10 (TX); valid_from 2023-07-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102388,COLLIN COUNTY MUD 11 (TX); valid_from 2024-12-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102369,COLLIN COUNTY MUD 12 (TX); valid_from 2024-11-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101723,COLLIN COUNTY MUD 6 (TX); valid_from 2023-03-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102662,GOLDEN RANCH MUD 1 OF COLLIN COUNTY (TX); valid_from 2025-07-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102776,GREENWOOD MUD 1 OF COLLIN COUNTY (TX); valid_from 2025-10-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102328,HONEY CREEK MMD 1 (TX); valid_from 2024-09-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101447,NORTH COLLIN COUNTY MUD 1 (TX); valid_from 2022-04-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102223,RAINWATER CROSSING MMD OF COLLIN COUNTY (TX); valid_from 2024-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101741,SERENADE MUD (TX); valid_from 2023-04-10; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102511,SEVEN SPRINGS MUD OF COLLIN COUNTY (TX); valid_from 2025-02-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102575,SOUTHEAST COLLIN COUNTY MUD 1 (TX); valid_from 2025-04-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102537,TIVOLI MUD OF COLLIN COUNTY (TX); valid_from 2025-03-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101798,WEST PRESTON MUD 1 OF COLLIN COUNTY (TX); valid_from 2023-06-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101696,COMAL COUNTY MUD 4 (TX); valid_from 2023-02-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102410,COMAL COUNTY MUD 5 (TX); valid_from 2024-12-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102611,COMAL COUNTY SCHOENTHAL MUD (TX); valid_from 2025-06-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102149,COMAL COUNTY WID 3 MASTER DISTRICT (TX); valid_from 2024-02-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102150,COMAL COUNTY WID 3A (TX); valid_from 2024-02-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101819,FLYING W MUD (TX); valid_from 2023-06-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101884,KYNDWOOD MUD (TX); valid_from 2023-07-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102461,PURLSONG MMD OF COMAL COUNTY (TX); valid_from 2025-01-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102350,SIMMONS VALLEY MUD (TX); valid_from 2024-10-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102055,SKY RANCH MUD (TX); valid_from 2024-01-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102276,WEST COMAL COUNTY MUD 1 (TX); valid_from 2024-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102299,ELM FORK MUD 2 OF COOKE COUNTY (TX); valid_from 2024-08-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102047,LONE OAK VALLEY MUD 1 OF COOKE COUNTY (TX); valid_from 2023-12-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101919,TEXAS TRI-MODAL MUD 2 (TX); valid_from 2023-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102821,CRAVER RANCH MMD 1 (TX); valid_from 2025-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101997,DENTON COUNTY MUD 12 (TX); valid_from 2023-10-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102478,FURST RANCH MUD 1 OF DENTON COUNTY (TX); valid_from 2025-02-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102704,HUNTER RANCH IMPROVEMENT DISTRICT 2 (TX); valid_from 2025-07-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102706,HUNTER RANCH IMRPOVEMENT DISTRICT 3 (TX); valid_from 2025-07-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102644,MADERA MMD 1 OF DENTON COUNTY (TX); valid_from 2025-07-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102731,MASSEY ROAD MUD 1 OF DENTON COUNTY (TX); valid_from 2025-09-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102703,MERIDIAN MUD (TX); valid_from 2025-08-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102757,NORTHLAKE FWSD 1 OF DENTON COUNTY (TX); valid_from 2025-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101605,OLIVER CREEK RANCH MUD (TX); valid_from 2022-10-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101333,PONDER FARMS MUD OF DENTON COUNTY (TX); valid_from 2022-02-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101703,RIBBONWOOD MUD 1 OF DENTON COUNTY (TX); valid_from 2023-02-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102106,ROCKWOOD MUD 1 OF DENTON COUNTY (TX); valid_from 2024-02-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101916,SANCTUARY MUD 1 OF DENTON COUNTY (TX); valid_from 2023-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101915,SANCTUARY MUD 2 OF DENTON COUNTY (TX); valid_from 2023-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101942,TABOR RANCH MUD OF DENTON COUNTY (TX); valid_from 2023-06-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102019,TRADITION MUD 2C OF DENTON COUNTY (TX); valid_from 2023-11-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101643,ELLIS COUNTY MUD 4 (TX); valid_from 2023-01-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102258,FM 875 MUD OF ELLIS COUNTY (TX); valid_from 2024-04-23; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102610,HIGHLAND LAKES MUD 1A OF ELLIS COUNTY (TX); valid_from 2024-11-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102227,LAKESONG MMD 1 (TX); valid_from 2024-05-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102899,LAKESONG MMD 1-A (TX); valid_from 2026-01-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102900,LAKESONG MMD 1-B (TX); valid_from 2026-01-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102268,MYRTLE CREEK MMD 1 OF ELLIS COUNTY (TX); valid_from 2024-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102867,SOMERSET VILLAGE MMD OF ELLIS COUNTY (TX); valid_from 2025-12-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101861,FANNIN FARMS MUD OF FANNIN COUNTY (TX); valid_from 2023-06-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101806,FORT BEND COUNTY MUD 134F (TX); valid_from 2023-06-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101390,FORT BEND COUNTY MUD 175 (TX); valid_from 2022-01-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101408,FORT BEND COUNTY MUD 236 (TX); valid_from 2022-04-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102178,FORT BEND COUNTY MUD 237A (TX); valid_from 2024-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102180,FORT BEND COUNTY MUD 237B (TX); valid_from 2024-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102181,FORT BEND COUNTY MUD 237C (TX); valid_from 2024-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101475,FORT BEND COUNTY MUD 250A (TX); valid_from 2022-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101476,FORT BEND COUNTY MUD 250B (TX); valid_from 2022-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101880,FORT BEND COUNTY MUD 252 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102453,FORT BEND COUNTY MUD 253B (TX); valid_from 2023-01-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101398,FORT BEND COUNTY MUD 254 (TX); valid_from 2022-04-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101584,FORT BEND COUNTY MUD 255 (TX); valid_from 2022-10-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101529,FORT BEND COUNTY MUD 256 (TX); valid_from 2022-08-23; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101690,FORT BEND COUNTY MUD 258 (TX); valid_from 2023-02-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102237,FORT BEND COUNTY MUD 261 (TX); valid_from 2024-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102263,FORT BEND COUNTY MUD 268 (TX); valid_from 2024-08-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102266,FORT BEND COUNTY MUD 269 (TX); valid_from 2024-08-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102368,FORT BEND COUNTY MUD 269A (TX); valid_from 2024-08-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102383,FORT BEND COUNTY MUD 269B (TX); valid_from 2024-08-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102449,FORT BEND COUNTY MUD 273 (TX); valid_from 2025-01-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102768,FORT BEND COUNTY MUD 274 (TX); valid_from 2025-10-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102454,FORT BEND COUNTY MUD 275 (TX); valid_from 2025-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102455,FORT BEND COUNTY MUD 276 (TX); valid_from 2025-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102592,FORT BEND COUNTY MUD 277 (TX); valid_from 2025-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102593,FORT BEND COUNTY MUD 278 (TX); valid_from 2025-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102790,FORT BEND COUNTY MUD 291 (TX); valid_from 2025-11-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102357,FORT BEND COUNTY WCID 12 (TX); valid_from 2024-11-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102815,FORT BEND COUNTY WCID 13 (TX); valid_from 2025-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101679,GILLESPIE COUNTY MUD 1 (TX); valid_from 2023-02-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102015,BURKS RANCH MUD 1 OF GRAYSON COUNTY (TX); valid_from 2023-11-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101994,GRAYSON COUNTY MUD 3A (TX); valid_from 2023-08-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101995,GRAYSON COUNTY MUD 3B (TX); valid_from 2023-08-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101410,GRAYSON COUNTY MUD 6 (TX); valid_from 2022-01-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102997,GRAYSON COUNTY MUD 6A (TX); valid_from 2025-12-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101525,GRAYSON COUNTY MUD 9 (TX); valid_from 2022-08-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102155,GUNTER CROSSING MUD (TX); valid_from 2024-03-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102214,NOBLE RIDGE MUD OF GRAYSON COUNTY (TX); valid_from 2024-06-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101652,SHEPHERDS PLACE MUD 1 OF GRAYSON COUNTY (TX); valid_from 2023-01-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101743,SUNSET RANCH MUD OF GRAYSON COUNTY (TX); valid_from 2023-04-10; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101799,GUADALUPE COUNTY MUD 10 (TX); valid_from 2023-06-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102269,GUADALUPE COUNTY MUD 11 (TX); valid_from 2024-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102389,GUADALUPE COUNTY MUD 15 (TX); valid_from 2024-12-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101608,GUADALUPE COUNTY MUD 4 (TX); valid_from 2022-06-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101904,GUADALUPE COUNTY MUD 5 (TX); valid_from 2023-08-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101782,GUADALUPE COUNTY MUD 6 (TX); valid_from 2023-05-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101783,GUADALUPE COUNTY MUD 9 (TX); valid_from 2023-05-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102163,MARION OAKS MUD OF GUADALUPE COUNTY (TX); valid_from 2024-03-26; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102156,MEADOW LAKE WCID 1 (TX); valid_from 2022-08-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102287,PARK PLACE MUD OF GUADALUPE COUNTY (TX); valid_from 2024-08-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102472,REGENCY RANCH IMPROVEMENT DISTRICT (TX); valid_from 2025-02-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101955,SPRING HILL SUD (TX); valid_from 2023-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102432,STEELWOOD TRAIL MUD (TX); valid_from 2025-01-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101946,290 BETKA MMD 1 (TX); valid_from 2023-09-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101339,HARRIS COUNTY MUD 570A (TX); valid_from 2022-01-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102133,HARRIS COUNTY MUD 570B1 (TX); valid_from 2024-01-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101341,HARRIS COUNTY MUD 570C (TX); valid_from 2022-01-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101342,HARRIS COUNTY MUD 570D (TX); valid_from 2022-01-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101864,HARRIS COUNTY MUD 582 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101998,HARRIS COUNTY MUD 583 (TX); valid_from 2023-11-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102037,HARRIS COUNTY MUD 586 (TX); valid_from 2023-12-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101802,HARRIS COUNTY MUD 588 (TX); valid_from 2023-06-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101866,HARRIS COUNTY MUD 589 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102246,HARRIS COUNTY MUD 591A (TX); valid_from 2024-07-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102514,HARRIS COUNTY MUD 591B (TX); valid_from 2025-02-24; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101873,HARRIS COUNTY MUD 597 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102545,HARRIS COUNTY MUD 600 (TX); valid_from 2025-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102655,HARRIS COUNTY MUD 608 (TX); valid_from 2025-07-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102633,HARRIS COUNTY MUD 610 (TX); valid_from 2025-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102459,HARRIS-WALLER COUNTIES MUD 10 (TX); valid_from 2025-01-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102515,HARRIS-WALLER COUNTIES MUD 13 (TX); valid_from 2025-03-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102664,RICE VILLAGE MANAGEMENT DISTRICT (TX); valid_from 2025-07-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101651,TOMBALL BUSINESS IMPROVEMENT DISTRICT 1 (TX); valid_from 2022-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102438,BUDA MUD 2 (TX); valid_from 2025-01-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101658,EAST HAYS COUNTY MUD 2 (TX); valid_from 2023-01-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102270,HAYS COUNTY MUD 11 (TX); valid_from 2024-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102680,HAYS COUNTY MUD 12 (TX); valid_from 2025-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101972,HAYS COUNTY MUD 7A (TX); valid_from 2023-02-14; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101973,HAYS COUNTY MUD 7B (TX); valid_from 2023-02-14; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101879,HAYS COUNTY MUD 9 (TX); valid_from 2023-07-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102468,MASON MUD OF HAYS COUNTY (TX); valid_from 2025-02-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101662,MIRASOL SPRINGS MUD (TX); valid_from 2023-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102419,OVERLOOK MUD OF HAYS COUNTY (TX); valid_from 2025-01-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101801,WAYSIDE MUD OF HAYS COUNTY (TX); valid_from 2023-06-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101564,WILD RIDGE MUD (TX); valid_from 2022-10-10; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102640,CADDO MILLS MMD 2 (TX); valid_from 2025-06-26; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102238,BIG HORN MUD 1 (TX); valid_from 2024-06-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101415,CR 915 MUD (TX); valid_from 2022-04-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102398,JOHNSON COUNTY MUD 1 (TX); valid_from 2024-12-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102380,JOHNSON COUNTY MUD 2 (TX); valid_from 2024-11-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102544,MAYFIELD WEST MUD OF JOHNSON COUNTY (TX); valid_from 2025-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102252,PRAIRIE RIDGE MMD 1A (TX); valid_from 2024-06-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102523,PRAIRIE RIDGE MMD 1B (TX); valid_from 2024-12-04; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102003,PRAIRIE VIEW MUD 1 OF JOHNSON COUNTY (TX); valid_from 2023-11-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102665,SOUTHARD FARM MUD 2 OF JOHNSON COUNTY (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102843,FAIRFIELDS MUD 1B OF KAUFMAN COUNTY (TX); valid_from 2025-11-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102431,FORNEY MMD 1 OF KAUFMAN COUNTY (TX); valid_from 2025-01-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101833,HARVEST RUN MUD OF KAUFMAN COUNTY (TX); valid_from 2023-07-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102635,KAUFMAN LAKES FWSD (TX); valid_from 2024-12-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101924,KENDALL COUNTY WCID 2B (TX); valid_from 2023-07-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101597,KENDALL COUNTY WCID 4A (TX); valid_from 2022-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101850,LIBERTY COUNTY MUD 12 (TX); valid_from 2023-05-23; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102272,LIBERTY COUNTY MUD 13A (TX); valid_from 2024-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102509,LIBERTY COUNTY MUD 18 (TX); valid_from 2025-02-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101611,LIBERTY COUNTY MUD 9 (TX); valid_from 2022-11-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102298,LIBERTY-MONTGOMERY COUNTIES MUD 1 (TX); valid_from 2024-07-26; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101844,SANDOW MUD 1 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102111,SANDOW MUD 1A (TX); valid_from 2024-01-23; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102413,SANDOW MUD 1B (TX); valid_from 2024-12-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102914,SANDOW MUD 1C (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101337,AIRPORT ROAD MUD (TX); valid_from 2022-02-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101790,COLTON MUD 2 (TX); valid_from 2023-02-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101978,EAST MONTGOMERY COUNTY MUD 13A (TX); valid_from 2022-08-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102557,FIREFLY MUD 2 (TX); valid_from 2025-01-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101307,MONTGOMERY COUNTY MUD 152A (TX); valid_from 2022-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101308,MONTGOMERY COUNTY MUD 152B (TX); valid_from 2022-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101309,MONTGOMERY COUNTY MUD 152C (TX); valid_from 2022-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101445,MONTGOMERY COUNTY MUD 170 (TX); valid_from 2022-01-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101527,MONTGOMERY COUNTY MUD 193 (TX); valid_from 2022-06-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101316,MONTGOMERY COUNTY MUD 194 (TX); valid_from 2022-01-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101465,MONTGOMERY COUNTY MUD 196 (TX); valid_from 2022-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101999,MONTGOMERY COUNTY MUD 202A (TX); valid_from 2022-08-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102023,MONTGOMERY COUNTY MUD 202B (TX); valid_from 2022-08-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101488,MONTGOMERY COUNTY MUD 211 (TX); valid_from 2022-07-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101609,MONTGOMERY COUNTY MUD 212 (TX); valid_from 2022-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101407,MONTGOMERY COUNTY MUD 213 (TX); valid_from 2022-04-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101678,MONTGOMERY COUNTY MUD 215 (TX); valid_from 2023-01-06; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101883,MONTGOMERY COUNTY MUD 218 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101877,MONTGOMERY COUNTY MUD 219 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102370,MONTGOMERY COUNTY MUD 220 (TX); valid_from 2024-11-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101925,MONTGOMERY COUNTY MUD 224 (TX); valid_from 2023-08-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101855,MONTGOMERY COUNTY MUD 226A (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102938,MONTGOMERY COUNTY MUD 226B (TX); valid_from 2026-01-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101847,MONTGOMERY COUNTY MUD 235 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101889,MONTGOMERY COUNTY MUD 236 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101829,MONTGOMERY COUNTY MUD 237 (TX); valid_from 2023-06-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101992,MONTGOMERY COUNTY MUD 238 (TX); valid_from 2023-10-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102716,MONTGOMERY COUNTY MUD 249 (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102460,MONTGOMERY COUNTY MUD 251 (TX); valid_from 2025-01-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102578,MONTGOMERY COUNTY MUD 252 (TX); valid_from 2025-05-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102666,MONTGOMERY COUNTY MUD 261 (TX); valid_from 2025-07-29; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101852,MONTGOMERY COUNTY WCID 6 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101460,MONTGOMERY-GRIMES COUNTIES MUD 146B (TX); valid_from 2022-04-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101926,MONTGOMERY-GRIMES COUNTIES MUD 146C (TX); valid_from 2023-07-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101928,MONTGOMERY-GRIMES COUNTIES MUD 146D (TX); valid_from 2023-07-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102927,RANGER RIDGE MUD OF PALO PINTO COUNTY (TX); valid_from 2026-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101634,EAGLE RIDGE MUD OF PARKER COUNTY (TX); valid_from 2022-12-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101610,ROCKWALL COUNTY MUD 10 (TX); valid_from 2022-07-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102477,SAN JACINTO COUNTY MUD 15 (TX); valid_from 2025-02-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102827,TARRANT COUNTY FWSD 2 (TX); valid_from 2025-03-18; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101834,TARRANT COUNTY MUD 2 (TX); valid_from 2023-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101635,BRIARWOOD MUD (TX); valid_from 2022-12-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102353,HERO WAY WEST MUD (TX); valid_from 2024-10-24; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102161,TRAVIS COUNTY MUD 27 (TX); valid_from 2024-04-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102049,TRAVIS COUNTY MUD 28 (TX); valid_from 2023-12-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102510,TRAVIS COUNTY MUD 29 (TX); valid_from 2025-02-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102170,TRAVIS COUNTY MUD 32 (TX); valid_from 2024-04-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102236,TRAVIS COUNTY MUD 34 (TX); valid_from 2024-06-27; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102733,TRAVIS COUNTY MUD 40 (TX); valid_from 2025-06-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102338,TRIADA MUD (TX); valid_from 2024-10-17; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101578,NEW WAVERLY MUD 1 (TX); valid_from 2022-10-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102548,WALLER COUNTY MUD 20A (TX); valid_from 2025-02-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101400,WALLER COUNTY MUD 34B (TX); valid_from 2022-02-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101401,WALLER COUNTY MUD 34C (TX); valid_from 2022-02-07; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102600,WALLER COUNTY MUD 34D (TX); valid_from 2025-01-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101561,WALLER COUNTY MUD 41 (TX); valid_from 2022-08-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102543,WALLER COUNTY MUD 42 (TX); valid_from 2025-03-28; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102135,WALLER COUNTY MUD 43 (TX); valid_from 2024-03-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101659,WALLER COUNTY MUD 44 (TX); valid_from 2023-01-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101665,WALLER COUNTY MUD 45 (TX); valid_from 2023-01-20; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102162,WALLER COUNTY MUD 47 (TX); valid_from 2024-03-26; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101869,WALLER COUNTY MUD 52 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102117,WALLER COUNTY MUD 53 (TX); valid_from 2024-02-16; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102262,WALLER COUNTY MUD 54 (TX); valid_from 2024-07-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101872,WALLER COUNTY MUD 55 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102139,WALLER COUNTY MUD 55A (TX); valid_from 2023-08-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101839,WALLER COUNTY MUD 56 (TX); valid_from 2023-06-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102264,WALLER COUNTY MUD 58 (TX); valid_from 2024-08-01; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102467,WALLER COUNTY MUD 59 (TX); valid_from 2025-02-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102546,WALLER COUNTY MUD 60A (TX); valid_from 2025-01-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102547,WALLER COUNTY MUD 60B (TX); valid_from 2025-01-31; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102739,WALLER COUNTY MUD 61 (TX); valid_from 2025-09-22; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102661,WALLER COUNTY MUD 68 (TX); valid_from 2025-07-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101591,GATEWAY MUD 1 (TX); valid_from 2022-11-08; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101932,ATLAS RANCH MUD 1 (TX); valid_from 2023-08-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102056,BURFORD RANCH MUD (TX); valid_from 2024-01-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101466,PARKSIDE ON THE RIVER MUD 2 (TX); valid_from 2022-06-09; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102244,PARKSIDE ON THE RIVER MUD 3 (TX); valid_from 2024-07-12; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101292,PRAIRIE CROSSING MUD 1 (TX); valid_from 2022-01-04; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101265,PRAIRIE CROSSING MUD 2 (TX); valid_from 2022-01-03; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102632,RIVINA MUD OF WILLIAMSON COUNTY (TX); valid_from 2025-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101602,WILLIAMSON COUNTY MUD 37 (TX); valid_from 2022-10-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102053,WILLIAMSON COUNTY MUD 38 (TX); valid_from 2023-10-25; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101931,WILLIAMSON COUNTY MUD 39 (TX); valid_from 2023-08-21; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101685,WILLIAMSON COUNTY MUD 44 (TX); valid_from 2023-02-02; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101825,WILLIAMSON COUNTY MUD 46 (TX); valid_from 2023-06-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101890,WILLIAMSON COUNTY MUD 49 (TX); valid_from 2023-06-13; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102412,WILLIAMSON COUNTY MUD 56 (TX); valid_from 2024-12-19; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:101722,WOODSIDE MUD 1 (TX); valid_from 2023-03-15; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102177,ROLLING V RANCH WCID 4 OF WISE COUNTY (TX); valid_from 2022-01-11; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102079,ROLLING V RANCH WCID 5 OF WISE COUNTY (TX); valid_from 2023-11-14; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,tceq_wdd:102203,RAMEY SUD OF WOOD COUNTY (TX); valid_from 2024-04-30; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,gcn:5531375,Greenleaf village (WI); valid_from 2024-04-05; geoid none,repo-governments-226a9939
+govbot_new_unit_not_in_registry,wi_mds_incorporation:13,Village of French Island (WI); valid_from 2026-05-21; geoid none,repo-governments-226a9939
+image_entity_unmapped,bia:cherokee-nation,seal Great seal of the cherokee nation.svg,repo-governments-226a9939
+image_entity_unmapped,bia:chuloonawick-native-village,"seal Seal of Chuloonawick, Alaska.svg",repo-governments-226a9939
+image_entity_unmapped,bia:eastern-band-of-cherokee-indians,seal ,repo-governments-226a9939
+image_entity_unmapped,bia:ewiiaapaayp-band-of-kumeyaay-indians,seal Ewiiaapaayp band seal.png,repo-governments-226a9939
+image_entity_unmapped,bia:oneida-nation,seal ,repo-governments-226a9939
+image_entity_unmapped,bia:ute-mountain-ute-tribe,seal ,repo-governments-226a9939
+image_entity_unmapped,fr:10,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:101,seal Defense Contract Audit Agency seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:102,seal Seal of the United States Department of Defense.svg,repo-governments-226a9939
+image_entity_unmapped,fr:103,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:104,seal DISA Seal.png,repo-governments-226a9939
+image_entity_unmapped,fr:105,seal Seal of the U.S. Defense Intelligence Agency.svg,repo-governments-226a9939
+image_entity_unmapped,fr:107,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:109,seal Seal of the Defense Nuclear Facilities Safety Board.png,repo-governments-226a9939
+image_entity_unmapped,fr:116,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:118,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:12,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:120,seal Seal of the United States Economic Development Administration.svg,repo-governments-226a9939
+image_entity_unmapped,fr:124,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:126,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:127,seal Seal of the U.S. Election Assistance Commission.png,repo-governments-226a9939
+image_entity_unmapped,fr:13,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:136,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:138,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:142,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:143,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:145,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:147,seal Seal of the United States Equal Employment Opportunity Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:149,seal Seal of the Executive Office for Immigration Review.svg,repo-governments-226a9939
+image_entity_unmapped,fr:151,seal Seal of the United States Export-Import Bank.svg,repo-governments-226a9939
+image_entity_unmapped,fr:153,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:154,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:158,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:159,seal Seal of the United States Federal Aviation Administration.svg,repo-governments-226a9939
+image_entity_unmapped,fr:160,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:161,seal Seal of the Federal Communications Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:162,seal US-OFCCP-Seal-RedoneLetters.svg,repo-governments-226a9939
+image_entity_unmapped,fr:164,seal Seal of the United States Federal Deposit Insurance Corporation.svg,repo-governments-226a9939
+image_entity_unmapped,fr:165,seal Seal of the United States Federal Election Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:166,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:167,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:168,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:170,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:173,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:174,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:175,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:176,seal US-FLRA-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:177,seal FLETC 2025 seal.png,repo-governments-226a9939
+image_entity_unmapped,fr:178,seal Federal Maritime Commission seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:179,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:18,seal US-AlcoholAndTobaccoTaxAndTradeBureau-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:180,seal Federal Mine Safety and Health Review Commission seal.png,repo-governments-226a9939
+image_entity_unmapped,fr:181,seal United States Department of Transportation seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:183,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:188,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:189,seal US-FRTIB-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:19,"seal Seal of the Bureau of Alcohol, Tobacco, Firearms and Explosives.svg",repo-governments-226a9939
+image_entity_unmapped,fr:192,seal Seal of the United States Federal Trade Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:194,seal FinCEN.svg,repo-governments-226a9939
+image_entity_unmapped,fr:197,seal Seal of the United States Fish and Wildlife Service.svg,repo-governments-226a9939
+image_entity_unmapped,fr:199,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:2,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:20,seal American Battle Monuments Commission seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:200,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:208,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:209,seal Logo of the United States Forest Service.svg,repo-governments-226a9939
+image_entity_unmapped,fr:210,seal US-GeneralServicesAdministration-Seal-Alt.svg,repo-governments-226a9939
+image_entity_unmapped,fr:211,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:212,seal Seal of the United States Geological Survey.svg,repo-governments-226a9939
+image_entity_unmapped,fr:213,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:215,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:216,seal Seal of the United States Department of Housing and Urban Development.svg,repo-governments-226a9939
+image_entity_unmapped,fr:217,seal Seal of the United States Government Printing Office.svg,repo-governments-226a9939
+image_entity_unmapped,fr:220,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:221,seal US Department of Health and Human Services seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:222,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:225,seal Advisory Council on Historic Preservation seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:227,seal Seal of the United States Department of Homeland Security.svg,repo-governments-226a9939
+image_entity_unmapped,fr:228,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:232,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:234,seal Seal of the United States Bureau of Indian Affairs.svg,repo-governments-226a9939
+image_entity_unmapped,fr:235,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:237,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:241,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:243,seal Information Security Oversight Office Seal bw.svg,repo-governments-226a9939
+image_entity_unmapped,fr:245,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:25,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:250,seal Inter-American Foundation Seal 2021.png,repo-governments-226a9939
+image_entity_unmapped,fr:253,seal Seal of the United States Department of the Interior.svg,repo-governments-226a9939
+image_entity_unmapped,fr:254,seal Seal of the United States Internal Revenue Service.svg,repo-governments-226a9939
+image_entity_unmapped,fr:255,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:256,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:261,seal US-InternationalTradeAdministration-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:262,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:264,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:268,seal Seal of the United States Department of Justice.svg,repo-governments-226a9939
+image_entity_unmapped,fr:27,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:271,seal Seal of the United States Department of Labor.svg,repo-governments-226a9939
+image_entity_unmapped,fr:272,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:275,seal Logo of the United States Bureau of Land Management.svg,repo-governments-226a9939
+image_entity_unmapped,fr:276,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:277,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:28,seal Seal of the United States Access Board.svg,repo-governments-226a9939
+image_entity_unmapped,fr:280,seal US-OfficeOfManagementAndBudget-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:282,seal US-MaritimeAdministration-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:285,seal Seal of the United States Merit Systems Protection Board.svg,repo-governments-226a9939
+image_entity_unmapped,fr:287,seal Seal of the United States Millennium Challenge Corporation.svg,repo-governments-226a9939
+image_entity_unmapped,fr:29,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:291,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:30,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:301,seal NASA seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:304,seal Seal of the United States National Archives and Records Administration.svg,repo-governments-226a9939
+image_entity_unmapped,fr:32,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:329,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:33,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:330,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:334,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:335,seal NCUA official seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:342,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:344,seal US-NationalGeospatialIntelligenceAgency-OrigSeal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:349,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:351,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:361,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:362,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:367,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:377,seal Office of Navajo and Hopi Indian Relocation Logo.png,repo-governments-226a9939
+image_entity_unmapped,fr:378,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:383,seal Seal of the United States Nuclear Regulatory Commission.png,repo-governments-226a9939
+image_entity_unmapped,fr:386,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:390,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:4,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:40,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:402,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:403,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:405,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:406,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:41,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:410,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:42,seal Seal of the United States Census Bureau.svg,repo-governments-226a9939
+image_entity_unmapped,fr:436,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:437,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:44,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:442,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:447,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:45,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:454,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:46,seal Seal of the Central Intelligence Agency (B&W).svg,repo-governments-226a9939
+image_entity_unmapped,fr:465,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:466,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:468,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:469,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:47,seal US-ChemicalSafetyBoard-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:470,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:476,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:481,seal US-SurfaceTransportationBoard-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:486,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:489,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:492,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:494,seal Transportation Security Administration seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:497,seal Seal of the United States Department of the Treasury.svg,repo-governments-226a9939
+image_entity_unmapped,fr:499,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:5,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:501,seal Seal of U.S. Customs and Border Protection.png,repo-governments-226a9939
+image_entity_unmapped,fr:503,seal ICE ERO Officer Badge.png,repo-governments-226a9939
+image_entity_unmapped,fr:505,seal Seal of the United States-China Economic and Security Review Commission.png,repo-governments-226a9939
+image_entity_unmapped,fr:506,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:52,seal USCCR Seal.png,repo-governments-226a9939
+image_entity_unmapped,fr:520,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:53,seal Seal of the United States Coast Guard.svg,repo-governments-226a9939
+image_entity_unmapped,fr:538,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:54,seal Seal of the United States Department of Commerce.svg,repo-governments-226a9939
+image_entity_unmapped,fr:543,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:55,seal Seal of the United States Space Force.svg,repo-governments-226a9939
+image_entity_unmapped,fr:559,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:564,seal Seal of the U.S. Postal Regulatory Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:566,seal Seal of the Administrative Conference of the United States.png,repo-governments-226a9939
+image_entity_unmapped,fr:568,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:57,seal United States Commission of Fine Arts - seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:573,seal Seal of the Consumer Financial Protection Bureau.svg,repo-governments-226a9939
+image_entity_unmapped,fr:575,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:576,seal BSEE logo.jpg,repo-governments-226a9939
+image_entity_unmapped,fr:578,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:579,seal Seal for the Special Inspector General for Afghanistan Reconstruction.gif,repo-governments-226a9939
+image_entity_unmapped,fr:582,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:584,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:586,seal Onrr logo 2011.jpg,repo-governments-226a9939
+image_entity_unmapped,fr:587,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:589,seal US-NEH-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:592,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:594,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:596,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:597,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:6,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:600,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:602,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:603,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:604,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:606,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:608,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:609,seal Seal of the Saint Lawrence Seaway Development Corporation.svg,repo-governments-226a9939
+image_entity_unmapped,fr:610,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:611,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:612,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:613,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:614,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:615,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:616,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:617,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:619,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:620,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:622,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:624,seal DRAgoldseal white-background.png,repo-governments-226a9939
+image_entity_unmapped,fr:625,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:626,seal Seal of the Office of Inspector General US Department of the Interior.png,repo-governments-226a9939
+image_entity_unmapped,fr:627,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:7,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:74,seal US-CPPBSD-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:77,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:78,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:8,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:80,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:81,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:84,seal Seal of the United States Consumer Product Safety Commission.svg,repo-governments-226a9939
+image_entity_unmapped,fr:85,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:87,seal US-CopyrightOffice-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:88,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:89,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:91,logo ,repo-governments-226a9939
+image_entity_unmapped,fr:92,seal US-CouncilOnEnvironmentalQuality-Seal.svg,repo-governments-226a9939
+image_entity_unmapped,fr:96,logo ,repo-governments-226a9939
+image_entity_unmapped,gcn:0649582,"seal Seal of Mountain House, California.png",repo-governments-226a9939
 not_in_seating_charts,CT_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
 not_in_seating_charts,DE_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
 not_in_seating_charts,HI_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5

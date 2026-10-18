@@ -823,7 +823,7 @@ FOR = inst_foreign.load(R, A.foreign_ref); FOR_SHA = FOR['commit']
 S_GF = {f: f'Governments bot {f} (foreign layer)' for f in inst_foreign.FILES}
 def _newrow(**kw):
     e = {c: '' for c in COLS}
-    for k_ in ('v2_layer', 'v2_row', 'v2_key', 'predecessor_id', 'successor_id', 'valid_from', 'valid_to', 'cog_pid6', 'parent_id', 'iso_3166_2'): e[k_] = ''
+    for k_ in ('v2_layer', 'v2_row', 'v2_key', 'predecessor_id', 'successor_id', 'valid_from', 'valid_to', 'cog_pid6', 'parent_id', 'iso_3166_2', 'constituent_qid', 'valid_from_source'): e[k_] = ''
     e.update(kw); e['alias'] = esc(e['alias']) if e['alias'] else ''
     e['parent_entity_id'] = e['parent_id']; e['_alias'] = set(); e['_v2'] = []; e['_src'] = []; e['_flags'] = []
     return e
@@ -940,7 +940,7 @@ def build_registry():
     GAPSRC['not_in_seating_charts'] = atom(S_SEATMETA)[0]
     atom(S_BODIES); atom(S_CITYB)
     for f_ in inst_foreign.FILES: atom(S_GF[f_])
-    GAPSRC['govbot_foreign_parent_differs'] = GAPSRC['govbot_foreign_parent_missing'] = ';'.join(atom(S_GF[f_])[0] for f_ in inst_foreign.FILES[:3])   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
+    GAPSRC['govbot_foreign_parent_differs'] = GAPSRC['govbot_foreign_parent_missing'] = GAPSRC['govbot_foreign_attr_differs'] = ';'.join(atom(S_GF[f_])[0] for f_ in inst_foreign.FILES[:3])   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
     for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
                'territory_sovereign_several_candidates', 'wikidata_status_ambiguous', 'world_entity_excluded_no_sovereign'): GAPSRC[g_] = wd_
     GAPSRC['wikidata_qid_missing'] = f'{nec};{wd_}'
@@ -951,7 +951,7 @@ def build_registry():
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2', 'constituent_qid', 'valid_from_source']
 ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'subdivision', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:

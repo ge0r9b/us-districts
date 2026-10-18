@@ -25,8 +25,11 @@ def load(R, sha):
     rows = []
     for f in ['states.csv'] + [x[len(P):] for x in sorted(files)] + ['federal_agencies.csv', 'tribes.csv']:
         for r in _csv(R, sha, f): r['_file'] = f; rows.append(r)
-    return {'rows': rows, 'registry': _csv(R, sha, 'id_registry.csv'), 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
-            'images': _csv(R, sha, 'images.csv'), 'images_gaps': _csv(R, sha, 'images_gaps.csv'), 'sources': _csv(R, sha, 'sources.csv')}
+    # the foreign layer (foreign/*.csv and the images of foreign ids, territory:74 included) is read by tools/inst_foreign.py
+    import inst_foreign
+    dom = lambda i: not (inst_foreign.is_foreign_id(i) or i == 'territory:74')
+    return {'rows': rows, 'registry': [x for x in _csv(R, sha, 'id_registry.csv') if dom(x['entity_id'])], 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
+            'images': [x for x in _csv(R, sha, 'images.csv') if dom(x['entity_id'])], 'images_gaps': _csv(R, sha, 'images_gaps.csv'), 'sources': _csv(R, sha, 'sources.csv')}
 
 def integrate(G, ents, gidx, consolidated=None):
     consolidated = consolidated or {}   # cog_pid6 -> county entity kept separate from its consolidated city (CoG code not a TIGER place)
@@ -116,7 +119,8 @@ def integrate(G, ents, gidx, consolidated=None):
         if not tgt and fid in ents: tgt = fid   # nation:us and other ids the registry shares verbatim
         if not tgt:
             gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file']}); st['images_unmapped'] += 1
-        sid = ['wikidata_images', 'enwiki_api' if 'wikipedia.org' in (x.get('source_url') or '') else 'commons_api']
+        su = x.get('source_url') or ''
+        sid = ['fr_agencies'] if 'federalregister.gov' in su else ['wikidata_images', 'enwiki_api' if 'wikipedia.org' in su else 'commons_api']
         assert x['image_kind'] in ('seal', 'flag', 'logo'), x['image_kind']
         fu = x['license'] == 'fair-use'
         if fu != bool(x['usage_basis']): gaps.append({'gap': 'image_fair_use_inconsistent', 'key': fid, 'detail': f"license {x['license']}; usage_basis {'set' if x['usage_basis'] else 'empty'}"})

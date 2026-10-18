@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "c6f43a10ade83c0f4636c02c6e2167926beb95f8",
+  "repo_head": "1fde48d8cb3e2164b888317b84787e4b93988845",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -193,10 +193,9 @@
   "wikidata_qid_via_home_part_rule": 1,
   "nation_not_un_member": 2,
   "not_in_source_list": 2,
-  "wikidata_qid_conflict": 1,
-  "image_entity_unmapped": 49,
+  "image_entity_unmapped": 274,
   "govbot_ceased_partial": 1,
-  "govbot_new_unit_not_in_registry": 12,
+  "govbot_new_unit_not_in_registry": 318,
   "not_in_seating_charts": 15,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
@@ -211,8 +210,11 @@
   "bot_school_rows_with_leaid": 13205,
   "bot_leaids_not_a_tiger2024_school_entity": 274
  },
- "governments_ref": "bc2466e4d78edf035ab1400aacb28557fe5146ec",
+ "governments_ref": "bb5e3423c5897be09aa5d9442890b812cc10971c",
  "foreign": {
+  "carried_constituent_qid": 2,
+  "carried_valid_from": 173,
+  "carried_valid_from_source": 173,
   "feed_only_parent_review": 22,
   "feed_only_review_status": 2,
   "feed_rows": 3836,
@@ -226,15 +228,14 @@
   "minted|subdivision": 3480,
   "minted|territory": 35,
   "qid_carried_minted": 3409,
-  "qid_conflict": 1,
   "relations_parent": 3515,
-  "ref": "348fce442c8a30496c8d6e95aab36d12c71eb3dc",
+  "ref": "bb5e3423c5897be09aa5d9442890b812cc10971c",
   "files": {
-   "foreign/dependencies.csv": "270c08a6812a9ce312552318a5a39c0ec8cb8ce234bf495db6b5f97eba3b7f5f",
+   "foreign/dependencies.csv": "b154a74f3527f475c4857a357465c5dd07c6dddf5e5e886f8ac109009a95f6a4",
    "foreign/iso_domestic_crosswalk.csv": "f970df22bd678bdb4ea0c3bf920ab49894b5e11899c834e9a058d73299c79aa2",
-   "foreign/nations.csv": "77933ceec6f24a0ac673ba9eaab80b43ec9764b861692b38cb274588a61c29fa",
-   "foreign/subdivisions.csv": "15849b737112586730bcd0682f2e4a90b4fc617b9369eafe6ed94f6029fa58ec",
-   "images.csv": "e1bae4736baf23cf49e58c421f77088665ea4d8eed8c4032530902627845fd33"
+   "foreign/nations.csv": "e5a6858ce7315268eeec6c6c8fdb9a9d72272c68576ecd132dbf3ed50f7af3b4",
+   "foreign/subdivisions.csv": "dee0fbacbea5776acb48783b78437878ed4d1b9f34beab36d914fb9949193dbc",
+   "images.csv": "c164094696a4390a4667617bbfb4af77c727d05070c64c408c684c3526a981d4"
   },
   "review_status": [
    "nation:eh",
@@ -247,65 +248,66 @@
    "world_entity_excluded_no_sovereign|territory:im"
   ],
   "images_icons": {
-   "icons": 2925,
+   "icons": 3381,
    "icons_by_kind_role": {
-    "county|seal": 321,
-    "municipality|seal": 648,
+    "county|seal": 323,
+    "municipality|seal": 887,
     "nation|flag": 195,
     "province|seal": 10,
     "state|seal": 51,
     "subdivision|seal": 1537,
-    "territory|seal": 45,
-    "township|seal": 118
+    "territory|seal": 43,
+    "township|seal": 335
    },
-   "entities_with_images_no_icon": 1076
+   "entities_with_images_no_icon": 4690
   }
  },
  "feed_map_by_status": {
-  "feed_only": 40630,
+  "feed_only": 40935,
   "mapped": 55511,
-  "unmapped": 973
+  "unmapped": 974
  },
  "images_by_public_role": {
-  "no|seal": 821,
+  "no|logo": 141,
+  "no|seal": 4433,
   "yes|flag": 1783,
-  "yes|seal": 2949
+  "yes|seal": 3489
  },
  "governments_feed": {
   "ceased_applied": 24,
   "ceased_partial": 1,
-  "ceased_unmapped": 39,
+  "ceased_unmapped": 51,
   "consolidated_counties_gov_status_set": 5,
   "consolidated_relations": 5,
-  "feed_ids": 93278,
-  "images": 2024,
-  "images_fair_use": 821,
-  "images_unmapped": 6,
+  "feed_ids": 93584,
+  "images": 6317,
+  "images_fair_use": 4574,
+  "images_unmapped": 231,
   "mapped|county": 3031,
   "mapped|municipality": 19493,
   "mapped|school_district": 12941,
   "mapped|state": 50,
   "mapped|township": 16185,
   "new_units_applied": 16,
-  "new_units_unmapped": 12,
+  "new_units_unmapped": 318,
   "qid_carried": 38623,
-  "registry_ids": 93278,
+  "registry_ids": 93584,
   "source_id_collisions": 0,
   "unmapped|federal_agency": 473,
   "unmapped|municipality": 17,
-  "unmapped|school_district": 921,
-  "unmapped|special_district": 39555,
+  "unmapped|school_district": 922,
+  "unmapped|special_district": 39860,
   "unmapped|township": 35,
   "unmapped|tribe": 577,
   "wikidata_duplicates_blanked": 0
  },
- "feed_map_rows": 97114,
- "images_rows": 5553,
+ "feed_map_rows": 97420,
+ "images_rows": 9846,
  "wikidata_filled": 42249,
- "sources": 105,
+ "sources": 111,
  "sources_used_here": 35,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 134,
+ "source_urls": 140,
  "source_record_id_filled": {
   "entities": 57811,
   "xwalk": 58591
