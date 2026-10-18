@@ -1,0 +1,617 @@
+[
+ {
+  "layer": "schools",
+  "state": "Alabama",
+  "name": "Fort Rucker School District",
+  "year": "2024",
+  "geoid": "0100001",
+  "strict_fail": "precinct Dale County straddles the boundary (60 % inside)",
+  "pop2020": 4480,
+  "popw": "population-weighted, 1 precincts",
+  "result": "gray",
+  "value": [
+   86,
+   568,
+   662
+  ],
+  "why": "consistency rule failed vs 2020 [111, 185, 308] (ratio 2.15, R share 0.87 vs 0.62)",
+  "rejected": [
+   86,
+   568,
+   662
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "Alabama",
+  "name": "Guntersville City School District",
+  "year": "2024",
+  "geoid": "0101690",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 8553,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Arkansas",
+  "name": "Jessieville School District",
+  "year": "2024",
+  "geoid": "0507920",
+  "strict_fail": "precinct Garland County straddles the boundary (10 % inside)",
+  "pop2020": 7346,
+  "popw": "population in precincts with votes 78 %",
+  "result": "gray",
+  "why": "precinct Garland County straddles the boundary (10 % inside); population in precincts with votes 78 %"
+ },
+ {
+  "layer": "schools",
+  "state": "California",
+  "name": "Washington Unified School District (Yolo)",
+  "year": "2020",
+  "geoid": "0641580",
+  "strict_fail": "precinct Sacramento County straddles the boundary (3 % inside)",
+  "pop2020": 53928,
+  "popw": "population-weighted, 8 precincts",
+  "result": "estimate",
+  "value": [
+   14616,
+   8081,
+   23239
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "California",
+  "name": "Mountain View Elementary School District (Los Angeles)",
+  "year": "2020",
+  "geoid": "0626190",
+  "strict_fail": "precinct Los Angeles County straddles the boundary (12 % inside)",
+  "pop2020": 54223,
+  "popw": "population-weighted, 13 precincts",
+  "result": "estimate",
+  "value": [
+   9723,
+   3117,
+   13124
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "California",
+  "name": "Ocean View Elementary School District (Ventura)",
+  "year": "2020",
+  "geoid": "0628170",
+  "strict_fail": "precinct Ventura County straddles the boundary (4 % inside)",
+  "pop2020": 17327,
+  "popw": "population-weighted, 12 precincts",
+  "result": "estimate",
+  "value": [
+   3649,
+   1351,
+   5109
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "California",
+  "name": "Kashia Elementary School District",
+  "year": "2020",
+  "geoid": "0632340",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 70,
+  "popw": "population-weighted, 1 precincts",
+  "result": "gray",
+  "value": [
+   41,
+   7,
+   48
+  ],
+  "why": "consistency rule failed vs 2024 [8, 1, 11] (ratio 0.23, R share 0.15 vs 0.11)",
+  "rejected": [
+   41,
+   7,
+   48
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "Colorado",
+  "name": "Aspen School District 1",
+  "year": "2024",
+  "geoid": "0802280",
+  "strict_fail": "precinct Pitkin County straddles the boundary (85 % inside)",
+  "pop2020": 13190,
+  "popw": "population in precincts with votes 76 %",
+  "result": "gray",
+  "why": "precinct Pitkin County straddles the boundary (85 % inside); population in precincts with votes 76 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Colorado",
+  "name": "Salida School District R-32",
+  "year": "2024",
+  "geoid": "0806330",
+  "strict_fail": "precinct Fremont County straddles the boundary (37 % inside)",
+  "pop2020": 10183,
+  "popw": "population in precincts with votes 61 %",
+  "result": "gray",
+  "why": "precinct Fremont County straddles the boundary (37 % inside); population in precincts with votes 61 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Kentucky",
+  "name": "Graves County School District",
+  "year": "2020",
+  "geoid": "2102280",
+  "result": "gray",
+  "why": "override: VEST 2020 reports Graves County as one county-wide unit (17,019) that includes Mayfield ISD; the 'exact' county total is not the district (override in recheck_identical.py)"
+ },
+ {
+  "layer": "schools",
+  "state": "Kentucky",
+  "name": "Mayfield Independent School District",
+  "year": "2020",
+  "geoid": "2103900",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 9549,
+  "popw": "population-weighted, 1 precincts",
+  "result": "gray",
+  "value": [
+   928,
+   3441,
+   4434
+  ],
+  "why": "consistency rule failed vs 2024 [661, 1312, 2010] (ratio 0.45, R share 0.79 vs 0.66)",
+  "rejected": [
+   928,
+   3441,
+   4434
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "Kentucky",
+  "name": "Somerset Independent School District",
+  "year": "2024",
+  "geoid": "2105430",
+  "strict_fail": "precinct Pulaski County straddles the boundary (84 % inside)",
+  "pop2020": 9536,
+  "popw": "population in precincts with votes 54 %",
+  "result": "gray",
+  "why": "precinct Pulaski County straddles the boundary (84 % inside); population in precincts with votes 54 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Kentucky",
+  "name": "East Bernstadt Independent School District",
+  "year": "2024",
+  "geoid": "2101590",
+  "strict_fail": "precinct Laurel County straddles the boundary (6 % inside)",
+  "pop2020": 1326,
+  "popw": "population in precincts with votes 85 %",
+  "result": "gray",
+  "why": "precinct Laurel County straddles the boundary (6 % inside); population in precincts with votes 85 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Kentucky",
+  "name": "Laurel County School District for East Bernstadt ISD",
+  "year": "2024",
+  "geoid": "2121001",
+  "strict_fail": "precinct Laurel County straddles the boundary (6 % inside)",
+  "pop2020": 1326,
+  "popw": "population in precincts with votes 85 %",
+  "result": "gray",
+  "why": "precinct Laurel County straddles the boundary (6 % inside); population in precincts with votes 85 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Maine",
+  "name": "Sagadahoc Unorganized Territory",
+  "year": "2020",
+  "geoid": "2382004",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 0,
+  "result": "gray",
+  "why": "no residents in the 2020 Census (0 population): no voters, no source can exist"
+ },
+ {
+  "layer": "schools",
+  "state": "Mississippi",
+  "name": "South Delta School District",
+  "year": "2024",
+  "geoid": "2803960",
+  "strict_fail": "precincts inside cover 53 %",
+  "pop2020": 5008,
+  "popw": "population in precincts with votes 76 %",
+  "result": "gray",
+  "why": "precincts inside cover 53 %; population in precincts with votes 76 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Mississippi",
+  "name": "Western Line School District",
+  "year": "2024",
+  "geoid": "2804680",
+  "strict_fail": "precinct Washington County straddles the boundary (31 % inside)",
+  "pop2020": 9501,
+  "popw": "population-weighted, 13 precincts",
+  "result": "gray",
+  "value": [
+   1703,
+   1544,
+   3274
+  ],
+  "why": "consistency rule failed vs 2020 [4312, 3342, 7733] (ratio 0.42, R share 0.48 vs 0.44)",
+  "rejected": [
+   1703,
+   1544,
+   3274
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "Missouri",
+  "name": "Cape Girardeau 63 School District",
+  "year": "2024",
+  "geoid": "2907120",
+  "strict_fail": "precinct Cape Girardeau County straddles the boundary (84 % inside)",
+  "pop2020": 39685,
+  "popw": "population in precincts with votes 76 %",
+  "result": "gray",
+  "why": "precinct Cape Girardeau County straddles the boundary (84 % inside); population in precincts with votes 76 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Missouri",
+  "name": "Delta C-7 School District",
+  "year": "2024",
+  "geoid": "2905730",
+  "strict_fail": "precinct Pemiscot County straddles the boundary (9 % inside)",
+  "pop2020": 681,
+  "popw": "population in precincts with votes 30 %",
+  "result": "gray",
+  "why": "precinct Pemiscot County straddles the boundary (9 % inside); population in precincts with votes 30 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Missouri",
+  "name": "Pettis County R-XII School District",
+  "year": "2024",
+  "geoid": "2924690",
+  "strict_fail": "precinct Pettis County straddles the boundary (5 % inside)",
+  "pop2020": 1504,
+  "popw": "population in precincts with votes 12 %",
+  "result": "gray",
+  "why": "precinct Pettis County straddles the boundary (5 % inside); population in precincts with votes 12 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Montana",
+  "name": "Lambert Elementary School District",
+  "year": "2024",
+  "geoid": "3015990",
+  "strict_fail": "precinct Richland County straddles the boundary (10 % inside)",
+  "pop2020": 482,
+  "popw": "population in precincts with votes 27 %",
+  "result": "gray",
+  "why": "precinct Richland County straddles the boundary (10 % inside); population in precincts with votes 27 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Montana",
+  "name": "Lambert High School District",
+  "year": "2024",
+  "geoid": "3016020",
+  "strict_fail": "precinct Richland County straddles the boundary (28 % inside)",
+  "pop2020": 461,
+  "popw": "population in precincts with votes 23 %",
+  "result": "gray",
+  "why": "precinct Richland County straddles the boundary (28 % inside); population in precincts with votes 23 %"
+ },
+ {
+  "layer": "schools",
+  "state": "New Jersey",
+  "name": "Ocean Township School District (Ocean)",
+  "year": "2020",
+  "geoid": "3412090",
+  "strict_fail": "precinct Ocean County straddles the boundary (5 % inside)",
+  "pop2020": 8835,
+  "popw": "population-weighted, 1 precincts",
+  "result": "estimate",
+  "value": [
+   1950,
+   3963,
+   6024
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "New Jersey",
+  "name": "Gibbsboro Borough School District",
+  "year": "2024",
+  "geoid": "3405850",
+  "strict_fail": "precinct Camden County straddles the boundary (3 % inside)",
+  "pop2020": 2189,
+  "popw": "population in precincts with votes 46 %",
+  "result": "gray",
+  "why": "precinct Camden County straddles the boundary (3 % inside); population in precincts with votes 46 %"
+ },
+ {
+  "layer": "schools",
+  "state": "New Mexico",
+  "name": "Loving Municipal Schools",
+  "year": "2020",
+  "geoid": "3501710",
+  "strict_fail": "precinct Eddy County straddles the boundary (28 % inside)",
+  "pop2020": 1986,
+  "popw": "population in precincts with votes 84 %",
+  "result": "gray",
+  "why": "precinct Eddy County straddles the boundary (28 % inside); population in precincts with votes 84 %"
+ },
+ {
+  "layer": "schools",
+  "state": "New York",
+  "name": "New Suffolk Common School District",
+  "year": "2020",
+  "geoid": "3620520",
+  "strict_fail": "precinct Suffolk County straddles the boundary (47 % inside)",
+  "pop2020": 405,
+  "popw": "population-weighted, 1 precincts",
+  "result": "estimate",
+  "value": [
+   149,
+   145,
+   297
+  ]
+ },
+ {
+  "layer": "schools",
+  "state": "New York",
+  "name": "Bath Central School District",
+  "year": "2024",
+  "geoid": "3604050",
+  "strict_fail": "precinct Steuben County straddles the boundary (31 % inside)",
+  "pop2020": 10507,
+  "popw": "population in precincts with votes 72 %",
+  "result": "gray",
+  "why": "precinct Steuben County straddles the boundary (31 % inside); population in precincts with votes 72 %"
+ },
+ {
+  "layer": "schools",
+  "state": "New York",
+  "name": "Geneva City School District",
+  "year": "2024",
+  "geoid": "3611970",
+  "strict_fail": "precinct Yates County straddles the boundary (3 % inside)",
+  "pop2020": 17208,
+  "popw": "population in precincts with votes 91 %",
+  "result": "gray",
+  "why": "precinct Yates County straddles the boundary (3 % inside); population in precincts with votes 91 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Ohio",
+  "name": "Shelby City School District",
+  "year": "2024",
+  "geoid": "3910009",
+  "strict_fail": "precinct Richland County straddles the boundary (87 % inside)",
+  "pop2020": 13114,
+  "popw": "population in precincts with votes 90 %",
+  "result": "gray",
+  "why": "precinct Richland County straddles the boundary (87 % inside); population in precincts with votes 90 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Ohio",
+  "name": "Carey Exempted Village School District",
+  "year": "2024",
+  "geoid": "3904526",
+  "strict_fail": "precinct Wyandot County straddles the boundary (60 % inside)",
+  "pop2020": 5140,
+  "popw": "population in precincts with votes 80 %",
+  "result": "gray",
+  "why": "precinct Wyandot County straddles the boundary (60 % inside); population in precincts with votes 80 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Oregon",
+  "name": "Pleasant Hill School District 1",
+  "year": "2024",
+  "geoid": "4109870",
+  "strict_fail": "precinct Lane County straddles the boundary (5 % inside)",
+  "pop2020": 6858,
+  "popw": "population in precincts with votes 55 %",
+  "result": "gray",
+  "why": "precinct Lane County straddles the boundary (5 % inside); population in precincts with votes 55 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Texas",
+  "name": "Boys Ranch Independent School District",
+  "year": "2024",
+  "geoid": "4811040",
+  "result": "gray",
+  "why": "override: Boys Ranch is a residential children's ranch: most of its 120 residents are minors, so block population is not a proxy for voters and a population-weighted share would place adult votes on children; no separate polling unit"
+ },
+ {
+  "layer": "schools",
+  "state": "Texas",
+  "name": "Boys Ranch Independent School District",
+  "year": "2020",
+  "geoid": "4811040",
+  "result": "gray",
+  "why": "override: same as 2024"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Buels Gore School District",
+  "year": "2024",
+  "geoid": "5000011",
+  "strict_fail": "no votes",
+  "pop2020": 29,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "no votes; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Ferdinand School District",
+  "year": "2024",
+  "geoid": "5000012",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 16,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Glastenbury School District",
+  "year": "2024",
+  "geoid": "5000013",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 9,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Somerset School District",
+  "year": "2024",
+  "geoid": "5000014",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 6,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Averill School District",
+  "year": "2024",
+  "geoid": "5000015",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 21,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Averill School District",
+  "year": "2020",
+  "geoid": "5000015",
+  "result": "gray",
+  "why": "override: Averill (21 residents) is reported with Canaan as one official unit 'Canaan/Averill'; no official split (same ruling as Maine's combined units)"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Averys Gore School District",
+  "year": "2024",
+  "geoid": "5000016",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 0,
+  "result": "gray",
+  "why": "no residents in the 2020 Census (0 population): no voters, no source can exist"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Averys Gore School District",
+  "year": "2020",
+  "geoid": "5000016",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 0,
+  "result": "gray",
+  "why": "no residents in the 2020 Census (0 population): no voters, no source can exist"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Lewis School District",
+  "year": "2020",
+  "geoid": "5000017",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 2,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Warners Grant School District",
+  "year": "2024",
+  "geoid": "5000018",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 0,
+  "result": "gray",
+  "why": "no residents in the 2020 Census (0 population): no voters, no source can exist"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Warners Grant School District",
+  "year": "2020",
+  "geoid": "5000018",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 0,
+  "result": "gray",
+  "why": "no residents in the 2020 Census (0 population): no voters, no source can exist"
+ },
+ {
+  "layer": "schools",
+  "state": "Vermont",
+  "name": "Warrens Gore School District",
+  "year": "2024",
+  "geoid": "5000019",
+  "strict_fail": "precincts inside cover 0 %",
+  "pop2020": 2,
+  "popw": "population in precincts with votes 0 %",
+  "result": "gray",
+  "why": "precincts inside cover 0 %; population in precincts with votes 0 %"
+ },
+ {
+  "layer": "schools",
+  "state": "Wisconsin",
+  "name": "Sturgeon Bay School District",
+  "year": "2024",
+  "geoid": "5514610",
+  "strict_fail": "precinct Door County straddles the boundary (74 % inside)",
+  "pop2020": 9030,
+  "popw": "population-weighted, 22 precincts",
+  "result": "estimate",
+  "value": [
+   2979,
+   2297,
+   5340
+  ]
+ },
+ {
+  "layer": "senate",
+  "state": "Wyoming",
+  "name": "018",
+  "year": "2024",
+  "geoid": "56018",
+  "strict_fail": "precinct Park County straddles the boundary (28 % inside)",
+  "pop2020": 18050,
+  "popw": "population-weighted, 12 precincts",
+  "result": "estimate",
+  "value": [
+   2181,
+   8302,
+   10643
+  ]
+ }
+]

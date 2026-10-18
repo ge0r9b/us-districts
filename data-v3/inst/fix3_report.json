@@ -1,0 +1,805 @@
+{
+ "prep": {
+  "Oregon": {
+   "Columbia County": {
+    "source_votes": "Columbia County Clerk (OR), November 5, 2024 General Election Certified Final Results, Precinct Abstract Report (Dec 2, 2024), https://www.columbiacountyor.gov/media/Election/Abstracts/2024-11-05_SUMMARY-PRECINCT_certified.pdf ; total = all presidential candidates + write-ins",
+    "units": 33,
+    "located_units": 33,
+    "not_located": {},
+    "located": [
+     12895,
+     17227,
+     31334
+    ],
+    "located_plus_not_located": [
+     12895,
+     17227,
+     31334
+    ],
+    "election2024_js": [
+     12865,
+     17184,
+     31094
+    ],
+    "dem_rep_vs_election2024_js": 1.00243,
+    "new_units_from_2020": [
+     {
+      "unit": "10",
+      "from2020": [
+       "10"
+      ],
+      "votes2024": [
+       370,
+       445,
+       841
+      ],
+      "votes2020": [
+       405,
+       492,
+       923
+      ],
+      "overlap_with_app_2024": 0.0083,
+      "turnout_ratio_scaled": 0.911,
+      "rep_share_2024": 0.546,
+      "rep_share_2020": 0.548
+     },
+     {
+      "unit": "15",
+      "from2020": [
+       "15"
+      ],
+      "votes2024": [
+       392,
+       619,
+       1045
+      ],
+      "votes2020": [
+       442,
+       625,
+       1110
+      ],
+      "overlap_with_app_2024": 0.0034,
+      "turnout_ratio_scaled": 0.941,
+      "rep_share_2024": 0.612,
+      "rep_share_2020": 0.586
+     },
+     {
+      "unit": "21",
+      "from2020": [
+       "21"
+      ],
+      "votes2024": [
+       1108,
+       1164,
+       2386
+      ],
+      "votes2020": [
+       1190,
+       1169,
+       2489
+      ],
+      "overlap_with_app_2024": 0.0,
+      "turnout_ratio_scaled": 0.959,
+      "rep_share_2024": 0.512,
+      "rep_share_2020": 0.496
+     },
+     {
+      "unit": "35",
+      "from2020": [
+       "35"
+      ],
+      "votes2024": [
+       517,
+       567,
+       1128
+      ],
+      "votes2020": [
+       570,
+       601,
+       1208
+      ],
+      "overlap_with_app_2024": 0.0012,
+      "turnout_ratio_scaled": 0.934,
+      "rep_share_2024": 0.523,
+      "rep_share_2020": 0.513
+     },
+     {
+      "unit": "48",
+      "from2020": [
+       "48"
+      ],
+      "votes2024": [
+       115,
+       249,
+       375
+      ],
+      "votes2020": [
+       125,
+       251,
+       393
+      ],
+      "overlap_with_app_2024": 0.0029,
+      "turnout_ratio_scaled": 0.954,
+      "rep_share_2024": 0.684,
+      "rep_share_2020": 0.668
+     }
+    ],
+    "why": "same precinct number in VEST 2020 (Columbia keeps its 2-digit precinct numbers); 2020 polygon not covered by any app 2024 polygon",
+    "problems": []
+   }
+  },
+  "Wyoming": {
+   "Uinta County": {
+    "source_votes": "Wyoming county clerk, 2024 General 'Official Precinct-by-Precinct Summary' (Uinta County), United States President; total = Trump + Harris + Oliver + write-ins (over/under votes excluded). Published via the WY Secretary of State election results page",
+    "units": 10,
+    "located_units": 10,
+    "not_located": {},
+    "located": [
+     1561,
+     7282,
+     9089
+    ],
+    "located_plus_not_located": [
+     1561,
+     7282,
+     9089
+    ],
+    "election2024_js": [
+     1561,
+     7282,
+     8984
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "4-1",
+      "from2020": [
+       "FT. BRIDGER"
+      ],
+      "votes2024": [
+       114,
+       886,
+       1023
+      ],
+      "votes2020": [
+       125,
+       901,
+       1053
+      ],
+      "overlap_with_app_2024": 0.0001,
+      "turnout_ratio_scaled": 0.972,
+      "rep_share_2024": 0.886,
+      "rep_share_2020": 0.878
+     }
+    ],
+    "why": "Census 2020 TIGER VTD 56041 VTDST20 000401 'FT. BRIDGER' = precinct 4-1; the only 2020 precinct not covered by the app's 2024 polygons",
+    "problems": []
+   },
+   "Weston County": {
+    "source_votes": "Wyoming county clerk, 2024 General 'Official Precinct-by-Precinct Summary' (Weston County), United States President; total = Trump + Harris + Oliver + write-ins (over/under votes excluded). Published via the WY Secretary of State election results page",
+    "units": 8,
+    "located_units": 8,
+    "not_located": {},
+    "located": [
+     378,
+     3069,
+     3512
+    ],
+    "located_plus_not_located": [
+     378,
+     3069,
+     3512
+    ],
+    "election2024_js": [
+     378,
+     3069,
+     3494
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "1-1",
+      "from2020": [
+       "NEWCASTLE RURAL OUTSIDE"
+      ],
+      "votes2024": [
+       67,
+       628,
+       705
+      ],
+      "votes2020": [
+       53,
+       588,
+       651
+      ],
+      "overlap_with_app_2024": 0.0003,
+      "turnout_ratio_scaled": 1.083,
+      "rep_share_2024": 0.904,
+      "rep_share_2020": 0.917
+     },
+     {
+      "unit": "4-1",
+      "from2020": [
+       "UPTON INSIDE"
+      ],
+      "votes2024": [
+       39,
+       452,
+       496
+      ],
+      "votes2020": [
+       28,
+       466,
+       501
+      ],
+      "overlap_with_app_2024": 0.0015,
+      "turnout_ratio_scaled": 0.99,
+      "rep_share_2024": 0.921,
+      "rep_share_2020": 0.943
+     },
+     {
+      "unit": "5-3",
+      "from2020": [
+       "NEWCASTLE SOUTH"
+      ],
+      "votes2024": [
+       63,
+       408,
+       479
+      ],
+      "votes2020": [
+       63,
+       419,
+       498
+      ],
+      "overlap_with_app_2024": 0.004,
+      "turnout_ratio_scaled": 0.962,
+      "rep_share_2024": 0.866,
+      "rep_share_2020": 0.869
+     }
+    ],
+    "why": "Census 2020 TIGER VTD 56045 VTDST20 000101 / 000401 / 000503 = precincts 1-1 / 4-1 / 5-3; the three 2020 precincts not covered by the app's 2024 polygons",
+    "problems": []
+   }
+  },
+  "Missouri": {
+   "Cape Girardeau County": {
+    "source_votes": "MEDSL 2024-elections-official, individual_states/mo24 (CC0), compiled from the official county returns; US PRESIDENT, mode TOTAL; total = all candidates incl. write-ins",
+    "units": 28,
+    "located_units": 26,
+    "not_located": {
+     "CENTRAL POLL": [
+      450,
+      650,
+      1121
+     ],
+     "ABSENTEE": [
+      4448,
+      10969,
+      15532
+     ]
+    },
+    "located": [
+     5663,
+     17696,
+     23700
+    ],
+    "located_plus_not_located": [
+     10561,
+     29315,
+     40353
+    ],
+    "election2024_js": [
+     10561,
+     29315,
+     40336
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "BROWN OWL PRECINCT",
+      "from2020": [
+       "Brown Owl"
+      ],
+      "votes2024": [
+       49,
+       221,
+       273
+      ],
+      "votes2020": [
+       65,
+       305,
+       374
+      ],
+      "overlap_with_app_2024": 0.0111,
+      "turnout_ratio_scaled": 1.243,
+      "rep_share_2024": 0.819,
+      "rep_share_2020": 0.824
+     },
+     {
+      "unit": "BYRD 5 & 6",
+      "from2020": [
+       "Byrd 5/6"
+      ],
+      "votes2024": [
+       264,
+       1476,
+       1748
+      ],
+      "votes2020": [
+       443,
+       2323,
+       2800
+      ],
+      "overlap_with_app_2024": 0.0049,
+      "turnout_ratio_scaled": 1.063,
+      "rep_share_2024": 0.848,
+      "rep_share_2020": 0.84
+     },
+     {
+      "unit": "CAMPSTER PRECINCT",
+      "from2020": [
+       "Campster/Pecan Grove"
+      ],
+      "votes2024": [
+       78,
+       409,
+       495
+      ],
+      "votes2020": [
+       166,
+       652,
+       823
+      ],
+      "overlap_with_app_2024": 0.0008,
+      "turnout_ratio_scaled": 1.024,
+      "rep_share_2024": 0.84,
+      "rep_share_2020": 0.797
+     },
+     {
+      "unit": "HANOVER PRECINCT",
+      "from2020": [
+       "Hanover"
+      ],
+      "votes2024": [
+       154,
+       649,
+       813
+      ],
+      "votes2020": [
+       291,
+       1053,
+       1367
+      ],
+      "overlap_with_app_2024": 0.0091,
+      "turnout_ratio_scaled": 1.013,
+      "rep_share_2024": 0.808,
+      "rep_share_2020": 0.783
+     }
+    ],
+    "why": "same rural precinct names as VEST 2020 (Campster = 2020 'Campster/Pecan Grove'); 2020 polygons not covered by the app's 2024 polygons",
+    "problems": []
+   },
+   "Cole County": {
+    "source_votes": "MEDSL 2024-elections-official, individual_states/mo24 (CC0), compiled from the official county returns; US PRESIDENT, mode TOTAL; total = all candidates incl. write-ins",
+    "units": 30,
+    "located_units": 28,
+    "not_located": {
+     "ABSENTEE": [
+      4648,
+      7380,
+      12141
+     ],
+     "WRITE-INS": [
+      0,
+      0,
+      24
+     ]
+    },
+    "located": [
+     8226,
+     19306,
+     27987
+    ],
+    "located_plus_not_located": [
+     12874,
+     26686,
+     40152
+    ],
+    "election2024_js": [
+     12874,
+     26686,
+     40128
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "Jefferson Township Scott Station",
+      "from2020": [
+       "Jefferson Township Scott Station"
+      ],
+      "votes2024": [
+       378,
+       971,
+       1374
+      ],
+      "votes2020": [
+       621,
+       1395,
+       2043
+      ],
+      "overlap_with_app_2024": 0.0022,
+      "turnout_ratio_scaled": 0.965,
+      "rep_share_2024": 0.72,
+      "rep_share_2020": 0.692
+     },
+     {
+      "unit": "Osage Township Wardsville",
+      "from2020": [
+       "Osage Township Wardsville"
+      ],
+      "votes2024": [
+       261,
+       1360,
+       1633
+      ],
+      "votes2020": [
+       381,
+       1878,
+       2282
+      ],
+      "overlap_with_app_2024": 0.003,
+      "turnout_ratio_scaled": 1.027,
+      "rep_share_2024": 0.839,
+      "rep_share_2020": 0.831
+     }
+    ],
+    "why": "same township precinct names as VEST 2020; 2020 polygons not covered by the app's 2024 polygons",
+    "problems": []
+   },
+   "Miller County": {
+    "source_votes": "MEDSL 2024-elections-official, individual_states/mo24 (CC0), compiled from the official county returns; US PRESIDENT, mode TOTAL; total = all candidates incl. write-ins",
+    "units": 13,
+    "located_units": 12,
+    "not_located": {
+     "AB.": [
+      606,
+      2392,
+      3013
+     ]
+    },
+    "located": [
+     1461,
+     8434,
+     9998
+    ],
+    "located_plus_not_located": [
+     2067,
+     10826,
+     13011
+    ],
+    "election2024_js": [
+     2067,
+     10826,
+     13009
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "ELDON NORTH",
+      "from2020": [
+       "Eldon North"
+      ],
+      "votes2024": [
+       203,
+       1145,
+       1363
+      ],
+      "votes2020": [
+       249,
+       1341,
+       1615
+      ],
+      "overlap_with_app_2024": 0.0232,
+      "turnout_ratio_scaled": 1.098,
+      "rep_share_2024": 0.849,
+      "rep_share_2020": 0.843
+     },
+     {
+      "unit": "T-TOWN",
+      "from2020": [
+       "Tuscumbia"
+      ],
+      "votes2024": [
+       49,
+       460,
+       513
+      ],
+      "votes2020": [
+       78,
+       689,
+       783
+      ],
+      "overlap_with_app_2024": 0.0152,
+      "turnout_ratio_scaled": 0.853,
+      "rep_share_2024": 0.904,
+      "rep_share_2020": 0.898
+     }
+    ],
+    "why": "same precinct (T-TOWN = Tuscumbia, as in the county's other abbreviations L.O. = Lake Ozark, M.H. = Marys Home); 2020 polygons not covered by the app's 2024 polygons",
+    "problems": []
+   },
+   "Pettis County": {
+    "source_votes": "MEDSL 2024-elections-official, individual_states/mo24 (CC0), compiled from the official county returns; US PRESIDENT, mode TOTAL; total = all candidates incl. write-ins",
+    "units": 12,
+    "located_units": 11,
+    "not_located": {
+     "ABSENTEE": [
+      2200,
+      5481,
+      7771
+     ]
+    },
+    "located": [
+     2503,
+     8426,
+     11111
+    ],
+    "located_plus_not_located": [
+     4703,
+     13907,
+     18882
+    ],
+    "election2024_js": [
+     4703,
+     13907,
+     18877
+    ],
+    "dem_rep_vs_election2024_js": 1.0,
+    "new_units_from_2020": [
+     {
+      "unit": "1 WARD",
+      "from2020": [
+       "1st Ward"
+      ],
+      "votes2024": [
+       372,
+       716,
+       1116
+      ],
+      "votes2020": [
+       610,
+       1176,
+       1847
+      ],
+      "overlap_with_app_2024": 0.0038,
+      "turnout_ratio_scaled": 1.027,
+      "rep_share_2024": 0.658,
+      "rep_share_2020": 0.658
+     },
+     {
+      "unit": "4 WARD/SED W/FLAT CREEK",
+      "from2020": [
+       "4th Ward/Sedalia W",
+       "Flat Creek"
+      ],
+      "votes2024": [
+       579,
+       1628,
+       2249
+      ],
+      "votes2020": [
+       1127,
+       2890,
+       4129
+      ],
+      "overlap_with_app_2024": 0.0009,
+      "turnout_ratio_scaled": 0.926,
+      "rep_share_2024": 0.738,
+      "rep_share_2020": 0.719
+     },
+     {
+      "unit": "BLACKWATER/LA MONTE/DRESDEN",
+      "from2020": [
+       "Blackwater/La Monte",
+       "Dresden"
+      ],
+      "votes2024": [
+       151,
+       626,
+       788
+      ],
+      "votes2020": [
+       325,
+       1115,
+       1474
+      ],
+      "overlap_with_app_2024": 0.0,
+      "turnout_ratio_scaled": 0.908,
+      "rep_share_2024": 0.806,
+      "rep_share_2020": 0.774
+     }
+    ],
+    "why": "the 2024 unit name lists the 2020 precincts it merges; 2020 polygons not covered by the app's 2024 polygons",
+    "problems": []
+   }
+  }
+ },
+ "fill": {
+  "Oregon": [
+   {
+    "layer": "ussch",
+    "name": "Pleasant Hill School District 1",
+    "method": "gray",
+    "value": null,
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": null,
+    "why": "exact: precinct Lane County straddles the boundary (5 % inside); estimate: usable precinct cover 41%"
+   },
+   {
+    "layer": "ussch",
+    "name": "Scappoose School District 1J",
+    "method": "estimate",
+    "value": [
+     5503,
+     4899,
+     10809
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Multnomah County straddles the boundary (12 % inside)"
+   }
+  ],
+  "Wyoming": [
+   {
+    "layer": "ussch",
+    "name": "Uinta County School District 4",
+    "method": "estimate",
+    "value": [
+     200,
+     1385,
+     1608
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: county Uinta County precincts not within 0.5 % of official"
+   },
+   {
+    "layer": "ussch",
+    "name": "Weston County School District 1",
+    "method": "estimate",
+    "value": [
+     323,
+     2356,
+     2721
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: county Weston County precincts not within 0.5 % of official"
+   }
+  ],
+  "Missouri": [
+   {
+    "layer": "ussch",
+    "name": "Eldon R-I School District",
+    "method": "estimate",
+    "value": [
+     1117,
+     4826,
+     5995
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Morgan County straddles the boundary (87 % inside)"
+   },
+   {
+    "layer": "ussch",
+    "name": "La Monte R-IV School District",
+    "method": "estimate",
+    "value": [
+     178,
+     688,
+     876
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Pettis County straddles the boundary (8 % inside)"
+   },
+   {
+    "layer": "ussch",
+    "name": "Sweet Springs R-VII School District",
+    "method": "estimate",
+    "value": [
+     358,
+     1420,
+     1801
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Pettis County straddles the boundary (24 % inside)"
+   },
+   {
+    "layer": "ussch",
+    "name": "Cape Girardeau 63 School District",
+    "method": "gray",
+    "value": null,
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": null,
+    "why": "exact: precinct Cape Girardeau County straddles the boundary (94 % inside); estimate: usable precinct cover 84%"
+   },
+   {
+    "layer": "ussch",
+    "name": "Miller County R-III School District",
+    "method": "estimate",
+    "value": [
+     61,
+     515,
+     580
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Miller County straddles the boundary (80 % inside)"
+   },
+   {
+    "layer": "ussch",
+    "name": "Cole Camp R-I School District",
+    "method": "estimate",
+    "value": [
+     1004,
+     3726,
+     4787
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Benton County straddles the boundary (3 % inside)"
+   },
+   {
+    "layer": "ussch",
+    "name": "Delta C-7 School District",
+    "method": "gray",
+    "value": null,
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": null,
+    "why": "exact: precinct Pemiscot County straddles the boundary (9 % inside); estimate: usable precinct cover 42%"
+   },
+   {
+    "layer": "ussch",
+    "name": "Pettis County R-XII School District",
+    "method": "estimate",
+    "value": [
+     332,
+     713,
+     1064
+    ],
+    "value_before": null,
+    "flag_before": null,
+    "flag_after": "e24",
+    "why": "exact: precinct Pettis County straddles the boundary (31 % inside)"
+   }
+  ]
+ },
+ "rejected_after_fill": [
+  {
+   "layer": "ussch",
+   "state": "Missouri",
+   "name": "Pettis County R-XII School District",
+   "estimate": [
+    332,
+    713,
+    1064
+   ],
+   "why": "2024/2020 total ratio 2.23 and Republican share 0.68 vs 0.81: the area-weighted estimate spreads the merged unit '4 WARD/SED W/FLAT CREEK' (Sedalia ward + rural township) over rural territory; fails the 2020 consistency rule (0.7-1.4, 12 pts); kept gray"
+  }
+ ]
+}

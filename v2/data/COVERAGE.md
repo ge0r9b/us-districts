@@ -952,3 +952,307 @@ counties (public domain); no results are stored.
 | Wyoming | 4,125 → 70,131 (24,459) | 0.0002 | 69,335 (24,116) | 0.0002 | 0 + 100 → 100 | 0 / 0 | 0 / 0 | 99 / 99 | – | 0.074 | 0.0001 |
 
 Build reports (size table per tolerance, kept rows, renames, fills): `/workspace/w/lanes/geo-data-raw/reports/townfiles/<State>.json`.
+
+## Institutions lane, fix 3: Oregon, Wyoming and Missouri 2024 precinct shortfalls (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+Baseline: `data/geo` a0c2262 (`tools/inst_audit.py`): 2024 gray school districts 86 (SD 26 structural and LA HD 057 out of scope). The precinct files (root `data/precincts2024/`) are **not changed**. `tools/inst_prec_fill.py` builds, outside the repo, a corrected copy of each county's 2024 units for `tools/fill_official_precincts.py` (geo lane, unchanged rules: exact, else ≈ area-weighted scaled to official county totals, else gray). Only gray 2024 school rows were written.
+
+**Counties rebuilt, with their sources:**
+- **Columbia County, OR.** 33 units from the Columbia County Clerk Certified Final Results, Precinct Abstract Report (Dec 2, 2024). 5 units the app file lacked (10 Milton, 15 Rainier, 21 St Helens One, 35 SE Scappoose, 48 S Deer Island) use the VEST 2020 polygon with the same precinct number.
+- **Uinta and Weston Counties, WY.** All units from the WY county clerk Official Precinct-by-Precinct Summaries. 4 units the app lacked (Uinta 4-1; Weston 1-1, 4-1, 5-3) use the VEST 2020 polygon whose Census 2020 VTD code is that precinct number (000401 Ft. Bridger; 000101, 000401, 000503).
+- **Cape Girardeau, Cole, Miller and Pettis Counties, MO.** Returns from MEDSL 2024-elections-official (CC0, compiled from the official county returns); Harris and Trump equal the certified county totals exactly. 11 units the app lacked use VEST 2020 polygons with the same name, or the 2020 precincts the 2024 name lists (e.g. "4 WARD/SED W/FLAT CREEK" = 4th Ward/Sedalia W + Flat Creek). Absentee and central-poll units carry no geography and are spread by the county scaling.
+- **Checks on every new unit:** it is not under an app 2024 polygon (overlap 0-1 %); turnout vs 2020 is 0.85-1.24 after pro-rating pooled votes; Republican share is within 12 points.
+
+**Result:** 9 rows computed (all ≈, `e24`); 1 rejected afterwards. 2024 gray school districts 86 → **78**.
+
+| District | 2024 (Harris / Trump / total) | 2020 (for comparison) |
+|---|---|---|
+| OR Scappoose SD 1J | 5,503 / 4,899 / 10,809 ≈ | 10,098 |
+| WY Uinta County SD 4 | 200 / 1,385 / 1,608 ≈ | 1,679 |
+| WY Weston County SD 1 | 323 / 2,356 / 2,721 ≈ | 2,741 |
+| MO Eldon R-I | 1,117 / 4,826 / 5,995 ≈ | 5,630 |
+| MO La Monte R-IV | 178 / 688 / 876 ≈ | 996 |
+| MO Sweet Springs R-VII | 358 / 1,420 / 1,801 ≈ | 1,394 |
+| MO Miller County R-III | 61 / 515 / 580 ≈ | 783 |
+| MO Cole Camp R-I | 1,004 / 3,726 / 4,787 ≈ | 4,208 |
+
+**Still gray, and why:**
+- **OR Pleasant Hill SD 1.** Lane County's 7 renumbered 2024 precincts (1560, 1784, 2238, 733, 737, 739, 755; 25,592 votes) have no public 2024 polygon. LCOG sells the precinct GIS under licence, and since 2023 Lane County gives precinct-level results only on request. Usable cover is 41 %.
+- **MO Cape Girardeau 63.** Cape Girardeau city redrew its wards for 2024. The app's 2024 city polygons leave the old 6A/6B area uncovered, and no 2024 city precinct layer was found. Usable cover is 84 %.
+- **MO Delta C-7.** This district is in Pemiscot County, not the Cape Girardeau "Delta" precinct; Pemiscot's usable 2024 precinct cover is 42 %. No source was fetched.
+- **MO Pettis County R-XII.** The estimate (1,064 votes vs 478 in 2020; Republican share 0.68 vs 0.81) spreads the merged Sedalia-ward unit over rural land. It fails the 2020 consistency rule, so it was rejected and kept gray.
+
+**Data discrepancy, logged:** Columbia County OR certified Harris/Trump is 12,895 / 17,227, but `data/election2024.js` (v1, not edited) has 12,865 / 17,184. The estimates are scaled to the v1 numbers (0.2 % lower). This should be reported to the Election Data lane.
+
+`v2/data/ussch.js` 4750432 → 4750567 bytes. Report: `data-v3/inst/fix3_report.json`.
+
+## Institutions lane, fix 4: Alaska and Maine school districts (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+### Alaska (`tools/inst_ak_schools.py`)
+
+Build 1533 rejected area-weighting for Alaska because a town sits inside a huge, nearly empty precinct. This fix places votes by **people** instead of by area. Rules:
+- Each district is the TIGER 2024 UNSD polygon at full resolution.
+- People are counted with Census 2020 P.L. 94-171 block population (`tl_2020_02_tabblock20`, block internal points; public domain).
+- Every precinct with more than 3 % of its population inside the district must have at least 97 % of its population inside it.
+- Those precincts together must hold at least 97 % of the district's population.
+- The district value is then the sum of those precincts. It comes from the app's own `data/precincts2024/Alaska.js` (official Division of Elections precinct results) or `data/precincts2020/Alaska.js` (VEST 2020).
+- Every result is still marked ≈. The precinct figures include absentee, early and question ballots, which the Division reports by House district and which were spread to precincts.
+- Results must also pass the 2020/2024 consistency rule: turnout ratio 0.7–1.4 and Republican share within 12 points.
+- Existing ≈ values are replaced only when they differ from the precinct sum by more than 3 % (or 2 points of Republican share). Exact rows are never overwritten.
+
+**4a, filled or corrected (all ≈):**
+
+| District | 2024 before → after | 2020 before → after |
+|---|---|---|
+| Kashunamiut (Chevak) | gray → 88 / 53 / 161 | gray → 123 / 80 / 211 |
+| Tanana City | gray → 100 / 23 / 123 | gray → 83 / 22 / 106 |
+| Yupiit (Akiachak, Akiak, Tuluksak) | 6 / 5 / 13 → 182 / 155 / 406 | gray → 214 / 153 / 405 |
+| Galena City | 1 / 0 / 1 → 125 / 98 / 228 | gray → 112 / 90 / 225 |
+| Unalaska City | 33 / 41 / 75 → 344 / 426 / 783 | gray → 478 / 489 / 989 |
+| Haines Borough | 952 / 802 / 1,878 → 907 / 791 / 1,820 | 1,019 / 708 / 1,779 → 968 / 700 / 1,715 |
+| Juneau Borough | (kept, within 3 %) | 10,610 / 6,208 / 17,464 → 11,414 / 6,588 / 18,671 |
+
+Another 18 borough-wide 2024 ≈ values (Anchorage, Mat-Su, Fairbanks and others) were confirmed within 3 % by the precinct sums and left unchanged.
+
+**4b, grayed (separate commit, can be dropped):** these ≈ values had more votes than the district's whole 2020 population, and no precinct sum confirms them:
+- Aleutian Region 2024 735 and 2020 1,098 (population 498)
+- Southeast Island 2024 2,421 and 2020 1,794 (population 1,512)
+- Chatham 2024 1,450 and 2020 2,566 (population 1,336)
+- Chugach 2020 955 (population 508)
+
+Alaska's voter rolls run high: Skagway and Denali reach about 80 % of population and match their precinct sums. So the bar is set at 100 %.
+
+**Still gray, and why:**
+- **Klawock City** (precinct 64 % / 90 % inside in 2024 / 2020), **Nenana City** (56 % / 58 %), **Pelican City** (74 % / 77 %), and in 2020 **Dillingham City** (96 %), **Hoonah City** (94 %), **Nome** (93 %) and **St. Marys City** (83 %): the town precinct also holds people outside the city district, so the precinct is not the district.
+- **Hydaburg City** and **Kake City**: the precinct sums exist (Hydaburg 204 in 2024 vs 135 in 2020; Kake 370 vs 241). The 2024/2020 turnout ratio (1.51 and 1.54) fails the consistency rule, and the Division's own 2024 precinct file could not be fetched to check (elections.alaska.gov returns 403 to the box). Both years were kept gray.
+- **Aleutian Region:** the precinct sums (27 in 2024 vs 109 in 2020) fail the consistency rule.
+- **Valdez City 2020:** the precinct sum of 2,068 vs 2024's ≈ 1,339 fails the consistency rule, so the old ≈ value was kept.
+- **Not overwritten, flagged for the Election Data lane:** Lower Kuskokwim and Pribilof hold unflagged (exact) values that differ from their precinct sums. Lower Kuskokwim is 3,045 vs 3,509 in 2024 and 4,752 vs 4,347 in 2020. Pribilof is 111 vs 165 in 2024.
+
+### Maine: no fill. Units are reported combined.
+
+The official SOS return, "U.S. President by County/Town" (`elec_20241105a.xlsx`, Dec 2024, via lldc.mainelegislature.org /Open/Elections/Returns/2024/20241105/), reports unorganized townships combined with a town. Examples:
+- `Albion/Unity Twp` (Kennebec UT)
+- `Bristol/Louds Island Twp` (Louds Island UT)
+- `Guilford/Kingsbury Plt` (Kingsbury Plantation)
+- the `<Town>/Twps` units in Franklin, Hancock, Penobscot, Piscataquis and Somerset. These units do not list which townships they include.
+
+No 2024 figure can be split out without estimating. The v2 row format has no note field the app renders: the flag slot only takes `est`, `e24`, `e20` and `cty`. So a "reported with <town>" note would need app code, which is not zero-cost. Following the ruling, the rows stay gray. The notes are recorded here:
+
+| District (2024 gray) | Reported with (official 2024 unit) |
+|---|---|
+| Kingsbury Plantation | Guilford/Kingsbury Plt |
+| Kennebec Unorganized Territory | Albion/Unity Twp |
+| Louds Island Unorganized Territory | Bristol/Louds Island Twp |
+| School Administrative District 41 | its towns are reported in Milo/Orneville Twp, Brownville/Twps and Lagrange/Orneville Twp, which also contain townships outside the district |
+| Franklin, Hancock, Penobscot, Piscataquis, Somerset UT | partly in separate township units, partly inside `<Town>/Twps` units with an unlisted township list |
+| Oxford UT | Albany Township, Bethel/Mason Twp, Woodstock/Milton Twp, and others not listed |
+| Indian Island (Penobscot Nation) | not a separate unit in the SOS return |
+| Lincoln UT, Knox UT | no separate unit in the SOS return |
+| Sagadahoc UT | no votes in either year |
+
+**Sizes / load cost:** `v2/data/ussch.js` was 4,750,567 bytes before 4a, 4,750,647 after 4a and 4,750,557 after 4b. Gzip -9 went 1,584,092 → 1,584,128 → 1,584,078. That is under 0.01 %, with no new requests. Reports: `data-v3/inst/fix4_ak_report.json` (74 KB) and `fix4b_ak_implausible.json` (2 KB). These are not loaded by the app.
+
+Sources: Census 2020 TIGER/Line tabblock20 (sha256 in `inst-raw/fix4/ak/SHA256SUMS`), TIGER 2024 UNSD, Alaska Division of Elections via `data/precincts2024/Alaska.js`, VEST 2020 AK (CC BY 4.0), and the Maine SOS 2024 president by town workbook.
+
+## Institutions lane, fix 5: the 37 identical-figure overlap pairs (Oct 18, 2026, branch `data/inst-fixes`, not pushed)
+
+Scope: the 37 school-district pairs that overlap only partly but stored identical figures. The list is `partial_pairs` in the a0c2262 audit: 30 Montana elementary/high-school pairs, plus 3 CA, 3 IL and 1 OR. The tool is `tools/inst_pairs_check.py`.
+
+**Method:**
+1. Count Census 2020 block population inside each district's full-resolution TIGER 2024 polygon. If the territory where the two districts differ holds ≤ 2 % of the pair's people, the identical figure is legitimate. Only Three Forks 2020 met this (2.0 %).
+2. Otherwise, recompute each row on its own polygon:
+   - Use the strict exact rule if it passes. It passed for none: in every case a precinct straddles the boundary.
+   - Otherwise use a **population-weighted ≈**. Each precinct in the app's file gives the district the share of its 2020 population that lives inside, scaled per county to the official county totals the way `fill_gray.py` does. At least 97 % of the district's people must fall in precincts with votes.
+   - The 2024 precincts are the app's `data/precincts2024` (official results via NYT/MEDSL). The 2020 precincts are `data/precincts2020` (MEDSL + Census VTDs).
+   - **Montana 2020 was cross-checked** with the same weighting on VEST 2020 MT precincts (official SOS returns, CC BY 4.0). All Montana rows agreed within 5 %, most to within 1–2 votes.
+   - Area-weighting (the method behind the old figures) is still reported in the tool's output but not used. It spreads ranch-land precincts evenly and lands town voters in the wrong district.
+3. Checks:
+   - A result above 90 % of the district's population is rejected (the highest legitimate value seen was 0.79, Gardiner).
+   - Results must pass the 2020/2024 consistency rule against the row's other-year figure. The check is skipped when that figure is itself above 90 % of population.
+   - A row is changed only if its stored figure is more than 3 % off its own recomputation.
+
+**5a:** 53 row-years were replaced by the population-weighted ≈ (flag `e24`/`e20`/`est`). 13 rows matched their own recomputation and were kept, so the copied figure was theirs and the partner's was wrong. Examples:
+- Drummond HS 2024: 545 → 818 (population 1,309)
+- Box Elder HS: 159 → 193
+- Fairfield elementary 2024: 1,007 → 794
+- Frazer elementary 2020: 1,620 → 300 (population 545; VEST gives 299)
+- Harney County SD 4 2020: 2,052 → 507
+- Big Creek elementary 2020: 1,933 → 187 (population 343)
+- Woodlawn 209 (9-12) part: 475 / 497 → 275 / 287
+
+Full before/after for each row is in `data-v3/inst/fix5_pairs_report.json`.
+
+**5b (separate commit, can be dropped):** other-year figures in these same rows had more votes than about 90 % of the residents. They were area-weighted, and Big Creek's 2024 figure was not even marked ≈. They were replaced by the same population-weighted ≈, each within 0.92–0.98 of its 2020 figure:
+
+| Row | Year | Before | After |
+|---|---|---|---|
+| Big Creek elementary (pop. 343) | 2024 | 1,274 | 177 |
+| Sierra Unified (9-12) (pop. 1,293) | 2024 | 1,221 | 666 |
+| Frazer elementary (pop. 545) | 2024 | 493 | 293 |
+| Frazer HS (pop. 750) | 2024 | 911 | 404 |
+| Harney Co. UHS 1J (pop. 1,444) | 2024 | 1,755 | 928 |
+
+Three Forks was verified identical, but its shared figure was wrong. In 2020 both rows held 1,962 (unflagged), against a population-weighted 2,470 / 2,460 (VEST: 2,458 / 2,448). In 2024 the rows held 1,183 (unflagged) and 1,746. All four are now ≈: 2020 2,470 / 2,460 and 2024 2,780 / 2,768. Details are in `data-v3/inst/fix5b_implausible.json`.
+
+**Left as is, and why:**
+- **Reed Point elementary / HS 2024** (both 239; 10 % of population differs): the population-weighted results (448 and 394 for 469 and 422 residents) fail the plausibility bar. The 2024 Stillwater precinct apparently has people outside its polygon. Still identical, logged.
+- **Conrad elementary / HS 2020** (both 1,827): each is within 3 % of its own recomputation (1,778 and 1,860). The difference is inside the estimate's tolerance, so both were kept.
+- **Savage HS 2024 and Richey elementary 2024:** cannot be recomputed (96 % and 90 % of population in precincts with votes). Each partner was recomputed and differs, so these rows now hold their own original figure and are no longer identical.
+- **Dinuba Unified (9-12) 2020 and Harlem HS 2020:** the recomputation (1,016 and 1,130) fails the consistency rule against the 2024 figure (589 and 1,447). Kept and logged. Both 2024 figures need a look.
+
+Gray counts are unchanged by fix 5. Sizes: `v2/data/ussch.js` went 4,750,557 → 4,750,717 (5a) → 4,750,718 (5b). Gzip -9 went 1,584,078 → 1,584,136 → 1,584,133. No new requests.
+
+Sources: Census 2020 TIGER/Line tabblock20 for MT, CA, IL and OR, and TIGER 2024 UNSD/ELSD/SCSD (sha256 in `inst-raw/fix5/SHA256SUMS`); the app's precinct files (2024: NYT from official county returns, MEDSL CC0; 2020: MEDSL CC0 + Census VTDs); VEST 2020 MT (Harvard Dataverse, CC BY 4.0); official county totals in `data/election2024.js` / `data/election2020.js`.
+
+## Institutions lane: method note for population-weighted ≈ (fixes 4 and 5)
+
+In this file ≈ means any estimate. Area-weighted and population-weighted figures both carry it (flags `est` / `e24` / `e20`).
+
+- **Population weighting.** Votes are placed by where people live, not by land area. People are counted with Census 2020 P.L. 94-171 block population (TIGER/Line `tabblock20` POP20, block internal points, public domain). The district polygon is the full-resolution TIGER 2024 UNSD/ELSD/SCSD shape.
+  - A precinct gives a district the share of its 2020 block population that lies inside.
+  - The same 2020 blocks are used for both 2020 and 2024 precincts.
+- **Alaska (`tools/inst_ak_schools.py`).** The two 97 % rules:
+  - every precinct with more than 3 % of its population inside the district must have at least 97 % of its population inside it;
+  - those precincts must hold at least 97 % of the district's population.
+  
+  The value is then the sum of those whole precincts. No borough scaling is applied, because the Alaska precinct files already sum to the official statewide result. Rows that fail stay gray.
+- **Other states (`tools/inst_pairs_check.py`).**
+  - Each precinct's votes are scaled per county to the official county totals in `data/election2024.js` / `data/election2020.js`, separately for Democratic, Republican and other votes, the same way as `tools/fill_gray.py`.
+  - At least 97 % of the district's population must fall in precincts with votes.
+- **Plausibility bar.**
+  - Outside Alaska, an estimate above 90 % of the district's 2020 population is rejected.
+  - In Alaska, an existing ≈ figure above 100 % of population is grayed. The bar is higher there because Alaska's voter rolls run high: Skagway and Denali reach about 80 %.
+- **Consistency rule.** A new figure must agree with the row's other-year figure:
+  - 2024/2020 turnout ratio between 0.7 and 1.4;
+  - Republican share within 12 points.
+  
+  The check is skipped only when the other-year figure itself fails the plausibility bar. Figures that fail stay gray or keep their old value, and the reason is logged in the fix's report.
+
+## Institutions lane, gray batch 2: every remaining gray cell (Oct 18, 2026, branch `data/inst-gray2`)
+
+**Scope.** Every gray cell in `ussch.js`, `ussldu.js` and `ussldl.js`, for both years.
+
+- Excluded by ruling: LA 057, South Dakota's 26 structural 2024 rows, Maine's 14 combined 2024 units, and Kalawao.
+- In scope at the start: schools 2024 (39), schools 2020 (28), and WY senate 018 2024 (1).
+- Methods are the same as fixes 4 and 5. Alaska uses `tools/inst_ak_schools.py`. Other states use `tools/inst_gray2.py`: the strict exact rule first, then population-weighted ≈, then the 90 % plausibility bar and the consistency rule.
+- Per-cell reports: `data-v3/inst/gray2_pass1_report.json` and `gray2_pass2_muni.json`.
+
+**Filled (8):**
+
+| Cell | Value (Harris / Trump / total) | How |
+|---|---|---|
+| WY senate 018 2024 | 2,181 / 8,302 / 10,643 ≈ | population-weighted (2020 population 18,050; 2020 figure 10,065) |
+| WI Sturgeon Bay SD 2024 | 2,979 / 2,297 / 5,340 ≈ | population-weighted |
+| NJ Gibbsboro Borough SD 2024 | 695 / 570 / 1,295 **exact** | The district is the borough (TIGER IoU 1.0). Sum of Gibbsboro District 1, District 2, Provisional and EV Emergency in the MEDSL NJ 2024 file, which is taken from the official canvass. Camden County's Harris, Trump and total match the official county totals exactly. |
+| CA Washington USD (Yolo) 2020 | 14,616 / 8,081 / 23,239 ≈ | population-weighted |
+| CA Mountain View ESD (Los Angeles) 2020 | 9,723 / 3,117 / 13,124 ≈ | population-weighted |
+| CA Ocean View ESD (Ventura) 2020 | 3,649 / 1,351 / 5,109 ≈ | population-weighted |
+| NJ Ocean Township SD (Ocean) 2020 | 1,950 / 3,963 / 6,024 ≈ | population-weighted |
+| NY New Suffolk CSD 2020 | 149 / 145 / 297 ≈ | population-weighted |
+
+**No source can exist (proved):**
+- **No residents in the 2020 Census:** VT Averys Gore and VT Warners Grant (2024 and 2020), and ME Sagadahoc Unorganized Territory 2020.
+- **Vermont gores and grants with 2–29 residents and no reporting unit** in the official town returns: Buels Gore (29), Ferdinand (16), Glastenbury (9), Somerset (6), Warrens Gore (2) for 2024, and Lewis (2) for 2020. No precinct with votes covers them.
+- **VT Averill:**
+  - 2024: 21 residents, no unit.
+  - 2020: reported with Canaan as the official combined unit "Canaan/Averill". This follows the same ruling as Maine's combined units, so it stays gray.
+- **KY Graves County SD and Mayfield ISD 2020:** VEST and the app's 2020 file report Graves County as one county-wide unit (17,019). The strict rule's "exact" result is that county total, which includes Mayfield, so it is not the district. Mayfield's population-weighted estimate also fails the consistency rule (4,434 vs 2,010 in 2024). Kentucky's official 2020 precinct canvass was not fetched; see "Source exists, not built" below.
+- **TX Boys Ranch ISD (both years):** this is a residential children's ranch, so most of its 120 residents are minors. Block population is not a proxy for voters here: a population share would give it 51 / 68 votes. It has no separate reporting unit, so it stays gray. The orchestrator confirmed this ruling on Oct 18, 2026.
+- **Alaska city districts where the town precinct is not the district,** in 2024: Klawock, Nenana, Pelican, Southeast Island and Chatham. In 2020 those same five, plus Dillingham, Hoonah, Nome and St. Marys. The Division reports nothing finer than the precinct, so no official source can split them.
+  - Chugach 2020: population cover is 91 %.
+
+**Source exists, but the batch-1 checks reject the figure:**
+- **AK Hydaburg City and Kake City (both years):** the precinct sums (204 vs 135 and 370 vs 241) fail the turnout-ratio rule. They are **blocked** from checking against the Division's own file: elections.alaska.gov returns 403 to the box.
+- **AK Aleutian Region (both years):** the precinct sums (27 vs 109) fail the consistency rule.
+- **AL Fort Rucker SD 2024:** a military post. The estimate of 662 vs 308 in 2020 fails the consistency rule.
+- **MS Western Line SD 2024:** 3,274 vs 7,733 in 2020 fails. The 2020 figure needs a look.
+- **CA Kashia ESD 2020:** 48 vs 11 in 2024 fails.
+
+**Blocked:**
+- **OR Pleasant Hill SD 1 2024:** Lane County's 2024 precinct GIS is licensed (LCOG), and since 2023 precinct-level results are available only on request.
+
+**Pass 3: the 18 deferred cells (17 districts for 2024, plus NM Loving 2020).** Tool: `tools/inst_gray2_holes.py`. Report: `data-v3/inst/gray2_pass3_holes.json`.
+
+These are counties where the app's precinct file has no polygon for some official reporting units, so part of the district lies in no precinct. This is the fix-3 approach, automated per county:
+
+1. Take the official units from MEDSL 2024 (CC0, from the official canvass).
+2. Match every app precinct row to one official unit by its Harris and Trump votes. Where the votes differ, fall back to the same unit name.
+3. The units left over have no polygon. A county's precincts tile the county, so their territory is the 2020 Census blocks that lie in no app precinct (the "hole").
+4. Split the hole into spatial components (2020 precincts that touch each other). Assign the leftover units to components, and keep only assignments where each component passes the 2020 consistency rule against the 2020 precinct file on the same blocks.
+5. Spread each component's votes by 2020 population, scale to the official county totals, then apply the 97 % placement rule, the 90 % plausibility bar and the 2020/2024 consistency rule.
+
+A county with no 2024 polygons at all uses its official units matched by name, one to one, to the 2020 precinct polygons (fix 3), with each unit checked against 2020. Everything filled here is ≈.
+
+Filled (8, all 2024, all ≈):
+
+| District | Value (Harris / Trump / total) | Hole units used |
+|---|---|---|
+| CO Aspen SD 1 | 6,046 / 2,234 / 8,460 | Pitkin 3055749001 and 005 (the district holds about 99 % of the hole) |
+| CO Salida SD R-32 | 5,076 / 2,967 / 8,250 | Chaffee 7041308005 and 009 (about 100 % of the hole) |
+| MT Lambert elementary | 44 / 195 / 253 | Richland Precinct 07A + 07B (one 2020 precinct, 07) |
+| MT Lambert high | 43 / 183 / 240 | same |
+| NY Bath CSD | 1,435 / 3,098 / 4,532 | Steuben "Town of Bath 1". "City of Hornell Ward 1" is the other component; there is one valid assignment. |
+| NY Geneva City SD | 4,288 / 2,758 / 7,046 | Ontario "Geneva 2" |
+| OH Shelby City SD | 1,495 / 4,721 / 6,274 | Richland MAD G, PLY and SHARON. There are 2 valid assignments, which agree within 3 %. |
+| OH Carey EVSD | 703 / 1,864 / 2,584 | Wyandot UPPER F, CRANE TS and CRAWFORD TS (the hole supplies 20 % of the district) |
+
+Still gray, with reasons:
+- **AL Guntersville City SD:** the whole district lies in a hole of 4 Marshall County polling-place units. That hole spans 4 precincts from 2020 and has 29,392 residents, and the district holds only 29 % of it. Polling places have no boundaries, so the units can't be split inside the hole.
+- **AR Jessieville SD:** no assignment of Garland's 2 leftover units ("011" and "111 01") to the 2 hole components passes the 2020 consistency rule (whole hole: turnout ratio 0.59).
+- **KY Somerset ISD, East Bernstadt ISD and the Laurel County part:** the app's 2024 Kentucky polygons leave 62 % (Pulaski) and 51 % (Laurel) of the county population in no precinct. A hole that size would be a county average, not a precinct estimate. These need Kentucky's 2024 precinct map, which wasn't fetched this round.
+- **MS South Delta SD:** Issaquena has no 2024 polygons. Its 5 official units match the 2020 precincts by name, but Addie, Tallula and Valley Park fail the 2020 rule. For example, Addie's Republican share is 0.86 in 2024 vs 0.44 in 2020, so the name match isn't trusted.
+- **MO Cape Girardeau 63:** the hole fails the 2020 rule (turnout ratio 0.37). The redrawn city wards leave territory with no unit, as in fix 3.
+- **MO Delta C-7:** Pemiscot's Deering-Braggadocio unit vs the hole gives a turnout ratio of 0.70, which is just under the 0.7 bar.
+- **MO Pettis R-XII:** hole turnout ratio 0.56, the same failure as fix 3.
+- **NM Loving 2020:** recomputed on the full VEST 2020 layer (CC BY 4.0) as 748 votes. That fails the consistency rule against the stored 2024 figure of 509 (ratio 0.68).
+- **OR Pleasant Hill:** still blocked (licensed).
+
+**KY retry (Oct 18, 2026).** Tool: `tools/inst_gray2_ky.py`. Report: `data-v3/inst/gray2_ky_report.json`.
+
+Pulaski and Laurel precincts were rebuilt from official sources only:
+- Shapes: the Kentucky State Board of Elections / DGI layer `SBE_Voting_Precinct_Boundaries` (kygisserver.ky.gov; raw and sha256 in `inst-raw/ky_sbe/`).
+- Votes: MEDSL KY 2024 by precinct code.
+
+Checks:
+- The precinct codes match the official units one to one: Pulaski 19/19, Laurel 23/23.
+- The polygons hold 100 % of each county's 2020 population.
+- Each precinct must pass votes ≤ 90 % of its population and the 2020 rule on its own blocks.
+- The SBE layer is the current one (last edited Feb 2026). The identical code set and the per-precinct 2020 checks are what tie it to 2024.
+
+The stored 2020 figures for these rows were area-weighted (e20) and far too low: Somerset had 278 votes for 9,536 residents, and East Bernstadt 326 for 1,326. A population-weighted recomputation on the app's 2020 file replaces them (≈). Results:
+
+| Row | 2024 | 2020 |
+|---|---|---|
+| KY East Bernstadt ISD | **72 / 481 / 557 ≈** (filled) | 52 / 269 / 326 → **95 / 492 / 595 ≈** |
+| KY Laurel County SD for East Bernstadt ISD (same territory) | **72 / 481 / 557 ≈** (filled) | same correction |
+| KY Somerset ISD | still gray: it uses SBE precincts A105 "Somerset Library 13" (turnout ratio 0.64) and B102 "Huffaker-Harveys Hill 22" (R share 0.68 vs 0.81), which fail the 2020 rule. The likely cause is boundary changes in the current layer after 2024. | 50 / 224 / 278 → **831 / 3,731 / 4,627 ≈** |
+
+After the KY retry, schools 2024 gray is **67** (in scope 27). `ussch.js` is 4,750,954 bytes raw and 1,584,227 gzip -9.
+
+Sizes for pass 3: `ussch.js` went from 4,750,812 to 4,750,935 bytes raw and from 1,584,169 to 1,584,217 gzip -9. No new requests. Schools 2024 gray went from 77 to **69** (in scope: 37 → 29). Schools 2020 gray stays at 23.
+
+**Counts (gray cells, by layer and year):**
+
+| Layer / year | Before (`data/inst-fixes` b68c7be) | After |
+|---|---|---|
+| schools 2024, all | 79 | **77** |
+| schools 2024, in scope (excl. SD 26, ME 14) | 39 | **37** |
+| schools 2020 | 28 | **23** |
+| state senate 2024 | 1 (WY 018) | **0** |
+| state house 2024 | 1 (LA 057, excluded) | 1 |
+| state senate / house 2020 | 0 | 0 |
+
+**Bytes:**
+
+| File | Before (raw / gzip -9) | After (raw / gzip -9) |
+|---|---|---|
+| `ussch.js` | 4,750,718 / 1,584,133 | 4,750,812 / 1,584,169 |
+| `ussldu.js` | 1,256,870 / 438,983 | 1,256,889 / 438,987 |
+| `ussldl.js` | 2,062,614 / 719,085 | unchanged |
+
+**Sources:**
+- Census 2020 TIGER/Line tabblock20 and TIGER 2024 school, place, cousub and SLDU files (sha256 in `inst-raw/gray2/SHA256SUMS`)
+- MEDSL 2024 official precinct returns: NJ, NY, KY (CC0; `inst-raw/gray2/medsl24/SHA256SUMS`) and AL
+- the app's precinct files (official, NYT, MEDSL, VEST)
+- official county totals in `data/election2024.js` and `data/election2020.js`

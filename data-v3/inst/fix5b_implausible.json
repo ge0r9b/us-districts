@@ -1,0 +1,162 @@
+{
+ "rule": "2024 figure of a fix-5 pair row above 90 % of the district's Census 2020 population (it was the area-weighted figure; Big Creek's was not even marked ≈): replaced by the population-weighted ≈ of tools/inst_pairs_check.py (PopW), each within 0.92-0.98 of its 2020 figure; plus Three Forks elementary/high 2020 and 2024 (verified-identical pair whose shared figure was wrong)",
+ "changes": [
+  {
+   "state": "California",
+   "name": "Big Creek Elementary School District",
+   "year": "2024",
+   "value": [
+    342,
+    894,
+    1274
+   ],
+   "pop2020": 343,
+   "after": [
+    47,
+    124,
+    177
+   ],
+   "after_method": "population-weighted ≈ (2020 blocks, app 2024 precincts scaled to official county totals); strict exact rule failed (straddling precinct); area-weighting gave the old figure"
+  },
+  {
+   "state": "California",
+   "name": "Sierra Unified School District (9-12)",
+   "year": "2024",
+   "value": [
+    328,
+    857,
+    1221
+   ],
+   "pop2020": 1293,
+   "after": [
+    179,
+    467,
+    666
+   ],
+   "after_method": "population-weighted ≈ (2020 blocks, app 2024 precincts scaled to official county totals); strict exact rule failed (straddling precinct); area-weighting gave the old figure"
+  },
+  {
+   "state": "Montana",
+   "name": "Frazer Elementary School District",
+   "year": "2024",
+   "value": [
+    120,
+    358,
+    493
+   ],
+   "pop2020": 545,
+   "after": [
+    93,
+    190,
+    293
+   ],
+   "after_method": "population-weighted ≈ (2020 blocks, app 2024 precincts scaled to official county totals); strict exact rule failed (straddling precinct); area-weighting gave the old figure"
+  },
+  {
+   "state": "Montana",
+   "name": "Frazer High School District",
+   "year": "2024",
+   "value": [
+    215,
+    667,
+    911
+   ],
+   "pop2020": 750,
+   "after": [
+    118,
+    272,
+    404
+   ],
+   "after_method": "population-weighted ≈ (2020 blocks, app 2024 precincts scaled to official county totals); strict exact rule failed (straddling precinct); area-weighting gave the old figure"
+  },
+  {
+   "state": "Oregon",
+   "name": "Harney County Union High School District 1J",
+   "year": "2024",
+   "value": [
+    236,
+    1473,
+    1755
+   ],
+   "pop2020": 1444,
+   "after": [
+    125,
+    782,
+    928
+   ],
+   "after_method": "population-weighted ≈ (2020 blocks, app 2024 precincts scaled to official county totals); strict exact rule failed (straddling precinct); area-weighting gave the old figure"
+  },
+  {
+   "state": "Montana",
+   "name": "Three Forks Elementary School District",
+   "year": "2024",
+   "value": [
+    260,
+    884,
+    1183
+   ],
+   "after": [
+    617,
+    2070,
+    2780
+   ],
+   "pop2020": 4425,
+   "after_method": "population-weighted ≈ (app 2024 precincts, scaled to official county totals; 2020 VEST cross-check 2,458 / 2,448)",
+   "why": "identical 2020 pair verified as same populated territory, but the shared figure (1,962, unflagged) and the 2024 figures (1,183 unflagged; 1,746 ≈) are 20-57 % below the population-weighted recomputation; the strict exact rule fails (Gallatin precinct straddles)"
+  },
+  {
+   "state": "Montana",
+   "name": "Three Forks Elementary School District",
+   "year": "2020",
+   "value": [
+    532,
+    1372,
+    1962
+   ],
+   "after": [
+    591,
+    1798,
+    2470
+   ],
+   "pop2020": 4425,
+   "after_method": "population-weighted ≈ (app 2020 precincts, scaled to official county totals; 2020 VEST cross-check 2,458 / 2,448)",
+   "why": "identical 2020 pair verified as same populated territory, but the shared figure (1,962, unflagged) and the 2024 figures (1,183 unflagged; 1,746 ≈) are 20-57 % below the population-weighted recomputation; the strict exact rule fails (Gallatin precinct straddles)"
+  },
+  {
+   "state": "Montana",
+   "name": "Three Forks High School District",
+   "year": "2024",
+   "value": [
+    369,
+    1324,
+    1746
+   ],
+   "after": [
+    616,
+    2059,
+    2768
+   ],
+   "pop2020": 4418,
+   "after_method": "population-weighted ≈ (app 2024 precincts, scaled to official county totals; 2020 VEST cross-check 2,458 / 2,448)",
+   "why": "identical 2020 pair verified as same populated territory, but the shared figure (1,962, unflagged) and the 2024 figures (1,183 unflagged; 1,746 ≈) are 20-57 % below the population-weighted recomputation; the strict exact rule fails (Gallatin precinct straddles)"
+  },
+  {
+   "state": "Montana",
+   "name": "Three Forks High School District",
+   "year": "2020",
+   "value": [
+    532,
+    1372,
+    1962
+   ],
+   "after": [
+    589,
+    1789,
+    2460
+   ],
+   "pop2020": 4418,
+   "after_method": "population-weighted ≈ (app 2020 precincts, scaled to official county totals; 2020 VEST cross-check 2,458 / 2,448)",
+   "why": "identical 2020 pair verified as same populated territory, but the shared figure (1,962, unflagged) and the 2024 figures (1,183 unflagged; 1,746 ≈) are 20-57 % below the population-weighted recomputation; the strict exact rule fails (Gallatin precinct straddles)"
+  }
+ ]
+}

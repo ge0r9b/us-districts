@@ -1,0 +1,2720 @@
+[
+ {
+  "year": "2024",
+  "state": "Illinois",
+  "a": "Grand Prairie Community Consolidated School District 6",
+  "b": "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+  "stored": [
+   69,
+   402,
+   475
+  ],
+  "pop_a": 873,
+  "pop_b": 520,
+  "pop_differing_share": 0.4044,
+  "recomputed": {
+   "Grand Prairie Community Consolidated School District 6": {
+    "area_weighted": [
+     69,
+     401,
+     474
+    ],
+    "recomputed": [
+     69,
+     402,
+     475
+    ],
+    "method": "exact",
+    "why": null,
+    "dev": 0.0
+   },
+   "Woodlawn Unit District 209 (9-12) in Grand Prairie": {
+    "area_weighted": [
+     46,
+     268,
+     316
+    ],
+    "recomputed": [
+     40,
+     234,
+     275
+    ],
+    "method": "estimate",
+    "why": "precinct Jefferson County straddles the boundary (66 % inside); population-weighted, 1 precincts",
+    "dev": 0.421
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Grand Prairie Community Consolidated School District 6": [
+    "keep",
+    null,
+    null,
+    "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+    "matches its own recomputation"
+   ],
+   "Woodlawn Unit District 209 (9-12) in Grand Prairie": [
+    "set",
+    [
+     40,
+     234,
+     275
+    ],
+    "estimate",
+    "Grand Prairie Community Consolidated School District 6"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Drummond Elementary School District",
+  "b": "Drummond High School District",
+  "stored": [
+   101,
+   428,
+   545
+  ],
+  "pop_a": 1034,
+  "pop_b": 1309,
+  "pop_differing_share": 0.2101,
+  "recomputed": {
+   "Drummond Elementary School District": {
+    "area_weighted": [
+     99,
+     415,
+     530
+    ],
+    "recomputed": [
+     112,
+     478,
+     608
+    ],
+    "method": "estimate",
+    "why": "precinct Granite County straddles the boundary (9 % inside); population-weighted, 2 precincts",
+    "dev": 0.116
+   },
+   "Drummond High School District": {
+    "area_weighted": [
+     131,
+     560,
+     712
+    ],
+    "recomputed": [
+     148,
+     646,
+     818
+    ],
+    "method": "estimate",
+    "why": "precinct Granite County straddles the boundary (48 % inside); population-weighted, 2 precincts",
+    "dev": 0.501
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Drummond Elementary School District": [
+    "set",
+    [
+     112,
+     478,
+     608
+    ],
+    "estimate",
+    "Drummond High School District"
+   ],
+   "Drummond High School District": [
+    "set",
+    [
+     148,
+     646,
+     818
+    ],
+    "estimate",
+    "Drummond Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Reed Point Elementary School District",
+  "b": "Reed Point High School District",
+  "stored": [
+   39,
+   197,
+   239
+  ],
+  "pop_a": 469,
+  "pop_b": 422,
+  "pop_differing_share": 0.1002,
+  "recomputed": {
+   "Reed Point Elementary School District": {
+    "area_weighted": [
+     68,
+     315,
+     388
+    ],
+    "recomputed": null,
+    "method": "none",
+    "why": "precinct Sweet Grass County straddles the boundary (17 % inside); population-weighted, 2 precincts; implausible: 448 votes for 469 residents",
+    "rejected": [
+     79,
+     362,
+     448
+    ],
+    "dev": null
+   },
+   "Reed Point High School District": {
+    "area_weighted": [
+     54,
+     253,
+     311
+    ],
+    "recomputed": null,
+    "method": "none",
+    "why": "precinct Sweet Grass County straddles the boundary (4 % inside); population-weighted, 2 precincts; implausible: 394 votes for 422 residents",
+    "rejected": [
+     69,
+     319,
+     394
+    ],
+    "dev": null
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Reed Point Elementary School District": [
+    "keep",
+    null,
+    null,
+    "Reed Point High School District",
+    "cannot recompute; partner does not confirm whose figure it is"
+   ],
+   "Reed Point High School District": [
+    "keep",
+    null,
+    null,
+    "Reed Point Elementary School District",
+    "cannot recompute; partner does not confirm whose figure it is"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Box Elder Elementary School District",
+  "b": "Box Elder High School District",
+  "stored": [
+   108,
+   47,
+   159
+  ],
+  "pop_a": 521,
+  "pop_b": 592,
+  "pop_differing_share": 0.1199,
+  "recomputed": {
+   "Box Elder Elementary School District": {
+    "area_weighted": [
+     97,
+     102,
+     206
+    ],
+    "recomputed": [
+     90,
+     54,
+     149
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (70 % inside); population-weighted, 2 precincts",
+    "dev": 0.063
+   },
+   "Box Elder High School District": {
+    "area_weighted": [
+     118,
+     166,
+     295
+    ],
+    "recomputed": [
+     101,
+     86,
+     193
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (70 % inside); population-weighted, 4 precincts",
+    "dev": 0.214
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Box Elder Elementary School District": [
+    "set",
+    [
+     90,
+     54,
+     149
+    ],
+    "estimate",
+    "Box Elder High School District"
+   ],
+   "Box Elder High School District": [
+    "set",
+    [
+     101,
+     86,
+     193
+    ],
+    "estimate",
+    "Box Elder Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Culbertson Elementary School District",
+  "b": "Culbertson High School District",
+  "stored": [
+   93,
+   380,
+   488
+  ],
+  "pop_a": 1146,
+  "pop_b": 1077,
+  "pop_differing_share": 0.0602,
+  "recomputed": {
+   "Culbertson Elementary School District": {
+    "area_weighted": [
+     128,
+     454,
+     604
+    ],
+    "recomputed": [
+     100,
+     413,
+     531
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (12 % inside); population-weighted, 3 precincts",
+    "dev": 0.088
+   },
+   "Culbertson High School District": {
+    "area_weighted": [
+     112,
+     384,
+     512
+    ],
+    "recomputed": [
+     94,
+     380,
+     490
+    ],
+    "method": "estimate",
+    "why": "precinct Roosevelt County straddles the boundary (14 % inside); population-weighted, 2 precincts",
+    "dev": 0.004
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Culbertson Elementary School District": [
+    "set",
+    [
+     100,
+     413,
+     531
+    ],
+    "estimate",
+    "Culbertson High School District"
+   ],
+   "Culbertson High School District": [
+    "keep",
+    null,
+    null,
+    "Culbertson Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Fairview Elementary School District",
+  "b": "Fairview High School District",
+  "stored": [
+   104,
+   686,
+   807
+  ],
+  "pop_a": 1645,
+  "pop_b": 1690,
+  "pop_differing_share": 0.0301,
+  "recomputed": {
+   "Fairview Elementary School District": {
+    "area_weighted": [
+     109,
+     693,
+     820
+    ],
+    "recomputed": [
+     102,
+     645,
+     764
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (6 % inside); population-weighted, 5 precincts",
+    "dev": 0.053
+   },
+   "Fairview High School District": {
+    "area_weighted": [
+     116,
+     746,
+     883
+    ],
+    "recomputed": [
+     105,
+     670,
+     793
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (6 % inside); population-weighted, 5 precincts",
+    "dev": 0.017
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Fairview Elementary School District": [
+    "set",
+    [
+     102,
+     645,
+     764
+    ],
+    "estimate",
+    "Fairview High School District"
+   ],
+   "Fairview High School District": [
+    "keep",
+    null,
+    null,
+    "Fairview Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Moore Elementary School District",
+  "b": "Moore High School District",
+  "stored": [
+   47,
+   193,
+   250
+  ],
+  "pop_a": 594,
+  "pop_b": 657,
+  "pop_differing_share": 0.0959,
+  "recomputed": {
+   "Moore Elementary School District": {
+    "area_weighted": [
+     42,
+     191,
+     242
+    ],
+    "recomputed": [
+     34,
+     143,
+     184
+    ],
+    "method": "estimate",
+    "why": "precinct Fergus County straddles the boundary (73 % inside); population-weighted, 2 precincts",
+    "dev": 0.264
+   },
+   "Moore High School District": {
+    "area_weighted": [
+     48,
+     215,
+     272
+    ],
+    "recomputed": [
+     38,
+     158,
+     203
+    ],
+    "method": "estimate",
+    "why": "precinct Fergus County straddles the boundary (86 % inside); population-weighted, 2 precincts",
+    "dev": 0.188
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Moore Elementary School District": [
+    "set",
+    [
+     34,
+     143,
+     184
+    ],
+    "estimate",
+    "Moore High School District"
+   ],
+   "Moore High School District": [
+    "set",
+    [
+     38,
+     158,
+     203
+    ],
+    "estimate",
+    "Moore Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Judith Gap Elementary School District",
+  "b": "Judith Gap High School District",
+  "stored": [
+   30,
+   98,
+   130
+  ],
+  "pop_a": 304,
+  "pop_b": 241,
+  "pop_differing_share": 0.2072,
+  "recomputed": {
+   "Judith Gap Elementary School District": {
+    "area_weighted": [
+     30,
+     111,
+     145
+    ],
+    "recomputed": [
+     35,
+     121,
+     159
+    ],
+    "method": "estimate",
+    "why": "precinct Wheatland County straddles the boundary (60 % inside); population-weighted, 4 precincts",
+    "dev": 0.223
+   },
+   "Judith Gap High School District": {
+    "area_weighted": [
+     24,
+     87,
+     114
+    ],
+    "recomputed": [
+     31,
+     107,
+     140
+    ],
+    "method": "estimate",
+    "why": "precinct Wheatland County straddles the boundary (60 % inside); population-weighted, 3 precincts",
+    "dev": 0.077
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Judith Gap Elementary School District": [
+    "set",
+    [
+     35,
+     121,
+     159
+    ],
+    "estimate",
+    "Judith Gap High School District"
+   ],
+   "Judith Gap High School District": [
+    "set",
+    [
+     31,
+     107,
+     140
+    ],
+    "estimate",
+    "Judith Gap Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Fairfield Elementary School District",
+  "b": "Fairfield High School District",
+  "stored": [
+   213,
+   767,
+   1007
+  ],
+  "pop_a": 1356,
+  "pop_b": 1966,
+  "pop_differing_share": 0.3103,
+  "recomputed": {
+   "Fairfield Elementary School District": {
+    "area_weighted": [
+     127,
+     448,
+     590
+    ],
+    "recomputed": [
+     168,
+     605,
+     794
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (56 % inside); population-weighted, 1 precincts",
+    "dev": 0.212
+   },
+   "Fairfield High School District": {
+    "area_weighted": [
+     226,
+     781,
+     1035
+    ],
+    "recomputed": [
+     247,
+     871,
+     1149
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (90 % inside); population-weighted, 3 precincts",
+    "dev": 0.141
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Fairfield Elementary School District": [
+    "set",
+    [
+     168,
+     605,
+     794
+    ],
+    "estimate",
+    "Fairfield High School District"
+   ],
+   "Fairfield High School District": [
+    "set",
+    [
+     247,
+     871,
+     1149
+    ],
+    "estimate",
+    "Fairfield Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Power Elementary School District",
+  "b": "Power High School District",
+  "stored": [
+   117,
+   377,
+   508
+  ],
+  "pop_a": 605,
+  "pop_b": 645,
+  "pop_differing_share": 0.062,
+  "recomputed": {
+   "Power Elementary School District": {
+    "area_weighted": [
+     92,
+     297,
+     400
+    ],
+    "recomputed": [
+     81,
+     260,
+     350
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (78 % inside); population-weighted, 1 precincts",
+    "dev": 0.311
+   },
+   "Power High School District": {
+    "area_weighted": [
+     104,
+     335,
+     452
+    ],
+    "recomputed": [
+     86,
+     277,
+     373
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (89 % inside); population-weighted, 1 precincts",
+    "dev": 0.266
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Power Elementary School District": [
+    "set",
+    [
+     81,
+     260,
+     350
+    ],
+    "estimate",
+    "Power High School District"
+   ],
+   "Power High School District": [
+    "set",
+    [
+     86,
+     277,
+     373
+    ],
+    "estimate",
+    "Power Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Savage Elementary School District",
+  "b": "Savage High School District",
+  "stored": [
+   49,
+   313,
+   370
+  ],
+  "pop_a": 604,
+  "pop_b": 640,
+  "pop_differing_share": 0.1037,
+  "recomputed": {
+   "Savage Elementary School District": {
+    "area_weighted": [
+     31,
+     197,
+     234
+    ],
+    "recomputed": [
+     41,
+     253,
+     301
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (57 % inside); population-weighted, 2 precincts",
+    "dev": 0.186
+   },
+   "Savage High School District": {
+    "area_weighted": null,
+    "recomputed": null,
+    "method": "none",
+    "why": "precinct Richland County straddles the boundary (75 % inside); population in precincts with votes 96 %",
+    "dev": null
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Savage Elementary School District": [
+    "set",
+    [
+     41,
+     253,
+     301
+    ],
+    "estimate",
+    "Savage High School District"
+   ],
+   "Savage High School District": [
+    "keep",
+    null,
+    null,
+    "Savage Elementary School District",
+    "cannot recompute; partner does not confirm whose figure it is"
+   ]
+  }
+ },
+ {
+  "year": "2024",
+  "state": "Montana",
+  "a": "Richey Elementary School District",
+  "b": "Richey High School District",
+  "stored": [
+   35,
+   274,
+   318
+  ],
+  "pop_a": 431,
+  "pop_b": 490,
+  "pop_differing_share": 0.3101,
+  "recomputed": {
+   "Richey Elementary School District": {
+    "area_weighted": null,
+    "recomputed": null,
+    "method": "none",
+    "why": "precinct Dawson County straddles the boundary (72 % inside); population in precincts with votes 90 %",
+    "dev": null
+   },
+   "Richey High School District": {
+    "area_weighted": [
+     48,
+     369,
+     429
+    ],
+    "recomputed": [
+     38,
+     295,
+     343
+    ],
+    "method": "estimate",
+    "why": "precinct Dawson County straddles the boundary (15 % inside); population-weighted, 2 precincts",
+    "dev": 0.079
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Richey Elementary School District": [
+    "keep",
+    null,
+    null,
+    "Richey High School District",
+    "cannot recompute; partner does not confirm whose figure it is"
+   ],
+   "Richey High School District": [
+    "set",
+    [
+     38,
+     295,
+     343
+    ],
+    "estimate",
+    "Richey Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "California",
+  "a": "Big Creek Elementary School District",
+  "b": "Sierra Unified School District (9-12)",
+  "stored": [
+   513,
+   1378,
+   1933
+  ],
+  "pop_a": 343,
+  "pop_b": 1293,
+  "pop_differing_share": 0.7347,
+  "recomputed": {
+   "Big Creek Elementary School District": {
+    "area_weighted": [
+     213,
+     562,
+     792
+    ],
+    "recomputed": [
+     50,
+     133,
+     187
+    ],
+    "method": "estimate",
+    "why": "precinct Fresno County straddles the boundary (40 % inside); population-weighted, 1 precincts",
+    "dev": 0.903
+   },
+   "Sierra Unified School District (9-12)": {
+    "area_weighted": [
+     312,
+     827,
+     1164
+    ],
+    "recomputed": [
+     187,
+     503,
+     705
+    ],
+    "method": "estimate",
+    "why": "precinct Fresno County straddles the boundary (59 % inside); population-weighted, 1 precincts",
+    "dev": 0.635
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Big Creek Elementary School District": [
+    "set",
+    [
+     50,
+     133,
+     187
+    ],
+    "estimate",
+    "Sierra Unified School District (9-12)",
+    "other-year figure [342, 894, 1274] implausible for 343 residents; consistency check skipped"
+   ],
+   "Sierra Unified School District (9-12)": [
+    "set",
+    [
+     187,
+     503,
+     705
+    ],
+    "estimate",
+    "Big Creek Elementary School District",
+    "other-year figure [328, 857, 1221] implausible for 1293 residents; consistency check skipped"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "California",
+  "a": "Monson-Sultana Joint Union Elementary School District",
+  "b": "Dinuba Unified School District (9-12)",
+  "stored": [
+   192,
+   248,
+   447
+  ],
+  "pop_a": 2267,
+  "pop_b": 3950,
+  "pop_differing_share": 0.4261,
+  "recomputed": {
+   "Monson-Sultana Joint Union Elementary School District": {
+    "area_weighted": [
+     161,
+     227,
+     395
+    ],
+    "recomputed": [
+     211,
+     309,
+     529
+    ],
+    "method": "estimate",
+    "why": "precinct Tulare County straddles the boundary (9 % inside); population-weighted, 3 precincts",
+    "dev": 0.183
+   },
+   "Dinuba Unified School District (9-12)": {
+    "area_weighted": [
+     215,
+     334,
+     558
+    ],
+    "recomputed": [
+     371,
+     628,
+     1016
+    ],
+    "method": "estimate",
+    "why": "precinct Tulare County straddles the boundary (9 % inside); population-weighted, 4 precincts",
+    "dev": 1.273
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Monson-Sultana Joint Union Elementary School District": [
+    "set",
+    [
+     211,
+     309,
+     529
+    ],
+    "estimate",
+    "Dinuba Unified School District (9-12)"
+   ],
+   "Dinuba Unified School District (9-12)": [
+    "check_failed",
+    [
+     371,
+     628,
+     1016
+    ],
+    "estimate",
+    "Monson-Sultana Joint Union Elementary School District",
+    "2020/2024 consistency check vs 2024 [216, 358, 589] failed (ratio 0.58)"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "California",
+  "a": "Marcum-Illinois Union Elementary School District",
+  "b": "East Nicolaus Joint Union High School District",
+  "stored": [
+   114,
+   310,
+   436
+  ],
+  "pop_a": 839,
+  "pop_b": 2604,
+  "pop_differing_share": 0.6778,
+  "recomputed": {
+   "Marcum-Illinois Union Elementary School District": {
+    "area_weighted": [
+     119,
+     326,
+     457
+    ],
+    "recomputed": [
+     114,
+     310,
+     436
+    ],
+    "method": "estimate",
+    "why": "precincts inside cover 92 %; population-weighted, 1 precincts",
+    "dev": 0.0
+   },
+   "East Nicolaus Joint Union High School District": {
+    "area_weighted": [
+     224,
+     719,
+     965
+    ],
+    "recomputed": [
+     291,
+     971,
+     1290
+    ],
+    "method": "estimate",
+    "why": "precinct Sutter County straddles the boundary (45 % inside); population-weighted, 3 precincts",
+    "dev": 1.959
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Marcum-Illinois Union Elementary School District": [
+    "keep",
+    null,
+    null,
+    "East Nicolaus Joint Union High School District",
+    "matches its own recomputation"
+   ],
+   "East Nicolaus Joint Union High School District": [
+    "set",
+    [
+     291,
+     971,
+     1290
+    ],
+    "estimate",
+    "Marcum-Illinois Union Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Illinois",
+  "a": "Grand Prairie Community Consolidated School District 6",
+  "b": "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+  "stored": [
+   89,
+   406,
+   497
+  ],
+  "pop_a": 873,
+  "pop_b": 520,
+  "pop_differing_share": 0.4044,
+  "recomputed": {
+   "Grand Prairie Community Consolidated School District 6": {
+    "area_weighted": [
+     89,
+     405,
+     496
+    ],
+    "recomputed": [
+     89,
+     406,
+     497
+    ],
+    "method": "exact",
+    "why": null,
+    "dev": 0.0
+   },
+   "Woodlawn Unit District 209 (9-12) in Grand Prairie": {
+    "area_weighted": [
+     59,
+     270,
+     331
+    ],
+    "recomputed": [
+     51,
+     235,
+     287
+    ],
+    "method": "estimate",
+    "why": "precinct Jefferson County straddles the boundary (66 % inside); population-weighted, 1 precincts",
+    "dev": 0.423
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Grand Prairie Community Consolidated School District 6": [
+    "keep",
+    null,
+    null,
+    "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+    "matches its own recomputation"
+   ],
+   "Woodlawn Unit District 209 (9-12) in Grand Prairie": [
+    "set",
+    [
+     51,
+     235,
+     287
+    ],
+    "estimate",
+    "Grand Prairie Community Consolidated School District 6"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Illinois",
+  "a": "Dwight Common School District 232",
+  "b": "Dwight Township High School District 230",
+  "stored": [
+   788,
+   1669,
+   2516
+  ],
+  "pop_a": 4901,
+  "pop_b": 5179,
+  "pop_differing_share": 0.0559,
+  "recomputed": {
+   "Dwight Common School District 232": {
+    "area_weighted": [
+     832,
+     1732,
+     2630
+    ],
+    "recomputed": [
+     778,
+     1608,
+     2447
+    ],
+    "method": "estimate",
+    "why": "precinct Livingston County straddles the boundary (44 % inside); population-weighted, 12 precincts",
+    "dev": 0.027
+   },
+   "Dwight Township High School District 230": {
+    "area_weighted": [
+     884,
+     1870,
+     2822
+    ],
+    "recomputed": [
+     820,
+     1727,
+     2610
+    ],
+    "method": "estimate",
+    "why": "precinct Livingston County straddles the boundary (45 % inside); population-weighted, 13 precincts",
+    "dev": 0.037
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Dwight Common School District 232": [
+    "keep",
+    null,
+    null,
+    "Dwight Township High School District 230",
+    "matches its own recomputation"
+   ],
+   "Dwight Township High School District 230": [
+    "set",
+    [
+     820,
+     1727,
+     2610
+    ],
+    "estimate",
+    "Dwight Common School District 232"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Drummond Elementary School District",
+  "b": "Drummond High School District",
+  "stored": [
+   121,
+   409,
+   543
+  ],
+  "pop_a": 1034,
+  "pop_b": 1309,
+  "pop_differing_share": 0.2101,
+  "recomputed": {
+   "Drummond Elementary School District": {
+    "area_weighted": [
+     119,
+     394,
+     526
+    ],
+    "recomputed": [
+     134,
+     451,
+     598
+    ],
+    "method": "estimate",
+    "why": "precinct Granite County straddles the boundary (9 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     134,
+     451,
+     598
+    ],
+    "dev": 0.101
+   },
+   "Drummond High School District": {
+    "area_weighted": [
+     155,
+     515,
+     686
+    ],
+    "recomputed": [
+     175,
+     591,
+     783
+    ],
+    "method": "estimate",
+    "why": "precinct Granite County straddles the boundary (48 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     175,
+     591,
+     783
+    ],
+    "dev": 0.442
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Drummond Elementary School District": [
+    "set",
+    [
+     134,
+     451,
+     598
+    ],
+    "estimate",
+    "Drummond High School District"
+   ],
+   "Drummond High School District": [
+    "set",
+    [
+     175,
+     591,
+     783
+    ],
+    "estimate",
+    "Drummond Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Three Forks Elementary School District",
+  "b": "Three Forks High School District",
+  "stored": [
+   532,
+   1372,
+   1962
+  ],
+  "pop_a": 4425,
+  "pop_b": 4418,
+  "pop_differing_share": 0.0199,
+  "recomputed": {
+   "Three Forks Elementary School District": {
+    "area_weighted": [
+     457,
+     1270,
+     1785
+    ],
+    "recomputed": [
+     591,
+     1798,
+     2470
+    ],
+    "method": "estimate",
+    "why": "precinct Jefferson County straddles the boundary (6 % inside); population-weighted, 4 precincts",
+    "vest_popweighted": [
+     591,
+     1798,
+     2458
+    ],
+    "dev": 0.259
+   },
+   "Three Forks High School District": {
+    "area_weighted": [
+     394,
+     1063,
+     1509
+    ],
+    "recomputed": [
+     589,
+     1789,
+     2460
+    ],
+    "method": "estimate",
+    "why": "precinct Gallatin County straddles the boundary (70 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     589,
+     1789,
+     2448
+    ],
+    "dev": 0.254
+   }
+  },
+  "verdict": "verified: the differing territory holds 2.0 % of the population; identical figures legitimate"
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Reed Point Elementary School District",
+  "b": "Reed Point High School District",
+  "stored": [
+   46,
+   182,
+   232
+  ],
+  "pop_a": 469,
+  "pop_b": 422,
+  "pop_differing_share": 0.1002,
+  "recomputed": {
+   "Reed Point Elementary School District": {
+    "area_weighted": [
+     61,
+     268,
+     336
+    ],
+    "recomputed": [
+     57,
+     262,
+     324
+    ],
+    "method": "estimate",
+    "why": "precinct Sweet Grass County straddles the boundary (17 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     57,
+     262,
+     324
+    ],
+    "dev": 0.397
+   },
+   "Reed Point High School District": {
+    "area_weighted": [
+     56,
+     231,
+     293
+    ],
+    "recomputed": [
+     53,
+     236,
+     294
+    ],
+    "method": "estimate",
+    "why": "precinct Sweet Grass County straddles the boundary (4 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     53,
+     236,
+     293
+    ],
+    "dev": 0.267
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Reed Point Elementary School District": [
+    "set",
+    [
+     57,
+     262,
+     324
+    ],
+    "estimate",
+    "Reed Point High School District"
+   ],
+   "Reed Point High School District": [
+    "set",
+    [
+     53,
+     236,
+     294
+    ],
+    "estimate",
+    "Reed Point Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Box Elder Elementary School District",
+  "b": "Box Elder High School District",
+  "stored": [
+   134,
+   45,
+   183
+  ],
+  "pop_a": 521,
+  "pop_b": 592,
+  "pop_differing_share": 0.1199,
+  "recomputed": {
+   "Box Elder Elementary School District": {
+    "area_weighted": [
+     116,
+     104,
+     225
+    ],
+    "recomputed": [
+     108,
+     53,
+     165
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (70 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     108,
+     53,
+     165
+    ],
+    "dev": 0.098
+   },
+   "Box Elder High School District": {
+    "area_weighted": [
+     139,
+     171,
+     318
+    ],
+    "recomputed": [
+     118,
+     82,
+     206
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (70 % inside); population-weighted, 4 precincts",
+    "vest_popweighted": [
+     118,
+     82,
+     206
+    ],
+    "dev": 0.126
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Box Elder Elementary School District": [
+    "set",
+    [
+     108,
+     53,
+     165
+    ],
+    "estimate",
+    "Box Elder High School District"
+   ],
+   "Box Elder High School District": [
+    "set",
+    [
+     118,
+     82,
+     206
+    ],
+    "estimate",
+    "Box Elder Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Havre Elementary School District",
+  "b": "Havre High School District",
+  "stored": [
+   2202,
+   3369,
+   5782
+  ],
+  "pop_a": 12159,
+  "pop_b": 12513,
+  "pop_differing_share": 0.0283,
+  "recomputed": {
+   "Havre Elementary School District": {
+    "area_weighted": [
+     2065,
+     3023,
+     5281
+    ],
+    "recomputed": [
+     2155,
+     3229,
+     5588
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (85 % inside); population-weighted, 13 precincts",
+    "vest_popweighted": [
+     2154,
+     3226,
+     5585
+    ],
+    "dev": 0.034
+   },
+   "Havre High School District": {
+    "area_weighted": [
+     2183,
+     3275,
+     5665
+    ],
+    "recomputed": [
+     2203,
+     3346,
+     5760
+    ],
+    "method": "estimate",
+    "why": "precinct Hill County straddles the boundary (97 % inside); population-weighted, 14 precincts",
+    "vest_popweighted": [
+     2203,
+     3346,
+     5760
+    ],
+    "dev": 0.004
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Havre Elementary School District": [
+    "set",
+    [
+     2155,
+     3229,
+     5588
+    ],
+    "estimate",
+    "Havre High School District"
+   ],
+   "Havre High School District": [
+    "keep",
+    null,
+    null,
+    "Havre Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Gardiner Elementary School District",
+  "b": "Gardiner High School District",
+  "stored": [
+   505,
+   463,
+   983
+  ],
+  "pop_a": 1276,
+  "pop_b": 1380,
+  "pop_differing_share": 0.0754,
+  "recomputed": {
+   "Gardiner Elementary School District": {
+    "area_weighted": [
+     404,
+     423,
+     843
+    ],
+    "recomputed": [
+     503,
+     488,
+     1010
+    ],
+    "method": "estimate",
+    "why": "precinct Park County straddles the boundary (65 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     503,
+     488,
+     1007
+    ],
+    "dev": 0.027
+   },
+   "Gardiner High School District": {
+    "area_weighted": [
+     582,
+     586,
+     1190
+    ],
+    "recomputed": [
+     545,
+     527,
+     1091
+    ],
+    "method": "estimate",
+    "why": "precinct Park County straddles the boundary (17 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     545,
+     527,
+     1088
+    ],
+    "dev": 0.11
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Gardiner Elementary School District": [
+    "keep",
+    null,
+    null,
+    "Gardiner High School District",
+    "matches its own recomputation"
+   ],
+   "Gardiner High School District": [
+    "set",
+    [
+     545,
+     527,
+     1091
+    ],
+    "estimate",
+    "Gardiner Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Lambert Elementary School District",
+  "b": "Lambert High School District",
+  "stored": [
+   60,
+   289,
+   364
+  ],
+  "pop_a": 482,
+  "pop_b": 461,
+  "pop_differing_share": 0.14,
+  "recomputed": {
+   "Lambert Elementary School District": {
+    "area_weighted": [
+     38,
+     176,
+     223
+    ],
+    "recomputed": [
+     42,
+     200,
+     252
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (67 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     42,
+     200,
+     252
+    ],
+    "dev": 0.308
+   },
+   "Lambert High School District": {
+    "area_weighted": [
+     36,
+     156,
+     201
+    ],
+    "recomputed": [
+     40,
+     187,
+     237
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (69 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     40,
+     187,
+     237
+    ],
+    "dev": 0.349
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Lambert Elementary School District": [
+    "set",
+    [
+     42,
+     200,
+     252
+    ],
+    "estimate",
+    "Lambert High School District"
+   ],
+   "Lambert High School District": [
+    "set",
+    [
+     40,
+     187,
+     237
+    ],
+    "estimate",
+    "Lambert Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Culbertson Elementary School District",
+  "b": "Culbertson High School District",
+  "stored": [
+   107,
+   421,
+   539
+  ],
+  "pop_a": 1146,
+  "pop_b": 1077,
+  "pop_differing_share": 0.0602,
+  "recomputed": {
+   "Culbertson Elementary School District": {
+    "area_weighted": [
+     150,
+     492,
+     656
+    ],
+    "recomputed": [
+     115,
+     455,
+     584
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (12 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     115,
+     455,
+     583
+    ],
+    "dev": 0.083
+   },
+   "Culbertson High School District": {
+    "area_weighted": [
+     131,
+     421,
+     564
+    ],
+    "recomputed": [
+     109,
+     421,
+     542
+    ],
+    "method": "estimate",
+    "why": "precinct Roosevelt County straddles the boundary (14 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     109,
+     421,
+     541
+    ],
+    "dev": 0.006
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Culbertson Elementary School District": [
+    "set",
+    [
+     115,
+     455,
+     584
+    ],
+    "estimate",
+    "Culbertson High School District"
+   ],
+   "Culbertson High School District": [
+    "keep",
+    null,
+    null,
+    "Culbertson Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Fairview Elementary School District",
+  "b": "Fairview High School District",
+  "stored": [
+   116,
+   727,
+   864
+  ],
+  "pop_a": 1645,
+  "pop_b": 1690,
+  "pop_differing_share": 0.0301,
+  "recomputed": {
+   "Fairview Elementary School District": {
+    "area_weighted": [
+     119,
+     724,
+     863
+    ],
+    "recomputed": [
+     110,
+     666,
+     796
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (6 % inside); population-weighted, 5 precincts",
+    "vest_popweighted": [
+     110,
+     666,
+     796
+    ],
+    "dev": 0.079
+   },
+   "Fairview High School District": {
+    "area_weighted": [
+     125,
+     776,
+     923
+    ],
+    "recomputed": [
+     113,
+     691,
+     825
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (6 % inside); population-weighted, 5 precincts",
+    "vest_popweighted": [
+     113,
+     691,
+     825
+    ],
+    "dev": 0.045
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Fairview Elementary School District": [
+    "set",
+    [
+     110,
+     666,
+     796
+    ],
+    "estimate",
+    "Fairview High School District"
+   ],
+   "Fairview High School District": [
+    "set",
+    [
+     113,
+     691,
+     825
+    ],
+    "estimate",
+    "Fairview Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Moore Elementary School District",
+  "b": "Moore High School District",
+  "stored": [
+   66,
+   267,
+   339
+  ],
+  "pop_a": 594,
+  "pop_b": 657,
+  "pop_differing_share": 0.0959,
+  "recomputed": {
+   "Moore Elementary School District": {
+    "area_weighted": [
+     57,
+     241,
+     304
+    ],
+    "recomputed": [
+     47,
+     193,
+     246
+    ],
+    "method": "estimate",
+    "why": "precinct Fergus County straddles the boundary (73 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     47,
+     193,
+     245
+    ],
+    "dev": 0.274
+   },
+   "Moore High School District": {
+    "area_weighted": [
+     65,
+     273,
+     345
+    ],
+    "recomputed": [
+     52,
+     213,
+     271
+    ],
+    "method": "estimate",
+    "why": "precinct Fergus County straddles the boundary (86 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     52,
+     213,
+     270
+    ],
+    "dev": 0.201
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Moore Elementary School District": [
+    "set",
+    [
+     47,
+     193,
+     246
+    ],
+    "estimate",
+    "Moore High School District"
+   ],
+   "Moore High School District": [
+    "set",
+    [
+     52,
+     213,
+     271
+    ],
+    "estimate",
+    "Moore Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Judith Gap Elementary School District",
+  "b": "Judith Gap High School District",
+  "stored": [
+   29,
+   106,
+   138
+  ],
+  "pop_a": 304,
+  "pop_b": 241,
+  "pop_differing_share": 0.2072,
+  "recomputed": {
+   "Judith Gap Elementary School District": {
+    "area_weighted": [
+     33,
+     127,
+     164
+    ],
+    "recomputed": [
+     36,
+     134,
+     174
+    ],
+    "method": "estimate",
+    "why": "precinct Wheatland County straddles the boundary (9 % inside); population-weighted, 4 precincts",
+    "vest_popweighted": [
+     36,
+     134,
+     174
+    ],
+    "dev": 0.261
+   },
+   "Judith Gap High School District": {
+    "area_weighted": [
+     25,
+     94,
+     122
+    ],
+    "recomputed": [
+     31,
+     114,
+     148
+    ],
+    "method": "estimate",
+    "why": "precinct Wheatland County straddles the boundary (9 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     31,
+     114,
+     148
+    ],
+    "dev": 0.072
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Judith Gap Elementary School District": [
+    "set",
+    [
+     36,
+     134,
+     174
+    ],
+    "estimate",
+    "Judith Gap High School District"
+   ],
+   "Judith Gap High School District": [
+    "set",
+    [
+     31,
+     114,
+     148
+    ],
+    "estimate",
+    "Judith Gap Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Harlem Elementary School District",
+  "b": "Harlem High School District",
+  "stored": [
+   816,
+   432,
+   1274
+  ],
+  "pop_a": 2666,
+  "pop_b": 2807,
+  "pop_differing_share": 0.0502,
+  "recomputed": {
+   "Harlem Elementary School District": {
+    "area_weighted": [
+     874,
+     294,
+     1189
+    ],
+    "recomputed": [
+     786,
+     251,
+     1055
+    ],
+    "method": "estimate",
+    "why": "precinct Blaine County straddles the boundary (18 % inside); population-weighted, 6 precincts",
+    "vest_popweighted": [
+     786,
+     251,
+     1055
+    ],
+    "dev": 0.172
+   },
+   "Harlem High School District": {
+    "area_weighted": [
+     915,
+     534,
+     1475
+    ],
+    "recomputed": [
+     797,
+     313,
+     1130
+    ],
+    "method": "estimate",
+    "why": "precinct Blaine County straddles the boundary (18 % inside); population-weighted, 6 precincts",
+    "vest_popweighted": [
+     797,
+     313,
+     1130
+    ],
+    "dev": 0.113
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Harlem Elementary School District": [
+    "set",
+    [
+     786,
+     251,
+     1055
+    ],
+    "estimate",
+    "Harlem High School District"
+   ],
+   "Harlem High School District": [
+    "check_failed",
+    [
+     797,
+     313,
+     1130
+    ],
+    "estimate",
+    "Harlem Elementary School District",
+    "2020/2024 consistency check vs 2024 [793, 578, 1447] failed (ratio 1.28)"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Conrad Elementary School District",
+  "b": "Conrad High School District",
+  "stored": [
+   461,
+   1328,
+   1827
+  ],
+  "pop_a": 3048,
+  "pop_b": 3382,
+  "pop_differing_share": 0.0988,
+  "recomputed": {
+   "Conrad Elementary School District": {
+    "area_weighted": [
+     421,
+     1266,
+     1723
+    ],
+    "recomputed": [
+     433,
+     1307,
+     1778
+    ],
+    "method": "estimate",
+    "why": "precinct Pondera County straddles the boundary (32 % inside); population-weighted, 5 precincts",
+    "vest_popweighted": [
+     433,
+     1307,
+     1778
+    ],
+    "dev": 0.027
+   },
+   "Conrad High School District": {
+    "area_weighted": [
+     431,
+     1308,
+     1777
+    ],
+    "recomputed": [
+     448,
+     1374,
+     1860
+    ],
+    "method": "estimate",
+    "why": "precinct Pondera County straddles the boundary (14 % inside); population-weighted, 6 precincts",
+    "vest_popweighted": [
+     448,
+     1374,
+     1860
+    ],
+    "dev": 0.018
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Conrad Elementary School District": [
+    "keep",
+    null,
+    null,
+    "Conrad High School District",
+    "matches its own recomputation"
+   ],
+   "Conrad High School District": [
+    "keep",
+    null,
+    null,
+    "Conrad Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Fairfield Elementary School District",
+  "b": "Fairfield High School District",
+  "stored": [
+   276,
+   860,
+   1153
+  ],
+  "pop_a": 1356,
+  "pop_b": 1966,
+  "pop_differing_share": 0.3103,
+  "recomputed": {
+   "Fairfield Elementary School District": {
+    "area_weighted": [
+     136,
+     419,
+     565
+    ],
+    "recomputed": [
+     189,
+     590,
+     793
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (47 % inside); population-weighted, 1 precincts",
+    "vest_popweighted": [
+     190,
+     591,
+     792
+    ],
+    "dev": 0.312
+   },
+   "Fairfield High School District": {
+    "area_weighted": [
+     254,
+     772,
+     1045
+    ],
+    "recomputed": [
+     275,
+     854,
+     1151
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (83 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     276,
+     856,
+     1149
+    ],
+    "dev": 0.002
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Fairfield Elementary School District": [
+    "set",
+    [
+     189,
+     590,
+     793
+    ],
+    "estimate",
+    "Fairfield High School District"
+   ],
+   "Fairfield High School District": [
+    "keep",
+    null,
+    null,
+    "Fairfield Elementary School District",
+    "matches its own recomputation"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Power Elementary School District",
+  "b": "Power High School District",
+  "stored": [
+   99,
+   262,
+   365
+  ],
+  "pop_a": 605,
+  "pop_b": 645,
+  "pop_differing_share": 0.062,
+  "recomputed": {
+   "Power Elementary School District": {
+    "area_weighted": [
+     99,
+     262,
+     366
+    ],
+    "recomputed": [
+     99,
+     262,
+     365
+    ],
+    "method": "exact",
+    "why": null,
+    "dev": 0.0
+   },
+   "Power High School District": {
+    "area_weighted": [
+     121,
+     332,
+     460
+    ],
+    "recomputed": [
+     102,
+     273,
+     381
+    ],
+    "method": "estimate",
+    "why": "precinct Teton County straddles the boundary (8 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     102,
+     271,
+     377
+    ],
+    "dev": 0.044
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Power Elementary School District": [
+    "keep",
+    null,
+    null,
+    "Power High School District",
+    "matches its own recomputation"
+   ],
+   "Power High School District": [
+    "set",
+    [
+     102,
+     273,
+     381
+    ],
+    "estimate",
+    "Power Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Frazer Elementary School District",
+  "b": "Frazer High School District",
+  "stored": [
+   299,
+   1296,
+   1620
+  ],
+  "pop_a": 545,
+  "pop_b": 750,
+  "pop_differing_share": 0.2733,
+  "recomputed": {
+   "Frazer Elementary School District": {
+    "area_weighted": [
+     60,
+     212,
+     278
+    ],
+    "recomputed": [
+     97,
+     195,
+     300
+    ],
+    "method": "estimate",
+    "why": "precinct Valley County straddles the boundary (7 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     97,
+     195,
+     299
+    ],
+    "dev": 0.815
+   },
+   "Frazer High School District": {
+    "area_weighted": [
+     101,
+     390,
+     501
+    ],
+    "recomputed": [
+     119,
+     290,
+     419
+    ],
+    "method": "estimate",
+    "why": "precinct Valley County straddles the boundary (7 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     119,
+     290,
+     418
+    ],
+    "dev": 0.741
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Frazer Elementary School District": [
+    "set",
+    [
+     97,
+     195,
+     300
+    ],
+    "estimate",
+    "Frazer High School District",
+    "other-year figure [120, 358, 493] implausible for 545 residents; consistency check skipped"
+   ],
+   "Frazer High School District": [
+    "set",
+    [
+     119,
+     290,
+     419
+    ],
+    "estimate",
+    "Frazer Elementary School District",
+    "other-year figure [215, 667, 911] implausible for 750 residents; consistency check skipped"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Savage Elementary School District",
+  "b": "Savage High School District",
+  "stored": [
+   55,
+   342,
+   400
+  ],
+  "pop_a": 604,
+  "pop_b": 640,
+  "pop_differing_share": 0.1037,
+  "recomputed": {
+   "Savage Elementary School District": {
+    "area_weighted": [
+     33,
+     206,
+     241
+    ],
+    "recomputed": [
+     43,
+     265,
+     311
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (57 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     43,
+     265,
+     310
+    ],
+    "dev": 0.223
+   },
+   "Savage High School District": {
+    "area_weighted": [
+     48,
+     292,
+     343
+    ],
+    "recomputed": [
+     46,
+     281,
+     329
+    ],
+    "method": "estimate",
+    "why": "precinct Richland County straddles the boundary (75 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     46,
+     281,
+     329
+    ],
+    "dev": 0.177
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Savage Elementary School District": [
+    "set",
+    [
+     43,
+     265,
+     311
+    ],
+    "estimate",
+    "Savage High School District"
+   ],
+   "Savage High School District": [
+    "set",
+    [
+     46,
+     281,
+     329
+    ],
+    "estimate",
+    "Savage Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Richey Elementary School District",
+  "b": "Richey High School District",
+  "stored": [
+   40,
+   266,
+   313
+  ],
+  "pop_a": 431,
+  "pop_b": 490,
+  "pop_differing_share": 0.3101,
+  "recomputed": {
+   "Richey Elementary School District": {
+    "area_weighted": [
+     38,
+     232,
+     278
+    ],
+    "recomputed": [
+     39,
+     250,
+     297
+    ],
+    "method": "estimate",
+    "why": "precinct Dawson County straddles the boundary (72 % inside); population-weighted, 3 precincts",
+    "vest_popweighted": [
+     39,
+     250,
+     296
+    ],
+    "dev": 0.051
+   },
+   "Richey High School District": {
+    "area_weighted": [
+     56,
+     367,
+     433
+    ],
+    "recomputed": [
+     44,
+     289,
+     341
+    ],
+    "method": "estimate",
+    "why": "precinct Dawson County straddles the boundary (15 % inside); population-weighted, 2 precincts",
+    "vest_popweighted": [
+     44,
+     289,
+     340
+    ],
+    "dev": 0.089
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Richey Elementary School District": [
+    "set",
+    [
+     39,
+     250,
+     297
+    ],
+    "estimate",
+    "Richey High School District"
+   ],
+   "Richey High School District": [
+    "set",
+    [
+     44,
+     289,
+     341
+    ],
+    "estimate",
+    "Richey Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Montana",
+  "a": "Fort Benton Elementary School District",
+  "b": "Fort Benton High School District",
+  "stored": [
+   443,
+   849,
+   1336
+  ],
+  "pop_a": 1887,
+  "pop_b": 2262,
+  "pop_differing_share": 0.1658,
+  "recomputed": {
+   "Fort Benton Elementary School District": {
+    "area_weighted": [
+     347,
+     622,
+     1008
+    ],
+    "recomputed": [
+     363,
+     652,
+     1055
+    ],
+    "method": "estimate",
+    "why": "precinct Chouteau County straddles the boundary (73 % inside); population-weighted, 5 precincts",
+    "vest_popweighted": [
+     363,
+     652,
+     1051
+    ],
+    "dev": 0.21
+   },
+   "Fort Benton High School District": {
+    "area_weighted": [
+     398,
+     776,
+     1218
+    ],
+    "recomputed": [
+     419,
+     823,
+     1289
+    ],
+    "method": "estimate",
+    "why": "precinct Chouteau County straddles the boundary (73 % inside); population-weighted, 5 precincts",
+    "vest_popweighted": [
+     419,
+     823,
+     1285
+    ],
+    "dev": 0.035
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Fort Benton Elementary School District": [
+    "set",
+    [
+     363,
+     652,
+     1055
+    ],
+    "estimate",
+    "Fort Benton High School District"
+   ],
+   "Fort Benton High School District": [
+    "set",
+    [
+     419,
+     823,
+     1289
+    ],
+    "estimate",
+    "Fort Benton Elementary School District"
+   ]
+  }
+ },
+ {
+  "year": "2020",
+  "state": "Oregon",
+  "a": "Harney County School District 4",
+  "b": "Harney County Union High School District 1J",
+  "stored": [
+   288,
+   1735,
+   2052
+  ],
+  "pop_a": 771,
+  "pop_b": 1444,
+  "pop_differing_share": 0.4661,
+  "recomputed": {
+   "Harney County School District 4": {
+    "area_weighted": [
+     60,
+     361,
+     427
+    ],
+    "recomputed": [
+     71,
+     429,
+     507
+    ],
+    "method": "estimate",
+    "why": "precinct Harney County straddles the boundary (21 % inside); population-weighted, 1 precincts",
+    "dev": 0.753
+   },
+   "Harney County Union High School District 1J": {
+    "area_weighted": [
+     251,
+     1511,
+     1788
+    ],
+    "recomputed": [
+     133,
+     803,
+     950
+    ],
+    "method": "estimate",
+    "why": "precinct Harney County straddles the boundary (87 % inside); population-weighted, 1 precincts",
+    "dev": 0.537
+   }
+  },
+  "verdict": "recomputed",
+  "actions": {
+   "Harney County School District 4": [
+    "set",
+    [
+     71,
+     429,
+     507
+    ],
+    "estimate",
+    "Harney County Union High School District 1J"
+   ],
+   "Harney County Union High School District 1J": [
+    "set",
+    [
+     133,
+     803,
+     950
+    ],
+    "estimate",
+    "Harney County School District 4",
+    "other-year figure [236, 1473, 1755] implausible for 1444 residents; consistency check skipped"
+   ]
+  }
+ },
+ {
+  "implausible_other_year": [
+   {
+    "state": "California",
+    "name": "Big Creek Elementary School District",
+    "year": "2024",
+    "value": [
+     342,
+     894,
+     1274
+    ],
+    "pop2020": 343
+   },
+   {
+    "state": "California",
+    "name": "Sierra Unified School District (9-12)",
+    "year": "2024",
+    "value": [
+     328,
+     857,
+     1221
+    ],
+    "pop2020": 1293
+   },
+   {
+    "state": "Montana",
+    "name": "Frazer Elementary School District",
+    "year": "2024",
+    "value": [
+     120,
+     358,
+     493
+    ],
+    "pop2020": 545
+   },
+   {
+    "state": "Montana",
+    "name": "Frazer High School District",
+    "year": "2024",
+    "value": [
+     215,
+     667,
+     911
+    ],
+    "pop2020": 750
+   },
+   {
+    "state": "Oregon",
+    "name": "Harney County Union High School District 1J",
+    "year": "2024",
+    "value": [
+     236,
+     1473,
+     1755
+    ],
+    "pop2020": 1444
+   }
+  ],
+  "grayed": false
+ }
+]
