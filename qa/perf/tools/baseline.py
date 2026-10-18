@@ -82,6 +82,8 @@ async def main():
         if await tap('li.la-row','all_states',3500) is None: break
         if i<TRIES-1: await tap('#bGeo','open_institution',1200)
       await pg.wait_for_timeout(2000)
+      try: R.setdefault('map_view',{})['all_states']=await pg.evaluate("()=>{const c=map.getCenter();return [map.getZoom(),+c.lat.toFixed(3),+c.lng.toFixed(3)]}")
+      except Exception as e: R['notes'].append('map_view '+str(e)[:80])
       if not await pg.evaluate("()=>document.querySelectorAll('#listView .lvrow.la').length"):
         R['notes'].append('no All States list rows')
       # --- time slider step (tap 2020 end <-> 2024 end of the slider track)
@@ -109,6 +111,8 @@ async def main():
         xy=await pg.evaluate(PAXY)
         R['lat'].setdefault('drill_PA',[]).append(await tapxy(*xy)); await pg.wait_for_timeout(4000)
         if i<TRIES-1: await tap('#bBack','back',3000)
+      try: R.setdefault('map_view',{})['drill_PA']=await pg.evaluate("()=>{const c=map.getCenter();return [map.getZoom(),+c.lat.toFixed(3),+c.lng.toFixed(3)]}")
+      except Exception as e: R['notes'].append('map_view '+str(e)[:80])
       R['pa_info']=await pg.evaluate("()=>window.__laInfo&&JSON.stringify(window.__laInfo()).slice(0,160)")
       # --- US House pick inside PA (type menu) x TRIES, alternating pick / deselect
       for i in range(TRIES):

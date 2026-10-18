@@ -1,0 +1,180 @@
+== all_states_cold: tap->paint 266.0 ms
+ self:
+    278.3 ms  (program) @:0:0
+     48.6 ms  latLngToLayerPoint @leaflet.js:5:37528
+     38.7 ms  (garbage collector) @:0:0
+     22.6 ms  getBoundingClientRect @:0:0
+     19.1 ms  scopeVals @:1936:19
+     17.1 ms  _projectLatlngs @leaflet.js:5:83664
+     11.9 ms  Je @leaflet.js:5:62194
+      8.1 ms  heatSel @:1031:17
+      6.2 ms  _fillStroke @leaflet.js:5:125748
+      6.1 ms  layoutSide @:1749:20
+      6.0 ms  extend @leaflet.js:5:9057
+ incl:
+    278.3 ms  (program) @:0:0
+    209.4 ms  enter @:3685:23
+    123.6 ms  fit @:3688:15
+    123.4 ms  fitBounds @leaflet.js:5:29107
+    123.4 ms  fire @leaflet.js:5:5102
+    123.4 ms  map.fire @:3072:41
+    123.2 ms  setView @leaflet.js:5:27605
+    123.1 ms  _resetView @leaflet.js:5:39624
+     84.0 ms  _reset @leaflet.js:5:123074
+     81.6 ms  render @:3612:18
+     80.8 ms  render0 @:3620:19
+     76.5 ms  _project @leaflet.js:5:83303
+     73.3 ms  _projectLatlngs @leaflet.js:5:83664
+     70.8 ms  show @:1805:17
+     70.8 ms  setView @:1475:17
+     70.8 ms  setView @:3703:40
+     70.0 ms  renderList @:3680:44
+     70.0 ms  renderList @:3681:47
+     56.7 ms  _reset @leaflet.js:5:79656
+     50.4 ms  latLngToLayerPoint @leaflet.js:5:37528
+     49.4 ms  _reset @leaflet.js:5:121352
+     38.7 ms  (garbage collector) @:0:0
+== all_states_warm: tap->paint 87.9 ms
+ self:
+    148.5 ms  (program) @:0:0
+     10.8 ms  getBoundingClientRect @:0:0
+      7.8 ms  _fillStroke @leaflet.js:5:125748
+      7.3 ms  layoutSide @:1749:20
+      6.7 ms  _updatePoly @leaflet.js:5:125217
+      4.1 ms  querySelectorAll @:0:0
+      3.8 ms  fill @:0:0
+      3.8 ms  (garbage collector) @:0:0
+      3.7 ms  si @leaflet.js:5:64243
+      3.7 ms  laThumbs @:3665:20
+      3.5 ms  heatSel @:1031:17
+ incl:
+    148.5 ms  (program) @:0:0
+     60.0 ms  enter @:3685:23
+     29.3 ms  _draw @leaflet.js:5:124886
+     29.3 ms  _redraw @leaflet.js:5:124453
+     28.2 ms  _updatePath @leaflet.js:5:85760
+     28.0 ms  _tryAnimatedPan @leaflet.js:5:45356
+     28.0 ms  setView @leaflet.js:5:27605
+     28.0 ms  fitBounds @leaflet.js:5:29107
+     28.0 ms  fit @:3688:15
+     27.8 ms  fire @leaflet.js:5:5102
+     27.8 ms  map.fire @:3072:41
+     27.8 ms  panBy @leaflet.js:5:29395
+     27.5 ms  render0 @:3620:19
+     27.5 ms  render @:3612:18
+     27.5 ms  _updatePaths @leaflet.js:5:122587
+     27.5 ms  _update @leaflet.js:5:122730
+     27.1 ms  _updatePoly @leaflet.js:5:125217
+     23.7 ms  (anon) @:15:263
+     18.6 ms  L.Canvas._fillStroke @:3909:42
+     16.2 ms  drawMap @:3538:19
+     14.4 ms  eachLayer @leaflet.js:5:70099
+     14.2 ms  show @:1805:17
+== drill_PA: tap->paint 16.8 ms
+ self:
+    253.0 ms  (program) @:0:0
+    114.4 ms  latLngToLayerPoint @leaflet.js:5:37528
+     72.9 ms  (garbage collector) @:0:0
+     42.1 ms  _projectLatlngs @leaflet.js:5:83664
+     26.7 ms  getBoundingClientRect @:0:0
+     17.9 ms  _convertLatLngs @leaflet.js:5:83154
+     17.9 ms  querySelectorAll @:0:0
+     14.4 ms  Je @leaflet.js:5:62194
+     14.3 ms  extend @leaflet.js:5:9057
+     13.6 ms  scale @:0:0
+     11.2 ms  layoutSide @:1749:20
+ incl:
+    253.0 ms  (program) @:0:0
+    247.4 ms  fitBounds @leaflet.js:5:29107
+    246.9 ms  setView @leaflet.js:5:27605
+    246.9 ms  fire @leaflet.js:5:5102
+    246.5 ms  map.fire @:3072:41
+    226.7 ms  _resetView @leaflet.js:5:39624
+    188.1 ms  enter @:3685:23
+    178.8 ms  _project @leaflet.js:5:83303
+    172.9 ms  _projectLatlngs @leaflet.js:5:83664
+    153.1 ms  fit @:3688:15
+    122.0 ms  _reset @leaflet.js:5:123074
+    116.5 ms  _reset @leaflet.js:5:79656
+    115.4 ms  latLngToLayerPoint @leaflet.js:5:37528
+     98.2 ms  (anon) @:2804:15
+     97.6 ms  _moveEnd @leaflet.js:5:40213
+     89.7 ms  _onZoomEnd @leaflet.js:5:121488
+     89.4 ms  _reset @leaflet.js:5:121352
+     72.9 ms  (garbage collector) @:0:0
+     55.5 ms  _update @leaflet.js:5:84375
+     54.6 ms  drawFocus @:1163:22
+     54.6 ms  (anon) @:941:109
+     50.7 ms  _updatePaths @leaflet.js:5:122587
+== back: tap->paint 379.4 ms
+ self:
+    502.3 ms  (program) @:0:0
+    112.6 ms  latLngToLayerPoint @leaflet.js:5:37528
+     70.4 ms  (garbage collector) @:0:0
+     40.8 ms  _projectLatlngs @leaflet.js:5:83664
+     23.5 ms  _fillStroke @leaflet.js:5:125748
+     20.9 ms  stTot @:2747:17
+     18.9 ms  Je @leaflet.js:5:62194
+     15.2 ms  fill @:0:0
+     14.4 ms  _updatePoly @leaflet.js:5:125217
+     12.5 ms  extend @leaflet.js:5:9057
+     11.8 ms  getBoundingClientRect @:0:0
+ incl:
+    502.3 ms  (program) @:0:0
+    304.8 ms  map.fire @:3072:41
+    304.7 ms  setView @leaflet.js:5:27605
+    304.5 ms  _resetView @leaflet.js:5:39624
+    304.2 ms  fire @leaflet.js:5:5102
+    197.0 ms  drawFocus @:1163:22
+    197.0 ms  (anon) @:941:109
+    185.9 ms  drawFocus @:863:19
+    175.6 ms  _project @leaflet.js:5:83303
+    166.9 ms  _projectLatlngs @leaflet.js:5:83664
+    164.5 ms  _reset @leaflet.js:5:123074
+    156.0 ms  enter @:3685:23
+    122.5 ms  _reset @leaflet.js:5:79656
+    119.6 ms  fitBounds @leaflet.js:5:29107
+    119.6 ms  fit @:3688:15
+    113.7 ms  latLngToLayerPoint @leaflet.js:5:37528
+    102.7 ms  _reset @leaflet.js:5:121352
+     93.8 ms  _moveEnd @leaflet.js:5:40213
+     83.9 ms  _redraw @leaflet.js:5:124453
+     80.1 ms  _onZoomEnd @leaflet.js:5:121488
+     79.8 ms  _updatePoly @leaflet.js:5:125217
+     70.4 ms  (garbage collector) @:0:0
+== ushouse_pick: tap->paint 374.3 ms
+ self:
+    524.2 ms  (program) @:0:0
+    200.2 ms  (anon) @:1072:19
+    101.9 ms  (garbage collector) @:0:0
+     81.1 ms  latLngToLayerPoint @leaflet.js:5:37528
+     32.9 ms  _projectLatlngs @leaflet.js:5:83664
+     11.2 ms  (anon) @:2706:32
+     11.0 ms  Je @leaflet.js:5:62194
+     10.9 ms  querySelectorAll @:0:0
+     10.4 ms  filtered @:778:18
+      9.6 ms  extend @leaflet.js:5:9057
+      8.2 ms  getBoundingClientRect @:0:0
+ incl:
+    524.2 ms  (program) @:0:0
+    245.2 ms  (anon) @:1567:177
+    244.6 ms  (anon) @:1569:128
+    244.3 ms  (anon) @:1571:29
+    239.5 ms  distFill @:1550:18
+    239.5 ms  distFill @:2727:40
+    239.2 ms  g @:1548:47
+    239.2 ms  distVals @:1548:18
+    238.9 ms  aggFor @:1384:16
+    204.1 ms  pointInItem @:1069:21
+    200.2 ms  (anon) @:1072:19
+    172.2 ms  enter @:3685:23
+    152.7 ms  (anon) @:1389:13
+    150.9 ms  fit @:3688:15
+    149.9 ms  fitBounds @leaflet.js:5:29107
+    149.6 ms  fire @leaflet.js:5:5102
+    149.6 ms  map.fire @:3072:41
+    149.6 ms  _resetView @leaflet.js:5:39624
+    149.6 ms  setView @leaflet.js:5:27605
+    131.1 ms  (anon) @:1390:48
+    128.1 ms  _project @leaflet.js:5:83303
+    125.0 ms  _projectLatlngs @leaflet.js:5:83664

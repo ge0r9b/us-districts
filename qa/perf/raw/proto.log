@@ -1,0 +1,78 @@
+390x844 {"timing": {"ttfb": 138, "html_done": 192, "dcl": 1048, "load": 1072, "fcp": 280, "lcp": 628, "first_vector_map": 926, "first_tile": 611, "first_map": 926, "longtasks_ms": 559, "longest_task": 148, "heapMB": 57}, "bytes_initial": {"enc": 0, "dec": 0, "n": 0}, "bytes_pa": {"enc": 0, "dec": 0, "n": 0}, "pan": {"frames": 268, "avg_ms": 17.0, "p95_ms": 16.7, "max_ms": 33.4, "janky_gt25": 5, "dropped": 5, "fps": 58.9}, "lat": {"open_institution": {"median": 20.2, "max": 65.8, "n": 5}, "all_states": {"median": 122.4, "max": 249.6, "n": 5}, "time_open": {"median": 29.5, "max": 29.5, "n": 1}, "time_step": {"median": 53.3, "max": 78.4, "n": 10}, "chart_menu": {"median": 15.0, "max": 33.2, "n": 10}, "chart_line": {"median": 15.5, "max": 20.7, "n": 5}, "chart_bar": {"median": 19.5, "max": 29.5, "n": 5}, "time_close": {"median": 58.2, "max": 58.2, "n": 1}, "drill_PA": {"median": 19.6, "max": 29.9, "n": 5}, "back": {"median": 54.4, "max": 250.9, "n": 4}, "type_menu": {"median": 11.5, "max": 11.5, "n": 1}, "ushouse_pick": {"median": 84.6, "max": 335.7, "n": 5}, "ushouse_deselect": {"median": 38.7, "max": 60.4, "n": 4}}, "notes": [], "errors": []}
+320x568 {"timing": {"ttfb": 3, "html_done": 52, "dcl": 557, "load": 749, "fcp": 128, "lcp": 464, "first_vector_map": 558, "first_tile": 447, "first_map": 558, "longtasks_ms": 431, "longest_task": 117, "heapMB": 56}, "bytes_initial": {"enc": 0, "dec": 0, "n": 0}, "bytes_pa": {"enc": 0, "dec": 0, "n": 0}, "pan": {"frames": 279, "avg_ms": 16.7, "p95_ms": 16.7, "max_ms": 16.8, "janky_gt25": 0, "dropped": 0, "fps": 60.0}, "lat": {"open_institution": {"median": 18.7, "max": 39.4, "n": 5}, "all_states": {"median": 78.2, "max": 230.1, "n": 5}, "time_open": {"median": 24.4, "max": 24.4, "n": 1}, "time_step": {"median": 49.2, "max": 54.1, "n": 10}, "chart_menu": {"median": 11.1, "max": 20.8, "n": 10}, "chart_line": {"median": 12.2, "max": 23, "n": 5}, "chart_bar": {"median": 14.7, "max": 30, "n": 5}, "time_close": {"median": 26.6, "max": 26.6, "n": 1}, "drill_PA": {"median": 16.1, "max": 108, "n": 5}, "back": {"median": 90.8, "max": 111.3, "n": 4}, "type_menu": {"median": 13, "max": 13, "n": 1}, "ushouse_pick": {"median": 95, "max": 312.8, "n": 5}, "ushouse_deselect": {"median": 50.2, "max": 70.7, "n": 4}}, "notes": [], "errors": []}
+Traceback (most recent call last):
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 134, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 93, in main
+    await tap(f'#ysl .tk[data-i="{ti}"]','time_step',2200)
+  File "/workspace/w/perf/qa/perf/tools/baseline.py", line 61, in tap
+    v=await tapxy(*xy); R['lat'].setdefault(name,[]).append(v); await pg.wait_for_timeout(wait); return v
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 12673, in wait_for_timeout
+    await self._impl_obj.wait_for_timeout(timeout=to_milliseconds(timeout))
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 1144, in wait_for_timeout
+    await self._main_frame.wait_for_timeout(timeout)
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 925, in wait_for_timeout
+    await self._channel.send("waitForTimeout", None, {"waitTimeout": timeout})
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.wait_for_timeout: Target page, context or browser has been closed
+/workspace/w/perf/qa/perf/tools/startup.py:8: DeprecationWarning: 'count' is passed as positional argument
+  s=open(P%v).read(); s=re.sub(r'window\.BUILD="\d+"','window.BUILD="%s"'%b,s,1); open(P%v,'w').write(s)
+Traceback (most recent call last):
+  File "/workspace/w/perf/qa/perf/tools/startup.py", line 38, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/perf/qa/perf/tools/startup.py", line 34, in main
+    bump(v,"202610181576"); rep2=await visit(pg,BASE%v,NET); bump(v,"202610181575")
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/w/perf/qa/perf/tools/startup.py", line 17, in visit
+    await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>{const n=r.querySelector('.nmx');return n&&n.textContent.trim()==='PA'}).click()")
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 9421, in evaluate
+    await self._impl_obj.evaluate(
+        expression=expression, arg=mapping.to_impl(arg)
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 474, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of undefined (reading 'click')
+    at eval (eval at evaluate (:311:30), <anonymous>:1:139)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)

@@ -5,7 +5,7 @@ from playwright.async_api import async_playwright
 BASE="http://127.0.0.1:8857/%s/v2/"; P='/workspace/perf/proto/%s/v2/index.html'
 INIT=open(__file__.replace('startup.py','baseline.py')).read().split('INIT="""')[1].split('"""')[0]%""
 def bump(v,b):
-  s=open(P%v).read(); s=re.sub(r'window\.BUILD="\d+"','window.BUILD="%s"'%b,s,1); open(P%v,'w').write(s)
+  s=open(P%v).read(); s=re.sub(r'window\.BUILD="\d+"','window.BUILD="%s"'%b,s,count=1); open(P%v,'w').write(s)
 async def visit(pg,url,NET):
   NET.clear()
   await pg.goto(url+"?v=%d"%(time.time()*1000),wait_until="load",timeout=120000)
@@ -17,7 +17,7 @@ async def visit(pg,url,NET):
   await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>{const n=r.querySelector('.nmx');return n&&n.textContent.trim()==='PA'}).click()")
   await pg.wait_for_timeout(2000); await pg.wait_for_load_state("networkidle"); await pg.wait_for_timeout(4000)
   app=[r for r in NET.values() if '127.0.0.1' in r.get('url','')]
-  T.update(pa_enc=sum(r.get('enc',0) for r in app),pa_req=len(app),pa_rows=await pg.evaluate("()=>document.querySelectorAll('#listView .lvrow.la').length"))
+  T.update(pa_enc=sum(r.get('enc',0) for r in app),pa_req=len(app),res=sorted([[r['url'].split('127.0.0.1:8857')[-1].split('?')[0],r.get('enc',0)] for r in app if r.get('enc',0)>20000],key=lambda x:-x[1]),pa_rows=await pg.evaluate("()=>document.querySelectorAll('#listView .lvrow.la').length"))
   return T
 async def main():
   vs=sys.argv[1].split(','); reps=int(sys.argv[2]); out={}
@@ -25,7 +25,7 @@ async def main():
     b=await p.chromium.launch()
     for rep in range(reps):
       for v in vs:
-        c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,is_mobile=True,has_touch=True); await c.add_init_script(INIT)
+        c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,is_mobile=True,has_touch=True); await c.add_init_script(INIT); await c.add_init_script('try{localStorage.clear();sessionStorage.clear()}catch(e){}')  # same start state both visits (app restores last view)
         pg=await c.new_page(); cdp=await c.new_cdp_session(pg); await cdp.send("Network.enable"); NET={}
         cdp.on("Network.responseReceived",lambda e: NET.setdefault(e['requestId'],{}).update(url=e['response']['url']))
         cdp.on("Network.loadingFinished",lambda e: NET.setdefault(e['requestId'],{}).update(enc=e['encodedDataLength']))

@@ -28,3 +28,27 @@ sC=sB.replace('window.BUILD="202610181575"','window.BUILD="202610181575";window.
 sC,n0=re.subn(r'(\?v=["\']\s*\+\s*\(?)window\.BUILD',r'\1window.DATAV',sC)
 rC=root('C'); open(rC+'/v2/index.html','w').write(sC); os.symlink(rB+'/v2/pack.js',rC+'/v2/pack.js')
 print('pack.js',len(pack),'hash',h,'B index',len(sB),'C url refs replaced',n0)
+# D = A + tap-latency fixes: (1) list-all enter(): fit the map one frame after the list paints (was synchronous fitBounds inside the tap)
+#                          (2) pointInItem: indexed loops instead of forEach + array destructuring (same even-odd/hole semantics)
+sD=s
+o1='setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} fit(); }'
+n1='setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} requestAnimationFrame(()=>setTimeout(fit,0)); }'
+assert sD.count(o1)==1; sD=sD.replace(o1,n1)
+o2="""    rings.forEach((ring, ri) => {
+      let c = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i], [xj, yj] = ring[j];
+        if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) c = !c;
+      }
+      if (ri === 0) inside = c; else if (c) inside = false;
+    });"""
+n2="""    for (let ri = 0; ri < rings.length; ri++) { const ring = rings[ri];
+      let c = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const pi = ring[i], pj = ring[j], yi = pi[1], yj = pj[1];
+        if ((yi > lat) !== (yj > lat) && lon < (pj[0] - pi[0]) * (lat - yi) / (yj - yi) + pi[0]) c = !c;
+      }
+      if (ri === 0) inside = c; else if (c) inside = false;
+    }"""
+assert sD.count(o2)==1; sD=sD.replace(o2,n2)
+open(root('D')+'/v2/index.html','w').write(sD); print('D built')

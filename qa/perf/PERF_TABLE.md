@@ -33,3 +33,20 @@ Raw JSON: raw/b1575-live-<viewport>.json (per-try latencies, top-10 resources, n
 | v2/data/usstates.js | 49 | 123 |
 
 ussch.js (4.6 MB) and data/precincts2024/Alaska.js (3.7 MB) are **not** fetched in a PA session on 1575: ussch.js only loads for the School districts type (loadDS), Alaska precincts only when Alaska is one of <=4 states in view. index.html is 5.9 MB because PACK (4.18 MB lists) and XREF (1.09 MB) are inline.
+
+## vs open bugs (build 1575, Chromium)
+- QA-007 All States (238-380 ms): **still reproduces on the first tap** (cold 233-334 ms), later taps median 82-150 ms. Within the old range, so not a regression.
+- QA-007 US House pick (205-528 ms): **still reproduces on the first tap** (cold 299-372 ms, measured inside the PA counties list), later picks median 81-96 ms.
+- QA-041 Line pick (126-277 ms): **not reproduced**. 18-20 ms median, max 35 ms at all 4 sizes. Looks fixed by 1573-1575; QA should confirm in WebKit.
+- Also slow: first back is 215-241 ms at 375/320. iPad pan drops 82 of 241 frames.
+- No earlier qa/perf data on any perf/ branch, so this is the first baseline row. Nothing to diff against yet.
+
+## Prototype rows (local copy of 7a23208, see PROPOSALS.md)
+| variant | viewport | DCL | first map | All States cold / median | US House cold / median | repeat-visit PA bytes after a build bump |
+|---|---|---|---|---|---|---|
+| A (as shipped) | 390x844 | 1013 | 777 | 250 / 122 | 336 / 85 | 3.21 MB |
+| B (pack.js + JSON.parse) | 390x844 | 347 | 492 | - | - | - |
+| C (B + data version URLs) | 390x844 | 357 | 570 | - | - | 0.20 MB |
+| D (deferred fit + pointInItem loop) | 390x844 | - | - | 87 / 53 | 303 / 87 | - |
+| A | 320x568 | - | - | 230 / 78 | 313 / 95 | - |
+| D | 320x568 | - | - | 86 / 50 | 139 / 99 | - |

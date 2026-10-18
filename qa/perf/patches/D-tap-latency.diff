@@ -1,0 +1,30 @@
+--- A/v2/index.html	2026-10-18 11:49:11.453988387 -0400
++++ D/v2/index.html	2026-10-18 11:25:18.237988387 -0400
+@@ -1069,14 +1069,14 @@
+ function pointInItem(d, lon, lat) {
+   for (const rings of d[d.length - 1]) {
+     let inside = false;
+-    rings.forEach((ring, ri) => {
++    for (let ri = 0; ri < rings.length; ri++) { const ring = rings[ri];
+       let c = false;
+       for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+-        const [xi, yi] = ring[i], [xj, yj] = ring[j];
+-        if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) c = !c;
++        const pi = ring[i], pj = ring[j], yi = pi[1], yj = pj[1];
++        if ((yi > lat) !== (yj > lat) && lon < (pj[0] - pi[0]) * (lat - yi) / (yj - yi) + pi[0]) c = !c;
+       }
+       if (ri === 0) inside = c; else if (c) inside = false;
+-    });
++    }
+     if (inside) return true;
+   }
+   return false;
+@@ -3684,7 +3684,7 @@
+   // ---- enter / exit ----
+   async function enter(){ try{ if(state.value&&ltype!=="ushouse"&&ALLLBL[ltype]) await ensureFor(); }catch(e){} const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="dcdist"?"District of Columbia":lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(()=>{ let n=""; try{ n=String(aname({kind:ltype==="counties"||ltype==="none"?"towns":ltype,d:hier.dist})||""); }catch(e){} if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[2]||""); if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[1]||""); return (n.length>60||/^-?\d/.test(n))?"":n; })():""));
+     try{ closeSheet(); }catch(e){} try{ if(ym()!=="2024"&&state.value&&!(state.value in PREC20)) await loadPrec20(state.value); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
+-    setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} fit(); }
++    setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} requestAnimationFrame(()=>setTimeout(fit,0)); }
+   function fit(){ if(LA.nofit&&Date.now()-LA.nofit<5000){ LA.nofit=0; return; } LA.nofit=0; try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
+   function exit(soft){ if(!LA.on) return; LA.on=false; if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; LA.items=[]; LA.agg=null; cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){} const sp=document.getElementById("laSortPop"); if(sp) sp.hidden=true;
+     /* in list view a filter/menu change must never leave an empty body: keep the rows on screen (no flash of the results block) and re-enter list-all for the new level as soon as the change settles */

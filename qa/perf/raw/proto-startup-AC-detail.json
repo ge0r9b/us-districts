@@ -1,0 +1,188 @@
+{
+ "A": [
+  {
+   "cold": {
+    "dcl": 979,
+    "load": 1074,
+    "first_map": 913,
+    "first_vector_map": 913,
+    "longtasks_ms": 576,
+    "longest_task": 154,
+    "initial_enc": 1542182,
+    "pa_enc": 3272556,
+    "pa_req": 73,
+    "res": [
+     [
+      "/A/v2/",
+      903448
+     ],
+     [
+      "/A/data/Pennsylvania.js",
+      837498
+     ],
+     [
+      "/A/v2/data/precincts2024/Pennsylvania.js",
+      733643
+     ],
+     [
+      "/A/v2/data/uscounties.js",
+      369061
+     ],
+     [
+      "/A/v2/data/ctryshape.js",
+      56601
+     ],
+     [
+      "/A/v2/data/usstates.js",
+      47398
+     ],
+     [
+      "/A/v2/data/election2024.js",
+      46537
+     ],
+     [
+      "/A/lib/leaflet.js",
+      42892
+     ],
+     [
+      "/A/v2/data/canada.js",
+      24545
+     ]
+    ],
+    "pa_rows": 67
+   },
+   "after_bump": {
+    "dcl": 498,
+    "load": 844,
+    "first_map": 631,
+    "first_vector_map": 631,
+    "longtasks_ms": 402,
+    "longest_task": 115,
+    "initial_enc": 1479368,
+    "pa_enc": 3209742,
+    "pa_req": 73,
+    "res": [
+     [
+      "/A/v2/",
+      903448
+     ],
+     [
+      "/A/data/Pennsylvania.js",
+      837498
+     ],
+     [
+      "/A/v2/data/precincts2024/Pennsylvania.js",
+      733643
+     ],
+     [
+      "/A/v2/data/uscounties.js",
+      369061
+     ],
+     [
+      "/A/v2/data/ctryshape.js",
+      56601
+     ],
+     [
+      "/A/v2/data/usstates.js",
+      47398
+     ],
+     [
+      "/A/v2/data/election2024.js",
+      46537
+     ],
+     [
+      "/A/v2/data/canada.js",
+      24545
+     ]
+    ],
+    "pa_rows": 67
+   },
+   "errors": []
+  }
+ ],
+ "C": [
+  {
+   "cold": {
+    "dcl": 331,
+    "load": 607,
+    "first_map": 371,
+    "first_vector_map": 371,
+    "longtasks_ms": 273,
+    "longest_task": 146,
+    "initial_enc": 2195719,
+    "pa_enc": 3926093,
+    "pa_req": 74,
+    "res": [
+     [
+      "/C/data/Pennsylvania.js",
+      837498
+     ],
+     [
+      "/C/v2/data/precincts2024/Pennsylvania.js",
+      733643
+     ],
+     [
+      "/C/v2/pack.js",
+      704915
+     ],
+     [
+      "/C/v2/",
+      653923
+     ],
+     [
+      "/C/v2/data/uscounties.js",
+      369061
+     ],
+     [
+      "/C/v2/",
+      198147
+     ],
+     [
+      "/C/v2/data/ctryshape.js",
+      56601
+     ],
+     [
+      "/C/v2/data/usstates.js",
+      47398
+     ],
+     [
+      "/C/v2/data/election2024.js",
+      46537
+     ],
+     [
+      "/C/lib/leaflet.js",
+      42892
+     ],
+     [
+      "/C/v2/data/canada.js",
+      24545
+     ]
+    ],
+    "pa_rows": 67
+   },
+   "after_bump": {
+    "dcl": 617,
+    "load": 779,
+    "first_map": 625,
+    "first_vector_map": 526,
+    "longtasks_ms": 478,
+    "longest_task": 118,
+    "initial_enc": 871605,
+    "pa_enc": 871605,
+    "pa_req": 74,
+    "res": [
+     [
+      "/C/v2/",
+      653923
+     ],
+     [
+      "/C/v2/",
+      198147
+     ]
+    ],
+    "pa_rows": 67
+   },
+   "errors": []
+  }
+ ]
+}
