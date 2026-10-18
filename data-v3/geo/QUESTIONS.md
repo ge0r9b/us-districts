@@ -158,7 +158,7 @@ see README "Canada, Statistics Canada 2021"). All counts equal StatCan's and Ele
    NL 10, PE 11, NS 12, NB 13, QC 24, ON 35, MB 46, SK 47, AB 48, BC 59, YT 60, NT 61, NU 62. No change made to canada.js (v2 is
    not touched by this build); a v2 swap would need a display tier (point 2).
 2. **Why `ca_pr_2021.geojson.gz` is 14.8 MB for 13 features (52.9 MB raw).** It is coastline and islands: 175,787 polygon parts and
-   2,485,462 vertices; 153,956 parts (88 %) are tiny islands of ≤ 8 vertices. Nunavut alone is 62,552 parts / 1,126,340 vertices
+   2,485,462 vertices; 155,127 parts (88 %) are tiny islands of ≤ 8 vertices. Nunavut alone is 62,552 parts / 1,126,340 vertices
    (45 %); B.C., Ontario, Newfoundland and Labrador and Quebec are 250-305 k vertices each; Saskatchewan and Alberta (no sea coast)
    are 833 and 2,779 vertices. CD is the same story (176,212 parts, 2.64 M vertices). PR and CD are by design the exact unions of the
    50 m CSDs, so they keep every CSD island.
@@ -176,4 +176,4 @@ see README "Canada, Statistics Canada 2021"). All counts equal StatCan's and Ele
    covers ≥ 99 % of the other. Elections Canada says 48 districts are unchanged; our 74 is an area test (it counts small
    boundary adjustments and the 3 territories as "same"), not a legal-description comparison.
 6. **Institutions alignment hooks:** PR ↔ provincial governments (`pruid`), CD ↔ counties / regional municipalities / MRCs
-   (`cduid`), CSD ↔ municipalities and First Nations reserves (`csduid`, `type` = CSD type such as CY, T, MRC, IRI), FED ↔ MPs.
+   (`cduid`), CSD ↔ municipalities and First Nations reserves (`csduid`, `type` = CSD type such as CY, T, MÉ, RM, IRI), FED ↔ MPs.
