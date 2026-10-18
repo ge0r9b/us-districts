@@ -596,6 +596,14 @@ The live build moved during the pass: 1578 at 12:56, 1579 by ~1:05, 1580 by ~1:3
 - Actual: the list stays on precincts. The tap fires pointerdown, touchstart, pointerup and touchend on the chevron but no click; the button's `pointerdown` handler calls `preventDefault()` and the action only runs on `click`. A scripted `click()` does go back. Other touch taps (rows, sort chip, chart menu) work in the same WebKit runs. If iOS Safari behaves the same, back is dead on iPhones and iPads.
 - Screenshot: shots/b1579p13-we-390-back-after-touch.png. Data: `qa/b1579p13-wkback-390.json` (script `qa/p13-wkback.py`), `qa/b1577p13-flow-webkit-*.json` > after_back
 
+## Re-test status, build 1581 (pass 13 addendum, Oct 18 ~1:35-1:50 PM EDT)
+Live line 9 = 202610181581 (main `8d94cc9`, 1:28 PM EDT). Chromium, quiet box.
+- **QA-070 reproduces on 1581 at 375x667 (no longer "seen once"):** US map > geo button > All States row: `#bTime` at (319,122), then at 1,693 ms at (1276,488) (**dx +957, dy +366**, off screen), back at (319,122) at 1,952 ms, so the clock button disappears for about 260 ms. Data: `qa/b1577p13-layout-chromium-375.json` (build 1581) > step 25 transient; log `qa/p13-layout375b.log`.
+- **QA-053 fixed on 1581 at 375x667 too:** opening the time row leaves the clock button in place at MA > Worcester and at the US (was +5 px on 1579). Only the thumbnails move down 68 px to make room for the row, as before.
+- QA-054 (thumbnails -3 / +3 px map/list) and QA-058 (+23 px on a '16>'24 range in the list) still on 1581 at 375x667.
+- **QA-050 and QA-065 (rows) still fixed on 1581,** Chromium 390: reload keeps 1,703 precinct rows at '16>'24, rows read "Precinct 5802" etc.; the crumb is still cut ("Philadelphia County Philadelphi…"). **QA-051 still open on 1581** ("Joe Biden 2024" label at '16>'20, 81% / 18%). Shots: shots/b1581p13-ch-390-prec-16-24{,-reload,-num}.png, shots/b1581p13-ch-390-prec-16-20.png. Data: `qa/b1581p13-chromium-390.json`
+- Commit `e92d7d4` only added scripts, logs and shots; its message lists the pass 13 bugs with numbers that differ from the BUGS.md entries above. BUGS.md (QA-068 DC pin, QA-069 "015/75", QA-070 clock jump, QA-071 WebKit back) is the record.
+
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
 - Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).
