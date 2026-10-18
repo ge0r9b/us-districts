@@ -46,3 +46,7 @@ The perf lane measured v2 and prototyped four fixes (`qa/perf/PROPOSALS.md`, `PE
 | Liquid Glass `backdrop-filter` | no measurable tap cost in headless Chromium | keep the glass; re-check on a real iPhone before release |
 
 Port the lane's tools (`qa/perf/tools/baseline.py`, `net.py`, `idle.py`, `prof.py`) as the v3 perf harness so v2 and v3 numbers come from the same scripts at the same viewports.
+
+## v2 re-measure at Build 1579 (perf/speed-baseline 1f8ae1f, Oct 18, 2026 14:00 EDT drift check)
+- US House pick regressed in Builds 1577–1579: median 81–96 ms became 123–131 ms (over 100 ms at every viewport), cold up to 465 ms at 390×844; back median 51–71 ms became 75–92 ms, cold first back over 100 ms at 390. The likely cause is tap-time work added in 1577 (thumbnails reading slot year, 2016-twin lookup, chart-menu rules). No perf proposal has landed in v2 (PACK/XREF still inline, `aggFor` still runs in the pick).
+- v3 lesson, already in the budget: anything a tap needs (2016 twins, slot-year values, child → parent membership) is precomputed at load and served as a lookup. The v3 Playwright perf gate adds a "US House pick ≤ 100 ms median, ≤ 150 ms cold at 390 with throttle" assertion so this class of regression can't ship.
