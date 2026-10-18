@@ -42,6 +42,13 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - QA-015 / QA-034: unchanged on 1571 (2016 list reload moves the map centre 0.05 degrees; map view reloads as list).
 - No console errors, page errors or failed requests in any run.
 
+## Re-test status, builds 1573 / 1574 (pass 6, Oct 18 ~9:00-9:50 AM EDT)
+- Live build moved 1571 > 1572 > 1573 (seen 09:01) > 1574 (seen ~09:25, mid-run). Checks: `qa/pie1574.py`, `qa/y16b1574.py`, `qa/r16reload1574.py`, `qa/r16line1574.py` (Chromium, touch).
+- The box was overloaded during this pass (load average up to 184 on 8 cores, then memory full from other lanes' data builds), so the full 5-size smoke flow and the WebKit runs crashed with page timeouts and "Target crashed". Those failures are the environment, not the app; tap timings from this pass are only from the quiet windows. Full smoke at all 5 sizes is carried to the next pass.
+- QA-038: **fixed on 1574** (390x844, Chromium). A '16 > '24 range now shows the change rows (FL R +11.9, CA R +10.0, NY R +9.8), Line is offered, and reload restores '16 > '24 for Bar and Pie. A new problem with Line in this range is logged as QA-043.
+- 1573 pie (thumbnails only): **passes** at 390x844, 320x568, 1024x576, 1024x768 for United States, Massachusetts and Pennsylvania in # and %: two thumbnails, winner on top (Harris in MA, Trump in US and PA), no names or numbers beside them, nothing overlaps the pie, and a touch tap shows the standard bubble with the full name and value ("Kamala Harris · 2.13M" in MA). Tap to paint 14-34 ms. 375x667 passed for US and MA # before the run was cut off. Screenshots shots/b1574-ch-390-pie-*.png, shots/b1574-ch-320-pie-*.png, shots/b1573-ch-1024-pie-*.png.
+- Not checked this pass: 1572 per-unit 2016 map colours (the list map is drawn on canvas, so my path count found nothing; needs a pixel check next pass), QA-039..QA-042 and QA-005/007.
+
 ## Critical
 
 ### QA-001 [Fixed on 1571 (verified 8:10 AM EDT)] Oregon 2024 state totals are short of the official count (~1%)
@@ -300,6 +307,15 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Steps: '16 > All States > `#` > PA counties.
 - Actual: the Philadelphia row's red segment is about 125 px wide but shows no "109K" label (2024 shows "144K" in the same spot). In the Philadelphia towns list, "Philadelphia city" shows only "583K".
 - Screenshot: shots/b1571-ch-1024x768-y16-PA-counties.png
+
+## New on build 1574 (pass 6)
+
+### QA-043 Picking Line in a '16 > '24 range moves the start knob to '20
+- Severity: High (silently changes the chosen range) | Build 1574 | 390x844, 320x568, 1024x768 (Chromium, touch); 3 of 3 runs at 390
+- Steps: All States list > open the time row > select the full range > drag the left knob to '16 so the range is '16 > '24 (the list shows the '16 > '24 change rows: FL R +11.9) > open the chart menu > pick Line.
+- Expected: the range stays '16 > '24 and Line plots '16, '20 and '24.
+- Actual: the left knob jumps to '20 and the list shows the '20 > '24 line rows (NY +5.9 / -4.5, NJ +4.8 / -5.2). Reload keeps '20 > '24, so the '16 start is lost. Bar and Pie in the same range keep '16 > '24. No console errors.
+- Screenshots: shots/b1574-ch-390-r16-line-afterdrag.png (before picking Line), shots/b1574-ch-390-r16-line-before.png (after), shots/b1574-ch-390-r16-line-reload.png, shots/b1574-ch-1024-r16-line-before.png, shots/b1574-ch-320-r16-line-before.png
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png

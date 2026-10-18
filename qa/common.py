@@ -28,3 +28,6 @@ async def tap_latency(pg,x,y):
     return None
 async def center(pg,sel):
     return await pg.evaluate("s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundingClientRect();if(!r.width)return null;return [r.left+r.width/2,r.top+r.height/2]}",sel)
+async def safeshot(pg,path):
+    try: await pg.screenshot(path=path,timeout=20000)
+    except Exception as e: print('SHOT-TIMEOUT',path,str(e)[:80],flush=True)
