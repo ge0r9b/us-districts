@@ -1,0 +1,50 @@
+{
+ "caucus": {
+  "Bloc Québécois": 21,
+  "Conservative": 137,
+  "Green Party": 1,
+  "Liberal": 173,
+  "NDP": 5
+ },
+ "fed_2013": 338,
+ "fed_2023": 343,
+ "fed_2023_renamed_bill_c25": 17,
+ "mps_in_xml": 337,
+ "mps_joined": 337,
+ "pd_2019": {
+  "name_ambiguous": 6,
+  "name_from_boundary_file": 0,
+  "named": 66058,
+  "named_ignoring_mobile_station": 473,
+  "shapefile_records": 69538,
+  "units": 66064
+ },
+ "pd_2021": {
+  "name_ambiguous": 3,
+  "name_from_boundary_file": 0,
+  "named": 69794,
+  "named_ignoring_mobile_station": 197,
+  "shapefile_records": 69997,
+  "units": 69797
+ },
+ "pd_2025": {
+  "name_from_boundary_file": 0,
+  "named": 71217,
+  "named_ignoring_mobile_station": 522,
+  "shapefile_records": 71687,
+  "units": 71217
+ },
+ "retrieved_at": "2026-10-18",
+ "rows": {
+  "entities_ca_federal.csv": 2,
+  "gaps_ca_federal.csv": 4,
+  "officeholders_ca_house_current.csv": 343,
+  "persons_ca.csv": 337,
+  "units_ca_fed.csv": 681,
+  "units_ca_pd_2019.csv": 66064,
+  "units_ca_pd_2021.csv": 69797,
+  "units_ca_pd_2025.csv": 71217
+ },
+ "sources": 9,
+ "vacant": 6
+}

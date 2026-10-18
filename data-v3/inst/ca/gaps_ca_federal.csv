@@ -1,0 +1,5 @@
+level,gap,key,detail,source_id
+officeholder,senate_officeholders_not_built,chamber:ca-senate,"appointed chamber, no electoral units; senators not loaded in this batch (source: sencanada.ca senator list)",ca-constitution-1867-355fe455
+poll,pd_adv_poll_empty_on_some_parts,ec-2019-pd:10003:503-0,shapefile parts of one PD: one part has ADV_POLL empty; kept the non-empty value,ec-ge43-boundaries-6f8c8f7f
+poll,poll_name_ambiguous_in_results,ec-2019-pd,6 polling divisions carry several names across their polling stations; name left empty,ec-ge43-pollresults-986b4dba
+poll,poll_name_ambiguous_in_results,ec-2021-pd,3 polling divisions carry several names across their polling stations; name left empty,ec-ge44-pollresults-ee54bbab
