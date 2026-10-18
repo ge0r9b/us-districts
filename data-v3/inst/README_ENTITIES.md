@@ -1,6 +1,7 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
-Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`.
+Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`,
+`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
 Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
 family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
@@ -8,7 +9,8 @@ README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `lic
 `<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
 
 Build: `tools/inst_entities.py <repo> --gaz24 DIR --gaz20 DIR --cog XLSX --geojson DIR --oh-ref <data/inst-officeholders sha>
---gov-ref <data/governments sha> [--stability-test]`. Officeholder files, county_government.csv and the Governments bot's
+--gov-ref <data/governments sha> --world-raw DIR [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
+writes (the Wikidata .rq queries + .json answers, sha256s recorded in `entities_summary.json` `world.files`). Officeholder files, county_government.csv and the Governments bot's
 `data-v3/institutions/governments/local/*.csv` are read with `git show` (read only).
 
 ## What is an entity
@@ -22,6 +24,49 @@ row is keyed chamber `entity_id` + `unit_layer` + `unit_geoid` + `unit_vintage` 
 `entity_id` is minted once (kind prefix + the GEOID first seen) and then frozen and opaque; it does not change when a boundary
 or GEOID changes. A new id is minted only when the government itself changes, linked with `predecessor_id` / `successor_id`
 (today: CT's 8 old counties → 9 planning regions, linked through the shared town FIPS codes of TIGER 2020 and 2024).
+
+## World institutions (tools/inst_world.py; SCHEMA 62cb622 / 3c1e42d)
+The **list** of which foreign institutions exist is v2's Natural Earth layers on origin/main (`v2/data/countries.js` 204 rows,
+`v2/data/canada.js` 13 rows; Geo bot's files, read only, pinned by commit + sha256 in `sources.csv`). No geometry is copied: the
+institution is a separate entity from the area, and **non-US places have no xwalk row, no unit and no boundary_set**.
+Status and QIDs come only from Wikidata (current statements: rank not deprecated, no P582 end time):
+- `nation:<iso2>` (lowercase, kind `nation`, `label` sovereign, `gov_status` government): the item holding P297 = the code is a
+  sovereign state (P31 Q3624078). Not a UN member (no current P463 Q1065) → flag `not_un_member(wikidata_P463)` + gap
+  (Taiwan, Vatican City), still kind `nation`, no parent. `nation:us` is unchanged (it only gets `wikidata` Q30).
+- Home-part rule (Denmark): P297 DK is on Q35 Denmark, not a sovereign state; its P17 is the sovereign Kingdom of Denmark
+  Q756617, which has no P297 and shares Q35's capital (P36) → `nation:dk` = Q756617 (flag + gap for review).
+- `territory:<iso2>` (kind `territory`, `type` dependency): not a sovereign state; sovereign = its current P17 sovereign state,
+  else P361, else the ISO 3166-2 parent code of its P300 (`NL-AW`). Parent = that sovereign's `nation:<iso2>`. No sovereign
+  found → the row is **not written** (SCHEMA needs a nation parent) and is logged (`world_entity_excluded_no_sovereign`: Isle of Man).
+- US ISO codes (pr, gu, vi, as, mp) are never nations or `territory:<iso2>`; they stay `territory:<FIPS>` under `nation:us`
+  (none are in the Natural Earth list).
+- Canada: `province:ca-<code>` (kind `province`, 10) and `territory:ca-nt|nu|yt` (kind `territory`), parent `nation:ca`, QID by
+  P300 `CA-<code>`; the id pattern sits in one constant (`inst_world.ca_id`).
+- `name` = the Natural Earth name; the Wikidata label goes to `alias` when it differs (`Québec` / `Quebec`). `feed` = `inst-lane`.
+
+## Governments bot feed (tools/inst_govfeed.py)
+`entity_feed_map.csv` maps **every** Governments id (`state:`, `territory:`, `cog:`, `gcn:`, `fr:`, `bia:`, ...) to its registry
+entity, in this order: same state/territory FIPS id (the bot's older `state:60/66/69/72/78` → `territory:<FIPS>`, logged);
+school `nces_leaid` → `school:<leaid>`; GEOID (layer + geoid, TIGER 2024) → the entity holding it; CoG `cog_id` → the entity
+carrying that `cog_pid6`. GEOID and CoG must agree, else a `govbot_mapping_conflict` gap and no link. Nothing is renamed on either
+side; a bot id equal to a registry id that maps elsewhere would be a `govbot_frozen_id_conflict` gap (none). Unmapped ids
+(special districts, federal agencies, tribes) are `feed_only:*`; the v3 loader makes them `government_other`.
+Carried onto mapped entities: `wikidata` (only when every bot row of the entity agrees; registry value wins on a conflict),
+ceased units (`valid_to` + flag `is_active_false:governments_bot_<ids>`, only when all of the entity's bot rows ceased),
+new units (`valid_from` + flag `not_in_cog2022`). `entity_images.csv`: seals and flags (institution-only attributes, never
+used by the geo filter): `commons_file`, `commons_url`, `license`, `fair_use` (yes = license `fair-use`, filter these out where
+fair use does not apply), `usage_basis`, `attribution`, `source_url`, `wikidata_qid`. The bot's `sources.csv` rows are added to
+ours as a union on the bot's own ids (`cog2022`, `wikidata_images`, ...); a collision with one of ours would stop the build.
+
+## SCHEMA b66f889 alignment
+- `source_urls.csv` (source_id, ord, url, label): every URL of every source; multi-URL sources get labels (house / senate,
+  cousub / place, repo file / upstream, member detail).
+- `source_record_id`: entities = the id inside the first cited source (GEOID / FIPS for TIGER, Gazetteer and ANSI rows; QID for
+  Wikidata rows; empty for chambers and nation:us); xwalk = the GEOID where the cited source is Census. Officeholder files carry
+  their own (data/inst-officeholders); county_government.csv: govbot_entity_id or cog_pid6.
+- `feed` stays inside the §15.1 map (`tiger/cog`, `inst-lane`; asserted by the builder).
+- Seat units for officeholder rows without a TIGER district, and NH floterial member links: data/inst-officeholders step 7
+  (README_OFFICEHOLDERS.md).
 
 ## How the rows are built (all links by Census code, never by name)
 
@@ -124,13 +169,22 @@ entities.csv like this:
 | `vintage_2020_only:replaced_by_ct_planning_regions_2022` | CT county: only in TIGER 2020 |
 | `valid_to_not_recorded:last_tiger_vintage_here_2020` | end date unknown; last seen in TIGER 2020 |
 | `replaced_by_planning_regions_in_tiger_2022` | see `successor_id` |
+| `not_un_member(wikidata_P463)`, `not_sovereign_state(wikidata_P31)`, `sovereign_via_wikidata_<P17/P361/P300>:<QIDs>`, `wikidata_p297_item_is_home_part:<QID>(...)` | world rows: Wikidata status used (see World institutions) |
+| `outside_v2_scope:no_unit_no_boundary_set` | world row: no xwalk unit, no boundary_set (SCHEMA 62cb622) |
+| `gov_status_unknown:outside_cog2022_scope` | foreign territory / Canadian province or territory: no CoG-type government status source |
+| `is_active_false:governments_bot_<ids>` | the Governments bot marks the unit ceased (changes_since_cog2022.csv); `valid_to` set |
 | `xwalk_partial_overlap`, `county_share_unmeasured`, `multiple_cog_units`, `officeholder_entity_id_alias`, `officeholder_entity_id_missing`, `name_missing`, `no_geoid_in_gazetteer`, `no_tiger_geoid`, `county_area_governed_by_cog_municipal_unit` | defined by the builder; no row of the current build carries them |
 
 `entity_gaps.csv` `gap` values: `orphan_v2_row`, `orphan_officeholder_unit`, `officeholder_unit_without_tiger_geoid`,
 `cog2022_unit_not_linked_by_code`, `gov_status_unknown`, `excluded_not_defined` (TIGER "not defined"/water pseudo-units),
 `consolidated_county_cog_code_not_in_tiger`, `consolidated_county_no_government_linked`,
-`same_code_place_cousub_overlap_unmeasured`, `town_pair_same_neither_in_cog`, `school_gov_status_conflict`.
-`feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council); later `governments-bot`,
+`same_code_place_cousub_overlap_unmeasured`, `town_pair_same_neither_in_cog`, `school_gov_status_conflict`; world:
+`wikidata_p297_several_items`, `wikidata_qid_via_home_part_rule`, `territory_sovereign_unknown`, `nation_not_un_member`,
+`world_entity_excluded_no_sovereign`, `wikidata_qid_missing`, `wikidata_status_ambiguous`, `territory_sovereign_several_candidates`;
+Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
+`govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
+`wikidata_qid_conflict`, `image_entity_unmapped`.
+`feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
 Counts in the current build: `tiger_funcstat` 3,072; `tiger_funcstat_G` 1,603 (= `not_in_cog2022` 1,603); `spans_counties` 899;

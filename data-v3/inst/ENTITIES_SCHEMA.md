@@ -9,8 +9,8 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 
 | # | column | example | meaning |
 |---|---|---|---|
-| 1 | `entity_id` | `county:01001`, `muni:place:1714000`, `town:cousub:0911001080`, `school:0100003`, `chamber:al-lower`, `us-house`, `state:01`, `nation:us`, `chamber:dc-council` | stable, opaque. Minted once from the kind prefix + the GEOID the entity was **first seen** with, then frozen: never re-derived when a boundary or GEOID changes. A new id is minted only when the government itself changes (merger, dissolution, new incorporation, CT counties → planning regions) |
-| 2 | `kind` (open vocabulary; company kinds will be added by external feeds) | `nation`, `state`, `territory`, `county`, `municipality`, `township`, `school_unified`, `school_elementary`, `school_secondary`, `chamber`, `dc_council` | district seats are **units, not entities** (no `district_seat` kind) |
+| 1 | `entity_id` | `nation:fr`, `territory:gl`, `province:ca-on`, `territory:ca-yt`, `county:01001`, `muni:place:1714000`, `town:cousub:0911001080`, `school:0100003`, `chamber:al-lower`, `us-house`, `state:01`, `nation:us`, `chamber:dc-council` | stable, opaque. Minted once from the kind prefix + the GEOID the entity was **first seen** with, then frozen: never re-derived when a boundary or GEOID changes. A new id is minted only when the government itself changes (merger, dissolution, new incorporation, CT counties → planning regions) |
+| 2 | `kind` (open vocabulary; company kinds will be added by external feeds) | `nation`, `state`, `territory`, `province` (**new**, Canadian provinces, parent `nation:ca`; confirmed by Full Stack, SCHEMA 62cb622), `county`, `municipality`, `township`, `school_unified`, `school_elementary`, `school_secondary`, `chamber`, `dc_council` | district seats are **units, not entities** (no `district_seat` kind) |
 | 3 | `state_fips` | `01` | jurisdiction (empty for nation / us-house) |
 | 4 | `state` | `Alabama` | |
 | 5 | `name` | `Autauga County` | TIGER NAMELSAD (Census) or the official body name |
@@ -27,7 +27,9 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 16 | `v2_key` | `Alabama\|Autauga County` | `;`-list of `state\|name` keys (stable join to v2; parts rows use `state\|county\|name`) |
 | 17 | `source_id` | `census-gaz2024-counties-…;repo-governments-6dd77539` | `;`-list of every source of the row, keys of `sources.csv` (source, URL, licence, retrieved_at, commit, sha256) |
 | 18 | `feed` | `tiger/cog` | provenance: which list the row came from: `tiger/cog` (this build), `inst-lane` (nation, chambers, DC Council), later `governments-bot`, `companies-bot`, `user-upload` |
-| 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local), finer type (TIGER LSAD text), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
+| 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local; world rows national/subnational), finer type (TIGER LSAD text; sovereign_state / dependency / province / territory), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
+| 23 | `source_record_id` | `01001`, `Q228` | SCHEMA `entity.source_record_id`: the id inside the row's first cited source (GEOID / FIPS for Census rows, QID for Wikidata rows) |
+| 24 | `wikidata` | `Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -40,7 +42,8 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 5 | `boundary_set` | `v2-2024` | boundary-set slug of the unit (Election's Q-E12 tokens): `v2-2024` for TIGER 2024 units, `tiger-2020-county` for the CT 2020 counties |
 | 6 | `relation` | `primary`, `coextensive`, `also_cousub`, `consolidated_city_county`, `independent_city_county_equivalent`, `consolidated_town_city`, `federal_district_city` | how this GEOID names the entity |
 | 7 | `source_id` | | `;`-list into `sources.csv` |
-| 8+ | `overlap`, `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | `equal` / `split` / `contained` | geometric relationship (mutual ≥ 0.9 = equal; GEOID ≥ 0.9 inside entity = split; entity ≥ 0.9 inside GEOID = contained), measured on the TIGER 2024 geometry in EPSG:6933 |
+| 8–10 | `overlap`, `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | `equal` / `split` / `contained` | geometric relationship (mutual ≥ 0.9 = equal; GEOID ≥ 0.9 inside entity = split; entity ≥ 0.9 inside GEOID = contained), measured on the TIGER 2024 geometry in EPSG:6933 |
+| 11 | `source_record_id` | `1703114000` | SCHEMA `entity_geoid.source_record_id`: the GEOID when the cited source is Census; empty for derived links |
 
 ## Officeholder rows (data-v3/inst/officeholders_*.csv)
 
@@ -50,27 +53,26 @@ multi-member seats where the source gives one.
 
 ---
 
-## Alignment with docs/v3/SCHEMA.sql (origin/v3/plan c47e2a4, newest head on Oct 18, 2026)
+## Alignment with docs/v3/SCHEMA.sql (origin/v3/plan b66f889 → 365c8a1)
 
-c47e2a4 already carries the registry (`entity`, `entity_succession`, `entity_geoid`, `alias`, `entity_unit`, `person`,
-`person_alias`, `officeholder`). Matches: `entity_id` text key and token style, `kind` list (nation, territory, state, county,
-municipality, township, school_*, chamber, dc_council + bot kinds), `label`, `gov_status` values, `parent_id`,
-`valid_from/valid_to`, predecessor/successor → `entity_succession`, `v2_layer/v2_key/v2_row` arrays from `;`-lists,
-`level/type/cog_pid6/flags`, alias `;`-list → `alias`, xwalk → `entity_geoid` (same relation list, `overlap` check),
-officeholder chamber `entity_id` + unit + `seat`, `ocd-person:` spec. **Remaining differences:**
-
-| # | here | SCHEMA.sql c47e2a4 | proposed resolution |
+Full Stack ruled on all 10 earlier differences (b66f889); status here:
+| # | difference | ruling | here |
 |---|---|---|---|
-| 1 | `source_id` text, `<slug>-<sha8>`, `;`-list on a row | `source_id bigint references source(id)`, one per row; `source.id` identity | give `source` a unique text key (`source_key`) loaded from `sources.csv`, and map a `;`-list either to the first id + the rest in `meta`, or add a `*_source` link table |
-| 2 | `sources.csv` columns `source`, `commit` | `source` has `publisher`/`title`, no `commit`; `unique (url, retrieved_at)` | `source` → `title`; `commit` → new column or `notes`. Two of our sources can share url + retrieved_at only if the commit differs (OpenStates) — then the unique key needs `commit` |
-| 3 | `source_url` may be a ` ; `-list (House + Senate pages) | `url text not null` (one URL) | keep the list in one text value, or split into one source per URL |
-| 4 | `feed` (`tiger/cog`, `inst-lane`, `governments-bot`, `companies-bot`, `user-upload`) | `origin` (`inst`, `governments_bot`, `companies_bot`, `user`) | rename on load: `tiger/cog`,`inst-lane` → `inst`; `-` → `_`; `user-upload` → `user` (or adopt `origin` name here; asked) |
-| 5 | xwalk `boundary_set` column | `entity_geoid` has no `boundary_set` (vintage only) | add `boundary_set text` to `entity_geoid` or derive from `(unit_layer, vintage)` |
-| 6 | xwalk `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | not in `entity_geoid` | extras → `meta` or two numeric columns |
-| 7 | officeholder rows: no `source_commit` (commit is in `sources.csv`) | `officeholder.source_commit text` | fill from `source.commit` at load |
-| 8 | officeholder units without TIGER geometry (NH floterials, ME tribal seats, territory delegates): empty `unit_geoid`/`boundary_set` | `officeholder.unit_id not null` | load them as units of a `no-geometry` boundary set, or relax `not null` |
-| 9 | `source_record_id` on officeholder rows (id inside the source) | no column | `meta` or a new column |
-| 10 | `county_government.csv` (`gov_status`, `govbot_entity_id`) | no county-government table | loads onto `entity` (`gov_status`) and `alias` (scheme `cog_pid6` / bot id) |
+| 1 | text `source_id`, `;`-lists | `source.source_id` text PK + link tables (`entity_source`, `entity_geoid_source`, ...) | as is |
+| 2 | `source`, `commit` columns | `source` → `title`, `commit` kept | as is |
+| 3 | multi-URL `source_url` | split into `source_url` (source_id, ord, url, label) | `source_urls.csv`, labels on every multi-URL source |
+| 4 | `feed` vs `origin` | `feed` stored raw, mapped to `origin` (§15.1) | builder asserts feed ∈ {tiger/cog, inst-lane, governments-bot, companies-bot, user-upload} |
+| 5 | xwalk `boundary_set` | column on `entity_geoid` | as is (`v2-2024`, `tiger-2020-county`) |
+| 6 | xwalk shares | `share_of_geoid_in_entity`, `share_of_entity_in_geoid` numeric on `entity_geoid` | same names |
+| 7 | officeholder `source_commit` | dropped (from `source.commit`) | as is |
+| 8 | units without TIGER geometry | `seat` units, `seat:<chamber>:<district>` | data/inst-officeholders step 7 (`unit_key`, `seat_member_units.csv`) |
+| 9 | `source_record_id` | column on entity, entity_geoid, officeholder, county_government, ... | filled (entities, xwalk, officeholders, county_government) |
+| 10 | county_government.csv | own table | as is (+ `source_record_id`) |
+
+Open with SCHEMA 365c8a1: `entities.csv` extras `source_record_id` / `wikidata` (col 23–24; `wikidata` → `entity_alias`
+external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SCHEMA has `entity_merge` / `entity_alias`
+kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
+text column) need a loader mapping from Full Stack. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
 
 # Original proposal (kept for history; superseded where it differs from the column list above)
 

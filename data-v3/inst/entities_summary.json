@@ -1,7 +1,7 @@
 {
  "built_from": {
-  "repo_head": "8e1db01bfa8a8a5a7b398a4c49633464adba2ce4",
-  "officeholder_ref": "f1d64f6 f1d64f683b81d59fa5040ddfba7b53bdd845cbc8",
+  "repo_head": "348f410ed405af421740dced7d3af3be53bc7d85",
+  "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
    "2024_Gaz_counties_national.txt": "0a121d136b434e3ae749d053db19dfbacbb56eebf30335cfa5031388803b4451",
@@ -29,11 +29,12 @@
    "places_2024.geojson.gz": "a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182"
   }
  },
- "entities": 54144,
+ "entities": 54359,
  "by_kind": {
-  "nation": 1,
+  "nation": 194,
   "state": 51,
-  "territory": 5,
+  "territory": 17,
+  "province": 10,
   "chamber": 100,
   "dc_council": 1,
   "county": 3080,
@@ -52,18 +53,19 @@
   "municipality|": 33,
   "municipality|area_only": 28,
   "municipality|government": 19464,
-  "nation|government": 1,
+  "nation|government": 194,
+  "province|": 10,
   "school_elementary|": 115,
   "school_elementary|dependent": 132,
   "school_elementary|government": 1705,
   "school_secondary|": 189,
   "school_secondary|dependent": 3,
   "school_secondary|government": 289,
-  "school_unified|": 73,
+  "school_unified|": 71,
   "school_unified|dependent": 924,
-  "school_unified|government": 9875,
+  "school_unified|government": 9877,
   "state|government": 51,
-  "territory|": 5,
+  "territory|": 17,
   "township|": 24,
   "township|area_only": 272,
   "township|dependent": 1603,
@@ -96,12 +98,12 @@
  },
  "multi_geoid_entities": 4422,
  "district_units_checked": {
-  "sldl|2020": 4785,
-  "sldu|2020": 1946,
+  "cd|2020": 437,
   "cd|2024": 437,
+  "sldl|2020": 4785,
   "sldl|2024": 4833,
-  "sldu|2024": 1950,
-  "cd|2020": 437
+  "sldu|2020": 1946,
+  "sldu|2024": 1950
  },
  "town_pairs_same_merged": 23,
  "town_pairs_same_two_cog_governments": 13,
@@ -182,21 +184,130 @@
   "same_code_place_cousub_overlap_unmeasured": 2,
   "consolidated_county_cog_code_not_in_tiger": 6,
   "excluded_not_defined": 49,
-  "gov_status_unknown": 440,
+  "gov_status_unknown": 438,
+  "wikidata_p297_several_items": 1,
+  "wikidata_qid_via_home_part_rule": 1,
+  "territory_sovereign_unknown": 1,
+  "nation_not_un_member": 2,
+  "world_entity_excluded_no_sovereign": 1,
+  "govbot_mapping_conflict": 5,
+  "govbot_ceased_partial": 1,
+  "govbot_new_unit_not_in_registry": 12,
+  "image_entity_unmapped": 6,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
   "cog2022_unit_not_linked_by_code": 57
  },
  "school_gov_status_fill": {
-  "no_bot_row": 377,
-  "government": 11869,
+  "no_bot_row": 375,
+  "government": 11871,
   "dependent": 1059,
-  "bot_leaids": 13202,
-  "bot_school_rows_with_leaid": 13202,
+  "filled_from_several_bot_rows_same_status": 1,
+  "bot_leaids": 13204,
+  "bot_school_rows_with_leaid": 13205,
   "bot_leaids_not_a_tiger2024_school_entity": 274
  },
- "governments_ref": "971d1fe4ac767b25119fc61a01a98582b1a2039a",
- "sources": 70,
- "sources_used_here": 26,
- "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2"
+ "governments_ref": "bc2466e4d78edf035ab1400aacb28557fe5146ec",
+ "governments_feed": {
+  "ceased_applied": 24,
+  "ceased_partial": 1,
+  "ceased_unmapped": 39,
+  "feed_ids": 93278,
+  "images": 2024,
+  "images_fair_use": 821,
+  "images_unmapped": 6,
+  "mapped|county": 3031,
+  "mapped|municipality": 19488,
+  "mapped|school_district": 12941,
+  "mapped|state": 50,
+  "mapped|township": 16185,
+  "new_units_applied": 16,
+  "new_units_unmapped": 12,
+  "qid_carried": 38619,
+  "registry_ids": 93278,
+  "source_id_collisions": 0,
+  "unmapped|federal_agency": 473,
+  "unmapped|municipality": 22,
+  "unmapped|school_district": 921,
+  "unmapped|special_district": 39555,
+  "unmapped|township": 35,
+  "unmapped|tribe": 577
+ },
+ "feed_map_rows": 93278,
+ "images_rows": 2024,
+ "wikidata_filled": 38835,
+ "sources": 97,
+ "sources_used_here": 29,
+ "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
+ "source_urls": 126,
+ "source_record_id_filled": {
+  "entities": 54257,
+  "xwalk": 58591
+ },
+ "feed_values": {
+  "inst-lane": 317,
+  "tiger/cog": 54042
+ },
+ "world": {
+  "natural_earth": {
+   "v2/data/canada.js": {
+    "commit": "947ba08c3cf4a6d37658d0bf90a1a94a79c1b161",
+    "sha256": "28ac1516b2e741e720e3177a1b0383ccc67810c407790179b6784e0eab5af4c3",
+    "rows": 13
+   },
+   "v2/data/countries.js": {
+    "commit": "b0e6f922a8477c52ff548dde6f4103a276125d90",
+    "sha256": "522af93397c89b318428e4ea821d3865f85f8f96d7479ce4b601c6bbd3c0a570",
+    "rows": 204
+   }
+  },
+  "wikidata_retrieved_at": "2026-10-18T14:23:07Z",
+  "files": {
+   "world_a_items.json": "45ef125e4b46117f672bd0315475ea0cf837f86511bc22318dc0bcd6f9562a30",
+   "world_a_items.rq": "5ad8d706bb1399af68fc1888fb606345dbcaeaf49ca3860e489e632d47aaa347",
+   "world_b_claims.json": "dc69796e9ca1f80d58c56fa532f82ce421f5d97a7888fa6d424ae0ddedcc2b31",
+   "world_b_claims.rq": "3284f7eb0c80430fcf91e837a30d37fd8b14479b4b6bbd1b7100a6123cefe8b4",
+   "world_c_targets.json": "bbc92cea9ea3a862cd1b6e8b548f65b6f31d8e013435a04569051b3ea9e977a9",
+   "world_c_targets.rq": "2045bf0ec99f1551ac0972768ad0a4a20159985c3b5a260b32a521bce2569654",
+   "world_d_un_members.json": "18860eb63b6ebccd5e0c41ab1680c2aeb8123e5242e9a7dde356eb59022b8e2b",
+   "world_d_un_members.rq": "f825f741b31ea3f9513c58031676188480baafee86b1905f5d174b4c1aa09497"
+  },
+  "by_kind": {
+   "nation": 193,
+   "province": 10,
+   "territory": 12
+  },
+  "excluded": [
+   "territory:im"
+  ],
+  "skipped_us_territory_codes": [],
+  "un_comparison": {
+   "un_members_wikidata": 201,
+   "un_members_not_in_natural_earth_list": [
+    "Islamic State of Afghanistan (Q1415585, iso2 none)",
+    "Israel (Q801, iso2 il)",
+    "Kingdom of Laos (Q870055, iso2 none)",
+    "Kingdom of Nepal (Q1078602, iso2 none)",
+    "People's Republic of Mozambique (Q617078, iso2 none)",
+    "Republic of Afghanistan (Q1415128, iso2 none)",
+    "Republic of the Congo (L\u00e9opoldville) (Q618399, iso2 none)",
+    "Somali Democratic Republic (Q1477220, iso2 none)",
+    "Third Hellenic Republic (Q17765809, iso2 none)"
+   ],
+   "natural_earth_rows_not_un_members": [
+    "aw Aruba -> territory",
+    "ax \u00c5land -> territory",
+    "cw Cura\u00e7ao -> territory",
+    "gg Guernsey -> territory",
+    "gl Greenland -> territory",
+    "hk Hong Kong -> territory",
+    "im Isle of Man -> territory",
+    "je Jersey -> territory",
+    "mo Macau -> territory",
+    "sx Sint Maarten -> territory",
+    "tw Taiwan -> nation",
+    "va Vatican City -> nation"
+   ]
+  }
+ }
 }

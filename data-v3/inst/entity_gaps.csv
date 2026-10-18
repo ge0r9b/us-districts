@@ -83,8 +83,6 @@ gov_status_unknown,school:3700153,gov_status_unknown:no_governments_bot_row_with
 gov_status_unknown,school:3700383,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
 gov_status_unknown,school:4107880,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
 gov_status_unknown,school:4502520,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
-gov_status_unknown,school:4503914,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
-gov_status_unknown,school:4503915,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
 gov_status_unknown,school:4700078,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
 gov_status_unknown,school:5000011,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
 gov_status_unknown,school:5000012,gov_status_unknown:no_governments_bot_row_with_this_nces_leaid,census-tiger2024-cousub-place-497997db;census-cog2022-0fba3401
@@ -433,6 +431,36 @@ excluded_not_defined,sldl:24ZZZ:2020,State House Districts not defined,census-ga
 excluded_not_defined,sldl:25ZZZ:2020,State House Districts not defined,census-gaz2020-sldl-a662a58e
 excluded_not_defined,sldl:26ZZZ:2020,State House Districts not defined,census-gaz2020-sldl-a662a58e
 excluded_not_defined,sldl:39ZZZ:2020,State House Districts not defined,census-gaz2020-sldl-a662a58e
+wikidata_p297_several_items,nation:cy,"P297 CY on Q229;Q644636; kept Q229 (the only current sovereign state, P31 Q3624078)",wikidata-sparql-c3447bcc
+wikidata_qid_via_home_part_rule,nation:dk,"Denmark: P297 DK is on Q35 (Denmark, not a sovereign state); its P17 Q756617 is the sovereign state (same capital P36); QID set to Q756617",wikidata-sparql-c3447bcc
+territory_sovereign_unknown,territory:im,Isle of Man (Q9676): not a current sovereign state; Wikidata P17/P361/P300 give no sovereign; parent left empty,wikidata-sparql-c3447bcc
+nation_not_un_member,nation:tw,"Taiwan (Q865): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
+nation_not_un_member,nation:va,"Vatican City (Q237): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
+world_entity_excluded_no_sovereign,territory:im,Isle of Man (Q9676): not written to entities.csv until Wikidata/ISO names its sovereign,wikidata-sparql-c3447bcc
+govbot_mapping_conflict,cog:161834,geoid -> muni:place:1303440; cog_id 161834 -> county:13059; left unmapped,repo-governments-e4797d09
+govbot_mapping_conflict,cog:164742,geoid -> muni:place:2028412; cog_id 164742 -> county:20071; left unmapped,repo-governments-e4797d09
+govbot_mapping_conflict,cog:165866,geoid -> muni:place:2148006; cog_id 165866 -> county:21111; left unmapped,repo-governments-e4797d09
+govbot_mapping_conflict,cog:108124,geoid -> muni:place:3011397; cog_id 108124 -> county:30093; left unmapped,repo-governments-e4797d09
+govbot_mapping_conflict,cog:175728,geoid -> muni:place:4752006; cog_id 175728 -> county:47037; left unmapped,repo-governments-e4797d09
+govbot_ceased_partial,school:4503916,"ceased cog:112946 of nces_leaid:4503916,cog:112946; entity kept active",repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:0139832,Kilpatrick town (AL); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:0160264,Pine Level town (AL); valid_from 2025-08-12; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:0518880,Diamond Head city (AR); valid_from 2024-03-01; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:0464210,San Tan Valley town (AZ); valid_from 2025-09-24; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:0649582,Mountain House city (CA); valid_from 2024-07-01; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:1353706,Mulberry city (GA); valid_from 2025-01-01; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:2703282,Baldwin city (MN); valid_from 2025-01-01; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:2724533,Goodwill township (MN); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:4808800,Bloomington city (TX); valid_from 2025-08-18; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:4870070,Starbase city (TX); valid_from 2025-05-20; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,gcn:5531375,Greenleaf village (WI); valid_from 2024-04-05; geoid none,repo-governments-e4797d09
+govbot_new_unit_not_in_registry,wi_mds_incorporation:13,Village of French Island (WI); valid_from 2026-05-21; geoid none,repo-governments-e4797d09
+image_entity_unmapped,bia:cherokee-nation,seal Great seal of the cherokee nation.svg,repo-governments-e4797d09
+image_entity_unmapped,bia:chuloonawick-native-village,"seal Seal of Chuloonawick, Alaska.svg",repo-governments-e4797d09
+image_entity_unmapped,bia:eastern-band-of-cherokee-indians,seal ,repo-governments-e4797d09
+image_entity_unmapped,bia:ewiiaapaayp-band-of-kumeyaay-indians,seal Ewiiaapaayp band seal.png,repo-governments-e4797d09
+image_entity_unmapped,bia:oneida-nation,seal ,repo-governments-e4797d09
+image_entity_unmapped,bia:ute-mountain-ute-tribe,seal ,repo-governments-e4797d09
 orphan_v2_row,v2:parts|Iowa|Ida County|Cushing city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 1917940 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Minnesota|Ramsey County|Birchwood Village city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2706058 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Minnesota|Ramsey County|Lilydale city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2737016 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
@@ -461,55 +489,55 @@ orphan_v2_row,v2:parts|Pennsylvania|Lackawanna County|Factoryville borough,"no G
 orphan_v2_row,v2:parts|Pennsylvania|Fayette County|Elco borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4222800 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Texas|Travis County|Bear Creek village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4806242 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Wisconsin|Barron County|Ridgeland village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 5567800 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
-officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:me-lower|Houlton Band of Maliseet Indians,tribal_representative,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:me-lower|Passamaquoddy Tribe,tribal_representative,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Belknap 8,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 7,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 8,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 15,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 16,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 17,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 18,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Coos 7,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 17,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 18,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 37,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 38,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 40,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 41,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 44,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 25,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 26,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 27,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 28,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 29,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 31,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 33,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 34,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 35,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 36,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 37,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 38,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 39,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 40,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 18,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 19,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 20,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 21,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 7,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 8,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 39,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 45,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 30,floterial_district,repo-inst-1a2900e5
-officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 32,floterial_district,repo-inst-1a2900e5
+officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:me-lower|Houlton Band of Maliseet Indians,tribal_representative,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:me-lower|Passamaquoddy Tribe,tribal_representative,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Belknap 8,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 7,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 8,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 15,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 16,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 17,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 18,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Coos 7,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 17,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 18,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 37,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 38,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 40,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 41,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 44,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 25,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 26,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 27,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 28,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 29,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 31,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 33,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 34,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 35,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 36,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 37,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 38,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 39,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 40,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 18,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 19,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 20,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 21,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 7,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 8,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 39,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 45,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 30,floterial_district,repo-inst-44a3d841
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 32,floterial_district,repo-inst-44a3d841
 cog2022_unit_not_linked_by_code,189810,CITY OF WEEKI WACHEE (2 - MUNICIPAL) FIPS 12-053-75625,census-cog2022-0fba3401
 cog2022_unit_not_linked_by_code,162584,VILLAGE OF TIME (2 - MUNICIPAL) FIPS 17-149-75419,census-cog2022-0fba3401
 cog2022_unit_not_linked_by_code,162945,TOWNSHIP OF ROCKY RUN-WILCOX (3 - TOWNSHIP) FIPS 17-067-65234,census-cog2022-0fba3401

@@ -19,6 +19,7 @@ ap.add_argument('repo'); ap.add_argument('--gaz24', required=True); ap.add_argum
 ap.add_argument('--cog', required=True); ap.add_argument('--geojson', required=True)
 ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_argument('--stability-test', action='store_true')
 ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
+ap.add_argument('--world-raw', required=True, help='dir written by tools/inst_world.py fetch (Wikidata answers); Natural Earth lists read from origin/main')
 A = ap.parse_args()
 R = A.repo; OUT = A.out or os.path.join(R, 'data-v3/inst'); os.makedirs(OUT, exist_ok=True)
 GEO = os.path.join(R, 'data-v3/geo')
@@ -746,6 +747,53 @@ for (eid, vint), e in ENT.items():
     e['feed'] = 'inst-lane' if e['kind'] in ('nation', 'chamber', 'dc_council') else 'tiger/cog'
     e.setdefault('predecessor_id', ''); e.setdefault('successor_id', '')
     OUTROWS.append(e)
+# ---------------- world: nations, foreign dependencies, Canadian provinces/territories (tools/inst_world.py) ----------------
+# Natural Earth (v2/data/countries.js, canada.js on origin/main) is only the LIST; no geometry, no xwalk unit, no boundary_set.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import inst_world
+WORLD = inst_world.build(R, A.world_raw)
+S_NE_C = 'Natural Earth 1:50m admin-0 country list via v2/data/countries.js'
+S_NE_CA = 'Natural Earth 1:50m admin-1 Canada provinces/territories list via v2/data/canada.js'
+S_WD = 'Wikidata SPARQL (tools/inst_world.py)'
+WGAPS = []
+for w in WORLD['rows']:
+    if w['kind'] == 'territory' and not w['parent_id']:   # SCHEMA: a territory needs a nation parent; never guessed
+        WGAPS.append({'gap': 'world_entity_excluded_no_sovereign', 'key': w['entity_id'],
+                      'detail': f"{w['ne_name']} ({w['wikidata']}): not written to entities.csv until Wikidata/ISO names its sovereign"})
+        continue
+    lvl = 'national' if w['kind'] == 'nation' else 'subnational'
+    typ = {'nation': 'sovereign_state', 'province': 'province', 'territory': 'territory' if w['entity_id'].startswith('territory:ca-') else 'dependency'}[w['kind']]
+    e = {c: '' for c in COLS}
+    e.update(entity_id=w['entity_id'], kind=w['kind'], name=w['ne_name'], parent_entity_id=w['parent_id'], parent_id=w['parent_id'],
+             label='sovereign' if w['kind'] == 'nation' else '', gov_status='government' if w['kind'] == 'nation' else '',
+             level=lvl, type=typ, feed='inst-lane', wikidata=w['wikidata'], source_record_id=w['wikidata'])
+    e['alias'] = esc(w['wd_label']) if w['wd_label'] and w['wd_label'] != w['ne_name'] else ''
+    fl = list(w['flags']) + ([] if w['kind'] == 'nation' else ['gov_status_unknown:outside_cog2022_scope']) + ['outside_v2_scope:no_unit_no_boundary_set']
+    e['flags'] = ';'.join(f_.replace(';', ',') for f_ in fl); e['_flags'] = fl
+    e['_src'] = ([S_WD] if w['wikidata'] else []) + [S_NE_CA if w['entity_id'].startswith(('province:ca-', 'territory:ca-')) else S_NE_C]
+    for k_ in ('v2_layer', 'v2_row', 'v2_key', 'predecessor_id', 'successor_id', 'valid_from', 'valid_to', 'state_fips', 'state', 'cog_pid6'): e[k_] = ''
+    OUTROWS.append(e)
+for g in WORLD['gaps'] + WGAPS: GAPS.append(dict(g))
+# nation:us keeps its id and values; it gets the Wikidata QID that P297 US resolves to
+for e in OUTROWS:
+    if e['entity_id'] == 'nation:us' and WORLD['qid_us']: e['wikidata'] = WORLD['qid_us']
+# source_record_id: the entity's id inside its FIRST cited source (GEOID / FIPS code for TIGER, Gazetteer and ANSI rows; QID for Wikidata)
+for e in OUTROWS:
+    if e.get('source_record_id'): continue
+    f0 = e['_src'][0] if e['_src'] else ''
+    e['source_record_id'] = e['geoid'] if e['geoid'] and (f0 == S_GEOJSON or f0.startswith('U.S. Census Bureau,') and 'Gazetteer' in f0 or f0.startswith(S_ST)) else ''
+    e.setdefault('wikidata', '')
+# ---------------- Governments bot feed (tools/inst_govfeed.py): id map, QIDs, ceased/new units, seals and flags ----------------
+import inst_govfeed
+GOVF = inst_govfeed.load(R, GOV_SHA)
+_ents = {e['entity_id']: e for e in OUTROWS}
+for e in OUTROWS: e.setdefault('wikidata', '')
+GFMAP, GIMG, GGAPS, GSTAT = inst_govfeed.integrate(GOVF, _ents, {k: v for k, v in GIDX.items()})
+for e in OUTROWS:
+    if e.pop('_gov', False): src(e, S_GOV)
+    e['flags'] = ';'.join(f_.replace(';', ',') for f_ in e['_flags'])
+GAPS.extend(GGAPS)
+print('governments feed', dict(sorted(GSTAT.items())), file=sys.stderr)
 ids = [e['entity_id'] for e in OUTROWS]; assert len(ids) == len(set(ids)), 'entity_id not unique'
 
 # ---------------- sources.csv: every cited source once, stable ids (tools/inst_sources.py) ----------------
@@ -771,11 +819,21 @@ def build_registry():
             return [reg.add(None, 'U.S. Census Bureau TIGER/Line 2024 county subdivisions + places (FUNCSTAT, CLASSFP, NAMELSAD, geometry; via data-v3/geo GeoJSON and town_pairs.csv)',
                             'https://www2.census.gov/geo/tiger/TIGER2024/COUSUB/ ; https://www2.census.gov/geo/tiger/TIGER2024/PLACE/', PD, RETRIEVED)]
         if t == S_COG: return [pre('census-cog2022-')]
-        if t == S_GOV: return [reg.add(None, 'Governments bot, data-v3/institutions/governments (local/<ST>.csv gov_status + nces_leaid)', f'{REPO}/tree/{GOV_SHA}/data-v3/institutions/governments', 'public domain (US government work)', RETRIEVED, GOV_SHA)]
+        if t == S_GOV: return [reg.add(None, 'Governments bot, data-v3/institutions/governments (gov_status, nces_leaid, wikidata_qid, ceased/new units, id map; files pinned at this commit)', f'{REPO}/tree/{GOV_SHA}/data-v3/institutions/governments', 'public domain (US government work)', RETRIEVED, GOV_SHA)]
         if t == S_CG: return [pre('repo-governments-'), pre('census-cog2022-'), pre('census-tiger2024-county-')]
         if t.startswith(S_OH): return [reg.add(None, 'data-v3/inst officeholder files (entity_id + unit as published there)', f'{REPO}/tree/{OH_SHA}/data-v3/inst', OHLIC, RETRIEVED, OH_SHA)]
         if t.startswith('v2/data/dc.js'): return [reg.add(None, 'v2/data/dc.js (DC wards stand in for state senate and house)', f'{REPO}/blob/{GEO_SHA}/v2/data/dc.js', 'project data (v2), derived from public-domain Census TIGER', RETRIEVED, GEO_SHA)]
         if t == 'U.S. Census Bureau Gazetteer': return []
+        if t in (S_NE_C, S_NE_CA):
+            f_ = inst_world.COUNTRIES if t == S_NE_C else inst_world.CANADA; ne_ = WORLD['ne'][f_]
+            return [reg.add(None, t + ' (Natural Earth, public domain; list of institutions only, no geometry used)',
+                            f"{REPO}/blob/{ne_['commit']}/{f_} ; https://www.naturalearthdata.com/downloads/50m-cultural-vectors/",
+                            'public domain (Natural Earth)', RETRIEVED, ne_['commit'], ne_['sha256'])]
+        if t == S_WD:
+            qs = hashlib.sha256(''.join(open(os.path.join(A.world_raw, f_)).read() for f_ in sorted(WORLD['files']) if f_.endswith('.rq')).encode('utf-8')).hexdigest()
+            return [reg.add(None, 'Wikidata Query Service: ISO 3166-1 P297 / ISO 3166-2 P300 items + current P31 Q3624078, P463 Q1065, P17, P361, P300, P36 '
+                            '(tools/inst_world.py; sha256 = of the 4 .rq query texts concatenated in file-name order; answer sha256s in entities_summary.json world.files)',
+                            'https://query.wikidata.org/sparql', 'CC0 1.0 (Wikidata)', WORLD['retrieved_at'], '', qs)]
         raise SystemExit('unmapped source text: ' + t)
     def ids_for(texts):
         out = []
@@ -793,14 +851,23 @@ def build_registry():
               'gov_status_unknown': f'{tig};{cog}', 'excluded_not_defined': '', 'consolidated_county_cog_code_not_in_tiger': f'{cog};{tig}',
               'consolidated_county_no_government_linked': f'{cog};{tig}', 'same_code_place_cousub_overlap_unmeasured': tig,
               'town_pair_same_neither_in_cog': f'{geo};{cog}', 'school_gov_status_conflict': atom(S_GOV)[0]}
+    wd_ = atom(S_WD)[0]; nec = atom(S_NE_C)[0]
+    for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
+               'territory_sovereign_several_candidates', 'wikidata_status_ambiguous', 'world_entity_excluded_no_sovereign'): GAPSRC[g_] = wd_
+    GAPSRC['wikidata_qid_missing'] = f'{nec};{wd_}'
+    gv_ = atom(S_GOV)[0]
+    for g_ in ('govbot_territory_key_differs', 'govbot_frozen_id_conflict', 'govbot_mapping_conflict', 'govbot_mapping_ambiguous', 'govbot_registry_id_not_in_files',
+               'wikidata_qid_conflict', 'govbot_ceased_dates_disagree', 'govbot_ceased_partial', 'govbot_new_unit_not_in_registry', 'image_entity_unmapped'): GAPSRC[g_] = gv_
     return reg, ids_for, (lambda l: V2SRC.get(l, geo)), GAPSRC
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags']
-ORDER = ['nation', 'state', 'territory', 'chamber', 'dc_council', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata']
+ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
+FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:
     e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
+    assert e['feed'] in FEEDS, (e['entity_id'], e['feed'])
 rows = sorted(OUTROWS, key=lambda e: (ORDER.index(e['kind']), e['state_fips'], e['entity_id']))
 for e in rows:
     assert e['parent_id'] == '' or e['parent_id'] in set(ids), (e['entity_id'], e['parent_id'])
@@ -822,8 +889,10 @@ for x in XW:
     XW2.append({'entity_id': x['entity_id'], 'unit_layer': x['geoid_layer'], 'geoid': x['geoid'], 'vintage': x['vintage'], 'relation': relname(x),
                 'boundary_set': 'v2-2024' if x['vintage'] == '2024' else f"tiger-{x['vintage']}-{x['geoid_layer']}", 'source_id': IDS_FOR(srcs),
                 'overlap': 'equal' if x['relation'] == 'primary' else x['relation'], 'share_of_geoid_in_entity': x['share_of_geoid_in_entity'],
-                'share_of_entity_in_geoid': x['share_of_entity_in_geoid']})
-XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid']
+                'share_of_entity_in_geoid': x['share_of_entity_in_geoid'],
+                # the GEOID is the record id inside the cited Census source (Gazetteer / TIGER / ANSI); empty for derived links
+                'source_record_id': x['geoid'] if srcs and (srcs[0] in (S_GEOJSON, S_ST, 'U.S. Census Bureau Gazetteer') or (srcs[0].startswith('U.S. Census Bureau,') and 'Gazetteer' in srcs[0])) else ''})
+XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid', 'source_record_id']
 xk = [(x['entity_id'], x['unit_layer'], x['geoid'], x['vintage']) for x in XW2]; assert len(xk) == len(set(xk))
 assert {x['entity_id'] for x in XW2} <= set(ids)
 with open(os.path.join(OUT, 'entity_geoid_xwalk.csv'), 'w', newline='', encoding='utf-8') as fh:
@@ -870,6 +939,43 @@ for tbl in (rows, XW2, V2OUT, GAPS):
     for x in tbl: USED.update(i for i in x['source_id'].split(';') if i)
 assert USED <= set(REG.rows), USED - set(REG.rows)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
+# Governments bot sources.csv: union on the bot's own ids (feed-owned rows; their ids are the bot's, not '<slug>-<sha8>')
+GV_ID = IDS_FOR([S_GOV])
+GOVSRC = {r['source_id']: {c: r.get(c, '') for c in ['source_id', 'source', 'source_url', 'license', 'retrieved_at', 'commit', 'sha256']} for r in GOVF['sources']}
+_coll = sorted(set(GOVSRC) & set(REG.rows))
+GSTAT['source_id_collisions'] = len(_coll)
+for k in _coll:
+    if {c: REG.rows[k][c] for c in ('source_url', 'commit')} != {c: GOVSRC[k][c] for c in ('source_url', 'commit')}: raise SystemExit('source_id collision with the Governments bot: ' + k)
+FMC = ['feed', 'feed_entity_id', 'feed_type', 'entity_id', 'match', 'note', 'source_id']
+for m in GFMAP: m['source_id'] = GV_ID
+with open(os.path.join(OUT, 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GFMAP)
+IMC = ['entity_id', 'feed_entity_id', 'image_kind', 'commons_file', 'commons_url', 'license', 'fair_use', 'usage_basis', 'attribution', 'source_url', 'wikidata_qid', 'retrieved_at', 'source_id']
+for i in GIMG:
+    i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
+with open(os.path.join(OUT, 'entity_images.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GIMG)
+for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)
+REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
+# source_urls.csv (SCHEMA source_url): every URL of every source, ord = position in the ' ; '-list, label for multi-URL sources
+def url_label(u):
+    ul = u.lower()
+    for pat, lab in [(r'tiger\d{4}/cousub', 'cousub'), (r'tiger\d{4}/place', 'place'), (r'github\.com/ge0r9b/us-districts/', 'repo file (pinned commit)'),
+                     (r'naturalearthdata\.com', 'upstream (Natural Earth)'), (r'/members/members/<chamber>', 'member detail'),
+                     (r'senate|chamber=s\b|body=s\b|ss_membs|smembers|t=s\b|/s$', 'senate'),
+                     (r'house|assembl|chamber=h\b|body=h\b|hr_membs|hmembers|t=r\b|/h$', 'house')]:
+        if re.search(pat, ul): return lab
+    return ''
+SU = []
+for sid in sorted(REG.rows):
+    us_ = [u.strip() for u in REG.rows[sid]['source_url'].split(' ; ') if u.strip()]
+    for i, u in enumerate(us_, 1):
+        lab = url_label(u) if len(us_) > 1 else ''
+        assert lab or len(us_) == 1, ('unlabelled url in a multi-URL source', sid, u)
+        SU.append({'source_id': sid, 'ord': i, 'url': u, 'label': lab})
+    if len(us_) > 1: assert len({url_label(u) for u in us_}) == len(us_), ('duplicate labels', sid, us_)
+with open(os.path.join(OUT, 'source_urls.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, ['source_id', 'ord', 'url', 'label'], lineterminator='\n'); w.writeheader(); w.writerows(SU)
 if A.stability_test:   # rebuild the registry and every row's ids a second time (texts in reverse order) and compare
     reg2, ids2, v2f, gs2 = build_registry()
     def setof(x): return set(i for i in x.split(';') if i)
@@ -882,7 +988,8 @@ if A.stability_test:   # rebuild the registry and every row's ids a second time 
     bad += [(k, REG.rows[k], reg2.rows.get(k)) for k in sorted(USED) if reg2.rows.get(k) != REG.rows[k]]
     same = not bad
     if bad: print('stability mismatches', len(bad), bad[:5])
-    n = REG.check_ids()
+    _bak = {k: REG.rows.pop(k) for k in list(REG.rows) if k in GOVSRC and k not in USED}
+    n = REG.check_ids(); REG.rows.update(_bak); n = f'{n} own + {len(_bak)} Governments-bot'
     print(f'stability test: {n} sources; second build identical: {same}; ids re-derive from url+commit: OK')
     assert same
 summ = {
@@ -900,14 +1007,22 @@ summ = {
   'xwalk_by_relation': dict(C.Counter(x['relation'] for x in XW2)),
   'xwalk_by_overlap': dict(C.Counter(x['overlap'] for x in XW2 if x['relation'] != 'primary')),
   'multi_geoid_entities': len({x['entity_id'] for x in XW2 if x['relation'] != 'primary'}),
-  'district_units_checked': dict(C.Counter(f"{k[0]}|{k[2]}" for k in UNITS)),
+  'district_units_checked': dict(sorted(C.Counter(f"{k[0]}|{k[2]}" for k in UNITS).items())),
   'town_pairs_same_merged': len(pairs_merged), 'town_pairs_same_two_cog_governments': len(pairs_separate_gov),
   'counties_merged_into_city': len(cty_merged),
   'v2_rows': {l: dict(C.Counter(v['resolved'] for v in V2OUT if v['v2_layer'] == l)) for l in sorted({v['v2_layer'] for v in V2OUT})},
   'officeholders': oh_stats,
   'gaps': dict(C.Counter(g['gap'] for g in GAPS)),
   'school_gov_status_fill': dict(SCHFILL), 'governments_ref': GOV_SHA,
-  'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA,
+  'governments_feed': dict(sorted((k, v) for k, v in GSTAT.items())), 'feed_map_rows': len(GFMAP), 'images_rows': len(GIMG),
+  'wikidata_filled': sum(1 for e in rows if e['wikidata']),
+  'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA, 'source_urls': len(SU),
+  'source_record_id_filled': {'entities': sum(1 for e in rows if e['source_record_id']), 'xwalk': sum(1 for x in XW2 if x['source_record_id'])},
+  'feed_values': dict(sorted(C.Counter(e['feed'] for e in rows).items())),
+  'world': {'natural_earth': {f_: {'commit': v_['commit'], 'sha256': v_['sha256'], 'rows': len(v_['rows'])} for f_, v_ in sorted(WORLD['ne'].items())},
+            'wikidata_retrieved_at': WORLD['retrieved_at'], 'files': WORLD['files'],
+            'by_kind': dict(sorted(C.Counter(e['kind'] for e in rows if e['feed'] == 'inst-lane' and e['level'] in ('national', 'subnational')).items())),
+            'excluded': [g['key'] for g in WGAPS], 'skipped_us_territory_codes': WORLD['skipped'], 'un_comparison': WORLD['compare']},
 }
 json.dump(summ, open(os.path.join(OUT, 'entities_summary.json'), 'w'), indent=1)
 print(json.dumps(summ, indent=1))

@@ -27,6 +27,7 @@ CANON = [
     (r'github\.com/openstates/people', 'openstates-people'),
     (r'github\.com/unitedstates/congress-legislators', 'congress-legislators'),
     (r'clerk\.house\.gov/xml/lists/MemberData', 'house-clerk-memberdata'),
+    (r'query\.wikidata\.org/sparql', 'wikidata-sparql'),
     (r'github\.com/ge0r9b/us-districts/(?:blob|tree)/[0-9a-f]+/(\S+)', lambda m: 'repo-' + m.group(1).rsplit('/', 1)[-1].split('.')[0]),
 ]
 def slug_for(url):
