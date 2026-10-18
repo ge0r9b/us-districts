@@ -1041,3 +1041,93 @@ In this file ≈ means any estimate. Area-weighted and population-weighted figur
   - Republican share within 12 points.
   
   The check is skipped only when the other-year figure itself fails the plausibility bar. Figures that fail stay gray or keep their old value, and the reason is logged in the fix's report.
+
+## Institutions lane, gray batch 2: every remaining gray cell (Oct 18, 2026, branch `data/inst-gray2`, not pushed)
+
+**Scope.** Every gray cell in `ussch.js`, `ussldu.js` and `ussldl.js`, for both years.
+
+- Excluded by ruling: LA 057, South Dakota's 26 structural 2024 rows, Maine's 14 combined 2024 units, and Kalawao.
+- In scope at the start: schools 2024 (39), schools 2020 (28), and WY senate 018 2024 (1).
+- Methods are the same as fixes 4 and 5. Alaska uses `tools/inst_ak_schools.py`. Other states use `tools/inst_gray2.py`: the strict exact rule first, then population-weighted ≈, then the 90 % plausibility bar and the consistency rule.
+- Per-cell reports: `data-v3/inst/gray2_pass1_report.json` and `gray2_pass2_muni.json`.
+
+**Filled (8):**
+
+| Cell | Value (Harris / Trump / total) | How |
+|---|---|---|
+| WY senate 018 2024 | 2,181 / 8,302 / 10,643 ≈ | population-weighted (2020 population 18,050; 2020 figure 10,065) |
+| WI Sturgeon Bay SD 2024 | 2,979 / 2,297 / 5,340 ≈ | population-weighted |
+| NJ Gibbsboro Borough SD 2024 | 695 / 570 / 1,295 **exact** | The district is the borough (TIGER IoU 1.0). Sum of Gibbsboro District 1, District 2, Provisional and EV Emergency in the MEDSL NJ 2024 file, which is taken from the official canvass. Camden County's Harris, Trump and total match the official county totals exactly. |
+| CA Washington USD (Yolo) 2020 | 14,616 / 8,081 / 23,239 ≈ | population-weighted |
+| CA Mountain View ESD (Los Angeles) 2020 | 9,723 / 3,117 / 13,124 ≈ | population-weighted |
+| CA Ocean View ESD (Ventura) 2020 | 3,649 / 1,351 / 5,109 ≈ | population-weighted |
+| NJ Ocean Township SD (Ocean) 2020 | 1,950 / 3,963 / 6,024 ≈ | population-weighted |
+| NY New Suffolk CSD 2020 | 149 / 145 / 297 ≈ | population-weighted |
+
+**No source can exist (proved):**
+- **No residents in the 2020 Census:** VT Averys Gore and VT Warners Grant (2024 and 2020), and ME Sagadahoc Unorganized Territory 2020.
+- **Vermont gores and grants with 2–29 residents and no reporting unit** in the official town returns: Buels Gore (29), Ferdinand (16), Glastenbury (9), Somerset (6), Warrens Gore (2) for 2024, and Lewis (2) for 2020. No precinct with votes covers them.
+- **VT Averill:**
+  - 2024: 21 residents, no unit.
+  - 2020: reported with Canaan as the official combined unit "Canaan/Averill". This follows the same ruling as Maine's combined units, so it stays gray.
+- **KY Graves County SD and Mayfield ISD 2020:** VEST and the app's 2020 file report Graves County as one county-wide unit (17,019). The strict rule's "exact" result is that county total, which includes Mayfield, so it is not the district. Mayfield's population-weighted estimate also fails the consistency rule (4,434 vs 2,010 in 2024). Kentucky's official 2020 precinct canvass was not fetched; see "Source exists, not built" below.
+- **TX Boys Ranch ISD (both years):** this is a residential children's ranch, so most of its 120 residents are minors. Block population is not a proxy for voters here: a population share would give it 51 / 68 votes. It has no separate reporting unit, so it stays gray (judgement call, logged).
+- **Alaska city districts where the town precinct is not the district,** in 2024: Klawock, Nenana, Pelican, Southeast Island and Chatham. In 2020 those same five, plus Dillingham, Hoonah, Nome and St. Marys. The Division reports nothing finer than the precinct, so no official source can split them.
+  - Chugach 2020: population cover is 91 %.
+
+**Source exists, but the batch-1 checks reject the figure:**
+- **AK Hydaburg City and Kake City (both years):** the precinct sums (204 vs 135 and 370 vs 241) fail the turnout-ratio rule. They are **blocked** from checking against the Division's own file: elections.alaska.gov returns 403 to the box.
+- **AK Aleutian Region (both years):** the precinct sums (27 vs 109) fail the consistency rule.
+- **AL Fort Rucker SD 2024:** a military post. The estimate of 662 vs 308 in 2020 fails the consistency rule.
+- **MS Western Line SD 2024:** 3,274 vs 7,733 in 2020 fails. The 2020 figure needs a look.
+- **CA Kashia ESD 2020:** 48 vs 11 in 2024 fails.
+
+**Blocked:**
+- **OR Pleasant Hill SD 1 2024:** Lane County's 2024 precinct GIS is licensed (LCOG), and since 2023 precinct-level results are available only on request.
+
+**Source exists, not built this round (needs precinct polygons):** the vote returns exist (official county canvass, MEDSL), but too few of the district's people live in precincts that have both a 2024 polygon and votes. Each needs fix-3-style work per county: official units plus VEST 2020 or Census VTD polygons matched by name or code. Shown as share of district population in precincts with votes:
+
+| District (2024) | Cover | County |
+|---|---|---|
+| AL Guntersville City SD | 0 % | Marshall County reports by polling place, e.g. "GUNTERSVILLE REC CTR"; no polling-place boundaries published. The district is exactly Guntersville city (IoU 1.0). |
+| AR Jessieville SD | 78 % | Garland |
+| CO Aspen SD 1 | 76 % | Pitkin |
+| CO Salida SD R-32 | 61 % | Chaffee / Fremont |
+| KY Somerset ISD | 54 % | Pulaski |
+| KY East Bernstadt ISD and its Laurel County part | 85 % | Laurel |
+| MS South Delta SD | 76 % | |
+| MO Cape Girardeau 63 | 76 % | |
+| MO Delta C-7 | 30 % | Pemiscot |
+| MO Pettis R-XII | 12 % | fix-3 estimate also failed the consistency rule |
+| MT Lambert elementary / high | 27 % / 23 % | Richland |
+| NY Bath CSD | 72 % | Steuben |
+| NY Geneva City SD | 91 % | |
+| OH Shelby City SD | 90 % | Richland |
+| OH Carey EVSD | 80 % | Wyandot |
+
+NM Loving Municipal Schools 2020 also belongs here, with 84 % cover (Eddy).
+
+**Counts (gray cells, by layer and year):**
+
+| Layer / year | Before (`data/inst-fixes` b68c7be) | After |
+|---|---|---|
+| schools 2024, all | 79 | **77** |
+| schools 2024, in scope (excl. SD 26, ME 14) | 39 | **37** |
+| schools 2020 | 28 | **23** |
+| state senate 2024 | 1 (WY 018) | **0** |
+| state house 2024 | 1 (LA 057, excluded) | 1 |
+| state senate / house 2020 | 0 | 0 |
+
+**Bytes:**
+
+| File | Before (raw / gzip -9) | After (raw / gzip -9) |
+|---|---|---|
+| `ussch.js` | 4,750,718 / 1,584,133 | 4,750,812 / 1,584,169 |
+| `ussldu.js` | 1,256,870 / 438,983 | 1,256,889 / 438,987 |
+| `ussldl.js` | 2,062,614 / 719,085 | unchanged |
+
+**Sources:**
+- Census 2020 TIGER/Line tabblock20 and TIGER 2024 school, place, cousub and SLDU files (sha256 in `inst-raw/gray2/SHA256SUMS`)
+- MEDSL 2024 official precinct returns: NJ, NY, KY (CC0; `inst-raw/gray2/medsl24/SHA256SUMS`) and AL
+- the app's precinct files (official, NYT, MEDSL, VEST)
+- official county totals in `data/election2024.js` and `data/election2020.js`
