@@ -97,6 +97,50 @@ def fetch_v3(images_csv, out):
     open(os.path.join(out, 'v3_retrieved_at.txt'), 'w').write(time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()) + '\n')
     sums(out); print(len(titles), 'titles', len(hist), 'histories', len(hits), 'quebec hits')
 
+def fetch_v4(images_csv, out):
+    """Hiroshima Prefecture flag search (Full Stack, Oct 18): ns-6 search, then templates/categories/extmetadata of every
+    hit (v4_hiro_search.json, v4_hiro_page_NNNN.json) and the upload history of each hit (v4_hiro_hist_NNNN.json)."""
+    body = _get({'action': 'query', 'list': 'search', 'srnamespace': '6', 'srlimit': '50', 'srsearch': 'intitle:flag intitle:Hiroshima'})
+    open(os.path.join(out, 'v4_hiro_search.json'), 'wb').write(body)
+    hits = sorted(h['title'] for h in json.loads(body)['query']['search'])
+    for b in range(0, len(hits), 50):
+        body = _get({'action': 'query', 'prop': 'categories|templates|imageinfo', 'iiprop': 'url|extmetadata', 'iiextmetadatafilter': 'LicenseShortName|License|LicenseUrl|Artist|Credit|ImageDescription',
+                     'cllimit': 'max', 'tllimit': 'max', 'titles': '|'.join(hits[b:b + 50])})
+        open(os.path.join(out, f'v4_hiro_page_{b // 50:04d}.json'), 'wb').write(body)
+    for n, t in enumerate(hits):
+        body = _get({'action': 'query', 'prop': 'imageinfo', 'iiprop': 'user|timestamp|userhidden', 'iilimit': 'max', 'titles': t})
+        open(os.path.join(out, f'v4_hiro_hist_{n:04d}.json'), 'wb').write(body)
+    open(os.path.join(out, 'v4_retrieved_at.txt'), 'w').write(time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()) + '\n')
+    sums(out); print(len(hits), 'hiroshima hits')
+
+def fetch_v4b(images_csv, out):
+    """The ns-6 search caps at 50 municipal flags; the prefectural flag itself is in Category:Prefectural flag of Hiroshima
+    prefecture (the old file's own category): its file members, with templates/categories/extmetadata and upload histories
+    (v4b_hiro_cat.json, v4b_hiro_page_NNNN.json, v4b_hiro_hist_NNNN.json)."""
+    body = _get({'action': 'query', 'list': 'categorymembers', 'cmtitle': 'Category:Prefectural flag of Hiroshima prefecture', 'cmnamespace': '6', 'cmlimit': 'max'})
+    open(os.path.join(out, 'v4b_hiro_cat.json'), 'wb').write(body)
+    hits = sorted(h['title'] for h in json.loads(body)['query']['categorymembers'])
+    for b in range(0, len(hits), 50):
+        body = _get({'action': 'query', 'prop': 'categories|templates|imageinfo', 'iiprop': 'url|extmetadata', 'iiextmetadatafilter': 'LicenseShortName|License|LicenseUrl|Artist|Credit|ImageDescription',
+                     'cllimit': 'max', 'tllimit': 'max', 'titles': '|'.join(hits[b:b + 50])})
+        open(os.path.join(out, f'v4b_hiro_page_{b // 50:04d}.json'), 'wb').write(body)
+    for n, t in enumerate(hits):
+        body = _get({'action': 'query', 'prop': 'imageinfo', 'iiprop': 'user|timestamp|userhidden', 'iilimit': 'max', 'titles': t})
+        open(os.path.join(out, f'v4b_hiro_hist_{n:04d}.json'), 'wb').write(body)
+    open(os.path.join(out, 'v4b_retrieved_at.txt'), 'w').write(time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()) + '\n')
+    sums(out); print(len(hits), 'category members')
+
+def v4(d):
+    pages, hist = [], {}
+    for f in sorted(x for x in os.listdir(d) if x.startswith(('v4_hiro_page_', 'v4b_hiro_page_'))):
+        pages += json.load(open(os.path.join(d, f), encoding='utf-8'))['query']['pages']
+    for f in sorted(x for x in os.listdir(d) if x.startswith(('v4_hiro_hist_', 'v4b_hiro_hist_'))):
+        for p in json.load(open(os.path.join(d, f), encoding='utf-8'))['query']['pages']:
+            ii = sorted(p.get('imageinfo') or [], key=lambda r: r.get('timestamp', ''))
+            hist[p['title']] = ii[0] if ii else None
+    by = {p['title']: p for p in pages}   # a title in both answers: the later (v4b) copy wins
+    return sorted(by.values(), key=lambda p: p['title']), hist
+
 def v3(d):
     lic = {}
     for f in sorted(x for x in os.listdir(d) if x.startswith('v3_batch_')):
@@ -173,4 +217,4 @@ def info(d):
 if __name__ == '__main__':
     import argparse
     ap = argparse.ArgumentParser(); ap.add_argument('cmd'); ap.add_argument('--images'); ap.add_argument('--out')
-    a = ap.parse_args(); {'fetch': fetch, 'fetch-v2': fetch_v2, 'fetch-v3': fetch_v3}[a.cmd](a.images, a.out)
+    a = ap.parse_args(); {'fetch': fetch, 'fetch-v2': fetch_v2, 'fetch-v3': fetch_v3, 'fetch-v4': fetch_v4, 'fetch-v4b': fetch_v4b}[a.cmd](a.images, a.out)

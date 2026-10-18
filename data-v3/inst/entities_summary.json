@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "feaa84682f53808f429bd30460498aea15a20a6f",
+  "repo_head": "632810a877ef6ca9040fefecccddeb01eff62643",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -296,23 +296,25 @@
   "attribution|filled|commons_license|was_unknown": 268,
   "attribution|filled|commons_uploader": 25,
   "license|still_missing": 1,
-  "quebec_replaced": 1,
+  "overrides_applied": 1,
   "source_url|filled": 4725,
   "switched_to_private": 1,
   "unknown_attribution_rows": 286,
-  "cache_sha256": "a5e7734b4c10866b1b4bedccdfcc7ed7d178c3850a796a5723e0c4f08fd85ac3"
+  "cache_sha256": "824e61b2779d9652dd3435c9c6d72f585727495d2d4a1fcc1ee136e86f47270a"
  },
  "licence_url": {
   "commons_licenseurl": 1315
  },
- "quebec_replacement": {
-  "old": "Coat of arms of Quebec (without crown).svg",
-  "file": "Coat of arms of Quebec.svg",
-  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Quebec.svg",
-  "license": "CC-BY-SA-4.0",
-  "attribution": "Sodacan",
-  "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "note": "replaces Coat of arms of Quebec (without crown).svg (no machine-readable licence, open deletion request May 2026); Coat of arms of Quebec.svg is the file it was extracted from, with {{Cc-by-sa-4.0}} and no deletion or no-licence category"
+ "image_overrides": [
+  {
+   "override": "province:ca-qc|seal",
+   "outcome": "applied",
+   "detail": "Coat of arms of Quebec (without crown).svg -> Coat of arms of Quebec.svg"
+  }
+ ],
+ "licence_url_canonicalised": {
+  "form_only": 1077,
+  "scheme_http_to_https": 231
  },
  "images_fair_use_missing_field": {
   "license": [],

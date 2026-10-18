@@ -125,11 +125,17 @@ Third ruling (Full Stack, Oct 18; cache v3_*: LicenseUrl for every free file, up
 - CC BY-SA rows with no author → TASL `<original uploader>, <file page URL>, CC BY-SA x.y` (earliest revision of
   `prop=imageinfo&iiprop=user|timestamp`; `commons_uploader`), or `Wikimedia Commons contributors, <URL>, CC BY-SA x.y` when
   the uploader is hidden (`commons_contributors`); no history → stays private;
-- Quebec arms: the row's file is replaced only by a Commons file of the same arms with a machine-readable free licence
-  template and no deletion / no-licence category; the candidate is the file the old one says it was extracted from. The
-  `note` column records the old file, the new file and why. Nothing is edited or re-hosted;
-- `licence_url` (after `license`): the Commons LicenseUrl, else for CC licences the canonical creativecommons.org deed
-  (`/licenses/<type>/<version>/[<port>/]`, CC0 `/publicdomain/zero/1.0/`); other licences only when Commons gives a URL;
+- image overrides (`tools/inst_image_overrides.py`, explicit and logged in entities_summary.json `image_overrides`): Quebec
+  arms `Coat of arms of Quebec (without crown).svg` → `Coat of arms of Quebec.svg` (the file it was extracted from;
+  {{Cc-by-sa-4.0}}). An override applies only while the feed row still has the old file and the cached Commons page of the
+  new file has a machine-readable free licence template, no deletion / no-licence category, a licence and an Artist; it
+  drops itself (logged `dropped`) once the Governments feed already points at the new file. `note` records old, new and why.
+  Nothing is edited or re-hosted. Hiroshima Prefecture flag (subdivision:jp-34): no replacement exists (search + the
+  prefectural-flag category hold only this file and two flag-map stubs), so it stays private; the reason is in its gap;
+- `licence_url` (after `license`): the Commons LicenseUrl, else for CC licences the canonical creativecommons.org deed;
+  every CC URL is then written in the canonical form `https://creativecommons.org/licenses/<type>/<version>/[<port>/]`
+  (CC0 `https://creativecommons.org/publicdomain/zero/1.0/`): https, trailing `/`, no `deed.xx`. Other licences only when
+  Commons gives a URL, unchanged;
 - the 7 fair-use rows credited only "Unknown" stay hidden and unchanged.
 Consolidated city-counties kept as two entities (CoG code not a TIGER place: Athens-Clarke, Greeley, Louisville-Jefferson,
 Butte-Silver Bow, Nashville-Davidson): the CoG id maps to the **county** entity (`status` mapped, `note` consolidated), the place
