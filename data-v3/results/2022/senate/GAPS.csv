@@ -442,7 +442,33 @@ IA,regular,precinct,Wright County,"1 MEDSL precinct(s), 192 votes not matched to
 IA,regular,precinct,Mills County,"1 MEDSL precinct(s), 132 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IA,regular,precinct,Polk County,"1 MEDSL precinct(s), 92 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IA,regular,precinct,Madison County,"1 MEDSL precinct(s), 60 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-ID,regular,all,(state),"no county/precinct/district rows: MEDSL 2022 Idaho Senate rows are about 2x the official totals (1,177,836 vs 590,890), cause not found; only the official state rows are kept"
+ID,regular,precinct,Canyon County,"56 MEDSL precinct(s), 58229 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Bannock County,"57 MEDSL precinct(s), 25443 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Twin Falls County,"29 MEDSL precinct(s), 16729 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Madison County,"22 MEDSL precinct(s), 8276 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Elmore County,"17 MEDSL precinct(s), 6605 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Valley County,"9 MEDSL precinct(s), 5220 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Boundary County,"7 MEDSL precinct(s), 5200 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Latah County,"9 MEDSL precinct(s), 5065 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Jerome County,"12 MEDSL precinct(s), 4865 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Gooding County,"6 MEDSL precinct(s), 4047 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Nez Perce County,"2 MEDSL precinct(s), 3698 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Gem County,"5 MEDSL precinct(s), 3602 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Boise County,"7 MEDSL precinct(s), 3437 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Bear Lake County,"15 MEDSL precinct(s), 2244 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Teton County,"1 MEDSL precinct(s), 1899 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Idaho County,"1 MEDSL precinct(s), 1644 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Oneida County,"6 MEDSL precinct(s), 1601 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Jefferson County,"1 MEDSL precinct(s), 1499 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Custer County,"4 MEDSL precinct(s), 1251 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Adams County,"4 MEDSL precinct(s), 963 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Franklin County,"5 MEDSL precinct(s), 701 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Shoshone County,"1 MEDSL precinct(s), 654 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Fremont County,"1 MEDSL precinct(s), 626 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Camas County,"2 MEDSL precinct(s), 516 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Clearwater County,"2 MEDSL precinct(s), 503 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Owyhee County,"1 MEDSL precinct(s), 502 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+ID,regular,precinct,Blaine County,"1 MEDSL precinct(s), 5 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IL,regular,precinct,DuPage County,"1160 MEDSL precinct(s), 341353 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IL,regular,precinct,Cook County,"365 MEDSL precinct(s), 182219 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IL,regular,precinct,Kane County,"292 MEDSL precinct(s), 157941 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
@@ -482,19 +508,73 @@ IL,regular,precinct,Winnebago County,"1 MEDSL precinct(s), 467 votes not matched
 IL,regular,precinct,Whiteside County,"1 MEDSL precinct(s), 425 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IL,regular,precinct,McLean County,"1 MEDSL precinct(s), 259 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IL,regular,precinct,Fayette County,"1 MEDSL precinct(s), 124 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Marion County,"1 MEDSL precinct(s), 223706 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Allen County,"1 MEDSL precinct(s), 101697 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,St. Joseph County,"1 MEDSL precinct(s), 71671 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Porter County,"1 MEDSL precinct(s), 57981 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Vanderburgh County,"1 MEDSL precinct(s), 47116 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Elkhart County,"1 MEDSL precinct(s), 44652 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Monroe County,"1 MEDSL precinct(s), 40236 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Tippecanoe County,"1 MEDSL precinct(s), 38658 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Madison County,"112 MEDSL precinct(s), 35836 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Kosciusko County,"54 MEDSL precinct(s), 17467 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,LaPorte County,"1 MEDSL precinct(s), 31962 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Floyd County,"1 MEDSL precinct(s), 26912 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Vigo County,"1 MEDSL precinct(s), 26861 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Boone County,"1 MEDSL precinct(s), 24806 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Hancock County,"1 MEDSL precinct(s), 23945 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Warrick County,"1 MEDSL precinct(s), 20106 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Wayne County,"1 MEDSL precinct(s), 16590 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Dubois County,"1 MEDSL precinct(s), 13715 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Marshall County,"1 MEDSL precinct(s), 12781 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Lawrence County,"1 MEDSL precinct(s), 12772 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Hendricks County,"26 MEDSL precinct(s), 12485 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Decatur County,"18 MEDSL precinct(s), 6970 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Wabash County,"13 MEDSL precinct(s), 4670 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Knox County,"8 MEDSL precinct(s), 3693 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Shelby County,"1 MEDSL precinct(s), 11510 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Noble County,"1 MEDSL precinct(s), 11476 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Jackson County,"1 MEDSL precinct(s), 11240 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Gibson County,"1 MEDSL precinct(s), 9998 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Putnam County,"1 MEDSL precinct(s), 9928 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Montgomery County,"1 MEDSL precinct(s), 9753 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Steuben County,"1 MEDSL precinct(s), 9676 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Greene County,"1 MEDSL precinct(s), 9446 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Jasper County,"1 MEDSL precinct(s), 9238 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Cass County,"1 MEDSL precinct(s), 8588 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Ripley County,"1 MEDSL precinct(s), 8332 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Washington County,"1 MEDSL precinct(s), 7978 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Clay County,"1 MEDSL precinct(s), 7642 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Spencer County,"1 MEDSL precinct(s), 7598 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Daviess County,"1 MEDSL precinct(s), 6987 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Randolph County,"1 MEDSL precinct(s), 6886 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Starke County,"1 MEDSL precinct(s), 6870 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Scott County,"1 MEDSL precinct(s), 6832 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,White County,"1 MEDSL precinct(s), 6729 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Brown County,"1 MEDSL precinct(s), 6355 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Perry County,"1 MEDSL precinct(s), 6223 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Carroll County,"1 MEDSL precinct(s), 6181 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Owen County,"1 MEDSL precinct(s), 6173 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Fayette County,"1 MEDSL precinct(s), 6164 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Fulton County,"1 MEDSL precinct(s), 5520 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Jay County,"1 MEDSL precinct(s), 5410 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Orange County,"1 MEDSL precinct(s), 5382 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Tipton County,"1 MEDSL precinct(s), 5260 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Vermillion County,"1 MEDSL precinct(s), 5060 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Fountain County,"1 MEDSL precinct(s), 4983 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Parke County,"1 MEDSL precinct(s), 4481 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Newton County,"1 MEDSL precinct(s), 3982 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Pulaski County,"1 MEDSL precinct(s), 3735 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Crawford County,"1 MEDSL precinct(s), 3705 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Blackford County,"1 MEDSL precinct(s), 3394 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Warren County,"1 MEDSL precinct(s), 2814 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Switzerland County,"1 MEDSL precinct(s), 2643 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Benton County,"1 MEDSL precinct(s), 2467 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Howard County,"9 MEDSL precinct(s), 2272 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Franklin County,"8 MEDSL precinct(s), 2131 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Wells County,"6 MEDSL precinct(s), 1966 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Ohio County,"1 MEDSL precinct(s), 1921 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Clark County,"1 MEDSL precinct(s), 951 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Adams County,"3 MEDSL precinct(s), 892 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
-IN,regular,precinct,Lake County,"15 MEDSL precinct(s), 684 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Lake County,"14 MEDSL precinct(s), 684 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Knox County,"1 MEDSL precinct(s), 564 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 IN,regular,precinct,Hamilton County,"9 MEDSL precinct(s), 522 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Wells County,"1 MEDSL precinct(s), 272 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
+IN,regular,precinct,Kosciusko County,"3 MEDSL precinct(s), 6 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 KS,regular,precinct,Shawnee County,"184 MEDSL precinct(s), 35752 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 KS,regular,precinct,Saline County,"95 MEDSL precinct(s), 17620 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 KS,regular,precinct,Johnson County,"138 MEDSL precinct(s), 11920 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
@@ -1275,48 +1355,10 @@ WI,regular,precinct,Buffalo County,"3 MEDSL precinct(s), 1825 votes not matched 
 WI,regular,precinct,Iron County,"2 MEDSL precinct(s), 1356 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 WI,regular,precinct,Menominee County,"1 MEDSL precinct(s), 1090 votes not matched to a v2 polygon: allocated to the county polygons by president votes (≈ in districts)"
 FL,regular,ushouse,20,gray (no value): cover 26%
-IN,regular,ushouse,09,gray (no value): cover 46%
-IN,regular,ushouse,01,gray (no value): cover 45%
-IN,regular,ushouse,08,gray (no value): cover 25%
-IN,regular,ushouse,06,gray (no value): cover 48%
-IN,regular,ushouse,04,gray (no value): cover 20%
-IN,regular,ushouse,02,gray (no value): cover 28%
-IN,regular,ushouse,07,gray (no value): cover 0%
 NV,regular,ushouse,01,gray (no value): cover 20%
 FL,regular,senate,013,gray (no value): cover 16%
 FL,regular,senate,026,gray (no value): cover 39%
 FL,regular,senate,035,gray (no value): cover 17%
-IN,regular,senate,011,gray (no value): no overlap
-IN,regular,senate,023,gray (no value): no overlap
-IN,regular,senate,046,gray (no value): no overlap
-IN,regular,senate,010,gray (no value): no overlap
-IN,regular,senate,034,gray (no value): no overlap
-IN,regular,senate,012,gray (no value): no overlap
-IN,regular,senate,033,gray (no value): no overlap
-IN,regular,senate,007,gray (no value): cover 42%
-IN,regular,senate,009,gray (no value): cover 48%
-IN,regular,senate,013,gray (no value): cover 40%
-IN,regular,senate,026,gray (no value): cover 47%
-IN,regular,senate,040,gray (no value): cover 0%
-IN,regular,senate,047,gray (no value): cover 42%
-IN,regular,senate,038,gray (no value): cover 9%
-IN,regular,senate,050,gray (no value): cover 0%
-IN,regular,senate,028,gray (no value): cover 0%
-IN,regular,senate,008,gray (no value): cover 0%
-IN,regular,senate,021,gray (no value): cover 43%
-IN,regular,senate,006,gray (no value): cover 20%
-IN,regular,senate,029,gray (no value): cover 33%
-IN,regular,senate,014,gray (no value): cover 43%
-IN,regular,senate,036,gray (no value): cover 18%
-IN,regular,senate,024,gray (no value): cover 38%
-IN,regular,senate,044,gray (no value): cover 0%
-IN,regular,senate,015,gray (no value): cover 0%
-IN,regular,senate,005,gray (no value): cover 0%
-IN,regular,senate,004,gray (no value): cover 0%
-IN,regular,senate,022,gray (no value): cover 0%
-IN,regular,senate,032,gray (no value): cover 43%
-IN,regular,senate,030,gray (no value): cover 0%
-IN,regular,senate,048,gray (no value): cover 14%
 NV,regular,senate,021,gray (no value): cover 34%
 NV,regular,senate,020,gray (no value): cover 40%
 SD,regular,senate,003,gray (no value): no overlap
@@ -1337,66 +1379,6 @@ FL,regular,statehouse,025,gray (no value): cover 10%
 FL,regular,statehouse,096,gray (no value): cover 6%
 FL,regular,statehouse,026,gray (no value): cover 9%
 HI,regular,statehouse,007,gray (no value): cover 36%
-IN,regular,statehouse,008,gray (no value): no overlap
-IN,regular,statehouse,013,gray (no value): no overlap
-IN,regular,statehouse,016,gray (no value): no overlap
-IN,regular,statehouse,026,gray (no value): no overlap
-IN,regular,statehouse,048,gray (no value): no overlap
-IN,regular,statehouse,061,gray (no value): no overlap
-IN,regular,statehouse,078,gray (no value): no overlap
-IN,regular,statehouse,080,gray (no value): no overlap
-IN,regular,statehouse,082,gray (no value): no overlap
-IN,regular,statehouse,094,gray (no value): no overlap
-IN,regular,statehouse,095,gray (no value): no overlap
-IN,regular,statehouse,097,gray (no value): no overlap
-IN,regular,statehouse,099,gray (no value): no overlap
-IN,regular,statehouse,100,gray (no value): no overlap
-IN,regular,statehouse,098,gray (no value): no overlap
-IN,regular,statehouse,086,gray (no value): no overlap
-IN,regular,statehouse,096,gray (no value): no overlap
-IN,regular,statehouse,084,gray (no value): no overlap
-IN,regular,statehouse,089,gray (no value): no overlap
-IN,regular,statehouse,077,gray (no value): no overlap
-IN,regular,statehouse,027,gray (no value): no overlap
-IN,regular,statehouse,009,gray (no value): no overlap
-IN,regular,statehouse,004,gray (no value): no overlap
-IN,regular,statehouse,043,gray (no value): no overlap
-IN,regular,statehouse,020,gray (no value): no overlap
-IN,regular,statehouse,007,gray (no value): no overlap
-IN,regular,statehouse,006,gray (no value): no overlap
-IN,regular,statehouse,042,gray (no value): no overlap
-IN,regular,statehouse,005,gray (no value): no overlap
-IN,regular,statehouse,049,gray (no value): no overlap
-IN,regular,statehouse,044,gray (no value): cover 0%
-IN,regular,statehouse,045,gray (no value): cover 48%
-IN,regular,statehouse,046,gray (no value): cover 0%
-IN,regular,statehouse,053,gray (no value): cover 17%
-IN,regular,statehouse,064,gray (no value): cover 39%
-IN,regular,statehouse,065,gray (no value): cover 0%
-IN,regular,statehouse,072,gray (no value): cover 1%
-IN,regular,statehouse,075,gray (no value): cover 36%
-IN,regular,statehouse,085,gray (no value): cover 0%
-IN,regular,statehouse,087,gray (no value): cover 0%
-IN,regular,statehouse,092,gray (no value): cover 0%
-IN,regular,statehouse,038,gray (no value): cover 26%
-IN,regular,statehouse,069,gray (no value): cover 3%
-IN,regular,statehouse,033,gray (no value): cover 17%
-IN,regular,statehouse,063,gray (no value): cover 42%
-IN,regular,statehouse,081,gray (no value): cover 0%
-IN,regular,statehouse,091,gray (no value): cover 0%
-IN,regular,statehouse,090,gray (no value): cover 0%
-IN,regular,statehouse,093,gray (no value): cover 0%
-IN,regular,statehouse,017,gray (no value): cover 0%
-IN,regular,statehouse,074,gray (no value): cover 0%
-IN,regular,statehouse,088,gray (no value): cover 30%
-IN,regular,statehouse,041,gray (no value): cover 43%
-IN,regular,statehouse,062,gray (no value): cover 0%
-IN,regular,statehouse,056,gray (no value): cover 5%
-IN,regular,statehouse,018,gray (no value): cover 35%
-IN,regular,statehouse,021,gray (no value): cover 0%
-IN,regular,statehouse,010,gray (no value): cover 0%
-IN,regular,statehouse,025,gray (no value): cover 23%
-IN,regular,statehouse,011,gray (no value): cover 30%
 KS,regular,statehouse,065,gray (no value): cover 49%
 KS,regular,statehouse,067,gray (no value): cover 48%
 KY,regular,statehouse,085,gray (no value): cover 25%
@@ -1413,9 +1395,6 @@ NV,regular,statehouse,036,gray (no value): cover 48%
 NV,regular,statehouse,019,gray (no value): cover 30%
 NV,regular,statehouse,012,gray (no value): cover 26%
 NV,regular,statehouse,031,gray (no value): cover 40%
-NY,regular,statehouse,035,gray (no value): cover 45%
-NY,regular,statehouse,059,gray (no value): cover 45%
-VT,regular,statehouse,C14,gray (no value): no votes
 OR,regular,statehouse,007,gray (no value): cover 47%
 SD,regular,statehouse,007,gray (no value): no overlap
 SD,regular,statehouse,003,gray (no value): no overlap
@@ -1423,6 +1402,9 @@ SD,regular,statehouse,034,gray (no value): cover 46%
 SD,regular,statehouse,018,gray (no value): cover 12%
 SD,regular,statehouse,024,gray (no value): cover 39%
 SD,regular,statehouse,031,gray (no value): cover 0%
+VT,regular,statehouse,C14,gray (no value): no votes
+NY,regular,statehouse,035,gray (no value): cover 45%
+NY,regular,statehouse,059,gray (no value): cover 45%
 UT,regular,statehouse,027,gray (no value): cover 11%
 UT,regular,statehouse,054,gray (no value): cover 48%
 UT,regular,statehouse,055,gray (no value): cover 49%
@@ -1449,6 +1431,9 @@ AL,regular,schools,Albertville City School District,gray (no value): cover 37%
 AL,regular,schools,Guntersville City School District,gray (no value): cover 3%
 AL,regular,schools,Oneonta City School District,gray (no value): cover 5%
 CO,regular,schools,Aspen School District 1,gray (no value): cover 36%
+FL,regular,schools,Broward County School District,gray (no value): cover 35%
+FL,regular,schools,Lake County School District,gray (no value): cover 7%
+FL,regular,schools,Palm Beach County School District,gray (no value): cover 46%
 AK,regular,schools,Kashunamiut School District,gray (no value): no votes
 AK,regular,schools,Galena City School District,gray (no value): no votes
 AK,regular,schools,Hoonah City School District,gray (no value): no votes
@@ -1460,177 +1445,7 @@ AK,regular,schools,Nome School District,gray (no value): no votes
 AK,regular,schools,Pelican City School District,gray (no value): no votes
 AK,regular,schools,St. Marys City School District,gray (no value): no votes
 AK,regular,schools,Tanana City School District,gray (no value): no votes
-FL,regular,schools,Broward County School District,gray (no value): cover 35%
-FL,regular,schools,Lake County School District,gray (no value): cover 7%
-FL,regular,schools,Palm Beach County School District,gray (no value): cover 46%
 GA,regular,schools,Towns County School District,gray (no value): cover 40%
-IN,regular,schools,Tri-Township Consolidated School Corporation,gray (no value): no overlap
-IN,regular,schools,North Central Parke Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Argos Community Schools,gray (no value): no overlap
-IN,regular,schools,Attica Consolidated School Corporation,gray (no value): no overlap
-IN,regular,schools,Baugo Community Schools,gray (no value): no overlap
-IN,regular,schools,Beech Grove City Schools,gray (no value): no overlap
-IN,regular,schools,Benton Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Clay Community Schools,gray (no value): no overlap
-IN,regular,schools,Cannelton City Schools,gray (no value): no overlap
-IN,regular,schools,Medora Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Perry Central Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Randolph Central School Corporation,gray (no value): no overlap
-IN,regular,schools,South Central Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Concord Community Schools,gray (no value): no overlap
-IN,regular,schools,Covington Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Crawfordsville Community Schools,gray (no value): no overlap
-IN,regular,schools,Culver Community Schools Corporation,gray (no value): no overlap
-IN,regular,schools,Delphi Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Duneland School Corporation,gray (no value): no overlap
-IN,regular,schools,Randolph Eastern School Corporation,gray (no value): no overlap
-IN,regular,schools,Elkhart Community Schools,gray (no value): no overlap
-IN,regular,schools,Fremont Community Schools,gray (no value): no overlap
-IN,regular,schools,Frontier School Corporation,gray (no value): no overlap
-IN,regular,schools,Goshen Community Schools,gray (no value): no overlap
-IN,regular,schools,Greencastle Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Indianapolis Public Schools,gray (no value): no overlap
-IN,regular,schools,Knox Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Lafayette School Corporation,gray (no value): no overlap
-IN,regular,schools,La Porte Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Logansport Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Warren County Metropolitan School District,gray (no value): no overlap
-IN,regular,schools,Michigan City Area Schools,gray (no value): no overlap
-IN,regular,schools,Middlebury Community Schools,gray (no value): no overlap
-IN,regular,schools,Mishawaka School City,gray (no value): no overlap
-IN,regular,schools,Eastern Pulaski Community School Corporation,gray (no value): no overlap
-IN,regular,schools,New Durham Township Metropolitan School District,gray (no value): no overlap
-IN,regular,schools,New Prairie United School Corporation,gray (no value): no overlap
-IN,regular,schools,North Judson-San Pierre School Corporation,gray (no value): no overlap
-IN,regular,schools,North Montgomery Community School Corporation,gray (no value): no overlap
-IN,regular,schools,North Spencer County School Corporation,gray (no value): no overlap
-IN,regular,schools,North Vermillion Community School Corporation,gray (no value): no overlap
-IN,regular,schools,North White School Corporation,gray (no value): no overlap
-IN,regular,schools,Northeastern Wayne Schools,gray (no value): no overlap
-IN,regular,schools,Oregon-Davis School Corporation,gray (no value): no overlap
-IN,regular,schools,Orleans Community Schools,gray (no value): no overlap
-IN,regular,schools,Paoli Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Penn-Harris-Madison School Corporation,gray (no value): no overlap
-IN,regular,schools,Pioneer Regional School Corporation,gray (no value): no overlap
-IN,regular,schools,East Porter County School Corporation,gray (no value): no overlap
-IN,regular,schools,Plymouth Community School Corporation,gray (no value): no overlap
-IN,regular,schools,John Glenn School Corporation,gray (no value): no overlap
-IN,regular,schools,West Central School Corporation,gray (no value): no overlap
-IN,regular,schools,Rensselaer Central School Corporation,gray (no value): no overlap
-IN,regular,schools,Richmond Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Salem Community Schools,gray (no value): no overlap
-IN,regular,schools,Shelbyville Central Schools,gray (no value): no overlap
-IN,regular,schools,South Bend Community School Corporation,gray (no value): no overlap
-IN,regular,schools,South Newton School Corporation,gray (no value): no overlap
-IN,regular,schools,South Spencer County School Corporation,gray (no value): no overlap
-IN,regular,schools,South Vermillion Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Southeast Fountain School Corporation,gray (no value): no overlap
-IN,regular,schools,Southeast Dubois County School Corporation,gray (no value): no overlap
-IN,regular,schools,Southern Hancock County Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Randolph Southern School Corporation,gray (no value): no overlap
-IN,regular,schools,Southwest Parke Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Speedway School Town,gray (no value): no overlap
-IN,regular,schools,Springs Valley Community School Corporation,gray (no value): no overlap
-IN,regular,schools,Tell City-Troy Township School Corporation,gray (no value): no overlap
-IN,regular,schools,Tippecanoe School Corporation,gray (no value): no overlap
-IN,regular,schools,Tri-County School Corporation,gray (no value): no overlap
-IN,regular,schools,Twin Lakes School Corporation,gray (no value): no overlap
-IN,regular,schools,Union-North United School Corporation,gray (no value): no overlap
-IN,regular,schools,Valparaiso Community Schools,gray (no value): no overlap
-IN,regular,schools,Warren Township Metropolitan School District,gray (no value): no overlap
-IN,regular,schools,West Lafayette Community School Corporation,gray (no value): no overlap
-IN,regular,schools,White River Valley School District,gray (no value): cover 0%
-IN,regular,schools,Southwest Allen County Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Barr-Reeve Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Blackford County Schools,gray (no value): cover 0%
-IN,regular,schools,Bloomfield School District,gray (no value): cover 0%
-IN,regular,schools,Monroe County Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Boone Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Bremen Public Schools,gray (no value): cover 0%
-IN,regular,schools,Brown County County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Brownstown Central Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Carroll Consolidated School Corporation,gray (no value): cover 0%
-IN,regular,schools,Caston School Corporation,gray (no value): cover 0%
-IN,regular,schools,Centerville-Abington Community Schools,gray (no value): cover 0%
-IN,regular,schools,Central Noble Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Cloverdale Community Schools,gray (no value): cover 0%
-IN,regular,schools,Crawford County Community School Corporation,gray (no value): cover 1%
-IN,regular,schools,Decatur Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Zionsville Community Schools,gray (no value): cover 0%
-IN,regular,schools,East Allen County Schools,gray (no value): cover 0%
-IN,regular,schools,East Gibson School Corporation,gray (no value): cover 0%
-IN,regular,schools,East Noble School Corporation,gray (no value): cover 0%
-IN,regular,schools,East Washington School Corporation,gray (no value): cover 0%
-IN,regular,schools,Eastern Greene County School District,gray (no value): cover 0%
-IN,regular,schools,Eastern Hancock County Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Shelby Eastern Schools,gray (no value): cover 0%
-IN,regular,schools,Evansville-Vanderburgh School Corporation,gray (no value): cover 0%
-IN,regular,schools,Fairfield Community Schools,gray (no value): cover 0%
-IN,regular,schools,Fayette County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Fort Wayne Community Schools,gray (no value): cover 0%
-IN,regular,schools,Franklin Township Community School Corporation,gray (no value): cover 1%
-IN,regular,schools,Greater Jasper Consolidated Schools,gray (no value): cover 0%
-IN,regular,schools,Greenfield-Central Community Schools,gray (no value): cover 0%
-IN,regular,schools,Hamilton Community Schools,gray (no value): cover 41%
-IN,regular,schools,Jac-Cen-Del Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Jay School Corporation,gray (no value): cover 0%
-IN,regular,schools,Kankakee Valley School Corporation,gray (no value): cover 0%
-IN,regular,schools,Lawrence Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Lebanon Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Linton-Stockton School Corporation,gray (no value): cover 0%
-IN,regular,schools,Milan Community Schools,gray (no value): cover 0%
-IN,regular,schools,Mitchell Community Schools,gray (no value): cover 0%
-IN,regular,schools,Monroe Central School Corporation,gray (no value): cover 0%
-IN,regular,schools,Mount Vernon Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Nettle Creek School Corporation,gray (no value): cover 17%
-IN,regular,schools,New Albany-Floyd County Consolidated Schools,gray (no value): cover 0%
-IN,regular,schools,North Daviess Community Schools,gray (no value): cover 2%
-IN,regular,schools,North Gibson School Corporation,gray (no value): cover 0%
-IN,regular,schools,North Lawrence Community Schools,gray (no value): cover 0%
-IN,regular,schools,North Newton School Corporation,gray (no value): cover 0%
-IN,regular,schools,North Putnam Community Schools,gray (no value): cover 0%
-IN,regular,schools,Tipton County Northern Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Northeast Dubois County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Northwest Allen County Schools,gray (no value): cover 0%
-IN,regular,schools,Northwestern Consolidated School Corporation,gray (no value): cover 0%
-IN,regular,schools,Perry Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Pike Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Portage Township Schools,gray (no value): cover 0%
-IN,regular,schools,Porter Township School Corporation,gray (no value): cover 0%
-IN,regular,schools,Prairie Heights Community School Corporation,gray (no value): cover 43%
-IN,regular,schools,Richland-Bean Blossom Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Rising Sun-Ohio County Community Schools,gray (no value): cover 1%
-IN,regular,schools,Rochester Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Scott County School District 1,gray (no value): cover 1%
-IN,regular,schools,Scott County School District 2,gray (no value): cover 0%
-IN,regular,schools,Seymour Community Schools,gray (no value): cover 0%
-IN,regular,schools,Shakamak Schools Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Smith-Green Community Schools,gray (no value): cover 49%
-IN,regular,schools,South Gibson School Corporation,gray (no value): cover 0%
-IN,regular,schools,South Montgomery Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,South Putnam Community Schools,gray (no value): cover 0%
-IN,regular,schools,South Ripley Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Lewis Cass Schools,gray (no value): cover 0%
-IN,regular,schools,Southwestern Shelby County Consolidated Schools,gray (no value): cover 1%
-IN,regular,schools,Southwest Dubois County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Spencer-Owen Community Schools,gray (no value): cover 0%
-IN,regular,schools,Steuben County Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Switzerland County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Tipton Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Triton School Corporation,gray (no value): cover 19%
-IN,regular,schools,Union Township School Corporation,gray (no value): cover 0%
-IN,regular,schools,Union School Corporation,gray (no value): cover 22%
-IN,regular,schools,Crothersville Community Schools,gray (no value): cover 0%
-IN,regular,schools,Vigo County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Wa-Nee Community Schools,gray (no value): cover 25%
-IN,regular,schools,Warrick County School Corporation,gray (no value): cover 0%
-IN,regular,schools,Washington Community School Corporation,gray (no value): cover 1%
-IN,regular,schools,Washington Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,Wayne Township Metropolitan School District,gray (no value): cover 0%
-IN,regular,schools,West Noble School Corporation,gray (no value): cover 0%
-IN,regular,schools,West Washington School Corporation,gray (no value): cover 0%
-IN,regular,schools,Western Boone County Community School Corporation,gray (no value): cover 0%
-IN,regular,schools,Western Wayne Schools,gray (no value): cover 0%
 IL,regular,schools,Madison Community Unit School District 12,gray (no value): cover 32%
 IL,regular,schools,Flanagan-Cornell District 74 in Rooks Creek,gray (no value): no votes
 IL,regular,schools,Bluford Unit School District 318 (9-12) in Opdyke-Belle Rive,gray (no value): no votes
@@ -1647,27 +1462,6 @@ MO,regular,schools,Cape Girardeau 63 School District,gray (no value): cover 34%
 MO,regular,schools,Miller County R-III School District,gray (no value): cover 4%
 MO,regular,schools,Delta C-7 School District,gray (no value): cover 42%
 MO,regular,schools,Pettis County R-XII School District,gray (no value): cover 19%
-NY,regular,schools,Elmira Heights Central School District,gray (no value): no overlap
-NY,regular,schools,Sagaponack Common School District,gray (no value): cover 18%
-NY,regular,schools,Islip Union Free School District,gray (no value): cover 49%
-NY,regular,schools,Oceanside Union Free School District,gray (no value): cover 45%
-NY,regular,schools,Bath Central School District,gray (no value): cover 49%
-NY,regular,schools,Brocton Central School District,gray (no value): cover 36%
-NY,regular,schools,Elmira City School District,gray (no value): cover 0%
-NY,regular,schools,Waverly Central School District,gray (no value): cover 40%
-NY,regular,schools,Horseheads Central School District,gray (no value): cover 3%
-OH,regular,schools,Shelby City School District,gray (no value): cover 50%
-OH,regular,schools,Carey Exempted Village School District,gray (no value): cover 34%
-OH,regular,schools,Kalida Local School District,gray (no value): cover 46%
-VT,regular,schools,Buels Gore School District,gray (no value): no votes
-VT,regular,schools,Ferdinand School District,gray (no value): cover 0%
-VT,regular,schools,Glastenbury School District,gray (no value): cover 0%
-VT,regular,schools,Somerset School District,gray (no value): cover 0%
-VT,regular,schools,Averill School District,gray (no value): cover 0%
-VT,regular,schools,Averys Gore School District,gray (no value): cover 0%
-VT,regular,schools,Lewis School District,gray (no value): cover 0%
-VT,regular,schools,Warners Grant School District,gray (no value): cover 1%
-VT,regular,schools,Warrens Gore School District,gray (no value): cover 0%
 OR,regular,schools,Eagle Point School District 9,gray (no value): cover 42%
 OR,regular,schools,Pleasant Hill School District 1,gray (no value): cover 41%
 OR,regular,schools,Double O School District 28,gray (no value): no votes
@@ -1689,6 +1483,27 @@ SD,regular,schools,Spearfish School District 40-2,gray (no value): cover 3%
 SD,regular,schools,Warner School District 06-5,gray (no value): cover 4%
 SD,regular,schools,Deubrook School District 05-6,gray (no value): cover 39%
 SD,regular,schools,Yankton School District 63-3,gray (no value): cover 0%
+OH,regular,schools,Shelby City School District,gray (no value): cover 50%
+OH,regular,schools,Carey Exempted Village School District,gray (no value): cover 34%
+OH,regular,schools,Kalida Local School District,gray (no value): cover 46%
+VT,regular,schools,Buels Gore School District,gray (no value): no votes
+VT,regular,schools,Ferdinand School District,gray (no value): cover 0%
+VT,regular,schools,Glastenbury School District,gray (no value): cover 0%
+VT,regular,schools,Somerset School District,gray (no value): cover 0%
+VT,regular,schools,Averill School District,gray (no value): cover 0%
+VT,regular,schools,Averys Gore School District,gray (no value): cover 0%
+VT,regular,schools,Lewis School District,gray (no value): cover 0%
+VT,regular,schools,Warners Grant School District,gray (no value): cover 1%
+VT,regular,schools,Warrens Gore School District,gray (no value): cover 0%
+NY,regular,schools,Elmira Heights Central School District,gray (no value): no overlap
+NY,regular,schools,Sagaponack Common School District,gray (no value): cover 18%
+NY,regular,schools,Islip Union Free School District,gray (no value): cover 49%
+NY,regular,schools,Oceanside Union Free School District,gray (no value): cover 45%
+NY,regular,schools,Bath Central School District,gray (no value): cover 49%
+NY,regular,schools,Brocton Central School District,gray (no value): cover 36%
+NY,regular,schools,Elmira City School District,gray (no value): cover 0%
+NY,regular,schools,Waverly Central School District,gray (no value): cover 40%
+NY,regular,schools,Horseheads Central School District,gray (no value): cover 3%
 UT,regular,schools,Alpine School District,gray (no value): cover 45%
 UT,regular,schools,Davis School District,gray (no value): cover 21%
 UT,regular,schools,Emery School District,gray (no value): cover 35%

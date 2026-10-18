@@ -3,15 +3,17 @@
 | Source | Used for | URL | License / terms |
 |---|---|---|---|
 | Clerk of the U.S. House, *Statistics of the Congressional Election of November 8, 2022*, compiled from official state sources | statewide official totals (state rows, statewide check); GA general from its footnote | https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf | US government work, public domain |
-| MIT Election Data + Science Lab, 2022 precinct-level returns, `individual_states/2022-<st>-local-precinct-general.zip` | county, precinct and district values (all states except CA) | https://github.com/MEDSL/2022-elections-official | CC0 1.0 (per the MEDSL repo/Dataverse records) |
+| MIT Election Data + Science Lab, 2022 precinct-level returns, `individual_states/2022-<st>-local-precinct-general.zip` | county, precinct and district values (all states except CA, ID, IN) | https://github.com/MEDSL/2022-elections-official | CC0 1.0 (per the MEDSL repo/Dataverse records) |
 | Statewide Database (UC Berkeley), 2022 general Statement of Vote by SR precinct, `state_g22_sov_data_by_g22_srprec.zip` | CA county, precinct and district values (MEDSL 2022 has no CA Senate rows) | https://statewidedatabase.org/pub/data/G22/state/state_g22_sov_data_by_g22_srprec.zip | public data; credit the Statewide Database (see statewidedatabase.org) |
+| Idaho Secretary of State, 2022 General Election canvass files (`2022_General_Canvass.zip` → `22 General Statewide - Precinct.xlsx`, sheet `US Sen`), linked from https://voteidaho.gov/election-results/ | ID county, precinct and district values (replaces MEDSL ID) | https://archive.sos.idaho.gov/elections/data/results/2022/2022_General_Canvass.zip | Idaho public record |
+| Indiana Election Division, 2022 General Election results (final), "Download Offices data for Excel" | IN county, precinct and district values (replaces MEDSL IN) | https://enr.indianavoters.in.gov/archive/2022General/download/AllOfficeResults.csv | Indiana public record |
 | MEDSL 2024 precinct returns (`individual_states/<st>24.zip`) | only to match MEDSL 2024 precincts to the v2 2024 polygons, the 2022 → 2024 bridge | https://github.com/MEDSL/2024-elections-official | CC0 1.0 |
 | v2 2024 precinct polygons `v2/data/precincts2024/<State>.js` | the polygons the 2022 values sit on (v2 has no 2022 polygons) | this repo | NYT part: C-UDA, non-commercial (see v2/data/COVERAGE.md) |
 | v2 district shapes `v2/data/uscd.js`, `ussldu.js`, `ussldl.js`, `ussch.js`; GEOIDs from `data-v3/geo/*.csv` | district layers | this repo | Census TIGER (public domain) |
 
-Not used: OpenElections (no Idaho 2022 precinct file, and MEDSL covered the other states); VEST 2022 (not needed after MEDSL + SWDB). The FEC 2022 file was not needed because the Clerk has every candidate.
+Not used: OpenElections (no Idaho or Indiana 2022 files in openelections-data-id / -in); VEST 2022 (not needed after MEDSL + SWDB). The FEC 2022 file was not needed because the Clerk has every candidate.
 
-Raw downloads (kept on the box at `/workspace/sen22/raw/`, not committed), SHA-256, retrieved 2026-10-18. The 2022 Idaho zip is listed but used only for the statewide check:
+Raw downloads (kept on the box at `/workspace/sen22/raw/`, not committed), SHA-256, retrieved 2026-10-18. The MEDSL 2022 ID and IN zips are listed but no longer used for any rows (replaced by the state files below):
 ```
 c7c8d36011097cf9452cbfadcd9a2cbcef7757bcd316a0d62318e80c643388d5  2022-ak.zip
 583f813604c4c9cdc3570cdbf7ab96ba69bb00c761df453ff7ca227e40fddd79  2022-al.zip
@@ -49,6 +51,8 @@ b077669a89fee36a2b555ae1b67318ef3055c4b199b948ac689cc1330d4bf521  2022-wa.zip
 2b9fe60f0704937b48cdb78ef079044f7e645e4baac642f6a2e2bb4cd02fcca3  2022-wi.zip
 ef9b8cefcc44bebbdc4928bf346b50e00a72dd3bb54a71ed93ec60d4ebf47690  clerk_statistics2022.pdf
 e1cf79cea43f8c117cd81c4ce74a9ad51ae7b6b9e5f30615bc582140512af249  state_g22_sov_data_by_g22_srprec.zip
+27aac1e2c391b2d50541bc231550c48c101385714eeda53b92bd4fd6e83d5a69  id_sos/2022_General_Canvass.zip
+3edb9c7dc674255227b4ea4e37c82584dfecfcce6a681cac6982760a5bf6189a  in_ied/AllOfficeResults.csv
 ```
 MEDSL 2024 zips used only for the bridge, in addition to the 33 listed in `../../2024/senate/SOURCES.md` (`/workspace/sen22/raw24/`):
 ```

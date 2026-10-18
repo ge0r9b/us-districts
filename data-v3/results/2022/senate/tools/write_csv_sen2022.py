@@ -13,8 +13,10 @@ OUT = f'{repo}/data-v3/results/2022/senate'; os.makedirs(OUT + '/precincts', exi
 COLS = ['state','year','office','district','unit_id','unit_type','candidate_id','answer','party','votes','weight','source_url','retrieved_at','method']
 CLERK = 'https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf'
 SWDB = 'https://statewidedatabase.org/pub/data/G22/state/state_g22_sov_data_by_g22_srprec.zip'
-MURL = lambda ab: SWDB if ab == 'CA' else f'https://github.com/MEDSL/2022-elections-official/raw/main/individual_states/2022-{ab.lower()}-local-precinct-general.zip'
-RAWZ = lambda raw, ab: f'{raw}/state_g22_sov_data_by_g22_srprec.zip' if ab == 'CA' else f'{raw}/2022-{ab.lower()}.zip'
+IDSOS = 'https://archive.sos.idaho.gov/elections/data/results/2022/2022_General_Canvass.zip'
+INIED = 'https://enr.indianavoters.in.gov/archive/2022General/download/AllOfficeResults.csv'
+MURL = lambda ab: {'CA': SWDB, 'ID': IDSOS, 'IN': INIED}[ab] if ab in ('CA', 'ID', 'IN') else f'https://github.com/MEDSL/2022-elections-official/raw/main/individual_states/2022-{ab.lower()}-local-precinct-general.zip'
+RAWZ = lambda raw, ab: {'CA': f'{raw}/state_g22_sov_data_by_g22_srprec.zip', 'ID': f'{raw}/id_sos/2022_General_Canvass.zip', 'IN': f'{raw}/in_ied/AllOfficeResults.csv'}[ab] if ab in ('CA', 'ID', 'IN') else f'{raw}/2022-{ab.lower()}.zip'
 def ts(p): return datetime.datetime.fromtimestamp(os.path.getmtime(p), datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 SLUG = {'Lisa Blunt Rochester': 'blunt-rochester-lisa', 'Debbie Mucarsel-Powell': 'mucarsel-powell-debbie'}
 def slug(n):

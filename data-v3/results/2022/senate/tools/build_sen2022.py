@@ -113,7 +113,7 @@ for ab in STS:
     for j, row in enumerate(V):
         for v in variants(row[1]): bv[row[0]][v].add(j); bvs[v].add(j)
     # ---- 2022 Senate rows
-    f22 = (glob.glob(f'{m22}/2022-{ab.lower()}/*_swdb.csv') or glob.glob(f'{m22}/2022-{ab.lower()}/*.csv'))[0]
+    f22 = (glob.glob(f'{m22}/2022-{ab.lower()}/*_official.csv') or glob.glob(f'{m22}/2022-{ab.lower()}/*_swdb.csv') or glob.glob(f'{m22}/2022-{ab.lower()}/*.csv'))[0]   # official replacements first (ID SOS, IN IED), then CA SWDB, then MEDSL
     g22 = collections.defaultdict(list)
     for r in csv.DictReader(open(f22, encoding='utf-8', errors='replace')):
         o = r['office']
