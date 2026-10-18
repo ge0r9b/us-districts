@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181581";</script>
+<script>window.BUILD="202610181582";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2573,7 +2573,7 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     const pr=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))}), p0=pr(v0), p1=pr(v1), pct=numMode==="pct", d={};
     ["rep","dem","oth"].forEach(k=>d[k]=pct?((p1[k]/v1.tot)-(p0[k]/v0.tot))*100:p1[k]-p0[k]);
     const mx=Math.max(1e-9,...Object.values(d).map(Math.abs)); const c20=ix=>CANDS["2020"].find(c=>!!c.ix===!!ix), c24=ix=>CANDS["2024"].find(c=>!!c.ix===!!ix);
-    const ks=(p1.rep>=p1.dem?["rep","dem"]:["dem","rep"]).concat(["oth"]);
+    const ks=["rep","dem","oth"]; /* build 1582 (user): rows in the map's fixed icon order (Republican first in two-year views) */
     return ks.map(k=>{ const f=d[k]/mx*50, txt=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1):shortN(d[k]);
       const exact=pct?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1)+" pts":(d[k]>=0?"+":"\u2212")+Math.round(Math.abs(d[k])).toLocaleString("en-US");
       const who=k==="oth"?"Other":NMc[k]+" ("+(k==="rep"?c24(1).short:c24(0).short)+")";
@@ -2650,6 +2650,20 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
   const _rcL=renderCands; renderCands=function(){ const r=_rcL.apply(this,arguments); sync(); return r; };
   setInterval(sync,400); window.addEventListener("resize",()=>setTimeout(sync,80)); window.__dlSync=sync; }
 window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
+/* build 1582 (user): the candidate icons keep ONE fixed spot (the map view's) in the map, the list and every chart view, and in a chart view they carry no name/number text and no tooltip (the chart shows the numbers).
+   Single year: #cands keeps its place (text hidden). Two years: the chart's own thumbnails (change bars, line) are pinned to the map's two columns: left = the icon-column centre line, right = the last time dot, rows 44px apart, Republican first. */
+{ const css=document.createElement("style"); css.textContent="body.chv #cands .cand .cw, body.chv #cands .cand .cn, body.chv #cands .cand .cs, body.chv #cands .cand .cpt { display: none !important; } body.chv #cands .cand, body.chv #cands img.dmt { pointer-events: none !important; } body.chv.dline .dlx .dlch > svg { margin-top: var(--chvP,92px); } body.chv.dline .dlx .dlch { overflow: visible; } @media (max-width: 599px) { body.listmode .cands:not(.two):has(> .cpanel) { flex-wrap: nowrap !important; overflow: visible; } body.listmode .cands:not(.two) > .cpanel { flex: 0 0 auto !important; height: auto !important; width: 100% !important; } }"; document.head.append(css);
+  let busy=0; const pin=()=>{ if(busy) return; busy=1; try{ const B=document.body, lm=B.classList.contains("listmode"), ch=window.chartMode; let la=false; try{ const i=window.__laInfo&&window.__laInfo(); la=!!(i&&(i.on||i.pend)); }catch(e){}
+      const chv=!!(lm&&ch&&!la&&!B.classList.contains("listall")); if(B.classList.contains("chv")!==chv) B.classList.toggle("chv",chv); if(!chv) return;
+      const ims=candBox.querySelectorAll(".dmx img.dmt, .dlx img.dmt"); if(!ims.length) return;
+      const ic=document.querySelector("#crumbs .cic"), ir=ic&&ic.getBoundingClientRect(); if(!ir||!ir.width) return; const dots=document.querySelectorAll("#ysl .tk i"); const ld=dots.length&&dots[dots.length-1].getBoundingClientRect(); if(!ld||!ld.width) return;
+      const xL=ir.left+ir.width/2-15, xR=ld.left+ld.width/2-15, y0=candBox.getBoundingClientRect().top+3;
+      const dl=B.classList.contains("dline"); if(dl){ const ch2=candBox.querySelector(".dlx .dlch"); if(ch2){ const P=Math.round(y0+88+8-ch2.getBoundingClientRect().top+(parseFloat(getComputedStyle(ch2.querySelector("svg")||ch2).marginTop)||0)); const v=Math.max(0,P)+"px"; if(document.documentElement.style.getPropertyValue("--chvP")!==v) document.documentElement.style.setProperty("--chvP",v); } }
+      const plan=[]; ims.forEach(im=>{ const t=im.getAttribute("data-party")||im.dataset.pt||""; if(t){ im.dataset.pt=t; im.removeAttribute("data-party"); } const left=/2020$/.test(t)||(!/2024$/.test(t)&&!!im.closest(".dmr")&&im===im.closest(".dmr").firstElementChild); const idx=im.classList.contains("r")?0:1; const r=im.getBoundingClientRect(); const cur=(im.style.translate||"0px 0px").split(" ").map(parseFloat); plan.push([im,(left?xL:xR)-(r.left-(cur[0]||0)),y0+idx*44-(r.top-(cur[1]||0))]); });
+      plan.forEach(([im,dx,dy])=>{ dx=Math.round(dx*2)/2; dy=Math.round(dy*2)/2; const t=(dx||dy)?dx+"px "+dy+"px":""; if(im.style.translate!==t) im.style.translate=t; });
+    }catch(e){} finally{ busy=0; } };
+  window.__iconPin=pin; new MutationObserver(()=>pin()).observe(candBox,{childList:true,subtree:true}); addEventListener("resize",()=>requestAnimationFrame(pin)); setInterval(pin,500);
+  const _rcF=renderCands; renderCands=function(){ const r=_rcF.apply(this,arguments); pin(); return r; }; }
 // ===== double-tap: zoom to the area and show its name in the bottom geography field =====
 map.doubleClickZoom.disable();
 let nameLock=null;
@@ -3380,8 +3394,8 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   const seBar=(v,yr,pn)=>{ const p=parts(v), t=v.tot||1, cs=(window.CANDS||CANDS)[yr]||[], pc=numMode==="pct";
     const nm=k=>k==="oth"?"Other":((cs.find(c=>c.p===k[0])||{}).short||NM[k]);
     const rows=["rep","dem","oth"].filter(k=>p[k]>0).map(k=>({k,n:nm(k),v:p[k],f:p[k]/t})).sort((a,b)=>b.v-a.v); if(!rows.length) return "";
-    const pr=pn.getBoundingClientRect(), pcs=getComputedStyle(pn), cl=pr.left+(parseFloat(pcs.paddingLeft)||0), t0=pr.top+(parseFloat(pcs.paddingTop)||0), X0=52, R=innerWidth-12;
-    let cb=0; [...candBox.children].forEach(e=>{ if(e===pn||!e.offsetParent) return; const r=e.getBoundingClientRect(); if(r.height&&r.bottom>cb) cb=r.bottom; }); const mt=Math.max(4,Math.round(cb+10-t0)); /* wide layout: the panel shares the row with the candidate entries, so start below them */
+    const pr=pn.getBoundingClientRect(), pcs=getComputedStyle(pn), cl=pr.left+(parseFloat(pcs.paddingLeft)||0), t0=pr.top+(parseFloat(pcs.paddingTop)||0), X0=52, R=(()=>{ const rl=document.querySelector(".rail"), r=rl&&rl.getBoundingClientRect(); return r&&r.width?Math.min(innerWidth-12,r.left-10):innerWidth-12; })(); /* build 1582: bars end before the right button column */
+    let cb=0; [...candBox.children].forEach(e=>{ if(e===pn||!e.offsetParent||e.classList.contains("cfoot")) return; /* build 1582: the footer below the panel is not above it (at 390 it pushed the bars 1070px down, off screen) */ const r=e.getBoundingClientRect(); if(r.height&&r.bottom>cb) cb=r.bottom; }); const mt=Math.max(4,Math.round(cb+10-t0)); /* wide layout: the panel shares the row with the candidate entries, so start below them */
     const nw=Math.min(84,Math.ceil(Math.max(...rows.map(r=>tw("400 14px "+FF,r.n))))), W=Math.max(60,Math.floor(R-X0-nw-6)), mx=rows[0].v;
     return '<div class="sebar'+(pc?' pc':'')+'" style="margin-left:'+Math.round(X0-cl)+'px;margin-top:'+mt+'px;width:'+Math.round(R-X0)+'px">'+rows.map(r=>{ const bw=Math.max(2,(pc?r.f:r.v/mx)*W), lab=pc?(r.f*100).toFixed(1)+"%":fmtN(r.v), lw=tw("600 11px "+FF,lab), inn=lw+12<=bw;
       return '<div class="sebr" data-k="'+r.k+'" data-v="'+r.v+'"><span class="sebn" style="width:'+nw+'px">'+esc(r.n)+'</span><span class="sebt" style="width:'+W+'px"><i class="'+r.k+'" style="width:'+bw.toFixed(1)+'px"></i><b class="'+(inn?'in':'out')+'" style="left:'+(inn?6:Math.min(W-lw,bw+4)).toFixed(1)+'px">'+esc(lab)+'</b></span></div>'; }).join("")+'</div>'; };
