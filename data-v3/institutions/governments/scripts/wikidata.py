@@ -164,12 +164,12 @@ def agency_qids(fed, fr_agencies):
     return stats
 
 
-def commons_meta(files):
+def commons_meta(files, prefix='commons'):
     out = {}
     files = sorted(set(files))
     for k in range(0, len(files), 50):
         chunk = files[k:k + 50]
-        d = _get('commons', COMMONS + urllib.parse.quote('|'.join('File:' + f for f in chunk)))
+        d = _get(prefix, COMMONS + urllib.parse.quote('|'.join('File:' + f for f in chunk)))
         norm_map = {n['to']: n['from'] for n in d.get('query', {}).get('normalized', [])}
         for p in d.get('query', {}).get('pages', {}).values():
             title = norm_map.get(p.get('title'), p.get('title'))

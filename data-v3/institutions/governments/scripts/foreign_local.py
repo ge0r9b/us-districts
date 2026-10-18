@@ -23,14 +23,14 @@ def existing_foreign():
     return out
 
 
-def arcgis(key, base, service, where='1=1', fields='*', page=2000):
+def arcgis(key, base, service, where='1=1', fields='*', page=2000, layer=0):
     """All attribute rows of an ArcGIS FeatureServer layer (no geometry), cached page by page."""
     rows, off = [], 0
     while True:
         q = urllib.parse.urlencode({'where': where, 'outFields': fields, 'returnGeometry': 'false', 'f': 'json',
                                     'resultOffset': off, 'resultRecordCount': page})
         k = '{}_{}'.format(key, off)
-        p = fetch(k, url='{}/{}/FeatureServer/0/query?{}'.format(base, service, q), fname=k + '.json')
+        p = fetch(k, url='{}/{}/FeatureServer/{}/query?{}'.format(base, service, layer, q), fname=k + '.json')
         d = json.load(open(p, encoding='utf-8'))
         if 'error' in d:
             raise RuntimeError('{}: {}'.format(service, d['error']))

@@ -2,8 +2,8 @@ code,issue
 160775052,Gemeindeverband in VG250 2026-01-01 with no member Gemeinde in Destatis 2026-09-30
 160770043043,Gemeindeverband key 160770043 not in VG250 2026-01-01 (changed since)
 064150000000,kreisfreie Stadt in Destatis 2026-09-30 but not in VG250 2026-01-01 (new since)
-010575785008,not in VG250 layer gem (de-ars:010575785008)
-064150000000,not in VG250 layer gem (de-ars:064150000000)
-160770043043,not in VG250 layer gem (de-ars:160770043043)
-06415,not in VG250 layer krs (de-ars:064150000000)
-064150000,not in VG250 layer vwg (de-ars:064150000000)
+010575785008,not in BKG VG250 VG250_GEM as GF=4 (de-ars:010575785008)
+064150000000,not in BKG VG250 VG250_GEM as GF=4 (de-ars:064150000000)
+160770043043,not in BKG VG250 VG250_GEM as GF=4 (de-ars:160770043043)
+06415,not in BKG VG250 VG250_KRS as GF=4 (de-ars:064150000000)
+064150000,not in BKG VG250 VG250_VWG as GF=4 (de-ars:064150000000)

@@ -6,7 +6,9 @@ Sources (Licence Ouverte / Open Licence 2.0):
     arrondissements municipaux, communes of the COM, and the 2026 movement file (dated creations).
   * INSEE Base des EPCI a fiscalite propre et des EPT au 1er janvier 2026 (SIREN, nature, commune composition).
   * IGN ADMIN EXPRESS COG CARTO (latest edition = COG 2026, checked on names), WFS attribute tables only: SIREN of
-    communes, regions and CTCD, and the codes present in each layer (boundary_xwalk.csv).
+    communes, regions and CTCD.
+  * IGN ADMIN EXPRESS COG 2026 (full precision, the edition Geo uses per FOREIGN_VINTAGES.md), WFS attribute tables:
+    codes present in the region, departement, epci and commune layers (boundary_xwalk.csv).
 The State = nation:fr. Existing rows reused, never re-minted: metropolitan regions subdivision:fr-xxx (through the Wikidata
 item that carries both the INSEE region code P2585 and the ISO code P300), Corse subdivision:fr-20r, the overseas
 territory: rows (single collectivities of Martinique, Guyane, Mayotte; the departements of Guadeloupe and La Reunion;
@@ -27,6 +29,11 @@ EPT_URL = 'https://www.insee.fr/fr/statistiques/fichier/2510634/ept_au_01-01-202
 EPCI_PAGE = 'https://www.insee.fr/fr/information/2510634'
 IGN = 'https://data.geopf.fr/wfs/ows'
 IGN_LAYER = 'ADMINEXPRESS-COG-CARTO.LATEST:{}'
+# Geo's exact boundary edition (data/geo data-v3/geo/FOREIGN_VINTAGES.md): ADMIN EXPRESS COG 4.0 full precision,
+# edition 2026-01-01; codes are checked against the same product's WFS layers. layer -> key property
+GEO_IGN_LAYER = 'ADMINEXPRESS-COG.2026:{}'
+GEO_LAYERS = {'region': 'code_insee', 'departement': 'code_insee', 'epci': 'code_siren', 'commune': 'code_insee'}
+GEO_VINTAGE = 'COG 2026'
 LO = 'Licence Ouverte / Open Licence 2.0 (Etalab)'
 VINTAGE = '2026-01-01'
 # reviewed: COG overseas collectivity code -> existing territory row (names checked in build except the two noted)
@@ -97,6 +104,7 @@ def build(reg):
                        ('commune_associee_ou_deleguee', ['code_insee', 'nom_officiel', 'nature']),
                        ('arrondissement_municipal', ['code_insee', 'nom_officiel'])):
         ign[lay] = wfs('ign_adminexpress_' + lay, IGN, IGN_LAYER.format(lay), props)
+    geo = {lay: {r[k] for r in wfs('ign_aecog2026_' + lay, IGN, GEO_IGN_LAYER.format(lay), [k])} for lay, k in GEO_LAYERS.items()}
     wd = wd_maps()
     man = manifest()
     ra_c, ra_e = man['insee_cog2026']['retrieved_at'], max(man['insee_epci2026']['retrieved_at'], man['insee_ept2026']['retrieved_at'])
@@ -294,13 +302,10 @@ def build(reg):
         stats['with_qid'] += bool(r['wikidata_qid'])
         stats['with_valid_from'] += bool(r['valid_from'])
     check(rows, known)
-    # ---- boundary crosswalk (IGN ADMIN EXPRESS COG CARTO, edition matching COG 2026)
-    have = {lay: {(r.get('code_siren') if lay == 'epci' else r['code_insee']) for r in ign[lay]} for lay in ign}
+    # ---- boundary crosswalk: Geo's layers (IGN ADMIN EXPRESS COG 2026), codes present in each layer
     pairs = collections.defaultdict(list)
     for code, e in reg_ent.items():
         pairs['region'].append((e, code, 'same_code'))
-    for c, e in ct_ent.items():
-        pairs['collectivite_territoriale'].append((e, c, 'same_code'))
     for d in C['departement']:
         cs = dep_ct[d['DEP']]
         c = next(iter(cs))
@@ -313,21 +318,17 @@ def build(reg):
             continue
         elif r['code_scheme'] == 'insee_com':
             pairs['commune'].append((r['entity_id'], r['code'], 'same_code'))
-        elif r['code_scheme'] in ('insee_comd', 'insee_coma'):
-            pairs['commune_associee_ou_deleguee'].append((r['entity_id'], r['code'], 'same_code'))
-        elif r['code_scheme'] == 'insee_arm':
-            pairs['arrondissement_municipal'].append((r['entity_id'], r['code'], 'same_code'))
     pairs['epci'].append((ct_ent['69M'], LYON_SIREN, 'same_code'))
     bx = []
     for lay, ps in sorted(pairs.items()):
         for e, c, rel in ps:
-            if c in have[lay]:
-                bx.append(dict(entity_id=e, boundary_dataset='ADMINEXPRESS-COG-CARTO:' + lay, boundary_code=c, vintage='2026',
+            if c in geo[lay]:
+                bx.append(dict(entity_id=e, boundary_dataset='IGN ADMIN-EXPRESS-COG ' + lay, boundary_code=c, vintage=GEO_VINTAGE,
                                relation=rel, source_url=IGN + '?SERVICE=WFS&REQUEST=GetCapabilities'))
                 stats['boundary|' + lay] += 1
             else:
                 stats['boundary_missing|' + lay] += 1
-                gaps.append({'code': c, 'issue': 'not in ADMIN EXPRESS layer {} ({})'.format(lay, e)})
+                gaps.append({'code': c, 'issue': 'not in IGN ADMIN-EXPRESS-COG {} ({})'.format(lay, e)})
     xw = [x for x in xw if x]
     xw.sort(key=lambda x: (x['entity_id'], x['code_scheme'], x['code']))
     # split for the 10 MB limit: upper levels in one file, communes (+ their children) by région

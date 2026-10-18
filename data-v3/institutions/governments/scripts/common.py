@@ -4,7 +4,7 @@ Every source file is downloaded once into ../cache/ (gitignored). cache/manifest
 for each file its URL, the time we retrieved it and the server's Last-Modified date, so a re-run
 with a warm cache reproduces byte-identical CSVs. Run fetch_sources.py --refresh to re-download.
 """
-import csv, datetime, email.utils, json, os, re, time, unicodedata, urllib.error, urllib.request, zipfile
+import collections, csv, datetime, email.utils, json, os, re, time, unicodedata, urllib.error, urllib.request, zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)                      # data-v3/institutions/governments
@@ -103,7 +103,7 @@ SOURCE_TABLE = {
                          'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300); German units by exact ARS (P1388) and Kreisschlüssel (P440); French units by exact INSEE commune code (P374), SIREN (P1616), INSEE region code (P2585, with P300)',
                          'https://query.wikidata.org/', ['wdf_*', 'wd_gss', 'wd_de_*', 'wd_fr_*']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
-                    'https://commons.wikimedia.org/w/api.php', ['commons_*']),
+                    'https://commons.wikimedia.org/w/api.php', ['commons_*', 'sealovr_*']),
     'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
                    '(fair-use fallback for seals)', 'https://en.wikipedia.org/w/api.php', ['enwd_sl_*', 'enwp_*']),
     'ons_rgc': ('Office for National Statistics, Register of Geographic Codes (June 2026) for the UK (live GSS codes, names, Welsh names, '
@@ -112,17 +112,16 @@ SOURCE_TABLE = {
     'ons_lookup': ('Office for National Statistics, Open Geography Portal lookups: WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU (May 2026; '
                    'Scottish council areas, LAD cross-check) and LAD25_CAUTH25_EN_LU (May 2025; local authority -> combined authority)',
                    'https://geoportal.statistics.gov.uk/', ['ons_lu_*']),
-    'ons_boundaries': ('Office for National Statistics, Open Geography Portal BGC/BUC generalised boundary services, attribute tables only '
-                       '(codes present in each product; used for foreign/gb/boundary_xwalk.csv)', 'https://geoportal.statistics.gov.uk/',
-                       ['ons_bnd_*']),
+    'ons_boundaries': ('Office for National Statistics, Open Geography Portal BFC boundary services (the editions Geo builds from: '
+                       'LAD May 2026, CTYUA Dec 2025, CAUTH Dec 2025, PARNCP May 2026), attribute tables only (codes present; '
+                       'foreign/gb/boundary_xwalk.csv)', 'https://geoportal.statistics.gov.uk/',
+                       ['ons_bfc_*']),
     'destatis_rs': ('Statistisches Bundesamt (Destatis), Regionalschlüssel code list (all Gemeinden by ARS as in the Gemeindeverzeichnis '
                     'GV-ISys), version 2026-09-30, published on XRepository (urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs)',
                     'https://www.xrepository.de/details/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs', ['destatis_rs']),
     'bkg_vg250': ('BKG, Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, WFS attribute tables (no geometry): Staat, Länder, '
                   'Regierungsbezirke, Kreise, Gemeindeverbände, Gemeinden (ARS, AGS, name, designation BEZ, WSK)',
                   'https://sgx.geodatenzentrum.de/wfs_vg250', ['bkg_vg250_*']),
-    'bkg_vg1000': ('BKG, Verwaltungsgebiete 1:1 000 000 (VG1000), Stand 31.12.2025, WFS attribute tables (codes present; '
-                   'foreign/de/boundary_xwalk.csv)', 'https://sgx.geodatenzentrum.de/wfs_vg1000', ['bkg_vg1000_*']),
     'insee_cog2026': ('INSEE, Code officiel géographique au 1er janvier 2026 (CSV: régions, départements, CTCD, collectivités '
                       "d'outre-mer, communes, communes déléguées/associées, arrondissements municipaux, communes des COM, mouvements)",
                       'https://www.insee.fr/fr/information/8740222', ['insee_cog2026']),
@@ -131,14 +130,18 @@ SOURCE_TABLE = {
     'insee_ept2026': ('INSEE, Base des établissements publics territoriaux (EPT) au 1er janvier 2026',
                       'https://www.insee.fr/fr/information/2510634', ['insee_ept2026']),
     'ign_adminexpress': ('IGN, ADMIN EXPRESS COG CARTO (latest edition, names equal to COG 2026), Géoplateforme WFS attribute tables '
-                         '(no geometry): SIREN of régions, CTCD and communes; codes present per layer (foreign/fr/boundary_xwalk.csv)',
+                         '(no geometry): SIREN of régions, CTCD and communes',
                          'https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities', ['ign_adminexpress_*']),
+    'ign_aecog2026': ('IGN, ADMIN EXPRESS COG 4.0 édition 2026-01-01 (COG 2026, full precision; the edition Geo builds from), '
+                      'Géoplateforme WFS attribute tables (no geometry): codes present in the region, departement, epci and '
+                      'commune layers (foreign/fr/boundary_xwalk.csv)',
+                      'https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities', ['ign_aecog2026_*']),
 }
 LICENSES = {'insee_cog2026': 'Licence Ouverte / Open Licence 2.0', 'insee_epci2026': 'Licence Ouverte / Open Licence 2.0',
             'insee_ept2026': 'Licence Ouverte / Open Licence 2.0', 'ign_adminexpress': 'Licence Ouverte / Open Licence 2.0 (IGN)',
+            'ign_aecog2026': 'Licence Ouverte / Open Licence 2.0 (IGN)',
             'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
             'bkg_vg250': 'dl-de/by-2-0 (BKG 2026; Datenquellen https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)',
-            'bkg_vg1000': 'dl-de/by-2-0 (BKG 2026)',
             'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',
             'ons_boundaries': 'Open Government Licence v3.0 (contains OS data (c) Crown copyright and database right)','wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
             'iso_codes': 'LGPL-2.1-or-later (Debian iso-codes); the codes themselves are ISO 3166 facts',
@@ -150,20 +153,33 @@ LICENSES = {'insee_cog2026': 'Licence Ouverte / Open Licence 2.0', 'insee_epci20
 
 
 class Registry:
-    """id_registry.csv: frozen entity IDs. One row per (entity_id, source_key); an entity may have several keys
+    """id_registry/<scope>.csv: frozen entity IDs. One row per (entity_id, source_key); an entity may have several keys
     (e.g. a tribe's former and current listed names). Registered IDs are always reused; new IDs are only minted
-    for keys never seen before. Rows are never deleted."""
+    for keys never seen before. Rows are never deleted. Split by scope (us, foreign, gb, de, fr) to keep every file
+    under 10 MB; all scopes are loaded together, so reuse and uniqueness work across them. The scope comes from the
+    source_key scheme (see SCOPES). A legacy single id_registry.csv is read once and migrated."""
     COLS = ['entity_id', 'source_key', 'first_seen']
+    SCOPES = (('iso3166-', 'foreign'), ('gss:', 'gb'), ('de-ars:', 'de'), ('fr-cog:', 'fr'), ('fr-siren:', 'fr'))
 
     def __init__(self):
-        self.path = os.path.join(ROOT, 'id_registry.csv')
+        self.dir = os.path.join(ROOT, 'id_registry')
+        self.legacy = os.path.join(ROOT, 'id_registry.csv')
+        paths = sorted(os.path.join(self.dir, f) for f in os.listdir(self.dir) if f.endswith('.csv')) \
+            if os.path.isdir(self.dir) else []
+        if not paths and os.path.exists(self.legacy):
+            paths = [self.legacy]
         self.rows = []
-        if os.path.exists(self.path):
-            with open(self.path, encoding='utf-8') as f:
-                self.rows = list(csv.DictReader(f))
+        for p in paths:
+            with open(p, encoding='utf-8') as f:
+                self.rows += list(csv.DictReader(f))
         self.by_key = {r['source_key']: r['entity_id'] for r in self.rows}
+        assert len(self.by_key) == len(self.rows), 'source_key listed twice in id_registry'
         self.ids = {r['entity_id'] for r in self.rows}
         self.used = set()
+
+    @classmethod
+    def scope(cls, source_key):
+        return next((sc for pre, sc in cls.SCOPES if source_key.startswith(pre)), 'us')
 
     def get(self, keys, proposed, first_seen):
         eid = next((self.by_key[k] for k in keys if k in self.by_key), None)
@@ -184,7 +200,17 @@ class Registry:
 
     def save(self):
         self.rows.sort(key=lambda r: (r['entity_id'], r['source_key']))
-        write_csv(self.path, self.rows, self.COLS)
+        by = collections.defaultdict(list)
+        for r in self.rows:
+            by[self.scope(r['source_key'])].append(r)
+        os.makedirs(self.dir, exist_ok=True)
+        for f in os.listdir(self.dir):
+            if f.endswith('.csv') and f[:-4] not in by:
+                os.remove(os.path.join(self.dir, f))
+        for sc, rs in by.items():
+            write_csv(os.path.join(self.dir, sc + '.csv'), rs, self.COLS)
+        if os.path.exists(self.legacy):
+            os.remove(self.legacy)
         return len(self.rows)
 
 
@@ -220,7 +246,9 @@ def fetch(key, refresh=False, url=None, fname=None):
     last_mod = email.utils.parsedate_to_datetime(lm).date().isoformat() if lm else ''
     m[key] = {'url': url, 'file': fname, 'bytes': len(data), 'last_modified': last_mod,
               'retrieved_at': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
-    json.dump(m, open(MANIFEST, 'w'), indent=1, sort_keys=True)
+    with open(MANIFEST + '.tmp', 'w') as f:      # atomic replace: a reader never sees a half-written manifest
+        json.dump(m, f, indent=1, sort_keys=True)
+    os.replace(MANIFEST + '.tmp', MANIFEST)
     if fname.lower().endswith('.zip'):
         with zipfile.ZipFile(path) as z:
             z.extractall(CACHE)

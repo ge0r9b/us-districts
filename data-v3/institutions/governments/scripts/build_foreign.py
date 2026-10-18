@@ -49,6 +49,13 @@ FOREIGN_COLUMNS = ['entity_id', 'name', 'official_name', 'type', 'subtype', 'gov
                    'valid_from', 'valid_to', 'valid_from_source', 'capital_qid', 'capital',
                    'head_of_government_office_qid', 'head_of_government_office', 'external_ids', 'alias', 'is_active', 'note', 'flags',
                    'source', 'source_url', 'retrieved_at', 'license']
+# reviewed seal overrides: entity -> (Commons file, reason). License and author still come from the Commons API at build
+# time; the build fails if the file is missing or has no machine-readable license.
+SEAL_OVERRIDES = {
+    'province:ca-qc': ('Coat of arms of Quebec.svg',
+                       "Wikidata P94 of Q176 is 'Coat of arms of Quebec (without crown).svg', which Commons lists under 'Files with "
+                       "no machine-readable license' and 'Deletion requests May 2026' (checked 2026-10-18); the full arms file is used"),
+}
 XW_COLUMNS = ['iso_code', 'iso_name', 'entity_id', 'relation', 'source', 'source_url']
 LIC_ISO = 'LGPL-2.1-or-later (Debian iso-codes)'
 
@@ -389,6 +396,8 @@ def build(reg):
             [f for q in qids for p in ('P158', 'P94') for f in cl2.get(q, {}).get(p, [])]
     cm = commons_meta(files)
     ra_c = max((v['retrieved_at'] for k, v in manifest().items() if k.startswith('commons_')), default='')
+    cm_over = commons_meta([f for f, _ in SEAL_OVERRIDES.values()], prefix='sealovr')   # own cache keys: no effect on ra_c
+    ra_over = max((v['retrieved_at'] for k, v in manifest().items() if k.startswith('sealovr_')), default='')
     images = []
     for r in rows:
         q, eid = r['wikidata_qid'], r['entity_id']
@@ -401,6 +410,19 @@ def build(reg):
                 gaps.append({'entity_id': eid, 'image_kind': ik, 'wikidata_qid': '', 'reason': 'no_qid: ' + r['flags'].split(':', 1)[-1]})
                 continue
             done = False
+            if ik == 'seal' and eid in SEAL_OVERRIDES:
+                f, why = SEAL_OVERRIDES[eid]
+                m = cm_over.get(f)
+                assert m and not m['missing'], ('seal override file missing on Commons', f)
+                em = m['em']
+                lic = spdx(em.get('LicenseShortName', {}).get('value', ''), em.get('LicenseUrl', {}).get('value', ''))
+                assert lic, ('seal override file has no machine-readable license', f)
+                att = text(em.get('Artist', {}).get('value', '')) or text(em.get('Credit', {}).get('value', ''))
+                images.append({'entity_id': eid, 'image_kind': ik, 'commons_file': f, 'commons_url': m['url'], 'license': lic,
+                               'attribution': att[:300], 'wikidata_qid': q, 'retrieved_at': ra_over,
+                               'usage_basis': 'coat of arms used as the seal (reviewed override: ' + why + ')', 'source_url': m['url']})
+                stats['seal_override'] += 1
+                continue
             for prop, src, iq in props:
                 cands = []
                 for f in src.get(iq, {}).get(prop, []):

@@ -7,9 +7,9 @@ Sources (all ONS, Open Government Licence v3.0):
   * WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU (ward-to-LAD lookup, May 2026): S12 Scottish council areas (the RGC
     workbook carries no Scottish entity sheets) and a cross-check of the live LAD set.
   * LAD25_CAUTH25_EN_LU (May 2025): which combined authority area each local authority district lies in.
-  * Attribute tables (no geometry) of the BGC/BUC generalised boundary services, to record boundary codes for Geo.
+  * Attribute tables (no geometry) of the BFC boundary services Geo builds from (FOREIGN_VINTAGES.md), for boundary_xwalk.csv.
 Units: one row per council area; the existing nation:gb and subdivision:gb-eng/sct/wls/nir rows are reused (crosswalk),
-never re-minted. New IDs: gss:<GSS code> (frozen in id_registry.csv).
+never re-minted. New IDs: gss:<GSS code> (frozen in id_registry/gb.csv).
 """
 import collections, os, sys
 import openpyxl
@@ -48,19 +48,14 @@ LAD = ('E06', 'E07', 'E08', 'E09', 'W06', 'S12', 'N09')
 COUNTRY = {'E92000001': 'subdivision:gb-eng', 'S92000003': 'subdivision:gb-sct', 'W92000004': 'subdivision:gb-wls',
            'N92000002': 'subdivision:gb-nir', 'K02000001': 'nation:gb'}
 DEVOLVED = {'E': 'nation:gb', 'S': 'subdivision:gb-sct', 'W': 'subdivision:gb-wls', 'N': 'subdivision:gb-nir'}
-# (dataset, code field, vintage, entity prefixes, relation)
+# Geo's exact editions (data/geo data-v3/geo/FOREIGN_VINTAGES.md): (boundary_dataset, ONS service, layer id, code field,
+# vintage, entity prefixes). Presence of every code is checked against the service's attribute table.
+GEO_VINTAGES = 'data/geo:data-v3/geo/FOREIGN_VINTAGES.md'
 BOUNDARIES = [
-    ('LAD_MAY_2025_UK_BGC_V2', 'LAD25CD', '2025-05', LAD, 'same_code'),
-    ('LAD_MAY_2025_UK_BUC', 'LAD25CD', '2025-05', LAD, 'same_code'),
-    ('Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC', 'CTYUA25CD', '2025-12', ('E10',), 'same_code'),
-    ('Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BUC', 'CTYUA25CD', '2025-12', ('E10',), 'same_code'),
-    ('CAUTH_MAY_2025_EN_BGC', 'CAUTH25CD', '2025-05', ('E47',), 'same_code'),
-    ('CAUTH_MAY_2025_EN_BUC', 'CAUTH25CD', '2025-05', ('E47',), 'same_code'),
-    ('PARNCP_MAY_2026_EW_BGC', 'PARNCP26CD', '2026-05', ('E04', 'W04'), 'same_code'),
-    ('Regions_December_2025_Boundaries_EN_BGC', 'RGN25CD', '2025-12', (), 'gla_area_is_london_region'),
-    ('Regions_December_2025_Boundaries_EN_BUC', 'RGN25CD', '2025-12', (), 'gla_area_is_london_region'),
-    ('Countries_December_2025_Boundaries_UK_BGC', 'CTRY25CD', '2025-12', (), 'country'),
-    ('Countries_December_2025_Boundaries_UK_BUC', 'CTRY25CD', '2025-12', (), 'country'),
+    ('ONS LAD_MAY_2026_UK_BFC', 'Local_Authority_Districts_May_2026_Boundaries_UK_BFC', 0, 'LAD26CD', '2026-05', LAD),
+    ('ONS CTYUA_DEC_2025_UK_BFC', 'Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BFC', 0, 'CTYUA25CD', '2025-12', ('E10',)),
+    ('ONS CAUTH_DEC_2025_EN_BFC', 'Combined_Authorities_December_2025_Boundaries_EN_BFC', 1, 'CAUTH25CD', '2025-12', ('E47',)),
+    ('ONS PARNCP_MAY_2026_EW_BFC', 'PARNCP_MAY_2026_EW_BFC', 0, 'PARNCP26CD', '2026-05', ('E04', 'W04')),
 ]
 LONDON_RGN = 'E12000007'
 
@@ -222,21 +217,17 @@ def build(reg):
     # ---- boundary crosswalk: only codes actually present in the boundary attribute table
     bx = []
     by_code = {r['code']: r for r in rows}
-    for ds, fld, vint, ents, rel in BOUNDARIES:
-        have = {a[fld] for a in arcgis('ons_bnd_' + ds.lower()[:40], ARC, ds, fields=fld)}
-        url = '{}/{}/FeatureServer'.format(ARC, ds)
-        if rel == 'gla_area_is_london_region':
-            pairs = [('gss:E61000001', LONDON_RGN)]
-        elif rel == 'country':
-            pairs = [(e, c) for c, e in COUNTRY.items() if c != 'K02000001']
-        else:
-            pairs = [(r['entity_id'], r['code']) for r in rows if r['code'][:3] in ents]
-        for e, c in pairs:
+    for ds, svc, lid, fld, vint, ents in BOUNDARIES:
+        have = {a[fld] for a in arcgis('ons_bfc_' + svc.lower(), ARC, svc, fields=fld, layer=lid)}
+        url = '{}/{}/FeatureServer/{}'.format(ARC, svc, lid)
+        for r in rows:
+            e, c = r['entity_id'], r['code']
+            if c[:3] not in ents:
+                continue
             if c in have:
-                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint,
-                               relation=rel if rel != 'same_code' else 'same_code', source_url=url))
+                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint, relation='same_code', source_url=url))
                 stats['boundary|' + ds] += 1
-            elif ds.endswith(('BGC', 'BGC_V2')):
+            else:
                 gaps.append({'code': c, 'issue': 'not in boundary dataset {}'.format(ds)})
                 stats['boundary_missing|' + ds] += 1
     files = write_split(os.path.join(OUT, 'units'), rows, LOCAL_COLUMNS, lambda r: r['code'][0].lower())

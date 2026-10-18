@@ -6,7 +6,8 @@ Sources:
   * BKG Verwaltungsgebiete 1:250 000 (VG250), Stand 01.01.2026, WFS attribute tables only (no geometry): Laender,
     Regierungsbezirke, Kreise (with their designation BEZ), Gemeindeverbaende (VWG layer: Amt, Verbandsgemeinde,
     Samtgemeinde, Verwaltungsgemeinschaft, Verwaltungsverband, erfuellende Gemeinde), Gemeinden; WSK = date of legal effect.
-  * BKG VG1000 (Stand 31.12.2025) attribute tables, for the boundary crosswalk.
+  * Boundary crosswalk keyed to Geo's editions (data/geo data-v3/geo/FOREIGN_VINTAGES.md): VG250 Stand 01.01.2026,
+    layers LAN/KRS/VWG/GEM, GF=4 features only.
 Bund = existing nation:de; Laender = existing subdivision:de-xx (ARS Land code -> ISO 3166-2, names checked); Berlin and
 Hamburg are Land and Gemeinde at once (mapped, not re-minted). New IDs: de-ars:<12-digit ARS> (shorter keys zero-padded).
 """
@@ -24,8 +25,11 @@ RS_URN = 'urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs'
 RS_URL = 'https://www.xrepository.de/api/version_codeliste/{}_{}/genericode'.format(RS_URN, RS_VERSION)
 RS_PAGE = 'https://www.xrepository.de/details/{}'.format(RS_URN)
 VG250 = 'https://sgx.geodatenzentrum.de/wfs_vg250'
-VG1000 = 'https://sgx.geodatenzentrum.de/wfs_vg1000'
-VG250_VINTAGE, VG1000_VINTAGE = '2026-01-01', '2025-12-31'
+VG250_VINTAGE = '2026-01-01'
+# Geo's exact boundary editions (FOREIGN_VINTAGES.md): layer key -> boundary_dataset
+GEO_LAYERS = {'lan': 'BKG VG250 VG250_LAN', 'krs': 'BKG VG250 VG250_KRS', 'vwg': 'BKG VG250 VG250_VWG',
+              'gem': 'BKG VG250 VG250_GEM'}
+GF4 = {}                                   # WFS cache key -> ARS that have a GF=4 feature
 PROPS = ['ars', 'ade', 'gf', 'ags', 'gen', 'bez', 'nbd', 'wsk']
 LIC_D = 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)'
 LIC_B = 'dl-de/by-2-0 (BKG 2026, Datenquellen: https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)'
@@ -52,6 +56,7 @@ def layer(svc, name, key):
         if r['gf'] in (4, 9):          # GF 4/9: land area (GF 1/2/3 = water parts of the same unit)
             assert r['ars'] not in out or out[r['ars']]['gen'] == r['gen'], r['ars']
             out[r['ars']] = r
+    GF4[key] = {r['ars'] for r in rows if r['gf'] == 4}
     return out
 
 
@@ -79,7 +84,6 @@ def build(reg):
     os.makedirs(OUT, exist_ok=True)
     rs = destatis_rs()
     L = {k: layer(VG250, 'vg250:vg250_' + k, 'bkg_vg250_' + k) for k in ('sta', 'lan', 'rbz', 'krs', 'vwg', 'gem')}
-    L1 = {k: layer(VG1000, 'vg1000:vg1000_' + k, 'bkg_vg1000_' + k) for k in ('sta', 'lan', 'rbz', 'krs')}
     wd = wd_codes()
     man = manifest()
     ra_d = man['destatis_rs']['retrieved_at']
@@ -197,7 +201,7 @@ def build(reg):
         xw.append(dict(entity_id=e, code_scheme='iso_3166_2', code='DE-' + LAND_ISO[a2], relation='same_government',
                        note='Land', source='iso_codes', source_url=''))
     xw.sort(key=lambda x: (x['entity_id'], x['code_scheme'], x['code']))
-    # boundary crosswalk: VG250 (all levels) and VG1000 (Staat, Land, RBZ, Kreis), codes present in each layer
+    # boundary crosswalk: Geo's VG250 layers (LAN, KRS, VWG, GEM), codes present as GF=4 features
     bx = []
     by_ars = collections.defaultdict(list)       # layer key -> (entity, code)
     for a, r in L['sta'].items():
@@ -220,20 +224,17 @@ def build(reg):
     for a in CITY_STATES:
         by_ars['krs'].append((CITY_STATES[a], a[:5]))
         by_ars['gem'].append((CITY_STATES[a], a))
-    for prod, lays, vint, svc in (('VG250', L, VG250_VINTAGE, VG250), ('VG1000', L1, VG1000_VINTAGE, VG1000)):
-        for lk, pairs in sorted(by_ars.items()):
-            if lk not in lays:
-                continue
-            for e, c in pairs:
-                ds = '{}_{}'.format(prod, lk)
-                if c in lays[lk]:
-                    bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint, relation='same_code',
-                                   source_url=svc))
-                    stats['boundary|' + ds] += 1
-                else:
-                    stats['boundary_missing|' + ds] += 1
-                    if prod == 'VG250':
-                        gaps.append({'code': c, 'issue': 'not in {} layer {} ({})'.format(prod, lk, e)})
+    for lk, ds in GEO_LAYERS.items():
+        have = GF4['bkg_vg250_' + lk]
+        for e, c in by_ars[lk]:
+            if c in have:
+                bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=VG250_VINTAGE,
+                               relation='same_code', source_url=VG250))
+                stats['boundary|' + ds] += 1
+            else:
+                stats['boundary_missing|' + ds] += 1
+                gaps.append({'code': c, 'issue': 'not in {} as GF=4 ({})'.format(ds, e)})
+    bx.sort(key=lambda x: (x['boundary_dataset'], x['boundary_code'], x['entity_id']))
     files = write_split(os.path.join(OUT, 'units'), rows, LOCAL_COLUMNS, lambda r: r['code'][:2])
     write_csv(os.path.join(OUT, 'code_xwalk.csv'), xw, CODE_XW_COLUMNS)
     write_csv(os.path.join(OUT, 'boundary_xwalk.csv'), bx, BOUNDARY_COLUMNS)

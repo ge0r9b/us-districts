@@ -104,7 +104,7 @@ def main():
     xw = sorted(xs + xl + xt, key=lambda x: (x['entity_id'], x['relation'] != 'primary', x['unit_layer'], x['geoid']))
     out['governments_geoid_xwalk.csv'] = write_csv(os.path.join(ROOT, 'governments_geoid_xwalk.csv'), xw, XWALK_COLUMNS)
     out['county_government_check.csv'] = len(chk)
-    out['id_registry.csv'] = n_reg
+    out['id_registry/*.csv'] = n_reg
     out['sources.csv'] = len(src_rows)
     out['changes_since_cog2022.csv'] = len(changes)
     out['images.csv'] = len(images)

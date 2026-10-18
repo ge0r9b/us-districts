@@ -5,7 +5,7 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry.csv": 160278,
+  "id_registry/*.csv": 160278,
   "sources.csv": 39,
   "changes_since_cog2022.csv": 449,
   "images.csv": 9846,
@@ -170,6 +170,7 @@
   "qid_moved_to_sovereign_item": 1,
   "qid_nations_deps": 240,
   "qid_subdivisions": 3408,
+  "seal_override": 1,
   "seal|country|P94": 3,
   "seal|dependency|P158": 1,
   "seal|dependency|P94": 25,
@@ -181,7 +182,7 @@
   "seal|special administrative region|P158": 1,
   "seal|special administrative region|P94": 1,
   "seal|subdivision|P158": 147,
-  "seal|subdivision|P94": 1424,
+  "seal|subdivision|P94": 1423,
   "subdivisions": 3515,
   "subdivisions_withdrawn_kept": 0,
   "un_members": 193,
@@ -192,17 +193,10 @@
  },
  "foreign_country_units": {
   "gb": {
-   "boundary|CAUTH_MAY_2025_EN_BGC": 15,
-   "boundary|CAUTH_MAY_2025_EN_BUC": 15,
-   "boundary|Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC": 21,
-   "boundary|Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BUC": 21,
-   "boundary|Countries_December_2025_Boundaries_UK_BGC": 4,
-   "boundary|Countries_December_2025_Boundaries_UK_BUC": 4,
-   "boundary|LAD_MAY_2025_UK_BGC_V2": 361,
-   "boundary|LAD_MAY_2025_UK_BUC": 361,
-   "boundary|PARNCP_MAY_2026_EW_BGC": 11341,
-   "boundary|Regions_December_2025_Boundaries_EN_BGC": 1,
-   "boundary|Regions_December_2025_Boundaries_EN_BUC": 1,
+   "boundary|ONS CAUTH_DEC_2025_EN_BFC": 15,
+   "boundary|ONS CTYUA_DEC_2025_UK_BFC": 21,
+   "boundary|ONS LAD_MAY_2026_UK_BFC": 361,
+   "boundary|ONS PARNCP_MAY_2026_EW_BFC": 11341,
    "civil_parish": 10463,
    "combined_authority": 15,
    "community": 878,
@@ -222,20 +216,13 @@
   },
   "de": {
    "amt": 209,
-   "boundary_missing|VG1000_krs": 1,
-   "boundary_missing|VG250_gem": 3,
-   "boundary_missing|VG250_krs": 1,
-   "boundary_missing|VG250_vwg": 1,
-   "boundary|VG1000_krs": 400,
-   "boundary|VG1000_lan": 16,
-   "boundary|VG1000_rbz": 19,
-   "boundary|VG1000_sta": 1,
-   "boundary|VG250_gem": 10744,
-   "boundary|VG250_krs": 400,
-   "boundary|VG250_lan": 16,
-   "boundary|VG250_rbz": 19,
-   "boundary|VG250_sta": 1,
-   "boundary|VG250_vwg": 1307,
+   "boundary_missing|BKG VG250 VG250_GEM": 3,
+   "boundary_missing|BKG VG250 VG250_KRS": 1,
+   "boundary_missing|BKG VG250 VG250_VWG": 1,
+   "boundary|BKG VG250 VG250_GEM": 10744,
+   "boundary|BKG VG250 VG250_KRS": 400,
+   "boundary|BKG VG250 VG250_LAN": 16,
+   "boundary|BKG VG250 VG250_VWG": 1307,
    "erfuellende_gemeinde": 38,
    "gaps": 8,
    "gemeinde": 8690,
@@ -255,11 +242,7 @@
   },
   "fr": {
    "arrondissement_municipal": 45,
-   "boundary_missing|commune_associee_ou_deleguee": 10,
-   "boundary|arrondissement_municipal": 45,
-   "boundary|collectivite_territoriale": 100,
    "boundary|commune": 34875,
-   "boundary|commune_associee_ou_deleguee": 2566,
    "boundary|departement": 96,
    "boundary|epci": 1264,
    "boundary|region": 18,
@@ -273,7 +256,7 @@
    "commune_deleguee": 2105,
    "conseil_departemental": 91,
    "etablissement_public_territorial": 11,
-   "gaps": 11,
+   "gaps": 1,
    "ign_commune_names_equal_cog2026": 34875,
    "metropole": 21,
    "metropole_de_lyon": 1,
@@ -366,17 +349,17 @@
   "seal|special administrative region|P158": 1,
   "seal|special administrative region|P94": 1,
   "seal|subdivision|P158": 147,
-  "seal|subdivision|P94": 1424
+  "seal|subdivision|P94": 1423
  },
  "images_by_license": {
-  "": 2,
+  "": 1,
   "CC-BY-2.5": 11,
   "CC-BY-3.0": 22,
   "CC-BY-4.0": 34,
   "CC-BY-SA-1.0": 1,
   "CC-BY-SA-2.5": 52,
   "CC-BY-SA-3.0": 515,
-  "CC-BY-SA-4.0": 501,
+  "CC-BY-SA-4.0": 502,
   "CC0-1.0": 171,
   "GFDL-1.2-or-later": 1,
   "LicenseRef-Attribution": 7,
@@ -719,6 +702,56 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:11:48Z"
   },
+  "ign_aecog2026_commune_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:27Z"
+  },
+  "ign_aecog2026_commune_10000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=10000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:30Z"
+  },
+  "ign_aecog2026_commune_15000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=15000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:32Z"
+  },
+  "ign_aecog2026_commune_20000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=20000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:34Z"
+  },
+  "ign_aecog2026_commune_25000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=25000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:36Z"
+  },
+  "ign_aecog2026_commune_30000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=30000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:37Z"
+  },
+  "ign_aecog2026_commune_5000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Acommune&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=5000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:29Z"
+  },
+  "ign_aecog2026_departement_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Adepartement&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:22:49Z"
+  },
+  "ign_aecog2026_epci_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Aepci&propertyName=code_siren&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_siren",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:24:26Z"
+  },
+  "ign_aecog2026_region_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG.2026%3Aregion&propertyName=code_insee&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:22:47Z"
+  },
   "insee_cog2026": {
    "url": "https://www.insee.fr/fr/statistiques/fichier/8740222/cog_ensemble_2026_csv.zip",
    "last_modified": "",
@@ -744,6 +777,51 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T16:52:54Z"
   },
+  "ons_bfc_combined_authorities_december_2025_boundaries_en_bfc_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Combined_Authorities_December_2025_Boundaries_EN_BFC/FeatureServer/1/query?where=1%3D1&outFields=CAUTH25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-04-29",
+   "retrieved_at": "2026-10-18T19:27:10Z"
+  },
+  "ons_bfc_counties_and_unitary_authorities_december_2025_boundaries_uk_bfc_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BFC/FeatureServer/0/query?where=1%3D1&outFields=CTYUA25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-05-12",
+   "retrieved_at": "2026-10-18T19:27:10Z"
+  },
+  "ons_bfc_local_authority_districts_may_2026_boundaries_uk_bfc_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Local_Authority_Districts_May_2026_Boundaries_UK_BFC/FeatureServer/0/query?where=1%3D1&outFields=LAD26CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-09-09",
+   "retrieved_at": "2026-10-18T19:27:10Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:10Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_10000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=10000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:12Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_2000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=2000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:11Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_4000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=4000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:11Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_6000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=6000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:11Z"
+  },
+  "ons_bfc_parncp_may_2026_ew_bfc_8000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=8000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:27:11Z"
+  },
   "ons_bnd_cauth_may_2025_en_bgc_0": {
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/CAUTH_MAY_2025_EN_BGC/FeatureServer/0/query?where=1%3D1&outFields=CAUTH25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
    "last_modified": "2025-06-27",
@@ -754,10 +832,20 @@
    "last_modified": "2025-09-12",
    "retrieved_at": "2026-10-18T18:52:26Z"
   },
+  "ons_bnd_combined_authorities_december_2025_boundarie_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Combined_Authorities_December_2025_Boundaries_EN_BFC/FeatureServer/1/query?where=1%3D1&outFields=CAUTH25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-04-29",
+   "retrieved_at": "2026-10-18T19:22:40Z"
+  },
   "ons_bnd_counties_and_unitary_authorities_decembe_0": {
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC/FeatureServer/0/query?where=1%3D1&outFields=CTYUA25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
    "last_modified": "2026-05-12",
    "retrieved_at": "2026-10-18T18:52:25Z"
+  },
+  "ons_bnd_counties_and_unitary_authorities_december_20_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BFC/FeatureServer/0/query?where=1%3D1&outFields=CTYUA25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-05-12",
+   "retrieved_at": "2026-10-18T19:22:40Z"
   },
   "ons_bnd_countries_december_2025_boundaries_uk_bg_0": {
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Countries_December_2025_Boundaries_UK_BGC/FeatureServer/0/query?where=1%3D1&outFields=CTRY25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
@@ -778,6 +866,41 @@
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD_MAY_2025_UK_BUC/FeatureServer/0/query?where=1%3D1&outFields=LAD25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
    "last_modified": "2025-12-02",
    "retrieved_at": "2026-10-18T18:52:25Z"
+  },
+  "ons_bnd_local_authority_districts_may_2026_boundarie_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Local_Authority_Districts_May_2026_Boundaries_UK_BFC/FeatureServer/0/query?where=1%3D1&outFields=LAD26CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-09-09",
+   "retrieved_at": "2026-10-18T19:22:39Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_0": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:41Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_10000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=10000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:43Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_2000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=2000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:41Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_4000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=4000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:42Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_6000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=6000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:42Z"
+  },
+  "ons_bnd_parncp_may_2026_ew_bfc_8000": {
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BFC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=8000&resultRecordCount=2000",
+   "last_modified": "2026-08-06",
+   "retrieved_at": "2026-10-18T19:22:42Z"
   },
   "ons_bnd_parncp_may_2026_ew_bgc_0": {
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/PARNCP_MAY_2026_EW_BGC/FeatureServer/0/query?where=1%3D1&outFields=PARNCP26CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
@@ -987,6 +1110,12 @@
    "host": "en.wikipedia.org",
    "retrieved_at_min": "2026-10-18T15:18:21Z",
    "retrieved_at_max": "2026-10-18T16:40:06Z"
+  },
+  "sealovr_*": {
+   "api_requests": 1,
+   "host": "commons.wikimedia.org",
+   "retrieved_at_min": "2026-10-18T19:20:01Z",
+   "retrieved_at_max": "2026-10-18T19:20:01Z"
   },
   "wd_img_*": {
    "api_requests": 196,

@@ -42,8 +42,11 @@ are only ever appended (`nces_leaid`, `tiger_status`, then `flags`, `valid_from`
 | `valid_from`, `valid_to` | `2023-04-01` | ISO dates (`YYYY-MM-DD`, or `YYYY-MM` when the source fixes only the month) from a cited change record (`changes_since_cog2022.csv`); empty = in force at the CoG 2022 snapshot / still in force. Some CoG 2022 units had already ceased before the snapshot (CoG was stale), so `valid_to` can be earlier than 2022. |
 | `tiger_status` | `current_2024` / `absent_2024` | whether `geoid` exists in TIGER 2024; `absent_2024` = an older-vintage GEOID was carried (dissolved / merged / re-coded unit) |
 
-### Frozen IDs: id_registry.csv
-`entity_id, source_key, first_seen`. Every build looks each record's source key up in the registry and reuses the
+### Frozen IDs: id_registry/<scope>.csv
+`entity_id, source_key, first_seen`, split by the source key's scope so no file nears 10 MB: `foreign.csv`
+(`iso3166-*`), `gb.csv` (`gss:`), `de.csv` (`de-ars:`), `fr.csv` (`fr-cog:`, `fr-siren:`), `us.csv` (everything else). The build
+reads all of them as one registry (a source key may appear only once), writes rows sorted, and rewrites the split on
+save (the former single `id_registry.csv` was split with no row changed). Every build looks each record's source key up in the registry and reuses the
 registered `entity_id`; a new ID is minted only for a key never seen before, and registry rows are never deleted.
 Source keys: `fips_state:SS`, `cog_pid6:<PID6>`, `fr_agency:<id>`, `bia_name:<normalized current name>`, and for
 units added from state registries `<registry code>:<registry id or normalized name>`. A renamed tribe is looked up by
@@ -61,7 +64,7 @@ sources; empty for files served over HTTP).
 | `state:` | 2-digit state FIPS | permanent |
 | `cog:` | CoG `CENSUS_ID_PID6` | Census internal unit ID, kept across CoG cycles |
 | `fr:` | Federal Register API agency `id` | permanent in the API |
-| `bia:` | slug of the listed name at first registration | frozen in `id_registry.csv`; renames keep the ID (former name in `alias`) |
+| `bia:` | slug of the listed name at first registration | frozen in `id_registry/us.csv`; renames keep the ID (former name in `alias`) |
 | `gcn:` | Census code of a unit created after CoG 2022: place `SSPPPPP`, or cousub GEOID `SSCCCMMMMM` (registry key `census_code:place:` / `census_code:cousub:`) | frozen in the registry |
 | `nces_leaid:` | NCES LEAID of a school district created after CoG 2022 | permanent |
 | `tceq_wdd:` | TCEQ Water Districts Database district ID (Texas special district created after CoG 2022) | frozen in the registry |
@@ -166,14 +169,17 @@ government), plus each new row's ISO 3166-2 code (`same_area`).
 
 `boundary_xwalk.csv`: `entity_id, boundary_dataset, boundary_code, vintage, relation, source_url`, for the Geo bot to join
 geometry (no geometry here). One row per entity and official boundary product whose attribute table actually contains
-the code (checked against the product's feature service). UK: ONS BGC and BUC generalised boundaries
-(`LAD_MAY_2025_UK_BGC_V2`/`_BUC`, `Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BGC/BUC` for counties,
-`CAUTH_MAY_2025_EN_BGC/BUC`, `PARNCP_MAY_2026_EW_BGC` for parishes and communities, `Regions_December_2025_Boundaries_EN_BGC/BUC`
-code E12000007 for the GLA (relation `gla_area_is_london_region`), `Countries_December_2025_Boundaries_UK_BGC/BUC`).
-DE: BKG `VG250_<layer>` (sta, lan, rbz, krs, vwg, gem; Stand 2026-01-01) and `VG1000_<layer>` (sta, lan, rbz, krs; Stand
-2025-12-31), code = the layer's `ARS` (2/3/5/9/12 digits); kreisfreie Städte and Berlin/Hamburg appear in krs and gem.
-FR: IGN `ADMINEXPRESS-COG-CARTO:<layer>` (region, collectivite_territoriale, departement only where one collectivity governs exactly that département (`same_area`), epci by SIREN, commune, commune_associee_ou_deleguee, arrondissement_municipal), vintage `2026` (the service's latest edition; all 34,875 commune names equal COG 2026).
-`vintage` = `YYYY-MM` (UK), the Stand date (DE) or the COG year (FR) of the product.
+the code (checked against the product's feature service). `boundary_dataset` and `vintage` are exactly the strings of
+Geo's `data-v3/geo/FOREIGN_VINTAGES.md` (branch data/geo); `boundary_code` is the bare key (GSS, ARS, INSEE or SIREN).
+Only the layers Geo builds are keyed:
+UK: `ONS LAD_MAY_2026_UK_BFC` / `2026-05` (E06/E07/E08/E09, S12, W06, N09), `ONS CTYUA_DEC_2025_UK_BFC` / `2025-12` (E10),
+`ONS CAUTH_DEC_2025_EN_BFC` / `2025-12` (E47), `ONS PARNCP_MAY_2026_EW_BFC` / `2026-05` (E04, W04).
+DE: `BKG VG250 VG250_LAN|KRS|VWG|GEM` / `2026-01-01`, code = ARS (2/5/9/12 digits), present as a GF=4 feature; kreisfreie
+Städte and Berlin/Hamburg appear in KRS and GEM.
+FR: `IGN ADMIN-EXPRESS-COG region|departement|epci|commune` / `COG 2026` (checked against ADMIN EXPRESS COG 2026 full
+precision); departement only where one collectivity governs exactly that département (`same_area`); epci by SIREN.
+No row for levels Geo has no layer for: the GLA and the UK countries, Regierungsbezirke, Staat, VG1000, the French CTCD
+layer, communes déléguées/associées and arrondissements municipaux.
 
 `gaps.csv`: `code, issue` (codes missing from a lookup or boundary product, register inconsistencies).
 

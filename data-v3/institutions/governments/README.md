@@ -13,7 +13,7 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | `tribes.csv` | 577 | every line of the latest BIA list (FR 2026-01899, 91 FR 4102, Jan 30, 2026: 348 contiguous-48 lines + 229 Alaska lines; 4 of them are "(See …)" cross-references). The notice text says 575 entities. |
 | `governments_geoid_xwalk.csv` | 56,529 | every (entity, TIGER GEOID) pair, primary included |
 | `county_government_check.csv` | 3,222 | each TIGER 2024 county (incl. 78 PR municipios) and whether CoG 2022 lists a county government there |
-| `id_registry.csv` | 93,278 | frozen entity IDs (see SCHEMA.md); committed and appended by every build |
+| `id_registry/<scope>.csv` | 160,278 | frozen entity IDs, split by scope: us 93,584, foreign 3,755, gb 11,739, de 12,261, fr 38,939 (see SCHEMA.md); committed and appended by every build |
 | `sources.csv` | 19 | stable source codes used in `source` columns |
 | `changes_since_cog2022.csv` | 131 | incorporations, dissolutions, mergers, consolidations, reclassifications after the CoG 2022 snapshot (see below) |
 | `images.csv` | 2,024 | seal (1,967) and flag (57) image records: Commons/Wikipedia file, license, attribution, QID (no binaries) |
@@ -152,7 +152,7 @@ plus: a file named only for a state, e.g. `Seal utah.png`, is never taken for a 
 
 ## Foreign governments (`foreign/`, `scripts/build_foreign.py`)
 Built in the same run as everything else (`scripts/build_all.py`); every row cites its sources (`source`, `source_url`,
-`retrieved_at`, `license`), IDs are frozen in `id_registry.csv` (keys `iso3166-1:XX`, `iso3166-2:XX-YYY`).
+`retrieved_at`, `license`), IDs are frozen in `id_registry/foreign.csv` (keys `iso3166-1:XX`, `iso3166-2:XX-YYY`).
 
 | file | rows | what |
 |---|---|---|
@@ -172,7 +172,10 @@ Korea) are a reviewed list that the build only accepts when the Wikidata P297 it
 192 of 193 also carry P463 on the P297 item (Denmark's is on the Kingdom of Denmark item). Columns from Wikidata on the
 matched item: `capital_qid`/`capital` (P36), `head_of_government_office_qid`/`head_of_government_office` (P1313).
 Images (in `images.csv`, same rules as domestic): flag = P41; seal = P158, else P94 coat of arms (stored as
-`image_kind=seal` with `usage_basis=coat of arms (P94) used as the seal`); most open license first. 3529 rows
+`image_kind=seal` with `usage_basis=coat of arms (P94) used as the seal`); most open license first. Reviewed override (`SEAL_OVERRIDES` in
+`build_foreign.py`): `province:ca-qc` uses 'Coat of arms of Quebec.svg' (license and author read from the Commons API:
+CC BY-SA 4.0, Sodacan) instead of its P94 'Coat of arms of Quebec (without crown).svg', which Commons lists under 'Files
+with no machine-readable license' and 'Deletion requests May 2026' (checked 2026-10-18). 3529 rows
 (1726 flags, 1803 seals); gaps in `images_gaps.csv`: no P41 1922, no P158/P94 1845, no QID 107 (per kind).
 Sovereign items: the nation row's `wikidata_qid` is the sovereign-state item (P31 Q3624078). If the P297 item is not one
 but is part of exactly one live sovereign state (its P361, or the state's P150/P527), that state is taken and the P297
@@ -221,9 +224,10 @@ which the RGC workbook has no sheets for; it also confirms the live LAD set: no 
 England (E92000001) maps to `subdivision:gb-eng` as an area only; it has no devolved government, so English councils
 sit under `nation:gb`. Not every parish/community has a council (some have only a parish meeting) and no ONS product
 says which, so all carry `council_status_unknown`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
-(P836) on a single item (QIDs for 10,619 rows; ISO 3166-2 for 180 councils). `boundary_xwalk.csv`: every unit's code was
-found in its BGC/BUC product (LAD May 2025: 361/361; parishes PARNCP May 2026 BGC: 11,341/11,341; counties Dec 2025,
-CAUTH May 2025, Regions Dec 2025 for the GLA, Countries Dec 2025). `gaps.csv` lists mismatches (none). The RGC lists
+(P836) on a single item (QIDs for 10,619 rows; ISO 3166-2 for 180 councils). `boundary_xwalk.csv`, keyed to Geo's editions
+(FOREIGN_VINTAGES.md): every unit's code was found in its BFC product (LAD May 2026: 361/361; CTYUA Dec 2025: 21/21; CAUTH
+Dec 2025: 15/15; PARNCP May 2026: 11,341/11,341). The GLA and the countries have no Geo layer and no row. `gaps.csv` lists
+mismatches (none). The RGC lists
 parish E04013473 Westbury twice (two community-governance orders); it is one row.
 Not covered: Scottish Gaelic names (not in the RGC), community councils in Scotland and NI (not statutory local
 government, no GSS codes), parish council existence, abolished councils (only live codes).
@@ -249,8 +253,9 @@ All 10,747 Gemeinden of the Destatis list are covered (10,640 + 105 kreisfreie S
 areas without a municipal government (gemeindefreie Gebiete, coastal waters, the German-Luxembourg condominium, Verband key
 9999) are left out. Changes between VG250 (Jan 2026) and Destatis (Sep 2026) are in `gaps.csv`: Hanau kreisfrei
 (06415, flag `kreisfrei_from_ars_structure`), Schmölln's erfüllende Gemeinde without members, a few Gemeinden with a new
-Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: VG250 (all levels) and
-VG1000 (Staat, Länder, RBZ, Kreise), only codes present in the layer.
+Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: Geo's VG250 layers LAN, KRS,
+VWG, GEM (Stand 2026-01-01, GF=4 features; FOREIGN_VINTAGES.md), only codes present in the layer (16 / 400 / 1,307 /
+10,744); no rows for Regierungsbezirke, Staat or VG1000 (Geo does not build them).
 Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units.
 
 ### France (`foreign/fr/`; units split in `units_upper.csv` and `units_communes_<région>.csv` for the 10 MB limit)
@@ -275,8 +280,9 @@ The Guadeloupe and La Réunion région rows carry no QID (Wikidata's P2585 item 
 flag `qid_is_shared_area_item`). `valid_from` for 1,508 communes from the INSEE movement file. Not covered: provinces of
 New Caledonia and the Wallis-et-Futuna circonscriptions/chefferies (not in the COG as communes), syndicats (SIVU, SIVOM,
 syndicats mixtes), Île des Faisans (condominium, no own government), SIREN for EPT/EPCI beyond the INSEE code
-(they are the SIREN), commune SIREN missing where IGN has none. `gaps.csv`: 10 communes déléguées/associées absent from
-the ADMIN EXPRESS layer.
+(they are the SIREN), commune SIREN missing where IGN has none. `boundary_xwalk.csv` is keyed to Geo's ADMIN EXPRESS COG 2026 layers
+(FOREIGN_VINTAGES.md): region 18, departement 96, epci 1,264, commune 34,875; communes déléguées/associées, arrondissements
+municipaux and the CTCD layer have no Geo layer and no row.
 
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
