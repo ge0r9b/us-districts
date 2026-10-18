@@ -56,13 +56,42 @@ def children():
     return {row.split(",")[0].rsplit("/", 1)[-1] for row in r.text.splitlines()[1:] if row}
 
 
+REL = """SELECT ?item ?parent ?rank ?start ?end WHERE {
+  VALUES ?item { %s }
+  ?item p:P749 ?st . ?st ps:P749 ?parent ; wikibase:rank ?rank .
+  OPTIONAL { ?st pq:P580 ?start } OPTIONAL { ?st pq:P582 ?end } }"""
+
+
+def relations(qids):
+    """Every P749 (parent organization) statement of each item, with rank and P580/P582 qualifiers."""
+    r = get(EP, params={"query": REL % " ".join(f"wd:{q}" for q in qids)},
+            headers={"Accept": "application/sparql-results+json"})
+    r.raise_for_status()
+    out = []
+    for b in r.json()["results"]["bindings"]:
+        v = lambda k: b.get(k, {}).get("value", "")
+        out.append({"child": v("item").rsplit("/", 1)[-1], "parent": v("parent").rsplit("/", 1)[-1],
+                    "rank": v("rank").rsplit("#", 1)[-1], "start": v("start")[:10], "end": v("end")[:10]})
+    return out
+
+
 def main(qids):
     children()
     data = run(qids)
-    # one more hop so every parent has its own label/parents recorded
-    parents = {p for e in data.values() for k in ("p749", "p127") for p in e[k]} - set(data)
-    if parents:
-        data.update(run(sorted(parents)))
+    # follow P749 statements (all non-deprecated ranks) up to the top so every parent has its own row
+    rels, todo, seen = [], list(qids), set()
+    while todo:
+        batch = [q for q in todo if q not in seen]
+        seen.update(batch)
+        if not batch:
+            break
+        rs = [x for x in relations(batch) if x["rank"] != "DeprecatedRank"]
+        rels.extend(rs)
+        todo = sorted({x["parent"] for x in rs} - seen)
+    missing = sorted({x["parent"] for x in rels} - set(data))
+    if missing:
+        data.update(run(missing))
+    (RAW / "wikidata_p749.json").write_text(json.dumps(rels, indent=1))
     (RAW / "wikidata_brands.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
     write_meta("wikidata_brands", {"endpoint": EP, "retrieved_at": today(), "qids": len(data)})
     print(len(data), file=sys.stderr)

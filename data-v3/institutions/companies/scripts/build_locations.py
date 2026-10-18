@@ -103,8 +103,16 @@ def phone_us(p):
         d = d[1:]
     return f"({d[:3]}) {d[3:6]}-{d[6:]}" if len(d) == 10 else None
 
+RELS = json.loads((RAW / "wikidata_p749.json").read_text())
+CURRENT = defaultdict(list)
+for _r in RELS:
+    if not _r["end"] and _r["parent"] not in CURRENT[_r["child"]]:
+        CURRENT[_r["child"]].append(_r["parent"])
+
+
 def parent_of(qid):
-    return ";".join(f"wikidata:{p}" for p in WD.get(qid, {}).get("p749", {})) if qid else ""
+    """Current Wikidata parent organizations (P749 statements without an end date), ;-list."""
+    return ";".join(f"wikidata:{p}" for p in CURRENT.get(qid, [])) if qid else ""
 
 def qid(q):
     return f"wikidata:{q}" if q else ""
@@ -274,27 +282,31 @@ for x in v5.itertuples(index=False):
         fl.append("no_marsha_code")
     if x.marsha in dup_marsha:
         fl.append("duplicate_marsha_in_v5")
+    coord_src = addr_src = "v5"
     if hit:
         s, f = hit
         p = f["properties"]
         srcs.append(S_ATP[s])
         stats["atp_matched"] += 1
         g = f.get("geometry")
-        if g:
+        if g:  # ATP (CC0) wins over v5 for coordinates
             alon, alat = g["coordinates"][:2]
             if lat == "":
-                lat, lon = alat, alon
-                fl.append("coordinates_from_atp")
                 stats["coords_filled_from_atp"] += 1
             elif km(lat, lon, alat, alon) > 1:
                 fl.append(f"v5_vs_atp_coordinates_{km(lat, lon, alat, alon):.1f}km")
-        if not addr and p.get("addr:street_address"):
-            addr = p["addr:street_address"]
+            lat, lon, coord_src = alat, alon, "atp"
+            fl.append("coordinates_from_atp")
+        if p.get("addr:street_address"):  # ATP wins for the address block too
+            if not addr:
+                stats["address_filled_from_atp"] += 1
+            addr, addr_src = p["addr:street_address"], "atp"
+            city, state, zipc = p.get("addr:city", "") or city, p.get("addr:state", "") or state, p.get("addr:postcode", "")
             fl.append("address_from_atp")
-            stats["address_filled_from_atp"] += 1
-        city = city or p.get("addr:city", "")
-        state = state or p.get("addr:state", "")
-        zipc = p.get("addr:postcode", "")
+        else:
+            city = city or p.get("addr:city", "")
+            state = state or p.get("addr:state", "")
+            zipc = p.get("addr:postcode", "")
         cc = p.get("addr:country", "") or cc
         phone = p.get("phone", "")
         if not bq:
@@ -303,9 +315,15 @@ for x in v5.itertuples(index=False):
             fl.append(f"atp_brand_qid_differs:{p['brand:wikidata']}")
         if p.get("brand") and p.get("brand") != x.brand:
             sub = p["brand"]
+    if lat != "" and coord_src == "v5":
+        fl.append("v5_unknown_license:coordinates")
+    if addr and addr_src == "v5":
+        fl.append("v5_unknown_license:address")
     if not bq and BRAND_Q.get(x.brand):
         bq = BRAND_Q[x.brand]
         fl.append("brand_qid_from_brand_name")
+    if not cc:
+        cc = {"United States": "US", "Puerto Rico": "PR", "U.S. Virgin Islands": "VI"}.get(x.country, "")
     if cc == "US" or not cc and x.country == "United States":
         phone = phone_us(phone) or phone
     rows.append(dict(store_id=x.marsha, brand=x.brand, brand_qid=qid(bq), parent_brand_qid=parent_of(bq), address=addr,
@@ -314,43 +332,158 @@ for x in v5.itertuples(index=False):
                      source=";".join(srcs + [S_CEN, S_WD]), source_url=url or (hit[1]["properties"].get("website", "") if hit else ""),
                      source_date=max(SOURCES[s]["retrieved_at"] for s in srcs), name=x.hotel_name, sub_brand_qid="",
                      county_geoid="", country_code=cc, status="", store_type=""))
+# Scope: US + territories only (Full Stack 8639fe1). Rows that cannot load are dropped and listed.
+US_CC = {"US", "PR", "VI", "GU", "AS", "MP"}
+keep, dropped = [], []
+for x in rows:
+    reason = ("non_us" if x["country_code"] and x["country_code"] not in US_CC else
+              "no_country" if not x["country_code"] else
+              "no_store_id" if not x["store_id"] else
+              "no_brand_qid" if not x["brand_qid"] else
+              "no_coordinates_no_address" if x["lat"] == "" and not x["address"] else
+              "no_coordinates" if x["lat"] == "" else "")
+    (dropped if reason else keep).append((x, reason))
+stats["dropped"] = dict(Counter(r for _, r in dropped))
+pd.DataFrame([dict(store_id=x["store_id"], brand=x["brand"], name=x["name"], country_code=x["country_code"], reason=r,
+                   source_url=x["source_url"]) for x, r in dropped if r not in ("non_us", "no_country")]
+             ).to_csv(OUT / "marriott_dropped_us.csv", index=False, lineterminator="\n")
+rows = [x for x, _ in keep]
 df = finish(rows, check_county=False)
 v5_codes = set(v5.marsha)
+lic = Counter(f for fl in df["flags"] for f in fl.split(";") if f.startswith("v5_unknown_license"))
+stats["v5_unknown_license_rows"] = int(df["flags"].str.contains("v5_unknown_license").sum())
+stats["v5_unknown_license_coordinates"] = lic["v5_unknown_license:coordinates"]
+stats["v5_unknown_license_address"] = lic["v5_unknown_license:address"]
 summary["marriott"] = {"file": write(df, "marriott"), "rows": len(df), "input_rows": n_in, "exact_duplicate_rows_dropped": exact_dups,
                        "v5_missing_coordinates": int((v5.coordinates == "").sum()), **stats,
                        "still_missing_coordinates": int((df.lat == "").sum()),
                        "atp_properties_not_in_v5": len(set(atp) - v5_codes),
-                       "us_rows": int((df.country_code == "US").sum()),
+                       "rows_by_country": dict(Counter(df.country_code)),
                        "flags": dict(Counter(re.sub(r"_[\d.]+km$", "_km", f.split(":")[0]) for fl in df["flags"] for f in fl.split(";") if f))}
 
 # ---------------- brands.csv ----------------
 used = Counter()
 files = defaultdict(set)
+LOC = {}
 for name in ("walgreens", "cvs", "mcdonalds", "marriott"):
     p = OUT / summary[name]["file"]
     d = pd.read_csv(p, dtype=str, keep_default_na=False)
+    LOC[name] = d
     for col in ("brand_qid", "sub_brand_qid"):
         for q, n in d[col].value_counts().items():
             if q:
                 used[q] += n
                 files[q].add(summary[name]["file"])
+COMPANYISH = re.compile(r"company|business|enterprise|corporation|conglomerate|airline|holding|organization|plc", re.I)
+# brands with locations + every ancestor reachable through P749 statements (current or historical)
+in_tree, frontier = set(used), set(used)
+while frontier:
+    nxt = {f"wikidata:{r['parent']}" for r in RELS if f"wikidata:{r['child']}" in frontier} - in_tree
+    in_tree |= nxt
+    frontier = nxt
+RELS = [r for r in RELS if f"wikidata:{r['child']}" in in_tree]
 brows = []
 for q, e in sorted(WD.items(), key=lambda t: int(t[0][1:])):
     wid = f"wikidata:{q}"
-    is_brand = wid in used
-    is_parent = any(wid in parent_of(k[9:]).split(";") for k in used)
-    if not (is_brand or is_parent):
+    if wid not in in_tree:
         continue
-    brows.append(dict(entity_id=wid, name=e["label"], kind="brand" if is_brand else "organization",
-                      instance_of=";".join(e["p31"].values()), parent_brand_id=parent_of(q),
-                      parent_brand_name=";".join(e["p749"].values()), website=";".join(e["website"]),
-                      location_files=";".join(sorted(files.get(wid, []))), location_count=used.get(wid, 0),
-                      source=S_WD, source_url=f"https://www.wikidata.org/wiki/{q}", source_date=SOURCES[S_WD]["retrieved_at"]))
+    p31 = ";".join(e["p31"].values())
+    fl = []
+    if wid in used:
+        kind = "brand"
+    elif COMPANYISH.search(p31):
+        kind = "company"
+    elif re.search(r"\bchain\b|\bbrand\b", p31):
+        kind = "brand"
+    else:
+        kind = ""
+        fl.append("kind_review")
+    cur = CURRENT.get(q, [])
+    brows.append(dict(entity_id=wid, kind=kind, name=e["label"], brand_name=e["label"] if kind == "brand" else "",
+                      instance_of=p31, parent_brand_id=parent_of(q),
+                      parent_brand_name=";".join(WD.get(p, {}).get("label", "") for p in cur), website=";".join(e["website"]),
+                      location_files=";".join(sorted(files.get(wid, []))), location_count=used.get(wid, 0), flags=";".join(fl),
+                      source_id=S_WD, source_url=f"https://www.wikidata.org/wiki/{q}", retrieved_at=SOURCES[S_WD]["retrieved_at"]))
 pd.DataFrame(brows).to_csv(ROOT / "brands.csv", index=False, lineterminator="\n")
-pd.DataFrame(SOURCES.values()).to_csv(ROOT / "sources.csv", index=False, lineterminator="\n")
 summary["brands_rows"] = len(brows)
+summary["brands_by_kind"] = dict(Counter(r["kind"] or "(review)" for r in brows))
+
+# ---------------- brand_relationships.csv (every P749 statement, dates from P580/P582) ----------------
+ncur = Counter(r["child"] for r in RELS if not r["end"])
+rrows = []
+for r in sorted(RELS, key=lambda r: (int(r["child"][1:]), r["start"] or "9999", int(r["parent"][1:]))):
+    fl = []
+    if not r["start"] and not r["end"] and ncur[r["child"]] > 1:
+        fl.append("multiple_current_parents_no_dates_review")
+    rrows.append(dict(parent_id=f"wikidata:{r['parent']}", child_id=f"wikidata:{r['child']}", relation="parent_org",
+                      valid_from=r["start"], valid_to=r["end"], current="yes" if not r["end"] else "no",
+                      wikidata_rank=r["rank"].replace("Rank", "").lower(), flags=";".join(fl), source_id=S_WD,
+                      source_url=f"https://www.wikidata.org/wiki/{r['child']}#P749", retrieved_at=SOURCES[S_WD]["retrieved_at"]))
+rel = pd.DataFrame(rrows, columns=["parent_id", "child_id", "relation", "valid_from", "valid_to", "current", "wikidata_rank",
+                                   "flags", "source_id", "source_url", "retrieved_at"])
+assert set(rel.parent_id) | set(rel.child_id) <= {r["entity_id"] for r in brows}
+rel.to_csv(ROOT / "brand_relationships.csv", index=False, lineterminator="\n")
+summary["brand_relationships_rows"] = len(rel)
+summary["brand_relationships_review_flags"] = int((rel["flags"] != "").sum())
+
+# ---------------- company_locations.csv (one row per establishment) ----------------
+# geoid only when the county is in the agreed v2-2024 set (data-v3/geo/counties.csv); PR/VI are not in it
+V2_COUNTIES = set(pd.read_csv(ROOT.parents[1] / "geo" / "counties.csv", dtype=str, keep_default_na=False).geoid)
+LCOL = ["location_id", "entity_id", "sub_entity_id", "role", "name", "address", "geoid", "boundary_set", "lat", "lon", "source_id",
+        "retrieved_at", "brand_name", "geoid_method", "flags"]
+lrows, excluded = [], Counter()
+for fname, d in LOC.items():
+    for x in d.itertuples(index=False):
+        ent = x.brand_qid
+        if not ent:
+            excluded[f"{fname}:no_brand_qid"] += 1
+            continue
+        if not x.store_id:
+            excluded[f"{fname}:no_store_id"] += 1
+            continue
+        lid = f"{fname}:{x.store_id}"
+        if not x.lat and not x.county_geoid:
+            excluded[f"{fname}:no_point_no_geoid"] += 1
+            continue
+        srcs = x.source.split(";")
+        if "coordinates_from_atp" in x.flags:
+            sid = next(s for s in srcs if s.startswith("atp-"))
+        else:
+            sid = srcs[0]
+        addr = ", ".join(t for t in (x.address, x.city, x.state, x.zip) if t)
+        geoid, lfl = x.county_geoid, [f for f in x.flags.split(";") if f]
+        if geoid and geoid not in V2_COUNTIES:
+            lfl.append(f"county_not_in_v2-2024:{geoid}")
+            geoid = ""
+        lrows.append(dict(location_id=lid, entity_id=ent, sub_entity_id=x.sub_brand_qid, role="establishment_at", name=x.name, address=addr,
+                          geoid=geoid, boundary_set="v2-2024" if geoid else "", lat=x.lat, lon=x.lon,
+                          source_id=sid, retrieved_at=SOURCES[sid]["retrieved_at"], brand_name=WD.get(ent[9:], {}).get("label", ""),
+                          geoid_method=("nearest_county_within_2km" if "county_nearest_within_2km" in x.flags else
+                                        "point_in_polygon_cb2024" if geoid else ""),
+                          flags=";".join(lfl)))
+locs = pd.DataFrame(lrows, columns=LCOL)
+dupl = locs.location_id.duplicated(keep=False)
+locs.loc[dupl, "flags"] = locs.loc[dupl, "flags"].map(lambda f: ";".join(filter(None, [f, "duplicate_location_id_review"])))
+p = ROOT / "company_locations.csv"
+locs.to_csv(p, index=False, lineterminator="\n")
+if p.stat().st_size > 5_000_000:
+    locs.to_csv(ROOT / "company_locations.csv.gz", index=False, lineterminator="\n",
+                compression={"method": "gzip", "mtime": 0, "compresslevel": 9})
+    p.unlink()
+summary["company_locations_rows"] = len(locs)
+summary["company_locations_by_entity_top"] = {k: int(v) for k, v in locs.entity_id.value_counts().head(10).items()}
+summary["company_locations_with_geoid"] = int((locs.geoid != "").sum())
+summary["company_locations_excluded"] = dict(excluded)
+summary["company_locations_duplicate_ids"] = int(dupl.sum())
+summary["hq_in_rows"] = 0
+
+# ---------------- retracted_locations.csv ----------------
+# Known permanent closures only. The inputs carry temporary statuses (kept as flags), not closures, so this starts empty.
+pd.DataFrame(columns=["location_id", "retracted_at", "reason", "source_id"]).to_csv(ROOT / "retracted_locations.csv", index=False)
+summary["retracted_locations_rows"] = 0
+pd.DataFrame(SOURCES.values()).to_csv(ROOT / "sources.csv", index=False, lineterminator="\n")
 summary["marriott_brand_name_to_qid_learned_from_atp"] = BRAND_Q
 summary["marriott_brand_name_to_qid_wikidata"] = WD_BRAND
 summary["built"] = today()
-(ROOT / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False) + "\n")
-print(json.dumps(summary, indent=1, ensure_ascii=False))
+(ROOT / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False, default=int) + "\n")
+print(json.dumps(summary, indent=1, ensure_ascii=False, default=int))
