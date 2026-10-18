@@ -115,7 +115,16 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
   ('ca_ped','provincial_district','Provincial / territorial electoral district',null), -- agency code (ON ED_ID, QC CO_CEP, BC 'ABM')
   ('ca_ppoll','precinct','Provincial polling division / voting area / section de vote',null),  -- '<district key>:<poll code>'
   ('ca_cd','county','Census division (Canada)',null),                                  -- StatCan CDUID
-  ('ca_csd','town','Census subdivision (Canada)',null);                                -- StatCan CSDUID
+  ('ca_csd','town','Census subdivision (Canada)',null),                                -- StatCan CSDUID
+  -- Result-only Canadian unit types (data/election 3edd314, data-v3/results/CA/README.md). Only ca_advance_area has a shape:
+  -- the exact union of its member ca_poll PDs (advance_areas_<year>.csv.gz), built in the v3.1 tile build. It overlaps
+  -- the ca_poll layer (same PDs) and is a second layer, never added on top of polls. The others have no polygon and their
+  -- boundary_set is the riding set (votes count in riding/province/national totals only, like unplaced US votes).
+  ('ca_advance_area','precinct','Advance polling district (Canada; union of member PDs)',null), -- '<FED>:6xx'
+  ('ca_advance','precinct','Advance poll with no mapped member area (no polygon)',null),        -- '<FED>:6xx', '<CEP>:BVAn', '<ED>:ADVnnn'
+  ('ca_special','precinct','Special voting rules / mobile / institutional ballots (no polygon)',null), -- '<FED>:S/R n', '<CEP>:<slug>'
+  ('ca_voting_place','precinct','Voting place (BC 2024; no polygon)',null),                     -- '<ED>:<opportunity>:<address id>'
+  ('ca_ppoll_unmapped','precinct','Provincial poll with no polygon (ON 2025, PD licence gap)',null); -- '<ED>:<PollNumber>'
 
 -- A coherent set of polygons of one unit type and vintage, e.g. 'tiger-2024-sldl',
 -- 'v2-2024' (incl. the ONE precinct set: 2016/2020 votes are placed onto the 2024 precinct polygons,
@@ -235,6 +244,15 @@ create table seat_member_unit (
 create index unit_centroid_gist on unit using gist (centroid);
 
 -- ZCTA -> place / town / county shares (v2/data/zcta_xref, Census 2020 relationship files), for ZIP search and lists.
+-- Composite units whose shape is the exact union of other units, e.g. a Canadian advance polling district
+-- (ca_advance_area '<FED>:6xx') = its member ca_poll PDs (data/election 6954ee7, advance_areas_<year>.csv.gz).
+-- unit_geom for the composite is built as ST_Union of the members at load; votes stay on the composite, never split.
+create table unit_member (
+  unit_id        bigint not null references unit(id) on delete cascade,
+  member_unit_id bigint not null references unit(id) on delete cascade,
+  primary key (unit_id, member_unit_id)
+);
+
 create table zcta_unit_share (
   zcta       char(5) not null,
   unit_id    bigint  not null references unit(id),
@@ -425,9 +443,12 @@ create table entity_location (
   flags        text[],                               -- the bot's review flags ('coordinates_from_atp', ...)
   meta         jsonb not null default '{}',          -- phone, sub_brand, status, store_type, country_code, source_url
   retracted    boolean not null default false,       -- set via the retract list; never deleted
+  country_code char(2) check (country_code ~ '^[A-Z]{2}$'),  -- ISO 3166-1 alpha-2 from company_locations (051406b: 102,410 of
+                                                   -- 193,193 rows are outside the US; those keep geoid/boundary_set null)
   check (geom is not null or geoid is not null)
 );
 create index entity_location_entity on entity_location (entity_id) where not retracted;
+create index entity_location_country on entity_location (country_code, entity_id) where not retracted;
 create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
 
@@ -699,6 +720,7 @@ create table person (
                                                       -- ca-mp:<House of Commons PersonId>; ca-<iso>-leg:<agency id>
   bioguide      text unique,
   ocd_person    text unique,
+  wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),  -- attribute, not the key (D24 proposed; data/people 3d26488)
   official_ids  jsonb not null default '{}',          -- other official ids (state roster ids, FEC ...)
   sources       text,                                 -- persons.csv 'sources' (which officeholder files list the person)
   source_record_id text,                              -- id inside the primary source, when given; sources: person_source
