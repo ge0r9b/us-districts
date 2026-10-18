@@ -12,14 +12,16 @@ A person is stored in the shard of their most recent role, with officeholder rol
 
 ## Stable ids (`person_id`)
 Use the first one that exists:
-1. Wikidata QID (`Q22686`)
-2. `bioguide:<id>` (Congress Bioguide)
-3. `ocd-person:<uuid>` (OpenStates)
+Matches the officeholders lane and Seating Charts (decision D24):
+1. `<bioguide id>` (Congress Bioguide)
+2. `ocd-person/<uuid>` (OpenStates)
+3. `<st>-leg-...` (existing Seating Charts state-legislator ids)
 4. `fec:<candidate id>`
-5. `cid:<surname-first slug>` (the Historic Election Data `candidate_id`, reused as-is)
-6. `name:<ST>:<slug>` (last resort)
+5. `cid:<surname-first slug>` (the Historic Election Data `candidate_id`)
+6. `wikidata:Q<id>`
+7. `name:<ST>:<slug>` (last resort)
 
-If a better id turns up later, the old id goes into `other_ids` and stays there, so old keys still resolve.
+The QID always goes in the separate `wikidata` column, and aliases go in `person_alias`. If a better id turns up later, the old id goes into `other_ids` and stays there, so old keys still resolve.
 
 ## people.csv
 | column | meaning |
