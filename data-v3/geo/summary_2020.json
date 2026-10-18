@@ -1,0 +1,20 @@
+{
+ "ushouse": {
+  "code": 372,
+  "code+same": 55,
+  "overlap": 8,
+  "unpaired_2020": 8
+ },
+ "senate": {
+  "code": 1679,
+  "code+same": 215,
+  "overlap": 48,
+  "unpaired_2020": 9
+ },
+ "statehouse": {
+  "code": 4293,
+  "code+same": 418,
+  "overlap": 171,
+  "unpaired_2020": 75
+ }
+}

@@ -1,6 +1,6 @@
 # Alignment answers for the Institutions bot (geo lane)
 
-Oct 18, 2026, branch `data/geo`. Items 2, 3 and 5 first; 1, 4 and 6 follow.
+Oct 18, 2026, branch `data/geo`.
 
 ## 2) Connecticut: planning regions in both years
 
@@ -63,3 +63,53 @@ The orchestrator chose a suffix-aware duplicate check: real TIGER names stay, an
 - Results: `town_gaps_2024.csv` (per state) and `town_gaps_2024_missing.csv` (109 missing entities).
 - By name almost nothing is missing: KS 30 numbered townships, ME 28 plantations, MO 12, OK 9, TX 6, NE 5, NC 5, OR 4; the rest 0–2.
 - By area the gap is the hidden different-name rows: Iowa 10.2 % of its town land, Maine 7.0 %, Kansas 3.9 %, Nebraska 2.5 %, Kentucky 3.8 %; everywhere else under 0.5 %.
+
+## 1) A has-own-government column for counties
+
+**Proposal: Institutions owns `has_own_government` in `data-v3/inst/`, keyed by our county GEOID (the `geoid` of `counties.csv`). Geo adds only the TIGER attribute, as a side file.**
+
+- **Why not simply add it to `counties.csv`:** it isn't a geographic fact and TIGER doesn't settle it.
+  - TIGER 2024 county FUNCSTAT gives **3,032 "A" (active government)** out of 3,144 county equivalents. The Census of Governments 2022 gives **3,031** county governments. Close, but not the same list.
+  - The Census of Governments counts some consolidated city-counties (e.g. TIGER "C": San Francisco, Denver, Philadelphia, Nashville, Anchorage, the 5 NYC boroughs) as municipal governments, not county governments.
+  - Some "A" counties have only a vestigial government.
+  - Which government row an attribute or officeholder belongs to is an institutions question.
+- **Geo provides `data-v3/geo/county_funcstat.csv`:** geoid, tiger_name, tiger_funcstat, meaning, in_counties_csv, with all 3,144 matching `counties.csv`. Institutions can use it as a cross-check and starting point.
+- TIGER 2024 FUNCSTAT counts (50 states + DC):
+
+| FUNCSTAT | Count | Where |
+|---|---|---|
+| A | 3,032 | Active county government |
+| F | 42 | Virginia's 38 independent cities, Baltimore city, St. Louis city, Carson City, DC |
+| C | 33 | Consolidated city-counties: GA 8, NY 5 (NYC boroughs), AK 4, TN 3, CO 2, KS 2, MT 2, KY 2, PA, CA, FL, IN, LA |
+| N | 23 | No county government: CT's 9 planning regions, 9 Massachusetts counties, Rhode Island's 5 counties |
+| S | 11 | Alaska census areas (unorganized borough) |
+| B | 2 | Lafayette and East Baton Rouge parishes (partly consolidated) |
+| G | 1 | Kalawao County, HI |
+
+## 4) Town counts above TIGER (KS +50, NE +14, NH +7, VT +5) and below it (ME −33)
+
+**No duplicates and no merged places. Each difference comes from the audit's TIGER count, which left out county subdivisions with FUNCSTAT I (inactive), N (nonfunctioning) and S (statistical), while v1 shows the real units.**
+
+The side table is `data-v3/geo/v1_towns.csv`, made by `tools/v1_towns.py`. It has columns layer, state, county, row, v1_name, geoid, tiger_name, tiger_kind, funcstat, classfp, match, overlap:
+- Every root `data/` **towns** row (20,935) has a TIGER 2024 GEOID: 20,933 matched by name in their county and 2 by name plus overlap (Ohio, Union County: the two "Washington township" rows, 3915981662 and 3915981242).
+- Every **places** row (19,477) has a TIGER 2024 place GEOID: 22 told apart by overlap (the Q-G8 duplicate names).
+- No GEOID is used twice in either layer.
+
+By state:
+- **Kansas, 1,441 rows:** 1,232 A, 128 F (cities as county subdivisions) and **81 I** (inactive townships, real TIGER units). Against the 1,391 counted that is +81, minus **30 missing**: numbered townships ("Township 1"–"Township 6") of Harper, Morris and others. The Step 2 town files fill them.
+- **Nebraska, 410:** 315 A, 74 F and **21 I**, minus **5 missing** (Washington County Townships 1, 2, 5, 6, 7); the town files fill them.
+- **New Hampshire, 241:** 221 A, 13 F, **6 N** (unincorporated Coos County townships: Success, Dixville, Kilkenny, Millsfield, Odell, …) and **1 I** (Livermore).
+- **Vermont, 252:** 237 A, 10 F and **5 I** (Glastenbury, Somerset, Ferdinand, Averill, Lewis).
+- **Maine, 453 against 486** (TIGER 459 A + 27 F): **28 plantations are missing** (e.g. Cyr, Garfield, Glenwood, Macwahoc, Moro, Nashville, Reed, St. John plantation in Aroostook), plus F units not in v1. Maine's 42 S units (unorganized territories) are rightly not counted. The town files fill the plantations.
+
+## 6) 2020-vintage GEOID tables
+
+Built by `tools/v3_geoids_2020.py` from TIGER 2020: `tl_2020_us_cd116`, and `tl_2020_SS_sldu` / `_sldl` (the 2018 plans). The format is documented in README.md ("2020-vintage GEOID tables"). Each v2 row is paired with the 2020-plan district of the same code, with the overlap in both directions.
+
+| File | v2 rows | code+same | code | overlap (no same code) | Unpaired 2020 districts |
+|---|---|---|---|---|---|
+| `ushouse_2020.csv` | 435 | 55 | 372 | 8 | 8 (incl. DC delegate from `dc.js`) |
+| `senate_2020.csv` | 1,942 | 215 | 1,679 | 48 | 9 (DC 8 wards from `dc.js`, MA 1) |
+| `statehouse_2020.csv` | 4,882 | 418 | 4,293 | 171 | 75 (MA 59, VT 10, NH 4, MD 2: renumbered or merged plans) |
+
+Most rows are `code`: the district keeps its number but its boundary changed in the 2021–22 redistricting. Only `code+same` rows (each ≥ 90 % inside the other) are the same ground. Nebraska's state house rows pair with its 2020 SLDU districts.
