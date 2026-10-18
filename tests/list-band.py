@@ -24,7 +24,7 @@ async def main():
     for on in (False,True):
       await timeRow(on); m=await pg.evaluate(M); tag='time row '+('open' if on else 'closed')
       gap=m['row']['t']-m['sort']['b']
-      ck(4.5<=gap<=8.5,f"All States, {tag}: first row ~6px under the sort glyph (half the old 13-15px band)",[gap,m])
+      ck(m['row']['t']<m['sort']['b']-4 and m['row']['t']>=m['sort']['c']-2,f"All States, {tag}: first row slides halfway under the sort chip (build 1575, user spec)",[gap,m])
       ck(m['backBtn'] is None,f"All States, {tag}: no back chevron",m['backBtn'])
       ref=m['chart'] if on else m['time']
       ck(m['th'] and abs(m['th']['c']-ref['c'])<=1,f"All States, {tag}: first thumbnail centred on the {'chart' if on else 'clock'} button's centre (mirrored)",[m['th'],ref])
@@ -38,7 +38,7 @@ async def main():
       await timeRow(on); m=await pg.evaluate(M); tag='time row '+('open' if on else 'closed')
       ck(m['back'] is not None,f"PA, {tag}: back chevron shown",m)
       ref=m['chart'] if on else m['time']; ck(m['th'] and abs(m['th']['t']-round(ref['c']+14.5))<=1.5,f"PA, {tag}: thumbnails keep their pre-1553 place (top = {'chart' if on else 'clock'} centre + 14.5)",[m['th'],ref])
-      ck(m['th']['t']>m['back']['b'] and m['row']['t']>m['sort']['b']+3 and m['row']['t']>m['back']['b']+3,f"PA, {tag}: nothing overlaps (chevron, sort glyph, first row, thumbnails)",m)
+      ck(m['th']['t']>m['back']['b'] and m['row']['t']>=m['sort']['c']-2,f"PA, {tag}: thumbnails clear of the chevron; first row under the chip's lower half only (build 1575)",m)
     await timeRow(False)
     m=await pg.evaluate(M); ck(m['crumb']=='Pennsylvania' and m['noun']=='counties',"PA: 'Pennsylvania' + gray 'counties'",m)
     bub=await pg.evaluate("()=>{const b=document.querySelector('.bub'); const s=getComputedStyle(b); return [s.backgroundColor,s.color,s.borderTopWidth,s.boxShadow!=='none',s.fontWeight]}")

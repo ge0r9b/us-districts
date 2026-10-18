@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181574";</script>
+<script>window.BUILD="202610181575";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -3822,7 +3822,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   // 'List all states': field reads 'All States' (flag kept); list starts right under the toolbar strip; party names appear in a press bubble
   { const _cr=crumbs; const lab=()=>{ try{ const on=LA.on&&LA.lv&&LA.lv.id==="states"; const c=document.querySelector("#crumbs .crumb.cur"); if(!c) return; if(on){ if(c.textContent!=="All States"){ c.textContent="All States"; c.title="All States"; c.setAttribute("aria-label","All States"); } } }catch(e){} };
     crumbs=function(){ const r=_cr.apply(this,arguments); lab(); return r; }; setInterval(lab,250); window.__laLab=lab; window.__layoutSide=()=>layoutSide(); setInterval(()=>{ if(LA.on) layoutSide(); },200);
-    const _ls=layoutSide; layoutSide=function(){ const lv0=document.getElementById("listView"), st0=lv0?lv0.scrollTop:0; _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); const g0=(parseFloat(getComputedStyle($("barGeo")).gap)||8); sSet(lv,"top",(top-g0)+"px"); sSet(lv,"paddingTop",(g0+23)+"px"); /* build 1553: first row raised by half the empty band under the back chevron / sort glyph row (13px band -> 6px) */ /* list scrolls up under the floating back chevron and sort glyph (no band); first row starts where it did */ sSet(lv,"left",((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"); } }catch(e){}
+    const _ls=layoutSide; layoutSide=function(){ const lv0=document.getElementById("listView"), st0=lv0?lv0.scrollTop:0; _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); const g0=(parseFloat(getComputedStyle($("barGeo")).gap)||8); sSet(lv,"top",(top-g0)+"px"); { /* build 1575 (user, live 1574): the rows start half of the old blank band higher (31px -> 16px), so the first row slides halfway under the clear glass sort chip */ sSet(lv,"paddingTop",Math.round((g0+23)/2)+"px"); } /* build 1553: first row raised by half the empty band under the back chevron / sort glyph row (13px band -> 6px) */ /* list scrolls up under the floating back chevron and sort glyph (no band); first row starts where it did */ sSet(lv,"left",((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"); } }catch(e){}
       /* build 1563: the layout pass moves/re-pads the list in steps (top 114 -> 8, padding 0, then back); the intermediate box is taller, so the browser
          clamped a bottom scroll position (Philadelphia at the end bounced 137px up). The final box is the same, so put the user's position back. */
       try{ if(lv0&&Math.abs(lv0.scrollTop-st0)>1) lv0.scrollTop=st0; }catch(e){} };
@@ -4001,7 +4001,7 @@ html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed)
   border: 1px solid rgba(0,0,0,.85); background-clip: padding-box;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(0,0,0,.12);
 }
-#laSort::before { background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.07) 100%); } /* half the 1564 fill: lighter glass */
+#laSort::before { background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.03) 100%); -webkit-backdrop-filter: blur(3px) saturate(140%) brightness(1.04); backdrop-filter: blur(3px) saturate(140%) brightness(1.04); } /* build 1575: clearer glass (fill .11/.07 -> .05/.03, lighter blur) so the first row reads through it; crisp 1px outline kept */
 #laSort svg { stroke: #111 !important; opacity: 1 !important; } /* arrows stay fully dark, same size and weight */
 
 /* build 1567: drill-in skeleton / cached rows */

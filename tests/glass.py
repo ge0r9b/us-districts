@@ -53,7 +53,7 @@ async def main():
       bars=min(xs); ck(f"All States {nm}: bars clear of the badges",all(x['r']<bars for x in bd),[bars,bd])
     await pg.evaluate("()=>window.__setNum('pct')"); await pg.wait_for_timeout(1200)
     chip=await pg.evaluate("()=>['laSort','bBack'].map(id=>{const e=document.getElementById(id); if(!e) return null; const c=getComputedStyle(e,'::before'); return [id,c.backgroundImage,c.backdropFilter||c.webkitBackdropFilter,c.boxShadow]}).filter(Boolean)")
-    ck("sort chip (and back chevron if shown): whiter, more transparent glass .22->.14 + brightness(1.12), no dark bottom inner shadow",chip and all((('255, 255, 255, 0.11' in x[1] and '255, 255, 255, 0.07' in x[1]) if x[0]=='laSort' else ('255, 255, 255, 0.22' in x[1] and '255, 255, 255, 0.14' in x[1])) and 'brightness(1.12)' in x[2] and 'rgba(0, 0, 0, 0.07) 0px -1px' not in x[3] for x in chip),chip)
+    ck("sort chip (and back chevron if shown): whiter, more transparent glass .22->.14 + brightness(1.12), no dark bottom inner shadow",chip and all((('255, 255, 255, 0.05' in x[1] and '255, 255, 255, 0.03' in x[1] and 'brightness(1.04)' in x[2]) if x[0]=='laSort' else ('255, 255, 255, 0.22' in x[1] and '255, 255, 255, 0.14' in x[1] and 'brightness(1.12)' in x[2])) and 'rgba(0, 0, 0, 0.07) 0px -1px' not in x[3] for x in chip),chip)
     # build 1564: selected = near-black in the right column and in the menus that open from it (time row, chart options)
     if await pg.evaluate("()=>document.getElementById('barTime').hidden"): await pg.evaluate("()=>document.getElementById('bTime').click()"); await pg.wait_for_timeout(1000)
     await pg.evaluate("()=>{const m=document.querySelector('button.rbtn.cmain'); if(m) m.click()}"); await pg.wait_for_timeout(900)
