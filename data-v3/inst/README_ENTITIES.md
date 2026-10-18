@@ -1,7 +1,7 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
 Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`,
-`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`.
+`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
 Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
 family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
@@ -38,6 +38,9 @@ Status and QIDs come only from Wikidata (current statements: rank not deprecated
 - `territory:<iso2>` (kind `territory`, `type` dependency): not a sovereign state; sovereign = its current P17 sovereign state,
   else P361, else the ISO 3166-2 parent code of its P300 (`NL-AW`). Parent = that sovereign's `nation:<iso2>`. No sovereign
   found → the row is **not written** (SCHEMA needs a nation parent) and is logged (`world_entity_excluded_no_sovereign`: Isle of Man).
+- `nation:il` (Israel, Q801) is **added from Wikidata** (P297 IL; current sovereign state and UN member) because the Natural Earth
+  list lacks it; flag `added_from_wikidata:not_in_natural_earth_list`, cites only the Wikidata source. Kosovo, Palestine, Western
+  Sahara and the Faroe Islands are not in the list and are **not added**: `entity_gaps.csv` `not_in_source_list` rows, for the user to decide.
 - US ISO codes (pr, gu, vi, as, mp) are never nations or `territory:<iso2>`; they stay `territory:<FIPS>` under `nation:us`
   (none are in the Natural Earth list).
 - Canada: `province:ca-<code>` (kind `province`, 10) and `territory:ca-nt|nu|yt` (kind `territory`), parent `nation:ca`, QID by
@@ -45,17 +48,27 @@ Status and QIDs come only from Wikidata (current statements: rank not deprecated
 - `name` = the Natural Earth name; the Wikidata label goes to `alias` when it differs (`Québec` / `Quebec`). `feed` = `inst-lane`.
 
 ## Governments bot feed (tools/inst_govfeed.py)
-`entity_feed_map.csv` maps **every** Governments id (`state:`, `territory:`, `cog:`, `gcn:`, `fr:`, `bia:`, ...) to its registry
+`entity_feed_map.csv` (`feed, feed_id, entity_id` (empty when not mapped), `status` = mapped / feed_only / unmapped, `note`
+(`match=<rule>`, `type=<bot type>`, `consolidated`, `conflict(...)`), `source_id`) maps **every** Governments id (`state:`, `territory:`, `cog:`, `gcn:`, `fr:`, `bia:`, ...) to its registry
 entity, in this order: same state/territory FIPS id (the bot's older `state:60/66/69/72/78` → `territory:<FIPS>`, logged);
 school `nces_leaid` → `school:<leaid>`; GEOID (layer + geoid, TIGER 2024) → the entity holding it; CoG `cog_id` → the entity
 carrying that `cog_pid6`. GEOID and CoG must agree, else a `govbot_mapping_conflict` gap and no link. Nothing is renamed on either
 side; a bot id equal to a registry id that maps elsewhere would be a `govbot_frozen_id_conflict` gap (none). Unmapped ids
 (special districts, federal agencies, tribes) are `feed_only:*`; the v3 loader makes them `government_other`.
-Carried onto mapped entities: `wikidata` (only when every bot row of the entity agrees; registry value wins on a conflict),
+Consolidated city-counties kept as two entities (CoG code not a TIGER place: Athens-Clarke, Greeley, Louisville-Jefferson,
+Butte-Silver Bow, Nashville-Davidson): the CoG id maps to the **county** entity (`status` mapped, `note` consolidated), the place
+GEOID stays on the city entity, and `entity_relations.csv` (`entity_id, relation, related_entity_id, source_id`) has one
+`consolidated_with` row per pair (both directions implied), cited to CoG 2022 + the Governments bot (its GEOID for the CoG unit)
++ county_government.csv. The other 72 consolidated / independent-city county GEOIDs are folded into ONE entity (xwalk relation
+`consolidated_city_county` / `independent_city_county_equivalent`), so no relation row is needed; Honolulu (15003) has no
+Governments-bot GEOID for CoG 183701, so no second entity and no relation (gap kept).
+Carried onto mapped entities: `wikidata` as `wikidata:Q…` (nullable, unique: a QID on several entities is left empty on all of
+them and logged as `wikidata_qid_duplicate`; only when every bot row of the entity agrees; registry value wins on a conflict),
 ceased units (`valid_to` + flag `is_active_false:governments_bot_<ids>`, only when all of the entity's bot rows ceased),
 new units (`valid_from` + flag `not_in_cog2022`). `entity_images.csv`: seals and flags (institution-only attributes, never
-used by the geo filter): `commons_file`, `commons_url`, `license`, `fair_use` (yes = license `fair-use`, filter these out where
-fair use does not apply), `usage_basis`, `attribution`, `source_url`, `wikidata_qid`. The bot's `sources.csv` rows are added to
+used by the geo filter): `entity_id, role` (seal / flag / logo), `file` (Commons file name), `license`, `fair_use` (yes exactly when
+the license is `fair-use`; such rows must carry `usage_basis`, checked), `usage_basis`, `source_url`, `attribution`, then extras
+`feed_id, commons_url, wikidata_qid, retrieved_at, source_id`. `LicenseRef-Copyright` rows are fair_use = no but not free either. The bot's `sources.csv` rows are added to
 ours as a union on the bot's own ids (`cog2022`, `wikidata_images`, ...); a collision with one of ours would stop the build.
 
 ## SCHEMA b66f889 alignment
@@ -183,15 +196,29 @@ entities.csv like this:
 `world_entity_excluded_no_sovereign`, `wikidata_qid_missing`, `wikidata_status_ambiguous`, `territory_sovereign_several_candidates`;
 Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
 `govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
-`wikidata_qid_conflict`, `image_entity_unmapped`.
+`wikidata_qid_conflict`, `wikidata_qid_duplicate`, `image_entity_unmapped`, `image_fair_use_inconsistent`;
+source list: `not_in_source_list`.
 `feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
-Counts in the current build: `tiger_funcstat` 3,072; `tiger_funcstat_G` 1,603 (= `not_in_cog2022` 1,603); `spans_counties` 899;
-`gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 377; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
+Counts in the current build (54,360 entities: nation 195, state 51, territory 17, province 10, chamber 100, dc_council 1,
+county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary 1,952, school_secondary 481;
+653 gap rows; 93,278 feed-map rows; 2,024 images; 5 relations; wikidata on 38,840 entities). `flags` tokens, grouped by
+the text before the first `:` (the detail after it varies per row): `tiger_funcstat:A` 3,031; `not_in_cog2022` 1,619;
+`tiger_funcstat_G` 1,603; `spans_counties` 899; `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375;
+`outside_v2_scope:no_unit_no_boundary_set` 216; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
 `gov_status_na:legislative_chamber` 100; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
 `gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
-`coextensive_separate_government` 26; `tiger_funcstat_N` 20; CT flags 8 each; `gov_status_unknown:consolidated_…` 6;
-`outside_v2_scope` 5; `gov_status_unknown:not_in_cog2022_scope` 5; `consolidated_government_covers_county` 4; one each of
-`gov_status_na:legislative_body_of_state:11`, `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`,
-`tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`.
+`coextensive_separate_government` 26; `is_active_false` 24; `tiger_funcstat:N` 23; `gov_status_unknown:outside_cog2022_scope` 22;
+`tiger_funcstat_N` 20; `not_un_member(wikidata_P463)` 11; `tiger_funcstat:S` 11; `not_sovereign_state(wikidata_P31)` 9;
+`sovereign_via_wikidata_P17` 9; CT flags 8 each; `gov_status_unknown:consolidated_government_not_linked_to_tiger_code` 6;
+`tiger_funcstat:C` 6; `outside_v2_scope:territory_with_house_delegate` 5; `gov_status_unknown:not_in_cog2022_scope` 5;
+`consolidated_government_covers_county` 4; one each of `added_from_wikidata`, `wikidata_p297_item_is_home_part`,
+`gov_status_na:legislative_body_of_state`, `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `tiger_funcstat:G`,
+`tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `multiple_cog_units`.
+Gap rows by `gap`: `gov_status_unknown` 438; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
+`officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `govbot_new_unit_not_in_registry` 12; `image_entity_unmapped` 6;
+`not_in_source_list` 4; `nation_not_un_member` 2; `same_code_place_cousub_overlap_unmeasured` 2; one each of
+`consolidated_county_cog_code_not_in_tiger` (Honolulu), `govbot_ceased_partial`, `territory_sovereign_unknown`,
+`wikidata_p297_several_items`, `wikidata_qid_via_home_part_rule`, `world_entity_excluded_no_sovereign`; none of
+`wikidata_qid_duplicate`, `image_fair_use_inconsistent`, `govbot_mapping_conflict`.

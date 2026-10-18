@@ -24,6 +24,11 @@ def ca_kind(code): return 'territory' if code in CA_TERRITORIES else 'province'
 # US: ISO alpha-2 codes that are US territories stay territory:<FIPS> under nation:us (never nations, never territory:<iso2>)
 US_ISO_TERRITORIES = {'pr': '72', 'gu': '66', 'vi': '78', 'as': '60', 'mp': '69'}
 SOV, UN = 'Q3624078', 'Q1065'
+# Added from Wikidata because the Natural Earth list lacks them (user decision, Oct 18, 2026): UN members only.
+EXTRA_NATIONS = {'il': 'UN member state missing from Natural Earth countries.js; added from Wikidata (P297 IL)'}
+# Not added (user decides): recorded in entity_gaps.csv as not_in_source_list.
+NOT_IN_LIST = [(n, 'absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here')
+               for n in ('Kosovo', 'Palestine', 'Western Sahara', 'Faroe Islands')]
 
 def git(repo, *a): return subprocess.run(['git', '-C', repo] + list(a), capture_output=True, check=True).stdout
 def jsarr(text):
@@ -79,7 +84,7 @@ def fetch(repo, rawdir):
     import urllib.request, urllib.parse, time
     os.makedirs(rawdir, exist_ok=True)
     ne = ne_inputs(repo)
-    codes = sorted({r[0].upper() for r in ne[COUNTRIES]['rows']}); cac = sorted(r[1] for r in ne[CANADA]['rows'])
+    codes = sorted({r[0].upper() for r in ne[COUNTRIES]['rows']} | {c.upper() for c in EXTRA_NATIONS}); cac = sorted(r[1] for r in ne[CANADA]['rows'])
     def run(name, q):
         open(os.path.join(rawdir, name + '.rq'), 'w').write(q)
         req = urllib.request.Request(EP + '?' + urllib.parse.urlencode({'query': q}), headers={'Accept': 'application/sparql-results+json', 'User-Agent': UA})
@@ -112,7 +117,8 @@ def build(repo, rawdir):
     def gap(g, key, detail): gaps.append({'gap': g, 'key': key, 'detail': detail})
     # 1. resolve one item per ISO alpha-2 code
     chosen = {}
-    for iso, name, *_ in ne[COUNTRIES]['rows']:
+    LIST = [list(r[:2]) + ['ne'] for r in ne[COUNTRIES]['rows']] + [[c, '', 'wikidata'] for c in sorted(EXTRA_NATIONS)]
+    for iso, name, _o in LIST:
         c = iso.upper(); items = sorted(set(by_code.get(c, [])), key=lambda q: int(q[1:]))
         if len(items) > 1:
             s_ = [q for q in items if sov(q)]
@@ -141,8 +147,14 @@ def build(repo, rawdir):
             cands = sorted({q2 for c in pre for q2 in by_code.get(c, []) if sov(q2)} | {home_q for c in pre for i_, home_q in home.items() if i_.upper() == c}); via = 'P300'
         return cands, via
     us_qid = ''
-    for iso, name, *_ in ne[COUNTRIES]['rows']:
+    for iso, name, origin in LIST:
         items = chosen[iso]; key = f'nation:{iso}'
+        if origin == 'wikidata':
+            q_ = items[0] if len(items) == 1 else ''
+            assert q_ and sov(q_) and un(q_), ('extra nation must be a current sovereign UN member in Wikidata', iso, items)
+            rows.append({'iso2': iso, 'ne_name': label.get(q_, ''), 'flags': ['added_from_wikidata:not_in_natural_earth_list'], 'wikidata': q_,
+                         'wd_label': label.get(q_, ''), 'parent_id': '', 'entity_id': key, 'kind': 'nation', 'origin': 'wikidata', 'note': EXTRA_NATIONS[iso]})
+            continue
         if iso == 'us':
             if len(items) == 1: us_qid = items[0]
             continue
@@ -209,6 +221,7 @@ def build(repo, rawdir):
     ne_not_un = [x for x in ne_not_un if not any(rr['entity_id'] in ('nation:' + x[0], 'territory:' + x[0]) and rr['wikidata'] and un(rr['wikidata']) for rr in rows)]
     compare = {'un_members_wikidata': len(un_lab), 'un_members_not_in_natural_earth_list': [f'{a} ({b}, iso2 {c or "none"})' for a, b, c in missing],
                'natural_earth_rows_not_un_members': [f'{a} {b} -> {c}' for a, b, c in ne_not_un]}
+    for nm, why in NOT_IN_LIST: gap('not_in_source_list', nm, why + '; not added (user to decide)')
     files = {}
     for f in sorted(os.listdir(rawdir)):
         if f.endswith(('.rq', '.json')): files[f] = hashlib.sha256(open(os.path.join(rawdir, f), 'rb').read()).hexdigest()

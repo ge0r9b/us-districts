@@ -1,12 +1,7 @@
 gap,key,detail,source_id
 same_code_place_cousub_overlap_unmeasured,3905721000,place 3921000; share_in_place=0.000 place_in_cousub=0.000; cousub aland=1192; merged on FIPS code,census-tiger2024-cousub-place-497997db
 same_code_place_cousub_overlap_unmeasured,5509751875,place 5551875; share_in_place=0.000 place_in_cousub=0.000; cousub aland=4037; merged on FIPS code,census-tiger2024-cousub-place-497997db
-consolidated_county_cog_code_not_in_tiger,13059,Clarke County: CoG 161834 UNIFIED GOVERNMENT OF ATHENS-CLARKE COUNTY FIPS_PLACE 03436 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
 consolidated_county_cog_code_not_in_tiger,15003,Honolulu County: CoG 183701 CITY AND COUNTY OF HONOLULU FIPS_PLACE 17000 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
-consolidated_county_cog_code_not_in_tiger,20071,Greeley County: CoG 164742 UNIFIED GOVERNMENT OF GREELEY COUNTY FIPS_PLACE 28410 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
-consolidated_county_cog_code_not_in_tiger,21111,Jefferson County: CoG 165866 METRO GOVERNMENT OF LOUISVILLE-JEFFERSON COUNTY FIPS_PLACE 48003 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
-consolidated_county_cog_code_not_in_tiger,30093,Silver Bow County: CoG 108124 CITY AND COUNTY OF BUTTE-SILVER BOW FIPS_PLACE 11390 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
-consolidated_county_cog_code_not_in_tiger,47037,Davidson County: CoG 175728 METROPOLITAN GOVERNMENT OF NASHVILLE-DAVIDSON COUNTY FIPS_PLACE 52004 matches no TIGER 2024 place/cousub code; county kept as its own entity,census-cog2022-0fba3401;census-tiger2024-cousub-place-497997db
 excluded_not_defined,unsd:0499997,School District Not Defined,census-gaz2024-unsd-986709dd
 excluded_not_defined,unsd:0699997,School District Not Defined,census-gaz2024-unsd-986709dd
 excluded_not_defined,unsd:0999997,School District Not Defined,census-gaz2024-unsd-986709dd
@@ -436,12 +431,11 @@ wikidata_qid_via_home_part_rule,nation:dk,"Denmark: P297 DK is on Q35 (Denmark, 
 territory_sovereign_unknown,territory:im,Isle of Man (Q9676): not a current sovereign state; Wikidata P17/P361/P300 give no sovereign; parent left empty,wikidata-sparql-c3447bcc
 nation_not_un_member,nation:tw,"Taiwan (Q865): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
 nation_not_un_member,nation:va,"Vatican City (Q237): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
+not_in_source_list,Kosovo,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
+not_in_source_list,Palestine,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
+not_in_source_list,Western Sahara,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
+not_in_source_list,Faroe Islands,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
 world_entity_excluded_no_sovereign,territory:im,Isle of Man (Q9676): not written to entities.csv until Wikidata/ISO names its sovereign,wikidata-sparql-c3447bcc
-govbot_mapping_conflict,cog:161834,geoid -> muni:place:1303440; cog_id 161834 -> county:13059; left unmapped,repo-governments-e4797d09
-govbot_mapping_conflict,cog:164742,geoid -> muni:place:2028412; cog_id 164742 -> county:20071; left unmapped,repo-governments-e4797d09
-govbot_mapping_conflict,cog:165866,geoid -> muni:place:2148006; cog_id 165866 -> county:21111; left unmapped,repo-governments-e4797d09
-govbot_mapping_conflict,cog:108124,geoid -> muni:place:3011397; cog_id 108124 -> county:30093; left unmapped,repo-governments-e4797d09
-govbot_mapping_conflict,cog:175728,geoid -> muni:place:4752006; cog_id 175728 -> county:47037; left unmapped,repo-governments-e4797d09
 govbot_ceased_partial,school:4503916,"ceased cog:112946 of nces_leaid:4503916,cog:112946; entity kept active",repo-governments-e4797d09
 govbot_new_unit_not_in_registry,gcn:0139832,Kilpatrick town (AL); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
 govbot_new_unit_not_in_registry,gcn:0160264,Pine Level town (AL); valid_from 2025-08-12; geoid none,repo-governments-e4797d09

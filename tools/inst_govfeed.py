@@ -28,7 +28,9 @@ def load(R, sha):
     return {'rows': rows, 'registry': _csv(R, sha, 'id_registry.csv'), 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
             'images': _csv(R, sha, 'images.csv'), 'images_gaps': _csv(R, sha, 'images_gaps.csv'), 'sources': _csv(R, sha, 'sources.csv')}
 
-def integrate(G, ents, gidx):
+def integrate(G, ents, gidx, consolidated=None):
+    consolidated = consolidated or {}   # cog_pid6 -> county entity kept separate from its consolidated city (CoG code not a TIGER place)
+    rels = []
     """ents: {entity_id: row dict (mutable)}; gidx: {(layer, geoid, '2024'): entity_id}. Returns (feed_map, images, gaps, stats)."""
     by_pid = C.defaultdict(set)
     for eid, e in ents.items():
@@ -51,7 +53,11 @@ def integrate(G, ents, gidx):
             elif r.get('geoid') and LAYER.get(r.get('geoid_layer')):
                 g_t = gidx.get((LAYER[r['geoid_layer']], r['geoid'], '2024'), ''); how_g = 'geoid'
             c_t = sorted(by_pid.get(r.get('cog_id') or '', ()))
-            if g_t and c_t and g_t not in c_t:
+            if g_t and c_t and g_t not in c_t and consolidated.get(r.get('cog_id')) == c_t[0] and len(c_t) == 1:
+                # consolidated city-county kept as two entities: CoG id -> the county entity; the place GEOID stays on the city
+                tgt, how, note = c_t[0], 'cog_pid6', 'consolidated'
+                rels.append({'entity_id': c_t[0], 'relation': 'consolidated_with', 'related_entity_id': g_t, 'feed_id': fid})
+            elif g_t and c_t and g_t not in c_t:
                 gaps.append({'gap': 'govbot_mapping_conflict', 'key': fid, 'detail': f"{how_g} -> {g_t}; cog_id {r['cog_id']} -> {';'.join(c_t)}; left unmapped"}); note = 'conflict(see entity_gaps)'
             elif g_t: tgt, how = g_t, how_g + ('+cog_pid6' if c_t else '')
             elif len(c_t) == 1: tgt, how = c_t[0], 'cog_pid6'
@@ -62,8 +68,9 @@ def integrate(G, ents, gidx):
             note = {'special_district': 'feed_only:special_district', 'federal_agency': 'feed_only:federal_agency',
                     'tribe': 'feed_only:tribe'}.get(r['type'], 'no_geoid_or_cog_link')
         st[('mapped' if tgt else 'unmapped') + '|' + r['type']] += 1
-        fmap.append({'feed': 'governments-bot', 'feed_entity_id': fid, 'feed_type': r['type'], 'entity_id': tgt, 'match': how, 'note': note,
-                     '_r': r})
+        status = 'mapped' if tgt else ('feed_only' if note.startswith('feed_only') else 'unmapped')
+        fmap.append({'feed': 'governments-bot', 'feed_id': fid, 'feed_entity_id': fid, 'feed_type': r['type'], 'entity_id': tgt, 'status': status,
+                     'note': ';'.join(x for x in [note, f'match={how}' if how else '', f"type={r['type']}"] if x), '_r': r})
     # registry ids that the feed files don't carry
     reg_ids = {x['entity_id'] for x in G['registry']}
     for x in sorted(reg_ids - seen): gaps.append({'gap': 'govbot_registry_id_not_in_files', 'key': x, 'detail': 'id_registry.csv only'})
@@ -110,8 +117,12 @@ def integrate(G, ents, gidx):
         if not tgt:
             gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file']}); st['images_unmapped'] += 1
         sid = ['wikidata_images', 'enwiki_api' if 'wikipedia.org' in (x.get('source_url') or '') else 'commons_api']
-        imgs.append({'entity_id': tgt, 'feed_entity_id': fid, 'image_kind': x['image_kind'], 'commons_file': x['commons_file'], 'commons_url': x['commons_url'],
+        assert x['image_kind'] in ('seal', 'flag', 'logo'), x['image_kind']
+        fu = x['license'] == 'fair-use'
+        if fu != bool(x['usage_basis']): gaps.append({'gap': 'image_fair_use_inconsistent', 'key': fid, 'detail': f"license {x['license']}; usage_basis {'set' if x['usage_basis'] else 'empty'}"})
+        imgs.append({'entity_id': tgt, 'feed_id': fid, 'feed_entity_id': fid, 'role': x['image_kind'], 'file': x['commons_file'], 'image_kind': x['image_kind'], 'commons_file': x['commons_file'], 'commons_url': x['commons_url'],
                      'license': x['license'], 'usage_basis': x['usage_basis'], 'attribution': x['attribution'], 'source_url': x['source_url'],
                      'wikidata_qid': x['wikidata_qid'], 'retrieved_at': x['retrieved_at'], 'fair_use': 'yes' if x['license'] == 'fair-use' else 'no', '_sid': sid})
     st['images'] = len(imgs); st['images_fair_use'] = sum(1 for i in imgs if i['fair_use'] == 'yes')
-    return fmap, imgs, gaps, st
+    st['consolidated_relations'] = len(rels)
+    return fmap, imgs, gaps, st, rels

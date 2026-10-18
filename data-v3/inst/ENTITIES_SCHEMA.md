@@ -29,7 +29,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 18 | `feed` | `tiger/cog` | provenance: which list the row came from: `tiger/cog` (this build), `inst-lane` (nation, chambers, DC Council), later `governments-bot`, `companies-bot`, `user-upload` |
 | 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local; world rows national/subnational), finer type (TIGER LSAD text; sovereign_state / dependency / province / territory), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 | 23 | `source_record_id` | `01001`, `Q228` | SCHEMA `entity.source_record_id`: the id inside the row's first cited source (GEOID / FIPS for Census rows, QID for Wikidata rows) |
-| 24 | `wikidata` | `Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
+| 24 | `wikidata` | `wikidata:Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -72,7 +72,7 @@ Full Stack ruled on all 10 earlier differences (b66f889); status here:
 Open with SCHEMA 365c8a1: `entities.csv` extras `source_record_id` / `wikidata` (col 23–24; `wikidata` → `entity_alias`
 external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SCHEMA has `entity_merge` / `entity_alias`
 kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
-text column) need a loader mapping from Full Stack. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
+text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
 
 # Original proposal (kept for history; superseded where it differs from the column list above)
 

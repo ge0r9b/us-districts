@@ -770,7 +770,7 @@ for w in WORLD['rows']:
     e['alias'] = esc(w['wd_label']) if w['wd_label'] and w['wd_label'] != w['ne_name'] else ''
     fl = list(w['flags']) + ([] if w['kind'] == 'nation' else ['gov_status_unknown:outside_cog2022_scope']) + ['outside_v2_scope:no_unit_no_boundary_set']
     e['flags'] = ';'.join(f_.replace(';', ',') for f_ in fl); e['_flags'] = fl
-    e['_src'] = ([S_WD] if w['wikidata'] else []) + [S_NE_CA if w['entity_id'].startswith(('province:ca-', 'territory:ca-')) else S_NE_C]
+    e['_src'] = ([S_WD] if w['wikidata'] else []) + ([] if w.get('origin') == 'wikidata' else [S_NE_CA if w['entity_id'].startswith(('province:ca-', 'territory:ca-')) else S_NE_C])
     for k_ in ('v2_layer', 'v2_row', 'v2_key', 'predecessor_id', 'successor_id', 'valid_from', 'valid_to', 'state_fips', 'state', 'cog_pid6'): e[k_] = ''
     OUTROWS.append(e)
 for g in WORLD['gaps'] + WGAPS: GAPS.append(dict(g))
@@ -788,11 +788,23 @@ import inst_govfeed
 GOVF = inst_govfeed.load(R, GOV_SHA)
 _ents = {e['entity_id']: e for e in OUTROWS}
 for e in OUTROWS: e.setdefault('wikidata', '')
-GFMAP, GIMG, GGAPS, GSTAT = inst_govfeed.integrate(GOVF, _ents, {k: v for k, v in GIDX.items()})
+_cons = {CG24[c]['cog_pid6']: f'county:{c}' for c in UNLINKED_CONS if CG24[c]['cog_pid6']}
+GFMAP, GIMG, GGAPS, GSTAT, GRELS = inst_govfeed.integrate(GOVF, _ents, {k: v for k, v in GIDX.items()}, _cons)
+_relc = {r['entity_id'][len('county:'):] for r in GRELS}
+GAPS[:] = [g for g in GAPS if not (g['gap'] == 'consolidated_county_cog_code_not_in_tiger' and g['key'] in _relc)]
+# wikidata: 'wikidata:Q…', nullable + unique (SCHEMA); a QID on several entities is blanked on all of them and logged
+_qc = C.Counter(e['wikidata'] for e in OUTROWS if e.get('wikidata'))
+for e in OUTROWS:
+    q_ = e.get('wikidata', '')
+    if q_ and _qc[q_] > 1:
+        GGAPS.append({'gap': 'wikidata_qid_duplicate', 'key': e['entity_id'], 'detail': f"{q_} also on " + ';'.join(sorted(x['entity_id'] for x in OUTROWS if x.get('wikidata') == q_ and x is not e)) + '; left empty'})
+        e['wikidata'] = ''
+    elif q_: e['wikidata'] = 'wikidata:' + q_
+GSTAT['wikidata_duplicates_blanked'] = sum(1 for g in GGAPS if g['gap'] == 'wikidata_qid_duplicate')
+GAPS.extend(GGAPS)
 for e in OUTROWS:
     if e.pop('_gov', False): src(e, S_GOV)
     e['flags'] = ';'.join(f_.replace(';', ',') for f_ in e['_flags'])
-GAPS.extend(GGAPS)
 print('governments feed', dict(sorted(GSTAT.items())), file=sys.stderr)
 ids = [e['entity_id'] for e in OUTROWS]; assert len(ids) == len(set(ids)), 'entity_id not unique'
 
@@ -852,12 +864,13 @@ def build_registry():
               'consolidated_county_no_government_linked': f'{cog};{tig}', 'same_code_place_cousub_overlap_unmeasured': tig,
               'town_pair_same_neither_in_cog': f'{geo};{cog}', 'school_gov_status_conflict': atom(S_GOV)[0]}
     wd_ = atom(S_WD)[0]; nec = atom(S_NE_C)[0]
+    GAPSRC['not_in_source_list'] = f'{nec};{wd_}'
     for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
                'territory_sovereign_several_candidates', 'wikidata_status_ambiguous', 'world_entity_excluded_no_sovereign'): GAPSRC[g_] = wd_
     GAPSRC['wikidata_qid_missing'] = f'{nec};{wd_}'
     gv_ = atom(S_GOV)[0]
     for g_ in ('govbot_territory_key_differs', 'govbot_frozen_id_conflict', 'govbot_mapping_conflict', 'govbot_mapping_ambiguous', 'govbot_registry_id_not_in_files',
-               'wikidata_qid_conflict', 'govbot_ceased_dates_disagree', 'govbot_ceased_partial', 'govbot_new_unit_not_in_registry', 'image_entity_unmapped'): GAPSRC[g_] = gv_
+               'wikidata_qid_conflict', 'wikidata_qid_duplicate', 'image_fair_use_inconsistent', 'govbot_ceased_dates_disagree', 'govbot_ceased_partial', 'govbot_new_unit_not_in_registry', 'image_entity_unmapped'): GAPSRC[g_] = gv_
     return reg, ids_for, (lambda l: V2SRC.get(l, geo)), GAPSRC
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
@@ -946,15 +959,21 @@ _coll = sorted(set(GOVSRC) & set(REG.rows))
 GSTAT['source_id_collisions'] = len(_coll)
 for k in _coll:
     if {c: REG.rows[k][c] for c in ('source_url', 'commit')} != {c: GOVSRC[k][c] for c in ('source_url', 'commit')}: raise SystemExit('source_id collision with the Governments bot: ' + k)
-FMC = ['feed', 'feed_entity_id', 'feed_type', 'entity_id', 'match', 'note', 'source_id']
+FMC = ['feed', 'feed_id', 'entity_id', 'status', 'note', 'source_id']
 for m in GFMAP: m['source_id'] = GV_ID
 with open(os.path.join(OUT, 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GFMAP)
-IMC = ['entity_id', 'feed_entity_id', 'image_kind', 'commons_file', 'commons_url', 'license', 'fair_use', 'usage_basis', 'attribution', 'source_url', 'wikidata_qid', 'retrieved_at', 'source_id']
+IMC = ['entity_id', 'role', 'file', 'license', 'fair_use', 'usage_basis', 'source_url', 'attribution', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id']
 for i in GIMG:
     i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
 with open(os.path.join(OUT, 'entity_images.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GIMG)
+RC = ['entity_id', 'relation', 'related_entity_id', 'source_id']
+_rsid = ';'.join([IDS_FOR([S_COG]), GV_ID, IDS_FOR([S_CG])][:1] + [GV_ID] + IDS_FOR([S_CG]).split(';'))
+_rsid = ';'.join(dict.fromkeys(x for x in _rsid.split(';') if x))
+for r_ in GRELS: r_['source_id'] = _rsid
+with open(os.path.join(OUT, 'entity_relations.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(GRELS, key=lambda r: r['entity_id']))
 for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
 # source_urls.csv (SCHEMA source_url): every URL of every source, ord = position in the ' ; '-list, label for multi-URL sources
