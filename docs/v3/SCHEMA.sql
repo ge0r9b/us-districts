@@ -390,7 +390,9 @@ create table entity (
   check (kind <> 'territory' or entity_id !~ '^territory:ca-' or parent_id = 'nation:ca'),
   check (kind <> 'territory' or entity_id !~ '^territory:[0-9]{2}$' or parent_id = 'nation:us'),
   check (kind <> 'province' or (parent_id = 'nation:ca' and entity_id ~ '^province:ca-[a-z]{2}$')),
-  check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
+  check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36}|ipeds:[0-9]{6})$'),
+  -- ipeds:<UNITID> = US college with no unambiguous Wikidata P1771 match (Companies colleges_us.csv); re-keyed to
+  -- wikidata:Q... through entity_merge (rule ipeds_to_qid) once a QID is matched, like usd:.
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
   iso_3166_2    text unique,                         -- 'AD-02' (entities.csv iso_3166_2; subdivisions)
