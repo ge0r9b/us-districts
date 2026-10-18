@@ -7,7 +7,7 @@ import re, collections, json, os
 import build_cog, build_states, build_federal_agencies, build_tribes, build_changes
 from build_changes import CHANGE_COLUMNS
 import wikidata, build_images
-from common import ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
+from common import CACHE, ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
 
 
 def sources_summary(man):
@@ -52,7 +52,9 @@ def main():
     local = local + new_rows
     # Wikidata QIDs from exact identifier links, then seal / flag image records (part D)
     qid_stats, terr = wikidata.assign_qids(states, local)
-    images, img_gaps, img_stats = build_images.build(states, local, tribes, fed, terr)
+    fr_json = json.load(open(os.path.join(CACHE, 'fr_agencies.json'), encoding='utf-8'))
+    qid_stats.update({'federal_agency|' + k: v for k, v in wikidata.agency_qids(fed, fr_json).items()})
+    images, img_gaps, img_stats = build_images.build(states, local, tribes, fed, terr, fr_json)
     write_csv(os.path.join(ROOT, 'images.csv'), images, build_images.IMAGE_COLUMNS)
     write_csv(os.path.join(ROOT, 'images_gaps.csv'), img_gaps, build_images.GAP_COLUMNS)
     per_state = build_cog.write_local(local)

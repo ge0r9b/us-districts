@@ -8,7 +8,10 @@ QIDs (never from names):
   tribe         kept from tribes.csv (exact BIA-name = label/P1448 rule of part A)
   nation        Q30 for nation:us (fixed)
 A QID is set only when exactly one item links to the entity and that item links to no other entity; if P774 and P590
-disagree nothing is set. Federal agencies: Wikidata has no Federal Register agency-ID property, so none get a QID.
+disagree nothing is set. Federal agencies: Wikidata has no Federal Register agency-ID property, so the link is the
+agency's official website: the Federal Register API `agency_url` must equal an item's P856 (official website) exactly
+after normalisation (scheme, leading www., trailing slash, query and fragment dropped; host + path compared). Same
+uniqueness rule. P1813 (short name) is a name, so it is never used.
 
 Images: P158 (seal image) for every entity with a QID except school districts; P41 (flag image) for the nation,
 states, DC and territories whose P5087 code is in Wikidata. License/author from Commons imageinfo extmetadata.
@@ -98,6 +101,67 @@ def assign_qids(states, local):
             stats['none:' + why] += 1
     terr = {ss: m['P5087'].get(ss, set()) for ss in TERRITORIES}
     return stats, terr
+
+
+def norm_url(u):
+    """host + path, lowercased host, no scheme / leading www. / trailing slash / query / fragment"""
+    p = urllib.parse.urlsplit(u.strip())
+    host = p.netloc.lower().split('@')[-1].split(':')[0]
+    host = host[4:] if host.startswith('www.') else host
+    path = urllib.parse.unquote(p.path).rstrip('/')
+    return host + path if host else ''
+
+
+# reviewed: the Federal Register agency_url points at a different agency, so the exact link is wrong at the source
+AGENCY_URL_REJECTS = {'fr:334': 'FR agency_url nctc.gov is the National Counterterrorism Center, not the National Counterintelligence Center'}
+
+
+def agency_qids(fed, fr_agencies):
+    """QIDs for federal agencies whose FR agency_url equals one Wikidata item's P856 (normalised host + path)."""
+    url_of = {'fr:{}'.format(a['id']): a.get('agency_url') or '' for a in fr_agencies}
+    want = {}
+    for r in fed:
+        n = norm_url(url_of.get(r['entity_id'], ''))
+        if n:
+            want[r['entity_id']] = n
+    variants = sorted({'{}://{}{}{}'.format(s, w, n, sl) for n in set(want.values()) for s in ('http', 'https')
+                       for w in ('', 'www.') for sl in ('', '/')})
+    items = collections.defaultdict(set)
+    for k in range(0, len(variants), 100):
+        q = 'SELECT ?i ?w WHERE { VALUES ?w { %s } ?i wdt:P856 ?w }' % ' '.join('<{}>'.format(v) for v in variants[k:k + 100])
+        for b in sparql('wd_p856', q, True):
+            items[norm_url(qv(b, 'w'))].add(qv(b, 'i'))
+    # the item must be an organisation (P31/P279* Q43229): P856 also sits on offices, positions and CFR titles
+    cands = sorted({q for qs in items.values() for q in qs}, key=lambda q: int(q[1:]))
+    org = set()
+    for k in range(0, len(cands), 100):
+        q = 'SELECT DISTINCT ?i WHERE { VALUES ?i { %s } ?i wdt:P31/wdt:P279* wd:Q43229 }' % ' '.join('wd:' + c for c in cands[k:k + 100])
+        org |= {qv(b, 'i') for b in sparql('wd_p856org', q, True)}
+    items = {n: {q for q in qs if q in org} for n, qs in items.items()}
+    use = collections.Counter(q for n in set(want.values()) if len(items.get(n, ())) == 1 for q in items[n])
+    by_url = collections.Counter(want.values())
+    stats = collections.Counter()
+    for r in fed:
+        n = want.get(r['entity_id'])
+        if r['entity_id'] in AGENCY_URL_REJECTS:
+            r['_qid_gap'] = 'agency_url_rejected: ' + AGENCY_URL_REJECTS[r['entity_id']]
+            stats['none:agency_url_rejected'] += 1
+            continue
+        if not n:
+            r['_qid_gap'] = 'no_agency_url'
+            stats['none:no_agency_url'] += 1
+            continue
+        qs = items.get(n, set())
+        if len(qs) == 1 and use[next(iter(qs))] == 1 and by_url[n] == 1:
+            r['wikidata_qid'] = next(iter(qs))
+            r['flags'] = ';'.join(sorted(set(f for f in r.get('flags', '').split(';') if f) | {'qid_by_p856'}))
+            r['source'] = ';'.join(dict.fromkeys(r['source'].split(';') + ['wikidata_ids']))
+            stats['qid_by_p856'] += 1
+        else:
+            why = 'no_item' if not qs else 'multiple_items' if len(qs) > 1 else 'url_shared'
+            r['_qid_gap'] = why
+            stats['none:' + why] += 1
+    return stats
 
 
 def commons_meta(files):

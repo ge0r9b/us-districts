@@ -12,7 +12,7 @@ IMAGE_COLUMNS = ['entity_id', 'image_kind', 'commons_file', 'commons_url', 'lice
                  'retrieved_at', 'usage_basis', 'source_url']
 GAP_COLUMNS = ['entity_id', 'image_kind', 'wikidata_qid', 'reason']
 FLAG_TYPES = {'nation', 'state', 'dc', 'territory'}
-FALLBACK_TYPES = {'nation', 'state', 'dc', 'territory', 'county', 'tribe', 'municipality', 'township'}   # enwiki seal fallback attempted for these
+FALLBACK_TYPES = {'nation', 'state', 'dc', 'territory', 'county', 'tribe', 'municipality', 'township', 'federal_agency'}   # enwiki seal fallback attempted for these
 FAIR_USE = 'identification icon, small size'
 
 
@@ -43,7 +43,26 @@ def text(v):
     return ' '.join(v.split())
 
 
-def build(states, local, tribes, fed, terr_qids):
+def fr_logos(fr_json):
+    """entity_id -> Federal Register agency logo URL (medium size), the last-resort icon for federal agencies"""
+    out = {}
+    for a in fr_json:
+        lg = a.get('logo') or {}
+        u = lg.get('medium_url') or lg.get('small_url') or lg.get('thumb_url')
+        if u:
+            out['fr:{}'.format(a['id'])] = u
+    return out
+
+
+def fr_logo_row(eid, url, name, ra):
+    """Federal Register agency logo: no Commons file and no stated license, so it is used under the fair-use basis
+    (identification icon); source_url is the image on agency-logos.federalregister.gov."""
+    return {'entity_id': eid, 'image_kind': 'logo', 'commons_file': '', 'commons_url': '', 'license': 'fair-use',
+            'attribution': name + ' (agency logo as shown by the Federal Register)', 'wikidata_qid': '', 'retrieved_at': ra,
+            'usage_basis': FAIR_USE, 'source_url': url}
+
+
+def build(states, local, tribes, fed, terr_qids, fr_json=()):
     ents = [('nation:us', 'Q30', 'nation')]
     ents += [(r['entity_id'], r['wikidata_qid'], 'state') for r in states]
     for ss, qs in sorted(terr_qids.items()):
@@ -53,8 +72,12 @@ def build(states, local, tribes, fed, terr_qids):
         if r['type'] in ('county', 'municipality', 'township'):
             ents.append((r['entity_id'], r.get('wikidata_qid', ''), 'dc' if r['state_fips'] == '11' and r['type'] == 'municipality' else r['type']))
     ents += [(r['entity_id'], r.get('wikidata_qid', ''), 'tribe') for r in tribes if r.get('subtype') != 'cross_reference']
-    gaps = [{'entity_id': r['entity_id'], 'image_kind': 'seal', 'wikidata_qid': '',
-             'reason': 'no_qid: Wikidata has no Federal Register agency-ID property (QIDs only from exact identifier links)'} for r in fed]
+    ents += [(r['entity_id'], r.get('wikidata_qid', ''), 'federal_agency') for r in fed]
+    qid_gap = {r['entity_id']: r.get('_qid_gap', '') for r in fed}
+    logos = fr_logos(fr_json)
+    ra_fr = manifest().get('fr_agencies', {}).get('retrieved_at', '')
+    name_of = {r['entity_id']: r['name'] for r in fed}
+    gaps = []
     qids = [q for _, q, _ in ents if q]
     cl = claims('wd_img', qids, ['P158', 'P41'])
     files = [f for q in qids for p in ('P158', 'P41') for f in cl.get(q, {}).get(p, [])]
@@ -69,8 +92,15 @@ def build(states, local, tribes, fed, terr_qids):
         for prop, ik in (('P158', 'seal'), ('P41', 'flag')):
             if ik == 'flag' and kind not in FLAG_TYPES:
                 continue
+            if not q and kind == 'federal_agency' and eid in logos:
+                rows.append(fr_logo_row(eid, logos[eid], name_of[eid], ra_fr))
+                stats['logo|federal_agency|fr_logo'] += 1
+                continue
             if not q:
-                gaps.append({'entity_id': eid, 'image_kind': ik, 'wikidata_qid': '', 'reason': 'no_qid'})
+                why = 'no_qid' + (': ' + qid_gap[eid] if qid_gap.get(eid) else '')
+                if kind == 'federal_agency':
+                    why += '; no Federal Register logo'
+                gaps.append({'entity_id': eid, 'image_kind': ik, 'wikidata_qid': '', 'reason': why})
                 continue
             cands = []
             for f in cl.get(q, {}).get(prop, []):
@@ -92,6 +122,10 @@ def build(states, local, tribes, fed, terr_qids):
                              'wikidata_qid': q, 'retrieved_at': ra_en, 'usage_basis': FAIR_USE if nonfree else '',
                              'source_url': (b['url'] if b['local'] else b['page'])})
                 stats['{}|{}|enwiki_{}'.format(ik, kind, 'fair_use' if nonfree else 'free')] += 1
+                continue
+            if not cands and kind == 'federal_agency' and eid in logos:
+                rows.append(dict(fr_logo_row(eid, logos[eid], name_of[eid], ra_fr), wikidata_qid=q))
+                stats['logo|federal_agency|fr_logo'] += 1
                 continue
             if not cands:
                 why = 'no_{}_on_wikidata'.format(prop) if not cl.get(q, {}).get(prop) else 'commons_file_missing'

@@ -117,12 +117,21 @@ used. Rows with `license=fair-use` carry `usage_basis=identification icon, small
 no image files are stored in this repo.
 
 QIDs come only from exact identifier links (rules in SCHEMA.md): qid_by_p5087 50, qid_by_p590 16,194, qid_by_p774 19,390, qid_by_p882 3,030. Unassigned: item_shared 10, multiple_items 5, no_item 68, p774_p590_disagree 64.
-`images.csv`: 6,036 seals and 57 flags (4,433 seals are `fair-use` files from English Wikipedia used as
-identification icons, usage_basis `identification icon, small size`). By kind and entity type: flag / dc 1, flag / nation 1, flag / state 50, flag / territory 5, seal / county 250, seal / county / enwiki_fair_use 831, seal / county / enwiki_free 72, seal / dc 1, seal / municipality 648, seal / municipality / enwiki_fair_use 2484, seal / municipality / enwiki_free 239, seal / nation 1, seal / state 50, seal / territory 1, seal / territory / enwiki_free 1, seal / township 119, seal / township / enwiki_fair_use 1115, seal / township / enwiki_free 218, seal / tribe 1, seal / tribe / enwiki_fair_use 3, seal / tribe / enwiki_free 2.
-By license: CC-BY-3.0 3, CC-BY-4.0 15, CC-BY-SA-3.0 31, CC-BY-SA-4.0 113, CC0-1.0 39, GFDL-1.2-or-later 1, LicenseRef-Attribution 2, LicenseRef-Copyrighted-free-use 4, LicenseRef-GPL 1, LicenseRef-PublicDomain 1451, fair-use 4433. Queries: Wikidata SPARQL in batches of at most 400 VALUES, Commons/Wikipedia API at 50 titles per
+`images.csv`: 6,119 seals, 57 flags and 141 logos (4,574 rows are `fair-use`: files hosted on English Wikipedia, and the Federal
+Register agency logos, used as identification icons, usage_basis `identification icon, small size`). By kind and entity type: flag / dc 1, flag / nation 1, flag / state 50, flag / territory 5, logo / federal_agency / fr_logo 141, seal / county 250, seal / county / enwiki_fair_use 831, seal / county / enwiki_free 72, seal / dc 1, seal / federal_agency 69, seal / federal_agency / enwiki_free 14, seal / municipality 648, seal / municipality / enwiki_fair_use 2484, seal / municipality / enwiki_free 239, seal / nation 1, seal / state 50, seal / territory 1, seal / territory / enwiki_free 1, seal / township 119, seal / township / enwiki_fair_use 1115, seal / township / enwiki_free 218, seal / tribe 1, seal / tribe / enwiki_fair_use 3, seal / tribe / enwiki_free 2.
+By license: CC-BY-3.0 3, CC-BY-4.0 15, CC-BY-SA-3.0 31, CC-BY-SA-4.0 115, CC0-1.0 40, GFDL-1.2-or-later 1, LicenseRef-Attribution 2, LicenseRef-Copyrighted-free-use 4, LicenseRef-GPL 1, LicenseRef-PublicDomain 1531, fair-use 4574. Queries: Wikidata SPARQL in batches of at most 400 VALUES, Commons/Wikipedia API at 50 titles per
 request, one request per second, User-Agent naming this repo; all responses are cached in `cache/` (gitignored), so a
-rerun with a full cache makes no requests. Not covered: federal agencies (Wikidata has no Federal Register agency-ID
-property, so no QID), special districts (no identifier property) and school districts (skipped by rule).
+rerun with a full cache makes no requests. Not covered: special districts (no identifier property) and school districts
+(skipped by rule).
+Federal agencies: Wikidata has no Federal Register agency-ID property, and P1813 (short name) is a name, so the exact
+link is the official website: the FR API `agency_url` must equal an item's P856 after normalisation (scheme, leading
+`www.`, trailing slash, query dropped; host + path compared exactly), the item must be an organisation (P31/P279*
+Q43229; this drops P856 on offices, positions and CFR titles, e.g. defense.gov on "Assistant Secretary of Defense for
+Public Affairs") and the usual uniqueness rule holds. One reviewed reject: fr:334 National Counterintelligence Center,
+whose FR `agency_url` is nctc.gov (the Counterterrorism Center). Result: 144 of 473 agencies get a QID; none: no
+agency_url 206, no item 104, several items 11, URL shared by several agencies 7, rejected 1. Seals: P158, then the
+enwiki fallback, then the agency logo the Federal Register shows (`image_kind=logo`, `fair-use`, `source_url` =
+agency-logos.federalregister.gov), for agencies with or without a QID.
 The enwiki seal fallback covers municipalities and townships too (same single-file and uniqueness rules as counties,
 plus: a file named only for a state, e.g. `Seal utah.png`, is never taken for a city).
 

@@ -4,7 +4,7 @@ Every source file is downloaded once into ../cache/ (gitignored). cache/manifest
 for each file its URL, the time we retrieved it and the server's Last-Modified date, so a re-run
 with a warm cache reproduces byte-identical CSVs. Run fetch_sources.py --refresh to re-download.
 """
-import csv, datetime, email.utils, json, os, re, unicodedata, urllib.request, zipfile
+import csv, datetime, email.utils, json, os, re, time, unicodedata, urllib.error, urllib.request, zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)                      # data-v3/institutions/governments
@@ -87,8 +87,9 @@ SOURCE_TABLE = {
     'census_gcn': ('U.S. Census Bureau, Geographic Change Notes (Boundary and Annexation Survey), national files by effective year '
                    + '-'.join((GCN_YEARS[0], GCN_YEARS[-1])), 'https://www2.census.gov/geo/docs/reference/bndrychange/',
                    ['gcn_' + y for y in GCN_YEARS]),
-    'wikidata_ids': ('Wikidata SPARQL: items by exact identifier (P5087 FIPS 5-2 numeric, P882 FIPS 6-4, P774 FIPS 55-3, P590 GNIS ID)',
-                     'https://query.wikidata.org/', ['wd_ids_*', 'wd_p590_*']),
+    'wikidata_ids': ('Wikidata SPARQL: items by exact identifier (P5087 FIPS 5-2 numeric, P882 FIPS 6-4, P774 FIPS 55-3, P590 GNIS ID; '
+                     'federal agencies: P856 official website = Federal Register agency_url, item an organisation)',
+                     'https://query.wikidata.org/', ['wd_ids_*', 'wd_p590_*', 'wd_p856_*', 'wd_p856org_*']),
     'wikidata_images': ('Wikidata SPARQL: P158 seal image and P41 flag image of the matched items', 'https://query.wikidata.org/', ['wd_img_*']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
                     'https://commons.wikimedia.org/w/api.php', ['commons_*']),
@@ -155,9 +156,16 @@ def fetch(key, refresh=False, url=None, fname=None):
         return path
     req = urllib.request.Request(url.replace('[', '%5B').replace(']', '%5D'),
                                  headers={'User-Agent': 'us-districts-governments-dataset/1.0 (https://github.com/ge0r9b/us-districts; ge0r9b@users.noreply.github.com)'})
-    with urllib.request.urlopen(req, timeout=300) as r:
-        data = r.read()
-        lm = r.headers.get('Last-Modified')
+    for attempt in range(4):   # transient network errors: retry with back-off, then give up
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                data = r.read()
+                lm = r.headers.get('Last-Modified')
+            break
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == 3:
+                raise
+            time.sleep(15 * (attempt + 1))
     with open(path, 'wb') as f:
         f.write(data)
     last_mod = email.utils.parsedate_to_datetime(lm).date().isoformat() if lm else ''

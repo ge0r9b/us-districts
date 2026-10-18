@@ -8,8 +8,8 @@
   "id_registry.csv": 93278,
   "sources.csv": 23,
   "changes_since_cog2022.csv": 131,
-  "images.csv": 6093,
-  "images_gaps.csv": 33827,
+  "images.csv": 6317,
+  "images_gaps.csv": 33603,
   "local/AK.csv": 236,
   "local/AL.csv": 1211,
   "local/AR.csv": 1563,
@@ -129,6 +129,12 @@
   "reclassification|census_gcn": 39
  },
  "wikidata_qid_assignment": {
+  "federal_agency|none:agency_url_rejected": 1,
+  "federal_agency|none:multiple_items": 11,
+  "federal_agency|none:no_agency_url": 206,
+  "federal_agency|none:no_item": 104,
+  "federal_agency|none:url_shared": 7,
+  "federal_agency|qid_by_p856": 144,
   "none:item_shared": 10,
   "none:multiple_items": 5,
   "none:no_item": 68,
@@ -143,10 +149,13 @@
   "flag|nation": 1,
   "flag|state": 50,
   "flag|territory": 5,
+  "logo|federal_agency|fr_logo": 141,
   "seal|county": 250,
   "seal|county|enwiki_fair_use": 831,
   "seal|county|enwiki_free": 72,
   "seal|dc": 1,
+  "seal|federal_agency": 69,
+  "seal|federal_agency|enwiki_free": 14,
   "seal|municipality": 648,
   "seal|municipality|enwiki_fair_use": 2484,
   "seal|municipality|enwiki_free": 239,
@@ -165,18 +174,18 @@
   "CC-BY-3.0": 3,
   "CC-BY-4.0": 15,
   "CC-BY-SA-3.0": 31,
-  "CC-BY-SA-4.0": 113,
-  "CC0-1.0": 39,
+  "CC-BY-SA-4.0": 115,
+  "CC0-1.0": 40,
   "GFDL-1.2-or-later": 1,
   "LicenseRef-Attribution": 2,
   "LicenseRef-Copyrighted-free-use": 4,
   "LicenseRef-GPL": 1,
-  "LicenseRef-PublicDomain": 1451,
-  "fair-use": 4433
+  "LicenseRef-PublicDomain": 1531,
+  "fair-use": 4574
  },
  "image_gaps_by_reason": {
-  "seal|no_P158_on_wikidata; enwiki article fallback": 32977,
-  "seal|no_qid": 850
+  "seal|no_P158_on_wikidata; enwiki article fallback": 33000,
+  "seal|no_qid": 603
  },
  "changes_by_state": {
   "AL": 31,
@@ -403,34 +412,34 @@
    "retrieved_at": "2026-10-18T13:44:48Z"
   },
   "commons_*": {
-   "api_requests": 44,
+   "api_requests": 90,
    "host": "commons.wikimedia.org",
    "retrieved_at_min": "2026-10-18T14:37:34Z",
-   "retrieved_at_max": "2026-10-18T14:38:40Z"
+   "retrieved_at_max": "2026-10-18T15:53:11Z"
   },
   "enwd_sl_*": {
-   "api_requests": 759,
+   "api_requests": 1478,
    "host": "www.wikidata.org",
    "retrieved_at_min": "2026-10-18T14:38:42Z",
-   "retrieved_at_max": "2026-10-18T15:18:20Z"
+   "retrieved_at_max": "2026-10-18T16:11:25Z"
   },
   "enwp_ii_*": {
-   "api_requests": 147,
+   "api_requests": 232,
    "host": "en.wikipedia.org",
    "retrieved_at_min": "2026-10-18T15:37:11Z",
-   "retrieved_at_max": "2026-10-18T15:44:41Z"
+   "retrieved_at_max": "2026-10-18T16:42:24Z"
   },
   "enwp_img_*": {
-   "api_requests": 861,
+   "api_requests": 1686,
    "host": "en.wikipedia.org",
    "retrieved_at_min": "2026-10-18T15:18:21Z",
-   "retrieved_at_max": "2026-10-18T15:37:08Z"
+   "retrieved_at_max": "2026-10-18T16:40:06Z"
   },
   "wd_img_*": {
-   "api_requests": 98,
+   "api_requests": 196,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T14:34:12Z",
-   "retrieved_at_max": "2026-10-18T14:37:32Z"
+   "retrieved_at_max": "2026-10-18T15:51:55Z"
   },
   "wd_p590_*": {
    "api_requests": 97,
@@ -439,10 +448,16 @@
    "retrieved_at_max": "2026-10-18T15:04:28Z"
   },
   "wd_p856_*": {
-   "api_requests": 16,
+   "api_requests": 36,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T14:32:35Z",
-   "retrieved_at_max": "2026-10-18T14:33:00Z"
+   "retrieved_at_max": "2026-10-18T15:46:07Z"
+  },
+  "wd_p856org_*": {
+   "api_requests": 2,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T15:47:30Z",
+   "retrieved_at_max": "2026-10-18T15:47:51Z"
   }
  }
 }
