@@ -42,7 +42,7 @@ async def run(b,tag,vp,mobile):
     s0=await pg.evaluate("()=>[...document.querySelectorAll('[aria-label=Chart]')].length"); 
     await pg.evaluate("()=>document.querySelector('[aria-label=Chart]').click()"); await pg.wait_for_timeout(400)
     o=await pg.evaluate("()=>[...document.querySelectorAll('.copts button')].map(b=>b.dataset.ch)"); await pg.evaluate("()=>document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}))"); await pg.wait_for_timeout(400)
-    ck(tag+" %s range: chart menu has no pie"%mode,"pie" not in o,o)
+    ck(tag+" %s range: chart menu offers pie (build 1571)"%mode,"pie" in o,o)
     await setchart(pg,"line"); 
     if mode=="pct": await pg.screenshot(path="/tmp/cm-%s-line.png"%tag)
   # single point: bar + pie rows
@@ -52,7 +52,7 @@ async def run(b,tag,vp,mobile):
   ck(tag+" single point pie: stays left of the button column",s['over']==0,s['over'])
   await pg.screenshot(path="/tmp/cm-%s-pie.png"%tag)
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=1; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
-  s=await pg.evaluate(LST); ck(tag+" pie + range: rows fall back to bars",s['pwr']==0 and s['bars']>=40,{k:s[k] for k in ('n','bars','pwr')})
+  s=await pg.evaluate(LST); ck(tag+" pie + range: rows keep pies (end year, build 1571)",s['pwr']>=40,{k:s[k] for k in ('n','bars','pwr')})
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=2; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
   s=await pg.evaluate(LST); ck(tag+" back to single point: pie rows restored",s['pwr']>=40,{k:s[k] for k in ('n','bars','pwr')})
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=1; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(1500); await setchart(pg,"bar")
