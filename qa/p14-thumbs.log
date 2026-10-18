@@ -1,0 +1,16 @@
+390 DC first@2=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+QA-061 ['', 'District of Columbia', 'Delaware']
+390 DE<DC first@29=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Delaware.png', 'nat': [22, 48], 'r': [10.1, 22], 'ok': True} clip=0 ov=0 jumps=1 shifts=1
+390 AK<AL first@16=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Alaska.png', 'nat': [48, 34], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+390 Blount list first@5=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Alabama.png', 'nat': [32, 48], 'r': [14.7, 22], 'ok': True} clip=0 ov=0 jumps=2 shifts=2
+390 US<Blount first@281=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0 crumb United States
+390 Blount 1 Blount County [(30, 30), (30, 30)]
+390 USlist<Blount first@255=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=1 crumb All States
+1024x768 DC first@129=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+QA-061 ['', 'District of Columbia', 'Delaware']
+1024x768 DE<DC first@32=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Delaware.png', 'nat': [22, 48], 'r': [10.1, 22], 'ok': True} clip=0 ov=0 jumps=1 shifts=1
+1024x768 AK<AL first@18=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Alaska.png', 'nat': [48, 34], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+1024x768 Blount list first@1=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Alabama.png', 'nat': [32, 48], 'r': [14.7, 22], 'ok': True} clip=0 ov=0 jumps=2 shifts=1
+1024x768 US<Blount first@241=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0 crumb United States
+1024x768 Blount 1 Blount County [(30, 30), (30, 30)]
+1024x768 USlist<Blount first@200=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=1 crumb All States

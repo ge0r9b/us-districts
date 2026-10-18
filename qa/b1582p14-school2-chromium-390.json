@@ -1,0 +1,130 @@
+{
+ "Georgia": {
+  "keys": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "crumb": "Georgia",
+  "n": 184,
+  "dups": [],
+  "order_dups": []
+ },
+ "California": {
+  "keys": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "crumb": "California",
+  "n": 974,
+  "dups": [
+   " || Santa Cruz City High School Dis\u2026 || Santa Cruz City High School Dis\u2026 | 83.6%",
+   " || Santa Barbara Unified School Di\u2026 || Santa Barbara Unified School Di\u2026 | 20.2% | 76.6%",
+   " || Santa Cruz City High School Dis\u2026 || Santa Cruz City High School Dis\u2026 | 20.0% | 76.3%",
+   " || Santa Cruz City High School Dis\u2026 || ",
+   " || Healdsburg Unified School Distr\u2026 || ",
+   " || Hope Elementary School District || ",
+   " || Santa Barbara Unified School Di\u2026 || ",
+   " || Pacific Union Elementary School\u2026 || ",
+   " || Washington Unified School Distr\u2026 || ",
+   " || Healdsburg Unified School Distr\u2026 || ",
+   " || Eureka City Unified School Dist\u2026 || ",
+   " || Mountain View Elementary School\u2026 || "
+  ],
+  "order_dups": [
+   [
+    "Washington Unified School District",
+    69.704
+   ],
+   [
+    "Mountain View Elementary School District",
+    62.958
+   ],
+   [
+    "Washington Unified School District",
+    59.538
+   ],
+   [
+    "Mountain View Elementary School District",
+    52.787
+   ]
+  ]
+ },
+ "Ohio": {
+  "keys": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "crumb": "Ohio",
+  "n": 611,
+  "dups": [
+   " || Riverside Local School District || Riverside Local School District | 85.5%",
+   " || Crestview Local School District || Crestview Local School District | 83.4% | 15.8%",
+   " || Southeast Local School District || Southeast Local School District | 82.8% | 16.4%",
+   " || Southern Local School District || Southern Local School District | 82.2% | 17.4%",
+   " || Eastern Local School District || ",
+   " || Eastern Local School District || ",
+   " || Crestview Local School District || ",
+   " || Madison Local School District || ",
+   " || Manchester Local School District || ",
+   " || Eastern Local School District || ",
+   " || Southern Local School District || ",
+   " || Green Local School District || "
+  ],
+  "order_dups": [
+   [
+    "Crestview Local School District",
+    83.45
+   ],
+   [
+    "Southeast Local School District",
+    82.813
+   ],
+   [
+    "Southern Local School District",
+    82.206
+   ],
+   [
+    "Eastern Local School District",
+    81.411
+   ],
+   [
+    "Eastern Local School District",
+    81.043
+   ],
+   [
+    "Crestview Local School District",
+    80.749
+   ],
+   [
+    "Madison Local School District",
+    80.55
+   ],
+   [
+    "Manchester Local School District",
+    80.229
+   ],
+   [
+    "Eastern Local School District",
+    80.099
+   ],
+   [
+    "Southern Local School District",
+    79.777
+   ],
+   [
+    "Green Local School District",
+    79.112
+   ],
+   [
+    "Southeastern Local School District",
+    78.723
+   ]
+  ]
+ }
+}

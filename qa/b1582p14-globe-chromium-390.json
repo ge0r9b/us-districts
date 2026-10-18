@@ -1,0 +1,46 @@
+{
+ "before": {
+  "r": [
+   334,
+   791,
+   48,
+   48
+  ],
+  "top": "[object SVGAnimatedString]",
+  "lyrOpen": "flex",
+  "active": "",
+  "list": false
+ },
+ "after_tap": {
+  "r": [
+   334,
+   791,
+   48,
+   48
+  ],
+  "top": "[object SVGAnimatedString]",
+  "lyrOpen": "none",
+  "active": "",
+  "list": false
+ },
+ "ev": [],
+ "after_tap2": {
+  "r": [
+   334,
+   791,
+   48,
+   48
+  ],
+  "top": "[object SVGAnimatedString]",
+  "lyrOpen": "none",
+  "active": "bGlobe",
+  "list": true
+ },
+ "ev2": [
+  "pointerdown:[object SVGAnimatedS",
+  "touchstart:[object SVGAnimatedS",
+  "pointerup:[object SVGAnimatedS",
+  "touchend:[object SVGAnimatedS",
+  "click:[object SVGAnimatedS"
+ ]
+}

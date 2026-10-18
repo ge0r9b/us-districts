@@ -1,0 +1,1615 @@
+{
+ "iphone390": {
+  "build": "202610181582",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": []
+  },
+  "states-rline-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      7,
+      9
+     ],
+     "r": [
+      212,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rline-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      7,
+      9
+     ],
+     "r": [
+      212,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      316,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      316,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      316,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      330,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      330,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "\u22120.3",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      330,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "\u22120.3",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      330,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "iphone375": {
+  "build": "202610181582",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      291,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rline-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      14,
+      9
+     ],
+     "r": [
+      205,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rline-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      14,
+      9
+     ],
+     "r": [
+      205,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      5,
+      15
+     ],
+     "r": [
+      302,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      5,
+      15
+     ],
+     "r": [
+      302,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      5,
+      15
+     ],
+     "r": [
+      302,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      315,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      315,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "\u22123.4",
+     "by": "chart",
+     "px": [
+      3,
+      15
+     ],
+     "r": [
+      300,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Monroe",
+     "text": "\u22120.3",
+     "by": "chart",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      328,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "lyr",
+     "px": [
+      7,
+      13
+     ],
+     "r": [
+      304,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22120.4",
+     "by": "lyr",
+     "px": [
+      5,
+      15
+     ],
+     "r": [
+      302,
+      535,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "\u22123.4",
+     "by": "chart",
+     "px": [
+      3,
+      15
+     ],
+     "r": [
+      300,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Monroe",
+     "text": "\u22120.3",
+     "by": "chart",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      328,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "lyr",
+     "px": [
+      7,
+      13
+     ],
+     "r": [
+      304,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22120.4",
+     "by": "lyr",
+     "px": [
+      5,
+      15
+     ],
+     "r": [
+      302,
+      535,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "iphone320": {
+  "build": "202610181583",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      19,
+      15
+     ],
+     "r": [
+      252,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "WV",
+     "text": "28.1%",
+     "by": "time",
+     "px": [
+      14,
+      3
+     ],
+     "r": [
+      246,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ND",
+     "text": "30.8%",
+     "by": "chart",
+     "px": [
+      8,
+      15
+     ],
+     "r": [
+      241,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ID",
+     "text": "30.4%",
+     "by": "chart",
+     "px": [
+      7,
+      7
+     ],
+     "r": [
+      240,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rline-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      15,
+      9
+     ],
+     "r": [
+      177,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rline-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22124.5",
+     "by": "sort",
+     "px": [
+      15,
+      9
+     ],
+     "r": [
+      177,
+      198,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      12,
+      15
+     ],
+     "r": [
+      254,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-rbar-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      12,
+      15
+     ],
+     "r": [
+      254,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9",
+   "cov": [
+    {
+     "row": "NY",
+     "text": "\u22121.4",
+     "by": "chart",
+     "px": [
+      12,
+      15
+     ],
+     "r": [
+      254,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "New Castle",
+     "by": "sort",
+     "px": [
+      5,
+      4
+     ],
+     "r": [
+      90,
+      203,
+      73,
+      19
+     ]
+    },
+    {
+     "row": "New Castle",
+     "text": "\u22122.3",
+     "by": "chart",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      273,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      9,
+      15
+     ],
+     "r": [
+      303,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "New Castle",
+     "by": "sort",
+     "px": [
+      5,
+      4
+     ],
+     "r": [
+      90,
+      203,
+      73,
+      19
+     ]
+    },
+    {
+     "row": "New Castle",
+     "text": "\u22122.3",
+     "by": "chart",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      273,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      9,
+      15
+     ],
+     "r": [
+      303,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "+3.7",
+     "by": "chart",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Monroe",
+     "text": "\u22123.4",
+     "by": "chart",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      292,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "+2.3",
+     "by": "lyr",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "\u22122.2",
+     "by": "lyr",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      280,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "\u22120.1",
+     "by": "lyr",
+     "px": [
+      14,
+      15
+     ],
+     "r": [
+      298,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "+2.4",
+     "by": "lyr",
+     "px": [
+      20,
+      11
+     ],
+     "r": [
+      262,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "\u22122.1",
+     "by": "lyr",
+     "px": [
+      22,
+      11
+     ],
+     "r": [
+      281,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "\u22120.3",
+     "by": "lyr",
+     "px": [
+      14,
+      11
+     ],
+     "r": [
+      298,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "+2.3",
+     "by": "num",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "\u22121.9",
+     "by": "num",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      281,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "\u22120.4",
+     "by": "num",
+     "px": [
+      16,
+      15
+     ],
+     "r": [
+      296,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "+2.3",
+     "by": "num",
+     "px": [
+      20,
+      7
+     ],
+     "r": [
+      262,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "+2.3",
+     "by": "globe",
+     "px": [
+      20,
+      5
+     ],
+     "r": [
+      262,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22121.9",
+     "by": "num",
+     "px": [
+      22,
+      7
+     ],
+     "r": [
+      281,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22121.9",
+     "by": "globe",
+     "px": [
+      22,
+      5
+     ],
+     "r": [
+      281,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "num",
+     "px": [
+      16,
+      7
+     ],
+     "r": [
+      296,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "globe",
+     "px": [
+      16,
+      5
+     ],
+     "r": [
+      296,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "+2.2",
+     "by": "globe",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      535,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22121.8",
+     "by": "globe",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      280,
+      535,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22120.4",
+     "by": "globe",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      294,
+      535,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7",
+   "cov": [
+    {
+     "row": "Monroe",
+     "text": "+3.7",
+     "by": "chart",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Monroe",
+     "text": "\u22123.4",
+     "by": "chart",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      292,
+      205,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "+2.3",
+     "by": "lyr",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "\u22122.2",
+     "by": "lyr",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      280,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Bucks",
+     "text": "\u22120.1",
+     "by": "lyr",
+     "px": [
+      14,
+      15
+     ],
+     "r": [
+      298,
+      415,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "+2.4",
+     "by": "lyr",
+     "px": [
+      20,
+      11
+     ],
+     "r": [
+      262,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "\u22122.1",
+     "by": "lyr",
+     "px": [
+      22,
+      11
+     ],
+     "r": [
+      281,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Fayette",
+     "text": "\u22120.3",
+     "by": "lyr",
+     "px": [
+      14,
+      11
+     ],
+     "r": [
+      298,
+      445,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "+2.3",
+     "by": "num",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "\u22121.9",
+     "by": "num",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      281,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Lawrence",
+     "text": "\u22120.4",
+     "by": "num",
+     "px": [
+      16,
+      15
+     ],
+     "r": [
+      296,
+      475,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "+2.3",
+     "by": "num",
+     "px": [
+      20,
+      7
+     ],
+     "r": [
+      262,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "+2.3",
+     "by": "globe",
+     "px": [
+      20,
+      5
+     ],
+     "r": [
+      262,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22121.9",
+     "by": "num",
+     "px": [
+      22,
+      7
+     ],
+     "r": [
+      281,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22121.9",
+     "by": "globe",
+     "px": [
+      22,
+      5
+     ],
+     "r": [
+      281,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "num",
+     "px": [
+      16,
+      7
+     ],
+     "r": [
+      296,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Mercer",
+     "text": "\u22120.4",
+     "by": "globe",
+     "px": [
+      16,
+      5
+     ],
+     "r": [
+      296,
+      505,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "+2.2",
+     "by": "globe",
+     "px": [
+      20,
+      15
+     ],
+     "r": [
+      262,
+      535,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22121.8",
+     "by": "globe",
+     "px": [
+      22,
+      15
+     ],
+     "r": [
+      280,
+      535,
+      22,
+      15
+     ]
+    },
+    {
+     "row": "Berks",
+     "text": "\u22120.4",
+     "by": "globe",
+     "px": [
+      18,
+      15
+     ],
+     "r": [
+      294,
+      535,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "ipad1024x576": {
+  "build": "202610181583",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "states-rline-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": []
+  },
+  "states-rline-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": []
+  },
+  "states-rbar-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "states-rbar-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      950,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      950,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7 | \u22123.4",
+   "cov": []
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7 | \u22123.4",
+   "cov": []
+  },
+  "err": []
+ },
+ "ipad1024x768": {
+  "build": "202610181583",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "states-rline-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": []
+  },
+  "states-rline-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | +5.9 | \u22124.5",
+   "cov": []
+  },
+  "states-rbar-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "states-rbar-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "NY | R +10.4 | +5.9 | \u22124.5 | \u22121.4",
+   "cov": []
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      950,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | R +4.5 | +2.2 | \u22122.3",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "+0.1",
+     "by": "chart",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      950,
+      205,
+      22,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7 | \u22123.4",
+   "cov": []
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Monroe | R +7.1 | +3.7 | \u22123.4",
+   "cov": []
+  },
+  "err": []
+ }
+}

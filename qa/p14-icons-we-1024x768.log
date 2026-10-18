@@ -1,0 +1,22 @@
+map24 None None chv False ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt ['62%', '36%'] near ['62%', '36%'] sebar None frames 1
+list24 True None chv False ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt ['Kamala Harris61.6%', 'Kamala Harris', '61.6%', 'Donald Trump36.2%', 'Donald Trump', '36.2%'] near ['Kamala Harris', '61.6%', 'Donald Trump', '36.2%'] sebar None frames 2
+pie24 True pie chv True ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt [] near [] sebar None frames 1
+tip pie24 []
+bar24 True bar chv True ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt [] near [] sebar {'top': 209, 'bottom': 315, 'left': 52, 'right': 958, 'maxBarRight': 629, 'rows': 3, 'labels': ['Harris 61.6%', 'Trump 36.2%', 'Other 2.2%']} frames 1
+tip bar24 []
+pie24b True pie chv True ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt [] near [] sebar None frames 1
+map24b True pie chv False ims [[12, 122, 30, 30], [12, 166, 30, 30]] txt ['62%', '36%'] near ['62%', '36%'] sebar None frames 2
+map2024r True bar chv False ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt ['32%', '66%', '36%', '62%'] near ['32%', '66%', '36%', '62%'] sebar None frames 1
+list2024r True bar chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 1
+rbar True None chv False ims [[12, 213, 30, 30], [12, 257, 30, 30], [143, 213, 30, 30], [143, 257, 30, 30]] txt ['Donald Trump32.1%', 'Donald Trump', '32.1%', 'Joe Biden65.6%', 'Joe Biden', '65.6%', 'Donald Trump36.2% · ', 'Donald Trump', '36.2% · +4.1 pts', 'Kamala Harris61.6% ·', 'Kamala Harris', '61.6% · -4.0 pts'] near ['Donald Trump', '32.1%', 'Joe Biden', '65.6%', 'Donald Trump', '36.2% · +4.1 pts', 'Kamala Harris', '61.6% · -4.0 pts'] sebar None frames 2
+tip rbar []
+rline True line chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 2
+tip rline []
+rbar2 True bar chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 1
+map2024r2 True bar chv False ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt ['32%', '66%', '36%', '62%'] near ['32%', '66%', '36%', '62%'] sebar None frames 2
+map1624r True bar chv False ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt ['33%', '60%', '36%', '62%'] near ['33%', '60%', '36%', '62%'] sebar None frames 1
+list1624r True bar chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 1
+r16line True line chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 1
+r16bar True bar chv True ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt [] near [] sebar None frames 1
+map1624r2 True bar chv False ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt ['33%', '60%', '36%', '62%'] near ['33%', '60%', '36%', '62%'] sebar None frames 2
+map2016 True bar chv False ims [[12, 190, 30, 30], [12, 234, 30, 30], [926, 190, 30, 30], [926, 234, 30, 30]] txt ['33%', '60%', '36%', '62%'] near ['33%', '60%', '36%', '62%'] sebar None frames 1

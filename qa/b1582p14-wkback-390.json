@@ -1,0 +1,24 @@
+{
+ "build": "202610181582",
+ "start": "precincts",
+ "bBack": {
+  "r": [
+   -3.5,
+   108,
+   44,
+   44
+  ],
+  "top": "[object SVGAnimatedString]",
+  "pe": "auto"
+ },
+ "after_touch": "precincts",
+ "events": [
+  "pointerdown:[object SVGAnimatedS",
+  "touchstart:[object SVGAnimatedS",
+  "pointerup:[object SVGAnimatedS",
+  "touchend:[object SVGAnimatedS"
+ ],
+ "after_click": "townships",
+ "after_locator_tap": "townships",
+ "err": []
+}

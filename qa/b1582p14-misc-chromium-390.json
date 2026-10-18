@@ -1,0 +1,86 @@
+{
+ "build": "202610181582",
+ "pgh_sugg": [
+  "East Pittsburgh borough, Allegh\u2026 Town",
+  "Pittsburgh city, Allegheny Coun\u2026 Town",
+  "Pittsburg County, OK County",
+  "Pittsburg city, Contra Costa Co\u2026 Town",
+  "Pittsburg village, Williamson C\u2026 Town",
+  "Pittsburg city, Crawford County\u2026 Town",
+  "Pittsburg township, Mitchell Co\u2026 Town",
+  "Pittsburg town, Coos County, NH Town"
+ ],
+ "pgh_enter": {
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "ph": "No match: East Pittsburgh borou\u2026",
+  "crumb": "Allegheny County",
+  "z": 9,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "dbl_before": {
+  "st": "Pennsylvania",
+  "co": "Erie County",
+  "ph": "Erie County, PA",
+  "crumb": "Erie County",
+  "z": 6,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "dbl_after": {
+  "st": "Pennsylvania",
+  "co": "Erie County",
+  "ph": "Juniata County, PA",
+  "crumb": "Erie County",
+  "z": 8,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "dbl_field": [
+  "",
+  "Juniata County, PA"
+ ],
+ "qa018": [
+  "states",
+  "All States"
+ ],
+ "line1624": {
+  "chart": "line",
+  "ysl": [
+   0,
+   2
+  ],
+  "rows": [
+   {
+    "t": "FL | +7.1 | \u22124.8",
+    "pl": [
+     2,
+     2
+    ]
+   },
+   {
+    "t": "NY | +7.1 | \u22122.7",
+    "pl": [
+     2,
+     2
+    ]
+   },
+   {
+    "t": "PA | +2.2 | +1.2",
+    "pl": [
+     2,
+     2
+    ]
+   }
+  ]
+ },
+ "lbl1620": [
+  "Joe Biden 2024 [51%]",
+  "Donald Trump 2024 [47%]"
+ ],
+ "err": []
+}

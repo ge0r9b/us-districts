@@ -201,7 +201,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: `#laCands` goes 4,221 > hidden > 4,221 on the town drill-in and on the back to counties. On the back to states it ends at 4,191 with the chevron hidden (expected: chevron hidden at US level).
 - Data: `qa/drill-chromium.json` (pos_seq)
 
-### QA-022 iPad line list: the sort chip sits on the first row's lines; change labels collide
+### QA-022 [Fixed at 1024x768 on 1582 (pass 14)] iPad line list: the sort chip sits on the first row's lines; change labels collide
 - Severity: Medium | Build 1567 | 1024x768 (Chromium)
 - Actual: the sort chip (862,185) covers the MO row's red and blue lines. On the WY row, "+2.4" and "−0.5" overlap.
 - Screenshot: shots/b1567-ch-1024x768-drill-PA.png
@@ -217,7 +217,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: the institution becomes Allegheny County, but the geo field says "Clinton County, PA" and the map stays at zoom 6.
 - Screenshot: shots/b1568-ch-390-search-Allegheny.png (suggestions; end state in `qa/gaps.log`)
 
-### QA-025 [Changed on 1575] Double-tap on the map zooms out and clears the state
+### QA-025 [Fixed on 1582 (verified pass 14, Chromium touch emulation)] Double-tap on the map zooms out and clears the state
 - Severity: Medium (spec 6: double-tap zooms to the area and puts its name in the geo field) | Build 1568 | 390x844 (Chromium touch emulation: 2 taps 120 ms apart)
 - Steps: Erie County, PA view (zoom 6) > double-tap the map.
 - Actual: zoom 6 > 4, state cleared, geo field "Albemarle County, VA". Real-device check needed.
@@ -428,7 +428,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: `#bTime` moves dx 0 / dy +5 / dw 0 / dh 0 (122 > 127). The thumbnails also drop dy +68 to make room for the slider (likely intended, logged so it can be confirmed).
 - Screenshots: shots/b1574-ch-1024x768-ls04-open-time-slider-before.png / -after.png, shots/b1574-ch-390-ls04-open-time-slider-before.png / -after.png
 
-### QA-054 [HIGH] Thumbnails jump 3 px when switching between map and list
+### QA-054 [Changed on 1582: settled photo no longer moves; transient now QA-060] [HIGH] Thumbnails jump 3 px when switching between map and list
 - Build 1575 | 1024x768 and 390x844 (Chromium) | Worcester County, President, time row open
 - Map > list: thumbnails dy -3 (190 > 187; they widen +258/+276 to show names, by design). List > map: dy +3, and for about 250-700 ms the photo box is 50 px wide before it settles at 42 px.
 - Screenshots: shots/b1574-ch-1024x768-ls09-view-list-Worcester-before.png / -after.png, shots/b1574-ch-1024x768-ls17-view-map-Worcester-before.png / -after.png, shots/b1574-ch-390-ls17-view-map-Worcester-after.png
@@ -449,7 +449,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - No box moved on the switch itself, but the chart button (968,186) disappears while the layers row is open and comes back when it closes, and the crumb changes Worcester County > Massachusetts while the list still shows Worcester's President result (Harris 53.9% / Trump 43.9%; QA-005 family). Back to President returns to Worcester County.
 - Screenshots: shots/b1574-ch-1024x768-ls10-list-switch-USHouse-before.png / -after.png, shots/b1574-ch-1024x768-ls12-list-switch-back-President-before.png / -after.png, shots/b1574-ch-390-ls10-list-switch-USHouse-after.png
 
-### QA-058 [HIGH] Turning on a range in a place summary shifts the thumbnails 23 px
+### QA-058 [HIGH, chart views fixed on 1582; plain range list still open] Turning on a range in a place summary shifts the thumbnails 23 px
 - Build 1575 | 1024x768 and 390x844 (Chromium) | Worcester County list summary
 - Year > range ('16>'24): thumbnails dy +23 and narrow (-175 / -138 px) to make room for the two year columns; back to one year: dy -23. Probably by design (column headers); logged as asked.
 - Screenshots: shots/b1574-ch-1024x768-ls15-list-range-16-24-before.png / -after.png, shots/b1574-ch-390-ls15-list-range-16-24-after.png
@@ -464,7 +464,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots: shots/b1576-jump-390-DEafterDC-before-after.png, shots/b1576-jump-{1024x768,390}-DEafterDC-{before,after}.png (the "before" capture landed after the move even with 6x CPU throttle; the rAF positions above are the evidence), shots/b1576-thumbs-ch-{1024x768,390}-DE-after-DC.png
 - Data: `qa/b1576-thumbs-*.json` > trans.DE_after_DC.frames, `qa/b1576-jump.json`
 
-### QA-060 [HIGH] Blount County results > list: thumbnails jump 8 px left and back
+### QA-060 [HIGH, widened on 1582: every map/list switch, see pass 14] Blount County results > list: thumbnails jump 8 px left and back
 - Severity: HIGH (QA-054-style jump) | Build 1576 | Chromium 1024x768 and 390x844
 - Steps: Geo > Alabama > Blount County (results view), then tap the globe/list button.
 - Expected: thumbnails stay at x=12.
@@ -589,7 +589,7 @@ The live build moved during the pass: 1578 at 12:56, 1579 by ~1:05, 1580 by ~1:3
 - Actual: `#bTime` sits at (334,122) then at 1,758 ms jumps to (1336,488) (**dx +1002, dy +366**, so it vanishes) and returns to (334,122) at 1,801 ms. New on 1580 (the clock-button change); not seen on 1579 at 375/320/1024x576.
 - Screenshots: shots/b1577p13-ch-390-ls25-geo-menu-all-states-{before,after}.png. Data: `qa/b1577p13-layout-chromium-390.json` > step 25 transient
 
-### QA-071 [HIGH, needs a real iPhone check] Back chevron ignores touch taps in WebKit
+### QA-071 [Fixed on 1583 (verified pass 14, 2:10 PM EDT)] [HIGH] Back chevron ignores touch taps in WebKit
 - Builds 1575-1580 (every WebKit run so far) | WebKit 390x844, 375x667, 320x568, 1024x576 with touch
 - Steps: All States > PA > Allegheny County > Pittsburgh (precinct list), then tap the back chevron.
 - Expected: back to the towns list, as in Chromium (precincts > townships).
@@ -603,6 +603,81 @@ Live line 9 = 202610181581 (main `8d94cc9`, 1:28 PM EDT). Chromium, quiet box.
 - QA-054 (thumbnails -3 / +3 px map/list) and QA-058 (+23 px on a '16>'24 range in the list) still on 1581 at 375x667.
 - **QA-050 and QA-065 (rows) still fixed on 1581,** Chromium 390: reload keeps 1,703 precinct rows at '16>'24, rows read "Precinct 5802" etc.; the crumb is still cut ("Philadelphia County Philadelphi…"). **QA-051 still open on 1581** ("Joe Biden 2024" label at '16>'20, 81% / 18%). Shots: shots/b1581p13-ch-390-prec-16-24{,-reload,-num}.png, shots/b1581p13-ch-390-prec-16-20.png. Data: `qa/b1581p13-chromium-390.json`
 - Commit `e92d7d4` only added scripts, logs and shots; its message lists the pass 13 bugs with numbers that differ from the BUGS.md entries above. BUGS.md (QA-068 DC pin, QA-069 "015/75", QA-070 clock jump, QA-071 WebKit back) is the record.
+
+## Re-test status, build 1582 (pass 14, Oct 18 ~1:52-2:22 PM EDT)
+Live line 9 was 202610181582 at the start; **1583 went live during the pass** (main `e1f9ae3`, 1:58 PM EDT: "back chevron works on WebKit touch (QA-071)"). The 1582 icon checks, misc checks and the 390 layout sweep ran on 1582; the 375/1024x768 layout sweeps, thumbnail transitions, smoke flows, WebKit back and DC checks ran on 1583. Each item says which. Load average 1.3-5.3 (several of my browsers at once), so **tap-to-paint numbers in this pass are inflated and need a quiet-box recheck**. No console errors, page errors or failed requests in any run; CLS 0 in all smoke flows.
+
+**1582 change (candidate icons keep the map view's spot; no text/tooltip in chart views; single-year bar at phone width)** - MA, map > list > pie > bar > pie > map at '24, then '20>'24 and '16>'24 map > list > bar > line > bar > map. Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768 and WebKit 390x844, 1024x768 (touch). Script `qa/p14-icons.py`, data `qa/b1582p14-icons-{chromium,webkit}-<size>.json`, shots `shots/b1582p14-{ch,we}-<size>-icons-<view>.png`.
+- **Passes when settled:** in list, pie, bar and line the icon rects equal the map view's to the half pixel at every size and in both engines (e.g. 390: (12,122) and (12,166) single year; (12,190), (12,234), (292,190), (292,234) in a range).
+- **Passes:** no name/number text next to the icons in pie, bar or line (`.cpt/.cn/.cs/.cw` hidden, no text node within 40 px), and tapping an icon opens no tooltip (`#partyBub` hidden) in pie, bar, '20>'24 bar and line.
+- **Passes:** the single-year bar chart is on screen at phone width (390/375/320: top 211, bottom 317) and ends before the button column: track right edge 324 / 309 / 254 vs the button column at 334 / 319 / 264 (10 px gap); fill ends 239 / 230 / 196. Same in WebKit 390. Rows high to low (Harris 61.6%, Trump 36.2%, Other 2.2%). Shot: shots/b1582p14-ch-320-icons-bar24.png
+- **Fails during the switch:** see QA-060 (8 px sideways jump for 250-560 ms on every map/list switch) and QA-058 (plain range list, no chart).
+- The MA '20>'24 line shows Biden 65.6 > Harris 61.6 (-4.0) and Trump 32.1 > 36.2 (+4.1); the 2020 shares match the certified MA result (Biden 65.6%, Trump 32.1%).
+- List rows/labels: no new overlaps (`qa/p14-labels.py`, `qa/b1582p14-labels-chromium.json`); only the known QA-044 / QA-013 cases below.
+
+**Status per bug**
+- **QA-071 fixed on 1583 (WebKit 390x844 and 1024x768, touch):** Pittsburgh precinct list > touch tap on the back chevron goes to townships (pointerdown/touchstart/pointerup/touchend; the follow-up click is ignored). The next taps go back one level each (counties, then states), no double back. On 1582 it still failed (stayed on precincts). WebKit smoke flow on 1583: precincts > back > townships at both sizes. Data: `qa/b1583p14-wkback-{390,1024}.json`, `qa/b1582p14-wkback-390.json` (1582). Shot: shots/b1583p14-we-390-back-after-touch.png
+- **QA-025 fixed (1582, Chromium 390 touch emulation, 2 taps 120 ms apart):** Erie County, PA (zoom 6) > double-tap the map: zoom 6 > 8 around the tap point, the state stays Pennsylvania, and the geo field shows the tapped area "Juniata County, PA". The title still reads "Erie County" (it is the institution). Real-device check still advised. Shot: shots/b1582p14-ch-390x844-qa025-dbltap.png
+- **QA-022 fixed at 1024x768 (1582):** All States '20>'24 Line: the sort chip sits above the NY row's lines (no overlap) and none of the visible change labels collide. Shot: shots/b1582p14-ch-1024x768-lbl-states-rline-pct.png
+- **QA-054 changed (settled jump gone for the photo):** the icon image no longer ends up 3 px off after a map/list switch (image rects identical at all 5 sizes, both engines). The `.cand` container box still moves -3 / +3 px and is 50 px wide for 475-709 ms after list > map (390 on 1582, 375 and 1024x768 on 1583), and the photo jumps 8 px sideways during the switch (now tracked under QA-060).
+- **QA-060 changed, wider than Blount (HIGH):** see the entry below "New on build 1582".
+- **QA-058 changed:** fixed in the chart views (bar and line keep the map's spot in '20>'24 and '16>'24 at all sizes). Still open in the plain range summary (a range list with no chart picked, e.g. after tapping the active Bar again): the left column drops dy +23 and the right column moves left dx -94 (390), -86.5 (375), -59 (320), -783 (1024x576 and 1024x768), both engines, because the plain summary lays the two years out as named columns ("2020 / 2024"). Shots: shots/b1582p14-ch-390-icons-rbar.png (plain list), shots/b1582p14-ch-390-icons-map2024r.png (map)
+- **QA-055 not reproduced (likely fixed):** list back from Worcester to MA and to All States, and back in bar mode: no transient first-row or chevron positions at 390 (1582), 375 and 1024x768 (1583). Data: `qa/b1582p14-layout-chromium-{390,375,1024x768}.json` steps 28, 29, 32.
+- **QA-056 not reproduced:** no thumbnail flash when the geo menu closed (steps 1-3, three sizes).
+- **QA-070 still open, now also at 1024x768 (1583):** US map > time row > geo button > All States: `#bTime` jumps to (3872,488) (dx +2904, dy +366, off screen) for about 107 ms, then returns to (968,122). 390 on 1582: (1336,488) for about 75 ms; 375 on 1583: (1276,488) for about 56 ms. Data: layout JSONs step 25 `transient`. Shots: shots/b1582p14-ch-{390,375,1024x768}-ls25-geo-menu-all-states-{before,after}.png
+- **QA-059 still open (1583, Chromium 390 and 1024x768):** DC row then Delaware: thumbnails at y 131/183 for the first frame, then y 161/213 at 526 ms (dx 0, dy +30), layout shift 0.0013 on `laCands`. Shots: shots/b1582p14-thumbs-ch-{390,1024x768}-DE-after-DC.png. Data: `qa/b1582p14-thumbs-{390,1024x768}.json`
+- **QA-061 still open (1583, both sizes):** after DC then Delaware the title says "Delaware" but the geo field placeholder is still "District of Columbia".
+- **QA-023 still open (1582, 390):** "Pittsburgh": the first suggestion is "East Pittsburgh borough"; Enter leaves the view on Allegheny County with the field reading "No match: East Pittsburgh borou…". Shot: shots/b1582p14-ch-390x844-qa023-pittsburgh.png
+- **QA-044 still open (1582):** All States '20>'24 Line: NY "−4.5" is under the sort chip by 7 x 9 px (390), 14 x 9 (375), 15 x 9 (320); `#` mode "−1.83M" under the chip at 390 and 320 (Chromium smoke) and in WebKit 390. Clear at 1024x576/1024x768.
+- **QA-057 still open (1582/1583):** chart button hidden while the layers row is open; on US House the crumb changes Worcester County > Massachusetts.
+- **QA-051 still open (1582):** All States '16>'20: the thumbnails are labelled "Joe Biden 2024" / "Donald Trump 2024" with 2020 values (51% / 47%).
+- **QA-066 still open (1582):** All States '16>'24 Line: each row still has two 2-point polylines (FL +7.1 / −4.8, NY +7.1 / −2.7, PA +2.2 / +1.2), no '20 point. Shot: shots/b1582p14-ch-390x844-qa066-line-16-24.png
+- **QA-063 still open (1582, WebKit 390):** "100 Ross St, Pittsburgh" from Allegheny: title "Pittsburgh Ward 1 Dist 1", 76% / 22%, field still "Allegheny County, PA".
+- **QA-068 still open (1582, WebKit 390):** DC address from Franklin County OH, Allegheny PA and Pennsylvania: centre 38.8926, -77.0145 at zoom 11, not the White House. Title/numbers right (District of Columbia, 90% / 6%), so QA-062 stays fixed.
+- **QA-069 still open (1582, WebKit 390):** "350 5th Ave, New York" titles the view "015/75" (76% / 22%).
+- **QA-064 still open (1582/1583, Chromium 390, load 3-5):** State senate pick Texas 708 ms, Ohio 226 ms. School districts are slower still (QA-073).
+- **QA-018 still open (1582):** tapping the OH row on its bar leaves the list on All States.
+- **QA-005 still open (1583):** US House from the Pittsburgh towns list gives 0 rows (Chromium 390/320/1024x576, WebKit 390/1024x768).
+- **QA-007 still open (1583, load ~3):** All States 255-278 ms (Chromium), 423-431 ms (WebKit); US House pick 274-345 ms (Chromium), 242-247 ms (WebKit).
+- **QA-015 still open (1583):** reload at Allegheny County list: `lt` counties > none, and `ll` jumps to the fixed point 40.435, -80.0249.
+- **QA-009 (320):** single year All States labels under the right buttons are QA-013 (accepted). In the Delaware list the sort chip touches the "New Castle" name by 5 x 4 px (range bar mode).
+- **Per-state school district lists, reached for the first time** (Chromium 390, `qa/p14-dist2.py`, `qa/p14-school2.py`, data `qa/b1582p14-dist2-chromium-390.json`, `qa/b1582p14-school2-chromium-390.json`): row counts FL 67, HI 1, MD 24, NV 17 (all match the number of districts), PA 500 (PA has 500 school districts), OH 611, TX 1,019, CA 974, GA 184, VT 131, AK 53. No n/a, NaN or empty values, rows high to low. Problems: QA-072 (DC), QA-073 (slow), QA-074 (repeated names). Earlier passes never reached this because the harness used the key `school`; the button is `schools`.
+- Harness note, not a bug: after a district-type pick the layers row stays open, and the first tap anywhere only closes it (the globe tap is swallowed; the second tap works). Data: `qa/b1582p14-globe-chromium-390.json`
+- Not reached (carry over): QA-046 visual recheck on the ±90 scale (1579), QA-050/QA-065 (fixed in pass 13, not rechecked), QA-039/040/042, QA-010-014/016/021, WebKit at 375/320/1024x576, layout sweep at 320/1024x576 and in WebKit, school lists for the other 37 states, all timing on a quiet box. No v3 preview or live URL yet.
+
+## New on build 1582 (pass 14)
+
+### QA-072 [Critical] DC > School districts (or US House) shows the national numbers under "District of Columbia"
+- Severity: Critical (wrong numbers under a place's name) | Build 1583 (also seen in the 1582/1583 school run at ~2:05 PM EDT) | Chromium 390x844
+- Steps: type "District of Columbia" in the geo field > Enter (title District of Columbia, thumbnails Harris 90% / Trump 6%) > district-type button > School districts (or US House). Then the globe (list) button.
+- Expected: DC's one school district (DC Public Schools) with DC's numbers (90% / 6%), or DC's delegate district; the title and numbers agree.
+- Actual: on the map the title stays "District of Columbia" but the thumbnails switch to the US totals, Trump 50% / Harris 48%. The list then shows the 51 state rows (WY 72.3%, WV 70.0%...) titled "District of Columbia states" for School districts, or all 436 House districts (AL-04, KY-05...) for US House, still titled "District of Columbia". States behave correctly (Texas > State senate keeps Texas 56% / 42% and lists 31 Texas districts).
+- Screenshots: shots/b1582p14-ch-390-DC-schools-map.png, shots/b1582p14-ch-390-DC-schools-list.png, shots/b1582p14-ch-390-DC-ushouse-list.png, shots/b1582p14-ch-390-schools-DistrictofColumbia-list.png
+- Data: `qa/b1583p14-dcschools-chromium-390.json` (script `qa/p14-dcschools.py`)
+
+### QA-073 [HIGH, recheck on a quiet box] Picking School districts in a big state takes 1-4 s
+- Severity: HIGH (tap-to-next-paint far over 100 ms) | Build 1582/1583 | Chromium 390x844
+- Steps: type a state in the geo field > Enter > district-type button > School districts.
+- Actual tap-to-next-paint: California 3,990 ms, Texas 2,980 ms, Pennsylvania 1,105 ms, Ohio 767 ms, Florida 411 ms, Vermont 291 ms, DC 141 ms, Nevada 134 ms, Hawaii 101 ms, Alaska 64 ms, Maryland 2 ms. It grows with the number of districts (CA 974, TX 1,019). Same pattern as QA-064 (state senate/house), but 3-4x slower.
+- Caveat: load average 3-5 during the run, so the absolute numbers are inflated; the size pattern is clear.
+- Screenshots: shots/b1582p14-ch-390-schools-California-list.png, shots/b1582p14-ch-390-schools-Texas-list.png
+- Data: `qa/b1582p14-dist2-chromium-390.json` (`lat_type`)
+
+### QA-074 [MEDIUM] School district lists: same-name rows can't be told apart, and some California districts appear 2-3 times
+- Severity: MEDIUM | Build 1582/1583 | Chromium 390x844
+- Steps: Ohio (or California, Texas, Vermont) > district-type > School districts > list.
+- Expected: one row per district, and districts that share a name labelled so they can be told apart (e.g. with the county).
+- Actual: Ohio has three "Eastern Local School District" rows (81.4%, 81.0%, 80.1%) and two each of Crestview, Southern, Buckeye, Madison, Green Local; Texas two each of Big Sandy, Centerville, Chapel Hill, Dawson ISD. These are different real districts with the same name, but the rows carry no county or other label. California has "Santa Cruz City High School District" three times (83.6%; 20.0% / 76.3%; ...) and "Santa Barbara Unified", "Healdsburg Unified" and "Eureka City Unified" twice each. These look like one district split into several rows with different numbers. In Vermont two long names are cut to the same "Southwest Vermont Union Element…" / "West River Valley Modified Unio…", so they read as duplicates too.
+- Screenshots: shots/b1582p14-ch-390-schools-Ohio.png, shots/b1582p14-ch-390-schools-California.png, shots/b1582p14-ch-390-schools-Vermont-list.png
+- Data: `qa/b1582p14-school2-chromium-390.json` (`dups`, `order_dups`)
+
+### QA-060 (widened, HIGH, was "Blount County results > list") Candidate icons jump 8 px sideways for 250-560 ms on every map/list switch
+- Severity: HIGH (layout jump; contradicts the 1582 "fixed spot" rule while it lasts) | Build 1582 (Blount on 1583) | Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768; WebKit 390x844, 1024x768
+- Steps: Massachusetts > globe button (map > list), then a chart pick, then globe again (list > map). Same at '24, '20>'24 and '16>'24.
+- Expected: the icons stay at the map's spot in every frame (x 12).
+- Actual: map > list: the icons go to x 4 (**dx -8**) on the first frame (23-45 ms) and return to x 12 at 262-561 ms. List > map: the left column goes to x 20 (**dx +8**) at 15-34 ms and returns at 265-624 ms (in a range only the left column moves). Settled positions match. Blount County (1583, 390): 12 > 4 at 22 ms > 12 at 273 ms, as first logged.
+- Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
+- Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
