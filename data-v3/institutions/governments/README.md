@@ -192,7 +192,7 @@ Not done in this pass: CIA World Factbook government type (no column yet), INEGI
 
 ## UK, Germany, France: every government level (`foreign/gb/`, `foreign/de/`, `foreign/fr/`)
 One builder per country (`scripts/build_foreign_<cc>.py`, shared helpers in `scripts/foreign_local.py`), run by
-`build_all.py` (or alone: `python3 scripts/build_foreign_gb.py`). Columns, ID proposals and crosswalks: SCHEMA.md.
+`build_all.py` (or alone: `python3 scripts/build_foreign_<cc>.py`; the FR one saves the registry only with `--save`). Columns, ID proposals and crosswalks: SCHEMA.md.
 The existing `nation:` and ISO first-level `subdivision:` rows are reused, never duplicated (`code_xwalk.csv`).
 
 ### UK (`foreign/gb/`)
@@ -253,6 +253,31 @@ Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `bou
 VG1000 (Staat, Länder, RBZ, Kreise), only codes present in the layer.
 Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units.
 
+### France (`foreign/fr/`; units split in `units_upper.csv` and `units_communes_<région>.csv` for the 10 MB limit)
+Sources: INSEE COG au 1er janvier 2026, INSEE Base des EPCI à fiscalité propre et des EPT au 1er janvier 2026, IGN ADMIN
+EXPRESS COG CARTO (attribute tables via WFS, latest edition = COG 2026), all Licence Ouverte 2.0.
+
+| level | rows | parent |
+|---|---|---|
+| État | existing `nation:fr` | |
+| régions | 12 metropolitan → existing `subdivision:fr-*` (Wikidata item with INSEE code P2585 and ISO P300), Corse → `subdivision:fr-20r`, Martinique/Guyane/Mayotte → their single collectivity's `territory:` row; new: Guadeloupe, La Réunion (`fr-cog:reg:01/04`) | `nation:fr` |
+| département-level collectivities (CTCD) | 91 conseils départementaux (`fr-cog:dep:XX`), Métropole de Lyon, Collectivité européenne d'Alsace (`fr-cog:ctcd:69M/6AE`), Ville de Paris (= commune 75056); existing: Corse, Martinique, Guyane, Mayotte, and the départements of Guadeloupe and La Réunion (= `territory:gp/re`, ISO FR-971/974 "overseas departmental collectivity") | région |
+| collectivités d'outre-mer | existing `territory:pm/bl/mf/tf/wf/pf/nc`, `subdivision:fr-cp` (code_xwalk) | |
+| EPCI à fiscalité propre (SIREN) | 21 métropoles, 14 CU, 230 CA, 987 CC (+ Métropole de Lyon) | région or `nation:fr` |
+| EPT (Grand Paris) | 11 | Métropole du Grand Paris |
+| communes | 34,875 (incl. Paris) + 85 in the COM | CTCD / `territory:` row; `member_of` EPCI (+ EPT) |
+| communes déléguées / associées, arrondissements municipaux | 2,105 / 471 / 45 | commune |
+
+Départements as territorial units are not separate rows: `code_xwalk.csv` maps each INSEE département code (and the
+ISO 3166-2 FR-XX code) to the collectivity that governs it (`same_government`, or `governs_departement` for 2A/2B, 67/68, 75,
+972, 973, 976; `governs_part` for Rhône 69, split between its conseil départemental and the Métropole de Lyon).
+The Guadeloupe and La Réunion région rows carry no QID (Wikidata's P2585 item is the area item already on `territory:gp/re`,
+flag `qid_is_shared_area_item`). `valid_from` for 1,508 communes from the INSEE movement file. Not covered: provinces of
+New Caledonia and the Wallis-et-Futuna circonscriptions/chefferies (not in the COG as communes), syndicats (SIVU, SIVOM,
+syndicats mixtes), Île des Faisans (condominium, no own government), SIREN for EPT/EPCI beyond the INSEE code
+(they are the SIREN), commune SIREN missing where IGN has none. `gaps.csv`: 10 communes déléguées/associées absent from
+the ADMIN EXPRESS layer.
+
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
 @ ed866a4 (read-only, via `git show`) and writes `aiannh_join_check.csv`: every tribe GEOID in `tribes.csv` and the
@@ -271,4 +296,4 @@ picks the newest BIA list notice from the Federal Register search, so a refresh 
 `cache/manifest.json` records URL, Last-Modified and retrieval time per file. Raw downloads are never committed.
 
 Scripts: `common.py` (download/cache, readers, column lists), `build_states.py`, `build_cog.py`,
-`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_foreign.py`, `foreign_local.py`, `build_foreign_gb.py`, `build_foreign_de.py`, `build_all.py`.
+`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_foreign.py`, `foreign_local.py`, `build_foreign_gb.py`, `build_foreign_de.py`, `build_foreign_fr.py`, `build_all.py`.

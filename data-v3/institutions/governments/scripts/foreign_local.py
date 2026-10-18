@@ -59,6 +59,9 @@ def wfs(key, base, typename, props, page=5000):
 
 def write_split(path_base, rows, columns, region_key):
     """Write rows to <base>.csv, or split by region_key into <base>_<region>.csv if over 10 MB."""
+    import glob
+    for old in glob.glob(path_base + '.csv') + glob.glob(path_base + '_*.csv'):   # stale parts of an earlier split
+        os.remove(old)
     path = path_base + '.csv'
     write_csv(path, rows, columns)
     if os.path.getsize(path) < MAX_BYTES:

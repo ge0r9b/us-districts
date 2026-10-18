@@ -5,8 +5,8 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry.csv": 121339,
-  "sources.csv": 35,
+  "id_registry.csv": 160278,
+  "sources.csv": 39,
   "changes_since_cog2022.csv": 449,
   "images.csv": 9846,
   "images_gaps.csv": 37584,
@@ -252,6 +252,36 @@
    "verwaltungsgemeinschaft": 573,
    "verwaltungsverband": 120,
    "with_qid": 12196
+  },
+  "fr": {
+   "arrondissement_municipal": 45,
+   "boundary_missing|commune_associee_ou_deleguee": 10,
+   "boundary|arrondissement_municipal": 45,
+   "boundary|collectivite_territoriale": 100,
+   "boundary|commune": 34875,
+   "boundary|commune_associee_ou_deleguee": 2566,
+   "boundary|departement": 96,
+   "boundary|epci": 1264,
+   "boundary|region": 18,
+   "collectivite_europeenne_d_alsace": 1,
+   "comer_zones_not_communes": 10,
+   "communaute_d_agglomeration": 230,
+   "communaute_de_communes": 987,
+   "communaute_urbaine": 14,
+   "commune": 34959,
+   "commune_associee": 471,
+   "commune_deleguee": 2105,
+   "conseil_departemental": 91,
+   "etablissement_public_territorial": 11,
+   "gaps": 11,
+   "ign_commune_names_equal_cog2026": 34875,
+   "metropole": 21,
+   "metropole_de_lyon": 1,
+   "region": 2,
+   "units": 38939,
+   "ville_de_paris": 1,
+   "with_qid": 34743,
+   "with_valid_from": 1508
   }
  },
  "foreign_country_files": {
@@ -260,6 +290,28 @@
   ],
   "de": [
    "foreign/de/units.csv"
+  ],
+  "fr": [
+   "foreign/fr/units_communes_01.csv",
+   "foreign/fr/units_communes_02.csv",
+   "foreign/fr/units_communes_03.csv",
+   "foreign/fr/units_communes_04.csv",
+   "foreign/fr/units_communes_06.csv",
+   "foreign/fr/units_communes_11.csv",
+   "foreign/fr/units_communes_24.csv",
+   "foreign/fr/units_communes_27.csv",
+   "foreign/fr/units_communes_28.csv",
+   "foreign/fr/units_communes_32.csv",
+   "foreign/fr/units_communes_44.csv",
+   "foreign/fr/units_communes_52.csv",
+   "foreign/fr/units_communes_53.csv",
+   "foreign/fr/units_communes_75.csv",
+   "foreign/fr/units_communes_76.csv",
+   "foreign/fr/units_communes_84.csv",
+   "foreign/fr/units_communes_93.csv",
+   "foreign/fr/units_communes_94.csv",
+   "foreign/fr/units_communes_om.csv",
+   "foreign/fr/units_upper.csv"
   ]
  },
  "foreign_not_built": [
@@ -602,6 +654,86 @@
    "last_modified": "2026-03-10",
    "retrieved_at": "2026-10-18T14:02:26Z"
   },
+  "ign_adminexpress_arrondissement_municipal_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Aarrondissement_municipal&propertyName=code_insee%2Cnom_officiel&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:08Z"
+  },
+  "ign_adminexpress_collectivite_territoriale_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acollectivite_territoriale&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:50Z"
+  },
+  "ign_adminexpress_commune_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:54Z"
+  },
+  "ign_adminexpress_commune_10000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=10000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:58Z"
+  },
+  "ign_adminexpress_commune_15000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=15000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:00Z"
+  },
+  "ign_adminexpress_commune_20000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=20000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:02Z"
+  },
+  "ign_adminexpress_commune_25000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=25000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:03Z"
+  },
+  "ign_adminexpress_commune_30000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=30000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:05Z"
+  },
+  "ign_adminexpress_commune_5000": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=5000&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:56Z"
+  },
+  "ign_adminexpress_commune_associee_ou_deleguee_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune_associee_ou_deleguee&propertyName=code_insee%2Cnom_officiel%2Cnature&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:07Z"
+  },
+  "ign_adminexpress_departement_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Adepartement&propertyName=code_insee%2Cnom_officiel&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:49Z"
+  },
+  "ign_adminexpress_epci_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Aepci&propertyName=code_siren%2Cnom_officiel&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_siren",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:52Z"
+  },
+  "ign_adminexpress_region_0": {
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ADMINEXPRESS-COG-CARTO.LATEST%3Aregion&propertyName=code_insee%2Cnom_officiel%2Ccode_siren&outputFormat=application%2Fjson&count=5000&startIndex=0&sortBy=code_insee",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:48Z"
+  },
+  "insee_cog2026": {
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8740222/cog_ensemble_2026_csv.zip",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:37Z"
+  },
+  "insee_epci2026": {
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2510634/epci_au_01-01-2026.zip",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:41Z"
+  },
+  "insee_ept2026": {
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2510634/ept_au_01-01-2026.zip",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:11:46Z"
+  },
   "iso_3166-1": {
    "url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json",
    "last_modified": "",
@@ -776,6 +908,21 @@
    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20WHERE%20%7B%20%3Fi%20wdt%3AP440%20%3Fv%20.%20%7D",
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:04:33Z"
+  },
+  "wd_fr_p1616": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20%3Fiso%20WHERE%20%7B%20%3Fi%20wdt%3AP1616%20%3Fv%20.%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP300%20%3Fiso%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:48Z"
+  },
+  "wd_fr_p2585": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20%3Fiso%20WHERE%20%7B%20%3Fi%20wdt%3AP2585%20%3Fv%20.%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP300%20%3Fiso%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:53Z"
+  },
+  "wd_fr_p374": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20%3Fiso%20WHERE%20%7B%20%3Fi%20wdt%3AP374%20%3Fv%20.%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP300%20%3Fiso%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:12:11Z"
   },
   "wd_gss": {
    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fg%20%3Fiso%20WHERE%20%7B%20%3Fi%20wdt%3AP836%20%3Fg%20.%20FILTER%28REGEX%28%3Fg%2C%20%22%5E%28E0%5B46789%5D%7CE10%7CE47%7CE61%7CW0%5B46%5D%7CS12%7CN09%29%5B0-9%5D%7B6%7D%24%22%29%29%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP300%20%3Fiso%20%7D%20%7D",

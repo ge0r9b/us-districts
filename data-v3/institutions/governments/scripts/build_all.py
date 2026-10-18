@@ -7,8 +7,8 @@ import re, collections, json, os
 import build_cog, build_states, build_federal_agencies, build_tribes, build_changes
 from build_changes import CHANGE_COLUMNS
 import wikidata, build_images, build_foreign
-import build_foreign_gb, build_foreign_de
-COUNTRY_BUILDS = [('gb', build_foreign_gb), ('de', build_foreign_de)]   # foreign/<cc>/: every government level of one country
+import build_foreign_gb, build_foreign_de, build_foreign_fr
+COUNTRY_BUILDS = [('gb', build_foreign_gb), ('de', build_foreign_de), ('fr', build_foreign_fr)]   # foreign/<cc>/: every government level of one country
 from common import CACHE, ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
 
 

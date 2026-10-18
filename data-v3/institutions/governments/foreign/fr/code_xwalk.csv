@@ -1,0 +1,163 @@
+entity_id,code_scheme,code,relation,note,source,source_url
+fr-cog:com:75056,insee_dep,75,governs_departement,département Paris: Ville de Paris,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:com:75056,iso_3166_2,FR-75C,same_government,Ville de Paris,iso_codes,
+fr-cog:ctcd:69M,insee_dep,69,governs_part,département Rhône: Métropole de Lyon,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:ctcd:69M,iso_3166_2,FR-69M,same_government,Métropole de Lyon,iso_codes,
+fr-cog:ctcd:69M,siren,200046977,same_government,Métropole de Lyon in the INSEE EPCI file,insee_epci2026,https://www.insee.fr/fr/information/2510634
+fr-cog:ctcd:6AE,insee_dep,67,governs_departement,département Bas-Rhin: Collectivité européenne d'Alsace,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:ctcd:6AE,insee_dep,68,governs_departement,département Haut-Rhin: Collectivité européenne d'Alsace,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:ctcd:6AE,iso_3166_2,FR-67,governs_departement,"ISO 3166-2 code of département Bas-Rhin, governed by Collectivité européenne d'Alsace",iso_codes;insee_cog2026,
+fr-cog:ctcd:6AE,iso_3166_2,FR-68,governs_departement,"ISO 3166-2 code of département Haut-Rhin, governed by Collectivité européenne d'Alsace",iso_codes;insee_cog2026,
+fr-cog:ctcd:6AE,iso_3166_2,FR-6AE,same_government,Collectivité européenne d'Alsace,iso_codes,
+fr-cog:dep:01,insee_dep,01,same_government,département Ain: Conseil départemental de L'Ain,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:02,insee_dep,02,same_government,département Aisne: Conseil départemental de L'Aisne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:03,insee_dep,03,same_government,département Allier: Conseil départemental de L'Allier,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:04,insee_dep,04,same_government,département Alpes-de-Haute-Provence: Conseil départemental des Alpes-de-Haute-Provence,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:05,insee_dep,05,same_government,département Hautes-Alpes: Conseil départemental des Hautes-Alpes,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:06,insee_dep,06,same_government,département Alpes-Maritimes: Conseil départemental des Alpes-Maritimes,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:07,insee_dep,07,same_government,département Ardèche: Conseil départemental de L'Ardèche,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:08,insee_dep,08,same_government,département Ardennes: Conseil départemental des Ardennes,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:09,insee_dep,09,same_government,département Ariège: Conseil départemental de L'Ariège,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:10,insee_dep,10,same_government,département Aube: Conseil départemental de L'Aube,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:11,insee_dep,11,same_government,département Aude: Conseil départemental de L'Aude,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:12,insee_dep,12,same_government,département Aveyron: Conseil départemental de L'Aveyron,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:13,insee_dep,13,same_government,département Bouches-du-Rhône: Conseil départemental des Bouches-du-Rhône,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:14,insee_dep,14,same_government,département Calvados: Conseil départemental du Calvados,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:15,insee_dep,15,same_government,département Cantal: Conseil départemental du Cantal,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:16,insee_dep,16,same_government,département Charente: Conseil départemental de La Charente,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:17,insee_dep,17,same_government,département Charente-Maritime: Conseil départemental de La Charente-Maritime,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:18,insee_dep,18,same_government,département Cher: Conseil départemental du Cher,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:19,insee_dep,19,same_government,département Corrèze: Conseil départemental de La Corrèze,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:21,insee_dep,21,same_government,département Côte-d'Or: Conseil départemental de La Côte-d'Or,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:22,insee_dep,22,same_government,département Côtes-d'Armor: Conseil départemental des Côtes-d'Armor,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:23,insee_dep,23,same_government,département Creuse: Conseil départemental de La Creuse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:24,insee_dep,24,same_government,département Dordogne: Conseil départemental de La Dordogne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:25,insee_dep,25,same_government,département Doubs: Conseil départemental du Doubs,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:26,insee_dep,26,same_government,département Drôme: Conseil départemental de La Drôme,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:27,insee_dep,27,same_government,département Eure: Conseil départemental de L'Eure,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:28,insee_dep,28,same_government,département Eure-et-Loir: Conseil départemental d'Eure-et-Loir,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:29,insee_dep,29,same_government,département Finistère: Conseil départemental du Finistère,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:30,insee_dep,30,same_government,département Gard: Conseil départemental du Gard,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:31,insee_dep,31,same_government,département Haute-Garonne: Conseil départemental de La Haute-Garonne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:32,insee_dep,32,same_government,département Gers: Conseil départemental du Gers,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:33,insee_dep,33,same_government,département Gironde: Conseil départemental de La Gironde,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:34,insee_dep,34,same_government,département Hérault: Conseil départemental de L'Hérault,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:35,insee_dep,35,same_government,département Ille-et-Vilaine: Conseil départemental d'Ille-et-Vilaine,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:36,insee_dep,36,same_government,département Indre: Conseil départemental de L'Indre,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:37,insee_dep,37,same_government,département Indre-et-Loire: Conseil départemental d'Indre-et-Loire,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:38,insee_dep,38,same_government,département Isère: Conseil départemental de L'Isère,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:39,insee_dep,39,same_government,département Jura: Conseil départemental du Jura,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:40,insee_dep,40,same_government,département Landes: Conseil départemental des Landes,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:41,insee_dep,41,same_government,département Loir-et-Cher: Conseil départemental du Loir-et-Cher,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:42,insee_dep,42,same_government,département Loire: Conseil départemental de La Loire,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:43,insee_dep,43,same_government,département Haute-Loire: Conseil départemental de La Haute-Loire,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:44,insee_dep,44,same_government,département Loire-Atlantique: Conseil départemental de La Loire-Atlantique,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:45,insee_dep,45,same_government,département Loiret: Conseil départemental du Loiret,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:46,insee_dep,46,same_government,département Lot: Conseil départemental du Lot,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:47,insee_dep,47,same_government,département Lot-et-Garonne: Conseil départemental du Lot-et-Garonne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:48,insee_dep,48,same_government,département Lozère: Conseil départemental de La Lozère,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:49,insee_dep,49,same_government,département Maine-et-Loire: Conseil départemental du Maine-et-Loire,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:50,insee_dep,50,same_government,département Manche: Conseil départemental de La Manche,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:51,insee_dep,51,same_government,département Marne: Conseil départemental de La Marne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:52,insee_dep,52,same_government,département Haute-Marne: Conseil départemental de La Haute-Marne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:53,insee_dep,53,same_government,département Mayenne: Conseil départemental de La Mayenne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:54,insee_dep,54,same_government,département Meurthe-et-Moselle: Conseil départemental de Meurthe-et-Moselle,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:55,insee_dep,55,same_government,département Meuse: Conseil départemental de La Meuse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:56,insee_dep,56,same_government,département Morbihan: Conseil départemental du Morbihan,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:57,insee_dep,57,same_government,département Moselle: Conseil départemental de La Moselle,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:58,insee_dep,58,same_government,département Nièvre: Conseil départemental de La Nièvre,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:59,insee_dep,59,same_government,département Nord: Conseil départemental du Nord,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:60,insee_dep,60,same_government,département Oise: Conseil départemental de L'Oise,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:61,insee_dep,61,same_government,département Orne: Conseil départemental de L'Orne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:62,insee_dep,62,same_government,département Pas-de-Calais: Conseil départemental du Pas-de-Calais,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:63,insee_dep,63,same_government,département Puy-de-Dôme: Conseil départemental du Puy-de-Dôme,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:64,insee_dep,64,same_government,département Pyrénées-Atlantiques: Conseil départemental des Pyrénées-Atlantiques,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:65,insee_dep,65,same_government,département Hautes-Pyrénées: Conseil départemental des Hautes-Pyrénées,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:66,insee_dep,66,same_government,département Pyrénées-Orientales: Conseil départemental des Pyrénées-Orientales,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:69,insee_dep,69,same_government,département Rhône: Conseil départemental du Rhône,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:70,insee_dep,70,same_government,département Haute-Saône: Conseil départemental de La Haute-Saône,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:71,insee_dep,71,same_government,département Saône-et-Loire: Conseil départemental de Saône-et-Loire,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:72,insee_dep,72,same_government,département Sarthe: Conseil départemental de La Sarthe,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:73,insee_dep,73,same_government,département Savoie: Conseil départemental de La Savoie,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:74,insee_dep,74,same_government,département Haute-Savoie: Conseil départemental de La Haute-Savoie,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:76,insee_dep,76,same_government,département Seine-Maritime: Conseil départemental de La Seine-Maritime,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:77,insee_dep,77,same_government,département Seine-et-Marne: Conseil départemental de Seine-et-Marne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:78,insee_dep,78,same_government,département Yvelines: Conseil départemental des Yvelines,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:79,insee_dep,79,same_government,département Deux-Sèvres: Conseil départemental des Deux-Sèvres,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:80,insee_dep,80,same_government,département Somme: Conseil départemental de La Somme,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:81,insee_dep,81,same_government,département Tarn: Conseil départemental du Tarn,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:82,insee_dep,82,same_government,département Tarn-et-Garonne: Conseil départemental du Tarn-et-Garonne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:83,insee_dep,83,same_government,département Var: Conseil départemental du Var,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:84,insee_dep,84,same_government,département Vaucluse: Conseil départemental du Vaucluse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:85,insee_dep,85,same_government,département Vendée: Conseil départemental de La Vendée,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:86,insee_dep,86,same_government,département Vienne: Conseil départemental de La Vienne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:87,insee_dep,87,same_government,département Haute-Vienne: Conseil départemental de La Haute-Vienne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:88,insee_dep,88,same_government,département Vosges: Conseil départemental des Vosges,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:89,insee_dep,89,same_government,département Yonne: Conseil départemental de L'Yonne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:90,insee_dep,90,same_government,département Territoire de Belfort: Conseil départemental du Territoire de Belfort,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:91,insee_dep,91,same_government,département Essonne: Conseil départemental de L'Essonne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:92,insee_dep,92,same_government,département Hauts-de-Seine: Conseil départemental des Hauts-de-Seine,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:93,insee_dep,93,same_government,département Seine-Saint-Denis: Conseil départemental de La Seine-Saint-Denis,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:94,insee_dep,94,same_government,département Val-de-Marne: Conseil départemental du Val-de-Marne,insee_cog2026,https://www.insee.fr/fr/information/8740222
+fr-cog:dep:95,insee_dep,95,same_government,département Val-d'Oise: Conseil départemental du Val-d'Oise,insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-20r,insee_ctcd,20R,same_government,Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-20r,insee_dep,2A,governs_departement,département Corse-du-Sud: Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-20r,insee_dep,2B,governs_departement,département Haute-Corse: Collectivité de Corse,insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-20r,insee_reg,94,same_government,region and departement are one collectivity (Collectivité de Corse),insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-20r,iso_3166_2,FR-2A,governs_departement,"ISO 3166-2 code of département Corse-du-Sud, governed by Collectivité de Corse",iso_codes;insee_cog2026,
+subdivision:fr-20r,iso_3166_2,FR-2B,governs_departement,"ISO 3166-2 code of département Haute-Corse, governed by Collectivité de Corse",iso_codes;insee_cog2026,
+subdivision:fr-20r,siren,172010001,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-20r,siren,200076958,same_government,Collectivité de Corse,ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-ara,insee_reg,84,same_government,Wikidata Q18338206 has P2585 84 and P300 FR-ARA,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18338206
+subdivision:fr-ara,siren,176900009,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-bfc,insee_reg,27,same_government,Wikidata Q18578267 has P2585 27 and P300 FR-BFC,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18578267
+subdivision:fr-bfc,siren,172100000,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-bre,insee_reg,53,same_government,Wikidata Q12130 has P2585 53 and P300 FR-BRE,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q12130
+subdivision:fr-bre,siren,173500000,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-cp,insee_comer,989,same_government,La Passion-Clipperton,insee_cog2026,https://www.insee.fr/fr/information/8740222
+subdivision:fr-cvl,insee_reg,24,same_government,Wikidata Q13947 has P2585 24 and P300 FR-CVL,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q13947
+subdivision:fr-cvl,siren,174500009,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-ges,insee_reg,44,same_government,Wikidata Q18677983 has P2585 44 and P300 FR-GES,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18677983
+subdivision:fr-ges,siren,176700003,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-hdf,insee_reg,32,same_government,Wikidata Q18677767 has P2585 32 and P300 FR-HDF,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18677767
+subdivision:fr-hdf,siren,175900000,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-idf,insee_reg,11,same_government,Wikidata Q13917 has P2585 11 and P300 FR-IDF,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q13917
+subdivision:fr-idf,siren,177500006,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-naq,insee_reg,75,same_government,Wikidata Q18678082 has P2585 75 and P300 FR-NAQ,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18678082
+subdivision:fr-naq,siren,173300005,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-nor,insee_reg,28,same_government,Wikidata Q18677875 has P2585 28 and P300 FR-NOR,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18677875
+subdivision:fr-nor,siren,177600004,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-occ,insee_reg,76,same_government,Wikidata Q18678265 has P2585 76 and P300 FR-OCC,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q18678265
+subdivision:fr-occ,siren,173100009,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-pac,insee_reg,93,same_government,Wikidata Q15104 has P2585 93 and P300 FR-PAC,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q15104
+subdivision:fr-pac,siren,171300007,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+subdivision:fr-pdl,insee_reg,52,same_government,Wikidata Q16994 has P2585 52 and P300 FR-PDL,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q16994
+subdivision:fr-pdl,siren,174400002,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:bl,insee_comer,977,same_government,Saint-Barthélemy,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gf,insee_ctcd,973R,same_government,Collectivité territoriale unique de La Guyane,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gf,insee_dep,973,same_government,département Guyane: Collectivité territoriale unique de La Guyane,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gf,insee_reg,03,same_government,region and departement are one collectivity (Collectivité territoriale unique de La Guyane),insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gf,siren,179730015,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:gf,siren,200052678,same_government,Collectivité territoriale unique de La Guyane,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:gp,insee_ctcd,971D,same_government,Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gp,insee_dep,971,same_government,département Guadeloupe: Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:gp,siren,229710017,same_government,Conseil départemental de La Guadeloupe,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:mf,insee_comer,978,same_government,Saint-Martin,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:mq,insee_ctcd,972R,same_government,Collectivité territoriale unique de La Martinique,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:mq,insee_dep,972,same_government,département Martinique: Collectivité territoriale unique de La Martinique,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:mq,insee_reg,02,same_government,region and departement are one collectivity (Collectivité territoriale unique de La Martinique),insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:mq,siren,179720016,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:mq,siren,200055507,same_government,Collectivité territoriale unique de La Martinique,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:nc,insee_comer,988,same_government,Nouvelle-Calédonie,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:pf,insee_comer,987,same_government,Polynésie française,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:pm,insee_comer,975,same_government,Saint-Pierre-et-Miquelon,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:re,insee_ctcd,974D,same_government,Conseil départemental de La Réunion,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:re,insee_dep,974,same_government,département La Réunion: Conseil départemental de La Réunion,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:re,siren,229740014,same_government,Conseil départemental de La Réunion,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:tf,insee_comer,984,same_government,Terres australes et antarctiques françaises,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:wf,insee_comer,986,same_government,Wallis-et-Futuna,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:yt,insee_ctcd,976R,same_government,Département-Région de Mayotte,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:yt,insee_dep,976,same_government,département Mayotte: Département-Région de Mayotte,insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:yt,insee_reg,06,same_government,region and departement are one collectivity (Département-Région de Mayotte),insee_cog2026,https://www.insee.fr/fr/information/8740222
+territory:yt,siren,130003346,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:yt,siren,229850003,same_government,Département-Région de Mayotte,ign_adminexpress,https://data.geopf.fr/wfs/ows

@@ -100,8 +100,8 @@ SOURCE_TABLE = {
                     'https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv', ['statcan_sgc']),
     'wikidata_foreign': ('Wikidata SPARQL: items by exact ISO code (P297 alpha-2, P300 ISO 3166-2), UN membership (P463 Q1065), sovereign (P17/P131/P361), '
                          'capital (P36), office of head of government (P1313), flag (P41), seal (P158), coat of arms (P94); '
-                         'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300); German units by exact ARS (P1388) and Kreisschlüssel (P440)',
-                         'https://query.wikidata.org/', ['wdf_*', 'wd_gss', 'wd_de_*']),
+                         'UK council areas by exact GSS code (P836) with their ISO 3166-2 code (P300); German units by exact ARS (P1388) and Kreisschlüssel (P440); French units by exact INSEE commune code (P374), SIREN (P1616), INSEE region code (P2585, with P300)',
+                         'https://query.wikidata.org/', ['wdf_*', 'wd_gss', 'wd_de_*', 'wd_fr_*']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
                     'https://commons.wikimedia.org/w/api.php', ['commons_*']),
     'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
@@ -123,8 +123,20 @@ SOURCE_TABLE = {
                   'https://sgx.geodatenzentrum.de/wfs_vg250', ['bkg_vg250_*']),
     'bkg_vg1000': ('BKG, Verwaltungsgebiete 1:1 000 000 (VG1000), Stand 31.12.2025, WFS attribute tables (codes present; '
                    'foreign/de/boundary_xwalk.csv)', 'https://sgx.geodatenzentrum.de/wfs_vg1000', ['bkg_vg1000_*']),
+    'insee_cog2026': ('INSEE, Code officiel géographique au 1er janvier 2026 (CSV: régions, départements, CTCD, collectivités '
+                      "d'outre-mer, communes, communes déléguées/associées, arrondissements municipaux, communes des COM, mouvements)",
+                      'https://www.insee.fr/fr/information/8740222', ['insee_cog2026']),
+    'insee_epci2026': ('INSEE, Base des EPCI à fiscalité propre au 1er janvier 2026 (SIREN, nature, composition communale)',
+                       'https://www.insee.fr/fr/information/2510634', ['insee_epci2026']),
+    'insee_ept2026': ('INSEE, Base des établissements publics territoriaux (EPT) au 1er janvier 2026',
+                      'https://www.insee.fr/fr/information/2510634', ['insee_ept2026']),
+    'ign_adminexpress': ('IGN, ADMIN EXPRESS COG CARTO (latest edition, names equal to COG 2026), Géoplateforme WFS attribute tables '
+                         '(no geometry): SIREN of régions, CTCD and communes; codes present per layer (foreign/fr/boundary_xwalk.csv)',
+                         'https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities', ['ign_adminexpress_*']),
 }
-LICENSES = {'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
+LICENSES = {'insee_cog2026': 'Licence Ouverte / Open Licence 2.0', 'insee_epci2026': 'Licence Ouverte / Open Licence 2.0',
+            'insee_ept2026': 'Licence Ouverte / Open Licence 2.0', 'ign_adminexpress': 'Licence Ouverte / Open Licence 2.0 (IGN)',
+            'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
             'bkg_vg250': 'dl-de/by-2-0 (BKG 2026; Datenquellen https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)',
             'bkg_vg1000': 'dl-de/by-2-0 (BKG 2026)',
             'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',
