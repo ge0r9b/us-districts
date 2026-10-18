@@ -21,6 +21,12 @@ for p in sorted(glob.glob(str(ROOT / "locations" / "*.csv*"))):
     if "dropped" in name:
         continue
     locs.append(f"{name.split('.')[0]} {n(p):,}" + (" (`.csv.gz`)" if p.endswith(".gz") else ""))
+orgs = ""
+for p in sorted(glob.glob(str(ROOT / "organizations" / "*.csv*"))):
+    name = os.path.basename(p)
+    if "_locations." in name or "_sources." in name:
+        continue
+    orgs += f"| `organizations/{name}` | {n(p):,} | `entity` (one row per organization; loader rows in `organizations/{name.split('.')[0]}_locations.csv`) |\n"
 table = f"""| file | rows (this build) | loads into |
 |---|---|---|
 | `brands.csv` | {len(b)} ({kinds}) | `entity` |
@@ -28,7 +34,7 @@ table = f"""| file | rows (this build) | loads into |
 | `company_locations.csv.gz` | {len(L):,} ({(L.geoid != '').sum():,} with a v2-2024 county geoid; {(L.country_code != 'US').sum():,} outside the US) | `entity_location` |
 | `retracted_locations.csv` | {n(ROOT / 'retracted_locations.csv')} (header only) | `retraction` (target `entity_location`) |
 | `locations/<brand>.csv` | {'; '.join(locs)} | source tables for company_locations (full store detail) |
-| `locations/marriott_dropped.csv` | {n(ROOT / 'locations' / 'marriott_dropped.csv')} | not loaded: Marriott rows that could not be kept, with reason |
+{orgs}| `locations/marriott_dropped.csv` | {n(ROOT / 'locations' / 'marriott_dropped.csv')} | not loaded: Marriott rows that could not be kept, with reason |
 | `brand_cleanliness.csv` | {n(ROOT / 'brand_cleanliness.csv')} | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
 | `sources.csv` | {n(ROOT / 'sources.csv')} | `source` |
 """

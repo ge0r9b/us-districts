@@ -1,0 +1,78 @@
+{
+ "rows": 5731,
+ "degree_granting": 3888,
+ "non_degree_granting": 1843,
+ "by_control": {
+  "private_for_profit": 2140,
+  "public": 1870,
+  "private_nonprofit": 1721
+ },
+ "by_kind": {
+  "nonprofit": 3591,
+  "company": 2140
+ },
+ "by_level": {
+  "four_year": 2691,
+  "less_than_two_year": 1597,
+  "two_year": 1443
+ },
+ "by_control_level": {
+  "private_for_profit": {
+   "four_year": 301,
+   "less_than_two_year": 1349,
+   "two_year": 490
+  },
+  "private_nonprofit": {
+   "four_year": 1545,
+   "less_than_two_year": 52,
+   "two_year": 124
+  },
+  "public": {
+   "four_year": 845,
+   "less_than_two_year": 196,
+   "two_year": 829
+  }
+ },
+ "by_control_level_degree": {
+  "private_for_profit": {
+   "four_year": 301,
+   "two_year": 358
+  },
+  "private_nonprofit": {
+   "four_year": 1542,
+   "two_year": 81
+  },
+  "public": {
+   "four_year": 845,
+   "two_year": 761
+  }
+ },
+ "qid_matched": 3281,
+ "qid_matched_degree": 3165,
+ "qid_review": 9,
+ "with_system": 2192,
+ "system_linked_unitid": 520,
+ "system_linked_qid": 101,
+ "distinct_systems": 423,
+ "distinct_systems_with_qid": 22,
+ "branches": 774,
+ "county_geoid": 5597,
+ "no_coordinates": 0,
+ "hbcu": 101,
+ "tribal": 35,
+ "territories": {
+  "PR": 125,
+  "GU": 3,
+  "AS": 1,
+  "FM": 1,
+  "MH": 1,
+  "MP": 1,
+  "PW": 1,
+  "VI": 1
+ },
+ "locations_rows": 5731,
+ "ipeds_hd_rows": 6072,
+ "excluded_inactive": 78,
+ "excluded_not_title_iv": 194,
+ "excluded_admin_units": 69
+}

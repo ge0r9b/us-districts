@@ -9,6 +9,8 @@ No SEC / GLEIF / LEI data and no operator or corporate-parent fields; the earlie
 ## IDs (final)
 Bare `scheme:id`, no extra prefix: brands and organizations are `wikidata:Q<n>` (e.g. `wikidata:Q38076` McDonald's).
 An id is never reused; if an item is merged on Wikidata the old id stays resolvable as an alias.
+Organizations with no Wikidata item may use another real, stable public ID scheme, documented here:
+- `ipeds:<unitid>`: the NCES IPEDS UNITID (6 digits) of a US college or university, used in `organizations/colleges_us.csv` when no Wikidata item carries that unitid as P1771 (IPEDS ID), or when the match is ambiguous. UNITIDs are assigned by NCES and never reused. If a Wikidata item is later matched, the `ipeds:` id stays resolvable as an alias.
 Store / property ids are the brand's own number or code (`store_id`), unique within a brand file (Starbucks: `<namespace>-<ref>`, see below).
 
 ## Files
@@ -16,12 +18,13 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 |---|---|---|
 | `brands.csv` | 213 (179 brand, 34 company) | `entity` |
 | `brand_relationships.csv` | 136 | `entity_relation` |
-| `company_locations.csv.gz` | 212,439 (110,000 with a v2-2024 county geoid; 102,410 outside the US) | `entity_location` |
+| `company_locations.csv.gz` | 218,170 (115,597 with a v2-2024 county geoid; 102,544 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
 | `locations/<brand>.csv` | ahold_delhaize 2,068; albertsons 2,230; aldi 2,750; bashas 98; best_buy 1,204; bjs 261; brookshires 107; bucees 50; choice 5,612; circle_k 8,196; costco 660; cvs 9,001; fareway 143; festival_foods 42; food_city 154; giant_eagle 231; grocery_outlet 568; heb 346; hilton 6,929; home_depot 2,212; hy_vee 272; ihg 6,828; ingles 188; kroger 2,374; lidl 203; lowes 1,763; lunds_byerlys 28; market_basket 92; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); meijer 205; piggly_wiggly 486; publix 1,451; raleys 98; sams_club 602; save_a_lot 604; schnucks 112; seven_eleven 54,167 (`.csv.gz`); shoprite 316; smart_and_final 253; spartannash 97; sprouts 519; starbucks 35,075 (`.csv.gz`); target 2,026; tops 146; trader_joes 666; walgreens 7,991; walmart 4,904; wawa 1,320; wegmans 114; whole_foods 535; winn_dixie 254 | source tables for company_locations (full store detail) |
+| `organizations/colleges_us.csv` | 5,731 | `entity` (one row per organization; loader rows in `organizations/colleges_us_locations.csv`) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
 | `brand_cleanliness.csv` | 172 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 136 | `source` |
+| `sources.csv` | 138 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -61,7 +64,7 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 | `location_id` | `<file stem>:<store_id>` (`walgreens:15196`, `marriott:NYCMQ`, `starbucks:us-1040242`) = `entity_location.location_key`; rows without a store_id are excluded |
 | `entity_id` | `brand_qid` of the location row (`wikidata:Q…`) |
 | `sub_entity_id` | `sub_brand_qid` when given (Duane Reade, CVS Pharmacy y más) |
-| `role` | `establishment_at` (no `hq_in` rows yet: no HQ addresses in scope) |
+| `role` | `establishment_at` (stores, properties, college campuses) / `hq_in` (headquarters of an organization in `organizations/`) |
 | `name`, `address` | store name; published business address `street, city, state, zip` |
 | `geoid`, `boundary_set` | county GEOID from point-in-polygon on Census 2024 counties, set only when the GEOID is in the agreed `v2-2024` county set (`data-v3/geo/counties.csv`); `boundary_set = v2-2024` then. PR/VI points keep lat/lon with geoid empty and flag `county_not_in_v2-2024:<geoid>`. Non-US rows (Starbucks outside the US) have `geoid` and `boundary_set` empty |
 | `lat`, `lon` | WGS84 point (every row has one; rows with neither a point nor a geoid are excluded: 47 Starbucks rows in BR/AU) |
@@ -91,6 +94,35 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 ## sources.csv
 `source_id, source, source_url, license, retrieved_at, commit, sha256` (sha256 of the raw file used). Same layout as `data-v3/inst` officeholders.
 
+
+## organizations/colleges_us.csv: US colleges and universities (NCES IPEDS)
+Built by `scripts/build_colleges.py` from the IPEDS HD2024 institutional characteristics file (NCES, public domain; the latest HD file published, provisional release) plus Wikidata P1771 (`scripts/fetch_wikidata_ipeds.py`). One row per IPEDS institution (UNITID). Branch campuses with their own UNITID are their own rows.
+Scope: active in the current year (`CYACTIVE=1`) and Title IV postsecondary (`PSET4FLG=1`). Degree-granting institutions (`DEGGRANT=1`) are the core set. Non-degree Title IV institutions are kept with flag `non_degree_granting`, so filter on `degree_granting=yes` for degree-granting only. IPEDS administrative units (sector 0, system offices) are not rows; they are used only to link systems. The eight US territories IPEDS covers are included (`country_code` PR, GU, VI, AS, MP, FM, MH, PW; flag `us_territory_<cc>`).
+| column | meaning |
+|---|---|
+| `entity_id` | `wikidata:Q…` when exactly one Wikidata item has P1771 = this UNITID and that item has no other in-scope UNITID; else `ipeds:<unitid>` (see IDs) |
+| `kind` | `nonprofit` for public and private nonprofit institutions (public colleges are not government units here), `company` for private for-profit |
+| `control` | `public` / `private_nonprofit` / `private_for_profit` (IPEDS CONTROL) |
+| `name`, `aliases` | INSTNM; IALIAS as IPEDS gives it (free text, separators vary) |
+| `address`, `city`, `state`, `zip` | ADDR, CITY, STABBR, ZIP |
+| `county`, `county_geoid` | COUNTYNM; COUNTYCD zero-padded to 5 digits, set only when it is in the v2-2024 county set (otherwise blank, flag `county_not_in_v2-2024:<code>`) |
+| `lat`, `lon` | IPEDS LATITUDE / LONGITUD |
+| `country_code` | `US`, or the territory's ISO code |
+| `unitid`, `opeid`, `ein` | IPEDS UNITID, OPEID (8-digit), EIN (blank when IPEDS gives none) |
+| `website` | WEBADDR |
+| `sector`, `sector_label` | IPEDS SECTOR code and label |
+| `level` | ICLEVEL: `four_year` / `two_year` / `less_than_two_year` |
+| `degree_granting` | `yes` / `no` (DEGGRANT) |
+| `highest_offering` | HLOFFER label |
+| `carnegie_basic`, `carnegie_basic_label` | 2021 Carnegie basic classification (C21BASIC); blank when IPEDS says not applicable |
+| `hbcu`, `tribal`, `land_grant` | `yes` / `no` (HBCU, TRIBAL, LANDGRNT) |
+| `system_name` | F1SYSNAM (multi-institution system or organization) |
+| `system_unitid`, `system_entity_id` | the system's IPEDS row: the one sector-0 row with the same F1SYSCOD, else the one IPEDS row named exactly like F1SYSNAM. `system_entity_id` is its Wikidata QID only when Wikidata P1771 matches that UNITID; otherwise blank (no name matching) |
+| `main_campus_unitid`, `main_campus_entity_id` | for a branch (8-digit OPEID not ending `00`), the institution whose OPEID is the same 6 digits + `00` |
+| `wikidata_qid` | the P1771 match, when used |
+| `flags` | `non_degree_granting`, `us_territory_<cc>`, `county_not_in_v2-2024:<code>`, `no_county_in_ipeds`, `ipeds_closing:<date>`, `system_name_matches_several_ipeds_rows`, `branch_opeid_main_campus_not_in_ipeds`, `wikidata_p1771_several_items_review:<Q|Q>`, `wikidata_item_has_several_ipeds_ids_review:<Q>` |
+| `source`, `source_url`, `source_date` | sources.csv ids; the College Navigator page; IPEDS retrieval date |
+Every row also has a `company_locations` row: `location_id = colleges_us:<unitid>`, `role = establishment_at`, the IPEDS point and address, `geoid_method = ipeds_countycd` (from `organizations/colleges_us_locations.csv`). Counts are in `organizations/colleges_us_summary.json`.
 ## Per-brand notes
 - **walgreens.csv**: walgreens.com locator API (Oct 12, 2026), US + PR + VI. Phones reformatted from `(787) 8828044` to `(787) 882-8044`.
   Independent pharmacies under the Walgreens name are kept, flagged, and no operator is assumed:

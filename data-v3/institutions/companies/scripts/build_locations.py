@@ -844,6 +844,14 @@ for fname, d in LOC.items():
                                         "point_in_polygon_cb2024" if geoid else ""),
                           flags=";".join(lfl), country_code=x.country_code))
 locs = pd.DataFrame(lrows, columns=LCOL)
+# organization files (organizations/*.csv, built by their own scripts) bring their own loader rows and sources
+for _p in sorted((ROOT / "organizations").glob("*_locations.csv")):
+    _o = pd.read_csv(_p, dtype=str, keep_default_na=False)
+    locs = pd.concat([locs, _o[LCOL]], ignore_index=True)
+    summary[f"company_locations_from_{_p.stem}"] = len(_o)
+for _p in sorted((ROOT / "organizations").glob("*_sources.csv")):
+    for _s in pd.read_csv(_p, dtype=str, keep_default_na=False).to_dict("records"):
+        SOURCES[_s["source_id"]] = _s
 dupl = locs.location_id.duplicated(keep=False)
 locs.loc[dupl, "flags"] = locs.loc[dupl, "flags"].map(lambda f: ";".join(filter(None, [f, "duplicate_location_id_review"])))
 p = ROOT / "company_locations.csv"
@@ -857,7 +865,7 @@ summary["company_locations_by_entity_top"] = {k: int(v) for k, v in locs.entity_
 summary["company_locations_with_geoid"] = int((locs.geoid != "").sum())
 summary["company_locations_excluded"] = dict(excluded)
 summary["company_locations_duplicate_ids"] = int(dupl.sum())
-summary["hq_in_rows"] = 0
+summary["hq_in_rows"] = int((locs.role == "hq_in").sum())
 
 # ---------------- retracted_locations.csv ----------------
 # Known permanent closures only. The inputs carry temporary statuses (kept as flags), not closures, so this starts empty.

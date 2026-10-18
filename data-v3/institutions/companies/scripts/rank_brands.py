@@ -13,6 +13,7 @@ import pandas as pd
 from common import ROOT
 
 L = pd.read_csv(ROOT / "company_locations.csv.gz", dtype=str, keep_default_na=False)
+L = L[~L.location_id.str.split(":").str[0].isin([p.stem.removesuffix("_locations") for p in (ROOT / "organizations").glob("*_locations.csv")])]  # brands only
 B = pd.read_csv(ROOT / "brands.csv", dtype=str, keep_default_na=False).set_index("entity_id")
 S = pd.read_csv(ROOT / "sources.csv", dtype=str, keep_default_na=False).set_index("source_id")
 FIRST_PARTY = ("walgreens-locator", "cvs-store-locator", "marriott-pacsys")
