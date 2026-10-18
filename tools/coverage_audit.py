@@ -197,22 +197,27 @@ def main():
             args = jsargs(pf, r"__prec\(")
             rows = args[1] if len(args) > 1 else []
             c["n"] = len(rows)
-            vs = 0; bycty = collections.Counter()
+            vs = 0; bycty = collections.Counter(); by2 = collections.Counter()
             for r in rows:
                 t = r[4] if len(r) > 4 and isinstance(r[4], (int, float)) else 0
-                vs += t; bycty[r[0]] += t
+                vs += t; bycty[r[0]] += t; by2[r[0]] += (r[2] or 0) + (r[3] or 0)
                 c["filled"] += t > 0; c["empty"] += not nonempty(r[-1])
             off = E[yr+"sum"][st]
             c["votes"] = vs; c["official"] = off; c["ratio"] = round(vs / off, 4) if off else None
             # per-county ratio vs official county totals
-            bad = []; none = []
+            # per county vs official, two ways: Dem+Rep (the rule used by the v2/data/COVERAGE.md inventory, qc.py)
+            # and all votes. "outside" = Dem+Rep ratio outside 0.9-1.1; the all-votes list is informational.
+            bad = []; none = []; badt = []
             for cn in sorted(shapes[st]):
-                o = tot(E[yr].get(st + "|" + cn))
+                ov = E[yr].get(st + "|" + cn)
+                o = tot(ov)
                 if not o: continue
                 v = bycty.get(cn, 0)
-                if v == 0: none.append(cn)
-                elif not (0.9 <= v / o <= 1.1): bad.append(cn)
-            c["cty_none"] = none; c["cty_off"] = bad
+                if v == 0: none.append(cn); continue
+                o2 = (ov[0] or 0) + (ov[1] or 0)
+                if o2 and not (0.9 <= by2.get(cn, 0) / o2 <= 1.1): bad.append(cn)
+                if not (0.9 <= v / o <= 1.1): badt.append(cn)
+            c["cty_none"] = none; c["cty_off"] = bad; c["cty_off_total"] = badt
             if yr == "2024" and st != "District of Columbia":
                 xf = os.path.join(V, "x20", fn)
                 if os.path.exists(xf):
@@ -257,7 +262,9 @@ def main():
             r = c.get("ratio")
             if r is not None and not (0.98 <= r <= 1.02): why.append("votes %.1f%% of official" % (100 * r))
             if c.get("cty_none"): why.append("%d counties with no precincts" % len(c["cty_none"]))
-            if c.get("cty_off"): why.append("%d counties outside 90-110%%" % len(c["cty_off"]))
+            if c.get("cty_off"): why.append("%d counties outside 90-110%% (Dem+Rep)" % len(c["cty_off"]))
+            if set(c.get("cty_off_total") or []) != set(c.get("cty_off") or []):
+                c["info"] = ((c.get("info") or "") + "; all-votes rule: %d outside (%s)" % (len(c["cty_off_total"]), ", ".join(c["cty_off_total"][:6]))).strip("; ")
         why += c["notes"]
         c["why"] = "; ".join(why)
         c["status"] = "S" if why else "P"
