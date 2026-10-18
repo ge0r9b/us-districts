@@ -792,6 +792,13 @@ _cons = {CG24[c]['cog_pid6']: f'county:{c}' for c in UNLINKED_CONS if CG24[c]['c
 GFMAP, GIMG, GGAPS, GSTAT, GRELS = inst_govfeed.integrate(GOVF, _ents, {k: v for k, v in GIDX.items()}, _cons)
 _relc = {r['entity_id'][len('county:'):] for r in GRELS}
 GAPS[:] = [g for g in GAPS if not (g['gap'] == 'consolidated_county_cog_code_not_in_tiger' and g['key'] in _relc)]
+# Full Stack ruling (Oct 18): a county in a consolidated_with relation is governed by the consolidated government ->
+# gov_status government; the 'not linked to a TIGER code' unknown flag is dropped (the relation is the link). No relation -> flag stays.
+_relcounties = sorted({x for r in GRELS if r['relation'] == 'consolidated_with' for x in (r['entity_id'], r['related_entity_id']) if x.startswith('county:')})
+for cid in _relcounties:
+    e = _ents[cid]; e['gov_status'] = 'government'
+    e['_flags'] = [x for x in e['_flags'] if not x.startswith('gov_status_unknown:consolidated_government_not_linked_to_tiger_code')]
+GSTAT['consolidated_counties_gov_status_set'] = len(_relcounties)
 # wikidata: 'wikidata:Q…', nullable + unique (SCHEMA); a QID on several entities is blanked on all of them and logged
 _qc = C.Counter(e['wikidata'] for e in OUTROWS if e.get('wikidata'))
 for e in OUTROWS:

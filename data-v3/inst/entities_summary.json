@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "d33221001ca886afd3b6eb03bf2e9ae859b211be",
+  "repo_head": "b9d8b837f8983064b61a60f2d67c6dd177bfc084",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -46,9 +46,9 @@
  },
  "by_kind_gov_status": {
   "chamber|": 100,
-  "county|": 6,
+  "county|": 1,
   "county|area_only": 43,
-  "county|government": 3031,
+  "county|government": 3036,
   "dc_council|": 1,
   "municipality|": 33,
   "municipality|area_only": 28,
@@ -184,7 +184,7 @@
   "same_code_place_cousub_overlap_unmeasured": 2,
   "consolidated_county_cog_code_not_in_tiger": 1,
   "excluded_not_defined": 49,
-  "gov_status_unknown": 438,
+  "gov_status_unknown": 433,
   "wikidata_p297_several_items": 1,
   "wikidata_qid_via_home_part_rule": 1,
   "territory_sovereign_unknown": 1,
@@ -212,6 +212,7 @@
   "ceased_applied": 24,
   "ceased_partial": 1,
   "ceased_unmapped": 39,
+  "consolidated_counties_gov_status_set": 5,
   "consolidated_relations": 5,
   "feed_ids": 93278,
   "images": 2024,

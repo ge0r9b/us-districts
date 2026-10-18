@@ -62,6 +62,9 @@ GEOID stays on the city entity, and `entity_relations.csv` (`entity_id, relation
 + county_government.csv. The other 72 consolidated / independent-city county GEOIDs are folded into ONE entity (xwalk relation
 `consolidated_city_county` / `independent_city_county_equivalent`), so no relation row is needed; Honolulu (15003) has no
 Governments-bot GEOID for CoG 183701, so no second entity and no relation (gap kept).
+Builder rule (Full Stack, Oct 18): every county in a `consolidated_with` relation gets `gov_status` government and loses the
+`gov_status_unknown:consolidated_government_not_linked_to_tiger_code` flag (the relation is the link); a county without a relation
+(Honolulu) keeps the flag and its `gov_status_unknown` gap.
 Carried onto mapped entities: `wikidata` as `wikidata:Q…` (nullable, unique: a QID on several entities is left empty on all of
 them and logged as `wikidata_qid_duplicate`; only when every bot row of the entity agrees; registry value wins on a conflict),
 ceased units (`valid_to` + flag `is_active_false:governments_bot_<ids>`, only when all of the entity's bot rows ceased),
@@ -163,7 +166,7 @@ entities.csv like this:
 | flag | meaning |
 |---|---|
 | `gov_status_unknown:tiger_funcstat_<A/B/C>_no_cog2022_code_match` | TIGER says active government, but no CoG 2022 unit has this FIPS code; `gov_status` left empty |
-| `gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=<id>` | a consolidated city-county whose CoG municipal code is not a TIGER 2024 place; county kept, `gov_status` empty |
+| `gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=<id>` | a consolidated city-county whose CoG municipal code is not a TIGER 2024 place and that has no `consolidated_with` relation; county kept, `gov_status` empty (dropped once a relation exists) |
 | `gov_status_unknown:not_in_cog2022_scope` | territory: CoG 2022 does not cover territories |
 | `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` | school district with no Governments-bot row carrying its NCES LEA ID |
 | `gov_status_unknown:governments_bot_rows_disagree` | several bot rows on one LEA ID with different gov_status (none in this build) |
@@ -203,7 +206,7 @@ source list: `not_in_source_list`.
 
 Counts in the current build (54,360 entities: nation 195, state 51, territory 17, province 10, chamber 100, dc_council 1,
 county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary 1,952, school_secondary 481;
-653 gap rows; 93,278 feed-map rows; 2,024 images; 5 relations; wikidata on 38,840 entities). `flags` tokens, grouped by
+648 gap rows; 93,278 feed-map rows; 2,024 images; 5 relations; wikidata on 38,840 entities). `flags` tokens, grouped by
 the text before the first `:` (the detail after it varies per row): `tiger_funcstat:A` 3,031; `not_in_cog2022` 1,619;
 `tiger_funcstat_G` 1,603; `spans_counties` 899; `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375;
 `outside_v2_scope:no_unit_no_boundary_set` 216; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
@@ -211,12 +214,12 @@ the text before the first `:` (the detail after it varies per row): `tiger_funcs
 `gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
 `coextensive_separate_government` 26; `is_active_false` 24; `tiger_funcstat:N` 23; `gov_status_unknown:outside_cog2022_scope` 22;
 `tiger_funcstat_N` 20; `not_un_member(wikidata_P463)` 11; `tiger_funcstat:S` 11; `not_sovereign_state(wikidata_P31)` 9;
-`sovereign_via_wikidata_P17` 9; CT flags 8 each; `gov_status_unknown:consolidated_government_not_linked_to_tiger_code` 6;
+`sovereign_via_wikidata_P17` 9; CT flags 8 each;
 `tiger_funcstat:C` 6; `outside_v2_scope:territory_with_house_delegate` 5; `gov_status_unknown:not_in_cog2022_scope` 5;
-`consolidated_government_covers_county` 4; one each of `added_from_wikidata`, `wikidata_p297_item_is_home_part`,
+`consolidated_government_covers_county` 4; one each of `added_from_wikidata`, `gov_status_unknown:consolidated_government_not_linked_to_tiger_code` (Honolulu), `wikidata_p297_item_is_home_part`,
 `gov_status_na:legislative_body_of_state`, `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `tiger_funcstat:G`,
 `tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `multiple_cog_units`.
-Gap rows by `gap`: `gov_status_unknown` 438; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
+Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
 `officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `govbot_new_unit_not_in_registry` 12; `image_entity_unmapped` 6;
 `not_in_source_list` 4; `nation_not_un_member` 2; `same_code_place_cousub_overlap_unmeasured` 2; one each of
 `consolidated_county_cog_code_not_in_tiger` (Honolulu), `govbot_ceased_partial`, `territory_sovereign_unknown`,
