@@ -56,7 +56,8 @@ Columns: `layer, state, row, v2_name, geoid_2024, geoid_2020, tiger_name_2020, m
 - `zcta2024.csv` (`tools/zcta2024_csv.py`): all 33,791 ZCTAs of the Census 2024 ZCTA Gazetteer, keyed by `zcta5` (the ZCTA GEOID),
   with land/water area (m²) and the internal point as published. `in_v2` and `v2_point_match` check `v2/data/zcta2024.js`:
   all 33,791 v2 keys are in the Gazetteer and every v2 [lat, lon] is the Gazetteer point rounded to 4 decimals.
-- `towns_2024.geojson.gz` and `places_2024.geojson.gz` (`tools/v3_geojson_2024.py`, gzipped because they are over 5 MB): every
+- `towns_2024.geojson.gz` and `places_2024.geojson.gz` (`tools/v3_geojson_2024.py`, gzipped because they are over 5 MB; **not in git**
+  (orchestrator ruling: large GeoJSON is regenerated locally into `../geo-data-raw/v3/`, see below)): every
   Census TIGER 2024 county subdivision (35,482, 10-digit GEOID) and place (32,041, 7-digit GEOID, incorporated places and CDPs)
   of the 50 states and DC, one feature per GEOID (`id` = GEOID). Properties: `geoid`, `state`, `statefp`, `countyfp` and
   `county` (towns), `name`, `namelsad`, `lsad`, `classfp`, `funcstat` (filter A/B/C/G for governmental towns, CLASSFP C* /
@@ -65,3 +66,25 @@ Columns: `layer, state, row, v2_name, geoid_2024, geoid_2020, tiger_name_2020, m
   Every one of the 58,127 v2 town and place rows with a GEOID is a feature. Geometry: per state, the whole TIGER coverage is
   simplified with shapely.coverage_simplify at 0.0005° (finer than v2's 0.002°; shared edges stay identical), coordinates
   snapped to 5 decimals with every geometry valid. Rebuild from the TIGER zips with the script for full resolution.
+
+### Regenerating the large GeoJSON (not in git)
+
+From the repo root, with the TIGER 2024 zips (`tl_2024_SS_cousub.zip`, `tl_2024_SS_place.zip` for the 50 states + DC from
+https://www2.census.gov/geo/tiger/TIGER2024/, and `tl_2024_us_county.zip`) and the `tools/build_town_files.py` reports:
+
+```
+python3 tools/v3_geojson_2024.py . ../geo-data-raw/tiger2024/st ../geo-data-raw/tiger2024/tl_2024_us_county.zip \
+    ../geo-data-raw/reports/townfiles --out ../geo-data-raw/v3
+```
+
+The build is deterministic (gzip mtime 0; verified by a second run giving identical bytes). Expected sha256, with shapely 2.2.0 /
+GEOS 3.14.1 and pyshp 3.1.6 (other GEOS versions may simplify differently):
+
+| file | bytes | sha256 |
+|---|---|---|
+| `towns_2024.geojson.gz` | 28,734,498 | `dc9082137847a3de24bf7a514041906fe4f9bd5d139bf2c0e7755a1087ba88f8` |
+| `towns_2024.geojson` (uncompressed) | 110,043,707 | `da34684534e3e0b68bc9829c6e60dae1e9ce56fd4a236f6dd328c7a6502eab70` |
+| `places_2024.geojson.gz` | 15,940,151 | `a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182` |
+| `places_2024.geojson` (uncompressed) | 61,936,814 | `4fc408a76f89fc9d9e5f303e22b0c4c03ec2b611e167ab4c352b6c4a3a4a2d96` |
+
+The two files were committed once (b06c280) and removed in the next commit, so their blobs remain in the `data/geo` history.

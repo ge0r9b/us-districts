@@ -1,0 +1,5 @@
+
+# large v3 GeoJSON: regenerated locally into ../geo-data-raw (see data-v3/geo/README.md)
+data-v3/**/*.geojson
+data-v3/**/*.geojson.gz
+tools/__pycache__/
