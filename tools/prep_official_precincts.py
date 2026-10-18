@@ -65,6 +65,30 @@ def va(D):
                            "rows": rows, "not_located": nl}
     return {"state": "Virginia", "year": "2024", "counties": out}
 
+def ms(D):
+    # Harrison County: county GIS 'Voting Precincts' (District/Precincts MapServer layer 1, 49 polygons named as in the
+    # recap); votes transcribed from the official county recapitulation (scanned PDF filed with the SOS on Nov 14 2024),
+    # every candidate column checked against the recap's TOTAL column (exact match, 75,923 votes)
+    n = lambda s: re.sub(r"[^A-Z0-9]", "", s.upper().replace("VOTING DISTRICT", "").replace("HANSBORO", "HANDSBORO"))
+    ab = {"E": "EAST", "W": "WEST", "GPT": "GULFPORT", "MISS": "MISSISSIPPI"}
+    n2 = lambda s: n(" ".join(ab.get(x, x) for x in s.upper().replace("/", " ").replace("#", " ").split()))
+    G = {n(f["properties"]["NAME20"]): shape(f["geometry"]).buffer(0) for f in json.load(open(D + "/harrison_voting_precincts_district.geojson"))["features"]}
+    rows, used = [], set()
+    for r in csv.DictReader(open(D + "/harrison_president_2024_transcribed.csv")):
+        k = n2(r["precinct"]); used.add(k)
+        v = {c: int(x) for c, x in r.items() if c != "precinct"}
+        rows.append([r["precinct"], v["harris"], v["trump"], sum(v.values()), mapping(G[k])])
+    assert used == set(G), set(G) ^ used
+    # The county precinct layer leaves the Back Bay of Biloxi and the Sound out (water, no voters). Those areas are
+    # added as one zero-vote unit from the county's own hydrography layer (AssetMap layer 16 'MS Sound/Back bay')
+    # minus the precincts, so the water does not count as missing precinct cover. It adds no votes.
+    from shapely.ops import unary_union
+    W = unary_union([shape(f["geometry"]).buffer(0) for f in json.load(open(D + "/harrison_ms_sound_back_bay.geojson"))["features"] if f["geometry"]])
+    rows.append(["(water: Back Bay of Biloxi / Mississippi Sound, no voters)", 0, 0, 0, mapping(W.difference(unary_union(list(G.values()))))])
+    return {"state": "Mississippi", "year": "2024", "counties": {"Harrison County": {
+        "source": "Shapes: Harrison County GIS, Voting Precincts (https://geo.co.harrison.ms.us/server/rest/services/District/Precincts/MapServer/1, 49 precincts on the Census 2020 VTD lines); votes: Harrison County Election Commission, Official Recapitulation, 11/5/2024 Federal General Election, received by the MS SOS Elections Division Nov 14 2024 (https://sos.ms.gov/elections/electionresults/2024General/County%20Results/Harrison.pdf), transcribed; all 9 candidate columns equal the recap TOTAL column",
+        "rows": rows, "not_located": {}, "water_source": "Harrison County GIS, AssetMap MapServer layer 16 MS Sound/Back bay"}}}
+
 if __name__ == "__main__":
     D, st, o = sys.argv[1:4]
     R = globals()[st](D); json.dump(R, open(o, "w"))
