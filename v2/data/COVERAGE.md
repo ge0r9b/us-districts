@@ -952,3 +952,25 @@ counties (public domain); no results are stored.
 | Wyoming | 4,125 → 70,131 (24,459) | 0.0002 | 69,335 (24,116) | 0.0002 | 0 + 100 → 100 | 0 / 0 | 0 / 0 | 99 / 99 | – | 0.074 | 0.0001 |
 
 Build reports (size table per tolerance, kept rows, renames, fills): `/workspace/w/lanes/geo-data-raw/reports/townfiles/<State>.json`.
+
+## Points (Oct 18, 2026, branch `data/geo`): star location for the state icon beside every geo-list row
+Files `v2/data/points/<State>.js` (STATE_FILES names; DC is `District-of-Columbia.js`), built by `tools/build_points.py`, checked by `tools/check_points.py`.
+Format: `__points("State",{county:{key:[lon,lat]},town:{...},place:{...},sch:{...},cd:{...},sldu:{...},sldl:{...}});` in WGS84 degrees, the same space the icon code's star already takes (`window.__stSil(st,[lon,lat])` projects it with the silhouette's own projection).
+Keys are the row keys without the leading `State|`: county = NAT row name, town = `County|Name` (all parts rows + v1 town rows), place = places row name, sch = school row name, cd/sldu/sldl = row code. For the 86 v1 rows (`states/<State>.js` / root data) whose key repeats in one state (74 school, 11 place, 1 town), the plain key goes to the row that matches the newer unique-keyed row, and each other row also gets an entry keyed by its TIGER 2024 GEOID (e.g. Ohio town `3915981242`, second Washington township of Union County; the parts file already names that row `Washington township (3915981242)`, which has its own entry).
+Rule: TIGER 2024 Gazetteer INTPT when it falls inside every shape the app holds for the row (state file and national file), else polylabel of the shapes' intersection. Inside means shapely contains, more than 1e-7 deg off the edge, and the app's even-odd ray test. 3 decimals; 2 decimals for Illinois where still inside, to keep it under 60 KB gzip; 4 to 5 decimals for 65 tiny town rows.
+
+| layer | rows | points | TIGER INTPT | polylabel |
+|---|---|---|---|---|
+| county | 3,144 | 3,144 | 3,139 | 5 |
+| town | 38,661 list rows (+1 GEOID key) | 38,659 (+1) | 37,850 | 810 |
+| place | 19,524 (+11 GEOID keys) | 19,524 (+11) | 19,521 | 14 |
+| sch | 13,363 (+74 GEOID keys) | 13,363 (+74) | 13,393 | 44 |
+| cd | 436 | 436 | 434 | 2 |
+| sldu | 1,950 | 1,950 | 1,920 | 30 |
+| sldl | 4,890 | 4,890 | 4,797 | 93 |
+
+Misses and exceptions:
+- Illinois town `St. Clair County|Hecker village` and Kansas town `Wabaunsee County|Willard city`: no point. The row's shape has zero area (a degenerate sliver of a place clipped to that county), so no interior point exists. The row still shows in townsIn(); suggest dropping these two sliver rows from the parts files.
+- Wisconsin town `Calumet County|Kaukauna city`: the v1 town shape (the one townsIn() draws) and the parts shape do not overlap, so the point lies inside the v1 shape only.
+- Wisconsin town `Monroe County|Ontario village`: the parts shape has zero area, so the point lies inside the v1 shape.
+Sizes: total 3.57 MB raw / 869 KB gzip; largest Illinois 240 KB / 54.9 KB gzip (level 6), median 10.5 KB gzip.
