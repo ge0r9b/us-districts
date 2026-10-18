@@ -18,14 +18,15 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 |---|---|---|
 | `brands.csv` | 213 (179 brand, 34 company) | `entity` |
 | `brand_relationships.csv` | 136 | `entity_relation` |
-| `company_locations.csv.gz` | 222,081 (116,076 with a v2-2024 county geoid; 105,952 outside the US) | `entity_location` |
+| `company_locations.csv.gz` | 224,179 (116,471 with a v2-2024 county geoid; 107,647 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
 | `locations/<brand>.csv` | ahold_delhaize 2,068; albertsons 2,230; aldi 2,750; bashas 98; best_buy 1,204; bjs 261; brookshires 107; bucees 50; choice 5,612; circle_k 8,196; costco 660; cvs 9,001; fareway 143; festival_foods 42; food_city 154; giant_eagle 231; grocery_outlet 568; heb 346; hilton 6,929; home_depot 2,212; hy_vee 272; ihg 6,828; ingles 188; kroger 2,374; lidl 203; lowes 1,763; lunds_byerlys 28; market_basket 92; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); meijer 205; piggly_wiggly 486; publix 1,451; raleys 98; sams_club 602; save_a_lot 604; schnucks 112; seven_eleven 54,167 (`.csv.gz`); shoprite 316; smart_and_final 253; spartannash 97; sprouts 519; starbucks 35,075 (`.csv.gz`); target 2,026; tops 146; trader_joes 666; walgreens 7,991; walmart 4,904; wawa 1,320; wegmans 114; whole_foods 535; winn_dixie 254 | source tables for company_locations (full store detail) |
 | `organizations/airlines_world.csv` | 5,888 | `entity` (one row per organization; loader rows in `organizations/airlines_world_locations.csv`) |
 | `organizations/colleges_us.csv` | 5,731 | `entity` (one row per organization; loader rows in `organizations/colleges_us_locations.csv`) |
+| `organizations/telecoms_world.csv` | 2,954 | `entity` (one row per organization; loader rows in `organizations/telecoms_world_locations.csv`) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
 | `brand_cleanliness.csv` | 172 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 141 | `source` |
+| `sources.csv` | 143 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -146,6 +147,26 @@ Built by `scripts/build_airlines.py` from Wikidata (items whose P31 is airline Q
 | `flags`, `source`, `source_url`, `source_date` | review flags; sources.csv ids; the Wikidata item page; Wikidata retrieval date |
 OpenFlights data is © OpenFlights.org contributors under the Open Database License (ODbL 1.0), https://openflights.org/data. It is attributed in sources.csv, and only two columns (`active` where it is the source, and `openflights_*`) derive from it.
 Each airline with HQ coordinates has a `company_locations` row: `location_id = airlines_world:hq:<Q>`, `role = hq_in`, address `<HQ>, <country>`. Counts are in `organizations/airlines_world_summary.json`.
+
+## organizations/telecoms_world.csv: telecom operators and consumer brands, worldwide (Wikidata)
+Built by `scripts/build_telecoms.py` from Wikidata (`ULTIMATE=1 INDUSTRY=Q418,Q2401742,Q11371,Q1941618 scripts/fetch_wikidata_orgs.py telecoms Q1941618,Q2401749,Q11371,Q1717176,Q1058891,Q1266169 P2258,P2259,P137,P1056,P452`).
+Selection: items whose P31 is (a subclass of) mobile network operator, telecommunications company, internet service provider, cable television company, MVNO or telephone company; plus items whose P452 industry is telecommunications (Q418), the telecommunications industry (Q2401742), ISP or MNO (flag `selected_by_p452_industry_only`). Industry-only items are dropped when their P31 is project, factory, product, software or technology company, MLM, Internet exchange point or association, or when their P452 also names an equipment, electronics, software, defence or aerospace industry. Dropped items are listed with the reason in `organizations/telecoms_world_dropped.csv`. Some equipment makers (e.g. Qualcomm, ZTE) still pass this filter and are flagged industry-only. Humans, websites, software, apps and TV stations are skipped, as are items with no English or multilingual label.
+One row per Wikidata item: a consumer brand with its own item (Visible, Metro by T-Mobile, Cricket, Mint Mobile …) is its own row, with its operator in `corporate_*`. Sorted by country and then brand name. No ITU/GSMA MCC-MNC list is used, because none is openly licensed; `mnc`/`mcc` are Wikidata P2259/P2258 only (P2258 sits on country items, so `mcc` is empty).
+| column | meaning |
+|---|---|
+| `country`, `country_code`, `country_qid` | P17 (same rules as airlines) |
+| `brand_name`, `brand_qid` (= `entity_id`) | the item's label and QID |
+| `kind` | `brand` when another organization operates or owns it (below), else `company` |
+| `corporate_name`, `corporate_qid`, `corporate_from` | the operator: P137 operator, else P749 parent, else P127 owned-by restricted to owners that are telecoms in this file (shareholders such as BlackRock or Vanguard are ignored). `corporate_from` = `P137`/`P749`/`P127`/`self`. Several values → `;`-list, flag `several_corporate_<P>_review` |
+| `ultimate_parent_name`, `ultimate_parent_qid` | top of the item's P749 chain (an ancestor with no P749 of its own). Otherwise the P749 parent, or the item itself when it has no operator or parent. Blank when the corporate link is P137/P127 and there is no P749 chain |
+| `service_type` | from direct P31 values: `mobile` (MNO), `MVNO`, `broadband` (ISP, WISP), `cable` (cable television / UK cable company), `fixed` (telephone company, ILEC, CLEC), `satellite` (a P31 label containing "satellite"). Blank + flag `service_type_not_stated` for generic "telecommunications company"/"business" items |
+| `mcc`, `mnc` | Wikidata P2258 / P2259 |
+| `active`, `inception`, `dissolved` | `active = no` when the item has a P576 dissolved date, else `yes` (meaning Wikidata records no dissolution). Dates at Wikidata precision |
+| `hq_name`, `hq_qid`, `hq_country_code`, `lat`, `lon`, `county`, `county_geoid` | P159 HQ, same rules as airlines |
+| `website`, `logo_*` | P856; P154 + Commons licence (brands.csv rules) |
+| `instance_of`, `description` | P31 labels; Wikidata description |
+| `flags`, `source_id`, `source_url`, `source_date` | review flags; sources.csv ids; the item page; retrieval date |
+Each row with HQ coordinates has a `company_locations` `hq_in` row (`telecoms_world:hq:<Q>`). Counts are in `organizations/telecoms_world_summary.json`.
 ## Per-brand notes
 - **walgreens.csv**: walgreens.com locator API (Oct 12, 2026), US + PR + VI. Phones reformatted from `(787) 8828044` to `(787) 882-8044`.
   Independent pharmacies under the Walgreens name are kept, flagged, and no operator is assumed:

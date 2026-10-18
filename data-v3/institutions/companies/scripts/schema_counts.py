@@ -24,7 +24,7 @@ for p in sorted(glob.glob(str(ROOT / "locations" / "*.csv*"))):
 orgs = ""
 for p in sorted(glob.glob(str(ROOT / "organizations" / "*.csv*"))):
     name = os.path.basename(p)
-    if "_locations." in name or "_sources." in name:
+    if "_locations." in name or "_sources." in name or "_dropped." in name:
         continue
     orgs += f"| `organizations/{name}` | {n(p):,} | `entity` (one row per organization; loader rows in `organizations/{name.split('.')[0]}_locations.csv`) |\n"
 table = f"""| file | rows (this build) | loads into |
