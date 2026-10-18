@@ -11,15 +11,17 @@ Every riding total matches its official source (0 mismatches in all 8 elections)
 4. **Quebec 2026**: Élections Québec has not published the poll-level file yet (`resultats-bureau-vote.zip` for the 2026 GE
    returns 403; archives list only up to the 2026-02-23 Chicoutimi by-election). Loaded riding-level results; rerun when posted.
    The units (`eq-2026-sv`) are the 2026 sections, so the 2026 poll file will join directly on `<CO_CEP>:<NO_SV>`.
-5. **Quebec 2022**: sections are on the 2017 map (125 ridings) and the units hold only 2026 sections, so 0% joins. The 2022
-   section shapefile is on dgeq.org archives ("Sections de vote (Shapefile)", 2022) -> ask the Institutions lane for `eq-2022-sv`.
+5. **Quebec 2022**: joined to `eq-2022-sv` (Institutions 3bbb54a): every election-day section matched (835 lettered split-section
+   rows such as 332:28A/28B summed exactly into their section), 62.44% of all votes on a polygon. Not on a polygon: advance
+   (BVA, 31.9%) and special (5.6%). BVA rows list their section range in `method`, so an exact advance-area union is possible
+   later, as done federally.
 6. **Ontario 2025**: no ON polling-division units (Elections Ontario PD shapes are under a limited-use licence; Institutions gap).
    Poll rows keep `no_pd_polygon:on_pd_licence`.
 7. **BC 2024**: Elections BC counted by voting place ("vote anywhere"), not by voting area, so no VA join is possible for 2024.
    BC 2020 and earlier are by VA but on the 2015 map (87 EDs), not the 2024 VA units. Not loaded.
-8. **Alberta 2023**: results are by voting location, each serving a listed set of VAs (`vas=` in `method`). The units are the
-   2026 VA vintage (`ea-2026-va`); 93.6% of election-day votes are at locations whose VA codes all exist in it, but the 2026 VAs
-   are not verified identical to 2023's, so no polygon join is claimed.
+8. **Alberta 2023** - `not_the_2023_ge_voting_areas`: the `ea-2026-va` units are the 2026 revision of the voting areas, not the
+   areas used at the 2023 general election, so the results are kept at electoral-division level only (`ca_ped`, `ea-2019-ed`,
+   summed exactly from the location rows). No VA or voting-location join.
 9. Not loaded: federal by-elections, other provinces (MB, SK, NB, PE, NL, NS, territories: mostly PDF), Ontario 2022, Alberta 2019.
 10. Name fixes: 2021 59001 (Abbotsford) NDP candidate spelled three ways in the poll file -> folded to "Dharmasena Yakandawela";
     2019 24007 (Beauce) two Maxime Berniers -> ids `bernier-maxime-people-s-party` / `bernier-maxime-parti-rhinoceros-party`.

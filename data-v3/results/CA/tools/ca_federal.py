@@ -51,19 +51,19 @@ def main(ge, raw, units, out):
             if row[6] == 'Y': notes.append(st + ':no_poll_held')
             if row[7].strip(): notes.append(st + ':combined_with=' + row[7].strip())
             if st.startswith('S/R'):
-                ut, uid, bset = 'special', f'{fed}:{st}', fedset
+                ut, uid, bset = 'ca_special', f'{fed}:{st}', fedset
             else:
                 m = re.fullmatch(r'(\d+)([A-Z]?)(?:-(\d+)([A-Z]?))?', st)
                 if not m: raise SystemExit(f'bad station {fed} {st!r}')
                 num, sfx = int(m.group(1)), m.group(3) or '0'
                 if 600 <= num < 700 and not m.group(3):
-                    if (fed, num) in adv: ut, uid, bset = 'advance_area', f'{fed}:{num}', pdset
-                    else: ut, uid, bset = 'advance', f'{fed}:{num}', fedset; notes.append(st + ':no_member_pds')
+                    if (fed, num) in adv: ut, uid, bset = 'ca_advance_area', f'{fed}:{num}', pdset
+                    else: ut, uid, bset = 'ca_advance', f'{fed}:{num}', fedset; notes.append(st + ':no_member_pds')
                     if row[7].strip(): advcomb[(fed, int(re.match(r'\d+', row[7].strip()).group()))].add(num)
                 else:
                     uid = f'{fed}:{num}-{sfx}'
-                    if uid in pds: ut, bset = 'poll', pdset
-                    else: ut, bset = 'poll', ''; notes.append(st + ':no_pd_polygon')
+                    if uid in pds: ut, bset = 'ca_poll', pdset
+                    else: ut, bset = 'ca_poll_unmapped', fedset; notes.append(st + ':no_pd_polygon')
             name = ' '.join(x for x in (first, mid, last) if x)
             cid = slug(f'{last} {first} {mid}')
             if byslug[(fed, cid)] > 1: cid += '-' + slug(party)
@@ -74,9 +74,9 @@ def main(ge, raw, units, out):
                                retrieved_at=ret, boundary_set=bset), 0, [], set()]
             a = agg[k]; a[1] += v; a[2].append(st); a[3].update(notes)
             fedtot[fed][cid] += v
-            jt = ('pd_polygon' if ut == 'poll' else 'advance_area') if bset == pdset else ('no_pd_polygon' if not bset else ut)
+            jt = ('pd_polygon' if ut == 'ca_poll' else 'advance_area') if bset == pdset else ut
             stats[jt] += v
-            if not bset: unjoined.append((fed, st, v))
+            if ut == 'ca_poll_unmapped': unjoined.append((fed, st, v))
     os.makedirs(out, exist_ok=True)
     fn = f'{out}/ca_house_of_commons_{year}_poll.csv.gz'
     with gzip.open(fn, 'wt', newline='', compresslevel=9) as f:
@@ -87,7 +87,7 @@ def main(ge, raw, units, out):
             m += sorted(notes)
             r = dict(r, votes=v, method=';'.join(m)); w.writerow(r)
     # advance_area lookup: member PDs of each advance poll (exact union; votes are never split across members)
-    used = {(k[0], int(k[1].split(':')[1])) for k, a in agg.items() if a[0]['unit_type'] == 'advance_area'}
+    used = {(k[0], int(k[1].split(':')[1])) for k, a in agg.items() if a[0]['unit_type'] == 'ca_advance_area'}
     with gzip.open(f'{out}/advance_areas_{year}.csv.gz', 'wt', newline='', compresslevel=9) as f:
         w = csv.writer(f)
         w.writerow(['year', 'district', 'unit_id', 'unit_type', 'boundary_set', 'advance_poll', 'n_members', 'member_unit_ids',
@@ -96,7 +96,7 @@ def main(ge, raw, units, out):
             cf = sorted(advcomb.get((fed, num), ()))
             cm = sorted({u for c in cf for u in adv.get((fed, c), [])}, key=lambda u: (int(u.split(':')[1].split('-')[0]), u))
             mem = sorted(adv[(fed, num)], key=lambda u: (int(u.split(':')[1].split('-')[0]), u))
-            w.writerow([year, fed, f'{fed}:{num}', 'advance_area', pdset, num, len(mem), '|'.join(mem),
+            w.writerow([year, fed, f'{fed}:{num}', 'ca_advance_area', pdset, num, len(mem), '|'.join(mem),
                         'Y' if (fed, num) in used else 'N', '|'.join(f'{fed}:{c}' for c in cf), '|'.join(cm)])
     # official riding totals (Table 12)
     off = collections.defaultdict(list)
@@ -116,7 +116,7 @@ def main(ge, raw, units, out):
     s = dict(year=year, rows=len(agg), ridings=len(fedtot), votes=tot, by_join={k: v for k, v in stats.items()},
              pct_on_pd_polygon=round(100 * stats['pd_polygon'] / tot, 2),
              pct_on_pd_or_advance_area=round(100 * (stats['pd_polygon'] + stats['advance_area']) / tot, 2),
-             advance_areas=len(adv), advance_polls_without_members=sorted({k[1] for k, a in agg.items() if a[0]['unit_type'] == 'advance'}), ridings_mismatch=bad,
+             advance_areas=len(adv), advance_polls_without_members=sorted({k[1] for k, a in agg.items() if a[0]['unit_type'] == 'ca_advance'}), ridings_mismatch=bad,
              unjoined_stations=len({(a, b) for a, b, _ in unjoined}),
              unjoined_examples=sorted({(a, b) for a, b, _ in unjoined})[:20],
              unjoined_votes=sum(v for *_, v in unjoined), name_variants_folded={'|'.join(k): [' '.join(x) for x in v] for k, v in variants.items()})

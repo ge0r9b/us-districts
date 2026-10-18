@@ -10,3 +10,5 @@
 | BC GE 2024-10-19 | DataBC `provincial_voting_results_by_voting_place.csv` (https://catalogue.data.gov.bc.ca/dataset/provincial-voting-results) | Elections BC Open Data Licence | Statement of Votes PDF, https://elections.bc.ca/docs/rpt/statement-of-votes-2024-provincial-election.pdf, "Summary of results by electoral district" -> `provincial/bc2024_official_riding_totals_sov.csv` |
 | Alberta GE 2023-05-29 | https://officialresults.elections.ab.ca/orResultsED.cfm?MODE=exED&ED=01..87&EventId=101 (87 xlsx) | Elections Alberta | each workbook's "Total (All Voting Locations)" row |
 Raw copies with SHA-256: `/workspace/ca_raw/*/SHA256SUMS` (box). BC `provincial_voting_results_by_va.csv` (2005-2020 by VA) was also downloaded, not loaded.
+
+Units: Institutions lane `data/inst-canada` @ `3bbb54a` (QC 2022 `eq-2022-sv`/`eq-2022-ced`; `ca_*` unit types from 945e1a7).

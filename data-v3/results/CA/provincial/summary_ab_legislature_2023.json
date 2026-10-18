@@ -1,14 +1,11 @@
 {
  "year": "2023",
  "office": "ab_legislature",
- "rows": 7987,
+ "rows": 349,
  "ridings": 87,
  "votes": 1764915,
  "by_unit": {
-  "va_union_codes_in_2026_units": 872505,
-  "advance": 757453,
-  "special": 75298,
-  "va_union_codes_missing": 59659
+  "ca_ped": 1764915
  },
  "pct_on_polygon": 0.0,
  "ridings_mismatch": 0
