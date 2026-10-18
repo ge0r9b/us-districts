@@ -1,0 +1,1771 @@
+{
+ "for": "PACK.lists in v2/index.html (const PACK = { lists: ... } on one line); apply schools.rename, then schools.remove, then statehouse.insert",
+ "built_from": "f7880a3 Data: WY HD 054 (2024) ≈ from Fremont County GIS precincts + WY SOS precinct-by-precinct summary; COVERAGE",
+ "schools": {
+  "rename": [
+   {
+    "index": 504,
+    "state": "Arkansas",
+    "type": "unified",
+    "old_name": "Harmony Grove School District",
+    "occurrence": 0,
+    "new_name": "Harmony Grove School District (Dallas)",
+    "geoid": "0507290",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 505,
+    "state": "Arkansas",
+    "type": "unified",
+    "old_name": "Harmony Grove School District",
+    "occurrence": 1,
+    "new_name": "Harmony Grove School District (Saline)",
+    "geoid": "0507320",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 530,
+    "state": "Arkansas",
+    "type": "unified",
+    "old_name": "Lakeside School District",
+    "occurrence": 0,
+    "new_name": "Lakeside School District (Chicot)",
+    "geoid": "0508640",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 531,
+    "state": "Arkansas",
+    "type": "unified",
+    "old_name": "Lakeside School District",
+    "occurrence": 1,
+    "new_name": "Lakeside School District (Garland)",
+    "geoid": "0508670",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 826,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Hope Elementary School District",
+    "occurrence": 0,
+    "new_name": "Hope Elementary School District (Santa Barbara)",
+    "geoid": "0617490",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 827,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Hope Elementary School District",
+    "occurrence": 1,
+    "new_name": "Hope Elementary School District (Tulare)",
+    "geoid": "0617520",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 843,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Jefferson Elementary School District",
+    "occurrence": 0,
+    "new_name": "Jefferson Elementary School District (San Mateo)",
+    "geoid": "0618870",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 844,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Jefferson Elementary School District",
+    "occurrence": 1,
+    "new_name": "Jefferson Elementary School District (San Joaquin)",
+    "geoid": "0618840",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 845,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Jefferson Elementary School District",
+    "occurrence": 2,
+    "new_name": "Jefferson Elementary School District (San Benito)",
+    "geoid": "0618810",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 849,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Junction Elementary School District",
+    "occurrence": 0,
+    "new_name": "Junction Elementary School District (Shasta)",
+    "geoid": "0619200",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 850,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Junction Elementary School District",
+    "occurrence": 1,
+    "new_name": "Junction Elementary School District (Siskiyou)",
+    "geoid": "0619230",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 875,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Lakeside Union Elementary School District",
+    "occurrence": 0,
+    "new_name": "Lakeside Union Elementary School District (San Diego)",
+    "geoid": "0620790",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 876,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Lakeside Union Elementary School District",
+    "occurrence": 1,
+    "new_name": "Lakeside Union Elementary School District (Kings)",
+    "geoid": "0620760",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 890,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Liberty Elementary School District",
+    "occurrence": 0,
+    "new_name": "Liberty Elementary School District (Sonoma)",
+    "geoid": "0621540",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 891,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Liberty Elementary School District",
+    "occurrence": 1,
+    "new_name": "Liberty Elementary School District (Tulare)",
+    "geoid": "0621570",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 950,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Mountain View Elementary School District",
+    "occurrence": 0,
+    "new_name": "Mountain View Elementary School District (Los Angeles)",
+    "geoid": "0626190",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 951,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Mountain View Elementary School District",
+    "occurrence": 1,
+    "new_name": "Mountain View Elementary School District (San Bernardino)",
+    "geoid": "0626220",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 973,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Ocean View Elementary School District",
+    "occurrence": 0,
+    "new_name": "Ocean View Elementary School District (Ventura)",
+    "geoid": "0628170",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 974,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Ocean View Elementary School District",
+    "occurrence": 1,
+    "new_name": "Ocean View Elementary School District (Orange)",
+    "geoid": "0628140",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 988,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Pacific Union Elementary School District",
+    "occurrence": 0,
+    "new_name": "Pacific Union Elementary School District (Fresno)",
+    "geoid": "0629400",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 989,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Pacific Union Elementary School District",
+    "occurrence": 1,
+    "new_name": "Pacific Union Elementary School District (Humboldt)",
+    "geoid": "0629430",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 1003,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Pioneer Union Elementary School District",
+    "occurrence": 0,
+    "new_name": "Pioneer Union Elementary School District (El Dorado)",
+    "geoid": "0630480",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 1004,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Pioneer Union Elementary School District",
+    "occurrence": 1,
+    "new_name": "Pioneer Union Elementary School District (Kings)",
+    "geoid": "0630510",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 1005,
+    "state": "California",
+    "type": "elementary",
+    "old_name": "Pioneer Union Elementary School District",
+    "occurrence": 2,
+    "new_name": "Pioneer Union Elementary School District (Butte)",
+    "geoid": "0630520",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 1417,
+    "state": "California",
+    "type": "unified",
+    "old_name": "La CaÃ±ada Unified School District",
+    "occurrence": 0,
+    "new_name": "La Cañada Unified School District",
+    "geoid": "0620130",
+    "source": "mojibake (UTF-8 read as Latin-1) -> v2/data/ussch.js name"
+   },
+   {
+    "index": 1601,
+    "state": "California",
+    "type": "unified",
+    "old_name": "Washington Unified School District",
+    "occurrence": 0,
+    "new_name": "Washington Unified School District (Yolo)",
+    "geoid": "0641580",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 1602,
+    "state": "California",
+    "type": "unified",
+    "old_name": "Washington Unified School District",
+    "occurrence": 1,
+    "new_name": "Washington Unified School District (Fresno)",
+    "geoid": "0601415",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 2584,
+    "state": "Illinois",
+    "type": "elementary",
+    "old_name": "Oak Grove School District 68",
+    "occurrence": 0,
+    "new_name": "Oak Grove School District 68 (Peoria)",
+    "geoid": "1729100",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 2585,
+    "state": "Illinois",
+    "type": "elementary",
+    "old_name": "Oak Grove School District 68",
+    "occurrence": 1,
+    "new_name": "Oak Grove School District 68 (Lake)",
+    "geoid": "1729130",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 6001,
+    "state": "Missouri",
+    "type": "elementary",
+    "old_name": "Miami R-I School District",
+    "occurrence": 0,
+    "new_name": "Miami R-I School District (Saline)",
+    "geoid": "2920840",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 6278,
+    "state": "Missouri",
+    "type": "unified",
+    "old_name": "Miami R-I School District",
+    "occurrence": 0,
+    "new_name": "Miami R-I School District (Bates)",
+    "geoid": "2920820",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 6537,
+    "state": "Montana",
+    "type": "elementary",
+    "old_name": "Cottonwood Elementary School District",
+    "occurrence": 0,
+    "new_name": "Cottonwood Elementary School District (Hill)",
+    "geoid": "3014150",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 6538,
+    "state": "Montana",
+    "type": "elementary",
+    "old_name": "Cottonwood Elementary School District",
+    "occurrence": 1,
+    "new_name": "Cottonwood Elementary School District (Gallatin)",
+    "geoid": "3007500",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7356,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Fairfield Township School District",
+    "occurrence": 0,
+    "new_name": "Fairfield Township School District (Cumberland)",
+    "geoid": "3405040",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7357,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Fairfield Township School District",
+    "occurrence": 1,
+    "new_name": "Fairfield Township School District (Essex)",
+    "geoid": "3405010",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7364,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Franklin Township School District",
+    "occurrence": 0,
+    "new_name": "Franklin Township School District (Hunterdon)",
+    "geoid": "3405460",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7365,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Franklin Township School District",
+    "occurrence": 1,
+    "new_name": "Franklin Township School District (Warren)",
+    "geoid": "3405520",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7366,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Franklin Township School District",
+    "occurrence": 2,
+    "new_name": "Franklin Township School District (Gloucester)",
+    "geoid": "3405430",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7375,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Greenwich Township School District",
+    "occurrence": 0,
+    "new_name": "Greenwich Township School District (Cumberland)",
+    "geoid": "3406150",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7379,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Hamilton Township School District",
+    "occurrence": 0,
+    "new_name": "Hamilton Township School District (Atlantic)",
+    "geoid": "3406510",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7409,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Mansfield Township School District",
+    "occurrence": 0,
+    "new_name": "Mansfield Township School District (Warren)",
+    "geoid": "3409540",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7410,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Mansfield Township School District",
+    "occurrence": 1,
+    "new_name": "Mansfield Township School District (Burlington)",
+    "geoid": "3409510",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7457,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Springfield Township School District",
+    "occurrence": 0,
+    "new_name": "Springfield Township School District (Burlington)",
+    "geoid": "3415660",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7470,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Union Township School District",
+    "occurrence": 0,
+    "new_name": "Union Township School District (Hunterdon)",
+    "geoid": "3416440",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7477,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Washington Township School District",
+    "occurrence": 0,
+    "new_name": "Washington Township School District (Warren)",
+    "geoid": "3417160",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7478,
+    "state": "New Jersey",
+    "type": "elementary",
+    "old_name": "Washington Township School District",
+    "occurrence": 1,
+    "new_name": "Washington Township School District (Morris)",
+    "geoid": "3417130",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7631,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Franklin Township School District",
+    "occurrence": 0,
+    "new_name": "Franklin Township School District (Somerset)",
+    "geoid": "3405490",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7641,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Greenwich Township School District",
+    "occurrence": 0,
+    "new_name": "Greenwich Township School District (Gloucester)",
+    "geoid": "3406180",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7642,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Greenwich Township School District",
+    "occurrence": 1,
+    "new_name": "Greenwich Township School District (Warren)",
+    "geoid": "3406210",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7649,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Hamilton Township School District",
+    "occurrence": 0,
+    "new_name": "Hamilton Township School District (Mercer)",
+    "geoid": "3406540",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7686,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Lawrence Township School District",
+    "occurrence": 0,
+    "new_name": "Lawrence Township School District (Mercer)",
+    "geoid": "3408400",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7687,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Lawrence Township School District",
+    "occurrence": 1,
+    "new_name": "Lawrence Township School District (Cumberland)",
+    "geoid": "3408370",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7724,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Monroe Township School District",
+    "occurrence": 0,
+    "new_name": "Monroe Township School District (Middlesex)",
+    "geoid": "3410500",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7725,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Monroe Township School District",
+    "occurrence": 1,
+    "new_name": "Monroe Township School District (Gloucester)",
+    "geoid": "3410470",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7756,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Ocean Township School District",
+    "occurrence": 0,
+    "new_name": "Ocean Township School District (Monmouth)",
+    "geoid": "3412060",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7757,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Ocean Township School District",
+    "occurrence": 1,
+    "new_name": "Ocean Township School District (Ocean)",
+    "geoid": "3412090",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7831,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Springfield Township School District",
+    "occurrence": 0,
+    "new_name": "Springfield Township School District (Union)",
+    "geoid": "3415630",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7841,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Union Township School District",
+    "occurrence": 0,
+    "new_name": "Union Township School District (Union)",
+    "geoid": "3416500",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7852,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Washington Township School District",
+    "occurrence": 0,
+    "new_name": "Washington Township School District (Gloucester)",
+    "geoid": "3417070",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7853,
+    "state": "New Jersey",
+    "type": "unified",
+    "old_name": "Washington Township School District",
+    "occurrence": 1,
+    "new_name": "Washington Township School District (Burlington)",
+    "geoid": "3417040",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 7904,
+    "state": "New Mexico",
+    "type": "unified",
+    "old_name": "EspaÃ±ola Municipal Schools",
+    "occurrence": 0,
+    "new_name": "Española Municipal Schools",
+    "geoid": "3500900",
+    "source": "mojibake (UTF-8 read as Latin-1) -> v2/data/ussch.js name"
+   },
+   {
+    "index": 7940,
+    "state": "New Mexico",
+    "type": "unified",
+    "old_name": "PeÃ±asco Independent Schools",
+    "occurrence": 0,
+    "new_name": "Peñasco Independent Schools",
+    "geoid": "3502040",
+    "source": "mojibake (UTF-8 read as Latin-1) -> v2/data/ussch.js name"
+   },
+   {
+    "index": 9004,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Buckeye Local School District",
+    "occurrence": 0,
+    "new_name": "Buckeye Local School District (Medina)",
+    "geoid": "3904847",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9005,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Buckeye Local School District",
+    "occurrence": 1,
+    "new_name": "Buckeye Local School District (Jefferson)",
+    "geoid": "3904778",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9006,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Buckeye Local School District",
+    "occurrence": 2,
+    "new_name": "Buckeye Local School District (Ashtabula)",
+    "geoid": "3904585",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9061,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Crestview Local School District",
+    "occurrence": 0,
+    "new_name": "Crestview Local School District (Richland)",
+    "geoid": "3904942",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9062,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Crestview Local School District",
+    "occurrence": 1,
+    "new_name": "Crestview Local School District (Columbiana)",
+    "geoid": "3904643",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9063,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Crestview Local School District",
+    "occurrence": 2,
+    "new_name": "Crestview Local School District (Van Wert)",
+    "geoid": "3905035",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9087,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Eastern Local School District",
+    "occurrence": 0,
+    "new_name": "Eastern Local School District (Brown)",
+    "geoid": "3904603",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9088,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Eastern Local School District",
+    "occurrence": 1,
+    "new_name": "Eastern Local School District (Pike)",
+    "geoid": "3904912",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9089,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Eastern Local School District",
+    "occurrence": 2,
+    "new_name": "Eastern Local School District (Meigs)",
+    "geoid": "3904851",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9148,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Green Local School District",
+    "occurrence": 0,
+    "new_name": "Green Local School District (Wayne)",
+    "geoid": "3905055",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9149,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Green Local School District",
+    "occurrence": 1,
+    "new_name": "Green Local School District (Summit)",
+    "geoid": "3905001",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9150,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Green Local School District",
+    "occurrence": 2,
+    "new_name": "Green Local School District (Scioto)",
+    "geoid": "3904961",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9163,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Highland Local School District",
+    "occurrence": 0,
+    "new_name": "Highland Local School District (Morrow)",
+    "geoid": "3904880",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9164,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Highland Local School District",
+    "occurrence": 1,
+    "new_name": "Highland Local School District (Medina)",
+    "geoid": "3904849",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9204,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Lake Local School District",
+    "occurrence": 0,
+    "new_name": "Lake Local School District (Wood)",
+    "geoid": "3905069",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9205,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Lake Local School District",
+    "occurrence": 1,
+    "new_name": "Lake Local School District (Stark)",
+    "geoid": "3904986",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9209,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Lakota Local School District",
+    "occurrence": 0,
+    "new_name": "Lakota Local School District (Butler)",
+    "geoid": "3904611",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9210,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Lakota Local School District",
+    "occurrence": 1,
+    "new_name": "Lakota Local School District (Sandusky)",
+    "geoid": "3904956",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9240,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Madison Local School District",
+    "occurrence": 0,
+    "new_name": "Madison Local School District (Butler)",
+    "geoid": "3904612",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9241,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Madison Local School District",
+    "occurrence": 1,
+    "new_name": "Madison Local School District (Richland)",
+    "geoid": "3904945",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9242,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Madison Local School District",
+    "occurrence": 2,
+    "new_name": "Madison Local School District (Lake)",
+    "geoid": "3904788",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9244,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Manchester Local School District",
+    "occurrence": 0,
+    "new_name": "Manchester Local School District (Adams)",
+    "geoid": "3900537",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9245,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Manchester Local School District",
+    "occurrence": 1,
+    "new_name": "Manchester Local School District (Summit)",
+    "geoid": "3905000",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9324,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northeastern Local School District",
+    "occurrence": 0,
+    "new_name": "Northeastern Local School District (Defiance)",
+    "geoid": "3904672",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9325,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northeastern Local School District",
+    "occurrence": 1,
+    "new_name": "Northeastern Local School District (Clark)",
+    "geoid": "3904625",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9329,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northridge Local School District",
+    "occurrence": 0,
+    "new_name": "Northridge Local School District (Licking)",
+    "geoid": "3904803",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9330,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northridge Local School District",
+    "occurrence": 1,
+    "new_name": "Northridge Local School District (Montgomery)",
+    "geoid": "3904873",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9331,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northwest Local School District",
+    "occurrence": 0,
+    "new_name": "Northwest Local School District (Hamilton)",
+    "geoid": "3904736",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9332,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northwest Local School District",
+    "occurrence": 1,
+    "new_name": "Northwest Local School District (Scioto)",
+    "geoid": "3904963",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9333,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northwest Local School District",
+    "occurrence": 2,
+    "new_name": "Northwest Local School District (Stark)",
+    "geoid": "3904990",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9334,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northwestern Local School District",
+    "occurrence": 0,
+    "new_name": "Northwestern Local School District (Clark)",
+    "geoid": "3904626",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9335,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Northwestern Local School District",
+    "occurrence": 1,
+    "new_name": "Northwestern Local School District (Wayne)",
+    "geoid": "3910033",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9365,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Perry Local School District",
+    "occurrence": 0,
+    "new_name": "Perry Local School District (Stark)",
+    "geoid": "3904992",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9366,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Perry Local School District",
+    "occurrence": 1,
+    "new_name": "Perry Local School District (Allen)",
+    "geoid": "3904578",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9367,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Perry Local School District",
+    "occurrence": 2,
+    "new_name": "Perry Local School District (Lake)",
+    "geoid": "3904790",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9396,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Riverside Local School District",
+    "occurrence": 0,
+    "new_name": "Riverside Local School District (Lake)",
+    "geoid": "3910014",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9397,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Riverside Local School District",
+    "occurrence": 1,
+    "new_name": "Riverside Local School District (Logan)",
+    "geoid": "3904809",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9424,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southeast Local School District",
+    "occurrence": 0,
+    "new_name": "Southeast Local School District (Portage)",
+    "geoid": "3904922",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9425,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southeast Local School District",
+    "occurrence": 1,
+    "new_name": "Southeast Local School District (Wayne)",
+    "geoid": "3905058",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9426,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southeastern Local School District",
+    "occurrence": 0,
+    "new_name": "Southeastern Local School District (Ross)",
+    "geoid": "3904952",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9427,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southeastern Local School District",
+    "occurrence": 1,
+    "new_name": "Southeastern Local School District (Clark)",
+    "geoid": "3904627",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9428,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southern Local School District",
+    "occurrence": 0,
+    "new_name": "Southern Local School District (Perry)",
+    "geoid": "3904906",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9429,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southern Local School District",
+    "occurrence": 1,
+    "new_name": "Southern Local School District (Meigs)",
+    "geoid": "3904853",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9430,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Southern Local School District",
+    "occurrence": 2,
+    "new_name": "Southern Local School District (Columbiana)",
+    "geoid": "3904644",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9437,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Springfield Local School District",
+    "occurrence": 0,
+    "new_name": "Springfield Local School District (Mahoning)",
+    "geoid": "3904837",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9438,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Springfield Local School District",
+    "occurrence": 1,
+    "new_name": "Springfield Local School District (Summit)",
+    "geoid": "3905006",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9439,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Springfield Local School District",
+    "occurrence": 2,
+    "new_name": "Springfield Local School District (Lucas)",
+    "geoid": "3904822",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9521,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Western Reserve Local School District",
+    "occurrence": 0,
+    "new_name": "Western Reserve Local School District (Mahoning)",
+    "geoid": "3904839",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 9522,
+    "state": "Ohio",
+    "type": "unified",
+    "old_name": "Western Reserve Local School District",
+    "occurrence": 1,
+    "new_name": "Western Reserve Local School District (Huron)",
+    "geoid": "3904774",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 10044,
+    "state": "Oklahoma",
+    "type": "unified",
+    "old_name": "Wilson Public Schools",
+    "occurrence": 0,
+    "new_name": "Wilson Public Schools (Okmulgee)",
+    "geoid": "4032880",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 10045,
+    "state": "Oklahoma",
+    "type": "unified",
+    "old_name": "Wilson Public Schools",
+    "occurrence": 1,
+    "new_name": "Wilson Public Schools (Carter)",
+    "geoid": "4032940",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11245,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Big Sandy Independent School District",
+    "occurrence": 0,
+    "new_name": "Big Sandy Independent School District (Polk)",
+    "geoid": "4810170",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11246,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Big Sandy Independent School District",
+    "occurrence": 1,
+    "new_name": "Big Sandy Independent School District (Upshur)",
+    "geoid": "4810140",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11330,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Centerville Independent School District",
+    "occurrence": 0,
+    "new_name": "Centerville Independent School District (Trinity)",
+    "geoid": "4813380",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11331,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Centerville Independent School District",
+    "occurrence": 1,
+    "new_name": "Centerville Independent School District (Leon)",
+    "geoid": "4813410",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11336,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Chapel Hill Independent School District",
+    "occurrence": 0,
+    "new_name": "Chapel Hill Independent School District (Titus)",
+    "geoid": "4813680",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11337,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Chapel Hill Independent School District",
+    "occurrence": 1,
+    "new_name": "Chapel Hill Independent School District (Smith)",
+    "geoid": "4813650",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11414,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Dawson Independent School District",
+    "occurrence": 0,
+    "new_name": "Dawson Independent School District (Dawson)",
+    "geoid": "4816350",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11415,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Dawson Independent School District",
+    "occurrence": 1,
+    "new_name": "Dawson Independent School District (Navarro)",
+    "geoid": "4816380",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11459,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Edgewood Independent School District",
+    "occurrence": 0,
+    "new_name": "Edgewood Independent School District (Bexar)",
+    "geoid": "4818150",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11460,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Edgewood Independent School District",
+    "occurrence": 1,
+    "new_name": "Edgewood Independent School District (Van Zandt)",
+    "geoid": "4818120",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11597,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Highland Park Independent School District",
+    "occurrence": 0,
+    "new_name": "Highland Park Independent School District (Potter)",
+    "geoid": "4835560",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11598,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Highland Park Independent School District",
+    "occurrence": 1,
+    "new_name": "Highland Park Independent School District (Dallas)",
+    "geoid": "4823250",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11608,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Hubbard Independent School District",
+    "occurrence": 0,
+    "new_name": "Hubbard Independent School District (Hill)",
+    "geoid": "4823730",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11609,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Hubbard Independent School District",
+    "occurrence": 1,
+    "new_name": "Hubbard Independent School District (Bowie)",
+    "geoid": "4823700",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11793,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Midway Independent School District",
+    "occurrence": 0,
+    "new_name": "Midway Independent School District (Clay)",
+    "geoid": "4830660",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11794,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Midway Independent School District",
+    "occurrence": 1,
+    "new_name": "Midway Independent School District (McLennan)",
+    "geoid": "4830640",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11851,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Northside Independent School District",
+    "occurrence": 0,
+    "new_name": "Northside Independent School District (Wilbarger)",
+    "geoid": "4833090",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 11852,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Northside Independent School District",
+    "occurrence": 1,
+    "new_name": "Northside Independent School District (Bexar)",
+    "geoid": "4833120",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 12119,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Valley View Independent School District",
+    "occurrence": 0,
+    "new_name": "Valley View Independent School District (Hidalgo)",
+    "geoid": "4843800",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 12120,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Valley View Independent School District",
+    "occurrence": 1,
+    "new_name": "Valley View Independent School District (Cooke)",
+    "geoid": "4843860",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 12186,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Wylie Independent School District",
+    "occurrence": 0,
+    "new_name": "Wylie Independent School District (Collin)",
+    "geoid": "4846530",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   },
+   {
+    "index": 12187,
+    "state": "Texas",
+    "type": "unified",
+    "old_name": "Wylie Independent School District",
+    "occurrence": 1,
+    "new_name": "Wylie Independent School District (Taylor)",
+    "geoid": "4846500",
+    "source": "v2_name_collisions.csv (9ff4c00)"
+   }
+  ],
+  "remove": [
+   {
+    "index": 387,
+    "state": "Arizona",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 1551,
+    "state": "California",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 1930,
+    "state": "Connecticut",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 3131,
+    "state": "Illinois",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 3413,
+    "state": "Indiana",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 4269,
+    "state": "Kentucky",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 4907,
+    "state": "Massachusetts",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 5413,
+    "state": "Michigan",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 5762,
+    "state": "Minnesota",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 7308,
+    "state": "New Hampshire",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 7812,
+    "state": "New Jersey",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 8515,
+    "state": "New York",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 9408,
+    "state": "Ohio",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 10218,
+    "state": "Oregon",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 10627,
+    "state": "Pennsylvania",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 10783,
+    "state": "Rhode Island",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 10855,
+    "state": "South Carolina",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 11150,
+    "state": "Tennessee",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 13189,
+    "state": "Wisconsin",
+    "type": "unified",
+    "name": "School District Not Defined"
+   },
+   {
+    "index": 13308,
+    "state": "Wyoming",
+    "type": "unified",
+    "name": "School District Not Defined"
+   }
+  ]
+ },
+ "statehouse": {
+  "insert_at": 2657,
+  "after": [
+   "Montana",
+   "100",
+   "State House District 100"
+  ],
+  "before": [
+   "Nevada",
+   "001",
+   "Assembly District 1"
+  ],
+  "rows": [
+   [
+    "Nebraska",
+    "001",
+    "State Senate District 1"
+   ],
+   [
+    "Nebraska",
+    "002",
+    "State Senate District 2"
+   ],
+   [
+    "Nebraska",
+    "003",
+    "State Senate District 3"
+   ],
+   [
+    "Nebraska",
+    "004",
+    "State Senate District 4"
+   ],
+   [
+    "Nebraska",
+    "005",
+    "State Senate District 5"
+   ],
+   [
+    "Nebraska",
+    "006",
+    "State Senate District 6"
+   ],
+   [
+    "Nebraska",
+    "007",
+    "State Senate District 7"
+   ],
+   [
+    "Nebraska",
+    "008",
+    "State Senate District 8"
+   ],
+   [
+    "Nebraska",
+    "009",
+    "State Senate District 9"
+   ],
+   [
+    "Nebraska",
+    "010",
+    "State Senate District 10"
+   ],
+   [
+    "Nebraska",
+    "011",
+    "State Senate District 11"
+   ],
+   [
+    "Nebraska",
+    "012",
+    "State Senate District 12"
+   ],
+   [
+    "Nebraska",
+    "013",
+    "State Senate District 13"
+   ],
+   [
+    "Nebraska",
+    "014",
+    "State Senate District 14"
+   ],
+   [
+    "Nebraska",
+    "015",
+    "State Senate District 15"
+   ],
+   [
+    "Nebraska",
+    "016",
+    "State Senate District 16"
+   ],
+   [
+    "Nebraska",
+    "017",
+    "State Senate District 17"
+   ],
+   [
+    "Nebraska",
+    "018",
+    "State Senate District 18"
+   ],
+   [
+    "Nebraska",
+    "019",
+    "State Senate District 19"
+   ],
+   [
+    "Nebraska",
+    "020",
+    "State Senate District 20"
+   ],
+   [
+    "Nebraska",
+    "021",
+    "State Senate District 21"
+   ],
+   [
+    "Nebraska",
+    "022",
+    "State Senate District 22"
+   ],
+   [
+    "Nebraska",
+    "023",
+    "State Senate District 23"
+   ],
+   [
+    "Nebraska",
+    "024",
+    "State Senate District 24"
+   ],
+   [
+    "Nebraska",
+    "025",
+    "State Senate District 25"
+   ],
+   [
+    "Nebraska",
+    "026",
+    "State Senate District 26"
+   ],
+   [
+    "Nebraska",
+    "027",
+    "State Senate District 27"
+   ],
+   [
+    "Nebraska",
+    "028",
+    "State Senate District 28"
+   ],
+   [
+    "Nebraska",
+    "029",
+    "State Senate District 29"
+   ],
+   [
+    "Nebraska",
+    "030",
+    "State Senate District 30"
+   ],
+   [
+    "Nebraska",
+    "031",
+    "State Senate District 31"
+   ],
+   [
+    "Nebraska",
+    "032",
+    "State Senate District 32"
+   ],
+   [
+    "Nebraska",
+    "033",
+    "State Senate District 33"
+   ],
+   [
+    "Nebraska",
+    "034",
+    "State Senate District 34"
+   ],
+   [
+    "Nebraska",
+    "035",
+    "State Senate District 35"
+   ],
+   [
+    "Nebraska",
+    "036",
+    "State Senate District 36"
+   ],
+   [
+    "Nebraska",
+    "037",
+    "State Senate District 37"
+   ],
+   [
+    "Nebraska",
+    "038",
+    "State Senate District 38"
+   ],
+   [
+    "Nebraska",
+    "039",
+    "State Senate District 39"
+   ],
+   [
+    "Nebraska",
+    "040",
+    "State Senate District 40"
+   ],
+   [
+    "Nebraska",
+    "041",
+    "State Senate District 41"
+   ],
+   [
+    "Nebraska",
+    "042",
+    "State Senate District 42"
+   ],
+   [
+    "Nebraska",
+    "043",
+    "State Senate District 43"
+   ],
+   [
+    "Nebraska",
+    "044",
+    "State Senate District 44"
+   ],
+   [
+    "Nebraska",
+    "045",
+    "State Senate District 45"
+   ],
+   [
+    "Nebraska",
+    "046",
+    "State Senate District 46"
+   ],
+   [
+    "Nebraska",
+    "047",
+    "State Senate District 47"
+   ],
+   [
+    "Nebraska",
+    "048",
+    "State Senate District 48"
+   ],
+   [
+    "Nebraska",
+    "049",
+    "State Senate District 49"
+   ]
+  ],
+  "label_source": "TIGER 2024 SLDU NAME (Nebraska is unicameral; same label as PACK.lists.senate Nebraska rows)"
+ },
+ "at_large_label": {
+  "where": "v2/index.html, the national-district aname override in the '===== every district type fills nationwide' block (line ~2845 at build 1568): { const _an18=aname; aname=function(a){ if(a.kind!==\"natcd\") return _an18(a); const k=a.tk||\"ushouse\"; return k===\"schools\"?a.d[1]:\"District \"+String(a.d[1]).replace(/^0+(?=\\d)/,\"\"); }; }",
+  "expression": "\"District \"+String(a.d[1]).replace(/^0+(?=\\d)/,\"\")  -> for code \"00\" the regex strips one leading 0 (the next char is a digit) and leaves \"0\": \"District 0\"",
+  "affects": "US House rows with code \"00\": Alaska, Delaware, North Dakota, South Dakota, Vermont, Wyoming (uscd.js; TIGER 2024 GEOID SS00 = at-large). Earlier override at line ~2635 (\"District \"+a.d[1]) would give \"District 00\" but is shadowed by the one above.",
+  "suggested_change": "k===\"ushouse\"&&String(a.d[1])===\"00\"?\"At large\":... (PACK.lists.ushouse already labels these rows \"At large\"; House Clerk MemberData.xml uses district \"At Large\"). 0 bytes of data.",
+  "verified": "node -e 'console.log(\"District \"+String(\"00\").replace(/^0+(?=\\d)/,\"\"))' prints District 0"
+ },
+ "verification": {
+  "schools_rows_after": 13304,
+  "ussch_rows": 13304,
+  "schools_exact_match": true,
+  "type_mismatches": 0,
+  "renames": 135,
+  "renames_collisions": 132,
+  "renames_mojibake": 3,
+  "removed": 20,
+  "statehouse_rows_after": 4882,
+  "statehouse_equals_ussldl_keys": true,
+  "nebraska_rows": 49,
+  "nebraska_match": true,
+  "statehouse_sorted_by_state": true,
+  "schools_bytes_before_after": [
+   777673,
+   777862
+  ],
+  "statehouse_bytes_before_after": [
+   223361,
+   225606
+  ]
+ }
+}
