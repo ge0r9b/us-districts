@@ -1,0 +1,938 @@
+{
+ "iphone390": {
+  "build": "202610181579",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": []
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": []
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9%",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "65.5%",
+     "by": "sort",
+     "px": [
+      22,
+      4
+     ],
+     "r": [
+      218,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9%",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "65.5%",
+     "by": "sort",
+     "px": [
+      22,
+      4
+     ],
+     "r": [
+      218,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      31,
+      15
+     ],
+     "r": [
+      351,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      32,
+      3
+     ],
+     "r": [
+      346,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      339,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      32,
+      7
+     ],
+     "r": [
+      338,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      31,
+      15
+     ],
+     "r": [
+      351,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      32,
+      3
+     ],
+     "r": [
+      346,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      339,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      32,
+      7
+     ],
+     "r": [
+      338,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "iphone375": {
+  "build": "202610181579",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      291,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      4,
+      15
+     ],
+     "r": [
+      291,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9%",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "65.5%",
+     "by": "sort",
+     "px": [
+      32,
+      4
+     ],
+     "r": [
+      213,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9%",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "65.5%",
+     "by": "sort",
+     "px": [
+      32,
+      4
+     ],
+     "r": [
+      213,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      29,
+      15
+     ],
+     "r": [
+      338,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      32,
+      3
+     ],
+     "r": [
+      334,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      326,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      32,
+      7
+     ],
+     "r": [
+      325,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      29,
+      15
+     ],
+     "r": [
+      338,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      32,
+      3
+     ],
+     "r": [
+      334,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      326,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      32,
+      7
+     ],
+     "r": [
+      325,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "iphone320": {
+  "build": "202610181579",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      19,
+      15
+     ],
+     "r": [
+      251,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "WV",
+     "text": "28.1%",
+     "by": "time",
+     "px": [
+      14,
+      3
+     ],
+     "r": [
+      246,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ND",
+     "text": "30.8%",
+     "by": "chart",
+     "px": [
+      8,
+      15
+     ],
+     "r": [
+      241,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ID",
+     "text": "30.4%",
+     "by": "chart",
+     "px": [
+      7,
+      7
+     ],
+     "r": [
+      239,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3%",
+   "cov": [
+    {
+     "row": "WY",
+     "text": "26.1%",
+     "by": "time",
+     "px": [
+      19,
+      15
+     ],
+     "r": [
+      251,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "WV",
+     "text": "28.1%",
+     "by": "time",
+     "px": [
+      14,
+      3
+     ],
+     "r": [
+      246,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ND",
+     "text": "30.8%",
+     "by": "chart",
+     "px": [
+      8,
+      15
+     ],
+     "r": [
+      241,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "ID",
+     "text": "30.4%",
+     "by": "chart",
+     "px": [
+      7,
+      7
+     ],
+     "r": [
+      239,
+      227,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "32.9%",
+     "by": "sort",
+     "px": [
+      11,
+      4
+     ],
+     "r": [
+      137,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle",
+   "cov": [
+    {
+     "row": "New Castle",
+     "text": "32.9%",
+     "by": "sort",
+     "px": [
+      11,
+      4
+     ],
+     "r": [
+      137,
+      137,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "86.1%",
+     "by": "sort",
+     "px": [
+      22,
+      4
+     ],
+     "r": [
+      148,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      21,
+      15
+     ],
+     "r": [
+      291,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      25,
+      3
+     ],
+     "r": [
+      287,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      30,
+      15
+     ],
+     "r": [
+      282,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      31,
+      7
+     ],
+     "r": [
+      281,
+      227,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Huntingdon",
+     "text": "23.2%",
+     "by": "lyr",
+     "px": [
+      32,
+      14
+     ],
+     "r": [
+      274,
+      407,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Clearfield",
+     "text": "23.9%",
+     "by": "lyr",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      273,
+      437,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Tioga",
+     "text": "23.6%",
+     "by": "num",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      273,
+      467,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton",
+   "cov": [
+    {
+     "row": "Fulton",
+     "text": "86.1%",
+     "by": "sort",
+     "px": [
+      22,
+      4
+     ],
+     "r": [
+      148,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Fulton",
+     "text": "13.5%",
+     "by": "time",
+     "px": [
+      21,
+      15
+     ],
+     "r": [
+      291,
+      137,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Bedford",
+     "text": "15.4%",
+     "by": "time",
+     "px": [
+      25,
+      3
+     ],
+     "r": [
+      287,
+      167,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Potter",
+     "text": "18.4%",
+     "by": "chart",
+     "px": [
+      30,
+      15
+     ],
+     "r": [
+      282,
+      197,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Juniata",
+     "text": "18.9%",
+     "by": "chart",
+     "px": [
+      31,
+      7
+     ],
+     "r": [
+      281,
+      227,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Huntingdon",
+     "text": "23.2%",
+     "by": "lyr",
+     "px": [
+      32,
+      14
+     ],
+     "r": [
+      274,
+      407,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Clearfield",
+     "text": "23.9%",
+     "by": "lyr",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      273,
+      437,
+      32,
+      15
+     ]
+    },
+    {
+     "row": "Tioga",
+     "text": "23.6%",
+     "by": "num",
+     "px": [
+      32,
+      15
+     ],
+     "r": [
+      273,
+      467,
+      32,
+      15
+     ]
+    }
+   ]
+  },
+  "err": []
+ },
+ "ipad1024x576": {
+  "build": "202610181579",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9% | 65.5%",
+   "cov": []
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9% | 65.5%",
+   "cov": []
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": []
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": []
+  },
+  "err": []
+ },
+ "ipad1024x768": {
+  "build": "202610181579",
+  "states-pct": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "states-num": {
+   "crumb": "All States",
+   "n": 51,
+   "first": "WY | 72.3% | 26.1%",
+   "cov": []
+  },
+  "De-pct": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9% | 65.5%",
+   "cov": []
+  },
+  "De-num": {
+   "crumb": "Delaware",
+   "n": 3,
+   "first": "New Castle | 32.9% | 65.5%",
+   "cov": []
+  },
+  "Pe-pct": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": []
+  },
+  "Pe-num": {
+   "crumb": "Pennsylvania",
+   "n": 67,
+   "first": "Fulton | 86.1%",
+   "cov": []
+  },
+  "err": []
+ }
+}

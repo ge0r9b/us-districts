@@ -1,0 +1,207 @@
++ cd /workspace/w/lanes/qa/qa
++ curl -s https://ge0r9b.github.io/us-districts/v2/index.html
++ sed -n 9p
+<script>window.BUILD="202610181578";</script>
++ timeout 900 python3 p13-addr2.py chromium 375 667
+{"i": 0, "start": "Allegheny County, PA", "q": "350 5th Ave, New York, NY 10118", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["015/75", "350 5TH AVE, NEW YORK", "New York", "New York County", 15, ["76%", "22%"], [40.7517, -73.985]], "err": []}
+{"i": 1, "start": "Franklin County, OH", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Franklin County", "Franklin County, OH", ["64%", "35%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 2, "start": "Allegheny County, PA", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 3, "start": "Pennsylvania", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Pennsylvania", "Pennsylvania", ["50%", "49%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 4, "start": "Allegheny County, PA", "q": "100 Ross St, Pittsburgh, PA 15219", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["Pittsburgh Ward 1 Dist 1", "Allegheny County, PA", "Pennsylvania", "Allegheny County", 13, ["76%", "22%"], [40.4438, -79.9987]], "err": []}
++ timeout 900 python3 p13-addr2.py webkit 1024 576
+{"i": 0, "start": "Allegheny County, PA", "q": "350 5th Ave, New York, NY 10118", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["015/75", "350 5TH AVE, NEW YORK", "New York", "New York County", 15, ["76%", "22%"], [40.7517, -73.985]], "err": []}
+{"i": 1, "start": "Franklin County, OH", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Franklin County", "Franklin County, OH", ["64%", "35%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 2, "start": "Allegheny County, PA", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 3, "start": "Pennsylvania", "q": "1600 Pennsylvania Ave NW, Washington, DC 20500", "before": ["Pennsylvania", "Pennsylvania", ["50%", "49%"]], "after": ["District of Columbia", "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "", "", 11, ["90%", "6%"], [38.8926, -77.0145]], "err": []}
+{"i": 4, "start": "Allegheny County, PA", "q": "100 Ross St, Pittsburgh, PA 15219", "before": ["Allegheny County", "Allegheny County, PA", ["60%", "39%"]], "after": ["Pittsburgh Ward 1 Dist 1", "Allegheny County, PA", "Pennsylvania", "Allegheny County", 14, ["76%", "22%"], [40.4412, -79.9992]], "err": []}
++ timeout 600 python3 p13-dist2.py chromium 390 844
+keys [['ushouse', 'US House'], ['senate', 'State senate'], ['statehouse', 'State house'], ['schools', 'School districts']]
+Texas senate n 0 exp 31 dups [] odd 0 [] lat 793.8 None [] Texas []
+Texas statehouse n 0 exp 150 dups [] odd 0 [] lat 834.3 None [] Texas []
+California senate n 0 exp 40 dups [] odd 0 [] lat 1101.8 None [] California []
+California statehouse n 0 exp 80 dups [] odd 0 [] lat 1196.8 None [] California []
+New York senate n 0 exp 63 dups [] odd 0 [] lat 403.2 None [] New York []
+New York statehouse n 0 exp 150 dups [] odd 0 [] lat 375.7 None [] New York []
+Ohio senate n 0 exp 33 dups [] odd 0 [] lat 218.2 None [] Ohio []
+Ohio statehouse n 0 exp 99 dups [] odd 0 [] lat 261 None [] Ohio []
+Nebraska senate n 0 exp 49 dups [] odd 0 [] lat 135.8 None [] Nebraska []
+Minnesota statehouse n 0 exp 134 dups [] odd 0 [] lat 342.1 None [] Minnesota []
+Florida school {'exp': 67, 'err': 'no layer btn'}
+Hawaii school {'exp': 1, 'err': 'no layer btn'}
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/p13-dist2.py", line 31, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/p13-dist2.py", line 16, in main
+    c,pg,log=await ctx(b,W,H,W<600,eng); await pg.goto(URL,wait_until="networkidle",timeout=120000); await pg.wait_for_timeout(4500); R={'exp':exp}
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 12673, in wait_for_timeout
+    await self._impl_obj.wait_for_timeout(timeout=to_milliseconds(timeout))
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 1144, in wait_for_timeout
+    await self._main_frame.wait_for_timeout(timeout)
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 925, in wait_for_timeout
+    await self._channel.send("waitForTimeout", None, {"waitTimeout": timeout})
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.wait_for_timeout: Target page, context or browser has been closed
++ timeout 900 python3 p13-thumbs.py 390 AL,DE
+390 AL first@17=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Alabama.png', 'nat': [32, 48], 'r': [14.7, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+390 DE first@15=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'stateflags/Delaware.png', 'nat': [22, 48], 'r': [10.1, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+390 DC first@2=[30, 30] 300ms=[(30, 30)] late=[(30, 30)] all=[(30, 30)] icon={'src': 'flags/US.png', 'nat': [68, 36], 'r': [30, 22], 'ok': True} clip=0 ov=0 jumps=0 shifts=0
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/p13-thumbs.py", line 103, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/p13-thumbs.py", line 79, in main
+    R['trans']['DE_after_DC']=await sw(pg,'Delaware'); await pg.screenshot(path=f'../shots/b1577p13-thumbs-ch-{tag}-DE-after-DC.png'); print(tag,'DE<DC',short(R['trans']['DE_after_DC']),flush=True)
+                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/w/lanes/qa/qa/p13-thumbs.py", line 26, in sw
+    await pg.wait_for_timeout(2700); l=await pg.evaluate(M)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 12673, in wait_for_timeout
+    await self._impl_obj.wait_for_timeout(timeout=to_milliseconds(timeout))
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 1144, in wait_for_timeout
+    await self._main_frame.wait_for_timeout(timeout)
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 925, in wait_for_timeout
+    await self._channel.send("waitForTimeout", None, {"waitTimeout": timeout})
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.wait_for_timeout: Target page, context or browser has been closed
++ timeout 900 python3 p13-layout.py chromium 375
+1 open-geo-menu True {'crumbs': 'All countries', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'gone'), ('bLyr', 'gone'), ('bNum', 'gone'), ('bTime', 'gone'), ('chartBtn', 'gone'), ('crumbs', 0, -56, 0, 0), ('gq', 'gone'), ('thumb0', 'gone'), ('thumb1', 'gone'), ('vtitle', 'gone')] transient []
+2 drill-MA True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+3 drill-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'new'), ('bLyr', 'new'), ('bNum', 'new'), ('bTime', 'new'), ('chartBtn', 'new'), ('crumbs', 0, 56, 0, 0), ('gq', 'new'), ('thumb0', 'new'), ('thumb1', 'new'), ('vtitle', 'new')] transient []
+4 open-time-slider True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+5 switch-USHouse-layers True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+6 close-layers-row True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+7 switch-back-President True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+8 close-layers-row2 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+9 view-list-Worcester True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -3, 261, 0), ('thumb1', 0, -3, 261, 0)] transient []
+10 list-switch-USHouse True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+11 list-close-layers-a True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+12 list-switch-back-President True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+13 list-close-layers-b True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+14 list-year-2020 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+15 list-range-16-24 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [('thumb0', 0, 23, -130, 0), ('thumb1', 0, 23, -130, 0), ('thumb2', 'new'), ('thumb3', 'new')] transient []
+16 list-year-2024 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -23, 130, 0), ('thumb1', 0, -23, 130, 0), ('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+17 view-map-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, 3, -261, 0), ('thumb1', 0, 3, -261, 0)] transient ['thumb0', 'thumb1']
+18 year-2020 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+19 year-2016 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 0]} moved [] transient []
+20 year-2024 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+21 range-20-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 2]} moved [('thumb2', 'new'), ('thumb3', 'new')] transient []
+22 range-16-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [] transient []
+23 year-2024-b True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+24 open-time-slider-US True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+25 geo-menu-all-states True {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [('firstRow', 'new'), ('thumb0', 'gone'), ('thumb1', 'gone')] transient ['crumbs']
+26 list-drill-MA False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+27 list-drill-Worcester False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+28 list-back-1 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+29 list-back-2 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+30 chart-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+31 list-drill-MA-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+32 list-back-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
++ timeout 900 python3 p13-layout.py chromium 320
+1 open-geo-menu True {'crumbs': 'All countries', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'gone'), ('bLyr', 'gone'), ('bNum', 'gone'), ('bTime', 'gone'), ('chartBtn', 'gone'), ('crumbs', 0, -56, 0, 0), ('gq', 'gone'), ('thumb0', 'gone'), ('thumb1', 'gone'), ('vtitle', 'gone')] transient []
+2 drill-MA True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+3 drill-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'new'), ('bLyr', 'new'), ('bNum', 'new'), ('bTime', 'new'), ('chartBtn', 'new'), ('crumbs', 0, 56, 0, 0), ('gq', 'new'), ('thumb0', 'new'), ('thumb1', 'new'), ('vtitle', 'new')] transient []
+4 open-time-slider True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+5 switch-USHouse-layers True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+6 close-layers-row True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+7 switch-back-President True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+8 close-layers-row2 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+9 view-list-Worcester True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -3, 206, 0), ('thumb1', 0, -3, 206, 0)] transient []
+10 list-switch-USHouse True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+11 list-close-layers-a True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+12 list-switch-back-President True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+13 list-close-layers-b True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+14 list-year-2020 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+15 list-range-16-24 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [('thumb0', 0, 23, -103, 0), ('thumb1', 0, 23, -103, 0), ('thumb2', 'new'), ('thumb3', 'new')] transient []
+16 list-year-2024 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -23, 103, 0), ('thumb1', 0, -23, 103, 0), ('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+17 view-map-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, 3, -206, 0), ('thumb1', 0, 3, -206, 0)] transient ['thumb0', 'thumb1']
+18 year-2020 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+19 year-2016 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 0]} moved [] transient []
+20 year-2024 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+21 range-20-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 2]} moved [('thumb2', 'new'), ('thumb3', 'new')] transient []
+22 range-16-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [] transient []
+23 year-2024-b True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+24 open-time-slider-US True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+25 geo-menu-all-states True {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [('firstRow', 'new'), ('thumb0', 'gone'), ('thumb1', 'gone')] transient ['crumbs']
+26 list-drill-MA False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+27 list-drill-Worcester False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+28 list-back-1 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+29 list-back-2 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+30 chart-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+31 list-drill-MA-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+32 list-back-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
++ timeout 900 python3 p13-layout.py chromium 1024x576
+1 open-geo-menu True {'crumbs': 'All countries', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'gone'), ('bLyr', 'gone'), ('bNum', 'gone'), ('bTime', 'gone'), ('chartBtn', 'gone'), ('crumbs', 0, -56, 0, 0), ('gq', 'gone'), ('thumb0', 'gone'), ('thumb1', 'gone'), ('vtitle', 'gone')] transient []
+2 drill-MA True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+3 drill-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'new'), ('bLyr', 'new'), ('bNum', 'new'), ('bTime', 'new'), ('chartBtn', 'new'), ('crumbs', 0, 56, 0, 0), ('gq', 'new'), ('thumb0', 'new'), ('thumb1', 'new'), ('vtitle', 'new')] transient []
+4 open-time-slider True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+5 switch-USHouse-layers True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+6 close-layers-row True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+7 switch-back-President True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+8 close-layers-row2 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+9 view-list-Worcester True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -3, 258, 0), ('thumb1', 0, -3, 258, 0)] transient []
+10 list-switch-USHouse True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+11 list-close-layers-a True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+12 list-switch-back-President True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+13 list-close-layers-b True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+14 list-year-2020 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+15 list-range-16-24 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [('thumb0', 0, 23, -175, 0), ('thumb1', 0, 23, -175, 0), ('thumb2', 'new'), ('thumb3', 'new')] transient ['thumb0', 'thumb1']
+16 list-year-2024 True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -23, 175, 0), ('thumb1', 0, -23, 175, 0), ('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+17 view-map-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, 3, -258, 0), ('thumb1', 0, 3, -258, 0)] transient ['thumb0', 'thumb1']
+18 year-2020 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 1]} moved [] transient []
+19 year-2016 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 0]} moved [] transient []
+20 year-2024 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+21 range-20-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [1, 2]} moved [('thumb2', 'new'), ('thumb3', 'new')] transient []
+22 range-16-24 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [0, 2]} moved [] transient []
+23 year-2024-b True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb2', 'gone'), ('thumb3', 'gone')] transient []
+24 open-time-slider-US True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bTime', 0, 5, 0, 0), ('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+25 geo-menu-all-states True {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [('firstRow', 'new'), ('thumb0', 'gone'), ('thumb1', 'gone')] transient ['crumbs']
+26 list-drill-MA False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+27 list-drill-Worcester False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+28 list-back-1 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+29 list-back-2 False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+30 chart-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+31 list-drill-MA-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
+32 list-back-bar False {'crumbs': 'All States', 'list': True, 'lt': 'none', 'lv': 'states', 'ysl': [2, 2]} moved [] transient []
++ timeout 1200 python3 p13-flow.py webkit iphone375 iphone320 ipad1024x576
+iphone375 done
+iphone320 done
+ipad1024x576 done
++ curl -s https://ge0r9b.github.io/us-districts/v2/index.html
++ sed -n 9p
+<script>window.BUILD="202610181579";</script>
++ echo ALLDONE
+ALLDONE

@@ -551,6 +551,51 @@ Same steps as first logged. One browser at a time. WebKit 390 matched Chromium o
 ### QA-067 [LOW] Institution search "America" lists South Africa
 - Build 1577 | Chromium 390/1024. Typing "America" in the institution field gives COUNTRY United States, then South Africa, then counties. South Africa doesn't contain "America" and isn't a synonym, so this looks like a loose fuzzy match. Data: `qa/b1577-chromium-1024x768.json` > inst.
 
+## Re-test status, builds 1578 / 1579 / 1580 (pass 13, Oct 18 ~12:56-1:45 PM EDT)
+The live build moved during the pass: 1578 at 12:56, 1579 by ~1:05, 1580 by ~1:30 PM EDT. Each item says which build it was seen on. Chromium and WebKit, one browser at a time, load average 2-3 (quiet box).
+- **QA-062 fixed (critical, 1578 and 1579):** from Franklin County OH, Allegheny County PA and Pennsylvania, Enter on "1600 Pennsylvania Ave NW, Washington, DC 20500" now switches the title to "District of Columbia", the field to the address and the thumbnails to 90% / 6% (popup Harris 90.3%, Trump 6.5%). Chromium 375x667 and WebKit 1024x576. New side issue: QA-068. Shots: shots/b1577p13-ch-375-addr2-{1,2,3}.png, shots/b1577p13-we-1024-addr2-{1,2,3}.png. Data: `qa/b1577p13-addr2-{chromium-375,webkit-1024}.json` (script `qa/p13-addr2.py`).
+- **QA-063 mostly fixed (1578/1579):** Allegheny > "100 Ross St, Pittsburgh, PA 15219" now titles the view "Pittsburgh Ward 1 Dist 1" with 76% / 22%, matching the popup. The bottom field still says "Allegheny County, PA" (the New York case puts the address there). Shot: shots/b1577p13-ch-375-addr2-4.png
+- **QA-053 fixed on 1580 (390x844):** opening the time row no longer moves the clock button (MA > Worcester and US). On 1579 at 375/320/1024x576 it still moved 5 px; not rechecked there on 1580.
+- **QA-065 fixed on 1580 (names):** '16>'24 > Philadelphia city precincts read "Precinct 5802", "Precinct 3301"... at 390 and 1024x768. The crumb still cuts off at "Philadelphia County Philadelphi…" (LOW). Shot: shots/b1580p13-ch-390-prec-16-24.png
+- **QA-050 fixed on 1580:** reload on the '16>'24 Philadelphia precinct list stays on 1,703 precinct rows with range [0,2]. Shot: shots/b1580p13-ch-{390,1024x768}-prec-16-24-reload.png
+- **QA-051 still open on 1580:** Philadelphia precinct list at '16>'20 labels the thumbnails "Joe Biden 2024" / "Donald Trump 2024" while showing 2020 values (81% / 18%). Data: `qa/b1580p13-chromium-390.json` > prec_lbl_16_20
+- **QA-064 confirmed on a quiet box (1578, Chromium 390x844, load ~2.7):** tap-to-next-paint for the district-type pick is Texas senate 794 ms, Texas house 834 ms, California senate 1,102 ms, California house 1,197 ms, New York 403 / 376 ms, Minnesota house 342 ms, Ohio 218 / 261 ms, Nebraska 136 ms. Same pattern as pass 11, so it isn't machine load. The page closed on the next fresh load (Florida school districts) and the run ended, so school lists are still not done. Data: `qa/p13-run.log`
+- **QA-061 still open on 1579:** after DC then Delaware, the title is "Delaware counties" but the bottom field still reads "District of Columbia" (4 of 4 runs). Shot: shots/b1579p13-ch-390-DE-after-DC.png
+- **QA-009 partly fixed (1579, 320x568):** All States % rows are clear of the sort chip. The chip still grazes the first row's left label by 4 px in two lists: PA counties "86.1%" (Fulton, 22 x 4 px) and Delaware "32.9%" (New Castle, 11 x 4 px). At 390/375 the chip grazes Delaware's "65.5%" by 4 px. The range-bar "−1.83M" case was not rechecked. Data: `qa/b1579p13-labels-chromium.json` (script `qa/p13-labels.py`). Labels under the right-hand buttons are QA-013 (accepted).
+- **Thumbnails (QA-045 family), 1579 at 390:** AL, DE and DC are 30 px from the first frame with no jumps. The DE-after-DC step (QA-059) and Blount (QA-060) were not reached (harness page closed).
+- **Layout-stability sweep:** 375/320/1024x576 on 1579 matched pass 11 exactly (QA-053 5 px, QA-054 3 px map/list, QA-058 23 px on a range, QA-057 chart button hidden on US House). 390 on 1580: QA-053 gone, others unchanged, one new frame jump (QA-070).
+- **Smoke:** WebKit 375/320/1024x576 (1579) and Chromium 375/1024x576 (1580): no console errors, page errors or failed requests; CLS 0 to 0.0002. All States 253-377 ms and US House 312-371 ms (QA-007 still open). US House from a county list still gives 0 rows (QA-005). Data: `qa/b1577p13-flow-*.json`
+- No v3 preview or live URL yet.
+
+## New on builds 1578-1580 (pass 13)
+
+### QA-068 [MEDIUM] A DC address from another place puts the pin in the middle of DC, not at the address
+- Build 1578 / 1579 | Chromium 375x667, WebKit 1024x576
+- Steps: "Franklin County, OH" > Enter; then "1600 Pennsylvania Ave NW, Washington, DC 20500" > Enter.
+- Expected: the pin and map at the White House (38.8977, -77.0365), as a fresh-load DC address search did on 1568 (zoom 15).
+- Actual: the map centres on 38.8926, -77.0145 at zoom 11 and the pin sits there, about 2 km east of the White House. The title and numbers are right (QA-062 fix).
+- Screenshots: shots/b1577p13-we-1024-addr2-1.png, shots/b1577p13-ch-375-addr2-1.png
+
+### QA-069 [LOW] New York address: title shows a raw id "015/75"
+- Build 1578 | Chromium 375x667, WebKit 1024x576
+- Steps: "Allegheny County, PA" > Enter; then "350 5th Ave, New York, NY 10118" > Enter.
+- Actual: the popup says "New York AD 75 ED 15, Harris 76.0%, Trump 22.1%" and the thumbnails match, but the title (crumb) reads "015/75".
+- Expected: a readable name such as "AD 75 ED 15" (as the popup has).
+- Screenshot: shots/b1577p13-ch-375-addr2-0.png
+
+### QA-070 [HIGH, seen once, recheck] Opening All States: the clock button jumps off screen for one frame
+- Build 1580 | Chromium 390x844
+- Steps: US map > geo button > All States row.
+- Actual: `#bTime` sits at (334,122) then at 1,758 ms jumps to (1336,488) (**dx +1002, dy +366**, so it vanishes) and returns to (334,122) at 1,801 ms. New on 1580 (the clock-button change); not seen on 1579 at 375/320/1024x576.
+- Screenshots: shots/b1577p13-ch-390-ls25-geo-menu-all-states-{before,after}.png. Data: `qa/b1577p13-layout-chromium-390.json` > step 25 transient
+
+### QA-071 [HIGH, needs a real iPhone check] Back chevron ignores touch taps in WebKit
+- Builds 1575-1580 (every WebKit run so far) | WebKit 390x844, 375x667, 320x568, 1024x576 with touch
+- Steps: All States > PA > Allegheny County > Pittsburgh (precinct list), then tap the back chevron.
+- Expected: back to the towns list, as in Chromium (precincts > townships).
+- Actual: the list stays on precincts. The tap fires pointerdown, touchstart, pointerup and touchend on the chevron but no click; the button's `pointerdown` handler calls `preventDefault()` and the action only runs on `click`. A scripted `click()` does go back. Other touch taps (rows, sort chip, chart menu) work in the same WebKit runs. If iOS Safari behaves the same, back is dead on iPhones and iPads.
+- Screenshot: shots/b1579p13-we-390-back-after-touch.png. Data: `qa/b1579p13-wkback-390.json` (script `qa/p13-wkback.py`), `qa/b1577p13-flow-webkit-*.json` > after_back
+
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
 - Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).
