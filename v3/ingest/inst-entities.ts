@@ -34,16 +34,19 @@ import {
   slimInstitutionBytes,
 } from "./size-plan.ts";
 
-const RELATION_INSERT = `insert into entity_relation (parent_nid, child_nid, relation, method, source_id, source_record_id)
- select p.nid, c.nid, x.relation, x.method, x.source_id, x.source_record_id
+const RELATION_INSERT = `insert into entity_relation (parent_nid, child_nid, relation, method, source_id, source_set, source_record_id)
+ select p.nid, c.nid, x.relation, x.method, x.source_id, x.source_set, x.source_record_id
  from jsonb_to_recordset($1::jsonb) as x(
-   parent_id text, child_id text, relation text, method text, source_id text, source_record_id text
+   parent_id text, child_id text, relation text, method text, source_id text, source_set text, source_record_id text
  )
  join entity p on p.entity_id = x.parent_id
  join entity c on c.entity_id = x.child_id
  on conflict (parent_nid, child_nid, relation, valid_from) do update
-   set method = excluded.method, source_record_id = excluded.source_record_id
+   set method = excluded.method, source_id = excluded.source_id, source_set = excluded.source_set,
+       source_record_id = excluded.source_record_id
    where entity_relation.method is distinct from excluded.method
+      or entity_relation.source_id is distinct from excluded.source_id
+      or entity_relation.source_set is distinct from excluded.source_set
       or entity_relation.source_record_id is distinct from excluded.source_record_id`;
 
 const WIKIDATA = /^wikidata:Q[0-9]+$/;
@@ -69,6 +72,7 @@ export type InstRelationRow = {
   related_entity_id: string;
   method?: string;
   source_id?: string;
+  source_set?: string;
 };
 
 const RELATION_METHODS = new Set(["sourced", "overlay", "point_in_polygon", "manual"]);
@@ -101,6 +105,7 @@ export type MappedRelation = {
   relation: InstRelationName;
   method: RelationMethod | null;
   source_id: string | null;
+  source_set: string | null;
   source_record_id: string;
 };
 
@@ -144,7 +149,8 @@ export function mapInstRelations(rows: InstRelationRow[]): {
       skipped++;
       continue;
     }
-    const sourceId = firstSource(row.source_id);
+    const hash = sourceSetHash(row.source_set);
+    const sourceId = hash ? null : firstSource(row.source_id);
     const mappedMethod = mapRelationMethod(row.method);
     const record = (parentId: string, childId: string, name: MappedRelation["relation"]) => {
       const token = mappedMethod.token ? `|method:${mappedMethod.token}` : "";
@@ -154,6 +160,7 @@ export function mapInstRelations(rows: InstRelationRow[]): {
         relation: name,
         method: mappedMethod.method,
         source_id: sourceId,
+        source_set: hash,
         source_record_id: `${childId}|${name}|${parentId}${token}`,
       });
     };
@@ -208,6 +215,7 @@ export type MappedImage = {
   wikidata: string | null;
   retrieved_at: string | null;
   source_ids: string[];
+  source_set: string | null;
 };
 
 function yes(raw: string | undefined): boolean {
@@ -262,6 +270,7 @@ export function mapInstImage(row: Record<string, string>): MappedImage | null {
     wikidata: wikidataId(row.wikidata ?? row.wikidata_qid),
     retrieved_at: orNull(row.retrieved_at),
     source_ids: sourceList(row.source_id),
+    source_set: sourceSetHash(row.source_set),
   };
 }
 
@@ -294,6 +303,7 @@ function imagePayload(row: MappedImage): Record<string, unknown> {
     source_url: row.source_url,
     usage_basis: row.usage_basis,
     note: row.note,
+    source_set: row.source_set,
   };
 }
 
@@ -319,18 +329,19 @@ async function writeImageRows(client: pg.PoolClient, ready: MappedImage[]): Prom
   const written = await insertJsonChunks(
     client,
     `insert into entity_image (
-       entity_id, feed_entity_id, role, file, file_url, license, fair_use, public, icon, wikidata, retrieved_at
+       entity_id, feed_entity_id, role, file, file_url, license, fair_use, public, icon, wikidata, retrieved_at, source_set
      )
      select nullif(entity_id, ''), nullif(feed_entity_id, ''), role, file, file_url, license,
-            fair_use, public, icon, wikidata, retrieved_at
+            fair_use, public, icon, wikidata, retrieved_at, source_set
      from jsonb_to_recordset($1::jsonb) as x(
        entity_id text, feed_entity_id text, role text, file text, file_url text, license text,
-       fair_use boolean, public boolean, icon boolean, wikidata text, retrieved_at timestamptz
+       fair_use boolean, public boolean, icon boolean, wikidata text, retrieved_at timestamptz, source_set text
      )
      on conflict (entity_id, feed_entity_id, role) do update
        set file = excluded.file, file_url = excluded.file_url, license = excluded.license,
            fair_use = excluded.fair_use, public = excluded.public, icon = excluded.icon,
-           wikidata = excluded.wikidata, attribution = null, source_url = null, usage_basis = null`,
+           wikidata = excluded.wikidata, attribution = null, source_url = null, usage_basis = null,
+           source_set = excluded.source_set`,
     ready.map(imagePayload),
   );
   return written;
@@ -350,6 +361,79 @@ async function ensureSources(
      from jsonb_to_recordset($1::jsonb) as x(source_id text, title text)
      on conflict (source_id) do nothing`,
     unique.map((source_id) => ({ source_id, title: titles?.get(source_id) || "inst-entities" })),
+  );
+}
+
+async function writeEnum(
+  client: pg.PoolClient,
+  table: "enum_feed" | "enum_feed_map_status" | "enum_load_group",
+  codeKey: "feed" | "status" | "load_group",
+  rows: Record<string, string>[],
+): Promise<void> {
+  const payload = rows.flatMap((row) => {
+    const code = feedCode(row[codeKey]);
+    const name = (row.name ?? "").trim();
+    if (code == null || !name) return [];
+    return [{ code, name, description: blank(row.description) }];
+  });
+  if (payload.length === 0) return;
+  await insertJsonChunks(
+    client,
+    `insert into ${table} (${codeKey}, name, description)
+     select code, name, description
+     from jsonb_to_recordset($1::jsonb) as x(code smallint, name text, description text)
+     on conflict (${codeKey}) do update
+       set name = excluded.name, description = excluded.description
+       where ${table}.name is distinct from excluded.name
+          or ${table}.description is distinct from excluded.description`,
+    payload,
+  );
+}
+
+async function writeSourceUrls(client: pg.PoolClient, rows: Record<string, string>[]): Promise<void> {
+  const payload = rows.flatMap((row) => {
+    const sourceId = (row.source_id ?? "").trim();
+    const url = (row.url ?? "").trim();
+    const ord = Number((row.ord ?? "").trim());
+    if (!sourceId || !url || !Number.isInteger(ord) || ord < 1 || ord > 32767) return [];
+    return [{ source_id: sourceId, ord, url, label: blank(row.label) }];
+  });
+  if (payload.length === 0) return;
+  await insertJsonChunks(
+    client,
+    `insert into source_url (source_id, ord, url, label)
+     select source_id, ord, url, label
+     from jsonb_to_recordset($1::jsonb) as x(source_id text, ord smallint, url text, label text)
+     on conflict (source_id, ord) do update
+       set url = excluded.url, label = excluded.label
+       where source_url.url is distinct from excluded.url
+          or source_url.label is distinct from excluded.label`,
+    payload,
+  );
+}
+
+async function writeSourceSets(client: pg.PoolClient, rows: Record<string, string>[]): Promise<void> {
+  const seen = new Set<string>();
+  const payload = rows.flatMap((row) => {
+    const sourceSet = sourceSetHash(row.source_set);
+    const sourceId = (row.source_id ?? "").trim();
+    const ord = Number((row.ord ?? "").trim());
+    if (!sourceSet || !sourceId || !Number.isInteger(ord) || ord < 1 || ord > 32767) return [];
+    const key = `${sourceSet}\0${ord}`;
+    if (seen.has(key)) return [];
+    seen.add(key);
+    return [{ source_set: sourceSet, ord, source_id: sourceId }];
+  });
+  if (payload.length === 0) return;
+  await insertJsonChunks(
+    client,
+    `insert into source_set_member (source_set, ord, source_id)
+     select source_set, ord, source_id
+     from jsonb_to_recordset($1::jsonb) as x(source_set text, ord smallint, source_id text)
+     on conflict (source_set, ord) do update
+       set source_id = excluded.source_id
+       where source_set_member.source_id is distinct from excluded.source_id`,
+    payload,
   );
 }
 
@@ -419,24 +503,23 @@ export async function applyInstImages(
   }
 }
 
-/** Postgres batch identity. A changed sha re-prices the insert. Pack files are not in this list. */
-export const INST_BATCH_FILES = [
-  "data-v3/inst/entities.csv",
-  "data-v3/inst/entity_relations.csv",
-  "data-v3/inst/entity_images.csv",
-  "data-v3/inst/body_entity.csv",
-  "data-v3/inst/source_sets.csv",
-  "data-v3/inst/sources.csv",
-] as const;
+/** Manifest path on origin/data/inst-entities. The file itself is not a db batch. */
+export const INST_MANIFEST = "data-v3/inst/load_manifest.csv";
 
-const INST_PACK_FILES = [
-  "data-v3/inst/pack/entity_feed_map.csv",
-  "data-v3/inst/entity_v2_rows.csv",
-  "data-v3/inst/enum_feed.csv",
-  "data-v3/inst/enum_feed_map_status.csv",
-] as const;
-
-const INST_FILES = [...INST_BATCH_FILES, ...INST_PACK_FILES] as const;
+/** Paths from load_manifest.csv. `db` is the Postgres batch. `pack` is archived and not inserted. `repo` is omitted. */
+export function classifyManifest(rows: { file?: string; target?: string }[]): { db: string[]; pack: string[] } {
+  const db: string[] = [];
+  const pack: string[] = [];
+  for (const row of rows) {
+    const file = (row.file ?? "").trim();
+    const target = (row.target ?? "").trim();
+    if (!file || file.includes("..")) continue;
+    const rel = file.startsWith("data-v3/") ? file : `data-v3/inst/${file}`;
+    if (target === "db") db.push(rel);
+    else if (target === "pack") pack.push(rel);
+  }
+  return { db, pack };
+}
 
 const ENTITY_KINDS = new Set([
   "nation", "territory", "province", "state", "county", "municipality", "township",
@@ -479,12 +562,14 @@ type InstInputs = {
   relations: Record<string, string>[];
   images: Record<string, string>[];
   bodies: Record<string, string>[];
+  geoids?: Record<string, string>[];
   sourceSets?: Record<string, string>[];
   sources?: Record<string, string>[];
+  sourceUrls?: Record<string, string>[];
   feedMap?: Record<string, string>[];
   feedEnums?: Record<string, string>[];
   statusEnums?: Record<string, string>[];
-  v2Rows?: Record<string, string>[];
+  loadGroupEnums?: Record<string, string>[];
   files: { fileName: string; sha256: string; rows: number }[];
   fileBytes: number;
   gitCommit: string | null;
@@ -499,6 +584,7 @@ export function selectInstitutionScope(input: InstInputs, scope: InstitutionScop
     entities: input.entities.filter(keep),
     relations: input.relations.filter(keep),
     images: input.images.filter(keep),
+    geoids: (input.geoids ?? []).filter(keep),
     bodies: input.bodies.filter((row) => ((row.load_group ?? "").trim() === "" ? scope === "domestic" : keep(row))),
     files: input.files.map((file) =>
       scope === "domestic"
@@ -552,29 +638,75 @@ export function rowScope(row: { load_group?: string }): InstitutionScope {
   return (row.load_group ?? "").trim() === "2" ? "foreign" : "domestic";
 }
 
-export function indexSourceSets(rows: Record<string, string>[]): Map<string, string[]> {
-  const grouped = new Map<string, { ord: number; id: string }[]>();
-  for (const row of rows) {
-    const key = (row.source_set ?? "").trim();
-    const id = (row.source_id ?? "").trim();
-    if (!key || !id) continue;
-    const ord = Number(row.ord ?? "");
-    const list = grouped.get(key) ?? [];
-    list.push({ ord: Number.isFinite(ord) ? ord : list.length + 1, id });
-    grouped.set(key, list);
-  }
-  const out = new Map<string, string[]>();
-  for (const [key, list] of grouped) {
-    list.sort((a, b) => a.ord - b.ord);
-    out.set(key, [...new Set(list.map((item) => item.id))]);
-  }
-  return out;
+const SOURCE_SET = /^[0-9a-f]{8}$/;
+
+/** The 8-hex hash from source_sets.csv. Anything else, including a source id, is null. */
+export function sourceSetHash(raw: string | undefined): string | null {
+  const text = (raw ?? "").trim();
+  return SOURCE_SET.test(text) ? text : null;
 }
 
-export function sourceIdsFor(row: Record<string, string>, sets: Map<string, string[]>): string[] {
-  const key = (row.source_set ?? "").trim();
-  if (key && sets.has(key)) return sets.get(key) ?? [];
-  return sourceList(row.source_id);
+/** Smallint code from enum_feed.csv, enum_feed_map_status.csv, or enum_load_group.csv. A name is null. */
+export function feedCode(raw: string | undefined): number | null {
+  const text = (raw ?? "").trim();
+  if (!/^[0-9]{1,4}$/.test(text)) return null;
+  const n = Number(text);
+  if (!Number.isInteger(n) || n < 1 || n > 32767) return null;
+  return n;
+}
+
+const OVERLAPS = new Set(["equal", "split", "contained"]);
+
+export type MappedGeoid = {
+  entity_id: string;
+  unit_layer: string;
+  geoid: string;
+  vintage: number;
+  relation: string;
+  boundary_set: string;
+  overlap: string | null;
+  share_of_geoid_in_entity: number | null;
+  share_of_entity_in_geoid: number | null;
+  source_record_id: string | null;
+  source_set: string | null;
+};
+
+function shareOrSkip(raw: string | undefined): number | null | undefined {
+  const text = (raw ?? "").trim();
+  if (!text) return null;
+  const n = Number(text);
+  if (!Number.isFinite(n) || n < 0 || n > 1) return undefined;
+  return n;
+}
+
+/** A row that would fail entity_geoid's checks is skipped. A missing entity is skipped at insert. */
+export function mapGeoidRow(row: Record<string, string>): MappedGeoid | null {
+  const entityId = (row.entity_id ?? "").trim();
+  const unitLayer = (row.unit_layer ?? "").trim();
+  const geoid = (row.geoid ?? "").trim();
+  const relation = (row.relation ?? "").trim();
+  const boundarySet = (row.boundary_set ?? "").trim();
+  const vintage = Number((row.vintage ?? "").trim());
+  if (!entityId || !unitLayer || !geoid || !relation || !boundarySet) return null;
+  if (!Number.isInteger(vintage) || vintage < 0 || vintage > 32767) return null;
+  const overlap = (row.overlap ?? "").trim();
+  if (overlap && !OVERLAPS.has(overlap)) return null;
+  const shareGeoid = shareOrSkip(row.share_of_geoid_in_entity);
+  const shareEntity = shareOrSkip(row.share_of_entity_in_geoid);
+  if (shareGeoid === undefined || shareEntity === undefined) return null;
+  return {
+    entity_id: entityId,
+    unit_layer: unitLayer,
+    geoid,
+    vintage,
+    relation,
+    boundary_set: boundarySet,
+    overlap: overlap || null,
+    share_of_geoid_in_entity: shareGeoid,
+    share_of_entity_in_geoid: shareEntity,
+    source_record_id: blank(row.source_record_id),
+    source_set: sourceSetHash(row.source_set),
+  };
 }
 
 function sourceTitles(rows: Record<string, string>[]): Map<string, string> {
@@ -616,60 +748,14 @@ export function mapFeedRows(rows: Record<string, string>[]): FeedMapPackRow[] {
   return out;
 }
 
-function v2PackKey(row: Record<string, string>): string | null {
-  const state = (row.state ?? "").trim();
-  const layer = (row.v2_layer ?? "").trim();
-  const name = (row.v2_name ?? "").trim();
-  const v2Row = (row.v2_row ?? "").trim();
-  if (!state) return null;
-  if (layer === "v2:parts" || layer.startsWith("v2:towns")) return v2Row ? `${state}|${v2Row}` : null;
-  return name ? `${state}|${name}` : null;
-}
-
 type ExtraDraft = {
   entity_id: string;
-  v2_layer: string[] | null;
-  v2_key: string[] | null;
-  v2_row: string[] | null;
   valid_from_source: string | null;
   inception_source: string | null;
-  sources: string[] | null;
-  v2FromRow: boolean;
 };
 
-function addUnique(list: string[] | null, value: string): string[] {
-  const next = list ? [...list] : [];
-  if (!next.includes(value)) next.push(value);
-  return next;
-}
-
-function applyV2Rows(extras: Map<string, ExtraDraft>, rows: Record<string, string>[], ids: Set<string>): void {
-  for (const row of rows) {
-    const id = (row.entity_id ?? "").trim();
-    if (!id || !ids.has(id)) continue;
-    if ((row.resolved ?? "").trim() === "no") continue;
-    const layer = (row.v2_layer ?? "").trim();
-    const key = v2PackKey(row);
-    const rowToken = layer && (row.v2_row ?? "").trim() ? `${layer}#${row.v2_row.trim()}` : "";
-    if (!layer && !key && !rowToken) continue;
-    const extra = extras.get(id) ?? {
-      entity_id: id,
-      v2_layer: null,
-      v2_key: null,
-      v2_row: null,
-      valid_from_source: null,
-      inception_source: null,
-      sources: null,
-      v2FromRow: false,
-    };
-    if (layer) extra.v2_layer = addUnique(extra.v2_layer, layer);
-    if (!extra.v2FromRow) {
-      if (key) extra.v2_key = addUnique(extra.v2_key, key);
-      if (rowToken) extra.v2_row = addUnique(extra.v2_row, rowToken);
-    }
-    extras.set(id, extra);
-  }
-}
+/** entity_geoid rows. Same order of magnitude as an alias row. Not a size-plan constant. */
+const GEOID_BYTES_PER_ROW = 96;
 
 /**
  * Postgres bytes for the shrunk institution load: tuple header, alignment,
@@ -718,6 +804,10 @@ export function projectInstitutionBytes(
     if (!bodyKey || !entityId || !BODY_ROLES.has(role)) continue;
     bodies++;
   }
+  let geoids = 0;
+  for (const row of input.geoids ?? []) {
+    if (mapGeoidRow(row)) geoids++;
+  }
   const counts = {
     entities,
     relations: relations.relations.length,
@@ -727,7 +817,7 @@ export function projectInstitutionBytes(
   };
   const entityRate = input.scope === "foreign" ? FOREIGN_GOVERNMENT_BYTES_PER_ROW : SLIM_ENTITY_BYTES_PER_ROW;
   const slim =
-    slimInstitutionBytes({ ...counts, entities: 0 }) + entities * entityRate;
+    slimInstitutionBytes({ ...counts, entities: 0 }) + entities * entityRate + geoids * GEOID_BYTES_PER_ROW;
   const part = (table: string, rows: number, bytesPerRow: number) => ({
     table,
     rows,
@@ -740,6 +830,7 @@ export function projectInstitutionBytes(
     part("entity_image", images, SLIM_IMAGE_BYTES_PER_ROW),
     part("entity_alias", aliasRows, SLIM_ALIAS_BYTES_PER_ROW),
     part("body_entity", bodies, SLIM_BODY_BYTES_PER_ROW),
+    part("entity_geoid", geoids, GEOID_BYTES_PER_ROW),
     part("toast", alreadyLoaded ? 0 : 1, MEASURED_TOAST_BYTES),
     { table: "entity_extra", rows: 0, bytesPerRow: 0, bytes: 0 },
     { table: "entity_image_text", rows: 0, bytesPerRow: 0, bytes: 0 },
@@ -769,13 +860,24 @@ export function projectInstitutionBytes(
   };
 }
 
+function showManifest(root: string): string {
+  fetchOrigin(root, ["data/inst-entities"]);
+  return execFileSync("git", ["show", `origin/data/inst-entities:${INST_MANIFEST}`], {
+    cwd: root,
+    encoding: "utf8",
+    maxBuffer: 2 * 1024 * 1024,
+  });
+}
+
 export function ensureInstCache(root: string): { dir: string; commit: string } {
   const dest = join(root, "v3/.cache/inst-entities");
-  fetchOrigin(root, ["data/inst-entities"]);
+  const text = showManifest(root);
   const head = originCommit(root, "data/inst-entities");
-  if (!needsRefresh(dest, head, [...INST_FILES])) return { dir: dest, commit: head };
+  const { db, pack } = classifyManifest(parseCsv(text).rows);
+  const markers = [INST_MANIFEST, ...db, ...pack];
+  if (!needsRefresh(dest, head, markers)) return { dir: dest, commit: head };
   mkdirSync(dest, { recursive: true });
-  const tar = execFileSync("git", ["archive", "origin/data/inst-entities", ...INST_FILES], {
+  const tar = execFileSync("git", ["archive", "origin/data/inst-entities", ...markers], {
     cwd: root,
     encoding: "buffer",
     maxBuffer: 120 * 1024 * 1024,
@@ -787,34 +889,44 @@ export function ensureInstCache(root: string): { dir: string; commit: string } {
 
 let readCache: { key: string; input: InstInputs } | null = null;
 
+function namedTable(loaded: Map<string, { rows: Record<string, string>[] }>, name: string): Record<string, string>[] {
+  for (const [rel, file] of loaded) {
+    if (rel === name || rel.endsWith(`/${name}`)) return file.rows;
+  }
+  return [];
+}
+
 function readInst(root: string): InstInputs {
   const { dir, commit } = ensureInstCache(root);
   const key = `${dir}\0${commit}`;
   if (readCache?.key === key) return readCache.input;
+  const manifest = parseCsv(readFileText(join(dir, INST_MANIFEST)).text);
+  const { db, pack } = classifyManifest(manifest.rows);
+  const paths = [INST_MANIFEST, ...db, ...pack];
   const loaded = new Map(
-    INST_FILES.map((rel) => {
+    paths.map((rel) => {
       const file = readFileText(join(dir, rel));
       return [rel, { rel, buffer: file.bytes, rows: parseCsv(file.text).rows }] as const;
     }),
   );
-  const table = (rel: (typeof INST_FILES)[number]) => loaded.get(rel)?.rows ?? [];
-  const batch = INST_BATCH_FILES.map((rel) => loaded.get(rel)!);
+  const table = (name: string) => namedTable(loaded, name);
   const input: InstInputs = {
-    entities: table("data-v3/inst/entities.csv"),
-    relations: table("data-v3/inst/entity_relations.csv"),
-    images: table("data-v3/inst/entity_images.csv"),
-    bodies: table("data-v3/inst/body_entity.csv"),
-    sourceSets: table("data-v3/inst/source_sets.csv"),
-    sources: table("data-v3/inst/sources.csv"),
-    feedMap: table("data-v3/inst/pack/entity_feed_map.csv"),
-    feedEnums: table("data-v3/inst/enum_feed.csv"),
-    statusEnums: table("data-v3/inst/enum_feed_map_status.csv"),
-    v2Rows: table("data-v3/inst/entity_v2_rows.csv"),
-    files: batch.map((file) => ({
-      fileName: file.rel,
-      sha256: sha256Hex(file.buffer),
-      rows: file.rows.length,
-    })),
+    entities: table("entities.csv"),
+    relations: table("entity_relations.csv"),
+    images: table("entity_images.csv"),
+    bodies: table("body_entity.csv"),
+    geoids: table("entity_geoid_xwalk.csv"),
+    sourceSets: table("source_sets.csv"),
+    sources: table("sources.csv"),
+    sourceUrls: table("source_urls.csv"),
+    feedMap: table("entity_feed_map.csv"),
+    feedEnums: table("enum_feed.csv"),
+    statusEnums: table("enum_feed_map_status.csv"),
+    loadGroupEnums: table("enum_load_group.csv"),
+    files: db.map((rel) => {
+      const file = loaded.get(rel)!;
+      return { fileName: rel, sha256: sha256Hex(file.buffer), rows: file.rows.length };
+    }),
     fileBytes: [...loaded.values()].reduce((sum, file) => sum + file.buffer.byteLength, 0),
     gitCommit: commit || null,
     scope: "domestic",
@@ -829,7 +941,6 @@ export async function loadInstitutionTables(
   opts: { packsDir: string },
 ): Promise<Omit<InstitutionLoadReport, "estimate" | "gap"> & { imagesSkipped: number }> {
   const scope = input.scope ?? "domestic";
-  const sets = indexSourceSets(input.sourceSets ?? []);
   const titles = sourceTitles(input.sources ?? []);
   const entityIds = new Set(input.entities.map((row) => row.entity_id.trim()).filter(Boolean));
   const entities: Record<string, unknown>[] = [];
@@ -838,13 +949,14 @@ export async function loadInstitutionTables(
   const parents: { entity_id: string; parent_id: string }[] = [];
   const succession: { predecessor_id: string; successor_id: string }[] = [];
   const sourceIds: string[] = [];
+  for (const row of input.sources ?? []) sourceIds.push((row.source_id ?? "").trim());
+  for (const row of input.sourceSets ?? []) sourceIds.push((row.source_id ?? "").trim());
+  for (const row of input.sourceUrls ?? []) sourceIds.push((row.source_id ?? "").trim());
   for (const row of input.entities) {
     const entityId = (row.entity_id ?? "").trim();
     const kind = (row.kind ?? "").trim();
     const name = (row.name ?? "").trim();
     if (!entityId || !name || !ENTITY_KINDS.has(kind)) continue;
-    const cited = sourceIdsFor(row, sets);
-    sourceIds.push(...cited);
     const stateFips = /^\d{2}$/.test((row.state_fips ?? "").trim()) ? row.state_fips.trim() : null;
     const code = blank(row.code);
     const codeScheme = blank(row.code_scheme);
@@ -859,7 +971,8 @@ export async function loadInstitutionTables(
       gov_status: blank(row.gov_status),
       valid_from: historyDate(row.valid_from),
       valid_to: day(row.valid_to),
-      feed: blank(row.feed),
+      feed: feedCode(row.feed),
+      source_set: sourceSetHash(row.source_set),
       level: blank(row.level),
       type: blank(row.type),
       cog_pid6: blank(row.cog_pid6),
@@ -873,21 +986,13 @@ export async function loadInstitutionTables(
       code_scheme: code && codeScheme ? codeScheme : null,
       code: code && codeScheme ? code : null,
     });
-    const v2Layer = textList(row.v2_layer);
-    const v2Key = textList(row.v2_key);
-    const v2Row = textList(row.v2_row);
     const validFromSource = blank(row.valid_from_source);
     const inceptionSource = blank(row.inception_source);
-    if (v2Layer || v2Key || v2Row || validFromSource || inceptionSource || cited.length) {
+    if (validFromSource || inceptionSource) {
       extras.set(entityId, {
         entity_id: entityId,
-        v2_layer: v2Layer,
-        v2_key: v2Key,
-        v2_row: v2Row,
         valid_from_source: validFromSource,
         inception_source: inceptionSource,
-        sources: cited.length ? cited : null,
-        v2FromRow: Boolean(v2Key || v2Row),
       });
     }
     for (const alias of textList(row.alias) ?? []) {
@@ -906,14 +1011,14 @@ export async function loadInstitutionTables(
       }
     }
   }
-  applyV2Rows(extras, input.v2Rows ?? [], entityIds);
   const mappedRelations = mapInstRelations(
     input.relations.map((row) => ({
       entity_id: row.entity_id ?? "",
       relation: row.relation ?? "",
       related_entity_id: row.related_entity_id ?? "",
       method: row.method,
-      source_id: sourceIdsFor(row, sets)[0] ?? "",
+      source_id: row.source_id,
+      source_set: row.source_set,
     })),
   );
   sourceIds.push(...mappedRelations.relations.map((row) => row.source_id ?? ""));
@@ -925,18 +1030,26 @@ export async function loadInstitutionTables(
       imagesSkipped++;
       continue;
     }
-    if (mapped.source_ids.length === 0) mapped.source_ids = sourceIdsFor(row, sets);
     images.push(mapped);
   }
   const readyImages = dedupeIcons(images);
   sourceIds.push(...readyImages.flatMap((row) => row.source_ids));
+  const geoids = (input.geoids ?? []).flatMap((row) => {
+    const mapped = mapGeoidRow(row);
+    return mapped ? [mapped] : [];
+  });
   const bodies = input.bodies.flatMap((row) => {
     const role = (row.role ?? "").trim();
     const entityId = (row.entity_id ?? "").trim();
     const bodyKey = (row.body_key ?? "").trim();
     if (!bodyKey || !entityId || !BODY_ROLES.has(role)) return [];
-    sourceIds.push(...sourceIdsFor(row, sets));
-    return [{ body_key: bodyKey, entity_id: entityId, role, source_record_id: blank(row.source_record_id) }];
+    return [{
+      body_key: bodyKey,
+      entity_id: entityId,
+      role,
+      source_record_id: blank(row.source_record_id),
+      source_set: sourceSetHash(row.source_set),
+    }];
   });
   const parentOf = new Map(parents.map((row) => [row.entity_id, row.parent_id]));
   for (const row of mappedRelations.parents) parentOf.set(row.entity_id, row.parent_id);
@@ -944,12 +1057,12 @@ export async function loadInstitutionTables(
   const pack: InstPack = { v: 3, extra: {}, images: {} };
   for (const extra of extras.values()) {
     pack.extra[extra.entity_id] = {
-      v2_layer: extra.v2_layer,
-      v2_key: extra.v2_key,
-      v2_row: extra.v2_row,
+      v2_layer: null,
+      v2_key: null,
+      v2_row: null,
       valid_from_source: extra.valid_from_source,
       inception_source: extra.inception_source,
-      sources: extra.sources,
+      sources: null,
     };
   }
   for (const image of readyImages) {
@@ -964,7 +1077,15 @@ export async function loadInstitutionTables(
       sources: image.source_ids,
     };
   }
-  writeInstPack(opts.packsDir, mergeInstPack(readInstPack(opts.packsDir), pack));
+  const merged = mergeInstPack(readInstPack(opts.packsDir), pack);
+  for (const [id, extra] of Object.entries(merged.extra)) {
+    extra.v2_layer = null;
+    extra.v2_key = null;
+    extra.v2_row = null;
+    extra.sources = null;
+    if (!extra.valid_from_source && !extra.inception_source) delete merged.extra[id];
+  }
+  writeInstPack(opts.packsDir, merged);
   const feedRows = mapFeedRows(input.feedMap ?? []);
   if (feedRows.length > 0) {
     writeFeedMapPack(opts.packsDir, {
@@ -979,7 +1100,12 @@ export async function loadInstitutionTables(
   try {
     await client.query("begin");
     await client.query("set local statement_timeout = '10min'");
+    await writeEnum(client, "enum_feed", "feed", input.feedEnums ?? []);
+    await writeEnum(client, "enum_feed_map_status", "status", input.statusEnums ?? []);
+    await writeEnum(client, "enum_load_group", "load_group", input.loadGroupEnums ?? []);
     await ensureSources(client, sourceIds, titles);
+    await writeSourceUrls(client, input.sourceUrls ?? []);
+    await writeSourceSets(client, input.sourceSets ?? []);
     const batchIds = new Set(entities.map((row) => String(row.entity_id)));
     const missingParents = [...new Set(
       entities
@@ -1001,18 +1127,18 @@ export async function loadInstitutionTables(
       client,
       `insert into entity (
          entity_id, kind, state_fips, state, country, name, label, gov_status, parent_id, valid_from, valid_to,
-         feed, level, type, cog_pid6, flags, origin,
+         feed, source_set, level, type, cog_pid6, flags, origin,
          source_record_id, wikidata, iso_3166_2, constituent_qid,
          inception, inception_precision, code_scheme, code
        )
        select entity_id, kind, state_fips, state, country, name, label, gov_status, parent_id, valid_from, valid_to,
-              feed, level, type, cog_pid6, flags, 'inst',
+              feed, source_set, level, type, cog_pid6, flags, 'inst',
               source_record_id, wikidata, iso_3166_2, constituent_qid,
               inception, inception_precision, code_scheme, code
        from jsonb_to_recordset($1::jsonb) as x(
          entity_id text, kind text, state_fips text, state text, country text, name text, label text, gov_status text,
          parent_id text, valid_from date, valid_to date,
-         feed text, level text, type text, cog_pid6 text, flags text[], source_record_id text,
+         feed smallint, source_set text, level text, type text, cog_pid6 text, flags text[], source_record_id text,
          wikidata text, iso_3166_2 text, constituent_qid text, inception date,
          inception_precision text, code_scheme text, code text
        )
@@ -1024,7 +1150,8 @@ export async function loadInstitutionTables(
              valid_from = excluded.valid_from, valid_to = excluded.valid_to,
              v2_layer = null, v2_key = null, v2_row = null, inception_source = null,
              valid_from_source = null,
-             feed = excluded.feed, level = excluded.level, type = excluded.type, cog_pid6 = excluded.cog_pid6,
+             feed = excluded.feed, source_set = excluded.source_set,
+             level = excluded.level, type = excluded.type, cog_pid6 = excluded.cog_pid6,
              flags = excluded.flags, source_record_id = excluded.source_record_id,
              wikidata = excluded.wikidata, iso_3166_2 = excluded.iso_3166_2,
              constituent_qid = excluded.constituent_qid, inception = excluded.inception,
@@ -1042,6 +1169,7 @@ export async function loadInstitutionTables(
              or entity.valid_from is distinct from excluded.valid_from
              or entity.valid_to is distinct from excluded.valid_to
              or entity.feed is distinct from excluded.feed
+             or entity.source_set is distinct from excluded.source_set
              or entity.code_scheme is distinct from excluded.code_scheme
              or entity.code is distinct from excluded.code
              or entity.level is distinct from excluded.level
@@ -1099,17 +1227,50 @@ export async function loadInstitutionTables(
     await client.query("delete from entity_image_text");
     await client.query("delete from entity_image_source");
     await client.query("delete from entity_extra");
+    const geoidWrites = geoids.length
+      ? await insertJsonChunks(
+          client,
+          `insert into entity_geoid (
+             entity_id, unit_layer, geoid, vintage, relation, boundary_set, overlap,
+             share_of_geoid_in_entity, share_of_entity_in_geoid, source_record_id, source_set
+           )
+           select x.entity_id, x.unit_layer, x.geoid, x.vintage, x.relation, x.boundary_set, x.overlap,
+                  x.share_of_geoid_in_entity, x.share_of_entity_in_geoid, x.source_record_id, x.source_set
+           from jsonb_to_recordset($1::jsonb) as x(
+             entity_id text, unit_layer text, geoid text, vintage smallint, relation text, boundary_set text,
+             overlap text, share_of_geoid_in_entity numeric, share_of_entity_in_geoid numeric,
+             source_record_id text, source_set text
+           )
+           join entity e on e.entity_id = x.entity_id
+           on conflict (entity_id, unit_layer, geoid, vintage) do update
+             set relation = excluded.relation, boundary_set = excluded.boundary_set, overlap = excluded.overlap,
+                 share_of_geoid_in_entity = excluded.share_of_geoid_in_entity,
+                 share_of_entity_in_geoid = excluded.share_of_entity_in_geoid,
+                 source_record_id = excluded.source_record_id, source_set = excluded.source_set
+             where entity_geoid.relation is distinct from excluded.relation
+                or entity_geoid.boundary_set is distinct from excluded.boundary_set
+                or entity_geoid.overlap is distinct from excluded.overlap
+                or entity_geoid.source_set is distinct from excluded.source_set
+                or entity_geoid.source_record_id is distinct from excluded.source_record_id`,
+          geoids,
+        )
+      : 0;
     const bodyWrites = bodies.length
       ? await insertJsonChunks(
           client,
-          `insert into body_entity (body_key, entity_id, role, source_record_id)
-           select body_key, entity_id, role, source_record_id
-           from jsonb_to_recordset($1::jsonb) as x(body_key text, entity_id text, role text, source_record_id text)
+          `insert into body_entity (body_key, entity_id, role, source_record_id, source_set)
+           select x.body_key, x.entity_id, x.role, x.source_record_id, x.source_set
+           from jsonb_to_recordset($1::jsonb) as x(
+             body_key text, entity_id text, role text, source_record_id text, source_set text
+           )
+           join entity e on e.entity_id = x.entity_id
            on conflict (body_key) do update
-             set entity_id = excluded.entity_id, role = excluded.role, source_record_id = excluded.source_record_id
+             set entity_id = excluded.entity_id, role = excluded.role,
+                 source_record_id = excluded.source_record_id, source_set = excluded.source_set
              where body_entity.entity_id is distinct from excluded.entity_id
                 or body_entity.role is distinct from excluded.role
-                or body_entity.source_record_id is distinct from excluded.source_record_id`,
+                or body_entity.source_record_id is distinct from excluded.source_record_id
+                or body_entity.source_set is distinct from excluded.source_set`,
           bodies,
         )
       : 0;
@@ -1125,7 +1286,7 @@ export async function loadInstitutionTables(
       );
       if (batch.rows[0]) await markSuperseded(client, file.fileName, batch.rows[0].id);
     }
-    if (entityWrites + relationWrites + imageWrites + bodyWrites > 0) {
+    if (entityWrites + relationWrites + imageWrites + bodyWrites + geoidWrites > 0) {
       await client.query(`update data_version set dv = dv + 1, built_at = now() where id = 1`);
     }
     await client.query("commit");

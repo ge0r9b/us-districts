@@ -83,6 +83,33 @@ create table source_url (
   primary key (source_id, ord)
 );
 
+-- Lookups from data-v3/inst/enum_*.csv. entity.feed and the feed-map pack store the code.
+create table enum_feed (
+  feed        smallint primary key,                  -- 1 tiger/cog, 2 inst-lane, 3 governments-bot, 4 companies-bot, 5 user-upload
+  name        text not null,
+  description text
+);
+create table enum_feed_map_status (
+  status      smallint primary key,                  -- 1 mapped, 2 feed_only, 3 unmapped
+  name        text not null,
+  description text
+);
+create table enum_load_group (
+  load_group  smallint primary key,                  -- 1 core (default load), 2 gb_de_fr (--include=institutions-foreign)
+  name        text not null,
+  description text
+);
+
+-- source_sets.csv: an 8-hex source_set and its sources, in ord order.
+-- entity, entity_relation, entity_image, entity_geoid, and body_entity store the hash, not a copy of this list.
+create table source_set_member (
+  source_set  text not null check (source_set ~ '^[0-9a-f]{8}$'),
+  ord         smallint not null,
+  source_id   text not null references source(source_id),
+  primary key (source_set, ord)
+);
+create index source_set_member_source on source_set_member (source_id);
+
 -- ---------------------------------------------------------------------------
 -- 2. Geography: boundary sets, units, geometry
 -- ---------------------------------------------------------------------------
@@ -353,7 +380,8 @@ create table entity (
   brand_name    text,                                -- public-facing brand / label (Wikidata label), shown in the institution filter
   legal_form_code text,                              -- optional ISO 20275 ELF code when Wikidata states one (P1454); no GLEIF ingest in v3
   legal_form    text,                                -- optional legal-form label
-  feed          text,                                -- raw file value; mapped to origin on load (DATA_LOADING §15.1)
+  source_set    text check (source_set is null or source_set ~ '^[0-9a-f]{8}$'),  -- source_sets.csv hash
+  feed          smallint check (feed is null or (feed >= 1 and feed <= 32767)),  -- enum_feed.feed
   level         text,                                -- extras: federal / state / county / local
   type          text,                                -- finer type (TIGER LSAD text, 'city'); brands: Wikidata P31 class label
   cog_pid6      text,                                -- CoG 2022 unit id
@@ -433,6 +461,7 @@ create table entity_geoid (
   overlap     text check (overlap in ('equal','split','contained')),
   share_of_geoid_in_entity numeric(5,4) check (share_of_geoid_in_entity between 0 and 1),
   share_of_entity_in_geoid numeric(5,4) check (share_of_entity_in_geoid between 0 and 1),
+  source_set  text check (source_set is null or source_set ~ '^[0-9a-f]{8}$'),
   source_record_id text,
   primary key (entity_id, unit_layer, geoid, vintage)  -- sources: entity_geoid_source
 );
@@ -455,7 +484,8 @@ create table entity_relation (
   method        text check (method is null or method in ('sourced','overlay','point_in_polygon','manual')),
   valid_from    date,
   valid_to      date,
-  source_id     text references source(source_id),   -- one source per link (Wikidata)
+  source_id     text references source(source_id),   -- one source per link (Wikidata); null when source_set is set
+  source_set    text check (source_set is null or source_set ~ '^[0-9a-f]{8}$'),  -- source_sets.csv hash
   source_record_id text,                              -- e.g. the Wikidata statement id of the P749 claim
   check (parent_nid <> child_nid),
   check (valid_to is null or valid_from is null or valid_to >= valid_from),
@@ -526,6 +556,7 @@ create table entity_image (
   served_path   text,                                -- '/img/logo/wikidata-Q1591889.svg' once the build step fetched and optimised it
   sha256        text,                                -- checksum of the served asset (cache-busting + change detection)
   flags         text[],                              -- brands.csv logo_flags, review flags
+  source_set    text check (source_set is null or source_set ~ '^[0-9a-f]{8}$'),
   retrieved_at  timestamptz,                         -- sources: entity_image_source (';'-list)
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
@@ -604,6 +635,7 @@ create table body_entity (
   body_key         text primary key,
   entity_id        text not null references entity(entity_id) on update cascade,
   role             text not null check (role in ('council','mayor','chamber','court','board')),
+  source_set       text check (source_set is null or source_set ~ '^[0-9a-f]{8}$'),
   source_record_id text
 );
 create index body_entity_entity on body_entity (entity_id);

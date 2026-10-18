@@ -7,9 +7,10 @@ import { nodePacks } from "../api/src/node-packs.ts";
 import { applyResults, markSuperseded, sha256Hex } from "../ingest/apply.ts";
 import { originCommit } from "../ingest/branch-cache.ts";
 import { BUDGET_BYTES } from "../ingest/budget.ts";
+import { parseCsv } from "../ingest/csv.ts";
 import { instPacksRoot, readFeedMapPack, readInstPack } from "../ingest/inst-pack.ts";
 import {
-  INST_BATCH_FILES,
+  classifyManifest,
   ensureInstCache,
   historyDate,
   loadInstitutionTables,
@@ -209,6 +210,31 @@ describe("neon follow-up", () => {
       bodies: [
         { body_key: "us-tx-house", entity_id: "state:48", role: "chamber", source_record_id: "us-tx-house" },
       ],
+      geoids: [
+        {
+          entity_id: "county:48001",
+          unit_layer: "county",
+          geoid: "48001",
+          vintage: "2024",
+          boundary_set: "v2-2024",
+          relation: "primary",
+          overlap: "equal",
+          share_of_geoid_in_entity: "1",
+          share_of_entity_in_geoid: "1",
+          source_set: "030afd3c",
+          source_record_id: "48001",
+        },
+        {
+          entity_id: "county:48001",
+          unit_layer: "county",
+          geoid: "99999",
+          vintage: "2024",
+          boundary_set: "v2-2024",
+          relation: "primary",
+          overlap: "nope",
+          source_record_id: "bad",
+        },
+      ],
       files: [{ fileName: "fixture-inst.csv", sha256: "fixture-inst-sha", rows: 3 }],
       fileBytes: 120,
       gitCommit: "4215fab",
@@ -255,7 +281,7 @@ describe("neon follow-up", () => {
       source_url: "https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg",
       sources: ["wikidata_images"],
     });
-    expect(stored?.extra["county:48001"]?.v2_key).toEqual(["Texas|Anderson County"]);
+    expect(stored?.extra["county:48001"]).toBeUndefined();
     const side = await pool.query<{ extras: string; texts: string; sources: string }>(
       `select
          (select count(*) from entity_extra)::text extras,
@@ -283,6 +309,12 @@ describe("neon follow-up", () => {
       `select entity_id, role from body_entity where body_key = 'us-tx-house'`,
     );
     expect(body.rows[0]).toEqual({ entity_id: "state:48", role: "chamber" });
+    const geoid = await pool.query<{ vintage: number; source_set: string; n: string }>(
+      `select vintage, source_set, count(*)::text n
+       from entity_geoid where entity_id = 'county:48001'
+       group by vintage, source_set`,
+    );
+    expect(geoid.rows).toEqual([{ vintage: 2024, source_set: "030afd3c", n: "1" }]);
   });
 
   it("marks an older rejected batch superseded when a later batch for that file applies", async () => {
@@ -401,7 +433,8 @@ describe("neon follow-up", () => {
     expect(growing.estimate.projectedBytes!).toBeGreaterThan(BUDGET_BYTES);
 
     const { dir } = ensureInstCache(root);
-    const files = [...INST_BATCH_FILES];
+    const manifest = parseCsv(readFileSync(join(dir, "data-v3/inst/load_manifest.csv"), "utf8"));
+    const files = classifyManifest(manifest.rows).db;
     const shas = files.map((rel) => ({
       file_name: rel,
       sha256: sha256Hex(readFileSync(join(dir, rel))),
@@ -461,8 +494,8 @@ describe("neon follow-up", () => {
     const absentId = "county:feed-absent-demo";
     await pool.query(
       `insert into entity (entity_id, kind, name, origin, feed)
-       values ($1, 'county', 'Old County', 'inst', 'governments-bot')
-       on conflict (entity_id) do update set origin = 'inst', feed = 'governments-bot', flags = null`,
+       values ($1, 'county', 'Old County', 'inst', 3)
+       on conflict (entity_id) do update set origin = 'inst', feed = 3, flags = null`,
       [absentId],
     );
     const before = await pool.query<{ nid: string }>(`select nid::text from entity where entity_id = $1`, [absentId]);
@@ -480,14 +513,14 @@ describe("neon follow-up", () => {
         row("county:feed-present-demo", {
           kind: "county",
           name: "Present County",
-          feed: "governments-bot",
+          feed: "3",
           valid_from: "",
           inception: "2014",
         }),
         row("county:feed-cut-demo", {
           kind: "county",
           name: "Cut County",
-          feed: "governments-bot",
+          feed: "3",
           valid_from: "2015-06-01",
           valid_to: "2010-03-01",
           inception: "2016-06-15",
@@ -514,9 +547,9 @@ describe("neon follow-up", () => {
     await loadInstitutionTables(pool, {
       ...input,
       entities: [
-        row(absentId, { kind: "county", name: "Old County", feed: "governments-bot", valid_from: "", inception: "" }),
-        row("county:feed-present-demo", { kind: "county", name: "Present County", feed: "governments-bot" }),
-        row("county:feed-cut-demo", { kind: "county", name: "Cut County", feed: "governments-bot" }),
+        row(absentId, { kind: "county", name: "Old County", feed: "3", valid_from: "", inception: "" }),
+        row("county:feed-present-demo", { kind: "county", name: "Present County", feed: "3" }),
+        row("county:feed-cut-demo", { kind: "county", name: "Cut County", feed: "3" }),
       ],
       files: [{ fileName: "fixture-history.csv", sha256: "fixture-history-sha-2", rows: 3 }],
     }, { packsDir });
@@ -558,7 +591,7 @@ describe("neon follow-up", () => {
           inception: "2001-01-01",
           feed: "3",
           parent_id: "nation:fr",
-          source_set: "abc",
+          source_set: "030afd3c",
         }),
         row(body, {
           kind: "intermunicipal",
@@ -577,14 +610,14 @@ describe("neon follow-up", () => {
           related_entity_id: body,
           method: "sourced",
           load_group: "2",
-          source_set: "abc",
+          source_set: "030afd3c",
         },
       ],
       images: [],
       bodies: [],
       sourceSets: [
-        { source_set: "abc", ord: "2", source_id: "second-src" },
-        { source_set: "abc", ord: "1", source_id: "first-src" },
+        { source_set: "030afd3c", ord: "2", source_id: "second-src" },
+        { source_set: "030afd3c", ord: "1", source_id: "first-src" },
       ],
       sources: [{ source_id: "first-src", source: "First title" }],
       feedMap: [{
@@ -598,7 +631,7 @@ describe("neon follow-up", () => {
       }],
       feedEnums: [{ feed: "3", name: "governments-bot" }],
       statusEnums: [{ status: "1", name: "mapped" }],
-      v2Rows: [],
+      sourceUrls: [{ source_id: "first-src", ord: "1", url: "https://example.test/first", label: "home" }],
       files: [{ fileName: "fixture-foreign.csv", sha256: "fixture-foreign-sha", rows: 3 }],
       fileBytes: 80,
       gitCommit: "foreign",
@@ -646,8 +679,11 @@ describe("neon follow-up", () => {
       valid_to: string | null;
       inception: string | null;
       parent_id: string | null;
+      source_set: string | null;
+      feed: number | null;
     }>(
-      `select country, gov_status, code_scheme, code, valid_from::text, valid_to::text, inception::text, parent_id
+      `select country, gov_status, code_scheme, code, valid_from::text, valid_to::text, inception::text, parent_id,
+              source_set, feed
        from entity where entity_id = $1`,
       [paris],
     );
@@ -660,27 +696,45 @@ describe("neon follow-up", () => {
       valid_to: "2014-05-01",
       inception: null,
       parent_id: null,
+      source_set: "030afd3c",
+      feed: 3,
     });
-    const link = await pool.query<{ parent_id: string; child_id: string; method: string }>(
-      `select p.entity_id parent_id, c.entity_id child_id, r.method
+    const link = await pool.query<{ parent_id: string; child_id: string; method: string; source_set: string | null; source_id: string | null }>(
+      `select p.entity_id parent_id, c.entity_id child_id, r.method, r.source_set, r.source_id
        from entity_relation r
        join entity p on p.nid = r.parent_nid
        join entity c on c.nid = r.child_nid
        where r.relation = 'member_of' and c.entity_id = $1`,
       [paris],
     );
-    expect(link.rows[0]).toEqual({ parent_id: body, child_id: paris, method: "sourced" });
+    expect(link.rows[0]).toEqual({
+      parent_id: body,
+      child_id: paris,
+      method: "sourced",
+      source_set: "030afd3c",
+      source_id: null,
+    });
     const parent = await pool.query<{ parent_id: string | null }>(
       `select parent_id from entity where entity_id = $1`,
       [paris],
     );
     expect(parent.rows[0]?.parent_id).toBeNull();
     const cited = readInstPack(packsDir);
-    expect(cited?.extra[paris]?.sources).toEqual(["first-src", "second-src"]);
+    expect(cited?.extra[paris]).toBeUndefined();
+    const members = await pool.query<{ source_id: string }>(
+      `select source_id from source_set_member where source_set = '030afd3c' order by ord`,
+    );
+    expect(members.rows.map((row) => row.source_id)).toEqual(["first-src", "second-src"]);
     const title = await pool.query<{ title: string }>(
       `select title from source where source_id = 'first-src'`,
     );
     expect(title.rows[0]?.title).toBe("First title");
+    const url = await pool.query<{ url: string; label: string }>(
+      `select url, label from source_url where source_id = 'first-src' and ord = 1`,
+    );
+    expect(url.rows[0]).toEqual({ url: "https://example.test/first", label: "home" });
+    const legend = await pool.query<{ name: string }>(`select name from enum_feed where feed = 3`);
+    expect(legend.rows[0]?.name).toBe("governments-bot");
     const stillEmpty = await pool.query<{ n: string }>("select count(*)::text n from entity_feed_map");
     expect(stillEmpty.rows[0]?.n).toBe("0");
   });
