@@ -493,7 +493,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots: shots/b1576-jump-390-DEafterDC-before-after.png, shots/b1576-jump-{1024x768,390}-DEafterDC-{before,after}.png (the "before" capture landed after the move even with 6x CPU throttle; the rAF positions above are the evidence), shots/b1576-thumbs-ch-{1024x768,390}-DE-after-DC.png
 - Data: `qa/b1576-thumbs-*.json` > trans.DE_after_DC.frames, `qa/b1576-jump.json`
 
-### QA-060 [HIGH, widened on 1582: every map/list switch, see pass 14] Blount County results > list: thumbnails jump 8 px left and back
+### QA-060 [Fixed on 1586 (verified pass 19)] [HIGH, widened on 1582: every map/list switch, see pass 14] Blount County results > list: thumbnails jump 8 px left and back
 - Severity: HIGH (QA-054-style jump) | Build 1576 | Chromium 1024x768 and 390x844
 - Steps: Geo > Alabama > Blount County (results view), then tap the globe/list button.
 - Expected: thumbnails stay at x=12.
