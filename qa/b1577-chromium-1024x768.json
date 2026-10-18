@@ -1,0 +1,1659 @@
+{
+ "us": {
+  "build": "202610181577",
+  "menu_range_20_24": {
+   "opts": [
+    "line"
+   ],
+   "main": "bar",
+   "mode": null
+  },
+  "px_20_24": {
+   "CO": [
+    251,
+    186,
+    162
+   ],
+   "KS": [
+    249,
+    211,
+    197
+   ],
+   "IL": [
+    239,
+    119,
+    99
+   ],
+   "TX": [
+    230,
+    80,
+    67
+   ],
+   "FL": [
+    223,
+    50,
+    42
+   ],
+   "UT": [
+    249,
+    220,
+    209
+   ],
+   "GA": [
+    251,
+    188,
+    164
+   ],
+   "PA": [
+    252,
+    177,
+    149
+   ],
+   "NY": [
+    217,
+    43,
+    37
+   ]
+  },
+  "ysl_20_24": [
+   1,
+   2
+  ],
+  "ysl_16_24": [
+   0,
+   2
+  ],
+  "px_16_24": {
+   "CO": [
+    103,
+    163,
+    206
+   ],
+   "KS": [
+    131,
+    183,
+    216
+   ],
+   "IL": [
+    239,
+    117,
+    98
+   ],
+   "TX": [
+    245,
+    143,
+    119
+   ],
+   "FL": [
+    199,
+    36,
+    33
+   ],
+   "UT": [
+    250,
+    165,
+    137
+   ],
+   "GA": [
+    160,
+    203,
+    225
+   ],
+   "PA": [
+    249,
+    223,
+    213
+   ],
+   "NY": [
+    223,
+    49,
+    41
+   ]
+  },
+  "lbl_16_24": [
+   [
+    "Donald Trump 2016",
+    "Donald Trump 2016",
+    "46%",
+    "trump.jpg"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "Hillary Clinton 2016",
+    "48%",
+    "clinton.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "50%",
+    "trump.jpg"
+   ],
+   [
+    "Kamala Harris 2024",
+    "Kamala Harris 2024",
+    "48%",
+    "harris.jpg"
+   ]
+  ],
+  "menu_range_16_24": {
+   "opts": [
+    "line"
+   ],
+   "main": "bar",
+   "mode": null
+  },
+  "ysl_16_20": [
+   0,
+   1
+  ],
+  "px_16_20": {
+   "CO": [
+    58,
+    131,
+    190
+   ],
+   "KS": [
+    105,
+    165,
+    206
+   ],
+   "IL": [
+    247,
+    245,
+    244
+   ],
+   "TX": [
+    150,
+    197,
+    222
+   ],
+   "FL": [
+    251,
+    194,
+    174
+   ],
+   "UT": [
+    251,
+    188,
+    165
+   ],
+   "GA": [
+    116,
+    172,
+    210
+   ],
+   "PA": [
+    191,
+    219,
+    233
+   ],
+   "NY": [
+    228,
+    238,
+    242
+   ]
+  },
+  "lbl_16_20": [
+   [
+    "Donald Trump 2016",
+    "Donald Trump 2016",
+    "46%",
+    "trump.jpg"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "Hillary Clinton 2016",
+    "48%",
+    "clinton.jpg"
+   ],
+   [
+    "Donald Trump 2020",
+    "Donald Trump 2020",
+    "47%",
+    "trump.jpg"
+   ],
+   [
+    "Joe Biden 2020",
+    "Joe Biden 2020",
+    "51%",
+    "biden.jpg"
+   ]
+  ],
+  "reload_16_20": {
+   "ysl": [
+    0,
+    1
+   ],
+   "lbl": [
+    [
+     "Donald Trump 2016",
+     "Donald Trump 2016",
+     "46%",
+     "trump.jpg"
+    ],
+    [
+     "Hillary Clinton 2016",
+     "Hillary Clinton 2016",
+     "48%",
+     "clinton.jpg"
+    ],
+    [
+     "Donald Trump 2020",
+     "Donald Trump 2020",
+     "47%",
+     "trump.jpg"
+    ],
+    [
+     "Joe Biden 2020",
+     "Joe Biden 2020",
+     "51%",
+     "biden.jpg"
+    ]
+   ]
+  },
+  "px_2016": {
+   "CO": [
+    178,
+    211,
+    231
+   ],
+   "KS": [
+    236,
+    92,
+    74
+   ],
+   "IL": [
+    81,
+    152,
+    202
+   ],
+   "TX": [
+    251,
+    156,
+    127
+   ],
+   "FL": [
+    248,
+    235,
+    231
+   ],
+   "UT": [
+    240,
+    105,
+    83
+   ],
+   "GA": [
+    250,
+    195,
+    179
+   ],
+   "PA": [
+    247,
+    240,
+    237
+   ],
+   "NY": [
+    61,
+    136,
+    193
+   ]
+  },
+  "menu_2016": {
+   "opts": [
+    "pie"
+   ],
+   "main": "bar",
+   "mode": null
+  },
+  "err": []
+ },
+ "line": {
+  "build": "202610181577",
+  "menu_2024_single": null,
+  "after_drag": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "states",
+   "body": "listall listmode lathumb y16 y16d",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181577",
+    " harris.jpg?v=202610181577"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "All States",
+   "cpanel": null,
+   "nrows": 51,
+   "rows": [
+    "FL | R +11.9 | +7.1 | \u22124.8 | \u22122.2",
+    "CA | R +10.0 | +6.7 | \u22123.2 | \u22123.5",
+    "NY | R +9.8 | +7.1 | \u22122.7 | \u22124.5",
+    "HI | R +9.1 | +7.4 | \u22125.8",
+    "NJ | R +8.2 | +4.7 | \u22123.5",
+    "CO | D +6.1 | +6.0 | \u22125.9",
+    "IL | R +6.1 | +5.0 | \u22124.0",
+    "NV | R +5.5 | +5.1 | \u22124.7"
+   ],
+   "cls": 0.1775
+  },
+  "line": {
+   "offered": [
+    "line",
+    "bar"
+   ],
+   "lat_menu": 16.1,
+   "lat_pick": 15.2,
+   "chart_after": "line",
+   "ysl_after": [
+    0,
+    2
+   ]
+  },
+  "line_page": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": "line",
+   "num": "pct",
+   "view": "list",
+   "lv": "states",
+   "body": "listall listmode lathumb y16 y16d",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181577",
+    " harris.jpg?v=202610181577"
+   ],
+   "opts": [
+    "line"
+   ],
+   "cmain": "line",
+   "crumbs": "All States",
+   "cpanel": null,
+   "nrows": 51,
+   "rows": [
+    "FL | +7.1 | \u22124.8",
+    "CA | +6.7 | \u22123.2",
+    "NY | +7.1 | \u22122.7",
+    "HI | +7.4 | \u22121.6",
+    "NJ | +4.7 | \u22123.5",
+    "CO | \u22120.1 | +6.0",
+    "IL | +5.0 | \u22121.1",
+    "NV | +5.1 | \u22120.4"
+   ],
+   "cls": 0.178
+  },
+  "line_all": [
+   [
+    "FL",
+    "+7.1",
+    "\u22124.8"
+   ],
+   [
+    "CA",
+    "+6.7",
+    "\u22123.2"
+   ],
+   [
+    "NY",
+    "+7.1",
+    "\u22122.7"
+   ],
+   [
+    "HI",
+    "+7.4",
+    "\u22121.6"
+   ],
+   [
+    "NJ",
+    "+4.7",
+    "\u22123.5"
+   ],
+   [
+    "CO",
+    "\u22120.1",
+    "+6.0"
+   ],
+   [
+    "IL",
+    "+5.0",
+    "\u22121.1"
+   ],
+   [
+    "NV",
+    "+5.1",
+    "\u22120.4"
+   ],
+   [
+    "VT",
+    "+2.3",
+    "+7.7"
+   ],
+   [
+    "MS",
+    "+2.9",
+    "\u22122.1"
+   ],
+   [
+    "ID",
+    "+7.6",
+    "+2.9"
+   ],
+   [
+    "TX",
+    "+3.9",
+    "\u22120.7"
+   ],
+   [
+    "KS",
+    "+0.5",
+    "+5.0"
+   ],
+   [
+    "NE",
+    "+0.9",
+    "+5.4"
+   ],
+   [
+    "ME",
+    "+0.6",
+    "+4.6"
+   ],
+   [
+    "IA",
+    "+4.8",
+    "+0.9"
+   ],
+   [
+    "AR",
+    "+3.6",
+    "\u22120.1"
+   ],
+   [
+    "TN",
+    "+3.5",
+    "\u22120.2"
+   ],
+   [
+    "SC",
+    "+3.3",
+    "\u22120.3"
+   ],
+   [
+    "UT",
+    "+13.9",
+    "+10.3"
+   ],
+   [
+    "DE",
+    "+0.2",
+    "+3.5"
+   ],
+   [
+    "OR",
+    "+1.9",
+    "+5.2"
+   ],
+   [
+    "OH",
+    "+3.5",
+    "+0.4"
+   ],
+   [
+    "DC",
+    "+2.4",
+    "\u22120.6"
+   ],
+   [
+    "AL",
+    "+2.7",
+    "\u22120.1"
+   ],
+   [
+    "GA",
+    "\u22120.0",
+    "+2.9"
+   ],
+   [
+    "MN",
+    "+1.9",
+    "+4.7"
+   ],
+   [
+    "WA",
+    "+2.4",
+    "+5.1"
+   ],
+   [
+    "LA",
+    "+2.1",
+    "\u22120.2"
+   ],
+   [
+    "NH",
+    "+1.7",
+    "+4.1"
+   ],
+   [
+    "MD",
+    "+0.4",
+    "+2.8"
+   ],
+   [
+    "NM",
+    "+5.8",
+    "+3.6"
+   ],
+   [
+    "OK",
+    "+0.8",
+    "+3.0"
+   ],
+   [
+    "AZ",
+    "+3.6",
+    "+1.6"
+   ],
+   [
+    "MA",
+    "+3.4",
+    "+1.6"
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "line_svg": [
+   {
+    "t": "FL | +7.1 | \u22124.8",
+    "svg": "<svg viewBox=\"0 0 100 100\" preserveAspectRatio=\"none\"><polyline points=\"0,49.6 100,54.9\" class=\"ld\"></polyline><polyline points=\"0,48.3 100,40.5\" class=\"lr\"></polyline></svg>"
+   },
+   {
+    "t": "NY | +7.1 | \u22122.7",
+    "svg": "<svg viewBox=\"0 0 100 100\" preserveAspectRatio=\"none\"><polyline points=\"0,37.3 100,40.2\" class=\"ld\"></polyline><polyline points=\"0,62.1 100,54.2\" class=\"lr\"></polyline></svg>"
+   },
+   {
+    "t": "CO | \u22120.1 | +6.0",
+    "svg": "<svg viewBox=\"0 0 100 100\" preserveAspectRatio=\"none\"><polyline points=\"0,49.2 100,42.6\" class=\"ld\"></polyline><polyline points=\"0,54.7 100,54.7\" class=\"lr\"></polyline></svg>"
+   },
+   {
+    "t": "TX | +3.9 | \u22120.7",
+    "svg": "<svg viewBox=\"0 0 100 100\" preserveAspectRatio=\"none\"><polyline points=\"0,54.7 100,55.5\" class=\"ld\"></polyline><polyline points=\"0,44.8 100,40.4\" class=\"lr\"></polyline></svg>"
+   }
+  ],
+  "line_reload": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": "line",
+   "num": "pct",
+   "view": "list",
+   "lv": "states",
+   "body": "y16 y16d listmode listall lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181577",
+    " harris.jpg?v=202610181577"
+   ],
+   "opts": [
+    "line"
+   ],
+   "cmain": "line",
+   "crumbs": "All States",
+   "cpanel": null,
+   "nrows": 51,
+   "rows": [
+    "FL | +7.1 | \u22124.8",
+    "CA | +6.7 | \u22123.2",
+    "NY | +7.1 | \u22122.7",
+    "HI | +7.4 | \u22121.6",
+    "NJ | +4.7 | \u22123.5",
+    "CO | \u22120.1 | +6.0",
+    "IL | +5.0 | \u22121.1",
+    "NV | +5.1 | \u22120.4"
+   ],
+   "cls": 0
+  },
+  "line_16_20": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 1,
+   "ysl": [
+    0,
+    1
+   ],
+   "chart": "line",
+   "num": "pct",
+   "view": "list",
+   "lv": "states",
+   "body": "y16 y16d listmode listall lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Joe Biden 2024 [51%]",
+    "Donald Trump 2024 [47%]"
+   ],
+   "candImgs": [
+    " biden.jpg?v=202610181577",
+    " trump.jpg?v=202610181577"
+   ],
+   "opts": [
+    "line"
+   ],
+   "cmain": "line",
+   "crumbs": "All States",
+   "cpanel": null,
+   "nrows": 51,
+   "rows": [
+    "VT | +0.4 | +9.4",
+    "CO | \u22121.4 | +7.2",
+    "DE | \u22121.9 | +5.7",
+    "NH | \u22121.0 | +6.0",
+    "MD | \u22121.8 | +5.0",
+    "CT | \u22121.7 | +4.7",
+    "MA | \u22120.7 | +5.6",
+    "NE | \u22120.5 | +5.5"
+   ],
+   "cls": 0.001
+  },
+  "line_16_20_all": [
+   [
+    "VT",
+    "+0.4",
+    "+9.4"
+   ],
+   [
+    "CO",
+    "\u22121.4",
+    "+7.2"
+   ],
+   [
+    "DE",
+    "\u22121.9",
+    "+5.7"
+   ],
+   [
+    "NH",
+    "\u22121.0",
+    "+6.0"
+   ],
+   [
+    "MD",
+    "\u22121.8",
+    "+5.0"
+   ],
+   [
+    "CT",
+    "\u22121.7",
+    "+4.7"
+   ],
+   [
+    "MA",
+    "\u22120.7",
+    "+5.6"
+   ],
+   [
+    "NE",
+    "\u22120.5",
+    "+5.5"
+   ],
+   [
+    "KS",
+    "\u22120.4",
+    "+5.5"
+   ],
+   [
+    "ME",
+    "\u22120.6",
+    "+5.1"
+   ],
+   [
+    "MN",
+    "+0.4",
+    "+6.0"
+   ],
+   [
+    "GA",
+    "\u22121.5",
+    "+3.9"
+   ],
+   [
+    "RI",
+    "\u22120.3",
+    "+5.0"
+   ],
+   [
+    "OR",
+    "+1.3",
+    "+6.4"
+   ],
+   [
+    "VA",
+    "\u22120.4",
+    "+4.4"
+   ],
+   [
+    "AK",
+    "+1.8",
+    "+6.5"
+   ],
+   [
+    "MT",
+    "+0.6",
+    "+4.7"
+   ],
+   [
+    "AZ",
+    "+0.4",
+    "+4.2"
+   ],
+   [
+    "KY",
+    "\u22120.4",
+    "+3.5"
+   ],
+   [
+    "SD",
+    "+0.2",
+    "+3.9"
+   ],
+   [
+    "WA",
+    "+1.9",
+    "+5.4"
+   ],
+   [
+    "TX",
+    "\u22120.2",
+    "+3.2"
+   ],
+   [
+    "OK",
+    "+0.1",
+    "+3.4"
+   ],
+   [
+    "MO",
+    "+0.0",
+    "+3.3"
+   ],
+   [
+    "IN",
+    "+0.1",
+    "+3.2"
+   ],
+   [
+    "WV",
+    "+0.1",
+    "+3.3"
+   ],
+   [
+    "MI",
+    "+0.3",
+    "+3.3"
+   ],
+   [
+    "WY",
+    "+1.8",
+    "+4.7"
+   ],
+   [
+    "TN",
+    "\u22120.1",
+    "+2.7"
+   ],
+   [
+    "HI",
+    "+4.2",
+    "+1.5"
+   ],
+   [
+    "NM",
+    "+3.5",
+    "+6.0"
+   ],
+   [
+    "SC",
+    "+0.2",
+    "+2.8"
+   ],
+   [
+    "ND",
+    "+2.2",
+    "+4.5"
+   ],
+   [
+    "UT",
+    "+12.6",
+    "+10.2"
+   ],
+   [
+    "AL",
+    "\u22120.1",
+    "+2.2"
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "bar": {
+   "offered": [
+    "bar",
+    "line"
+   ],
+   "lat_menu": 14.8,
+   "lat_pick": 12.6,
+   "chart_after": "bar",
+   "ysl_after": [
+    0,
+    1
+   ]
+  },
+  "bar_16_20": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 1,
+   "ysl": [
+    0,
+    1
+   ],
+   "chart": "bar",
+   "num": "pct",
+   "view": "list",
+   "lv": "states",
+   "body": "y16 y16d listmode listall lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Joe Biden 2024 [51%]",
+    "Donald Trump 2024 [47%]"
+   ],
+   "candImgs": [
+    " biden.jpg?v=202610181577",
+    " trump.jpg?v=202610181577"
+   ],
+   "opts": [
+    "bar"
+   ],
+   "cmain": "bar",
+   "crumbs": "All States",
+   "cpanel": null,
+   "nrows": 51,
+   "rows": [
+    "VT | D +9.0 | +9.4 | \u22129.8",
+    "CO | D +8.6 | +7.2 | \u22125.9",
+    "DE | D +7.6 | \u22121.9 | +5.7 | \u22123.8",
+    "NH | D +7.0 | +6.0 | \u22125.0",
+    "MD | D +6.8 | +5.0 | \u22123.3",
+    "CT | D +6.4 | +4.7 | \u22123.0",
+    "MA | D +6.3 | +5.6 | \u22124.9",
+    "NE | D +6.0 | +5.5 | \u22124.9"
+   ],
+   "cls": 0.001
+  },
+  "lbl_states_16_20": [
+   [
+    "Joe Biden 2024",
+    "Joe Biden 2024",
+    "51%",
+    "biden.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "47%",
+    "trump.jpg"
+   ]
+  ],
+  "menu_range_list": {
+   "opts": [
+    "line"
+   ],
+   "main": "bar",
+   "mode": "bar"
+  },
+  "qa041_line_lat": [
+   14.5,
+   17.9,
+   17.5
+  ],
+  "menu_2016_list": {
+   "opts": [
+    "pie"
+   ],
+   "main": "bar",
+   "mode": "bar"
+  },
+  "err": []
+ },
+ "prec": {
+  "build": "202610181577",
+  "prec_16_24": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Kamala Harris 2024 [79%]",
+    "Donald Trump 2024 [20%]"
+   ],
+   "candImgs": [
+    " harris.jpg?v=202610181577",
+    " trump.jpg?v=202610181577"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Philadelphia Precinct 5836 | R +65.9 | +32.9 | \u221233.0",
+    "Philadelphia Precinct 5802 | R +53.2 | +27.3 | \u221226.0",
+    "Philadelphia Precinct 5809 | R +52.4 | +26.7 | \u221225.7",
+    "Philadelphia Precinct 3301 | R +47.8 | +23.6 | \u221224.2",
+    "Philadelphia Precinct 717 | R +46.5 | +23.6 | \u221222.9",
+    "Philadelphia Precinct 3304 | R +45.8 | +22.3 | \u221223.5",
+    "Philadelphia Precinct 3527 | R +45.6 | +22.6 | \u221223.0",
+    "Philadelphia Precinct 1902 | R +45.2 | +22.4 | \u221222.8"
+   ],
+   "cls": 0.1748
+  },
+  "prec_lbl": [
+   [
+    "Kamala Harris 2024",
+    "Kamala Harris 2024",
+    "79%",
+    "harris.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "20%",
+    "trump.jpg"
+   ]
+  ],
+  "prec_all": [
+   [
+    "Philadelphia Precinct 5836",
+    "R +65.9",
+    "+32.9",
+    "\u221233.0"
+   ],
+   [
+    "Philadelphia Precinct 5802",
+    "R +53.2",
+    "+27.3",
+    "\u221226.0"
+   ],
+   [
+    "Philadelphia Precinct 5809",
+    "R +52.4",
+    "+26.7",
+    "\u221225.7"
+   ],
+   [
+    "Philadelphia Precinct 3301",
+    "R +47.8",
+    "+23.6",
+    "\u221224.2"
+   ],
+   [
+    "Philadelphia Precinct 717",
+    "R +46.5",
+    "+23.6",
+    "\u221222.9"
+   ],
+   [
+    "Philadelphia Precinct 3304",
+    "R +45.8",
+    "+22.3",
+    "\u221223.5"
+   ],
+   [
+    "Philadelphia Precinct 3527",
+    "R +45.6",
+    "+22.6",
+    "\u221223.0"
+   ],
+   [
+    "Philadelphia Precinct 1902",
+    "R +45.2",
+    "+22.4",
+    "\u221222.8"
+   ],
+   [
+    "Philadelphia Precinct 3312",
+    "R +45.0",
+    "+22.8",
+    "\u221222.2"
+   ],
+   [
+    "Philadelphia Precinct 3306",
+    "R +44.2",
+    "+22.4",
+    "\u221221.8"
+   ],
+   [
+    "Philadelphia Precinct 718",
+    "R +44.1",
+    "+22.0",
+    "\u221222.1"
+   ],
+   [
+    "Philadelphia Precinct 4204",
+    "R +43.6",
+    "+21.8",
+    "\u221221.8"
+   ],
+   [
+    "Philadelphia Precinct 3916",
+    "R +43.2",
+    "+21.8",
+    "\u221221.4"
+   ],
+   [
+    "Philadelphia Precinct 4223",
+    "R +42.6",
+    "+21.4",
+    "\u221221.2"
+   ],
+   [
+    "Philadelphia Precinct 714",
+    "R +42.5",
+    "+21.2",
+    "\u221221.3"
+   ],
+   [
+    "Philadelphia Precinct 5801",
+    "R +42.5",
+    "+20.9",
+    "\u221221.6"
+   ],
+   [
+    "Philadelphia Precinct 3308",
+    "R +42.4",
+    "+20.9",
+    "\u221221.5"
+   ],
+   [
+    "Philadelphia Precinct 5815",
+    "R +42.4",
+    "+21.5",
+    "\u221221.0"
+   ],
+   [
+    "Philadelphia Precinct 706",
+    "R +42.3",
+    "+21.5",
+    "\u221220.8"
+   ],
+   [
+    "Philadelphia Precinct 721",
+    "R +42.3",
+    "+21.0",
+    "\u221221.2"
+   ],
+   [
+    "Philadelphia Precinct 1904",
+    "R +42.3",
+    "+21.2",
+    "\u221221.1"
+   ],
+   [
+    "Philadelphia Precinct 4208",
+    "R +41.8",
+    "+20.8",
+    "\u221221.0"
+   ],
+   [
+    "Philadelphia Precinct 5844",
+    "R +41.5",
+    "+20.4",
+    "\u221221.1",
+    "+0.6"
+   ],
+   [
+    "Philadelphia Precinct 2520",
+    "R +41.3",
+    "+20.1",
+    "\u221221.2",
+    "+1.1"
+   ],
+   [
+    "Philadelphia Precinct 3310",
+    "R +41.0",
+    "+21.0",
+    "\u221220.0",
+    "\u22121.0"
+   ],
+   [
+    "Philadelphia Precinct 1909",
+    "R +40.3",
+    "+20.2",
+    "\u221220.1",
+    "\u22120.0"
+   ],
+   [
+    "Philadelphia Precinct 707",
+    "R +39.7",
+    "+19.8",
+    "\u221219.8",
+    "\u22120.0"
+   ],
+   [
+    "Philadelphia Precinct 3303",
+    "R +39.6",
+    "+19.5",
+    "\u221220.1",
+    "+0.6"
+   ],
+   [
+    "Philadelphia Precinct 4202",
+    "R +39.6",
+    "+19.4",
+    "\u221220.2",
+    "+0.7"
+   ],
+   [
+    "Philadelphia Precinct 711",
+    "R +39.4",
+    "+20.3",
+    "\u221219.0",
+    "\u22121.3"
+   ],
+   [
+    "Philadelphia Precinct 4206",
+    "R +39.0",
+    "+19.0",
+    "\u221220.0",
+    "+1.1"
+   ],
+   [
+    "Philadelphia Precinct 5640",
+    "R +39.0",
+    "+18.4",
+    "\u221220.7",
+    "+2.3"
+   ],
+   [
+    "Philadelphia Precinct 1905",
+    "R +38.8",
+    "+20.0",
+    "\u221218.8",
+    "\u22121.2"
+   ],
+   [
+    "Philadelphia Precinct 722",
+    "R +38.4",
+    "+19.3",
+    "\u221219.1",
+    "\u22120.2"
+   ],
+   [
+    "Philadelphia Precinct 2517",
+    "R +38.4",
+    "+19.3",
+    "\u221219.0",
+    "\u22120.3"
+   ],
+   [
+    "Philadelphia Precinct 3316",
+    "R +37.6",
+    "+19.1",
+    "\u221218.5",
+    "\u22120.6"
+   ],
+   [
+    "Philadelphia Precinct 2311",
+    "R +37.4",
+    "+19.8",
+    "\u221217.6",
+    "\u22122.2"
+   ],
+   [
+    "Philadelphia Precinct 3302",
+    "R +37.3",
+    "+18.3",
+    "\u221219.0",
+    "+0.7"
+   ],
+   [
+    "Philadelphia Precinct 4222",
+    "R +37.3",
+    "+18.9",
+    "\u221218.4",
+    "\u22120.5"
+   ],
+   [
+    "Philadelphia Precinct 4320",
+    "R +37.0",
+    "+18.4",
+    "\u221218.6",
+    "+0.3"
+   ]
+  ],
+  "prec_num": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "num",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Kamala Harris 2024 [566K]",
+    "Donald Trump 2024 [144K]"
+   ],
+   "candImgs": [
+    " harris.jpg?v=202610181577",
+    " trump.jpg?v=202610181577"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Philadelphia Precinct 534 | R +613 | \u221290 | \u2212703 | \u221238",
+    "Philadelphia Precinct 820 | R +533 | \u221263 | \u2212596 | \u221233",
+    "Philadelphia Precinct 528 | D +511 | +92 | +603",
+    "Philadelphia Precinct 536 | R +473 | \u221241 | \u2212514",
+    "Philadelphia Precinct 533 | R +435 | \u221256 | \u2212491 | \u221233",
+    "Philadelphia Precinct 805 | R +415 | \u221262 | \u2212477 | \u221234",
+    "Philadelphia Precinct 510 | D +413 | +47 | +460",
+    "Philadelphia Precinct 830 | D +411 | +122 | +533"
+   ],
+   "cls": 0.1748
+  },
+  "prec_16_20": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 1,
+   "ysl": [
+    0,
+    1
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "precincts",
+   "body": "listall listmode y16 y16d canback lathumb",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Joe Biden 2024 [81%]",
+    "Donald Trump 2024 [18%]"
+   ],
+   "candImgs": [
+    " biden.jpg?v=202610181577",
+    " trump.jpg?v=202610181577"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County Philadelphi\u2026",
+   "cpanel": null,
+   "nrows": 1703,
+   "rows": [
+    "Philadelphia Precinct 5809 | R +53.4 | +27.6 | \u221225.8",
+    "Philadelphia Precinct 5836 | R +42.4 | +22.0 | \u221220.4",
+    "Philadelphia Precinct 707 | R +35.7 | +18.0 | \u221217.7",
+    "Philadelphia Precinct 5205 | D +34.2 | \u221216.0 | +18.3 | \u22122.3",
+    "Philadelphia Precinct 5802 | R +33.3 | +17.5 | \u221215.8",
+    "Philadelphia Precinct 702 | R +32.4 | +16.0 | \u221216.3",
+    "Philadelphia Precinct 723 | R +29.3 | +15.3 | \u221213.9",
+    "Philadelphia Precinct 4202 | R +29.2 | +15.0 | \u221214.2"
+   ],
+   "cls": 0.176
+  },
+  "prec_lbl_16_20": [
+   [
+    "Joe Biden 2024",
+    "Joe Biden 2024",
+    "81%",
+    "biden.jpg"
+   ],
+   [
+    "Donald Trump 2024",
+    "Donald Trump 2024",
+    "18%",
+    "trump.jpg"
+   ]
+  ],
+  "prec_reload": {
+   "ym": "delta",
+   "y16": true,
+   "hi": 2,
+   "ysl": [
+    0,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "list",
+   "lv": "-",
+   "body": "y16 y16d listmode",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2016 [Donald Trump 15.4%]",
+    "Donald Trump [Donald Trump]",
+    "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+    "Hillary Clinton [Hillary Clinton]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181577",
+    " clinton.jpg?v=202610181577",
+    " trump.jpg?v=202610181577",
+    " harris.jpg?v=202610181577"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "Philadelphia County",
+   "cpanel": null,
+   "nrows": 0,
+   "rows": [],
+   "cls": 0
+  },
+  "err": []
+ },
+ "inst": {
+  "build": "202610181577",
+  "inst": {
+   "US": {
+    "open": {
+     "n": 55,
+     "first": [
+      "All States",
+      "US House districts",
+      "S State senate districts",
+      "H State house districts",
+      "School districts",
+      "Alabama \u203a"
+     ],
+     "none": false,
+     "body": "foldfs"
+    },
+    "empty": {
+     "n": 55,
+     "first": [
+      "All States",
+      "US House districts",
+      "S State senate districts",
+      "H State house districts",
+      "School districts",
+      "Alabama \u203a"
+     ],
+     "none": false,
+     "body": "foldfs"
+    },
+    "US": {
+     "n": 2,
+     "first": [
+      "COUNTRY",
+      "United States"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "America": {
+     "n": 5,
+     "first": [
+      "COUNTRY",
+      "United States",
+      "South Africa",
+      "COUNTIES",
+      "Amelia County, VA"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "penn": {
+     "n": 63,
+     "first": [
+      "Pennsylvania \u203a",
+      "STATES",
+      "Pennsylvania",
+      "COUNTIES",
+      "Pennington County, SD",
+      "Pennington County, MN"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "phila": {
+     "n": 8,
+     "first": [
+      "COUNTRIES",
+      "Philippines",
+      "COUNTIES",
+      "Philadelphia County, PA",
+      "Phillips County, AR",
+      "Phillips County, KS"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "cook": {
+     "n": 15,
+     "first": [
+      "COUNTIES",
+      "Cook County, IL",
+      "Cook County, GA",
+      "Cook County, MN",
+      "Cooke County, TX",
+      "McCook County, SD"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "ontario": {
+     "n": 4,
+     "first": [
+      "PROVINCES AND TERRITORIES",
+      "Ontario Canada",
+      "COUNTIES",
+      "Ontario County, NY"
+     ],
+     "none": false,
+     "body": "foldfs fqtyping orgsearch"
+    },
+    "zzqx": {
+     "n": 1,
+     "first": [
+      "No institutions match"
+     ],
+     "none": true,
+     "body": "foldfs fqtyping orgsearch"
+    }
+   },
+   "PA": {
+    "open": {
+     "n": 68,
+     "first": [
+      "Pennsylvania counties",
+      "Adams County \u203a",
+      "Allegheny County \u203a",
+      "Armstrong County \u203a",
+      "Beaver County \u203a",
+      "Bedford County \u203a"
+     ],
+     "none": false,
+     "body": "foldfs canback"
+    },
+    "empty": {
+     "n": 68,
+     "first": [
+      "Pennsylvania counties",
+      "Adams County \u203a",
+      "Allegheny County \u203a",
+      "Armstrong County \u203a",
+      "Beaver County \u203a",
+      "Bedford County \u203a"
+     ],
+     "none": false,
+     "body": "foldfs canback"
+    },
+    "US": {
+     "n": 3,
+     "first": [
+      "Massachusetts \u203a",
+      "COUNTRY",
+      "United States"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "America": {
+     "n": 5,
+     "first": [
+      "COUNTRY",
+      "United States",
+      "South Africa",
+      "COUNTIES",
+      "Amelia County, VA"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "penn": {
+     "n": 68,
+     "first": [
+      "Pennsylvania",
+      "Pennsylvania counties",
+      "Pennsylvania US House districts",
+      "S Pennsylvania state senate districts",
+      "H Pennsylvania state house districts",
+      "Pennsylvania school districts"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "phila": {
+     "n": 9,
+     "first": [
+      "Philadelphia County \u203a",
+      "COUNTRIES",
+      "Philippines",
+      "COUNTIES",
+      "Philadelphia County, PA",
+      "Phillips County, AR"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "cook": {
+     "n": 15,
+     "first": [
+      "COUNTIES",
+      "Cook County, IL",
+      "Cook County, GA",
+      "Cook County, MN",
+      "Cooke County, TX",
+      "McCook County, SD"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "ontario": {
+     "n": 4,
+     "first": [
+      "PROVINCES AND TERRITORIES",
+      "Ontario Canada",
+      "COUNTIES",
+      "Ontario County, NY"
+     ],
+     "none": false,
+     "body": "foldfs canback fqtyping orgsearch"
+    },
+    "zzqx": {
+     "n": 1,
+     "first": [
+      "No institutions match"
+     ],
+     "none": true,
+     "body": "foldfs canback fqtyping orgsearch"
+    }
+   },
+   "enter_ohio": {
+    "crumbs": "Ohio",
+    "state": "Ohio"
+   }
+  },
+  "err": []
+ }
+}

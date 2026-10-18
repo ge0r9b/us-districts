@@ -1,0 +1,129 @@
+{
+ "tot": {
+  "New York2016": null,
+  "New York2020": null,
+  "New York2024": [
+   4619195,
+   3578899,
+   8198094
+  ],
+  "Illinois2016": null,
+  "Illinois2020": null,
+  "Illinois2024": [
+   3062863,
+   2449079,
+   5592368
+  ],
+  "Pennsylvania2016": null,
+  "Pennsylvania2020": null,
+  "Pennsylvania2024": [
+   3423042,
+   3543308,
+   7034206
+  ],
+  "Florida2016": null,
+  "Florida2020": null,
+  "Florida2024": [
+   4683038,
+   6110125,
+   10893547
+  ],
+  "Colorado2016": null,
+  "Colorado2020": null,
+  "Colorado2024": [
+   1728159,
+   1377441,
+   3190873
+  ]
+ },
+ "us_line": {
+  "offered": [
+   "line",
+   "bar"
+  ],
+  "lat_menu": 25.1,
+  "lat_pick": 69.2,
+  "chart_after": "line",
+  "ysl_after": [
+   0,
+   2
+  ]
+ },
+ "us_page": {
+  "ym": "delta",
+  "y16": true,
+  "hi": 2,
+  "ysl": [
+   0,
+   2
+  ],
+  "chart": "line",
+  "num": "pct",
+  "view": "list",
+  "lv": "-",
+  "body": "y16 y16d listmode dline",
+  "ynote": "",
+  "legend": "",
+  "cands": [],
+  "candImgs": [
+   " trump.jpg?v=202610181577",
+   " trump.jpg?v=202610181577",
+   " clinton.jpg?v=202610181577",
+   " harris.jpg?v=202610181577"
+  ],
+  "opts": [
+   "line"
+  ],
+  "cmain": "line",
+  "crumbs": "United States",
+  "cpanel": null,
+  "nrows": 0,
+  "rows": [],
+  "cls": 0.0072
+ },
+ "us_svgs": [
+  "52,151.5 476.0,139.9 900,93.5 null",
+  "52,151.5 476.0,139.9 900,93.5 dl3",
+  "52,119.6 476.0,72.2 900,115.9 null",
+  "52,119.6 476.0,72.2 900,115.9 dl3"
+ ],
+ "pa_page": {
+  "ym": "delta",
+  "y16": true,
+  "hi": 2,
+  "ysl": [
+   0,
+   2
+  ],
+  "chart": "line",
+  "num": "pct",
+  "view": "list",
+  "lv": "-",
+  "body": "y16 y16d listmode dline",
+  "ynote": "",
+  "legend": "",
+  "cands": [],
+  "candImgs": [
+   " trump.jpg?v=202610181577",
+   " trump.jpg?v=202610181577",
+   " clinton.jpg?v=202610181577",
+   " harris.jpg?v=202610181577"
+  ],
+  "opts": [
+   "line"
+  ],
+  "cmain": "line",
+  "crumbs": "Pennsylvania",
+  "cpanel": null,
+  "nrows": 0,
+  "rows": [],
+  "cls": 0.0072
+ },
+ "pa_svgs": [
+  "52,161.0 476.0,138.3 900,77.8 null",
+  "52,161.0 476.0,138.3 900,77.8 dl3",
+  "52,188.3 476.0,93.5 900,142.8 null",
+  "52,188.3 476.0,93.5 900,142.8 dl3"
+ ],
+ "err": []
+}

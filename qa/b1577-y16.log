@@ -1,0 +1,98 @@
+{
+"states": [
+[
+"Hillary Clinton 2016",
+"65.85M",
+"Hillary Clinton 2016"
+],
+[
+"Donald Trump 2016",
+"62.98M",
+"Donald Trump 2016"
+]
+],
+"PA_cands": [
+[
+"Donald Trump 2016",
+"2.97M",
+"Donald Trump 2016"
+],
+[
+"Hillary Clinton 2016",
+"2.93M",
+"Hillary Clinton 2016"
+]
+],
+"PA_find": {
+"2,9[27]\\d,\\d{3}": [
+"2,971,303",
+"2,926,156"
+],
+"29[27]\\d{4}": [
+"2925199"
+]
+},
+"PA_tot": [
+2926441,
+2970733,
+6165478
+],
+"PhCo_cands": [
+[
+"Hillary Clinton 2016",
+"583K",
+"Hillary Clinton 2016"
+],
+[
+"Donald Trump 2016",
+"109K",
+"Donald Trump 2016"
+]
+],
+"PhCo_find": {
+"58\\d,\\d{3}": [
+"580,588",
+"582,909",
+"582,697"
+],
+"10\\d,\\d{3}": [
+"107,174",
+"100,149",
+"108,945",
+"108,711"
+]
+},
+"PhCo_rows": [
+"Philadelphia city | 583K",
+"Rockledge borough | 464"
+],
+"Prec_cands": [
+[
+"Hillary Clinton 2016",
+"584K",
+"Hillary Clinton 2016"
+],
+[
+"Donald Trump 2016",
+"109K",
+"Donald Trump 2016"
+]
+],
+"Prec_find": {
+"58\\d,\\d{3}": [
+"580,588",
+"584,025"
+],
+"10\\d,\\d{3}": [
+"107,174",
+"100,149",
+"108,748"
+]
+},
+"E16_phila": [
+582697,
+108711,
+706247
+],
+"err": []
+}

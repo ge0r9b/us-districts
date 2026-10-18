@@ -304,7 +304,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: both knobs show '16 > '24, but after 10 s the list and thumbnails still show 2016 single-year values ("DC 90.9%", Hillary Clinton 2016 / Donald Trump 2016). The chart menu offers only Pie and Bar; picking Line does nothing (chart mode stays empty). Reload restores the same stuck state. No "Loading 2016 results" text, no errors.
 - Screenshots: shots/b1571-ch-390-y16-range16-10000ms.png, shots/b1571-ch-390-y16-range16-line.png, shots/b1571-ch-320-y16-range16-10000ms.png, shots/b1571-ch-1024-y16-range16-10000ms.png
 
-### QA-039 2016 state totals after a drill-in are county sums, not the official state result
+### QA-039 [LOW on 1577: gap 0.02%, still open] 2016 state totals after a drill-in are county sums, not the official state result
 - Severity: Critical (wrong numbers, small) | Build 1571 | All sizes (data; seen at 1024x768)
 - Steps: All States > slider '16 > `#` > tap PA; read the bar panel.
 - Expected (FEC 2016, `qa/fec16.json`): Trump 2,970,733, Clinton 2,926,441 (the app's own `DS16.states` has these).
@@ -312,14 +312,14 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Other states whose 2016 county rows do not add up to FEC (D / R difference): CA -1,726 / -513, AL +60 / +374, TX -3 / -191, IN +29 / -46, NY +13 / +19, SD +8 / +10, KY -7 / -14, MI -1 / -2, WV -2 / 0.
 - Screenshot: shots/b1571-ch-1024x768-y16-PA-counties.png
 
-### QA-040 Philadelphia County shows three different 2016 totals
+### QA-040 [LOW on 1577: gap 0.19%, still open] Philadelphia County shows three different 2016 totals
 - Severity: Critical (wrong numbers, small) | Build 1571 | 1024x768 (Chromium)
 - Steps: '16 > All States > PA > Philadelphia > Philadelphia city; read the bar panel at each level.
 - Expected: one total for the same area at every level.
 - Actual: county table `ELECTION2016` Clinton 582,697 / Trump 108,711; panel at the county's towns list Clinton 582,909 / Trump 108,945; panel at Philadelphia city precincts Clinton 584,025 / Trump 108,748. (Rockledge borough still listed under Philadelphia, QA-006.)
 - Screenshots: shots/b1571-ch-1024x768-y16-phila.png, shots/b1571-ch-1024x768-y16-lvl4.png
 
-### QA-041 Picking Line in the chart menu is slow again (regression)
+### QA-041 [Fixed on 1577 (verified pass 12, 12:55 PM EDT)] Picking Line in the chart menu is slow again (regression)
 - Severity: Medium (slow tap) | Build 1571 | All 5 sizes, Chromium and WebKit
 - Steps: list view, 2020 > 2024 range > chart button > Line.
 - Expected: under 100 ms tap-to-paint (it was 9-29 ms on 1566-1569).
@@ -334,7 +334,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 
 ## New on build 1574 (pass 6)
 
-### QA-043 Picking Line in a '16 > '24 range moves the start knob to '20
+### QA-043 [Fixed on 1577 (verified pass 12, 12:55 PM EDT)] Picking Line in a '16 > '24 range moves the start knob to '20
 - Severity: High (silently changes the chosen range) | Build 1574 | 390x844, 320x568, 1024x768 (Chromium, touch); 3 of 3 runs at 390
 - Steps: All States list > open the time row > select the full range > drag the left knob to '16 so the range is '16 > '24 (the list shows the '16 > '24 change rows: FL R +11.9) > open the chart menu > pick Line.
 - Expected: the range stays '16 > '24 and Line plots '16, '20 and '24.
@@ -388,35 +388,35 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots (Chromium 1024x768, county view then +1, +2 zoom): shots/b1575-solid-ch-1024x768-Wy-county{,-z1,-z2}.png (Campbell WY), shots/b1575-solid-ch-1024x768-Al-county{,-z1,-z2}.png (Jackson AL), shots/b1575-solid-ch-1024x768-Id-county{,-z1,-z2}.png (Jefferson ID); earlier shots/b1575-saf-we-1440-Al-county-z2.png (Blount), shots/b1575-saf-ch-1440-Pe-county-z2.png (Lancaster for comparison). The thumbnails in the AL and ID shots are also shrunk (QA-045).
 - Data: `qa/b1575-clamp.json`, `qa/b1575-solid-chromium.json`; scripts `qa/b1575-clamp.py`, `qa/b1575-solid.py`
 
-### QA-047 [Critical] US map in a '16 range is coloured with the '20>'24 shift
+### QA-047 [Fixed on 1577 (verified pass 12, 12:55 PM EDT)] [Critical] US map in a '16 range is coloured with the '20>'24 shift
 - Severity: Critical (wrong map) | Build 1574 and 1575 | 390x844, 320x568, 1024x768 (Chromium)
 - Steps: US map > time row > set '16>'24 or '16>'20 > wait 12 s.
 - Expected: states coloured by the '16 shift (CO D +6.1 and KS D +4.5 blue for '16>'24; most states blue for '16>'20).
 - Actual: the state colours are pixel-identical to '20>'24 for both '16 ranges: CO (251,186,162) light red, KS (249,211,197), IL (239,119,99), FL (223,50,42). The single-year '16 map does change colours (CO (178,211,231)), so only the ranges are stuck. The list rows for the same ranges are right.
 - Screenshots: shots/b1575-usmap-ch-1024x768-20-24.png, shots/b1575-usmap-ch-1024x768-16-24.png, shots/b1575-usmap-ch-1024x768-16-20.png, shots/b1575-usmap-ch-1024x768-2016.png, shots/b1574-ch-390-r16-20-US.png
 
-### QA-048 [Critical] Precinct list in a '16 range shows "'20 n/a · '24 ..." and no change values
+### QA-048 [Fixed on 1577 (verified pass 12, 12:55 PM EDT)] [Critical] Precinct list in a '16 range shows "'20 n/a · '24 ..." and no change values
 - Severity: Critical (missing numbers, wrong year) | Build 1574/1575 | 390x844, 320x568, 1024x768 (Chromium)
 - Steps: All States > set '16>'24 (or '16>'20) > PA > Philadelphia > Philadelphia city.
 - Expected: 1,703 precinct rows with '16 change values (2016 precincts are loaded; the single-year '16 view shows them), and thumbnails with numbers.
 - Actual: every row reads "'20 n/a · '24 D 94.7%" (`#`: "'20 n/a · '24 D 431"). In '16>'20 the label still says '24 (Delaware Precinct 317 "'20 n/a · '24 D 97.9%"). Both thumbnails are blank. The county and towns levels above show change values correctly.
 - Screenshots: shots/b1574-ch-390-r16-24-prec-pct.png, shots/b1574-ch-390-r16-24-prec-num.png, shots/b1574-ch-390-r16-20-prec-pct.png, shots/b1574-ch-1024x768-r16-24-prec-pct.png
 
-### QA-049 [High] '16>'20 on the US map: the Biden 2020 thumbnail has no number
+### QA-049 [Fixed on 1577 (verified pass 12, 12:55 PM EDT)] [High] '16>'20 on the US map: the Biden 2020 thumbnail has no number
 - Severity: High (missing number) | Build 1574/1575 | 390x844, 320x568 (Chromium)
 - Steps: US map > time row > '16>'20.
 - Expected: four thumbnails with numbers (Trump 46% / Clinton 48% | Trump 47% / Biden 51%).
 - Actual: Biden 2020 shows no percentage; the 2020 Trump badge reads 46% (2020 national is 46.8%, so this may be fine). Reload keeps the blank.
 - Screenshot: shots/b1574-ch-390-r16-20-US.png
 
-### QA-050 [High] Reload on the precinct list in a '16 range lands on the county summary
+### QA-050 [High, still open on 1577] Reload on the precinct list in a '16 range lands on the county summary
 - Severity: High (navigation lost) | Build 1574/1575 | 390x844, 320x568, 1024x768 (Chromium)
 - Steps: '16>'24 > PA > Philadelphia > Philadelphia city precincts > reload.
 - Expected: the same precinct list.
 - Actual: the app opens "Philadelphia County" as a single-place summary (2016 Trump 15.4% / Clinton 82.5% | 2024 Trump 20.0% / Harris 78.8%, "R+8.3 shift") and no list. The range itself is kept.
 - Screenshot: shots/b1574-ch-390-r16-24-prec-reload.png
 
-### QA-051 Low '16>'20 list thumbnails are labelled "Joe Biden 2024"
+### QA-051 Low (still open on 1577 in the lists; fixed on the US map) '16>'20 list thumbnails are labelled "Joe Biden 2024"
 - Build 1574/1575 | 390x844. All States in '16>'20: the thumbnails show the right 2020 values (Biden 51%, Trump 47%), but their aria-label and hover title say "Joe Biden 2024" / "Donald Trump 2024". Screenshot: shots/b1574-ch-390-r16-20-states-pct.png
 
 ### QA-052 Medium Tapping into the Philadelphia city precincts is slow in a '16 range
@@ -511,6 +511,45 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Layout-stability sweep (MA > Worcester County, US House, years, range, drill-in and back) at 390/375/320/1024x576: same jumps as before and nothing new. QA-054 (thumbnails 3 px map/list), QA-058 (23 px on a range), QA-053 (time button 5 px), QA-057 (chart button hidden on US House).
 - One CLS 0.229 shift on `.cpanel` at 375x667 around the `#` pick in the smoke flow did not reproduce in two focused runs (0 shift), so it is not logged.
 - Not done this pass: WebKit smoke (screenshots timed out under the machine load), school-district lists per state.
+
+## Re-test status, build 1577 (pass 12, `6099604`, live line 9 = 202610181577; Chromium 390x844 and 1024x768, WebKit 390x844; Oct 18 ~12:33-12:55 PM EDT)
+Same steps as first logged. One browser at a time. WebKit 390 matched Chromium on every check. No page errors.
+- **QA-043 fixed:** All States > full range > drag the left knob to '16 ('16>'24, FL R +11.9) > Line. The knob stays at [0,2], the rows are '16>'24 (FL +7.1 / -4.8), and reload keeps '16>'24 + Line. '16>'20 + Line keeps [0,1]. Shots: shots/b1577-ch-{390,1024x768}-r16-24-afterdrag.png, -r16-24-line.png, -r16-24-line-reload.png, -r16-20-line.png, shots/b1577-we-390-r16-24-line.png
+- **QA-047 fixed:** pixel samples at state centres on the US map: '16>'24 CO (103,163,206) blue, KS (131,183,216) blue, GA (160,203,225), FL (199,36,33); '16>'20 CO (58,131,190), TX (150,197,222), PA (191,219,233); '20>'24 unchanged (CO 251,186,162). The three maps differ at all 9 sample points, identical across Chromium 390/1024 and WebKit 390. Shots: shots/b1577-ch-1024x768-US-{20-24,16-24,16-20,2016}.png (same for 390, and we-390)
+- **QA-048 fixed:** '16>'24 > PA > Philadelphia > Philadelphia city gives 1,703 rows with change values marked ≈ (2016 twin matching), e.g. "Precinct 5836 ≈R +65.9 · +32.9 / -33.0". `#` mode shows votes (Precinct 534 R +613). '16>'20 also has values (Precinct 5809 R +53.4). Thumbnails have numbers (Harris 79% / Trump 20%). New problem: QA-065 (names cut off). Shots: shots/b1577-ch-{390,1024x768}-prec-16-24.png, -prec-16-24-num.png, -prec-16-20.png
+- **QA-049 fixed:** the US map at '16>'20 shows four numbered thumbnails: Trump 2016 46%, Clinton 2016 48%, Trump 2020 47%, Biden 2020 51%. They survive a reload. Shots: shots/b1577-ch-390-US-16-20.png, -US-16-20-reload.png
+- **QA-050 still open:** reload on the '16>'24 Philadelphia city precinct list lands on the "Philadelphia County" summary (0 rows, level lost; the range [0,2] is kept). Chromium 390/1024 and WebKit 390. Shots: shots/b1577-ch-{390,1024x768}-prec-16-24-reload.png, shots/b1577-we-390-prec-16-24-reload.png
+- **QA-051 still open in the lists:** the US map labels are now right ("Joe Biden 2020", "Donald Trump 2020"). All States in '16>'20 (Bar and Line) and the Philadelphia precinct list in '16>'20 still label the thumbnails "Joe Biden 2024" / "Donald Trump 2024" (aria-label and title) while showing 2020 values (51% / 47%, 81% / 18%). Shots: shots/b1577-ch-390-r16-20-states.png, shots/b1577-ch-390-prec-16-20.png
+- **New 1577 chart-menu rule: passes.** One year (2016 and 2024; US map and All States list) offers Pie + Bar. A range ('20>'24, '16>'24, '16>'20) offers Line + Bar. Seen at both sizes and in WebKit.
+- **'16 line plot: passes for a single place, partly for lists.** US and Pennsylvania '16>'24 Line plot three points ('16/'20/'24) with per-segment labels, and the values match the official shares within rounding: US Clinton 48.2 > Biden 51.3 (+3.1) > Harris 48.3 (-2.9); Trump 46.1 > 46.8 (+0.8) > 49.8 (+3.1). PA Clinton 47.5 > 50.0 (+2.5) > 48.7 (-1.3); Trump 48.2 > 48.8 (+0.6) > 50.4 (+1.6). The All States list rows only draw '16 > '24 (QA-066). The list values are plausible: FL Trump +7.1 / Clinton > Harris -4.8, NV +5.1 / -0.4, VT '16>'20 +0.4 / +9.4. NY Trump +7.1 vs about +6.8 from the certified share, likely the app's 2024 NY total (8,198,094 vs the certified total, which includes others). Under 0.5 points, so LOW, not filed. Shots: shots/b1577-ch-1024x768-US-16-24-line.png, shots/b1577-ch-1024x768-PA-16-24-line.png
+- **Institution field always shows results: passes.** At US and at Pennsylvania (Chromium 390/1024):
+  - The empty field lists 55 / 68 rows. "US" and "America" give United States; "penn" gives Pennsylvania plus PA district types; "phila" gives Philadelphia County, PA; "cook" gives 15 Cook counties; "ontario" gives Ontario, Canada plus Ontario County, NY. All are grouped by kind.
+  - "zzqx" shows "No institutions match"; nothing was ever blank.
+  - Typing "ohio" and pressing Enter opens Ohio.
+  - Small oddity: QA-067. Shots: shots/b1577-ch-{390,1024x768}-inst-{US,PA}-{penn,zzqx}.png, -inst-enter-ohio.png
+- **QA-039 still open, now LOW:** '16 > All States > PA panel shows Trump 2,971,303 / Clinton 2,926,156 vs FEC 2,970,733 / 2,926,441 (+570 / -285, 0.02%). `__stTot` returns the FEC values. Shot: shots/b1577-ch-1024x768-y16-PA-counties.png
+- **QA-040 still open, now LOW:** Philadelphia 2016 is still three totals: county table 582,697 / 108,711, towns-level panel 582,909 / 108,945, precinct-level panel 584,025 / 108,748. The biggest gap is 1,328 of 706K (0.19%). Shots: shots/b1577-ch-1024x768-y16-phila.png, -y16-lvl4.png
+- **QA-041 fixed:** list, '20>'24 > chart > Line, tap-to-paint 14.5 / 17.9 / 17.5 ms (1024), 28.4 / 15.1 / 15.1 ms (390), 10 / 11 / 17 ms (WebKit 390).
+- Data: `qa/b1577-chromium-1024x768.json`, `qa/b1577-chromium-390.json`, `qa/b1577-webkit-390.json`, `qa/b1577-lineprobe.json`, `qa/b1577-y16.log`; scripts `qa/b1577-retest.py`, `qa/b1577-lineprobe.py`, `qa/b1577-y16drill.py`
+
+## New on build 1577 (pass 12)
+
+### QA-065 [HIGH] Precinct list in a '16 range: every name is cut to "Philadelph…", so the rows can't be told apart
+- Severity: HIGH (rows unidentifiable) | Build 1577 | Chromium 390x844 and 1024x768, WebKit 390x844
+- Steps: All States > '16>'24 (or '16>'20) > PA > Philadelphia > Philadelphia city.
+- Expected: the precinct name, or at least its number ("Philadelphia Precinct 5836"), readable.
+- Actual: the name column is about 90 px even at 1024 px wide (the new "≈R +65.9" label takes the space), so all 1,703 rows read "Philadelph…" and the precinct number is never visible. The crumb also cuts off at "Philadelphia County Philadelphi…".
+- Screenshots: shots/b1577-ch-1024x768-prec-16-24.png, shots/b1577-ch-390-prec-16-24.png, shots/b1577-we-390-prec-16-24.png
+
+### QA-066 [MEDIUM] All States Line in '16>'24 draws only '16 and '24 (no '20 point)
+- Severity: MEDIUM | Build 1577 | Chromium 390x844 and 1024x768, WebKit 390x844
+- Steps: All States > '16>'24 > Line.
+- Expected (1577 note: "'16>'24 plots '16/'20/'24 with per-segment change labels"): each row has a '20 point and two segment labels, as the single-place chart does (US and PA show three points).
+- Actual: each row has two 2-point polylines (e.g. FL `0,49.6 100,54.9` / `0,48.3 100,40.5`) and one net label per candidate (+7.1 / -4.8). The thumbnails show only the 2024 candidates.
+- Screenshots: shots/b1577-ch-1024x768-r16-24-line.png (list), shots/b1577-ch-1024x768-US-16-24-line.png (single place, 3 points)
+
+### QA-067 [LOW] Institution search "America" lists South Africa
+- Build 1577 | Chromium 390/1024. Typing "America" in the institution field gives COUNTRY United States, then South Africa, then counties. South Africa doesn't contain "America" and isn't a synonym, so this looks like a loose fuzzy match. Data: `qa/b1577-chromium-1024x768.json` > inst.
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
