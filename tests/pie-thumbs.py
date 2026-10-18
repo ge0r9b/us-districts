@@ -27,11 +27,12 @@ async def main():
       ck(g['th'][0]['t'].startswith('Kamala Harris') and g['th'][0]['r'][1]<g['th'][1]['r'][1],T+" rank order, winner on top (Harris in MA)",[x['t'] for x in g['th']])
       cx,cy,R=g['pie']
       def hit(r): nx=min(max(cx,r[0]),r[2]); ny=min(max(cy,r[1]),r[3]); return math.hypot(nx-cx,ny-cy)<R-1
-      ck(not any(hit(x['r']) for x in g['th']),T+" thumbnails don't overlap the pie",[g['pie'],[x['r'] for x in g['th']]])
+      ims=await pg.evaluate("()=>[...document.querySelectorAll('#cands .cand img')].filter(i=>i.offsetParent).map(i=>{const r=i.getBoundingClientRect();return [r.left,r.top,r.right,r.bottom]})")
+      ck(not any(hit(r) for r in ims),T+" thumbnail photos don't overlap the pie (build 1585: the pie sits right of the thumbnail column)",[g['pie'],ims])
       ck(not any(hit(r) for r in g['btn']),T+" buttons don't overlap the pie",[g['pie'],g['btn']])
       await pg.evaluate("()=>[...document.querySelectorAll('#cands .cand')].find(b=>b.offsetParent).click()"); await pg.wait_for_timeout(300)
-      bb=await pg.evaluate("()=>{const b=document.getElementById('bub')||document.querySelector('.bub');return b&&!b.hidden?b.textContent:null}")
-      ck(bb and 'Kamala Harris' in bb and any(ch.isdigit() for ch in bb),T+" tap shows the full name + value in the bubble",bb)
+      bb=await pg.evaluate("()=>{const b=document.getElementById('iconBub');return b?b.textContent:null}")
+      ck(bb=='Kamala Harris',T+" tap shows the name in the white bubble (build 1585: name only; the chart shows the numbers)",bb)
       await pg.screenshot(path=f'/workspace/pie-thumbs-{W}.png')
       ck(not er,T+" no page errors",er[:2]); await c.close()
     await b.close()

@@ -42,19 +42,19 @@ async def run(b,tag,vp,mobile):
     s0=await pg.evaluate("()=>[...document.querySelectorAll('[aria-label=Chart]')].length"); 
     await pg.evaluate("()=>document.querySelector('[aria-label=Chart]').click()"); await pg.wait_for_timeout(400)
     o=await pg.evaluate("()=>[...document.querySelectorAll('.copts button')].map(b=>b.dataset.ch)"); await pg.evaluate("()=>document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}))"); await pg.wait_for_timeout(400)
-    ck(tag+" %s range: chart menu offers pie (build 1571)"%mode,"pie" in o,o)
+    ck(tag+" %s range: list chart menu offers no pie, offers the split bar (build 1585)"%mode,"pie" not in o and "gbar" in o,o)
     await setchart(pg,"line"); 
     if mode=="pct": await pg.screenshot(path="/tmp/cm-%s-line.png"%tag)
   # single point: bar + pie rows
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=2; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
   s=await pg.evaluate(LST); ck(tag+" single point: line auto-switched to bar rows",s['lnw']==0 and s['bars']>=40,{k:s[k] for k in ('n','bars','lnw')})
-  await setchart(pg,"pie"); s=await pg.evaluate(LST); ck(tag+" single point pie: one disc per row (3 arcs), no per-row thumbnails, 2 candidates in the left column, no bars",s['pwr']>=40 and s['bars']==0 and all(c==3 for c in s['circles']) and all(p==0 for p in s['pth']) and s['lac']==2,s)
-  ck(tag+" single point pie: stays left of the button column",s['over']==0,s['over'])
-  await pg.screenshot(path="/tmp/cm-%s-pie.png"%tag)
-  await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=1; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
-  s=await pg.evaluate(LST); ck(tag+" pie + range: rows keep pies (end year, build 1571)",s['pwr']>=40,{k:s[k] for k in ('n','bars','pwr')})
-  await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=2; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(2500)
-  s=await pg.evaluate(LST); ck(tag+" back to single point: pie rows restored",s['pwr']>=40,{k:s[k] for k in ('n','bars','pwr')})
+  # build 1585 (user): lists never show pies; single point offers totaled bar + split bar
+  await pg.evaluate("()=>document.querySelector('[aria-label=Chart]').click()"); await pg.wait_for_timeout(400)
+  o=await pg.evaluate("()=>[...document.querySelectorAll('.copts button')].map(b=>b.dataset.ch)"); await pg.evaluate("()=>document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}))"); await pg.wait_for_timeout(400)
+  ck(tag+" single point: list chart menu = split bar only besides bar, no pie",o==["gbar"],o)
+  await setchart(pg,"gbar"); s2=await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].filter(r=>r.offsetParent&&r.querySelectorAll('.gbt').length>=2).length"); s=await pg.evaluate(LST)
+  ck(tag+" single point split bar: rows have one bar per candidate, no pies",s2>=40 and s['pwr']==0,(s2,s['pwr']))
+  await pg.screenshot(path="/tmp/cm-%s-gbar.png"%tag)
   await pg.evaluate("()=>{ const s=document.getElementById('yslider'); s.value=1; s.dispatchEvent(new Event('input',{bubbles:true})); }"); await pg.wait_for_timeout(1500); await setchart(pg,"bar")
   s=await pg.evaluate(LST); ck(tag+" back to bar: rows are bars again",s['bars']>=40 and s['lnw']==0,s)
   # Alabama counties list-all, line

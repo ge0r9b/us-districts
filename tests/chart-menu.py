@@ -10,7 +10,7 @@ def ck(n,ok,d=''):
   print(('OK   ' if ok else 'FAIL ')+n,'' if ok else json.dumps(d)[:600]); fails+=0 if ok else 1
 ST="""()=>{const w=document.getElementById('chartBox'),m=w.querySelector('.cmain'),r=m.getBoundingClientRect();
  const ob=[...w.querySelectorAll('.copts button')].map(b=>{const q=b.getBoundingClientRect();return {k:b.dataset.ch,x:q.left+q.width/2,y:q.top+q.height/2,w:q.width}});
- const rows=[...document.querySelectorAll('.cpanel .sebr')].map(e=>{const n=e.querySelector('.sebn').getBoundingClientRect(),t=e.querySelector('.sebt').getBoundingClientRect(),i=e.querySelector('.sebt i').getBoundingClientRect(),b=e.querySelector('.sebt b'),br=b.getBoundingClientRect();return {k:e.dataset.k,v:+e.dataset.v,n:e.querySelector('.sebn').textContent,nl:n.left,tr:t.right,il:i.left,ir:i.right,lab:b.textContent,bl:br.left,brr:br.right,vis:br.width>0}});
+ const rows=[...document.querySelectorAll('.cpanel .sebr')].map(e=>{const n=(e.querySelector('.sebn')||e.querySelector('.sebt')).getBoundingClientRect(),t=e.querySelector('.sebt').getBoundingClientRect(),i=e.querySelector('.sebt i').getBoundingClientRect(),b=e.querySelector('.sebt b'),br=b.getBoundingClientRect();return {k:e.dataset.k,v:+e.dataset.v,n:(e.querySelector('.sebn')||{textContent:''}).textContent,nl:n.left,tr:t.right,il:i.left,ir:i.right,lab:b.textContent,bl:br.left,brr:br.right,vis:br.width>0}});
  return {mode:window.chartMode,main:m.dataset.ch,open:w.classList.contains('open'),opts:ob,mx:r.left+r.width/2,my:r.top+r.height/2,lm:document.body.classList.contains('listmode'),pie:!!document.querySelector('.cpanel .cpie1 svg, .cpanel .cpieL svg'),line:!!document.querySelector('.cpanel .clinechart svg'),rows,vw:innerWidth}}"""
 async def tap(pg,x,y,touch):
   if touch: await pg.touchscreen.tap(x,y)
@@ -35,7 +35,7 @@ async def run(b,tag,vp,touch):
         await pg.evaluate("m=>window.__setNum(m)",nm); await pg.wait_for_timeout(1600); s=await pg.evaluate(ST); r=s['rows']
         ck(f"{tag} single bar {nm}: one bar per answer (3: R, D, other)",len(r)==3 and {x['k'] for x in r}=={'rep','dem','oth'},r)
         ck(f"{tag} single bar {nm}: sorted high -> low",all(r[i]['v']>=r[i+1]['v'] for i in range(len(r)-1)),[x['v'] for x in r])
-        ck(f"{tag} single bar {nm}: names at x=52, bars end 12px short of the right edge",all(abs(x['nl']-52)<=1 and abs(x['tr']-(s['vw']-12))<=1.5 for x in r),[(x['nl'],x['tr']) for x in r])
+        ck(f"{tag} single bar {nm}: no name labels; bars start 6px right of the thumbnail column and run under the floating buttons (build 1585)",all(not x['n'] and abs(x['tr']-(s['vw']-8))<=1.5 for x in r),[(x['n'],x['nl'],x['tr']) for x in r])
         import re
         pat=r'^\d+\.\d%$' if nm=='pct' else r'^\d+(\.\d{2}[MK]|K|M)?$|^\d+(\.\d+)?[MK]$'
         ck(f"{tag} single bar {nm}: every bar labeled with its total ({[x['lab'] for x in r]})",all(re.match(pat,x['lab']) and x['vis'] and x['bl']>=x['il']-0.5 and x['brr']<=x['tr']+0.5 for x in r),r)

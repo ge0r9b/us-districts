@@ -51,7 +51,7 @@ async def main():
       th=await pg.evaluate(LTH); ck(len(th)==2 and all(re.search(r'\d',v) for k,v in th),f"{lvl}: thumbnails show 2016 values",th)
       for mode in ('pie','bar'):
         await pg.evaluate(PICK,mode); await pg.wait_for_timeout(2500); r=await pg.evaluate(RCH)
-        ck(r['n']>=1 and (r['pies'] if mode=='pie' else r['bars'])>=max(1,r['n']*0.6),f"{lvl} {mode}: rows draw 2016 {mode}s",r)
+        ck(r['n']>=1 and r['bars']>=max(1,r['n']*0.6) and (mode!='pie' or r['pies']==0),f"{lvl} {mode}: rows draw 2016 bars"+(" (build 1585: a pie picked earlier falls to bars on lists, never row pies)" if mode=='pie' else ""),r)
       await pg.evaluate(PICK,'bar'); await pg.wait_for_timeout(800); await pg.evaluate("()=>{const m=document.querySelector('button.rbtn.cmain');m.click()}"); await pg.wait_for_timeout(300)
       await pg.evaluate("()=>{const d=document.getElementById('chartDim');d&&d.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}))}"); await pg.wait_for_timeout(1500)
       if lvl=="PA counties": await pg.screenshot(path='/workspace/y2016-levels-pa.png')
