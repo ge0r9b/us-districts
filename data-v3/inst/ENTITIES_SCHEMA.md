@@ -28,7 +28,7 @@ Build inputs (all read-only): `data-v3/geo/*.csv`; TIGER 2024 Gazetteer (countie
   | column | example | meaning |
   |---|---|---|
   | `entity_id` | `muni:place:1938595` | |
-  | `geoid_layer`, `geoid` | `cousub`, `1915319385950` | every GEOID that names this entity, the primary one included |
+  | `geoid_layer`, `geoid` | `cousub`, `<10-digit state+county+cousub GEOID>` | every GEOID that names this entity, the primary one included |
   | `relation` | `coextensive` / `consolidated_city_county` / `independent_city_county_equivalent` / `primary` | how this GEOID relates to the entity |
   | `vintage` | `2024` | |
   | `source` | `TIGER 2024 place-cousub relationship file` | |
