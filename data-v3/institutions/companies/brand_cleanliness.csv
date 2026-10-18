@@ -13,84 +13,161 @@ rank,entity_id,name,locations,states_covered,pct_with_geoid,pct_coords_cc0,pct_c
 12,wikidata:Q7356709,Rodeway Inn,379,47,98.7,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
 13,wikidata:Q5032010,Candlewood Suites,445,46,95.5,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
 14,wikidata:Q2717882,Holiday Inn,1096,46,42.9,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
-15,wikidata:Q5333330,Econo Lodge,530,45,95.5,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
-16,wikidata:Q24907770,Tru by Hilton,265,43,88.7,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-17,wikidata:Q7605116,Staybridge Suites,365,43,84.9,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
-18,wikidata:Q3268010,Circle K,8196,43,56.1,100.0,100.0,True,True,Alimentation Couche-Tard,False,atp-circle_k-2026-10-10;atp-circle_k_dk-2026-10-10;atp-circle_k_ireland-2026-10-10;atp-circle_k_no-2026-10-10;atp-circle_k_pl-2026-10-10;atp-circle_k_se-2026-10-10;atp-circle_k_vn-2026-10-10
-19,wikidata:Q69588194,Sleep Inn,384,42,95.1,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
-20,wikidata:Q5369524,Embassy Suites Hotels,173,42,94.2,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-21,wikidata:Q109275422,Tapestry Collection by Hilton,172,42,61.6,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-22,wikidata:Q5653536,AC Hotels,290,40,52.1,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-23,wikidata:Q113152464,Ascend Hotel Collection,249,39,69.1,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
-24,wikidata:Q634831,Sheraton Hotels and Resorts,440,39,31.6,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
-25,wikidata:Q113152432,MainStay Suites,140,38,97.1,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
-26,wikidata:Q10454567,Clarion Hotels,210,38,77.1,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
-27,wikidata:Q598884,Hilton Hotels & Resorts,527,38,26.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-28,wikidata:Q4734166,Aloft Hotels,246,35,67.9,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
-29,wikidata:Q91948072,Element Hotels,134,34,78.4,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-30,wikidata:Q60749907,Avid Hotels,93,32,93.5,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-31,wikidata:Q136125302,Garner Hotels,147,32,44.2,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-32,wikidata:Q19903229,Curio Collection by Hilton,190,32,30.5,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-33,wikidata:Q113152476,Cambria Hotels,77,31,100.0,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
-34,wikidata:Q113152401,Suburban Studios,115,30,100.0,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
-35,wikidata:Q2746220,Crowne Plaza,442,29,17.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-36,wikidata:Q5254663,Delta Hotels,145,27,37.9,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-37,wikidata:Q5911596,Hotel Indigo,209,27,35.4,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
-38,wikidata:Q1751979,Radisson Hotels,76,26,57.9,100.0,100.0,True,True,Radisson Hotel Group,True,atp-choice_hotels-2026-09-19
-39,wikidata:Q6410248,Kimpton Hotels & Restaurants,91,24,60.4,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
-40,wikidata:Q85846030,Graduate by Hilton,29,23,93.1,100.0,100.0,True,True,AJ Capital Partners;Hilton Worldwide,False,atp-hilton-2026-08-29
-41,wikidata:Q30632909,Canopy by Hilton,45,18,46.7,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-42,wikidata:Q782200,Ritz-Carlton,128,18,34.4,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-43,wikidata:Q13636126,Hilton Grand Vacations,81,16,75.3,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-44,wikidata:Q261077,Le Méridien,126,16,19.0,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
-45,wikidata:Q30672853,WoodSpring Suites,71,15,100.0,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
-46,wikidata:Q5416522,Even Hotels,49,15,46.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-47,wikidata:Q1825730,InterContinental,250,14,9.2,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-48,wikidata:Q111485843,Holiday Inn Club Vacations,25,12,84.0,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-49,wikidata:Q60750454,Voco,168,12,15.5,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
-50,wikidata:Q111485210,Holiday Inn Resort,60,11,28.3,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-51,wikidata:Q3239392,Waldorf Astoria Hotels and Resorts,42,8,21.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-52,wikidata:Q30715430,St. Regis Hotels & Resorts,70,8,14.3,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
-53,wikidata:Q112144357,Tempo by Hilton,8,6,100.0,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
-54,wikidata:Q3099664,Gaylord Hotels,7,6,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-55,wikidata:Q112144335,Signia by Hilton,7,5,71.4,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
-56,wikidata:Q855525,Conrad Hotels & Resorts,53,5,9.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
-57,wikidata:Q64605184,LXR Hotels & Resorts,19,4,26.3,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
-58,wikidata:Q7281341,Radisson Blu,9,3,33.3,100.0,100.0,True,True,Carlson,True,atp-choice_hotels-2026-09-19
-59,wikidata:Q112144350,Motto by Hilton,10,3,30.0,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
-60,wikidata:Q91218404,Edition Hotels,24,3,20.8,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-61,wikidata:Q135527452,Vignette Collection,51,3,5.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
-62,wikidata:Q17092570,Protea Hotels,65,0,0.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-63,wikidata:Q2078880,CVS Pharmacy,9001,51,100.0,0.0,100.0,True,True,CVS Health,False,cvs-store-locator-2026-10-17
-64,wikidata:Q1591889,Walgreens,7991,51,98.7,0.0,100.0,True,True,Walgreens Boots Alliance,True,walgreens-locator-api-2026-10-12
-65,wikidata:Q1969162,Westin Hotels & Resorts,253,31,48.6,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
-66,wikidata:Q2412604,The Luxury Collection,142,15,15.5,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
-67,wikidata:Q7958488,W Hotels,72,13,27.8,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
-68,wikidata:Q2143252,Renaissance Hotels,183,30,49.2,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-69,wikidata:Q70287020,Moxy Hotels,193,26,25.4,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-70,wikidata:Q92021343,Tribute Portfolio,219,36,49.3,0.0,99.1,True,True,Marriott International,False,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
-71,wikidata:Q19872869,Autograph Collection Hotels,310,38,51.6,0.0,91.3,True,True,Marriott International,True,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
-72,wikidata:Q1046951,Target Corporation,2026,51,100.0,100.0,100.0,True,False,,True,atp-target_us-2026-10-10
-73,wikidata:Q1373493,Lowe's,1761,51,100.0,100.0,100.0,True,False,,True,atp-lowes_us-2026-07-11
-74,wikidata:Q483551,Walmart,4904,51,92.0,100.0,100.0,True,False,,True,atp-walmart_ca-2026-10-10;atp-walmart_us-2026-01-24;atp-walmart_us-2026-10-10
-75,wikidata:Q864407,The Home Depot,2208,51,91.2,100.0,100.0,True,False,,True,atp-home_depot-2026-10-10;atp-home_depot_ca-2026-10-10
-76,wikidata:Q533415,Best Buy,1204,51,87.5,100.0,100.0,True,False,,True,atp-best_buy-2026-10-10;atp-best_buy_ca-2026-10-10
-77,wikidata:Q37158,Starbucks,35028,51,47.7,100.0,100.0,True,False,,True,atp-starbucks_ae-2026-10-10;atp-starbucks_ar_cl-2026-10-10;atp-starbucks_au-2026-10-10;atp-starbucks_br-2026-10-10;atp-starbucks_ca-2026-10-10;atp-starbucks_cn-2026-10-10;atp-starbucks_eu-2026-10-10;atp-starbucks_hk_mo-2026-10-10;atp-starbucks_jp-2026-10-10;atp-starbucks_mena-2026-10-10;atp-starbucks_pe-2026-10-10;atp-starbucks_sg-2026-10-10;atp-starbucks_th-2026-10-10;atp-starbucks_tw-2026-10-10;atp-starbucks_us-2026-10-10;atp-starbucks_za-2026-10-10
-78,wikidata:Q38076,McDonald's,35952,51,37.5,100.0,100.0,True,False,,True,atp-mcdonalds-2026-10-10;atp-mcdonalds_at-2026-10-10;atp-mcdonalds_be-2026-10-10;atp-mcdonalds_bg-2026-10-10;atp-mcdonalds_cy-2026-10-03;atp-mcdonalds_cz-2026-10-10;atp-mcdonalds_ee-2026-10-10;atp-mcdonalds_eg-2026-10-10;atp-mcdonalds_es-2026-10-10;atp-mcdonalds_fr-2026-10-10;atp-mcdonalds_gr-2026-10-10;atp-mcdonalds_gt-2026-10-10;atp-mcdonalds_hk-2026-10-10;atp-mcdonalds_il-2026-10-10;atp-mcdonalds_it-2026-10-03;atp-mcdonalds_jp-2026-10-10;atp-mcdonalds_kr-2026-10-10;atp-mcdonalds_latin_america-2026-10-10;atp-mcdonalds_lt-2026-10-10;atp-mcdonalds_lu-2026-10-10;atp-mcdonalds_lv-2026-10-10;atp-mcdonalds_mt-2026-10-10;atp-mcdonalds_my-2026-10-10;atp-mcdonalds_ph-2026-10-03;atp-mcdonalds_pl-2026-10-10;atp-mcdonalds_pt-2026-10-10;atp-mcdonalds_rs-2026-07-25;atp-mcdonalds_si-2026-07-25;atp-mcdonalds_sk-2026-10-10;atp-mcdonalds_th-2026-10-10;atp-mcdonalds_tr-2026-10-10;atp-mcdonalds_vn-2026-10-10
-79,wikidata:Q113152349,Comfort Inn,1254,48,77.1,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
-80,wikidata:Q55525150,Comfort Suites,532,44,93.8,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
-81,wikidata:Q3918608,Marriott Hotels & Resorts,651,41,49.8,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-82,wikidata:Q259340,7-Eleven,54135,39,12.6,100.0,100.0,True,False,,True,atp-seven_eleven_au-2026-10-10;atp-seven_eleven_ca_us-2026-10-10;atp-seven_eleven_dk-2026-10-10;atp-seven_eleven_jp-2026-10-10;atp-seven_eleven_mx-2026-10-10;atp-seven_eleven_ph-2026-10-10;atp-seven_eleven_se-2026-10-10;atp-seven_eleven_th-2026-10-10;atp-seven_eleven_tw-2026-10-10
-83,wikidata:Q1439966,Four Points by Sheraton,538,37,21.6,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-84,wikidata:Q109329542,City Express,181,24,26.5,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
-85,wikidata:Q16994722,IHG Army Hotels,61,22,98.4,100.0,100.0,True,False,,True,atp-ihg_hotels-2026-10-10
-86,wikidata:Q60711675,Park Inn by Radisson,30,17,76.7,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
-87,wikidata:Q5264274,Design Hotels,277,15,17.3,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
-88,wikidata:Q4982335,Buc-ee's,50,12,100.0,100.0,100.0,True,False,,False,atp-bucees_us-2026-10-03
-89,wikidata:Q28233721,Radisson Red,4,1,25.0,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
-90,wikidata:Q72636824,Marriott Executive Apartments,56,0,0.0,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-91,wikidata:Q2052550,Park Plaza Hotels & Resorts,1,0,0.0,100.0,100.0,True,False,,False,atp-choice_hotels-2026-09-19
-92,wikidata:Q6772996,Marriott Vacation Club International,92,14,78.3,76.1,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
-93,wikidata:Q1067636,JW Marriott Hotels,142,16,24.6,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
-94,wikidata:Q5430314,Fairfield by Marriott,1470,50,82.0,99.9,99.9,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-95,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18
+15,wikidata:Q1809448,Whole Foods Market,535,45,100.0,100.0,100.0,True,True,Amazon,True,atp-whole_foods-2026-10-10
+16,wikidata:Q5333330,Econo Lodge,530,45,95.5,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
+17,wikidata:Q1972120,Sam's Club,602,44,98.8,100.0,100.0,True,True,Walmart,True,atp-sams_club-2026-10-10
+18,wikidata:Q688825,Trader Joe's,666,43,100.0,100.0,100.0,True,True,Aldi Nord,True,atp-trader_joes_us-2026-10-10
+19,wikidata:Q24907770,Tru by Hilton,265,43,88.7,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+20,wikidata:Q7605116,Staybridge Suites,365,43,84.9,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
+21,wikidata:Q3268010,Circle K,8196,43,56.1,100.0,100.0,True,True,Alimentation Couche-Tard,False,atp-circle_k-2026-10-10;atp-circle_k_dk-2026-10-10;atp-circle_k_ireland-2026-10-10;atp-circle_k_no-2026-10-10;atp-circle_k_pl-2026-10-10;atp-circle_k_se-2026-10-10;atp-circle_k_vn-2026-10-10
+22,wikidata:Q69588194,Sleep Inn,384,42,95.1,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
+23,wikidata:Q5369524,Embassy Suites Hotels,173,42,94.2,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+24,wikidata:Q109275422,Tapestry Collection by Hilton,172,42,61.6,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+25,wikidata:Q5653536,AC Hotels,290,40,52.1,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+26,wikidata:Q113152464,Ascend Hotel Collection,249,39,69.1,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
+27,wikidata:Q634831,Sheraton Hotels and Resorts,440,39,31.6,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+28,wikidata:Q113152432,MainStay Suites,140,38,97.1,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
+29,wikidata:Q10454567,Clarion Hotels,210,38,77.1,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
+30,wikidata:Q598884,Hilton Hotels & Resorts,527,38,26.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+31,wikidata:Q4734166,Aloft Hotels,246,35,67.9,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+32,wikidata:Q91948072,Element Hotels,134,34,78.4,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+33,wikidata:Q60749907,Avid Hotels,93,32,93.5,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+34,wikidata:Q136125302,Garner Hotels,147,32,44.2,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+35,wikidata:Q19903229,Curio Collection by Hilton,190,32,30.5,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+36,wikidata:Q113152476,Cambria Hotels,77,31,100.0,100.0,100.0,True,True,Choice Hotels,True,atp-choice_hotels-2026-09-19
+37,wikidata:Q113152401,Suburban Studios,115,30,100.0,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
+38,wikidata:Q2746220,Crowne Plaza,442,29,17.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+39,wikidata:Q5254663,Delta Hotels,145,27,37.9,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+40,wikidata:Q5911596,Hotel Indigo,209,27,35.4,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
+41,wikidata:Q1751979,Radisson Hotels,76,26,57.9,100.0,100.0,True,True,Radisson Hotel Group,True,atp-choice_hotels-2026-09-19
+42,wikidata:Q6410248,Kimpton Hotels & Restaurants,91,24,60.4,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
+43,wikidata:Q85846030,Graduate by Hilton,29,23,93.1,100.0,100.0,True,True,AJ Capital Partners;Hilton Worldwide,False,atp-hilton-2026-08-29
+44,wikidata:Q1508234,Safeway,911,18,100.0,100.0,100.0,True,True,Cerberus Capital Management,True,atp-safeway-2026-10-10
+45,wikidata:Q30632909,Canopy by Hilton,45,18,46.7,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+46,wikidata:Q782200,Ritz-Carlton,128,18,34.4,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+47,wikidata:Q2831861,Albertsons,362,16,100.0,100.0,100.0,True,True,Cerberus Capital Management,False,atp-albertsons-2026-10-10
+48,wikidata:Q13636126,Hilton Grand Vacations,81,16,75.3,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+49,wikidata:Q261077,Le Méridien,126,16,19.0,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+50,wikidata:Q30672853,WoodSpring Suites,71,15,100.0,100.0,100.0,True,True,Choice Hotels,False,atp-choice_hotels-2026-09-19
+51,wikidata:Q5416522,Even Hotels,49,15,46.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+52,wikidata:Q1825730,InterContinental,250,14,9.2,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+53,wikidata:Q111485843,Holiday Inn Club Vacations,25,12,84.0,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+54,wikidata:Q60750454,Voco,168,12,15.5,100.0,100.0,True,True,IHG Hotels & Resorts,True,atp-ihg_hotels-2026-10-10
+55,wikidata:Q111485210,Holiday Inn Resort,60,11,28.3,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+56,wikidata:Q1435950,Food Lion,1153,10,100.0,100.0,100.0,True,True,Delhaize Le Lion;Ahold Delhaize,True,atp-food_lion_us-2026-10-10
+57,wikidata:Q151954,Lidl,203,10,100.0,100.0,100.0,True,True,Schwarz Group,True,atp-lidl-2026-10-10
+58,wikidata:Q3239392,Waldorf Astoria Hotels and Resorts,42,8,21.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+59,wikidata:Q30715430,St. Regis Hotels & Resorts,70,8,14.3,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+60,wikidata:Q7544856,Smith's Food and Drug,145,7,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+61,wikidata:Q341975,Acme Markets,156,6,100.0,100.0,100.0,True,True,Albertsons,True,atp-albertsons-2026-10-10
+62,wikidata:Q112144357,Tempo by Hilton,8,6,100.0,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
+63,wikidata:Q3099664,Gaylord Hotels,7,6,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+64,wikidata:Q3658429,Stop & Shop,362,5,100.0,100.0,100.0,True,True,Ahold Delhaize,True,atp-stop_and_shop_us-2026-10-03
+65,wikidata:Q5648760,Hannaford Bros. Co.,188,5,100.0,100.0,100.0,True,True,Ahold Delhaize,False,atp-hannaford-2026-10-10
+66,wikidata:Q578387,Shaw's and Star Market,126,5,100.0,100.0,100.0,True,True,Albertsons,True,atp-albertsons-2026-10-10
+67,wikidata:Q112144335,Signia by Hilton,7,5,71.4,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
+68,wikidata:Q855525,Conrad Hotels & Resorts,53,5,9.4,100.0,100.0,True,True,Hilton Worldwide,True,atp-hilton-2026-08-29
+69,wikidata:Q5558336,Giant Food,163,4,100.0,100.0,100.0,True,True,Ahold Delhaize,True,atp-giant_food_us-2026-10-10
+70,wikidata:Q5495932,Fred Meyer,126,4,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+71,wikidata:Q64605184,LXR Hotels & Resorts,19,4,26.3,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
+72,wikidata:Q3178470,Jewel-Osco,190,3,100.0,100.0,100.0,True,True,Albertsons,True,atp-albertsons-2026-10-10
+73,wikidata:Q5465282,Food 4 Less,115,3,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+74,wikidata:Q5123299,City Market,35,3,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+75,wikidata:Q7281341,Radisson Blu,9,3,33.3,100.0,100.0,True,True,Carlson,True,atp-choice_hotels-2026-09-19
+76,wikidata:Q112144350,Motto by Hilton,10,3,30.0,100.0,100.0,True,True,Hilton Worldwide,False,atp-hilton-2026-08-29
+77,wikidata:Q91218404,Edition Hotels,24,3,20.8,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+78,wikidata:Q135527452,Vignette Collection,51,3,5.9,100.0,100.0,True,True,IHG Hotels & Resorts,False,atp-ihg_hotels-2026-10-10
+79,wikidata:Q1264366,Winn-Dixie,254,2,100.0,100.0,100.0,True,True,Aldi Süd,False,atp-winn_dixie_us-2026-10-10
+80,wikidata:Q7941609,Vons,185,2,100.0,100.0,100.0,True,True,Albertsons,True,atp-albertsons-2026-10-10
+81,wikidata:Q6412065,King Soopers,122,2,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+82,wikidata:Q5276954,Dillons,69,2,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+83,wikidata:Q7265425,QFC,58,2,100.0,100.0,100.0,True,True,Kroger,False,atp-kroger_us-2026-10-10
+84,wikidata:Q4866786,Bashas',53,2,100.0,100.0,100.0,True,True,Raley's Supermarkets,True,atp-bashas_us-2026-10-10
+85,wikidata:Q119405196,Market Street,21,2,100.0,100.0,100.0,True,True,United Supermarkets,False,atp-albertsons-2026-10-10
+86,wikidata:Q3929820,Ralphs,182,1,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+87,wikidata:Q5558332,Giant Food Stores,168,1,100.0,100.0,100.0,True,True,Ahold Delhaize,True,atp-giant_food_stores-2026-10-10
+88,wikidata:Q5506547,Fry's Food and Drug,131,1,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+89,wikidata:Q17108901,United Supermarkets,52,1,100.0,100.0,100.0,True,True,Albertsons,False,atp-albertsons-2026-10-10
+90,wikidata:Q130253202,Food City,45,1,100.0,100.0,100.0,True,True,Bashas',False,atp-food_city_arizona_us-2026-10-10
+91,wikidata:Q115350320,Albertsons Market,24,1,100.0,100.0,100.0,True,True,United Supermarkets,False,atp-albertsons-2026-10-10
+92,wikidata:Q112922067,Bel Air,21,1,100.0,100.0,100.0,True,True,Raley's Supermarkets,False,atp-raleys_us-2026-10-10
+93,wikidata:Q4849080,Baker's Supermarkets,11,1,100.0,100.0,100.0,True,True,Dillons,True,atp-kroger_us-2026-10-10
+94,wikidata:Q7156587,Pay Less Super Markets,9,1,100.0,100.0,100.0,True,True,Kroger,True,atp-kroger_us-2026-10-10
+95,wikidata:Q6698032,Lucky Stores,4,1,100.0,100.0,100.0,True,True,Save Mart Supermarkets,True,atp-albertsons-2026-10-10
+96,wikidata:Q115350331,Amigos,3,1,100.0,100.0,100.0,True,True,United Supermarkets,False,atp-albertsons-2026-10-10
+97,wikidata:Q17092570,Protea Hotels,65,0,0.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+98,wikidata:Q2078880,CVS Pharmacy,9001,51,100.0,0.0,100.0,True,True,CVS Health,False,cvs-store-locator-2026-10-17
+99,wikidata:Q1591889,Walgreens,7991,51,98.7,0.0,100.0,True,True,Walgreens Boots Alliance,True,walgreens-locator-api-2026-10-12
+100,wikidata:Q1969162,Westin Hotels & Resorts,253,31,48.6,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+101,wikidata:Q2412604,The Luxury Collection,142,15,15.5,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
+102,wikidata:Q7958488,W Hotels,72,13,27.8,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+103,wikidata:Q2143252,Renaissance Hotels,183,30,49.2,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+104,wikidata:Q70287020,Moxy Hotels,193,26,25.4,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+105,wikidata:Q92021343,Tribute Portfolio,219,36,49.3,0.0,99.1,True,True,Marriott International,False,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
+106,wikidata:Q19872869,Autograph Collection Hotels,310,38,51.6,0.0,91.3,True,True,Marriott International,True,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
+107,wikidata:Q1046951,Target Corporation,2026,51,100.0,100.0,100.0,True,False,,True,atp-target_us-2026-10-10
+108,wikidata:Q1373493,Lowe's,1761,51,100.0,100.0,100.0,True,False,,True,atp-lowes_us-2026-07-11
+109,wikidata:Q483551,Walmart,4904,51,92.0,100.0,100.0,True,False,,True,atp-walmart_ca-2026-10-10;atp-walmart_us-2026-01-24;atp-walmart_us-2026-10-10
+110,wikidata:Q864407,The Home Depot,2208,51,91.2,100.0,100.0,True,False,,True,atp-home_depot-2026-10-10;atp-home_depot_ca-2026-10-10
+111,wikidata:Q533415,Best Buy,1204,51,87.5,100.0,100.0,True,False,,True,atp-best_buy-2026-10-10;atp-best_buy_ca-2026-10-10
+112,wikidata:Q37158,Starbucks,35028,51,47.7,100.0,100.0,True,False,,True,atp-starbucks_ae-2026-10-10;atp-starbucks_ar_cl-2026-10-10;atp-starbucks_au-2026-10-10;atp-starbucks_br-2026-10-10;atp-starbucks_ca-2026-10-10;atp-starbucks_cn-2026-10-10;atp-starbucks_eu-2026-10-10;atp-starbucks_hk_mo-2026-10-10;atp-starbucks_jp-2026-10-10;atp-starbucks_mena-2026-10-10;atp-starbucks_pe-2026-10-10;atp-starbucks_sg-2026-10-10;atp-starbucks_th-2026-10-10;atp-starbucks_tw-2026-10-10;atp-starbucks_us-2026-10-10;atp-starbucks_za-2026-10-10
+113,wikidata:Q38076,McDonald's,35952,51,37.5,100.0,100.0,True,False,,True,atp-mcdonalds-2026-10-10;atp-mcdonalds_at-2026-10-10;atp-mcdonalds_be-2026-10-10;atp-mcdonalds_bg-2026-10-10;atp-mcdonalds_cy-2026-10-03;atp-mcdonalds_cz-2026-10-10;atp-mcdonalds_ee-2026-10-10;atp-mcdonalds_eg-2026-10-10;atp-mcdonalds_es-2026-10-10;atp-mcdonalds_fr-2026-10-10;atp-mcdonalds_gr-2026-10-10;atp-mcdonalds_gt-2026-10-10;atp-mcdonalds_hk-2026-10-10;atp-mcdonalds_il-2026-10-10;atp-mcdonalds_it-2026-10-03;atp-mcdonalds_jp-2026-10-10;atp-mcdonalds_kr-2026-10-10;atp-mcdonalds_latin_america-2026-10-10;atp-mcdonalds_lt-2026-10-10;atp-mcdonalds_lu-2026-10-10;atp-mcdonalds_lv-2026-10-10;atp-mcdonalds_mt-2026-10-10;atp-mcdonalds_my-2026-10-10;atp-mcdonalds_ph-2026-10-03;atp-mcdonalds_pl-2026-10-10;atp-mcdonalds_pt-2026-10-10;atp-mcdonalds_rs-2026-07-25;atp-mcdonalds_si-2026-07-25;atp-mcdonalds_sk-2026-10-10;atp-mcdonalds_th-2026-10-10;atp-mcdonalds_tr-2026-10-10;atp-mcdonalds_vn-2026-10-10
+114,wikidata:Q715583,Costco,660,48,99.2,100.0,100.0,True,False,,True,atp-costco_ca_gb_us-2026-10-10
+115,wikidata:Q113152349,Comfort Inn,1254,48,77.1,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
+116,wikidata:Q55525150,Comfort Suites,532,44,93.8,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
+117,wikidata:Q41171672,Aldi Süd,2750,41,100.0,100.0,100.0,True,False,,True,atp-aldi_sud_us-2026-10-10
+118,wikidata:Q3918608,Marriott Hotels & Resorts,651,41,49.8,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+119,wikidata:Q259340,7-Eleven,54135,39,12.6,100.0,100.0,True,False,,True,atp-seven_eleven_au-2026-10-10;atp-seven_eleven_ca_us-2026-10-10;atp-seven_eleven_dk-2026-10-10;atp-seven_eleven_jp-2026-10-10;atp-seven_eleven_mx-2026-10-10;atp-seven_eleven_ph-2026-10-10;atp-seven_eleven_se-2026-10-10;atp-seven_eleven_th-2026-10-10;atp-seven_eleven_tw-2026-10-10
+120,wikidata:Q1439966,Four Points by Sheraton,538,37,21.6,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+121,wikidata:Q7427972,Save-A-Lot,604,28,100.0,100.0,100.0,True,False,,True,atp-save_a_lot_us-2026-10-10
+122,wikidata:Q7581369,Sprouts Farmers Market,519,25,100.0,100.0,100.0,True,False,,True,atp-sprouts_farmers_market-2026-10-10
+123,wikidata:Q109329542,City Express,181,24,26.5,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+124,wikidata:Q4835754,BJ's Wholesale Club,261,22,100.0,100.0,100.0,True,False,,True,atp-bjs_wholesale-2026-10-03
+125,wikidata:Q16994722,IHG Army Hotels,61,22,98.4,100.0,100.0,True,False,,True,atp-ihg_hotels-2026-10-10
+126,wikidata:Q3388303,Piggly Wiggly,486,17,100.0,100.0,100.0,True,False,,True,atp-piggly_wiggly_us-2026-10-10
+127,wikidata:Q60711675,Park Inn by Radisson,30,17,76.7,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
+128,wikidata:Q153417,Kroger,1234,16,100.0,100.0,100.0,True,False,,True,atp-kroger_us-2026-10-10
+129,wikidata:Q5264274,Design Hotels,277,15,17.3,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+130,wikidata:Q5609934,Grocery Outlet,563,12,100.0,100.0,100.0,True,False,,True,atp-grocery_outlet_us-2026-10-10
+131,wikidata:Q4982335,Buc-ee's,50,12,100.0,100.0,100.0,True,False,,False,atp-bucees_us-2026-10-03
+132,wikidata:Q11288478,Wegmans,114,10,100.0,100.0,100.0,True,False,,True,atp-wegmans_us-2026-10-10
+133,wikidata:Q672170,Publix,1451,8,100.0,100.0,100.0,True,False,,False,atp-publix_us-2026-10-10
+134,wikidata:Q1639719,Hy-Vee,251,8,100.0,100.0,100.0,True,False,,True,atp-hy_vee_us-2026-10-10
+135,wikidata:Q5434998,Fareway,143,7,100.0,100.0,100.0,True,False,,True,atp-fareway_us-2026-10-10
+136,wikidata:Q1917753,Meijer,205,6,100.0,100.0,100.0,True,False,,True,atp-meijer_us-2026-10-10
+137,wikidata:Q6032595,Ingles,188,6,100.0,100.0,100.0,True,False,,True,atp-ingles-2026-10-10
+138,wikidata:Q19868045,Family Fare,87,6,100.0,100.0,100.0,True,False,,True,atp-family_fare_us-2026-10-10
+139,wikidata:Q7501097,ShopRite,316,6,99.7,100.0,100.0,True,False,,True,atp-shoprite_us-2026-10-10
+140,wikidata:Q16981107,Food City,154,5,100.0,100.0,100.0,True,False,,False,atp-food_city_southeast_us-2026-10-10
+141,wikidata:Q1522721,Giant Eagle,192,4,100.0,100.0,100.0,True,False,,True,atp-giant_eagle_us-2026-10-10
+142,wikidata:Q2079198,Market Basket,97,4,100.0,100.0,100.0,True,False,,True,atp-market_basket_us-2026-10-10
+143,wikidata:Q123028492,Martin's,34,4,100.0,100.0,100.0,True,False,,False,atp-martins_food_us-2026-10-10
+144,wikidata:Q7543916,Smart & Final,253,3,100.0,100.0,100.0,True,False,,True,atp-smart_and_final_us-2026-10-10
+145,wikidata:Q7825137,Tops Friendly Markets,146,3,100.0,100.0,100.0,True,False,,True,atp-tops_us-2026-10-10
+146,wikidata:Q7431920,Schnucks,112,3,100.0,100.0,100.0,True,False,,True,atp-schnucks_us-2026-10-10
+147,wikidata:Q4975085,Brookshire Grocery Company,106,3,100.0,100.0,100.0,True,False,,False,atp-brookshires_us-2026-10-10
+148,wikidata:Q98550869,Market District,25,3,100.0,100.0,100.0,True,False,,False,atp-giant_eagle_us-2026-10-10
+149,wikidata:Q6412914,Kings Food Markets,18,3,100.0,100.0,100.0,True,False,,False,atp-albertsons-2026-10-10
+150,wikidata:Q7286970,Raley's Supermarkets,77,2,100.0,100.0,100.0,True,False,,True,atp-raleys_us-2026-10-10
+151,wikidata:Q5553766,GetGo,14,2,100.0,100.0,100.0,True,False,,False,atp-giant_eagle_us-2026-10-10
+152,wikidata:Q830621,H-E-B,346,1,100.0,100.0,100.0,True,False,,True,atp-h_e_b_us-2026-10-10
+153,wikidata:Q7371288,"Roundy's Supermarkets, Inc. (Milwaukee)",77,1,100.0,100.0,100.0,True,False,,False,atp-kroger_us-2026-10-10
+154,wikidata:Q7817826,Tom Thumb Food & Pharmacy,70,1,100.0,100.0,100.0,True,False,,True,atp-albertsons-2026-10-10
+155,wikidata:Q5445707,Festival Foods,42,1,100.0,100.0,100.0,True,False,,True,atp-festival_foods_us-2026-10-10
+156,wikidata:Q55622168,Mariano's,39,1,100.0,100.0,100.0,True,False,,False,atp-kroger_us-2026-10-10
+157,wikidata:Q7155886,Pavilions,30,1,100.0,100.0,100.0,True,False,,True,atp-albertsons-2026-10-10
+158,wikidata:Q19903424,Lunds and Byerlys,28,1,100.0,100.0,100.0,True,False,,False,atp-lunds_and_byerlys-2026-10-10
+159,wikidata:Q7291489,Randall's Food Markets,25,1,100.0,100.0,100.0,True,False,,True,atp-albertsons-2026-10-10
+160,wikidata:Q6166302,JayC Food Stores,21,1,100.0,100.0,100.0,True,False,,False,atp-kroger_us-2026-10-10
+161,wikidata:Q7600795,Star Market,21,1,100.0,100.0,100.0,True,False,,True,atp-albertsons-2026-10-10
+162,wikidata:Q5638683,Haggen Food & Pharmacy,15,1,100.0,100.0,100.0,True,False,,True,atp-haggen-2026-10-10
+163,wikidata:Q5046735,Carrs-Safeway,10,1,100.0,100.0,100.0,True,False,,True,atp-albertsons-2026-10-10
+164,wikidata:Q5203035,D&W Fresh Market,10,1,100.0,100.0,100.0,True,False,,True,atp-dw_fresh_market_us-2026-10-10
+165,wikidata:Q4759491,Andronico's,7,1,100.0,100.0,100.0,True,False,,False,atp-albertsons-2026-10-10
+166,wikidata:Q28233721,Radisson Red,4,1,25.0,100.0,100.0,True,False,,True,atp-choice_hotels-2026-09-19
+167,wikidata:Q72636824,Marriott Executive Apartments,56,0,0.0,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+168,wikidata:Q2052550,Park Plaza Hotels & Resorts,1,0,0.0,100.0,100.0,True,False,,False,atp-choice_hotels-2026-09-19
+169,wikidata:Q6772996,Marriott Vacation Club International,92,14,78.3,76.1,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
+170,wikidata:Q1067636,JW Marriott Hotels,142,16,24.6,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
+171,wikidata:Q5430314,Fairfield by Marriott,1470,50,82.0,99.9,99.9,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+172,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18

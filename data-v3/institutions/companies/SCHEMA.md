@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 120 (100 brand, 20 company) | `entity` |
-| `brand_relationships.csv` | 88 | `entity_relation` |
-| `company_locations.csv.gz` | 193,193 (90,767 with a v2-2024 county geoid; 102,410 outside the US) | `entity_location` |
+| `brands.csv` | 213 (179 brand, 34 company) | `entity` |
+| `brand_relationships.csv` | 136 | `entity_relation` |
+| `company_locations.csv.gz` | 212,444 (110,005 with a v2-2024 county geoid; 102,410 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | best_buy 1,204; bucees 50; choice 5,612; circle_k 8,196; cvs 9,001; hilton 6,929; home_depot 2,212; ihg 6,828; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/<brand>.csv` | ahold_delhaize 2,068; albertsons 2,230; aldi 2,750; bashas 98; best_buy 1,204; bjs 261; brookshires 107; bucees 50; choice 5,612; circle_k 8,196; costco 660; cvs 9,001; fareway 143; festival_foods 42; food_city 154; giant_eagle 231; grocery_outlet 568; heb 346; hilton 6,929; home_depot 2,212; hy_vee 272; ihg 6,828; ingles 188; kroger 2,374; lidl 203; lowes 1,763; lunds_byerlys 28; market_basket 97; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); meijer 205; piggly_wiggly 486; publix 1,451; raleys 98; sams_club 602; save_a_lot 604; schnucks 112; seven_eleven 54,167 (`.csv.gz`); shoprite 316; smart_and_final 253; spartannash 97; sprouts 519; starbucks 35,075 (`.csv.gz`); target 2,026; tops 146; trader_joes 666; walgreens 7,991; walmart 4,904; wawa 1,320; wegmans 114; whole_foods 535; winn_dixie 254 | source tables for company_locations (full store detail) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 95 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 91 | `source` |
+| `brand_cleanliness.csv` | 172 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 136 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -148,10 +148,21 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 
   - **choice.csv**: Choice Hotels properties worldwide. `brand_qid` = the brand ATP tags (Quality Inn, Comfort Inn, Comfort Suites, Econo Lodge, Sleep Inn, Rodeway Inn, Ascend, Clarion, MainStay, Suburban, Cambria, WoodSpring, plus the Radisson Americas brands Choice franchises: Radisson, Radisson Blu, Radisson RED, Park Inn, Park Plaza), parent from P749 (the Radisson brands' Wikidata parent is Radisson Hotel Group, not Choice). `store_id` = Choice's property code. `choice_hotels` returned 0 features in the latest run, so the file uses run 2026-09-19 (6,209 features; `atp_older_run_2026-09-19`). Excluded, because there is no brand QID: 366 Country Inn & Suites ("Country"), 58 RocketFuel, 44 SSAW, 37 "Home", 32 Everhome, 20 Penn, 19 Westgate, 13 Radisson Individuals, 7 El Cid, 1 Stopover.
 
+
+### US grocery chains (ATP, CC0; added 2026-10-18)
+One file per parent group or standalone chain: kroger, albertsons, ahold_delhaize, publix, heb, aldi, lidl, trader_joes, whole_foods, costco, sams_club, bjs, meijer, hy_vee, wegmans, shoprite, winn_dixie, save_a_lot, sprouts, giant_eagle, ingles, food_city, schnucks, raleys, smart_and_final, grocery_outlet, fareway, brookshires, tops, market_basket, piggly_wiggly, festival_foods, lunds_byerlys, bashas, spartannash.
+- US rows only (`addr:country` US/PR/territories). `brand` is the banner name ATP gives; `brand_qid` is the feature's `brand:wikidata`; `parent_brand_qid` is that banner's Wikidata P749 (blank when Wikidata has none, e.g. Kroger banners Pick 'n Save, Mariano's, JayC; Albertsons banners Tom Thumb, Randalls, Pavilions, Star Market, Kings, Haggen, Carrs, Andronico's).
+- Store points only: features typed `shop=supermarket|wholesale|convenience|department_store`. Pharmacies, fuel stations, liquor stores, clinics and offices inside the same spiders are left out (counted as `excluded_type:*` in summary.json).
+- Features without `brand:wikidata` are skipped and listed: Metro Market (Kroger, 23), Nob Hill Foods (Raley's, 17).
+- ATP's Gerbes features carry Dillons' QID and Foods Co features carry Food 4 Less's QID; ATP's banner name is kept in `brand`.
+- store_id: the ATP ref; files mixing spiders namespace it (`safeway-`, `foodlion-`, `giantco-`, `giantfood-`, `martins-`, `hannaford-`, `stopshop-`, `bashas-`, `foodcityaz-`, `familyfare-`, `dw-`). Sprouts uses the store URL slug.
+- Stop & Shop and BJ's come from the 2026-10-03 run (latest run empty) and carry `atp_older_run_2026-10-03`.
+- Hy-Vee's spider has no geometry in any run, and a few Grocery Outlet, Meijer and Brookshire's features also lack it. Those rows are geocoded from their ATP address with the U.S. Census Bureau geocoder (public domain; answers cached in raw/census_geocode.json by scripts/fetch_census_geocode.py) and flagged `coordinates_from_census_geocoder`. Addresses the geocoder can't match stay without coordinates.
+- No ATP data, so not built: Harris Teeter, WinCo, Weis, Harps, Price Chopper/Market 32 (NY; `price_chopper_kc_us` is a different Kansas City chain), Hornbacher's, Harveys, Central Market (not in the H-E-B spider), Stater Bros (0 features in every recent run).
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
 `brand_qid_from_wikidata_name_match`, `brand_qid_from_brand_name`, `atp_brand_qid_differs:<Q>`, `county_nearest_within_2km` (point just outside the 1:500k shoreline, e.g. Navy Pier),
-`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`, `address_is_addr_full`, `duplicate_in_<spider>_<d>km`, `no_county` (Wawa), `atp_older_run_<date>`.
+`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`, `address_is_addr_full`, `duplicate_in_<spider>_<d>km`, `no_county` (Wawa), `atp_older_run_<date>`, `coordinates_from_census_geocoder`.
 
 ## Rebuild
 ```

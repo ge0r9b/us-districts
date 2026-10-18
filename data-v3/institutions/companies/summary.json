@@ -1561,6 +1561,533 @@
   "us_with_county_geoid": 4886,
   "us_rows": 4886
  },
+ "kroger": {
+  "file": "kroger.csv",
+  "rows": 2374,
+  "features:kroger_us": 6224,
+  "excluded_type:fuel": 1617,
+  "excluded_type:pharmacy": 2210,
+  "excluded_brand:Metro Market:None": 23,
+  "rows_by_country": {
+   "US": 2374
+  },
+  "rows_by_store_type": {
+   "": 2374
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 2374,
+  "us_rows": 2374
+ },
+ "albertsons": {
+  "file": "albertsons.csv",
+  "rows": 2230,
+  "features:albertsons": 2334,
+  "excluded_type:fuel": 367,
+  "excluded_type:pharmacy": 1697,
+  "features:safeway": 1945,
+  "features:haggen": 15,
+  "rows_by_country": {
+   "US": 2230
+  },
+  "rows_by_store_type": {
+   "": 2230
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 2230,
+  "us_rows": 2230
+ },
+ "ahold_delhaize": {
+  "file": "ahold_delhaize.csv",
+  "rows": 2068,
+  "features:food_lion_us": 1153,
+  "features:giant_food_stores": 168,
+  "features:giant_food_us": 163,
+  "features:martins_food_us": 34,
+  "features:hannaford": 188,
+  "features:stop_and_shop_us@2026-10-03": 362,
+  "rows_by_country": {
+   "US": 2068
+  },
+  "rows_by_store_type": {
+   "": 2068
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 2068,
+  "us_rows": 2068
+ },
+ "publix": {
+  "file": "publix.csv",
+  "rows": 1451,
+  "features:publix_us": 3242,
+  "excluded_type:pharmacy": 1369,
+  "excluded_type:alcohol": 419,
+  "excluded_type:none": 3,
+  "rows_by_country": {
+   "US": 1451
+  },
+  "rows_by_store_type": {
+   "": 1451
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 1451,
+  "us_rows": 1451
+ },
+ "heb": {
+  "file": "heb.csv",
+  "rows": 346,
+  "features:h_e_b_us": 662,
+  "excluded_type:pharmacy": 316,
+  "rows_by_country": {
+   "US": 346
+  },
+  "rows_by_store_type": {
+   "": 346
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 346,
+  "us_rows": 346
+ },
+ "aldi": {
+  "file": "aldi.csv",
+  "rows": 2750,
+  "features:aldi_sud_us": 2750,
+  "rows_by_country": {
+   "US": 2750
+  },
+  "rows_by_store_type": {
+   "": 2750
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 2750,
+  "us_rows": 2750
+ },
+ "lidl": {
+  "file": "lidl.csv",
+  "rows": 203,
+  "features:lidl": 13026,
+  "excluded_non_us": 12823,
+  "rows_by_country": {
+   "US": 203
+  },
+  "rows_by_store_type": {
+   "": 203
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 203,
+  "us_rows": 203
+ },
+ "trader_joes": {
+  "file": "trader_joes.csv",
+  "rows": 666,
+  "features:trader_joes_us": 671,
+  "excluded_type:alcohol": 5,
+  "rows_by_country": {
+   "US": 666
+  },
+  "rows_by_store_type": {
+   "": 666
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 666,
+  "us_rows": 666
+ },
+ "whole_foods": {
+  "file": "whole_foods.csv",
+  "rows": 535,
+  "features:whole_foods": 547,
+  "excluded_non_us": 12,
+  "rows_by_country": {
+   "US": 535
+  },
+  "rows_by_store_type": {
+   "": 535
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 535,
+  "us_rows": 535
+ },
+ "costco": {
+  "file": "costco.csv",
+  "rows": 660,
+  "features:costco_ca_gb_us": 804,
+  "excluded_non_us": 144,
+  "rows_by_country": {
+   "US": 660
+  },
+  "rows_by_store_type": {
+   "": 660
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 660,
+  "us_rows": 660
+ },
+ "sams_club": {
+  "file": "sams_club.csv",
+  "rows": 602,
+  "features:sams_club": 1133,
+  "excluded_type:fuel": 531,
+  "rows_by_country": {
+   "US": 602
+  },
+  "rows_by_store_type": {
+   "": 602
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 602,
+  "us_rows": 602
+ },
+ "bjs": {
+  "file": "bjs.csv",
+  "rows": 261,
+  "features:bjs_wholesale@2026-10-03": 269,
+  "excluded_type:fuel": 8,
+  "rows_by_country": {
+   "US": 261
+  },
+  "rows_by_store_type": {
+   "": 261
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 261,
+  "us_rows": 261
+ },
+ "meijer": {
+  "file": "meijer.csv",
+  "rows": 205,
+  "features:meijer_us": 558,
+  "excluded_type:pharmacy": 205,
+  "excluded_type:fuel": 148,
+  "census_geocoded": 2,
+  "rows_by_country": {
+   "US": 205
+  },
+  "rows_by_store_type": {
+   "": 205
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 205,
+  "us_rows": 205
+ },
+ "hy_vee": {
+  "file": "hy_vee.csv",
+  "rows": 272,
+  "features:hy_vee_us": 296,
+  "excluded_type:pharmacy": 24,
+  "census_geocoder_no_match": 21,
+  "census_geocoded": 251,
+  "rows_by_country": {
+   "US": 272
+  },
+  "rows_by_store_type": {
+   "": 272
+  },
+  "missing_coordinates": 21,
+  "us_with_county_geoid": 251,
+  "us_rows": 272
+ },
+ "wegmans": {
+  "file": "wegmans.csv",
+  "rows": 114,
+  "features:wegmans_us": 114,
+  "rows_by_country": {
+   "US": 114
+  },
+  "rows_by_store_type": {
+   "": 114
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 114,
+  "us_rows": 114
+ },
+ "shoprite": {
+  "file": "shoprite.csv",
+  "rows": 316,
+  "features:shoprite_us": 316,
+  "rows_by_country": {
+   "US": 316
+  },
+  "rows_by_store_type": {
+   "": 316
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 315,
+  "us_rows": 316
+ },
+ "winn_dixie": {
+  "file": "winn_dixie.csv",
+  "rows": 254,
+  "features:winn_dixie_us": 254,
+  "rows_by_country": {
+   "US": 254
+  },
+  "rows_by_store_type": {
+   "": 254
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 254,
+  "us_rows": 254
+ },
+ "save_a_lot": {
+  "file": "save_a_lot.csv",
+  "rows": 604,
+  "features:save_a_lot_us": 604,
+  "rows_by_country": {
+   "US": 604
+  },
+  "rows_by_store_type": {
+   "": 604
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 604,
+  "us_rows": 604
+ },
+ "sprouts": {
+  "file": "sprouts.csv",
+  "rows": 519,
+  "features:sprouts_farmers_market": 519,
+  "rows_by_country": {
+   "US": 519
+  },
+  "rows_by_store_type": {
+   "": 519
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 519,
+  "us_rows": 519
+ },
+ "giant_eagle": {
+  "file": "giant_eagle.csv",
+  "rows": 231,
+  "features:giant_eagle_us": 436,
+  "excluded_type:pharmacy": 205,
+  "rows_by_country": {
+   "US": 231
+  },
+  "rows_by_store_type": {
+   "": 231
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 231,
+  "us_rows": 231
+ },
+ "ingles": {
+  "file": "ingles.csv",
+  "rows": 188,
+  "features:ingles": 188,
+  "rows_by_country": {
+   "US": 188
+  },
+  "rows_by_store_type": {
+   "": 188
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 188,
+  "us_rows": 188
+ },
+ "food_city": {
+  "file": "food_city.csv",
+  "rows": 154,
+  "features:food_city_southeast_us": 154,
+  "rows_by_country": {
+   "US": 154
+  },
+  "rows_by_store_type": {
+   "": 154
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 154,
+  "us_rows": 154
+ },
+ "schnucks": {
+  "file": "schnucks.csv",
+  "rows": 112,
+  "features:schnucks_us": 112,
+  "rows_by_country": {
+   "US": 112
+  },
+  "rows_by_store_type": {
+   "": 112
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 112,
+  "us_rows": 112
+ },
+ "raleys": {
+  "file": "raleys.csv",
+  "rows": 98,
+  "features:raleys_us": 115,
+  "excluded_brand:Nob Hill Foods:None": 17,
+  "rows_by_country": {
+   "US": 98
+  },
+  "rows_by_store_type": {
+   "": 98
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 98,
+  "us_rows": 98
+ },
+ "smart_and_final": {
+  "file": "smart_and_final.csv",
+  "rows": 253,
+  "features:smart_and_final_us": 253,
+  "rows_by_country": {
+   "US": 253
+  },
+  "rows_by_store_type": {
+   "": 253
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 253,
+  "us_rows": 253
+ },
+ "grocery_outlet": {
+  "file": "grocery_outlet.csv",
+  "rows": 568,
+  "features:grocery_outlet_us": 569,
+  "excluded_no_ref": 1,
+  "census_geocoder_no_match": 5,
+  "census_geocoded": 34,
+  "rows_by_country": {
+   "US": 568
+  },
+  "rows_by_store_type": {
+   "": 568
+  },
+  "missing_coordinates": 5,
+  "us_with_county_geoid": 563,
+  "us_rows": 568
+ },
+ "fareway": {
+  "file": "fareway.csv",
+  "rows": 143,
+  "features:fareway_us": 143,
+  "rows_by_country": {
+   "US": 143
+  },
+  "rows_by_store_type": {
+   "": 143
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 143,
+  "us_rows": 143
+ },
+ "brookshires": {
+  "file": "brookshires.csv",
+  "rows": 107,
+  "features:brookshires_us": 107,
+  "census_geocoder_no_match": 1,
+  "census_geocoded": 1,
+  "rows_by_country": {
+   "US": 107
+  },
+  "rows_by_store_type": {
+   "": 107
+  },
+  "missing_coordinates": 1,
+  "us_with_county_geoid": 106,
+  "us_rows": 107
+ },
+ "tops": {
+  "file": "tops.csv",
+  "rows": 146,
+  "features:tops_us": 146,
+  "rows_by_country": {
+   "US": 146
+  },
+  "rows_by_store_type": {
+   "": 146
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 146,
+  "us_rows": 146
+ },
+ "market_basket": {
+  "file": "market_basket.csv",
+  "rows": 97,
+  "features:market_basket_us": 97,
+  "rows_by_country": {
+   "US": 97
+  },
+  "rows_by_store_type": {
+   "": 97
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 97,
+  "us_rows": 97
+ },
+ "piggly_wiggly": {
+  "file": "piggly_wiggly.csv",
+  "rows": 486,
+  "features:piggly_wiggly_us": 486,
+  "rows_by_country": {
+   "US": 486
+  },
+  "rows_by_store_type": {
+   "": 486
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 486,
+  "us_rows": 486
+ },
+ "festival_foods": {
+  "file": "festival_foods.csv",
+  "rows": 42,
+  "features:festival_foods_us": 42,
+  "rows_by_country": {
+   "US": 42
+  },
+  "rows_by_store_type": {
+   "": 42
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 42,
+  "us_rows": 42
+ },
+ "lunds_byerlys": {
+  "file": "lunds_byerlys.csv",
+  "rows": 28,
+  "features:lunds_and_byerlys": 28,
+  "rows_by_country": {
+   "US": 28
+  },
+  "rows_by_store_type": {
+   "": 28
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 28,
+  "us_rows": 28
+ },
+ "bashas": {
+  "file": "bashas.csv",
+  "rows": 98,
+  "features:bashas_us": 53,
+  "features:food_city_arizona_us": 45,
+  "rows_by_country": {
+   "US": 98
+  },
+  "rows_by_store_type": {
+   "": 98
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 98,
+  "us_rows": 98
+ },
+ "spartannash": {
+  "file": "spartannash.csv",
+  "rows": 97,
+  "features:family_fare_us": 87,
+  "features:dw_fresh_market_us": 10,
+  "rows_by_country": {
+   "US": 97
+  },
+  "rows_by_store_type": {
+   "": 97
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 97,
+  "us_rows": 97
+ },
  "mcdonalds": {
   "file": "mcdonalds.csv.gz",
   "rows": 36378,
@@ -10904,14 +11431,14 @@
    "Schedule Type"
   ]
  },
- "brands_rows": 120,
+ "brands_rows": 213,
  "brands_by_kind": {
-  "brand": 100,
-  "company": 20
+  "company": 34,
+  "brand": 179
  },
- "brand_relationships_rows": 88,
- "brand_relationships_review_flags": 8,
- "company_locations_rows": 193193,
+ "brand_relationships_rows": 136,
+ "brand_relationships_review_flags": 12,
+ "company_locations_rows": 212444,
  "company_locations_by_entity_top": {
   "wikidata:Q259340": 54135,
   "wikidata:Q38076": 35952,
@@ -10921,17 +11448,20 @@
   "wikidata:Q1591889": 7991,
   "wikidata:Q483551": 4904,
   "wikidata:Q5880423": 3268,
-  "wikidata:Q5646230": 2574,
-  "wikidata:Q864407": 2208
+  "wikidata:Q41171672": 2750,
+  "wikidata:Q5646230": 2574
  },
- "company_locations_with_geoid": 90767,
+ "company_locations_with_geoid": 110005,
  "company_locations_excluded": {
   "mcdonalds:no_point_no_geoid": 426,
   "starbucks:no_point_no_geoid": 47,
   "home_depot:no_point_no_geoid": 4,
   "lowes:no_point_no_geoid": 2,
   "seven_eleven:no_point_no_geoid": 32,
-  "ihg:no_point_no_geoid": 8
+  "ihg:no_point_no_geoid": 8,
+  "hy_vee:no_point_no_geoid": 21,
+  "grocery_outlet:no_point_no_geoid": 5,
+  "brookshires:no_point_no_geoid": 1
  },
  "company_locations_duplicate_ids": 0,
  "hq_in_rows": 0,
@@ -10966,29 +11496,29 @@
   "TownePlace Suites": "Q7830092"
  },
  "marriott_brand_name_to_qid_wikidata": {
-  "Le Méridien": "Q261077",
-  "Renaissance": "Q2143252",
-  "citizenM": "Q5122531",
-  "Tribute Portfolio": "Q92021343",
-  "Element": "Q91948072",
-  "Delta Hotels": "Q5254663",
-  "EDITION": "Q91218404",
-  "SpringHill Suites": "Q7580351",
-  "Autograph Collection": "Q19872869",
-  "Sheraton": "Q634831",
-  "Moxy": "Q70287020",
-  "W Hotels": "Q7958488",
-  "The Ritz-Carlton": "Q782200",
-  "Residence Inn": "Q7315394",
   "Westin": "Q1969162",
-  "AC Hotels": "Q5653536",
-  "Aloft": "Q4734166",
-  "TownePlace Suites": "Q7830092",
-  "Protea": "Q17092570",
-  "Gaylord": "Q3099664",
-  "Courtyard": "Q1053170",
+  "The Ritz-Carlton": "Q782200",
+  "Le Méridien": "Q261077",
+  "The Luxury Collection": "Q2412604",
+  "SpringHill Suites": "Q7580351",
   "JW Marriott": "Q1067636",
-  "The Luxury Collection": "Q2412604"
+  "Residence Inn": "Q7315394",
+  "Moxy": "Q70287020",
+  "Renaissance": "Q2143252",
+  "Sheraton": "Q634831",
+  "Courtyard": "Q1053170",
+  "EDITION": "Q91218404",
+  "Delta Hotels": "Q5254663",
+  "Aloft": "Q4734166",
+  "citizenM": "Q5122531",
+  "TownePlace Suites": "Q7830092",
+  "W Hotels": "Q7958488",
+  "Protea": "Q17092570",
+  "Element": "Q91948072",
+  "Gaylord": "Q3099664",
+  "Autograph Collection": "Q19872869",
+  "AC Hotels": "Q5653536",
+  "Tribute Portfolio": "Q92021343"
  },
  "built": "2026-10-18"
 }

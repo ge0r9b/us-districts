@@ -482,6 +482,7 @@ summary["starbucks"] = {"file": write(df, "starbucks"), "rows": len(df), **dict(
 # duplicate store_id, so the latest run comes first and an older run only fills store ids the latest run lacks
 # (rows flagged atp_older_run_<date>). store_id = <namespace>-<ref>; a URL ref keeps only its trailing store number.
 OLDER = read_meta("atp_older").get("runs", {})
+US_CC = {"US", "PR", "VI", "GU", "AS", "MP"}
 CHAINS = {
     "walmart": dict(qid="Q483551", accept={"Q483551", "Q7963529"},
                     sub_by_name={"Walmart Neighborhood Market": "Q7963529"}, drop_names={"Walmart Pharmacy"},
@@ -503,6 +504,44 @@ CHAINS = {
     "hilton": dict(qid="", brand_from_feature=True, inputs=[("hilton", "2026-08-29-13-32-18", None)]),
     "ihg": dict(qid="", brand_from_feature=True, ref_re=r"/([a-z0-9]{5})/hoteldetail", inputs=[("ihg_hotels", None, None)]),
     "choice": dict(qid="", brand_from_feature=True, inputs=[("choice_hotels", "2026-09-19-13-32-18", None)]),
+    # ---- US grocery (user request 2026-10-18): US/territory rows only; store points only (pharmacy, fuel, liquor and
+    # clinic points that ATP lists separately for the same store are excluded); brand_qid = the banner's QID per feature,
+    # `brand` = the banner name ATP gives (e.g. Gerbes carries Dillons' QID on Wikidata/ATP).
+    'kroger': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('kroger_us', None, None)]},
+    'albertsons': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('albertsons', None, 'albertsons'), ('safeway', None, 'safeway'), ('haggen', None, 'haggen')]},
+    'ahold_delhaize': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'ref_strip': '^#', 'qid': '', 'inputs': [('food_lion_us', None, 'foodlion'), ('giant_food_stores', None, 'giantco'), ('giant_food_us', None, 'giantfood'), ('martins_food_us', None, 'martins'), ('hannaford', None, 'hannaford'), ('stop_and_shop_us', '2026-10-03-13-32-35', 'stopshop')]},
+    'publix': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('publix_us', None, None)]},
+    'heb': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('h_e_b_us', None, None)]},
+    'aldi': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('aldi_sud_us', None, None)]},
+    'lidl': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('lidl', None, None)]},
+    'trader_joes': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('trader_joes_us', None, None)]},
+    'whole_foods': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('whole_foods', None, None)]},
+    'costco': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('costco_ca_gb_us', None, None)]},
+    'sams_club': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('sams_club', None, None)]},
+    'bjs': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('bjs_wholesale', '2026-10-03-13-32-35', None)]},
+    'meijer': {'geocode_missing': True, 'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('meijer_us', None, None)]},
+    'hy_vee': {'geocode_missing': True, 'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('hy_vee_us', None, None)]},
+    'wegmans': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('wegmans_us', None, None)]},
+    'shoprite': {'geocode_missing': True, 'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('shoprite_us', None, None)]},
+    'winn_dixie': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('winn_dixie_us', None, None)]},
+    'save_a_lot': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('save_a_lot_us', None, None)]},
+    'sprouts': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'ref_re': '/store/(.+?)/?$', 'ref_upper': False, 'qid': '', 'inputs': [('sprouts_farmers_market', None, None)]},
+    'giant_eagle': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('giant_eagle_us', None, None)]},
+    'ingles': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('ingles', None, None)]},
+    'food_city': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('food_city_southeast_us', None, None)]},
+    'schnucks': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('schnucks_us', None, None)]},
+    'raleys': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('raleys_us', None, None)]},
+    'smart_and_final': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('smart_and_final_us', None, None)]},
+    'grocery_outlet': {'geocode_missing': True, 'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('grocery_outlet_us', None, None)]},
+    'fareway': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('fareway_us', None, None)]},
+    'brookshires': {'geocode_missing': True, 'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('brookshires_us', None, None)]},
+    'tops': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('tops_us', None, None)]},
+    'market_basket': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('market_basket_us', None, None)]},
+    'piggly_wiggly': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('piggly_wiggly_us', None, None)]},
+    'festival_foods': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('festival_foods_us', None, None)]},
+    'lunds_byerlys': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('lunds_and_byerlys', None, None)]},
+    'bashas': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('bashas_us', None, 'bashas'), ('food_city_arizona_us', None, 'foodcityaz')]},
+    'spartannash': {'us_only': True, 'brand_from_feature': True, 'brand_label': 'atp', 'keep_types': {'convenience', 'department_store', 'supermarket', 'wholesale'}, 'qid': '', 'inputs': [('family_fare_us', None, 'familyfare'), ('dw_fresh_market_us', None, 'dw')]},
     # McDonald's: the US rows come from the section above (bare-ref ids, unchanged); every other country is added here.
     "mcdonalds": dict(qid="Q38076", accept={"Q38076", "Q12061542"}, sub_by_qid={"Q12061542": "Q12061542"},
                       prepend_rows=MCD_US_ROWS,
@@ -526,6 +565,14 @@ def atp_src(spider, run):
                m["url"], "CC0 1.0", run[:10], RAW / "atp_runs" / run / f"{spider}.geojson")
 
 
+CGEO_P = RAW / "census_geocode.json"
+CGEO = json.loads(CGEO_P.read_text()) if CGEO_P.exists() else {}
+if CGEO:
+    S_CGEO = src(f"census-geocoder-{read_meta('census_geocode')['retrieved_at']}",
+                 "U.S. Census Bureau geocoder, onelineaddress, benchmark Public_AR_Current (only for rows whose ATP feature has no geometry)",
+                 "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress", "public domain (US government work)",
+                 read_meta("census_geocode")["retrieved_at"], CGEO_P)
+
 for fname, cfg in CHAINS.items():
     q = cfg["qid"]
     accept = cfg.get("accept", {q})
@@ -540,6 +587,16 @@ for fname, cfg in CHAINS.items():
         for f in json.loads(t)["features"] if t else []:
             p = f["properties"]
             st[f"features:{spider}" + (f"@{run[:10]}" if run else "")] += 1
+            if cfg.get("us_only") and p.get("addr:country", "US") not in US_CC:
+                st["excluded_non_us"] += 1
+                continue
+            ftype = p.get("shop") or p.get("amenity") or ""
+            if cfg.get("keep_types") is not None and ftype not in cfg["keep_types"]:
+                st[f"excluded_type:{ftype or 'none'}"] += 1
+                continue
+            if p.get("brand") in cfg.get("drop_brands", ()):
+                st[f"excluded_brand:{p.get('brand')}:{p.get('brand:wikidata')}"] += 1
+                continue
             if cfg.get("brand_from_feature"):
                 q = p.get("brand:wikidata") or ""
                 accept = {q} if q else set()
@@ -555,7 +612,7 @@ for fname, cfg in CHAINS.items():
             ref = str(p.get("ref") or "")
             if cfg.get("ref_re"):
                 m = re.search(cfg["ref_re"], ref)
-                ref = m.group(1).upper() if m else ""
+                ref = (m.group(1).upper() if cfg.get("ref_upper", True) else m.group(1)).replace("/", "-") if m else ""
             if cfg.get("ref_strip"):
                 ref = re.sub(cfg["ref_strip"], "", ref)
             if ref.startswith("http"):  # URL ref: trailing store number, else the last path segment
@@ -579,7 +636,7 @@ for fname, cfg in CHAINS.items():
             if not p.get("addr:street_address") and p.get("addr:full"):
                 fl.append("address_is_addr_full")
             subq = cfg.get("sub_by_name", {}).get(nm, "") or cfg.get("sub_by_qid", {}).get(p.get("brand:wikidata"), "")
-            rows.append(dict(store_id=sid, brand=WD.get(q, {}).get("label", ""), brand_qid=qid(q), parent_brand_qid=parent_of(q),
+            rows.append(dict(store_id=sid, brand=(p.get("brand") or WD.get(q, {}).get("label", "")) if cfg.get("brand_label") == "atp" else WD.get(q, {}).get("label", ""), brand_qid=qid(q), parent_brand_qid=parent_of(q),
                              address=p.get("addr:street_address") or p.get("addr:full") or "", city=p.get("addr:city", ""),
                              state=p.get("addr:state", ""), zip=p.get("addr:postcode", ""), county="", lat=lat, lon=lon,
                              phone=phone, sub_brand=WD.get(subq, {}).get("label", "") if subq else "", flags=fl,
@@ -587,6 +644,19 @@ for fname, cfg in CHAINS.items():
                              source_url=p.get("website") or p.get("@source_uri", ""), source_date=SOURCES[sid_src]["retrieved_at"],
                              name=nm, sub_brand_qid=qid(subq) if subq else "", county_geoid="", country_code=cc, status="",
                              store_type="" if cfg.get("brand_from_feature") else nm))
+    if cfg.get("geocode_missing"):  # Census geocoder answers cached by scripts/fetch_census_geocode.py
+        for x in rows:
+            if x["lat"] != "" or x["country_code"] != "US" or not x["address"]:
+                continue
+            gq = ", ".join(v for v in (x["address"], x["city"], x["state"], x["zip"]) if v)
+            hit = CGEO.get(gq)
+            if hit and hit["matches"]:
+                x["lat"], x["lon"] = round(hit["lat"], 6), round(hit["lon"], 6)
+                x["flags"] = x["flags"] + ["coordinates_from_census_geocoder"]
+                x["source"] = x["source"] + ";" + S_CGEO
+                st["census_geocoded"] += 1
+            elif hit:
+                st["census_geocoder_no_match"] += 1
     df = finish(rows, check_county=True)
     _nonus = df.country_code != "US"
     df.loc[_nonus, ["county", "county_geoid"]] = ""
