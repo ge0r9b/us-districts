@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "b9d8b837f8983064b61a60f2d67c6dd177bfc084",
+  "repo_head": "19c3a5b82523448c07159141253e8483aeb70470",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -239,10 +239,10 @@
  "feed_map_rows": 93278,
  "images_rows": 2024,
  "wikidata_filled": 38840,
- "sources": 97,
- "sources_used_here": 29,
+ "sources": 98,
+ "sources_used_here": 30,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 126,
+ "source_urls": 127,
  "source_record_id_filled": {
   "entities": 54258,
   "xwalk": 58591
@@ -250,6 +250,28 @@
  "feed_values": {
   "inst-lane": 318,
   "tiger/cog": 54042
+ },
+ "body_key": {
+  "bodies": 138,
+  "by_body_kind": {
+   "C": {
+    "mapped": 0,
+    "unmapped": 37
+   },
+   "L": {
+    "mapped": 100,
+    "unmapped": 1
+   }
+  },
+  "entities_with_body_key": 100,
+  "judged": [
+   "us-ne-legislature -> chamber:ne-upper: key is not the us-ne-senate pattern; matched on st=NE + office=state_senate (entity type unicameral, Nebraska Legislature)"
+  ],
+  "bodies_sha256": "8d5ed9db239fb4b11a8bcf2f81a51b4d9221bc599f3dc7447ca47eb40d291c93",
+  "body_key_gaps": 38,
+  "entities_without_body": [
+   "chamber:dc-council"
+  ]
  },
  "world": {
   "natural_earth": {

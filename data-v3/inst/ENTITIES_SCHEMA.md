@@ -30,6 +30,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local; world rows national/subnational), finer type (TIGER LSAD text; sovereign_state / dependency / province / territory), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 | 23 | `source_record_id` | `01001`, `Q228` | SCHEMA `entity.source_record_id`: the id inside the row's first cited source (GEOID / FIPS for Census rows, QID for Wikidata rows) |
 | 24 | `wikidata` | `wikidata:Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
+| 25 | `body_key` | `us-pa-house` | nullable, unique: the Seating Charts bot's `bodies.csv` `key` for this chamber / council (structural st + office match, tools/inst_bodies.py); bodies with no entity → `body_key_gaps.csv` |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -73,6 +74,20 @@ Open with SCHEMA 365c8a1: `entities.csv` extras `source_record_id` / `wikidata` 
 external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SCHEMA has `entity_merge` / `entity_alias`
 kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
 text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
+
+## Proposal for Full Stack: kind `court` (draft, not applied)
+
+The Seating Charts bot's `bodies.csv` has 37 court bodies (kind C: 35 `state_supreme_court`, 2 `state_court_criminal_appeals`,
+TX and OK). They have no entity because `court` is not an approved kind, so this build mints none. They are listed in
+`body_key_gaps.csv` instead. Proposed:
+- `kind` `court`; `entity_id` `court:<st>-<slug>`, for example `court:pa-supreme`, `court:tx-criminal-appeals` (lower-case, stable, no names
+  of people); `level` state (federal courts later, `court:us-supreme`); `type` `supreme_court` / `court_of_criminal_appeals` / ….
+- `parent_id` `state:<fips>`; `gov_status` `na` with flag `gov_status_na:judicial_body` (like chambers); `feed` `inst-lane`.
+- `body_key` = the bodies.csv key; seats and terms stay in the Seating Charts files (no seat units, no GEOIDs; judicial
+  districts, where a court has them, would be a later unit_layer).
+- Source: the court's official page or the state constitution's judicial article, plus bodies.csv as a repo-local input.
+Open questions: whether intermediate appellate and trial courts are in scope, and whether courts excluded or dropped by the
+Seating Charts bot (build_meta.json: 12 excluded, CA/KS/WV dropped) still get entities.
 
 # Original proposal (kept for history; superseded where it differs from the column list above)
 

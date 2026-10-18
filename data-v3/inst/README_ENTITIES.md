@@ -1,7 +1,7 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
 Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`,
-`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`.
+`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`, `body_key_gaps.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
 Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
 family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
@@ -9,7 +9,7 @@ README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `lic
 `<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
 
 Build: `tools/inst_entities.py <repo> --gaz24 DIR --gaz20 DIR --cog XLSX --geojson DIR --oh-ref <data/inst-officeholders sha>
---gov-ref <data/governments sha> --world-raw DIR [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
+--gov-ref <data/governments sha> --world-raw DIR --bodies <bodies.csv> [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
 writes (the Wikidata .rq queries + .json answers, sha256s recorded in `entities_summary.json` `world.files`). Officeholder files, county_government.csv and the Governments bot's
 `data-v3/institutions/governments/local/*.csv` are read with `git show` (read only).
 
@@ -83,6 +83,20 @@ ours as a union on the bot's own ids (`cog2022`, `wikidata_images`, ...); a coll
 - `feed` stays inside the §15.1 map (`tiger/cog`, `inst-lane`; asserted by the builder).
 - Seat units for officeholder rows without a TIGER district, and NH floterial member links: data/inst-officeholders step 7
   (README_OFFICEHOLDERS.md).
+
+## body_key (Seating Charts bodies, tools/inst_bodies.py)
+`entities.csv` `body_key` (nullable, unique) is the `key` of the Seating Charts bot's `v3data/bodies.csv`, which feeds the v3
+seating-chart toggle. Matching uses structure only, never names: US `us_senate` → `us-senate`, US `us_house` → `us-house`,
+`<st>` `state_senate` (sldu) → `chamber:<st>-upper`, `<st>` `state_house` (sldl) → `chamber:<st>-lower`, and a DC council body
+→ `chamber:dc-council`. st, office and the entity's type are checked on every match. Assemblies, General Assembly (NJ) and
+Houses of Delegates (MD, VA, WV) are office `state_house`, so they match by structure. Nebraska is `us-ne-legislature`
+(office state_senate) → `chamber:ne-upper` (type unicameral). This is the only key that does not follow the
+`us-<st>-senate|house` pattern, and the build summary lists it under `body_key.judged`. Bodies without an entity are in
+`body_key_gaps.csv` (`body_key, st, kind, office, name, reason, source_id`): the 37 courts (`court` is not an approved kind,
+see the proposal in ENTITIES_SCHEMA.md) and the US Senate (the registry has no `us-senate` chamber entity, and none is minted here).
+bodies.csv has no DC body, so `chamber:dc-council` has no body_key. bodies.csv is the Seating Charts bot's file. It is not
+committed by this lane and was not on any branch of the repo at build time, so `sources.csv` pins it by sha256 only
+(`seating-bodies-…`, url `repo-local:seating/v3data/bodies.csv`).
 
 ## How the rows are built (all links by Census code, never by name)
 

@@ -19,6 +19,7 @@ ap.add_argument('repo'); ap.add_argument('--gaz24', required=True); ap.add_argum
 ap.add_argument('--cog', required=True); ap.add_argument('--geojson', required=True)
 ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_argument('--stability-test', action='store_true')
 ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
+ap.add_argument('--bodies', required=True, help="Seating Charts bot bodies.csv (key, st, kind, office); read only, sha256 recorded in sources.csv")
 ap.add_argument('--world-raw', required=True, help='dir written by tools/inst_world.py fetch (Wikidata answers); Natural Earth lists read from origin/main')
 A = ap.parse_args()
 R = A.repo; OUT = A.out or os.path.join(R, 'data-v3/inst'); os.makedirs(OUT, exist_ok=True)
@@ -813,6 +814,15 @@ for e in OUTROWS:
     if e.pop('_gov', False): src(e, S_GOV)
     e['flags'] = ';'.join(f_.replace(';', ',') for f_ in e['_flags'])
 print('governments feed', dict(sorted(GSTAT.items())), file=sys.stderr)
+# body_key (Seating Charts bot bodies.csv `key`): structural st + office match, tools/inst_bodies.py; unique; courts -> body_key_gaps.csv
+import inst_bodies
+BODIES, BODIES_SHA = inst_bodies.load(A.bodies)
+S_BODIES = 'Seating Charts bot bodies.csv'
+BKEY, BGAPS, BJUDGED, BSTAT = inst_bodies.match(BODIES, {e['entity_id']: e for e in OUTROWS}, {f: v[0] for f, v in FIPS.items()})
+for e in OUTROWS:
+    e['body_key'] = BKEY.get(e['entity_id'], '')
+    if e['body_key']: src(e, S_BODIES)
+_bk = [e['body_key'] for e in OUTROWS if e['body_key']]; assert len(_bk) == len(set(_bk)), 'body_key not unique'
 ids = [e['entity_id'] for e in OUTROWS]; assert len(ids) == len(set(ids)), 'entity_id not unique'
 
 # ---------------- sources.csv: every cited source once, stable ids (tools/inst_sources.py) ----------------
@@ -848,6 +858,11 @@ def build_registry():
             return [reg.add(None, t + ' (Natural Earth, public domain; list of institutions only, no geometry used)',
                             f"{REPO}/blob/{ne_['commit']}/{f_} ; https://www.naturalearthdata.com/downloads/50m-cultural-vectors/",
                             'public domain (Natural Earth)', RETRIEVED, ne_['commit'], ne_['sha256'])]
+        if t == S_BODIES:
+            return [reg.add('seating-bodies', 'Seating Charts bot, v3data/bodies.csv (legislative chambers and courts; key, st, kind, office). '
+                            'Repo-local input: the Seating Charts bot\'s file, not committed by this lane and not on any branch of the repo at build time; '
+                            'pinned by sha256 only', 'repo-local:seating/v3data/bodies.csv (Seating Charts bot)',
+                            'project data (Seating Charts bot; its sources: congress-legislators, Ballotpedia, Open States, court pages)', RETRIEVED, '', BODIES_SHA)]
         if t == S_WD:
             qs = hashlib.sha256(''.join(open(os.path.join(A.world_raw, f_)).read() for f_ in sorted(WORLD['files']) if f_.endswith('.rq')).encode('utf-8')).hexdigest()
             return [reg.add(None, 'Wikidata Query Service: ISO 3166-1 P297 / ISO 3166-2 P300 items + current P31 Q3624078, P463 Q1065, P17, P361, P300, P36 '
@@ -882,7 +897,7 @@ def build_registry():
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'body_key']
 ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:
@@ -954,8 +969,12 @@ def gap_sid(g, ids_for, v2f, gapsrc):
 for g in GAPS: g['source_id'] = gap_sid(g, IDS_FOR, V2SRC_FOR, GAPSRC)
 with open(os.path.join(OUT, 'entity_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, ['gap', 'key', 'detail', 'source_id'], lineterminator='\n'); w.writeheader(); w.writerows(GAPS)
+_bsid = IDS_FOR([S_BODIES])
+for g in BGAPS: g['source_id'] = _bsid
+with open(os.path.join(OUT, 'body_key_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, inst_bodies.GAPCOLS, lineterminator='\n'); w.writeheader(); w.writerows(sorted(BGAPS, key=lambda g: g['body_key']))
 USED = set()
-for tbl in (rows, XW2, V2OUT, GAPS):
+for tbl in (rows, XW2, V2OUT, GAPS, BGAPS):
     for x in tbl: USED.update(i for i in x['source_id'].split(';') if i)
 assert USED <= set(REG.rows), USED - set(REG.rows)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
@@ -1045,6 +1064,8 @@ summ = {
   'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA, 'source_urls': len(SU),
   'source_record_id_filled': {'entities': sum(1 for e in rows if e['source_record_id']), 'xwalk': sum(1 for x in XW2 if x['source_record_id'])},
   'feed_values': dict(sorted(C.Counter(e['feed'] for e in rows).items())),
+  'body_key': dict(BSTAT, bodies_sha256=BODIES_SHA, body_key_gaps=len(BGAPS),
+                   entities_without_body=sorted(e['entity_id'] for e in rows if e['kind'] in ('chamber', 'dc_council') and not e['body_key'])),
   'world': {'natural_earth': {f_: {'commit': v_['commit'], 'sha256': v_['sha256'], 'rows': len(v_['rows'])} for f_, v_ in sorted(WORLD['ne'].items())},
             'wikidata_retrieved_at': WORLD['retrieved_at'], 'files': WORLD['files'],
             'by_kind': dict(sorted(C.Counter(e['kind'] for e in rows if e['feed'] == 'inst-lane' and e['level'] in ('national', 'subnational')).items())),
