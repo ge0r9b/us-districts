@@ -1,0 +1,848 @@
+{
+ "counties": {
+  "Pulaski County": {
+   "sbe_precincts": 19,
+   "official_units": 19,
+   "pop_in_sbe_polygons": 1.0,
+   "official_county_2024": [
+    5351,
+    26051,
+    31725
+   ],
+   "units_sum": [
+    5351,
+    26051,
+    31735
+   ],
+   "precincts": [
+    {
+     "code": "A101",
+     "name": "Oak Hill-Saline 10",
+     "pop2020": 5779,
+     "votes2024": [
+      475,
+      2163,
+      2663
+     ],
+     "popw2020": [
+      503,
+      2261,
+      2803
+     ],
+     "turnout_ratio_scaled": 0.95,
+     "ok": true
+    },
+    {
+     "code": "A102",
+     "name": "Pulaski West 12",
+     "pop2020": 3731,
+     "votes2024": [
+      269,
+      1936,
+      2234
+     ],
+     "popw2020": [
+      325,
+      1460,
+      1809
+     ],
+     "turnout_ratio_scaled": 1.234,
+     "ok": true
+    },
+    {
+     "code": "A105",
+     "name": "Somerset Library 13",
+     "pop2020": 793,
+     "votes2024": [
+      74,
+      167,
+      245
+     ],
+     "popw2020": [
+      69,
+      310,
+      385
+     ],
+     "turnout_ratio_scaled": 0.637,
+     "ok": false
+    },
+    {
+     "code": "A106",
+     "name": "Firebrook 14",
+     "pop2020": 2703,
+     "votes2024": [
+      309,
+      1342,
+      1673
+     ],
+     "popw2020": [
+      235,
+      1057,
+      1311
+     ],
+     "turnout_ratio_scaled": 1.276,
+     "ok": true
+    },
+    {
+     "code": "B101",
+     "name": "Pulaski Northwest 21",
+     "pop2020": 3943,
+     "votes2024": [
+      226,
+      1605,
+      1851
+     ],
+     "popw2020": [
+      344,
+      1543,
+      1912
+     ],
+     "turnout_ratio_scaled": 0.968,
+     "ok": true
+    },
+    {
+     "code": "B102",
+     "name": "Huffaker-Harveys Hill 22",
+     "pop2020": 1785,
+     "votes2024": [
+      247,
+      546,
+      804
+     ],
+     "popw2020": [
+      156,
+      698,
+      866
+     ],
+     "turnout_ratio_scaled": 0.928,
+     "ok": false
+    },
+    {
+     "code": "B104",
+     "name": "Science Hill 23",
+     "pop2020": 4068,
+     "votes2024": [
+      317,
+      1644,
+      1982
+     ],
+     "popw2020": [
+      354,
+      1591,
+      1973
+     ],
+     "turnout_ratio_scaled": 1.004,
+     "ok": true
+    },
+    {
+     "code": "B105",
+     "name": "Eubank 25",
+     "pop2020": 1854,
+     "votes2024": [
+      101,
+      764,
+      870
+     ],
+     "popw2020": [
+      162,
+      725,
+      899
+     ],
+     "turnout_ratio_scaled": 0.967,
+     "ok": true
+    },
+    {
+     "code": "B106",
+     "name": "Estesburg 26",
+     "pop2020": 920,
+     "votes2024": [
+      55,
+      379,
+      437
+     ],
+     "popw2020": [
+      80,
+      360,
+      446
+     ],
+     "turnout_ratio_scaled": 0.979,
+     "ok": true
+    },
+    {
+     "code": "C101",
+     "name": "Caney Fork-Vaught 31",
+     "pop2020": 4319,
+     "votes2024": [
+      420,
+      2034,
+      2484
+     ],
+     "popw2020": [
+      376,
+      1690,
+      2095
+     ],
+     "turnout_ratio_scaled": 1.186,
+     "ok": true
+    },
+    {
+     "code": "C102",
+     "name": "Somerset City East 32",
+     "pop2020": 3888,
+     "votes2024": [
+      504,
+      1306,
+      1838
+     ],
+     "popw2020": [
+      339,
+      1521,
+      1886
+     ],
+     "turnout_ratio_scaled": 0.974,
+     "ok": true
+    },
+    {
+     "code": "C103",
+     "name": "Pulaski Northeast 33",
+     "pop2020": 4572,
+     "votes2024": [
+      261,
+      2060,
+      2344
+     ],
+     "popw2020": [
+      398,
+      1789,
+      2217
+     ],
+     "turnout_ratio_scaled": 1.057,
+     "ok": true
+    },
+    {
+     "code": "C105",
+     "name": "Dallas 34",
+     "pop2020": 278,
+     "votes2024": [
+      17,
+      182,
+      201
+     ],
+     "popw2020": [
+      24,
+      109,
+      135
+     ],
+     "turnout_ratio_scaled": 1.49,
+     "ok": false
+    },
+    {
+     "code": "D101",
+     "name": "Somerset Southeast 41",
+     "pop2020": 8033,
+     "votes2024": [
+      679,
+      2762,
+      3470
+     ],
+     "popw2020": [
+      700,
+      3143,
+      3896
+     ],
+     "turnout_ratio_scaled": 0.89,
+     "ok": true
+    },
+    {
+     "code": "D102",
+     "name": "Pulaski East 42",
+     "pop2020": 5195,
+     "votes2024": [
+      300,
+      2190,
+      2518
+     ],
+     "popw2020": [
+      453,
+      2032,
+      2519
+     ],
+     "turnout_ratio_scaled": 0.999,
+     "ok": true
+    },
+    {
+     "code": "E101",
+     "name": "Pulaski South 51",
+     "pop2020": 8095,
+     "votes2024": [
+      693,
+      3222,
+      3946
+     ],
+     "popw2020": [
+      705,
+      3167,
+      3926
+     ],
+     "turnout_ratio_scaled": 1.005,
+     "ok": true
+    },
+    {
+     "code": "E102",
+     "name": "Bourboun 52",
+     "pop2020": 2289,
+     "votes2024": [
+      221,
+      949,
+      1181
+     ],
+     "popw2020": [
+      199,
+      895,
+      1110
+     ],
+     "turnout_ratio_scaled": 1.064,
+     "ok": true
+    },
+    {
+     "code": "E103",
+     "name": "Burnside East 53",
+     "pop2020": 1962,
+     "votes2024": [
+      138,
+      489,
+      636
+     ],
+     "popw2020": [
+      171,
+      768,
+      952
+     ],
+     "turnout_ratio_scaled": 0.668,
+     "ok": false
+    },
+    {
+     "code": "E104",
+     "name": "Sloans Valley 54",
+     "pop2020": 827,
+     "votes2024": [
+      45,
+      311,
+      358
+     ],
+     "popw2020": [
+      72,
+      324,
+      401
+     ],
+     "turnout_ratio_scaled": 0.892,
+     "ok": true
+    }
+   ],
+   "precincts_failing": [
+    "A105",
+    "B102",
+    "C105",
+    "E103"
+   ]
+  },
+  "Laurel County": {
+   "sbe_precincts": 23,
+   "official_units": 23,
+   "pop_in_sbe_polygons": 1.0,
+   "official_county_2024": [
+    4037,
+    23516,
+    27884
+   ],
+   "units_sum": [
+    4037,
+    23516,
+    27887
+   ],
+   "precincts": [
+    {
+     "code": "A101",
+     "name": "Sublimity",
+     "pop2020": 1340,
+     "votes2024": [
+      81,
+      548,
+      637
+     ],
+     "popw2020": [
+      96,
+      497,
+      601
+     ],
+     "turnout_ratio_scaled": 1.059,
+     "ok": true
+    },
+    {
+     "code": "A102",
+     "name": "Campground",
+     "pop2020": 3547,
+     "votes2024": [
+      170,
+      1306,
+      1494
+     ],
+     "popw2020": [
+      254,
+      1316,
+      1592
+     ],
+     "turnout_ratio_scaled": 0.938,
+     "ok": true
+    },
+    {
+     "code": "A103",
+     "name": "East London",
+     "pop2020": 1649,
+     "votes2024": [
+      144,
+      462,
+      617
+     ],
+     "popw2020": [
+      118,
+      612,
+      740
+     ],
+     "turnout_ratio_scaled": 0.834,
+     "ok": true
+    },
+    {
+     "code": "A104",
+     "name": "Rough Creek",
+     "pop2020": 3427,
+     "votes2024": [
+      276,
+      1586,
+      1884
+     ],
+     "popw2020": [
+      245,
+      1272,
+      1538
+     ],
+     "turnout_ratio_scaled": 1.225,
+     "ok": true
+    },
+    {
+     "code": "B101",
+     "name": "Fariston",
+     "pop2020": 3995,
+     "votes2024": [
+      275,
+      1375,
+      1670
+     ],
+     "popw2020": [
+      286,
+      1483,
+      1793
+     ],
+     "turnout_ratio_scaled": 0.931,
+     "ok": true
+    },
+    {
+     "code": "B102",
+     "name": "Lily",
+     "pop2020": 1832,
+     "votes2024": [
+      84,
+      592,
+      689
+     ],
+     "popw2020": [
+      131,
+      680,
+      822
+     ],
+     "turnout_ratio_scaled": 0.838,
+     "ok": true
+    },
+    {
+     "code": "B103",
+     "name": "Robinson Creek",
+     "pop2020": 4980,
+     "votes2024": [
+      307,
+      1555,
+      1881
+     ],
+     "popw2020": [
+      356,
+      1848,
+      2235
+     ],
+     "turnout_ratio_scaled": 0.842,
+     "ok": true
+    },
+    {
+     "code": "C101",
+     "name": "Blackwater",
+     "pop2020": 1274,
+     "votes2024": [
+      56,
+      528,
+      589
+     ],
+     "popw2020": [
+      91,
+      473,
+      572
+     ],
+     "turnout_ratio_scaled": 1.03,
+     "ok": true
+    },
+    {
+     "code": "C102",
+     "name": "East Laurel",
+     "pop2020": 2674,
+     "votes2024": [
+      162,
+      1136,
+      1316
+     ],
+     "popw2020": [
+      191,
+      992,
+      1200
+     ],
+     "turnout_ratio_scaled": 1.096,
+     "ok": true
+    },
+    {
+     "code": "C103",
+     "name": "North London",
+     "pop2020": 3073,
+     "votes2024": [
+      235,
+      1212,
+      1455
+     ],
+     "popw2020": [
+      220,
+      1140,
+      1379
+     ],
+     "turnout_ratio_scaled": 1.055,
+     "ok": true
+    },
+    {
+     "code": "C104",
+     "name": "West London",
+     "pop2020": 2054,
+     "votes2024": [
+      148,
+      631,
+      791
+     ],
+     "popw2020": [
+      147,
+      762,
+      922
+     ],
+     "turnout_ratio_scaled": 0.858,
+     "ok": true
+    },
+    {
+     "code": "C105",
+     "name": "McWhorter",
+     "pop2020": 1220,
+     "votes2024": [
+      53,
+      529,
+      588
+     ],
+     "popw2020": [
+      87,
+      453,
+      548
+     ],
+     "turnout_ratio_scaled": 1.074,
+     "ok": true
+    },
+    {
+     "code": "D101",
+     "name": "East Bernstadt #1",
+     "pop2020": 1857,
+     "votes2024": [
+      132,
+      766,
+      907
+     ],
+     "popw2020": [
+      133,
+      689,
+      833
+     ],
+     "turnout_ratio_scaled": 1.088,
+     "ok": true
+    },
+    {
+     "code": "D102",
+     "name": "East Bernstadt #2",
+     "pop2020": 3775,
+     "votes2024": [
+      186,
+      1314,
+      1509
+     ],
+     "popw2020": [
+      270,
+      1401,
+      1694
+     ],
+     "turnout_ratio_scaled": 0.891,
+     "ok": true
+    },
+    {
+     "code": "D103",
+     "name": "North Laurel",
+     "pop2020": 2003,
+     "votes2024": [
+      109,
+      955,
+      1078
+     ],
+     "popw2020": [
+      143,
+      743,
+      899
+     ],
+     "turnout_ratio_scaled": 1.199,
+     "ok": true
+    },
+    {
+     "code": "D104",
+     "name": "Liberty",
+     "pop2020": 2174,
+     "votes2024": [
+      143,
+      768,
+      920
+     ],
+     "popw2020": [
+      155,
+      807,
+      976
+     ],
+     "turnout_ratio_scaled": 0.943,
+     "ok": true
+    },
+    {
+     "code": "E101",
+     "name": "South London",
+     "pop2020": 3648,
+     "votes2024": [
+      302,
+      1121,
+      1449
+     ],
+     "popw2020": [
+      261,
+      1354,
+      1637
+     ],
+     "turnout_ratio_scaled": 0.885,
+     "ok": true
+    },
+    {
+     "code": "E102",
+     "name": "Sublimity #2",
+     "pop2020": 1327,
+     "votes2024": [
+      126,
+      567,
+      706
+     ],
+     "popw2020": [
+      95,
+      492,
+      596
+     ],
+     "turnout_ratio_scaled": 1.185,
+     "ok": true
+    },
+    {
+     "code": "E103",
+     "name": "Colony",
+     "pop2020": 2472,
+     "votes2024": [
+      120,
+      1011,
+      1147
+     ],
+     "popw2020": [
+      177,
+      917,
+      1109
+     ],
+     "turnout_ratio_scaled": 1.034,
+     "ok": true
+    },
+    {
+     "code": "E104",
+     "name": "Hart",
+     "pop2020": 3411,
+     "votes2024": [
+      251,
+      1544,
+      1814
+     ],
+     "popw2020": [
+      244,
+      1266,
+      1531
+     ],
+     "turnout_ratio_scaled": 1.185,
+     "ok": true
+    },
+    {
+     "code": "F101",
+     "name": "Keavy",
+     "pop2020": 6296,
+     "votes2024": [
+      398,
+      2300,
+      2734
+     ],
+     "popw2020": [
+      450,
+      2337,
+      2826
+     ],
+     "turnout_ratio_scaled": 0.967,
+     "ok": true
+    },
+    {
+     "code": "F102",
+     "name": "West Laurel",
+     "pop2020": 2916,
+     "votes2024": [
+      196,
+      1257,
+      1468
+     ],
+     "popw2020": [
+      208,
+      1082,
+      1309
+     ],
+     "turnout_ratio_scaled": 1.122,
+     "ok": true
+    },
+    {
+     "code": "F103",
+     "name": "South Laurel",
+     "pop2020": 1669,
+     "votes2024": [
+      83,
+      453,
+      544
+     ],
+     "popw2020": [
+      119,
+      619,
+      749
+     ],
+     "turnout_ratio_scaled": 0.726,
+     "ok": true
+    }
+   ],
+   "precincts_failing": []
+  }
+ },
+ "districts": [
+  {
+   "name": "Somerset Independent School District",
+   "geoid": "2105430",
+   "pop2020": 9536,
+   "how": "population-weighted; 0 % of the district population from hole components",
+   "popw2020": [
+    831,
+    3731,
+    4627
+   ],
+   "stored2020": [
+    50,
+    224,
+    278
+   ],
+   "replace2020": [
+    831,
+    3731,
+    4627
+   ],
+   "result": "gray",
+   "why": "uses precincts failing the 2020 checks: ['A105', 'B102']"
+  },
+  {
+   "name": "East Bernstadt Independent School District",
+   "geoid": "2101590",
+   "pop2020": 1326,
+   "how": "population-weighted; 0 % of the district population from hole components",
+   "popw2020": [
+    95,
+    492,
+    595
+   ],
+   "stored2020": [
+    52,
+    269,
+    326
+   ],
+   "replace2020": [
+    95,
+    492,
+    595
+   ],
+   "result": "estimate",
+   "value": [
+    72,
+    481,
+    557
+   ],
+   "other_year": [
+    95,
+    492,
+    595
+   ]
+  },
+  {
+   "name": "Laurel County School District for East Bernstadt ISD",
+   "geoid": "2121001",
+   "pop2020": 1326,
+   "how": "population-weighted; 0 % of the district population from hole components",
+   "popw2020": [
+    95,
+    492,
+    595
+   ],
+   "stored2020": [
+    52,
+    269,
+    326
+   ],
+   "replace2020": [
+    95,
+    492,
+    595
+   ],
+   "result": "estimate",
+   "value": [
+    72,
+    481,
+    557
+   ],
+   "other_year": [
+    95,
+    492,
+    595
+   ]
+  }
+ ]
+}
