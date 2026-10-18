@@ -1,6 +1,6 @@
 entity_id,code_scheme,code,relation,note,source,source_url
 subdivision:gb-eng,gss,E92000001,area_only,England has no devolved government; English councils sit under nation:gb,ons_rgc,https://geoportal.statistics.gov.uk/datasets/ef9bb98c8c62471684aaf42b8898f220
-subdivision:gb-eng,iso_3166_2,GB-ENG,same_government,England has no devolved government; English councils sit under nation:gb,iso_codes,
+subdivision:gb-eng,iso_3166_2,GB-ENG,area_only,England has no devolved government; English councils sit under nation:gb,iso_codes,
 nation:gb,gss,K02000001,same_government,UK Government,ons_rgc,https://geoportal.statistics.gov.uk/datasets/ef9bb98c8c62471684aaf42b8898f220
 subdivision:gb-nir,gss,N92000002,same_government,Northern Ireland Executive,ons_rgc,https://geoportal.statistics.gov.uk/datasets/ef9bb98c8c62471684aaf42b8898f220
 subdivision:gb-nir,iso_3166_2,GB-NIR,same_government,Northern Ireland Executive,iso_codes,

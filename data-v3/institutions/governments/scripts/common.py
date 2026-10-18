@@ -132,6 +132,12 @@ SOURCE_TABLE = {
     'ign_adminexpress': ('IGN, ADMIN EXPRESS COG CARTO (latest edition, names equal to COG 2026), Géoplateforme WFS attribute tables '
                          '(no geometry): SIREN of régions, CTCD and communes',
                          'https://data.geopf.fr/wfs/ows?SERVICE=WFS&REQUEST=GetCapabilities', ['ign_adminexpress_*']),
+    'ons_chd': ('Office for National Statistics, Code History Database (June 2026) for the UK, Changes table (each GSS code and the '
+                'code(s) it replaced): predecessor_id / successor_id of foreign/gb rows', 'https://geoportal.statistics.gov.uk/datasets/e0bc41722b1a4b76a6ecfff14f91cbb4',
+                ['ons_chd']),
+    'dgcl_siren': ('DGCL (Ministère de l\'Intérieur), BANATIC: table de passage code INSEE des communes / SIREN (data.gouv.fr resource '
+                   'of 2025-03-12): commune SIREN (alt_code of fr-cog:com rows)', 'https://www.data.gouv.fr/datasets/base-nationale-sur-les-intercommunalites',
+                   ['dgcl_siren']),
     'ign_aecog2026': ('IGN, ADMIN EXPRESS COG 4.0 édition 2026-01-01 (COG 2026, full precision; the edition Geo builds from), '
                       'Géoplateforme WFS attribute tables (no geometry): codes present in the region, departement, epci and '
                       'commune layers (foreign/fr/boundary_xwalk.csv)',
@@ -139,7 +145,7 @@ SOURCE_TABLE = {
 }
 LICENSES = {'insee_cog2026': 'Licence Ouverte / Open Licence 2.0', 'insee_epci2026': 'Licence Ouverte / Open Licence 2.0',
             'insee_ept2026': 'Licence Ouverte / Open Licence 2.0', 'ign_adminexpress': 'Licence Ouverte / Open Licence 2.0 (IGN)',
-            'ign_aecog2026': 'Licence Ouverte / Open Licence 2.0 (IGN)',
+            'ign_aecog2026': 'Licence Ouverte / Open Licence 2.0 (IGN)', 'dgcl_siren': 'Licence Ouverte / Open Licence 2.0 (DGCL)', 'ons_chd': 'Open Government Licence v3.0',
             'destatis_rs': 'dl-de/by-2-0 (Statistisches Bundesamt (Destatis), 2026)',
             'bkg_vg250': 'dl-de/by-2-0 (BKG 2026; Datenquellen https://sg.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf)',
             'ons_rgc': 'Open Government Licence v3.0', 'ons_lookup': 'Open Government Licence v3.0',

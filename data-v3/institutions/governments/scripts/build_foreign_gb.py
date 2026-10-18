@@ -27,6 +27,10 @@ RGC_URL = 'https://www.arcgis.com/sharing/rest/content/items/{}/data'.format(RGC
 RGC_PAGE = 'https://geoportal.statistics.gov.uk/datasets/{}'.format(RGC_ITEM)
 RGC_FILE = 'Register_of_Geographic_Codes_(June_2026)_UK.xlsx'
 RGC_DATE = '2026-06-24'          # date of the workbook inside the zip
+# ONS Code History Database (June 2026): Changes.csv = each code with the code(s) it replaced (GEOGCD_P), with the order
+CHD_ITEM = 'e0bc41722b1a4b76a6ecfff14f91cbb4'
+CHD_URL = 'https://www.arcgis.com/sharing/rest/content/items/{}/data'.format(CHD_ITEM)
+CHD_PAGE = 'https://geoportal.statistics.gov.uk/datasets/{}'.format(CHD_ITEM)
 LU_WD26 = 'WD26_LAD26_CTYUA26_RGN26_CTRY26_UK_LU'
 LU_CAUTH = 'LAD25_CAUTH25_EN_LU'
 # entity -> (subtype, gov_status, note)
@@ -74,6 +78,16 @@ def rgc():
             h = next(it)
             out[ws.title[:3]] = [dict(zip(h, r)) for r in it if r and r[0]]
     return out
+
+
+def chd_changes():
+    """(code, predecessor code, SI title, operative date) rows of the CHD Changes table (zip kept unextracted)."""
+    import csv, io, zipfile
+    p = fetch('ons_chd', url=CHD_URL, fname='ons_chd_jun2026.zipdata')
+    with zipfile.ZipFile(p) as z:
+        raw = z.read('Changes.csv')
+    txt = raw.decode('utf-8-sig', errors='replace')   # mixed encodings in a few names; only codes and dates are used
+    return [(r['GEOGCD'], r['GEOGCD_P'], r['SI_TITLE'] or '', r['OPER_DATE'][:10]) for r in csv.DictReader(io.StringIO(txt))]
 
 
 def gss_qids():
@@ -195,6 +209,52 @@ def build(reg):
             stats['with_qid'] += 1
         if iso:
             stats['with_iso_3166_2'] += 1
+    # ---- history: terminated RGC codes (is_active=N, code_valid_to = RGC TERM_DATE) and CHD predecessor links
+    term = {}
+    for ent, rs in R.items():
+        for r in rs:
+            c = r['GEOGCD']
+            if r['STATUS'] != 'terminated' or c in units:
+                continue
+            if c not in term or d(r['TERM_DATE']) > term[c]['term']:
+                term[c] = dict(code=c, ent=ent, name=r['GEOGNM'], nmw=r['GEOGNMW'] or '', oper=d(r['OPER_DATE']),
+                               term=d(r['TERM_DATE']), parent=r['PARENTCD'] or '',
+                               si=r['SI_TITLE'] if r['SI_TITLE'] and r['SI_TITLE'] != 'GSS re-coding strategy' else '')
+    scope = set(units) | set(term)
+    pred, succ = collections.defaultdict(set), collections.defaultdict(set)
+    for c, cp, si, od in chd_changes():
+        if c in scope and cp in scope and c != cp:
+            pred[c].add(cp)
+            succ[cp].add(c)
+    ra_chd = manifest()['ons_chd']['retrieved_at']
+    ids = lambda cs: ';'.join('gss:' + x for x in sorted(cs))
+    for r in rows:
+        c = r['code']
+        if pred[c] or succ[c]:
+            r['predecessor_id'], r['successor_id'] = ids(pred[c]), ids(succ[c])
+            r['source'] = r['source'].replace('ons_rgc', 'ons_rgc;ons_chd', 1) if 'ons_rgc' in r['source'] else r['source'] + ';ons_chd'
+            r['retrieved_at'] = max(r['retrieved_at'], ra_chd)
+            stats['with_chd_link'] += 1
+    for c, u in sorted(term.items()):
+        sub, gs, note = ENTITIES[u['ent']]
+        pid = 'gss:' + u['parent'] if u['parent'] in scope else ''
+        if u['parent'] and not pid:
+            note = '; '.join(x for x in (note, 'RGC parent {} (outside this table)'.format(u['parent'])) if x)
+        if u['si']:
+            note = '; '.join(x for x in (note, 'code introduced by ' + u['si']) if x)
+        q, iso = qids.get(c, ('', ''))
+        eid = reg.get(['gss:' + c], 'gss:' + c, ra_rgc[:10])
+        link = bool(pred[c] or succ[c])
+        rows.append(dict(entity_id=eid, name=u['name'], name_local=u['nmw'], name_en='', type='foreign', subtype=sub,
+                         gov_status=gs, parent_id=pid, member_of='', country='GB', code_scheme='gss', code=c, alt_code='',
+                         iso_3166_2=iso, wikidata_qid=q, code_valid_from=u['oper'], code_valid_to=u['term'], valid_from='',
+                         valid_to='', is_active='N', predecessor_id=ids(pred[c]), successor_id=ids(succ[c]), note=note,
+                         flags=';'.join(['code_terminated'] + (['council_status_unknown'] if u['ent'] in ('E04', 'W04') else [])),
+                         source='ons_rgc' + (';ons_chd' if link else '') + (';wikidata_foreign' if q else ''),
+                         source_url=RGC_PAGE, source_date=RGC_DATE,
+                         retrieved_at=max(ra_rgc, ra_chd if link else '', ra_wd if q else ''), license=OGL))
+        stats['terminated|' + sub] += 1
+        stats['terminated_with_successor'] += bool(succ[c])
     check(rows, known)
 
     # ---- code crosswalk: GSS country codes and ISO 3166-2 to existing rows; every new row's GSS and ISO code
@@ -206,10 +266,10 @@ def build(reg):
               'subdivision:gb-nir': 'Northern Ireland Executive', 'nation:gb': 'UK Government'}[e]
         xw.append(dict(entity_id=e, code_scheme='gss', code=c, relation=rel, note=nt, source='ons_rgc', source_url=RGC_PAGE))
         if known[e]['iso_3166_2']:
-            xw.append(dict(entity_id=e, code_scheme='iso_3166_2', code=known[e]['iso_3166_2'], relation='same_government',
+            xw.append(dict(entity_id=e, code_scheme='iso_3166_2', code=known[e]['iso_3166_2'], relation=rel,
                            note=nt, source='iso_codes', source_url=''))
     for r in rows:
-        if r['iso_3166_2']:
+        if r['iso_3166_2'] and r['is_active'] == 'Y':      # terminated codes keep their ISO code on the row only
             xw.append(dict(entity_id=r['entity_id'], code_scheme='iso_3166_2', code=r['iso_3166_2'], relation='same_area',
                            note='via Wikidata item with this GSS code (P836) and ISO 3166-2 code (P300)',
                            source='wikidata_foreign', source_url='https://www.wikidata.org/wiki/' + r['wikidata_qid']))
@@ -222,7 +282,7 @@ def build(reg):
         url = '{}/{}/FeatureServer/{}'.format(ARC, svc, lid)
         for r in rows:
             e, c = r['entity_id'], r['code']
-            if c[:3] not in ents:
+            if c[:3] not in ents or r['is_active'] != 'Y':   # terminated codes are not in the current boundaries
                 continue
             if c in have:
                 bx.append(dict(entity_id=e, boundary_dataset=ds, boundary_code=c, vintage=vint, relation='same_code', source_url=url))

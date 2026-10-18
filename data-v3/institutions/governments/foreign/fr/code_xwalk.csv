@@ -133,6 +133,7 @@ subdivision:fr-pac,insee_reg,93,same_government,Wikidata Q15104 has P2585 93 and
 subdivision:fr-pac,siren,171300007,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
 subdivision:fr-pdl,insee_reg,52,same_government,Wikidata Q16994 has P2585 52 and P300 FR-PDL,insee_cog2026;wikidata_foreign,https://www.wikidata.org/wiki/Q16994
 subdivision:fr-pdl,siren,174400002,same_government,region SIREN (IGN ADMIN EXPRESS),ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:bl,insee_com,97701,same_government,Saint-Barthélemy = Saint-Barthélemy (single-commune collectivity; commune row fr-cog:com:97701),insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:bl,insee_comer,977,same_government,Saint-Barthélemy,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:gf,insee_ctcd,973R,same_government,Collectivité territoriale unique de La Guyane,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:gf,insee_dep,973,same_government,département Guyane: Collectivité territoriale unique de La Guyane,insee_cog2026,https://www.insee.fr/fr/information/8740222
@@ -142,6 +143,7 @@ territory:gf,siren,200052678,same_government,Collectivité territoriale unique d
 territory:gp,insee_ctcd,971D,same_government,Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:gp,insee_dep,971,same_government,département Guadeloupe: Conseil départemental de La Guadeloupe,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:gp,siren,229710017,same_government,Conseil départemental de La Guadeloupe,ign_adminexpress,https://data.geopf.fr/wfs/ows
+territory:mf,insee_com,97801,same_government,Saint-Martin = Saint-Martin (single-commune collectivity; commune row fr-cog:com:97801),insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mf,insee_comer,978,same_government,Saint-Martin,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mq,insee_ctcd,972R,same_government,Collectivité territoriale unique de La Martinique,insee_cog2026,https://www.insee.fr/fr/information/8740222
 territory:mq,insee_dep,972,same_government,département Martinique: Collectivité territoriale unique de La Martinique,insee_cog2026,https://www.insee.fr/fr/information/8740222

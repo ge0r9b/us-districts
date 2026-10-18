@@ -5,8 +5,8 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry/*.csv": 160278,
-  "sources.csv": 39,
+  "id_registry/*.csv": 165492,
+  "sources.csv": 41,
   "changes_since_cog2022.csv": 449,
   "images.csv": 9846,
   "images_gaps.csv": 37584,
@@ -209,8 +209,18 @@
    "non_metropolitan_district": 164,
    "principal_council": 22,
    "strategic_authority": 1,
+   "terminated_with_successor": 3371,
+   "terminated|civil_parish": 3083,
+   "terminated|combined_authority": 3,
+   "terminated|community": 213,
+   "terminated|county_council": 13,
+   "terminated|metropolitan_borough": 3,
+   "terminated|non_metropolitan_district": 82,
+   "terminated|principal_council": 2,
+   "terminated|unitary_authority": 3,
    "unitary_authority": 63,
-   "units": 11739,
+   "units": 15141,
+   "with_chd_link": 2697,
    "with_iso_3166_2": 180,
    "with_qid": 10619
   },
@@ -247,6 +257,7 @@
    "boundary|epci": 1264,
    "boundary|region": 18,
    "collectivite_europeenne_d_alsace": 1,
+   "comer_commune_same_government": 2,
    "comer_zones_not_communes": 10,
    "communaute_d_agglomeration": 230,
    "communaute_de_communes": 987,
@@ -254,16 +265,20 @@
    "commune": 34959,
    "commune_associee": 471,
    "commune_deleguee": 2105,
+   "commune_siren_ign_differs_dgcl": 2,
+   "commune_with_predecessor": 836,
    "conseil_departemental": 91,
    "etablissement_public_territorial": 11,
-   "gaps": 1,
+   "gaps": 3,
    "ign_commune_names_equal_cog2026": 34875,
    "metropole": 21,
    "metropole_de_lyon": 1,
    "region": 2,
-   "units": 38939,
+   "terminated_commune": 1812,
+   "terminated_commune_with_successor": 1812,
+   "units": 40751,
    "ville_de_paris": 1,
-   "with_qid": 34743,
+   "with_qid": 34741,
    "with_valid_from": 1508
   }
  },
@@ -294,6 +309,7 @@
    "foreign/fr/units_communes_93.csv",
    "foreign/fr/units_communes_94.csv",
    "foreign/fr/units_communes_om.csv",
+   "foreign/fr/units_communes_terminated.csv",
    "foreign/fr/units_upper.csv"
   ]
  },
@@ -536,6 +552,11 @@
    "url": "https://www.xrepository.de/api/version_codeliste/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2026-09-30/genericode",
    "last_modified": "",
    "retrieved_at": "2026-10-18T19:02:28Z"
+  },
+  "dgcl_siren": {
+   "url": "https://static.data.gouv.fr/resources/base-nationale-sur-les-intercommunalites/20250312-083024/correspondance-code-commune-siren.csv",
+   "last_modified": "2026-07-02",
+   "retrieved_at": "2026-10-18T19:29:37Z"
   },
   "f33_2022": {
    "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2022/secondary-education-finance/elsec22.txt",
@@ -941,6 +962,11 @@
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Regions_December_2025_Boundaries_EN_BUC/FeatureServer/0/query?where=1%3D1&outFields=RGN25CD&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=2000",
    "last_modified": "2026-04-29",
    "retrieved_at": "2026-10-18T18:52:30Z"
+  },
+  "ons_chd": {
+   "url": "https://www.arcgis.com/sharing/rest/content/items/e0bc41722b1a4b76a6ecfff14f91cbb4/data",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T19:32:48Z"
   },
   "ons_lu_cauth25_0": {
    "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD25_CAUTH25_EN_LU/FeatureServer/0/query?where=1%3D1&outFields=%2A&returnGeometry=false&f=json&resultOffset=0&resultRecordCount=1000",

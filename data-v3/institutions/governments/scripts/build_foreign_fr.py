@@ -27,6 +27,12 @@ COG_PAGE = 'https://www.insee.fr/fr/information/8740222'
 EPCI_URL = 'https://www.insee.fr/fr/statistiques/fichier/2510634/epci_au_01-01-2026.zip'
 EPT_URL = 'https://www.insee.fr/fr/statistiques/fichier/2510634/ept_au_01-01-2026.zip'
 EPCI_PAGE = 'https://www.insee.fr/fr/information/2510634'
+# DGCL (BANATIC) table de passage code INSEE des communes / SIREN (data.gouv.fr, 2025-03-12): primary source of commune SIREN.
+# IGN ADMIN EXPRESS code_siren is only a fallback: it repeats a SIREN on two communes in 3 cases (46002/55102/97502 carry
+# the SIREN of 31006/55039/97416), so it is used only where DGCL has no row and the SIREN is unique.
+DGCL_SIREN_URL = ('https://static.data.gouv.fr/resources/base-nationale-sur-les-intercommunalites/20250312-083024/'
+                  'correspondance-code-commune-siren.csv')
+DGCL_PAGE = 'https://www.data.gouv.fr/datasets/base-nationale-sur-les-intercommunalites'
 IGN = 'https://data.geopf.fr/wfs/ows'
 IGN_LAYER = 'ADMINEXPRESS-COG-CARTO.LATEST:{}'
 # Geo's exact boundary edition (data/geo data-v3/geo/FOREIGN_VINTAGES.md): ADMIN EXPRESS COG 4.0 full precision,
@@ -36,6 +42,7 @@ GEO_LAYERS = {'region': 'code_insee', 'departement': 'code_insee', 'epci': 'code
 GEO_VINTAGE = 'COG 2026'
 LO = 'Licence Ouverte / Open Licence 2.0 (Etalab)'
 VINTAGE = '2026-01-01'
+HISTORY_FROM = '2015-01-01'   # terminated commune codes whose COG DATE_FIN is on or after this date
 # reviewed: COG overseas collectivity code -> existing territory row (names checked in build except the two noted)
 COMER = {'975': 'territory:pm', '977': 'territory:bl', '978': 'territory:mf', '984': 'territory:tf', '986': 'territory:wf',
          '987': 'territory:pf', '988': 'territory:nc', '989': 'subdivision:fr-cp'}
@@ -56,8 +63,21 @@ def cog():
     out = {}
     with zipfile.ZipFile(p) as z:
         for n in z.namelist():
-            if n.endswith('_2026.csv'):
-                out[n[2:-9]] = list(csv.DictReader(z.read(n).decode('utf-8-sig').splitlines()))
+            if n.endswith('_2026.csv') or n == 'v_commune_depuis_1943.csv':
+                out[n[2:-9] if n.endswith('_2026.csv') else n[2:-4]] = list(csv.DictReader(z.read(n).decode('utf-8-sig').splitlines()))
+    return out
+
+
+def dgcl_siren():
+    p = fetch('dgcl_siren', url=DGCL_SIREN_URL, fname='dgcl_correspondance-code-commune-siren.csv')
+    raw = open(p, 'rb').read()
+    try:
+        txt = raw.decode('utf-8-sig')
+    except UnicodeDecodeError:
+        txt = raw.decode('cp1252')
+    rows = list(csv.DictReader(txt.splitlines(), delimiter=';'))
+    out = {r['Code INSEE de la commune'].strip(): r['Siren'].strip() for r in rows}
+    assert len(out) == len(rows) > 30000, len(rows)
     return out
 
 
@@ -105,15 +125,33 @@ def build(reg):
                        ('arrondissement_municipal', ['code_insee', 'nom_officiel'])):
         ign[lay] = wfs('ign_adminexpress_' + lay, IGN, IGN_LAYER.format(lay), props)
     geo = {lay: {r[k] for r in wfs('ign_aecog2026_' + lay, IGN, GEO_IGN_LAYER.format(lay), [k])} for lay, k in GEO_LAYERS.items()}
+    dg = dgcl_siren()
     wd = wd_maps()
     man = manifest()
     ra_c, ra_e = man['insee_cog2026']['retrieved_at'], max(man['insee_epci2026']['retrieved_at'], man['insee_ept2026']['retrieved_at'])
     ra_i = max(v['retrieved_at'] for k, v in man.items() if k.startswith('ign_adminexpress_'))
+    ra_dg = man['dgcl_siren']['retrieved_at']
     ra_w = max(v['retrieved_at'] for k, v in man.items() if k.startswith('wd_fr_'))
     known = existing_foreign()
     iso2 = {x['code']: x for x in __import__('json').load(open(os.path.join(CACHE, 'iso_3166-2.json'), encoding='utf-8'))['3166-2']}
     stats, gaps, xw = collections.Counter(), [], []
     siren_ign = {lay: {r['code_insee']: r.get('code_siren') or '' for r in ign[lay]} for lay in ('region', 'collectivite_territoriale', 'commune')}
+    # commune SIREN: DGCL table by INSEE code; IGN only where DGCL has none and the IGN SIREN is on exactly one commune
+    ign_n = collections.Counter(v for v in siren_ign['commune'].values() if v)
+    com_siren, com_siren_src = {}, {}
+    for c in sorted(r['COM'] for r in C['commune'] if r['TYPECOM'] == 'COM'):
+        i, d = siren_ign['commune'].get(c, ''), dg.get(c, '')
+        if d:
+            com_siren[c], com_siren_src[c] = d, 'dgcl_siren'
+            if i and i != d:
+                gaps.append({'code': c, 'issue': 'IGN ADMIN EXPRESS code_siren {} differs from DGCL {}; DGCL used'.format(i, d)})
+                stats['commune_siren_ign_differs_dgcl'] += 1
+        elif i and ign_n[i] == 1 and i not in set(dg.values()):
+            com_siren[c], com_siren_src[c] = i, 'ign_adminexpress'
+        elif i:
+            gaps.append({'code': c, 'issue': 'IGN ADMIN EXPRESS code_siren {} is not unique and DGCL has no row; left empty'.format(i)})
+            stats['commune_siren_dropped_not_unique'] += 1
+    assert not [v for v, n in collections.Counter(com_siren.values()).items() if n > 1], 'commune SIREN not unique'
     # edition check: IGN 'latest' names equal COG 2026 names
     com_cog = {r['COM']: r for r in C['commune'] if r['TYPECOM'] == 'COM'}
     same = sum(1 for r in ign['commune'] if r['code_insee'] in com_cog and r['nom_officiel'] == com_cog[r['code_insee']]['LIBELLE'])
@@ -129,7 +167,7 @@ def build(reg):
             vf='', note='', flags=(), url=COG_PAGE):
         srcs = src + (';wikidata_foreign' if q else '')
         ra = max(ra_c if 'cog' in src else '', ra_e if 'epci' in src or 'ept' in src else '', ra_i if 'ign' in src else '',
-                 ra_w if q else '')
+                 ra_w if q else '', ra_dg if 'dgcl' in src else '')
         return dict(entity_id=eid, name=name, name_local='', name_en='', alt_name=alt_name if alt_name != name else '',
                     type='foreign', subtype=sub, gov_status=gs, parent_id=parent, member_of=member, country='FR',
                     code_scheme=scheme, code=code, alt_code=alt, iso_3166_2=iso, wikidata_qid=q, code_valid_from='',
@@ -271,16 +309,16 @@ def build(reg):
         flags = ['no_epci'] if s == 'ZZZZZZZZZ' else []
         if c == PARIS:
             rows.append(row(paris_eid, r['LIBELLE'], 'ville_de_paris', 'self_governing', reg_ent[r['REG']], 'insee_com', c,
-                            alt=siren_ign['commune'].get(c, ''), member=member, iso='FR-75C', q=q,
-                            src='insee_cog2026;insee_epci2026;ign_adminexpress',
+                            alt=com_siren.get(c, ''), member=member, iso='FR-75C', q=q,
+                            src='insee_cog2026;insee_epci2026;' + com_siren_src.get(c, 'ign_adminexpress'),
                             note='Ville de Paris: commune with departemental powers (CTCD 75C)'))
             continue
         eid = reg.get(['fr-cog:com:' + c], 'fr-cog:com:' + c, ra_c[:10])
         if c not in siren_ign['commune']:
             flags.append('not_in_ign_adminexpress')
         rows.append(row(eid, r['LIBELLE'], 'commune', 'self_governing', ct_ent[r['CTCD']], 'insee_com', c,
-                        alt=siren_ign['commune'].get(c, ''), member=member, q=q, vf=created.get(c, ''),
-                        src='insee_cog2026;insee_epci2026;ign_adminexpress', flags=flags))
+                        alt=com_siren.get(c, ''), member=member, q=q, vf=created.get(c, ''),
+                        src='insee_cog2026;insee_epci2026;' + com_siren_src.get(c, 'ign_adminexpress'), flags=flags))
     kids = {'COMD': ('comd', 'commune_deleguee', 'delegated'), 'COMA': ('coma', 'commune_associee', 'delegated'),
             'ARM': ('arm', 'arrondissement_municipal', 'sub_municipal')}
     for r in C['commune']:
@@ -294,13 +332,72 @@ def build(reg):
             continue
         q = wd.get(('P374', r['COM_COMER']), ('', ''))[0]
         eid = reg.get(['fr-cog:com:' + r['COM_COMER']], 'fr-cog:com:' + r['COM_COMER'], ra_c[:10])
-        rows.append(row(eid, r['LIBELLE'], 'commune', 'self_governing', COMER[r['COMER']], 'insee_com', r['COM_COMER'], q=q,
-                        note='commune of {}'.format(r['LIBELLE_COMER'])))
+        terr = COMER[r['COMER']]
+        note = 'commune of {}'.format(r['LIBELLE_COMER'])
+        if q and q == known[terr]['wikidata_qid']:
+            # single-commune collectivity (Saint-Barthelemy, Saint-Martin): the Wikidata item is the collectivity's own,
+            # already on the territory row; the commune row keeps no QID and is crosswalked as the same government
+            q, note = '', 'commune of {}; same government as {} (single-commune collectivity)'.format(r['LIBELLE_COMER'], terr)
+            xw.append(dict(entity_id=terr, code_scheme='insee_com', code=r['COM_COMER'], relation='same_government',
+                           note='{} = {} (single-commune collectivity; commune row {})'.format(r['LIBELLE_COMER'], r['LIBELLE'], eid),
+                           source='insee_cog2026', source_url=COG_PAGE))
+            stats['comer_commune_same_government'] += 1
+        rows.append(row(eid, r['LIBELLE'], 'commune', 'self_governing', terr, 'insee_com', r['COM_COMER'], q=q, note=note))
     stats['comer_zones_not_communes'] = sum(1 for r in C['commune_comer'] if r['NATURE_ZONAGE'] != 'COM')
     for r in rows:
         stats[r['subtype']] += 1
         stats['with_qid'] += bool(r['wikidata_qid'])
         stats['with_valid_from'] += bool(r['valid_from'])
+    # ---- history: commune codes terminated since HISTORY_FROM (COG 'communes depuis 1943' DATE_FIN), linked through the
+    # COG 2026 movement file (the commune(s) a code became on that date); code_valid_to = day before DATE_FIN
+    import datetime
+    by_code = {r['code']: r for r in rows if r['code_scheme'] == 'insee_com'}
+    last = {}
+    for h in C['commune_depuis_1943']:
+        if h['TYPECOM'] == 'COM' and (h['COM'] not in last or h['DATE_DEBUT'] > last[h['COM']]['DATE_DEBUT']):
+            last[h['COM']] = h
+    term = {c: h for c, h in last.items() if c not in by_code and h['DATE_FIN'] and h['DATE_FIN'] >= HISTORY_FROM}
+    succ, pred = collections.defaultdict(set), collections.defaultdict(set)
+    mods = collections.defaultdict(set)
+    for m in C['mvt_commune']:
+        c = m['COM_AV']
+        if m['TYPECOM_AV'] == 'COM' and c in term and m['DATE_EFF'] == term[c]['DATE_FIN']:
+            mods[c].add(m['MOD'])
+            if m['TYPECOM_AP'] == 'COM' and m['COM_AP'] != c:
+                succ[c].add(m['COM_AP'])
+    known_codes = set(by_code) | set(term)
+    for c in list(succ):
+        bad = succ[c] - known_codes
+        for x in sorted(bad):
+            gaps.append({'code': c, 'issue': 'successor {} of terminated commune is neither current nor terminated since {}'.format(x, HISTORY_FROM)})
+        succ[c] -= bad
+        for x in succ[c]:
+            pred[x].add(c)
+    cid = lambda cs: ';'.join('fr-cog:com:' + x for x in sorted(cs))
+    for c, r in by_code.items():
+        if pred[c]:
+            r['predecessor_id'] = cid(pred[c])
+            stats['commune_with_predecessor'] += 1
+    comd_codes = {r['code'] for r in rows if r['code_scheme'] in ('insee_comd', 'insee_coma')}
+    for c, h in sorted(term.items()):
+        end = (datetime.date.fromisoformat(h['DATE_FIN']) - datetime.timedelta(days=1)).isoformat()
+        ss = sorted(succ[c])
+        parents = {by_code[x]['parent_id'] for x in ss if x in by_code}
+        dep = c[:3] if c.startswith('97') else c[:2]
+        cts = dep_ct.get(dep, set())
+        parent = next(iter(parents)) if len(parents) == 1 else (ct_ent[next(iter(cts))] if len(cts) == 1 else '')
+        note = 'commune code ended {} (COG mouvement {})'.format(h['DATE_FIN'], ','.join(sorted(mods[c])) or 'none listed')
+        if c in comd_codes:
+            note += '; the code continues as a commune déléguée/associée (fr-cog:{}:{})'.format(
+                next(r['code_scheme'][6:] for r in rows if r['code'] == c and r['code_scheme'] in ('insee_comd', 'insee_coma')), c)
+        eid = reg.get(['fr-cog:com:' + c], 'fr-cog:com:' + c, ra_c[:10])
+        r = row(eid, h['LIBELLE'], 'commune', 'self_governing', parent, 'insee_com', c, note=note,
+                flags=['code_terminated'] + ([] if ss else ['no_successor_in_cog']))
+        r.update(is_active='N', code_valid_from=h['DATE_DEBUT'] if h['DATE_DEBUT'] > '1943-01-01' else '', code_valid_to=end,
+                 successor_id=cid(ss), predecessor_id=cid(pred[c]))
+        rows.append(r)
+        stats['terminated_commune'] += 1
+        stats['terminated_commune_with_successor'] += bool(ss)
     check(rows, known)
     # ---- boundary crosswalk: Geo's layers (IGN ADMIN EXPRESS COG 2026), codes present in each layer
     pairs = collections.defaultdict(list)
@@ -314,7 +411,7 @@ def build(reg):
     for r in rows:
         if r['code_scheme'] == 'siren':
             pairs['epci'].append((r['entity_id'], r['code'], 'same_code'))
-        elif r['code_scheme'] == 'insee_com' and r['parent_id'] in COMER.values():
+        elif r['code_scheme'] == 'insee_com' and (r['parent_id'] in COMER.values() or r['is_active'] != 'Y'):
             continue
         elif r['code_scheme'] == 'insee_com':
             pairs['commune'].append((r['entity_id'], r['code'], 'same_code'))
@@ -336,6 +433,8 @@ def build(reg):
     region_of[paris_eid] = '11'
 
     def part(r):
+        if r['is_active'] == 'N':
+            return 'communes_terminated'
         if r['code_scheme'] == 'insee_com':
             return 'communes_' + region_of.get(r['entity_id'], 'om')
         if r['code_scheme'] in ('insee_comd', 'insee_coma', 'insee_arm'):

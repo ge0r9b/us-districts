@@ -223,7 +223,12 @@ which the RGC workbook has no sheets for; it also confirms the live LAD set: no 
 
 England (E92000001) maps to `subdivision:gb-eng` as an area only; it has no devolved government, so English councils
 sit under `nation:gb`. Not every parish/community has a council (some have only a parish meeting) and no ONS product
-says which, so all carry `council_status_unknown`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
+says which (checked 2026-10-18: ONS geography, the RGC/CHD and the MHCLG planning.data.gov.uk parish dataset carry no
+governance type), so all keep `council_status_unknown`. History: 3,402 terminated RGC codes (is_active=N, flag
+`code_terminated`, `code_valid_to` = RGC TERM_DATE), with predecessor/successor links only where the ONS Code History
+Database (June 2026) `Changes` table records them (3,371 terminated codes have a successor; 2,697 rows carry a link); no
+link is inferred (e.g. CHD lists the North Yorkshire districts, not the old county, as predecessors of E06000065). Terminated rows take a QID
+only by the same exact P836 rule (319); their ISO 3166-2 code stays on the row and is not put in `code_xwalk.csv`. Wikidata QIDs and ISO 3166-2 codes only through the exact GSS code
 (P836) on a single item (QIDs for 10,619 rows; ISO 3166-2 for 180 councils). `boundary_xwalk.csv`, keyed to Geo's editions
 (FOREIGN_VINTAGES.md): every unit's code was found in its BFC product (LAD May 2026: 361/361; CTYUA Dec 2025: 21/21; CAUTH
 Dec 2025: 15/15; PARNCP May 2026: 11,341/11,341). The GLA and the countries have no Geo layer and no row. `gaps.csv` lists
@@ -256,7 +261,7 @@ areas without a municipal government (gemeindefreie Gebiete, coastal waters, the
 Verband key. QIDs by exact ARS (P1388) or Kreisschlüssel (P440), 1:1 only. `boundary_xwalk.csv`: Geo's VG250 layers LAN, KRS,
 VWG, GEM (Stand 2026-01-01, GF=4 features; FOREIGN_VINTAGES.md), only codes present in the layer (16 / 400 / 1,307 /
 10,744); no rows for Regierungsbezirke, Staat or VG1000 (Geo does not build them).
-Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units.
+Not covered: GV100AD-only fields (Destatis host blocked), official English names (none published), dissolved units and code history (`predecessor_id`/`successor_id` empty, no `is_active=N` rows): the Destatis Gebietsänderungen lists are on www.destatis.de, which refuses connections from this build host, and BKG publishes no change list (VG250 carries only the current `WSK`); XRepository has only snapshots of the key list, which give neither dates nor links.
 
 ### France (`foreign/fr/`; units split in `units_upper.csv` and `units_communes_<région>.csv` for the 10 MB limit)
 Sources: INSEE COG au 1er janvier 2026, INSEE Base des EPCI à fiscalité propre et des EPT au 1er janvier 2026, IGN ADMIN
@@ -277,10 +282,17 @@ Départements as territorial units are not separate rows: `code_xwalk.csv` maps 
 ISO 3166-2 FR-XX code) to the collectivity that governs it (`same_government`, or `governs_departement` for 2A/2B, 67/68, 75,
 972, 973, 976; `governs_part` for Rhône 69, split between its conseil départemental and the Métropole de Lyon).
 The Guadeloupe and La Réunion région rows carry no QID (Wikidata's P2585 item is the area item already on `territory:gp/re`,
-flag `qid_is_shared_area_item`). `valid_from` for 1,508 communes from the INSEE movement file. Not covered: provinces of
+flag `qid_is_shared_area_item`). `valid_from` for 1,508 communes from the INSEE movement file. Saint-Barthélemy (97701)
+and Saint-Martin (97801) commune rows carry no QID (Q25362 / Q126125 are the collectivities' items, on `territory:bl/mf`);
+`code_xwalk.csv` maps those commune codes to `territory:bl/mf` as `same_government`. History: 1,812 commune codes
+terminated since 2015-01-01 (`units_communes_terminated.csv`, is_active=N, `code_valid_to` = day before COG DATE_FIN),
+each with its successor from the COG movement file; 836 current communes carry `predecessor_id` (mostly communes
+nouvelles). Commune SIREN (`alt_code`) comes from the DGCL INSEE/SIREN table (all 34,875); IGN ADMIN EXPRESS had put the
+SIREN of 31006 and 55039 on 46002 and 55102 as well (the cause of the two SIRENs on two communes each; EPCI membership
+was always joined on the INSEE code via the INSEE composition file). Not covered: provinces of
 New Caledonia and the Wallis-et-Futuna circonscriptions/chefferies (not in the COG as communes), syndicats (SIVU, SIVOM,
 syndicats mixtes), Île des Faisans (condominium, no own government), SIREN for EPT/EPCI beyond the INSEE code
-(they are the SIREN), commune SIREN missing where IGN has none. `boundary_xwalk.csv` is keyed to Geo's ADMIN EXPRESS COG 2026 layers
+(they are the SIREN). `boundary_xwalk.csv` is keyed to Geo's ADMIN EXPRESS COG 2026 layers
 (FOREIGN_VINTAGES.md): region 18, departement 96, epci 1,264, commune 34,875; communes déléguées/associées, arrondissements
 municipaux and the CTCD layer have no Geo layer and no row.
 

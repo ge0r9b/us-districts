@@ -6,7 +6,7 @@ FOREIGN = os.path.join(ROOT, 'foreign')
 # one column set for all three countries; country-specific codes go in code / alt_code / member_of
 LOCAL_COLUMNS = ['entity_id', 'name', 'name_local', 'name_en', 'alt_name', 'type', 'subtype', 'gov_status', 'parent_id', 'member_of',
                  'country', 'code_scheme', 'code', 'alt_code', 'iso_3166_2', 'wikidata_qid', 'code_valid_from', 'code_valid_to',
-                 'valid_from', 'valid_to', 'is_active', 'note', 'flags', 'source', 'source_url', 'source_date', 'retrieved_at',
+                 'valid_from', 'valid_to', 'is_active', 'predecessor_id', 'successor_id', 'note', 'flags', 'source', 'source_url', 'source_date', 'retrieved_at',
                  'license']
 CODE_XW_COLUMNS = ['entity_id', 'code_scheme', 'code', 'relation', 'note', 'source', 'source_url']
 BOUNDARY_COLUMNS = ['entity_id', 'boundary_dataset', 'boundary_code', 'vintage', 'relation', 'source_url']
@@ -85,6 +85,9 @@ def check(rows, known_parents):
     known = set(ids) | set(known_parents)
     dangling = sorted({r['parent_id'] for r in rows if r['parent_id'] and r['parent_id'] not in known})
     assert not dangling, ('dangling parent_id', dangling[:5])
+    links = sorted({x for r in rows for k in ('predecessor_id', 'successor_id') for x in (r.get(k) or '').split(';')
+                    if x and x not in known})
+    assert not links, ('dangling predecessor/successor', links[:5])
 
 
 def read_xlsx(path):
