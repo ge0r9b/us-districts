@@ -56,3 +56,12 @@ Columns: `layer, state, row, v2_name, geoid_2024, geoid_2020, tiger_name_2020, m
 - `zcta2024.csv` (`tools/zcta2024_csv.py`): all 33,791 ZCTAs of the Census 2024 ZCTA Gazetteer, keyed by `zcta5` (the ZCTA GEOID),
   with land/water area (m²) and the internal point as published. `in_v2` and `v2_point_match` check `v2/data/zcta2024.js`:
   all 33,791 v2 keys are in the Gazetteer and every v2 [lat, lon] is the Gazetteer point rounded to 4 decimals.
+- `towns_2024.geojson.gz` and `places_2024.geojson.gz` (`tools/v3_geojson_2024.py`, gzipped because they are over 5 MB): every
+  Census TIGER 2024 county subdivision (35,482, 10-digit GEOID) and place (32,041, 7-digit GEOID, incorporated places and CDPs)
+  of the 50 states and DC, one feature per GEOID (`id` = GEOID). Properties: `geoid`, `state`, `statefp`, `countyfp` and
+  `county` (towns), `name`, `namelsad`, `lsad`, `classfp`, `funcstat` (filter A/B/C/G for governmental towns, CLASSFP C* /
+  `incorporated` for incorporated places), `aland`, `awater`, and the v2 rows carrying the feature: `v2_parts`
+  (`"<county>|<name>"` keys of `v2/data/parts/`) and, for places, `v2_places` (the `v2/data/places/` row name, or null).
+  Every one of the 58,127 v2 town and place rows with a GEOID is a feature. Geometry: per state, the whole TIGER coverage is
+  simplified with shapely.coverage_simplify at 0.0005° (finer than v2's 0.002°; shared edges stay identical), coordinates
+  snapped to 5 decimals with every geometry valid. Rebuild from the TIGER zips with the script for full resolution.
