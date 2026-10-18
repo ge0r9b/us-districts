@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181578";</script>
+<script>window.BUILD="202610181579";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -1019,7 +1019,7 @@ function precAt(ll) {
 }
 function marginColor(m) {
   // m = (Trump - Harris) / total, -1..1; red = Trump, blue = Harris
-  const stops = [[-0.6,[8,48,107]],[-0.3,[33,113,181]],[-0.1,[107,174,214]],[0,[247,247,247]],[0.1,[252,146,114]],[0.3,[222,45,38]],[0.6,[103,0,13]]];
+  const stops = [[-0.9,[8,48,107]],[-0.45,[33,113,181]],[-0.15,[107,174,214]],[0,[247,247,247]],[0.15,[252,146,114]],[0.45,[222,45,38]],[0.9,[103,0,13]]]; /* build 1579 (QA-046, option a): linear to +-90 (was +-60; lopsided counties' precincts all clamped to one red) */
   if (m <= stops[0][0]) return "rgb(" + stops[0][1] + ")";
   for (let i = 1; i < stops.length; i++) {
     if (m <= stops[i][0]) {
@@ -1143,10 +1143,10 @@ if (map) {
   heatLegend = L.control({ position: "bottomright" });
   heatLegend.onAdd = () => {
     const div = L.DomUtil.create("div", "heatlegend");
-    const steps = [-0.6, -0.4, -0.2, -0.1, 0, 0.1, 0.2, 0.4, 0.6];
+    const steps = [-0.9, -0.6, -0.3, -0.15, 0, 0.15, 0.3, 0.6, 0.9];
     div.innerHTML = "<strong>2024 president, <span id='heatlvl'>county</span> margin</strong><div class='heatbar'>" +
       steps.map(s => "<span style='background:" + marginColor(s) + "'></span>").join("") +
-      "</div><div class='heatlbl'><span>Harris +60</span><span>even</span><span>Trump +60</span></div>";
+      "</div><div class='heatlbl'><span>Harris +90</span><span>even</span><span>Trump +90</span></div>";
     return div;
   };
   heatInfo = L.control({ position: "topright" });
@@ -1265,8 +1265,8 @@ window.updateLegend = function(){
     if(S.m==="one"&&m!=="delta"){ const c=candsOn().find(x=>candOn.has(x.id)); const st=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]; div.innerHTML="<strong>"+m+" "+esc(c?c.short:"")+" share, "+heatLevel+"</strong><div class='heatbar'>"+st.map(f=>"<span style='background:"+shareColor(f,S.color)+"'></span>").join("")+"</div><div class='heatlbl'><span>20%</span><span>50%</span><span>80%</span></div>"; return; } }
   if(m==="delta"){ const st=[-0.2,-0.1,-0.05,0,0.05,0.1,0.2];
     div.innerHTML="<strong>Margin change "+vy("2020").slice(2)+"→"+vy("2024").slice(2)+" · "+heatLevel+"</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
-  } else { const st=[-0.6,-0.4,-0.2,-0.1,0,0.1,0.2,0.4,0.6]; const d=m==="2020"?"Biden":"Harris";
-    div.innerHTML="<strong>"+m+" president, "+heatLevel+" margin</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+marginColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>"+d+" +60</span><span>even</span><span>Trump +60</span></div>"; }
+  } else { const st=[-0.9,-0.6,-0.3,-0.15,0,0.15,0.3,0.6,0.9]; const d=m==="2020"?"Biden":m==="2016"?"Clinton":"Harris";
+    div.innerHTML="<strong>"+m+" president, "+heatLevel+" margin</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+marginColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>"+d+" +90</span><span>even</span><span>Trump +90</span></div>"; }
 };
 // geography breadcrumb + sheet
 const sheet=$("sheet");
@@ -2205,7 +2205,7 @@ document.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!document.body.clas
 { const _ofA=openFold; let inG=0; openFold=function(){ const r=_ofA.apply(this,arguments); if(!inG&&document.body.classList.contains("worldmode")&&!document.body.classList.contains("orgglobal")){ inG=1; setTimeout(()=>{ try{ (window.__W&&window.__W()==="ca"&&window.__orgCountry)?window.__orgCountry("ca"):window.__orgGlobal(); }finally{ setTimeout(()=>inG=0,400); } },80); } return r; }; }
 // ===== legend: colors + tiny numbers only; tap to magnify =====
 function fixLegend(){ const lg=document.querySelector(".heatlegend"); if(!lg) return; const dl=ym()==="delta";
-  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&dl)?"<span>no gain</span><span>gain</span><span>+20 margin</span>":(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+60</span><span>0</span><span>R+60</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
+  const lb=lg.querySelector(".heatlbl"); const HS=heatSel(); lg.style.display=HS.m==="none"?"none":""; const want=(HS.m==="one"&&dl)?"<span>no gain</span><span>gain</span><span>+20 margin</span>":(HS.m==="one"&&!dl)?(numMode==="pct"?"<span>20%</span><span>50%</span><span>80%</span>":"<span>low</span><span>share</span><span>high</span>"):dl?"<span>D+20</span><span>0</span><span>R+20</span>":"<span>D+90</span><span>0</span><span>R+90</span>"; if(lb&&lb.innerHTML!==want) lb.innerHTML=want; lg.querySelectorAll("strong,.srcbtn").forEach(x=>x.remove());
   if(!lg.__mag){ lg.__mag=1; L.DomEvent.disableClickPropagation(lg); lg.addEventListener("click",()=>lg.classList.toggle("mag")); } }
 const _ul2=window.updateLegend; window.updateLegend=function(){ _ul2(); fixLegend(); }; updateLegend=window.updateLegend;
 const _dh5=drawHeat; drawHeat=function(){ _dh5(); fixLegend(); };
