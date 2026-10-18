@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181591";</script>
+<script>window.BUILD="202610181592";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -106,9 +106,9 @@
            border-top: 1px solid rgba(0,0,0,.08); border-bottom: 1px solid rgba(0,0,0,.08); font-size: var(--fs); }
   .v2bar .grow { flex: 1 1 auto; min-width: 0; }
   .v2bar .inner { max-width: 1100px; }
-  #barSearch { top: calc(var(--sat) + var(--gap)); }
-  #barGeo { top: calc(var(--sat) + var(--gap) * 2 + var(--bar)); }
-  #barTime { top: calc(var(--sat) + var(--gap) * 3 + var(--bar) * 2); flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px; }
+  #barSearch { top: calc(var(--sat) + 0px); }
+  #barGeo { top: calc(var(--sat) + var(--gap) * 1 + var(--bar)); }
+  #barTime { top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px; }
   #barTime[hidden] { display: none; }
   #barBottom { bottom: 0; padding-bottom: calc(var(--sab) + 4px); min-height: calc(var(--bar) + var(--sab)); box-sizing: border-box; }
   .rbtn { flex: 0 0 var(--btn); width: var(--btn); height: var(--btn); border-radius: 50%; padding: 0; border: 3px solid #fff; background: #000; color: #fff;
@@ -128,7 +128,7 @@
   #ynote { width: 100%; font-size: .8em; color: #444; padding-bottom: 4px; }
   #ynote:empty { display: none; }
   .bottomlbl { font: inherit; background: transparent; border: 0; color: #111; text-align: left; padding: 10px 0; min-height: 44px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .sheet { position: fixed; z-index: 1002; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
+  .sheet { position: fixed; z-index: 1002; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 1 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
            background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: auto; -webkit-overflow-scrolling: touch;
            padding: 0 calc(var(--gap) + var(--sar)) 0 calc(var(--gap) + var(--sal)); font-size: var(--fs); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
   .sheet[hidden] { display: none; }
@@ -138,15 +138,15 @@
   .sheet li .n { color: #777; min-width: 2.2em; text-align: right; } .sheet li.on { font-weight: 600; }
   .sheet .close { font: inherit; min-height: 44px; }
   @media (min-width: 900px) {
-    .sheet { left: auto; width: min(560px, 42vw); right: calc(var(--gap) * 2 + var(--btn) + var(--sar)); border-radius: 14px; top: calc(var(--sat) + var(--gap) * 3 + var(--bar) * 2); }
+    .sheet { left: auto; width: min(560px, 42vw); right: calc(var(--gap) * 2 + var(--btn) + var(--sar)); border-radius: 14px; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); }
   }
-  .layout > .panel { position: fixed; z-index: 1003; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
+  .layout > .panel { position: fixed; z-index: 1003; left: 0; right: 0; top: calc(var(--sat) + var(--gap) * 1 + var(--bar) * 2); bottom: calc(var(--sab) + var(--gap) + var(--bar));
            overflow: auto; border-radius: 0; box-shadow: 0 6px 20px rgba(0,0,0,.2); font-size: var(--fs); }
   .layout > .panel.closed { display: none; }
   .layout > .panel button, .layout > .panel select, .layout > .panel input { min-height: 44px; font-size: max(16px, 1em); }
   @media (min-width: 900px) { .layout > .panel { left: auto; width: min(620px, 45vw); right: calc(var(--gap) * 2 + var(--btn) + var(--sar)); border-radius: 14px; } }
   .tablewrap { max-height: none; }
-  .leaflet-top { top: calc(var(--sat) + var(--gap) * 4 + var(--bar) * 3); }
+  .leaflet-top { top: calc(var(--sat) + var(--gap) * 3 + var(--bar) * 3); }
   .leaflet-top.leaflet-right { right: calc(var(--gap) * 2 + var(--btn)); }
   .leaflet-bottom { bottom: calc(var(--sab) + var(--gap) + var(--bar)); }
   .leaflet-control-zoom { display: none; }
@@ -237,7 +237,7 @@
   #barTime #ynote, #barTime .ydelta { flex: 1 0 100%; }
   body.foldfs #map { visibility: hidden; }
   body.foldfs #barBottom, body.foldfs #barTime, body.foldfs .rail, body.foldfs .cands, body.foldfs .xrow, body.foldfs #listView, body.foldfs .leaflet-control-container, body.foldfs .bub { display: none !important; }
-  body.foldfs .sheet { top: calc(var(--sat) + var(--gap) * 2 + var(--bar)) !important; bottom: 0 !important; left: 0 !important; right: 0 !important; max-width: none !important; width: auto !important; border-radius: 0; padding-bottom: calc(var(--sab) + 12px); }
+  body.foldfs .sheet { top: calc(var(--sat) + var(--gap) * 1 + var(--bar)) !important; bottom: 0 !important; left: 0 !important; right: 0 !important; max-width: none !important; width: auto !important; border-radius: 0; padding-bottom: calc(var(--sab) + 12px); }
   body.foldfs .sheet > * { max-width: none; margin-left: 0; margin-right: 0; }
   .fsq { position: sticky; top: 0; z-index: 2; background: inherit; padding: 8px 0; }
   .fsq input { width: 100%; box-sizing: border-box; font: inherit; font-size: 17px; padding: 10px 14px; border-radius: 12px; border: 1px solid #d6d3d1; background: #fff; }
@@ -255,7 +255,7 @@
   body.srchfs #barGeo, body.srchfs #barBottom, body.srchfs #barTime, body.srchfs .rail, body.srchfs .cands, body.srchfs .xrow, body.srchfs .sheet, body.srchfs .leaflet-control-container, body.srchfs .bub { display: none !important; }
   body.srchfs #vtitle { display: none; }
   #barSearch .usq { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 17px; font-weight: 600; border: 0; background: transparent; outline: none; padding: 0 4px; height: var(--btn); color: #111; -webkit-appearance: none; }
-  .usv { position: fixed; z-index: 1002; left: 0; right: 0; bottom: 0; top: calc(var(--sat) + var(--gap) * 2 + var(--bar)); overflow: auto; background: #fafaf9; padding: 0 calc(var(--gap) + var(--sar)) calc(var(--sab) + 12px) calc(var(--gap) + var(--sal)); }
+  .usv { position: fixed; z-index: 1002; left: 0; right: 0; bottom: 0; top: calc(var(--sat) + var(--gap) * 1 + var(--bar)); overflow: auto; background: #fafaf9; padding: 0 calc(var(--gap) + var(--sar)) calc(var(--sab) + 12px) calc(var(--gap) + var(--sal)); }
   .usv > * { max-width: none; margin-left: 0; margin-right: 0; }
   .usv .nl { list-style: none; padding: 0; }
   .usv .nl li { display: flex; justify-content: space-between; gap: 12px; min-height: 44px; align-items: center; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
@@ -2466,7 +2466,7 @@ setInterval(placeLegend,500);
   const okT=(k,two)=>k==="line"?two:k==="pie"?(!two&&!multi()):k==="gbar"?multi():true; /* build 1585 (user): a list of places never shows pies; lists offer the totaled bar and the split (grouped) bar (+ line for a range); a single place keeps its pie for one year */ /* build 1577 (user): one point = Pie and Bar; a range = Line and Bar */ /* build 1571: bar and pie are always valid (pie in a range = end year); line needs a range */ /* build 1563: a single entity gets bar again (one bar per answer, top of the content area) */ const fb=two=>multi()?"bar":(two?"line":"pie"); const isTwo=()=>{ try{ return (window.__y16&&!!window.__y16hi)||ymRaw()==="delta"; }catch(e){ return false; } };
   const paint=()=>{ const k=window.chartMode||(okT(last,isTwo())?last:fb(isTwo())); if(main.dataset.ch!==k||!main.innerHTML){ main.innerHTML=SV[k]; main.dataset.ch=k; } main.classList.toggle("on",!!window.chartMode&&view==="list"); }; /* dark = a chart is actually displayed (not in the full-screen map) */
   const close=()=>{ w.classList.remove("open"); (dim.classList.remove("on"),document.body.classList.remove("chdim")); };
-  const pick=k=>{ auto=null; if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); try{ window.__ymCheck&&window.__ymCheck(); }catch(e){} if(window.chartMode&&view!=="list") $("bGlobe").click(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const inRange=(window.__y16&&window.__y16hi)||(!window.__y16&&+$("yslider").value===1); /* build 1577 (QA-043): Line keeps a range the user chose ('16>'20, '16>'24); it only opens one from a single year */ if(inRange){} else if(window.__ySelectAll) window.__ySelectAll(); else { const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } } try{ renderCands(); }catch(e){} };
+  const pick=k=>{ auto=null; const off=window.chartMode===k; if(off) window.chartMode=null; else { if(!window.chartMode) w.__from=view; window.chartMode=k; } last=k; paint(); close(); try{ window.__ymCheck&&window.__ymCheck(); }catch(e){} if(window.chartMode&&view!=="list") $("bGlobe").click(); if(off&&view==="list"&&(w.__from==="map"||(!w.__from&&!multi()))){ w.__from=null; $("bGlobe").click(); } /* build 1592 (QA-079): turning the chart off returns to the view it was opened from (the map), never the empty gray list */ if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const inRange=(window.__y16&&window.__y16hi)||(!window.__y16&&+$("yslider").value===1); /* build 1577 (QA-043): Line keeps a range the user chose ('16>'20, '16>'24); it only opens one from a single year */ if(inRange){} else if(window.__ySelectAll) window.__ySelectAll(); else { const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } } try{ renderCands(); }catch(e){} };
   const open=()=>{ paint(); const cur=main.dataset.ch; opts.innerHTML=""; K.filter(k=>k!==cur&&okT(k,isTwo())) /* build 1563: options = every valid chart except the one on the main button (it showed pie when last was bar: a duplicate pie, or nothing to pick) */.forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
     void opts.offsetWidth; w.classList.add("open"); (dim.classList.add("on"),document.body.classList.add("chdim")); };
   main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
