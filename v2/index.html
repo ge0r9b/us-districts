@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181576";</script>
+<script>window.BUILD="202610181577";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -286,7 +286,7 @@
   #bGeo, #bGeo.on, #bGeo:active, #bGeo:focus { transform: none !important; transition: background-color .12s, color .12s !important; border-width: 0 !important; outline: none !important; box-shadow: 0 1px 4px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.12) !important; -webkit-tap-highlight-color: transparent; }
   .rbtn { -webkit-tap-highlight-color: transparent; }
   body.foldfs #barSearch { visibility: visible !important; }
-  body.foldfs #vtitle, body.foldfs #bSearch { display: none !important; }
+  body.foldfs #vtitle { display: none !important; } /* build 1577 (user): the unisearch button stays top-right on every screen, both full-screen filters included */
   body.foldfs #barSearch .crumbs { flex: 1 1 auto; min-width: 0; }
   #barGeo .fsq { position: static; flex: 1 1 auto; min-width: 0; padding: 0; background: transparent; }
   #barGeo .fsq input { height: var(--btn); padding: 0 12px; font-size: 17px; border-radius: 999px; }
@@ -338,7 +338,7 @@
   #geofs { position: fixed; left: 0; right: 0; top: 0; bottom: calc(var(--sab, 0px) + var(--gap, 8px) * 2 + var(--bar, 48px)); background: #fff; z-index: 900; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: env(safe-area-inset-top); display: none; }
   body.geofs #geofs { display: block; }
   body.geofs #map, body.geofs .cands, body.geofs #listView { visibility: hidden; }
-  body.geofs #barSearch, body.geofs #barGeo, body.geofs #barTime, body.geofs .rail, body.geofs .leaflet-control-container, body.geofs .legend { display: none !important; }
+  body.geofs #barGeo, body.geofs #barTime, body.geofs .rail, body.geofs .leaflet-control-container, body.geofs .legend { display: none !important; }
   #geofs .gh { position: sticky; top: 0; background: #fff; padding: 12px 16px; font-weight: 600; border-bottom: 1px solid #e7e5e4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #geofs .gh span { color: #57534e; font-weight: 500; }
   #geofs ol { list-style: none; margin: 0; padding: 0; max-width: none; }
@@ -524,7 +524,11 @@
   #worldMsg { display: none; position: fixed; z-index: 1001; left: calc(var(--gap, 8px) + var(--sal, 0px)); top: 126px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.92); font: 600 14px system-ui, sans-serif; color: #57534e; box-shadow: 0 1px 3px rgba(0,0,0,.15); pointer-events: none; }
   body.worldmode:not(.foldfs):not(.geofs):not(.listall) #worldMsg { display: block; }
   body.wcountry .leaflet-natPane-pane, body.wcountry .leaflet-stPane-pane, body.wcountry .leaflet-typePane-pane, body.wcountry .leaflet-heat-pane, body.wcountry .leaflet-lyr-pane, body.wcountry .leaflet-laPane-pane { visibility: hidden !important; }
-  body.orgsearch #orgGlobal { display: none !important; } #orgGlobal li[style*="display: none"], .nl li[style*="display: none"] { display: none !important; }
+  body.orgsearch #orgGlobal { display: none !important; }
+  body:has(#chartDim.on) #barSearch { z-index: 1012 !important; } body:has(#chartDim.on) #barSearch > :not(#bSearch) { opacity: .72; }
+  body.geofs #barSearch { z-index: 960 !important; pointer-events: none; background: transparent !important; box-shadow: none !important; } body.geofs #barSearch > :not(#bSearch) { visibility: hidden !important; } body.geofs #bSearch { pointer-events: auto; visibility: visible !important; }
+  #orgSearch li.orggh { min-height: 0 !important; padding: 10px 16px 4px !important; font: 600 12px/1.2 system-ui, -apple-system, sans-serif; color: #78716c; text-transform: uppercase; letter-spacing: .04em; border: 0 !important; pointer-events: none; }
+  #orgCountry li.cav3 { min-height: 0 !important; padding: 8px 16px !important; font-size: 13px; color: #78716c; border: 0 !important; pointer-events: none; } #orgCountry.nores li.oti .nm { color: #a8a29e; } #orgCountry.nores li.oti .oic { opacity: .45; } #orgGlobal li[style*="display: none"], .nl li[style*="display: none"] { display: none !important; }
   .cwide.pieonly { justify-content: center; } .cwide.pieonly .cpieL { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .cbcap { font: 12px system-ui, sans-serif; color: #57534e; text-align: center; }
   body.worldmode .cands, body.worldmode .leaflet-overlay-pane, body.worldmode .leaflet-lyrPane-pane, body.worldmode .leaflet-marker-pane, body.worldmode .leaflet-popup-pane, body.worldmode .heatlegend, body.worldmode #chartW, body.worldmode #barTime { display: none !important; }
@@ -1527,9 +1531,21 @@ function match20(r){ const st=r.__st||state.value, P=PREC20[st]; if(!P) return n
   if(!M20[st]){ const mp=new Map(); P.forEach(o=>mp.set(o[0]+"|"+o[1]+"|"+o.__h,o)); M20[st]=mp; }
   const o=M20[st].get(r[0]+"|"+r[1]+"|"+r.__h); if(o&&o[4]&&r[4]) return o;
   if(!r[4]) return null; if(r.__x20!==undefined) return r.__x20; const x=X20[st]&&X20[st][r[0]+"|"+r[1]]; let e=null; if(x&&x[2]){ e=[r[0],r[1],x[0],x[1],x[2]]; e.__est=true; } if(X20[st]) r.__x20=e; return e; }
+/* build 1577 (QA-048): 2016 twin of a 2024 precinct row, by county + normalised name (VEST 2016 names); null when the name has no twin */
+const M16={}; const n16=x=>String(x||"").toUpperCase().replace(/\bPRECINCT\b|\bPCT\b|\bWARD\b|\bDIST(RICT)?\b/g," ").replace(/[^A-Z0-9]+/g," ").trim().replace(/\b0+(\d)/g,"$1");
+window.__match16=function(r){ const st=r.__st||state.value, P=(window.PREC16||{})[st]; if(!P){ try{ window.__loadPrec16&&window.__loadPrec16(st); }catch(e){} return null; } if(!M16[st]){ const mp=new Map(); P.forEach(o=>{ const k=o[0]+"|"+n16(o[1]); if(!mp.has(k)) mp.set(k,o); }); M16[st]=mp; } const nm=M16[st].get(r[0]+"|"+n16(r[1])); if(nm) return nm; return sp16(st,r); };
+/* no name twin: the 2016 precinct containing this 2024 precinct's centre point (same county first); cached on the row. Interim until the values-only precincts2016 keyed to the 2024 shapes land */
+const B16={}; const geo16=r=>{ const g=r[5]; return Array.isArray(g)?g:null; };
+const ctr16=r=>{ const g=geo16(r); if(!g) return null; let best=null,bn=0; g.forEach(poly=>{ const ring=poly&&poly[0]; if(ring&&ring.length>bn){ bn=ring.length; best=ring; } }); if(!best) return null; let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; best.forEach(([x,y])=>{ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }); const cx=(x0+x1)/2, cy=(y0+y1)/2; if(pip16(g,cx,cy)) return [cx,cy]; let sx=0,sy=0; best.forEach(([x,y])=>{ sx+=x; sy+=y; }); return [sx/best.length,sy/best.length]; };
+const pip16=(g,x,y)=>{ let ins=false; g.forEach(poly=>poly.forEach(ring=>{ for(let i=0,j=ring.length-1;i<ring.length;j=i++){ const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1]; if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi)) ins=!ins; } })); return ins; };
+const sp16=(st,r)=>{ if(r.__m16!==undefined) return r.__m16; const P=(window.PREC16||{})[st]; if(!P) return null; if(!B16[st]){ const by=new Map(), all=[]; P.forEach(o=>{ const g=geo16(o); if(!g) return; let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; g.forEach(poly=>(poly[0]||[]).forEach(([x,y])=>{ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; })); const e=[x0,y0,x1,y1,o]; all.push(e); if(!by.has(o[0])) by.set(o[0],[]); by.get(o[0]).push(e); }); B16[st]={by,all}; }
+  const c=ctr16(r); let hit=null; if(c){ const look=L=>{ for(const e of L){ if(c[0]>=e[0]&&c[0]<=e[2]&&c[1]>=e[1]&&c[1]<=e[3]&&pip16(geo16(e[4]),c[0],c[1])) return e[4]; } return null; }; hit=look(B16[st].by.get(r[0])||[])||look(B16[st].all); } r.__m16=hit; return hit; };
+/* a 2024 precinct row's values in a year (2024 = its own, 2020 = its 2020 twin, 2016 = its 2016 twin); the change view reads the virtual years */
+window.__precY=function(r,y){ if(y==="2024") return r[4]?r:null; if(y==="2020") return match20(r); return window.__match16(r); };
+window.__precDelta=function(r){ const a=window.__precY(r,vy("2024")), b=window.__precY(r,vy("2020")); return a&&b&&a[4]&&b[4]?deltaColor((a[3]-a[2])/a[4]-(b[3]-b[2])/b[4]):"#d6d3d1"; };
 window.precFill=function(r){ const m=ym(); if(m==="2016") return r[4]?heatC(r[2],r[3],r[4]):"#d6d3d1";
   if(m!=="delta") return r[4]?heatC(r[2],r[3],r[4]):"#d6d3d1";
-  const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; };
+  return window.__precDelta(r); };
 window.precNote=function(items){ const st=state.value, m=ym(); if(m==="2016"){ const P=(window.PREC16||{})[st]; if(!P) return "No 2016 precinct results for "+st+". Switch to counties or a district layer."; return fmtN(items.length)+" 2016 precincts shown. Source: "+((window.PREC16CREDIT||{})[st]||"VEST 2016"); }
   if(m==="2020"){ if(!PREC20[st]) return "No 2020 precinct results joined for "+st+". Switch to counties or a district layer."; return fmtN(items.length)+" 2020 precincts shown. Source: "+(PREC20CREDIT[st]||""); }
   if(!PREC20[st]) return "No 2020 precinct results joined for "+st+", so there is no precinct-level change here. Use counties or a district layer.";
@@ -1945,7 +1961,7 @@ renderCands=function(){ const lst=document.body.classList.contains("listmode"), 
     if(yrs.length>1){ const l=document.createElement("div"); l.className="cyr"; l.textContent=vy(yr); col.append(l); }
     const cs=[...CANDS[yr]].sort((x,y)=>v?((y.ix?v.rep:v.dem)-(x.ix?v.rep:v.dem)):0);
     cs.forEach(c=>{ const b=document.createElement("button"); b.type="button"; b.className="cand ph "+c.p+(candOn.has(c.id)?" on":"");
-      b.setAttribute("aria-pressed",candOn.has(c.id)); b.setAttribute("aria-label",c.full+" "+(c.yr||yr)); b.title=c.full+" "+(c.yr||yr);
+      b.setAttribute("aria-pressed",candOn.has(c.id)); b.setAttribute("aria-label",c.full+" "+(c.yr||yr)); b.title=c.full+" "+(c.yr||yr); b.dataset.sy=yr; /* build 1577 (QA-049): the slot year the data reads (title = the candidate's own year) */
       b.innerHTML="<img src='"+PHOTO[c.id]+"' alt='' width='48' height='48' decoding='async'>"+(lst?"<span class='cn'>"+esc(t32(c.full))+"</span>":"");
       b.onclick=()=>{ candOn.has(c.id)?candOn.delete(c.id):candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); };
       col.append(b); });
@@ -2146,7 +2162,9 @@ const _of3=openFold; openFold=function(){ window.__reopen=1; const pr=_of3(); wi
   inp.addEventListener("input",()=>{ const L=inp.dataset.lbl||"", V=inp.value; const q=(L&&V.startsWith(L)?V.slice(L.length):V).trim().toLowerCase(); window.__orgTypesUpd&&window.__orgTypesUpd(inp,q); if(!ol) return; const pre=[],con=[];
     let vis; if(!q) vis=lis.slice(); else { const W=lis.map(li=>({name:txt(li),li})); vis=window.fuzzyRank?fuzzyRank(W,q,5000).map(o=>o.li):[]; } lis.forEach(li=>{ li.style.display=vis.includes(li)?"":"none"; }); vis.forEach(li=>ol.append(li));
     lis.forEach(li=>li.classList.remove("topm")); if(q&&vis[0]) vis[0].classList.add("topm"); });
-  const born=Date.now(); window.__orgEnter=e=>{ if(Date.now()-born<400) return false; const q=inp.value.trim(); const vis=lis.filter(li=>li.style.display!=="none"); const cbs=vis.map(li=>li.querySelector("input[type=checkbox]")).filter(Boolean);
+  const born=Date.now(); window.__orgEnter=e=>{ if(Date.now()-born<400) return false; const q=inp.value.trim(); const vis=lis.filter(li=>li.style.display!=="none");
+    { /* build 1577 (user): Enter always takes the top match: an exact institution match first, else the local row, else the top institution match */ const os=[...document.querySelectorAll("#orgSearch li.oti")]; const nmOf=li=>((li.querySelector(".nm")||li).textContent||"").trim().toLowerCase(); const lq=q.toLowerCase(); const exO=os.find(li=>nmOf(li)===lq||nmOf(li).split(",")[0]===lq); const exL=vis.find(li=>nmOf(li).replace(/›/g,"").trim()===lq);
+      if(q&&os.length&&(exO&&!exL||!vis.length)){ (exO||os[0]).click(); return true; } } const cbs=vis.map(li=>li.querySelector("input[type=checkbox]")).filter(Boolean);
     if(cbs.length){ if(q) lis.forEach(li=>{ const c=li.querySelector("input[type=checkbox]"); if(c&&li.style.display==="none"&&c.checked){ c.checked=false; c.dispatchEvent(new Event("change")); } }); cbs.forEach(c=>{ if(!c.checked){ c.checked=true; c.dispatchEvent(new Event("change")); } }); inp.blur(); closeSheet(); setTimeout(()=>{ crumbs(); redraw&&redraw(); },80); return true; }
     if(q&&vis[0]){ drill(vis[0]); window.__orgAutoAll=Date.now(); return true; } return false; };
   inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); e.stopImmediatePropagation(); window.__orgEnter(e); } });
@@ -2230,7 +2248,7 @@ function usIcon(it){ try{ const t=it.tag, B=window.BUILD||1;
     if(t==="ZIP") return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#222" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
   }catch(e){} return ""; }
 function closeUS(){ document.body.classList.remove("srchfs"); $("bSearch").classList.remove("on"); const u=$("usv"); if(u) u.remove(); const q=$("usq"); if(q) q.remove(); setTimeout(()=>map.invalidateSize(),50); }
-function openUS(){ if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("ushouse"); }catch(e){} document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
+function openUS(){ try{ const d=document.getElementById("chartDim"); if(d&&d.classList.contains("on")) d.click(); }catch(e){} try{ if(document.body.classList.contains("geofs")) window.__geoClose&&window.__geoClose(); }catch(e){} if(!sheet.hidden) closeSheet(); try{ if(!DS.ushouse) loadDS("ushouse"); }catch(e){} document.body.classList.add("srchfs"); $("bSearch").classList.add("on");
   const u=document.createElement("div"); u.id="usv"; u.className="usv"; u.innerHTML="<ol class='nl'></ol>"; document.body.append(u);
   const inp=document.createElement("input"); inp.type="search"; inp.id="usq"; inp.className="usq grow"; inp.setAttribute("enterkeyhint","go"); inp.autocomplete="off"; inp.setAttribute("autocapitalize","words"); inp.placeholder="Search"; inp.setAttribute("aria-label","Search everything");
   $("bSearch").before(inp); try{ inp.style.paddingLeft=Math.max(0,52-inp.getBoundingClientRect().left)+"px"; }catch(e){} u.style.top=Math.round($("barSearch").getBoundingClientRect().bottom)+"px"; const ol=u.querySelector("ol");
@@ -2393,7 +2411,7 @@ function natDetail(seq){ natPrec.clearLayers(); const m=ym(); if(map.getZoom()<9
   Promise.all(sts.map(s=>m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth();
     sts.forEach(s=>{ const P=m==="2020"?(window.PREC20||{})[s]:PREC[s]; if(!P) return;
       P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return;
-        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
+        L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?window.__precDelta(r):heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); }); }).catch(()=>{}); }
 let natT=null; map.on("moveend",()=>{ clearTimeout(natT); natT=setTimeout(()=>{ if(plotting()&&NAT) natDetail(++natSeq); },150); });
 const _dh11=drawHeat; drawHeat=function(){ _dh11(); drawNat(); };
 // tap anywhere: precinct detail (other states) or national county
@@ -2420,17 +2438,17 @@ setInterval(placeLegend,500);
   const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
   let auto=null; /* the type the user chose before it was auto-switched to bar (line needs a range, pie needs a single point); restored when valid again */
   const multi=()=>{ try{ const i=window.__laInfo&&window.__laInfo(); return !!(i&&(i.on||i.pend)); }catch(e){ return true; } }; /* build 1556: bar is the plural (list) chart; a single entity gets one big pie (one year) or line (two years) */
-  const okT=(k,two)=>k!=="line"||two; /* build 1571: bar and pie are always valid (pie in a range = end year); line needs a range */ /* build 1563: a single entity gets bar again (one bar per answer, top of the content area) */ const fb=two=>multi()?"bar":(two?"line":"pie"); const isTwo=()=>{ try{ return ymRaw()==="delta"; }catch(e){ return false; } };
+  const okT=(k,two)=>k==="line"?two:k==="pie"?!two:true; /* build 1577 (user): one point = Pie and Bar; a range = Line and Bar */ /* build 1571: bar and pie are always valid (pie in a range = end year); line needs a range */ /* build 1563: a single entity gets bar again (one bar per answer, top of the content area) */ const fb=two=>multi()?"bar":(two?"line":"pie"); const isTwo=()=>{ try{ return (window.__y16&&!!window.__y16hi)||ymRaw()==="delta"; }catch(e){ return false; } };
   const paint=()=>{ const k=window.chartMode||(okT(last,isTwo())?last:fb(isTwo())); if(main.dataset.ch!==k||!main.innerHTML){ main.innerHTML=SV[k]; main.dataset.ch=k; } main.classList.toggle("on",!!window.chartMode&&view==="list"); }; /* dark = a chart is actually displayed (not in the full-screen map) */
   const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
-  const pick=k=>{ auto=null; if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); try{ window.__ymCheck&&window.__ymCheck(); }catch(e){} if(window.chartMode&&view!=="list") $("bGlobe").click(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); if(window.__ySelectAll) window.__ySelectAll(); else { const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } } try{ renderCands(); }catch(e){} };
+  const pick=k=>{ auto=null; if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); try{ window.__ymCheck&&window.__ymCheck(); }catch(e){} if(window.chartMode&&view!=="list") $("bGlobe").click(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); const inRange=(window.__y16&&window.__y16hi)||(!window.__y16&&+$("yslider").value===1); /* build 1577 (QA-043): Line keeps a range the user chose ('16>'20, '16>'24); it only opens one from a single year */ if(inRange){} else if(window.__ySelectAll) window.__ySelectAll(); else { const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } } try{ renderCands(); }catch(e){} };
   const open=()=>{ paint(); const cur=main.dataset.ch; opts.innerHTML=""; K.filter(k=>k!==cur&&okT(k,isTwo())) /* build 1563: options = every valid chart except the one on the main button (it showed pie when last was bar: a duplicate pie, or nothing to pick) */.forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
     void opts.offsetWidth; w.classList.add("open"); dim.classList.add("on"); };
   main.onclick=e=>{ e.stopPropagation(); if(!w.classList.contains("open")) return open(); pick(main.dataset.ch); };
   dim.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); close(); });
   window.chartMode=null; paint();
   /* single year selected while line is on -> fall back to bar; two points again -> restore line (only if it was auto-switched) */
-  const sync=()=>{ try{ const two=isTwo(), m=window.chartMode; if(m&&!okT(m,two)){ if(!auto) auto=m; window.chartMode=fb(two); paint(); try{ renderCands(); }catch(e){} return; }
+  const sync=()=>{ try{ const two=isTwo(), m=window.chartMode; if(m&&!okT(m,two)){ const prev=auto; auto=m; window.chartMode=(prev&&prev!==m&&okT(prev,two))?prev:"bar"; /* build 1577: a chart the selection no longer allows switches to Bar (or back to the range/single chart used before) */ paint(); try{ renderCands(); }catch(e){} return; }
     if(auto&&m&&m!==auto&&okT(auto,two)){ window.chartMode=auto; auto=null; paint(); try{ renderCands(); }catch(e){} return; }
     if(auto&&m===auto) auto=null; paint(); }catch(e){} };
   window.__chartSync=sync; $("yslider").addEventListener("input",()=>setTimeout(sync,0)); setInterval(sync,250); new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:["class"]});
@@ -2503,7 +2521,7 @@ const _an12=aname; aname=function(a){ return a.kind==="sum"?(a.st||"United State
 const _la12=listAreas; listAreas=function(){ if(!state.value) return allStates().map(st=>({kind:"sum",st,d:[st],yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"})); return _la12(); };
 // ===== candidate stats in list mode (and tiny % on map thumbnails) =====
 function candStats(){ const a=scopeArea(), two=candBox.classList.contains("two"), lst=document.body.classList.contains("listmode");
-  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
+  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=b.dataset.sy||(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr]&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
     const v=scopeVals(a,yr); b.querySelectorAll(".cs,.cpt").forEach(x=>x.remove()); if(!v||!v.tot) return;
     const n=c.ix?v.rep:v.dem, pc=n/v.tot*100;
     if(lst){ const st=document.createElement("span"); st.className="cs"; let t=pc.toFixed(1)+"%"+(isPct()?"":" · "+fmtN(n));
@@ -2523,7 +2541,7 @@ const _dt=deltaTxt; deltaTxt=function(a){ if(numMode==="pct") return _dt(a); con
 const _st13=shiftTxt; shiftTxt=function(a){ if(numMode==="pct") return _st13(a); const v24=scopeVals(a,"2024"), v20=scopeVals(a,"2020"); if(!v24||!v20) return ""; const d=(v24.rep-v24.dem)-(v20.rep-v20.dem); return (d>=0?"R+":"D+")+fmtN(Math.abs(d))+" vote shift"; };
 const _rl13=renderList; renderList=function(){ _rl13(); lv.querySelectorAll(".lvrow .l.d,.lvrow .l.r").forEach(sp=>{ const t=sp.textContent, mm=t.match(/^(.*) ([\d,]+) \(([\d.]+%)\)$/); if(mm) sp.textContent=mm[1]+" "+(numMode==="pct"?mm[3]:mm[2]); }); };
 candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.classList.contains("two"), lst=document.body.classList.contains("listmode");
-  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
+  candBox.querySelectorAll(".cand").forEach(b=>{ const yr=b.dataset.sy||(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr]&&CANDS[yr].find(c=>b.title.startsWith(c.full)); if(!c) return;
     const v=scopeVals(a,yr); b.querySelectorAll(".cs,.cpt").forEach(x=>x.remove()); if(!v||!v.tot) return; const n=c.ix?v.rep:v.dem, pc=n/v.tot*100;
     if(lst){ const st=document.createElement("span"); st.className="cs"; let t=numMode==="pct"?pc.toFixed(1)+"%":fmtN(n);
       if(two&&yr==="2024"){ const v0=scopeVals(a,"2020"); if(v0&&v0.tot){ const n0=c.ix?v0.rep:v0.dem; t+=" · "+(numMode==="pct"?((pc-n0/v0.tot*100)>=0?"+":"")+(pc-n0/v0.tot*100).toFixed(1)+" pts":sgnN(n-n0)); } }
@@ -2578,7 +2596,11 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
   function build(box){ const a=scopeArea(), v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; const g=geom(box), pc=numMode==="pct", H=innerWidth>=700?170:112, yT=12, yB=H-12;
     if(window.chartMode==="pie"){ const th0=(c,yr)=>'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="30" height="30" data-party="'+esc(c.full+" "+yr)+'">'; const col0=(yr,v,cx)=>'<div class="dlc" style="left:'+(cx-15).toFixed(1)+'px">'+[...CANDS[yr]].sort((x,y)=>(y.ix?v.rep:v.dem)-(x.ix?v.rep:v.dem)).map(c=>th0(c,yr)).join("")+'</div>'; const Sx=innerWidth>=700?240:156; return '<div class="dlch" style="width:'+g.W+'px;height:'+Sx+'px">'+pieBlock(g,v0,v1)+'</div><div class="dlt">'+col0("2020",v0,g.x0)+col0("2024",v1,g.x1)+'</div>'; }
     const H2=innerWidth>=700?260:200, yT2=16, yB2=H2-16;
-    const V=(v,k)=>pc?v[k]/v.tot*100:v[k]; const all=[V(v0,"rep"),V(v0,"dem"),V(v1,"rep"),V(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.3||(pc?3:1000); lo=Math.max(0,lo-pad); hi+=pad; if(pc) hi=Math.min(100,hi);
+    const V=(v,k)=>pc?v[k]/v.tot*100:v[k];
+    /* build 1577 (user): '16>'24 plots three points ('16, '20, '24) with a change label on each segment */
+    let vm=null; try{ const VY=window.__VY; if(VY&&VY["2020"]==="2016"&&VY["2024"]==="2024"&&window.__rawSV){ vm=window.__rawSV(a,"2020"); if(!vm||!vm.tot) vm=null; } }catch(e){ vm=null; }
+    const xm=vm?((g.xs&&g.xs.length>=3)?g.xs[Math.floor(g.xs.length/2)]:(g.x0+g.x1)/2):0;
+    const all=[V(v0,"rep"),V(v0,"dem"),V(v1,"rep"),V(v1,"dem")].concat(vm?[V(vm,"rep"),V(vm,"dem")]:[]); let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.3||(pc?3:1000); lo=Math.max(0,lo-pad); hi+=pad; if(pc) hi=Math.min(100,hi);
     /* build 1556: nice round ticks (3-5 hairlines); the plot spans exactly the outer gridlines */
     let st=1; { const m=Math.pow(10,Math.floor(Math.log10(((hi-lo)/4)||1))); for(const f of [1,2,2.5,5,10,20,25,50,100]){ st=f*m; if(Math.round((Math.ceil(hi/st-1e-9)-Math.floor(lo/st+1e-9)))+1<=5) break; } lo=Math.floor(lo/st+1e-9)*st; hi=Math.ceil(hi/st-1e-9)*st; if(hi-lo<2*st){ if(lo-st>=0) lo-=st; else hi+=st; } }
     const Y=q=>yB2-(q-lo)/(hi-lo)*(yB2-yT2);
@@ -2597,9 +2619,15 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
         const hitB=(E,y)=>E.some(e=>e>y-5&&e<y+16), P=[[lx0,y-3.5,"start",hitE(E0,y)],[lx1,y-3.5,"end",hitE(E1,y)],[lx0,y+11,"start",hitB(E0,y)],[lx1,y+11,"end",hitB(E1,y)]].find(c=>!c[3]&&c[1]<H2-1&&c[1]>8);
         if(P) svg+='<text class="dlat" x="'+P[0].toFixed(1)+'" y="'+P[1].toFixed(1)+'" text-anchor="'+P[2]+'" font-size="9.5" font-weight="400" fill="#8e8e93">'+fT(q)+'</text>'; }
       svg+='</g>'; }
+    if(vm){ const fd=d=>pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1):shortN(d); const lb={}; ks.forEach(k=>{ lb[k]=[(Y(V(v0,k))+Y(V(vm,k)))/2+14,(Y(V(vm,k))+Y(V(v1,k)))/2+14]; }); [0,1].forEach(i=>{ const o=ks.map(k=>[k,lb[k][i]]).sort((p,q)=>p[1]-q[1]); if(o[1][1]-o[0][1]<16){ const dd=(16-(o[1][1]-o[0][1]))/2; lb[o[0][0]][i]-=dd; lb[o[1][0]][i]+=dd; } });
+      ks.forEach(k=>{ const a0=Y(V(v0,k)), am=Y(V(vm,k)), a1=Y(V(v1,k)), c=PCc[k], who=NMc[k]+" ("+(c24(k==="rep"?1:0).short)+")", d=V(v1,k)-V(v0,k); const tip=esc(who+": "+(pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1)+" pts":(d>=0?"+":"\u2212")+Math.round(Math.abs(d)).toLocaleString("en-US")));
+        const pts=g.x0+","+a0.toFixed(1)+" "+xm.toFixed(1)+","+am.toFixed(1)+" "+g.x1+","+a1.toFixed(1);
+        svg+='<g data-party="'+tip+'" style="cursor:pointer"><polyline points="'+pts+'" fill="none" stroke="transparent" stroke-width="18"/><polyline class="dl3" points="'+pts+'" fill="none" stroke="'+c+'" stroke-opacity=".75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+[[g.x0,a0],[xm,am],[g.x1,a1]].map(([x,y])=>'<circle cx="'+(+x).toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4.5" fill="'+c+'"/>').join("")
+          +'<text class="dlv" x="'+((g.x0+xm)/2).toFixed(1)+'" y="'+Math.max(8,Math.min(H2-8,lb[k][0])).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" dominant-baseline="central" fill="#111">'+fd(V(vm,k)-V(v0,k))+'</text><text class="dlv" x="'+((xm+g.x1)/2).toFixed(1)+'" y="'+Math.max(8,Math.min(H2-8,lb[k][1])).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" dominant-baseline="central" fill="#111">'+fd(V(v1,k)-V(vm,k))+'</text></g>'; });
+    }
     ks.forEach(k=>{ const a0=Y(V(v0,k)), a1=Y(V(v1,k)), d=V(v1,k)-V(v0,k), c=PCc[k];
       const exact=pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1)+" pts":(d>=0?"+":"\u2212")+Math.round(Math.abs(d)).toLocaleString("en-US"), who=NMc[k]+" ("+(c24(k==="rep"?1:0).short)+")"; const tip=esc(who+": "+exact);
-      svg+='<g data-party="'+tip+'" style="cursor:pointer"><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="transparent" stroke-width="18"/><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="'+g.x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'"/><circle cx="'+g.x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'"/>'
+      if(!vm) svg+='<g data-party="'+tip+'" style="cursor:pointer"><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="transparent" stroke-width="18"/><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="'+g.x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'"/><circle cx="'+g.x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'"/>'
         +'<text class="dlv" x="'+((g.x0+g.x1)/2).toFixed(1)+'" y="'+(lby[k]).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" dominant-baseline="central" fill="#111">'+(pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1):shortN(d))+'</text></g>';
       const im=(c0,yr,cx,cy)=>'<img class="dmt '+(c0.ix?"r":"d")+'" alt="" src="'+PHOTO[c0.id]+'" width="30" height="30" data-party="'+esc(c0.full+" "+yr)+'" style="position:absolute;left:'+(cx-15).toFixed(1)+'px;top:'+(cy-15).toFixed(1)+'px">';
       imgs+=im(c20(k==="rep"?1:0),"2020",g.c0,ty0[k])+im(c24(k==="rep"?1:0),"2024",TX1,ty1[k]); });
@@ -2756,7 +2784,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   window.__stSolid=solid;
   function fillOf(st){ const m=ym(), mg=v=>(v[1]-v[0])/v[2]; if(m==="delta"){ const a=stTot(st,"2024"), b=stTot(st,"2020"); return a&&b?deltaColor(mg(a)-mg(b)):"#d6d3d1"; } const v=stTot(st,m); return v?heatC(v[0],v[1],v[2]):"#d6d3d1"; }
   window.__fillOf=fillOf; window.__heatC=heatC; let key="";
-  function upd(force){ if(!ST&&typeof state!=="undefined"&&!state.value&&ltype!=="ushouse"&&!document.body.classList.contains("worldmode")){ try{ if(vspan()>17){ const np0=map.getPane("natPane"); if(np0) np0.style.visibility="hidden"; return; } }catch(e){} } const on=solid(); const np=map.getPane("natPane"); const k=on?(ltype+"|"+ym()+"|"+JSON.stringify(heatSel())+"|"+(window.ELECTION2020?1:0)+(window.ELECTION2024?1:0)+(window.__ak?1:0)):"off";
+  function upd(force){ if(!ST&&typeof state!=="undefined"&&!state.value&&ltype!=="ushouse"&&!document.body.classList.contains("worldmode")){ try{ if(vspan()>17){ const np0=map.getPane("natPane"); if(np0) np0.style.visibility="hidden"; return; } }catch(e){} } const on=solid(); const np=map.getPane("natPane"); const k=on?(ltype+"|"+ym()+"|"+JSON.stringify(heatSel())+"|"+(window.ELECTION2020?1:0)+(window.ELECTION2024?1:0)+(window.__ak?1:0)+"|"+JSON.stringify(window.__VY||null)+((window.DS16&&window.DS16.states)?"s16":"")):"off"; /* build 1577 (QA-047): a '16 range redraws the state fills (the key had no virtual years, so '16>'24 kept the '20>'24 colours) */
     if(np) np.style.visibility=on?"hidden":""; { const tp=map.getPane("typePane"), lp=map.getPane("lyrPane"); const hide=on&&natTypeOn(); if(tp) tp.style.visibility=hide?"hidden":""; if(lp) lp.style.visibility=hide?"hidden":""; } if(!force&&k===key) return; key=k; stFillG.clearLayers(); if(!on) return; if(ym()!=="2024"&&!window.ELECTION2020&&typeof loadE2020==="function") loadE2020().then(()=>upd(true));
     ST.forEach(d=>L.polygon(LL(d),{renderer:stR,pane:"stPane",fill:true,fillColor:fillOf(d.st),fillOpacity:1,stroke:false,interactive:false}).addTo(stFillG)); }
   map.on("moveend zoomend",()=>upd()); map.on("move",()=>upd()); setInterval(()=>upd(),300);
@@ -2826,7 +2854,7 @@ natDetail=function(seq){ natPrec.clearLayers(); const m=ym(); window.__autoP=fal
   if(!plotting()||natTypeOn()) return; const f=focusUnit(); if(!f) return; const sts=statesInView().filter(s=>s!==state.value&&(s===f.st||(NAT||[]).some(n=>n.st===s&&!(n.bb[2]<f.bb[0]||n.bb[0]>f.bb[2]||n.bb[3]<f.bb[1]||n.bb[1]>f.bb[3])))); if(sts.length>4) return;
   Promise.all(sts.map(s=>m==="2016"?(window.__loadPrec16?window.__loadPrec16(s):null):m==="2020"?loadPrec20(s):m==="delta"?Promise.all([loadPrecincts(s),loadPrec20(s)]):loadPrecincts(s))).then(()=>{ if(seq!==natSeq) return; natPrec.clearLayers(); const b=map.getBounds().pad(0.2), x0=b.getWest(),x1=b.getEast(),y0=b.getSouth(),y1=b.getNorth(); let n=0;
     const drawn=new Set(); sts.forEach(s=>{ const P=precFor(s,m==="delta"?"2024":m); if(!P) return; P.forEach(r=>{ const q=r[6]; if(!q||q[2]<x0||q[0]>x1||q[3]<y0||q[1]>y1||!r[4]) return; n++; drawn.add(s);
-      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?(()=>{ const o=match20(r); return o?deltaColor((r[3]-r[2])/r[4]-(o[3]-o[2])/o[4]):"#d6d3d1"; })():heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
+      L.polygon(toLatLngs(r.slice(0,6)),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:m==="delta"?window.__precDelta(r):heatC(r[2],r[3],r[4]),fillOpacity:0.8,color:"#fff",weight:0.3,interactive:false}).addTo(natPrec); }); });
     window.__autoPS=drawn; window.__autoP=n>0; restyleType(); }).catch(()=>{}); };
 window.__audit=async(k)=>{ document.querySelector("[data-k="+k+"]")&&ltype!==k&&document.querySelector("[data-k="+k+"]").click(); await loadDS(k); await new Promise(r=>setTimeout(r,500)); const bad={},miss={}; let n=0;
   for(const d of DS[k]){ if(!d.v["2024"]) continue; let pt=null; for(let i=1;i<6&&!pt;i++) for(let j=1;j<6&&!pt;j++){ const ll=L.latLng(d.bb[1]+(d.bb[3]-d.bb[1])*i/6,d.bb[0]+(d.bb[2]-d.bb[0])*j/6); if(pip(d,ll)) pt=ll; } if(!pt) continue; n++;
@@ -3368,7 +3396,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   { const css=document.createElement("style"); css.textContent="body.piethumbs #cands .cand .cw, body.piethumbs #cands .cand .cn, body.piethumbs #cands .cand .cs, body.piethumbs #cands .cand .cpt { display: none !important; } body.piethumbs #cands .cand { width: auto !important; min-width: 0 !important; }"; document.head.append(css);
     const _rcQ=renderCands; renderCands=function(){ const r=_rcQ.apply(this,arguments); try{ const on=window.chartMode==="pie"&&document.body.classList.contains("listmode")&&!(window.__LA&&window.__LA.on)&&!!candBox.querySelector(".cpanel");
         document.body.classList.toggle("piethumbs",on); if(on){ let a=null; try{ a=scopeArea(); }catch(e){}
-          candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); let t=c?c.full:b.title;
+          candBox.querySelectorAll(".cand").forEach(b=>{ const yr=b.dataset.sy||(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr]&&CANDS[yr].find(c=>b.title.startsWith(c.full)); let t=c?c.full:b.title;
             try{ const v=a&&scopeVals(a,yr); if(c&&v&&v.tot){ const n=c.ix?v.rep:v.dem; t+=" · "+(numMode==="pct"?(n/v.tot*100).toFixed(1)+"%":fmtN(n)); } }catch(e){}
             b.setAttribute("aria-label",t); b.onclick=e=>{ e.stopPropagation(); showBub(b,2500); }; }); } }catch(e){} return r; }; }
   setInterval(draw,700); document.addEventListener("click",()=>setTimeout(draw,50),true); $("yslider").addEventListener("input",()=>setTimeout(()=>{ draw(); try{ renderCands(); }catch(e){} },30)); }
@@ -3441,7 +3469,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
         if(a&&a.kind==="sum"){ /* QA-017 / QA-029: a state row is always the state table total, whatever the list */
           const R=D.states; if(!R){ window.__need16&&window.__need16("states"); return null; } return T(R[String(a.st)]); }
         if(a&&a.kind==="towns") return _v(a,yr); /* towns sum their 2016 precincts */
-        if(a&&a.kind==="precinct"){ const r=a.d; return r&&r.__y==="2016"&&r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; } /* 2016 precinct rows (tagged on load) carry their own values */
+        if(a&&a.kind==="precinct"){ const r=a.d; if(r&&r.__y==="2016") return r[4]?{dem:r[2],rep:r[3],tot:r[4]}:null; const o=r&&window.__match16&&window.__match16(r); return o&&o[4]?{dem:o[2],rep:o[3],tot:o[4]}:null; } /* build 1577 (QA-048): a 2024 precinct row in a '16 range reads its 2016 twin (same county and name) */ /* 2016 precinct rows (tagged on load) carry their own values */
         if(a&&DSK.has(a.kind)&&a.d){ const R=D[a.kind]; if(!R){ window.__need16&&window.__need16(a.kind); return null; } return T(R[a.d[0]+"|"+String(a.d[1])]); }
         return null; }
       return _v(a,yr); };
@@ -3453,6 +3481,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   (function(){ const C0={}; Object.keys(CANDS).forEach(k=>C0[k]=CANDS[k]); let dep=0;
     const _V=vals, _S=scopeVals;
     vals=function(a,yr){ if(window.__VY&&dep===0){ dep++; try{ return _V(a,vy(yr)); } finally{ dep--; } } return _V(a,yr); };
+    window.__rawSV=(a,yr)=>{ dep++; try{ return _S(a,yr); } finally{ dep--; } }; /* build 1577: real-year scope values inside a '16 range (the line chart's middle '20 point) */
     scopeVals=function(a,yr){ if(window.__VY&&dep===0){ dep++; try{ return _S(a,vy(yr)); } finally{ dep--; } } return _S(a,yr); };
     window.__vyApply=function(V){ const same=JSON.stringify(V)===JSON.stringify(window.__VY); window.__VY=V;
       CANDS["2020"]=V?C0[V["2020"]]:C0["2020"]; CANDS["2024"]=V?C0[V["2024"]]:C0["2024"];
@@ -3861,6 +3890,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     window.__orgCountry=function(iso){ if(iso!=="ca") return; window.__worldEnter&&window.__worldEnter("ca"); document.getElementById("orgGlobal")&&document.getElementById("orgGlobal").remove(); document.getElementById("orgCountry")&&document.getElementById("orgCountry").remove(); document.body.classList.remove("orgglobal");
       const box=document.createElement("ol"); box.id="orgCountry"; box.className="nl";
       (window.CANADA||[]).slice().sort((a,b)=>a[0].localeCompare(b[0])).forEach(p=>{ const li=document.createElement("li"); li.className="lvrow flat oti"; li.innerHTML='<span class="oic">'+sil(p[6])+'</span><span class="nm"></span>'; li.querySelector(".nm").textContent=p[0]; li.onclick=()=>{ window.__laBusy=1; try{ closeSheet(); }catch(e){} window.__W_prov(p[0]); setTimeout(()=>{ window.__laBusy=0; },300); }; box.append(li); });
+      { const n=document.createElement("li"); n.className="cav3"; n.textContent="Results for Canada come in v3"; box.prepend(n); box.classList.add("nores"); } /* build 1577: v2 has no Canadian results: the 13 provinces and territories list gray */
       sheet.prepend(box); document.body.classList.add("orgcountry"); sheet.querySelectorAll(".foldlist,#orgCountry").forEach(f=>{ f.classList.remove("slideL","slideR"); void f.offsetWidth; f.classList.add("slideL"); });
       const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.placeholder="Canada"; i.dataset.lbl=""; } const Lb=$("barGeo").querySelector(".fsq .fsqlbl"); if(Lb){ const sp2=Lb.querySelector("span"), fq=Lb.querySelector(".fqi"); if(sp2) sp2.textContent="Canada"; if(fq){ fq.dataset.k="ca"; fq.innerHTML='<img alt="" src="img/flags/c/ca.png?v='+(window.BUILD||1)+'" style="width:22px">'; } }
       ensureRow(); };
@@ -3881,6 +3911,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   const clear=()=>{ const o=$("orgSearch"); if(o) o.remove(); B().remove("orgsearch"); };
   const icon=x=>!x.iso&&x.kind!=="State"?'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#57534e" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2"/></svg>':x.kind==="State"?'<img alt="" class="stf" src="img/stateflags/'+x.name.replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">':'<img alt="" src="img/flags/'+(x.iso==="us"?"US.png":"c/"+x.iso+".png")+'?v='+(window.BUILD||1)+'">';
   const pickE=x=>{ clear(); const i=$("barGeo").querySelector(".fsq input"); if(i){ i.value=""; i.blur(); } B().remove("fqtyping");
+    if(x.kind==="County"){ /* build 1577: a county institution from any level */ try{ window.__worldExit&&window.__worldExit(); }catch(e){} B().remove("orgglobal"); { const g=$("orgGlobal"); g&&g.remove(); } closeSheet(); const setC=()=>{ const c=document.getElementById("county"); if(c&&[...c.options].some(o=>o.value===x.cty)){ c.value=x.cty; c.onchange&&c.onchange(); return true; } return false; }; if(state.value!==x.st){ state.value=x.st; state.onchange&&state.onchange(); } if(!setC()){ let n=0; const iv=setInterval(()=>{ if(setC()||++n>60) clearInterval(iv); },100); } return; }
     if(x.kind==="Province"){ window.__orgCountry("ca"); setTimeout(()=>{ try{ window.__W_prov(x.name); }catch(e){} closeSheet(); },80); return; }
     if(x.kind==="State"){ try{ window.__worldExit&&window.__worldExit(); }catch(e){} B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); state.value=x.name; state.onchange&&state.onchange(); closeSheet(); return; }
     if(x.iso==="us"){ try{ window.__worldExit&&window.__worldExit(); }catch(e){} B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); window.__slideDir="l"; state.value=""; state.onchange&&state.onchange(); setTimeout(openFold,60); return; }
@@ -3891,22 +3922,28 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     const cur=box.querySelector(".fsqlbl .fqi"); const h=x?icon(x):(cur?cur.innerHTML.replace(/style="[^"]*"/g,""):""); if(r.innerHTML!==h) r.innerHTML=h; };
   document.addEventListener("focusin",e=>{ if(e.target&&e.target.matches&&e.target.matches("#barGeo .fsq input")) rec(e.target.value||""); });
   setInterval(()=>{ const box=document.querySelector("#barGeo .fsq"); if(box&&!box.querySelector(".fsqrec")){ const r=document.createElement("span"); r.className="fsqrec"; box.append(r); } },300);
-  const run=q=>{ rec(q); clear(); q=(q||"").trim(); if(!q||!B().contains("foldfs")||!top()) return;
-    const og=B().contains("orgglobal"); let A=window.__entities(); if(!og) A=[]; /* build 1555: countries/provinces only under 'All countries'; the US level lists its states itself */
-    let R=fuzzyRank(A,q.toLowerCase(),50)||[]; { const al=window.__NAMES.alias(q); if(al){ const AA=window.__entities(); const t=AA.find(x=>x.name===al&&og); if(t){ R=[t].concat(R.filter(x=>x.name!==al)); if(!A.includes(t)) A.push(t); } } } if(!R.length) return;
+  /* build 1577 (user): the institution field ALWAYS searches institutions, from any level: the US, countries, states, provinces and counties, matching anywhere in the name and on synonyms (US, USA, America); never a blank page */
+  let CTY=null; const ctys=()=>{ if(CTY) return CTY; const E=window.ELECTION2024; if(!E) return []; CTY=Object.keys(E).map(k=>{ const [st,c]=k.split("|"); return {name:c+", "+(ABBR[st]||st),kind:"County",st,cty:c,w:(E[k]||[])[2]||0}; }); return CTY; };
+  const KORD={Country:0,State:1,County:2,Province:3}, KLBL={Country:"Countries",State:"States",County:"Counties",Province:"Provinces and territories"};
+  const run=q=>{ rec(q); clear(); q=(q||"").trim(); if(!q||!B().contains("foldfs")) return;
+    const og=B().contains("orgglobal"); let A=window.__entities().concat(ctys());
+    let R=fuzzyRank(A,q.toLowerCase(),60)||[]; { const al=window.__NAMES.alias(q); if(al){ const t=A.find(x=>x.name===al); if(t) R=[t].concat(R.filter(x=>x!==t)); } }
+    { const lo=q.toLowerCase(); if(!R.length&&lo.length>=2) R=A.filter(x=>x.name.toLowerCase().includes(lo)).slice(0,60); }
+    { const loc=new Set([...sheet.querySelectorAll(".foldlist li")].filter(li=>li.style.display!=="none"&&li.offsetParent!==null).map(li=>((li.querySelector(".nm")||li).textContent||"").replace(/›/g,"").trim())); R=R.filter(x=>!loc.has(x.name)); if(!R.length){ if(!loc.size){ const ol=document.createElement("ol"); ol.id="orgSearch"; ol.className="nl"; ol.innerHTML='<li class="lvrow flat orgnone" style="color:#78716c">No institutions match</li>'; sheet.append(ol); B().add("orgsearch"); } return; } }
+    { const first=new Map(); R.forEach((x,i)=>{ if(!first.has(x.kind)) first.set(x.kind,i); }); const ex=x=>x.name.toLowerCase()===q.toLowerCase()||x.name.toLowerCase().split(",")[0]===q.toLowerCase(); R=R.map((x,i)=>[x,i]).sort((a,b)=>(ex(b[0])-ex(a[0]))||((KORD[a[0].kind]??9)-(KORD[b[0].kind]??9))||a[1]-b[1]).map(a=>a[0]); } /* groups in a fixed order: countries, states, counties, provinces */
     const ol=document.createElement("ol"); ol.id="orgSearch"; ol.className="nl";
     { const out=[], seen=new Set(); R.forEach(x=>{ if(!seen.has(x)){ seen.add(x); out.push(x); } if(x.kind==="Country"&&x.iso==="ca"||x.kind==="Country"&&x.name==="United States"&&og&&0){ A.filter(c=>c.parent===x.name).forEach(c=>{ if(!seen.has(c)){ seen.add(c); c.__child=1; out.push(c); } }); } }); R=out; }
-    R.forEach(x=>{ const li=document.createElement("li"); li.className="lvrow flat oti"+(x.__child?" orgchild":""); li.innerHTML='<span class="oic">'+icon(x)+'</span><span class="nm"></span>'+(x.kind==="Province"?'<span class="go" style="opacity:.5;font-size:12px">Canada</span>':""); li.querySelector(".nm").textContent=x.name; li.onclick=e=>{ e.stopPropagation(); pickE(x); }; ol.append(li); });
+    let lastK=null; R.forEach(x=>{ if(x.kind!==lastK){ lastK=x.kind; const gh=document.createElement("li"); gh.className="orggh"; gh.textContent=x.iso==="us"&&x.kind==="Country"?"Country":(KLBL[x.kind]||x.kind); ol.append(gh); } const li=document.createElement("li"); li.className="lvrow flat oti"+(x.__child?" orgchild":""); li.innerHTML='<span class="oic">'+(x.kind==="County"?(window.__geoRowIcon?window.__geoRowIcon(x.st,"county",x.cty):(window.__stSil?window.__stSil(x.st,null):"")):icon(x))+'</span><span class="nm"></span>'+(x.kind==="Province"?'<span class="go" style="opacity:.5;font-size:12px">Canada</span>':""); li.querySelector(".nm").textContent=x.name; li.onclick=e=>{ e.stopPropagation(); pickE(x); }; ol.append(li); });
     sheet.append(ol); B().add("orgsearch"); };
   document.addEventListener("input",e=>{ const t=e.target; if(!(t&&t.closest&&t.closest("#barGeo .fsq"))) return; run(t.value);
     // inline autocomplete (iOS style): complete a recognized country/state name, remainder selected; Enter accepts
     try{ const q=t.value; if(!q||!top()||/^delete/.test(e.inputType||"")||t.selectionStart!==q.length||window.__NAMES.alias(q)) return; const lo=q.toLowerCase();
       const x=window.__entities().find(en=>en.kind!=="Province"&&en.name.length>q.length&&en.name.toLowerCase().startsWith(lo)&&(B().contains("orgglobal")||en.kind==="State")); if(!x) return;
       t.value=q+x.name.slice(q.length); t.setSelectionRange(q.length,x.name.length); rec(t.value); }catch(_){} },true);
-  window.__orgSearch=run; window.__orgSearchRows=()=>[...document.querySelectorAll("#orgSearch li")].map(l=>l.textContent.trim());
-  window.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgSearch li")]; if(!ls.length) return;
+  window.__orgSearch=run; window.__orgSearchRows=()=>[...document.querySelectorAll("#orgSearch li.oti")].map(l=>l.textContent.trim());
+  window.addEventListener("keydown",e=>{ if(e.key!=="Enter"||!e.target.closest||!e.target.closest("#barGeo .fsq")) return; const q=e.target.value.trim().toLowerCase(); if(!q) return; const ls=[...document.querySelectorAll("#orgSearch li.oti")]; if(!ls.length) return;
     if(!B().contains("orgglobal")&&[...sheet.querySelectorAll("li")].some(l=>l.offsetParent&&!l.closest("#orgSearch"))) return;
-    const ex=ls.find(l=>l.querySelector(".nm").textContent.toLowerCase()===q)||ls[0]; e.preventDefault(); e.stopImmediatePropagation(); ex.click(); },true);
+    const ex=ls.find(l=>{ const t=(l.querySelector(".nm")||l).textContent.toLowerCase(); return t===q||t.split(",")[0]===q; })||ls[0]; e.preventDefault(); e.stopImmediatePropagation(); ex.click(); },true);
   ["closeSheet"].forEach(()=>{ const _c=closeSheet; closeSheet=function(){ clear(); return _c.apply(this,arguments); }; });
 })();
 
