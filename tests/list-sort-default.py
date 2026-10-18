@@ -1,3 +1,4 @@
+# SUPERSEDED in build 1588 (user): with every answer shown the sort is by TOTAL votes; see tests/list-sort-total.py. Kept for its alignment/crumb checks.
 # Build 1551: every results list (% and # mode) sorts high→low by the TOP-RANKED TOGGLED-ON answer of the left thumbnail
 # column (its share in %, its votes in #); toggles / re-ranking re-sort and reset the direction to high→low; 3+ answers;
 # chart-row alignment: names start at the top fields' text x, normal weight, no ' County'; bars end 12px from the edge;
