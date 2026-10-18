@@ -42,14 +42,14 @@ Largest states:
 
 The orchestrator chose a suffix-aware duplicate check: real TIGER names stay, and `townsIn()` hides only identical names and pairs marked "same".
 
-- **Format:** `window.TOWN_PAIRS={"State|Name A|Name B":"same"|"separate", ...}`.
+- **Format:** `window.TOWN_PAIRS={"State|Name A|Name B":"same", ...}`. **The JS file is same-only** (36 keys): a missing key means "separate". The full table with both classes is `data-v3/geo/town_pairs.csv`.
   - The names are the exact row names the app sees: v1 `data/<State>.js` towns and `v2/data/parts/<State>.js` names.
   - **Name A < Name B in plain code-point order** (JS `a<b` on the raw strings, Python `sorted`). Only that one order is listed. To look up a pair: `k = a<b ? st+"|"+a+"|"+b : st+"|"+b+"|"+a`.
 - **Which pairs:** every two rows of one county whose `normT()` names are equal but whose names differ. No key occurs in two counties, so there are no conflicts and the county isn't needed in the key.
 - **Class:** both rows are resolved to TIGER 2024 by exact NAMELSAD in the county (county subdivision first, then place) and clipped to the county.
   - **"same"** when each covers ≥ 90 % of the other (mutual overlap).
   - **"separate"** otherwise.
-- **Counts:** 2,470 keys, 36 "same" and 2,434 "separate".
+- **Counts:** 2,470 pairs, 36 "same" (the keys in the JS file) and 2,434 "separate" (only in the CSV).
   - The "same" pairs are mostly Connecticut consolidated city/towns, such as Hartford city and Hartford town.
   - Distribution of the smaller of the two overlap shares: 0 → 1,151 pairs; under 0.1 → 1,058; under 0.5 → 207; 0.5 to 0.9 → 18; ≥ 0.9 → 36.
   - The 18 pairs in the 0.5–0.9 band (e.g. Schaumburg village and township, Aurora city and township) are separate governments covering different ground and stay "separate".

@@ -8,7 +8,7 @@ Rows are resolved to TIGER by exact NAMELSAD in that county (county subdivision 
 match falls back to its own app polygon (clipped to the county).
 Key "State|Name A|Name B" with Name A < Name B in plain code-point order (JS a<b, Python sorted). Only one order is listed.
 A key whose class differs between counties is written as "separate" and listed in the flag table (conflict=yes).
-Also writes the flag table data-v3/geo/town_pairs.csv (one line per county pair).
+The JS file lists only the "same" keys (a missing key = "separate"). Also writes the full flag table data-v3/geo/town_pairs.csv (one line per county pair).
 usage: town_pairs.py <repo> <tiger_dir> <tl_2024_us_county.zip> [--states A,B]
 """
 import sys, os, json, collections, csv
@@ -76,7 +76,8 @@ def main():
     conf = {k for k, v in keys.items() if len(v) > 1}
     for r in rows_out: r["conflict"] = "yes" if "%s|%s|%s" % (r["state"], r["name_a"], r["name_b"]) in conf else ""
     TP = {k: ("separate" if k in conf else next(iter(v))) for k, v in sorted(keys.items())}
-    js = "/* town_pairs.js: see tools/town_pairs.py and data-v3/geo/ALIGNMENT.md. Key \"State|Name A|Name B\", Name A < Name B (code-point order); value \"same\" (mutual TIGER overlap >= 90 %) or \"separate\". */\nwindow.TOWN_PAIRS=" + json.dumps(TP, ensure_ascii=False, separators=(",", ":")) + ";\n"
+    TPJ = {k: v for k, v in TP.items() if v == "same"}  # same-only: townsIn() treats a missing key as "separate"
+    js = "/* town_pairs.js: see tools/town_pairs.py and data-v3/geo/ALIGNMENT.md. Key \"State|Name A|Name B\", Name A < Name B (code-point order); same-only: value \"same\" (mutual TIGER overlap >= 90 %); a missing key means \"separate\" (full table: data-v3/geo/town_pairs.csv). */\nwindow.TOWN_PAIRS=" + json.dumps(TPJ, ensure_ascii=False, separators=(",", ":")) + ";\n"
     open(os.path.join(repo, "v2", "data", "town_pairs.js"), "w").write(js)
     with open(os.path.join(repo, "data-v3", "geo", "town_pairs.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows_out[0]), lineterminator="\n"); w.writeheader(); [w.writerow(r) for r in rows_out]
