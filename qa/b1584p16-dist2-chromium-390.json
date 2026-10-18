@@ -1,0 +1,585 @@
+{
+ "keys": [
+  [
+   "ushouse",
+   "US House"
+  ],
+  [
+   "senate",
+   "State senate"
+  ],
+  [
+   "statehouse",
+   "State house"
+  ],
+  [
+   "schools",
+   "School districts"
+  ]
+ ],
+ "California:senate": {
+  "exp": 40,
+  "lat_type": 64.6,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "California",
+   "co": "",
+   "ph": "California",
+   "crumb": "California",
+   "z": 5,
+   "lv": "districts",
+   "lt": "senate",
+   "list": true
+  },
+  "n": 40,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "District 007 | 83.6%",
+   "District 011 | 16.8% | 79.1%",
+   "District 028 | 18.4% | 78.4%"
+  ],
+  "err": []
+ },
+ "California:statehouse": {
+  "exp": 80,
+  "lat_type": 70.9,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "California",
+   "co": "",
+   "ph": "California",
+   "crumb": "California",
+   "z": 5,
+   "lv": "districts",
+   "lt": "statehouse",
+   "list": true
+  },
+  "n": 80,
+  "dups": [],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "District 014 | 83.7%",
+   "District 018 | 83.4%",
+   "District 017 | 81.5%"
+  ],
+  "err": []
+ },
+ "Texas:statehouse": {
+  "exp": 150,
+  "lat_type": 85.3,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Texas",
+   "co": "",
+   "ph": "Texas",
+   "crumb": "Texas",
+   "z": 4,
+   "lv": "districts",
+   "lt": "statehouse",
+   "list": true
+  },
+  "n": 150,
+  "dups": [],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "District 068 | 85.9%",
+   "District 088 | 84.9%",
+   "District 060 | 83.0%"
+  ],
+  "err": []
+ },
+ "Pennsylvania:statehouse": {
+  "exp": 203,
+  "lat_type": 76.2,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Pennsylvania",
+   "co": "",
+   "ph": "Pennsylvania",
+   "crumb": "Pennsylvania",
+   "z": 5,
+   "lv": "districts",
+   "lt": "statehouse",
+   "list": true
+  },
+  "n": 203,
+  "dups": [],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "District 078 | 84.5%",
+   "District 066 | 79.5%",
+   "District 069 | 79.2%"
+  ],
+  "err": []
+ },
+ "Texas:senate": {
+  "exp": 31,
+  "lat_type": 103.5,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Texas",
+   "co": "",
+   "ph": "Texas",
+   "crumb": "Texas",
+   "z": 4,
+   "lv": "districts",
+   "lt": "senate",
+   "list": true
+  },
+  "n": 31,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "District 031 | 80.4%",
+   "District 001 | 76.6%",
+   "District 003 | 76.0%"
+  ],
+  "err": []
+ },
+ "Ohio:senate": {
+  "exp": 33,
+  "lat_type": 62.4,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Ohio",
+   "co": "",
+   "ph": "Ohio",
+   "crumb": "Ohio",
+   "z": 6,
+   "lv": "districts",
+   "lt": "senate",
+   "list": true
+  },
+  "n": 33,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "District 012 | 78.0%",
+   "District 017 | 75.5%",
+   "District 001 | 74.0%"
+  ],
+  "err": []
+ },
+ "Florida:schools": {
+  "exp": 67,
+  "lat_type": 70.8,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Florida",
+   "co": "",
+   "ph": "Florida",
+   "crumb": "Florida",
+   "z": 5,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 67,
+  "dups": [],
+  "odd": [
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Holmes County School District | 89.9%",
+   "Lafayette County School District | 87.8%",
+   "Baker County School District | 86.3%"
+  ],
+  "err": []
+ },
+ "Hawaii:schools": {
+  "exp": 1,
+  "lat_type": 48,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Hawaii",
+   "co": "",
+   "ph": "Hawaii",
+   "crumb": "Hawaii",
+   "z": 3,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 1,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "Hawaii Department of Education | 37.5% | 60.6%"
+  ],
+  "err": []
+ },
+ "Ohio:schools": {
+  "exp": null,
+  "lat_type": 103.2,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Ohio",
+   "co": "",
+   "ph": "Ohio",
+   "crumb": "Ohio",
+   "z": 6,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 611,
+  "dups": [
+   "Buckeye Local School District",
+   "Crestview Local School District",
+   "Eastern Local School District",
+   "Green Local School District",
+   "Highland Local School District",
+   "Lake Local School District",
+   "Lakota Local School District",
+   "Madison Local School District",
+   "Manchester Local School District",
+   "Northeastern Local School Distr\u2026"
+  ],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Russia Local School District | 92.1%",
+   "Marion Local School District | 92.0%",
+   "Fort Recovery Local School Dist\u2026 | 91.3%"
+  ],
+  "err": []
+ },
+ "Pennsylvania:schools": {
+  "exp": null,
+  "lat_type": 121,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Pennsylvania",
+   "co": "",
+   "ph": "Pennsylvania",
+   "crumb": "Pennsylvania",
+   "z": 5,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 500,
+  "dups": [],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Forbes Road School District | 88.8%",
+   "Northern Bedford County School \u2026 | 88.0%",
+   "Southern Fulton School District | 87.8%"
+  ],
+  "err": []
+ },
+ "Texas:schools": {
+  "exp": null,
+  "lat_type": 230.7,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Texas",
+   "co": "",
+   "ph": "Texas",
+   "crumb": "Texas",
+   "z": 4,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 1019,
+  "dups": [
+   "Big Sandy Independent School Di\u2026",
+   "Centerville Independent School \u2026",
+   "Chapel Hill Independent School \u2026",
+   "Dawson Independent School Distr\u2026",
+   "Edgewood Independent School Dis\u2026",
+   "Hallettsville Independent Schoo\u2026",
+   "Highland Park Independent Schoo\u2026",
+   "Hubbard Independent School Dist\u2026",
+   "Midway Independent School Distr\u2026",
+   "Northside Independent School Di\u2026"
+  ],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Grandview-Hopkins Independent S\u2026 | 95.9%",
+   "Miami Independent School Distri\u2026 | 95.9%",
+   "Borden County Independent Schoo\u2026 | 95.6%"
+  ],
+  "err": []
+ },
+ "California:schools": {
+  "exp": null,
+  "lat_type": 143.7,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "California",
+   "co": "",
+   "ph": "California",
+   "crumb": "California",
+   "z": 5,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 974,
+  "dups": [
+   "Caruthers Unified School Distri\u2026",
+   "Eureka City Unified School Dist\u2026",
+   "Healdsburg Unified School Distr\u2026",
+   "Hope Elementary School District",
+   "Jefferson Elementary School Dis\u2026",
+   "Junction Elementary School Dist\u2026",
+   "Lakeside Union Elementary Schoo\u2026",
+   "Lammersville Joint Unified Scho\u2026",
+   "Liberty Elementary School Distr\u2026",
+   "Mountain View Elementary School\u2026"
+  ],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Berkeley Unified School District | 89.8%",
+   "Bolinas-Stinson Union Elementar\u2026 | 88.2%",
+   "Albany City Unified School Dist\u2026 | 87.2%"
+  ],
+  "err": []
+ },
+ "Maryland:schools": {
+  "exp": 24,
+  "lat_type": 50.1,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Maryland",
+   "co": "",
+   "ph": "Maryland",
+   "crumb": "Maryland",
+   "z": 6,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 24,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "Prince George's County Public S\u2026 | 85.9%",
+   "Baltimore City Public Schools | 84.6%",
+   "Montgomery County Public Schools | 21.6% | 74.5%"
+  ],
+  "err": []
+ },
+ "Nevada:schools": {
+  "exp": 17,
+  "lat_type": 92.9,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Nevada",
+   "co": "",
+   "ph": "Nevada",
+   "crumb": "Nevada",
+   "z": 5,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 17,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "Eureka County School District | 87.9%",
+   "Lincoln County School District | 85.3%",
+   "Esmeralda County School District | 81.5%"
+  ],
+  "err": []
+ },
+ "Georgia:schools": {
+  "exp": null,
+  "err": "no layer btn"
+ },
+ "Vermont:schools": {
+  "exp": null,
+  "lat_type": 71.6,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Vermont",
+   "co": "",
+   "ph": "Vermont",
+   "crumb": "Vermont",
+   "z": 7,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 131,
+  "dups": [
+   "Southwest Vermont Union Element\u2026",
+   "West River Valley Modified Unio\u2026"
+  ],
+  "odd": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "head": [
+   "Norwich School District | 90.4%",
+   "Montpelier Roxbury Unified Unio\u2026 | 84.8%",
+   "Burlington School District | 84.3%"
+  ],
+  "err": []
+ },
+ "Alaska:schools": {
+  "exp": null,
+  "lat_type": 52.6,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "Alaska",
+   "co": "",
+   "ph": "Alaska",
+   "crumb": "Alaska",
+   "z": 2,
+   "lv": "districts",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 53,
+  "dups": [],
+  "odd": [
+   "Craig City School District | no data",
+   "Dillingham City School District | no data",
+   "Galena City School District | no data",
+   "Hoonah City School District | no data",
+   "Hydaburg City School District | no data",
+   "Kake City School District | no data",
+   "Kashunamiut School District | no data",
+   "Klawock City School District | no data"
+  ],
+  "head": [
+   "Delta/Greely School District | 83.6%",
+   "Matanuska-Susitna Borough Schoo\u2026 | 72.5%",
+   "Alaska Gateway School District | 70.8%"
+  ],
+  "err": []
+ },
+ "District of Columbia:schools": {
+  "exp": 1,
+  "lat_type": 48.5,
+  "lat_list": null,
+  "list_after_tap": false,
+  "list_after_click": true,
+  "st": {
+   "st": "",
+   "co": "",
+   "ph": "District of Columbia",
+   "crumb": "All States",
+   "z": 2,
+   "lv": "states",
+   "lt": "schools",
+   "list": true
+  },
+  "n": 51,
+  "dups": [],
+  "odd": [],
+  "head": [
+   "WY | 72.3%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%"
+  ],
+  "err": []
+ }
+}

@@ -525,7 +525,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: popup "Pittsburgh Ward 1 Dist 1, Harris 76.4%, Trump 22.3%" and the thumbnails switch to 76% / 22%, but the title and bottom field still read "Allegheny County" / "Allegheny County, PA" (Allegheny is 60% / 39%).
 - Screenshot: shots/b1576p11-ch-390-addr2-4.png, shots/b1576p11-we-1024-addr2-4.png
 
-### QA-064 [Medium, recheck when the box is quiet] Picking State senate or State house inside a big state is slow
+### QA-064 [Fixed on 1584 (verified pass 16 on a quiet box, 2:55 PM EDT)] [Medium] Picking State senate or State house inside a big state is slow
 - Severity: Medium (slow tap, over 100 ms) | Build 1576 | Chromium 390x844
 - Steps: type a state in the geo field > Enter > district-type button > State senate (or State house).
 - Actual tap-to-next-paint: Texas senate 952 / 804 ms, Texas house 1,102 ms, California senate 1,579 ms, California house 1,215 / 960 ms, New York 381-475 ms, Minnesota house 456 ms, Ohio 219-327 ms, Nebraska 143 ms. It grows with the state's size. At the US level the same picks were 118-156 ms (pass 9).
@@ -684,7 +684,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-DC-schools-map.png, shots/b1582p14-ch-390-DC-schools-list.png, shots/b1582p14-ch-390-DC-ushouse-list.png, shots/b1582p14-ch-390-schools-DistrictofColumbia-list.png
 - Data: `qa/b1583p14-dcschools-chromium-390.json` (script `qa/p14-dcschools.py`)
 
-### QA-073 [HIGH, recheck on a quiet box] Picking School districts in a big state takes 1-4 s
+### QA-073 [Changed on 1584: much faster, still over 100 ms in TX/CA/PA (pass 16)] [HIGH] Picking School districts in a big state takes 1-4 s
 - Severity: HIGH (tap-to-next-paint far over 100 ms) | Build 1582/1583 | Chromium 390x844
 - Steps: type a state in the geo field > Enter > district-type button > School districts.
 - Actual tap-to-next-paint: California 3,990 ms, Texas 2,980 ms, Pennsylvania 1,105 ms, Ohio 767 ms, Florida 411 ms, Vermont 291 ms, DC 141 ms, Nevada 134 ms, Hawaii 101 ms, Alaska 64 ms, Maryland 2 ms. It grows with the number of districts (CA 974, TX 1,019). Same pattern as QA-064 (state senate/house), but 3-4x slower.
@@ -707,6 +707,25 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Actual: map > list: the icons go to x 4 (**dx -8**) on the first frame (23-45 ms) and return to x 12 at 262-561 ms. List > map: the left column goes to x 20 (**dx +8**) at 15-34 ms and returns at 265-624 ms (in a range only the left column moves). Settled positions match. Blount County (1583, 390): 12 > 4 at 22 ms > 12 at 273 ms, as first logged.
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
+
+## Re-test status, build 1584 (pass 16, Oct 18 ~2:50-3:20 PM EDT)
+- Live build 202610181584 (speed build: idle warm-up for district types, deferred fit, Back map moves wait for the list). No v3 preview or live URL yet.
+- Timing on a quiet box (load 0.4-1.6), Chromium 390x844 touch, state > district-type pick (tap-to-next-paint):
+  - **QA-064 fixed**: California senate 65 ms, California house 71 ms, Texas house 85 ms, Pennsylvania house 76 ms, Texas senate 104 ms, Ohio senate 62 ms (were 800-1,600 ms on 1576).
+  - **QA-073 changed** (was 1-4 s): Texas 231 ms, California 144 ms, Pennsylvania 121 ms, Ohio 103 ms; under 100 ms for Florida 71, Vermont 72, Nevada 93, Alaska 53, Maryland 50, Hawaii 48, DC 49. Still over 100 ms in the three biggest states. Data: `qa/b1584p16-dist2-chromium-390.json`.
+  - QA-020 / QA-007 improved but open: Back from a county's towns to the PA counties list 184 / 184 ms (was 253-313 ms); All States row 76-111 ms (was 248-292 ms). Other taps 11-75 ms (geo menu, drill to PA, county, town, Back to towns, Back to All States, globe). Data: `qa/b1584p16-lat-chromium-390.json`.
+- **QA-072 still open (Critical)**: DC > School districts or US House still shows US totals (50% / 48%) under "District of Columbia" on the map; the list shows the 51 state rows or the 436 House rows. Data: `qa/b1584p16-dcschools-chromium-390.json`, shots/b1584p16-ch-390-DC-*.png.
+- QA-074 unchanged (Ohio/Texas/California/Vermont same duplicate names).
+- Back works in Chromium and WebKit at 1024x768 by touch, mouse, keyboard Enter and script click; a second Back 3 s after the first also works (WebKit 390 and 1024). Data: `qa/b1584p16-backclick-*.json`, `qa/b1584p16-back2-webkit-*.json`.
+- Layout sweep at 1024x768 (Chromium): identical to pass 14, nothing new and nothing fixed (QA-058 23 px in the plain range list, QA-054/060 transient on map/list, QA-070 clock button off screen for one frame on All States). The 390 sweep and the 5-size flow run crashed after step 12 when another job pushed the load average to 40; carry over.
+
+### QA-075 [HIGH] Typing "Georgia" + Enter in the geo field opens the country Georgia, not the US state
+- Severity: HIGH (navigation goes to the wrong place; a US state can't be reached by its name) | Build 1584 | Chromium 390x844 touch
+- Steps: fresh load > type "Georgia" in the bottom geo field > Enter.
+- Expected: the US state of Georgia (its map, thumbnails and district types), or at least the US state listed first.
+- Actual: the map flies to the Caucasus (Tbilisi), the crumb shows the Georgian flag with "Georgia" and a "No data yet" tag, and the district-type menu has no visible buttons (US House, State senate, State house, School districts are all hidden). "Texas" + Enter on the same run works normally.
+- Screenshot: shots/b1584p16-ch-390-Georgia-layers.png
+- Script: `qa/p16-ga.py`
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png

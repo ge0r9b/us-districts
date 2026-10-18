@@ -1,0 +1,764 @@
+{
+ "size": "390",
+ "eng": "chromium",
+ "steps": [
+  {
+   "n": 1,
+   "step": "open-geo-menu",
+   "ok": true,
+   "state": {
+    "crumbs": "All countries",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "bGlobe",
+     "gone": [
+      334,
+      791,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bLyr",
+     "gone": [
+      334,
+      684,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bNum",
+     "gone": [
+      334,
+      740,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bTime",
+     "gone": [
+      334,
+      122,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "chartBtn",
+     "gone": [
+      334,
+      186,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "crumbs",
+     "dx": 0,
+     "dy": -56,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      67,
+      318,
+      44
+     ],
+     "after": [
+      8,
+      11,
+      318,
+      44
+     ]
+    },
+    {
+     "el": "gq",
+     "gone": [
+      8,
+      794,
+      318,
+      42
+     ]
+    },
+    {
+     "el": "thumb0",
+     "gone": [
+      8,
+      122,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "gone": [
+      8,
+      166,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "vtitle",
+     "gone": [
+      8,
+      12,
+      318,
+      42
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls01-open-geo-menu-before.png",
+    "../shots/b1584p16-ch-390-ls01-open-geo-menu-after.png"
+   ]
+  },
+  {
+   "n": 2,
+   "step": "drill-MA",
+   "ok": true,
+   "state": {
+    "crumbs": "United States",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls02-drill-MA-before.png",
+    "../shots/b1584p16-ch-390-ls02-drill-MA-after.png"
+   ]
+  },
+  {
+   "n": 3,
+   "step": "drill-Worcester",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "bGlobe",
+     "new": [
+      334,
+      791,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bLyr",
+     "new": [
+      334,
+      684,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bNum",
+     "new": [
+      334,
+      740,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "bTime",
+     "new": [
+      334,
+      122,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "chartBtn",
+     "new": [
+      334,
+      186,
+      48,
+      48
+     ]
+    },
+    {
+     "el": "crumbs",
+     "dx": 0,
+     "dy": 56,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      11,
+      318,
+      44
+     ],
+     "after": [
+      8,
+      67,
+      318,
+      44
+     ]
+    },
+    {
+     "el": "gq",
+     "new": [
+      8,
+      794,
+      318,
+      42
+     ]
+    },
+    {
+     "el": "thumb0",
+     "new": [
+      8,
+      122,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "new": [
+      8,
+      166,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "vtitle",
+     "new": [
+      8,
+      12,
+      318,
+      42
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls03-drill-Worcester-before.png",
+    "../shots/b1584p16-ch-390-ls03-drill-Worcester-after.png"
+   ]
+  },
+  {
+   "n": 4,
+   "step": "open-time-slider",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "thumb0",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      190,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      234,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "ysl",
+     "new": [
+      8,
+      129,
+      318,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls04-open-time-slider-before.png",
+    "../shots/b1584p16-ch-390-ls04-open-time-slider-after.png"
+   ]
+  },
+  {
+   "n": 5,
+   "step": "switch-USHouse-layers",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": false,
+    "lt": "ushouse",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "gone": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls05-switch-USHouse-layers-before.png",
+    "../shots/b1584p16-ch-390-ls05-switch-USHouse-layers-after.png"
+   ]
+  },
+  {
+   "n": 6,
+   "step": "close-layers-row",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": false,
+    "lt": "ushouse",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "new": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls06-close-layers-row-before.png",
+    "../shots/b1584p16-ch-390-ls06-close-layers-row-after.png"
+   ]
+  },
+  {
+   "n": 7,
+   "step": "switch-back-President",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": false,
+    "lt": "counties",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "gone": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls07-switch-back-President-before.png",
+    "../shots/b1584p16-ch-390-ls07-switch-back-President-after.png"
+   ]
+  },
+  {
+   "n": 8,
+   "step": "close-layers-row2",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": false,
+    "lt": "counties",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "new": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls08-close-layers-row2-before.png",
+    "../shots/b1584p16-ch-390-ls08-close-layers-row2-after.png"
+   ]
+  },
+  {
+   "n": 9,
+   "step": "view-list-Worcester",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": true,
+    "lt": "counties",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "thumb0",
+     "dx": 0,
+     "dy": -3,
+     "dw": 276,
+     "dh": 0,
+     "before": [
+      8,
+      190,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      187,
+      318,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "dx": 0,
+     "dy": -3,
+     "dw": 276,
+     "dh": 0,
+     "before": [
+      8,
+      234,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      231,
+      318,
+      36
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls09-view-list-Worcester-before.png",
+    "../shots/b1584p16-ch-390-ls09-view-list-Worcester-after.png"
+   ]
+  },
+  {
+   "n": 10,
+   "step": "list-switch-USHouse",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "ushouse",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "gone": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls10-list-switch-USHouse-before.png",
+    "../shots/b1584p16-ch-390-ls10-list-switch-USHouse-after.png"
+   ]
+  },
+  {
+   "n": 11,
+   "step": "list-close-layers-a",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "ushouse",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "new": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls11-list-close-layers-a-before.png",
+    "../shots/b1584p16-ch-390-ls11-list-close-layers-a-after.png"
+   ]
+  },
+  {
+   "n": 12,
+   "step": "list-switch-back-President",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": true,
+    "lt": "counties",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "gone": [
+      334,
+      186,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls12-list-switch-back-President-before.png",
+    "../shots/b1584p16-ch-390-ls12-list-switch-back-President-after.png"
+   ]
+  },
+  {
+   "step": "list-close-layers-b",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-year-2020",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-range-16-24",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-year-2024",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "view-map-Worcester",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "year-2020",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "year-2016",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "year-2024",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "range-20-24",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "range-16-24",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "year-2024-b",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "n": 24,
+   "step": "open-time-slider-US",
+   "ok": true,
+   "state": {
+    "crumbs": "United States",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "thumb0",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      190,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      234,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "ysl",
+     "new": [
+      8,
+      129,
+      318,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "../shots/b1584p16-ch-390-ls24-open-time-slider-US-before.png",
+    "../shots/b1584p16-ch-390-ls24-open-time-slider-US-after.png"
+   ]
+  },
+  {
+   "step": "geo-menu-all-states",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-drill-MA",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-drill-Worcester",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-back-1",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-back-2",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "chart-bar",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-drill-MA-bar",
+   "EXC": "Page.evaluate: Target crashed "
+  },
+  {
+   "step": "list-back-bar",
+   "EXC": "Page.evaluate: Target crashed "
+  }
+ ],
+ "build": "202610181584",
+ "err": []
+}

@@ -1,0 +1,48 @@
+{
+ "touch": {
+  "seq": [
+   [
+    "start",
+    "precincts"
+   ],
+   [
+    "after1",
+    "townships"
+   ]
+  ],
+  "changes": [
+   [
+    0.15,
+    "townships"
+   ],
+   [
+    0.45,
+    "counties"
+   ]
+  ],
+  "err": []
+ },
+ "jsclick": {
+  "seq": [
+   [
+    "start",
+    "precincts"
+   ],
+   [
+    "after1",
+    "townships"
+   ]
+  ],
+  "changes": [
+   [
+    0.03,
+    "townships"
+   ],
+   [
+    0.48,
+    "counties"
+   ]
+  ],
+  "err": []
+ }
+}
