@@ -58,7 +58,9 @@ let office = "president";
 let level: GeographyLevel = "state";
 let geographyPicked = false;
 let stateFilter = "";
+let stateEdited = false;
 let layout: LayoutMode = "map";
+let emptyMessage = "No rows";
 
 const yearsEl = document.querySelector<HTMLElement>("#years")!;
 const institutionEl = document.querySelector<HTMLElement>("#institution")!;
@@ -106,9 +108,10 @@ function paintGeography() {
       if (!next) return;
       level = next;
       geographyPicked = true;
-      if (!stateFilter && next === "precinct") stateFilter = "VT";
-      if (!stateFilter && next === "county") stateFilter = "PA";
-      stateEl.value = stateFilter;
+      if (!stateEdited) {
+        stateFilter = next === "precinct" ? "VT" : next === "county" ? "PA" : "";
+        stateEl.value = stateFilter;
+      }
       paintGeography();
       void load();
     });
@@ -154,7 +157,7 @@ function paintList() {
   if (rows.length === 0) {
     const li = document.createElement("li");
     li.className = "empty";
-    li.textContent = "No rows";
+    li.textContent = emptyMessage;
     listEl.append(li);
     return;
   }
@@ -273,10 +276,13 @@ async function load() {
   const res = await fetch(`/api/v1/results?${params}`);
   if (!res.ok) {
     body = null;
+    const err = (await res.json().catch(() => null)) as { error?: { message?: string } } | null;
+    emptyMessage = err?.error?.message || "No rows";
     paintList();
     await syncPrecincts(null);
     return;
   }
+  emptyMessage = "No rows";
   body = (await res.json()) as ResultsBody;
   paintList();
   await syncPrecincts(view.unitType === "precinct" ? view.state : null);
@@ -297,6 +303,7 @@ layoutBtn.addEventListener("click", () => {
 stateEl.addEventListener("input", () => {
   stateFilter = stateEl.value.toUpperCase().slice(0, 2);
   stateEl.value = stateFilter;
+  stateEdited = stateFilter.length > 0;
   void load();
 });
 

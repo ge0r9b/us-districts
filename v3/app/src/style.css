@@ -67,8 +67,17 @@ html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
   color: #fff;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 1px 2px rgba(0,0,0,0.18);
 }
+#fmt, .layout { z-index: 3; }
 #fmt { position: absolute; top: calc(var(--sat) + 12px); right: calc(var(--sar) + 12px); }
-.layout { position: absolute; top: calc(var(--sat) + 68px); right: calc(var(--sar) + 12px); width: auto; min-width: var(--tap); padding: 0 14px; border-radius: 999px; }
+.layout {
+  position: absolute;
+  top: calc(var(--sat) + 12px + var(--tap) + var(--gap));
+  right: calc(var(--sar) + 12px);
+  width: auto;
+  min-width: var(--tap);
+  padding: 0 14px;
+  border-radius: 999px;
+}
 
 .sheet {
   position: absolute;
@@ -141,6 +150,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
 .empty { padding: 16px 16px 16px var(--text-x); color: var(--muted); font-size: 14px; }
 body[data-layout="list"] #map { visibility: hidden; }
 body[data-layout="list"] .sheet {
-  top: calc(var(--sat) + 12px + var(--tap) + var(--gap));
+  top: calc(var(--sat) + 12px + (var(--tap) + var(--gap)) * 2);
   max-height: none;
+  z-index: 1;
 }
