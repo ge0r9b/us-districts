@@ -16,7 +16,7 @@ writes (the Wikidata .rq queries + .json answers, sha256s recorded in `entities_
 ## What is an entity
 
 One row per **institution** (government, governing body, later companies), no vintage. Kinds now: `nation`, `state`
-(50 + DC), `territory` (US: 60/66/69/72/78 with House delegates, 74 Minor Outlying Islands; foreign dependencies; Canada's 3), `subdivision` (ISO 3166-2, non-US), `chamber` (99 state chambers + `us-house` + `us-senate`), `dc_council`, `court` (37 state high courts),
+(50 + DC), `territory` (US: 60/66/69/72/78 with House delegates, 74 Minor Outlying Islands; foreign dependencies; Canada's 3), `subdivision` (ISO 3166-2, non-US), `chamber` (99 state chambers + `us-house` + `us-senate`), `dc_council`, `court` (37 state high courts), `special_district` (305 TCEQ WDD districts, TX),
 `county`, `municipality` (place-based government), `township` (county-subdivision government), `school_unified`,
 `school_elementary`, `school_secondary`. District seats are **units** (cd / sldu / sldl GEOIDs), not entities: an officeholder
 row is keyed chamber `entity_id` + `unit_layer` + `unit_geoid` + `unit_vintage` + `seat`.
@@ -55,13 +55,18 @@ the commit in sources.csv. The domestic feed is read with `--gov-ref`; both refs
   we had, and Canada's province/territory rows. A parent disagreement → `govbot_foreign_parent_differs`. A QID is carried
   only into an empty `wikidata`; a different QID → `wikidata_qid_conflict` (registry kept). A QID already held by another
   entity is not carried (also a conflict row).
-- **`constituent_qid`, `valid_from`, `valid_to`, `valid_from_source` are carried as given** (empty registry value only; a
-  different non-empty registry value is kept and logged as `govbot_foreign_attr_differs`). `constituent_qid` is the
-  constituent country item under a sovereign-state QID (nation:dk Q35, nation:nl Q55). **`valid_from` here means the
-  earliest sourced inception (Wikidata P571 with a P248/P854 reference), not the date the current government began**:
-  Barbados `1623` is a settlement date, and UN admission dates are not used. `valid_to` is blank everywhere.
+- **`constituent_qid` and `valid_to` are carried as given; the bot's `valid_from` / `valid_from_source` become `inception` /
+  `inception_source`** (empty registry value only; a different non-empty registry value is kept and logged as
+  `govbot_foreign_attr_differs`). `constituent_qid` is the constituent country item under a sovereign-state QID (nation:dk
+  Q35, nation:nl Q55); with it the `wikidata_qid_via_home_part_rule` gap on nation:dk is closed (the
+  `wikidata_p297_item_is_home_part` flag stays as provenance). **`inception` = earliest sourced inception (Wikidata P571
+  with a P248/P854 reference), not the date the current government began**: Barbados `1623-01-01` (precision year) is a
+  settlement date, and UN admission dates are not used. `inception_precision` (day / month / year) is read from the form of
+  the bot's string, which it writes at the Wikidata precision; year-only is stored `YYYY-01-01`. `valid_from` stays empty on
+  these rows. US rows have no P571 in any available feed, so their `inception` is empty (nothing fetched).
 - **Rows flagged `review_status` (nation:tw, nation:eh) are `feed_only`.** They are not minted or mapped and their gaps stay
-  open, pending the user. Their subdivisions are `feed_only` too, and their images are logged as `image_entity_unmapped`.
+  open, pending the user. Their subdivisions are `feed_only` too, and their images are logged as `image_entity_unmapped`
+  with reason `pending_user_status_review` (not linked, not minted).
 - **Every other row is minted under its own id** (`feed` governments-bot, `source_record_id` = the bot id):
   - new `nation:` rows (nation:ps; this closes the Palestine `not_in_source_list` gap);
   - new `territory:<iso2>` dependencies (including territory:fo, which closes the Faroe Islands gap, and territory:im,
@@ -85,14 +90,23 @@ school `nces_leaid` → `school:<leaid>`; GEOID (layer + geoid, TIGER 2024) → 
 carrying that `cog_pid6`. GEOID and CoG must agree, else a `govbot_mapping_conflict` gap and no link. Nothing is renamed on either
 side; a bot id equal to a registry id that maps elsewhere would be a `govbot_frozen_id_conflict` gap (none). Unmapped ids
 (special districts, federal agencies, tribes) are `feed_only:*`; the v3 loader makes them `government_other`.
-Since bb5e342 the feed also carries 305 Texas special districts created since CoG 2022 (`tceq_wdd:<WDD ID>`, TCEQ Water
-Districts Database): there is no `special_district` kind in the schema, so they are `feed_only:special_district` like every
-other special district (no entity minted) and, being `not_in_cog2022`, each is also a `govbot_new_unit_not_in_registry` gap.
-Federal Register agency logos (fair use, hidden) and seals belong to `fr:` ids, which are feed_only, so they are
-`image_entity_unmapped` gaps; their `source_id` cites the bot's `fr_agencies` source.
+Special districts (Full Stack, Oct 18): the 305 Texas districts created since CoG 2022 (`tceq_wdd:<WDD ID>`, TCEQ Water
+Districts Database) are minted as kind `special_district`, id `special_district:tx-tceq-<WDD id>` (frozen; rule in
+ENTITIES_SCHEMA.md), official name verbatim, parent `state:48` (+ `parent` relation), feed row status mapped
+(`match=minted_special_district`), `valid_from` = the TCEQ creation date. County: `in_county` relation, method
+`tceq_wdd_primary_county` (291); 14 rows have no county in the feed → `special_district_county_unknown` gaps. CoG special
+districts stay `feed_only:special_district`; when minted they use the same kind with source `cog`.
+Images of ids that are feed_only by design (federal agencies `fr:`, tribes `bia:`) stay unlinked with **no**
+`image_entity_unmapped` gap; Federal Register logos cite the bot's `fr_agencies` source. Unmapped feed ids that are not
+feed_only by design (e.g. Mountain House CA `gcn:0649582`: incorporated 2024, TIGER 2024 has only the CDP, which is not an
+entity here) keep the gap, with the feed row's reason in `detail`.
+Fair-use images (`public` no, never flipped here) all carry `license`, `attribution` and `source_url`. An empty attribution is
+filled with the issuing body's name, `<name> (issuing body)`, from the registry entity (else the bot row); column
+`attribution_source` = `feed` / `issuing_body_name:registry_entity` / `issuing_body_name:governments_bot_row`; if no name
+exists the row gets an `image_attribution_missing` gap (none today).
 Consolidated city-counties kept as two entities (CoG code not a TIGER place: Athens-Clarke, Greeley, Louisville-Jefferson,
 Butte-Silver Bow, Nashville-Davidson): the CoG id maps to the **county** entity (`status` mapped, `note` consolidated), the place
-GEOID stays on the city entity, and `entity_relations.csv` (`entity_id, relation, related_entity_id, source_id`) has one
+GEOID stays on the city entity, and `entity_relations.csv` (`entity_id, relation, related_entity_id, method, source_id`) has one
 `consolidated_with` row per pair (both directions implied), cited to CoG 2022 + the Governments bot (its GEOID for the CoG unit)
 + county_government.csv. The other 72 consolidated / independent-city county GEOIDs are folded into ONE entity (xwalk relation
 `consolidated_city_county` / `independent_city_county_equivalent`), so no relation row is needed; Honolulu (15003) has no
@@ -103,7 +117,7 @@ Builder rule (Full Stack, Oct 18): every county in a `consolidated_with` relatio
 Carried onto mapped entities: `wikidata` as `wikidata:Q…` (nullable, unique: a QID on several entities is left empty on all of
 them and logged as `wikidata_qid_duplicate`; only when every bot row of the entity agrees; registry value wins on a conflict),
 ceased units (`valid_to` + flag `is_active_false:governments_bot_<ids>`, only when all of the entity's bot rows ceased),
-new units (`valid_from` + flag `not_in_cog2022`). `entity_images.csv`: seals and flags (institution-only attributes, never
+new units (`valid_from` = the sourced incorporation / creation date + flag `not_in_cog2022`). `entity_images.csv`: seals and flags (institution-only attributes, never
 used by the geo filter): `entity_id, role` (seal / flag / logo), `file` (Commons file name), `license`, `fair_use` (yes exactly when
 the license is `fair-use`; such rows must carry `usage_basis`, checked), `usage_basis`, `source_url`, `attribution`, then extras
 `feed_id, commons_url, wikidata_qid, retrieved_at, source_id`. `LicenseRef-Copyright` rows are fair_use = no but not free either. The bot's `sources.csv` rows are added to
@@ -266,18 +280,18 @@ entities.csv like this:
 Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
 `govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
 `wikidata_qid_conflict`, `wikidata_qid_duplicate`, `image_entity_unmapped`, `image_fair_use_inconsistent`;
-source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; foreign layer: `govbot_foreign_parent_differs`, `govbot_foreign_parent_missing`, `govbot_foreign_attr_differs`.
+source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; foreign layer: `govbot_foreign_parent_differs`, `govbot_foreign_parent_missing`, `govbot_foreign_attr_differs`; special districts: `special_district_county_unknown`; images: `image_attribution_missing`.
 `feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
-Counts in the current build (57,914 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
+Counts in the current build (58,219 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
 court 37, subdivision 3,480, county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary
-1,952, school_secondary 481; 1,233 gap rows; 97,420 feed-map rows (feed_only 40,935, mapped 55,511, unmapped 974); 9,846 images
-(no|logo 141, no|seal 4,433, yes|flag 1,783, yes|seal 3,489 as public|role; 3,381 icons); 3,557 relations; 198 body_entity rows, 0 body_key
-gaps; wikidata on 42,249 entities; valid_from on 189 entities, 173 of them with valid_from_source from the
-foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before the first `:`:
-`outside_v2_scope:no_unit_no_boundary_set` 3,732; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;
-`not_in_cog2022` 1,619; `tiger_funcstat_G` 1,603; `spans_counties` 899;
+1,952, school_secondary 481, special_district 305; 711 gap rows; 97,420 feed-map rows (feed_only 40,630, mapped 55,816, unmapped 974); 9,846 images
+(no|logo 141, no|seal 4,433, yes|flag 1,783, yes|seal 3,489 as public|role; 3,381 icons); 4,153 relations (parent 3,857, in_county 291, consolidated_with 5); 198 body_entity rows, 0 body_key
+gaps; wikidata on 42,249 entities; valid_from on 321 entities (305 special districts:
+TCEQ creation date; 16 new units: incorporation dates); inception on 173 (day 139, year 34), all foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before the first `:`:
+`outside_v2_scope:no_unit_no_boundary_set` 4,037; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;
+`not_in_cog2022` 1,924; `tiger_funcstat_G` 1,603; `spans_counties` 899;
 `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
 `gov_status_na:legislative_chamber` 101; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
 `gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
@@ -289,9 +303,8 @@ foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before
 `gov_status_unknown:consolidated_government_not_linked_to_tiger_code`,
 `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `multiple_cog_units`, `tiger_funcstat:G`,
 `tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `un_observer(governments_bot)`, `wikidata_p297_item_is_home_part`.
-Gap rows by `gap`: `gov_status_unknown` 433; `govbot_new_unit_not_in_registry` 318; `image_entity_unmapped` 274;
-`cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
-`officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `not_in_seating_charts` 15;
+Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49; `image_entity_unmapped` 44;
+`officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `not_in_seating_charts` 15; `special_district_county_unknown` 14; `govbot_new_unit_not_in_registry` 13;
 `nation_not_un_member` 2; `not_in_source_list` 2;
 `same_code_place_cousub_overlap_unmeasured` 2; one each of `consolidated_county_cog_code_not_in_tiger`,
-`govbot_ceased_partial`, `wikidata_p297_several_items`, `wikidata_qid_via_home_part_rule`.
+`govbot_ceased_partial`, `wikidata_p297_several_items`.

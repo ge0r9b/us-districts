@@ -31,7 +31,26 @@ def load(R, sha):
     return {'rows': rows, 'registry': [x for x in _csv(R, sha, 'id_registry.csv') if dom(x['entity_id'])], 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
             'images': [x for x in _csv(R, sha, 'images.csv') if dom(x['entity_id'])], 'images_gaps': _csv(R, sha, 'images_gaps.csv'), 'sources': _csv(R, sha, 'sources.csv')}
 
-def integrate(G, ents, gidx, consolidated=None):
+# special districts (kind special_district, Full Stack Oct 18): id special_district:<st>-<source>-<source_id>, frozen.
+#   <st> = USPS code lowercased; <source> = SD_SOURCE[feed `source`] (tceq_wdd -> tceq; CoG 2022 units later -> cog);
+#   <source_id> = the id after the feed prefix (tceq_wdd:101792 -> 101792), lowercased, every run of characters outside
+#   [a-z0-9] replaced by '-', leading/trailing '-' stripped; leading zeros kept. Minted today: bot rows of type
+#   special_district flagged not_in_cog2022 (the TCEQ WDD creations); CoG special districts stay feed_only until minted.
+SD_SOURCE = {'tceq_wdd': 'tceq', 'cog2022': 'cog'}   # cog: future CoG special districts (special_district:<st>-cog-<cog_id>), not minted yet
+def sd_norm(x):
+    import re
+    return re.sub(r'[^a-z0-9]+', '-', x.strip().lower()).strip('-')
+def special_districts(G):
+    out = []
+    for r in G['rows']:
+        if r['type'] != 'special_district' or 'not_in_cog2022' not in r.get('flags', '').split(';'): continue
+        pre, _, code = r['entity_id'].partition(':')
+        src = SD_SOURCE[r['source']]; assert pre == r['source'], (pre, r['source'])
+        out.append((f"special_district:{r['state'].lower()}-{src}-{sd_norm(code)}", r))
+    ids = [i for i, _ in out]; assert len(ids) == len(set(ids))
+    return out
+
+def integrate(G, ents, gidx, consolidated=None, minted=None):
     consolidated = consolidated or {}   # cog_pid6 -> county entity kept separate from its consolidated city (CoG code not a TIGER place)
     rels = []
     """ents: {entity_id: row dict (mutable)}; gidx: {(layer, geoid, '2024'): entity_id}. Returns (feed_map, images, gaps, stats)."""
@@ -45,7 +64,8 @@ def integrate(G, ents, gidx, consolidated=None):
         fid = r['entity_id']; assert fid not in seen, fid; seen.add(fid)
         tgt, how, note = '', '', ''
         pre, _, code = fid.partition(':')
-        if pre in ('state', 'territory') and code.isdigit():
+        if fid in (minted or {}): tgt, how = minted[fid], 'minted_special_district'
+        elif pre in ('state', 'territory') and code.isdigit():
             if code in US_TERR:
                 tgt = f'territory:{code}'; how = 'territory_fips'
                 if pre == 'state': note = 'territory_rekey'; gaps.append({'gap': 'govbot_territory_key_differs', 'key': fid, 'detail': 'bot key state:%s -> registry territory:%s (agreed SCHEMA id)' % (code, code)})
@@ -114,11 +134,14 @@ def integrate(G, ents, gidx, consolidated=None):
     # images
     f2e = {m['feed_entity_id']: m['entity_id'] for m in fmap}
     imgs = []
+    st_of = {m['feed_entity_id']: m['status'] for m in fmap}
+    reason_of = {m['feed_entity_id']: 'feed row unmapped: ' + m['note'] + ('; ' + m['_r']['note'] if m['_r'].get('note') else '') for m in fmap if m['status'] == 'unmapped'}
     for x in G['images']:
         fid = x['entity_id']; tgt = f2e.get(fid, '')
         if not tgt and fid in ents: tgt = fid   # nation:us and other ids the registry shares verbatim
-        if not tgt:
-            gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file']}); st['images_unmapped'] += 1
+        if not tgt and st_of.get(fid) == 'feed_only': st['images_feed_only_by_design'] += 1   # agencies, tribes: no entity by design, no gap
+        elif not tgt:
+            gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file'] + '; ' + reason_of.get(fid, 'feed id not in entity_feed_map')}); st['images_unmapped'] += 1
         su = x.get('source_url') or ''
         sid = ['fr_agencies'] if 'federalregister.gov' in su else ['wikidata_images', 'enwiki_api' if 'wikipedia.org' in su else 'commons_api']
         assert x['image_kind'] in ('seal', 'flag', 'logo'), x['image_kind']

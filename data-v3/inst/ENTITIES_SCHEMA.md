@@ -18,7 +18,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 7 | `label` | `incorporated` / `unincorporated` / `sovereign` | v2 wording: states sovereign; TIGER CLASSFP for places |
 | 8 | `gov_status` | `government` / `area_only` / `dependent` / empty | CoG 2022 by FIPS code, county_government.csv for counties, TIGER FUNCSTAT G = dependent; empty = unknown (see `flags`) or not applicable (chambers) |
 | 9 | `parent_id` | `state:01` | generic containment / ownership link (a corporate parent works the same way). School district → state, county → state, town/municipality → county (if ≥ 98 % inside one county, else state), chamber → state, us-house → nation:us, state → nation:us |
-| 10 | `valid_from` | `1966`, `1623` | date the institution began, only when a source gives it; empty = not recorded. **Foreign-layer rows (nation / territory / subdivision): the earliest sourced inception, Wikidata P571 with a P248/P854 reference, at its precision (`YYYY`, `YYYY-MM`, `YYYY-MM-DD`), carried from the Governments bot with `valid_from_source`. It is NOT the date the current government or state began** (Barbados `1623` is the settlement date, not 1966 independence; UN admission is not used) |
+| 10 | `valid_from` | `2023-05-02` | date the **current form of government** began, only when a source states it explicitly (Census GCN incorporation date, TCEQ WDD creation date of a district); empty otherwise. Not an inception: Wikidata P571 goes to `inception` (column 27) |
 | 11 | `valid_to` | | empty = still exists |
 | 12 | `predecessor_id` | | `;`-list of entity_ids this one replaced |
 | 13 | `successor_id` | `county:09110;county:09130` | `;`-list of entity_ids that replaced it |
@@ -32,7 +32,9 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 24 | `wikidata` | `wikidata:Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
 | 25 | `iso_3166_2` | `MX-JAL`, `CA-ON` | ISO 3166-2 code as given by the Governments bot foreign layer (subdivisions, Canadian provinces/territories, dependencies listed in their sovereign's ISO 3166-2). An attribute only: the entity_id does not follow it |
 | 26 | `constituent_qid` | `Q35` (nation:dk) | nations only, from the Governments bot foreign layer: the constituent country's Wikidata item when it differs from the sovereign-state item in `wikidata` (nation:dk Q35 under Kingdom of Denmark Q756617; nation:nl Q55 under Kingdom of the Netherlands Q29999). Not unique-checked against `wikidata` as an identity of this row; a value that is another entity's `wikidata` is not carried (`wikidata_qid_conflict`) |
-| 27 | `valid_from_source` | `Wikidata Q244 P571, reference: …` | where `valid_from` came from, as given by the Governments bot (`Wikidata <QID> P571, reference: <P248 item or P854 URL>`) |
+| 27 | `inception` | `1901-01-01`, `1623-01-01` | earliest sourced inception: Wikidata P571 with a P248/P854 reference, as carried by the Governments bot (foreign layer only today; no available feed has P571 for US rows, so they are empty and nothing was fetched). Stored as a full date; a year-only value is `YYYY-01-01`, a month-only value `YYYY-MM-01`. **Not** the date the current government began (Barbados 1623 is a settlement date) |
+| 28 | `inception_precision` | `day`, `month`, `year` | precision of `inception`: the bot writes P571 at its Wikidata precision (`YYYY` / `YYYY-MM` / `YYYY-MM-DD`), so it is read from that string's form; empty when `inception` is empty |
+| 29 | `inception_source` | `Wikidata Q244 P571, reference: …` | the bot's `valid_from_source` for that value (`Wikidata <QID> P571, reference: <P248 item or P854 URL>`) |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -88,11 +90,32 @@ Other countries' first-level ISO 3166-2 subdivisions, from the Governments bot f
 - `kind` subdivision, `level` subnational, `type` = the ISO subdivision type (province, state, region, …), `parent_id` = the
   country's `nation:` or `territory:` row, plus a `parent` row in `entity_relations.csv`. `gov_status` is empty and the row
   carries the flag `gov_status_unknown:outside_cog2022_scope`, the same as other non-US rows. `feed` `governments-bot`.
-- No units, no xwalk rows, no boundary_set. `valid_from` / `valid_to` / `valid_from_source` are carried from the bot's
-  subdivisions.csv (bb5e342): `valid_from` = earliest sourced inception (Wikidata P571 with a reference), not the date the
-  current government began; `valid_to` is blank in the bot's files. All rows are `is_active` Y; a code later withdrawn by
+- No units, no xwalk rows, no boundary_set. The bot's `valid_from` / `valid_from_source` (Wikidata P571 with a reference)
+  go to `inception` / `inception_source` / `inception_precision` (bb5e342); `valid_from` stays empty (it is not the date the
+  current government began); `valid_to` is blank in the bot's files. All rows are `is_active` Y; a code later withdrawn by
   ISO keeps its frozen id on the bot side (`iso_code_withdrawn`), so ours stays too.
 - Subdivisions of rows flagged review_status (Taiwan, Western Sahara) are not minted (feed_only, pending the user).
+
+## Kind `special_district` (Full Stack, Oct 18; applied)
+- id `special_district:<st>-<source>-<source_id>`, **frozen**. `<st>` = USPS code lowercased; `<source>` = short source
+  key (`tceq` for the TCEQ Water Districts Database rows, feed source `tceq_wdd`; **future CoG special districts use the same
+  kind with source `cog`**, e.g. `special_district:<st>-cog-<cog_id>`); `<source_id>` = the source's own id (the part after
+  the feed prefix, `tceq_wdd:101792` → `101792`), lowercased, each run of characters outside `[a-z0-9]` replaced by `-`,
+  leading/trailing `-` stripped, leading zeros kept (tools/inst_govfeed.py `sd_norm`).
+- Minted today: the 305 Governments-bot rows of type special_district flagged `not_in_cog2022` (TCEQ WDD districts created
+  2022-01-01 or later, ACTIVE). CoG 2022 special districts stay `feed_only:special_district` until minted.
+- `name` = the official name verbatim (TCEQ, upper case as published); `type` = the TCEQ district type (municipal utility
+  district, …); `level` local; `gov_status` government (bot `independent`); `valid_from` = the TCEQ creation date;
+  `source_record_id` = the bot id (`tceq_wdd:<id>`); `parent_id` = `state:<FIPS>` plus a `parent` row in entity_relations.csv.
+- County: an `in_county` row in entity_relations.csv with `method`: `tceq_wdd_primary_county` = the WDD's primary county as
+  given in the bot row's `county_geoid` (a sourced value, not an estimate); a point-in-polygon link would be
+  `≈point_in_polygon` (≈ marks estimates only; none today, the feed has no coordinates). No sourced county → gap
+  `special_district_county_unknown`. No units, no xwalk rows (TIGER has no special-district layer).
+
+## entity_relations.csv
+`entity_id, relation, related_entity_id, method, source_id`; relation `parent` (minted courts, foreign territories /
+subdivisions, special districts), `consolidated_with`, `in_county` (special district → its county; `method` says how the
+link was made, `≈` prefix only for estimates). `method` is empty for the other relations.
 
 ## Kind `court` (approved by Full Stack, Oct 18; applied)
 

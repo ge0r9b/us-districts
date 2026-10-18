@@ -10,9 +10,11 @@ Rules (user / Full Stack, Oct 18):
     a `parent` relation for each minted territory and subdivision; no units, no xwalk, no boundary_set;
   * crosswalk codes are feed-map rows (feed_id iso3166:<code>) pointing at the existing entity; nothing is minted for them;
   * wikidata: carried only when no other registry entity holds the QID (else wikidata_qid_conflict, registry kept);
-  * constituent_qid (nations: the constituent country item under the sovereign-state item, e.g. nation:dk Q35), valid_from
-    / valid_to / valid_from_source (valid_from = earliest sourced inception, Wikidata P571 with a P248/P854 reference; NOT
-    the date the current government began, e.g. Barbados 1623 is a settlement date) are carried as given; on an existing
+  * constituent_qid (nations: the constituent country item under the sovereign-state item, e.g. nation:dk Q35) and
+    valid_to are carried as given; the bot's valid_from / valid_from_source (Wikidata P571 with a P248/P854 reference) go to
+    inception / inception_source with inception_precision day|month|year (from the string's form: the bot writes P571 at
+    its Wikidata precision; YYYY -> YYYY-01-01, YYYY-MM -> YYYY-MM-01); inception is NOT the date the current government
+    began (Barbados 1623 is a settlement date), so valid_from stays empty; on an existing
     row a non-empty registry value that differs is kept and logged (govbot_foreign_attr_differs); a constituent_qid
     that is some entity's wikidata is logged (wikidata_qid_conflict) and not carried;
   * images: only rows of foreign ids (+ territory:74); domestic images stay on the domestic feed ref.
@@ -47,7 +49,13 @@ def integrate(F, ents, new_row, domestic_f2e):
         for r in rows_by_file[f]:
             if 'review_status' in r['flags'].split(';'): review.add(r['entity_id'])
     def carry_attrs(e, eid, r):
-        for c in ('constituent_qid', 'valid_from', 'valid_to', 'valid_from_source'):
+        # Full Stack (Oct 18): the bot's valid_from (Wikidata P571) is an inception, not the start of the current
+        # government -> inception / inception_source / inception_precision; valid_from stays empty here.
+        r = dict(r, inception=r.get('valid_from', ''), inception_source=r.get('valid_from_source', ''), valid_from='', valid_from_source='')
+        if r['inception']:
+            pr = {4: 'year', 7: 'month', 10: 'day'}[len(r['inception'])]   # the bot gives P571 at its precision as YYYY / YYYY-MM / YYYY-MM-DD
+            r['inception_precision'] = pr; r['inception'] = r['inception'] + {'year': '-01-01', 'month': '-01', 'day': ''}[pr]
+        for c in ('constituent_qid', 'inception', 'inception_precision', 'inception_source', 'valid_to'):
             v = r.get(c, '')
             if not v: continue
             if c == 'constituent_qid' and qid_owner.get(v) not in (None,):
@@ -124,7 +132,7 @@ def integrate(F, ents, new_row, domestic_f2e):
         tgt = f2e.get(fid, '')
         assert x['image_kind'] in ('seal', 'flag', 'logo'), x['image_kind']
         if not tgt:
-            gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file'] + ('; review_status, pending user' if 'review_status' in note_of.get(fid, '') else '')})
+            gaps.append({'gap': 'image_entity_unmapped', 'key': fid, 'detail': x['image_kind'] + ' ' + x['commons_file'] + ('; pending_user_status_review (review_status entity or its subdivision: not minted, not linked)' if 'review_status' in note_of.get(fid, '') else '')})
             st['images_unmapped'] += 1
         fu = x['license'] == 'fair-use'
         if fu and not x['usage_basis']: gaps.append({'gap': 'image_fair_use_inconsistent', 'key': fid, 'detail': 'fair-use without usage_basis'})
