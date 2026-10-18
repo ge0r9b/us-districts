@@ -150,6 +150,33 @@ agency-logos.federalregister.gov), for agencies with or without a QID.
 The enwiki seal fallback covers municipalities and townships too (same single-file and uniqueness rules as counties,
 plus: a file named only for a state, e.g. `Seal utah.png`, is never taken for a city).
 
+## Foreign governments (`foreign/`, `scripts/build_foreign.py`)
+Built in the same run as everything else (`scripts/build_all.py`); every row cites its sources (`source`, `source_url`,
+`retrieved_at`, `license`), IDs are frozen in `id_registry.csv` (keys `iso3166-1:XX`, `iso3166-2:XX-YYY`).
+
+| file | rows | what |
+|---|---|---|
+| `foreign/nations.csv` | 196 | `nation:<iso2>`, `type=sovereign`: the 193 UN members (un.org Member States page, with date of admission) minus the US (already `nation:us`), the 2 UN observer States (Holy See `nation:va`, State of Palestine `nation:ps`), and 2 ISO 3166-1 entries with no single UN-member sovereign: Taiwan `nation:tw` and Western Sahara `nation:eh` (`subtype=non_un_state`, `gov_status=disputed_or_unrecognized`, flag `review_status`) |
+| `foreign/dependencies.csv` | 44 | `territory:<iso2>`, `type=foreign`, parent = sovereign `nation:<iso2>`: every other ISO 3166-1 entry with a government; sovereign from Wikidata P17 (also P131/P361 for the realm items Kingdom of Denmark, Kingdom of the Netherlands, Realm of New Zealand, which carry no P297), Isle of Man reviewed (Crown Dependency, like Jersey/Guernsey). `subtype` = the ISO 3166-2 type where the sovereign's ISO 3166-2 list has the place (e.g. `special administrative region`, `overseas collectivity`), else `dependency`. U.S. Minor Outlying Islands = `territory:74` (FIPS, like the other U.S. territories), parent `nation:us` |
+| `foreign/subdivisions.csv` | 3515 | first-level ISO 3166-2 subdivisions (iso-codes entries without `parent`) of 199 countries/dependencies, `type=foreign`, `subtype` = ISO type lowercased (province 762, region 465, municipality 397, district 294, state 229, ...). Canada: `province:ca-<code>` / `territory:ca-<code>` with `external_ids=statcan_sgc:<2-digit SGC 2021 code>` (Statistics Canada SGC 2021 structure CSV, joined on the exact province name, all 13 match); every other country `subdivision:<iso 3166-2 lowercased>` (proposal, see SCHEMA.md) |
+| `foreign/iso_domestic_crosswalk.csv` | | ISO codes that are not built here: the US and its 57 ISO 3166-2 entries map to the domestic rows (`nation:us`, `state:SS`, DC `cog:124214`, `territory:60/66/69/72/78/74`); 17 ISO 3166-2 codes that are the same Wikidata item as an ISO 3166-1 entry (e.g. CN-HK, FR-971, NL-AW) map to that `territory:` row; CN-TW (ISO lists Taiwan as a province of China) maps to `nation:tw` and is not built twice |
+
+Not built: Antarctica (AQ, no government), Bouvet Island (BV) and Heard and McDonald Islands (HM) (uninhabited, no own
+government); second-level ISO 3166-2 entries (1456).
+QIDs only by exact code: P297 = alpha-2 for nations/dependencies (one live item per code, not dissolved; Cyprus has two
+items, the one with UN membership P463 is taken: `qid_by_p297_and_p463`), P300 = ISO 3166-2 code for subdivisions
+(3408 `qid_by_p300`; none: no item 77, several items 29, item with several codes 1). UN membership: un.org names
+matched to iso-codes `name` / `official_name` / `common_name`; 7 UN short forms (Bahamas (The), China (the People's
+Republic of), Democratic Republic of the Congo, Gambia (Republic of The), Naoero, Netherlands (Kingdom of the), Republic of
+Korea) are a reviewed list that the build only accepts when the Wikidata P297 item has UN membership (P463 Q1065);
+192 of 193 also carry P463 on the P297 item (Denmark's is on the Kingdom of Denmark item). Columns from Wikidata on the
+matched item: `capital_qid`/`capital` (P36), `head_of_government_office_qid`/`head_of_government_office` (P1313).
+Images (in `images.csv`, same rules as domestic): flag = P41; seal = P158, else P94 coat of arms (stored as
+`image_kind=seal` with `usage_basis=coat of arms (P94) used as the seal`); most open license first. 3529 rows
+(1726 flags, 1803 seals); gaps in `images_gaps.csv`: no P41 1922, no P158/P94 1845, no QID 107 (per kind).
+Not done in this pass: CIA World Factbook government type (no column yet), INEGI (MX) and ONS (UK) codes as
+`external_ids`, local-language labels, an enwiki fair-use fallback for foreign seals.
+
 ## Tribal GEOIDs vs the Geography bot's areas
 `scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
 @ ed866a4 (read-only, via `git show`) and writes `aiannh_join_check.csv`: every tribe GEOID in `tribes.csv` and the

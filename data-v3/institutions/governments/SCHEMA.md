@@ -102,6 +102,28 @@ file is on no other fetched article (navbox images such as state seals are exclu
 is not named only for a state (`Seal of the State of Ohio.svg`, `Seal utah.png`).
 School-district seals/logos are skipped by rule.
 
+## foreign/nations.csv, foreign/dependencies.csv, foreign/subdivisions.csv
+Columns: `entity_id, name, official_name, type, subtype, gov_status, parent_id, iso_alpha2, iso_alpha3, iso_numeric,
+iso_3166_2, un_status, un_admission_date, wikidata_qid, capital_qid, capital, head_of_government_office_qid,
+head_of_government_office, external_ids, alias, is_active, note, flags, source, source_url, retrieved_at, license`.
+
+| column | values |
+|---|---|
+| `entity_id` | `nation:<iso2>` (sovereign), `territory:<iso2>` (foreign dependency), `province:ca-<code>` / `territory:ca-<code>` (Canada), `subdivision:<iso 3166-2 lowercased>` (**proposal for the Institution filter bot**: other countries' first-level subdivisions, e.g. `subdivision:mx-jal`; not yet in v3 SCHEMA 62cb622), `territory:74` (U.S. Minor Outlying Islands, FIPS like the other U.S. territories) |
+| `type` | `sovereign` (nations, incl. the two flagged non-UN rows) or `foreign` (dependencies and subdivisions) |
+| `subtype` | nations: `state` or `non_un_state`; dependencies: ISO 3166-2 type of the place in its sovereign's list, else `dependency`; subdivisions: ISO 3166-2 type lowercased (`province`, `state`, `region`, `canton`, ...) |
+| `gov_status` | `independent`, `disputed_or_unrecognized` (Taiwan, Western Sahara), `dependent`, `subnational` |
+| `parent_id` | nations: empty; dependency → sovereign `nation:`; subdivision → its country's `nation:` / `territory:` row |
+| `un_status` | `member`, `observer` (Holy See, State of Palestine), `none` |
+| `un_admission_date` | ISO date from the un.org Member States page |
+| `wikidata_qid` | P297 (nations, dependencies) or P300 (subdivisions) exact code; one live item per code and one code per item |
+| `capital*`, `head_of_government_office*` | Wikidata P36 and P1313 of that item (several joined by `;`), English labels |
+| `external_ids` | `statcan_sgc:<code>` for Canada |
+| `flags` | `qid_by_p297`, `qid_by_p297_and_p463`, `qid_by_p300`, `no_qid:<why>`, `review_status` |
+
+`foreign/iso_domestic_crosswalk.csv`: `iso_code, iso_name, entity_id, relation (domestic_row | same_wikidata_item |
+duplicate_of_iso_3166_1), source, source_url`.
+
 ## images_gaps.csv
 `entity_id, image_kind, wikidata_qid, reason`: in-scope entities (nation, states, DC, territories, counties,
 municipalities, townships, tribes, federal agencies) with no image: `no_qid` (no exact identifier link; federal
