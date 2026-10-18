@@ -9,14 +9,14 @@ README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `lic
 `<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
 
 Build: `tools/inst_entities.py <repo> --gaz24 DIR --gaz20 DIR --cog XLSX --geojson DIR --oh-ref <data/inst-officeholders sha>
---gov-ref <data/governments sha> --world-raw DIR --seating-ref <data/seating sha> [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
+--gov-ref <data/governments sha> --world-raw DIR --foreign-ref <data/governments sha> --seating-ref <data/seating sha> [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
 writes (the Wikidata .rq queries + .json answers, sha256s recorded in `entities_summary.json` `world.files`). Officeholder files, county_government.csv and the Governments bot's
 `data-v3/institutions/governments/local/*.csv` are read with `git show` (read only).
 
 ## What is an entity
 
 One row per **institution** (government, governing body, later companies), no vintage. Kinds now: `nation`, `state`
-(50 + DC), `territory` (5, only because they send House delegates), `chamber` (99 state chambers + `us-house` + `us-senate`), `dc_council`, `court` (37 state high courts),
+(50 + DC), `territory` (US: 60/66/69/72/78 with House delegates, 74 Minor Outlying Islands; foreign dependencies; Canada's 3), `subdivision` (ISO 3166-2, non-US), `chamber` (99 state chambers + `us-house` + `us-senate`), `dc_council`, `court` (37 state high courts),
 `county`, `municipality` (place-based government), `township` (county-subdivision government), `school_unified`,
 `school_elementary`, `school_secondary`. District seats are **units** (cd / sldu / sldl GEOIDs), not entities: an officeholder
 row is keyed chamber `entity_id` + `unit_layer` + `unit_geoid` + `unit_vintage` + `seat`.
@@ -46,6 +46,31 @@ Status and QIDs come only from Wikidata (current statements: rank not deprecated
 - Canada: `province:ca-<code>` (kind `province`, 10) and `territory:ca-nt|nu|yt` (kind `territory`), parent `nation:ca`, QID by
   P300 `CA-<code>`; the id pattern sits in one constant (`inst_world.ca_id`).
 - `name` = the Natural Earth name; the Wikidata label goes to `alias` when it differs (`Québec` / `Quebec`). `feed` = `inst-lane`.
+
+## Governments bot foreign layer (tools/inst_foreign.py, `--foreign-ref`)
+Read only from `data-v3/institutions/governments/foreign/` (nations.csv, dependencies.csv, subdivisions.csv,
+iso_domestic_crosswalk.csv) plus the foreign rows of its `images.csv`, at the pinned commit. Every file has its sha256 and
+the commit in sources.csv. The domestic feed stays on `--gov-ref`.
+- **Ids already in the registry are mapped, never renamed.** That covers the 194 shared nations, the 9 foreign territories
+  we had, and Canada's province/territory rows. A parent disagreement → `govbot_foreign_parent_differs`. A QID is carried
+  only into an empty `wikidata`; a different QID → `wikidata_qid_conflict` (registry kept). A QID already held by another
+  entity is not carried (also a conflict row).
+- **Rows flagged `review_status` (nation:tw, nation:eh) are `feed_only`.** They are not minted or mapped and their gaps stay
+  open, pending the user. Their subdivisions are `feed_only` too, and their images are logged as `image_entity_unmapped`.
+- **Every other row is minted under its own id** (`feed` governments-bot, `source_record_id` = the bot id):
+  - new `nation:` rows (nation:ps; this closes the Palestine `not_in_source_list` gap);
+  - new `territory:<iso2>` dependencies (including territory:fo, which closes the Faroe Islands gap, and territory:im,
+    whose sovereign the bot reviewed as nation:gb, which closes the Isle of Man gaps);
+  - `territory:74` (U.S. Minor Outlying Islands, level federal, parent nation:us);
+  - `subdivision:<code>` rows.
+  Each minted territory and subdivision gets a `parent` row in entity_relations.csv. Non-US rows get no units.
+- **Kosovo stays an open `not_in_source_list` gap** (pending the user). The bot lists only Serbia's RS-KM, which is minted
+  as an ordinary Serbian subdivision (`subdivision:rs-km`, parent nation:rs), as its row says.
+- **Images:** the foreign flags and seals (coat-of-arms rows are role `seal`, with `usage_basis` naming P94) are merged into
+  entity_images.csv. Two columns are added on every row:
+  - `public` = yes only for free licences (fair-use rows stay hidden);
+  - `icon` = yes on at most one public image per entity: a nation's flag, or a seal for every government below the
+    sovereign level. There is no flag fallback below nation level and logos are never icons.
 
 ## Governments bot feed (tools/inst_govfeed.py)
 `entity_feed_map.csv` (`feed, feed_id, entity_id` (empty when not mapped), `status` = mapped / feed_only / unmapped, `note`
@@ -231,28 +256,30 @@ entities.csv like this:
 Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
 `govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
 `wikidata_qid_conflict`, `wikidata_qid_duplicate`, `image_entity_unmapped`, `image_fair_use_inconsistent`;
-source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`.
+source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; foreign layer: `govbot_foreign_parent_differs`, `govbot_foreign_parent_missing`.
 `feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
-Counts in the current build (54,398 entities: nation 195, state 51, territory 17, province 10, chamber 101, dc_council 1, court 37,
-county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary 1,952, school_secondary 481;
-663 gap rows; 93,278 feed-map rows; 2,024 images; 42 relations (5 consolidated_with, 37 parent); 198 body_entity rows, 0 body_key gaps; wikidata on 38,840 entities). `flags` tokens, grouped by
-the text before the first `:` (the detail after it varies per row): `tiger_funcstat:A` 3,031; `not_in_cog2022` 1,619;
-`tiger_funcstat_G` 1,603; `spans_counties` 899; `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375;
-`outside_v2_scope:no_unit_no_boundary_set` 216; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
-`gov_status_na:legislative_chamber` 101; `gov_status_na:judicial_body` 37; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
+Counts in the current build (57,914 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
+court 37, subdivision 3,480, county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary
+1,952, school_secondary 481; 703 gap rows; 97,114 feed-map rows (feed_only 40,630, mapped 55,511, unmapped 973); 5,553 images
+(no|seal 821, yes|flag 1,783, yes|seal 2,949 as public|role; 2,925 icons); 3,557 relations; 198 body_entity rows, 0 body_key
+gaps; wikidata on 42,249 entities). `flags` tokens, grouped by the text before the first `:`:
+`outside_v2_scope:no_unit_no_boundary_set` 3,732; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;
+`not_in_cog2022` 1,619; `tiger_funcstat_G` 1,603; `spans_counties` 899;
+`gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
+`gov_status_na:legislative_chamber` 101; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
 `gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
-`coextensive_separate_government` 26; `is_active_false` 24; `tiger_funcstat:N` 23; `gov_status_unknown:outside_cog2022_scope` 22;
+`gov_status_na:judicial_body` 37; `coextensive_separate_government` 26; `is_active_false` 24; `tiger_funcstat:N` 23;
 `tiger_funcstat_N` 20; `not_un_member(wikidata_P463)` 11; `tiger_funcstat:S` 11; `not_sovereign_state(wikidata_P31)` 9;
-`sovereign_via_wikidata_P17` 9; CT flags 8 each;
-`tiger_funcstat:C` 6; `outside_v2_scope:territory_with_house_delegate` 5; `gov_status_unknown:not_in_cog2022_scope` 5;
-`consolidated_government_covers_county` 4; one each of `added_from_wikidata`, `gov_status_unknown:consolidated_government_not_linked_to_tiger_code` (Honolulu), `wikidata_p297_item_is_home_part`,
-`gov_status_na:legislative_body_of_state`, `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `tiger_funcstat:G`,
-`tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `multiple_cog_units`.
+`sovereign_via_wikidata_P17` 9; `gov_status_unknown:not_in_cog2022_scope` 6; `tiger_funcstat:C` 6;
+`outside_v2_scope:territory_with_house_delegate` 5; `consolidated_government_covers_county` 4; CT flags 8 each; one each of
+`added_from_wikidata`, `gov_status_na:legislative_body_of_state`,
+`gov_status_unknown:consolidated_government_not_linked_to_tiger_code`,
+`gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `multiple_cog_units`, `tiger_funcstat:G`,
+`tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `un_observer(governments_bot)`, `wikidata_p297_item_is_home_part`.
 Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
-`officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `govbot_new_unit_not_in_registry` 12; `image_entity_unmapped` 6;
-`not_in_seating_charts` 15; `not_in_source_list` 4; `nation_not_un_member` 2; `same_code_place_cousub_overlap_unmeasured` 2; one each of
-`consolidated_county_cog_code_not_in_tiger` (Honolulu), `govbot_ceased_partial`, `territory_sovereign_unknown`,
-`wikidata_p297_several_items`, `wikidata_qid_via_home_part_rule`, `world_entity_excluded_no_sovereign`; none of
-`wikidata_qid_duplicate`, `image_fair_use_inconsistent`, `govbot_mapping_conflict`.
+`image_entity_unmapped` 49; `officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `not_in_seating_charts` 15;
+`govbot_new_unit_not_in_registry` 12; `nation_not_un_member` 2; `not_in_source_list` 2;
+`same_code_place_cousub_overlap_unmeasured` 2; one each of `consolidated_county_cog_code_not_in_tiger`,
+`govbot_ceased_partial`, `wikidata_p297_several_items`, `wikidata_qid_conflict`, `wikidata_qid_via_home_part_rule`.

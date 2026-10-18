@@ -428,14 +428,54 @@ excluded_not_defined,sldl:26ZZZ:2020,State House Districts not defined,census-ga
 excluded_not_defined,sldl:39ZZZ:2020,State House Districts not defined,census-gaz2020-sldl-a662a58e
 wikidata_p297_several_items,nation:cy,"P297 CY on Q229;Q644636; kept Q229 (the only current sovereign state, P31 Q3624078)",wikidata-sparql-c3447bcc
 wikidata_qid_via_home_part_rule,nation:dk,"Denmark: P297 DK is on Q35 (Denmark, not a sovereign state); its P17 Q756617 is the sovereign state (same capital P36); QID set to Q756617",wikidata-sparql-c3447bcc
-territory_sovereign_unknown,territory:im,Isle of Man (Q9676): not a current sovereign state; Wikidata P17/P361/P300 give no sovereign; parent left empty,wikidata-sparql-c3447bcc
 nation_not_un_member,nation:tw,"Taiwan (Q865): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
 nation_not_un_member,nation:va,"Vatican City (Q237): current sovereign state (P31 Q3624078) but no current P463 Q1065 (UN member); kept kind nation, no parent",wikidata-sparql-c3447bcc
-not_in_source_list,Kosovo,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
-not_in_source_list,Palestine,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
-not_in_source_list,Western Sahara,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
-not_in_source_list,Faroe Islands,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide)",repo-countries-24f28312;wikidata-sparql-c3447bcc
-world_entity_excluded_no_sovereign,territory:im,Isle of Man (Q9676): not written to entities.csv until Wikidata/ISO names its sovereign,wikidata-sparql-c3447bcc
+not_in_source_list,Kosovo,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide); Governments bot: not in nations/dependencies; ISO 3166-2 RS-KM (Kosovo-Metohija) is a Serbian subdivision row, minted as subdivision:rs-km under nation:rs; pending the user",repo-countries-24f28312;wikidata-sparql-c3447bcc
+not_in_source_list,Western Sahara,"absent from the source list (Natural Earth admin-0, v2/data/countries.js); status not evaluated here; not added (user to decide); Governments bot nations.csv has nation:eh flagged review_status: feed_only, not minted; pending the user",repo-countries-24f28312;wikidata-sparql-c3447bcc
+wikidata_qid_conflict,nation:dk,registry Q756617 vs governments-bot foreign Q35; kept registry value,repo-governments-e4797d09
+image_entity_unmapped,nation:tw,"flag Flag of the Republic of China.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,nation:tw,"seal National Emblem of the Republic of China.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cha,"flag Flag of Changhua County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cha,"seal Emblem of Changhua County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cyi,"flag Flag of Chiayi City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cyi,"seal Emblem of Chiayi City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cyq,"flag Flag of Chiayi County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-cyq,"seal Emblem of Chiayi County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-hsq,"flag Flag of Hsinchu County (2010-2019).png; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-hsq,"seal Hsinchu County Emblem.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-hsz,"seal Emblem of Hsinchu City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-hua,"flag Flag of Hualien County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-hua,"seal Emblem of Hualien County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-ila,"flag Flag of Yilan County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-ila,"seal Seal of Yilan County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-kee,"flag Flag of Keelung City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-kee,"seal Seal of Keelung.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-khh,"flag Flag of Kaohsiung City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-khh,"seal Emblem of Kaohsiung City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-kin,"flag Flag of Kinmen County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-kin,"seal Emblem of Kinmen County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-mia,"flag Flag of Miaoli County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-mia,"seal Emblem of Miaoli County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-nan,"flag Flag of Nantou County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-nan,"seal Seal of Nantou County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-nwt,"flag Flag of New Taipei City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-nwt,"seal New Taipei City seal.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-pen,"flag Flag of Penghu County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-pen,"seal Seal of Penghu County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-pif,"flag Flag of Pingtung County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-pif,"seal Emblem of Pingtung County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tao,"flag Flag of Taoyuan City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tao,"seal Emblem of Taoyuan City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tnn,"flag Flag of Tainan City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tnn,"seal Tainan City Government Logo.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tpe,"flag Flag of Taipei City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-tpe,"seal Emblem of Taipei City.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-ttt,"flag Flag of Taitung County (2014).svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-ttt,"seal Emblem of Taitung County (2014).svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-txg,"flag Flag of Taichung City old.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-txg,"seal Seal of Taichung.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-yun,"flag Flag of Yunlin County.svg; review_status, pending user",repo-governments-e4797d09
+image_entity_unmapped,subdivision:tw-yun,"seal Emblem of Yunlin County.svg; review_status, pending user",repo-governments-e4797d09
 govbot_ceased_partial,school:4503916,"ceased cog:112946 of nces_leaid:4503916,cog:112946; entity kept active",repo-governments-e4797d09
 govbot_new_unit_not_in_registry,gcn:0139832,Kilpatrick town (AL); valid_from 2025-12-22; geoid none,repo-governments-e4797d09
 govbot_new_unit_not_in_registry,gcn:0160264,Pine Level town (AL); valid_from 2025-08-12; geoid none,repo-governments-e4797d09

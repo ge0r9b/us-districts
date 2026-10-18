@@ -19,6 +19,7 @@ ap.add_argument('repo'); ap.add_argument('--gaz24', required=True); ap.add_argum
 ap.add_argument('--cog', required=True); ap.add_argument('--geojson', required=True)
 ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_argument('--stability-test', action='store_true')
 ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
+ap.add_argument('--foreign-ref', required=True, help='Governments bot commit for data-v3/institutions/governments/foreign/ + its images.csv foreign rows (read only)')
 ap.add_argument('--seating-ref', required=True, help='Seating Charts bot commit (data-v3/seating/bodies.csv, build_meta.json, city_bodies.csv; read with git show)')
 ap.add_argument('--world-raw', required=True, help='dir written by tools/inst_world.py fetch (Wikidata answers); Natural Earth lists read from origin/main')
 A = ap.parse_args()
@@ -816,6 +817,33 @@ for cid in _relcounties:
     e = _ents[cid]; e['gov_status'] = 'government'
     e['_flags'] = [x for x in e['_flags'] if not x.startswith('gov_status_unknown:consolidated_government_not_linked_to_tiger_code')]
 GSTAT['consolidated_counties_gov_status_set'] = len(_relcounties)
+# ---------------- Governments bot foreign layer (tools/inst_foreign.py): nations, dependencies, ISO 3166-2 subdivisions ----------------
+import inst_foreign
+FOR = inst_foreign.load(R, A.foreign_ref); FOR_SHA = FOR['commit']
+S_GF = {f: f'Governments bot {f} (foreign layer)' for f in inst_foreign.FILES}
+def _newrow(**kw):
+    e = {c: '' for c in COLS}
+    for k_ in ('v2_layer', 'v2_row', 'v2_key', 'predecessor_id', 'successor_id', 'valid_from', 'valid_to', 'cog_pid6', 'parent_id', 'iso_3166_2'): e[k_] = ''
+    e.update(kw); e['alias'] = esc(e['alias']) if e['alias'] else ''
+    e['parent_entity_id'] = e['parent_id']; e['_alias'] = set(); e['_v2'] = []; e['_src'] = []; e['_flags'] = []
+    return e
+_dom_f2e = {m['feed_id']: m['entity_id'] for m in GFMAP if m['entity_id']}
+FRES = inst_foreign.integrate(FOR, _ents, _newrow, _dom_f2e)
+OUTROWS.extend(FRES['rows'])
+for e in OUTROWS:
+    f_ = e.pop('_gf', None)
+    if f_: src(e, S_GF[f_])
+_minted = {e['entity_id'] for e in FRES['rows']}
+FCLOSE = [(g, k) for g, k, need in [('not_in_source_list', 'Palestine', 'nation:ps'), ('not_in_source_list', 'Faroe Islands', 'territory:fo'),
+                                     ('world_entity_excluded_no_sovereign', 'territory:im', 'territory:im'), ('territory_sovereign_unknown', 'territory:im', 'territory:im')] if need in _minted]
+FCLOSED = [g for g in GAPS if (g['gap'], g['key']) in FCLOSE]
+GAPS[:] = [g for g in GAPS if (g['gap'], g['key']) not in FCLOSE]
+for g in GAPS:
+    if g['gap'] == 'not_in_source_list' and g['key'] == 'Kosovo' and 'subdivision:rs-km' in _ents:
+        g['detail'] += '; Governments bot: not in nations/dependencies; ISO 3166-2 RS-KM (Kosovo-Metohija) is a Serbian subdivision row, minted as subdivision:rs-km under nation:rs; pending the user'
+    if g['gap'] == 'not_in_source_list' and g['key'] == 'Western Sahara' and 'nation:eh' in FRES['review']:
+        g['detail'] += '; Governments bot nations.csv has nation:eh flagged review_status: feed_only, not minted; pending the user'
+GAPS.extend(FRES['gaps'])
 # wikidata: 'wikidata:Q…', nullable + unique (SCHEMA); a QID on several entities is blanked on all of them and logged
 _qc = C.Counter(e['wikidata'] for e in OUTROWS if e.get('wikidata'))
 for e in OUTROWS:
@@ -880,6 +908,11 @@ def build_registry():
                             f"{REPO}/blob/{SEAT_SHA}/{F_['path']}",
                             'project data (Seating Charts bot; its sources: congress-legislators, senate.gov, House Clerk, Ballotpedia, Open States, court and city pages)',
                             RETRIEVED, SEAT_SHA, F_['sha256'])]
+        if t in S_GF.values():
+            f_ = next(k for k, v in S_GF.items() if v == t); F_ = FOR['files'][f_]
+            lic = 'per row: Commons licence (see entity_images.csv license)' if f_ == 'images.csv' else 'LGPL-2.1-or-later (Debian iso-codes); CC0 1.0 (Wikidata); facts only (UN website); Statistics Canada SGC (Open Government Licence - Canada)'
+            return [reg.add(None, f"Governments bot, {F_['path']} (foreign layer: nations, dependencies, ISO 3166-2 subdivisions, ISO->domestic crosswalk, foreign flags/seals); pinned at this commit",
+                            f"{REPO}/blob/{FOR_SHA}/{F_['path']}", lic, RETRIEVED, FOR_SHA, F_['sha256'])]
         if t == S_WD:
             qs = hashlib.sha256(''.join(open(os.path.join(A.world_raw, f_)).read() for f_ in sorted(WORLD['files']) if f_.endswith('.rq')).encode('utf-8')).hexdigest()
             return [reg.add(None, 'Wikidata Query Service: ISO 3166-1 P297 / ISO 3166-2 P300 items + current P31 Q3624078, P463 Q1065, P17, P361, P300, P36 '
@@ -905,7 +938,9 @@ def build_registry():
     wd_ = atom(S_WD)[0]; nec = atom(S_NE_C)[0]
     GAPSRC['not_in_source_list'] = f'{nec};{wd_}'
     GAPSRC['not_in_seating_charts'] = atom(S_SEATMETA)[0]
-    atom(S_BODIES); atom(S_CITYB)   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
+    atom(S_BODIES); atom(S_CITYB)
+    for f_ in inst_foreign.FILES: atom(S_GF[f_])
+    GAPSRC['govbot_foreign_parent_differs'] = GAPSRC['govbot_foreign_parent_missing'] = ';'.join(atom(S_GF[f_])[0] for f_ in inst_foreign.FILES[:3])   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
     for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
                'territory_sovereign_several_candidates', 'wikidata_status_ambiguous', 'world_entity_excluded_no_sovereign'): GAPSRC[g_] = wd_
     GAPSRC['wikidata_qid_missing'] = f'{nec};{wd_}'
@@ -916,8 +951,8 @@ def build_registry():
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata']
-ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2']
+ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'subdivision', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:
     e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
@@ -1009,11 +1044,26 @@ for k in _coll:
     if {c: REG.rows[k][c] for c in ('source_url', 'commit')} != {c: GOVSRC[k][c] for c in ('source_url', 'commit')}: raise SystemExit('source_id collision with the Governments bot: ' + k)
 FMC = ['feed', 'feed_id', 'entity_id', 'status', 'note', 'source_id']
 for m in GFMAP: m['source_id'] = GV_ID
+for m in FRES['fmap']: m['source_id'] = IDS_FOR([S_GF[m['_file']]])
+GFMAP = GFMAP + FRES['fmap']
 with open(os.path.join(OUT, 'entity_feed_map.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, FMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GFMAP)
-IMC = ['entity_id', 'role', 'file', 'license', 'fair_use', 'usage_basis', 'source_url', 'attribution', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id']
+IMC = ['entity_id', 'role', 'file', 'license', 'fair_use', 'public', 'icon', 'usage_basis', 'source_url', 'attribution', 'feed_id', 'commons_url', 'wikidata_qid', 'retrieved_at', 'source_id']
 for i in GIMG:
     i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
+_gfi = IDS_FOR([S_GF['images.csv']])
+for i in FRES['imgs']: i['source_id'] = _gfi
+GIMG = GIMG + FRES['imgs']
+# public = free licence only (fair-use rows stay hidden); icon (one per entity, public only): nation -> its flag, every
+# government below the sovereign level -> its seal (coat of arms rows are role seal); no flag fallback, no logo icons
+_kind = {e['entity_id']: e['kind'] for e in rows}
+for i in GIMG: i['public'] = 'yes' if i['fair_use'] == 'no' else 'no'; i['icon'] = 'no'
+_cand = C.defaultdict(list)
+for n_, i in enumerate(GIMG):
+    if i['entity_id'] and i['public'] == 'yes' and i['role'] == ('flag' if _kind.get(i['entity_id']) == 'nation' else 'seal'): _cand[i['entity_id']].append((i['file'], n_))
+for eid_, c_ in _cand.items(): GIMG[min(c_)[1]]['icon'] = 'yes'
+ICONSTAT = {'icons': sum(1 for i in GIMG if i['icon'] == 'yes'), 'icons_by_kind_role': dict(sorted(C.Counter(f"{_kind.get(i['entity_id'])}|{i['role']}" for i in GIMG if i['icon'] == 'yes').items())),
+            'entities_with_images_no_icon': len({i['entity_id'] for i in GIMG if i['entity_id']} - set(_cand))}
 with open(os.path.join(OUT, 'entity_images.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GIMG)
 RC = ['entity_id', 'relation', 'related_entity_id', 'source_id']
@@ -1021,7 +1071,8 @@ _rsid = ';'.join([IDS_FOR([S_COG]), GV_ID, IDS_FOR([S_CG])][:1] + [GV_ID] + IDS_
 _rsid = ';'.join(dict.fromkeys(x for x in _rsid.split(';') if x))
 for r_ in GRELS: r_['source_id'] = _rsid
 # court -> its state government: relation `parent` (related_entity_id is the parent of entity_id; same as entities.parent_id)
-RELS = GRELS + [{'entity_id': e['entity_id'], 'relation': 'parent', 'related_entity_id': e['parent_id'], 'source_id': _bsid} for e in rows if e['kind'] == 'court']
+for r_ in FRES['rels']: r_['source_id'] = IDS_FOR([S_GF[r_['_file']]])
+RELS = GRELS + FRES['rels'] + [{'entity_id': e['entity_id'], 'relation': 'parent', 'related_entity_id': e['parent_id'], 'source_id': _bsid} for e in rows if e['kind'] == 'court']
 with open(os.path.join(OUT, 'entity_relations.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(RELS, key=lambda r: (r['entity_id'], r['relation'])))
 for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)
@@ -1084,6 +1135,10 @@ summ = {
   'officeholders': oh_stats,
   'gaps': dict(C.Counter(g['gap'] for g in GAPS)),
   'school_gov_status_fill': dict(SCHFILL), 'governments_ref': GOV_SHA,
+  'foreign': dict(FRES['stats'], ref=FOR_SHA, files={f_: v_['sha256'] for f_, v_ in sorted(FOR['files'].items())}, review_status=FRES['review'],
+                  gaps_closed=[f"{g['gap']}|{g['key']}" for g in FCLOSED], images_icons=ICONSTAT),
+  'feed_map_by_status': dict(sorted(C.Counter(m['status'] for m in GFMAP).items())),
+  'images_by_public_role': dict(sorted(C.Counter(f"{i['public']}|{i['role']}" for i in GIMG).items())),
   'governments_feed': dict(sorted((k, v) for k, v in GSTAT.items())), 'feed_map_rows': len(GFMAP), 'images_rows': len(GIMG),
   'wikidata_filled': sum(1 for e in rows if e['wikidata']),
   'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA, 'source_urls': len(SU),

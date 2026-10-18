@@ -47,12 +47,17 @@ repo-city-bodies-a3a8d3a1,1,https://github.com/ge0r9b/us-districts/blob/06a2cc39
 repo-countries-24f28312,1,https://github.com/ge0r9b/us-districts/blob/b0e6f922a8477c52ff548dde6f4103a276125d90/v2/data/countries.js,repo file (pinned commit)
 repo-countries-24f28312,2,https://www.naturalearthdata.com/downloads/50m-cultural-vectors/,upstream (Natural Earth)
 repo-dc-54d4ab99,1,https://github.com/ge0r9b/us-districts/blob/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/dc.js,
+repo-dependencies-0b5f6159,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/dependencies.csv,
 repo-geo-dfd55777,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/data-v3/geo,
 repo-governments-6dd77539,1,https://github.com/ge0r9b/us-districts/tree/93b7a90d2ee0d2056be23ae3430fcd8398940729/data-v3/institutions/governments,
 repo-governments-e4797d09,1,https://github.com/ge0r9b/us-districts/tree/bc2466e4d78edf035ab1400aacb28557fe5146ec/data-v3/institutions/governments,
+repo-images-74c60d19,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/images.csv,
 repo-inst-44a3d841,1,https://github.com/ge0r9b/us-districts/tree/ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f/data-v3/inst,
+repo-iso-domestic-crosswalk-a212b063,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/iso_domestic_crosswalk.csv,
+repo-nations-aac563e1,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/nations.csv,
 repo-parts-f7a3e90c,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/parts,
 repo-places-29d6ddf6,1,https://github.com/ge0r9b/us-districts/tree/c996a7d99cce12b598ca062dc541de542f43f6e2/v2/data/places,
+repo-subdivisions-5692495c,1,https://github.com/ge0r9b/us-districts/blob/348fce442c8a30496c8d6e95aab36d12c71eb3dc/data-v3/institutions/governments/foreign/subdivisions.csv,
 roster-ak-2932b34d,1,https://akleg.gov/house.php,house
 roster-ak-2932b34d,2,https://akleg.gov/senate.php,senate
 roster-ar-dcb558a1,1,https://arkleg.state.ar.us/Legislators/List?chamber=House&ddBienniumSession=2025%2F2025R,house

@@ -30,6 +30,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local; world rows national/subnational), finer type (TIGER LSAD text; sovereign_state / dependency / province / territory), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 | 23 | `source_record_id` | `01001`, `Q228` | SCHEMA `entity.source_record_id`: the id inside the row's first cited source (GEOID / FIPS for Census rows, QID for Wikidata rows) |
 | 24 | `wikidata` | `wikidata:Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
+| 25 | `iso_3166_2` | `MX-JAL`, `CA-ON` | ISO 3166-2 code as given by the Governments bot foreign layer (subdivisions, Canadian provinces/territories, dependencies listed in their sovereign's ISO 3166-2). An attribute only: the entity_id does not follow it |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -73,6 +74,21 @@ Open with SCHEMA 365c8a1: `entities.csv` extras `source_record_id` / `wikidata` 
 external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SCHEMA has `entity_merge` / `entity_alias`
 kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
 text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
+
+## Kind `subdivision` (agreed Oct 18; applied)
+
+Other countries' first-level ISO 3166-2 subdivisions, from the Governments bot foreign layer (`foreign/subdivisions.csv`).
+- `entity_id` `subdivision:<iso 3166-2 code lowercased>`, for example `subdivision:mx-jal`. The id is frozen when minted and
+  does **not** change if ISO renames or recodes the subdivision; the current code is the `iso_3166_2` attribute (column 25).
+- Canada keeps `province:ca-xx` / `territory:ca-xx`. Codes that the bot's `iso_domestic_crosswalk.csv` sends to an existing
+  row (US states and territories, CN-HK → `territory:hk`, FR overseas codes → their `territory:` rows) are not minted; they
+  appear only as `entity_feed_map.csv` rows with `feed_id` `iso3166:<code>`.
+- `kind` subdivision, `level` subnational, `type` = the ISO subdivision type (province, state, region, …), `parent_id` = the
+  country's `nation:` or `territory:` row, plus a `parent` row in `entity_relations.csv`. `gov_status` is empty and the row
+  carries the flag `gov_status_unknown:outside_cog2022_scope`, the same as other non-US rows. `feed` `governments-bot`.
+- No units, no xwalk rows, no boundary_set. `valid_from` / `valid_to` stay empty: the bot's subdivisions.csv at 348fce4 has
+  only `is_active` (all Y), so there are no dates to carry.
+- Subdivisions of rows flagged review_status (Taiwan, Western Sahara) are not minted (feed_only, pending the user).
 
 ## Kind `court` (approved by Full Stack, Oct 18; applied)
 

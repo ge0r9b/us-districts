@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "e661d9efcc83eabcd166cad9f7c54fc54ca02fec",
+  "repo_head": "c6f43a10ade83c0f4636c02c6e2167926beb95f8",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -29,15 +29,16 @@
    "places_2024.geojson.gz": "a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182"
   }
  },
- "entities": 54398,
+ "entities": 57914,
  "by_kind": {
-  "nation": 195,
+  "nation": 196,
   "state": 51,
-  "territory": 17,
+  "territory": 52,
   "province": 10,
   "chamber": 101,
   "dc_council": 1,
   "court": 37,
+  "subdivision": 3480,
   "county": 3080,
   "municipality": 19525,
   "township": 18076,
@@ -55,7 +56,7 @@
   "municipality|": 33,
   "municipality|area_only": 28,
   "municipality|government": 19464,
-  "nation|government": 195,
+  "nation|government": 196,
   "province|": 10,
   "school_elementary|": 115,
   "school_elementary|dependent": 132,
@@ -67,7 +68,8 @@
   "school_unified|dependent": 924,
   "school_unified|government": 9877,
   "state|government": 51,
-  "territory|": 17,
+  "subdivision|": 3480,
+  "territory|": 52,
   "township|": 24,
   "township|area_only": 272,
   "township|dependent": 1603,
@@ -189,13 +191,12 @@
   "gov_status_unknown": 433,
   "wikidata_p297_several_items": 1,
   "wikidata_qid_via_home_part_rule": 1,
-  "territory_sovereign_unknown": 1,
   "nation_not_un_member": 2,
-  "not_in_source_list": 4,
-  "world_entity_excluded_no_sovereign": 1,
+  "not_in_source_list": 2,
+  "wikidata_qid_conflict": 1,
+  "image_entity_unmapped": 49,
   "govbot_ceased_partial": 1,
   "govbot_new_unit_not_in_registry": 12,
-  "image_entity_unmapped": 6,
   "not_in_seating_charts": 15,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
@@ -211,6 +212,65 @@
   "bot_leaids_not_a_tiger2024_school_entity": 274
  },
  "governments_ref": "bc2466e4d78edf035ab1400aacb28557fe5146ec",
+ "foreign": {
+  "feed_only_parent_review": 22,
+  "feed_only_review_status": 2,
+  "feed_rows": 3836,
+  "images": 3529,
+  "images_fair_use": 0,
+  "images_unmapped": 43,
+  "mapped_existing|nation": 193,
+  "mapped_existing|province": 10,
+  "mapped_existing|territory": 12,
+  "minted|nation": 1,
+  "minted|subdivision": 3480,
+  "minted|territory": 35,
+  "qid_carried_minted": 3409,
+  "qid_conflict": 1,
+  "relations_parent": 3515,
+  "ref": "348fce442c8a30496c8d6e95aab36d12c71eb3dc",
+  "files": {
+   "foreign/dependencies.csv": "270c08a6812a9ce312552318a5a39c0ec8cb8ce234bf495db6b5f97eba3b7f5f",
+   "foreign/iso_domestic_crosswalk.csv": "f970df22bd678bdb4ea0c3bf920ab49894b5e11899c834e9a058d73299c79aa2",
+   "foreign/nations.csv": "77933ceec6f24a0ac673ba9eaab80b43ec9764b861692b38cb274588a61c29fa",
+   "foreign/subdivisions.csv": "15849b737112586730bcd0682f2e4a90b4fc617b9369eafe6ed94f6029fa58ec",
+   "images.csv": "e1bae4736baf23cf49e58c421f77088665ea4d8eed8c4032530902627845fd33"
+  },
+  "review_status": [
+   "nation:eh",
+   "nation:tw"
+  ],
+  "gaps_closed": [
+   "territory_sovereign_unknown|territory:im",
+   "not_in_source_list|Palestine",
+   "not_in_source_list|Faroe Islands",
+   "world_entity_excluded_no_sovereign|territory:im"
+  ],
+  "images_icons": {
+   "icons": 2925,
+   "icons_by_kind_role": {
+    "county|seal": 321,
+    "municipality|seal": 648,
+    "nation|flag": 195,
+    "province|seal": 10,
+    "state|seal": 51,
+    "subdivision|seal": 1537,
+    "territory|seal": 45,
+    "township|seal": 118
+   },
+   "entities_with_images_no_icon": 1076
+  }
+ },
+ "feed_map_by_status": {
+  "feed_only": 40630,
+  "mapped": 55511,
+  "unmapped": 973
+ },
+ "images_by_public_role": {
+  "no|seal": 821,
+  "yes|flag": 1783,
+  "yes|seal": 2949
+ },
  "governments_feed": {
   "ceased_applied": 24,
   "ceased_partial": 1,
@@ -239,18 +299,19 @@
   "unmapped|tribe": 577,
   "wikidata_duplicates_blanked": 0
  },
- "feed_map_rows": 93278,
- "images_rows": 2024,
- "wikidata_filled": 38840,
- "sources": 100,
- "sources_used_here": 32,
+ "feed_map_rows": 97114,
+ "images_rows": 5553,
+ "wikidata_filled": 42249,
+ "sources": 105,
+ "sources_used_here": 35,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 129,
+ "source_urls": 134,
  "source_record_id_filled": {
-  "entities": 54295,
+  "entities": 57811,
   "xwalk": 58591
  },
  "feed_values": {
+  "governments-bot": 3516,
   "inst-lane": 356,
   "tiger/cog": 54042
  },
@@ -315,7 +376,7 @@
   ],
   "relations": {
    "consolidated_with": 5,
-   "parent": 37
+   "parent": 3552
   },
   "entities_without_body": []
  },
