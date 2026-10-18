@@ -26,7 +26,7 @@ async def run(b,W,H):
     ck(m['chip'][2]>=m['colL']-80,f"{t}: ...but not far from it",m)
     ck(abs(m['cy']-m['bkCy'])<=2,f"{t}: sort chip on the back chevron's line",[m['cy'],m['bkCy']])
     if W==390: ck(200<=m['chip'][0]<=255,f"{t}: iPhone chip left in the marked x 205-250 band",m['chip'])
-    ck('0.11' in m['bg'] and '0.07' in m['bg'],f"{t}: chip glass fill halved (.11 -> .07)",m['bg'])
+    ck('0.05' in m['bg'] and '0.03' in m['bg'],f"{t}: chip glass fill clearer (.05 / .03, build 1575)",m['bg'])
     ck(m['stroke']=='rgb(17, 17, 17)' and m['op']=='1' and m['sw']=='2' and abs(m['sz'][0]-21.75)<.1,f"{t}: arrows fully dark, same size and weight",m)
     ck(m['cb'][0]=='1px' and m['cb'][1]=='rgba(0, 0, 0, 0.85)' and '0px 1px 2px' in m['cb'][2] and '8px' not in m['cb'][2],f"{t}: chip has a crisp 1px outline + tight shadow",m['cb'])
     bad=[x for x in m['btn'] if x[1]!='1px' or '8px' in x[3] or '10px' in x[3]]

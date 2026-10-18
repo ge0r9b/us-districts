@@ -70,7 +70,9 @@ async def main():
     ck(any('Hillary' in t or 'Clinton' in t for t in th),"plain '16 after a range: back to Clinton/Trump 2016",th)
     await pg.evaluate("()=>window.__ySet16(2)"); await pg.wait_for_timeout(5000)
     await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(6000)
-    x=await pg.evaluate(PANE,'.leaflet-la-pane'); ck(bool(x) and x['sat']>=100 and x['buckets']>=3,"PA counties '16>'24 map: coloured by shift",x)
+    x=await pg.evaluate(PANE,'.leaflet-la-pane'); y=await pg.evaluate(PANE,'.leaflet-heat-pane')
+    if not (x and x['sat']>=100) and y and y['sat']>(x or {'sat':0})['sat']: x=y  # live zooms wider: the shift heat layer carries the colour
+    ck(bool(x) and x['sat']>=100 and x['buckets']>=3,"PA counties '16>'24 map: coloured by shift",x)
     await pg.screenshot(path='/workspace/y16-range-pa-map.png')
     ck(not er,"no page errors",er[:3]); await b.close()
 asyncio.run(main()); print("FAILS",len(F)); sys.exit(1 if F else 0)

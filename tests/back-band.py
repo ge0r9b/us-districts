@@ -25,7 +25,7 @@ async def main():
         if cur!=exp: await pg.evaluate("()=>document.getElementById('bTime').click()"); await pg.wait_for_timeout(1500)
         d=await pg.evaluate(M); nm=f"{'topic' if topic else 'notopic'}-{'open' if exp else 'closed'}"
         await pg.screenshot(path=f"/workspace/band-{nm}.png")
-        top=max(d['lvTop'],d['timeBottom'] or 0); low=d['row1'] if d['row1'] is not None else d['lvTop']+60
+        top=max(d['lvTop'],d['timeBottom'] or 0); low=(d['row1']+15) if d['row1'] is not None else d['lvTop']+60  # build 1575: the first row slides halfway under the chip (user spec)
         ok=d['chev'] is not None and d['chev'][0]>=top+1 and d['chev'][1]<=low-1
         if topic: ok=ok and d['sort'] is not None and d['sort'][0]>=top+1 and d['sort'][1]<=low-1 and abs((d['sort'][0]+d['sort'][1])/2-(d['chev'][0]+d['chev'][1])/2)<=1.5
         else: ok=ok and d['sort'] is None and d['notopic']
