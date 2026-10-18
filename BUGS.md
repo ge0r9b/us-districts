@@ -24,6 +24,12 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - QA-017: **still on 1569**, and the state house list differs as well (see QA-029).
 - QA-018: **still on 1569** (tapping the OH bar stays on `states`).
 
+## Re-test status, build 1569 (pass 4, Oct 18 ~7:00-7:30 AM EDT)
+- The live build was still 1569 (data fixes for QA-001/002 not deployed).
+- QA-015: **not reproduced on 1569**. Reload restored the same map centre and zoom for 2020 list, # + pie, range + line, OH counties and State senate. 2016 list: centre moved 0.05 degrees at the same zoom.
+- QA-009 also hits more rows at 320x568: "+5.9" (states, % delta bar), "+3.7" and "−35K" (PA counties, delta bar) under the Chart button (shots/b1569-ch-320-sw-*-rangebar.png).
+- QA-030 at 4x CPU, 1569, more sizes. List median/max ms: US House 95.5/**185** (375), 77/139 (320), 82.5/128 (1024x576); county 95/147 (375), 93/115 (320), 90.5/98 (1024x576). Map median/max ms: US House 164/504 (375), 131/231 (320), 137.5/266 (1024x576); county 232/340 (375), 243/278 (320), 221/431 (1024x576). Fast drags always end consistent on 2020.
+
 ## Critical
 
 ### QA-001 [Fix pending deploy (per orchestrator: fixed on data/election, ships with the 2016 build); still wrong on live 1569 at 6:55 AM EDT] Oregon 2024 state totals are short of the official count (~1%)
@@ -239,3 +245,9 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Fast repeated drags (Chromium 4x and WebKit): list, thumbnails and map pop-up all end on 2020. No layout shift except the knob itself (WebKit has no layout-shift API, so 0 there means not measured).
 - 2016 shows names only, no numbers (no fabricated data).
 - Not done: CPU throttling in WebKit (Playwright has no WebKit CPU throttle), slider timing at 375/320/1024x576 throttled, reload restore of 2016.
+
+## Passed on 1569 (pass 4)
+- Reload restore (Chromium 390): '16, 2020, # mode, pie, range + line, OH counties list, State senate type, map centre and zoom all restored (except map vs list, QA-034).
+- Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar}: no text overlapping other text, no text off-screen; issues only as in QA-009 and QA-035.
+- 400 random taps: no errors, no failed requests.
+- Not done: official totals for the 4 counties above, WebKit monkey and sweep, and reload restore in WebKit.

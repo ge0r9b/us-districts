@@ -93,4 +93,4 @@ async def main():
       print(tag,'done',flush=True)
     await b.close()
   json.dump(res,open(f'flow-{eng}-'+'_'.join(which)+'.json','w'),indent=1)
-asyncio.run(main())
+if __name__=="__main__": asyncio.run(main())
