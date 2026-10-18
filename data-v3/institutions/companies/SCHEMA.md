@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 99 (83 brand, 16 company) | `entity` |
-| `brand_relationships.csv` | 75 | `entity_relation` |
-| `company_locations.csv.gz` | 187,581 (85,882 with a v2-2024 county geoid; 101,684 outside the US) | `entity_location` |
+| `brands.csv` | 120 (100 brand, 20 company) | `entity` |
+| `brand_relationships.csv` | 88 | `entity_relation` |
+| `company_locations.csv.gz` | 193,193 (90,767 with a v2-2024 county geoid; 102,410 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | best_buy 1,204; bucees 50; circle_k 8,196; cvs 9,001; hilton 6,929; home_depot 2,212; ihg 6,828; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/<brand>.csv` | best_buy 1,204; bucees 50; choice 5,612; circle_k 8,196; cvs 9,001; hilton 6,929; home_depot 2,212; ihg 6,828; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 78 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 90 | `source` |
+| `brand_cleanliness.csv` | 95 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 91 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -145,6 +145,8 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   - **hilton.csv**: Hilton hotels worldwide. `brand_qid` = the brand ATP tags on each hotel (Hampton, Hilton Garden Inn, Home2, DoubleTree, Homewood, Tru, Embassy Suites, Curio, Tapestry, Conrad, Waldorf Astoria, Canopy, LXR, Motto, Tempo, Signia, Graduate, Hilton Grand Vacations, Hilton), parent from Wikidata P749. `store_id` = Hilton's property code (ATP ref). `hilton` returned 0 features in every run since 2026-09-05, so the file uses run 2026-08-29 (7,722 features; `atp_older_run_2026-08-29`). Excluded, because there is no brand QID to key on: 522 Small Luxury Hotels of the World (a partner network, not a Hilton brand), 241 Spark by Hilton, 5 AutoCamp, 1 NoMad and 24 untagged.
 
   - **ihg.csv**: IHG hotels worldwide, from `ihg_hotels` (latest run). `brand_qid` = the brand ATP tags (Holiday Inn Express, Holiday Inn, Holiday Inn Resort, Holiday Inn Club Vacations, Candlewood, Crowne Plaza, Staybridge, InterContinental, Hotel Indigo, voco, Garner, avid, Kimpton, Army Hotels, Vignette Collection, EVEN, Regent), parent from P749. `store_id` = IHG's 5-character hotel code taken from the ref URL (`.../<code>/hoteldetail`), upper-cased. Excluded: 154 hotels with no brand tag. 8 have no coordinates.
+
+  - **choice.csv**: Choice Hotels properties worldwide. `brand_qid` = the brand ATP tags (Quality Inn, Comfort Inn, Comfort Suites, Econo Lodge, Sleep Inn, Rodeway Inn, Ascend, Clarion, MainStay, Suburban, Cambria, WoodSpring, plus the Radisson Americas brands Choice franchises: Radisson, Radisson Blu, Radisson RED, Park Inn, Park Plaza), parent from P749 (the Radisson brands' Wikidata parent is Radisson Hotel Group, not Choice). `store_id` = Choice's property code. `choice_hotels` returned 0 features in the latest run, so the file uses run 2026-09-19 (6,209 features; `atp_older_run_2026-09-19`). Excluded, because there is no brand QID: 366 Country Inn & Suites ("Country"), 58 RocketFuel, 44 SSAW, 37 "Home", 32 Everhome, 20 Penn, 19 Westgate, 13 Radisson Individuals, 7 El Cid, 1 Stopover.
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
