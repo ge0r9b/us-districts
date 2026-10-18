@@ -16,6 +16,7 @@ import hashlib
 import json
 import math
 import html
+import os
 import re
 import urllib.parse
 import sys
@@ -476,6 +477,94 @@ summary["starbucks"] = {"file": write(df, "starbucks"), "rows": len(df), **dict(
                         "missing_coordinates": int((df.lat == "").sum()),
                         "us_with_county_geoid": int(((df.country_code == "US") & (df.county_geoid != "")).sum())}
 
+# ---------------- other ATP chains (all countries the brand's spiders cover) ----------------
+# One config per file. inputs = (spider, run_id or None for the latest run, namespace); earlier inputs win on a
+# duplicate store_id, so the latest run comes first and an older run only fills store ids the latest run lacks
+# (rows flagged atp_older_run_<date>). store_id = <namespace>-<ref>; a URL ref keeps only its trailing store number.
+OLDER = read_meta("atp_older").get("runs", {})
+CHAINS = {
+    "walmart": dict(qid="Q483551", accept={"Q483551", "Q7963529"},
+                    sub_by_name={"Walmart Neighborhood Market": "Q7963529"}, drop_names={"Walmart Pharmacy"},
+                    inputs=[("walmart_us", None, "us"), ("walmart_ca", None, "ca"), ("walmart_us", "2026-01-24-13-32-35", "us")]),
+    "home_depot": dict(qid="Q864407", inputs=[("home_depot", None, "us"), ("home_depot_ca", None, "ca")]),
+    "lowes": dict(qid="Q1373493", inputs=[("lowes_us", "2026-07-11-13-32-25", "us")]),
+    "best_buy": dict(qid="Q533415", drop_name_re=r"Distribution Center",
+                     inputs=[("best_buy", None, "us"), ("best_buy_ca", None, "ca")]),
+    "target": dict(qid="Q1046951", inputs=[("target_us", None, "us")]),
+}
+
+if os.environ.get("CHAINS"):  # e.g. CHAINS=walmart,home_depot to build a subset (default: all)
+    CHAINS = {k: v for k, v in CHAINS.items() if k in os.environ["CHAINS"].split(",")}
+
+
+def atp_src(spider, run):
+    if run is None:
+        m = ATP["spiders"][spider]
+        return src(f"atp-{spider}-{ATP_DATE}", f"All The Places spider '{spider}' (run {ATP['run_id']})", m["url"], "CC0 1.0",
+                   ATP_DATE, RAW / "atp" / f"{spider}.geojson")
+    m = OLDER[run][spider]
+    return src(f"atp-{spider}-{run[:10]}", f"All The Places spider '{spider}' (older run {run}; latest run empty or partial)",
+               m["url"], "CC0 1.0", run[:10], RAW / "atp_runs" / run / f"{spider}.geojson")
+
+
+for fname, cfg in CHAINS.items():
+    q = cfg["qid"]
+    accept = cfg.get("accept", {q})
+    rows, seen, st = [], set(), Counter()
+    for spider, run, ns in cfg["inputs"]:
+        path = RAW / "atp" / f"{spider}.geojson" if run is None else RAW / "atp_runs" / run / f"{spider}.geojson"
+        t = path.read_text().strip()
+        sid_src = atp_src(spider, run)
+        for f in json.loads(t)["features"] if t else []:
+            p = f["properties"]
+            st[f"features:{spider}" + (f"@{run[:10]}" if run else "")] += 1
+            if p.get("brand:wikidata") not in accept:
+                st[f"excluded_brand:{p.get('brand')}:{p.get('brand:wikidata')}"] += 1
+                continue
+            nm = p.get("name") or ""
+            if nm in cfg.get("drop_names", ()) or (cfg.get("drop_name_re") and re.search(cfg["drop_name_re"], nm)):
+                st[f"excluded_name:{nm}"] += 1
+                continue
+            ref = str(p.get("ref") or "")
+            if ref.startswith("http"):
+                m = re.search(r"(\d+)(?:\.html)?/?$", ref)
+                ref = m.group(1) if m else ""
+            if not ref:
+                st["excluded_no_ref"] += 1
+                continue
+            sid = f"{ns}-{ref}"
+            if sid in seen:
+                st["duplicate_store_id_dropped"] += 1
+                continue
+            seen.add(sid)
+            cc = p.get("addr:country", "")
+            g = f.get("geometry")
+            lat, lon = (round(g["coordinates"][1], 6), round(g["coordinates"][0], 6)) if g else ("", "")
+            phone = p.get("phone", "") or ""
+            if cc in ("US", "PR"):
+                phone = phone_us(phone) or phone
+            fl = [f"atp_older_run_{run[:10]}"] if run else []
+            if not p.get("addr:street_address") and p.get("addr:full"):
+                fl.append("address_is_addr_full")
+            subq = cfg.get("sub_by_name", {}).get(nm, "")
+            rows.append(dict(store_id=sid, brand=WD.get(q, {}).get("label", ""), brand_qid=qid(q), parent_brand_qid=parent_of(q),
+                             address=p.get("addr:street_address") or p.get("addr:full") or "", city=p.get("addr:city", ""),
+                             state=p.get("addr:state", ""), zip=p.get("addr:postcode", ""), county="", lat=lat, lon=lon,
+                             phone=phone, sub_brand=WD.get(subq, {}).get("label", "") if subq else "", flags=fl,
+                             source=";".join([sid_src, S_CEN, S_WD]) if cc == "US" else ";".join([sid_src, S_WD]),
+                             source_url=p.get("website") or p.get("@source_uri", ""), source_date=SOURCES[sid_src]["retrieved_at"],
+                             name=nm, sub_brand_qid=qid(subq) if subq else "", county_geoid="", country_code=cc, status="",
+                             store_type=nm))
+    df = finish(rows, check_county=True)
+    _nonus = df.country_code != "US"
+    df.loc[_nonus, ["county", "county_geoid"]] = ""
+    summary[fname] = {"file": write(df, fname), "rows": len(df), **dict(st),
+                      "rows_by_country": dict(Counter(df.country_code).most_common()),
+                      "rows_by_store_type": dict(Counter(df.store_type).most_common()),
+                      "missing_coordinates": int((df.lat == "").sum()),
+                      "us_with_county_geoid": int(((df.country_code == "US") & (df.county_geoid != "")).sum()),
+                      "us_rows": int((df.country_code == "US").sum())}
+
 # ---------------- Wawa (user-provided list, used as-is) ----------------
 # raw/inputs/wawa-stores-user-2026-10-18.numbers: the user's own list (sheet "Wawa Stores"; its "About" sheet says it was
 # collected 2026-09-16 from order.wawa.com's store API). The user checked it: values are copied unchanged, no validation
@@ -507,7 +596,7 @@ summary["wawa"] = {"file": write(df, "wawa"), "rows": len(df), "with_county_geoi
 used = Counter()
 files = defaultdict(set)
 LOC = {}
-for name in ("walgreens", "cvs", "mcdonalds", "marriott", "starbucks", "wawa"):
+for name in ("walgreens", "cvs", "mcdonalds", "marriott", "starbucks", "wawa", *CHAINS):
     p = OUT / summary[name]["file"]
     d = pd.read_csv(p, dtype=str, keep_default_na=False)
     LOC[name] = d

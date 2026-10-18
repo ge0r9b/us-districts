@@ -18,7 +18,7 @@ Q = """SELECT ?item ?itemLabel ?p31 ?p31Label ?p749 ?p749Label ?p127 ?p127Label 
   OPTIONAL { ?item wdt:P749 ?p749 }
   OPTIONAL { ?item wdt:P127 ?p127 }
   OPTIONAL { ?item wdt:P856 ?web }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,mul". }
 }"""
 
 
@@ -44,7 +44,7 @@ def run(qids):
 CHILDREN = """SELECT DISTINCT ?item ?itemLabel ?alt ?par WHERE {
   VALUES ?par { %s } { ?item wdt:P749 ?par } UNION { ?item wdt:P127 ?par }
   OPTIONAL { ?item skos:altLabel ?alt FILTER(lang(?alt)="en") }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } }"""
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,mul". } }"""
 # Brand owners whose child items are used to resolve brand names that All The Places does not tag
 OWNERS = ["Q1141173", "Q552363"]  # Marriott International, Starwood
 

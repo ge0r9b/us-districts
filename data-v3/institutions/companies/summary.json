@@ -155,6 +155,28 @@
   "missing_coordinates": 47,
   "us_with_county_geoid": 16708
  },
+ "walmart": {
+  "file": "walmart.csv",
+  "rows": 4904,
+  "features:walmart_us": 1484,
+  "features:walmart_ca": 385,
+  "features:walmart_us@2026-01-24": 4476,
+  "duplicate_store_id_dropped": 1439,
+  "excluded_name:Walmart Pharmacy": 2,
+  "rows_by_country": {
+   "US": 4512,
+   "CA": 385,
+   "PR": 7
+  },
+  "rows_by_store_type": {
+   "Walmart Supercenter": 3869,
+   "Walmart Neighborhood Market": 647,
+   "Walmart": 388
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 4512,
+  "us_rows": 4512
+ },
  "wawa": {
   "file": "wawa.csv",
   "rows": 1320,
@@ -174,27 +196,27 @@
    "Schedule Type"
   ]
  },
- "brands_rows": 46,
+ "brands_rows": 48,
  "brands_by_kind": {
-  "brand": 35,
+  "brand": 37,
   "company": 11
  },
- "brand_relationships_rows": 34,
+ "brand_relationships_rows": 35,
  "brand_relationships_review_flags": 4,
- "company_locations_rows": 73120,
+ "company_locations_rows": 78024,
  "company_locations_by_entity_top": {
   "wikidata:Q37158": 35028,
   "wikidata:Q38076": 13486,
   "wikidata:Q2078880": 9001,
   "wikidata:Q1591889": 7991,
+  "wikidata:Q483551": 4904,
   "wikidata:Q5936320": 1320,
   "wikidata:Q5430314": 1207,
   "wikidata:Q1053170": 1052,
   "wikidata:Q7315394": 897,
-  "wikidata:Q7580351": 600,
-  "wikidata:Q7830092": 596
+  "wikidata:Q7580351": 600
  },
- "company_locations_with_geoid": 54669,
+ "company_locations_with_geoid": 59181,
  "company_locations_excluded": {
   "starbucks:no_point_no_geoid": 47
  },
@@ -231,29 +253,29 @@
   "TownePlace Suites": "Q7830092"
  },
  "marriott_brand_name_to_qid_wikidata": {
-  "EDITION": "Q91218404",
   "The Luxury Collection": "Q2412604",
-  "Autograph Collection": "Q19872869",
-  "SpringHill Suites": "Q7580351",
-  "Sheraton": "Q634831",
-  "Element": "Q91948072",
-  "Protea": "Q17092570",
-  "Courtyard": "Q1053170",
   "Le Méridien": "Q261077",
-  "The Ritz-Carlton": "Q782200",
-  "Moxy": "Q70287020",
-  "Renaissance": "Q2143252",
-  "Tribute Portfolio": "Q92021343",
-  "Aloft": "Q4734166",
-  "Westin": "Q1969162",
-  "Residence Inn": "Q7315394",
-  "W Hotels": "Q7958488",
-  "JW Marriott": "Q1067636",
-  "AC Hotels": "Q5653536",
-  "Delta Hotels": "Q5254663",
-  "citizenM": "Q5122531",
   "TownePlace Suites": "Q7830092",
-  "Gaylord": "Q3099664"
+  "Courtyard": "Q1053170",
+  "Westin": "Q1969162",
+  "Sheraton": "Q634831",
+  "AC Hotels": "Q5653536",
+  "Protea": "Q17092570",
+  "Delta Hotels": "Q5254663",
+  "Element": "Q91948072",
+  "citizenM": "Q5122531",
+  "Autograph Collection": "Q19872869",
+  "JW Marriott": "Q1067636",
+  "Aloft": "Q4734166",
+  "Renaissance": "Q2143252",
+  "SpringHill Suites": "Q7580351",
+  "Residence Inn": "Q7315394",
+  "The Ritz-Carlton": "Q782200",
+  "Tribute Portfolio": "Q92021343",
+  "Gaylord": "Q3099664",
+  "EDITION": "Q91218404",
+  "Moxy": "Q70287020",
+  "W Hotels": "Q7958488"
  },
  "built": "2026-10-18"
 }

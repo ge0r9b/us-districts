@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 46 (35 brand, 11 company) | `entity` |
-| `brand_relationships.csv` | 34 | `entity_relation` |
-| `company_locations.csv.gz` | 73,120 (54,669 with a v2-2024 county geoid) | `entity_location` |
+| `brands.csv` | 48 (37 brand, 11 company) | `entity` |
+| `brand_relationships.csv` | 35 | `entity_relation` |
+| `company_locations.csv.gz` | 78,024 (59,181 with a v2-2024 county geoid; 18,841 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | walgreens 7,991; cvs 9,001; mcdonalds 13,486; marriott 6,294; wawa 1,320; starbucks 35,075 (`starbucks.csv.gz`) | source tables for company_locations (full store detail) |
-| `locations/marriott_dropped_us.csv` | 36 | not loaded: US/territory Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 33 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring) |
-| `sources.csv` | 29 | `source` |
+| `locations/<brand>.csv` | cvs 9,001; marriott 6,294; mcdonalds 13,486; starbucks 35,075 (`.csv.gz`); walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/marriott_dropped_us.csv` | 36 | not loaded: Marriott rows that could not be kept, with reason |
+| `brand_cleanliness.csv` | 34 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 32 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -115,10 +115,17 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   `name` = ATP `name` (or `name:en`); when it is just "Starbucks" and ATP gives a `branch`, `Starbucks <branch>`. 178 hkmo rows have no name in ATP. `address` = `addr:street_address`, else `addr:full` (flag `address_is_addr_full`). US phones are normalized like the other files; others are as given.
   County geoid only for `country_code = US` (16,708 of 16,708); 34 PR rows from starbucks_eu keep it empty. 47 rows (BR 45, AU 2) have no coordinates in ATP (`missing_coordinates`) and are not in company_locations.
 
+- **Other All The Places chains** (`CHAINS` in build_locations.py; one file each, all countries the brand's spiders cover). Every file has the full column set: `name`, `country_code`, `state`, `county` + `county_geoid` (US rows only), `city`, `address`, `lat`, `lon`.
+  `store_id` = `<namespace>-<ATP ref>` (namespace = the spider's country, e.g. `us-1234`, `ca-3019`; a URL ref keeps only its trailing store number). The latest ATP run (2026-10-10) is read first. When a spider's latest output is empty or clearly partial, an older complete ATP run fills only the store ids the latest run lacks. Those rows are flagged `atp_older_run_<date>` and cite that run's own `sources.csv` entry (`scripts/fetch_atp_older.py`). `store_type` = the ATP `name` (store format).
+  - **walmart.csv**: wikidata:Q483551 (Wikidata has no P749 parent).
+    - Spiders: `walmart_us` latest (1,484 features, partial) + `walmart_ca` latest (385) + `walmart_us` run 2026-01-24 (4,476, the last complete run) for the 3,037 store ids missing from the latest run.
+    - Rows named "Walmart Neighborhood Market" carry `sub_brand_qid` wikidata:Q7963529.
+    - Excluded: 2 "Walmart Pharmacy" points (not stores); Sam's Club (`sams_club`, `sams_club_mx`; brand Q1972120, not tagged Walmart); Lider (`lider_cl`) and Asda (`asda_gb`): other brands.
+
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
 `brand_qid_from_wikidata_name_match`, `brand_qid_from_brand_name`, `atp_brand_qid_differs:<Q>`, `county_nearest_within_2km` (point just outside the 1:500k shoreline, e.g. Navy Pier),
-`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`, `address_is_addr_full`, `duplicate_in_<spider>_<d>km`, `no_county` (Wawa).
+`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`, `address_is_addr_full`, `duplicate_in_<spider>_<d>km`, `no_county` (Wawa), `atp_older_run_<date>`.
 
 ## Rebuild
 ```
@@ -127,6 +134,7 @@ python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton starbucks_ae starbuc
 python3 fetch_marriott_pacsys.py AK WI TX JW WH LC MV SV WV PR XR RZ BR MD EB DE EL OX GE ER BG FI CY RI MC TS SH FP SI AR DS AL XE
 python3 fetch_wikidata_brands.py <brand QIDs…>      # list in summary.json / brands.csv
 python3 rank_brands.py                              # after build_locations.py -> brand_cleanliness.csv
+python3 fetch_atp_older.py 2026-01-24-13-32-35 walmart_us   # older complete runs where the latest is partial
 python3 fetch_logos.py                              # P154 + Commons licences for the entities in brands.csv
 # copy inputs to raw/inputs/: all_stores.csv, marriott-properties-v5.csv, cb_2024_us_county_500k.*
 python3 build_locations.py
