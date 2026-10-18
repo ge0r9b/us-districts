@@ -7,12 +7,25 @@ Triples are [d, r, total] = [Clinton, Trump, all presidential candidates], the s
 - States layer: FEC Federal Elections 2016, Table 2 (`raw/federalelections2016.xlsx`).
 - County polygons for assigning precincts to counties: v2's own `v2/data/uscounties.js`, so every key exists in v2.
 
-## Files (per-state lazy split, same compact encoding as data/precincts2020)
-- `precincts2016/<State>.js`: `__prec(state,[[county,precinct,d,r,t,polys]],credit)`. Polygons use delta-encoded ints at ÷10000, simplified at 0.0004° (≈40 m). The tolerance was raised per state until each file is ≤ the smaller of that state's 2020/2024 files. NJ, CT and RI are dissolved to towns (exact sums), the same as their small 2020 files. `District_of_Columbia.js` belongs at `v2/data/precincts2016-DC.js` (v2 keeps DC precincts there).
-- `out/election2016.js`: `window.ELECTION2016={"State|County":[d,r,t]}`, exact sums of the precincts assigned to each county (3,144 keys incl. Alaska boroughs and DC; 0 orphans, 0 misses vs uscounties.js). 138,967 bytes, +1,005 vs election2020.js, because it includes the 30 Alaska boroughs and DC that v2 injects from ak.js/dc.js for 2020.
-- `out/ds2016.js`: `window.__ds2016&&window.__ds2016({states,ushouse,senate,statehouse,schools})`, keys `State|Name`. Districts are VEST precincts area-weighted into v2's current district shapes. `1` = ≈ when more than 2% of the district total comes from split precincts. Gray when 2016 precincts cover less than 50% of the district.
-- `tools/build_vest2016.py`, `tools/build_layers2016.py`: the build. `tools/append2016.py <repo> out/ds2016.js`: appends the 2016 triples to the existing rows of uscd/ussldu/ussldl/ussch as slot 6 (+`"e16"` slot 7), matching on the current (State, Name), without reordering. Run it only after the Geo renames are on main. Not applied yet.
-- Parts / towns / places: no 2016 file needed. v2 computes them in the browser from the precinct file, the same as 2020/2024.
+## Files for the app (on data/election, lazy-loaded; nothing loads them until the app adds 2016 loaders)
+| File | Bytes | Global call / row shape | Load when |
+|---|---|---|---|
+| `v2/data/election2016.js` | 138,967 | `window.ELECTION2016={"State|County":[d,r,t],...};` same shape as `ELECTION2020`. 3,144 keys incl. Alaska boroughs and `District of Columbia|District of Columbia` (for 2020 these come from ak.js/dc.js). Exact precinct sums, never ≈. | the 2016 county view, once, like `loadE2020` |
+| `v2/data/ds2016-states.js` | 1,892 | `window.__ds2016&&window.__ds2016("states",{"State":[d,r,t],...});` FEC 2016, exact. | the states list in 2016 |
+| `v2/data/ds2016-cd.js` | 16,878 | `window.__ds2016&&window.__ds2016("ushouse",{"State|01":[d,r,t] or [d,r,t,1]})` | the US House list/map in 2016 |
+| `v2/data/ds2016-sldu.js` | 71,940 | same, layer `"senate"`, keys `State|009` (TIGER SLDUST, as in ussldu.js) | state senate in 2016 |
+| `v2/data/ds2016-sldl.js` | 175,869 | same, layer `"statehouse"`, keys `State|055` (as in ussldl.js) | state house in 2016 |
+| `v2/data/ds2016-sch.js` | 822,361 | same, layer `"schools"`, keys `State|Name` with the Geo renames (`Name (County)`) | schools in 2016 |
+| `v2/data/precincts2016/<State>.js` | 50 files, 44,359,377 total | `__prec(state,[[county,precinct,d,r,t,polys]],credit)`: identical to `data/precincts2020/<State>.js` (polys = delta-encoded ints ÷10000). The app can tell the year from the script src (`/precincts2016/`), the same way it detects `/precincts2020/` (index.html `is20`). | per state, on demand, like `loadPrec20(st)` |
+| `v2/data/precincts2016-DC.js` | 20,151 | same `__prec("District of Columbia",...)`, like `v2/data/precincts2020-DC.js` | DC |
+
+District values: a 4th element `1` means ≈ (area-weighted). A missing key means gray (no 2016 data). Keys match the current v2 rows exactly (0 orphans, 0 misses). There are no 2016 values in uscd/ussldu/ussldl/ussch (decision: lazy-load, don't append). Towns/places/parts: no file; v2 derives them from the precinct file.
+
+Note on paths: v2 keeps 2020/2024 precincts and county tables in the root `data/` (`../data/precincts2020/`, `../data/election2020.js`). 2016 lives in `v2/data/` by orchestrator decision, so loaders use `data/precincts2016/...` relative to v2.
+
+Precinct files: 0.0004° (~40 m) simplification, raised per state until each file is ≤ the smaller of its 2020/2024 equivalents (total 44.4 MB vs 49.6 MB cap). NJ, CT, RI are dissolved to towns (exact sums), like their 2020 files.
+
+Build tools (`tools/`): `build_vest2016.py` (precincts), `build_layers2016.py` (counties, states, districts; wrote `out/ds2016.js`, which was then split into the `ds2016-*.js` files above), `append2016.py` (not used: shared files stay unchanged).
 
 ## Layer coverage
 | Layer | Districts | Filled | ≈ (area-weighted) | Gray |
