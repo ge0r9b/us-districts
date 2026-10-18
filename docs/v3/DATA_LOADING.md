@@ -328,7 +328,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 |---|---|---|---|
 | Institutions lane | `data-v3/inst/entities.csv` (**54,144**), `entity_geoid_xwalk.csv` (**58,663**), `entity_v2_rows.csv` (131,310), `entity_gaps.csv` (254) on `data/inst-entities` **8e1db01** | one row per entity, no vintage; xwalk one row per entity × `unit_layer` × vintage | **built** |
 | Governments bot (a901cced) | `data-v3/institutions/governments/` on `data/governments` 93b7a90 (`local/<ST>.csv`, `federal_agencies.csv`, `governments_geoid_xwalk.csv`) | ids `cog:<id>`, `fr:<id>`, `bia:<slug>`; registry rows win, the rest become `government_other` | first pull (CoG 2022 92,150 units, 473 FR agencies) |
-| Companies bot (7e7bba2a) | `data-v3/institutions/companies/` on `data/companies` | **v3 scope (user decision, Oct 18, 2026): public-facing brands, establishments and organizations from Wikidata**, keyed `wikidata:Q<id>`, plus store/site locations. The first pull (0be48d0: SEC/GLEIF `companies.csv.gz`, `relationships.csv.gz`) is **out of scope and not loaded** | awaiting the Wikidata pull |
+| Companies bot (7e7bba2a) | `data-v3/institutions/companies/` on `data/companies` **5faf8aa**: `brands.csv`, `sources.csv`, `locations/{cvs,marriott,mcdonalds,walgreens}.csv` | **v3 scope (user decision, Oct 18, 2026): public-facing brands, establishments and organizations from Wikidata**, keyed `wikidata:Q<id>`, plus store/site locations. The first pull (0be48d0: SEC/GLEIF `companies.csv.gz`, `relationships.csv.gz`) is **out of scope and not loaded** | first Wikidata pull landed (5faf8aa) |
 | Users (phase 3+) | `submission` table via form / CSV upload | moderated | needs auth (D18) |
 
 **Registry rules (agreed with Institutions):**
@@ -349,10 +349,40 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **Scraped brands with no QID get no `entity_id` and are excluded** (counted in the load report).
   - **User adds** (moderated form or CSV, phase 3+) get a minted **`usd:<uuid>`** once approved. When a QID appears later, the entity is re-keyed to `wikidata:Q…` (`entity_merge`, rule `usd_to_qid`), and `usd:` stays as an `entity_alias`.
   - `lei:` / `cik:` are **reserved `entity_alias` schemes only** (`kind = reserved`). There is no v3 loader for them, and they are never served by the public API.
-- **Kind / name:** `entity.kind` is one of `brand`, `company`, `nonprofit` or `fund`. `brand_name` / `name` hold the Wikidata label (public-facing brand). `legal_form_code` / `legal_form` are optional, filled only when Wikidata states a legal form.
-- **Relationships** → `entity_relation`: brand → parent QID links (`parent_org` = P749, `owned_by` = P127, `brand_of`) with `valid_from`, `valid_to` and `source_id`. **No `ownership_pct`.**
-- **Locations / establishments** → `entity_location`, one row per site: `location_id`, `entity_id` (QID), **`role` = `hq_in` | `establishment_at`**, `name`, `address` (the public business address as published), `geom` Point 4326 from lat/lon, optional `geoid` (+ `boundary_set`), `source_id`, `retrieved_at` and a `retracted` flag. A GIST index on `geom` serves point-in-polygon, and `unit_id` is resolved by PostGIS at load. A site that disappears from a refresh is marked `retracted` only through the retract list, never deleted (§15.3).
-- **Sources:** `sources.csv` via `source_id` (Wikidata CC0; store-locator pages per their own terms, robots.txt honoured, §15.3).
+- **Kind / name:** `entity.kind` is one of `brand`, `organization`, `company`, `nonprofit` or `fund`. `brand_name` / `name` hold the Wikidata label (public-facing brand). `legal_form_code` / `legal_form` are optional, filled only when Wikidata states a legal form.
+- **Files (verified at `data/companies` 5faf8aa):** `brands.csv` (40 rows: 36 `brand`, 4 `organization`), `sources.csv` (8 rows: `source_id, source, source_url, license, retrieved_at, commit, sha256`, the same layout as the inst lane's), and `locations/<brand>.csv`: `cvs.csv` 9,001, `marriott.csv` 10,417, `mcdonalds.csv` 13,486, `walgreens.csv` 7,991. These are plain `.csv`; the loader also streams `.csv.gz` when a file is larger than about 5 MB. All files are read by header name.
+- **`brands.csv` → `entity`:**
+  - `entity_id` → `entity_id`. `name` → `name` and `brand_name`.
+  - `kind` (`brand` / `organization`) → `entity.kind`.
+  - `instance_of` (P31 labels, `;`) → `type` (first label) plus `meta.instance_of`. `website` (`;`) → `meta.website`.
+  - `source` (a sources.csv `source_id`) → `source_id`. `source_url` (the Wikidata page) → `meta.wikidata_url`. `source_date` → the source's `retrieved_at`.
+  - `location_files` / `location_count` are only checked against the loaded rows (they matched for all 40 brands).
+- **`brands.csv` `parent_brand_id` → `entity_relation`**, with `child_id = entity_id`, `parent_id` = each QID in the `;`-list, and `relation = parent_org` (Wikidata P749; P127 is not used).
+  - **Multi-parent links are kept**, one row per parent: 28 links in total, 2 of them multi-parent (`wikidata:Q634831` and `wikidata:Q30715430` → Starwood `Q552363` + `Q1141173`). Every parent is itself a row in `brands.csv`. `parent_brand_name` is ignored, since the label comes from the parent's own row.
+  - `valid_from` / `valid_to` come from the P749 start time (P580) / end time (P582) qualifiers. **The file has no qualifier columns yet**, so both stay null until the bot adds them (e.g. `parent_valid_from`, `parent_valid_to`, `;`-aligned with `parent_brand_id`).
+  - `locations/*.csv` `parent_brand_qid` is a copy of the same P749 value. It matched `brands.csv` on every row, so it is not loaded again.
+- **`locations/<brand>.csv` → `entity_location`, one row per store/property:**
+
+  | Column | → | Rule |
+  |---|---|---|
+  | file stem + `store_id` | `location_key` | `walgreens:15196`; `store_id` is unique only within a file. A row with an empty `store_id` is rejected and reported |
+  | (constant) | `role` | `establishment_at` (no HQ rows in these files) |
+  | `brand_qid` | `entity_id` | an empty `brand_qid` means no entity, so the row is excluded |
+  | `sub_brand_qid` | `sub_entity_id` | `sub_brand` text → `meta.sub_brand` |
+  | `name` (else `brand`) | `name` | |
+  | `address`, `city`, `state`, `zip` | `address` | `address, city, state zip` as published |
+  | `lat`, `lon` | `geom` | `ST_SetSRID(ST_MakePoint(lon, lat), 4326)`; empty → null |
+  | `county_geoid` | `geoid` | county FIPS (5 digits) |
+  | (constant) | `boundary_set` | `v2-2024` when `geoid` is in v2's county layer; `unit_id` = that county unit, then refined by PostGIS point-in-polygon. PR (72) and VI (78) GEOIDs are not in v2's county layer, so `boundary_set` and `unit_id` stay null and the point is kept |
+  | `source` (`;`) | `source_id` (first) + `source_keys` | every id must exist in `sources.csv` |
+  | `source_date` | `retrieved_at` | |
+  | `flags` (`;`) | `flags` | |
+  | `phone`, `status`, `store_type`, `country_code`, `source_url` | `meta` | |
+  | `county` (name), `parent_brand_qid`, `brand` | — | derivable, not stored |
+
+  **Scope filter:** only US rows load, meaning `country_code` in US/PR/VI/GU/AS/MP, or empty with a US state code. Marriott's non-US properties (3,781 with another `country_code`, plus empty-country rows with no US state) are skipped and counted in the load report. A row with neither `geom` nor `geoid` fails the `entity_location` check and is reported.
+- **Retractions:** a store missing from a newer file is set `retracted = true` only through the retract list (§15.3), never deleted.
+
 - **Superseded:** the earlier notes about the SEC/GLEIF pull (`cik:` rows that had an LEI, missing `company_locations.csv` and LEI side file, GLEIF relationship columns, `type = other`) **no longer apply**; that data is not loaded in v3.
 
 ### 15.2 Pipeline: staging → validation → dedupe/merge → upsert

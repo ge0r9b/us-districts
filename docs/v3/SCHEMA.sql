@@ -207,7 +207,7 @@ create table entity (
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
-                  'brand','company','nonprofit','fund',                      -- Companies bot (Wikidata); brand -> parent via entity_relation
+                  'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
                   'other')),
   state_fips    char(2),
   state         text,
@@ -231,7 +231,7 @@ create table entity (
   cog_pid6      text,                                -- CoG 2022 unit id
   flags         text[],                              -- review flags ('gov_status_unknown:...')
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
-  check (kind not in ('brand','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
+  check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_id     bigint references source(id),        -- source, source_url, retrieved_at, license
   has_region    boolean not null default true,
   icon_flag     text,
@@ -272,7 +272,7 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of')),
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of')),  -- brands.csv parent_brand_id = P749 = parent_org
   valid_from    date,
   valid_to      date,
   source_id     bigint references source(id),
@@ -285,19 +285,24 @@ create index entity_relation_child on entity_relation (child_id);
 -- Locations / establishments: one row per site (store, branch, venue) or HQ. Point-in-polygon by GIST.
 create table entity_location (
   location_id  bigint generated always as identity primary key,
-  location_key text unique,                          -- the bot's stable site id (e.g. Wikidata QID of the site or source:record id)
-  entity_id    text not null references entity(entity_id) on delete cascade,   -- brand/organization QID
+  location_key text unique,                          -- '<brand file stem>:<store_id>' ('walgreens:15196', 'marriott:NYCMQ');
+                                                   -- store_id is unique only within a brand file
+  entity_id    text not null references entity(entity_id) on delete cascade,   -- brand_qid ('wikidata:Q1591889')
+  sub_entity_id text references entity(entity_id),  -- sub_brand_qid (Duane Reade, CVS Pharmacy y más), when given
   role         text not null check (role in ('hq_in','establishment_at')),
   name         text,                                 -- site name ('Target Store T-1234')
-  address      text,                                 -- public business address as published (not a user address)
+  address      text,                                 -- public business address as published: address, city, state zip
   geom         geometry(Point, 4326),                -- from lat/lon
-  geoid        text,                                 -- optional GEOID (place/county) when the source gives one
-  boundary_set text,                                 -- optional, with geoid
+  geoid        text,                                 -- county FIPS (locations/*.csv county_geoid, Census 2024 point-in-polygon)
+  boundary_set text,                                 -- 'v2-2024' when geoid is a v2 county; null for PR/VI (not in v2's county layer)
   unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load
   valid_from   date,
   valid_to     date,
-  source_id    bigint references source(id),
-  retrieved_at timestamptz,
+  source_id    bigint references source(id),         -- first source_id in the row's 'source' list
+  source_keys  text[],                               -- the full ';'-list of sources.csv source_ids
+  retrieved_at timestamptz,                          -- source_date
+  flags        text[],                               -- the bot's review flags ('coordinates_from_atp', ...)
+  meta         jsonb not null default '{}',          -- phone, sub_brand, status, store_type, country_code, source_url
   retracted    boolean not null default false,       -- set via the retract list; never deleted
   check (geom is not null or geoid is not null)
 );
