@@ -1,6 +1,6 @@
 # 2016 President: v2-format build (offline, not loaded by v2 yet)
 
-Triples are [d, r, total] = [Clinton, Trump, all presidential candidates], the same as 2020/2024. ≈ (`e16`, or a 4th element `1` in `ds2016.js`) is used **only** for area-weighted values. A missing key/null means gray (no source).
+Triples are [d, r, total] = [Clinton, Trump, all presidential candidates], the same as 2020/2024. ≈ is used **only** for area-weighted values. In the `ds2016-*.js` files it is a 4th element `1` (`[d,r,t,1]`); there is no separate flag field. A missing key/null means gray (no source).
 
 ## Sources
 - Precincts: VEST 2016 General Election precinct boundaries and results, Harvard Dataverse doi:10.7910/DVN/NH5S2I (CC BY 4.0), dataset v98, 51 state zips (retrieved 2026-10-18; box copy `/workspace/vest16/`, not committed).
@@ -25,7 +25,7 @@ Note on paths: v2 keeps 2020/2024 precincts and county tables in the root `data/
 
 Precinct files: 0.0004° (~40 m) simplification, raised per state until each file is ≤ the smaller of its 2020/2024 equivalents (total 44.4 MB vs 49.6 MB cap). NJ, CT, RI are dissolved to towns (exact sums), like their 2020 files.
 
-Build tools (`tools/`): `build_vest2016.py` (precincts), `build_layers2016.py` (counties, states, districts; wrote `out/ds2016.js`, which was then split into the `ds2016-*.js` files above), `append2016.py` (not used: shared files stay unchanged).
+Build tools (`tools/`): `build_vest2016.py` (precincts), `build_layers2016.py` (counties, states, districts; wrote `out/ds2016.js`, which was then split into the `ds2016-*.js` files above), `append2016.py` (**obsolete, unused**: it was written to append 2016 triples to the shared layer files, which the lazy-load decision replaced; it is not run and nothing ships from it).
 
 ## Layer coverage
 | Layer | Districts | Filled | ≈ (area-weighted) | Gray |
