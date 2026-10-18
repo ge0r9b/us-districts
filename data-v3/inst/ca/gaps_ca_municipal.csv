@@ -1,5 +1,6 @@
 level,gap,key,detail,source_id
 municipality,blocked_source,www12.statcan.gc.ca,"boundary-file download answers HTTP 403 ""Security Check"" (bot challenge); not bypassed. Needed for CSDTYPE / CDTYPE (incorporated flag, which CSDs/CDs are governments)",statcan-boundary-2021-b9ee3a85
 municipality,blocked_source,www150.statcan.gc.ca,"TLS connection refused from this box (unexpected EOF, 3 tries); table 98-10-0002 gives every CSD name with its type; not bypassed",statcan-tbl-98100002-065e5f90
+municipality,browser_download_missing,lcsd000b21a_e.zip+2021_92-151_X.zip,reported downloaded to /home/box/Downloads on 2026-10-18 but not on the box at 11:02 EDT (box restart; only a stalled 86 MB .crdownload left); curl to www12 still HTTP 403; re-download needed,statcan-boundary-2021-b9ee3a85
 municipality,entities_not_minted,csd+cd,"5161 CSDs and 293 CDs loaded as units only; municipal / county / regional government entities wait for the 2021 type table (entity ids are frozen at first sight, so they are not minted on a guess)",statcan-sgc2021-structure-2b799b81
 school_board,not_built,all,"no national list; provincial lists exist (e.g. Ontario school board list, BC school districts, Alberta school authorities) - see CANADA_PLAN.md",

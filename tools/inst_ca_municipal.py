@@ -15,9 +15,9 @@ F = f'{RAW}/statcan/sgc-cgt-2021-structure-eng.csv'
 S = reg.add('statcan-sgc2021-structure', 'Statistics Canada, Standard Geographical Classification (SGC) 2021, structure file (sgc-cgt-2021-structure-eng.csv)',
             'https://www.statcan.gc.ca/en/statistical-programs/document/sgc-cgt-2021-structure-eng.csv', LIC, RET, '', sha256(F))
 B1 = reg.add('statcan-boundary-2021', 'Statistics Canada, 2021 Census boundary files (lcsd000b21a_e / lcd_000b21a_e: CSDTYPE, CDTYPE)',
-             'https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/boundary-limites/index2021-eng.cfm?year=21', LIC, RET)
+             'https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/boundary-limites/index2021-eng.cfm?year=21', LIC, '')
 B2 = reg.add('statcan-tbl-98100002', 'Statistics Canada, Table 98-10-0002 Population and dwelling counts: census subdivisions (CSD names with type)',
-             'https://www150.statcan.gc.ca/n1/tbl/csv/98100002-eng.zip', LIC, RET)
+             'https://www150.statcan.gc.ca/n1/tbl/csv/98100002-eng.zip', LIC, '')
 rows = list(csv.DictReader(open(F, encoding='cp1252')))
 units, gaps = [], []
 cds = {r['Code']: r['Class title'] for r in rows if r['Hierarchical structure'] == 'Census division'}
@@ -36,6 +36,8 @@ gaps.append({'level': 'municipality', 'gap': 'blocked_source', 'key': 'www12.sta
              'detail': 'boundary-file download answers HTTP 403 "Security Check" (bot challenge); not bypassed. Needed for CSDTYPE / CDTYPE (incorporated flag, which CSDs/CDs are governments)', 'source_id': B1})
 gaps.append({'level': 'municipality', 'gap': 'blocked_source', 'key': 'www150.statcan.gc.ca',
              'detail': 'TLS connection refused from this box (unexpected EOF, 3 tries); table 98-10-0002 gives every CSD name with its type; not bypassed', 'source_id': B2})
+gaps.append({'level': 'municipality', 'gap': 'browser_download_missing', 'key': 'lcsd000b21a_e.zip+2021_92-151_X.zip',
+             'detail': 'reported downloaded to /home/box/Downloads on 2026-10-18 but not on the box at 11:02 EDT (box restart; only a stalled 86 MB .crdownload left); curl to www12 still HTTP 403; re-download needed', 'source_id': B1})
 gaps.append({'level': 'municipality', 'gap': 'entities_not_minted', 'key': 'csd+cd',
              'detail': '%d CSDs and %d CDs loaded as units only; municipal / county / regional government entities wait for the 2021 type table (entity ids are frozen at first sight, so they are not minted on a guess)' % (len(csds), len(cds)), 'source_id': S})
 gaps.append({'level': 'school_board', 'gap': 'not_built', 'key': 'all',

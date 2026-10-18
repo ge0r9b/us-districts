@@ -263,8 +263,8 @@ for p, (en, fr, url) in sorted(CH.items(), key=lambda x: ISO2SGC[x[0]]):
     ents.append({'entity_id': 'chamber:ca-%s-legislature' % p.lower(), 'kind': 'chamber', 'name': en, 'name_fr': fr, 'parent_id': prov_entity(p),
         'source_id': ';'.join([ch_src[p]] + sorted({u['source_id'].split(';')[0] for u in units if u['province'] == p and u['unit_type'] == 'ped'})),
         'feed': 'inst-lane', 'level': 'province' if p not in CA_TERR else 'territory', 'type': 'unicameral',
-        'flags': 'gov_status_na:legislative_chamber' + ('' if p in seats else ';no_electoral_units_loaded') + (';consensus_government_no_parties' if p in ('NT', 'NU') else ''),
-        'country': 'ca', 'province': p, 'external_id': ('seats=%d' % seats[p]) if p in seats else ''})
+        'flags': 'gov_status_na:legislative_chamber' + ((';seats:%d' % seats[p]) if p in seats else ';no_electoral_units_loaded') + (';consensus_government_no_parties' if p in ('NT', 'NU') else ''),
+        'country': 'ca', 'province': p, 'external_id': ''})
 
 os.makedirs(OUT, exist_ok=True)
 nat = lambda s: [int(t) if t.isdigit() else t for t in re.split(r'(\d+)', s)]

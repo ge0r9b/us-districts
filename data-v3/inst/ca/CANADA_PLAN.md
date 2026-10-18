@@ -4,8 +4,8 @@ Goal (user, 2026-10-18): "now go further down to the precinct level in canada". 
 `nation:ca`, `province:ca-<ab|bc|mb|nb|nl|ns|on|pe|qc|sk>`, `territory:ca-<nt|nu|yt>`. Those rows are built on data/inst-entities;
 this branch only references them as parents. Districts and polls are **units**, not entities; chambers are entities.
 Geometry stays out of the CSVs: raw files are kept on the box under `/workspace/w/inst-raw/ca/` (with `SHA256SUMS` and sha256 in
-`sources_ca.csv`); each unit row has a `geometry_ref` (file + layer + key) only. Every boundary_set / unit_type name below is a
-**proposal** (CANADA_SCHEMA_PROPOSALS.md), not yet accepted by Full Stack.
+`sources_ca.csv`); each unit row has a `geometry_ref` (file + layer + key) only. Boundary_set slugs and the `ca_*` unit types follow
+Full Stack's rulings R1-R6 (CANADA_SCHEMA_PROPOSALS.md).
 
 Status: **built** = rows in this directory; **gap** = logged in `gaps_ca_*.csv` with the reason.
 

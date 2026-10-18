@@ -152,10 +152,10 @@ pd19, st19 = pd_units('polling_divisions_boundaries_2019.shp.zip', '*PD_CA_2019_
 ents = [
  {'entity_id': 'chamber:ca-house', 'kind': 'chamber', 'name': 'House of Commons of Canada', 'name_fr': 'Chambre des communes du Canada',
   'parent_id': 'nation:ca', 'source_id': S_CONST + ';' + S_FED23, 'feed': 'inst-lane', 'level': 'federal', 'type': 'lower_chamber',
-  'flags': 'gov_status_na:legislative_chamber', 'country': 'ca', 'external_id': 'seats=343(2023_rep_order)'},
+  'flags': 'gov_status_na:legislative_chamber;seats:343', 'country': 'ca', 'external_id': ''},
  {'entity_id': 'chamber:ca-senate', 'kind': 'chamber', 'name': 'Senate of Canada', 'name_fr': 'Sénat du Canada', 'parent_id': 'nation:ca',
   'source_id': S_CONST, 'feed': 'inst-lane', 'level': 'federal', 'type': 'upper_chamber',
-  'flags': 'gov_status_na:legislative_chamber;appointed_no_electoral_units', 'country': 'ca', 'external_id': 'seats=105'},
+  'flags': 'gov_status_na:legislative_chamber;appointed_no_electoral_units;seats:105', 'country': 'ca', 'external_id': ''},
 ]
 gap('officeholder', 'senate_officeholders_not_built', 'chamber:ca-senate', 'appointed chamber, no electoral units; senators not loaded in this batch (source: sencanada.ca senator list)', S_CONST)
 
@@ -175,7 +175,7 @@ for m in sorted(mps, key=lambda m: int(m['PersonId'])):
     if len(c) != 1:
         gap('officeholder', 'mp_constituency_not_matched', pid, '%s: %s (%s) matched %s FED names' % (name, m['ConstituencyName'], p, len(c)), S_MPS); continue
     fed = c[0]; seen.add(fed)
-    oh.append({'unit_layer': 'fed', 'unit_key': str(fed), 'unit_vintage': 2023, 'unit_plan': 'rep-order-2023', 'boundary_set': 'ec-2023-fed',
+    oh.append({'unit_layer': 'ca_fed', 'unit_id': str(fed), 'country': 'ca', 'unit_vintage': 2023, 'unit_plan': 'rep-order-2023', 'boundary_set': 'ec-2023-fed',
         'join_status': 'joined', 'entity_id': 'chamber:ca-house', 'province': p, 'seat': '', 'district': m['ConstituencyName'],
         'person_id': pid, 'name': name, 'party': m['CaucusShortName'], 'caucus': m['CaucusShortName'], 'status': 'serving',
         'term_start': m['FromDateTime'][:10], 'term_end': m['ToDateTime'][:10], 'elected_date': '', 'note': '',
@@ -186,13 +186,13 @@ for m in sorted(mps, key=lambda m: int(m['PersonId'])):
                     'source_record_id': m['PersonId'], 'upstream_url': 'https://www.ourcommons.ca/Members/en/%s' % m['PersonId']})
 for fed in sorted(set(fed23) - seen):
     p = SGC[str(fed)[:2]]
-    oh.append({'unit_layer': 'fed', 'unit_key': str(fed), 'unit_vintage': 2023, 'unit_plan': 'rep-order-2023', 'boundary_set': 'ec-2023-fed',
+    oh.append({'unit_layer': 'ca_fed', 'unit_id': str(fed), 'country': 'ca', 'unit_vintage': 2023, 'unit_plan': 'rep-order-2023', 'boundary_set': 'ec-2023-fed',
         'join_status': 'joined', 'entity_id': 'chamber:ca-house', 'province': p, 'seat': '', 'district': fed23[fed], 'person_id': '',
         'name': '', 'party': '', 'caucus': '', 'status': 'vacant', 'term_start': '', 'term_end': '', 'elected_date': '',
         'note': 'no current member for this FED in the House of Commons member list on %s' % RET, 'source_id': S_MPS + ';' + S_FED23,
         'source_record_id': '', 'date_flags': ''})
 
-OH_COLS = ['unit_layer', 'unit_key', 'unit_vintage', 'unit_plan', 'boundary_set', 'join_status', 'entity_id', 'province', 'seat', 'district',
+OH_COLS = ['unit_layer', 'unit_id', 'country', 'unit_vintage', 'unit_plan', 'boundary_set', 'join_status', 'entity_id', 'province', 'seat', 'district',
            'person_id', 'name', 'party', 'caucus', 'status', 'term_start', 'term_end', 'elected_date', 'note', 'source_id', 'source_record_id', 'date_flags']
 P_COLS = ['person_id', 'scheme', 'name', 'official_ids', 'sources', 'aliases', 'source_id', 'source_record_id', 'upstream_url']
 os.makedirs(OUT, exist_ok=True)
@@ -203,7 +203,7 @@ counts = {
  'units_ca_pd_2025.csv': write_csv(f'{OUT}/units_ca_pd_2025.csv', UNIT_COLS, pd25, key=ukey),
  'units_ca_pd_2021.csv': write_csv(f'{OUT}/units_ca_pd_2021.csv', UNIT_COLS, pd21, key=ukey),
  'units_ca_pd_2019.csv': write_csv(f'{OUT}/units_ca_pd_2019.csv', UNIT_COLS, pd19, key=ukey),
- 'officeholders_ca_house_current.csv': write_csv(f'{OUT}/officeholders_ca_house_current.csv', OH_COLS, oh, key=lambda r: int(r['unit_key'])),
+ 'officeholders_ca_house_current.csv': write_csv(f'{OUT}/officeholders_ca_house_current.csv', OH_COLS, oh, key=lambda r: int(r['unit_id'])),
  'persons_ca.csv': write_csv(f'{OUT}/persons_ca.csv', P_COLS, persons, key=lambda r: int(r['person_id'].split(':')[1])),
  'gaps_ca_federal.csv': write_csv(f'{OUT}/gaps_ca_federal.csv', GAP_COLS, gaps, key=lambda r: (r['level'], r['gap'], r['key'])),
 }
