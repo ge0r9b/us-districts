@@ -48,18 +48,18 @@ async def main():
         await pg.evaluate("(m)=>{const b=[...document.querySelectorAll('button')].find(b=>b.offsetParent&&b.textContent.trim()===m); b&&b.click();}",m); await pg.wait_for_timeout(1500)
       async def setsort(i):
         await pg.evaluate("(i)=>{ const w=i===0?'desc':'asc'; if(window.__laInfo().sort!==w) document.getElementById('laSort').click(); }",i); await pg.wait_for_timeout(1200)
-      # '#': raw votes (California first, Wyoming/DC last); '%' (build 1546+): share of the selected candidate(s) = leader's share with all on (DC first, closest states such as Wisconsin last)
+      # build 1551: key = the top-ranked toggled-on answer (Trump nationally): '#' = his votes (Texas, Florida first; DC last), '%' = his share (Wyoming first; DC last)
       for m in ('#','%'):
         await tg(m); await setsort(0); oo=await ordr(); o=[x[0] for x in oo]; v=[x[1] for x in oo if x[1] is not None]
         mono=all(v[i]>=v[i+1] for i in range(len(v)-1)) and len(v)>=50
-        if m=='#': ok=o[0]=='California' and o[1]=='Texas' and 'Wyoming' in o[-4:] and 'District of Columbia' in o[-4:]
-        else: ok=o[0]=='District of Columbia' and 'Wisconsin' in o[-4:] and 'Michigan' in o[-6:]
+        if m=='#': ok=o[0]=='Texas' and o[1]=='Florida' and o[-1]=='District of Columbia'
+        else: ok=o[0]=='Wyoming' and o[-1]=='District of Columbia'
         chk(f'{t} sort high-low {m}',ok and mono,f'{oo[:3]}..{oo[-3:]}')
         await sh('sort-desc-'+('num' if m=='#' else 'pct'))
         await setsort(1); oo=await ordr(); o=[x[0] for x in oo]; v=[x[1] for x in oo if x[1] is not None]
         mono=all(v[i]<=v[i+1] for i in range(len(v)-1)) and len(v)>=50
-        if m=='#': ok=o[-1]=='California' and o[-2]=='Texas' and 'Wyoming' in o[:4] and 'District of Columbia' in o[:4]
-        else: ok=o[-1]=='District of Columbia' and 'Wisconsin' in o[:4]
+        if m=='#': ok=o[-1]=='Texas' and o[-2]=='Florida' and o[0]=='District of Columbia'
+        else: ok=o[-1]=='Wyoming' and o[0]=='District of Columbia'
         chk(f'{t} sort low-high {m}',ok and mono,f'{oo[:3]}..{oo[-3:]}'); await setsort(0)
       # --- pie # and % with the real toggle (single year and delta)
       await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(2500)

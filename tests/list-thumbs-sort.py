@@ -1,6 +1,6 @@
 # Build 1546: list charts (bar/pie/line/change bars) use the left-edge candidate column (no per-row photos), ranked for the
 # current selection, tap toggles a candidate (segment/slice/line hidden when off); a candidate without a photo shows a rank badge;
-# sort: % mode = share of the selected candidate(s) (leader's share when all on), # mode = raw votes, change mode = |net change| as displayed.
+# sort (since 1551): % mode = share of the top-ranked selected answer, # mode = its votes (see list-sort-default.py), change mode = |net change| as displayed.
 import asyncio,sys,json,re
 from playwright.async_api import async_playwright
 U=sys.argv[1] if len(sys.argv)>1 else "http://localhost:8765/v2/"
@@ -23,9 +23,9 @@ async def main():
     ck(t[0]['id']=='t24' and t[0]['cpt']=='50%' and t[1]['cpt']=='48%',"ranked by the national totals (Trump 50%, Harris 48%)",t)
     ck(all(x['photos']==0 for x in r) and len(r)>=51,"no per-row candidate photos (51 rows)",r[:2])
     ck(all(x['w'].get('rep',0)>0 and x['w'].get('dem',0)>0 for x in r),"every row has candidate-coloured rep and dem segments",r[:3])
-    lead=[max(x['w']['rep'],x['w']['dem']) for x in r]; ck(mono(lead),"% mode, all candidates on: rows sorted by the leader's share",lead[:8])
+    lead=[x['w']['rep'] for x in r]; ck(mono(lead) and r[0]['n']=='WY',"% mode, all candidates on: rows sorted by the top thumbnail's (Trump) share",lead[:8])
     await pg.evaluate("()=>window.__setNum('num')"); await pg.wait_for_timeout(1500); r=await pg.evaluate(ROWS)
-    bw=[x['bw'] for x in r]; ck(mono(bw,tol=1.01) and r[0]['n']=='CA',"# mode: rows sorted by raw votes (bar lengths on one scale, CA first)",[x['n'] for x in r[:4]]+bw[:4])
+    bw=[x['bw'] for x in r]; tv=[x['bw']*x['w'].get('rep',0)/100 for x in r]; ck(mono(tv,tol=1.5) and r[0]['n']=='TX',"# mode: rows sorted by the top thumbnail's (Trump) votes (bar lengths on one scale, TX first)",[x['n'] for x in r[:4]]+bw[:4])
     ck(all(x['bw']>=2.5 for x in r),"# mode: every row shows its bar (small states too)",min(bw))
     await pg.evaluate("()=>window.__setNum('pct')"); await pg.wait_for_timeout(1200)
     await pg.evaluate("()=>document.querySelector('#laCands .lact[data-cid=h24]').click()"); await pg.wait_for_timeout(1500)
