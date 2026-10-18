@@ -1,6 +1,7 @@
-# usage: python3 tests/type-labels.py URL -- t266: district-type buttons (US House, State senate, State house, School districts) carry their label
-# bubbles again: every button has an aria-label; long-press shows its name above the button without picking it (even with
-# finger jitter), a tap shows the picked type's name above the type button; desktop hover shows it too
+# usage: python3 tests/type-labels.py URL -- district-type buttons (US House, State senate, State house, School districts) carry
+# their names. Since build 1553 (new app, users learning) the labels are persistent white chips tucked onto the top edge of their
+# button (overlap 3px), never auto-hiding: the type button (bLyr) always shows the current type's name; with the type row open every
+# type button shows its own; long-press never picks a type; labels take no taps and never collide; list view too.
 import asyncio,sys
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -8,48 +9,54 @@ def ck(n,ok,d=''):
   global fails
   print(('OK   ' if ok else 'FAIL ')+n,'' if ok else d); fails+=0 if ok else 1
 EXP={"ushouse":"US House","senate":"State senate","statehouse":"State house","schools":"School districts"}
-BUB="""()=>{const e=[...document.querySelectorAll('.bub')].find(x=>!x.hidden&&getComputedStyle(x).display!=='none'); if(!e) return null; const r=e.getBoundingClientRect(); return {t:e.textContent,x:r.left,y:r.top,w:r.width,h:r.height,b:r.bottom}}"""
-RECT="k=>{const r=document.querySelector('#lyrRow .lbtn[data-k='+k+']').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,top:r.top,l:r.left,r:r.right}}"
+LABS="""()=>[...document.querySelectorAll('.tlab')].filter(x=>!x.hidden&&getComputedStyle(x).display!=='none').map(e=>{const r=e.getBoundingClientRect(); const s=getComputedStyle(e); return {t:e.textContent,k:e.dataset.k,l:r.left,r:r.right,top:r.top,b:r.bottom,bg:s.backgroundColor,col:s.color,pe:s.pointerEvents}})"""
+RECT="k=>{const r=document.querySelector(k.startsWith('#')?k:'#lyrRow .lbtn[data-k='+k+']').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,top:r.top,l:r.left,r:r.right}}"
+def tucked(lb,r): return lb and r['top']-1<=lb['b']<=r['top']+5 and lb['l']<r['x']<lb['r']
 async def openRow(pg):
   if await pg.evaluate("()=>document.getElementById('lyrRow').hidden"): await pg.tap("#bLyr"); await pg.wait_for_timeout(700)
+async def closeRow(pg):
+  if not await pg.evaluate("()=>document.getElementById('lyrRow').hidden"): await pg.tap("#bLyr"); await pg.wait_for_timeout(700)
 async def phone(b):
   c=await b.new_context(viewport={"width":430,"height":932},has_touch=True,is_mobile=True,device_scale_factor=2)
   pg=await c.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+  L=await pg.evaluate(LABS); h=await pg.evaluate(RECT,'#bLyr')
+  ck("phone, row closed: the type button carries a label (US House by default), tucked on its top edge",len(L)==1 and L[0]['t']=='US House' and tucked(L[0],h),[L,h])
+  ck("phone: labels are white with dark text and take no taps",L and L[0]['bg']=='rgb(255, 255, 255)' and L[0]['col']=='rgb(28, 28, 30)' and L[0]['pe']=='none',L)
   await openRow(pg)
   al=await pg.evaluate("()=>Object.fromEntries([...document.querySelectorAll('#lyrRow .lbtn')].map(b=>[b.dataset.k,b.getAttribute('aria-label')]))")
   for k,v in EXP.items(): ck("phone %s button aria-label '%s'"%(k,v),al.get(k)==v,al)
-  cdp=await c.new_cdp_session(pg)
+  L=await pg.evaluate(LABS); by={x['t']:x for x in L}
   for k,v in EXP.items():
-    await openRow(pg); lt0=await pg.evaluate("()=>window.__v2&&window.__v2.ltype!==undefined?window.__v2.ltype:(document.querySelector('#lyrRow .lbtn.on')||{dataset:{}}).dataset.k")
-    r=await pg.evaluate(RECT,k)
-    await cdp.send("Input.dispatchTouchEvent",{"type":"touchStart","touchPoints":[{"x":r['x'],"y":r['y']}]})
-    await pg.wait_for_timeout(200); await cdp.send("Input.dispatchTouchEvent",{"type":"touchMove","touchPoints":[{"x":r['x']+3,"y":r['y']+2}]})
-    await pg.wait_for_timeout(500); bb=await pg.evaluate(BUB)
-    if k=="senate": await pg.screenshot(path="/workspace/shots/type-labels-longpress-senate.png")
-    ck("phone long-press %s (with 3px jitter): bubble '%s' above the button"%(k,v),bb and bb['t']==v and bb['b']<=r['top'] and bb['x']<r['r'] and bb['x']+bb['w']>r['l'],{'bub':bb,'btn':r})
-    await cdp.send("Input.dispatchTouchEvent",{"type":"touchEnd","touchPoints":[]}); await pg.wait_for_timeout(300)
-    ck("phone long-press %s does not pick the type (row still open)"%k,not await pg.evaluate("()=>document.getElementById('lyrRow').hidden"))
-    await pg.wait_for_timeout(2200)
+    r=await pg.evaluate(RECT,k); ck("phone, row open: '%s' label tucked on its button"%v,tucked(by.get(v),r),[by.get(v),r])
+  srt=sorted(L,key=lambda x:x['l']); ck("phone, row open: labels never overlap each other",all(a['r']<=b2['l']+0.5 for a,b2 in zip(srt,srt[1:])),srt)
+  await pg.screenshot(path="/workspace/shots/type-labels-open.png")
+  cdp=await c.new_cdp_session(pg); r=await pg.evaluate(RECT,'senate')
+  await cdp.send("Input.dispatchTouchEvent",{"type":"touchStart","touchPoints":[{"x":r['x'],"y":r['y']}]}); await pg.wait_for_timeout(200)
+  await cdp.send("Input.dispatchTouchEvent",{"type":"touchMove","touchPoints":[{"x":r['x']+3,"y":r['y']+2}]}); await pg.wait_for_timeout(500)
+  await cdp.send("Input.dispatchTouchEvent",{"type":"touchEnd","touchPoints":[]}); await pg.wait_for_timeout(300)
+  ck("phone long-press senate does not pick the type (row still open)",not await pg.evaluate("()=>document.getElementById('lyrRow').hidden"))
   for k,v in EXP.items():
     await openRow(pg)
     if await pg.evaluate("k=>!!document.querySelector('#lyrRow .lbtn.on[data-k='+k+']')",k): await pg.tap("#lyrRow .lbtn[data-k=%s]"%k); await pg.wait_for_timeout(1500); await openRow(pg)
-    await pg.tap("#lyrRow .lbtn[data-k=%s]"%k); await pg.wait_for_timeout(250); bb=await pg.evaluate(BUB)
-    h=await pg.evaluate("()=>{const r=document.getElementById('bLyr').getBoundingClientRect();return {top:r.top,l:r.left,r:r.right}}")
-    if k=="schools": await pg.screenshot(path="/workspace/shots/type-labels-tap-schools.png")
-    ck("phone tap %s: bubble '%s' above the type button"%(k,v),bb and bb['t']==v and bb['b']<=h['top'] and bb['x']<h['r'],{'bub':bb,'host':h})
-    await pg.wait_for_timeout(1700); bb=await pg.evaluate(BUB); ck("phone tap %s: bubble gone after ~2s"%k,not bb,bb)
+    await pg.tap("#lyrRow .lbtn[data-k=%s]"%k); await pg.wait_for_timeout(2600)
+    await closeRow(pg); L=await pg.evaluate(LABS); h=await pg.evaluate(RECT,'#bLyr')
+    ck("phone tap %s: type button label '%s', still shown after 2.6s"%(k,v),len(L)==1 and L[0]['t']==v and tucked(L[0],h),[L,h])
+  # list view: the label stays, clear of the row names
+  await pg.evaluate("()=>window.__v2.setView('list')"); await pg.wait_for_timeout(4000)
+  L=await pg.evaluate(LABS); nm=await pg.evaluate("()=>Math.max(0,...[...document.querySelectorAll('#listView .lvrow .nmx')].filter(e=>e.offsetParent).map(e=>{const g=document.createRange(); g.selectNodeContents(e); return g.getBoundingClientRect().right}))")
+  ck("phone list view: type label shown, right of every row name",len(L)==1 and L[0]['l']>nm,[L,nm])
+  await pg.screenshot(path="/workspace/shots/type-labels-list.png")
   ck("phone no page errors",not errs,errs[:3]); await c.close()
 async def desk(b):
   c=await b.new_context(viewport={"width":1280,"height":800}); pg=await c.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
   await pg.click("#bLyr"); await pg.wait_for_timeout(700)
-  for k,v in EXP.items():
-    await pg.hover("#lyrRow .lbtn[data-k=%s]"%k); await pg.wait_for_timeout(300); bb=await pg.evaluate(BUB)
-    ck("desktop hover %s: bubble '%s'"%(k,v),bb and bb['t']==v,bb)
+  L={x['t'] for x in await pg.evaluate(LABS)}
+  ck("desktop row open: every type button labelled",all(v in L for v in EXP.values()),L)
   ck("desktop no page errors",not errs,errs[:3]); await c.close()
 async def main():
   async with async_playwright() as p:
     b=await p.chromium.launch(); await phone(b); await desk(b); await b.close()
-  print("FAILS",fails)
+  print("FAILS",fails); sys.exit(1 if fails else 0)
 asyncio.run(main())

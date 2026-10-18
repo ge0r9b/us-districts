@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171552";</script>
+<script>window.BUILD="202610171553";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -140,7 +140,7 @@
   #crumbs .lyrs { margin-left: 8px; color: #44403c; font-size: .9em; }
   .info32 p { margin: 0 0 12px; line-height: 1.4; } .srcbtn { display: block; margin-top: 4px; min-height: 32px; padding: 2px 6px; }
   .ibtn svg { width: 58%; height: 58%; } .lt svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .bub { position: fixed; z-index: 1100; background: #111; color: #fff; font-size: 13px; line-height: 1; padding: 7px 10px; border-radius: 12px; white-space: nowrap; pointer-events: none; transition: opacity .3s; opacity: 1; }
+  .bub { position: fixed; z-index: 1100; background: #fff; color: #1c1c1e; border: 0.5px solid rgba(0,0,0,.18); box-shadow: 0 2px 10px rgba(0,0,0,.18), 0 1px 2px rgba(0,0,0,.12); font-weight: 500; font-size: 13px; line-height: 1; padding: 7px 10px; border-radius: 12px; white-space: nowrap; pointer-events: none; transition: opacity .3s; opacity: 1; }
   .bub.fade { opacity: 0; } .bub[hidden] { display: none; }
   .nest li.lvl1 { padding-left: 18px; } .nest li.lvl2 { padding-left: 36px; } .nest li.lvl3 { padding-left: 54px; }
   .rail { z-index: 1003 !important; }
@@ -2590,6 +2590,20 @@ drawNat();
     b.addEventListener("contextmenu",e=>e.preventDefault());
     b.addEventListener("click",()=>{ if(fired){ fired=false; return; } const k=b.dataset.k; setTimeout(()=>{ if(ltype===k) window.__typeBub(k,1200); },0); });
   }); }
+// ===== build 1553: persistent, tucked-in type labels (new app, users learning): the type button (bLyr) always carries the
+// current type's name; with the type row open every type button carries its own. White label chips that overlap the top edge of
+// their button by 3px, never auto-hide, wrap to two short lines so neighbours never collide, and take no taps (pointer-events:none). =====
+{ const st=document.createElement("style"); st.textContent=".tlab{position:fixed;z-index:1001;transform:translate(-50%,-100%);background:#fff;color:#1c1c1e;border:0.5px solid rgba(0,0,0,.18);box-shadow:0 2px 10px rgba(0,0,0,.18),0 1px 2px rgba(0,0,0,.12);font:500 11px/1.15 system-ui,-apple-system,sans-serif;padding:3px 6px;border-radius:8px;text-align:center;white-space:normal;pointer-events:none;box-sizing:border-box;width:max-content} .tlab[hidden]{display:none} body.foldfs .tlab,body.srchfs .tlab,body.geofs .tlab,body.ctxedit .tlab{display:none!important}"; document.head.append(st);
+  const pool=[]; const lbOf=b=>b&&(b.getAttribute("aria-label")||b.title)||"";
+  const vis=e=>{ if(!e) return null; const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).display!=="none"&&getComputedStyle(e).visibility!=="hidden"?r:null; };
+  const sync=()=>{ try{ const host=document.getElementById("bLyr"), T=[]; const open=!lrow.hidden;
+      if(open){ const bs=[...lrow.querySelectorAll(".lbtn")].map(b=>[b,vis(b)]).filter(x=>x[1]); bs.forEach(([b,r],i)=>{ const nb=bs[i+1]||bs[i-1]; const gap=nb?Math.abs((nb[1].left+nb[1].width/2)-(r.left+r.width/2)):120; T.push([lbOf(b),r,Math.max(44,gap-4),b.dataset.k]); }); }
+      else { const hr=vis(host); if(hr){ const ob=lrow.querySelector(".lbtn.on"), k=ob&&["ushouse","senate","statehouse","schools"].includes(ob.dataset.k)?ob.dataset.k:"ushouse"; T.push([lbOf(lrow.querySelector('.lbtn[data-k="'+k+'"]')),hr,110,"host:"+k]); } }
+      while(pool.length<T.length){ const d=document.createElement("div"); d.className="tlab"; d.setAttribute("aria-hidden","true"); document.body.append(d); pool.push(d); }
+      pool.forEach((d,i)=>{ const t=T[i]; if(!t){ if(!d.hidden) d.hidden=true; return; } const [txt,r,mw,k]=t; if(d.textContent!==txt) d.textContent=txt; d.dataset.k=k; d.style.maxWidth=Math.round(mw)+"px";
+        let x=r.left+r.width/2; d.hidden=false; const w=d.offsetWidth; x=Math.max(4+w/2,Math.min(innerWidth-4-w/2,x)); d.style.left=x+"px"; d.style.top=(r.top+3)+"px"; }); }catch(e){} };
+  window.__typeLabels=sync; setInterval(sync,200); addEventListener("resize",sync);
+  /* the transient type bubble is replaced by the persistent labels */ window.__typeBub=()=>{ sync(); }; }
 // ===== clearing the bottom field zooms to the org selection (All = whole US) =====
 function fitOrgSel(){ if(!(window.__selAt&&Date.now()-window.__selAt<2500)) nameLock=null; if(hier.dist){ zoomItem(ltype==="none"?"county":ltype,hier.dist); return; }
   if(state.value){ const cs=(GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)); if(cs.length){ fitItems(cs); return; } const n=(NAT||[]).filter(d=>d.st===state.value); if(n.length){ let b=L.latLngBounds([]); n.forEach(d=>b.extend(L.polygon(natLL(d)).getBounds())); map.fitBounds(b,{paddingTopLeft:[70,200],paddingBottomRight:[80,140]}); return; } }
@@ -3349,7 +3363,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       R.forEach(([b,r,s])=>{ if(b.parentElement.parentElement.classList.contains("dl")) return; if(r.right<=L){ if(b.style.visibility) b.style.visibility=""; return; } const sh=r.right-L; if(r.left-sh>=s.left+2&&s.left<L){ b.style.transform="translateX("+(-sh)+"px)"; if(b.style.visibility) b.style.visibility=""; } else b.style.visibility="hidden"; }); }catch(e){} }
   window.__dTot=dTot; window.__clampLabels=()=>{ setDlen(); clampLabels(); fitLabels(); }; setInterval(()=>{ if(LA.on&&document.body.classList.contains("listmode")){ setDlen(); clampLabels(); fitLabels(); } },900);
   /* the org crumb names the listed level ('Pennsylvania counties') in mid-gray: a data attribute drawn by ::after, so it is never part of the crumb's textContent (edit text, length checks, comparisons) */
-  function nounSync(){ try{ const c=document.getElementById("crumbs"); if(!c) return; const bs=c.querySelectorAll(".crumb.cur"), last=bs[bs.length-1], want=LA.on&&LA.noun?String(LA.noun):"";
+  function nounSync(){ try{ const c=document.getElementById("crumbs"); if(!c) return; const bs=c.querySelectorAll(".crumb.cur"), last=bs[bs.length-1], want0=LA.on&&LA.noun?String(LA.noun):"", sg=w=>String(w||"").toLowerCase().replace(/[^a-z]/g,"").replace(/ies$/,"y").replace(/s$/,""), lw=t=>String(t||"").trim().split(/\s+/).pop(), want=want0&&last&&sg(lw(last.textContent.replace(/…$/,"")))===sg(lw(want0))?"":want0; /* no 'All States states': the crumb already names the level */
       c.querySelectorAll(".crumb[data-noun]").forEach(b=>{ if(b!==last||!want) b.removeAttribute("data-noun"); }); if(last&&want&&last.getAttribute("data-noun")!==want) last.setAttribute("data-noun",want); }catch(e){} }
   setTimeout(()=>{ const c=document.getElementById("crumbs"); if(c) new MutationObserver(nounSync).observe(c,{childList:true}); },0); setInterval(nounSync,400); window.__nounSync=nounSync;
   /* a chart-row name cut off with an ellipsis: tap (or long-press; hover with a mouse) shows the full name in a label bubble like the district-type bubbles; the tap still reaches the row as before */
@@ -3407,7 +3421,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(html!==lacKey){ lacBox.innerHTML=html; lacKey=html; }
       const bb=document.getElementById("bBack"), bv=bb&&getComputedStyle(bb).display!=="none"&&bb.getBoundingClientRect().height>0, br=bv&&bb.getBoundingClientRect();
       const tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), ref=tb&&tb.classList.contains("on")&&cb&&cb.getBoundingClientRect().height>0?cb:tb, q=ref&&ref.getBoundingClientRect(), cy=q&&q.height?q.top+q.height/2:(br?br.top+br.height/2:150);
-      const top=Math.round(cy+8.5+6), bot=($("barBottom")&&$("barBottom").getBoundingClientRect().top)||innerHeight; sSet(lacBox,"top",top+"px"); sSet(lacBox,"maxHeight",Math.max(44,bot-top-4)+"px"); lacBox.hidden=false; }catch(e){} }
+      let top=Math.round(cy+8.5+6); if(!bv&&q&&q.height){ /* build 1553: no back chevron: the first thumbnail mirrors the clock (time row closed) / chart button (open) across the screen, centre on its centre */ const f=lacBox.querySelector(".lact"), fr=f&&f.getBoundingClientRect(), lr=lacBox.getBoundingClientRect(); const off=fr&&fr.height&&lr.height?(fr.top-lr.top)+fr.height/2:18; top=Math.round(q.top+q.height/2-off); } const bot=($("barBottom")&&$("barBottom").getBoundingClientRect().top)||innerHeight; sSet(lacBox,"top",top+"px"); sSet(lacBox,"maxHeight",Math.max(44,bot-top-4)+"px"); lacBox.hidden=false; }catch(e){} }
   window.__laThumbs=laThumbs; try{ window.__PHOTO=PHOTO; }catch(e){} setInterval(()=>{ try{ laThumbs(); }catch(e){} },500);
   setTimeout(()=>{ const _lp=window.__laPick; if(typeof _lp!=="function") return; window.__laPick=function(a){ try{ if(a&&LA.on){ LA.selK=kOf(a); LA.selScope=scopeK(); } }catch(e){} const r=_lp.apply(this,arguments); setTimeout(()=>{ try{ if(LA.on) render(); laThumbs(); }catch(e){} },80); return r; }; },0);
   const _rl=renderList; renderList=function(){ if(LA.on) render(); else if(LA.pend) return; else _rl(); };
@@ -3542,7 +3556,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   // 'List all states': field reads 'All States' (flag kept); list starts right under the toolbar strip; party names appear in a press bubble
   { const _cr=crumbs; const lab=()=>{ try{ const on=LA.on&&LA.lv&&LA.lv.id==="states"; const c=document.querySelector("#crumbs .crumb.cur"); if(!c) return; if(on){ if(c.textContent!=="All States"){ c.textContent="All States"; c.title="All States"; c.setAttribute("aria-label","All States"); } } }catch(e){} };
     crumbs=function(){ const r=_cr.apply(this,arguments); lab(); return r; }; setInterval(lab,250); window.__laLab=lab; window.__layoutSide=()=>layoutSide(); setInterval(()=>{ if(LA.on) layoutSide(); },200);
-    const _ls=layoutSide; layoutSide=function(){ _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); const g0=(parseFloat(getComputedStyle($("barGeo")).gap)||8); sSet(lv,"top",(top-g0)+"px"); sSet(lv,"paddingTop",(g0+30)+"px"); /* list scrolls up under the floating back chevron and sort glyph (no band); first row starts where it did */ sSet(lv,"left",((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"); } }catch(e){} };
+    const _ls=layoutSide; layoutSide=function(){ _ls(); try{ if(LA.on){ const lv=document.getElementById("listView"), t=$("barTime"), top=(t.hidden?$("barGeo"):t).getBoundingClientRect().bottom+(parseFloat(getComputedStyle($("barGeo")).gap)||8); const g0=(parseFloat(getComputedStyle($("barGeo")).gap)||8); sSet(lv,"top",(top-g0)+"px"); sSet(lv,"paddingTop",(g0+23)+"px"); /* build 1553: first row raised by half the empty band under the back chevron / sort glyph row (13px band -> 6px) */ /* list scrolls up under the floating back chevron and sort glyph (no band); first row starts where it did */ sSet(lv,"left",((parseFloat(getComputedStyle($("barGeo")).gap)||8))+"px"); } }catch(e){} };
     let bub=null, bt=0; const hide=()=>{ if(bub){ bub.remove(); bub=null; } clearTimeout(bt); };
     document.addEventListener("click",e=>{ const el=e.target.closest&&e.target.closest("[data-party]"); if(!el){ hide(); return; } hide(); const r=el.getBoundingClientRect(); bub=document.createElement("div"); bub.id="partyBub"; bub.textContent=el.dataset.party; document.body.append(bub); const w=bub.offsetWidth; bub.style.left=Math.max(w/2+6,Math.min(innerWidth-w/2-6,r.left+r.width/2))+"px"; bub.style.top=(r.top-4)+"px"; bt=setTimeout(hide,1800); },true);
     document.addEventListener("scroll",hide,true); }
