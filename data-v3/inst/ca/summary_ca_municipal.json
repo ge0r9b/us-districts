@@ -1,0 +1,25 @@
+{
+ "cd": 293,
+ "csd": 5161,
+ "csd_by_province": {
+  "AB": 423,
+  "BC": 751,
+  "MB": 239,
+  "NB": 266,
+  "NL": 372,
+  "NS": 95,
+  "NT": 41,
+  "NU": 31,
+  "ON": 577,
+  "PE": 98,
+  "QC": 1282,
+  "SK": 951,
+  "YT": 35
+ },
+ "retrieved_at": "2026-10-18",
+ "rows": {
+  "gaps_ca_municipal.csv": 4,
+  "units_ca_cd.csv": 293,
+  "units_ca_csd.csv": 5161
+ }
+}
