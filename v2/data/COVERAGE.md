@@ -1042,7 +1042,7 @@ In this file ≈ means any estimate. Area-weighted and population-weighted figur
   
   The check is skipped only when the other-year figure itself fails the plausibility bar. Figures that fail stay gray or keep their old value, and the reason is logged in the fix's report.
 
-## Institutions lane, gray batch 2: every remaining gray cell (Oct 18, 2026, branch `data/inst-gray2`, not pushed)
+## Institutions lane, gray batch 2: every remaining gray cell (Oct 18, 2026, branch `data/inst-gray2`)
 
 **Scope.** Every gray cell in `ussch.js`, `ussldu.js` and `ussldl.js`, for both years.
 
@@ -1085,27 +1085,43 @@ In this file ≈ means any estimate. Area-weighted and population-weighted figur
 **Blocked:**
 - **OR Pleasant Hill SD 1 2024:** Lane County's 2024 precinct GIS is licensed (LCOG), and since 2023 precinct-level results are available only on request.
 
-**Source exists, not built this round (needs precinct polygons):** the vote returns exist (official county canvass, MEDSL), but too few of the district's people live in precincts that have both a 2024 polygon and votes. Each needs fix-3-style work per county: official units plus VEST 2020 or Census VTD polygons matched by name or code. Shown as share of district population in precincts with votes:
+**Pass 3: the 18 deferred cells (17 districts for 2024, plus NM Loving 2020).** Tool: `tools/inst_gray2_holes.py`. Report: `data-v3/inst/gray2_pass3_holes.json`.
 
-| District (2024) | Cover | County |
+These are counties where the app's precinct file has no polygon for some official reporting units, so part of the district lies in no precinct. This is the fix-3 approach, automated per county:
+
+1. Take the official units from MEDSL 2024 (CC0, from the official canvass).
+2. Match every app precinct row to one official unit by its Harris and Trump votes. Where the votes differ, fall back to the same unit name.
+3. The units left over have no polygon. A county's precincts tile the county, so their territory is the 2020 Census blocks that lie in no app precinct (the "hole").
+4. Split the hole into spatial components (2020 precincts that touch each other). Assign the leftover units to components, and keep only assignments where each component passes the 2020 consistency rule against the 2020 precinct file on the same blocks.
+5. Spread each component's votes by 2020 population, scale to the official county totals, then apply the 97 % placement rule, the 90 % plausibility bar and the 2020/2024 consistency rule.
+
+A county with no 2024 polygons at all uses its official units matched by name, one to one, to the 2020 precinct polygons (fix 3), with each unit checked against 2020. Everything filled here is ≈.
+
+Filled (8, all 2024, all ≈):
+
+| District | Value (Harris / Trump / total) | Hole units used |
 |---|---|---|
-| AL Guntersville City SD | 0 % | Marshall County reports by polling place, e.g. "GUNTERSVILLE REC CTR"; no polling-place boundaries published. The district is exactly Guntersville city (IoU 1.0). |
-| AR Jessieville SD | 78 % | Garland |
-| CO Aspen SD 1 | 76 % | Pitkin |
-| CO Salida SD R-32 | 61 % | Chaffee / Fremont |
-| KY Somerset ISD | 54 % | Pulaski |
-| KY East Bernstadt ISD and its Laurel County part | 85 % | Laurel |
-| MS South Delta SD | 76 % | |
-| MO Cape Girardeau 63 | 76 % | |
-| MO Delta C-7 | 30 % | Pemiscot |
-| MO Pettis R-XII | 12 % | fix-3 estimate also failed the consistency rule |
-| MT Lambert elementary / high | 27 % / 23 % | Richland |
-| NY Bath CSD | 72 % | Steuben |
-| NY Geneva City SD | 91 % | |
-| OH Shelby City SD | 90 % | Richland |
-| OH Carey EVSD | 80 % | Wyandot |
+| CO Aspen SD 1 | 6,046 / 2,234 / 8,460 | Pitkin 3055749001 and 005 (the district holds about 99 % of the hole) |
+| CO Salida SD R-32 | 5,076 / 2,967 / 8,250 | Chaffee 7041308005 and 009 (about 100 % of the hole) |
+| MT Lambert elementary | 44 / 195 / 253 | Richland Precinct 07A + 07B (one 2020 precinct, 07) |
+| MT Lambert high | 43 / 183 / 240 | same |
+| NY Bath CSD | 1,435 / 3,098 / 4,532 | Steuben "Town of Bath 1". "City of Hornell Ward 1" is the other component; there is one valid assignment. |
+| NY Geneva City SD | 4,288 / 2,758 / 7,046 | Ontario "Geneva 2" |
+| OH Shelby City SD | 1,495 / 4,721 / 6,274 | Richland MAD G, PLY and SHARON. There are 2 valid assignments, which agree within 3 %. |
+| OH Carey EVSD | 703 / 1,864 / 2,584 | Wyandot UPPER F, CRANE TS and CRAWFORD TS (the hole supplies 20 % of the district) |
 
-NM Loving Municipal Schools 2020 also belongs here, with 84 % cover (Eddy).
+Still gray, with reasons:
+- **AL Guntersville City SD:** the whole district lies in a hole of 4 Marshall County polling-place units. That hole spans 4 precincts from 2020 and has 29,392 residents, and the district holds only 29 % of it. Polling places have no boundaries, so the units can't be split inside the hole.
+- **AR Jessieville SD:** no assignment of Garland's 2 leftover units ("011" and "111 01") to the 2 hole components passes the 2020 consistency rule (whole hole: turnout ratio 0.59).
+- **KY Somerset ISD, East Bernstadt ISD and the Laurel County part:** the app's 2024 Kentucky polygons leave 62 % (Pulaski) and 51 % (Laurel) of the county population in no precinct. A hole that size would be a county average, not a precinct estimate. These need Kentucky's 2024 precinct map, which wasn't fetched this round.
+- **MS South Delta SD:** Issaquena has no 2024 polygons. Its 5 official units match the 2020 precincts by name, but Addie, Tallula and Valley Park fail the 2020 rule. For example, Addie's Republican share is 0.86 in 2024 vs 0.44 in 2020, so the name match isn't trusted.
+- **MO Cape Girardeau 63:** the hole fails the 2020 rule (turnout ratio 0.37). The redrawn city wards leave territory with no unit, as in fix 3.
+- **MO Delta C-7:** Pemiscot's Deering-Braggadocio unit vs the hole gives a turnout ratio of 0.70, which is just under the 0.7 bar.
+- **MO Pettis R-XII:** hole turnout ratio 0.56, the same failure as fix 3.
+- **NM Loving 2020:** recomputed on the full VEST 2020 layer (CC BY 4.0) as 748 votes. That fails the consistency rule against the stored 2024 figure of 509 (ratio 0.68).
+- **OR Pleasant Hill:** still blocked (licensed).
+
+Sizes for pass 3: `ussch.js` went from 4,750,812 to 4,750,935 bytes raw and from 1,584,169 to 1,584,217 gzip -9. No new requests. Schools 2024 gray went from 77 to **69** (in scope: 37 → 29). Schools 2020 gray stays at 23.
 
 **Counts (gray cells, by layer and year):**
 
