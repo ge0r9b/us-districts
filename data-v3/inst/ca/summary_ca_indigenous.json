@@ -1,7 +1,8 @@
 {
- "approx_rows": 1092,
+ "approx_rows": 1162,
  "bands": 638,
  "bands_with_links": 571,
+ "below_threshold_individually_was_merged": 0,
  "below_threshold_overlaps": 361,
  "distinct_reserves_linked": 1059,
  "fn_csds": 1028,
@@ -30,11 +31,11 @@
   "territory:ca-nt": 26,
   "territory:ca-yt": 16
  },
- "reserve_of_links": 1092,
+ "reserve_of_links": 1162,
  "retrieved_at": "2026-10-18",
  "rows": {
   "entities_ca_indigenous.csv": 638,
-  "entity_unit_ca.csv": 1092,
+  "entity_unit_ca.csv": 1162,
   "first_nation_reserves_ca.csv": 3543,
   "gaps_ca_indigenous.csv": 146,
   "gaps_ca_reserve_overlay.csv": 2631

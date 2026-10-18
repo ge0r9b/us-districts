@@ -71,16 +71,17 @@ b6567c5c-8339-4055-99fa-63f92114d9e4; browser download 2026-10-18, data.sac-isc.
 - `entities_ca_indigenous.csv`: 638 bands. Parent = province / territory of the StatCan 2021 CSD polygon containing the ISC band
   location point (all 638 fall in exactly one; flag `parent_from:isc_location_in_statcan_csd_2021`), else `nation:ca`.
 - `first_nation_reserves_ca.csv`: the ISC First Nation - reserve relation, 3,543 band x reserve rows (3,329 ISC reserves, 56 shared).
-- `entity_unit_ca.csv`: 1,092 `reserve_of` rows, all ≈ (`method=overlay`, `is_estimate=true`). Full Stack ruling: (a) an official
+- `entity_unit_ca.csv`: 1,162 `reserve_of` rows, all ≈ (`method=overlay`, `is_estimate=true`). Full Stack ruling: (a) an official
   StatCan 2021 reserve number -> CSDUID file was searched for and not found (StatCan 2021 correspondence files cover dissemination
   blocks / areas only; ISC's CWB thematic data is keyed by CSDUID with names only), so (b): NRCan CLSS Aboriginal Lands polygons
   (AL_TA_CA_SHP_DCM_eng.zip edition 2.189, CONFIRMED + MODIFIED + ADDED; ALCODE = ISC reserve number; source `nrcan-al-ta-ca`)
   overlaid on the 1,028 StatCan 2021 CSDs of the eight First Nations types (IRI, S-É, IGD, TC, TK, NL, TWL, TAL), areas in Canada
   Albers Equal Area (ESRI:102001). A reserve is linked to a CSD iff intersection / CSD area >= 0.5 ("the CSD is at least 50% inside
-  the reserve") or intersection / reserve area >= 0.5 ("the reserve is at least 50% in the CSD"). One row per band x CSD (a shared
-  reserve gives one row per band; several reserves of one band in one CSD are merged, record ids joined, areas summed);
-  `share_of_geoid_in_entity` = share of the CSD inside the reserve(s), `share_of_entity_in_geoid` = share of the reserve(s) inside the
-  CSD; `source_record_id` = `isc_reserve_no=<ALCODE>`. Bands without a reserve get no rows; names are never matched.
+  the reserve") or intersection / reserve area >= 0.5 ("the reserve is at least 50% in the CSD"). One row per band x CSD x reserve
+  (Full Stack: never merged; the 50% rule is applied to each reserve on its own; a shared reserve gives one row per band; flag
+  `several_reserves_in_csd` when a band has more than one reserve linked to the same CSD; a reserve passing only as part of a group
+  would be a `below_threshold_individually_was_merged` gap, 0 occur); `share_of_geoid_in_entity` = share of the CSD inside the reserve,
+  `share_of_entity_in_geoid` = share of the reserve inside the CSD; `source_record_id` = `isc_reserve_no=<ALCODE>`. Bands without a reserve get no rows; names are never matched.
 - `gaps_ca_reserve_overlay.csv`: 361 below-threshold overlaps (not linked) + 2,270 reserves flagged `no_csd` (no 2021 First
   Nations-type CSD overlaps >= 50%; mostly uninhabited reserves StatCan does not delineate as CSDs). They are never mapped to a parent
   CSD. `first_nation_reserves_ca.csv` is kept unchanged. 1,059 distinct reserves linked; 996 of the 1,028 First Nations CSDs are

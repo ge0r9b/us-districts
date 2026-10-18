@@ -120,19 +120,25 @@ for a_ in sorted(share):
     for h in hits: links[a_].append(h)
     if not hits:
         nocsd.append((a_, 'no 2021 First Nations-type CSD overlaps >= 50%% (ALTYPE %s; %d below-threshold overlaps)' % (alt, sum(1 for b_ in below if b_[0] == a_))))
-# entity_unit rows: one per band x CSD; several reserves of one band in one CSD are merged (record ids joined, areas summed)
-agg = {}
+# entity_unit rows: one per band x CSD x ISC reserve (Full Stack: merged rows split), each with its own area and shares; the 50% rule
+# is applied to each reserve on its own (a reserve that passed only as part of a merged group would go to the gaps file instead)
+per_csd = collections.defaultdict(set)
+for a_ in links:
+    for h in links[a_]:
+        for band in share[a_]: per_csd[(band, h[1])].add(a_)
+merged_fail = []
 for a_ in sorted(links):
     for (_, k, s_c, s_r, ia) in links[a_]:
+        if not (s_c >= 0.5 or s_r >= 0.5):
+            merged_fail.append((a_, k, s_c, s_r, ia)); continue
         for band in sorted(share[a_], key=int):
-            d = agg.setdefault((band, k), {'res': [], 'ia': 0.0, 'ra': 0.0})
-            d['res'].append(a_); d['ia'] += ia; d['ra'] += al[a_][0].area
-for (band, k), d in sorted(agg.items(), key=lambda x: (int(x[0][0]), x[0][1])):
-    eu.append({'entity_id': 'first_nation:ca-%s' % band, 'boundary_set': 'statcan-2021-csd', 'unit_type': 'ca_csd', 'unit_key': k, 'role': 'reserve_of',
-               'method': 'overlay', 'share_of_geoid_in_entity': '%.4f' % min(1.0, d['ia'] / csd_alb[k].area), 'share_of_entity_in_geoid': '%.4f' % min(1.0, d['ia'] / d['ra']),
-               'is_estimate': 'true', 'share_basis': '≈ overlay, equal-area (ESRI:102001): NRCan AL_TA 2.189 reserve polygon(s) x StatCan 2021 CSD; share_of_geoid_in_entity = share of the CSD inside the reserve(s), share_of_entity_in_geoid = share of the reserve(s) inside the CSD',
-               'source_id': ';'.join([S_AL, S_REL, S_BND]), 'source_record_id': ';'.join('isc_reserve_no=%s' % x for x in sorted(set(d['res']))),
-               'flags': ';'.join(x for x in ('shared_reserve' if any(len(share[x]) > 1 for x in d['res']) else '', 'several_reserves_in_csd' if len(set(d['res'])) > 1 else '') if x)})
+            eu.append({'entity_id': 'first_nation:ca-%s' % band, 'boundary_set': 'statcan-2021-csd', 'unit_type': 'ca_csd', 'unit_key': k, 'role': 'reserve_of',
+               'method': 'overlay', 'share_of_geoid_in_entity': '%.4f' % min(1.0, s_c), 'share_of_entity_in_geoid': '%.4f' % min(1.0, s_r),
+               'is_estimate': 'true', 'share_basis': '≈ overlay, equal-area (ESRI:102001): NRCan AL_TA 2.189 reserve polygon x StatCan 2021 CSD; share_of_geoid_in_entity = share of the CSD inside the reserve, share_of_entity_in_geoid = share of the reserve inside the CSD',
+               'source_id': ';'.join([S_AL, S_REL, S_BND]), 'source_record_id': 'isc_reserve_no=%s' % a_,
+               'flags': ';'.join(x for x in ('shared_reserve' if len(share[a_]) > 1 else '', 'several_reserves_in_csd' if len(per_csd[(band, k)]) > 1 else '') if x)})
+eu.sort(key=lambda e: (int(e['entity_id'].split('-')[-1]), e['unit_key'], e['source_record_id']))
+agg = {(e['entity_id'].split('-')[-1], e['unit_key']) for e in eu}
 OV_COLS = ['isc_reserve_number', 'reserve_name_en', 'csd_unit_key', 'csd_name', 'csd_type', 'share_of_csd_in_reserve', 'share_of_reserve_in_csd', 'overlap_m2', 'status', 'source_id']
 csdn = {r['CSDUID']: r['CSDNAME'] for r in (dict(zip([f[0] for f in sf.fields[1:]], rec)) for rec in sf.records())}
 ctp = dict(zip(cuid, ctyp))
@@ -141,6 +147,9 @@ ov = []
 for (a_, k, s_c, s_r, ia) in sorted(below):
     ov.append({'isc_reserve_number': a_, 'reserve_name_en': rname[a_], 'csd_unit_key': k, 'csd_name': csdn[k], 'csd_type': ctp[k], 'share_of_csd_in_reserve': '%.4f' % s_c,
                'share_of_reserve_in_csd': '%.4f' % s_r, 'overlap_m2': '%.0f' % ia, 'status': 'below_threshold', 'source_id': S_AL + ';' + S_BND})
+for (a_, k, s_c, s_r, ia) in sorted(merged_fail):
+    ov.append({'isc_reserve_number': a_, 'reserve_name_en': rname[a_], 'csd_unit_key': k, 'csd_name': csdn[k], 'csd_type': ctp[k], 'share_of_csd_in_reserve': '%.4f' % s_c,
+               'share_of_reserve_in_csd': '%.4f' % s_r, 'overlap_m2': '%.0f' % ia, 'status': 'below_threshold_individually_was_merged', 'source_id': S_AL + ';' + S_BND})
 for a_, why in sorted(nocsd):
     ov.append({'isc_reserve_number': a_, 'reserve_name_en': rname[a_], 'csd_unit_key': '', 'csd_name': '', 'csd_type': '', 'share_of_csd_in_reserve': '',
                'share_of_reserve_in_csd': '', 'overlap_m2': '', 'status': 'no_csd: ' + why, 'source_id': S_AL + ';' + S_REL})
@@ -159,7 +168,7 @@ reg.check_ids()
 write_csv(f'{OUT}/sources_ca_indigenous.csv', SOURCE_COLS, list(reg.rows.values()), key=lambda r: r['source_id'])
 write_json(f'{OUT}/summary_ca_indigenous.json', {'rows': counts, 'bands': len(ents), 'isc_reserve_links': len(rel), 'isc_reserves': len(share),
   'shared_reserves': sum(1 for v in share.values() if len(v) > 1), 'reserve_of_links': len(eu), 'method': 'overlay',
-  'distinct_reserves_linked': len(links), 'approx_rows': sum(1 for e in eu if e['is_estimate'] == 'true'), 'below_threshold_overlaps': len(below),
+  'distinct_reserves_linked': len({e['source_record_id'] for e in eu}), 'below_threshold_individually_was_merged': len(merged_fail), 'approx_rows': sum(1 for e in eu if e['is_estimate'] == 'true'), 'below_threshold_overlaps': len(below),
   'no_csd_reserves': len(nocsd), 'fn_csds_linked': len(linked_csd), 'fn_csds': len(csd_alb), 'bands_with_links': len({b for b, _ in agg}),
   'parents': dict(sorted(collections.Counter(e['parent_id'] for e in ents).items())),
   'gaps': dict(sorted(collections.Counter(g['gap'] for g in gaps).items())), 'retrieved_at': RET})
