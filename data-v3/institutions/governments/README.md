@@ -95,16 +95,17 @@ Sources:
   shows as a CDP gets no GEOID (note says so). Where GCN's ANSI code disagrees with TIGER 2024, TIGER's is kept and the
   note says so (GCN gives Gluckstadt MS and Hochatown OK the same ANSI code).
 - State sources (`changes_curated.csv`): South Carolina Legislature acts 104, 105, 106 of 2021 and 256 of 2022 (Bamberg,
-  Barnwell, Clarendon and Florence school consolidations, July 1, 2022) plus the SC Department of Education letter for
+  Barnwell, Clarendon and Florence school consolidations, July 1, 2022) and Act 183 of 2020 (S. 975: Clarendon County
+  School Districts 1 and 3 abolished July 1, 2021 and consolidated as Clarendon County School District No. 4, which
+  Act 106 then merged with No. 2 on July 1, 2022; No. 4 is kept as a ceased `sc_act:2020-183:clarendon_4` row) plus the SC Department of Education letter for
   the Florence 4 date; Nebraska official 2020 Kearney County results + Neb. Rev. Stat. 23-295 (14 townships
   discontinued, January 2023; the statute fixes only the month); Maine P&SL 2017 ch. 11 + Maine Revenue Services
   deorganization list (Codyville, July 1, 2019); Florida CS/HB 1215 = Laws of Florida 2020-196 (Weeki Wachee,
   June 9, 2020); Wisconsin DOA Municipal Data System (Village of French Island, May 21, 2026).
 
-Counts by change type and source: consolidation_abolished / sc_legislature 6, consolidation_new_entity / sc_legislature 3, dissolution / census_gcn 42, dissolution / fl_legislature 1, dissolution / me_legislature 1, dissolution / ne_kearney_election 14, incorporation / census_gcn 18, incorporation / wi_mds 1, new_township / census_gcn 6, reclassification / census_gcn 39.
+Counts by change type and source: consolidation_abolished / sc_legislature 9, consolidation_new_entity / sc_legislature 4, dissolution / census_gcn 42, dissolution / fl_legislature 1, dissolution / me_legislature 1, dissolution / ne_kearney_election 14, incorporation / census_gcn 18, incorporation / wi_mds 1, new_township / census_gcn 6, reclassification / census_gcn 39.
 
-Not recorded (could not be confirmed from an official source in this pass, or out of scope): Clarendon County
-School Districts 1 and 3 (CoG 2022 lists them; Act 106 names only districts 2 and 4); Rib Mountain WI, where GCN gives
+Not recorded (could not be confirmed from an official source in this pass, or out of scope): Rib Mountain WI, where GCN gives
 2023-07-11 and WI MDS gives 2023-07-21 (GCN date kept); special-district creations and dissolutions (TX TCEQ water
 districts, CA State Controller special districts) are not done yet; CoG 2022 omissions that are not changes (Howard KS,
 Keene KY, St. Mary KY, Plantersville TX, Poetry TX existed before 2022) are not added.

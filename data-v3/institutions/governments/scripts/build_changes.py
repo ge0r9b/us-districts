@@ -222,6 +222,12 @@ def build(reg, rows):
             new_rows.append(row)
             change(eid, c['change_type'], c['effective_date'], c['name'], c['state'], c['source_url'], c['retrieved_at'],
                    c['source_id'], detail=c['detail'])
+        elif c['subject'].startswith('reg:'):
+            # a unit created earlier in this table (new: row above) that has itself ceased since
+            eid = reg.by_key[c['subject'][4:]]
+            r = next(n for n in new_rows if n['entity_id'] == eid)
+            change(eid, c['change_type'], c['effective_date'], r['name'], r['state'], c['source_url'], c['retrieved_at'],
+                   c['source_id'], succ, '', c['detail'])
         else:
             r = by_id[c['subject']]
             assert core(r['name']) == core(c['name']) or norm(r['name']) == norm(c['name']), (r['name'], c['name'])
@@ -241,6 +247,7 @@ def build(reg, rows):
             continue
         merged[k] = dict(ch)
     changes = sorted(merged.values(), key=lambda c: (c['state'], c['effective_date'], c['entity_id'], c['change_type']))
+    by_id.update({n['entity_id']: n for n in new_rows})
     for ch in changes:
         r = by_id.get(ch['entity_id'])
         if r is None:

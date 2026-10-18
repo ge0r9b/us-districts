@@ -5,9 +5,9 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry.csv": 93278,
+  "id_registry.csv": 93279,
   "sources.csv": 23,
-  "changes_since_cog2022.csv": 131,
+  "changes_since_cog2022.csv": 135,
   "images.csv": 6317,
   "images_gaps.csv": 33603,
   "local/AK.csv": 236,
@@ -50,7 +50,7 @@
   "local/OR.csv": 1528,
   "local/PA.csv": 4851,
   "local/RI.csv": 159,
-  "local/SC.csv": 669,
+  "local/SC.csv": 670,
   "local/SD.csv": 1901,
   "local/TN.csv": 1030,
   "local/TX.csv": 5544,
@@ -62,11 +62,11 @@
   "local/WV.csv": 639,
   "local/WY.csv": 820
  },
- "rows_total_entities": 93278,
+ "rows_total_entities": 93279,
  "cog_by_type": {
   "county": 3031,
   "municipality": 19510,
-  "school_district": 13862,
+  "school_district": 13863,
   "special_district": 39555,
   "township": 16220
  },
@@ -74,7 +74,7 @@
   "county|independent": 3031,
   "municipality|independent": 19510,
   "school_district|dependent": 1313,
-  "school_district|independent": 12549,
+  "school_district|independent": 12550,
   "special_district|independent": 39555,
   "township|independent": 16220
  },
@@ -100,6 +100,7 @@
   "school_district|fallback_name_exact": 5,
   "school_district|no_name_match": 114,
   "school_district|no_tiger_layer": 529,
+  "school_district|not_in_tiger_2024": 1,
   "school_district|official_source_code_2024": 3,
   "special_district|no_tiger_layer": 39555,
   "township|fallback_name_2024": 3,
@@ -117,8 +118,8 @@
  "tiger_counties_without_cog_county_government": 191,
  "bia_list_lines": 577,
  "changes_since_cog2022": {
-  "consolidation_abolished|sc_legislature": 6,
-  "consolidation_new_entity|sc_legislature": 3,
+  "consolidation_abolished|sc_legislature": 9,
+  "consolidation_new_entity|sc_legislature": 4,
   "dissolution|census_gcn": 42,
   "dissolution|fl_legislature": 1,
   "dissolution|me_legislature": 1,
@@ -208,7 +209,7 @@
   "OH": 6,
   "OK": 1,
   "PA": 2,
-  "SC": 9,
+  "SC": 13,
   "SD": 2,
   "TX": 4,
   "UT": 1,
@@ -228,7 +229,7 @@
   "": 40754,
   "absent_2024": 36,
   "current_2024": 52003,
-  "not_in_tiger_2024": 12
+  "not_in_tiger_2024": 13
  },
  "sources": {
   "bia_notice": {
