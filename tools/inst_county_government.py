@@ -63,7 +63,7 @@ def main():
         if g not in C: r["government_note"] = (r.get("government_note", "") + "; not in data-v3/geo/counties.csv").strip("; ")
         if not agree:
             dis.append({"county_geoid": g, "name": f["tiger_name"], "tiger_funcstat": fs, "cog_county_unit": u["UNIT_NAME"] if u else None, "cog_unit_cited": r.get("cog_unit_name") if not u else None})
-            r["government_note"] = ((r.get("government_note") or "") + "; DISAGREES with TIGER FUNCSTAT %s; not resolved" % fs).strip("; ")
+            r["government_note"] = ((r.get("government_note") or "") + "; TIGER 2024 FUNCSTAT %s (%s) disagrees; CoG 2022 is authoritative for this file (orchestrator ruling, Oct 18, 2026)" % (fs, f["meaning"])).strip("; ")
         rows.append(r)
     extra = set(county) - set(F)
     # 2020-vintage rows where the county set differs (TIGER 2020 Gazetteer)

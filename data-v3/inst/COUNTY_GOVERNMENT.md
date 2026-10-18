@@ -9,7 +9,7 @@
   - `municipal`: 74. There is no county unit, but TIGER says C/B/F, or says A. The CoG general-purpose unit in that county area with the largest population is cited in `cog_unit_*`, e.g. CITY AND COUNTY OF SAN FRANCISCO. That is a citation of the listing, not a claim about who performs county functions.
   - `none in this county area`: 4. These are the NYC boroughs; CoG files the City of New York under 36061.
   - `none`: 35. These are TIGER N/S/G: CT's planning regions, MA, RI, Alaska census areas and Kalawao.
-- **Cross-check against TIGER 2024 FUNCSTAT** (`data-v3/geo/county_funcstat.csv`): `agrees_with_tiger` is yes when (FUNCSTAT = A) matches (a CoG county unit exists). The counts are 3,032 A vs 3,031 CoG county units. **3 disagreements**, listed and not resolved:
+- **Cross-check against TIGER 2024 FUNCSTAT** (`data-v3/geo/county_funcstat.csv`): `agrees_with_tiger` is yes when (FUNCSTAT = A) matches (a CoG county unit exists). The counts are 3,032 A vs 3,031 CoG county units. **3 disagreements**. **Ruling (orchestrator, Oct 18, 2026): CoG 2022 is authoritative.** Each of the 3 rows keeps the CoG value and notes TIGER's disagreement:
 
 | GEOID | County | TIGER | CoG 2022 |
 |---|---|---|---|
