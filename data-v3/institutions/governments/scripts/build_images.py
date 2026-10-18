@@ -12,7 +12,7 @@ IMAGE_COLUMNS = ['entity_id', 'image_kind', 'commons_file', 'commons_url', 'lice
                  'retrieved_at', 'usage_basis', 'source_url']
 GAP_COLUMNS = ['entity_id', 'image_kind', 'wikidata_qid', 'reason']
 FLAG_TYPES = {'nation', 'state', 'dc', 'territory'}
-FALLBACK_TYPES = {'nation', 'state', 'dc', 'territory', 'county', 'tribe'}   # enwiki seal fallback attempted for these
+FALLBACK_TYPES = {'nation', 'state', 'dc', 'territory', 'county', 'tribe', 'municipality', 'township'}   # enwiki seal fallback attempted for these
 FAIR_USE = 'identification icon, small size'
 
 

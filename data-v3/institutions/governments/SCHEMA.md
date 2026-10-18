@@ -95,9 +95,10 @@ Seal and flag image records, long format, one row per (entity, image_kind). URLs
 | `source_url` | fallback rows only: the English Wikipedia file page (fair use) or article (free file shown there) |
 
 Selection: P158/P41 of the entity's QID; several files → most open license first (PD/CC0, CC BY, CC BY-SA, other).
-Fallback for seals (nation, states, DC, territories, counties, tribes without P158): the seal file on the item's own
+Fallback for seals (nation, states, DC, territories, counties, municipalities, townships, tribes without P158): the seal file on the item's own
 English Wikipedia article (its enwiki sitelink), only if exactly one file named "...seal..." is on the page, that
-file is on no other fetched article (navbox images such as state seals are excluded) and is no other item's P158.
+file is on no other fetched article (navbox images such as state seals are excluded), is no other item's P158, and
+is not named only for a state (`Seal of the State of Ohio.svg`, `Seal utah.png`).
 School-district seals/logos are skipped by rule.
 
 ## images_gaps.csv

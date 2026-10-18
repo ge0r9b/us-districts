@@ -14,7 +14,7 @@ Images: P158 (seal image) for every entity with a QID except school districts; P
 states, DC and territories whose P5087 code is in Wikidata. License/author from Commons imageinfo extmetadata.
 Only URLs and metadata are written; no image files.
 """
-import collections, json, os, time, urllib.parse
+import collections, hashlib, json, os, re, time, urllib.parse
 from common import CACHE, fetch, meta
 
 UA_NOTE = 'batched SPARQL (VALUES <= 400) and Commons API (50 titles/request), one request per second'
@@ -23,7 +23,14 @@ COMMONS = 'https://commons.wikimedia.org/w/api.php?action=query&format=json&prop
 TERRITORIES = {'60': 'AS', '66': 'GU', '69': 'MP', '72': 'PR', '78': 'VI'}
 
 
-def sparql(key, q):
+def hkey(prefix, url):
+    """cache key = prefix + hash of the request, so a changed batch never reuses another batch's cached answer"""
+    return '{}_{}'.format(prefix, hashlib.sha1(url.encode()).hexdigest()[:16])
+
+
+def sparql(key, q, batched=False):
+    if batched:
+        key = hkey(key, q)
     path = os.path.join(CACHE, key + '.json')
     if not os.path.exists(path):
         time.sleep(1)
@@ -49,7 +56,7 @@ def id_maps(gnis_ids):
     for k in range(0, len(ids), 400):
         chunk = ids[k:k + 400]
         q = 'SELECT ?i ?v WHERE { VALUES ?v { %s } ?i wdt:P590 ?v }' % ' '.join('"{}"'.format(c) for c in chunk)
-        for b in sparql('wd_p590_{:05d}'.format(k // 400), q):
+        for b in sparql('wd_p590', q, True):
             out['P590'][qv(b, 'v')].add(qv(b, 'i'))
     return out
 
@@ -98,12 +105,7 @@ def commons_meta(files):
     files = sorted(set(files))
     for k in range(0, len(files), 50):
         chunk = files[k:k + 50]
-        key = 'commons_{:05d}'.format(k // 50)
-        path = os.path.join(CACHE, key + '.json')
-        if not os.path.exists(path):
-            time.sleep(1)
-        fetch(key, url=COMMONS + urllib.parse.quote('|'.join('File:' + f for f in chunk)), fname=key + '.json')
-        d = json.load(open(path))
+        d = _get('commons', COMMONS + urllib.parse.quote('|'.join('File:' + f for f in chunk)))
         norm_map = {n['to']: n['from'] for n in d.get('query', {}).get('normalized', [])}
         for p in d.get('query', {}).get('pages', {}).values():
             title = norm_map.get(p.get('title'), p.get('title'))
@@ -120,7 +122,7 @@ def claims(key, qids, props):
         chunk = qids[k:k + 400]
         opt = ' '.join('OPTIONAL {{ ?i wdt:{0} ?{0} }}'.format(p) for p in props)
         q = 'SELECT ?i %s WHERE { VALUES ?i { %s } %s }' % (' '.join('?' + p for p in props), ' '.join('wd:' + c for c in chunk), opt)
-        for b in sparql('{}_{:05d}'.format(key, k // 400), q):
+        for b in sparql(key, q, True):
             for p in props:
                 v = b.get(p, {}).get('value', '')
                 if v:
@@ -134,12 +136,29 @@ WD_API = 'https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&pr
 EN_API = 'https://en.wikipedia.org/w/api.php?format=json&action=query'
 
 
-def _get(key, url):
+def _get(prefix, url):
+    key = hkey(prefix, url)
     path = os.path.join(CACHE, key + '.json')
     if not os.path.exists(path):
         time.sleep(1)
     fetch(key, url=url, fname=key + '.json')
     return json.load(open(path))
+
+
+_STATE_WORDS = None
+
+
+def _state_seal_name(f):
+    """True for a file named only for a state (e.g. 'File:Seal utah.png', 'File:Seal of the State of Ohio.svg'): a
+    state seal shown on a single city article is still the state's, not the city's."""
+    global _STATE_WORDS
+    if _STATE_WORDS is None:
+        from common import state_table
+        _STATE_WORDS = {re.sub('[^a-z]', '', n.lower()) for _, n, _ in state_table().values()} | \
+                       {u.lower() for u, _, _ in state_table().values()}
+    stem = re.sub(r'\.[a-z0-9]+$', '', f[5:].lower())
+    words = [w for w in re.split(r'[^a-z]+', stem) if w and w not in ('seal', 'of', 'the', 'state', 'great', 'official', 'commonwealth', 'svg', 'png')]
+    return bool(words) and ''.join(words) in _STATE_WORDS
 
 
 def enwiki_seals(qids, exclude=frozenset()):
@@ -150,7 +169,7 @@ def enwiki_seals(qids, exclude=frozenset()):
     qids = sorted(set(qids), key=lambda q: int(q[1:]))
     title_of = {}
     for k in range(0, len(qids), 50):
-        d = _get('enwd_sl_{:05d}'.format(k // 50), WD_API + '|'.join(qids[k:k + 50]))
+        d = _get('enwd_sl', WD_API + '|'.join(qids[k:k + 50]))
         for q, e in d.get('entities', {}).items():
             t = e.get('sitelinks', {}).get('enwiki', {}).get('title')
             if t:
@@ -162,7 +181,7 @@ def enwiki_seals(qids, exclude=frozenset()):
         cont, n = '', 0
         while True:
             url = EN_API + '&prop=images&imlimit=max&redirects=1&titles=' + urllib.parse.quote('|'.join(chunk)) + cont
-            d = _get('enwp_img_{:05d}_{}'.format(k // 50, n), url)
+            d = _get('enwp_img', url)
             red = {r['from']: r['to'] for r in d.get('query', {}).get('redirects', [])}
             nor = {r['from']: r['to'] for r in d.get('query', {}).get('normalized', [])}
             back = {}
@@ -179,14 +198,15 @@ def enwiki_seals(qids, exclude=frozenset()):
     on_pages = collections.Counter(f for fs in files_of.values() for f in fs)
     pick = {}
     for q, t in title_of.items():
-        seals = sorted(f for f in files_of.get(t, ()) if 'seal' in f.lower() and on_pages[f] == 1 and f[5:] not in exclude)
+        seals = sorted(f for f in files_of.get(t, ()) if 'seal' in f.lower() and on_pages[f] == 1 and f[5:] not in exclude
+                       and not _state_seal_name(f))
         if len(seals) == 1:
             pick[q] = (t, seals[0])
     fl = sorted({f for _, f in pick.values()})
     info = {}
     for k in range(0, len(fl), 50):
         url = EN_API + '&prop=imageinfo&iiprop=url|extmetadata&titles=' + urllib.parse.quote('|'.join(fl[k:k + 50]))
-        d = _get('enwp_ii_{:05d}'.format(k // 50), url)
+        d = _get('enwp_ii', url)
         nor = {r['to']: r['from'] for r in d.get('query', {}).get('normalized', [])}
         for p in d.get('query', {}).get('pages', {}).values():
             ii = (p.get('imageinfo') or [{}])[0]
@@ -198,3 +218,4 @@ def enwiki_seals(qids, exclude=frozenset()):
         if i and i['url']:
             out[q] = dict(i, file=f[5:], page='https://en.wikipedia.org/wiki/' + urllib.parse.quote(t.replace(' ', '_')))
     return out
+

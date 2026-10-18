@@ -3,11 +3,27 @@
     python3 scripts/fetch_sources.py           # download into cache/ (skips cached files; --refresh to re-download)
     python3 scripts/build_all.py               # write the CSVs + summary.json (deterministic for a given cache)
 """
-import collections, json, os
+import re, collections, json, os
 import build_cog, build_states, build_federal_agencies, build_tribes, build_changes
 from build_changes import CHANGE_COLUMNS
 import wikidata, build_images
 from common import ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
+
+
+def sources_summary(man):
+    """Named downloads in full; hash-keyed API batch caches (e.g. wd_p590_<16 hex>) as one entry per prefix, so the
+    summary stays small. The full per-request list is cache/manifest.json (not in git)."""
+    out, api = {}, collections.defaultdict(list)
+    for k, v in sorted(man.items()):
+        m = re.match(r'^(.*)_[0-9a-f]{16}(\.json)?$', k)
+        if m:
+            api[m.group(1)].append(v)
+        else:
+            out[k] = {kk: v[kk] for kk in ('url', 'last_modified', 'retrieved_at')}
+    for p, vs in sorted(api.items()):
+        out[p + '_*'] = {'api_requests': len(vs), 'host': vs[0]['url'].split('/')[2],
+                         'retrieved_at_min': min(v['retrieved_at'] for v in vs), 'retrieved_at_max': max(v['retrieved_at'] for v in vs)}
+    return out
 
 
 def main():
@@ -111,7 +127,7 @@ def main():
         'dangling_parent_ids': dangling,
         'school_geoids_vs_data_v3_geo_schools_csv': school_check,
         'tiger_status': dict(sorted(collections.Counter(r.get('tiger_status', '') for r in local + tribes + states).items())),
-        'sources': {k: {kk: v[kk] for kk in ('url', 'last_modified', 'retrieved_at')} for k, v in sorted(manifest().items())},
+        'sources': sources_summary(manifest()),
     }
     json.dump(summary, open(os.path.join(ROOT, 'summary.json'), 'w'), indent=1, sort_keys=False)
     print(json.dumps({k: summary[k] for k in summary if k != 'sources'}, indent=1))
