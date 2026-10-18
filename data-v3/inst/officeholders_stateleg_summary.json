@@ -2,7 +2,9 @@
  "current": {
   "rows": 7323,
   "joined": 7266,
-  "no_v3_unit": 57,
+  "no_v3_unit": 0,
+  "no_v3_unit_floterial": 55,
+  "no_v3_unit_tribal": 2,
   "by_state": {
    "Alabama": {
     "upper": {
@@ -1124,7 +1126,9 @@
  "2024": {
   "rows": 7348,
   "joined": 7289,
-  "no_v3_unit": 59,
+  "no_v3_unit": 0,
+  "no_v3_unit_floterial": 58,
+  "no_v3_unit_tribal": 1,
   "by_state": {
    "Alabama": {
     "upper": {

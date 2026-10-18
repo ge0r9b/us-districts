@@ -1,0 +1,264 @@
+{
+ "states": {
+  "Texas": {
+   "source": "Texas Legislature Online, 89th Legislature member pages (party not listed there)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 178,
+   "official_serving": 178,
+   "openstates_current_rows": 178,
+   "official_rows_written": 178,
+   "joined": 178,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 178,
+   "units_filled_openstates": 178,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "48001",
+    "48022",
+    "48093"
+   ],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_session_roster_name_only": 5,
+    "confirmed_session_roster": 175,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "New Hampshire": {
+   "source": "New Hampshire General Court, Members.txt (gc.nh.gov/downloads)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 408,
+   "official_serving": 390,
+   "openstates_current_rows": 406,
+   "official_rows_written": 390,
+   "joined": 342,
+   "floterial": 48,
+   "no_v3_unit": 0,
+   "units_filled_official": 182,
+   "units_filled_openstates": 184,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "33201",
+    "33306",
+    "33409",
+    "33611",
+    "33722",
+    "33816"
+   ],
+   "diffs": 23,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 405,
+    "not_in_official_roster": 17
+   },
+   "official_vacancies": []
+  },
+  "Pennsylvania": {
+   "source": "Pennsylvania General Assembly, House and Senate member lists (palegis.us)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 253,
+   "official_serving": 253,
+   "openstates_current_rows": 253,
+   "official_rows_written": 253,
+   "joined": 253,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 253,
+   "units_filled_openstates": 253,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 245,
+    "not_in_official_roster": 6
+   },
+   "official_vacancies": []
+  },
+  "Massachusetts": {
+   "source": "Massachusetts Legislature API, 194th General Court LegislativeMembers + current member pages",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 204,
+   "official_serving": 196,
+   "openstates_current_rows": 197,
+   "official_rows_written": 196,
+   "joined": 196,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 196,
+   "units_filled_openstates": 197,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "25042",
+    "25074",
+    "25075",
+    "25D29"
+   ],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 197
+   },
+   "official_vacancies": []
+  },
+  "Minnesota": {
+   "source": "Minnesota Senate members API + Minnesota House member list (2025-2026)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 203,
+   "official_serving": 203,
+   "openstates_current_rows": 200,
+   "official_rows_written": 203,
+   "joined": 203,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 201,
+   "units_filled_openstates": 200,
+   "units_newly_filled": [
+    "2721A"
+   ],
+   "units_empty_official": [],
+   "diffs": 3,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 197,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": []
+  },
+  "Vermont": {
+   "source": "Vermont General Assembly, people/loadAll/2026 (2025-2026 biennium)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 190,
+   "official_serving": 180,
+   "openstates_current_rows": 180,
+   "official_rows_written": 180,
+   "joined": 180,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 125,
+   "units_filled_openstates": 125,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 25,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 180
+   },
+   "official_vacancies": []
+  },
+  "Missouri": {
+   "source": "Missouri House of Representatives, member grid (2026)",
+   "chambers": [
+    "lower"
+   ],
+   "official_records": 163,
+   "official_serving": 155,
+   "openstates_current_rows": 155,
+   "official_rows_written": 155,
+   "joined": 155,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 155,
+   "units_filled_openstates": 155,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "29029",
+    "29095",
+    "29099",
+    "29110",
+    "29114",
+    "29149",
+    "29159",
+    "29160"
+   ],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 155,
+    "not_in_official_roster": 7
+   },
+   "official_vacancies": [
+    "lower 029",
+    "lower 095",
+    "lower 099",
+    "lower 110",
+    "lower 114",
+    "lower 149",
+    "lower 159",
+    "lower 160"
+   ]
+  },
+  "New York": {
+   "source": "New York State Assembly member list (party not listed there)",
+   "chambers": [
+    "lower"
+   ],
+   "official_records": 150,
+   "official_serving": 150,
+   "openstates_current_rows": 150,
+   "official_rows_written": 150,
+   "joined": 150,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 150,
+   "units_filled_openstates": 150,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 147,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": []
+  },
+  "California": {
+   "source": "California State Assembly member list",
+   "chambers": [
+    "lower"
+   ],
+   "official_records": 80,
+   "official_serving": 79,
+   "openstates_current_rows": 79,
+   "official_rows_written": 79,
+   "joined": 79,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 79,
+   "units_filled_openstates": 79,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "06003"
+   ],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 78,
+    "not_in_official_roster": 2
+   },
+   "official_vacancies": [
+    "lower 03"
+   ]
+  }
+ },
+ "fallback_reasons": {
+  "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box",
+  "California/upper": "senate.ca.gov/senators page carries no machine-readable member list (rendered client-side)",
+  "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round"
+ },
+ "current_rows": 7309,
+ "current_joined": 7259,
+ "current_official_rows": 1784
+}

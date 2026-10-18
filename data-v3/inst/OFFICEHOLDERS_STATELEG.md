@@ -130,3 +130,47 @@ The plan names the official legislature rosters first. Those rosters (50 differe
 | Wisconsin | lower | 99 | 99 / 99 | 99 / 99 |  | none; none |
 | Wyoming | upper | 31 | 31 / 31 | 31 / 31 |  | none; none |
 | Wyoming | lower | 62 | 62 / 62 | 62 / 62 |  | none; none |
+
+## Official rosters (pass of 2026-10-18), via `tools/inst_stateleg_official.py`
+
+These states' chambers now come from official legislature rosters in `officeholders_stateleg_current.csv`, which replace the OpenStates rows. The raw files are in `inst-raw/rosters/`, and `SOURCES.txt` gives each file's URL and sha256. `person_id` keeps the OpenStates id when the same last name sits in the same unit. Where the official page lists no party (TX, NY Assembly), the party and term_start come from that OpenStates person, as the row's note says. The `official_check` column is `official` on these rows and `openstates_fallback` on all others.
+
+| State | Chambers | Official serving | OpenStates current | Joined | Diffs | Notes |
+|---|---|---|---|---|---|---|
+| Texas | H+S | 178 | 178 | 178 | 2 | 89th Legislature member pages. 6 pages show no district: 5 members left during the 89th, plus the Lt. Gov. |
+| New Hampshire | H+S | 390 | 406 | 342 | 23 | 48 floterial seats are `no_v3_unit_floterial` |
+| Pennsylvania | H+S | 253 | 253 | 253 | 0 | |
+| Massachusetts | H+S | 196 | 197 | 196 | 2 | 194th General Court, checked against the current member pages |
+| Minnesota | H+S | 203 | 200 | 203 | 3 | Unit 2721A is filled. OpenStates left it empty |
+| Vermont | H+S | 180 | 180 | 180 | 25 | Mostly the party label order and Independent vs R |
+| Missouri | House | 155 | 155 | 155 | 0 | 8 official vacancies |
+| New York | Assembly | 150 | 150 | 150 | 0 | The source page lists no party |
+| California | Assembly | 79 | 79 | 79 | 0 | District 03 is vacant |
+
+These chambers stay on the OpenStates fallback:
+- **NY Senate:** nysenate.gov returns 403 (a Cloudflare challenge).
+- **CA Senate:** senate.ca.gov builds its member list client-side, so there is no machine-readable list.
+- **MO Senate:** the senator listing URL returned 404.
+- **All other states:** they were not attempted this round, so they stay on OpenStates (CC0).
+
+Join counts for the current file:
+- Before: 7,323 rows, 7,266 joined.
+- After: 7,309 rows, 7,259 joined, 48 `no_v3_unit_floterial` (NH) and 2 `no_v3_unit_tribal` (ME).
+- Why the counts went down: official vacancies (MO 8, CA 1) and NH former members are no longer counted as serving.
+
+The 2024 file is unchanged in its rows: 7,348 rows, 7,289 joined, 58 floterial and 1 tribal. The official rosters are undated, so they cannot assign 2025-04-01 membership. Because of that, no empty 2024 units were filled. The rows are cross-checked instead:
+- 957 `confirmed_session_roster`;
+- 822 `confirmed_current_roster`;
+- 5 `confirmed_session_roster_name_only` (TX departed members);
+- 39 `not_in_official_roster`.
+
+All 73 diffs are in `stateleg_official_diffs.csv`:
+- 32 OpenStates members are not in the official roster;
+- 18 2024 OpenStates members are not in the session roster;
+- 14 official members are not in the OpenStates unit;
+- 8 party differences;
+- 1 official member sits in a unit that OpenStates leaves empty.
+
+Special cases, which are never joined:
+- **NH House floterials:** labels that are not among the 164 TIGER 2024 SLDL base districts (RSA 662:5).
+- **Maine tribal representatives:** non-voting seats with no district. They appear as `no_v3_unit_tribal` in both files.
