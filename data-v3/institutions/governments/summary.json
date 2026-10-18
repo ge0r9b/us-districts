@@ -1,0 +1,165 @@
+{
+ "files": {
+  "states.csv": 50,
+  "federal_agencies.csv": 473,
+  "tribes.csv": 577,
+  "governments_geoid_xwalk.csv": 52904,
+  "county_government_check.csv": 3222,
+  "local/AK.csv": 236,
+  "local/AL.csv": 1208,
+  "local/AR.csv": 1562,
+  "local/AZ.csv": 686,
+  "local/CA.csv": 4549,
+  "local/CO.csv": 3715,
+  "local/CT.csv": 778,
+  "local/DC.csv": 4,
+  "local/DE.csv": 334,
+  "local/FL.csv": 1947,
+  "local/GA.csv": 1379,
+  "local/HI.csv": 22,
+  "local/IA.csv": 1826,
+  "local/ID.csv": 1168,
+  "local/IL.csv": 6930,
+  "local/IN.csv": 2648,
+  "local/KS.csv": 3768,
+  "local/KY.csv": 1307,
+  "local/LA.csv": 535,
+  "local/MA.csv": 1090,
+  "local/MD.csv": 381,
+  "local/ME.csv": 990,
+  "local/MI.csv": 2860,
+  "local/MN.csv": 3629,
+  "local/MO.csv": 3797,
+  "local/MS.csv": 970,
+  "local/MT.csv": 1228,
+  "local/NC.csv": 1139,
+  "local/ND.csv": 2570,
+  "local/NE.csv": 2541,
+  "local/NH.csv": 548,
+  "local/NJ.csv": 1400,
+  "local/NM.csv": 1003,
+  "local/NV.csv": 187,
+  "local/NY.csv": 3485,
+  "local/OH.csv": 3939,
+  "local/OK.csv": 1840,
+  "local/OR.csv": 1528,
+  "local/PA.csv": 4851,
+  "local/RI.csv": 159,
+  "local/SC.csv": 666,
+  "local/SD.csv": 1900,
+  "local/TN.csv": 1030,
+  "local/TX.csv": 5542,
+  "local/UT.csv": 632,
+  "local/VA.csv": 655,
+  "local/VT.csv": 574,
+  "local/WA.csv": 1890,
+  "local/WI.csv": 3065,
+  "local/WV.csv": 639,
+  "local/WY.csv": 820
+ },
+ "rows_total_entities": 93250,
+ "cog_by_type": {
+  "county": 3031,
+  "municipality": 19491,
+  "school_district": 13859,
+  "special_district": 39555,
+  "township": 16214
+ },
+ "cog_by_type_gov_status": {
+  "county|independent": 3031,
+  "municipality|independent": 19491,
+  "school_district|dependent": 1313,
+  "school_district|independent": 12546,
+  "special_district|independent": 39555,
+  "township|independent": 16214
+ },
+ "geoid_match": {
+  "county|fips": 3031,
+  "municipality|fips": 19465,
+  "municipality|not_in_tiger_2024": 26,
+  "school_district|ambiguous": 133,
+  "school_district|name_core": 1079,
+  "school_district|name_core_no_number": 2283,
+  "school_district|name_exact": 6084,
+  "school_district|no_name_match": 3526,
+  "school_district|no_tiger_layer": 754,
+  "special_district|no_tiger_layer": 39555,
+  "township|fips": 16176,
+  "township|fips_other_county": 1,
+  "township|not_in_tiger_2024": 37,
+  "tribe|cross_reference": 4,
+  "tribe|legal_name_in_tribe_name": 133,
+  "tribe|name_core_anvsa": 171,
+  "tribe|no_name_match": 269
+ },
+ "tiger_counties_without_cog_county_government": 191,
+ "bia_list_lines": 577,
+ "dangling_parent_ids": [],
+ "sources": {
+  "bia_notice": {
+   "url": "https://www.federalregister.gov/documents/full_text/xml/2026/01/30/2026-01899.xml",
+   "last_modified": "2026-01-30",
+   "retrieved_at": "2026-10-18T13:16:54Z"
+  },
+  "bia_search": {
+   "url": "https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Indian+Entities+Recognized+by+and+Eligible%22&conditions[agencies][]=indian-affairs-bureau&conditions[type][]=NOTICE&order=newest&per_page=20&fields[]=title&fields[]=document_number&fields[]=publication_date&fields[]=citation&fields[]=full_text_xml_url&fields[]=html_url",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T13:16:52Z"
+  },
+  "cog2022": {
+   "url": "https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP",
+   "last_modified": "2023-08-24",
+   "retrieved_at": "2026-10-18T13:16:51Z"
+  },
+  "fr_agencies": {
+   "url": "https://www.federalregister.gov/api/v1/agencies",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T13:16:52Z"
+  },
+  "gaz_aiannh": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_aiannh_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:53Z"
+  },
+  "gaz_counties": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:52Z"
+  },
+  "gaz_cousubs": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_cousubs_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:52Z"
+  },
+  "gaz_elsd": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_elsd_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:53Z"
+  },
+  "gaz_place": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_place_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:53Z"
+  },
+  "gaz_scsd": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_scsd_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:53Z"
+  },
+  "gaz_unsd": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_unsd_national.zip",
+   "last_modified": "2024-08-30",
+   "retrieved_at": "2026-10-18T13:16:53Z"
+  },
+  "states": {
+   "url": "https://www2.census.gov/geo/docs/reference/codes2020/national_state2020.txt",
+   "last_modified": "2023-02-13",
+   "retrieved_at": "2026-10-18T13:16:51Z"
+  },
+  "tiger_aiannh": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:25:07Z"
+  }
+ }
+}
