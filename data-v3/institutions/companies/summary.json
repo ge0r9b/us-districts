@@ -1168,6 +1168,43 @@
   "us_with_county_geoid": 6824,
   "us_rows": 6824
  },
+ "circle_k": {
+  "file": "circle_k.csv",
+  "rows": 8196,
+  "features:circle_k": 6048,
+  "excluded_brand:Couche-Tard:Q2836957": 607,
+  "features:circle_k_dk": 247,
+  "features:circle_k_ireland": 416,
+  "duplicate_store_id_dropped": 5,
+  "features:circle_k_no": 458,
+  "features:circle_k_pl": 696,
+  "features:circle_k_se": 440,
+  "features:circle_k_vn": 503,
+  "rows_by_country": {
+   "US": 4599,
+   "CA": 842,
+   "PL": 696,
+   "VN": 503,
+   "NO": 458,
+   "SE": 436,
+   "IE": 361,
+   "DK": 247,
+   "GB": 54
+  },
+  "rows_by_store_type": {
+   "Circle K": 7705,
+   "Circle K Express": 242,
+   "Circle K Truck": 232,
+   "Circle K Lader": 7,
+   "": 6,
+   "Circle K Motorvejscenter": 2,
+   "FAVN HAFJELL": 1,
+   "Scandic Park Sandefjord": 1
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 4599,
+  "us_rows": 4599
+ },
  "mcdonalds": {
   "file": "mcdonalds.csv.gz",
   "rows": 36378,
@@ -10511,27 +10548,27 @@
    "Schedule Type"
   ]
  },
- "brands_rows": 56,
+ "brands_rows": 58,
  "brands_by_kind": {
-  "brand": 45,
-  "company": 11
+  "brand": 46,
+  "company": 12
  },
- "brand_relationships_rows": 37,
+ "brand_relationships_rows": 38,
  "brand_relationships_review_flags": 4,
- "company_locations_rows": 165586,
+ "company_locations_rows": 173782,
  "company_locations_by_entity_top": {
   "wikidata:Q259340": 54135,
   "wikidata:Q38076": 35952,
   "wikidata:Q37158": 35028,
   "wikidata:Q2078880": 9001,
+  "wikidata:Q3268010": 8196,
   "wikidata:Q1591889": 7991,
   "wikidata:Q483551": 4904,
   "wikidata:Q864407": 2208,
   "wikidata:Q1046951": 2026,
-  "wikidata:Q1373493": 1761,
-  "wikidata:Q5430314": 1470
+  "wikidata:Q1373493": 1761
  },
- "company_locations_with_geoid": 72858,
+ "company_locations_with_geoid": 77457,
  "company_locations_excluded": {
   "mcdonalds:no_point_no_geoid": 426,
   "starbucks:no_point_no_geoid": 47,
@@ -10572,29 +10609,29 @@
   "TownePlace Suites": "Q7830092"
  },
  "marriott_brand_name_to_qid_wikidata": {
-  "Autograph Collection": "Q19872869",
-  "Element": "Q91948072",
-  "Courtyard": "Q1053170",
-  "AC Hotels": "Q5653536",
-  "JW Marriott": "Q1067636",
-  "The Ritz-Carlton": "Q782200",
-  "citizenM": "Q5122531",
-  "Le Méridien": "Q261077",
-  "Protea": "Q17092570",
-  "W Hotels": "Q7958488",
-  "SpringHill Suites": "Q7580351",
-  "Tribute Portfolio": "Q92021343",
-  "The Luxury Collection": "Q2412604",
-  "Moxy": "Q70287020",
-  "Aloft": "Q4734166",
-  "Gaylord": "Q3099664",
   "TownePlace Suites": "Q7830092",
-  "EDITION": "Q91218404",
-  "Delta Hotels": "Q5254663",
-  "Sheraton": "Q634831",
+  "The Ritz-Carlton": "Q782200",
+  "Tribute Portfolio": "Q92021343",
+  "AC Hotels": "Q5653536",
+  "SpringHill Suites": "Q7580351",
+  "Le Méridien": "Q261077",
+  "Aloft": "Q4734166",
+  "JW Marriott": "Q1067636",
+  "Westin": "Q1969162",
+  "Protea": "Q17092570",
+  "Autograph Collection": "Q19872869",
   "Renaissance": "Q2143252",
+  "EDITION": "Q91218404",
+  "Moxy": "Q70287020",
+  "Courtyard": "Q1053170",
+  "Element": "Q91948072",
+  "Delta Hotels": "Q5254663",
   "Residence Inn": "Q7315394",
-  "Westin": "Q1969162"
+  "Sheraton": "Q634831",
+  "citizenM": "Q5122531",
+  "The Luxury Collection": "Q2412604",
+  "W Hotels": "Q7958488",
+  "Gaylord": "Q3099664"
  },
  "built": "2026-10-18"
 }

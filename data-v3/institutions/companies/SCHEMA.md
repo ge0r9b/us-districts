@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 56 (45 brand, 11 company) | `entity` |
-| `brand_relationships.csv` | 37 | `entity_relation` |
-| `company_locations.csv.gz` | 165,586 (72,858 with a v2-2024 county geoid; 92,713 outside the US) | `entity_location` |
+| `brands.csv` | 58 (46 brand, 12 company) | `entity` |
+| `brand_relationships.csv` | 38 | `entity_relation` |
+| `company_locations.csv.gz` | 173,782 (77,457 with a v2-2024 county geoid; 96,310 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | best_buy 1,204; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/<brand>.csv` | best_buy 1,204; circle_k 8,196; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); seven_eleven 54,167 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
 | `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 41 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 80 | `source` |
+| `brand_cleanliness.csv` | 42 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 87 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -137,6 +137,8 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   - **target.csv**: wikidata:Q1046951 Target Corporation (no P749 parent). Spider `target_us`. Excluded: `target_au` (Target Australia, Q7685854, a different company owned by Wesfarmers).
 
   - **seven_eleven.csv(.gz)**: wikidata:Q259340 7-Eleven. Spiders `seven_eleven_ca_us` (US + CA), `_au`, `_dk`, `_jp`, `_mx`, `_ph`, `_se`, `_th`, `_tw`. The CA/US ref suffix `_SHOP` is stripped, leaving the store number. Excluded from `seven_eleven_ca_us`: 6,019 fuel-station points with no brand tag (the forecourt of a store already listed), 2,205 Speedway (Q7575683) and 137 Stripes (Q7624135) stores, which are separate brands. No ATP spider covers 7-Eleven in other countries (e.g. South Korea, Malaysia, Hong Kong, China, Singapore, Norway).
+
+  - **circle_k.csv**: wikidata:Q3268010 Circle K. Spiders `circle_k` (US + CA), `_dk`, `_ireland` (IE + GB), `_no`, `_pl`, `_se`, `_vn`. URL refs keep their last path segment (station slug). Excluded: 607 Couche-Tard-branded stores in Quebec (brand Q2836957, Alimentation Couche-Tard). `circle_k_vn` refs are list positions (`vn-0`, `vn-1`, ...), so those ids may not be stable between runs.
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
