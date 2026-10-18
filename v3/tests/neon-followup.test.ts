@@ -3,7 +3,8 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createApp } from "../api/src/app.ts";
-import { applyResults, markSuperseded } from "../ingest/apply.ts";
+import { applyResults, markSuperseded, sha256Hex } from "../ingest/apply.ts";
+import { BUDGET_BYTES } from "../ingest/budget.ts";
 import { instPacksRoot, readInstPack } from "../ingest/inst-pack.ts";
 import { mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
 import { assignLocationUnits, isConnectionDrop } from "../ingest/locations.ts";
@@ -357,6 +358,54 @@ describe("neon follow-up", () => {
     expect(margin).toBeGreaterThan(5 * 1024 * 1024);
     expect(margin).toBeLessThan(114 * 1024 * 1024);
     expect(report.estimate.projectedBytes!).toBeLessThan(350 * 1024 * 1024);
+  });
+
+  it("allows an institution reload whose projected net change is zero or negative", async () => {
+    const live = 377_389_056;
+    const growing = await loadInstitutions(pool, {
+      root,
+      currentBytes: BUDGET_BYTES - 1024 * 1024,
+      allow: false,
+      dryRun: true,
+    });
+    expect(growing.status).toBe("dry-run");
+    expect(growing.gap).toMatch(/net/);
+    expect(growing.estimate.projectedBytes!).toBeGreaterThan(BUDGET_BYTES);
+
+    const files = [
+      "data-v3/inst/entities.csv",
+      "data-v3/inst/entity_relations.csv",
+      "data-v3/inst/entity_images.csv",
+      "data-v3/inst/body_entity.csv",
+    ];
+    const dir = join(root, "v3/.cache/inst-entities");
+    const shas = files.map((rel) => ({
+      file_name: rel,
+      sha256: sha256Hex(readFileSync(join(dir, rel))),
+    }));
+    await pool.query(
+      `insert into load_batch (file_name, file_sha256, status)
+       select file_name, sha256, 'applied'
+       from jsonb_to_recordset($1::jsonb) as x(file_name text, sha256 text)
+       on conflict (file_sha256) do update set status = 'applied'`,
+      [JSON.stringify(shas)],
+    );
+    try {
+      const reload = await loadInstitutions(pool, {
+        root,
+        currentBytes: live,
+        allow: false,
+        dryRun: true,
+      });
+      expect(reload.status).toBe("dry-run");
+      expect(reload.gap).toBeNull();
+      expect(reload.estimate.projectedBytes).not.toBeNull();
+      expect(reload.estimate.projectedBytes!).toBeLessThanOrEqual(live);
+    } finally {
+      await pool.query("delete from load_batch where file_sha256 = any($1::text[])", [
+        shas.map((file) => file.sha256),
+      ]);
+    }
   });
 
   it("supersedes a rejected batch in the migration when a later applied batch exists", async () => {

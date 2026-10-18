@@ -6,6 +6,7 @@ import {
   estimateRowsFromGzip,
   fitsBudget,
   formatMb,
+  loadGrowthRefused,
   overMeasuredBudget,
 } from "../ingest/budget.ts";
 import { companyEstimateBytes } from "../ingest/companies.ts";
@@ -23,6 +24,15 @@ describe("load budget", () => {
     expect(companyLoadAllowed(BUDGET_BYTES + 1, false)).toBe(false);
     expect(companyLoadAllowed(BUDGET_BYTES + 1, true)).toBe(true);
     expect(formatMb(BUDGET_BYTES)).toBe("350 MB");
+    // The box refused a reload at 377,389,056 because that live size was already over the gate.
+    // Net zero and net negative stay allowed. A positive addition that crosses the gate does not.
+    expect(loadGrowthRefused(377_389_056, 377_389_056, false)).toBe(false);
+    expect(loadGrowthRefused(377_389_056, 300_000_000, false)).toBe(false);
+    expect(loadGrowthRefused(BUDGET_BYTES, BUDGET_BYTES + 1, false)).toBe(true);
+    expect(loadGrowthRefused(BUDGET_BYTES, BUDGET_BYTES + 1, true)).toBe(false);
+    expect(loadGrowthRefused(100, 200, false)).toBe(false);
+    expect(loadGrowthRefused(BUDGET_BYTES + 1, null, false)).toBe(true);
+    expect(loadGrowthRefused(BUDGET_BYTES + 1, null, true)).toBe(false);
     const rows = estimateRowsFromGzip(3_957_915);
     expect(rows).toBe(Math.ceil(3_957_915 * 0.17));
     expect(rows * EST_RESULT_BYTES).toBeGreaterThan(BUDGET_BYTES);

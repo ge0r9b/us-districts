@@ -25,6 +25,24 @@ export function overMeasuredBudget(databaseBytes: number): boolean {
   return databaseBytes > BUDGET_BYTES;
 }
 
+/**
+ * Institution loads gate on the projected net change.
+ * A reload that adds nothing, or that deletes side-table rows, is allowed
+ * when the live database is already over the gate. A positive addition that
+ * lands over the gate is refused unless `allow` is set.
+ * `projectedBytes` null means the projection could not be made.
+ */
+export function loadGrowthRefused(
+  currentBytes: number,
+  projectedBytes: number | null,
+  allow = false,
+): boolean {
+  if (allow) return false;
+  if (projectedBytes == null) return overMeasuredBudget(currentBytes);
+  const net = projectedBytes - currentBytes;
+  return net > 0 && projectedBytes > BUDGET_BYTES;
+}
+
 export function companyLoadAllowed(databaseBytes: number, allow: boolean): boolean {
   return allow || !overMeasuredBudget(databaseBytes);
 }

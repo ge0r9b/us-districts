@@ -149,8 +149,9 @@ describe("loaders", () => {
     );
     expect(summary.boundaries?.status).toBe("skipped");
     expect(summary.results.every((row) => row.status === "skipped")).toBe(true);
-    // A parallel file can insert a company location into this shared database during the load.
-    if (after.rows[0]?.locations === before.rows[0]?.locations) {
+    // A parallel file can insert a company location into this shared database.
+    // Assigning it updates the row in place and bumps dv, so the count stays put.
+    if ((summary.locations?.changed ?? 0) === 0 && after.rows[0]?.locations === before.rows[0]?.locations) {
       expect(after.rows[0]?.dv).toBe(before.rows[0]?.dv);
     }
   });

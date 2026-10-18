@@ -5,7 +5,8 @@ import type pg from "pg";
 import { markSuperseded, sha256Hex } from "./apply.ts";
 import { insertJsonChunks } from "./batch.ts";
 import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
-import { BUDGET_BYTES, formatMb, overMeasuredBudget } from "./budget.ts";
+import { BUDGET_BYTES, formatMb, loadGrowthRefused } from "./budget.ts";
+import { sideTableBytes } from "../db/vacuum.ts";
 import { parseCsv, readFileText } from "./csv.ts";
 import { imagePackKey, instPacksRoot, writeInstPack, type InstPack } from "./inst-pack.ts";
 import {
@@ -527,7 +528,7 @@ export function projectInstitutionBytes(
     `This projection is the shrunk shape: ${SLIM_ENTITY_BYTES_PER_ROW} bytes per entity including indexes and page overhead, relation ids stored as entity.nid, and v2 text plus image attribution in the pack (0 database bytes).`,
     "State text is omitted when state_fips is set. Image binaries are not loaded. A second run does not insert another copy.",
     alreadyLoaded
-      ? "These files are already applied, so the projection adds nothing. The reload still writes the pack and deletes the side-table rows; npm run db:vacuum returns that space."
+      ? "These files are already applied, so the projection adds nothing. The reload still writes the pack and deletes the side-table rows; npm run db:vacuum returns that space. A flat or smaller projection is allowed when the live database is already over the gate."
       : "Upper bound if these rows are not loaded yet.",
   ].join(" ");
   return {
@@ -859,11 +860,19 @@ export async function loadInstitutions(
   const alreadyLoaded = input.files.length > 0 && applied.rowCount === input.files.length;
   const projected = projectInstitutionBytes(input, opts.currentBytes, alreadyLoaded);
   const { imagesSkipped, ...estimate } = projected;
-  const over =
-    (estimate.projectedBytes != null && estimate.projectedBytes > BUDGET_BYTES) ||
-    overMeasuredBudget(opts.currentBytes);
+  if (alreadyLoaded && estimate.projectedBytes != null) {
+    const side = await sideTableBytes(db);
+    estimate.projectedBytes = Math.max(0, opts.currentBytes - side);
+    if (side > 0) {
+      estimate.note += ` Side tables still occupy ${side} bytes. This reload deletes those rows, so the projected net change is ${estimate.projectedBytes - opts.currentBytes} bytes.`;
+    }
+  }
+  const over = loadGrowthRefused(opts.currentBytes, estimate.projectedBytes, false);
+  const shown = estimate.projectedBytes ?? opts.currentBytes;
+  const net = shown - opts.currentBytes;
+  const netLabel = `${net < 0 ? "-" : "+"}${formatMb(Math.abs(net))}`;
   const gap = over
-    ? `institutions: projected ${formatMb(estimate.projectedBytes ?? opts.currentBytes)} against a live ${formatMb(opts.currentBytes)}, over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`
+    ? `institutions: projected ${formatMb(shown)} (${netLabel} net) against a live ${formatMb(opts.currentBytes)}, over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`
     : null;
   if (opts.dryRun) {
     return {

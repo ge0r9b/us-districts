@@ -1,12 +1,10 @@
 import { openLoadDb, requireDatabaseUrl } from "../db/connect.ts";
-import { VACUUM_FULL } from "../db/vacuum.ts";
+import { vacuumBloated } from "../db/vacuum.ts";
 
 const db = await openLoadDb(requireDatabaseUrl());
 try {
-  for (const statement of VACUUM_FULL) {
-    await db.query(statement);
-    console.log(statement);
-  }
+  const run = await vacuumBloated(db);
+  for (const line of run.lines) console.log(line);
 } catch (err) {
   const message = err instanceof Error ? err.message : String(err);
   console.error(message.replace(/postgres(?:ql)?:\/\/\S+/gi, "DATABASE_URL"));
