@@ -27,7 +27,8 @@ ORD = {"FIRST": "1ST", "SECOND": "2ND", "THIRD": "3RD", "FOURTH": "4TH", "FIFTH"
        "SIXTEENTH": "16TH", "SEVENTEENTH": "17TH", "EIGHTEENTH": "18TH", "NINETEENTH": "19TH", "TWENTIETH": "20TH"}
 def fold(s): return re.sub(r"[^A-Z]", "", unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().upper())
 def last(name):
-    n = re.sub(r",?\s+(JR|SR|II|III|IV)\.?$", "", name.strip(), flags=re.I)
+    n = name.strip()
+    for _ in range(2): n = re.sub(r",?\s+(JR|SR|II|III|IV|V|PH\.?\s?D|M\.?\s?D|ED\.?\s?D|J\.?\s?D|ESQ)\.?$", "", n, flags=re.I)
     if "," in n: n = n.split(",")[0]
     else: n = n.split()[-1] if n.split() else n
     return fold(n)
@@ -37,6 +38,11 @@ def same(a_last, full):
     b = last(full); fb = fold(full)
     if a_last == b or a_last in fb or (b and b in a_last): return True
     return False
+def npty(p):
+    p = p.strip().upper()
+    if p in ("U", "UNENROLLED", "NO PARTY AFFILIATION", "NPA", "I", "INDEPENDENT", "UNAFFILIATED", "NONPARTISAN"): return "I"
+    if p == "DFL" or p.startswith("DEMOCRAT"): return "D"
+    return p[0]
 def txt(s): return html.unescape(re.sub(r"<[^>]+>", " ", s)).strip()
 
 def p_nh(R):
@@ -123,11 +129,19 @@ def p_tx(R):
 PARSERS = {"Texas": p_tx, "New Hampshire": p_nh, "Pennsylvania": p_pa, "Massachusetts": p_ma, "Minnesota": p_mn, "Vermont": p_vt, "Missouri": p_mo, "New York": p_ny, "California": p_ca}
 # chambers a state's official source covers (the other chamber stays OpenStates)
 CHAMBERS = {"Missouri": {"lower"}, "New York": {"lower"}, "California": {"lower"}}
+import inst_stateleg_parsers2 as P2
+P2.setup(fold, last)
+for _st, _f in P2.EXTRA.items():
+    def _both(R, a=PARSERS[_st], b=_f):
+        x, n1, u1, f1 = a(R); y, n2, u2, f2 = b(R); return x + y, n1 + "; " + n2, u1 + " ; " + u2, f1 + f2
+    PARSERS[_st] = _both; CHAMBERS.pop(_st, None)
+PARSERS.update(P2.PARSERS); CHAMBERS.update(P2.CHAMBERS)
 FALLBACK = {
-    "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box",
-    "California/upper": "senate.ca.gov/senators page carries no machine-readable member list (rendered client-side)",
+    "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box; the official alternative, the NY Senate Open Legislation API (legislation.nysenate.gov/api/3/members), returns 401 without an API key, and a key needs an account sign-up (not done)",
     "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round",
 }
+
+FALLBACK.update(P2.FALLBACK)
 
 def main():
     a = sys.argv[1:]; repo = a[0]; R = a[a.index("--raw") + 1]; out = a[a.index("--out") + 1]; retrieved = a[a.index("--retrieved") + 1]
@@ -152,6 +166,10 @@ def main():
             if js == "no_v3_unit" and st == "Massachusetts":   # House labels use '3rd', Senate labels 'Third' (TIGER both ways)
                 g, seat, js = join(st, x["chamber"], " ".join(ORD.get(w.upper(), w) for w in x["district"].split()))
             if js == "no_v3_unit" and st == "New Hampshire" and x["chamber"] == "lower": js = "no_v3_unit_floterial"
+            if x.get("tribal"):
+                g, seat, js = "", "", "no_v3_unit_tribal"
+                osl = [r["district"] for r in cur if r["state"] == st and r["join_status"] == "no_v3_unit_tribal" and same(x["last"], r["name"])]
+                if osl: x["district"] = osl[0]   # use the tribe label OpenStates carries for this person (the official list gives only seat numbers)
             x["unit"], x["seat"], x["js"] = g, seat, "joined" if js.startswith("joined") else js
         if any(x.get("nostatus") for x in recs):
             grp = collections.defaultdict(list)
@@ -161,8 +179,8 @@ def main():
                     osn = [r["name"] for r in cur if r["state"] == st and r["unit_geoid"] == k[1]]
                     keep = [x for x in xs if any(same(x["last"], n) for n in osn)]
                     for x in xs:
-                        if keep and x not in keep: x["serving"] = False; x["status_src"] += "; another 89th member of this district is the current one (resolved with OpenStates current)"
-                        elif not keep: x["status_src"] += "; AMBIGUOUS: %d 89th members for this district, none listed current by OpenStates" % len(xs)
+                        if keep and x not in keep: x["serving"] = False; x["status_src"] += "; another listed member of this district is the current one (official list gives no status; resolved with OpenStates current)"
+                        elif not keep: x["status_src"] += "; AMBIGUOUS: %d listed members for this district, none listed current by OpenStates" % len(xs)
         os_cur = [r for r in cur if r["state"] == st and (("upper" if r["chamber"] in ("upper", "legislature") else "lower") in chs)]
         by_unit = collections.defaultdict(list)
         for r in os_cur: by_unit[(("upper" if r["chamber"] in ("upper", "legislature") else "lower"), r["unit_geoid"] or "label:" + r["district"])].append(r)
@@ -170,11 +188,17 @@ def main():
                "openstates_current_rows": len(os_cur)}
         rows = []; matched_os = set()
         for x in recs:
+            if x.get("vacant") and x.get("unit"):
+                rows.append({"unit_geoid": x["unit"], "unit_vintage": "sldu2024" if x["chamber"] == "upper" else "sldl2024", "join_status": "joined",
+                             "entity_id": "%s-%s" % (L.AB[L.ST.index(st.replace(" ", "_"))].lower(), "senate" if x["chamber"] == "upper" else "house"), "seat": x["seat"],
+                             "state": st, "chamber": x["chamber"], "district": x["district"], "person_id": "", "name": "", "party": "", "status": "vacant", "term_start": "", "term_end": "",
+                             "note": "official roster lists this seat as vacant", "source": srcname, "source_url": url, "upstream_url": url, "source_id": "", "retrieved_at": retrieved,
+                             "sha256": sha, "license": "official state legislature website (public record)", "official_check": "official"}); continue
             if not x["serving"]: continue
             k = (x["chamber"], x["unit"] or "label:" + x["district"])
             m = next((r for r in by_unit.get(k, []) if same(x["last"], r["name"])), None)
             if m: matched_os.add(id(m))
-            if m and x["party"] and m["party"] and x["party"][0].upper() != m["party"][0].upper() and not (x["party"] == "DFL" and m["party"].startswith("Democrat")):
+            if m and x["party"] and m["party"] and npty(x["party"]) != npty(m["party"]) and not x.get("tribal"):
                 diffs.append({"state": st, "chamber": x["chamber"], "unit_geoid": x["unit"], "district": x["district"], "kind": "party_differs", "official": "%s (%s)" % (x["name"], x["party"]), "openstates": "%s (%s)" % (m["name"], m["party"])})
             if not m:
                 o = by_unit.get(k, [])
@@ -182,6 +206,7 @@ def main():
                               "official": "%s (%s)" % (x["name"], x["party"]), "openstates": "; ".join("%s (%s)" % (r["name"], r["party"]) for r in o)})
             note = ["official roster"]
             if x["js"] == "no_v3_unit_floterial": note.append("NH House floterial district: label '%s' is not among the 164 TIGER 2024 SLDL base districts (floterials overlay base districts, RSA 662:5); no v3 unit, deliberately not joined" % x["district"])
+            elif x["js"] == "no_v3_unit_tribal": note.append("Maine tribal representative (non-voting seat with no district); deliberately not joined")
             elif x["js"] == "no_v3_unit": note.append("district label '%s' matches no unit of data-v3/geo" % x["district"])
             if x.get("status_src"): note.append("official status: %s" % x["status_src"])
             if not m: note.append("no OpenStates member with this last name in this unit")
@@ -189,7 +214,7 @@ def main():
             rows.append({"unit_geoid": x["unit"], "unit_vintage": "sldu2024" if x["chamber"] == "upper" else "sldl2024", "join_status": x["js"],
                          "entity_id": "%s-%s" % (L.AB[L.ST.index(st.replace(" ", "_"))].lower(), "senate" if x["chamber"] == "upper" else "house"), "seat": x["seat"],
                          "state": st, "chamber": x["chamber"], "district": x["district"], "person_id": m["person_id"] if m else x["oid"], "name": x["name"], "party": x["party"] or (m["party"] if m else ""),
-                         "status": "serving", "term_start": m["term_start"] if m else "", "term_end": "", "note": "; ".join(note), "source": srcname, "source_url": url,
+                         "status": "serving", "term_start": m["term_start"] if m else "", "term_end": m["term_end"] if m else "", "note": "; ".join(note), "source": srcname, "source_url": url,
                          "upstream_url": url, "source_id": x["oid"], "retrieved_at": retrieved, "sha256": sha, "license": "official state legislature website (public record)",
                          "official_check": "official"})
         for r in os_cur:
@@ -198,9 +223,9 @@ def main():
         # Maine-style tribal or other no-unit OpenStates rows outside these states are untouched
         ids = {id(r) for r in os_cur}
         newcur = [r for r in newcur if id(r) not in ids] + rows
-        units_filled = {(r["chamber"], r["unit_geoid"]) for r in rows if r["unit_geoid"]}
+        units_filled = {(r["chamber"], r["unit_geoid"]) for r in rows if r["unit_geoid"] and r["status"] != "vacant"}
         os_filled = {(("upper" if r["chamber"] in ("upper", "legislature") else "lower"), r["unit_geoid"]) for r in os_cur if r["unit_geoid"]}
-        rep.update(official_rows_written=len(rows), joined=sum(r["join_status"] == "joined" for r in rows),
+        rep.update(official_rows_written=len(rows), joined=sum(r["join_status"] == "joined" and r["status"] != "vacant" for r in rows), vacant_rows=sum(r["status"] == "vacant" for r in rows),
                    floterial=sum(r["join_status"] == "no_v3_unit_floterial" for r in rows), no_v3_unit=sum(r["join_status"] == "no_v3_unit" for r in rows),
                    units_filled_official=len(units_filled), units_filled_openstates=len(os_filled), units_newly_filled=sorted(g for _, g in units_filled - os_filled),
                    units_empty_official=sorted(g for ch in chs for g in units[(st, ch)] if (ch, g) not in units_filled), diffs=sum(1 for d in diffs if d["state"] == st))
