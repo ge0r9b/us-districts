@@ -62,6 +62,17 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - QA-039 / QA-040 / QA-042: not rechecked (1575 changed no data).
 - No console errors, page errors or failed requests in any run.
 
+## Re-test status, build 1575 (pass 9, older open bugs + WebKit smoke + stability at 375/320/1024x576, Oct 18 ~11:00-11:25 AM EDT)
+- Live build still 1575 (`window.BUILD` 202610181575; `main` unchanged since 7a23208, 9:46 AM EDT). The box restarted at ~10:55 AM EDT (Playwright browsers and WebKit system libraries had to be reinstalled; the clone was restored and pass 8's commit f84390e is intact). Scripts: `qa/b1575p9-gaps.py` (search, double-tap), `qa/b1575p9-retest.py` (QA-004/005/017/018), `qa/b1575p9-layout.py` (per-frame stability sweep, now also 375x667, 320x568, 1024x576), `qa/flow1575.py webkit <size>` (smoke at all 5 sizes, `qa/flow1575b-webkit-*.json`), `qa/b1575p9-sort.py`.
+- **QA-017: fixed on 1575** (390x844, Chromium). Plain All States, State senate, State house and School district lists now show the same state rows: WY 72.3%, ND 67.5% / 30.8%, PA 50.4% / 48.7%, CA 38.3% / 58.5% in all four. The state house list (QA-029) matches too.
+- **QA-024: fixed on 1575.** Universal search "Allegheny" + Enter: institution, geo field ("Allegheny County, PA"), crumb and map (zoom 9) all go to Allegheny County.
+- **QA-023: changed on 1575, now HIGH.** "Pittsburgh" + Enter in the geo field: the map and crumb go to Allegheny County (zoom 9), but the geo field reads **"No match: East Pittsburgh borou…"**, and East Pittsburgh borough is still the top suggestion above Pittsburgh city. Expected: Pittsburgh city (or at least the picked place's name, not "No match"). Shot: shots/b1575p9-ch-390-geo-Pittsburgh.png
+- **QA-025: changed on 1575.** Double-tap at Erie County, PA (zoom 9): the state is now kept, but the map zooms out 9 > 8 and the geo field says "Crawford County, PA" while the crumb still says Erie County. Shot: shots/b1575p9-ch-390-dbltap.png
+- Still on 1575: QA-005 (Allegheny townships > US House: 0 rows, crumb "Pennsylvania"), QA-018 (tap on the OH bar stays on `states`), QA-026 (White House > "DC 20220"), QA-028 (ZIP shows "16501"), QA-006 (Rockledge under Philadelphia, data unchanged since 1574). Address Enter (QA-004) still works: NYC address > New York County, zoom 15.
+- WebKit smoke at all 5 sizes (touch): no console errors, page errors or failed requests; CLS 0 at 1024x768. QA-044 confirmed in WebKit at 390 and 375 ("−1.83M" under the sort chip in the range line list). QA-009 confirmed in WebKit at 320. QA-007 still: All States 388-652 ms, US House pick 298-350 ms (1,280 ms once at 390 under load), deselect 101-232 ms, opening the institution menu 115-152 ms on phones. QA-041 still: Line 179-247 ms. Also slow in Chromium 390: picking State senate (156 ms) and State house (118 ms) in the institution menu (QA-007 family).
+- One 160 ms sort-chip tap in WebKit 1024x768 was not reproduced in 24 repeat taps (12-75 ms WebKit, 15-38 ms Chromium), so not logged.
+- Stability sweep at 375x667, 320x568, 1024x576 (Chromium, every frame): QA-053 (time button +5 px), QA-054 (thumbnails -3 / +3 px map/list, 50 px wide for 250-400 ms), QA-057 (chart button hidden while the layers row is open; crumb Worcester > Massachusetts on US House) and QA-058 (thumbnails +23 px on a range) all reproduce at all three sizes with the same pixel shifts. QA-055 (first row jumps on back) and QA-056 (thumbnail flash after the geo menu) did **not** reproduce at these three sizes. Data: `qa/b1575p9-layout-chromium-{375,320,1024x576}.json`; shots shots/b1575p9-ch-*-ls*.png.
+
 ## Critical
 
 ### QA-001 [Fixed on 1571 (verified 8:10 AM EDT)] Oregon 2024 state totals are short of the official count (~1%)
@@ -103,7 +114,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual (Chromium and WebKit): the list is replaced by a single-entity chart. The institution field says **"Pennsylvania"** but the numbers are the county's (Allegheny: Harris 429,916 / Trump 283,595; Philadelphia line: -35K / +12K). No district rows (`.lvrow.la` count 0). 
 - Screenshots: shots/chromium-iphone375-16-type-ushouse.png, shots/chromium-iphone390-16-type-ushouse.png
 
-### QA-017 The same state shows different totals depending on the district type
+### QA-017 [Fixed on 1575 (verified pass 9, 11:15 AM EDT)] The same state shows different totals depending on the district type
 - Severity: Critical (wrong numbers) | Build 1568 | 390x844 (Chromium)
 - Steps: institution menu > State senate districts > reopen menu > All States. Do the same with School districts. Compare with plain All States.
 - Expected: one state total everywhere (WY 2024: Trump 72.3%, Harris 26.1% in the plain list, already computed without write-ins; FEC: 71.6% / 25.8%).
@@ -195,18 +206,18 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: the sort chip (862,185) covers the MO row's red and blue lines. On the WY row, "+2.4" and "−0.5" overlap.
 - Screenshot: shots/b1567-ch-1024x768-drill-PA.png
 
-### QA-023 Geo search "Pittsburgh" + Enter goes to East Pittsburgh borough
+### QA-023 [Changed on 1575, now HIGH] Geo search "Pittsburgh" + Enter goes to East Pittsburgh borough
 - Severity: Medium | Build 1568 | 390x844
 - Expected: Pittsburgh city (the closest name, far more votes).
 - Actual: the top suggestion and the Enter result is "East Pittsburgh borough, Allegheny County".
 - Screenshot: shots/b1568-ch-390-geo-Pittsburgh.png
 
-### QA-024 Universal search "Allegheny" + Enter: geo field and map do not follow
+### QA-024 [Fixed on 1575 (verified pass 9, 11:10 AM EDT)] Universal search "Allegheny" + Enter: geo field and map do not follow
 - Severity: Medium | Build 1568 | 390x844
 - Actual: the institution becomes Allegheny County, but the geo field says "Clinton County, PA" and the map stays at zoom 6.
 - Screenshot: shots/b1568-ch-390-search-Allegheny.png (suggestions; end state in `qa/gaps.log`)
 
-### QA-025 Double-tap on the map zooms out and clears the state
+### QA-025 [Changed on 1575] Double-tap on the map zooms out and clears the state
 - Severity: Medium (spec 6: double-tap zooms to the area and puts its name in the geo field) | Build 1568 | 390x844 (Chromium touch emulation: 2 taps 120 ms apart)
 - Steps: Erie County, PA view (zoom 6) > double-tap the map.
 - Actual: zoom 6 > 4, state cleared, geo field "Albemarle County, VA". Real-device check needed.
