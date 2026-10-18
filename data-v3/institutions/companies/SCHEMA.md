@@ -14,14 +14,14 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `brands.csv` | 52 (41 brand, 11 company) | `entity` |
-| `brand_relationships.csv` | 35 | `entity_relation` |
-| `company_locations.csv.gz` | 85,201 (66,012 with a v2-2024 county geoid; 19,174 outside the US) | `entity_location` |
+| `brands.csv` | 55 (44 brand, 11 company) | `entity` |
+| `brand_relationships.csv` | 37 | `entity_relation` |
+| `company_locations.csv.gz` | 111,451 (66,034 with a v2-2024 county geoid; 45,402 outside the US) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | best_buy 1,182; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 6,294; mcdonalds 13,486; starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
-| `locations/marriott_dropped_us.csv` | 36 | not loaded: Marriott rows that could not be kept, with reason |
-| `brand_cleanliness.csv` | 38 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
-| `sources.csv` | 38 | `source` |
+| `locations/<brand>.csv` | best_buy 1,204; cvs 9,001; home_depot 2,212; lowes 1,763; marriott 10,056; mcdonalds 36,378 (`.csv.gz`); starbucks 35,075 (`.csv.gz`); target 2,026; walgreens 7,991; walmart 4,904; wawa 1,320 | source tables for company_locations (full store detail) |
+| `locations/marriott_dropped.csv` | 361 | not loaded: Marriott rows that could not be kept, with reason |
+| `brand_cleanliness.csv` | 40 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only) |
+| `sources.csv` | 71 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -97,12 +97,18 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   `independent_walgreens_affiliate_operator_unknown` (the 3 "…, a Walgreens Rx" stores plus "Jim, Myers, A Walgreens Pharmacy") and `powered_by_walgreens_affiliate_operator_unknown` (9 "…, Powered by Walgreens").
   Duane Reade rows keep `brand=Walgreens` and `sub_brand_qid=wikidata:Q5310380`.
 - **cvs.csv**: cvs.com locator city pages (Oct 17, 2026), US. `CVS Pharmacy y más` rows carry `sub_brand_qid=wikidata:Q136695801`.
-- **mcdonalds.csv**: All The Places `mcdonalds` spider, run 2026-10-10 (CC0), `addr:country = US` only (no PR rows in that spider).
-- **marriott.csv**: US + territories only (6,294 rows: US 6,270, PR 18, VI 5, GU 1; 3,876 non-US and 211 no-country v5 rows dropped). The v5 property list (Oct 4, 2026) supplies the MARSHA code, hotel name, brand name and marriott.com URL; it is joined on the MARSHA code to
+- **mcdonalds.csv.gz**: global, 36,378 rows in 68 countries. All The Places (CC0), run 2026-10-10.
+  - **US rows** (13,486): from the `mcdonalds` spider, with `store_id` = the bare ATP ref, unchanged since 5faf8aa.
+  - **Other countries:** from the rest of `mcdonalds` plus every `mcdonalds_<cc>` spider, with `store_id` = `<country>-<ref>`.
+  - **Older runs:** `mcdonalds_cy`, `_it` and `_ph` were empty in the latest run, so they come from run 2026-10-03; `_rs`, `_si` and `_za` from run 2026-07-25 (`atp_older_run_<date>`).
+  - **Excluded:** McCafé points (Q3114287; 6,155 coffee bars inside restaurants) and 87 points with no ref (all of Morocco, plus 1 in Malaysia). No spider returned anything for the other countries McDonald's operates in.
+  - Israel's spider tags McDonald's Israel (Q12061542), which is kept as `sub_brand_qid`. 426 rows have no coordinates.
+- **marriott.csv**: global (user, 2026-10-18): 10,056 rows in about 160 countries (US 6,270). Rows with no country (211) are dropped. The v5 property list (Oct 4, 2026) supplies the MARSHA code, hotel name, brand name and marriott.com URL; it is joined on the MARSHA code to
   1. All The Places `marriott_hotels` + `ritz_carlton` (CC0): wins for coordinates and the address block (`coordinates_from_atp`, `address_from_atp`; `v5_vs_atp_coordinates_<d>km` when > 1 km apart);
   2. Marriott's own property feeds `pacsys.marriott.com/data/marriott_properties_<BRAND>_en-US.json` (first-party, the JSON marriott.com's brand pages load; ATP reads only some brand codes) for rows ATP lacks: `coordinates_from_marriott_feed`, `address_from_marriott_feed`. Fetched with `scripts/fetch_marriott_pacsys.py`.
   **v5-only values (user decision 2026-10-18):** a row with no ATP or Marriott-feed point keeps its v5 coordinates (and v5 address), flagged `v5_user_approved`, with source `marriott-v5-user-approved-2026-10-18`, unless it duplicates another row (same MARSHA code, or the same normalized name and address within 100 m), in which case it is dropped as `duplicate_of:<store_id>`. 33 rows are kept this way and none were duplicates. The other 367 of the original 400 v5-only rows now take their point and address from Marriott's feed.
-  `locations/marriott_dropped_us.csv` lists US/territory rows not kept: 23 `no_coordinates_no_address`, 12 `no_brand_qid` (MGM Collection), 1 `no_store_id`.
+  `locations/marriott_dropped.csv` (renamed from `marriott_dropped_us.csv`) lists every row not kept, with its reason: 211 `no_country`, 100 `no_coordinates_no_address`, 24 `non_us_v5_only_coordinates`, 14 `no_store_id`, 12 `no_brand_qid` (MGM Collection).
+  **Non-US licence rule:** the user's approval of v5-only values covers the US/territory hotels only. A non-US row whose only point is v5's is dropped (`non_us_v5_only_coordinates`). All 3,762 non-US rows kept take their point and address from ATP (3,095) or Marriott's feed (667).
   **brand_qid** order: exact normalized-name match to a Wikidata item parented/owned by Marriott or Starwood (`brand_qid_from_wikidata_name_match`),
   else the matched ATP item's `brand:wikidata`, else a v5-brand → QID map learned from ≥ 5 MARSHA-matched rows with ≥ 90 % agreement (`brand_qid_from_brand_name`).
   **Provenance caveat:** v5 addresses were partly filled from OpenStreetMap/Photon (ODbL) and the ArcGIS World Geocoder (Esri terms restrict storing results); v5 does not record which rows, so v5 addresses and points are used only where ATP and Marriott's feed have none, and those 33 rows carry `v5_user_approved`. Full provenance of v5: `PROVENANCE-marriott-v5.md`.

@@ -1,39 +1,41 @@
 rank,entity_id,name,locations,states_covered,pct_with_geoid,pct_coords_cc0,pct_coords_cc0_or_first_party,has_qid,has_parent,parent,has_free_logo,coordinate_sources
-1,wikidata:Q7315394,Residence Inn by Marriott,897,51,99.9,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-2,wikidata:Q1053170,Courtyard by Marriott,1052,51,99.8,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-3,wikidata:Q7830092,TownePlace Suites,596,49,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-4,wikidata:Q7580351,SpringHill Suites,600,48,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-5,wikidata:Q5653536,AC Hotels,152,40,99.3,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-6,wikidata:Q634831,Sheraton Hotels and Resorts,140,39,99.3,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
-7,wikidata:Q4734166,Aloft Hotels,169,35,98.8,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
-8,wikidata:Q91948072,Element Hotels,105,34,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-9,wikidata:Q5254663,Delta Hotels,55,27,100.0,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
-10,wikidata:Q782200,Ritz-Carlton,47,18,93.6,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-11,wikidata:Q261077,Le Méridien,24,16,100.0,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
-12,wikidata:Q30715430,St. Regis Hotels & Resorts,10,8,100.0,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+1,wikidata:Q7315394,Residence Inn by Marriott,979,51,91.5,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+2,wikidata:Q1053170,Courtyard by Marriott,1396,51,75.2,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+3,wikidata:Q7830092,TownePlace Suites,626,49,95.2,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+4,wikidata:Q7580351,SpringHill Suites,601,48,99.8,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+5,wikidata:Q5653536,AC Hotels,290,40,52.1,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+6,wikidata:Q634831,Sheraton Hotels and Resorts,440,39,31.6,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
+7,wikidata:Q4734166,Aloft Hotels,246,35,67.9,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+8,wikidata:Q91948072,Element Hotels,134,34,78.4,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+9,wikidata:Q5254663,Delta Hotels,145,27,37.9,100.0,100.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10
+10,wikidata:Q782200,Ritz-Carlton,128,18,34.4,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+11,wikidata:Q261077,Le Méridien,126,16,19.0,100.0,100.0,True,True,Starwood,True,atp-marriott_hotels-2026-10-10
+12,wikidata:Q30715430,St. Regis Hotels & Resorts,70,8,14.3,100.0,100.0,True,True,Starwood;Marriott International,True,atp-marriott_hotels-2026-10-10
 13,wikidata:Q3099664,Gaylord Hotels,7,6,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-14,wikidata:Q91218404,Edition Hotels,5,3,100.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
-15,wikidata:Q2078880,CVS Pharmacy,9001,51,100.0,0.0,100.0,True,True,CVS Health,False,cvs-store-locator-2026-10-17
-16,wikidata:Q1591889,Walgreens,7991,51,98.7,0.0,100.0,True,True,Walgreens Boots Alliance,True,walgreens-locator-api-2026-10-12
-17,wikidata:Q1969162,Westin Hotels & Resorts,125,31,98.4,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
-18,wikidata:Q2412604,The Luxury Collection,22,15,100.0,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
-19,wikidata:Q7958488,W Hotels,20,13,100.0,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
-20,wikidata:Q2143252,Renaissance Hotels,90,30,100.0,98.9,98.9,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-21,wikidata:Q92021343,Tribute Portfolio,109,36,99.1,0.0,98.2,True,True,Marriott International,False,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
-22,wikidata:Q70287020,Moxy Hotels,49,26,100.0,98.0,98.0,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-23,wikidata:Q19872869,Autograph Collection Hotels,163,38,98.2,0.0,83.4,True,True,Marriott International,True,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
-24,wikidata:Q38076,McDonald's,13486,51,100.0,100.0,100.0,True,False,,True,atp-mcdonalds-2026-10-10
+14,wikidata:Q91218404,Edition Hotels,24,3,20.8,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+15,wikidata:Q17092570,Protea Hotels,65,0,0.0,100.0,100.0,True,True,Marriott International,False,atp-marriott_hotels-2026-10-10
+16,wikidata:Q2078880,CVS Pharmacy,9001,51,100.0,0.0,100.0,True,True,CVS Health,False,cvs-store-locator-2026-10-17
+17,wikidata:Q1591889,Walgreens,7991,51,98.7,0.0,100.0,True,True,Walgreens Boots Alliance,True,walgreens-locator-api-2026-10-12
+18,wikidata:Q1969162,Westin Hotels & Resorts,253,31,48.6,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+19,wikidata:Q2412604,The Luxury Collection,142,15,15.5,0.0,100.0,True,True,Marriott International,False,marriott-pacsys-2026-10-18
+20,wikidata:Q7958488,W Hotels,72,13,27.8,0.0,100.0,True,True,Marriott International,True,marriott-pacsys-2026-10-18
+21,wikidata:Q2143252,Renaissance Hotels,183,30,49.2,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+22,wikidata:Q70287020,Moxy Hotels,193,26,25.4,99.5,99.5,True,True,Marriott International,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+23,wikidata:Q92021343,Tribute Portfolio,219,36,49.3,0.0,99.1,True,True,Marriott International,False,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
+24,wikidata:Q19872869,Autograph Collection Hotels,310,38,51.6,0.0,91.3,True,True,Marriott International,True,marriott-pacsys-2026-10-18;marriott-v5-user-approved-2026-10-18
 25,wikidata:Q1046951,Target Corporation,2026,51,100.0,100.0,100.0,True,False,,True,atp-target_us-2026-10-10
 26,wikidata:Q1373493,Lowe's,1761,51,100.0,100.0,100.0,True,False,,True,atp-lowes_us-2026-07-11
 27,wikidata:Q483551,Walmart,4904,51,92.0,100.0,100.0,True,False,,True,atp-walmart_ca-2026-10-10;atp-walmart_us-2026-01-24;atp-walmart_us-2026-10-10
 28,wikidata:Q864407,The Home Depot,2208,51,91.2,100.0,100.0,True,False,,True,atp-home_depot-2026-10-10;atp-home_depot_ca-2026-10-10
-29,wikidata:Q533415,Best Buy,1182,51,87.2,100.0,100.0,True,False,,True,atp-best_buy-2026-10-10;atp-best_buy_ca-2026-10-10
+29,wikidata:Q533415,Best Buy,1204,51,87.5,100.0,100.0,True,False,,True,atp-best_buy-2026-10-10;atp-best_buy_ca-2026-10-10
 30,wikidata:Q37158,Starbucks,35028,51,47.7,100.0,100.0,True,False,,True,atp-starbucks_ae-2026-10-10;atp-starbucks_ar_cl-2026-10-10;atp-starbucks_au-2026-10-10;atp-starbucks_br-2026-10-10;atp-starbucks_ca-2026-10-10;atp-starbucks_cn-2026-10-10;atp-starbucks_eu-2026-10-10;atp-starbucks_hk_mo-2026-10-10;atp-starbucks_jp-2026-10-10;atp-starbucks_mena-2026-10-10;atp-starbucks_pe-2026-10-10;atp-starbucks_sg-2026-10-10;atp-starbucks_th-2026-10-10;atp-starbucks_tw-2026-10-10;atp-starbucks_us-2026-10-10;atp-starbucks_za-2026-10-10
-31,wikidata:Q3918608,Marriott Hotels & Resorts,327,41,99.1,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-32,wikidata:Q1439966,Four Points by Sheraton,117,37,99.1,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-33,wikidata:Q109329542,City Express,49,24,98.0,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
-34,wikidata:Q5264274,Design Hotels,48,15,100.0,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
-35,wikidata:Q6772996,Marriott Vacation Club International,74,14,97.3,74.3,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
-36,wikidata:Q1067636,JW Marriott Hotels,35,16,100.0,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
-37,wikidata:Q5430314,Fairfield by Marriott,1207,50,99.9,99.8,99.8,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-38,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18
+31,wikidata:Q38076,McDonald's,35952,51,37.5,100.0,100.0,True,False,,True,atp-mcdonalds-2026-10-10;atp-mcdonalds_at-2026-10-10;atp-mcdonalds_be-2026-10-10;atp-mcdonalds_bg-2026-10-10;atp-mcdonalds_cy-2026-10-03;atp-mcdonalds_cz-2026-10-10;atp-mcdonalds_ee-2026-10-10;atp-mcdonalds_eg-2026-10-10;atp-mcdonalds_es-2026-10-10;atp-mcdonalds_fr-2026-10-10;atp-mcdonalds_gr-2026-10-10;atp-mcdonalds_gt-2026-10-10;atp-mcdonalds_hk-2026-10-10;atp-mcdonalds_il-2026-10-10;atp-mcdonalds_it-2026-10-03;atp-mcdonalds_jp-2026-10-10;atp-mcdonalds_kr-2026-10-10;atp-mcdonalds_latin_america-2026-10-10;atp-mcdonalds_lt-2026-10-10;atp-mcdonalds_lu-2026-10-10;atp-mcdonalds_lv-2026-10-10;atp-mcdonalds_mt-2026-10-10;atp-mcdonalds_my-2026-10-10;atp-mcdonalds_ph-2026-10-03;atp-mcdonalds_pl-2026-10-10;atp-mcdonalds_pt-2026-10-10;atp-mcdonalds_rs-2026-07-25;atp-mcdonalds_si-2026-07-25;atp-mcdonalds_sk-2026-10-10;atp-mcdonalds_th-2026-10-10;atp-mcdonalds_tr-2026-10-10;atp-mcdonalds_vn-2026-10-10
+32,wikidata:Q3918608,Marriott Hotels & Resorts,651,41,49.8,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+33,wikidata:Q1439966,Four Points by Sheraton,538,37,21.6,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+34,wikidata:Q109329542,City Express,181,24,26.5,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+35,wikidata:Q5264274,Design Hotels,277,15,17.3,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
+36,wikidata:Q72636824,Marriott Executive Apartments,56,0,0.0,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+37,wikidata:Q6772996,Marriott Vacation Club International,92,14,78.3,76.1,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
+38,wikidata:Q1067636,JW Marriott Hotels,142,16,24.6,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
+39,wikidata:Q5430314,Fairfield by Marriott,1470,50,82.0,99.9,99.9,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+40,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18

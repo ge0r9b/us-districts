@@ -218,7 +218,7 @@ for brand, sid, bq in (("Walgreens", S_WAG, Q_WAG), ("CVS", S_CVS, Q_CVS)):
                     "county_differs_from_input_2023_county": diff,
                     "flags": dict(Counter(f.split(":")[0] for fl in df["flags"] for f in fl.split(";") if f))}
 
-# ---------------- McDonald's (ATP, US only) ----------------
+# ---------------- McDonald's US rows (ATP `mcdonalds`, store_id = bare ref, unchanged since 5faf8aa) ----------------
 feats = json.loads((RAW / "atp" / "mcdonalds.geojson").read_text())["features"]
 rows, seen, dups = [], set(), 0
 for f in feats:
@@ -243,10 +243,7 @@ for f in feats:
                      sub_brand=nm if nm and nm != "McDonald's" else "", flags=fl,
                      source=f"{S_ATP['mcdonalds']};{S_CEN};{S_WD}", source_url=p.get("website") or p.get("@source_uri", ""),
                      source_date=ATP_DATE, name=nm, sub_brand_qid="", county_geoid="", country_code="US", status="", store_type=""))
-df = finish(rows)
-summary["mcdonalds"] = {"file": write(df, "mcdonalds"), "rows": len(df), "atp_us_features": len(seen) + dups,
-                        "duplicate_refs_dropped": dups, "atp_non_us_features_skipped": len(feats) - len(seen) - dups,
-                        "flags": dict(Counter(f.split(":")[0] for fl in df["flags"] for f in fl.split(";") if f))}
+MCD_US_ROWS, MCD_US_DUPS = rows, dups  # US rows keep their bare-ref store ids; non-US rows are added in CHAINS["mcdonalds"]
 
 # ---------------- Marriott (v5 + ATP fill) ----------------
 v5 = pd.read_csv(INP / "marriott-properties-v5.csv", dtype=str, keep_default_na=False)
@@ -394,12 +391,15 @@ for x in rows:
             x["dup_of"] = y["store_id"]
             break
 stats["v5_user_approved_duplicates"] = sum(1 for x in rows if x.get("dup_of"))
-# Scope: US + territories only (Full Stack 8639fe1). Rows that cannot load are dropped and listed.
+# Scope: global (user, 2026-10-18). Rows that cannot load are dropped and listed in marriott_dropped.csv.
+# Licence rule: the user's approval of v5-only values covers the US/territory hotels only, so a non-US row whose only
+# point is v5's is dropped (non_us_v5_only_coordinates) rather than published.
 US_CC = {"US", "PR", "VI", "GU", "AS", "MP"}
 keep, dropped = [], []
 for x in rows:
-    reason = ("non_us" if x["country_code"] and x["country_code"] not in US_CC else
-              "no_country" if not x["country_code"] else
+    reason = ("no_country" if not x["country_code"] else
+              "non_us_v5_only_coordinates" if x["country_code"] not in US_CC and "v5_user_approved" in x["flags"] and x["lat"] != ""
+              and not any(f.startswith("coordinates_from_") for f in x["flags"]) else
               "no_store_id" if not x["store_id"] else
               "no_brand_qid" if not x["brand_qid"] else
               "no_coordinates_no_address" if x["lat"] == "" and not x["address"] else
@@ -408,8 +408,8 @@ for x in rows:
     (dropped if reason else keep).append((x, reason))
 stats["dropped"] = dict(Counter(r for _, r in dropped))
 pd.DataFrame([dict(store_id=x["store_id"], brand=x["brand"], name=x["name"], city=x["city"], state=x["state"],
-                   country_code=x["country_code"], reason=r, source_url=x["source_url"]) for x, r in dropped if r not in ("non_us", "no_country")]
-             ).to_csv(OUT / "marriott_dropped_us.csv", index=False, lineterminator="\n")
+                   country_code=x["country_code"], reason=r, source_url=x["source_url"]) for x, r in dropped]
+             ).to_csv(OUT / "marriott_dropped.csv", index=False, lineterminator="\n")
 rows = [x for x, _ in keep]
 for x in rows:
     x.pop("dup_of", None)
@@ -491,10 +491,25 @@ CHAINS = {
     "best_buy": dict(qid="Q533415", drop_name_re=r"Distribution Center",
                      inputs=[("best_buy", None, "us"), ("best_buy_ca", None, "ca")]),
     "target": dict(qid="Q1046951", inputs=[("target_us", None, "us")]),
+    "seven_eleven": dict(qid="Q259340", ref_strip=r"_SHOP$",
+                         inputs=[("seven_eleven_ca_us", None, "*cc"), ("seven_eleven_au", None, "au"), ("seven_eleven_dk", None, "dk"),
+                                 ("seven_eleven_jp", None, "jp"), ("seven_eleven_mx", None, "mx"), ("seven_eleven_ph", None, "ph"),
+                                 ("seven_eleven_se", None, "se"), ("seven_eleven_th", None, "th"), ("seven_eleven_tw", None, "tw")]),
+    "circle_k": dict(qid="Q3268010",
+                     inputs=[("circle_k", None, "*cc"), ("circle_k_dk", None, "dk"), ("circle_k_ireland", None, "ie"),
+                             ("circle_k_no", None, "no"), ("circle_k_pl", None, "pl"), ("circle_k_se", None, "se"), ("circle_k_vn", None, "vn")]),
+    "bucees": dict(qid="Q4982335", inputs=[("bucees_us", "2026-10-03-13-32-35", "us")]),
+    # McDonald's: the US rows come from the section above (bare-ref ids, unchanged); every other country is added here.
+    "mcdonalds": dict(qid="Q38076", accept={"Q38076", "Q12061542"}, sub_by_qid={"Q12061542": "Q12061542"},
+                      prepend_rows=MCD_US_ROWS,
+                      inputs=[("mcdonalds", None, "*cc", {"skip_cc": {"US"}}), ("mcdonalds_at", None, "*cc"), ("mcdonalds_be", None, "*cc"), ("mcdonalds_bg", None, "*cc"), ("mcdonalds_cz", None, "*cc"), ("mcdonalds_ee", None, "*cc"), ("mcdonalds_eg", None, "*cc"), ("mcdonalds_es", None, "*cc"), ("mcdonalds_fr", None, "*cc"), ("mcdonalds_gr", None, "*cc"), ("mcdonalds_gt", None, "*cc"), ("mcdonalds_hk", None, "*cc"), ("mcdonalds_il", None, "*cc"), ("mcdonalds_jp", None, "*cc"), ("mcdonalds_kr", None, "*cc"), ("mcdonalds_latin_america", None, "*cc"), ("mcdonalds_lt", None, "*cc"), ("mcdonalds_lu", None, "*cc"), ("mcdonalds_lv", None, "*cc"), ("mcdonalds_ma", None, "*cc"), ("mcdonalds_mt", None, "*cc"), ("mcdonalds_my", None, "*cc"), ("mcdonalds_pl", None, "*cc"), ("mcdonalds_pt", None, "*cc"), ("mcdonalds_sk", None, "*cc"), ("mcdonalds_th", None, "*cc"), ("mcdonalds_tr", None, "*cc"), ("mcdonalds_vn", None, "*cc"),
+                              ("mcdonalds_cy", "2026-10-03-13-32-35", "*cc"), ("mcdonalds_it", "2026-10-03-13-32-35", "*cc"),
+                              ("mcdonalds_ph", "2026-10-03-13-32-35", "*cc"), ("mcdonalds_rs", "2026-07-25-13-32-20", "*cc"),
+                              ("mcdonalds_si", "2026-07-25-13-32-20", "*cc"), ("mcdonalds_za", "2026-07-25-13-32-20", "*cc")]),
 }
 
 if os.environ.get("CHAINS"):  # e.g. CHAINS=walmart,home_depot to build a subset (default: all)
-    CHAINS = {k: v for k, v in CHAINS.items() if k in os.environ["CHAINS"].split(",")}
+    CHAINS = {k: v for k, v in CHAINS.items() if k in os.environ["CHAINS"].split(",") + ["mcdonalds"]}
 
 
 def atp_src(spider, run):
@@ -511,7 +526,10 @@ for fname, cfg in CHAINS.items():
     q = cfg["qid"]
     accept = cfg.get("accept", {q})
     rows, seen, st = [], set(), Counter()
-    for spider, run, ns in cfg["inputs"]:
+    rows.extend(cfg.get("prepend_rows", []))
+    seen |= {x["store_id"] for x in rows}
+    for spider, run, ns, *o in cfg["inputs"]:
+        opts = o[0] if o else {}
         path = RAW / "atp" / f"{spider}.geojson" if run is None else RAW / "atp_runs" / run / f"{spider}.geojson"
         t = path.read_text().strip()
         sid_src = atp_src(spider, run)
@@ -525,14 +543,18 @@ for fname, cfg in CHAINS.items():
             if nm in cfg.get("drop_names", ()) or (cfg.get("drop_name_re") and re.search(cfg["drop_name_re"], nm)):
                 st[f"excluded_name:{nm}"] += 1
                 continue
+            if p.get("addr:country", "") in opts.get("skip_cc", ()):
+                continue
             ref = str(p.get("ref") or "")
-            if ref.startswith("http"):
-                m = re.search(r"(\d+)(?:\.html)?/?$", ref)
+            if cfg.get("ref_strip"):
+                ref = re.sub(cfg["ref_strip"], "", ref)
+            if ref.startswith("http"):  # URL ref: trailing store number, else the last path segment
+                m = re.search(r"(\d+)(?:\.html)?/?$", ref) or re.search(r"([^/#]+)/?$", ref)
                 ref = m.group(1) if m else ""
             if not ref:
                 st["excluded_no_ref"] += 1
                 continue
-            sid = f"{ns}-{ref}"
+            sid = f"{(p.get('addr:country') or 'xx').lower() if ns == '*cc' else ns}-{ref}"
             if sid in seen:
                 st["duplicate_store_id_dropped"] += 1
                 continue
@@ -546,7 +568,7 @@ for fname, cfg in CHAINS.items():
             fl = [f"atp_older_run_{run[:10]}"] if run else []
             if not p.get("addr:street_address") and p.get("addr:full"):
                 fl.append("address_is_addr_full")
-            subq = cfg.get("sub_by_name", {}).get(nm, "")
+            subq = cfg.get("sub_by_name", {}).get(nm, "") or cfg.get("sub_by_qid", {}).get(p.get("brand:wikidata"), "")
             rows.append(dict(store_id=sid, brand=WD.get(q, {}).get("label", ""), brand_qid=qid(q), parent_brand_qid=parent_of(q),
                              address=p.get("addr:street_address") or p.get("addr:full") or "", city=p.get("addr:city", ""),
                              state=p.get("addr:state", ""), zip=p.get("addr:postcode", ""), county="", lat=lat, lon=lon,
@@ -596,7 +618,7 @@ summary["wawa"] = {"file": write(df, "wawa"), "rows": len(df), "with_county_geoi
 used = Counter()
 files = defaultdict(set)
 LOC = {}
-for name in ("walgreens", "cvs", "mcdonalds", "marriott", "starbucks", "wawa", *CHAINS):
+for name in dict.fromkeys(("walgreens", "cvs", "mcdonalds", "marriott", "starbucks", "wawa", *CHAINS)):
     p = OUT / summary[name]["file"]
     d = pd.read_csv(p, dtype=str, keep_default_na=False)
     LOC[name] = d
