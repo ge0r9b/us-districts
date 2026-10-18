@@ -1071,7 +1071,7 @@ In this file ≈ means any estimate. Area-weighted and population-weighted figur
   - 2024: 21 residents, no unit.
   - 2020: reported with Canaan as the official combined unit "Canaan/Averill". This follows the same ruling as Maine's combined units, so it stays gray.
 - **KY Graves County SD and Mayfield ISD 2020:** VEST and the app's 2020 file report Graves County as one county-wide unit (17,019). The strict rule's "exact" result is that county total, which includes Mayfield, so it is not the district. Mayfield's population-weighted estimate also fails the consistency rule (4,434 vs 2,010 in 2024). Kentucky's official 2020 precinct canvass was not fetched; see "Source exists, not built" below.
-- **TX Boys Ranch ISD (both years):** this is a residential children's ranch, so most of its 120 residents are minors. Block population is not a proxy for voters here: a population share would give it 51 / 68 votes. It has no separate reporting unit, so it stays gray (judgement call, logged).
+- **TX Boys Ranch ISD (both years):** this is a residential children's ranch, so most of its 120 residents are minors. Block population is not a proxy for voters here: a population share would give it 51 / 68 votes. It has no separate reporting unit, so it stays gray. The orchestrator confirmed this ruling on Oct 18, 2026.
 - **Alaska city districts where the town precinct is not the district,** in 2024: Klawock, Nenana, Pelican, Southeast Island and Chatham. In 2020 those same five, plus Dillingham, Hoonah, Nome and St. Marys. The Division reports nothing finer than the precinct, so no official source can split them.
   - Chugach 2020: population cover is 91 %.
 
