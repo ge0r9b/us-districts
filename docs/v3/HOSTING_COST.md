@@ -1,6 +1,6 @@
 # v3 hosting and cost plan (Phase 1)
 
-> **No accounts have been created** (Vercel, Neon, Cloudflare, Geocodio or any other). Prices were read from the vendors' public pages on **Oct 18, 2026**; check again before signing up. All prices are USD before tax.
+> **Accounts (Oct 18, 2026):** the user has created a **Neon account** (signed in with GitHub). **No Neon project exists yet.** The plan is a `dev` branch in Neon first, and the connection string reaches v3 only as a secret, once builds are approved. No Vercel, Cloudflare, Geocodio or other accounts exist, and this lane creates none. Prices were read from the vendors' public pages on **Oct 18, 2026**; check again before signing up. All prices are USD before tax.
 
 ## Sources (read Oct 18, 2026)
 - Vercel pricing: https://vercel.com/pricing

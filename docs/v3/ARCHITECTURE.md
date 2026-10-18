@@ -1,6 +1,6 @@
 # US Districts v3: architecture (Phase 1 plan)
 
-> Status: **plan only**. Branch `v3/plan`, based on `main` at `509d31d` (build 1567). Nothing has been deployed and no accounts have been created. v2 (`v2/`, live at https://ge0r9b.github.io/us-districts/v2/) stays untouched and remains the reference until v3 reaches parity. Per REPO-RULES.md rule 5, v3 does not deploy or merge to main until v2.0 is tagged and the user approves.
+> Status: **plan only**. The user has a Neon account (no project yet; a `dev` branch comes first, and its connection string reaches v3 only as a secret once builds are approved; see HOSTING_COST.md). Branch `v3/plan`, based on `main` at `509d31d` (build 1567). Nothing has been deployed and no accounts have been created. v2 (`v2/`, live at https://ge0r9b.github.io/us-districts/v2/) stays untouched and remains the reference until v3 reaches parity. Per REPO-RULES.md rule 5, v3 does not deploy or merge to main until v2.0 is tagged and the user approves.
 
 ## 1. What v3 must do (from the repo docs)
 - Keep everything v2 does (MIGRATION_CHECKLIST.md): institution and geo filters, map/list/chart views, time slider with delta, % / # mode, sort, back stack, ≈ estimates, gray where data is missing, light mode, Liquid Glass round buttons, and an iOS-Safari-first layout.
