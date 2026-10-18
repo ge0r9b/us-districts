@@ -23,8 +23,8 @@ Researched 2026-10-18 from files on the shared box (`/workspace`). Facts only; e
 |---|---|---|
 | `marriott-properties.csv` | 2026-10-03 | sitemap build (10,434 rows) |
 | `-clean.csv` | 2026-10-03 16:53 EDT | 17 duplicates removed (10,417 rows); geodata from Wikidata P10595/P625 and Nominatim reverse geocoding |
-| `-v3.csv` | 2026-10-03/04 | `geo-cache/build_v3.py`: existing cells, Wikidata (P10595, operator/brand links), OpenStreetMap via Sophox, Nominatim cache |
-| `-v4.csv` | 2026-10-04 | `geo-cache/fill_canada.py` (writes v4; Photon/Nominatim) |
+| `-v3.csv` | not recorded (no v3 notes file; between clean and v5) | `geo-cache/build_v3.py`: existing cells, Wikidata (P10595, operator/brand links), OpenStreetMap via Sophox, Nominatim cache |
+| `-v4.csv` | not recorded (no v4 notes file; before v5's 2026-10-04 03:29 EDT) | `geo-cache/fill_canada.py` (writes v4: fills blank Canadian street addresses from Photon and Nominatim) |
 | `-v5.csv` | 2026-10-04 03:29 EDT, then ArcGIS passes to about 03:55 EDT | `fill_marriott_v5.py` + `fill_usca_600*.py` |
 
 ## Sources (from the notes and scripts)
