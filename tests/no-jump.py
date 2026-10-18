@@ -37,11 +37,44 @@ async def run(b,W,H,mob,timeopen):
     seq=[x for i,x in enumerate(fr) if i==0 or x!=fr[i-1]]
     ck(f"{T} drill-in: no flash (only old -> new spots: {seq})",all(x in (fr[0],fin) or 'hidden' in x for x in seq) and len(seq)<=4,seq)
     await c.close()
+
+# build 1576 (user, live ~9:36 AM: "No jumping with the objects!"): results view (MA / Worcester County, MA state) <-> US House districts, and year changes.
+# Every frame for 1 s after the switch, the thumbnails, top fields, right buttons, slider, list box, first row and bottom bar keep their final spot
+# (zero tolerance); a list never shows a scrolled frame after a switch.
+REC2="""async(js)=>{ const sel={cands:'#cands',top:'#barTop',geo:'#barGeo',bTime:'#bTime',bLyr:'#bLyr',bNum:'#bNum',globe:'#bGlobe',slider:'#barTime',lv:'#listView',bot:'#barBottom'};
+  const snap=()=>{ const o={}; for(const k in sel){ const e=document.querySelector(sel[k]); if(!e){o[k]='none';continue;} const cs=getComputedStyle(e); if(e.hidden||cs.display==='none'||cs.visibility==='hidden'){o[k]='hidden';continue;} const r=e.getBoundingClientRect(); o[k]=r.width?[r.left,r.top,r.width,r.height].map(Math.round).join(','):'hidden'; }
+    const lv=document.getElementById('listView'); o.scroll=lv?lv.scrollTop:0; return o; };
+  const pre=snap(); (new Function(js))(); const fr=[pre]; let go=true; const loop=()=>{ fr.push(snap()); if(go) requestAnimationFrame(loop); }; requestAnimationFrame(loop);
+  await new Promise(r=>setTimeout(r,1000)); go=false; return fr; }"""
+LY="const b=document.querySelector('#lyrRow .lbtn[data-k=\"ushouse\"]'); b&&b.click()"
+async def run2(b,W,H,mob):
+    c=await b.new_context(viewport={'width':W,'height':H},device_scale_factor=2,is_mobile=mob,has_touch=mob); pg=await c.new_page()
+    await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+    await pg.evaluate("()=>{const s=document.getElementById('state');s.value='Massachusetts';s.onchange&&s.onchange()}"); await pg.wait_for_timeout(5000)
+    for scope in ('Worcester County','Massachusetts'):
+      if scope!='Massachusetts': await pg.evaluate("(n)=>{const c=document.getElementById('county');c.value=n;c.onchange&&c.onchange()}",scope); await pg.wait_for_timeout(5000)
+      else: await pg.evaluate("()=>{const c=document.getElementById('county');c.value='';c.onchange&&c.onchange()}"); await pg.wait_for_timeout(5000)
+      if not await pg.evaluate("()=>document.body.classList.contains('listmode')"): await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(4000)
+      if not await pg.evaluate("()=>document.body.classList.contains('lyropen')"): await pg.evaluate("()=>document.getElementById('bLyr').click()"); await pg.wait_for_timeout(1500)
+      steps=[("'16>'24","window.__ySet16(2)"),("US House on",LY),("US House off",LY),("'16","window.__ySet16(0)"),("US House on",LY),("US House off",LY),
+             ("2024","const s=document.getElementById('yslider');s.value=2;s.dispatchEvent(new Event('input',{bubbles:true}))"),("US House on",LY),("US House off",LY)]
+      for nm,js in steps:
+        fr=await pg.evaluate(REC2,js); fin=fr[-1]; T=f"{W}x{H} {scope}: {nm}"
+        for k in fin:
+          if k=='scroll': continue
+          seq=[]
+          for f in fr:
+            if not seq or seq[-1]!=f[k]: seq.append(f[k])
+          ck(f"{T}: {k} goes straight to its final spot (no in-between frame)",len(seq)==1 or (len(seq)==2 and seq[0]==fr[0][k]),seq[:5])
+        ck(f"{T}: list never shows a scrolled frame",all(f['scroll']==0 for f in fr[1:]) or fr[0]['scroll']==fin['scroll']==max(f['scroll'] for f in fr),[f['scroll'] for f in fr][:12])
+        await pg.wait_for_timeout(1200)
+    await c.close()
 async def main():
   async with async_playwright() as p:
     b=await p.chromium.launch()
     for W,H,mob in ((1024,576,False),(390,844,True)):
       for to in (True,False): await run(b,W,H,mob,to)
+    for W,H,mob in ((390,844,True),(375,667,True),(1024,653,False)): await run2(b,W,H,mob)
     await b.close()
   print('FAILS',fails); sys.exit(1 if fails else 0)
 asyncio.run(main())
