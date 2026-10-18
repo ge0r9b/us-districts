@@ -23,6 +23,10 @@ Box is shared and was loaded (load avg 3-5) so treat single numbers as +/-30%.
 | 1579 (479deb7) | 375x667 | 1.58 / 7.78 | 3.65 / 13.30 | 701 | 982 | 641 | 165 | 105 / 282 (cold 282) | 131 / 271 (cold 271) | 21 / 28 | 28 / 131 | 83 / 289 | 66 / 82 | 59.1 fps, p95 16.8, max 50, dropped 4/272 |
 | 1579 (479deb7) | 320x568 | 1.58 / 7.78 | 3.65 / 13.30 | 528 | 854 | 784 | 125 | 93 / 263 (cold 263) | 123 / 315 (cold 315) | 23 / 33 | 22 / 142 | 75 / 282 | 75 / 145 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
 | 1579 (479deb7) | ipad820x1180 | 1.58 / 7.78 | 3.65 / 13.31 | 1215 | 1260 | 764 | 168 | 136 / 199 (cold 199) | 128 / 380 (cold 380) | 22 / 26 | 14 / 25 | 91 / 97 | 72 / 86 | 51.4 fps, p95 33.4, max 116.6, dropped 42/250 |
+| 1582 (16b1393) | 390x844 | 1.58 / 7.79 | 3.65 / 13.32 | 756 | 806 | 677 | 131 | 96 / 232 (cold 232) | 102 / 260 (cold 260) | 15 / 28 | 16 / 19 | 99 / 283 | 57 / 75 | 59.6 fps, p95 16.8, max 33.3, dropped 2/274 |
+| 1582 (16b1393) | 375x667 | 1.58 / 7.79 | 3.65 / 13.31 | 714 | 733 | 651 | 108 | 94 / 237 (cold 237) | 111 / 333 (cold 333) | 16 / 24 | 13 / 16 | 90 / 242 | 66 / 85 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
+| 1582 (16b1393) | 320x568 | 1.58 / 7.79 | 3.65 / 13.32 | 796 | 843 | 620 | 120 | 74 / 261 (cold 261) | 100 / 242 (cold 242) | 15 / 24 | 16 / 19 | 102 / 278 | 54 / 73 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1582 (16b1393) | ipad820x1180 | 1.58 / 7.79 | 3.65 / 13.31 | 629 | 1017 | 638 | 167 | 146 / 191 (cold 191) | 116 / 347 (cold 347) | 19 / 33 | 14 / 87 | 106 / 134 | 69 / 89 | 44.5 fps, p95 33.4, max 83.3, dropped 73/209 |
 
 Raw JSON: raw/b<build>-live-<viewport>.json (per-try latencies, top-10 resources, notes).
 
@@ -78,3 +82,12 @@ Noise is about +/-30%. Medians compared with medians, cold (first try) with cold
 - Pan: phones 59-60 fps; iPad 44.8 fps / 82 dropped -> 51.4 fps / 42 dropped (run 1: 47.9 / 65), still the weakest.
 - Proposals (PROPOSALS.md): **none landed** in 1576-1579. index.html still has `const PACK`/`const XREF` inline (lines 682/687, 5.94 MB raw); still `?v=`+window.BUILD (39 places, was 38: new data/points loader); enter() still ends `layoutSide(); }catch(e){} fit(); }` (line 3730); aggFor (line 1388) still runs inside the pick, no idle warm-up / precomputed table (prototypes E/F not landed either).
 - QA-007 All States (238-380 ms): **still reproduces on the first tap** (cold 199-282 ms), median 93-136. QA-007 US House pick (205-528 ms): **still reproduces and got worse** (cold 271-465 ms, median now 123-131 ms vs 81-96). QA-041 Line pick (126-277 ms): **still not reproduced** in Chromium (median 21-25, max 36).
+
+## 1582 (16b1393) vs 1579 (479deb7)
+Run 2026-10-18 13:55-14:06 EDT, load avg 2-4.5, same tools/baseline.py and selectors, 0 notes, 0 page errors. 1580-1582 are UI fixes (time slider, thumbnails, candidate icons); the diff has no aggFor / idle warm-up / fit() change, so the US House fix (and patches D/E) is not in yet.
+- **Back crossed 100 ms**: median 92/83/75/91 -> 99/90/102/106 ms (390/375/320/iPad); 320 +35% and iPad now over 100 ms (both were under). Cold back 253/289/282/86 -> 283/242/278/134. Trend since 1576 (53/76/46/57): about 2x.
+- US House pick slightly better but still above 1576: median 131/131/123/128 -> 102/111/100/116 (1576: 102/101/78/81); cold 465/271/315/380 -> 260/333/242/347. Deselect 77/57/65/61 -> 51/54/53/58.
+- Same within noise: All States median 96/94/74/146 (cold 191-261), time step 54-69, drill PA 13-16 (no spikes, max 87 iPad), Line pick 15-19 median (max 33; QA-041 still not reproduced), institution menu 20-26.
+- Startup same or better: DCL 756/714/796/629, first map 677/651/620/638, longest task 108-167. Bytes +0.2% (1.58 / 7.79 MB initial, 3.65 / 13.31 MB PA session).
+- Pan: phones 59.6-60 fps; iPad 44.5 fps, 73 of 209 dropped (1579: 51.4 / 42; within the 1575-1579 range of 45-51).
+- Proposals: none landed. PACK/XREF still inline (lines 686/691), ?v=+BUILD in 43 places, enter() still ends with a synchronous fit() (line 3755).
