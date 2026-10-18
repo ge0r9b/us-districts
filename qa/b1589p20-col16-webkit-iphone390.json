@@ -1,0 +1,376 @@
+{
+ "iphone390 US-ushouse": {
+  "lat_layer": 55,
+  "lat_2016": 14,
+  "px_2016": {
+   "blue%": 27.3,
+   "red%": 72.7,
+   "gray_n": 75
+  },
+  "lbl_2016": [
+   [
+    "Hillary Clinton 2016",
+    "48%"
+   ],
+   [
+    "Donald Trump 2016",
+    "46%"
+   ]
+  ],
+  "lat_2024": 67,
+  "px_2024": {
+   "blue%": 25.3,
+   "red%": 74.7,
+   "gray_n": 85
+  },
+  "lbl_2024": [
+   [
+    "Donald Trump 2024",
+    "50%"
+   ],
+   [
+    "Kamala Harris 2024",
+    "48%"
+   ]
+  ],
+  "pts16": {
+   "Philadelphia": [
+    "D",
+    "D",
+    [
+     87,
+     125,
+     170
+    ]
+   ],
+   "Pittsburgh": [
+    "D",
+    "D",
+    [
+     132,
+     184,
+     204
+    ]
+   ],
+   "rural PA": [
+    "R",
+    "R",
+    [
+     218,
+     89,
+     73
+    ]
+   ],
+   "Lancaster": [
+    "R",
+    "R",
+    [
+     231,
+     134,
+     113
+    ]
+   ]
+  },
+  "err": [],
+  "build": "202610181589"
+ },
+ "iphone390 Pennsylvania-map": {
+  "lat_2016": 17,
+  "px_2016": {
+   "blue%": 26.7,
+   "red%": 73.3,
+   "gray_n": 198
+  },
+  "lbl_2016": [
+   [
+    "Donald Trump 2016",
+    "48%"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "47%"
+   ]
+  ],
+  "lat_2024": 55,
+  "px_2024": {
+   "blue%": 27.4,
+   "red%": 72.6,
+   "gray_n": 195
+  },
+  "lbl_2024": [
+   [
+    "Donald Trump 2024",
+    "50%"
+   ],
+   [
+    "Kamala Harris 2024",
+    "49%"
+   ]
+  ],
+  "pts16": {
+   "Philadelphia": [
+    "D",
+    "D",
+    [
+     184,
+     195,
+     212
+    ]
+   ],
+   "Pittsburgh": [
+    "D",
+    "D",
+    [
+     121,
+     156,
+     190
+    ]
+   ],
+   "rural PA": [
+    "R",
+    "R",
+    [
+     184,
+     44,
+     40
+    ]
+   ],
+   "Lancaster": [
+    "R",
+    "R",
+    [
+     237,
+     160,
+     143
+    ]
+   ]
+  },
+  "err": [],
+  "build": "202610181589"
+ },
+ "iphone390 Pennsylvania-ushouse": {
+  "lat_layer": 73,
+  "lat_2016": 4,
+  "px_2016": {
+   "blue%": 27.3,
+   "red%": 72.7,
+   "gray_n": 158
+  },
+  "lbl_2016": [
+   [
+    "Donald Trump 2016",
+    "48%"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "47%"
+   ]
+  ],
+  "lat_2024": 87,
+  "px_2024": {
+   "blue%": 28.2,
+   "red%": 71.8,
+   "gray_n": 244
+  },
+  "lbl_2024": [
+   [
+    "Donald Trump 2024",
+    "50%"
+   ],
+   [
+    "Kamala Harris 2024",
+    "49%"
+   ]
+  ],
+  "pts16": {
+   "Philadelphia": [
+    "D",
+    "D",
+    [
+     46,
+     112,
+     173
+    ]
+   ],
+   "Pittsburgh": [
+    "D",
+    "D",
+    [
+     110,
+     173,
+     209
+    ]
+   ],
+   "rural PA": [
+    "R",
+    "R",
+    [
+     218,
+     57,
+     47
+    ]
+   ],
+   "Lancaster": [
+    "R",
+    "R",
+    [
+     239,
+     117,
+     95
+    ]
+   ]
+  },
+  "err": [],
+  "build": "202610181589"
+ },
+ "iphone390 Pennsylvania-senate": {
+  "lat_layer": 78,
+  "lat_2016": 13,
+  "px_2016": {
+   "blue%": 25.4,
+   "red%": 74.6,
+   "gray_n": 109
+  },
+  "lbl_2016": [
+   [
+    "Donald Trump 2016",
+    "48%"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "47%"
+   ]
+  ],
+  "lat_2024": 136,
+  "px_2024": {
+   "blue%": 26.6,
+   "red%": 73.4,
+   "gray_n": 98
+  },
+  "lbl_2024": [
+   [
+    "Donald Trump 2024",
+    "50%"
+   ],
+   [
+    "Kamala Harris 2024",
+    "49%"
+   ]
+  ],
+  "pts16": {
+   "Philadelphia": [
+    "D",
+    "D",
+    [
+     26,
+     58,
+     113
+    ]
+   ],
+   "Pittsburgh": [
+    "D",
+    "D",
+    [
+     84,
+     151,
+     198
+    ]
+   ],
+   "rural PA": [
+    "R",
+    "R",
+    [
+     205,
+     51,
+     44
+    ]
+   ],
+   "Lancaster": [
+    "R",
+    "R",
+    [
+     247,
+     170,
+     145
+    ]
+   ]
+  },
+  "err": [],
+  "build": "202610181589"
+ },
+ "iphone390 Pennsylvania-statehouse": {
+  "lat_layer": 105,
+  "lat_2016": 15,
+  "px_2016": {
+   "blue%": 24.4,
+   "red%": 75.6,
+   "gray_n": 135
+  },
+  "lbl_2016": [
+   [
+    "Donald Trump 2016",
+    "48%"
+   ],
+   [
+    "Hillary Clinton 2016",
+    "47%"
+   ]
+  ],
+  "lat_2024": 243,
+  "px_2024": {
+   "blue%": 24.8,
+   "red%": 75.2,
+   "gray_n": 95
+  },
+  "lbl_2024": [
+   [
+    "Donald Trump 2024",
+    "50%"
+   ],
+   [
+    "Kamala Harris 2024",
+    "49%"
+   ]
+  ],
+  "pts16": {
+   "Philadelphia": [
+    "D",
+    "D",
+    [
+     27,
+     62,
+     117
+    ]
+   ],
+   "Pittsburgh": [
+    "D",
+    "D",
+    [
+     36,
+     95,
+     152
+    ]
+   ],
+   "rural PA": [
+    "R",
+    "R",
+    [
+     225,
+     72,
+     58
+    ]
+   ],
+   "Lancaster": [
+    "R",
+    "R",
+    [
+     242,
+     129,
+     104
+    ]
+   ]
+  },
+  "err": [],
+  "build": "202610181589"
+ }
+}

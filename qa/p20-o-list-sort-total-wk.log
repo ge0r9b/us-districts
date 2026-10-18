@@ -1,0 +1,31 @@
+ok   2016 bar num: High to low by total votes (keys are vote totals, descending)
+ok   2016 bar num: 2016 order CA FL TX NY PA IL OH MI with 14.18M..4.80M
+ok   2016 bar pct: High to low by total votes (keys are vote totals, descending)
+ok   2016 bar pct: 2016 order CA FL TX NY PA IL OH MI with 14.18M..4.80M
+ok   2016 gbar num: High to low by total votes (keys are vote totals, descending)
+ok   2016 gbar num: 2016 order CA FL TX NY PA IL OH MI with 14.18M..4.80M
+ok   2016 gbar pct: High to low by total votes (keys are vote totals, descending)
+ok   2016 gbar pct: 2016 order CA FL TX NY PA IL OH MI with 14.18M..4.80M
+ok   2016 Trump only: High to low by Trump's votes (TX, FL, CA)
+ok   2016 Trump only, %: by Trump's share (WV first)
+ok   2016 Clinton only: High to low by Clinton's votes (CA, NY, FL)
+ok   2016 both back on: total-vote order again
+ok   2020 bar num: High to low by total votes (keys are vote totals, descending)
+ok   2020 bar num: CA (most votes cast) first
+ok   2020 bar pct: High to low by total votes (keys are vote totals, descending)
+ok   2020 bar pct: CA (most votes cast) first
+ok   2020 gbar num: High to low by total votes (keys are vote totals, descending)
+ok   2020 gbar num: CA (most votes cast) first
+ok   2020 gbar pct: High to low by total votes (keys are vote totals, descending)
+ok   2020 gbar pct: CA (most votes cast) first
+ok   2024 bar num: High to low by total votes (keys are vote totals, descending)
+ok   2024 bar num: CA (most votes cast) first
+ok   2024 bar pct: High to low by total votes (keys are vote totals, descending)
+ok   2024 bar pct: CA (most votes cast) first
+ok   2024 gbar num: High to low by total votes (keys are vote totals, descending)
+ok   2024 gbar num: CA (most votes cast) first
+ok   2024 gbar pct: High to low by total votes (keys are vote totals, descending)
+ok   2024 gbar pct: CA (most votes cast) first
+ok   range: High to low by |net change| as displayed
+ok   no page errors
+FAILS 0

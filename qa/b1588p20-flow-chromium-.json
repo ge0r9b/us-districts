@@ -1,0 +1,1147 @@
+{
+ "iphone390": {
+  "lat": {
+   "open_institution": 77.6,
+   "list_all_states": 121.4,
+   "sort_flip": 22.6,
+   "sort_flip_back": 27,
+   "num_toggle": 15.6,
+   "num_pick": 37.9,
+   "time_open": 26.9,
+   "chart_menu": 17.7,
+   "chart_gbar": 20.5,
+   "chart_menu_re": 31.3,
+   "chart_line": 21,
+   "chart_menu_single": 15.5,
+   "drill_PA": 11.3,
+   "drill_county": 31.2,
+   "drill_town": 51,
+   "back": 26.5,
+   "type_menu": 26.7,
+   "type_ushouse": 68.2,
+   "type_deselect": 59.7
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5628,
+   "list_all_states": 7377,
+   "sort_flip": 12823,
+   "sort_flip_back": 14217,
+   "num_toggle": 16490,
+   "time_open": 20354,
+   "chart_menu": 28039,
+   "chart_gbar": 29120,
+   "chart_menu_re": 31809,
+   "chart_line": 32787,
+   "chart_menu_single": 38491,
+   "back": 58944,
+   "type_menu": 62028,
+   "type_ushouse": 63406,
+   "type_deselect": 67597
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 3.47M",
+   "OH | 3.15M",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M | \u2212614K",
+   "NY | R +953K | \u2212626K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "Philadelphia | 569K",
+   "Allegheny | 284K | 430K",
+   "Montgomery | 198K | 317K",
+   "Bucks | 199K | 198K",
+   "Delaware | 201K",
+   "Chester | 184K",
+   "Lancaster | 166K",
+   "York | 155K"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906],[\"Bucks County\",401028],[\"Delaware Cou",
+  "county_rows": [
+   "Philadelphia city | 564K",
+   "Rockledge borough | 520"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "town_rows": [
+   "Precinct 3017 | 1K",
+   "Precinct 528 | 1K",
+   "Precinct 830 | 1K",
+   "Precinct 2719 | 1K",
+   "Precinct 1818 | 1K",
+   "Precinct 825 | 976",
+   "Precinct 523 | 1K",
+   "Precinct 810 | 954"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia Precinct 3017\",1500],[\"Philadelphia Precinct 528\",1294],[\"Philadelphia Precinct 830\",1290],[\"Philadelphia Prec",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0444,-75.1108,10]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0024,-75.1176,10]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone375": {
+  "lat": {
+   "open_institution": 42.1,
+   "list_all_states": 83.1,
+   "sort_flip": 29.1,
+   "sort_flip_back": 16,
+   "num_toggle": 14.1,
+   "num_pick": 30.8,
+   "time_open": 25.1,
+   "chart_menu": 22.4,
+   "chart_gbar": 22.3,
+   "chart_menu_re": 18.2,
+   "chart_line": 15.3,
+   "chart_menu_single": 13.6,
+   "drill_PA": 20.3,
+   "drill_county": 23.1,
+   "drill_town": 48.1,
+   "back": 24.2,
+   "type_menu": 17.7,
+   "type_ushouse": 81.1,
+   "type_deselect": 66.8
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5524,
+   "list_all_states": 7187,
+   "sort_flip": 12541,
+   "sort_flip_back": 13904,
+   "num_toggle": 16168,
+   "time_open": 19979,
+   "chart_menu": 27560,
+   "chart_gbar": 28644,
+   "chart_menu_re": 31314,
+   "chart_line": 32284,
+   "chart_menu_single": 37970,
+   "back": 58376,
+   "type_menu": 61463,
+   "type_ushouse": 62804,
+   "type_deselect": 66999
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 3.47M",
+   "OH | 3.15M",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "Philadelphia | 569K",
+   "Allegheny | 284K | 430K",
+   "Montgomery | 198K | 317K",
+   "Bucks | 199K | 198K",
+   "Delaware | 201K",
+   "Chester | 184K",
+   "Lancaster | 166K",
+   "York"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906],[\"Bucks County\",401028],[\"Delaware Cou",
+  "county_rows": [
+   "Philadelphia city | 564K",
+   "Rockledge borough | 520"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "town_rows": [
+   "Precinct 3017 | 1K",
+   "Precinct 528 | 1K",
+   "Precinct 830 | 1K",
+   "Precinct 2719 | 1K",
+   "Precinct 1818 | 1K",
+   "Precinct 825 | 976",
+   "Precinct 523 | 1K",
+   "Precinct 810 | 954"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia Precinct 3017\",1500],[\"Philadelphia Precinct 528\",1294],[\"Philadelphia Precinct 830\",1290],[\"Philadelphia Prec",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.087,-75.1043,9]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0029,-75.118,10]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone320": {
+  "lat": {
+   "open_institution": 61.5,
+   "list_all_states": 83.8,
+   "sort_flip": 34.3,
+   "sort_flip_back": 26.5,
+   "num_toggle": 19.8,
+   "num_pick": 23.1,
+   "time_open": 27.3,
+   "chart_menu": 19,
+   "chart_gbar": 27.7,
+   "chart_menu_re": 28.1,
+   "chart_line": 14.9,
+   "chart_menu_single": 13.4,
+   "drill_PA": 34.5,
+   "drill_county": 24.6,
+   "drill_town": 40.7,
+   "back": 48.4,
+   "type_menu": 25.8,
+   "type_ushouse": 94.9,
+   "type_deselect": 97.1
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5521,
+   "list_all_states": 7188,
+   "sort_flip": 12387,
+   "sort_flip_back": 13762,
+   "num_toggle": 16032,
+   "time_open": 19811,
+   "chart_menu": 27432,
+   "chart_gbar": 28490,
+   "chart_menu_re": 31167,
+   "chart_line": 32151,
+   "chart_menu_single": 37835,
+   "back": 58505,
+   "type_menu": 61574,
+   "type_ushouse": 62949,
+   "type_deselect": 67145
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 5.24M",
+   "PA",
+   "IL",
+   "OH",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "Philadelphia | 569K",
+   "Allegheny | 284K | 430K",
+   "Montgomery | 317K",
+   "Bucks",
+   "Delaware",
+   "Chester",
+   "Lancaster",
+   "York"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906],[\"Bucks County\",401028],[\"Delaware Cou",
+  "county_rows": [
+   "Philadelphia city | 564K",
+   "Rockledge borough | 520"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "town_rows": [
+   "Precinct 3017 | 1K",
+   "Precinct 528 | 1K",
+   "Precinct 830 | 1K",
+   "Precinct 2719 | 1K",
+   "Precinct 1818 | 1K",
+   "Precinct 825 | 976",
+   "Precinct 523 | 1K",
+   "Precinct 810 | 954"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia Precinct 3017\",1500],[\"Philadelphia Precinct 528\",1294],[\"Philadelphia Precinct 830\",1290],[\"Philadelphia Prec",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.087,-75.1043,9]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0029,-75.118,10]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x576": {
+  "lat": {
+   "open_institution": 40.4,
+   "list_all_states": 86.7,
+   "sort_flip": 31.8,
+   "sort_flip_back": 34.1,
+   "num_toggle": 18.4,
+   "num_pick": 31.7,
+   "time_open": 32,
+   "chart_menu": 29.9,
+   "chart_gbar": 18.2,
+   "chart_menu_re": 19.6,
+   "chart_line": 19.5,
+   "chart_menu_single": 18.8,
+   "drill_PA": 13.4,
+   "drill_county": 26.8,
+   "drill_town": 57.9,
+   "back": 28.6,
+   "type_menu": 14.3,
+   "type_ushouse": 74.3,
+   "type_deselect": 67
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5811,
+   "list_all_states": 7545,
+   "sort_flip": 12971,
+   "sort_flip_back": 14367,
+   "num_toggle": 16647,
+   "time_open": 20519,
+   "chart_menu": 28352,
+   "chart_gbar": 29481,
+   "chart_menu_re": 32228,
+   "chart_line": 33196,
+   "chart_menu_single": 38928,
+   "back": 59720,
+   "type_menu": 62766,
+   "type_ushouse": 64186,
+   "type_deselect": 68443
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3% | 26.1%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 2.45M | 3.47M",
+   "OH | 3.15M | 2.68M",
+   "MI | 2.65M | 2.80M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "Philadelphia | 144K | 569K",
+   "Allegheny | 284K | 430K",
+   "Montgomery | 198K | 317K",
+   "Bucks | 199K | 198K",
+   "Delaware | 123K | 201K",
+   "Chester | 137K | 184K",
+   "Lancaster | 166K | 120K",
+   "York | 155K | 92K"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906],[\"Bucks County\",401028],[\"Delaware Cou",
+  "county_rows": [
+   "Philadelphia city | 144K | 564K",
+   "Rockledge borough | 520"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "town_rows": [
+   "Precinct 3017 | 1K",
+   "Precinct 528 | 1K",
+   "Precinct 830 | 1K",
+   "Precinct 2719 | 1K",
+   "Precinct 1818 | 1K",
+   "Precinct 825 | 976",
+   "Precinct 523 | 1K",
+   "Precinct 810 | 954"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia Precinct 3017\",1500],[\"Philadelphia Precinct 528\",1294],[\"Philadelphia Precinct 830\",1290],[\"Philadelphia Prec",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.087,-75.1043,9]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0029,-75.118,11]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x768": {
+  "lat": {
+   "open_institution": 43.6,
+   "list_all_states": 115.5,
+   "sort_flip": 29.6,
+   "sort_flip_back": 30,
+   "num_toggle": 30.5,
+   "num_pick": 26.8,
+   "time_open": 44.7,
+   "chart_menu": 25.4,
+   "chart_gbar": 22,
+   "chart_menu_re": 25.2,
+   "chart_line": 15,
+   "chart_menu_single": 8.8,
+   "drill_PA": 32.1,
+   "drill_county": 24.1,
+   "drill_town": 58.2,
+   "back": 26.1,
+   "type_menu": 14.8,
+   "type_ushouse": 72,
+   "type_deselect": 62.2
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5543,
+   "list_all_states": 7358,
+   "sort_flip": 12737,
+   "sort_flip_back": 14169,
+   "num_toggle": 16447,
+   "time_open": 20379,
+   "chart_menu": 28256,
+   "chart_gbar": 29390,
+   "chart_menu_re": 32136,
+   "chart_line": 33111,
+   "chart_menu_single": 38904,
+   "back": 59648,
+   "type_menu": 62694,
+   "type_ushouse": 64110,
+   "type_deselect": 68364
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3% | 26.1%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 2.45M | 3.47M",
+   "OH | 3.15M | 2.68M",
+   "MI | 2.65M | 2.80M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "Philadelphia | 144K | 569K",
+   "Allegheny | 284K | 430K",
+   "Montgomery | 198K | 317K",
+   "Bucks | 199K | 198K",
+   "Delaware | 123K | 201K",
+   "Chester | 137K | 184K",
+   "Lancaster | 166K | 120K",
+   "York | 155K | 92K"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906],[\"Bucks County\",401028],[\"Delaware Cou",
+  "county_rows": [
+   "Philadelphia city | 144K | 564K",
+   "Rockledge borough | 520"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "town_rows": [
+   "Precinct 3017 | 1K",
+   "Precinct 528 | 1K",
+   "Precinct 830 | 1K",
+   "Precinct 2719 | 1K",
+   "Precinct 1818 | 1K",
+   "Precinct 825 | 976",
+   "Precinct 523 | 1K",
+   "Precinct 810 | 954"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"precincts\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia Precinct 3017\",1500],[\"Philadelphia Precinct 528\",1294],[\"Philadelphia Precinct 830\",1290],[\"Philadelphia Prec",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Philadelphia city\",718930],[\"Rockledge borough\",520]]}",
+  "ushouse_rows": [],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0444,-75.1108,10]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[40.0029,-75.118,11]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ }
+}

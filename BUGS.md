@@ -159,7 +159,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: goes straight to "districts" (50 PA senate districts; 500 PA school districts). One more tap opens precincts.
 - Screenshots: shots/b1568-ch-390-senate-list.png, shots/b1568-ch-390-school-list.png
 
-### QA-020 Slow taps that remain after the 1567 drill rewrite
+### QA-020 [Changed on 1589: WebKit Back from Los Angeles County cities 430-473 ms, see pass 20] Slow taps that remain after the 1567 drill rewrite
 - Severity: High (REPO-RULES 7) | Builds 1567/1568
 - Town > precincts drill-in (Philadelphia city): first frame 145 ms (390), 177 ms (375), 205 ms (320) in Chromium on 1567.
 - Back from townships to counties: first frame 253-313 ms (phones, 1567).
@@ -343,7 +343,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 
 ## New on build 1575 (pass 7)
 
-### QA-044 [Changed on 1587, see pass 19] Line list: the first row's change number is hidden under the sort chip
+### QA-044 [Fixed on 1588 (verified pass 20)] [Changed on 1587, see pass 19] Line list: the first row's change number is hidden under the sort chip
 - Severity: High (a number on the first row can't be read; regression from the 1575 rows-up change) | Build 1575 | 390x844 and 375x667 (Chromium, touch). Not at 320x568, 1024x576 or 1024x768, where the chip sits clear of the labels.
 - Steps: All States list > open the time row > select the full range ('20 > '24) > chart button > Line. Same in `#`, and in PA counties.
 - Expected: the first row's numbers stay fully readable (they were clear on 1574, when the rows started 15 px lower).
@@ -708,6 +708,33 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Re-test status, builds 1588 / 1589 (pass 20, live line 9 = 202610181589; Oct 18 ~6:58-7:35 PM EDT)
+- Builds since pass 19: 1588 (`5a7711c`: thumbnails on the topic-icon axis in every view, list-all exits on the map at every level, High to low ranks by total votes, district-type rows show only the number with At-large for 0/AL) and 1589 (`4245b05`, CRITICAL: '16 district maps coloured by the 2016 margin). Live switched to 1589 mid-pass; the 1589-specific checks below ran on 1589. No v3 preview or live URL yet. Box load 1-5.
+- **2016 colours (CRITICAL) fixed on 1589, verified by touch in Chromium and WebKit 390x844 and Chromium 1024x768:** with the slider on '16, the US House map, Pennsylvania counties, PA US House, PA state senate and PA state house all show blue in Philadelphia and Pittsburgh and red in rural central PA and Lancaster (pixel samples at zoom 9; none gray). Statewide '16 map: CA, NY, IL, CO, VA, WA blue; TX, OH, KS red; FL, PA, MI, WI pale pink, as expected for margins under 1.2 points. Thumbnails at '16: US Clinton 48% / Trump 46%, PA Trump 48% / Clinton 47% (official 48.2/46.1 and 48.2/47.5). The orchestrator's `tests/colors-2016.py`, pointed at the live site, also passes in both engines (24/24). Data: `qa/b1589p20-col16-*.json`, `qa/p20-o-colors16-*.log`. Shots: shots/b1589p20-{ch,we}-390-col16-*.png, shots/b1588p20-ch-390-own-{US,PA}-2016.png
+- **1588 thumbnail axis verified:** thumbnails centred on the row icon within 1 px on the US map, US list, bar and pie, US House map at '16/'20/'24, PA map and list, Allegheny map, PA US House map and list, PA state senate list, DC US House list (Chromium 5 sizes by touch, WebKit 390 and 1024x768; `tests/thumb-axis.py` on live: 42/42 in both engines).
+- **1588 list-all exit verified:** PA > US House > list > map and PA > State senate > list > map, and DC > US House > list > map: the thumbnails come back and `body.listall` is off (Chromium 5 sizes, WebKit 390 and 1024x768).
+- **1588 district labels verified:** PA US House rows read 1, 4, 17, ...; PA state senate rows 10, 12, 16 (no "District 0xx"); DC's row reads "At-large"; Alaska and Wyoming read "At-large"; bars start right next to the number. `tests/district-number-labels.py` on live: 168/168 in both engines. See new QA-080 for the nationwide list.
+- **1588 High to low by total votes verified:** All States 2024 order CA 15.86M, TX 11.38M, FL 10.89M, NY 8.20M, PA 7.03M, OH, NC, MI; 2016 order CA 14.18M, FL 9.42M, TX 8.97M, NY 7.72M, PA 6.17M, IL, OH, MI (matches the official totals). One candidate toggled on ranks by that candidate (2016 Trump only: TX, FL, CA; Clinton only: CA, NY, FL). `tests/list-sort-total.py` on live: 30/30 in both engines.
+- **QA-078 fixed (HIGH):** All States > 2020 > 2024 > split bar: change bars share one scale (NY +5.9 longest, CT +2.7 about half). Shot: shots/b1588p20-ch-390-new-sort-range-gbar.png
+- **QA-044 fixed:** the sort chip no longer covers any first-row bar or label in bar %, bar #, range bar, split bar, line and line # lists at 390, 375 and 320 (Chromium). Data: `qa/b1588p20-new-chromium-*.json`
+- **5-size smoke flow, Chromium and WebKit (touch):** no console errors, page errors or failed requests; CLS 0; slider, top fields, right buttons and bottom bar still don't move on year changes, drill-ins or Back (layout sweep Chromium 390 and 1024x768, WebKit 390). Menus open as overlays.
+- **Still open, unchanged:** QA-054 (thumbnails dy -3/+3 on map/list), QA-058 (+23 px in the plain range list), QA-057 (chart button hidden while the layers row is open), QA-076 (bubble x 6-116 phones, 316-426 iPad), QA-077 (US 2020 > 2024 chart still shows the old "Republican +3.1 pts" block), QA-005 (US House from the Philadelphia precincts list: 0 rows, Chromium all sizes; WebKit from Los Angeles cities lists 8 rows), QA-007 (All States row 76-121 ms Chromium, 106-152 ms WebKit), QA-006 (Rockledge borough under Philadelphia County), QA-079.
+- **QA-020 changed (WebKit only):** the flow now drills the first row (California > Los Angeles County > its cities, because High to low ranks by total votes), and Back from the Los Angeles County cities to the California counties takes 430-473 ms at all 5 sizes. Chromium Back on its path (Philadelphia) is 26 ms.
+
+### QA-080 [LOW, question] Nationwide US House list: at-large seats read "DE-00", not "At-large"
+- Build 1588/1589 | Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768; WebKit 390x844, 1024x768
+- Steps: US map > district-type button > US House > globe (list).
+- Expected (orchestrator's item: "at-large districts and DC labelled 'At-large'"): the at-large seats read e.g. "DE At-large".
+- Actual: the first row reads "DE-00" (title "Delaware district 00"). State lists already read "At-large" (DC, AK, WY), so only the nationwide list differs. May be intended since nationwide rows need the state; flagging so it's a decision.
+- Shot: shots/b1588p20-ch-390-own-DC-ushouse-list.png (DC's state list, for comparison). Data: `qa/b1588p20-own-*.json` (`us_rows`)
+
+### QA-081 [MEDIUM] Split bar list: bars start about 40 px further from the thumbnails than in the bar list
+- Build 1588/1589 (same on 1587) | Chromium 390x844
+- Steps: All States list > bar (bars start at x 82, names left-aligned at x 52) > time row 2020 > 2024 > split bar.
+- Expected: bars start right next to the names, as in the bar list and the new district-number lists.
+- Actual: in the split bar list the state names move to a right-aligned column at x 89-107 and the bars start at x 121, leaving about 45 px of empty space after the thumbnails; the names and bars jump right when switching bar > split bar.
+- Shots: shots/b1588p20-ch-390-new-sort-bar-pct.png, shots/b1588p20-ch-390-new-sort-range-gbar.png
+
 ## Re-test status, build 1587 (pass 19, live line 9 = 202610181587; Oct 18 ~5:57-6:30 PM EDT)
 - Builds since pass 18: 1586 (`ec95444`: '16 charts blank after returning to '16, menus are overlays with no dim, QA-060 icons re-measured, QA-070 clock button) and 1587 (`0c711df`: list sort chip at the right end of the bar area). No v3 preview or live URL yet. Box quiet (load 1-2).
 - **QA-070 fixed (HIGH):** US map > time row > geo button > All States: `#bTime` no longer leaves its spot in any frame (Chromium 390 and 1024x768, WebKit 390; only the geo field moves, as the full-screen menu opens). Data: `qa/b1587p19-layout-*.json` step 25.
@@ -720,7 +747,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - **Still open, unchanged:** QA-076 (bubble x 6-116 on phones, 316-426 on iPad), QA-077 (US 2020 > 2024 chart still shows the old "Republican +3.1 pts" block below the icons), QA-078 (split bar rows each full width: NY +5.9 and CT +2.7 the same length), QA-005 (US House from the Pittsburgh towns list: 0 rows, Chromium all sizes), QA-007 (All States row 70-113 ms Chromium, 104-169 ms WebKit), QA-020 (WebKit Back from Harris County towns 268 ms at 390), QA-003.
 - Shots: shots/b1587p19-ch-390-chart-us-range.png, shots/b1587p19-ch-390-chart-list-gbar.png, shots/b1587p19-ch-390-chart-bubble.png
 
-### QA-044 [Changed on 1587] Sort chip now sits on the first row's bar end in split bar and range bar lists
+### QA-044 [Fixed on 1588 (verified pass 20)] [Changed on 1587] Sort chip now sits on the first row's bar end in split bar and range bar lists
 - Severity: MEDIUM | Build 1587 | Chromium 390x844, 375x667, 320x568; WebKit 390x844 (touch). Not seen at 1024x576 / 1024x768.
 - Steps: All States list > time row 2020 > 2024 > chart button > split bar (also: range bar at 375; back to '24 in split bar at 320).
 - Expected: the chip clear of every row's bars and labels.
@@ -759,7 +786,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Actual: the two thumbnails stay alone at the top; under them is the old block "Republican +3.1 pts / Democratic -2.9 pts / Other -0.2 pts / Change 2020 → 2024 / R+5.9 shift" with text labels, 100 px lower than the icons.
 - Screenshots: shots/b1585p18-ch-390-chart-us-range.png, shots/b1585p18-we-390-chart-us-range.png
 
-### QA-078 [HIGH] Split bar list in a range: each row is scaled to its own biggest change, not one common scale
+### QA-078 [Fixed on 1588 (verified pass 20)] [HIGH] Split bar list in a range: each row is scaled to its own biggest change, not one common scale
 - Build 1585 | Chromium 390x844, 320x568 (seen in every row)
 - Steps: All States list > time row 2020 > 2024 > chart button > split bar.
 - Expected: change bars on one common scale for the whole list (spec rule, and the 1585 code comment says "the change on the list's common scale").

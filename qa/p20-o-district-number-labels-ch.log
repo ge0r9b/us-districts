@@ -1,0 +1,169 @@
+ok   390 ushouse Texas y0 bar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Texas y0 bar: the title keeps the full name
+ok   390 ushouse Texas y0 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Texas y0 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Texas y0 gbar: the title keeps the full name
+ok   390 ushouse Texas y0 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Texas y0: no page errors
+ok   390 ushouse Texas y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Texas y2 bar: the title keeps the full name
+ok   390 ushouse Texas y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Texas y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Texas y2 gbar: the title keeps the full name
+ok   390 ushouse Texas y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Texas y2: no page errors
+ok   390 ushouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Pennsylvania y2 bar: the title keeps the full name
+ok   390 ushouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Pennsylvania y2 gbar: the title keeps the full name
+ok   390 ushouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Pennsylvania y2: no page errors
+ok   390 senate Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 senate Pennsylvania y2 bar: the title keeps the full name
+ok   390 senate Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 senate Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 senate Pennsylvania y2 gbar: the title keeps the full name
+ok   390 senate Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 senate Pennsylvania y2: no page errors
+ok   390 statehouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 statehouse Pennsylvania y2 bar: the title keeps the full name
+ok   390 statehouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 statehouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 statehouse Pennsylvania y2 gbar: the title keeps the full name
+ok   390 statehouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 statehouse Pennsylvania y2: no page errors
+ok   390 ushouse Alaska y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Alaska y2 bar: the single seat reads 'At-large'
+ok   390 ushouse Alaska y2 bar: the title keeps the full name
+ok   390 ushouse Alaska y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Alaska y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Alaska y2 gbar: the single seat reads 'At-large'
+ok   390 ushouse Alaska y2 gbar: the title keeps the full name
+ok   390 ushouse Alaska y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Alaska y2: no page errors
+ok   390 ushouse Wyoming y2 bar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Wyoming y2 bar: the single seat reads 'At-large'
+ok   390 ushouse Wyoming y2 bar: the title keeps the full name
+ok   390 ushouse Wyoming y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Wyoming y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   390 ushouse Wyoming y2 gbar: the single seat reads 'At-large'
+ok   390 ushouse Wyoming y2 gbar: the title keeps the full name
+ok   390 ushouse Wyoming y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   390 ushouse Wyoming y2: no page errors
+ok   390 schools Massachusetts y2 bar: named entities keep their names
+ok   390 schools Massachusetts y2 gbar: named entities keep their names
+ok   390 schools Massachusetts y2: no page errors
+ok   375 ushouse Texas y0 bar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Texas y0 bar: the title keeps the full name
+ok   375 ushouse Texas y0 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Texas y0 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Texas y0 gbar: the title keeps the full name
+ok   375 ushouse Texas y0 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Texas y0: no page errors
+ok   375 ushouse Texas y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Texas y2 bar: the title keeps the full name
+ok   375 ushouse Texas y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Texas y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Texas y2 gbar: the title keeps the full name
+ok   375 ushouse Texas y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Texas y2: no page errors
+ok   375 ushouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Pennsylvania y2 bar: the title keeps the full name
+ok   375 ushouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Pennsylvania y2 gbar: the title keeps the full name
+ok   375 ushouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Pennsylvania y2: no page errors
+ok   375 senate Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 senate Pennsylvania y2 bar: the title keeps the full name
+ok   375 senate Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 senate Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 senate Pennsylvania y2 gbar: the title keeps the full name
+ok   375 senate Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 senate Pennsylvania y2: no page errors
+ok   375 statehouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 statehouse Pennsylvania y2 bar: the title keeps the full name
+ok   375 statehouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 statehouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 statehouse Pennsylvania y2 gbar: the title keeps the full name
+ok   375 statehouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 statehouse Pennsylvania y2: no page errors
+ok   375 ushouse Alaska y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Alaska y2 bar: the single seat reads 'At-large'
+ok   375 ushouse Alaska y2 bar: the title keeps the full name
+ok   375 ushouse Alaska y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Alaska y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Alaska y2 gbar: the single seat reads 'At-large'
+ok   375 ushouse Alaska y2 gbar: the title keeps the full name
+ok   375 ushouse Alaska y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Alaska y2: no page errors
+ok   375 ushouse Wyoming y2 bar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Wyoming y2 bar: the single seat reads 'At-large'
+ok   375 ushouse Wyoming y2 bar: the title keeps the full name
+ok   375 ushouse Wyoming y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Wyoming y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   375 ushouse Wyoming y2 gbar: the single seat reads 'At-large'
+ok   375 ushouse Wyoming y2 gbar: the title keeps the full name
+ok   375 ushouse Wyoming y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   375 ushouse Wyoming y2: no page errors
+ok   375 schools Massachusetts y2 bar: named entities keep their names
+ok   375 schools Massachusetts y2 gbar: named entities keep their names
+ok   375 schools Massachusetts y2: no page errors
+ok   320 ushouse Texas y0 bar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Texas y0 bar: the title keeps the full name
+ok   320 ushouse Texas y0 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Texas y0 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Texas y0 gbar: the title keeps the full name
+ok   320 ushouse Texas y0 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Texas y0: no page errors
+ok   320 ushouse Texas y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Texas y2 bar: the title keeps the full name
+ok   320 ushouse Texas y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Texas y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Texas y2 gbar: the title keeps the full name
+ok   320 ushouse Texas y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Texas y2: no page errors
+ok   320 ushouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Pennsylvania y2 bar: the title keeps the full name
+ok   320 ushouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Pennsylvania y2 gbar: the title keeps the full name
+ok   320 ushouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Pennsylvania y2: no page errors
+ok   320 senate Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 senate Pennsylvania y2 bar: the title keeps the full name
+ok   320 senate Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 senate Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 senate Pennsylvania y2 gbar: the title keeps the full name
+ok   320 senate Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 senate Pennsylvania y2: no page errors
+ok   320 statehouse Pennsylvania y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 statehouse Pennsylvania y2 bar: the title keeps the full name
+ok   320 statehouse Pennsylvania y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 statehouse Pennsylvania y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 statehouse Pennsylvania y2 gbar: the title keeps the full name
+ok   320 statehouse Pennsylvania y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 statehouse Pennsylvania y2: no page errors
+ok   320 ushouse Alaska y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Alaska y2 bar: the single seat reads 'At-large'
+ok   320 ushouse Alaska y2 bar: the title keeps the full name
+ok   320 ushouse Alaska y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Alaska y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Alaska y2 gbar: the single seat reads 'At-large'
+ok   320 ushouse Alaska y2 gbar: the title keeps the full name
+ok   320 ushouse Alaska y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Alaska y2: no page errors
+ok   320 ushouse Wyoming y2 bar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Wyoming y2 bar: the single seat reads 'At-large'
+ok   320 ushouse Wyoming y2 bar: the title keeps the full name
+ok   320 ushouse Wyoming y2 bar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Wyoming y2 gbar: rows show only the number (no 'District', no leading zero)
+ok   320 ushouse Wyoming y2 gbar: the single seat reads 'At-large'
+ok   320 ushouse Wyoming y2 gbar: the title keeps the full name
+ok   320 ushouse Wyoming y2 gbar: bars start right next to the icon column (gap <= widest number + 22px)
+ok   320 ushouse Wyoming y2: no page errors
+ok   320 schools Massachusetts y2 bar: named entities keep their names
+ok   320 schools Massachusetts y2 gbar: named entities keep their names
+ok   320 schools Massachusetts y2: no page errors
+FAILS 0
