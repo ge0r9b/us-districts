@@ -394,6 +394,12 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **Licences:** the `license` seed adds `OGL-CA`, `OGL-NB`, `StatCan-OL`, `EO-OUDPL`, `DGEQ-OD`, `EBC-OD`, `PEI-OD`, `not-stated` (AB, MB, SK, NL), `HoC-website`, `ca-public-record` (legislature sites) and `ca-federal-law`.
     - `source.non_commercial` and `source.attribution_required` (and the same flags on `license`) are set from these.
     - **Élections Québec data (DGEQ, non-commercial) is excluded from paid features.** Any paid tier filters out sources and boundary sets whose licence has `non_commercial = true`.
+  - **Canadian governments and First Nations (3bbb54a):**
+    - Ids are `municipality:ca-<CSDUID>` (kind `municipality`) and `county:ca-<CDUID>` (kind `county`, for county and regional governments). SCHEMA.sql checks both.
+    - First Nations use the new kind `indigenous_government` (US tribes can move to it later), with id `first_nation:ca-<band number>` from the CIRNAC band list. These are not minted from StatCan's First Nations CSD types, because one band can hold many reserves.
+    - Reserve, settlement and land CSDs stay `ca_csd` units, linked to their First Nation by `entity_unit` with `role = 'reserve_of'`.
+    - Xwalk relation **`part`** (with `share_of_geoid_in_entity` / `share_of_entity_in_geoid`) covers the two municipalities that span a provincial border, each with a CSD in both provinces: Flin Flon (`4621064` MB + `4718052` SK) and Lloydminster (`4810039` AB + `4717029` SK).
+    - Boundary sets `eq-2022-ced` (125) and `eq-2022-sv` (17,745, key `<CO_CEP>:<NO_SV>`), from the 2022 Quebec general election, are registered as not current.
   - **Tiles:** Canadian ridings and polls get PMTiles built from the source layers (Elections Canada, provincial agency and StatCan shapefiles named in `geometry_ref`). This is part of the **v3.1 tile build**, one archive per boundary set.
   - **Gaps at b4dc491:**
     - The StatCan boundary download answers HTTP 403, so `ca_cd` / `ca_csd` have no geometry yet, and CSD/CD types are unknown.

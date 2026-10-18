@@ -151,6 +151,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **v3.2** | Scheduled refresh: Vercel Cron (or a worker) runs the scrapers, diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Vercel Pro if cron frequency or duration exceeds Hobby |
 | **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
 | **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Vercel Pro |
+| **v4 / v5** | **Native macOS and iOS apps**, built in Cursor, on the same public API. v3 stays **API-first**, so every app feature goes through `/v1` and static packs, with no app-only server logic | Stable versioned API; Apple developer account |
 | **v5 / v6** | **Bridge to the user's private corporate database** (LEI/CIK crosswalk via `entity_alias` reserved schemes). It stays **off the public v3 surface**: no public API fields, no static packs, server-side only | User's server + auth; a separate private connection |
 
 ## 10. Phase 2 plan (summary)

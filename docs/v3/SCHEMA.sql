@@ -164,6 +164,7 @@ insert into boundary_set (slug, unit_type, country, province, vintage_year, is_c
   ('ec-2025-pd','ca_poll','ca',null,2025,true),   ('ec-2021-pd','ca_poll','ca',null,2021,false), ('ec-2019-pd','ca_poll','ca',null,2019,false),
   ('eo-2022-ed','ca_ped','ca','ON',2022,true),
   ('eq-2026-ced','ca_ped','ca','QC',2026,true),   ('eq-2026-sv','ca_ppoll','ca','QC',2026,true),
+  ('eq-2022-ced','ca_ped','ca','QC',2022,false),  ('eq-2022-sv','ca_ppoll','ca','QC',2022,false),   -- 2022 general election (3bbb54a)
   ('ebc-2023-ed','ca_ped','ca','BC',2023,true),   ('ebc-2024-va','ca_ppoll','ca','BC',2024,true),
   ('ea-2019-ed','ca_ped','ca','AB',2019,true),    ('ea-2026-va','ca_ppoll','ca','AB',2026,true),
   ('em-2018-ed','ca_ped','ca','MB',2018,true),    ('em-2023-va','ca_ppoll','ca','MB',2023,true),
@@ -293,6 +294,7 @@ create table entity (
                   'nation','territory','province','state','county','municipality','township',  -- province: Canadian provinces (parent nation:ca)
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
+                  'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
                   'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
                   'other')),
@@ -328,6 +330,10 @@ create table entity (
   -- Units exist for any country with a registered boundary set (Canada first); other non-US places stay entity-only
   -- (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
+  -- Canada: municipality:ca-<CSDUID>, county:ca-<CDUID> (county / regional governments), first_nation:ca-<band number>
+  check (country is distinct from 'ca' or kind <> 'municipality' or entity_id ~ '^municipality:ca-[0-9]{7}$'),
+  check (country is distinct from 'ca' or kind <> 'county' or entity_id ~ '^county:ca-[0-9]{4}$'),
+  check (country is distinct from 'ca' or kind <> 'indigenous_government' or entity_id ~ '^first_nation:ca-[0-9]+$'),
   -- territory ids: 'territory:<2-digit US FIPS>' (parent nation:us), 'territory:<iso2>' (foreign dependency, parent = sovereign),
   -- 'territory:ca-(nt|nu|yt)' (Canada's territories, parent nation:ca). Provinces: 'province:ca-<code>' (parent nation:ca).
   check (kind <> 'territory' or (parent_id like 'nation:%'
@@ -509,7 +515,8 @@ create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where uni
 create table entity_unit (
   entity_id  text not null references entity(entity_id) on delete cascade,
   unit_id    bigint not null references unit(id) on delete cascade,
-  role       text not null check (role in ('jurisdiction','seat_district','same_as')),
+  role       text not null check (role in ('jurisdiction','seat_district','same_as','reserve_of')),  -- reserve_of: a First Nation's reserve /
+                                                   -- settlement / land ca_csd units
   primary key (entity_id, unit_id, role)
 );
 create index entity_unit_unit on entity_unit (unit_id);
