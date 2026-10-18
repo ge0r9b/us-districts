@@ -18,7 +18,7 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 - [ ] Boundaries white with heatmap data, black without (HO §3). County lines 0.5 px, state 1.2 px; US House outlines 1.6 px, others 1.1 px (SPEC §6). Tests: `boundary-color`, `state-line-weight`.
 - [ ] Legend and attribution small, bottom left; colours plus tiny labels only; tap to magnify (HO §3; SPEC §6). Test: `legend-size`.
 - [ ] No instructional text on the map; no "No data yet" bubble (SPEC §8).
-- [ ] Colours: two answers on gives a red/blue margin scale (D+60…R+60; delta D+20…R+20). One answer on gives a single hue. None on gives no fill. No data is gray `#a8a29e` / `#d6d3d1`. < 50 % coverage stays gray (SPEC §6). Test: `single-candidate-shading`, `default-solid`.
+- [ ] Colours: two answers on gives a red/blue margin scale (D+90…R+90 linear since 1579, was ±60; delta D+20…R+20). One answer on gives a single hue. None on gives no fill. No data is gray `#a8a29e` / `#d6d3d1`. < 50 % coverage stays gray (SPEC §6). Test: `single-candidate-shading`, `default-solid`.
 - [ ] Wording: states and countries are *sovereign*; counties, cities, towns, townships and boroughs are *incorporated*; never "incorporated state" (HO §3).
 
 ## C. Filters (institution top, geography bottom; separate by design, SPEC §5)
