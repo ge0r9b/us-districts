@@ -110,6 +110,12 @@ districts, CA State Controller special districts) are not done yet; CoG 2022 omi
 Keene KY, St. Mary KY, Plantersville TX, Poetry TX existed before 2022) are not added.
 
 ## Wikidata QIDs and images
+**Fair-use basis (stated by the user for the app).** The app uses governments' logos and seals only as shorthand to
+identify and discuss the entities in relation to votes and public opinion. It does not represent or speak for them; an
+entity can speak for itself only by claiming its page on the app and posting there. Only small identification icons are
+used. Rows with `license=fair-use` carry `usage_basis=identification icon, small size` and the `source_url` of the file;
+no image files are stored in this repo.
+
 QIDs come only from exact identifier links (rules in SCHEMA.md): qid_by_p5087 50, qid_by_p590 16,194, qid_by_p774 19,390, qid_by_p882 3,030. Unassigned: item_shared 10, multiple_items 5, no_item 68, p774_p590_disagree 64.
 `images.csv`: 1,967 seals and 57 flags (821 seals are `fair-use` files from English Wikipedia used as
 identification icons, usage_basis `identification icon, small size`). By kind and entity type: flag / dc 1, flag / nation 1, flag / state 50, flag / territory 5, seal / county 250, seal / county / enwiki_fair_use 818, seal / county / enwiki_free 70, seal / dc 1, seal / municipality 648, seal / nation 1, seal / state 50, seal / territory 1, seal / territory / enwiki_free 3, seal / township 119, seal / tribe 1, seal / tribe / enwiki_fair_use 3, seal / tribe / enwiki_free 2.
