@@ -69,6 +69,26 @@ S_WD = src(f"wikidata-brands-{read_meta('wikidata_brands')['retrieved_at']}", "W
 ATP_USED = ("mcdonalds", "marriott_hotels", "ritz_carlton")
 S_ATP = {s: src(f"atp-{s}-{ATP_DATE}", f"All The Places spider '{s}' (run {ATP['run_id']})", ATP["spiders"][s]["url"],
                 "CC0 1.0", ATP_DATE, RAW / "atp" / f"{s}.geojson") for s in ATP_USED}
+# Marriott's own property feeds (first-party; see scripts/fetch_marriott_pacsys.py). sha256 is over the
+# brand files concatenated in sorted brand-code order.
+PAC_META = read_meta("marriott_pacsys")
+PAC_FILES = sorted((RAW / "marriott_pacsys").glob("*.json"))
+_h = hashlib.sha256()
+for _f in PAC_FILES:
+    _h.update(_f.read_bytes())
+S_PAC = src(f"marriott-pacsys-{PAC_META['retrieved_at']}",
+            "Marriott property feeds pacsys.marriott.com, brand codes " + " ".join(sorted(PAC_META["files"])),
+            "https://pacsys.marriott.com/data/marriott_properties_<BRAND>_en-US.json",
+            "marriott.com terms of use (first-party public feed; facts only, not an open licence)", PAC_META["retrieved_at"])
+SOURCES[S_PAC]["sha256"] = _h.hexdigest()
+PAC = {}
+for _f in PAC_FILES:
+    for _r in json.loads(_f.read_text())["regions"]:
+        for _k in _r["region_countries"]:
+            for _st in _k["country_states"]:
+                for _c in _st["state_cities"]:
+                    for _p in _c["city_properties"]:
+                        PAC.setdefault(_p["marsha_code"].upper(), (_f.stem, _p))
 
 # ---------------- helpers ----------------
 r = shapefile.Reader(str(INP / "cb_2024_us_county_500k.shp"))
@@ -315,8 +335,24 @@ for x in v5.itertuples(index=False):
             fl.append(f"atp_brand_qid_differs:{p['brand:wikidata']}")
         if p.get("brand") and p.get("brand") != x.brand:
             sub = p["brand"]
-    if lat != "" and coord_src == "v5":
-        fl.append("v5_unknown_license:coordinates")
+    pac = PAC.get(x.marsha) if x.marsha else None
+    if pac and (coord_src == "v5" or addr_src == "v5"):  # Marriott's own feed fills what ATP did not
+        bc, q = pac
+        srcs.append(S_PAC)
+        stats["marriott_feed_matched"] += 1
+        if coord_src == "v5" and q.get("latitude") and q.get("longitude"):
+            lat, lon, coord_src = float(q["latitude"]), float(q["longitude"]), "marriott_feed"
+            fl.append("coordinates_from_marriott_feed")
+        if addr_src == "v5" and q.get("address"):
+            addr, addr_src = q["address"].strip(), "marriott_feed"
+            city, state, zipc = q.get("city") or city, q.get("state") or state, q.get("postal_code") or zipc
+            fl.append("address_from_marriott_feed")
+        cc = cc or q.get("country_code") or ""
+        phone = phone or q.get("phone") or ""
+        url = url or f"https://pacsys.marriott.com/data/marriott_properties_{bc}_en-US.json"
+    if lat != "" and coord_src == "v5":  # v5 coordinates are never published (unknown licence)
+        lat = lon = ""
+        fl.append("v5_coordinates_dropped")
     if addr and addr_src == "v5":
         fl.append("v5_unknown_license:address")
     if not bq and BRAND_Q.get(x.brand):
@@ -341,18 +377,19 @@ for x in rows:
               "no_store_id" if not x["store_id"] else
               "no_brand_qid" if not x["brand_qid"] else
               "no_coordinates_no_address" if x["lat"] == "" and not x["address"] else
+              "no_open_coordinates_v5_only" if x["lat"] == "" and "v5_coordinates_dropped" in x["flags"] else
               "no_coordinates" if x["lat"] == "" else "")
     (dropped if reason else keep).append((x, reason))
 stats["dropped"] = dict(Counter(r for _, r in dropped))
-pd.DataFrame([dict(store_id=x["store_id"], brand=x["brand"], name=x["name"], country_code=x["country_code"], reason=r,
-                   source_url=x["source_url"]) for x, r in dropped if r not in ("non_us", "no_country")]
+pd.DataFrame([dict(store_id=x["store_id"], brand=x["brand"], name=x["name"], city=x["city"], state=x["state"],
+                   country_code=x["country_code"], reason=r, source_url=x["source_url"]) for x, r in dropped if r not in ("non_us", "no_country")]
              ).to_csv(OUT / "marriott_dropped_us.csv", index=False, lineterminator="\n")
 rows = [x for x, _ in keep]
 df = finish(rows, check_county=False)
 v5_codes = set(v5.marsha)
 lic = Counter(f for fl in df["flags"] for f in fl.split(";") if f.startswith("v5_unknown_license"))
 stats["v5_unknown_license_rows"] = int(df["flags"].str.contains("v5_unknown_license").sum())
-stats["v5_unknown_license_coordinates"] = lic["v5_unknown_license:coordinates"]
+stats["v5_unknown_license_coordinates"] = lic["v5_unknown_license:coordinates"]  # always 0 now
 stats["v5_unknown_license_address"] = lic["v5_unknown_license:address"]
 summary["marriott"] = {"file": write(df, "marriott"), "rows": len(df), "input_rows": n_in, "exact_duplicate_rows_dropped": exact_dups,
                        "v5_missing_coordinates": int((v5.coordinates == "").sum()), **stats,
@@ -448,6 +485,8 @@ for fname, d in LOC.items():
         srcs = x.source.split(";")
         if "coordinates_from_atp" in x.flags:
             sid = next(s for s in srcs if s.startswith("atp-"))
+        elif "coordinates_from_marriott_feed" in x.flags:
+            sid = S_PAC
         else:
             sid = srcs[0]
         addr = ", ".join(t for t in (x.address, x.city, x.state, x.zip) if t)

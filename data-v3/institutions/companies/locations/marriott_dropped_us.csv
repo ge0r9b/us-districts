@@ -1,133 +1,70 @@
-store_id,brand,name,country_code,reason,source_url
-SJUAO,Autograph Collection,"Alma San Juan, Puerto Rico, Autograph Collection",PR,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sjuao-alma-san-juan-puerto-rico-autograph-collection/overview/
-TULAK,Autograph Collection,"Ambassador Hotel Tulsa, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/tulak-ambassador-hotel-tulsa-autograph-collection/overview/
-BWIAK,Autograph Collection,"Annapolis Waterfront Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bwiak-annapolis-waterfront-hotel-autograph-collection/overview/
-LASAR,Autograph Collection,"ARIA Resort & Casino, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lasar-aria-resort-and-casino-autograph-collection/overview/
-STTAK,Autograph Collection,"Buoy Haus Beach Resort St. Thomas, Autograph Collection",VI,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sttak-buoy-haus-beach-resort-st-thomas-autograph-collection/overview/
-MIAKC,Autograph Collection,"Cadillac Hotel & Beach Club, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/miakc-cadillac-hotel-and-beach-club-autograph-collection/overview/
-JAXAK,Autograph Collection,"Casa Monica Resort & Spa, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/jaxak-casa-monica-resort-and-spa-autograph-collection/overview/
-BHMAK,Autograph Collection,"Elyton Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bhmak-elyton-hotel-autograph-collection/overview/
-LGAAW,Autograph Collection,"Envue, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lgaaw-envue-autograph-collection/overview/
-HOUGA,Autograph Collection,"Grand Galvez Resort, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houga-grand-galvez-resort-autograph-collection/overview/
-PTLAK,Autograph Collection,"Grand Hotel Golf Resort & Spa, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/ptlak-grand-hotel-golf-resort-and-spa-autograph-collection/overview/
-DALOK,Autograph Collection,"HALL Park Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/dalok-hall-park-hotel-autograph-collection/overview/
-MCOAK,Autograph Collection,"Hotel Beauden, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcoak-hotel-beauden-autograph-collection/overview/
-SBPGS,Autograph Collection,"HOTEL CERRO, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sbpgs-hotel-cerro-autograph-collection/overview/
-HOUAK,Autograph Collection,"Hotel ICON, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houak-hotel-icon-autograph-collection/overview/
-SJCMN,Autograph Collection,"Hotel Nia, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sjcmn-hotel-nia-autograph-collection/overview/
-SAVAK,Autograph Collection,"Hotel Orielle, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/savak-hotel-orielle-autograph-collection/overview/
-XNARK,Autograph Collection,"Hotel Vin, Rogers-Bentonville, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/xnark-hotel-vin-rogers-bentonville-autograph-collection/overview/
-LIHAK,Autograph Collection,"Koloa Landing Resort at Poipu, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lihak-koloa-landing-resort-at-poipu-autograph-collection/overview/
-SJULC,Autograph Collection,"La Concha Resort, Puerto Rico, Autograph Collection",PR,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sjulc-la-concha-resort-puerto-rico-autograph-collection/overview/
-NPBAK,Autograph Collection,"Lido House, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/npbak-lido-house-autograph-collection/overview/
-BWIAO,Autograph Collection,"Merriweather Lakehouse, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bwiao-merriweather-lakehouse-autograph-collection/overview/
-MSYQC,Autograph Collection,"Q&C Hotel and Bar New Orleans, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/msyqc-qandc-hotel-and-bar-new-orleans-autograph-collection/overview/
-DSMKD,Autograph Collection,"Surety Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/dsmkd-surety-hotel-autograph-collection/overview/
-PHXAK,Autograph Collection,"The Camby, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phxak-the-camby-autograph-collection/overview/
-LASCO,Autograph Collection,"The Cosmopolitan of Las Vegas, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lasco-the-cosmopolitan-of-las-vegas-autograph-collection/overview/
-MSYEJ,Autograph Collection,"The Eliza Jane, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/msyej-the-eliza-jane-autograph-collection/overview/
-BOSAK,Autograph Collection,"The Envoy Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bosak-the-envoy-hotel-autograph-collection/overview/
-HOUKE,Autograph Collection,"The Greenleigh, River Oaks, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houke-the-greenleigh-river-oaks-autograph-collection/overview/
-BTVAK,Autograph Collection,"The Harborvale, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/btvak-the-harborvale-autograph-collection/overview/
-MCOCB,Autograph Collection,"The Inn at Celebration, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcocb-the-inn-at-celebration-autograph-collection/overview/
-EWRAK,Autograph Collection,"The MC Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/ewrak-the-mc-hotel-autograph-collection/overview/
-PWMAK,Autograph Collection,"The Press Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pwmak-the-press-hotel-autograph-collection/overview/
-LASRV,Autograph Collection,"The Reserve at Park MGM, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lasrv-the-reserve-at-park-mgm-autograph-collection/overview/
-PBIDB,Autograph Collection,"The Seagate Hotel, Golf & Beach Club, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pbidb-the-seagate-hotel-golf-and-beach-club-autograph-collection/overview/
-SEAWK,Autograph Collection,"The SOMM Hotel & Spa, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/seawk-the-somm-hotel-and-spa-autograph-collection/overview/
-BNAAK,Autograph Collection,"The Union Station Nashville Yards, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bnaak-the-union-station-nashville-yards-autograph-collection/overview/
-SUXAK,Autograph Collection,"The Warrior Hotel, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/suxak-the-warrior-hotel-autograph-collection/overview/
-MCOKC,Autograph Collection,Walt Disney World Swan Reserve,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcokc-walt-disney-world-swan-reserve/overview/
-SRQAK,Autograph Collection,"Waterline Villas & Marina, Autograph Collection",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/srqak-waterline-villas-and-marina-autograph-collection/overview/
-CRPXE,City Express,City Express by Marriott Corpus Christi East,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/crpxe-city-express-corpus-christi-east/overview/
-EUGCX,City Express,City Express Corvallis,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/eugcx-city-express-corvallis/overview/
-,Fairfield,Inn Salt Lake City Draper,US,no_store_id,
-DTWJD,JW Marriott,JW Marriott Detroit Water Square,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/dtwjd-jw-marriott-detroit-water-square/overview/
-LIHSU,Marriott Vacation Club,Sheraton Kauai Resort Villas,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lihsu-sheraton-kauai-resort-villas/overview/
-PBISP,Marriott Vacation Club,"Sheraton PGA Vacation Resort, Port St. Lucie",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pbisp-sheraton-pga-vacation-resort-port-st-lucie/overview/
-MCOSE,Marriott Vacation Club,"Sheraton Vistana Villages Resort Villas, I-Drive/Orlando",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcose-sheraton-vistana-villages-resort-villas-i-drive-orlando/overview/
-PSPWD,Marriott Vacation Club,"The Westin Desert Willow Villas, Palm Desert",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pspwd-the-westin-desert-willow-villas-palm-desert/overview/
-OGGWN,Marriott Vacation Club,The Westin Ka'anapali Ocean Resort Villas North,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/oggwn-the-westin-kaanapali-ocean-resort-villas-north/overview/
-OGGWO,Marriott Vacation Club,"The Westin Nanea Ocean Villas, Ka'anapali",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/oggwo-the-westin-nanea-ocean-villas-kaanapali/overview/
-STTWJ,Marriott Vacation Club,The Westin St. John Resort Villas,VI,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sttwj-the-westin-st-john-resort-villas/overview/
-PBISV,Marriott Vacation Club,Vistana Beach Club,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pbisv-vistana-beach-club/overview/
-GPTBR,MGM Collection,"Beau Rivage Resort & Casino, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/gptbr-beau-rivage-resort-and-casino-mgm-collection/overview/
-ACYBG,MGM Collection,"Borgata Hotel Casino & Spa, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/acybg-borgata-hotel-casino-and-spa-mgm-collection/overview/
-LASEX,MGM Collection,"Excalibur Hotel & Casino, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasex-excalibur-hotel-and-casino-mgm-collection/overview/
-LASLX,MGM Collection,"Luxor Hotel & Casino, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/laslx-luxor-hotel-and-casino-mgm-collection/overview/
-LASMB,MGM Collection,"Mandalay Bay Resort and Casino, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasmb-mandalay-bay-resort-and-casino-mgm-collection/overview/
-DTWMG,MGM Collection,MGM Grand Detroit,US,no_brand_qid,https://www.marriott.com/en-us/hotels/dtwmg-mgm-grand-detroit/overview/
-LASGM,MGM Collection,MGM Grand Hotel & Casino,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasgm-mgm-grand-hotel-and-casino/overview/
-WASGM,MGM Collection,MGM National Harbor,US,no_brand_qid,https://www.marriott.com/en-us/hotels/wasgm-mgm-national-harbor/overview/
-BDLMG,MGM Collection,MGM Springfield,US,no_brand_qid,https://www.marriott.com/en-us/hotels/bdlmg-mgm-springfield/overview/
-LASNY,MGM Collection,"New York-New York Hotel & Casino, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasny-new-york-new-york-hotel-and-casino-mgm-collection/overview/
-LASSG,MGM Collection,The Signature at MGM Grand,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lassg-the-signature-at-mgm-grand/overview/
-LASVD,MGM Collection,"Vdara Hotel & Spa, MGM Collection",US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasvd-vdara-hotel-and-spa-mgm-collection/overview/
-OGGXR,St. Regis,"The Resort at Kapalua Bay, Maui",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/oggxr-the-resort-at-kapalua-bay-maui/overview/
-LAXNQ,St. Regis,The Resort at Pelican Hill,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/laxnq-the-resort-at-pelican-hill/overview/
-LASBL,The Luxury Collection,"Bellagio, a Luxury Collection Resort & Casino, Las Vegas",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lasbl-bellagio-a-luxury-collection-resort-and-casino-las-vegas/overview/
-HOULX,The Luxury Collection,Houston Grand Hotel - River Oaks,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houlx-houston-grand-hotel-river-oaks/overview/
-SFOLC,The Luxury Collection,"Palace Hotel, a Luxury Collection Hotel, San Francisco",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sfolc-palace-hotel-a-luxury-collection-hotel-san-francisco/overview/
-PHXPR,The Luxury Collection,"Phoenician Residences, a Luxury Collection Residence Club, Scottsdale",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phxpr-phoenician-residences-a-luxury-collection-residence-club-scottsdale/overview/
-LAXLS,The Luxury Collection,"SLS Hotel, a Luxury Collection Hotel, Beverly Hills",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/laxls-sls-hotel-a-luxury-collection-hotel-beverly-hills/overview/
-PHXPC,The Luxury Collection,"The Canyon Suites at The Phoenician, a Luxury Collection Resort, Scottsdale",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phxpc-the-canyon-suites-at-the-phoenician-a-luxury-collection-resort-scottsdale/overview/
-NYCLT,The Luxury Collection,"The Chatwal, a Luxury Collection Hotel, New York City",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/nyclt-the-chatwal-a-luxury-collection-hotel-new-york-city/overview/
-CHILC,The Luxury Collection,"The Gwen, a Luxury Collection Hotel, Michigan Avenue Chicago",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/chilc-the-gwen-a-luxury-collection-hotel-michigan-avenue-chicago/overview/
-NYCMX,The Luxury Collection,"The London, a Luxury Collection Hotel, New York City",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/nycmx-the-london-a-luxury-collection-hotel-new-york-city/overview/
-PHXLC,The Luxury Collection,"The Phoenician, a Luxury Collection Resort, Scottsdale",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phxlc-the-phoenician-a-luxury-collection-resort-scottsdale/overview/
-SATLC,The Luxury Collection,"The St. Anthony, a Luxury Collection Hotel, San Antonio",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/satlc-the-st-anthony-a-luxury-collection-hotel-san-antonio/overview/
-SBYOT,Tribute Portfolio,"Ashore Oceanfront Hotel, Ocean City, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sbyot-ashore-oceanfront-hotel-ocean-city-a-tribute-portfolio-hotel%09/overview/
-CSMTX,Tribute Portfolio,"Avenue of the Arts Costa Mesa, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/csmtx-avenue-of-the-arts-costa-mesa-a-tribute-portfolio-hotel/overview/
-ATLTM,Tribute Portfolio,"Bellyard, West Midtown Atlanta, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/atltm-bellyard-west-midtown-atlanta-a-tribute-portfolio-hotel/overview/
-ALBSG,Tribute Portfolio,"Brookmere Saratoga, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/albsg-brookmere-saratoga-a-tribute-portfolio-hotel/overview/
-MEMTX,Tribute Portfolio,"Cotton House, Cleveland, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/memtx-cotton-house-cleveland-a-tribute-portfolio-hotel/overview/
-PBILW,Tribute Portfolio,"GULFSTREAM HOTEL, Lake Worth Beach, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pbilw-gulfstream-hotel-lake-worth-beach-a-tribute-portfolio-hotel/overview/
-CHIDB,Tribute Portfolio,Hotel 55 Chicago Downtown,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/chidb-hotel-55-chicago-downtown/overview/
-JAXTX,Tribute Portfolio,"Hotel Amalga, St. Augustine, A Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/jaxtx-hotel-amalga-st-augustine-a-tribute-portfolio-hotel/overview/
-CVGMB,Tribute Portfolio,"Hotel Celare, Cincinnati Midtown, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/cvgmb-hotel-celare-cincinnati-midtown-a-tribute-portfolio-hotel/overview/
-BURPT,Tribute Portfolio,"Hotel Dena, Pasadena Los Angeles, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/burpt-hotel-dena-pasadena-los-angeles-a-tribute-portfolio-hotel/overview/
-MCNTX,Tribute Portfolio,"Hotel Forty Five, Macon, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcntx-hotel-forty-five-macon-a-tribute-portfolio-hotel/overview/
-SLCTB,Tribute Portfolio,"Hotel Thaynes, Park City, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/slctb-hotel-thaynes-park-city-a-tribute-portfolio-hotel/overview/
-HOUUP,Tribute Portfolio,"Hotel Vesper, Houston, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houup-hotel-vesper-houston-a-tribute-portfolio-hotel/overview/
-CHITX,Tribute Portfolio,"Hotel Zachary, Chicago, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/chitx-hotel-zachary-chicago-a-tribute-portfolio-hotel/overview/
-BNAWU,Tribute Portfolio,"Hutton Hotel, Nashville, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bnawu-hutton-hotel-nashville-a-tribute-portfolio-hotel/overview/
-STLTR,Tribute Portfolio,"Magnolia Hotel St. Louis, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/stltr-magnolia-hotel-st-louis-a-tribute-portfolio-hotel/overview/
-SFOST,Tribute Portfolio,Marin Hilltop Hotel,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sfost-marin-hilltop-hotel/overview/
-FLLTA,Tribute Portfolio,Maritime Hotel Fort Lauderdale Airport & Cruiseport,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/fllta-maritime-hotel-fort-lauderdale-airport-and-cruiseport/overview/
-OKCNT,Tribute Portfolio,"NOUN Hotel, Norman, A Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/okcnt-noun-hotel-norman-a-tribute-portfolio-hotel/overview/
-LASPM,Tribute Portfolio,"Park MGM Las Vegas, a Tribute Portfolio Resort",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/laspm-park-mgm-las-vegas-a-tribute-portfolio-resort/overview/
-GUFOB,Tribute Portfolio,Perdido Beach Resort,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/gufob-perdido-beach-resort/overview/
-CNYRB,Tribute Portfolio,"Red Cliffs Lodge Moab, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/cnyrb-red-cliffs-lodge-moab-a-tribute-portfolio-hotel/overview/
-SFONT,Tribute Portfolio,River Terrace Inn,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sfont-river-terrace-inn/overview/
-MIATX,Tribute Portfolio,"Royal Palm South Beach Miami, a Tribute Portfolio Resort",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/miatx-royal-palm-south-beach-miami-a-tribute-portfolio-resort/overview/
-STLTW,Tribute Portfolio,"Seven Gables Inn, St. Louis West, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/stltw-seven-gables-inn-st-louis-west-a-tribute-portfolio-hotel/overview/
-SATXN,Tribute Portfolio,"Sol Cypress, San Antonio, A Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/satxn-sol-cypress-san-antonio-a-tribute-portfolio-hotel/overview/
-BTVWP,Tribute Portfolio,"Sugar House Hotel, Winooski/Burlington, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/btvwp-sugar-house-hotel-winooski-burlington-a-tribute-portfolio-hotel/overview/
-BHMTX,Tribute Portfolio,"The Alamite, Tuscaloosa, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bhmtx-the-alamite-tuscaloosa-a-tribute-portfolio-hotel/overview/
-SBPAB,Tribute Portfolio,"The Carlton Hotel, Atascadero – Paso Robles, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sbpab-the-carlton-hotel-atascadero-paso-robles-%C2%A0a-tribute-portfolio-hotel/overview/
-SATDX,Tribute Portfolio,"The Gunter Hotel, San Antonio Riverwalk, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/satdx-the-gunter-hotel-san-antonio-riverwalk-a-tribute-portfolio-hotel/overview/
-FATOT,Tribute Portfolio,"The Inelle, Oakhurst Yosemite, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/fatot-the-inelle-oakhurst-yosemite-a-tribute-portfolio-hotel/overview/
-CLEHM,Tribute Portfolio,"The Legacy, Medina, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/clehm-the-legacy-medina-a-tribute-portfolio-hotel/overview/
-MEMTD,Tribute Portfolio,"The Memphian, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/memtd-the-memphian-a-tribute-portfolio-hotel/overview/
-RICTX,Tribute Portfolio,"The Publisher, Downtown Fredericksburg, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/rictx-the-publisher-downtown-fredericksburg-a-tribute-portfolio-hotel/overview/
-TYSGT,Tribute Portfolio,"The Scoundrel Hotel, Downtown Gatlinburg, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/tysgt-the-scoundrel-hotel-downtown-gatlinburg-a-tribute-portfolio-hotel/overview/
-ACYTX,Tribute Portfolio,"The Seahaus Hotel, Atlantic City Boardwalk, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/acytx-the-seahaus-hotel-atlantic-city-boardwalk-a-tribute-portfolio-hotel/overview/
-DTWSC,Tribute Portfolio,The St. Clair Inn,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/dtwsc-the-st-clair-inn/overview/
-INDCX,Tribute Portfolio,"The Tallison Hotel, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/indcx-the-tallison-hotel-a-tribute-portfolio-hotel/overview/
-HOUGX,Tribute Portfolio,"The Tremont House, Galveston, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/hougx-the-tremont-house-galveston-a-tribute-portfolio-hotel/overview/
-WASTX,Tribute Portfolio,"The Ven at Embassy Row, Washington, D.C., a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/wastx-the-ven-at-embassy-row-washington-dc-a-tribute-portfolio-hotel/overview/
-CHIBH,Tribute Portfolio,The Wade,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/chibh-the-wade/overview/
-PHLTX,Tribute Portfolio,The Warwick Hotel Rittenhouse Square Philadelphia,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phltx-the-warwick-hotel-rittenhouse-square-philadelphia/overview/
-ATLFX,Tribute Portfolio,"Trilith Guesthouse, Fayetteville, GA, A Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/atlfx-trilith-guesthouse-fayetteville-ga-a-tribute-portfolio-hotel/overview/
-PDXWL,Tribute Portfolio,"Woodlark Hotel Portland, a Tribute Portfolio Hotel",US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pdxwl-woodlark-hotel-portland-a-tribute-portfolio-hotel/overview/
-ASEWR,W Hotels,The Sky Residences at W Aspen,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/asewr-the-sky-residences-at-w-aspen/overview/
-LAXWB,W Hotels,W Los Angeles - West Beverly Hills,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/laxwb-w-los-angeles-west-beverly-hills/overview/
-MSPWH,W Hotels,W Minneapolis - The Foshay,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mspwh-w-minneapolis-the-foshay/overview/
-BNAWN,W Hotels,W Nashville,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/bnawn-w-nashville/overview/
-PHLWH,W Hotels,W Philadelphia,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phlwh-w-philadelphia/overview/
-MLBCW,Westin,The Westin Cocoa Beach Resort & Spa,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mlbcw-the-westin-cocoa-beach-resort-and-spa/overview/
-HOUOW,Westin,The Westin Oaks Houston at the Galleria,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houow-the-westin-oaks-houston-at-the-galleria/overview/
-SACWS,Westin,The Westin Sacramento Hotel & Marina,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sacws-the-westin-sacramento-hotel-and-marina/overview/
-STTWI,Westin,The Westin St. Thomas Beach Resort & Spa,VI,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sttwi-the-westin-st-thomas-beach-resort-and-spa/overview/
-MCODW,Westin,Walt Disney World Swan,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcodw-walt-disney-world-swan/overview/
-TPAWH,Westin,Westin Tampa Downtown Waterside,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/tpawh-westin-tampa-downtown-waterside/overview/
+store_id,brand,name,city,state,country_code,reason,source_url
+PHXAF,Autograph Collection,"ADERO Scottsdale Resort, Autograph Collection",Scottsdale,Arizona,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/phxaf-adero-scottsdale-resort-autograph-collection/overview/
+MCIAA,Autograph Collection,"Ambassador Hotel Kansas City, Autograph Collection",Kansas City,Missouri,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/mciaa-ambassador-hotel-kansas-city-autograph-collection/overview/
+LASAR,Autograph Collection,"ARIA Resort & Casino, Autograph Collection",,Nevada,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/lasar-aria-resort-and-casino-autograph-collection/overview/
+SRQSA,Autograph Collection,"Art Ovation Hotel, Autograph Collection",Sarasota,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/srqsa-art-ovation-hotel-autograph-collection/overview/
+SLCAU,Autograph Collection,"Asher Adams, Autograph Collection",Salt Lake City,Utah,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/slcau-asher-adams-autograph-collection/overview/
+MIAKC,Autograph Collection,"Cadillac Hotel & Beach Club, Autograph Collection",,Florida,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/miakc-cadillac-hotel-and-beach-club-autograph-collection/overview/
+MSPAD,Autograph Collection,"Elliot Park Hotel, Autograph Collection",Minneapolis,Minnesota,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/mspad-elliot-park-hotel-autograph-collection/overview/
+TPAAK,Autograph Collection,"Epicurean Hotel, Autograph Collection",Tampa,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/tpaak-epicurean-hotel-autograph-collection/overview/
+TPADU,Autograph Collection,"Fenway Hotel, Autograph Collection",Dunedin,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/tpadu-fenway-hotel-autograph-collection/overview/
+PTLAK,Autograph Collection,"Grand Hotel Golf Resort & Spa, Autograph Collection",,Alabama,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/ptlak-grand-hotel-golf-resort-and-spa-autograph-collection/overview/
+PDXAK,Autograph Collection,"Hi-Lo Hotel, Autograph Collection",Portland,Oregon,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/pdxak-hi-lo-hotel-autograph-collection/overview/
+MCOAK,Autograph Collection,"Hotel Beauden, Autograph Collection",,Florida,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcoak-hotel-beauden-autograph-collection/overview/
+SBPGS,Autograph Collection,"HOTEL CERRO, Autograph Collection",,California,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sbpgs-hotel-cerro-autograph-collection/overview/
+TLHAK,Autograph Collection,"Hotel Duval, Autograph Collection",Tallahassee,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/tlhak-hotel-duval-autograph-collection/overview/
+SJCMN,Autograph Collection,"Hotel Nia, Autograph Collection",,California,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sjcmn-hotel-nia-autograph-collection/overview/
+GRBAK,Autograph Collection,"Hotel Northland, Autograph Collection",Green Bay,Wisconsin,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/grbak-hotel-northland-autograph-collection/overview/
+SAVAK,Autograph Collection,"Hotel Orielle, Autograph Collection",,Georgia,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/savak-hotel-orielle-autograph-collection/overview/
+SANYA,Autograph Collection,"Hotel Republic San Diego, Autograph Collection",San Diego,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/sanya-hotel-republic-san-diego-autograph-collection/overview/
+SNAAK,Autograph Collection,"Inn at the Mission San Juan Capistrano, Autograph Collection",San Juan Capistrano,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/snaak-inn-at-the-mission-san-juan-capistrano-autograph-collection/overview/
+NPBAK,Autograph Collection,"Lido House, Autograph Collection",,California,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/npbak-lido-house-autograph-collection/overview/
+WASMH,Autograph Collection,"Morrison House Old Town Alexandria, Autograph Collection",Alexandria,Virginia,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/wasmh-morrison-house-old-town-alexandria-autograph-collection/overview/
+SANAK,Autograph Collection,"Pier South Resort, Autograph Collection",Imperial Beach,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/sanak-pier-south-resort-autograph-collection/overview/
+LAXSK,Autograph Collection,"Sandbourne Santa Monica, Autograph Collection",Santa Monica,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/laxsk-sandbourne-santa-monica-autograph-collection/overview/
+SGUAK,Autograph Collection,"The Advenire, Autograph Collection",St. George,Utah,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/sguak-the-advenire-autograph-collection/overview/
+INDAX,Autograph Collection,"The Alexander, Autograph Collection",Indianapolis,Indiana,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/indax-the-alexander-autograph-collection/overview/
+SACAK,Autograph Collection,"The Citizen Hotel, Autograph Collection",Sacramento,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/sacak-the-citizen-hotel-autograph-collection/overview/
+OMAAK,Autograph Collection,"The Farnam, Autograph Collection",Omaha,Nebraska,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/omaak-the-farnam-autograph-collection/overview/
+HOUKE,Autograph Collection,"The Greenleigh, River Oaks, Autograph Collection",,Texas,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/houke-the-greenleigh-river-oaks-autograph-collection/overview/
+PITAK,Autograph Collection,"The Oaklander Hotel, Autograph Collection",Pittsburgh,Pennsylvania,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/pitak-the-oaklander-hotel-autograph-collection/overview/
+PWMAK,Autograph Collection,"The Press Hotel, Autograph Collection",,Maine,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pwmak-the-press-hotel-autograph-collection/overview/
+MSYAK,Autograph Collection,"The Saint Hotel, New Orleans, French Quarter, Autograph Collection",New Orleans,Louisiana,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/msyak-the-saint-hotel-new-orleans-french-quarter-autograph-collection/overview/
+PBIDB,Autograph Collection,"The Seagate Hotel, Golf & Beach Club, Autograph Collection",,Florida,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/pbidb-the-seagate-hotel-golf-and-beach-club-autograph-collection/overview/
+RDUAK,Autograph Collection,"The Siena Hotel, Autograph Collection",Chapel Hill,North Carolina,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/rduak-the-siena-hotel-autograph-collection/overview/
+SEAWK,Autograph Collection,"The SOMM Hotel & Spa, Autograph Collection",,Washington,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/seawk-the-somm-hotel-and-spa-autograph-collection/overview/
+MKEDD,Autograph Collection,"The Trade, Autograph Collection",Milwaukee,Wisconsin,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/mkedd-the-trade-autograph-collection/overview/
+INDWK,Autograph Collection,"The Union Club Hotel at Purdue University, Autograph Collection",West Lafayette,Indiana,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/indwk-the-union-club-hotel-at-purdue-university-autograph-collection/overview/
+PSPAK,Autograph Collection,"Triada Palm Springs, Autograph Collection",Palm Springs,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/pspak-triada-palm-springs-autograph-collection/overview/
+MIASP,Autograph Collection,"UNFRAMED, Miami Beach, Autograph Collection",Miami Beach,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/miasp-unframed-miami-beach-autograph-collection/overview/
+MCOKC,Autograph Collection,Walt Disney World Swan Reserve,,Florida,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/mcokc-walt-disney-world-swan-reserve/overview/
+PHFAK,Autograph Collection,"Williamsburg Lodge, Autograph Collection",Williamsburg,Virginia,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/phfak-williamsburg-lodge-autograph-collection/overview/
+CRPXE,City Express,City Express by Marriott Corpus Christi East,,Texas,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/crpxe-city-express-corpus-christi-east/overview/
+EUGCX,City Express,City Express Corvallis,,Oregon,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/eugcx-city-express-corvallis/overview/
+IDAFI,Fairfield,Fairfield by Marriott Inn & Suites Idaho Falls,Idaho Falls,Idaho,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/idafi-fairfield-inn-and-suites-idaho-falls/overview/
+EYWFI,Fairfield,Fairfield by Marriott Inn & Suites Key West,Key West,Florida,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/eywfi-fairfield-inn-and-suites-key-west/overview/
+,Fairfield,Inn Salt Lake City Draper,,Utah,US,no_store_id,
+GPTBR,MGM Collection,"Beau Rivage Resort & Casino, MGM Collection",,Mississippi,US,no_brand_qid,https://www.marriott.com/en-us/hotels/gptbr-beau-rivage-resort-and-casino-mgm-collection/overview/
+ACYBG,MGM Collection,"Borgata Hotel Casino & Spa, MGM Collection",,New Jersey,US,no_brand_qid,https://www.marriott.com/en-us/hotels/acybg-borgata-hotel-casino-and-spa-mgm-collection/overview/
+LASEX,MGM Collection,"Excalibur Hotel & Casino, MGM Collection",,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasex-excalibur-hotel-and-casino-mgm-collection/overview/
+LASLX,MGM Collection,"Luxor Hotel & Casino, MGM Collection",,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/laslx-luxor-hotel-and-casino-mgm-collection/overview/
+LASMB,MGM Collection,"Mandalay Bay Resort and Casino, MGM Collection",,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasmb-mandalay-bay-resort-and-casino-mgm-collection/overview/
+DTWMG,MGM Collection,MGM Grand Detroit,Detroit,Michigan,US,no_brand_qid,https://www.marriott.com/en-us/hotels/dtwmg-mgm-grand-detroit/overview/
+LASGM,MGM Collection,MGM Grand Hotel & Casino,,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasgm-mgm-grand-hotel-and-casino/overview/
+WASGM,MGM Collection,MGM National Harbor,Oxon Hill,Maryland,US,no_brand_qid,https://www.marriott.com/en-us/hotels/wasgm-mgm-national-harbor/overview/
+BDLMG,MGM Collection,MGM Springfield,Springfield,Massachusetts,US,no_brand_qid,https://www.marriott.com/en-us/hotels/bdlmg-mgm-springfield/overview/
+LASNY,MGM Collection,"New York-New York Hotel & Casino, MGM Collection",,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasny-new-york-new-york-hotel-and-casino-mgm-collection/overview/
+LASSG,MGM Collection,The Signature at MGM Grand,,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lassg-the-signature-at-mgm-grand/overview/
+LASVD,MGM Collection,"Vdara Hotel & Spa, MGM Collection",,Nevada,US,no_brand_qid,https://www.marriott.com/en-us/hotels/lasvd-vdara-hotel-and-spa-mgm-collection/overview/
+OAKOX,Moxy,Moxy Oakland Uptown,Oakland,California,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/oakox-moxy-oakland-uptown/overview/
+CLEBR,Renaissance,Renaissance Cleveland Hotel,Cleveland,Ohio,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/clebr-renaissance-cleveland-hotel/overview/
+OGGXR,St. Regis,"The Resort at Kapalua Bay, Maui",,Hawaii,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/oggxr-the-resort-at-kapalua-bay-maui/overview/
+LAXNQ,St. Regis,The Resort at Pelican Hill,,California,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/laxnq-the-resort-at-pelican-hill/overview/
+NYCLT,The Luxury Collection,"The Chatwal, a Luxury Collection Hotel, New York City",,New York,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/nyclt-the-chatwal-a-luxury-collection-hotel-new-york-city/overview/
+DALNB,Tribute Portfolio,"Hotel Mockingbird, Dallas, a Tribute Portfolio Hotel",Dallas,Texas,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/dalnb-hotel-mockingbird-dallas-a-tribute-portfolio-hotel/overview/
+SFOST,Tribute Portfolio,Marin Hilltop Hotel,,California,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/sfost-marin-hilltop-hotel/overview/
+FLLTA,Tribute Portfolio,Maritime Hotel Fort Lauderdale Airport & Cruiseport,,Florida,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/fllta-maritime-hotel-fort-lauderdale-airport-and-cruiseport/overview/
+CNYRB,Tribute Portfolio,"Red Cliffs Lodge Moab, a Tribute Portfolio Hotel",,Utah,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/cnyrb-red-cliffs-lodge-moab-a-tribute-portfolio-hotel/overview/
+DFWSB,Tribute Portfolio,"The Elmore Hotel, DFW Southlake, a Tribute Portfolio Hotel",Southlake,Texas,US,no_open_coordinates_v5_only,https://www.marriott.com/en-us/hotels/dfwsb-the-elmore-hotel-dfw-southlake-a-tribute-portfolio-hotel/overview/
+CHIBH,Tribute Portfolio,The Wade,,Illinois,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/chibh-the-wade/overview/
+PHLTX,Tribute Portfolio,The Warwick Hotel Rittenhouse Square Philadelphia,,Pennsylvania,US,no_coordinates_no_address,https://www.marriott.com/en-us/hotels/phltx-the-warwick-hotel-rittenhouse-square-philadelphia/overview/

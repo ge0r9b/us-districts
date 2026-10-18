@@ -19,7 +19,7 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 | `company_locations.csv.gz` | 36,675 | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
 | `locations/<brand>.csv` | walgreens 7,991; cvs 9,001; mcdonalds 13,486; marriott 6,197 | source tables for company_locations (full store detail) |
-| `locations/marriott_dropped_us.csv` | 132 | not loaded: US/PR/VI Marriott rows that could not be kept, with reason |
+| `locations/marriott_dropped_us.csv` | 69 | not loaded: US/PR/VI Marriott rows that could not be kept, with reason |
 | `sources.csv` | 8 | `source` |
 
 ## brands.csv: one row per brand or parent organization
@@ -59,7 +59,7 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 | `name`, `address` | store name; published business address `street, city, state, zip` |
 | `geoid`, `boundary_set` | county GEOID from point-in-polygon on Census 2024 counties, set only when the GEOID is in the agreed `v2-2024` county set (`data-v3/geo/counties.csv`); `boundary_set = v2-2024` then. PR/VI points keep lat/lon with geoid empty and flag `county_not_in_v2-2024:<geoid>` |
 | `lat`, `lon` | WGS84 point (every row has one) |
-| `source_id`, `retrieved_at` | source of the location's coordinates (ATP id when ATP supplied them) and its date |
+| `source_id`, `retrieved_at` | source of the location's coordinates (ATP id when ATP supplied them, `marriott-pacsys-*` when Marriott's own feed did) and its date |
 | extras | `brand_name`, `geoid_method` (`point_in_polygon_cb2024` / `nearest_county_within_2km`), `flags` (copied from the location row) |
 
 ## retracted_locations.csv
@@ -92,16 +92,17 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   Duane Reade rows keep `brand=Walgreens` and `sub_brand_qid=wikidata:Q5310380`.
 - **cvs.csv**: cvs.com locator city pages (Oct 17, 2026), US. `CVS Pharmacy y más` rows carry `sub_brand_qid=wikidata:Q136695801`.
 - **mcdonalds.csv**: All The Places `mcdonalds` spider, run 2026-10-10 (CC0), `addr:country = US` only (no PR rows in that spider).
-- **marriott.csv**: US + PR/VI only (6,197 of 10,417 v5 rows; 3,781 non-US and 307 no-country rows dropped). The v5 property list (Oct 4, 2026) is joined to All The Places `marriott_hotels` + `ritz_carlton` (CC0) on the MARSHA code.
-  **Licence rule:** wherever ATP has a value it wins over v5 for coordinates and the address block (`coordinates_from_atp`, `address_from_atp`; `v5_vs_atp_coordinates_<d>km` when they were > 1 km apart).
-  Values that only v5 supplies carry `v5_unknown_license:coordinates` / `v5_unknown_license:address` (400 rows: 400 coordinates, 396 addresses).
-  US rows that could not be kept are listed in `locations/marriott_dropped_us.csv`: 119 with neither coordinates nor a street address (no ATP match, so the Census geocoder had nothing to geocode), 12 MGM Collection rows (no Wikidata item for that brand), 1 without a MARSHA code.
-  `brand_qid`: exact Wikidata name match among items whose P749/P127 is Marriott International or Starwood (`brand_qid_from_wikidata_name_match`),
+- **marriott.csv**: US + territories only (6,261 rows: US 6,237, PR 18, VI 5, GU 1; 3,876 non-US and 211 no-country v5 rows dropped). The v5 property list (Oct 4, 2026) supplies the MARSHA code, hotel name, brand name and marriott.com URL; it is joined on the MARSHA code to
+  1. All The Places `marriott_hotels` + `ritz_carlton` (CC0): wins for coordinates and the address block (`coordinates_from_atp`, `address_from_atp`; `v5_vs_atp_coordinates_<d>km` when > 1 km apart);
+  2. Marriott's own property feeds `pacsys.marriott.com/data/marriott_properties_<BRAND>_en-US.json` (first-party, the JSON marriott.com's brand pages load; ATP reads only some brand codes) for rows ATP lacks: `coordinates_from_marriott_feed`, `address_from_marriott_feed`. Fetched with `scripts/fetch_marriott_pacsys.py`.
+  **v5 coordinates are never published** (2026-10-18 rule). A row whose only coordinates come from v5 is dropped with reason `no_open_coordinates_v5_only` (33 rows: not in ATP or any fetched Marriott brand feed, no exact-name match either, and no open-source address to send to the Census geocoder; marriott.com hotel pages answer 403). `v5_unknown_license` flags no longer occur.
+  `locations/marriott_dropped_us.csv` lists US/territory rows not kept: 33 `no_open_coordinates_v5_only`, 23 `no_coordinates_no_address`, 12 `no_brand_qid` (MGM Collection), 1 `no_store_id`.
+  **brand_qid** order: exact normalized-name match to a Wikidata item parented/owned by Marriott or Starwood (`brand_qid_from_wikidata_name_match`),
   else the matched ATP item's `brand:wikidata`, else a v5-brand → QID map learned from ≥ 5 MARSHA-matched rows with ≥ 90 % agreement (`brand_qid_from_brand_name`).
-  **Provenance caveat:** v5 addresses were partly filled from OpenStreetMap/Photon (ODbL) and the ArcGIS World Geocoder (Esri terms restrict storing results); v5 does not record which rows, hence the `v5_unknown_license` flags.
+  **Provenance caveat:** v5 addresses were partly filled from OpenStreetMap/Photon (ODbL) and the ArcGIS World Geocoder (Esri terms restrict storing results); v5 does not record which rows, so no v5 address or coordinate is published: every kept row's address and point come from ATP or Marriott's feed. Full provenance of v5: `PROVENANCE-marriott-v5.md`.
 
 ## Flags
-`missing_coordinates`, `coordinates_from_atp`, `v5_unknown_license:coordinates|address`, `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
+`missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_coordinates_dropped` (row then dropped), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
 `brand_qid_from_wikidata_name_match`, `brand_qid_from_brand_name`, `atp_brand_qid_differs:<Q>`, `county_nearest_within_2km` (point just outside the 1:500k shoreline, e.g. Navy Pier),
 `point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`.
 
@@ -109,6 +110,7 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 ```
 cd data-v3/institutions/companies/scripts
 python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton
+python3 fetch_marriott_pacsys.py AK WI TX JW WH LC MV SV WV PR XR RZ BR MD EB DE EL OX GE ER BG FI CY RI MC TS SH FP SI AR DS AL XE
 python3 fetch_wikidata_brands.py <brand QIDs…>      # list in summary.json / brands.csv
 # copy inputs to raw/inputs/: all_stores.csv, marriott-properties-v5.csv, cb_2024_us_county_500k.*
 python3 build_locations.py
