@@ -1,0 +1,10945 @@
+{
+ "390-16-24": {
+  "build": "202610181574",
+  "US20": {
+   "ym": "delta",
+   "y16": false,
+   "hi": 0,
+   "ysl": [
+    1,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "map",
+   "lv": "-",
+   "body": "",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2020 [47%]",
+    "Joe Biden 2020 [51%]",
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181574",
+    " biden.jpg?v=202610181574",
+    " trump.jpg?v=202610181574",
+    " harris.jpg?v=202610181574"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "United States",
+   "cpanel": null,
+   "nrows": 0,
+   "rows": [],
+   "cls": 0.0167
+  },
+  "US": {
+   "slider_lat": {
+    "first": null,
+    "last": null
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.0167
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 66.4,
+    "lat_pick": 92,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.1752
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 15.8,
+    "lat_pick": 12.6,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.1752
+   }
+  },
+  "States": {
+   "slider_lat": {
+    "first": 83,
+    "last": 438
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listall listmode lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "FL",
+     "R +11.9"
+    ],
+    [
+     "CA",
+     "R +10.0"
+    ],
+    [
+     "NY",
+     "R +9.8"
+    ],
+    [
+     "HI",
+     "R +9.1"
+    ],
+    [
+     "NJ",
+     "R +8.2"
+    ],
+    [
+     "CO",
+     "D +6.1"
+    ],
+    [
+     "IL",
+     "R +6.1"
+    ],
+    [
+     "NV",
+     "R +5.5"
+    ],
+    [
+     "VT",
+     "D +5.4"
+    ],
+    [
+     "MS",
+     "R +5.1"
+    ],
+    [
+     "ID",
+     "R +4.7"
+    ],
+    [
+     "TX",
+     "R +4.7"
+    ],
+    [
+     "KS",
+     "D +4.5"
+    ],
+    [
+     "NE",
+     "D +4.5"
+    ],
+    [
+     "ME",
+     "D +4.0"
+    ],
+    [
+     "IA",
+     "R +3.9"
+    ],
+    [
+     "AR",
+     "R +3.7"
+    ],
+    [
+     "TN",
+     "R +3.7"
+    ],
+    [
+     "SC",
+     "R +3.6"
+    ],
+    [
+     "UT",
+     "R +3.5",
+     "\u221224.2"
+    ],
+    [
+     "DE",
+     "D +3.4"
+    ],
+    [
+     "OR",
+     "D +3.3"
+    ],
+    [
+     "OH",
+     "R +3.1"
+    ],
+    [
+     "DC",
+     "R +3.0"
+    ],
+    [
+     "AL",
+     "R +2.9",
+     "+2.7",
+     "\u22120.1",
+     "\u22122.6"
+    ],
+    [
+     "GA",
+     "D +2.9",
+     "\u22120.0",
+     "+2.9",
+     "\u22122.8"
+    ],
+    [
+     "MN",
+     "D +2.7",
+     "+1.9",
+     "+4.7",
+     "\u22126.6"
+    ],
+    [
+     "WA",
+     "D +2.6",
+     "+2.4",
+     "+5.1",
+     "\u22127.5"
+    ],
+    [
+     "LA",
+     "R +2.4",
+     "+2.1",
+     "\u22120.2",
+     "\u22121.9"
+    ],
+    [
+     "NH",
+     "D +2.4",
+     "+1.7",
+     "+4.1",
+     "\u22125.7"
+    ],
+    [
+     "MD",
+     "D +2.3",
+     "+0.4",
+     "+2.8",
+     "\u22123.2"
+    ],
+    [
+     "NM",
+     "R +2.2",
+     "+5.8",
+     "+3.6",
+     "\u22129.4"
+    ],
+    [
+     "OK",
+     "D +2.1",
+     "+0.8",
+     "+3.0",
+     "\u22123.8"
+    ],
+    [
+     "AZ",
+     "R +2.0",
+     "+3.6",
+     "+1.6",
+     "\u22125.1"
+    ],
+    [
+     "MA",
+     "R +1.9",
+     "+3.4",
+     "+1.6",
+     "\u22125.0"
+    ],
+    [
+     "RI",
+     "R +1.7",
+     "+3.1",
+     "+1.4",
+     "\u22124.5"
+    ],
+    [
+     "AK",
+     "D +1.6",
+     "+3.3",
+     "+4.9",
+     "\u22128.1"
+    ],
+    [
+     "MI",
+     "R +1.2",
+     "+2.2",
+     "+1.1",
+     "\u22123.3"
+    ],
+    [
+     "ND",
+     "R +1.0",
+     "+4.6",
+     "+3.5",
+     "\u22128.1"
+    ],
+    [
+     "PA",
+     "R +1.0",
+     "+2.2",
+     "+1.2",
+     "\u22123.4"
+    ],
+    [
+     "CT",
+     "D +0.9",
+     "+1.0",
+     "+1.9",
+     "\u22122.8"
+    ],
+    [
+     "KY",
+     "R +0.7",
+     "+2.0",
+     "+1.3",
+     "\u22123.3"
+    ],
+    [
+     "SD",
+     "D +0.6",
+     "+1.9",
+     "+2.5",
+     "\u22124.4"
+    ],
+    [
+     "MT",
+     "D +0.5",
+     "+2.2",
+     "+2.7",
+     "\u22124.9"
+    ],
+    [
+     "VA",
+     "D +0.5",
+     "+1.9",
+     "+2.4",
+     "\u22124.3"
+    ],
+    [
+     "NC",
+     "D +0.4",
+     "+1.2",
+     "+1.6",
+     "\u22122.8"
+    ],
+    [
+     "IN",
+     "D +0.2",
+     "+1.7",
+     "+1.9",
+     "\u22123.6"
+    ],
+    [
+     "MO",
+     "D +0.2",
+     "+1.8",
+     "+2.0",
+     "\u22123.7"
+    ],
+    [
+     "WV",
+     "D +0.2",
+     "+1.5",
+     "+1.7",
+     "\u22123.2"
+    ],
+    [
+     "WI",
+     "R +0.1",
+     "+2.5",
+     "+2.4",
+     "\u22124.9"
+    ],
+    [
+     "WY",
+     "D +0.1",
+     "+4.1",
+     "+4.2",
+     "\u22128.4"
+    ]
+   ],
+   "barhtml": {
+    "kids": [
+     "rn:2",
+     "net:0",
+     "sbw dl:3"
+    ],
+    "bar": "<span class=\"sbw dl\" style=\"--f:0.2919\"><i class=\"sg rep\" data-party=\"Republican (Trump): +7.1 pts ('16\u2192'24)\" style=\"width:50.00%\"><b style=\"visibility: hidden;\">+7.1</b></i><i class=\"sg dem\" data-party=\"Democratic (Harris): \u22124.8 pts ('16\u2192'24)\" style=\"width:34.20%\"><b style=\"visibility: hidden;\">\u22124.8</b></i><i class=\"sg oth\" data-party=\"Other: \u22122.2 pts ('16\u2192'24)\" style=\"width:15.80%\"><b style=\"vis"
+   },
+   "shifts_slider": [],
+   "num_all": [
+    [
+     "FL",
+     "R +1.31M"
+    ],
+    [
+     "CA",
+     "R +1.08M"
+    ],
+    [
+     "TX",
+     "R +751K",
+     "+1.71M"
+    ],
+    [
+     "NY",
+     "R +696K"
+    ],
+    [
+     "IL",
+     "R +331K"
+    ],
+    [
+     "NJ",
+     "R +294K"
+    ],
+    [
+     "TN",
+     "R +258K"
+    ],
+    [
+     "CO",
+     "D +214K"
+    ],
+    [
+     "OH",
+     "R +200K"
+    ],
+    [
+     "WA",
+     "D +194K"
+    ],
+    [
+     "SC",
+     "R +155K"
+    ],
+    [
+     "MD",
+     "D +132K"
+    ],
+    [
+     "UT",
+     "R +117K"
+    ],
+    [
+     "ID",
+     "R +111K"
+    ],
+    [
+     "AL",
+     "R +101K"
+    ],
+    [
+     "OR",
+     "D +101K"
+    ],
+    [
+     "AZ",
+     "R +96K"
+    ],
+    [
+     "GA",
+     "D +96K"
+    ],
+    [
+     "MN",
+     "D +93K"
+    ],
+    [
+     "PA",
+     "R +76K"
+    ],
+    [
+     "NV",
+     "R +73K"
+    ],
+    [
+     "IA",
+     "R +72K"
+    ],
+    [
+     "MI",
+     "R +69K"
+    ],
+    [
+     "MS",
+     "R +65K"
+    ],
+    [
+     "KY",
+     "R +59K",
+     "+135K",
+     "+75K",
+     "\u221261K"
+    ],
+    [
+     "AR",
+     "R +58K",
+     "+74K",
+     "+16K",
+     "\u221239K"
+    ],
+    [
+     "VA",
+     "D +48K",
+     "+306K",
+     "+354K",
+     "\u2212162K"
+    ],
+    [
+     "LA",
+     "R +43K",
+     "+30K",
+     "\u221213K",
+     "\u221239K"
+    ],
+    [
+     "ME",
+     "D +36K",
+     "+42K",
+     "+78K",
+     "\u221237K"
+    ],
+    [
+     "VT",
+     "D +33K",
+     "+24K",
+     "+57K",
+     "\u221230K"
+    ],
+    [
+     "IN",
+     "R +33K",
+     "+163K",
+     "+130K",
+     "\u221295K"
+    ],
+    [
+     "CT",
+     "D +31K",
+     "+64K",
+     "+94K",
+     "\u221245K"
+    ],
+    [
+     "KS",
+     "D +30K",
+     "+88K",
+     "+118K",
+     "\u221262K"
+    ],
+    [
+     "MA",
+     "R +29K",
+     "+160K",
+     "+131K",
+     "\u2212163K"
+    ],
+    [
+     "MO",
+     "R +28K",
+     "+157K",
+     "+130K",
+     "\u2212102K"
+    ],
+    [
+     "DE",
+     "D +25K",
+     "+29K",
+     "+54K",
+     "\u221215K"
+    ],
+    [
+     "NH",
+     "D +20K",
+     "+50K",
+     "+70K",
+     "\u221242K"
+    ],
+    [
+     "WV",
+     "R +19K",
+     "+44K",
+     "+26K",
+     "\u221222K"
+    ],
+    [
+     "HI",
+     "R +19K",
+     "+65K",
+     "+46K",
+     "\u221223K"
+    ],
+    [
+     "MT",
+     "R +19K",
+     "+73K",
+     "+54K",
+     "\u221221K"
+    ],
+    [
+     "NE",
+     "D +17K",
+     "+69K",
+     "+86K",
+     "\u221251K"
+    ],
+    [
+     "SD",
+     "R +15K",
+     "+44K",
+     "+29K",
+     "\u221215K"
+    ],
+    [
+     "ND",
+     "R +11K",
+     "+30K",
+     "+19K",
+     "\u221228K"
+    ],
+    [
+     "NM",
+     "R +10K",
+     "+104K",
+     "+94K",
+     "\u221272K"
+    ],
+    [
+     "NC",
+     "R +10K",
+     "+536K",
+     "+526K",
+     "\u2212124K"
+    ],
+    [
+     "OK",
+     "R +8K",
+     "+87K",
+     "+79K",
+     "\u221253K"
+    ],
+    [
+     "WI",
+     "R +7K",
+     "+292K",
+     "+286K",
+     "\u2212139K"
+    ],
+    [
+     "WY",
+     "R +5K",
+     "+18K",
+     "+14K",
+     "\u221221K"
+    ],
+    [
+     "DC",
+     "D +3K",
+     "+8K",
+     "+11K",
+     "\u22125K"
+    ],
+    [
+     "AK",
+     "D +3K",
+     "+21K",
+     "+24K",
+     "\u221225K"
+    ],
+    [
+     "RI",
+     "R +1K",
+     "+34K",
+     "+33K",
+     "\u221220K"
+    ]
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "y16 listmode listall lathumb y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 31.1,
+    "lat_pick": 186.8,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | +7.1 | \u22124.8",
+     "CA | +6.7 | \u22123.2",
+     "NY | +7.1 | \u22122.7",
+     "HI | +7.4 | \u22121.6",
+     "NJ | +4.7 | \u22123.5",
+     "CO | \u22120.1 | +6.0",
+     "IL | +5.0 | \u22121.1",
+     "NV | +5.1 | \u22120.4"
+    ],
+    "cls": 0.1069
+   },
+   "line_all": [
+    [
+     "FL",
+     "+7.1",
+     "\u22124.8"
+    ],
+    [
+     "CA",
+     "+6.7",
+     "\u22123.2"
+    ],
+    [
+     "NY",
+     "+7.1",
+     "\u22122.7"
+    ],
+    [
+     "HI",
+     "+7.4",
+     "\u22121.6"
+    ],
+    [
+     "NJ",
+     "+4.7",
+     "\u22123.5"
+    ],
+    [
+     "CO",
+     "\u22120.1",
+     "+6.0"
+    ],
+    [
+     "IL",
+     "+5.0",
+     "\u22121.1"
+    ],
+    [
+     "NV",
+     "+5.1",
+     "\u22120.4"
+    ],
+    [
+     "VT",
+     "+2.3",
+     "+7.7"
+    ],
+    [
+     "MS",
+     "+2.9",
+     "\u22122.1"
+    ],
+    [
+     "ID",
+     "+7.6",
+     "+2.9"
+    ],
+    [
+     "TX",
+     "+3.9",
+     "\u22120.7"
+    ],
+    [
+     "KS",
+     "+0.5",
+     "+5.0"
+    ],
+    [
+     "NE",
+     "+0.9",
+     "+5.4"
+    ],
+    [
+     "ME",
+     "+0.6",
+     "+4.6"
+    ],
+    [
+     "IA",
+     "+4.8",
+     "+0.9"
+    ],
+    [
+     "AR",
+     "+3.6",
+     "\u22120.1"
+    ],
+    [
+     "TN",
+     "+3.5",
+     "\u22120.2"
+    ],
+    [
+     "SC",
+     "+3.3",
+     "\u22120.3"
+    ],
+    [
+     "UT",
+     "+13.9",
+     "+10.3"
+    ],
+    [
+     "DE",
+     "+0.2",
+     "+3.5"
+    ],
+    [
+     "OR",
+     "+1.9",
+     "+5.2"
+    ],
+    [
+     "OH",
+     "+3.5",
+     "+0.4"
+    ],
+    [
+     "DC",
+     "+2.4",
+     "\u22120.6"
+    ],
+    [
+     "AL",
+     "+2.7",
+     "\u22120.1"
+    ],
+    [
+     "GA",
+     "\u22120.0",
+     "+2.9"
+    ],
+    [
+     "MN",
+     "+1.9",
+     "+4.7"
+    ],
+    [
+     "WA",
+     "+2.4",
+     "+5.1"
+    ],
+    [
+     "LA",
+     "+2.1",
+     "\u22120.2"
+    ],
+    [
+     "NH",
+     "+1.7",
+     "+4.1"
+    ],
+    [
+     "MD",
+     "+0.4",
+     "+2.8"
+    ],
+    [
+     "NM",
+     "+5.8",
+     "+3.6"
+    ],
+    [
+     "OK",
+     "+0.8",
+     "+3.0"
+    ],
+    [
+     "AZ",
+     "+3.6",
+     "+1.6"
+    ],
+    [
+     "MA",
+     "+3.4",
+     "+1.6"
+    ],
+    [
+     "RI",
+     "+3.1",
+     "+1.4"
+    ],
+    [
+     "AK",
+     "+3.3",
+     "+4.9"
+    ],
+    [
+     "MI",
+     "+2.2",
+     "+1.1"
+    ],
+    [
+     "ND",
+     "+4.6",
+     "+3.5"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "pie": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 3.1,
+    "lat_pick": 80,
+    "chart_after": "pie",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_pie": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "pie",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "pie",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "WY",
+     "WV",
+     "ND",
+     "ID",
+     "OK",
+     "AL",
+     "KY",
+     "AR"
+    ],
+    "cls": 0.0739
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "line",
+     "pie"
+    ],
+    "lat_menu": 32.4,
+    "lat_pick": 136.7,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0.0739
+   }
+  },
+  "PA": {
+   "tap_lat": 7.1,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | D +8.6 | +5.9",
+     "Philadelphia | R +8.3 | +4.6",
+     "Montour | D +7.4 | +5.6",
+     "Fayette | R +7.0 | +4.4",
+     "Clinton | R +6.6 | +4.9",
+     "Lawrence | R +5.7",
+     "Mercer | R +5.7",
+     "Clarion | R +5.5"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Cumberland",
+     "D +8.6",
+     "+5.9"
+    ],
+    [
+     "Philadelphia",
+     "R +8.3",
+     "+4.6"
+    ],
+    [
+     "Montour",
+     "D +7.4",
+     "+5.6"
+    ],
+    [
+     "Fayette",
+     "R +7.0",
+     "+4.4"
+    ],
+    [
+     "Clinton",
+     "R +6.6",
+     "+4.9"
+    ],
+    [
+     "Lawrence",
+     "R +5.7"
+    ],
+    [
+     "Mercer",
+     "R +5.7"
+    ],
+    [
+     "Clarion",
+     "R +5.5"
+    ],
+    [
+     "Chester",
+     "D +5.0"
+    ],
+    [
+     "Butler",
+     "D +4.7"
+    ],
+    [
+     "Greene",
+     "R +4.5"
+    ],
+    [
+     "Elk",
+     "R +4.2"
+    ],
+    [
+     "York",
+     "D +3.9"
+    ],
+    [
+     "Allegheny",
+     "D +3.7"
+    ],
+    [
+     "Lancaster",
+     "D +3.5"
+    ],
+    [
+     "Indiana",
+     "R +3.4"
+    ],
+    [
+     "Franklin",
+     "D +3.3"
+    ],
+    [
+     "Armstrong",
+     "R +3.2"
+    ],
+    [
+     "Lycoming",
+     "D +3.2"
+    ],
+    [
+     "Westmoreland",
+     "D +3.0"
+    ],
+    [
+     "Dauphin",
+     "D +2.9"
+    ],
+    [
+     "Lebanon",
+     "D +2.9"
+    ],
+    [
+     "Northumberland",
+     "D +2.8"
+    ],
+    [
+     "Clearfield",
+     "R +2.7"
+    ],
+    [
+     "Adams",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22123.0"
+    ],
+    [
+     "Cambria",
+     "R +2.6",
+     "+2.5",
+     "\u22120.1",
+     "\u22122.3"
+    ],
+    [
+     "Perry",
+     "D +2.6",
+     "+0.3",
+     "+2.9",
+     "\u22123.3"
+    ],
+    [
+     "Blair",
+     "D +2.4",
+     "+0.1",
+     "+2.5",
+     "\u22122.6"
+    ],
+    [
+     "Huntingdon",
+     "R +2.4",
+     "+2.6",
+     "+0.1",
+     "\u22122.7"
+    ],
+    [
+     "Berks",
+     "R +2.2",
+     "+2.8",
+     "+0.6",
+     "\u22123.4"
+    ],
+    [
+     "Sullivan",
+     "D +2.2",
+     "+0.1",
+     "+2.3",
+     "\u22122.4"
+    ],
+    [
+     "Bradford",
+     "R +2.1",
+     "+3.0",
+     "+0.8",
+     "\u22123.8"
+    ],
+    [
+     "Susquehanna",
+     "R +2.1",
+     "+2.8",
+     "+0.7",
+     "\u22123.5"
+    ],
+    [
+     "Beaver",
+     "R +2.0",
+     "+2.3",
+     "+0.3",
+     "\u22122.6"
+    ],
+    [
+     "Fulton",
+     "R +2.0",
+     "+2.0",
+     "+0.0",
+     "\u22122.0"
+    ],
+    [
+     "Lehigh",
+     "R +2.0",
+     "+2.3",
+     "+0.2",
+     "\u22122.5"
+    ],
+    [
+     "Northampton",
+     "D +2.0",
+     "+0.4",
+     "+2.4",
+     "\u22122.9"
+    ],
+    [
+     "Pike",
+     "D +2.0",
+     "+0.1",
+     "+2.1",
+     "\u22122.2"
+    ],
+    [
+     "Union",
+     "D +2.0",
+     "+0.4",
+     "+2.4",
+     "\u22122.8"
+    ],
+    [
+     "Cameron",
+     "R +1.9",
+     "+1.8",
+     "\u22120.0",
+     "\u22121.8"
+    ],
+    [
+     "Crawford",
+     "R +1.9",
+     "+2.6",
+     "+0.7",
+     "\u22123.3"
+    ],
+    [
+     "Monroe",
+     "R +1.5",
+     "+2.0",
+     "+0.5",
+     "\u22122.5"
+    ],
+    [
+     "Wayne",
+     "D +1.4",
+     "+0.5",
+     "+1.9",
+     "\u22122.4"
+    ],
+    [
+     "Wyoming",
+     "D +1.4",
+     "+0.7",
+     "+2.1",
+     "\u22122.8"
+    ],
+    [
+     "Bedford",
+     "R +1.3",
+     "+1.3",
+     "\u22120.0",
+     "\u22121.3"
+    ],
+    [
+     "Montgomery",
+     "D +1.3",
+     "+0.6",
+     "+2.0",
+     "\u22122.6"
+    ],
+    [
+     "Potter",
+     "D +1.3",
+     "+0.4",
+     "+1.7",
+     "\u22122.1"
+    ],
+    [
+     "Schuylkill",
+     "D +1.3",
+     "+0.6",
+     "+1.9",
+     "\u22122.5"
+    ],
+    [
+     "Somerset",
+     "R +1.3",
+     "+1.7",
+     "+0.4",
+     "\u22122.1"
+    ],
+    [
+     "Tioga",
+     "D +1.3",
+     "+1.1",
+     "+2.3",
+     "\u22123.4"
+    ],
+    [
+     "Columbia",
+     "D +1.1",
+     "+1.3",
+     "+2.4",
+     "\u22123.6"
+    ],
+    [
+     "Mifflin",
+     "D +1.1",
+     "+0.8",
+     "+1.9",
+     "\u22122.8"
+    ],
+    [
+     "Delaware",
+     "D +1.0",
+     "+0.6",
+     "+1.6",
+     "\u22122.2"
+    ],
+    [
+     "Bucks",
+     "R +0.9",
+     "+1.8",
+     "+1.0",
+     "\u22122.8"
+    ],
+    [
+     "Jefferson",
+     "D +0.8",
+     "+0.8",
+     "+1.6",
+     "\u22122.5"
+    ],
+    [
+     "Washington",
+     "R +0.8",
+     "+1.9",
+     "+1.1",
+     "\u22123.0"
+    ],
+    [
+     "Carbon",
+     "R +0.7",
+     "+1.8",
+     "+1.1",
+     "\u22123.0"
+    ],
+    [
+     "Lackawanna",
+     "R +0.7",
+     "+1.5",
+     "+0.8",
+     "\u22122.3"
+    ],
+    [
+     "Erie",
+     "D +0.6",
+     "+1.5",
+     "+2.0",
+     "\u22123.5"
+    ],
+    [
+     "Centre",
+     "D +0.5",
+     "+1.7",
+     "+2.2",
+     "\u22123.9"
+    ],
+    [
+     "McKean",
+     "R +0.5",
+     "+1.8",
+     "+1.3",
+     "\u22123.1"
+    ],
+    [
+     "Venango",
+     "R +0.5",
+     "+2.0",
+     "+1.5",
+     "\u22123.5"
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [3.54M]",
+     "Kamala Harris 2024 [3.42M]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Philadelphia | R +50K",
+     "Allegheny | D +38K | +62K",
+     "Montgomery | D +25K | +61K",
+     "Chester | D +22K",
+     "Delaware | D +10K",
+     "Cumberland | D +8K",
+     "Fayette | R +7K",
+     "Berks | R +7K"
+    ],
+    "cls": 0
+   },
+   "num_all": [
+    [
+     "Philadelphia",
+     "R +50K"
+    ],
+    [
+     "Allegheny",
+     "D +38K",
+     "+62K"
+    ],
+    [
+     "Montgomery",
+     "D +25K",
+     "+61K"
+    ],
+    [
+     "Chester",
+     "D +22K"
+    ],
+    [
+     "Delaware",
+     "D +10K"
+    ],
+    [
+     "Cumberland",
+     "D +8K"
+    ],
+    [
+     "Fayette",
+     "R +7K"
+    ],
+    [
+     "Berks",
+     "R +7K"
+    ],
+    [
+     "Washington",
+     "R +6K"
+    ],
+    [
+     "Dauphin",
+     "D +5K"
+    ],
+    [
+     "Cambria",
+     "R +5K"
+    ],
+    [
+     "Mercer",
+     "R +5K"
+    ],
+    [
+     "Lawrence",
+     "R +4K"
+    ],
+    [
+     "Clearfield",
+     "R +4K"
+    ],
+    [
+     "Beaver",
+     "R +4K"
+    ],
+    [
+     "Franklin",
+     "R +4K"
+    ],
+    [
+     "Luzerne",
+     "R +4K"
+    ],
+    [
+     "Schuylkill",
+     "R +4K"
+    ],
+    [
+     "Westmoreland",
+     "R +3K"
+    ],
+    [
+     "Armstrong",
+     "R +3K"
+    ],
+    [
+     "Bedford",
+     "R +3K"
+    ],
+    [
+     "Somerset",
+     "R +3K"
+    ],
+    [
+     "Butler",
+     "R +3K"
+    ],
+    [
+     "Adams",
+     "R +3K"
+    ],
+    [
+     "Bradford",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u2212933"
+    ],
+    [
+     "Indiana",
+     "R +3K",
+     "+4K",
+     "+1K",
+     "\u22121K"
+    ],
+    [
+     "Blair",
+     "R +3K",
+     "+7K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Bucks",
+     "R +3K",
+     "+34K",
+     "+31K",
+     "\u22129K"
+    ],
+    [
+     "York",
+     "R +3K",
+     "+26K",
+     "+23K",
+     "\u22127K"
+    ],
+    [
+     "Crawford",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u22121K"
+    ],
+    [
+     "Lehigh",
+     "R +3K",
+     "+18K",
+     "+15K",
+     "\u22124K"
+    ],
+    [
+     "Carbon",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u2212804"
+    ],
+    [
+     "Huntingdon",
+     "R +2K",
+     "+3K",
+     "+829",
+     "\u2212512"
+    ],
+    [
+     "Northampton",
+     "D +2K",
+     "+18K",
+     "+20K",
+     "\u22124K"
+    ],
+    [
+     "Clinton",
+     "R +2K",
+     "+3K",
+     "+651",
+     "\u2212466"
+    ],
+    [
+     "Lycoming",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Clarion",
+     "R +2K",
+     "+2K",
+     "+280",
+     "\u2212555"
+    ],
+    [
+     "Jefferson",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212449"
+    ],
+    [
+     "Lebanon",
+     "R +2K",
+     "+8K",
+     "+6K",
+     "\u22122K"
+    ],
+    [
+     "Mifflin",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212478"
+    ],
+    [
+     "Elk",
+     "R +2K",
+     "+3K",
+     "+630",
+     "\u2212421"
+    ],
+    [
+     "Susquehanna",
+     "R +2K",
+     "+3K",
+     "+970",
+     "\u2212654"
+    ],
+    [
+     "Perry",
+     "R +2K",
+     "+3K",
+     "+2K",
+     "\u2212643"
+    ],
+    [
+     "Snyder",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212501"
+    ],
+    [
+     "Wayne",
+     "R +2K",
+     "+4K",
+     "+2K",
+     "\u2212543"
+    ],
+    [
+     "McKean",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212470"
+    ],
+    [
+     "Northumberland",
+     "R +2K",
+     "+5K",
+     "+3K",
+     "\u2212994"
+    ],
+    [
+     "Pike",
+     "R +2K",
+     "+5K",
+     "+4K",
+     "\u2212510"
+    ],
+    [
+     "Venango",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212793"
+    ],
+    [
+     "Tioga",
+     "R +1K",
+     "+3K",
+     "+1K",
+     "\u2212595"
+    ],
+    [
+     "Greene",
+     "R +1K",
+     "+2K",
+     "+137",
+     "\u2212102"
+    ],
+    [
+     "Monroe",
+     "R +1K",
+     "+9K",
+     "+8K",
+     "\u22122K"
+    ],
+    [
+     "Fulton",
+     "R +1K",
+     "+1K",
+     "+190",
+     "\u2212129"
+    ],
+    [
+     "Columbia",
+     "R +1K",
+     "+3K",
+     "+2K",
+     "\u2212987"
+    ],
+    [
+     "Juniata",
+     "R +979",
+     "+1K",
+     "+469",
+     "\u2212267"
+    ],
+    [
+     "Warren",
+     "R +801",
+     "+2K",
+     "+1K",
+     "\u2212646"
+    ],
+    [
+     "Potter",
+     "R +710",
+     "+1K",
+     "+373",
+     "\u2212155"
+    ],
+    [
+     "Lancaster",
+     "D +679",
+     "+28K",
+     "+29K",
+     "\u22129K"
+    ],
+    [
+     "Erie",
+     "D +547",
+     "+9K",
+     "+9K",
+     "\u22124K"
+    ],
+    [
+     "Wyoming",
+     "R +516",
+     "+1K",
+     "+869",
+     "\u2212346"
+    ],
+    [
+     "Union",
+     "R +512",
+     "+2K",
+     "+2K",
+     "\u2212462"
+    ],
+    [
+     "Centre",
+     "D +476",
+     "+4K",
+     "+4K",
+     "\u22123K"
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "y16 y16d listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | D +8.6 | +5.9",
+     "Philadelphia | R +8.3 | +4.6",
+     "Montour | D +7.4 | +5.6",
+     "Fayette | R +7.0 | +4.4",
+     "Clinton | R +6.6 | +4.9",
+     "Lawrence | R +5.7",
+     "Mercer | R +5.7",
+     "Clarion | R +5.5"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 22.4,
+    "lat_pick": 50.9,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | \u22122.7 | +5.9",
+     "Philadelphia | +4.6 | \u22123.7",
+     "Montour | \u22121.8 | +5.6",
+     "Fayette | +4.4 | \u22122.6",
+     "Clinton | +4.9 | \u22121.7",
+     "Lawrence | +4.1 | \u22121.6",
+     "Mercer | +4.3 | \u22121.3",
+     "Clarion | +4.4 | \u22121.1"
+    ],
+    "cls": 0.1549
+   },
+   "line_all": [
+    [
+     "Cumberland",
+     "\u22122.7",
+     "+5.9"
+    ],
+    [
+     "Philadelphia",
+     "+4.6",
+     "\u22123.7"
+    ],
+    [
+     "Montour",
+     "\u22121.8",
+     "+5.6"
+    ],
+    [
+     "Fayette",
+     "+4.4",
+     "\u22122.6"
+    ],
+    [
+     "Clinton",
+     "+4.9",
+     "\u22121.7"
+    ],
+    [
+     "Lawrence",
+     "+4.1",
+     "\u22121.6"
+    ],
+    [
+     "Mercer",
+     "+4.3",
+     "\u22121.3"
+    ],
+    [
+     "Clarion",
+     "+4.4",
+     "\u22121.1"
+    ],
+    [
+     "Chester",
+     "\u22121.0",
+     "+4.0"
+    ],
+    [
+     "Butler",
+     "\u22120.7",
+     "+4.0"
+    ],
+    [
+     "Greene",
+     "+2.7",
+     "\u22121.8"
+    ],
+    [
+     "Elk",
+     "+3.6",
+     "\u22120.6"
+    ],
+    [
+     "York",
+     "\u22120.2",
+     "+3.6"
+    ],
+    [
+     "Allegheny",
+     "\u22120.6",
+     "+3.1"
+    ],
+    [
+     "Lancaster",
+     "+0.3",
+     "+3.7"
+    ],
+    [
+     "Indiana",
+     "+3.1",
+     "\u22120.3"
+    ],
+    [
+     "Franklin",
+     "\u22120.3",
+     "+3.0"
+    ],
+    [
+     "Armstrong",
+     "+2.8",
+     "\u22120.5"
+    ],
+    [
+     "Lycoming",
+     "\u22120.2",
+     "+3.1"
+    ],
+    [
+     "Westmoreland",
+     "\u22120.2",
+     "+2.7"
+    ],
+    [
+     "Dauphin",
+     "\u22120.0",
+     "+2.9"
+    ],
+    [
+     "Lebanon",
+     "\u22120.0",
+     "+2.9"
+    ],
+    [
+     "Northumberland",
+     "+0.0",
+     "+2.8"
+    ],
+    [
+     "Clearfield",
+     "+2.6",
+     "\u22120.1"
+    ],
+    [
+     "Adams",
+     "+0.2",
+     "+2.8"
+    ],
+    [
+     "Cambria",
+     "+2.5",
+     "\u22120.1"
+    ],
+    [
+     "Perry",
+     "+0.3",
+     "+2.9"
+    ],
+    [
+     "Blair",
+     "+0.1",
+     "+2.5"
+    ],
+    [
+     "Huntingdon",
+     "+2.6",
+     "+0.1"
+    ],
+    [
+     "Berks",
+     "+2.8",
+     "+0.6"
+    ],
+    [
+     "Sullivan",
+     "+0.1",
+     "+2.3"
+    ],
+    [
+     "Bradford",
+     "+3.0",
+     "+0.8"
+    ],
+    [
+     "Susquehanna",
+     "+2.8",
+     "+0.7"
+    ],
+    [
+     "Beaver",
+     "+2.3",
+     "+0.3"
+    ],
+    [
+     "Fulton",
+     "+2.0",
+     "+0.0"
+    ],
+    [
+     "Lehigh",
+     "+2.3",
+     "+0.2"
+    ],
+    [
+     "Northampton",
+     "+0.4",
+     "+2.4"
+    ],
+    [
+     "Pike",
+     "+0.1",
+     "+2.1"
+    ],
+    [
+     "Union",
+     "+0.4",
+     "+2.4"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 29.8,
+    "lat_pick": 12.2,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   }
+  },
+  "PhilaCo": {
+   "tap_lat": 14,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "townships",
+    "body": "listmode listall y16 y16d lathumb canback",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 [78%]",
+     "Donald Trump 2024 [20%]"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 2,
+    "rows": [
+     "Philadelphia city | R +8.6 | +4.6 | \u22124.0",
+     "Rockledge borough | D +5.9 | +4.5"
+    ],
+    "cls": 0.1549
+   }
+  },
+  "Prec": {
+   "tap_lat": 150.5,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 94.7%",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 94.4%",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 91.4%",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 74.9%",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 81.2%",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 76.0%",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 74.3%",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 82.4%"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Delaware Precinct 317",
+     "'20 n/a \u00b7 '24 D 94.7%"
+    ],
+    [
+     "Delaware Precinct 318",
+     "'20 n/a \u00b7 '24 D 94.4%"
+    ],
+    [
+     "Delaware Precinct 3430",
+     "'20 n/a \u00b7 '24 D 91.4%"
+    ],
+    [
+     "Philadelphia Precinct 101",
+     "'20 n/a \u00b7 '24 D 74.9%"
+    ],
+    [
+     "Philadelphia Precinct 102",
+     "'20 n/a \u00b7 '24 D 81.2%"
+    ],
+    [
+     "Philadelphia Precinct 103",
+     "'20 n/a \u00b7 '24 D 76.0%"
+    ],
+    [
+     "Philadelphia Precinct 104",
+     "'20 n/a \u00b7 '24 D 74.3%"
+    ],
+    [
+     "Philadelphia Precinct 105",
+     "'20 n/a \u00b7 '24 D 82.4%"
+    ],
+    [
+     "Philadelphia Precinct 106",
+     "'20 n/a \u00b7 '24 D 84.1%"
+    ],
+    [
+     "Philadelphia Precinct 107",
+     "'20 n/a \u00b7 '24 D 83.1%"
+    ],
+    [
+     "Philadelphia Precinct 108",
+     "'20 n/a \u00b7 '24 D 80.3%"
+    ],
+    [
+     "Philadelphia Precinct 109",
+     "'20 n/a \u00b7 '24 D 72.1%"
+    ],
+    [
+     "Philadelphia Precinct 110",
+     "'20 n/a \u00b7 '24 D 78.5%"
+    ],
+    [
+     "Philadelphia Precinct 111",
+     "'20 n/a \u00b7 '24 D 83.9%"
+    ],
+    [
+     "Philadelphia Precinct 112",
+     "'20 n/a \u00b7 '24 D 82.2%"
+    ],
+    [
+     "Philadelphia Precinct 113",
+     "'20 n/a \u00b7 '24 D 82.2%"
+    ],
+    [
+     "Philadelphia Precinct 114",
+     "'20 n/a \u00b7 '24 D 83.9%"
+    ],
+    [
+     "Philadelphia Precinct 115",
+     "'20 n/a \u00b7 '24 D 80.5%"
+    ],
+    [
+     "Philadelphia Precinct 116",
+     "'20 n/a \u00b7 '24 D 82.8%"
+    ],
+    [
+     "Philadelphia Precinct 117",
+     "'20 n/a \u00b7 '24 D 70.8%"
+    ],
+    [
+     "Philadelphia Precinct 118",
+     "'20 n/a \u00b7 '24 D 58.5%"
+    ],
+    [
+     "Philadelphia Precinct 119",
+     "'20 n/a \u00b7 '24 D 66.8%"
+    ],
+    [
+     "Philadelphia Precinct 120",
+     "'20 n/a \u00b7 '24 D 82.7%"
+    ],
+    [
+     "Philadelphia Precinct 121",
+     "'20 n/a \u00b7 '24 D 64.9%"
+    ],
+    [
+     "Philadelphia Precinct 201",
+     "'20 n/a \u00b7 '24 D 79.8%"
+    ],
+    [
+     "Philadelphia Precinct 202",
+     "'20 n/a \u00b7 '24 D 82.7%"
+    ],
+    [
+     "Philadelphia Precinct 203",
+     "'20 n/a \u00b7 '24 D 78.8%"
+    ],
+    [
+     "Philadelphia Precinct 204",
+     "'20 n/a \u00b7 '24 D 81.8%"
+    ],
+    [
+     "Philadelphia Precinct 205",
+     "'20 n/a \u00b7 '24 D 80.7%"
+    ],
+    [
+     "Philadelphia Precinct 206",
+     "'20 n/a \u00b7 '24 D 80.4%"
+    ]
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 431",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 404",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 414",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 305",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 422",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 458",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 372",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 272"
+    ],
+    "cls": 0
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "y16 y16d listmode",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [Donald Trump 15.4%]",
+     "Donald Trump [Donald Trump]",
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Hillary Clinton [Hillary Clinton]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 26.2,
+    "lat_pick": 58.6,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.347
+   },
+   "cmp20_24": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.5905
+   },
+   "cmp16": {
+    "ym": "2024",
+    "y16": true,
+    "hi": 0,
+    "ysl": [
+     0,
+     0
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Donald Trump 2016 [Donald Trump 15.4%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": "Clinton 82.5% Trump 15.4% Other 2.1%",
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.8686
+   }
+  },
+  "err": [
+   "--ctx2--"
+  ],
+  "http": [],
+  "reqfail": []
+ },
+ "390-16-20": {
+  "build": "202610181574",
+  "US20": {
+   "ym": "delta",
+   "y16": false,
+   "hi": 0,
+   "ysl": [
+    1,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "map",
+   "lv": "-",
+   "body": "",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2020 [47%]",
+    "Joe Biden 2020 [51%]",
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181574",
+    " biden.jpg?v=202610181574",
+    " trump.jpg?v=202610181574",
+    " harris.jpg?v=202610181574"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "United States",
+   "cpanel": null,
+   "nrows": 0,
+   "rows": [],
+   "cls": 0.0209
+  },
+  "US": {
+   "slider_lat": {
+    "first": null,
+    "last": null
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2020 [46%]",
+     "Joe Biden 2020 []"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.0209
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2020 [46%]",
+     "Joe Biden 2020 []"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 53.2,
+    "lat_pick": 80.5,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.1773
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 20,
+    "lat_pick": 11.5,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.1773
+   }
+  },
+  "States": {
+   "slider_lat": {
+    "first": 59,
+    "last": 282
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listall listmode lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "VT",
+     "D +9.0"
+    ],
+    [
+     "CO",
+     "D +8.6"
+    ],
+    [
+     "DE",
+     "D +7.6"
+    ],
+    [
+     "NH",
+     "D +7.0"
+    ],
+    [
+     "MD",
+     "D +6.8"
+    ],
+    [
+     "CT",
+     "D +6.4"
+    ],
+    [
+     "MA",
+     "D +6.3"
+    ],
+    [
+     "NE",
+     "D +6.0"
+    ],
+    [
+     "KS",
+     "D +5.9"
+    ],
+    [
+     "ME",
+     "D +5.7"
+    ],
+    [
+     "MN",
+     "D +5.6"
+    ],
+    [
+     "GA",
+     "D +5.4"
+    ],
+    [
+     "RI",
+     "D +5.3"
+    ],
+    [
+     "OR",
+     "D +5.1"
+    ],
+    [
+     "VA",
+     "D +4.8"
+    ],
+    [
+     "AK",
+     "D +4.6"
+    ],
+    [
+     "MT",
+     "D +4.1"
+    ],
+    [
+     "AZ",
+     "D +3.9"
+    ],
+    [
+     "KY",
+     "D +3.9"
+    ],
+    [
+     "SD",
+     "D +3.6"
+    ],
+    [
+     "WA",
+     "D +3.5"
+    ],
+    [
+     "TX",
+     "D +3.4"
+    ],
+    [
+     "OK",
+     "D +3.3"
+    ],
+    [
+     "MO",
+     "D +3.2"
+    ],
+    [
+     "IN",
+     "D +3.1",
+     "+0.1",
+     "+3.2",
+     "\u22123.3"
+    ],
+    [
+     "WV",
+     "D +3.1",
+     "+0.1",
+     "+3.3",
+     "\u22123.4"
+    ],
+    [
+     "MI",
+     "D +3.0",
+     "+0.3",
+     "+3.3",
+     "\u22123.7"
+    ],
+    [
+     "WY",
+     "D +2.9",
+     "+1.8",
+     "+4.7",
+     "\u22126.4"
+    ],
+    [
+     "TN",
+     "D +2.8",
+     "\u22120.1",
+     "+2.7",
+     "\u22122.7"
+    ],
+    [
+     "HI",
+     "R +2.7",
+     "+4.2",
+     "+1.5",
+     "\u22125.7"
+    ],
+    [
+     "NM",
+     "D +2.6",
+     "+3.5",
+     "+6.0",
+     "\u22129.5"
+    ],
+    [
+     "SC",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22122.9"
+    ],
+    [
+     "ND",
+     "D +2.4",
+     "+2.2",
+     "+4.5",
+     "\u22126.7"
+    ],
+    [
+     "UT",
+     "R +2.4",
+     "+12.6",
+     "+10.2",
+     "\u221222.8"
+    ],
+    [
+     "AL",
+     "D +2.3",
+     "\u22120.1",
+     "+2.2",
+     "\u22122.2"
+    ],
+    [
+     "NC",
+     "D +2.3",
+     "+0.1",
+     "+2.4",
+     "\u22122.5"
+    ],
+    [
+     "FL",
+     "R +2.2",
+     "+2.2",
+     "+0.0",
+     "\u22122.2"
+    ],
+    [
+     "PA",
+     "D +1.9",
+     "+0.6",
+     "+2.5",
+     "\u22123.1"
+    ],
+    [
+     "NJ",
+     "D +1.8",
+     "\u22120.1",
+     "+1.7",
+     "\u22121.6"
+    ],
+    [
+     "WI",
+     "D +1.4",
+     "+1.6",
+     "+3.0",
+     "\u22124.6"
+    ],
+    [
+     "MS",
+     "D +1.3",
+     "\u22120.4",
+     "+0.9",
+     "\u22120.5"
+    ],
+    [
+     "IA",
+     "D +1.2",
+     "+1.9",
+     "+3.2",
+     "\u22125.1"
+    ],
+    [
+     "ID",
+     "D +1.0",
+     "+4.6",
+     "+5.6",
+     "\u221210.1"
+    ],
+    [
+     "LA",
+     "D +1.0",
+     "+0.4",
+     "+1.4",
+     "\u22121.8"
+    ],
+    [
+     "CA",
+     "R +0.9",
+     "+2.7",
+     "+1.8",
+     "\u22124.5"
+    ],
+    [
+     "AR",
+     "R +0.7",
+     "+1.8",
+     "+1.1",
+     "\u22122.9"
+    ],
+    [
+     "NY",
+     "D +0.6",
+     "+1.2",
+     "+1.8",
+     "\u22123.1"
+    ],
+    [
+     "IL",
+     "R +0.1",
+     "+1.8",
+     "+1.7",
+     "\u22123.4"
+    ],
+    [
+     "OH",
+     "D +0.1",
+     "+1.6",
+     "+1.7",
+     "\u22123.3"
+    ],
+    [
+     "DC",
+     "R +0.0",
+     "+1.3",
+     "+1.3",
+     "\u22122.6"
+    ],
+    [
+     "NV",
+     "R +0.0",
+     "+2.2",
+     "+2.1",
+     "\u22124.3"
+    ]
+   ],
+   "barhtml": {
+    "kids": [
+     "rn:2",
+     "net:0",
+     "sbw dl:3"
+    ],
+    "bar": "<span class=\"sbw dl\" style=\"--f:0.4308\"><i class=\"sg rep\" data-party=\"Republican (Trump): +0.4 pts ('16\u2192'20)\" style=\"width:2.06%\"><b style=\"visibility: hidden;\">+0.4</b></i><i class=\"sg dem\" data-party=\"Democratic (Biden): +9.4 pts ('16\u2192'20)\" style=\"width:47.94%\"><b style=\"visibility: hidden;\">+9.4</b></i><i class=\"sg oth\" data-party=\"Other: \u22129.8 pts ('16\u2192'20)\" style=\"width:50.00%\"><b style=\"visib"
+   },
+   "shifts_slider": [],
+   "num_all": [
+    [
+     "CA",
+     "D +834K"
+    ],
+    [
+     "MA",
+     "D +311K"
+    ],
+    [
+     "CO",
+     "D +303K"
+    ],
+    [
+     "MD",
+     "D +274K"
+    ],
+    [
+     "WA",
+     "D +264K"
+    ],
+    [
+     "FL",
+     "R +259K"
+    ],
+    [
+     "NY",
+     "D +256K"
+    ],
+    [
+     "VA",
+     "D +239K"
+    ],
+    [
+     "GA",
+     "D +223K"
+    ],
+    [
+     "MN",
+     "D +188K"
+    ],
+    [
+     "NJ",
+     "D +179K"
+    ],
+    [
+     "TX",
+     "D +176K"
+    ],
+    [
+     "MI",
+     "D +165K"
+    ],
+    [
+     "OR",
+     "D +162K"
+    ],
+    [
+     "CT",
+     "D +142K"
+    ],
+    [
+     "PA",
+     "D +126K"
+    ],
+    [
+     "AZ",
+     "D +102K"
+    ],
+    [
+     "UT",
+     "R +100K"
+    ],
+    [
+     "NC",
+     "D +99K"
+    ],
+    [
+     "IL",
+     "D +80K"
+    ],
+    [
+     "MO",
+     "D +58K"
+    ],
+    [
+     "TN",
+     "R +57K"
+    ],
+    [
+     "NH",
+     "D +57K"
+    ],
+    [
+     "ME",
+     "D +48K"
+    ],
+    [
+     "ID",
+     "R +48K",
+     "+145K",
+     "+97K",
+     "\u221264K"
+    ],
+    [
+     "VT",
+     "D +47K",
+     "+17K",
+     "+64K",
+     "\u221229K"
+    ],
+    [
+     "DE",
+     "D +45K",
+     "+15K",
+     "+61K",
+     "\u221216K"
+    ],
+    [
+     "WI",
+     "D +43K",
+     "+205K",
+     "+248K",
+     "\u2212132K"
+    ],
+    [
+     "KS",
+     "D +43K",
+     "+100K",
+     "+143K",
+     "\u221256K"
+    ],
+    [
+     "IN",
+     "D +37K",
+     "+173K",
+     "+209K",
+     "\u221284K"
+    ],
+    [
+     "RI",
+     "D +36K",
+     "+19K",
+     "+55K",
+     "\u221221K"
+    ],
+    [
+     "NM",
+     "D +34K",
+     "+82K",
+     "+116K",
+     "\u221273K"
+    ],
+    [
+     "AR",
+     "R +32K",
+     "+76K",
+     "+43K",
+     "\u221231K"
+    ],
+    [
+     "HI",
+     "D +31K",
+     "+68K",
+     "+99K",
+     "\u221222K"
+    ],
+    [
+     "NE",
+     "D +29K",
+     "+61K",
+     "+90K",
+     "\u221239K"
+    ],
+    [
+     "OH",
+     "R +29K",
+     "+314K",
+     "+285K",
+     "\u2212173K"
+    ],
+    [
+     "DC",
+     "D +29K",
+     "+6K",
+     "+34K",
+     "\u22127K"
+    ],
+    [
+     "KY",
+     "D +20K",
+     "+124K",
+     "+144K",
+     "\u221255K"
+    ],
+    [
+     "OK",
+     "D +12K",
+     "+71K",
+     "+84K",
+     "\u221247K"
+    ],
+    [
+     "AK",
+     "D +11K",
+     "+27K",
+     "+37K",
+     "\u221225K"
+    ],
+    [
+     "WV",
+     "R +9K",
+     "+56K",
+     "+47K",
+     "\u221223K"
+    ],
+    [
+     "IA",
+     "D +9K",
+     "+97K",
+     "+105K",
+     "\u221277K"
+    ],
+    [
+     "SC",
+     "D +6K",
+     "+230K",
+     "+236K",
+     "\u221256K"
+    ],
+    [
+     "NV",
+     "D +6K",
+     "+158K",
+     "+164K",
+     "\u221242K"
+    ],
+    [
+     "AL",
+     "R +3K",
+     "+123K",
+     "+120K",
+     "\u221243K"
+    ],
+    [
+     "MT",
+     "D +3K",
+     "+64K",
+     "+67K",
+     "\u221223K"
+    ],
+    [
+     "ND",
+     "D +2K",
+     "+19K",
+     "+21K",
+     "\u221222K"
+    ],
+    [
+     "MS",
+     "R +2K",
+     "+56K",
+     "+54K",
+     "\u22124K"
+    ],
+    [
+     "WY",
+     "R +2K",
+     "+19K",
+     "+18K",
+     "\u221216K"
+    ],
+    [
+     "LA",
+     "R +1K",
+     "+77K",
+     "+76K",
+     "\u221234K"
+    ],
+    [
+     "SD",
+     "R +309",
+     "+33K",
+     "+33K",
+     "\u221214K"
+    ]
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "y16 listmode listall lathumb y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 11.3,
+    "lat_pick": 125.8,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | +0.4 | +9.4",
+     "CO | \u22121.4 | +7.2",
+     "DE | \u22121.9 | +5.7",
+     "NH | \u22121.0 | +6.0",
+     "MD | \u22121.8 | +5.0",
+     "CT | \u22121.7 | +4.7",
+     "MA | \u22120.7 | +5.6",
+     "NE | \u22120.5 | +5.5"
+    ],
+    "cls": 0.1556
+   },
+   "line_all": [
+    [
+     "VT",
+     "+0.4",
+     "+9.4"
+    ],
+    [
+     "CO",
+     "\u22121.4",
+     "+7.2"
+    ],
+    [
+     "DE",
+     "\u22121.9",
+     "+5.7"
+    ],
+    [
+     "NH",
+     "\u22121.0",
+     "+6.0"
+    ],
+    [
+     "MD",
+     "\u22121.8",
+     "+5.0"
+    ],
+    [
+     "CT",
+     "\u22121.7",
+     "+4.7"
+    ],
+    [
+     "MA",
+     "\u22120.7",
+     "+5.6"
+    ],
+    [
+     "NE",
+     "\u22120.5",
+     "+5.5"
+    ],
+    [
+     "KS",
+     "\u22120.4",
+     "+5.5"
+    ],
+    [
+     "ME",
+     "\u22120.6",
+     "+5.1"
+    ],
+    [
+     "MN",
+     "+0.4",
+     "+6.0"
+    ],
+    [
+     "GA",
+     "\u22121.5",
+     "+3.9"
+    ],
+    [
+     "RI",
+     "\u22120.3",
+     "+5.0"
+    ],
+    [
+     "OR",
+     "+1.3",
+     "+6.4"
+    ],
+    [
+     "VA",
+     "\u22120.4",
+     "+4.4"
+    ],
+    [
+     "AK",
+     "+1.8",
+     "+6.5"
+    ],
+    [
+     "MT",
+     "+0.6",
+     "+4.7"
+    ],
+    [
+     "AZ",
+     "+0.4",
+     "+4.2"
+    ],
+    [
+     "KY",
+     "\u22120.4",
+     "+3.5"
+    ],
+    [
+     "SD",
+     "+0.2",
+     "+3.9"
+    ],
+    [
+     "WA",
+     "+1.9",
+     "+5.4"
+    ],
+    [
+     "TX",
+     "\u22120.2",
+     "+3.2"
+    ],
+    [
+     "OK",
+     "+0.1",
+     "+3.4"
+    ],
+    [
+     "MO",
+     "+0.0",
+     "+3.3"
+    ],
+    [
+     "IN",
+     "+0.1",
+     "+3.2"
+    ],
+    [
+     "WV",
+     "+0.1",
+     "+3.3"
+    ],
+    [
+     "MI",
+     "+0.3",
+     "+3.3"
+    ],
+    [
+     "WY",
+     "+1.8",
+     "+4.7"
+    ],
+    [
+     "TN",
+     "\u22120.1",
+     "+2.7"
+    ],
+    [
+     "HI",
+     "+4.2",
+     "+1.5"
+    ],
+    [
+     "NM",
+     "+3.5",
+     "+6.0"
+    ],
+    [
+     "SC",
+     "+0.2",
+     "+2.8"
+    ],
+    [
+     "ND",
+     "+2.2",
+     "+4.5"
+    ],
+    [
+     "UT",
+     "+12.6",
+     "+10.2"
+    ],
+    [
+     "AL",
+     "\u22120.1",
+     "+2.2"
+    ],
+    [
+     "NC",
+     "+0.1",
+     "+2.4"
+    ],
+    [
+     "FL",
+     "+2.2",
+     "+0.0"
+    ],
+    [
+     "PA",
+     "+0.6",
+     "+2.5"
+    ],
+    [
+     "NJ",
+     "\u22120.1",
+     "+1.7"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "pie": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 22.7,
+    "lat_pick": 71.1,
+    "chart_after": "pie",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_pie": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "pie",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2020 [48%]",
+     "Donald Trump 2020 [46%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "pie",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "DC",
+     "HI",
+     "CA",
+     "MD",
+     "MA",
+     "NY",
+     "VT",
+     "IL"
+    ],
+    "cls": 0.0264
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "line",
+     "pie"
+    ],
+    "lat_menu": 33.7,
+    "lat_pick": 119.7,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0.0264
+   }
+  },
+  "PA": {
+   "tap_lat": 7.3,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | D +7.5 | +5.1",
+     "Cumberland | D +7.5 | +5.2",
+     "Montour | D +7.3 | +5.0",
+     "Pike | D +7.0 | +4.5",
+     "Monroe | D +5.6 | +3.9",
+     "Dauphin | D +5.5 | +4.1",
+     "Luzerne | D +5.1",
+     "Lackawanna | D +4.9"
+    ],
+    "cls": 0.1852
+   },
+   "all": [
+    [
+     "Chester",
+     "D +7.5",
+     "+5.1"
+    ],
+    [
+     "Cumberland",
+     "D +7.5",
+     "+5.2"
+    ],
+    [
+     "Montour",
+     "D +7.3",
+     "+5.0"
+    ],
+    [
+     "Pike",
+     "D +7.0",
+     "+4.5"
+    ],
+    [
+     "Monroe",
+     "D +5.6",
+     "+3.9"
+    ],
+    [
+     "Dauphin",
+     "D +5.5",
+     "+4.1"
+    ],
+    [
+     "Luzerne",
+     "D +5.1"
+    ],
+    [
+     "Lackawanna",
+     "D +4.9"
+    ],
+    [
+     "Montgomery",
+     "D +4.8"
+    ],
+    [
+     "Wayne",
+     "D +4.8"
+    ],
+    [
+     "Northampton",
+     "D +4.5"
+    ],
+    [
+     "York",
+     "D +4.5"
+    ],
+    [
+     "Butler",
+     "D +4.4"
+    ],
+    [
+     "Northumberland",
+     "D +4.3"
+    ],
+    [
+     "Delaware",
+     "D +4.0"
+    ],
+    [
+     "Allegheny",
+     "D +3.8"
+    ],
+    [
+     "Lancaster",
+     "D +3.7"
+    ],
+    [
+     "Bucks",
+     "D +3.6"
+    ],
+    [
+     "Philadelphia",
+     "R +3.6"
+    ],
+    [
+     "Schuylkill",
+     "D +3.5"
+    ],
+    [
+     "Lycoming",
+     "D +3.4"
+    ],
+    [
+     "Clarion",
+     "R +3.2"
+    ],
+    [
+     "Franklin",
+     "D +3.2"
+    ],
+    [
+     "Lebanon",
+     "D +3.2"
+    ],
+    [
+     "Westmoreland",
+     "D +3.1",
+     "\u22120.6",
+     "+2.4",
+     "\u22121.8"
+    ],
+    [
+     "Greene",
+     "R +3.0",
+     "+2.4",
+     "\u22120.7",
+     "\u22121.7"
+    ],
+    [
+     "Wyoming",
+     "D +3.0",
+     "\u22120.4",
+     "+2.7",
+     "\u22122.3"
+    ],
+    [
+     "Lehigh",
+     "D +2.9",
+     "\u22120.2",
+     "+2.7",
+     "\u22122.5"
+    ],
+    [
+     "Potter",
+     "D +2.8",
+     "\u22120.4",
+     "+2.3",
+     "\u22121.9"
+    ],
+    [
+     "Erie",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22123.0"
+    ],
+    [
+     "Fayette",
+     "R +2.5",
+     "+2.0",
+     "\u22120.5",
+     "\u22121.5"
+    ],
+    [
+     "Armstrong",
+     "R +2.4",
+     "+2.1",
+     "\u22120.3",
+     "\u22121.9"
+    ],
+    [
+     "Centre",
+     "D +2.4",
+     "+0.6",
+     "+3.0",
+     "\u22123.6"
+    ],
+    [
+     "Blair",
+     "D +2.3",
+     "\u22120.0",
+     "+2.3",
+     "\u22122.3"
+    ],
+    [
+     "Elk",
+     "R +2.3",
+     "+2.3",
+     "+0.0",
+     "\u22122.4"
+    ],
+    [
+     "Adams",
+     "D +2.2",
+     "\u22120.0",
+     "+2.2",
+     "\u22122.2"
+    ],
+    [
+     "Carbon",
+     "D +2.0",
+     "+0.2",
+     "+2.3",
+     "\u22122.5"
+    ],
+    [
+     "Clinton",
+     "R +2.0",
+     "+2.4",
+     "+0.4",
+     "\u22122.8"
+    ],
+    [
+     "Sullivan",
+     "D +1.9",
+     "\u22120.2",
+     "+1.7",
+     "\u22121.5"
+    ],
+    [
+     "Washington",
+     "D +1.9",
+     "+0.3",
+     "+2.3",
+     "\u22122.6"
+    ],
+    [
+     "Indiana",
+     "R +1.8",
+     "+2.1",
+     "+0.3",
+     "\u22122.4"
+    ],
+    [
+     "Perry",
+     "D +1.8",
+     "+0.4",
+     "+2.2",
+     "\u22122.6"
+    ],
+    [
+     "Tioga",
+     "D +1.8",
+     "+0.4",
+     "+2.2",
+     "\u22122.6"
+    ],
+    [
+     "Berks",
+     "D +1.7",
+     "+0.6",
+     "+2.3",
+     "\u22123.0"
+    ],
+    [
+     "Cameron",
+     "D +1.7",
+     "+0.1",
+     "+1.8",
+     "\u22121.8"
+    ],
+    [
+     "Lawrence",
+     "R +1.5",
+     "+1.8",
+     "+0.3",
+     "\u22122.1"
+    ],
+    [
+     "Mercer",
+     "R +1.5",
+     "+2.1",
+     "+0.5",
+     "\u22122.6"
+    ],
+    [
+     "Columbia",
+     "D +1.4",
+     "+0.7",
+     "+2.1",
+     "\u22122.8"
+    ],
+    [
+     "Fulton",
+     "R +1.3",
+     "+1.5",
+     "+0.1",
+     "\u22121.6"
+    ],
+    [
+     "Mifflin",
+     "D +1.3",
+     "+0.5",
+     "+1.9",
+     "\u22122.4"
+    ],
+    [
+     "Susquehanna",
+     "D +1.3",
+     "+0.8",
+     "+2.2",
+     "\u22123.0"
+    ],
+    [
+     "Union",
+     "D +1.2",
+     "+0.6",
+     "+1.8",
+     "\u22122.4"
+    ],
+    [
+     "Beaver",
+     "D +1.0",
+     "+0.5",
+     "+1.6",
+     "\u22122.1"
+    ],
+    [
+     "Bradford",
+     "D +0.8",
+     "+1.1",
+     "+1.9",
+     "\u22123.0"
+    ],
+    [
+     "Clearfield",
+     "R +0.6",
+     "+1.2",
+     "+0.6",
+     "\u22121.8"
+    ],
+    [
+     "McKean",
+     "D +0.5",
+     "+0.9",
+     "+1.5",
+     "\u22122.4"
+    ],
+    [
+     "Bedford",
+     "R +0.4",
+     "+0.8",
+     "+0.4",
+     "\u22121.2"
+    ],
+    [
+     "Forest",
+     "D +0.4",
+     "+1.0",
+     "+1.4",
+     "\u22122.5"
+    ],
+    [
+     "Huntingdon",
+     "R +0.4",
+     "+1.3",
+     "+0.9",
+     "\u22122.2"
+    ],
+    [
+     "Jefferson",
+     "D +0.4",
+     "+0.7",
+     "+1.1",
+     "\u22121.8"
+    ],
+    [
+     "Cambria",
+     "R +0.3",
+     "+1.1",
+     "+0.9",
+     "\u22122.0"
+    ],
+    [
+     "Juniata",
+     "D +0.3",
+     "+1.0",
+     "+1.3",
+     "\u22122.3"
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "shifts": [
+    {
+     "v": 0.1852,
+     "t": 22272,
+     "src": [
+      "listView"
+     ]
+    }
+   ],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [3.46M]",
+     "Donald Trump 2024 [3.38M]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Montgomery | D +41K | +63K",
+     "Allegheny | D +40K | +63K",
+     "Chester | D +28K",
+     "Delaware | D +20K",
+     "Bucks | D +15K",
+     "Dauphin | D +9K",
+     "Cumberland | D +7K",
+     "Northampton | D +7K"
+    ],
+    "cls": 0.1852
+   },
+   "num_all": [
+    [
+     "Montgomery",
+     "D +41K",
+     "+63K"
+    ],
+    [
+     "Allegheny",
+     "D +40K",
+     "+63K"
+    ],
+    [
+     "Chester",
+     "D +28K"
+    ],
+    [
+     "Delaware",
+     "D +20K"
+    ],
+    [
+     "Bucks",
+     "D +15K"
+    ],
+    [
+     "Dauphin",
+     "D +9K"
+    ],
+    [
+     "Cumberland",
+     "D +7K"
+    ],
+    [
+     "Northampton",
+     "D +7K"
+    ],
+    [
+     "Lehigh",
+     "D +6K"
+    ],
+    [
+     "Lackawanna",
+     "D +6K"
+    ],
+    [
+     "Monroe",
+     "D +5K"
+    ],
+    [
+     "Luzerne",
+     "D +4K"
+    ],
+    [
+     "Fayette",
+     "R +4K"
+    ],
+    [
+     "Erie",
+     "D +3K"
+    ],
+    [
+     "Cambria",
+     "R +3K"
+    ],
+    [
+     "Philadelphia",
+     "R +3K"
+    ],
+    [
+     "Somerset",
+     "R +3K"
+    ],
+    [
+     "Clearfield",
+     "R +3K"
+    ],
+    [
+     "Bedford",
+     "R +3K"
+    ],
+    [
+     "Armstrong",
+     "R +3K"
+    ],
+    [
+     "Franklin",
+     "R +3K"
+    ],
+    [
+     "Blair",
+     "R +2K"
+    ],
+    [
+     "Lancaster",
+     "D +2K"
+    ],
+    [
+     "Mercer",
+     "R +2K"
+    ],
+    [
+     "Lawrence",
+     "R +2K",
+     "+4K",
+     "+2K",
+     "\u2212815"
+    ],
+    [
+     "Adams",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u2212863"
+    ],
+    [
+     "Indiana",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212865"
+    ],
+    [
+     "Washington",
+     "R +2K",
+     "+11K",
+     "+9K",
+     "\u22122K"
+    ],
+    [
+     "Jefferson",
+     "R +2K",
+     "+3K",
+     "+877",
+     "\u2212299"
+    ],
+    [
+     "Lycoming",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Centre",
+     "D +2K",
+     "+1K",
+     "+3K",
+     "\u22123K"
+    ],
+    [
+     "Bradford",
+     "R +2K",
+     "+3K",
+     "+2K",
+     "\u2212685"
+    ],
+    [
+     "Huntingdon",
+     "R +2K",
+     "+3K",
+     "+906",
+     "\u2212387"
+    ],
+    [
+     "Crawford",
+     "R +2K",
+     "+4K",
+     "+2K",
+     "\u22121K"
+    ],
+    [
+     "Mifflin",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212401"
+    ],
+    [
+     "Clarion",
+     "R +1K",
+     "+2K",
+     "+396",
+     "\u2212453"
+    ],
+    [
+     "Elk",
+     "R +1K",
+     "+2K",
+     "+669",
+     "\u2212304"
+    ],
+    [
+     "Westmoreland",
+     "R +1K",
+     "+15K",
+     "+13K",
+     "\u22123K"
+    ],
+    [
+     "York",
+     "D +1K",
+     "+18K",
+     "+20K",
+     "\u22125K"
+    ],
+    [
+     "McKean",
+     "R +1K",
+     "+2K",
+     "+1K",
+     "\u2212351"
+    ],
+    [
+     "Perry",
+     "R +1K",
+     "+3K",
+     "+1K",
+     "\u2212501"
+    ],
+    [
+     "Greene",
+     "R +1K",
+     "+2K",
+     "+456",
+     "\u2212248"
+    ],
+    [
+     "Snyder",
+     "R +1K",
+     "+2K",
+     "+908",
+     "\u2212389"
+    ],
+    [
+     "Berks",
+     "D +1K",
+     "+13K",
+     "+14K",
+     "\u22125K"
+    ],
+    [
+     "Venango",
+     "R +1K",
+     "+3K",
+     "+1K",
+     "\u2212644"
+    ],
+    [
+     "Lebanon",
+     "R +1K",
+     "+6K",
+     "+5K",
+     "\u22121K"
+    ],
+    [
+     "Clinton",
+     "R +1K",
+     "+2K",
+     "+758",
+     "\u2212407"
+    ],
+    [
+     "Tioga",
+     "R +1K",
+     "+2K",
+     "+1K",
+     "\u2212432"
+    ],
+    [
+     "Butler",
+     "R +1K",
+     "+10K",
+     "+9K",
+     "\u22123K"
+    ],
+    [
+     "Beaver",
+     "R +1K",
+     "+7K",
+     "+6K",
+     "\u22122K"
+    ],
+    [
+     "Carbon",
+     "R +965",
+     "+3K",
+     "+2K",
+     "\u2212664"
+    ],
+    [
+     "Fulton",
+     "R +957",
+     "+1K",
+     "+173",
+     "\u221297"
+    ],
+    [
+     "Juniata",
+     "R +944",
+     "+1K",
+     "+432",
+     "\u2212219"
+    ],
+    [
+     "Schuylkill",
+     "R +913",
+     "+5K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Warren",
+     "R +839",
+     "+2K",
+     "+921",
+     "\u2212465"
+    ],
+    [
+     "Susquehanna",
+     "R +738",
+     "+2K",
+     "+1K",
+     "\u2212542"
+    ],
+    [
+     "Pike",
+     "D +599",
+     "+3K",
+     "+4K",
+     "\u2212469"
+    ],
+    [
+     "Potter",
+     "R +564",
+     "+988",
+     "+424",
+     "\u2212132"
+    ],
+    [
+     "Northumberland",
+     "R +557",
+     "+3K",
+     "+3K",
+     "\u2212759"
+    ],
+    [
+     "Columbia",
+     "R +496",
+     "+2K",
+     "+2K",
+     "\u2212749"
+    ],
+    [
+     "Union",
+     "R +439",
+     "+2K",
+     "+1K",
+     "\u2212382"
+    ],
+    [
+     "Montour",
+     "D +358",
+     "+556",
+     "+914",
+     "\u2212209"
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "y16 y16d listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | D +7.5 | +5.1",
+     "Cumberland | D +7.5 | +5.2",
+     "Montour | D +7.3 | +5.0",
+     "Pike | D +7.0 | +4.5",
+     "Monroe | D +5.6 | +3.9",
+     "Dauphin | D +5.5 | +4.1",
+     "Luzerne | D +5.1",
+     "Lackawanna | D +4.9"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 26,
+    "lat_pick": 58.1,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | \u22122.5 | +5.1",
+     "Cumberland | \u22122.3 | +5.2",
+     "Montour | \u22122.3 | +5.0",
+     "Pike | \u22122.5 | +4.5",
+     "Monroe | \u22121.7 | +3.9",
+     "Dauphin | \u22121.4 | +4.1",
+     "Luzerne | \u22121.6 | +3.5",
+     "Lackawanna | \u22121.4 | +3.5"
+    ],
+    "cls": 0.158
+   },
+   "line_all": [
+    [
+     "Chester",
+     "\u22122.5",
+     "+5.1"
+    ],
+    [
+     "Cumberland",
+     "\u22122.3",
+     "+5.2"
+    ],
+    [
+     "Montour",
+     "\u22122.3",
+     "+5.0"
+    ],
+    [
+     "Pike",
+     "\u22122.5",
+     "+4.5"
+    ],
+    [
+     "Monroe",
+     "\u22121.7",
+     "+3.9"
+    ],
+    [
+     "Dauphin",
+     "\u22121.4",
+     "+4.1"
+    ],
+    [
+     "Luzerne",
+     "\u22121.6",
+     "+3.5"
+    ],
+    [
+     "Lackawanna",
+     "\u22121.4",
+     "+3.5"
+    ],
+    [
+     "Montgomery",
+     "\u22121.1",
+     "+3.7"
+    ],
+    [
+     "Wayne",
+     "\u22121.3",
+     "+3.5"
+    ],
+    [
+     "Northampton",
+     "\u22121.1",
+     "+3.5"
+    ],
+    [
+     "York",
+     "\u22120.9",
+     "+3.7"
+    ],
+    [
+     "Butler",
+     "\u22120.7",
+     "+3.7"
+    ],
+    [
+     "Northumberland",
+     "\u22121.0",
+     "+3.3"
+    ],
+    [
+     "Delaware",
+     "\u22121.0",
+     "+3.0"
+    ],
+    [
+     "Allegheny",
+     "\u22120.9",
+     "+2.9"
+    ],
+    [
+     "Lancaster",
+     "\u22120.3",
+     "+3.4"
+    ],
+    [
+     "Bucks",
+     "\u22120.5",
+     "+3.1"
+    ],
+    [
+     "Philadelphia",
+     "+2.5",
+     "\u22121.1"
+    ],
+    [
+     "Schuylkill",
+     "\u22120.8",
+     "+2.7"
+    ],
+    [
+     "Lycoming",
+     "\u22120.5",
+     "+2.9"
+    ],
+    [
+     "Clarion",
+     "+2.9",
+     "\u22120.3"
+    ],
+    [
+     "Franklin",
+     "\u22120.5",
+     "+2.7"
+    ],
+    [
+     "Lebanon",
+     "\u22120.5",
+     "+2.7"
+    ],
+    [
+     "Westmoreland",
+     "\u22120.6",
+     "+2.4"
+    ],
+    [
+     "Greene",
+     "+2.4",
+     "\u22120.7"
+    ],
+    [
+     "Wyoming",
+     "\u22120.4",
+     "+2.7"
+    ],
+    [
+     "Lehigh",
+     "\u22120.2",
+     "+2.7"
+    ],
+    [
+     "Potter",
+     "\u22120.4",
+     "+2.3"
+    ],
+    [
+     "Erie",
+     "+0.2",
+     "+2.8"
+    ],
+    [
+     "Fayette",
+     "+2.0",
+     "\u22120.5"
+    ],
+    [
+     "Armstrong",
+     "+2.1",
+     "\u22120.3"
+    ],
+    [
+     "Centre",
+     "+0.6",
+     "+3.0"
+    ],
+    [
+     "Blair",
+     "\u22120.0",
+     "+2.3"
+    ],
+    [
+     "Elk",
+     "+2.3",
+     "+0.0"
+    ],
+    [
+     "Adams",
+     "\u22120.0",
+     "+2.2"
+    ],
+    [
+     "Carbon",
+     "+0.2",
+     "+2.3"
+    ],
+    [
+     "Clinton",
+     "+2.4",
+     "+0.4"
+    ],
+    [
+     "Sullivan",
+     "\u22120.2",
+     "+1.7"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 23.8,
+    "lat_pick": 19,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   }
+  },
+  "PhilaCo": {
+   "tap_lat": 29.8,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "townships",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [81%]",
+     "Donald Trump 2024 [18%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 2,
+    "rows": [
+     "Philadelphia city | R +3.6 | +2.5",
+     "Rockledge borough | D +2.3 | +2.6 | \u22122.9"
+    ],
+    "cls": 0.158
+   }
+  },
+  "Prec": {
+   "tap_lat": 160.1,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 97.9%",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 97.1%",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 93.3%",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 79.8%",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 81.0%",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 73.3%",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 71.8%",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 80.8%"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Delaware Precinct 317",
+     "'20 n/a \u00b7 '24 D 97.9%"
+    ],
+    [
+     "Delaware Precinct 318",
+     "'20 n/a \u00b7 '24 D 97.1%"
+    ],
+    [
+     "Delaware Precinct 3430",
+     "'20 n/a \u00b7 '24 D 93.3%"
+    ],
+    [
+     "Philadelphia Precinct 101",
+     "'20 n/a \u00b7 '24 D 79.8%"
+    ],
+    [
+     "Philadelphia Precinct 102",
+     "'20 n/a \u00b7 '24 D 81.0%"
+    ],
+    [
+     "Philadelphia Precinct 103",
+     "'20 n/a \u00b7 '24 D 73.3%"
+    ],
+    [
+     "Philadelphia Precinct 104",
+     "'20 n/a \u00b7 '24 D 71.8%"
+    ],
+    [
+     "Philadelphia Precinct 105",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 106",
+     "'20 n/a \u00b7 '24 D 85.1%"
+    ],
+    [
+     "Philadelphia Precinct 107",
+     "'20 n/a \u00b7 '24 D 85.4%"
+    ],
+    [
+     "Philadelphia Precinct 108",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 109",
+     "'20 n/a \u00b7 '24 D 76.0%"
+    ],
+    [
+     "Philadelphia Precinct 110",
+     "'20 n/a \u00b7 '24 D 84.1%"
+    ],
+    [
+     "Philadelphia Precinct 111",
+     "'20 n/a \u00b7 '24 D 83.5%"
+    ],
+    [
+     "Philadelphia Precinct 112",
+     "'20 n/a \u00b7 '24 D 80.3%"
+    ],
+    [
+     "Philadelphia Precinct 113",
+     "'20 n/a \u00b7 '24 D 86.6%"
+    ],
+    [
+     "Philadelphia Precinct 114",
+     "'20 n/a \u00b7 '24 D 87.5%"
+    ],
+    [
+     "Philadelphia Precinct 115",
+     "'20 n/a \u00b7 '24 D 81.1%"
+    ],
+    [
+     "Philadelphia Precinct 116",
+     "'20 n/a \u00b7 '24 D 84.3%"
+    ],
+    [
+     "Philadelphia Precinct 117",
+     "'20 n/a \u00b7 '24 D 71.3%"
+    ],
+    [
+     "Philadelphia Precinct 118",
+     "'20 n/a \u00b7 '24 D 61.7%"
+    ],
+    [
+     "Philadelphia Precinct 119",
+     "'20 n/a \u00b7 '24 D 64.7%"
+    ],
+    [
+     "Philadelphia Precinct 120",
+     "'20 n/a \u00b7 '24 D 80.5%"
+    ],
+    [
+     "Philadelphia Precinct 121",
+     "'20 n/a \u00b7 '24 D 65.6%"
+    ],
+    [
+     "Philadelphia Precinct 201",
+     "'20 n/a \u00b7 '24 D 76.1%"
+    ],
+    [
+     "Philadelphia Precinct 202",
+     "'20 n/a \u00b7 '24 D 79.4%"
+    ],
+    [
+     "Philadelphia Precinct 203",
+     "'20 n/a \u00b7 '24 D 79.6%"
+    ],
+    [
+     "Philadelphia Precinct 204",
+     "'20 n/a \u00b7 '24 D 83.3%"
+    ],
+    [
+     "Philadelphia Precinct 205",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 206",
+     "'20 n/a \u00b7 '24 D 81.8%"
+    ]
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 468",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 462",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 500",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 316",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 442",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 433",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 367",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 210"
+    ],
+    "cls": 0
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "y16 y16d listmode",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [Donald Trump 15.4%]",
+     "Donald Trump [Donald Trump]",
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Hillary Clinton [Hillary Clinton]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 31.3,
+    "lat_pick": 95.4,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " biden.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.3475
+   },
+   "cmp20_24": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.5919
+   },
+   "cmp16": {
+    "ym": "2024",
+    "y16": true,
+    "hi": 0,
+    "ysl": [
+     0,
+     0
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Donald Trump 2016 [Donald Trump 15.4%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": "Clinton 82.5% Trump 15.4% Other 2.1%",
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.8722
+   }
+  },
+  "err": [
+   "--ctx2--"
+  ],
+  "http": [],
+  "reqfail": []
+ },
+ "320-16-24": {
+  "build": "202610181574",
+  "US20": {
+   "ym": "delta",
+   "y16": false,
+   "hi": 0,
+   "ysl": [
+    1,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "map",
+   "lv": "-",
+   "body": "",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2020 [47%]",
+    "Joe Biden 2020 [51%]",
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181574",
+    " biden.jpg?v=202610181574",
+    " trump.jpg?v=202610181574",
+    " harris.jpg?v=202610181574"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "United States",
+   "cpanel": null,
+   "nrows": 0,
+   "rows": [],
+   "cls": 0.0349
+  },
+  "US": {
+   "slider_lat": {
+    "first": null,
+    "last": null
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.0349
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 76.5,
+    "lat_pick": 90.2,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.2063
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 35.3,
+    "lat_pick": 13.1,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.2063
+   }
+  },
+  "States": {
+   "slider_lat": {
+    "first": 57,
+    "last": 433
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listall listmode lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "FL",
+     "R +11.9"
+    ],
+    [
+     "CA",
+     "R +10.0"
+    ],
+    [
+     "NY",
+     "R +9.8"
+    ],
+    [
+     "HI",
+     "R +9.1"
+    ],
+    [
+     "NJ",
+     "R +8.2"
+    ],
+    [
+     "CO",
+     "D +6.1"
+    ],
+    [
+     "IL",
+     "R +6.1"
+    ],
+    [
+     "NV",
+     "R +5.5"
+    ],
+    [
+     "VT",
+     "D +5.4"
+    ],
+    [
+     "MS",
+     "R +5.1"
+    ],
+    [
+     "ID",
+     "R +4.7"
+    ],
+    [
+     "TX",
+     "R +4.7"
+    ],
+    [
+     "KS",
+     "D +4.5"
+    ],
+    [
+     "NE",
+     "D +4.5"
+    ],
+    [
+     "ME",
+     "D +4.0"
+    ],
+    [
+     "IA",
+     "R +3.9",
+     "+4.8",
+     "+0.9",
+     "\u22125.8"
+    ],
+    [
+     "AR",
+     "R +3.7",
+     "+3.6",
+     "\u22120.1",
+     "\u22123.5"
+    ],
+    [
+     "TN",
+     "R +3.7",
+     "+3.5",
+     "\u22120.2",
+     "\u22123.2"
+    ],
+    [
+     "SC",
+     "R +3.6",
+     "+3.3",
+     "\u22120.3",
+     "\u22123.0"
+    ],
+    [
+     "UT",
+     "R +3.5",
+     "+13.9",
+     "+10.3",
+     "\u221224.2"
+    ],
+    [
+     "DE",
+     "D +3.4",
+     "+0.2",
+     "+3.5",
+     "\u22123.7"
+    ],
+    [
+     "OR",
+     "D +3.3",
+     "+1.9",
+     "+5.2",
+     "\u22127.1"
+    ],
+    [
+     "OH",
+     "R +3.1",
+     "+3.5",
+     "+0.4",
+     "\u22123.9"
+    ],
+    [
+     "DC",
+     "R +3.0",
+     "+2.4",
+     "\u22120.6",
+     "\u22121.8"
+    ],
+    [
+     "AL",
+     "R +2.9",
+     "+2.7",
+     "\u22120.1",
+     "\u22122.6"
+    ],
+    [
+     "GA",
+     "D +2.9",
+     "\u22120.0",
+     "+2.9",
+     "\u22122.8"
+    ],
+    [
+     "MN",
+     "D +2.7",
+     "+1.9",
+     "+4.7",
+     "\u22126.6"
+    ],
+    [
+     "WA",
+     "D +2.6",
+     "+2.4",
+     "+5.1",
+     "\u22127.5"
+    ],
+    [
+     "LA",
+     "R +2.4",
+     "+2.1",
+     "\u22120.2",
+     "\u22121.9"
+    ],
+    [
+     "NH",
+     "D +2.4",
+     "+1.7",
+     "+4.1",
+     "\u22125.7"
+    ],
+    [
+     "MD",
+     "D +2.3",
+     "+0.4",
+     "+2.8",
+     "\u22123.2"
+    ],
+    [
+     "NM",
+     "R +2.2",
+     "+5.8",
+     "+3.6",
+     "\u22129.4"
+    ],
+    [
+     "OK",
+     "D +2.1",
+     "+0.8",
+     "+3.0",
+     "\u22123.8"
+    ],
+    [
+     "AZ",
+     "R +2.0",
+     "+3.6",
+     "+1.6",
+     "\u22125.1"
+    ],
+    [
+     "MA",
+     "R +1.9",
+     "+3.4",
+     "+1.6",
+     "\u22125.0"
+    ],
+    [
+     "RI",
+     "R +1.7",
+     "+3.1",
+     "+1.4",
+     "\u22124.5"
+    ],
+    [
+     "AK",
+     "D +1.6",
+     "+3.3",
+     "+4.9",
+     "\u22128.1"
+    ],
+    [
+     "MI",
+     "R +1.2",
+     "+2.2",
+     "+1.1",
+     "\u22123.3"
+    ],
+    [
+     "ND",
+     "R +1.0",
+     "+4.6",
+     "+3.5",
+     "\u22128.1"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "barhtml": {
+    "kids": [
+     "rn:2",
+     "net:0",
+     "sbw dl:3"
+    ],
+    "bar": "<span class=\"sbw dl\" style=\"--f:0.2919\"><i class=\"sg rep\" data-party=\"Republican (Trump): +7.1 pts ('16\u2192'24)\" style=\"width:50.00%\"><b style=\"visibility: hidden;\">+7.1</b></i><i class=\"sg dem\" data-party=\"Democratic (Harris): \u22124.8 pts ('16\u2192'24)\" style=\"width:34.20%\"><b style=\"visibility: hidden;\">\u22124.8</b></i><i class=\"sg oth\" data-party=\"Other: \u22122.2 pts ('16\u2192'24)\" style=\"width:15.80%\"><b style=\"vis"
+   },
+   "shifts_slider": [],
+   "num_all": [
+    [
+     "FL",
+     "R +1.31M"
+    ],
+    [
+     "CA",
+     "R +1.08M"
+    ],
+    [
+     "TX",
+     "R +751K"
+    ],
+    [
+     "NY",
+     "R +696K"
+    ],
+    [
+     "IL",
+     "R +331K"
+    ],
+    [
+     "NJ",
+     "R +294K"
+    ],
+    [
+     "TN",
+     "R +258K"
+    ],
+    [
+     "CO",
+     "D +214K"
+    ],
+    [
+     "OH",
+     "R +200K"
+    ],
+    [
+     "WA",
+     "D +194K"
+    ],
+    [
+     "SC",
+     "R +155K"
+    ],
+    [
+     "MD",
+     "D +132K"
+    ],
+    [
+     "UT",
+     "R +117K"
+    ],
+    [
+     "ID",
+     "R +111K"
+    ],
+    [
+     "AL",
+     "R +101K"
+    ],
+    [
+     "OR",
+     "D +101K",
+     "+137K",
+     "+238K",
+     "\u2212132K"
+    ],
+    [
+     "AZ",
+     "R +96K",
+     "+518K",
+     "+422K",
+     "\u2212123K"
+    ],
+    [
+     "GA",
+     "D +96K",
+     "+574K",
+     "+670K",
+     "\u2212109K"
+    ],
+    [
+     "MN",
+     "D +93K",
+     "+196K",
+     "+289K",
+     "\u2212189K"
+    ],
+    [
+     "PA",
+     "R +76K",
+     "+573K",
+     "+497K",
+     "\u2212200K"
+    ],
+    [
+     "NV",
+     "R +73K",
+     "+239K",
+     "+166K",
+     "\u221246K"
+    ],
+    [
+     "IA",
+     "R +72K",
+     "+126K",
+     "+54K",
+     "\u221289K"
+    ],
+    [
+     "MI",
+     "R +69K",
+     "+537K",
+     "+468K",
+     "\u2212142K"
+    ],
+    [
+     "MS",
+     "R +65K",
+     "+47K",
+     "\u221218K",
+     "\u221210K"
+    ],
+    [
+     "KY",
+     "R +59K",
+     "+135K",
+     "+75K",
+     "\u221261K"
+    ],
+    [
+     "AR",
+     "R +58K",
+     "+74K",
+     "+16K",
+     "\u221239K"
+    ],
+    [
+     "VA",
+     "D +48K",
+     "+306K",
+     "+354K",
+     "\u2212162K"
+    ],
+    [
+     "LA",
+     "R +43K",
+     "+30K",
+     "\u221213K",
+     "\u221239K"
+    ],
+    [
+     "ME",
+     "D +36K",
+     "+42K",
+     "+78K",
+     "\u221237K"
+    ],
+    [
+     "VT",
+     "D +33K",
+     "+24K",
+     "+57K",
+     "\u221230K"
+    ],
+    [
+     "IN",
+     "R +33K",
+     "+163K",
+     "+130K",
+     "\u221295K"
+    ],
+    [
+     "CT",
+     "D +31K",
+     "+64K",
+     "+94K",
+     "\u221245K"
+    ],
+    [
+     "KS",
+     "D +30K",
+     "+88K",
+     "+118K",
+     "\u221262K"
+    ],
+    [
+     "MA",
+     "R +29K",
+     "+160K",
+     "+131K",
+     "\u2212163K"
+    ],
+    [
+     "MO",
+     "R +28K",
+     "+157K",
+     "+130K",
+     "\u2212102K"
+    ],
+    [
+     "DE",
+     "D +25K",
+     "+29K",
+     "+54K",
+     "\u221215K"
+    ],
+    [
+     "NH",
+     "D +20K",
+     "+50K",
+     "+70K",
+     "\u221242K"
+    ],
+    [
+     "WV",
+     "R +19K",
+     "+44K",
+     "+26K",
+     "\u221222K"
+    ],
+    [
+     "HI",
+     "R +19K",
+     "+65K",
+     "+46K",
+     "\u221223K"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "y16 listmode listall lathumb y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 28.4,
+    "lat_pick": 216.4,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0.0005
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | +7.1 | \u22124.8",
+     "CA | +6.7 | \u22123.2",
+     "NY | +7.1 | \u22122.7",
+     "HI | +7.4 | \u22121.6",
+     "NJ | +4.7 | \u22123.5",
+     "CO | \u22120.1 | +6.0",
+     "IL | +5.0 | \u22121.1",
+     "NV | +5.1 | \u22120.4"
+    ],
+    "cls": 0.1195
+   },
+   "line_all": [
+    [
+     "FL",
+     "+7.1",
+     "\u22124.8"
+    ],
+    [
+     "CA",
+     "+6.7",
+     "\u22123.2"
+    ],
+    [
+     "NY",
+     "+7.1",
+     "\u22122.7"
+    ],
+    [
+     "HI",
+     "+7.4",
+     "\u22121.6"
+    ],
+    [
+     "NJ",
+     "+4.7",
+     "\u22123.5"
+    ],
+    [
+     "CO",
+     "\u22120.1",
+     "+6.0"
+    ],
+    [
+     "IL",
+     "+5.0",
+     "\u22121.1"
+    ],
+    [
+     "NV",
+     "+5.1",
+     "\u22120.4"
+    ],
+    [
+     "VT",
+     "+2.3",
+     "+7.7"
+    ],
+    [
+     "MS",
+     "+2.9",
+     "\u22122.1"
+    ],
+    [
+     "ID",
+     "+7.6",
+     "+2.9"
+    ],
+    [
+     "TX",
+     "+3.9",
+     "\u22120.7"
+    ],
+    [
+     "KS",
+     "+0.5",
+     "+5.0"
+    ],
+    [
+     "NE",
+     "+0.9",
+     "+5.4"
+    ],
+    [
+     "ME",
+     "+0.6",
+     "+4.6"
+    ],
+    [
+     "IA",
+     "+4.8",
+     "+0.9"
+    ],
+    [
+     "AR",
+     "+3.6",
+     "\u22120.1"
+    ],
+    [
+     "TN",
+     "+3.5",
+     "\u22120.2"
+    ],
+    [
+     "SC",
+     "+3.3",
+     "\u22120.3"
+    ],
+    [
+     "UT",
+     "+13.9",
+     "+10.3"
+    ],
+    [
+     "DE",
+     "+0.2",
+     "+3.5"
+    ],
+    [
+     "OR",
+     "+1.9",
+     "+5.2"
+    ],
+    [
+     "OH",
+     "+3.5",
+     "+0.4"
+    ],
+    [
+     "DC",
+     "+2.4",
+     "\u22120.6"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "pie": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 13.6,
+    "lat_pick": 84.8,
+    "chart_after": "pie",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_pie": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "pie",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "pie",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "WY",
+     "WV",
+     "ND",
+     "ID",
+     "OK",
+     "AL",
+     "KY",
+     "AR"
+    ],
+    "cls": 0.0552
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "line",
+     "pie"
+    ],
+    "lat_menu": 24.1,
+    "lat_pick": 100.9,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "FL | R +11.9",
+     "CA | R +10.0",
+     "NY | R +9.8",
+     "HI | R +9.1",
+     "NJ | R +8.2",
+     "CO | D +6.1",
+     "IL | R +6.1",
+     "NV | R +5.5"
+    ],
+    "cls": 0.0552
+   }
+  },
+  "PA": {
+   "tap_lat": 49.5,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | D +8.6 | +5.9",
+     "Philadelphia | R +8.3",
+     "Montour | D +7.4",
+     "Fayette | R +7.0",
+     "Clinton | R +6.6",
+     "Lawrence | R +5.7",
+     "Mercer | R +5.7",
+     "Clarion | R +5.5"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Cumberland",
+     "D +8.6",
+     "+5.9"
+    ],
+    [
+     "Philadelphia",
+     "R +8.3"
+    ],
+    [
+     "Montour",
+     "D +7.4"
+    ],
+    [
+     "Fayette",
+     "R +7.0"
+    ],
+    [
+     "Clinton",
+     "R +6.6"
+    ],
+    [
+     "Lawrence",
+     "R +5.7"
+    ],
+    [
+     "Mercer",
+     "R +5.7"
+    ],
+    [
+     "Clarion",
+     "R +5.5"
+    ],
+    [
+     "Chester",
+     "D +5.0"
+    ],
+    [
+     "Butler",
+     "D +4.7"
+    ],
+    [
+     "Greene",
+     "R +4.5"
+    ],
+    [
+     "Elk",
+     "R +4.2"
+    ],
+    [
+     "York",
+     "D +3.9"
+    ],
+    [
+     "Allegheny",
+     "D +3.7"
+    ],
+    [
+     "Lancaster",
+     "D +3.5"
+    ],
+    [
+     "Indiana",
+     "R +3.4",
+     "+3.1",
+     "\u22120.3",
+     "\u22122.8"
+    ],
+    [
+     "Franklin",
+     "D +3.3",
+     "\u22120.3",
+     "+3.0",
+     "\u22122.7"
+    ],
+    [
+     "Armstrong",
+     "R +3.2",
+     "+2.8",
+     "\u22120.5",
+     "\u22122.3"
+    ],
+    [
+     "Lycoming",
+     "D +3.2",
+     "\u22120.2",
+     "+3.1",
+     "\u22122.9"
+    ],
+    [
+     "Westmoreland",
+     "D +3.0",
+     "\u22120.2",
+     "+2.7",
+     "\u22122.5"
+    ],
+    [
+     "Dauphin",
+     "D +2.9",
+     "\u22120.0",
+     "+2.9",
+     "\u22122.9"
+    ],
+    [
+     "Lebanon",
+     "D +2.9",
+     "\u22120.0",
+     "+2.9",
+     "\u22122.9"
+    ],
+    [
+     "Northumberland",
+     "D +2.8",
+     "+0.0",
+     "+2.8",
+     "\u22122.9"
+    ],
+    [
+     "Clearfield",
+     "R +2.7",
+     "+2.6",
+     "\u22120.1",
+     "\u22122.6"
+    ],
+    [
+     "Adams",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22123.0"
+    ],
+    [
+     "Cambria",
+     "R +2.6",
+     "+2.5",
+     "\u22120.1",
+     "\u22122.3"
+    ],
+    [
+     "Perry",
+     "D +2.6",
+     "+0.3",
+     "+2.9",
+     "\u22123.3"
+    ],
+    [
+     "Blair",
+     "D +2.4",
+     "+0.1",
+     "+2.5",
+     "\u22122.6"
+    ],
+    [
+     "Huntingdon",
+     "R +2.4",
+     "+2.6",
+     "+0.1",
+     "\u22122.7"
+    ],
+    [
+     "Berks",
+     "R +2.2",
+     "+2.8",
+     "+0.6",
+     "\u22123.4"
+    ],
+    [
+     "Sullivan",
+     "D +2.2",
+     "+0.1",
+     "+2.3",
+     "\u22122.4"
+    ],
+    [
+     "Bradford",
+     "R +2.1",
+     "+3.0",
+     "+0.8",
+     "\u22123.8"
+    ],
+    [
+     "Susquehanna",
+     "R +2.1",
+     "+2.8",
+     "+0.7",
+     "\u22123.5"
+    ],
+    [
+     "Beaver",
+     "R +2.0",
+     "+2.3",
+     "+0.3",
+     "\u22122.6"
+    ],
+    [
+     "Fulton",
+     "R +2.0",
+     "+2.0",
+     "+0.0",
+     "\u22122.0"
+    ],
+    [
+     "Lehigh",
+     "R +2.0",
+     "+2.3",
+     "+0.2",
+     "\u22122.5"
+    ],
+    [
+     "Northampton",
+     "D +2.0",
+     "+0.4",
+     "+2.4",
+     "\u22122.9"
+    ],
+    [
+     "Pike",
+     "D +2.0",
+     "+0.1",
+     "+2.1",
+     "\u22122.2"
+    ],
+    [
+     "Union",
+     "D +2.0",
+     "+0.4",
+     "+2.4",
+     "\u22122.8"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [3.54M]",
+     "Kamala Harris 2024 [3.42M]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Philadelphia | R +50K",
+     "Allegheny | D +38K | +62K",
+     "Montgomery | D +25K | +61K",
+     "Chester | D +22K",
+     "Delaware | D +10K",
+     "Cumberland | D +8K",
+     "Fayette | R +7K",
+     "Berks | R +7K"
+    ],
+    "cls": 0
+   },
+   "num_all": [
+    [
+     "Philadelphia",
+     "R +50K"
+    ],
+    [
+     "Allegheny",
+     "D +38K",
+     "+62K"
+    ],
+    [
+     "Montgomery",
+     "D +25K",
+     "+61K"
+    ],
+    [
+     "Chester",
+     "D +22K"
+    ],
+    [
+     "Delaware",
+     "D +10K"
+    ],
+    [
+     "Cumberland",
+     "D +8K"
+    ],
+    [
+     "Fayette",
+     "R +7K"
+    ],
+    [
+     "Berks",
+     "R +7K"
+    ],
+    [
+     "Washington",
+     "R +6K"
+    ],
+    [
+     "Dauphin",
+     "D +5K"
+    ],
+    [
+     "Cambria",
+     "R +5K"
+    ],
+    [
+     "Mercer",
+     "R +5K"
+    ],
+    [
+     "Lawrence",
+     "R +4K"
+    ],
+    [
+     "Clearfield",
+     "R +4K"
+    ],
+    [
+     "Beaver",
+     "R +4K"
+    ],
+    [
+     "Franklin",
+     "R +4K",
+     "+10K",
+     "+6K",
+     "\u22122K"
+    ],
+    [
+     "Luzerne",
+     "R +4K",
+     "+14K",
+     "+10K",
+     "\u22123K"
+    ],
+    [
+     "Schuylkill",
+     "R +4K",
+     "+8K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Westmoreland",
+     "R +3K",
+     "+19K",
+     "+16K",
+     "\u22124K"
+    ],
+    [
+     "Armstrong",
+     "R +3K",
+     "+4K",
+     "+883",
+     "\u2212717"
+    ],
+    [
+     "Bedford",
+     "R +3K",
+     "+4K",
+     "+691",
+     "\u2212274"
+    ],
+    [
+     "Somerset",
+     "R +3K",
+     "+5K",
+     "+1K",
+     "\u2212726"
+    ],
+    [
+     "Butler",
+     "R +3K",
+     "+15K",
+     "+12K",
+     "\u22123K"
+    ],
+    [
+     "Adams",
+     "R +3K",
+     "+9K",
+     "+6K",
+     "\u22121K"
+    ],
+    [
+     "Bradford",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u2212933"
+    ],
+    [
+     "Indiana",
+     "R +3K",
+     "+4K",
+     "+1K",
+     "\u22121K"
+    ],
+    [
+     "Blair",
+     "R +3K",
+     "+7K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Bucks",
+     "R +3K",
+     "+34K",
+     "+31K",
+     "\u22129K"
+    ],
+    [
+     "York",
+     "R +3K",
+     "+26K",
+     "+23K",
+     "\u22127K"
+    ],
+    [
+     "Crawford",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u22121K"
+    ],
+    [
+     "Lehigh",
+     "R +3K",
+     "+18K",
+     "+15K",
+     "\u22124K"
+    ],
+    [
+     "Carbon",
+     "R +3K",
+     "+5K",
+     "+2K",
+     "\u2212804"
+    ],
+    [
+     "Huntingdon",
+     "R +2K",
+     "+3K",
+     "+829",
+     "\u2212512"
+    ],
+    [
+     "Northampton",
+     "D +2K",
+     "+18K",
+     "+20K",
+     "\u22124K"
+    ],
+    [
+     "Clinton",
+     "R +2K",
+     "+3K",
+     "+651",
+     "\u2212466"
+    ],
+    [
+     "Lycoming",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Clarion",
+     "R +2K",
+     "+2K",
+     "+280",
+     "\u2212555"
+    ],
+    [
+     "Jefferson",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212449"
+    ],
+    [
+     "Lebanon",
+     "R +2K",
+     "+8K",
+     "+6K",
+     "\u22122K"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "y16 y16d listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | D +8.6 | +5.9",
+     "Philadelphia | R +8.3",
+     "Montour | D +7.4",
+     "Fayette | R +7.0",
+     "Clinton | R +6.6",
+     "Lawrence | R +5.7",
+     "Mercer | R +5.7",
+     "Clarion | R +5.5"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 29,
+    "lat_pick": 62.8,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [49%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Cumberland | \u22122.7 | +5.9",
+     "Philadelphia | +4.6 | \u22123.7",
+     "Montour | \u22121.8 | +5.6",
+     "Fayette | +4.4 | \u22122.6",
+     "Clinton | +4.9 | \u22121.7",
+     "Lawrence | +4.1 | \u22121.6",
+     "Mercer | +4.3 | \u22121.3",
+     "Clarion | +4.4 | \u22121.1"
+    ],
+    "cls": 0.119
+   },
+   "line_all": [
+    [
+     "Cumberland",
+     "\u22122.7",
+     "+5.9"
+    ],
+    [
+     "Philadelphia",
+     "+4.6",
+     "\u22123.7"
+    ],
+    [
+     "Montour",
+     "\u22121.8",
+     "+5.6"
+    ],
+    [
+     "Fayette",
+     "+4.4",
+     "\u22122.6"
+    ],
+    [
+     "Clinton",
+     "+4.9",
+     "\u22121.7"
+    ],
+    [
+     "Lawrence",
+     "+4.1",
+     "\u22121.6"
+    ],
+    [
+     "Mercer",
+     "+4.3",
+     "\u22121.3"
+    ],
+    [
+     "Clarion",
+     "+4.4",
+     "\u22121.1"
+    ],
+    [
+     "Chester",
+     "\u22121.0",
+     "+4.0"
+    ],
+    [
+     "Butler",
+     "\u22120.7",
+     "+4.0"
+    ],
+    [
+     "Greene",
+     "+2.7",
+     "\u22121.8"
+    ],
+    [
+     "Elk",
+     "+3.6",
+     "\u22120.6"
+    ],
+    [
+     "York",
+     "\u22120.2",
+     "+3.6"
+    ],
+    [
+     "Allegheny",
+     "\u22120.6",
+     "+3.1"
+    ],
+    [
+     "Lancaster",
+     "+0.3",
+     "+3.7"
+    ],
+    [
+     "Indiana",
+     "+3.1",
+     "\u22120.3"
+    ],
+    [
+     "Franklin",
+     "\u22120.3",
+     "+3.0"
+    ],
+    [
+     "Armstrong",
+     "+2.8",
+     "\u22120.5"
+    ],
+    [
+     "Lycoming",
+     "\u22120.2",
+     "+3.1"
+    ],
+    [
+     "Westmoreland",
+     "\u22120.2",
+     "+2.7"
+    ],
+    [
+     "Dauphin",
+     "\u22120.0",
+     "+2.9"
+    ],
+    [
+     "Lebanon",
+     "\u22120.0",
+     "+2.9"
+    ],
+    [
+     "Northumberland",
+     "+0.0",
+     "+2.8"
+    ],
+    [
+     "Clearfield",
+     "+2.6",
+     "\u22120.1"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 35.6,
+    "lat_pick": 19.5,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     2
+    ]
+   }
+  },
+  "PhilaCo": {
+   "tap_lat": 12,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "townships",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 [78%]",
+     "Donald Trump 2024 [20%]"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 2,
+    "rows": [
+     "Philadelphia city | R +8.6 | +4.6",
+     "Rockledge borough | D +5.9 | +4.5"
+    ],
+    "cls": 0.119
+   }
+  },
+  "Prec": {
+   "tap_lat": 161.1,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 94.7%",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 94.4%",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 91.4%",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 74.9%",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 81.2%",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 76.0%",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 74.3%",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 82.4%"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Delaware Precinct 317",
+     "'20 n/a \u00b7 '24 D 94.7%"
+    ],
+    [
+     "Delaware Precinct 318",
+     "'20 n/a \u00b7 '24 D 94.4%"
+    ],
+    [
+     "Delaware Precinct 3430",
+     "'20 n/a \u00b7 '24 D 91.4%"
+    ],
+    [
+     "Philadelphia Precinct 101",
+     "'20 n/a \u00b7 '24 D 74.9%"
+    ],
+    [
+     "Philadelphia Precinct 102",
+     "'20 n/a \u00b7 '24 D 81.2%"
+    ],
+    [
+     "Philadelphia Precinct 103",
+     "'20 n/a \u00b7 '24 D 76.0%"
+    ],
+    [
+     "Philadelphia Precinct 104",
+     "'20 n/a \u00b7 '24 D 74.3%"
+    ],
+    [
+     "Philadelphia Precinct 105",
+     "'20 n/a \u00b7 '24 D 82.4%"
+    ],
+    [
+     "Philadelphia Precinct 106",
+     "'20 n/a \u00b7 '24 D 84.1%"
+    ],
+    [
+     "Philadelphia Precinct 107",
+     "'20 n/a \u00b7 '24 D 83.1%"
+    ],
+    [
+     "Philadelphia Precinct 108",
+     "'20 n/a \u00b7 '24 D 80.3%"
+    ],
+    [
+     "Philadelphia Precinct 109",
+     "'20 n/a \u00b7 '24 D 72.1%"
+    ],
+    [
+     "Philadelphia Precinct 110",
+     "'20 n/a \u00b7 '24 D 78.5%"
+    ],
+    [
+     "Philadelphia Precinct 111",
+     "'20 n/a \u00b7 '24 D 83.9%"
+    ],
+    [
+     "Philadelphia Precinct 112",
+     "'20 n/a \u00b7 '24 D 82.2%"
+    ],
+    [
+     "Philadelphia Precinct 113",
+     "'20 n/a \u00b7 '24 D 82.2%"
+    ],
+    [
+     "Philadelphia Precinct 114",
+     "'20 n/a \u00b7 '24 D 83.9%"
+    ],
+    [
+     "Philadelphia Precinct 115",
+     "'20 n/a \u00b7 '24 D 80.5%"
+    ],
+    [
+     "Philadelphia Precinct 116",
+     "'20 n/a \u00b7 '24 D 82.8%"
+    ],
+    [
+     "Philadelphia Precinct 117",
+     "'20 n/a \u00b7 '24 D 70.8%"
+    ],
+    [
+     "Philadelphia Precinct 118",
+     "'20 n/a \u00b7 '24 D 58.5%"
+    ],
+    [
+     "Philadelphia Precinct 119",
+     "'20 n/a \u00b7 '24 D 66.8%"
+    ],
+    [
+     "Philadelphia Precinct 120",
+     "'20 n/a \u00b7 '24 D 82.7%"
+    ],
+    [
+     "Philadelphia Precinct 121",
+     "'20 n/a \u00b7 '24 D 64.9%"
+    ],
+    [
+     "Philadelphia Precinct 201",
+     "'20 n/a \u00b7 '24 D 79.8%"
+    ],
+    [
+     "Philadelphia Precinct 202",
+     "'20 n/a \u00b7 '24 D 82.7%"
+    ],
+    [
+     "Philadelphia Precinct 203",
+     "'20 n/a \u00b7 '24 D 78.8%"
+    ],
+    [
+     "Philadelphia Precinct 204",
+     "'20 n/a \u00b7 '24 D 81.8%"
+    ],
+    [
+     "Philadelphia Precinct 205",
+     "'20 n/a \u00b7 '24 D 80.7%"
+    ],
+    [
+     "Philadelphia Precinct 206",
+     "'20 n/a \u00b7 '24 D 80.4%"
+    ]
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Kamala Harris 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 431",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 404",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 414",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 305",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 422",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 458",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 372",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 272"
+    ],
+    "cls": 0
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "y16 y16d listmode",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [Donald Trump 15.4%]",
+     "Donald Trump [Donald Trump]",
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Hillary Clinton [Hillary Clinton]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 28.7,
+    "lat_pick": 41.6,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 2,
+    "ysl": [
+     0,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " clinton.jpg?v=202610181574",
+     " harris.jpg?v=202610181574"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.405
+   },
+   "cmp20_24": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " biden.jpg?v=202610181574",
+     " harris.jpg?v=202610181574",
+     " trump.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.8304
+   },
+   "cmp16": {
+    "ym": "2024",
+    "y16": true,
+    "hi": 0,
+    "ysl": [
+     0,
+     0
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Donald Trump 2016 [Donald Trump 15.4%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181574",
+     " trump.jpg?v=202610181574"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": "Clinton 82.5% Trump 15.4% Other 2.1%",
+    "nrows": 0,
+    "rows": [],
+    "cls": 1.1416
+   }
+  },
+  "err": [
+   "--ctx2--"
+  ],
+  "http": [],
+  "reqfail": []
+ },
+ "320-16-20": {
+  "build": "202610181575",
+  "US20": {
+   "ym": "delta",
+   "y16": false,
+   "hi": 0,
+   "ysl": [
+    1,
+    2
+   ],
+   "chart": null,
+   "num": "pct",
+   "view": "map",
+   "lv": "-",
+   "body": "",
+   "ynote": "",
+   "legend": "",
+   "cands": [
+    "Donald Trump 2020 [47%]",
+    "Joe Biden 2020 [51%]",
+    "Donald Trump 2024 [50%]",
+    "Kamala Harris 2024 [48%]"
+   ],
+   "candImgs": [
+    " trump.jpg?v=202610181575",
+    " biden.jpg?v=202610181575",
+    " trump.jpg?v=202610181575",
+    " harris.jpg?v=202610181575"
+   ],
+   "opts": [],
+   "cmain": "bar",
+   "crumbs": "United States",
+   "cpanel": null,
+   "nrows": 0,
+   "rows": [],
+   "cls": 0.0278
+  },
+  "US": {
+   "slider_lat": {
+    "first": null,
+    "last": null
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2020 [46%]",
+     "Joe Biden 2020 []"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " clinton.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " biden.jpg?v=202610181575"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.0278
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "map",
+    "lv": "-",
+    "body": "y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [46%]",
+     "Hillary Clinton 2016 [48%]",
+     "Donald Trump 2020 [46%]",
+     "Joe Biden 2020 []"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " clinton.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " biden.jpg?v=202610181575"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 70.6,
+    "lat_pick": 76.5,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " biden.jpg?v=202610181575",
+     " harris.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.2107
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 21.6,
+    "lat_pick": 18.8,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "United States",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.2107
+   }
+  },
+  "States": {
+   "slider_lat": {
+    "first": 105,
+    "last": 295
+   },
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listall listmode lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "VT",
+     "D +9.0"
+    ],
+    [
+     "CO",
+     "D +8.6"
+    ],
+    [
+     "DE",
+     "D +7.6"
+    ],
+    [
+     "NH",
+     "D +7.0"
+    ],
+    [
+     "MD",
+     "D +6.8"
+    ],
+    [
+     "CT",
+     "D +6.4"
+    ],
+    [
+     "MA",
+     "D +6.3"
+    ],
+    [
+     "NE",
+     "D +6.0"
+    ],
+    [
+     "KS",
+     "D +5.9"
+    ],
+    [
+     "ME",
+     "D +5.7"
+    ],
+    [
+     "MN",
+     "D +5.6"
+    ],
+    [
+     "GA",
+     "D +5.4"
+    ],
+    [
+     "RI",
+     "D +5.3"
+    ],
+    [
+     "OR",
+     "D +5.1"
+    ],
+    [
+     "VA",
+     "D +4.8"
+    ],
+    [
+     "AK",
+     "D +4.6"
+    ],
+    [
+     "MT",
+     "D +4.1",
+     "+0.6",
+     "+4.7",
+     "\u22125.2"
+    ],
+    [
+     "AZ",
+     "D +3.9",
+     "+0.4",
+     "+4.2",
+     "\u22124.6"
+    ],
+    [
+     "KY",
+     "D +3.9",
+     "\u22120.4",
+     "+3.5",
+     "\u22123.0"
+    ],
+    [
+     "SD",
+     "D +3.6",
+     "+0.2",
+     "+3.9",
+     "\u22124.1"
+    ],
+    [
+     "WA",
+     "D +3.5",
+     "+1.9",
+     "+5.4",
+     "\u22127.4"
+    ],
+    [
+     "TX",
+     "D +3.4",
+     "\u22120.2",
+     "+3.2",
+     "\u22123.0"
+    ],
+    [
+     "OK",
+     "D +3.3",
+     "+0.1",
+     "+3.4",
+     "\u22123.4"
+    ],
+    [
+     "MO",
+     "D +3.2",
+     "+0.0",
+     "+3.3",
+     "\u22123.3"
+    ],
+    [
+     "IN",
+     "D +3.1",
+     "+0.1",
+     "+3.2",
+     "\u22123.3"
+    ],
+    [
+     "WV",
+     "D +3.1",
+     "+0.1",
+     "+3.3",
+     "\u22123.4"
+    ],
+    [
+     "MI",
+     "D +3.0",
+     "+0.3",
+     "+3.3",
+     "\u22123.7"
+    ],
+    [
+     "WY",
+     "D +2.9",
+     "+1.8",
+     "+4.7",
+     "\u22126.4"
+    ],
+    [
+     "TN",
+     "D +2.8",
+     "\u22120.1",
+     "+2.7",
+     "\u22122.7"
+    ],
+    [
+     "HI",
+     "R +2.7",
+     "+4.2",
+     "+1.5",
+     "\u22125.7"
+    ],
+    [
+     "NM",
+     "D +2.6",
+     "+3.5",
+     "+6.0",
+     "\u22129.5"
+    ],
+    [
+     "SC",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22122.9"
+    ],
+    [
+     "ND",
+     "D +2.4",
+     "+2.2",
+     "+4.5",
+     "\u22126.7"
+    ],
+    [
+     "UT",
+     "R +2.4",
+     "+12.6",
+     "+10.2",
+     "\u221222.8"
+    ],
+    [
+     "AL",
+     "D +2.3",
+     "\u22120.1",
+     "+2.2",
+     "\u22122.2"
+    ],
+    [
+     "NC",
+     "D +2.3",
+     "+0.1",
+     "+2.4",
+     "\u22122.5"
+    ],
+    [
+     "FL",
+     "R +2.2",
+     "+2.2",
+     "+0.0",
+     "\u22122.2"
+    ],
+    [
+     "PA",
+     "D +1.9",
+     "+0.6",
+     "+2.5",
+     "\u22123.1"
+    ],
+    [
+     "NJ",
+     "D +1.8",
+     "\u22120.1",
+     "+1.7",
+     "\u22121.6"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "barhtml": {
+    "kids": [
+     "rn:2",
+     "net:0",
+     "sbw dl:3"
+    ],
+    "bar": "<span class=\"sbw dl\" style=\"--f:0.4308\"><i class=\"sg rep\" data-party=\"Republican (Trump): +0.4 pts ('16\u2192'20)\" style=\"width:2.06%\"><b style=\"visibility: hidden;\">+0.4</b></i><i class=\"sg dem\" data-party=\"Democratic (Biden): +9.4 pts ('16\u2192'20)\" style=\"width:47.94%\"><b style=\"visibility: hidden;\">+9.4</b></i><i class=\"sg oth\" data-party=\"Other: \u22129.8 pts ('16\u2192'20)\" style=\"width:50.00%\"><b style=\"visib"
+   },
+   "shifts_slider": [],
+   "num_all": [
+    [
+     "CA",
+     "D +834K"
+    ],
+    [
+     "MA",
+     "D +311K"
+    ],
+    [
+     "CO",
+     "D +303K"
+    ],
+    [
+     "MD",
+     "D +274K"
+    ],
+    [
+     "WA",
+     "D +264K"
+    ],
+    [
+     "FL",
+     "R +259K"
+    ],
+    [
+     "NY",
+     "D +256K"
+    ],
+    [
+     "VA",
+     "D +239K"
+    ],
+    [
+     "GA",
+     "D +223K"
+    ],
+    [
+     "MN",
+     "D +188K"
+    ],
+    [
+     "NJ",
+     "D +179K"
+    ],
+    [
+     "TX",
+     "D +176K"
+    ],
+    [
+     "MI",
+     "D +165K"
+    ],
+    [
+     "OR",
+     "D +162K"
+    ],
+    [
+     "CT",
+     "D +142K"
+    ],
+    [
+     "PA",
+     "D +126K"
+    ],
+    [
+     "AZ",
+     "D +102K",
+     "+409K",
+     "+511K",
+     "\u2212106K"
+    ],
+    [
+     "UT",
+     "R +100K",
+     "+350K",
+     "+250K",
+     "\u2212243K"
+    ],
+    [
+     "NC",
+     "D +99K",
+     "+396K",
+     "+495K",
+     "\u2212108K"
+    ],
+    [
+     "IL",
+     "D +80K",
+     "+301K",
+     "+381K",
+     "\u2212180K"
+    ],
+    [
+     "MO",
+     "D +58K",
+     "+124K",
+     "+182K",
+     "\u221289K"
+    ],
+    [
+     "TN",
+     "R +57K",
+     "+330K",
+     "+273K",
+     "\u221257K"
+    ],
+    [
+     "NH",
+     "D +57K",
+     "+20K",
+     "+76K",
+     "\u221236K"
+    ],
+    [
+     "ME",
+     "D +48K",
+     "+24K",
+     "+73K",
+     "\u221231K"
+    ],
+    [
+     "ID",
+     "R +48K",
+     "+145K",
+     "+97K",
+     "\u221264K"
+    ],
+    [
+     "VT",
+     "D +47K",
+     "+17K",
+     "+64K",
+     "\u221229K"
+    ],
+    [
+     "DE",
+     "D +45K",
+     "+15K",
+     "+61K",
+     "\u221216K"
+    ],
+    [
+     "WI",
+     "D +43K",
+     "+205K",
+     "+248K",
+     "\u2212132K"
+    ],
+    [
+     "KS",
+     "D +43K",
+     "+100K",
+     "+143K",
+     "\u221256K"
+    ],
+    [
+     "IN",
+     "D +37K",
+     "+173K",
+     "+209K",
+     "\u221284K"
+    ],
+    [
+     "RI",
+     "D +36K",
+     "+19K",
+     "+55K",
+     "\u221221K"
+    ],
+    [
+     "NM",
+     "D +34K",
+     "+82K",
+     "+116K",
+     "\u221273K"
+    ],
+    [
+     "AR",
+     "R +32K",
+     "+76K",
+     "+43K",
+     "\u221231K"
+    ],
+    [
+     "HI",
+     "D +31K",
+     "+68K",
+     "+99K",
+     "\u221222K"
+    ],
+    [
+     "NE",
+     "D +29K",
+     "+61K",
+     "+90K",
+     "\u221239K"
+    ],
+    [
+     "OH",
+     "R +29K",
+     "+314K",
+     "+285K",
+     "\u2212173K"
+    ],
+    [
+     "DC",
+     "D +29K",
+     "+6K",
+     "+34K",
+     "\u22127K"
+    ],
+    [
+     "KY",
+     "D +20K",
+     "+124K",
+     "+144K",
+     "\u221255K"
+    ],
+    [
+     "OK",
+     "D +12K",
+     "+71K",
+     "+84K",
+     "\u221247K"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "y16 listmode listall lathumb y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 18.4,
+    "lat_pick": 122,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "after_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " harris.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | +0.4 | +9.4",
+     "CO | \u22121.4 | +7.2",
+     "DE | \u22121.9 | +5.7",
+     "NH | \u22121.0 | +6.0",
+     "MD | \u22121.8 | +5.0",
+     "CT | \u22121.7 | +4.7",
+     "MA | \u22120.7 | +5.6",
+     "NE | \u22120.5 | +5.5"
+    ],
+    "cls": 0.1263
+   },
+   "line_all": [
+    [
+     "VT",
+     "+0.4",
+     "+9.4"
+    ],
+    [
+     "CO",
+     "\u22121.4",
+     "+7.2"
+    ],
+    [
+     "DE",
+     "\u22121.9",
+     "+5.7"
+    ],
+    [
+     "NH",
+     "\u22121.0",
+     "+6.0"
+    ],
+    [
+     "MD",
+     "\u22121.8",
+     "+5.0"
+    ],
+    [
+     "CT",
+     "\u22121.7",
+     "+4.7"
+    ],
+    [
+     "MA",
+     "\u22120.7",
+     "+5.6"
+    ],
+    [
+     "NE",
+     "\u22120.5",
+     "+5.5"
+    ],
+    [
+     "KS",
+     "\u22120.4",
+     "+5.5"
+    ],
+    [
+     "ME",
+     "\u22120.6",
+     "+5.1"
+    ],
+    [
+     "MN",
+     "+0.4",
+     "+6.0"
+    ],
+    [
+     "GA",
+     "\u22121.5",
+     "+3.9"
+    ],
+    [
+     "RI",
+     "\u22120.3",
+     "+5.0"
+    ],
+    [
+     "OR",
+     "+1.3",
+     "+6.4"
+    ],
+    [
+     "VA",
+     "\u22120.4",
+     "+4.4"
+    ],
+    [
+     "AK",
+     "+1.8",
+     "+6.5"
+    ],
+    [
+     "MT",
+     "+0.6",
+     "+4.7"
+    ],
+    [
+     "AZ",
+     "+0.4",
+     "+4.2"
+    ],
+    [
+     "KY",
+     "\u22120.4",
+     "+3.5"
+    ],
+    [
+     "SD",
+     "+0.2",
+     "+3.9"
+    ],
+    [
+     "WA",
+     "+1.9",
+     "+5.4"
+    ],
+    [
+     "TX",
+     "\u22120.2",
+     "+3.2"
+    ],
+    [
+     "OK",
+     "+0.1",
+     "+3.4"
+    ],
+    [
+     "MO",
+     "+0.0",
+     "+3.3"
+    ],
+    [
+     "IN",
+     "+0.1",
+     "+3.2"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload_line": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2024 [50%]",
+     "Kamala Harris 2024 [48%]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " harris.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "NY | +5.9 | \u22124.5",
+     "NJ | +4.8 | \u22125.2",
+     "FL | +4.9 | \u22124.9",
+     "CA | +4.0 | \u22125.0",
+     "MA | +4.1 | \u22124.0",
+     "TX | +4.1 | \u22124.0",
+     "RI | +3.4 | \u22123.5",
+     "TN | +3.5 | \u22123.0"
+    ],
+    "cls": 0
+   },
+   "pie": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 7.6,
+    "lat_pick": 81.1,
+    "chart_after": "pie",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_pie": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "pie",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2020 [48%]",
+     "Donald Trump 2020 [46%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "pie",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "DC",
+     "HI",
+     "CA",
+     "MD",
+     "MA",
+     "NY",
+     "VT",
+     "IL"
+    ],
+    "cls": 0.0589
+   },
+   "bar": {
+    "offered": [
+     "bar",
+     "line",
+     "pie"
+    ],
+    "lat_menu": 19.5,
+    "lat_pick": 130.1,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   },
+   "after_bar": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "states",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [51%]",
+     "Donald Trump 2024 [47%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "All States",
+    "cpanel": null,
+    "nrows": 51,
+    "rows": [
+     "VT | D +9.0",
+     "CO | D +8.6",
+     "DE | D +7.6",
+     "NH | D +7.0",
+     "MD | D +6.8",
+     "CT | D +6.4",
+     "MA | D +6.3",
+     "NE | D +6.0"
+    ],
+    "cls": 0.0589
+   }
+  },
+  "PA": {
+   "tap_lat": 34.1,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | D +7.5",
+     "Cumberland | D +7.5 | +5.2",
+     "Montour | D +7.3",
+     "Pike | D +7.0",
+     "Monroe | D +5.6",
+     "Dauphin | D +5.5",
+     "Luzerne | D +5.1",
+     "Lackawanna | D +4.9"
+    ],
+    "cls": 0.2619
+   },
+   "all": [
+    [
+     "Chester",
+     "D +7.5"
+    ],
+    [
+     "Cumberland",
+     "D +7.5",
+     "+5.2"
+    ],
+    [
+     "Montour",
+     "D +7.3"
+    ],
+    [
+     "Pike",
+     "D +7.0"
+    ],
+    [
+     "Monroe",
+     "D +5.6"
+    ],
+    [
+     "Dauphin",
+     "D +5.5"
+    ],
+    [
+     "Luzerne",
+     "D +5.1"
+    ],
+    [
+     "Lackawanna",
+     "D +4.9"
+    ],
+    [
+     "Montgomery",
+     "D +4.8"
+    ],
+    [
+     "Wayne",
+     "D +4.8"
+    ],
+    [
+     "Northampton",
+     "D +4.5"
+    ],
+    [
+     "York",
+     "D +4.5"
+    ],
+    [
+     "Butler",
+     "D +4.4"
+    ],
+    [
+     "Northumberland",
+     "D +4.3"
+    ],
+    [
+     "Delaware",
+     "D +4.0"
+    ],
+    [
+     "Allegheny",
+     "D +3.8"
+    ],
+    [
+     "Lancaster",
+     "D +3.7",
+     "\u22120.3",
+     "+3.4",
+     "\u22123.1"
+    ],
+    [
+     "Bucks",
+     "D +3.6",
+     "\u22120.5",
+     "+3.1",
+     "\u22122.7"
+    ],
+    [
+     "Philadelphia",
+     "R +3.6",
+     "+2.5",
+     "\u22121.1",
+     "\u22121.4"
+    ],
+    [
+     "Schuylkill",
+     "D +3.5",
+     "\u22120.8",
+     "+2.7",
+     "\u22121.9"
+    ],
+    [
+     "Lycoming",
+     "D +3.4",
+     "\u22120.5",
+     "+2.9",
+     "\u22122.4"
+    ],
+    [
+     "Clarion",
+     "R +3.2",
+     "+2.9",
+     "\u22120.3",
+     "\u22122.7"
+    ],
+    [
+     "Franklin",
+     "D +3.2",
+     "\u22120.5",
+     "+2.7",
+     "\u22122.2"
+    ],
+    [
+     "Lebanon",
+     "D +3.2",
+     "\u22120.5",
+     "+2.7",
+     "\u22122.2"
+    ],
+    [
+     "Westmoreland",
+     "D +3.1",
+     "\u22120.6",
+     "+2.4",
+     "\u22121.8"
+    ],
+    [
+     "Greene",
+     "R +3.0",
+     "+2.4",
+     "\u22120.7",
+     "\u22121.7"
+    ],
+    [
+     "Wyoming",
+     "D +3.0",
+     "\u22120.4",
+     "+2.7",
+     "\u22122.3"
+    ],
+    [
+     "Lehigh",
+     "D +2.9",
+     "\u22120.2",
+     "+2.7",
+     "\u22122.5"
+    ],
+    [
+     "Potter",
+     "D +2.8",
+     "\u22120.4",
+     "+2.3",
+     "\u22121.9"
+    ],
+    [
+     "Erie",
+     "D +2.6",
+     "+0.2",
+     "+2.8",
+     "\u22123.0"
+    ],
+    [
+     "Fayette",
+     "R +2.5",
+     "+2.0",
+     "\u22120.5",
+     "\u22121.5"
+    ],
+    [
+     "Armstrong",
+     "R +2.4",
+     "+2.1",
+     "\u22120.3",
+     "\u22121.9"
+    ],
+    [
+     "Centre",
+     "D +2.4",
+     "+0.6",
+     "+3.0",
+     "\u22123.6"
+    ],
+    [
+     "Blair",
+     "D +2.3",
+     "\u22120.0",
+     "+2.3",
+     "\u22122.3"
+    ],
+    [
+     "Elk",
+     "R +2.3",
+     "+2.3",
+     "+0.0",
+     "\u22122.4"
+    ],
+    [
+     "Adams",
+     "D +2.2",
+     "\u22120.0",
+     "+2.2",
+     "\u22122.2"
+    ],
+    [
+     "Carbon",
+     "D +2.0",
+     "+0.2",
+     "+2.3",
+     "\u22122.5"
+    ],
+    [
+     "Clinton",
+     "R +2.0",
+     "+2.4",
+     "+0.4",
+     "\u22122.8"
+    ],
+    [
+     "Sullivan",
+     "D +1.9",
+     "\u22120.2",
+     "+1.7",
+     "\u22121.5"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "shifts": [
+    {
+     "v": 0.2619,
+     "t": 22759,
+     "src": [
+      "listView"
+     ]
+    }
+   ],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [3.46M]",
+     "Donald Trump 2024 [3.38M]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Montgomery | D +41K | +63K",
+     "Allegheny | D +40K | +63K",
+     "Chester | D +28K",
+     "Delaware | D +20K",
+     "Bucks | D +15K",
+     "Dauphin | D +9K",
+     "Cumberland | D +7K",
+     "Northampton | D +7K"
+    ],
+    "cls": 0.2619
+   },
+   "num_all": [
+    [
+     "Montgomery",
+     "D +41K",
+     "+63K"
+    ],
+    [
+     "Allegheny",
+     "D +40K",
+     "+63K"
+    ],
+    [
+     "Chester",
+     "D +28K"
+    ],
+    [
+     "Delaware",
+     "D +20K"
+    ],
+    [
+     "Bucks",
+     "D +15K"
+    ],
+    [
+     "Dauphin",
+     "D +9K"
+    ],
+    [
+     "Cumberland",
+     "D +7K"
+    ],
+    [
+     "Northampton",
+     "D +7K"
+    ],
+    [
+     "Lehigh",
+     "D +6K"
+    ],
+    [
+     "Lackawanna",
+     "D +6K"
+    ],
+    [
+     "Monroe",
+     "D +5K"
+    ],
+    [
+     "Luzerne",
+     "D +4K"
+    ],
+    [
+     "Fayette",
+     "R +4K"
+    ],
+    [
+     "Erie",
+     "D +3K"
+    ],
+    [
+     "Cambria",
+     "R +3K"
+    ],
+    [
+     "Philadelphia",
+     "R +3K"
+    ],
+    [
+     "Somerset",
+     "R +3K",
+     "+4K",
+     "+1K",
+     "\u2212595"
+    ],
+    [
+     "Clearfield",
+     "R +3K",
+     "+4K",
+     "+1K",
+     "\u2212519"
+    ],
+    [
+     "Bedford",
+     "R +3K",
+     "+3K",
+     "+722",
+     "\u2212258"
+    ],
+    [
+     "Armstrong",
+     "R +3K",
+     "+4K",
+     "+787",
+     "\u2212563"
+    ],
+    [
+     "Franklin",
+     "R +3K",
+     "+7K",
+     "+5K",
+     "\u22121K"
+    ],
+    [
+     "Blair",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Lancaster",
+     "D +2K",
+     "+22K",
+     "+25K",
+     "\u22127K"
+    ],
+    [
+     "Mercer",
+     "R +2K",
+     "+5K",
+     "+2K",
+     "\u22121K"
+    ],
+    [
+     "Lawrence",
+     "R +2K",
+     "+4K",
+     "+2K",
+     "\u2212815"
+    ],
+    [
+     "Adams",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u2212863"
+    ],
+    [
+     "Indiana",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212865"
+    ],
+    [
+     "Washington",
+     "R +2K",
+     "+11K",
+     "+9K",
+     "\u22122K"
+    ],
+    [
+     "Jefferson",
+     "R +2K",
+     "+3K",
+     "+877",
+     "\u2212299"
+    ],
+    [
+     "Lycoming",
+     "R +2K",
+     "+6K",
+     "+4K",
+     "\u22121K"
+    ],
+    [
+     "Centre",
+     "D +2K",
+     "+1K",
+     "+3K",
+     "\u22123K"
+    ],
+    [
+     "Bradford",
+     "R +2K",
+     "+3K",
+     "+2K",
+     "\u2212685"
+    ],
+    [
+     "Huntingdon",
+     "R +2K",
+     "+3K",
+     "+906",
+     "\u2212387"
+    ],
+    [
+     "Crawford",
+     "R +2K",
+     "+4K",
+     "+2K",
+     "\u22121K"
+    ],
+    [
+     "Mifflin",
+     "R +2K",
+     "+3K",
+     "+1K",
+     "\u2212401"
+    ],
+    [
+     "Clarion",
+     "R +1K",
+     "+2K",
+     "+396",
+     "\u2212453"
+    ],
+    [
+     "Elk",
+     "R +1K",
+     "+2K",
+     "+669",
+     "\u2212304"
+    ],
+    [
+     "Westmoreland",
+     "R +1K",
+     "+15K",
+     "+13K",
+     "\u22123K"
+    ],
+    [
+     "York",
+     "D +1K",
+     "+18K",
+     "+20K",
+     "\u22125K"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "y16 y16d listmode listall lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "bar",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | D +7.5",
+     "Cumberland | D +7.5 | +5.2",
+     "Montour | D +7.3",
+     "Pike | D +7.0",
+     "Monroe | D +5.6",
+     "Dauphin | D +5.5",
+     "Luzerne | D +5.1",
+     "Lackawanna | D +4.9"
+    ],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 34.8,
+    "lat_pick": 45.2,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "counties",
+    "body": "listmode listall lathumb y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [50%]",
+     "Donald Trump 2024 [49%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Pennsylvania",
+    "cpanel": null,
+    "nrows": 67,
+    "rows": [
+     "Chester | \u22122.5 | +5.1",
+     "Cumberland | \u22122.3 | +5.2",
+     "Montour | \u22122.3 | +5.0",
+     "Pike | \u22122.5 | +4.5",
+     "Monroe | \u22121.7 | +3.9",
+     "Dauphin | \u22121.4 | +4.1",
+     "Luzerne | \u22121.6 | +3.5",
+     "Lackawanna | \u22121.4 | +3.5"
+    ],
+    "cls": 0.1262
+   },
+   "line_all": [
+    [
+     "Chester",
+     "\u22122.5",
+     "+5.1"
+    ],
+    [
+     "Cumberland",
+     "\u22122.3",
+     "+5.2"
+    ],
+    [
+     "Montour",
+     "\u22122.3",
+     "+5.0"
+    ],
+    [
+     "Pike",
+     "\u22122.5",
+     "+4.5"
+    ],
+    [
+     "Monroe",
+     "\u22121.7",
+     "+3.9"
+    ],
+    [
+     "Dauphin",
+     "\u22121.4",
+     "+4.1"
+    ],
+    [
+     "Luzerne",
+     "\u22121.6",
+     "+3.5"
+    ],
+    [
+     "Lackawanna",
+     "\u22121.4",
+     "+3.5"
+    ],
+    [
+     "Montgomery",
+     "\u22121.1",
+     "+3.7"
+    ],
+    [
+     "Wayne",
+     "\u22121.3",
+     "+3.5"
+    ],
+    [
+     "Northampton",
+     "\u22121.1",
+     "+3.5"
+    ],
+    [
+     "York",
+     "\u22120.9",
+     "+3.7"
+    ],
+    [
+     "Butler",
+     "\u22120.7",
+     "+3.7"
+    ],
+    [
+     "Northumberland",
+     "\u22121.0",
+     "+3.3"
+    ],
+    [
+     "Delaware",
+     "\u22121.0",
+     "+3.0"
+    ],
+    [
+     "Allegheny",
+     "\u22120.9",
+     "+2.9"
+    ],
+    [
+     "Lancaster",
+     "\u22120.3",
+     "+3.4"
+    ],
+    [
+     "Bucks",
+     "\u22120.5",
+     "+3.1"
+    ],
+    [
+     "Philadelphia",
+     "+2.5",
+     "\u22121.1"
+    ],
+    [
+     "Schuylkill",
+     "\u22120.8",
+     "+2.7"
+    ],
+    [
+     "Lycoming",
+     "\u22120.5",
+     "+2.9"
+    ],
+    [
+     "Clarion",
+     "+2.9",
+     "\u22120.3"
+    ],
+    [
+     "Franklin",
+     "\u22120.5",
+     "+2.7"
+    ],
+    [
+     "Lebanon",
+     "\u22120.5",
+     "+2.7"
+    ],
+    [
+     "Westmoreland",
+     "\u22120.6",
+     "+2.4"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+   ],
+   "bar": {
+    "offered": [
+     "bar",
+     "pie",
+     "line"
+    ],
+    "lat_menu": 24.5,
+    "lat_pick": 20.9,
+    "chart_after": "bar",
+    "ysl_after": [
+     0,
+     1
+    ]
+   }
+  },
+  "PhilaCo": {
+   "tap_lat": 23.3,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "townships",
+    "body": "listmode listall y16 y16d canback lathumb",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 [81%]",
+     "Donald Trump 2024 [18%]"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 2,
+    "rows": [
+     "Philadelphia city | R +3.6",
+     "Rockledge borough | D +2.3 | \u22122.9"
+    ],
+    "cls": 0.1262
+   }
+  },
+  "Prec": {
+   "tap_lat": 181.5,
+   "page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 97.9%",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 97.1%",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 93.3%",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 79.8%",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 81.0%",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 73.3%",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 71.8%",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 80.8%"
+    ],
+    "cls": 0
+   },
+   "all": [
+    [
+     "Delaware Precinct 317",
+     "'20 n/a \u00b7 '24 D 97.9%"
+    ],
+    [
+     "Delaware Precinct 318",
+     "'20 n/a \u00b7 '24 D 97.1%"
+    ],
+    [
+     "Delaware Precinct 3430",
+     "'20 n/a \u00b7 '24 D 93.3%"
+    ],
+    [
+     "Philadelphia Precinct 101",
+     "'20 n/a \u00b7 '24 D 79.8%"
+    ],
+    [
+     "Philadelphia Precinct 102",
+     "'20 n/a \u00b7 '24 D 81.0%"
+    ],
+    [
+     "Philadelphia Precinct 103",
+     "'20 n/a \u00b7 '24 D 73.3%"
+    ],
+    [
+     "Philadelphia Precinct 104",
+     "'20 n/a \u00b7 '24 D 71.8%"
+    ],
+    [
+     "Philadelphia Precinct 105",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 106",
+     "'20 n/a \u00b7 '24 D 85.1%"
+    ],
+    [
+     "Philadelphia Precinct 107",
+     "'20 n/a \u00b7 '24 D 85.4%"
+    ],
+    [
+     "Philadelphia Precinct 108",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 109",
+     "'20 n/a \u00b7 '24 D 76.0%"
+    ],
+    [
+     "Philadelphia Precinct 110",
+     "'20 n/a \u00b7 '24 D 84.1%"
+    ],
+    [
+     "Philadelphia Precinct 111",
+     "'20 n/a \u00b7 '24 D 83.5%"
+    ],
+    [
+     "Philadelphia Precinct 112",
+     "'20 n/a \u00b7 '24 D 80.3%"
+    ],
+    [
+     "Philadelphia Precinct 113",
+     "'20 n/a \u00b7 '24 D 86.6%"
+    ],
+    [
+     "Philadelphia Precinct 114",
+     "'20 n/a \u00b7 '24 D 87.5%"
+    ],
+    [
+     "Philadelphia Precinct 115",
+     "'20 n/a \u00b7 '24 D 81.1%"
+    ],
+    [
+     "Philadelphia Precinct 116",
+     "'20 n/a \u00b7 '24 D 84.3%"
+    ],
+    [
+     "Philadelphia Precinct 117",
+     "'20 n/a \u00b7 '24 D 71.3%"
+    ],
+    [
+     "Philadelphia Precinct 118",
+     "'20 n/a \u00b7 '24 D 61.7%"
+    ],
+    [
+     "Philadelphia Precinct 119",
+     "'20 n/a \u00b7 '24 D 64.7%"
+    ],
+    [
+     "Philadelphia Precinct 120",
+     "'20 n/a \u00b7 '24 D 80.5%"
+    ],
+    [
+     "Philadelphia Precinct 121",
+     "'20 n/a \u00b7 '24 D 65.6%"
+    ],
+    [
+     "Philadelphia Precinct 201",
+     "'20 n/a \u00b7 '24 D 76.1%"
+    ],
+    [
+     "Philadelphia Precinct 202",
+     "'20 n/a \u00b7 '24 D 79.4%"
+    ],
+    [
+     "Philadelphia Precinct 203",
+     "'20 n/a \u00b7 '24 D 79.6%"
+    ],
+    [
+     "Philadelphia Precinct 204",
+     "'20 n/a \u00b7 '24 D 83.3%"
+    ],
+    [
+     "Philadelphia Precinct 205",
+     "'20 n/a \u00b7 '24 D 80.8%"
+    ],
+    [
+     "Philadelphia Precinct 206",
+     "'20 n/a \u00b7 '24 D 81.8%"
+    ]
+   ],
+   "shifts": [],
+   "num_page": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "bar",
+    "num": "num",
+    "view": "list",
+    "lv": "precincts",
+    "body": "listmode listall y16 y16d canback lathumb lasorthide",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Joe Biden 2024 []",
+     "Donald Trump 2024 []"
+    ],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County Philadelphi\u2026",
+    "cpanel": null,
+    "nrows": 1703,
+    "rows": [
+     "Delaware Precinct 317 | '20 n/a \u00b7 '24 D 468",
+     "Delaware Precinct 318 | '20 n/a \u00b7 '24 D 462",
+     "Delaware Precinct 3430 | '20 n/a \u00b7 '24 D 500",
+     "Philadelphia Precinct 101 | '20 n/a \u00b7 '24 D 316",
+     "Philadelphia Precinct 102 | '20 n/a \u00b7 '24 D 442",
+     "Philadelphia Precinct 103 | '20 n/a \u00b7 '24 D 433",
+     "Philadelphia Precinct 104 | '20 n/a \u00b7 '24 D 367",
+     "Philadelphia Precinct 105 | '20 n/a \u00b7 '24 D 210"
+    ],
+    "cls": 0
+   },
+   "reload": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": null,
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "y16 y16d listmode",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Donald Trump 2016 [Donald Trump 15.4%]",
+     "Donald Trump [Donald Trump]",
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Hillary Clinton [Hillary Clinton]"
+    ],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " clinton.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " biden.jpg?v=202610181575"
+    ],
+    "opts": [],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0
+   },
+   "line": {
+    "offered": [
+     "pie",
+     "line",
+     "bar"
+    ],
+    "lat_menu": 21.9,
+    "lat_pick": 91.2,
+    "chart_after": "line",
+    "ysl_after": [
+     1,
+     2
+    ]
+   },
+   "line_set16": "reset",
+   "line16": {
+    "ym": "delta",
+    "y16": true,
+    "hi": 1,
+    "ysl": [
+     0,
+     1
+    ],
+    "chart": "line",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dline y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " trump.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " clinton.jpg?v=202610181575",
+     " biden.jpg?v=202610181575"
+    ],
+    "opts": [
+     "pie",
+     "line"
+    ],
+    "cmain": "line",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.406
+   },
+   "cmp20_24": {
+    "ym": "delta",
+    "y16": false,
+    "hi": 0,
+    "ysl": [
+     1,
+     2
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode dmerge",
+    "ynote": "",
+    "legend": "",
+    "cands": [],
+    "candImgs": [
+     " biden.jpg?v=202610181575",
+     " harris.jpg?v=202610181575",
+     " trump.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": null,
+    "nrows": 0,
+    "rows": [],
+    "cls": 0.6919
+   },
+   "cmp16": {
+    "ym": "2024",
+    "y16": true,
+    "hi": 0,
+    "ysl": [
+     0,
+     0
+    ],
+    "chart": "bar",
+    "num": "pct",
+    "view": "list",
+    "lv": "-",
+    "body": "listmode y16 y16d",
+    "ynote": "",
+    "legend": "",
+    "cands": [
+     "Hillary Clinton 2016 [Hillary Clinton 82.5%]",
+     "Donald Trump 2016 [Donald Trump 15.4%]"
+    ],
+    "candImgs": [
+     " clinton.jpg?v=202610181575",
+     " trump.jpg?v=202610181575"
+    ],
+    "opts": [
+     "bar",
+     "pie"
+    ],
+    "cmain": "bar",
+    "crumbs": "Philadelphia County",
+    "cpanel": "Clinton 82.5% Trump 15.4% Other 2.1%",
+    "nrows": 0,
+    "rows": [],
+    "cls": 1.0034
+   }
+  },
+  "err": [
+   "--ctx2--"
+  ],
+  "http": [],
+  "reqfail": []
+ }
+}

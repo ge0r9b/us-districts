@@ -1,0 +1,4 @@
+line AFTERDRAG {"thumbs": [], "knobs": [55, 269], "lbl": ["'16", "'24"], "chart": null, "ymode": "delta", "rows": ["FL | R +11.9", "CA | R +10.0", "NY | R +9.8"]}
+line BEFORE {"thumbs": [], "knobs": [162, 269], "lbl": ["'16", "'24"], "chart": "line", "ymode": "delta", "rows": ["NY | +5.9 | \u22124.5", "NJ | +4.8 | \u22125.2", "FL | +4.9 | \u22124.9"]}
+line AFTER  {"thumbs": [], "knobs": [162, 269], "lbl": ["'16", "'24"], "chart": "line", "ymode": "delta", "rows": ["NY | +5.9 | \u22124.5", "NJ | +4.8 | \u22125.2", "FL | +4.9 | \u22124.9"]}
+ err [] []

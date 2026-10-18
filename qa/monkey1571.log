@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/monkey1571.py", line 32, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/monkey1571.py", line 5, in main
+    eng=sys.argv[1]; W,H=int(sys.argv[2]),int(sys.argv[3]); N=int(sys.argv[4]); random.seed(1569)
+        ~~~~~~~~^^^
+IndexError: list index out of range

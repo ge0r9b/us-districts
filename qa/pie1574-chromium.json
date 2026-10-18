@@ -1,0 +1,758 @@
+{
+ "iphone390": {
+  "build": "202610181574",
+  "US num mode": "pie",
+  "US num geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "77.30M",
+    "75.02M"
+   ],
+   "bad": []
+  },
+  "US num taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 18.6,
+    "bub": {
+     "t": "Donald Trump \u00b7 77.30M",
+     "cls": "bub",
+     "r": [
+      108,
+      93,
+      226,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 19,
+    "bub": {
+     "t": "Kamala Harris \u00b7 75.02M",
+     "cls": "bub",
+     "r": [
+      108,
+      137,
+      226,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "US pct mode": "pie",
+  "US pct geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "49.9%",
+    "48.4%"
+   ],
+   "bad": []
+  },
+  "US pct taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 17.6,
+    "bub": {
+     "t": "Donald Trump \u00b7 49.9%",
+     "cls": "bub",
+     "r": [
+      111,
+      93,
+      223,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 32.1,
+    "bub": {
+     "t": "Kamala Harris \u00b7 48.4%",
+     "cls": "bub",
+     "r": [
+      111,
+      137,
+      223,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "MA num mode": "pie",
+  "MA num geo": {
+   "n": 2,
+   "order": [
+    "Kamala Harris 2024",
+    "Donald Trump 2024"
+   ],
+   "svgtext": [
+    "1.25M",
+    "2.13M"
+   ],
+   "bad": []
+  },
+  "MA num taps": [
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 22,
+    "bub": {
+     "t": "Kamala Harris \u00b7 2.13M",
+     "cls": "bub",
+     "r": [
+      111,
+      93,
+      223,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 17.4,
+    "bub": {
+     "t": "Donald Trump \u00b7 1.25M",
+     "cls": "bub",
+     "r": [
+      111,
+      137,
+      224,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "MA pct mode": "pie",
+  "MA pct geo": {
+   "n": 2,
+   "order": [
+    "Kamala Harris 2024",
+    "Donald Trump 2024"
+   ],
+   "svgtext": [
+    "36.2%",
+    "61.6%"
+   ],
+   "bad": []
+  },
+  "MA pct taps": [
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 19.8,
+    "bub": {
+     "t": "Kamala Harris \u00b7 61.6%",
+     "cls": "bub",
+     "r": [
+      111,
+      93,
+      223,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 22.6,
+    "bub": {
+     "t": "Donald Trump \u00b7 36.2%",
+     "cls": "bub",
+     "r": [
+      111,
+      137,
+      223,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "PA num mode": "pie",
+  "PA num geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "3.54M",
+    "3.42M"
+   ],
+   "bad": []
+  },
+  "PA num taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 25.8,
+    "bub": {
+     "t": "Donald Trump \u00b7 3.54M",
+     "cls": "bub",
+     "r": [
+      111,
+      93,
+      224,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 19.7,
+    "bub": {
+     "t": "Kamala Harris \u00b7 3.42M",
+     "cls": "bub",
+     "r": [
+      111,
+      137,
+      223,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "PA pct mode": "pie",
+  "PA pct geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "50.4%",
+    "48.7%"
+   ],
+   "bad": []
+  },
+  "PA pct taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 18.4,
+    "bub": {
+     "t": "Donald Trump \u00b7 50.4%",
+     "cls": "bub",
+     "r": [
+      111,
+      93,
+      223,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 21.8,
+    "bub": {
+     "t": "Kamala Harris \u00b7 48.7%",
+     "cls": "bub",
+     "r": [
+      111,
+      137,
+      223,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "fills states 2024": {
+   "leaflet-overlay-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-heat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-lyr-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-nat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-st-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-stLine-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-la-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   }
+  },
+  "ymode 2024": "2024",
+  "fills states 2016": {
+   "leaflet-overlay-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-heat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-lyr-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-nat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-st-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-stLine-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-la-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   }
+  },
+  "ymode 2016": "2024",
+  "err": []
+ },
+ "iphone320": {
+  "build": "202610181574",
+  "US num mode": "pie",
+  "US num geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "77.30M",
+    "75.02M"
+   ],
+   "bad": []
+  },
+  "US num taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 14.5,
+    "bub": {
+     "t": "Donald Trump \u00b7 77.30M",
+     "cls": "bub",
+     "r": [
+      73,
+      93,
+      191,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 25.3,
+    "bub": {
+     "t": "Kamala Harris \u00b7 75.02M",
+     "cls": "bub",
+     "r": [
+      73,
+      137,
+      191,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "US pct mode": "pie",
+  "US pct geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "49.9%",
+    "48.4%"
+   ],
+   "bad": []
+  },
+  "US pct taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 14.8,
+    "bub": {
+     "t": "Donald Trump \u00b7 49.9%",
+     "cls": "bub",
+     "r": [
+      76,
+      93,
+      188,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 19.6,
+    "bub": {
+     "t": "Kamala Harris \u00b7 48.4%",
+     "cls": "bub",
+     "r": [
+      76,
+      137,
+      188,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "MA num mode": "pie",
+  "MA num geo": {
+   "n": 2,
+   "order": [
+    "Kamala Harris 2024",
+    "Donald Trump 2024"
+   ],
+   "svgtext": [
+    "1.25M",
+    "2.13M"
+   ],
+   "bad": []
+  },
+  "MA num taps": [
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 20.5,
+    "bub": {
+     "t": "Kamala Harris \u00b7 2.13M",
+     "cls": "bub",
+     "r": [
+      76,
+      93,
+      188,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 21.2,
+    "bub": {
+     "t": "Donald Trump \u00b7 1.25M",
+     "cls": "bub",
+     "r": [
+      76,
+      137,
+      189,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "MA pct mode": "pie",
+  "MA pct geo": {
+   "n": 2,
+   "order": [
+    "Kamala Harris 2024",
+    "Donald Trump 2024"
+   ],
+   "svgtext": [
+    "36.2%",
+    "61.6%"
+   ],
+   "bad": []
+  },
+  "MA pct taps": [
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 30.5,
+    "bub": {
+     "t": "Kamala Harris \u00b7 61.6%",
+     "cls": "bub",
+     "r": [
+      76,
+      93,
+      188,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 24.8,
+    "bub": {
+     "t": "Donald Trump \u00b7 36.2%",
+     "cls": "bub",
+     "r": [
+      76,
+      137,
+      188,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "PA num mode": "pie",
+  "PA num geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "3.54M",
+    "3.42M"
+   ],
+   "bad": []
+  },
+  "PA num taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 22.2,
+    "bub": {
+     "t": "Donald Trump \u00b7 3.54M",
+     "cls": "bub",
+     "r": [
+      76,
+      93,
+      189,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 14.9,
+    "bub": {
+     "t": "Kamala Harris \u00b7 3.42M",
+     "cls": "bub",
+     "r": [
+      76,
+      137,
+      188,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "PA pct mode": "pie",
+  "PA pct geo": {
+   "n": 2,
+   "order": [
+    "Donald Trump 2024",
+    "Kamala Harris 2024"
+   ],
+   "svgtext": [
+    "50.4%",
+    "48.7%"
+   ],
+   "bad": []
+  },
+  "PA pct taps": [
+   {
+    "thumb": "Donald Trump 2024",
+    "lat": 31.7,
+    "bub": {
+     "t": "Donald Trump \u00b7 50.4%",
+     "cls": "bub",
+     "r": [
+      76,
+      93,
+      188,
+      111
+     ],
+     "off": false
+    }
+   },
+   {
+    "thumb": "Kamala Harris 2024",
+    "lat": 34.2,
+    "bub": {
+     "t": "Kamala Harris \u00b7 48.7%",
+     "cls": "bub",
+     "r": [
+      76,
+      137,
+      188,
+      155
+     ],
+     "off": false
+    }
+   }
+  ],
+  "fills states 2024": {
+   "leaflet-overlay-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-heat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-lyr-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-nat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-st-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-stLine-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-la-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   }
+  },
+  "ymode 2024": "2024",
+  "fills states 2016": {
+   "leaflet-overlay-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-heat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-lyr-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-nat-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-st-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-stLine-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   },
+   "leaflet-la-pane": {
+    "vis": false,
+    "paths": 0,
+    "canvas": 1,
+    "distinct": 0,
+    "top": []
+   }
+  },
+  "ymode 2016": "2024",
+  "err": []
+ }
+}

@@ -1,0 +1,8 @@
+y2016-list : {"diff": {"c": [[48.225, -94.219], [48.275, -94.192]]}, "snapdiff": {"ll": [[48.2247, -94.2188, 2], [48.275, -94.1922, 2]]}}
+y2020-list : {"diff": {}, "snapdiff": {}}
+num-pie : {"diff": {}, "snapdiff": {}}
+range-line : {"diff": {}, "snapdiff": {}}
+OH-counties : {"diff": {}, "snapdiff": {}}
+senate-type : {"diff": {}, "snapdiff": {}}
+map-view-cleveland : {"diff": {"list": [false, true]}, "snapdiff": {"vw": ["map", "list"]}}
+err : []

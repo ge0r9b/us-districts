@@ -1,0 +1,73 @@
+{
+"taps": 200,
+"alive": 34,
+"state": "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Dillingham Census Area\",\"lt\":\"none\",\"yv\":0,\"tb\":true,\"y16\":1,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[59.4881,-158.9029,6]}",
+"pageerr": [],
+"console": [],
+"reqfail": [],
+"http": [],
+"lat_median": 28.7,
+"n_slow": 23,
+"slow_top": [
+[
+30,
+"rand",
+744.9
+],
+[
+127,
+"rand",
+692.3
+],
+[
+99,
+"rand",
+639.4
+],
+[
+36,
+"rand",
+637.3
+],
+[
+101,
+"rand",
+605.5
+],
+[
+147,
+"rand",
+373.8
+],
+[
+52,
+"cand ph d on",
+237.9
+],
+[
+34,
+"LI",
+200.4
+],
+[
+44,
+"bSearch",
+191
+],
+[
+12,
+"rand",
+185.1
+],
+[
+58,
+"lvrow flat oti la-row",
+166.5
+],
+[
+37,
+"LI",
+145.6
+]
+]
+}

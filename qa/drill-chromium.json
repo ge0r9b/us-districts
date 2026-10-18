@@ -1,0 +1,1188 @@
+{
+ "iphone390": {
+  "build": "202610181567",
+  "chart": "line",
+  "PA": {
+   "first_frame_ms": 15,
+   "new_rows_ms": 1074,
+   "pos_seq": [
+    "hidden | hidden | 228,185",
+    "4,221 | -3,174 | 228,185"
+   ],
+   "end": {
+    "t": 1515,
+    "p": "4,221 | -3,174 | 228,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "PA_rows": [
+   {
+    "t": "Monroe",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lackawanna",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Pike",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lehigh",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Luzerne",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "PA_pos": "4,221 | -3,174 | 228,185",
+  "county": {
+   "first_frame_ms": 8,
+   "new_rows_ms": 581,
+   "pos_seq": [
+    "hidden | hidden | 228,185",
+    "4,221 | -3,174 | 228,185"
+   ],
+   "end": {
+    "t": 1508,
+    "p": "4,221 | -3,174 | 228,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "county_rows": [
+   {
+    "t": "Philadelphia city",
+    "full": "",
+    "sw": 107,
+    "cw": 84
+   },
+   {
+    "t": "Rockledge borough",
+    "full": "",
+    "sw": 129,
+    "cw": 84
+   }
+  ],
+  "county_pos": "4,221 | -3,174 | 228,185",
+  "town": {
+   "first_frame_ms": 145,
+   "new_rows_ms": 593,
+   "pos_seq": [
+    "4,221 | -3,174 | 228,185",
+    "hidden | -3,174 | 228,185",
+    "4,221 | -3,174 | 228,185"
+   ],
+   "end": {
+    "t": 1502,
+    "p": "4,221 | -3,174 | 228,185",
+    "n": 1703,
+    "f": "Philadelphia Precinct "
+   }
+  },
+  "town_rows": [
+   {
+    "t": "Philadelphia Precinct 5844",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4223",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4222",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5420",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4103",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5413",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   }
+  ],
+  "town_pos": "4,221 | -3,174 | 228,185",
+  "back0": {
+   "first_frame_ms": 28,
+   "new_rows_ms": 437,
+   "pos_seq": [
+    "4,221 | -3,174 | 228,185"
+   ],
+   "end": {
+    "t": 1507,
+    "p": "4,221 | -3,174 | 228,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "back1": {
+   "first_frame_ms": 300,
+   "new_rows_ms": 510,
+   "pos_seq": [
+    "4,221 | -3,174 | 228,185",
+    "hidden | -3,174 | 228,185",
+    "4,221 | -3,174 | 228,185"
+   ],
+   "end": {
+    "t": 1507,
+    "p": "4,221 | -3,174 | 228,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "back2": {
+   "first_frame_ms": 56,
+   "new_rows_ms": 205,
+   "pos_seq": [
+    "4,221 | -3,174 | 228,185",
+    "4,221 | hidden | 228,185",
+    "4,191 | hidden | 228,185"
+   ],
+   "end": {
+    "t": 1507,
+    "p": "4,191 | hidden | 228,185",
+    "n": 51,
+    "f": "NY"
+   }
+  },
+  "cls": 0.5961939993457424,
+  "shifts": [
+   {
+    "v": 0.0497,
+    "t": 5648,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0492,
+    "t": 5656,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0007,
+    "t": 5686,
+    "src": [
+     "?"
+    ]
+   },
+   {
+    "v": 0.0012,
+    "t": 5719,
+    "src": [
+     "crumb glob usc tbPar"
+    ]
+   },
+   {
+    "v": 0.0005,
+    "t": 7424,
+    "src": [
+     "chartBox"
+    ]
+   },
+   {
+    "v": 0.0626,
+    "t": 12418,
+    "src": [
+     "listView",
+     "laCands"
+    ]
+   },
+   {
+    "v": 0.0001,
+    "t": 12419,
+    "src": [
+     "ylb l",
+     "ylb r",
+     "trk",
+     "I"
+    ]
+   },
+   {
+    "v": 0.0007,
+    "t": 12435,
+    "src": [
+     "kn a"
+    ]
+   }
+  ]
+ },
+ "iphone375": {
+  "build": "202610181567",
+  "chart": "line",
+  "PA": {
+   "first_frame_ms": 16,
+   "new_rows_ms": 812,
+   "pos_seq": [
+    "hidden | hidden | 213,185",
+    "4,221 | -3,174 | 213,185"
+   ],
+   "end": {
+    "t": 1516,
+    "p": "4,221 | -3,174 | 213,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "PA_rows": [
+   {
+    "t": "Monroe",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lackawanna",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Pike",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lehigh",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Luzerne",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "PA_pos": "4,221 | -3,174 | 213,185",
+  "county": {
+   "first_frame_ms": 11,
+   "new_rows_ms": 501,
+   "pos_seq": [
+    "hidden | hidden | 213,185",
+    "4,221 | -3,174 | 213,185"
+   ],
+   "end": {
+    "t": 1511,
+    "p": "4,221 | -3,174 | 213,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "county_rows": [
+   {
+    "t": "Philadelphia city",
+    "full": "",
+    "sw": 107,
+    "cw": 84
+   },
+   {
+    "t": "Rockledge borough",
+    "full": "",
+    "sw": 129,
+    "cw": 84
+   }
+  ],
+  "county_pos": "4,221 | -3,174 | 213,185",
+  "town": {
+   "first_frame_ms": 177,
+   "new_rows_ms": 764,
+   "pos_seq": [
+    "4,221 | -3,174 | 213,185",
+    "hidden | -3,174 | 213,185",
+    "4,221 | -3,174 | 213,185"
+   ],
+   "end": {
+    "t": 1506,
+    "p": "4,221 | -3,174 | 213,185",
+    "n": 1703,
+    "f": "Philadelphia Precinct "
+   }
+  },
+  "town_rows": [
+   {
+    "t": "Philadelphia Precinct 5844",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4223",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4222",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5420",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4103",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5413",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   }
+  ],
+  "town_pos": "4,221 | -3,174 | 213,185",
+  "back0": {
+   "first_frame_ms": 16,
+   "new_rows_ms": 491,
+   "pos_seq": [
+    "4,221 | -3,174 | 213,185"
+   ],
+   "end": {
+    "t": 1512,
+    "p": "4,221 | -3,174 | 213,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "back1": {
+   "first_frame_ms": 313,
+   "new_rows_ms": 538,
+   "pos_seq": [
+    "4,221 | -3,174 | 213,185",
+    "hidden | -3,174 | 213,185",
+    "4,221 | -3,174 | 213,185"
+   ],
+   "end": {
+    "t": 1516,
+    "p": "4,221 | -3,174 | 213,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "back2": {
+   "first_frame_ms": 55,
+   "new_rows_ms": 208,
+   "pos_seq": [
+    "4,221 | -3,174 | 213,185",
+    "4,221 | hidden | 213,185",
+    "4,191 | hidden | 213,185"
+   ],
+   "end": {
+    "t": 1506,
+    "p": "4,191 | hidden | 213,185",
+    "n": 51,
+    "f": "NY"
+   }
+  },
+  "cls": 0.6224447416471675,
+  "shifts": [
+   {
+    "v": 0.0605,
+    "t": 5773,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0597,
+    "t": 5781,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0012,
+    "t": 5804,
+    "src": [
+     "?"
+    ]
+   },
+   {
+    "v": 0.002,
+    "t": 5871,
+    "src": [
+     "crumb glob usc tbPar"
+    ]
+   },
+   {
+    "v": 0.0008,
+    "t": 7604,
+    "src": [
+     "chartBox"
+    ]
+   },
+   {
+    "v": 0.0737,
+    "t": 12487,
+    "src": [
+     "listView",
+     "laCands"
+    ]
+   },
+   {
+    "v": 0.0001,
+    "t": 12488,
+    "src": [
+     "ylb l",
+     "ylb r",
+     "trk",
+     "I"
+    ]
+   },
+   {
+    "v": 0.0011,
+    "t": 12520,
+    "src": [
+     "kn a"
+    ]
+   }
+  ]
+ },
+ "iphone320": {
+  "build": "202610181567",
+  "chart": "line",
+  "PA": {
+   "first_frame_ms": 8,
+   "new_rows_ms": 628,
+   "pos_seq": [
+    "hidden | hidden | 158,185",
+    "4,221 | -3,174 | 158,185"
+   ],
+   "end": {
+    "t": 1508,
+    "p": "4,221 | -3,174 | 158,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "PA_rows": [
+   {
+    "t": "Monroe",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lackawanna",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Pike",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Lehigh",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Luzerne",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "PA_pos": "4,221 | -3,174 | 158,185",
+  "county": {
+   "first_frame_ms": 5,
+   "new_rows_ms": 568,
+   "pos_seq": [
+    "hidden | hidden | 158,185",
+    "4,221 | -3,174 | 158,185"
+   ],
+   "end": {
+    "t": 1503,
+    "p": "4,221 | -3,174 | 158,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "county_rows": [
+   {
+    "t": "Philadelphia city",
+    "full": "",
+    "sw": 107,
+    "cw": 84
+   },
+   {
+    "t": "Rockledge borough",
+    "full": "",
+    "sw": 129,
+    "cw": 84
+   }
+  ],
+  "county_pos": "4,221 | -3,174 | 158,185",
+  "town": {
+   "first_frame_ms": 205,
+   "new_rows_ms": 823,
+   "pos_seq": [
+    "4,221 | -3,174 | 158,185",
+    "hidden | -3,174 | 158,185",
+    "4,221 | -3,174 | 158,185"
+   ],
+   "end": {
+    "t": 1505,
+    "p": "4,221 | -3,174 | 158,185",
+    "n": 1703,
+    "f": "Philadelphia Precinct "
+   }
+  },
+  "town_rows": [
+   {
+    "t": "Philadelphia Precinct 5844",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4223",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4222",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5420",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 4103",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   },
+   {
+    "t": "Philadelphia Precinct 5413",
+    "full": "",
+    "sw": 173,
+    "cw": 84
+   }
+  ],
+  "town_pos": "4,221 | -3,174 | 158,185",
+  "back0": {
+   "first_frame_ms": 16,
+   "new_rows_ms": 441,
+   "pos_seq": [
+    "4,221 | -3,174 | 158,185"
+   ],
+   "end": {
+    "t": 1513,
+    "p": "4,221 | -3,174 | 158,185",
+    "n": 2,
+    "f": "Philadelphia city"
+   }
+  },
+  "back1": {
+   "first_frame_ms": 253,
+   "new_rows_ms": 445,
+   "pos_seq": [
+    "4,221 | -3,174 | 158,185",
+    "hidden | -3,174 | 158,185",
+    "4,221 | -3,174 | 158,185"
+   ],
+   "end": {
+    "t": 1505,
+    "p": "4,221 | -3,174 | 158,185",
+    "n": 67,
+    "f": "Monroe"
+   }
+  },
+  "back2": {
+   "first_frame_ms": 56,
+   "new_rows_ms": 236,
+   "pos_seq": [
+    "4,221 | -3,174 | 158,185",
+    "4,221 | hidden | 158,185",
+    "4,191 | hidden | 158,185"
+   ],
+   "end": {
+    "t": 1502,
+    "p": "4,191 | hidden | 158,185",
+    "n": 51,
+    "f": "NY"
+   }
+  },
+  "cls": 0.36155367296760316,
+  "shifts": [
+   {
+    "v": 0.0689,
+    "t": 5790,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0675,
+    "t": 5807,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0015,
+    "t": 5823,
+    "src": [
+     "?"
+    ]
+   },
+   {
+    "v": 0.0033,
+    "t": 5879,
+    "src": [
+     "crumb glob usc tbPar"
+    ]
+   },
+   {
+    "v": 0.0013,
+    "t": 7645,
+    "src": [
+     "chartBox"
+    ]
+   },
+   {
+    "v": 0.081,
+    "t": 12501,
+    "src": [
+     "listView",
+     "laCands"
+    ]
+   },
+   {
+    "v": 0.0002,
+    "t": 12502,
+    "src": [
+     "ylb l",
+     "ylb r",
+     "trk",
+     "I"
+    ]
+   },
+   {
+    "v": 0.0012,
+    "t": 12528,
+    "src": [
+     "kn a"
+    ]
+   }
+  ]
+ },
+ "ipad1024x576": {
+  "build": "202610181567",
+  "chart": "line",
+  "PA": {
+   "first_frame_ms": 12,
+   "new_rows_ms": null,
+   "pos_seq": [
+    "4,191 | hidden | 862,185"
+   ],
+   "end": {
+    "t": 1512,
+    "p": "4,191 | hidden | 862,185",
+    "n": 51,
+    "f": "NY"
+   }
+  },
+  "PA_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "PA_pos": "4,191 | hidden | 862,185",
+  "county": {
+   "err": "row not found"
+  },
+  "county_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "county_pos": "4,191 | hidden | 862,185",
+  "town": {
+   "err": "row not found"
+  },
+  "town_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "town_pos": "4,191 | hidden | 862,185",
+  "back0": "no chevron",
+  "cls": 0.21250557237201262,
+  "shifts": [
+   {
+    "v": 0.0378,
+    "t": 5632,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0376,
+    "t": 5639,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0011,
+    "t": 5664,
+    "src": [
+     "?"
+    ]
+   },
+   {
+    "v": 0.0006,
+    "t": 5730,
+    "src": [
+     "crumb glob usc tbPar"
+    ]
+   },
+   {
+    "v": 0.0002,
+    "t": 7456,
+    "src": [
+     "chartBox"
+    ]
+   },
+   {
+    "v": 0.0458,
+    "t": 12405,
+    "src": [
+     "listView",
+     "laCands"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 12405,
+    "src": [
+     "trk",
+     "ylb l",
+     "ylb r",
+     "I"
+    ]
+   },
+   {
+    "v": 0.0011,
+    "t": 12430,
+    "src": [
+     "kn a"
+    ]
+   }
+  ]
+ },
+ "ipad1024x768": {
+  "build": "202610181567",
+  "chart": "line",
+  "PA": {
+   "first_frame_ms": 8,
+   "new_rows_ms": null,
+   "pos_seq": [
+    "4,191 | hidden | 862,185"
+   ],
+   "end": {
+    "t": 1508,
+    "p": "4,191 | hidden | 862,185",
+    "n": 51,
+    "f": "NY"
+   }
+  },
+  "PA_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "PA_pos": "4,191 | hidden | 862,185",
+  "county": {
+   "err": "row not found"
+  },
+  "county_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "county_pos": "4,191 | hidden | 862,185",
+  "town": {
+   "err": "row not found"
+  },
+  "town_rows": [
+   {
+    "t": "NY",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "NJ",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "FL",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "CA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "MA",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   },
+   {
+    "t": "TX",
+    "full": "",
+    "sw": 84,
+    "cw": 84
+   }
+  ],
+  "town_pos": "4,191 | hidden | 862,185",
+  "back0": "no chevron",
+  "cls": 0.31087155182225007,
+  "shifts": [
+   {
+    "v": 0.0401,
+    "t": 5947,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0399,
+    "t": 5955,
+    "src": [
+     "folds",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti",
+     "lvrow flat oti"
+    ]
+   },
+   {
+    "v": 0.0008,
+    "t": 6000,
+    "src": [
+     "?"
+    ]
+   },
+   {
+    "v": 0.0004,
+    "t": 6048,
+    "src": [
+     "crumb glob usc tbPar"
+    ]
+   },
+   {
+    "v": 0.0002,
+    "t": 7728,
+    "src": [
+     "chartBox"
+    ]
+   },
+   {
+    "v": 0.0508,
+    "t": 12598,
+    "src": [
+     "listView",
+     "laCands"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 12598,
+    "src": [
+     "trk",
+     "ylb l",
+     "ylb r",
+     "I"
+    ]
+   },
+   {
+    "v": 0.0008,
+    "t": 12621,
+    "src": [
+     "kn a"
+    ]
+   }
+  ]
+ }
+}

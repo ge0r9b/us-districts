@@ -49,6 +49,19 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - 1573 pie (thumbnails only): **passes** at 390x844, 320x568, 1024x576, 1024x768 for United States, Massachusetts and Pennsylvania in # and %: two thumbnails, winner on top (Harris in MA, Trump in US and PA), no names or numbers beside them, nothing overlaps the pie, and a touch tap shows the standard bubble with the full name and value ("Kamala Harris · 2.13M" in MA). Tap to paint 14-34 ms. 375x667 passed for US and MA # before the run was cut off. Screenshots shots/b1574-ch-390-pie-*.png, shots/b1574-ch-320-pie-*.png, shots/b1573-ch-1024-pie-*.png.
 - Not checked this pass: 1572 per-unit 2016 map colours (the list map is drawn on canvas, so my path count found nothing; needs a pixel check next pass), QA-039..QA-042 and QA-005/007.
 
+## Re-test status, build 1575 (pass 7, Oct 18 ~9:52-10:30 AM EDT)
+- Live build moved 1574 > 1575 (first rows start 16px lower band instead of 31px, so the first row slides halfway under the sort chip; clearer chip glass). Checks: `qa/b1575-rows.py` (5 sizes x All States / PA counties / Philadelphia towns x % / # x bar / pie / range line / range bar, plus back to states), `qa/flow1575.py` (smoke at all 5 sizes), `qa/r16line1575.py`, `qa/b1575-numjump.py`. Chromium, touch. Box load was moderate this pass; no crashes.
+- 1575 rows-up: works as described for bar and pie rows. The first row top is 198 px at every size, level, mode and chart type, and the sort chip, slider, chart button, top fields and time row did not move on any view switch, drill-in or back. The chip only grazes text at 320x568 range bar (4 px of the name's 20 px height) and the pie at 320 (6 px), both still readable. **New: QA-044** (line rows at 390 and 375: the first row's change number sits under the chip).
+- Layout sweep: no jumps on 1575. `#laCands` (thumbnails) sits at y 191 on the US list and y 221 below it (room for the back chevron), unchanged since 1567 (see QA-021). One smoke run at 1024x576 logged a 0.176 layout shift on `#laCands` / `#listView` right after the `#` toggle; not reproduced in a second smoke run or in 12 more `#` taps at 1024x576 (`qa/b1575-numjump.py`), so not logged as a bug yet.
+- QA-022: the chip-on-lines half **not reproduced on 1575** at 1024x768 (the chip now sits above NY's lines). The WY label collision was not rechecked.
+- QA-043: **still on 1575** (390x844). '16 > '24 range, then Line: the left knob jumps to '20 and the rows show '20 > '24 (NY +5.9 / -4.5); reload keeps '20 > '24.
+- QA-005: **still on 1575**, all 5 sizes (US House from the Allegheny townships list: 0 rows).
+- QA-007: **still on 1575**. All States 238-380 ms (762 ms in one 1024x576 run under load, 253 ms on the rerun); US House pick 205-528 ms.
+- QA-041: **still on 1575**. Line from the chart menu 126-277 ms (390: 139, 375: 219, 320: 131, 1024x576: 277 / 126 on the rerun, 1024x768: 131).
+- QA-009: **still on 1575** at 320x568 ("−1.83M" under the Chart button in the range bar list).
+- QA-039 / QA-040 / QA-042: not rechecked (1575 changed no data).
+- No console errors, page errors or failed requests in any run.
+
 ## Critical
 
 ### QA-001 [Fixed on 1571 (verified 8:10 AM EDT)] Oregon 2024 state totals are short of the official count (~1%)
@@ -316,6 +329,16 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Expected: the range stays '16 > '24 and Line plots '16, '20 and '24.
 - Actual: the left knob jumps to '20 and the list shows the '20 > '24 line rows (NY +5.9 / -4.5, NJ +4.8 / -5.2). Reload keeps '20 > '24, so the '16 start is lost. Bar and Pie in the same range keep '16 > '24. No console errors.
 - Screenshots: shots/b1574-ch-390-r16-line-afterdrag.png (before picking Line), shots/b1574-ch-390-r16-line-before.png (after), shots/b1574-ch-390-r16-line-reload.png, shots/b1574-ch-1024-r16-line-before.png, shots/b1574-ch-320-r16-line-before.png
+
+## New on build 1575 (pass 7)
+
+### QA-044 Line list: the first row's change number is hidden under the sort chip
+- Severity: High (a number on the first row can't be read; regression from the 1575 rows-up change) | Build 1575 | 390x844 and 375x667 (Chromium, touch). Not at 320x568, 1024x576 or 1024x768, where the chip sits clear of the labels.
+- Steps: All States list > open the time row > select the full range ('20 > '24) > chart button > Line. Same in `#`, and in PA counties.
+- Expected: the first row's numbers stay fully readable (they were clear on 1574, when the rows started 15 px lower).
+- Actual: the first row's top change label sits under the chip and its 1px outline. At 390: NY "−4.5" is covered 20 x 7 px of its 22 x 11 px box (%), CA "−1.83M" 28 x 7 of 39 x 11 (#), PA counties Monroe "−3.4" 20 x 5 of 22 x 11. At 375: 13 x 7 (NY), 21 x 7 (CA), 13 x 5 (Monroe). In the crops the label reads as "-4.5" / "-1.83M" with the top half behind the arrows.
+- Screenshots: shots/b1575-ch-390-qa044-crop-num.png, shots/b1575-ch-390-qa044-crop-pct.png (crops), shots/b1575-ch-390-states-num-rangeline.png, shots/b1575-ch-390-states-pct-rangeline.png, shots/b1575-ch-390-PA-pct-rangeline.png, shots/b1575-ch-375-states-num-rangeline.png
+- Data: `qa/b1575-rows-chromium-390.json`, `qa/b1575-rows-chromium-375_320_1024x576_1024x768.json` (`cov`)
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png

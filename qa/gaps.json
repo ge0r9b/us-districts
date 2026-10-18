@@ -1,0 +1,346 @@
+{
+ "addr_sugg": [
+  "1600 PENNSYLVANIA AVE NW, WASHI\u2026 Address",
+  "White House, 1600, Pennsylvania\u2026 Address"
+ ],
+ "addr_tap": {
+  "st": "",
+  "co": "",
+  "ph": "DC 20220",
+  "crumb": "United States",
+  "z": 15,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "addr_pop": [],
+ "addr2_sugg": [
+  "350 5TH AVE, NEW YORK, NY, 10118 Address"
+ ],
+ "addr2_enter": {
+  "st": "New York",
+  "co": "New York County",
+  "ph": "350 5TH AVE, NEW YORK",
+  "crumb": "New York County",
+  "z": 15,
+  "lv": "-",
+  "lt": "none",
+  "list": false
+ },
+ "log_a": {},
+ "geo:16501": {
+  "sugg": [
+   "ZIP 16501, PA ZIP"
+  ],
+  "after": {
+   "st": "",
+   "co": "",
+   "ph": "16501",
+   "crumb": "United States",
+   "z": 13,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "geo:Pittsburgh": {
+  "sugg": [
+   "East Pittsburgh borough, Allegh\u2026 Town",
+   "Pittsburgh city, Allegheny Coun\u2026 Town",
+   "Pittsburg County, OK County",
+   "Pittsburg city, Contra Costa Co\u2026 Town",
+   "Pittsburg village, Williamson C\u2026 Town",
+   "Pittsburg city, Crawford County\u2026 Town",
+   "Pittsburg township, Mitchell Co\u2026 Town",
+   "Pittsburg town, Coos County, NH Town"
+  ],
+  "after": {
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "ph": "East Pittsburgh borough, Allegh\u2026",
+   "crumb": "Allegheny County",
+   "z": 9,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "geo:Erie County": {
+  "sugg": [
+   "Erie County, NY County",
+   "Erie County, OH County",
+   "Erie County, PA County",
+   "Erie town, Weld County, CO Town",
+   "Mount Erie township, Wayne Coun\u2026 Town",
+   "Mount Erie village, Wayne Count\u2026 Town",
+   "Erie township, Whiteside County\u2026 Town",
+   "Erie village, Whiteside County,\u2026 Town"
+  ],
+  "after": {
+   "st": "New York",
+   "co": "Erie County",
+   "ph": "Erie County, NY",
+   "crumb": "Erie County",
+   "z": 9,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "geo:PA": {
+  "sugg": [
+   "Pennsylvania",
+   "Pennsylvania township, Mason Co\u2026 Town",
+   "Adams County, PA County",
+   "Allegheny County, PA County",
+   "Armstrong County, PA County",
+   "Beaver County, PA County",
+   "Bedford County, PA County",
+   "Berks County, PA County"
+  ],
+  "after": {
+   "st": "Pennsylvania",
+   "co": "",
+   "ph": "Pennsylvania",
+   "crumb": "Pennsylvania",
+   "z": 6,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "geo:Ohio": {
+  "sugg": [
+   "Ohio",
+   "Ohio County, IN County",
+   "Ohio County, KY County",
+   "Ohio County, WV County",
+   "Ohio township, Bureau County, IL Town",
+   "Ohio village, Bureau County, IL Town",
+   "Ohio Grove township, Mercer Cou\u2026 Town",
+   "Ohio township, Bartholomew Coun\u2026 Town"
+  ],
+  "after": {
+   "st": "Ohio",
+   "co": "",
+   "ph": "Ohio",
+   "crumb": "Ohio",
+   "z": 6,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "geo:Cook County, IL": {
+  "sugg": [
+   "Cook County, IL County",
+   "Alsip village, Cook County, IL Town",
+   "Arlington Heights village, Cook\u2026 Town",
+   "Barrington Hills village, Cook \u2026 Town",
+   "Barrington township, Cook Count\u2026 Town",
+   "Barrington village, Cook County\u2026 Town",
+   "Bedford Park village, Cook Coun\u2026 Town",
+   "Bellwood village, Cook County, \u2026 Town"
+  ],
+  "after": {
+   "st": "Illinois",
+   "co": "Cook County",
+   "ph": "Cook County, IL",
+   "crumb": "Cook County",
+   "z": 8,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "search:Kamala": {
+  "sugg": [
+   "Kamala Harris 2024 Candidate"
+  ],
+  "after": {
+   "st": "",
+   "co": "",
+   "ph": "United States",
+   "crumb": "United States",
+   "z": 4,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "search:Erie": {
+  "sugg": [
+   "Erie County, NY County",
+   "Erie County, NY Place",
+   "Erie County, PA County",
+   "Erie County, PA Place",
+   "Erie County, OH County",
+   "Erie County, OH Place",
+   "Erie town, Weld County, CO Town",
+   "Erie town, Weld County, CO Place"
+  ],
+  "after": {
+   "st": "New York",
+   "co": "Erie County",
+   "ph": "Erie County, NY",
+   "crumb": "Erie County",
+   "z": 9,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "search:PA-07": {
+  "sugg": [
+   "PA-07 US House"
+  ],
+  "after": {
+   "st": "",
+   "co": "",
+   "ph": "Northampton County, PA",
+   "crumb": "US House districts",
+   "z": 9,
+   "lv": "-",
+   "lt": "ushouse",
+   "list": false
+  },
+  "err": []
+ },
+ "search:Allegheny": {
+  "sugg": [
+   "Allegheny County, PA County",
+   "Allegheny County, PA Place",
+   "Allegheny township, Blair Count\u2026 Township",
+   "Allegheny township, Blair Count\u2026 Place",
+   "Allegheny township, Butler Coun\u2026 Township",
+   "Allegheny township, Butler Coun\u2026 Place",
+   "Allegheny township, Cambria Cou\u2026 Township",
+   "Allegheny township, Cambria Cou\u2026 Place"
+  ],
+  "after": {
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "ph": "Clinton County, PA",
+   "crumb": "Allegheny County",
+   "z": 6,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "err": []
+ },
+ "dist:senate": {
+  "lat_open": 125.9,
+  "lvl1": [
+   "",
+   0,
+   []
+  ],
+  "st1": {
+   "st": "",
+   "co": "",
+   "ph": "United States",
+   "crumb": "S State senate districts",
+   "z": 4,
+   "lv": "-",
+   "lt": "senate",
+   "list": false
+  },
+  "l2": "no row",
+  "err": []
+ },
+ "dist:house": {
+  "lat_open": 107.3,
+  "lvl1": [
+   "",
+   0,
+   []
+  ],
+  "st1": {
+   "st": "",
+   "co": "",
+   "ph": "United States",
+   "crumb": "H State house districts",
+   "z": 4,
+   "lv": "-",
+   "lt": "statehouse",
+   "list": false
+  },
+  "l2": "no row",
+  "err": []
+ },
+ "dist:school": {
+  "lvl1": [
+   "",
+   0,
+   []
+  ],
+  "st1": {
+   "st": "",
+   "co": "",
+   "ph": "United States",
+   "crumb": "All countries",
+   "z": 4,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  },
+  "l2": "no row",
+  "err": []
+ },
+ "pop_erie": [
+  "Cumberland County, PA\nHarris 66,255\nTrump 80,267"
+ ],
+ "data_erie": [
+  67456,
+  68866,
+  137595
+ ],
+ "dbltap": {
+  "z0": 6,
+  "after": {
+   "st": "",
+   "co": "",
+   "ph": "Albemarle County, VA",
+   "crumb": "United States",
+   "z": 4,
+   "lv": "-",
+   "lt": "none",
+   "list": false
+  }
+ },
+ "menu_after_county": [
+  "All States",
+  "US House districts",
+  "S State senate districts",
+  "H State house districts",
+  "School districts",
+  "Alabama \u203a",
+  "Alaska \u203a",
+  "Arizona \u203a"
+ ],
+ "log_c": {
+  "reqfail": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/377/283 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/377/284 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/381/283 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/381/284 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/377/282 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/377/285 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/381/282 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/381/285 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/376/283 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/376/284 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/382/283 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/376/285 net::ERR_ABORTED"
+  ]
+ }
+}

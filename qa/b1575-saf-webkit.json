@@ -1,0 +1,749 @@
+{
+ "webkit-1024x768": {
+  "build": "202610181575",
+  "US": {
+   "thumbs": [
+    {
+     "lab": "Donald Trump 2024",
+     "btn": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph r on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    },
+    {
+     "lab": "Kamala Harris 2024",
+     "btn": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph d on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    }
+   ]
+  },
+  "Alabama": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph r on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       151,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph d on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 45
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 29
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 19
+   },
+   "z3": {
+    "map": {
+     "z": 13,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 8
+   }
+  },
+  "Pennsylvania": {
+   "err": "state not in geo menu"
+  },
+  "Massachusetts": {
+   "err": "state not in geo menu"
+  },
+  "Georgia": {
+   "err": "state not in geo menu"
+  },
+  "US_list_thumbs_3s": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     122,
+     34.4,
+     20.7
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     151,
+     34.4,
+     20.7
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "US_list_thumbs": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     122,
+     34.4,
+     20.7
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     151,
+     34.4,
+     20.7
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "err": []
+ },
+ "webkit-390": {
+  "build": "202610181575",
+  "US": {
+   "thumbs": [
+    {
+     "lab": "Donald Trump 2024",
+     "btn": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph r on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    },
+    {
+     "lab": "Kamala Harris 2024",
+     "btn": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph d on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    }
+   ]
+  },
+  "Alabama": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph r on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       151,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph d on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     }
+    ],
+    "map": {
+     "z": 9,
+     "c": [
+      34.0132,
+      -86.6334
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 65
+   },
+   "z1": {
+    "map": {
+     "z": 10,
+     "c": [
+      34.0132,
+      -86.6334
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 46
+   },
+   "z2": {
+    "map": {
+     "z": 11,
+     "c": [
+      34.0132,
+      -86.6334
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 29
+   },
+   "z3": {
+    "map": {
+     "z": 12,
+     "c": [
+      34.0132,
+      -86.6334
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 17
+   }
+  },
+  "Pennsylvania": {
+   "err": "state not in geo menu"
+  },
+  "Massachusetts": {
+   "err": "state not in geo menu"
+  },
+  "Georgia": {
+   "err": "state not in geo menu"
+  },
+  "US_list_thumbs_3s": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     318,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     318,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "US_list_thumbs": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     318,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     318,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "err": []
+ },
+ "webkit-1440": {
+  "build": "202610181575",
+  "US": {
+   "thumbs": [
+    {
+     "lab": "Donald Trump 2024",
+     "btn": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph r on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    },
+    {
+     "lab": "Kamala Harris 2024",
+     "btn": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ],
+     "nat": [
+      96,
+      96
+     ],
+     "cls": "cand ph d on",
+     "par": "ccol",
+     "tf": "none | none | 1 | 1 | none | cands.cands"
+    }
+   ]
+  },
+  "Alabama": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph r on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       151,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ],
+      "nat": [
+       96,
+       96
+      ],
+      "cls": "cand ph d on",
+      "par": "ccol",
+      "tf": "none | none | 1 | 1 | none | cands.cands"
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 50
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 28
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 19
+   },
+   "z3": {
+    "map": {
+     "z": 13,
+     "c": [
+      34.0128,
+      -86.6341
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Blount County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 11
+   }
+  },
+  "Pennsylvania": {
+   "err": "state not in geo menu"
+  },
+  "Massachusetts": {
+   "err": "state not in geo menu"
+  },
+  "Georgia": {
+   "err": "state not in geo menu"
+  },
+  "US_list_thumbs_3s": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "US_list_thumbs": [
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph r on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     14.7,
+     14.7
+    ],
+    "nat": [
+     96,
+     96
+    ],
+    "cls": "cand ph d on",
+    "par": "ccol",
+    "tf": "none | none | 1 | 1 | none | cands.cands"
+   }
+  ],
+  "err": []
+ }
+}

@@ -1,0 +1,276 @@
+{
+ "iphone390 ushouse": {
+  "build": "202610181569",
+  "lv": "districts n=436",
+  "list_ms": {
+   "median": 44.5,
+   "max": 60,
+   "n": 12,
+   "missed": 0
+  },
+  "map_ms": {
+   "median": 95.5,
+   "max": 118,
+   "n": 12,
+   "missed": 0
+  },
+  "sync_ms": [
+   23,
+   13,
+   14,
+   14,
+   12,
+   12,
+   12,
+   11,
+   22,
+   16,
+   15,
+   13
+  ],
+  "ym": [
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024"
+  ],
+  "cls_slow": [
+   0,
+   []
+  ],
+  "after_fast": {
+   "ym": "2020",
+   "slider": "0",
+   "rows": [
+    "DC-00 | 92.1%",
+    "PA-03 | 90.1%",
+    "CA-12 | 89.3%"
+   ],
+   "cands": [
+    "Joe Biden 2020",
+    "Donald Trump 2020"
+   ]
+  },
+  "cls_fast": [
+   0,
+   []
+  ],
+  "popup_after_fast": [
+   "KS-01 | Biden 34.1% | Trump 63.7%"
+  ],
+  "err": []
+ },
+ "iphone390 county": {
+  "build": "202610181569",
+  "lv": "counties n=67",
+  "list_ms": {
+   "median": 28.5,
+   "max": 40,
+   "n": 12,
+   "missed": 0
+  },
+  "map_ms": {
+   "median": 85.5,
+   "max": 108,
+   "n": 12,
+   "missed": 0
+  },
+  "sync_ms": [
+   11,
+   7,
+   9,
+   6,
+   7,
+   7,
+   8,
+   7,
+   7,
+   7,
+   7,
+   6
+  ],
+  "ym": [
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024"
+  ],
+  "cls_slow": [
+   0,
+   []
+  ],
+  "after_fast": {
+   "ym": "2020",
+   "slider": "0",
+   "rows": [
+    "Philadelphia | 17.9% | 81.4%",
+    "Delaware | 36.0% | 62.7%",
+    "Montgomery | 36.4% | 62.6%"
+   ],
+   "cands": [
+    "Joe Biden 2020",
+    "Donald Trump 2020"
+   ]
+  },
+  "cls_fast": [
+   0,
+   []
+  ],
+  "popup_after_fast": [],
+  "err": []
+ },
+ "ipad1024x768 ushouse": {
+  "build": "202610181569",
+  "lv": "districts n=436",
+  "list_ms": {
+   "median": 40.5,
+   "max": 98,
+   "n": 12,
+   "missed": 0
+  },
+  "map_ms": {
+   "median": 112.5,
+   "max": 133,
+   "n": 12,
+   "missed": 0
+  },
+  "sync_ms": [
+   18,
+   14,
+   13,
+   11,
+   11,
+   12,
+   11,
+   9,
+   13,
+   12,
+   12,
+   12
+  ],
+  "ym": [
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024"
+  ],
+  "cls_slow": [
+   0,
+   []
+  ],
+  "after_fast": {
+   "ym": "2020",
+   "slider": "0",
+   "rows": [
+    "DC-00 | 92.1%",
+    "PA-03 | 90.1%",
+    "CA-12 | 89.3%"
+   ],
+   "cands": [
+    "Joe Biden 2020",
+    "Donald Trump 2020"
+   ]
+  },
+  "cls_fast": [
+   0,
+   []
+  ],
+  "popup_after_fast": [
+   "KS-01 | Biden 34.1% | Trump 63.7%"
+  ],
+  "err": []
+ },
+ "ipad1024x768 county": {
+  "build": "202610181569",
+  "lv": "counties n=67",
+  "list_ms": {
+   "median": 27.5,
+   "max": 33,
+   "n": 12,
+   "missed": 0
+  },
+  "map_ms": {
+   "median": 99.5,
+   "max": 163,
+   "n": 12,
+   "missed": 0
+  },
+  "sync_ms": [
+   9,
+   7,
+   6,
+   6,
+   6,
+   7,
+   5,
+   6,
+   6,
+   5,
+   7,
+   6
+  ],
+  "ym": [
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024",
+   "2020",
+   "2024"
+  ],
+  "cls_slow": [
+   0,
+   []
+  ],
+  "after_fast": {
+   "ym": "2020",
+   "slider": "0",
+   "rows": [
+    "Philadelphia | 17.9% | 81.4%",
+    "Delaware | 36.0% | 62.7%",
+    "Montgomery | 36.4% | 62.6%"
+   ],
+   "cands": [
+    "Joe Biden 2020",
+    "Donald Trump 2020"
+   ]
+  },
+  "cls_fast": [
+   0,
+   []
+  ],
+  "popup_after_fast": [
+   "Total of 67 counties in Pennsyl\u2026 | Biden 50.0% | Trump 48.8%"
+  ],
+  "err": []
+ }
+}

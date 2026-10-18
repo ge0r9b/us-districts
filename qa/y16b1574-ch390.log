@@ -1,0 +1,10 @@
+globals [["__ySet16", "function", ""], ["DS16", "object", ["states"]], ["__ds2016", "function", ""], ["__inject16", "function", ""], ["__load16", "function", ""], ["__need16", "function", ""], ["__loadPrec16", "function", ""], ["__has16", "function", ""], ["__ok16", "function", ""], ["__y16", "boolean", ""], ["ELECTION2016", "object", ["Arizona|Apache County", "Arizona|Maricopa County", "Arizona|Cochise County", "Arizona|Coconino County", "Arizona|Gila County"]]]
+knobs [[167, 151], [274, 151]] trk [60, 274]
+[300, {"loading": false, "thumbs": ["Donald Trump 2016", "Hillary Clinton 2016", "Donald Trump 2024", "Kamala Harris 2024"], "rows": ["FL | R +11.9", "CA | R +10.0", "NY | R +9.8", "HI | R +9.1"], "knobs": [55, 269], "chart": null}]
+[1500, {"loading": false, "thumbs": ["Donald Trump 2016", "Hillary Clinton 2016", "Donald Trump 2024", "Kamala Harris 2024"], "rows": ["FL | R +11.9", "CA | R +10.0", "NY | R +9.8", "HI | R +9.1"], "knobs": [55, 269], "chart": null}]
+[4000, {"loading": false, "thumbs": ["Donald Trump 2016", "Hillary Clinton 2016", "Donald Trump 2024", "Kamala Harris 2024"], "rows": ["FL | R +11.9", "CA | R +10.0", "NY | R +9.8", "HI | R +9.1"], "knobs": [55, 269], "chart": null}]
+[10000, {"loading": false, "thumbs": ["Donald Trump 2016", "Hillary Clinton 2016", "Donald Trump 2024", "Kamala Harris 2024"], "rows": ["FL | R +11.9", "CA | R +10.0", "NY | R +9.8", "HI | R +9.1"], "knobs": [55, 269], "chart": null}]
+line line
+pie in range -> pie
+after reload {'loading': False, 'thumbs': ['Donald Trump 2024', 'Kamala Harris 2024'], 'knobs': [162, 269], 'chart': 'pie', 'rows': ['WY', 'WV', 'ND']}
+err [] []

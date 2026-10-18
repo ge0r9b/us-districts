@@ -1,0 +1,32 @@
+iphone390 done
+iphone375 done
+iphone320 done
+ipad1024x576 done
+ipad1024x768 done
+iphone390 PA pct bar bar ntrunc 1 {"trunc": ["Susquehanna"]}
+iphone390 PA pct range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Susquehanna"]}
+iphone390 PA num bar bar ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+iphone390 PA num pie pie ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+iphone390 PA num range-line line ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
+iphone390 PA num range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
+iphone375 PA pct range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Susquehanna"]}
+iphone375 PA num bar bar ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+iphone375 PA num pie pie ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+iphone375 PA num range-line line ntrunc 1 {"trunc": ["Montgomery"]}
+iphone375 PA num range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
+iphone320 states pct range-bar bar ntrunc 0 {"over": ["+5.9 x Chart"]}
+iphone320 states num range-bar bar ntrunc 0 {"over": ["\u22121.83M x Chart"]}
+iphone320 PA pct range-bar bar ntrunc 0 {"over": ["+3.7 x Chart"]}
+iphone320 PA num bar bar ntrunc 2 {"trunc": ["Montgomery", "Westmoreland"]}
+iphone320 PA num pie pie ntrunc 2 {"trunc": ["Montgomery", "Westmoreland"]}
+iphone320 PA num range-line line ntrunc 1 {"trunc": ["Montgomery"]}
+iphone320 PA num range-bar bar ntrunc 2 {"over": ["\u221235K x Chart"], "trunc": ["Montgomery", "Northampton"]}
+ipad1024x576 PA num bar bar ntrunc 2 {"trunc": ["Montgomery", "Westmoreland"]}
+ipad1024x576 PA num pie pie ntrunc 2 {"trunc": ["Montgomery", "Westmoreland"]}
+ipad1024x576 PA num range-line line ntrunc 1 {"trunc": ["Montgomery"]}
+ipad1024x576 PA num range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
+ipad1024x768 PA pct range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Susquehanna"]}
+ipad1024x768 PA num bar bar ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+ipad1024x768 PA num pie pie ntrunc 3 {"trunc": ["Montgomery", "Westmoreland", "Northampton"]}
+ipad1024x768 PA num range-line line ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
+ipad1024x768 PA num range-bar bar ntrunc 2 {"trunc": ["Montgomery", "Northampton"]}
