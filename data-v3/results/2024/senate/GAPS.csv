@@ -778,7 +778,6 @@ NV,regular,statehouse,012,gray (no value): cover 26%
 NV,regular,statehouse,031,gray (no value): cover 40%
 NY,regular,statehouse,035,gray (no value): cover 45%
 NY,regular,statehouse,059,gray (no value): cover 45%
-VT,regular,statehouse,C14,gray (no value): no votes
 UT,regular,statehouse,027,gray (no value): cover 11%
 UT,regular,statehouse,054,gray (no value): cover 48%
 UT,regular,statehouse,055,gray (no value): cover 49%
@@ -793,6 +792,7 @@ UT,regular,statehouse,026,gray (no value): cover 48%
 UT,regular,statehouse,018,gray (no value): cover 28%
 UT,regular,statehouse,003,gray (no value): cover 10%
 UT,regular,statehouse,033,gray (no value): cover 23%
+VT,regular,statehouse,C14,gray (no value): no votes
 WY,regular,statehouse,046,gray (no value): cover 1%
 WY,regular,statehouse,054,gray (no value): cover 7%
 WY,regular,statehouse,043,gray (no value): cover 23%
@@ -823,6 +823,7 @@ ME,regular,schools,West Forks Plantation,gray (no value): no votes
 ME,regular,schools,Baring Plantation,gray (no value): no votes
 ME,regular,schools,Dennistown Plantation,gray (no value): no votes
 ME,regular,schools,Kingsbury Plantation,gray (no value): cover 0%
+ME,regular,schools,Lincoln Plantation,gray (no value): no votes
 ME,regular,schools,Medway,gray (no value): no votes
 ME,regular,schools,Monhegan Plantation,gray (no value): no votes
 ME,regular,schools,Pleasant Ridge Plantation,gray (no value): no votes
@@ -879,10 +880,15 @@ NJ,regular,schools,Edgewater Borough School District,gray (no value): cover 42%
 NJ,regular,schools,New Hanover Township School District,gray (no value): no votes
 NJ,regular,schools,Riverton Borough School District,gray (no value): no votes
 NJ,regular,schools,Greenwich Township School District (Cumberland),gray (no value): no votes
+NJ,regular,schools,Stow Creek Township School District,gray (no value): no votes
 NJ,regular,schools,Gibbsboro Borough School District,gray (no value): cover 17%
+NJ,regular,schools,Hainesport Township School District,gray (no value): no votes
+NJ,regular,schools,Medford Lakes Borough School District,gray (no value): no votes
 NJ,regular,schools,Beach Haven Borough School District,gray (no value): cover 37%
 NJ,regular,schools,Long Beach Island School District,gray (no value): cover 32%
 NJ,regular,schools,Essex Fells Borough School District,gray (no value): no votes
+NJ,regular,schools,North Hanover Township School District,gray (no value): no votes
+NJ,regular,schools,Springfield Township School District (Burlington),gray (no value): no votes
 NJ,regular,schools,Woodland Township School District,gray (no value): no votes
 OH,regular,schools,Shelby City School District,gray (no value): cover 50%
 OH,regular,schools,Carey Exempted Village School District,gray (no value): cover 34%
@@ -893,6 +899,10 @@ NY,regular,schools,Oceanside Union Free School District,gray (no value): cover 4
 NY,regular,schools,Bath Central School District,gray (no value): cover 49%
 NY,regular,schools,Brocton Central School District,gray (no value): cover 36%
 PA,regular,schools,Wilson Area School District,gray (no value): cover 46%
+UT,regular,schools,Alpine School District,gray (no value): cover 45%
+UT,regular,schools,Davis School District,gray (no value): cover 21%
+UT,regular,schools,Emery School District,gray (no value): cover 35%
+UT,regular,schools,South Summit School District,gray (no value): cover 22%
 VT,regular,schools,Buels Gore School District,gray (no value): no votes
 VT,regular,schools,Ferdinand School District,gray (no value): cover 0%
 VT,regular,schools,Glastenbury School District,gray (no value): cover 0%
@@ -902,10 +912,6 @@ VT,regular,schools,Averys Gore School District,gray (no value): cover 0%
 VT,regular,schools,Lewis School District,gray (no value): cover 0%
 VT,regular,schools,Warners Grant School District,gray (no value): cover 1%
 VT,regular,schools,Warrens Gore School District,gray (no value): cover 0%
-UT,regular,schools,Alpine School District,gray (no value): cover 45%
-UT,regular,schools,Davis School District,gray (no value): cover 21%
-UT,regular,schools,Emery School District,gray (no value): cover 35%
-UT,regular,schools,South Summit School District,gray (no value): cover 22%
 CA,regular,schools,Maple Creek Elementary School District,gray (no value): no votes
 CA,regular,schools,Kashia Elementary School District,gray (no value): no votes
 WY,regular,schools,Albany County School District 1,gray (no value): cover 0%
@@ -923,3 +929,5 @@ WA,regular,schools,Wishkah Valley School District,gray (no value): cover 30%
 TX,regular,schools,Boys Ranch Independent School District,gray (no value): no votes
 CA,special,schools,Maple Creek Elementary School District,gray (no value): no votes
 CA,special,schools,Kashia Elementary School District,gray (no value): no votes
+NE,regular,statehouse,(all),"49 statehouse districts left out of the sldl file: unicameral legislature, v2 statehouse districts = the state senate (SLDU) districts, whose GEOIDs are not v3 sldl units; the same values are in us_senate_2024_sldu.csv"
+NE,special,statehouse,(all),"49 statehouse districts left out of the sldl file: unicameral legislature, v2 statehouse districts = the state senate (SLDU) districts, whose GEOIDs are not v3 sldl units; the same values are in us_senate_2024_sldu.csv"

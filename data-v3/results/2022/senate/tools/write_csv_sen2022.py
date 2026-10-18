@@ -82,6 +82,7 @@ for stn, secs in clerk.items():
 files.append(write('us_senate_2022_state.csv', srows))
 def tri_rows(ab, race, uid, utype, d, r, t, src, rt, method):
     dd, rr = DR[(ab, race)]['d'], DR[(ab, race)]['r']; o = t - d - r
+    if min(d, r, o) < 0: raise ValueError(f'negative value {ab} {race} {utype} {uid}: d={d} r={r} t={t}')   # all-others is apportioned on its own upstream
     out = [[ab, 2022, office(race), 'statewide', uid, utype, dd[0], dd[1], dd[2], d, 1, src, rt, method],
            [ab, 2022, office(race), 'statewide', uid, utype, rr[0], rr[1], rr[2], r, 1, src, rt, method]]
     if o != 0: out.append([ab, 2022, office(race), 'statewide', uid, utype, 'all-others', 'All others', 'OTH', o, 1, src, rt, method])
@@ -114,6 +115,7 @@ for ab in sorted({k[0] for k in RACES}):
 files.append(write('us_senate_2022_county.csv', crows))
 # ---- districts
 UT = {'ushouse': 'ushouse', 'senate': 'sldu', 'statehouse': 'sldl'}; SCH = {'unsd': 'school_unified', 'elsd': 'school_elementary', 'scsd': 'school_secondary'}
+uni = collections.Counter()
 for lay, fn in (('ushouse', 'us_senate_2022_ushouse.csv'), ('senate', 'us_senate_2022_sldu.csv'), ('statehouse', 'us_senate_2022_sldl.csv'), ('schools', 'us_senate_2022_school.csv')):
     drows = []
     for race in ('regular', 'special', 'runoff'):
@@ -122,11 +124,15 @@ for lay, fn in (('ushouse', 'us_senate_2022_ushouse.csv'), ('senate', 'us_senate
         for key, v in sorted(L['values'][lay].items()):
             stn, nm = key.split('|', 1); ab = USPS[stn]; g = GEO.get((lay, stn, nm))
             if not g: gaps.append([ab, race, lay, nm, 'no GEOID in data-v3/geo']); continue
+            if lay == 'statehouse' and g[1] == 'sldu':   # NE unicameral (and DC): v2's statehouse layer repeats the SLDU districts; v3 has no sldl unit for them
+                uni[(ab, race)] += 1; continue
             ut = SCH.get(g[1], 'school_unified') if lay == 'schools' else UT[lay]
             drows += tri_rows(ab, race, g[0], ut, v[0], v[1], v[2], MURL(ab), ts(RAWZ(raw, ab)), 'area_weighted' if len(v) > 3 else 'retabulated')
         for stn, items in L['gray'][lay].items():
             for nm, why in items: gaps.append([USPS[stn], race, lay, nm, f'gray (no value): {why}'])
     files.append(write(fn, drows))
+for (ab, race), n in sorted(uni.items()):
+    gaps.append([ab, race, 'statehouse', '(all)', f'{n} statehouse districts left out of the sldl file: unicameral legislature, v2 statehouse districts = the state senate (SLDU) districts, whose GEOIDs are not v3 sldl units; the same values are in us_senate_2022_sldu.csv'])
 def plain(name, head, rows):
     with open(f'{OUT}/{name}', 'w', newline='') as f: w = csv.writer(f, lineterminator='\n'); w.writerow(head); w.writerows(rows)
     files.append((f'{OUT}/{name}', os.path.getsize(f'{OUT}/{name}'), len(rows)))

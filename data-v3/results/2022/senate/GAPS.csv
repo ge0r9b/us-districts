@@ -1396,6 +1396,8 @@ NV,regular,statehouse,019,gray (no value): cover 30%
 NV,regular,statehouse,012,gray (no value): cover 26%
 NV,regular,statehouse,031,gray (no value): cover 40%
 OR,regular,statehouse,007,gray (no value): cover 47%
+NY,regular,statehouse,035,gray (no value): cover 45%
+NY,regular,statehouse,059,gray (no value): cover 45%
 SD,regular,statehouse,007,gray (no value): no overlap
 SD,regular,statehouse,003,gray (no value): no overlap
 SD,regular,statehouse,034,gray (no value): cover 46%
@@ -1403,8 +1405,6 @@ SD,regular,statehouse,018,gray (no value): cover 12%
 SD,regular,statehouse,024,gray (no value): cover 39%
 SD,regular,statehouse,031,gray (no value): cover 0%
 VT,regular,statehouse,C14,gray (no value): no votes
-NY,regular,statehouse,035,gray (no value): cover 45%
-NY,regular,statehouse,059,gray (no value): cover 45%
 UT,regular,statehouse,027,gray (no value): cover 11%
 UT,regular,statehouse,054,gray (no value): cover 48%
 UT,regular,statehouse,055,gray (no value): cover 49%
@@ -1425,15 +1425,12 @@ AR,regular,schools,Barton-Lexa School District,gray (no value): no overlap
 AR,regular,schools,Helena-West Helena School District,gray (no value): cover 0%
 AR,regular,schools,Jessieville School District,gray (no value): cover 24%
 AR,regular,schools,Marvell School District,gray (no value): cover 28%
-CT,regular,schools,Cheshire School District,gray (no value): cover 1%
-CT,regular,schools,Naugatuck School District,gray (no value): cover 1%
 AL,regular,schools,Albertville City School District,gray (no value): cover 37%
 AL,regular,schools,Guntersville City School District,gray (no value): cover 3%
 AL,regular,schools,Oneonta City School District,gray (no value): cover 5%
 CO,regular,schools,Aspen School District 1,gray (no value): cover 36%
-FL,regular,schools,Broward County School District,gray (no value): cover 35%
-FL,regular,schools,Lake County School District,gray (no value): cover 7%
-FL,regular,schools,Palm Beach County School District,gray (no value): cover 46%
+CT,regular,schools,Cheshire School District,gray (no value): cover 1%
+CT,regular,schools,Naugatuck School District,gray (no value): cover 1%
 AK,regular,schools,Kashunamiut School District,gray (no value): no votes
 AK,regular,schools,Galena City School District,gray (no value): no votes
 AK,regular,schools,Hoonah City School District,gray (no value): no votes
@@ -1445,6 +1442,9 @@ AK,regular,schools,Nome School District,gray (no value): no votes
 AK,regular,schools,Pelican City School District,gray (no value): no votes
 AK,regular,schools,St. Marys City School District,gray (no value): no votes
 AK,regular,schools,Tanana City School District,gray (no value): no votes
+FL,regular,schools,Broward County School District,gray (no value): cover 35%
+FL,regular,schools,Lake County School District,gray (no value): cover 7%
+FL,regular,schools,Palm Beach County School District,gray (no value): cover 46%
 GA,regular,schools,Towns County School District,gray (no value): cover 40%
 IL,regular,schools,Madison Community Unit School District 12,gray (no value): cover 32%
 IL,regular,schools,Flanagan-Cornell District 74 in Rooks Creek,gray (no value): no votes
@@ -1455,17 +1455,29 @@ KY,regular,schools,Paris Independent School District,gray (no value): no votes
 KY,regular,schools,Pulaski County School District,gray (no value): cover 16%
 KY,regular,schools,Williamstown Independent School District,gray (no value): cover 26%
 LA,regular,schools,St. John the Baptist Parish School District,gray (no value): cover 39%
-NH,regular,schools,Coos County School District,gray (no value): cover 39%
-NV,regular,schools,Clark County School District,gray (no value): cover 45%
 MO,regular,schools,La Monte R-IV School District,gray (no value): cover 19%
 MO,regular,schools,Cape Girardeau 63 School District,gray (no value): cover 34%
 MO,regular,schools,Miller County R-III School District,gray (no value): cover 4%
 MO,regular,schools,Delta C-7 School District,gray (no value): cover 42%
 MO,regular,schools,Pettis County R-XII School District,gray (no value): cover 19%
+NH,regular,schools,Coos County School District,gray (no value): cover 39%
+NV,regular,schools,Clark County School District,gray (no value): cover 45%
+OH,regular,schools,Shelby City School District,gray (no value): cover 50%
+OH,regular,schools,Carey Exempted Village School District,gray (no value): cover 34%
+OH,regular,schools,Kalida Local School District,gray (no value): cover 46%
 OR,regular,schools,Eagle Point School District 9,gray (no value): cover 42%
 OR,regular,schools,Pleasant Hill School District 1,gray (no value): cover 41%
 OR,regular,schools,Double O School District 28,gray (no value): no votes
 OR,regular,schools,Pine Creek School District 5,gray (no value): no votes
+NY,regular,schools,Elmira Heights Central School District,gray (no value): no overlap
+NY,regular,schools,Sagaponack Common School District,gray (no value): cover 18%
+NY,regular,schools,Islip Union Free School District,gray (no value): cover 49%
+NY,regular,schools,Oceanside Union Free School District,gray (no value): cover 45%
+NY,regular,schools,Bath Central School District,gray (no value): cover 49%
+NY,regular,schools,Brocton Central School District,gray (no value): cover 36%
+NY,regular,schools,Elmira City School District,gray (no value): cover 0%
+NY,regular,schools,Waverly Central School District,gray (no value): cover 40%
+NY,regular,schools,Horseheads Central School District,gray (no value): cover 3%
 SD,regular,schools,Gettysburg School District 53-1,gray (no value): no overlap
 SD,regular,schools,Agar-Blunt-Onida School District 58-3,gray (no value): cover 0%
 SD,regular,schools,Groton Area School District 06-6,gray (no value): cover 45%
@@ -1483,9 +1495,6 @@ SD,regular,schools,Spearfish School District 40-2,gray (no value): cover 3%
 SD,regular,schools,Warner School District 06-5,gray (no value): cover 4%
 SD,regular,schools,Deubrook School District 05-6,gray (no value): cover 39%
 SD,regular,schools,Yankton School District 63-3,gray (no value): cover 0%
-OH,regular,schools,Shelby City School District,gray (no value): cover 50%
-OH,regular,schools,Carey Exempted Village School District,gray (no value): cover 34%
-OH,regular,schools,Kalida Local School District,gray (no value): cover 46%
 VT,regular,schools,Buels Gore School District,gray (no value): no votes
 VT,regular,schools,Ferdinand School District,gray (no value): cover 0%
 VT,regular,schools,Glastenbury School District,gray (no value): cover 0%
@@ -1495,15 +1504,6 @@ VT,regular,schools,Averys Gore School District,gray (no value): cover 0%
 VT,regular,schools,Lewis School District,gray (no value): cover 0%
 VT,regular,schools,Warners Grant School District,gray (no value): cover 1%
 VT,regular,schools,Warrens Gore School District,gray (no value): cover 0%
-NY,regular,schools,Elmira Heights Central School District,gray (no value): no overlap
-NY,regular,schools,Sagaponack Common School District,gray (no value): cover 18%
-NY,regular,schools,Islip Union Free School District,gray (no value): cover 49%
-NY,regular,schools,Oceanside Union Free School District,gray (no value): cover 45%
-NY,regular,schools,Bath Central School District,gray (no value): cover 49%
-NY,regular,schools,Brocton Central School District,gray (no value): cover 36%
-NY,regular,schools,Elmira City School District,gray (no value): cover 0%
-NY,regular,schools,Waverly Central School District,gray (no value): cover 40%
-NY,regular,schools,Horseheads Central School District,gray (no value): cover 3%
 UT,regular,schools,Alpine School District,gray (no value): cover 45%
 UT,regular,schools,Davis School District,gray (no value): cover 21%
 UT,regular,schools,Emery School District,gray (no value): cover 35%

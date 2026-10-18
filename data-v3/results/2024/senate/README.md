@@ -10,13 +10,13 @@ Columns (Q-E12): the 13 bot columns unchanged and in order, then **`boundary_set
 | `us_senate_2024_state.csv` | 160 | `state` (state FIPS) | Clerk of the House, *Statistics of the Presidential and Congressional Election of Nov 5, 2024* (official). Every candidate, with fusion lines merged into their candidate (CT Murphy D+WF; NY Gillibrand D+WF, Sapraicone R+CON). Blank, over/under, void and "None of these candidates" (NV) are not votes. `method=official` |
 | `us_senate_2024_county.csv` | 5,662 | `county` (5-digit FIPS; CT = planning regions) | MEDSL 2024 precinct returns summed by v2 county. `method=retabulated` |
 | `precincts/<ST>.csv.gz` (33 files) | 368,271 | `precinct` | MEDSL precinct rows that matched a v2 2024 precinct polygon. `method=official` (as reported per precinct) |
-| `us_senate_2024_ushouse.csv` | 1,091 | `ushouse` (GEOID) | precinct polygons area-weighted into v2 districts. `method=retabulated` (exact) or `area_weighted` (= ≈) |
-| `us_senate_2024_sldu.csv` | 3,877 | `sldu` | same |
-| `us_senate_2024_sldl.csv` | 9,619 | `sldl` | same |
-| `us_senate_2024_school.csv.gz` | 29,646 | `school_unified` / `school_elementary` / `school_secondary` (from `data-v3/geo/schools.csv` tiger_set) | same |
+| `us_senate_2024_ushouse.csv` | 1,023 | `ushouse` (GEOID) | precinct polygons area-weighted into v2 districts. `method=retabulated` (exact) or `area_weighted` (= ≈) |
+| `us_senate_2024_sldu.csv` | 3,754 | `sldu` | same |
+| `us_senate_2024_sldl.csv` | 9,218 | `sldl` | same |
+| `us_senate_2024_school.csv.gz` | 28,777 | `school_unified` / `school_elementary` / `school_secondary` (from `data-v3/geo/schools.csv` tiger_set) | same |
 | `statewide_vs_official.csv` | 35 | n/a (audit, not result rows) | MEDSL statewide sums vs Clerk official |
 | `precinct_match.csv` | 35 | n/a (audit) | match rate per race |
-| `GAPS.csv` | 924 | n/a (audit) | unmatched MEDSL votes by county, gray districts with reason |
+| `GAPS.csv` | 932 | n/a (audit) | unmatched MEDSL votes by county, gray districts with reason |
 | `tools/` | | | `races.py` (race config, d-slot rule), `build_sen2024.py` (MEDSL → v2 polygons), `layers_sen2024.py` (districts), `write_csv_sen2024.py` (CSVs) |
 
 Row conventions:
@@ -25,6 +25,15 @@ Row conventions:
 - `candidate_id` = surname-first slug from the Clerk name (e.g. `gallego-ruben`, `king-angus-s-jr`, `blunt-rochester-lisa`). Write-in/scattering lines are `write-ins`.
 - Precinct `unit_id` = `<ST>|<v2 county>|<v2 precinct name>`, the v2 export key, with `|#<row ordinal in v2/data/precincts2024/<State>.js>` appended only where the county/name pair repeats. The polygon is that row of the v2 2024 precinct file (the president 2024 polygons).
 - `source_url` = the MEDSL state zip (or the Clerk PDF for state rows). `retrieved_at` = download time (UTC). `weight` = 1.
+
+## Fix 2026-10-18: no negative values (all-others apportioned on its own)
+v3 rejects negative votes, and some district rows (and a few county rows) had a negative `all-others`. Cause: votes that could not be placed on a precinct were spread over polygons with d by the 2024 president d share, r by the r share and the **total** by the total share, and all-others was then written as total − d − r, which went below 0 where a polygon's d (or r) share was larger than its total share (e.g. CT 2022 New Haven County rows, MO 2022 Kansas City rows). No source total was lower than its candidate sum; the county rows were affected only through that spread. Now:
+- all-others is apportioned as its own component: the summed votes of the actual other candidates × the polygon's president total share; total = d + r + all-others (`build_sen*.py` `spread`). Area-weighting (`layers_sen*.py`) weights d, r and all-others separately and rounds each; total = their sum. No new estimates: the same unplaced votes, weights and polygons as before.
+- county values: d, r and all-others are each rounded by largest remainder, so every state's county sum per slot equals the precinct-source sum exactly (`rcounties`).
+- the writers stop on any negative value.
+d and r are unchanged in every row; all-others (and so the total) changed in district rows and in the county rows of states with unplaced votes. Units whose all-others rounds to 0 have no all-others row.
+- **CT 2024**: 30,564 votes with an old-county code (not a v2 county) were meant to be spread over the state's unmatched polygons, but every CT polygon is matched, so they were dropped from the county and district rows. They are now spread over all CT polygons (same weights), and CT county rows sum to the source total (1,708,259).
+- **Nebraska statehouse**: Nebraska is unicameral; v2's statehouse layer repeats its 49 state senate districts, whose GEOIDs (`31007` …) are SLDU units, so the 210 NE rows in `us_senate_2024_sldl.csv` matched no v3 sldl unit. They are left out of the sldl file (logged in GAPS.csv); the same values are in `us_senate_2024_sldu.csv`. Every sldl unit_id now matches a v2 sldl unit.
 
 ## d-slot rule (flagged races)
 **d = the Democratic nominee, unless an independent (non-Republican) candidate outpolled the Democratic nominee statewide, or there was no Democratic nominee. In those cases d = that independent. r = the Republican nominee.** The rule is fixed per race, so d is the same candidate in every unit of a state.

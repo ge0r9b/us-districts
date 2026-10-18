@@ -8,6 +8,8 @@ Per state and race:
    1) county + exact (Harris, Trump) pair, unique on both sides; 2) county + normalized name; 3) state-wide unique (Harris, Trump) pair.
  - matched polygon -> exact MEDSL Senate values. Unmatched MEDSL votes of a county are allocated to the county's unmatched
    polygons (or all its polygons if none) in proportion to their president d / r / t; these polygons carry an 'alloc' amount.
+   all-others is apportioned as its own component (summed other candidates x president total share), never as allocated
+   total - d - r, so no value goes negative.
 """
 import sys, os, csv, re, json, pickle, collections
 sys.path.insert(0, os.path.dirname(__file__)); from races import *
@@ -38,6 +40,24 @@ def geom(encp):
 CTY = {}
 for r in csv.DictReader(open(f'{repo}/data-v3/geo/counties.csv')): CTY[r['geoid']] = (r['state'], r['v2_name'])
 def norm(s): return re.sub(r'[^A-Z0-9]', '', str(s).upper().replace('PRECINCT','').replace('PCT',''))
+def spread(rs, row, tot, n):
+    """Share of the unplaced votes rs = [d, r, t] for one polygon (row = v2 precinct row: [county, name, pd, pr, pt, polys]).
+    d by the polygon's 2024 president d share, r by its r share, and all-others (rs t - d - r, the summed votes of the actual
+    other candidates) by its president total share; t = d + r + others, so no slot can go negative."""
+    o = max(rs[2] - rs[0] - rs[1], 0)
+    d = rs[0]*row[2]/tot[0] if tot[0] else rs[0]/n
+    r = rs[1]*row[3]/tot[1] if tot[1] else rs[1]/n
+    oo = o*row[4]/tot[2] if tot[2] else o/n
+    return [d, r, d + r + oo]
+def rcounties(ct):
+    """county [d, r, t] -> integers: d, r and all-others each rounded by largest remainder, so every slot's state sum stays the
+    exact (integer) source sum; t = d + r + others (never t < d + r)"""
+    ks = list(ct); comp = [[ct[k][0], ct[k][1], max(ct[k][2] - ct[k][0] - ct[k][1], 0)] for k in ks]; out = {k: [0, 0, 0] for k in ks}
+    for q in range(3):
+        fl = [int(c[q]) for c in comp]; need = int(round(sum(c[q] for c in comp))) - sum(fl)
+        for i in sorted(range(len(ks)), key=lambda i: -(comp[i][q] - fl[i]))[:max(need, 0)]: fl[i] += 1
+        for i, k in enumerate(ks): out[k][q] = fl[i]
+    return {k: [a[0], a[1], a[0] + a[1] + a[2]] for k, a in out.items()}
 os.makedirs(wd, exist_ok=True)
 for ab in STS:
     stn = NAME[ab]; races = [k[1] for k in RACES if k[0]==ab]
@@ -125,13 +145,15 @@ for ab in STS:
                 for q in range(3): resid[c][q] += s[q]
             for q in range(3): cty_tot[c][q] += s[q]
         if sum(unk):   # MEDSL county code not in v2 (e.g. CT old counties): spread over the state's unmatched polygons by president votes
+            pool = {j for j in range(len(V)) if j not in used} or set(range(len(V)))   # every polygon matched (CT 2024): spread over all of them, so no vote is lost
             tot = [0,0,0]
-            for j in range(len(V)):
-                if j not in used: tot = [tot[q]+V[j][2+q] for q in range(3)]
+            for j in pool: tot = [tot[q]+V[j][2+q] for q in range(3)]
             per = collections.defaultdict(lambda: [0.0,0.0,0.0])
+            nn = len(pool)
             for j in range(len(V)):
-                if j not in used:
-                    for q in range(3): per[V[j][0]][q] += unk[q]*V[j][2+q]/max(tot[q],1)
+                if j in pool:
+                    a = spread(unk, V[j], tot, nn)
+                    for q in range(3): per[V[j][0]][q] += a[q]
             for c, a in per.items():
                 for q in range(3): resid[c][q] += a[q]; cty_tot[c][q] += a[q]
         for c, rs in resid.items():
@@ -139,9 +161,8 @@ for ab in STS:
             js = [j for j in range(len(V)) if V[j][0] == c and j not in used] or [j for j in range(len(V)) if V[j][0] == c]
             tot = [sum(V[j][2+q] for j in js) for q in range(3)]
             for j in js:
-                for q in range(3):
-                    a = rs[q]*V[j][2+q]/tot[q] if tot[q] else rs[q]/len(js)
-                    vals[j][q] += a
+                a = spread(rs, V[j], tot, len(js))
+                for q in range(3): vals[j][q] += a[q]
                 alloc[j] += rs[2]*V[j][4]/tot[2] if tot[2] else rs[2]/len(js)
         for j in range(len(V)):
             if G[j] is None:
@@ -152,7 +173,7 @@ for ab in STS:
         m_tot = sum(s[2] for k, s in S.items() if k in match)
         rep[race] = {'medsl_state': st_tot, 'matched_share': round(m_tot/max(st_tot[2],1), 4), 'medsl_precincts': len(S),
                      'matched_precincts': sum(1 for k in S if k in match), 'unknown_county_votes': unk[2],
-                     'counties': {c: [int(round(x)) for x in a] for c, a in cty_tot.items()},
+                     'counties': rcounties(cty_tot),
                      'precincts': {},
                      'unmatched_by_county': {}}
         pj = collections.defaultdict(lambda: [0,0,0])

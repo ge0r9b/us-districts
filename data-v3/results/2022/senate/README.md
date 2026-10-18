@@ -12,16 +12,23 @@ Columns (Q-E12): the 13 bot columns unchanged and in order, then **`boundary_set
 | `us_senate_2022_state.csv` | 188 | `state` (state FIPS) | Clerk of the House, *Statistics of the Congressional Election of Nov 8, 2022* (official). Every candidate; fusion lines merged into their candidate (CT Blumenthal D+WF; NY Schumer D+WF, Pinion R+CON). GA regular = the Nov 8 general from the Clerk footnote (the Clerk table lists the runoff). `method=official` |
 | `us_senate_2022_county.csv` | 6,699 | `county` (5-digit FIPS; CT = planning regions) | MEDSL 2022 precinct returns summed by v2 county; **CA**: Statewide Database 2022 SOV; **ID**: Idaho Secretary of State 2022 canvass (precinct); **IN**: Indiana Election Division final results (precinct in 35 counties, county total in 57). `method=retabulated` |
 | `precincts/<ST>.csv.gz` (34 files) | 300,408 | `precinct` | MEDSL 2022 (CA SWDB, ID SOS, IN IED) precinct rows bridged 1:1 (or as a whole town) to a v2 2024 polygon. `method=official` |
-| `us_senate_2022_ushouse.csv` | 1,142 | `ushouse` | polygons area-weighted into v2 districts. `method=retabulated` (exact) or `area_weighted` (= ≈) |
-| `us_senate_2022_sldu.csv` | 4,302 | `sldu` | same |
-| `us_senate_2022_sldl.csv` | 10,774 | `sldl` | same |
-| `us_senate_2022_school.csv.gz` | 30,560 | `school_unified` / `school_elementary` / `school_secondary` | same |
+| `us_senate_2022_ushouse.csv` | 1,023 | `ushouse` | polygons area-weighted into v2 districts. `method=retabulated` (exact) or `area_weighted` (= ≈) |
+| `us_senate_2022_sldu.csv` | 4,130 | `sldu` | same |
+| `us_senate_2022_sldl.csv` | 10,344 | `sldl` | same |
+| `us_senate_2022_school.csv.gz` | 28,675 | `school_unified` / `school_elementary` / `school_secondary` | same |
 | `statewide_vs_official.csv` | 37 | audit | precinct-source statewide sums (columns named `medsl_*` for all states) vs Clerk official |
 | `precinct_match.csv` | 37 | audit | bridge rate per race |
 | `GAPS.csv` | 1,520 | audit | unbridged votes by county, gray districts |
 | `tools/` | | | `races22.py` (race config, d slots), `ca22_from_swdb.py` (CA SOV → MEDSL-format rows), `id22_from_sos.py` (Idaho SOS canvass → MEDSL-format rows), `in22_from_ied.py` (Indiana Election Division results → MEDSL-format rows), `build_sen2022.py` (MEDSL 2022 → v2 2024 polygons), `layers_sen2022.py` (districts), `write_csv_sen2022.py` (CSVs). `races.py` (USPS/NAME) is imported from `../../2024/senate/tools/`. |
 
 Row conventions are as in 2024: `office` = `us_senate` / `us_senate_special` / `us_senate_runoff`, `district=statewide`; below the state level 3 rows per unit (d slot, r slot, `all-others`), total = d + r + all-others; `candidate_id` = surname-first slug of the Clerk name; precinct `unit_id` = `<ST>|<v2 county>|<v2 precinct name>` (+ `|#<row>` where the pair repeats) of the **v2 2024** precinct file; `weight` = 1; `retrieved_at` = download time (UTC).
+
+## Fix 2026-10-18: no negative values (all-others apportioned on its own)
+v3 rejects negative votes, and some district rows (and a few county rows) had a negative `all-others`. Cause: votes that could not be placed on a precinct were spread over polygons with d by the 2024 president d share, r by the r share and the **total** by the total share, and all-others was then written as total − d − r, which went below 0 where a polygon's d (or r) share was larger than its total share (e.g. CT 2022 New Haven County rows, MO 2022 Kansas City rows). No source total was lower than its candidate sum; the county rows were affected only through that spread. Now:
+- all-others is apportioned as its own component: the summed votes of the actual other candidates × the polygon's president total share; total = d + r + all-others (`build_sen*.py` `spread`). Area-weighting (`layers_sen*.py`) weights d, r and all-others separately and rounds each; total = their sum. No new estimates: the same unplaced votes, weights and polygons as before.
+- county values: d, r and all-others are each rounded by largest remainder, so every state's county sum per slot equals the precinct-source sum exactly (`rcounties`).
+- the writers stop on any negative value.
+d and r are unchanged in every row; all-others (and so the total) changed in district rows and in the county rows of states with unplaced votes. Units whose all-others rounds to 0 have no all-others row.
 
 ## d-slot rule and flagged races
 **d = the Democratic nominee, unless an independent (non-Republican) candidate outpolled the Democratic nominee statewide, or there was no Democratic nominee; then d = that independent. r = the Republican nominee.** Fixed per race, so d is the same candidate in every unit of a state. Rules for the 2022 special cases:

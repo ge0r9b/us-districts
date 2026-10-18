@@ -7,7 +7,8 @@ usage: build_sen2022.py <repo> <medsl22_dir> <medsl24_dir> <work_dir> <ST>...
     (b) same county + normalized precinct name as a matched 2024 MEDSL precinct; (c) same county + normalized v2 polygon name;
     (d) MEDSL 2022 precincts summed by (county, jurisdiction) -> a town-level v2 polygon with that name.
  3. Same MEDSL mode rule, candidate slots (races22.py) and allocation of unbridged votes as 2024 (weights = each polygon's
-    2024 president d / r / total)."""
+    2024 president d / r / total). all-others is apportioned as its own component (summed other candidates x president total share),
+    never as allocated total - d - r, so no value goes negative."""
 import sys, os, csv, re, json, pickle, glob, collections
 sys.path.insert(0, os.path.dirname(__file__)); from races22 import *
 import shapely
@@ -55,6 +56,24 @@ def collapse(groups):
         for _, c, p, v in use:
             if not is_nonvote(c): P[race][tuple(key)][(c, p)] += v
     return P
+def spread(rs, row, tot, n):
+    """Share of the unplaced votes rs = [d, r, t] for one polygon (row = v2 precinct row: [county, name, pd, pr, pt, polys]).
+    d by the polygon's 2024 president d share, r by its r share, and all-others (rs t - d - r, the summed votes of the actual
+    other candidates) by its president total share; t = d + r + others, so no slot can go negative."""
+    o = max(rs[2] - rs[0] - rs[1], 0)
+    d = rs[0]*row[2]/tot[0] if tot[0] else rs[0]/n
+    r = rs[1]*row[3]/tot[1] if tot[1] else rs[1]/n
+    oo = o*row[4]/tot[2] if tot[2] else o/n
+    return [d, r, d + r + oo]
+def rcounties(ct):
+    """county [d, r, t] -> integers: d, r and all-others each rounded by largest remainder, so every slot's state sum stays the
+    exact (integer) source sum; t = d + r + others (never t < d + r)"""
+    ks = list(ct); comp = [[ct[k][0], ct[k][1], max(ct[k][2] - ct[k][0] - ct[k][1], 0)] for k in ks]; out = {k: [0, 0, 0] for k in ks}
+    for q in range(3):
+        fl = [int(c[q]) for c in comp]; need = int(round(sum(c[q] for c in comp))) - sum(fl)
+        for i in sorted(range(len(ks)), key=lambda i: -(comp[i][q] - fl[i]))[:max(need, 0)]: fl[i] += 1
+        for i, k in enumerate(ks): out[k][q] = fl[i]
+    return {k: [a[0], a[1], a[0] + a[1] + a[2]] for k, a in out.items()}
 os.makedirs(wd, exist_ok=True)
 for ab in STS:
     stn = NAME[ab]; races = sorted({k[1] for k in RACES if k[0] == ab})
@@ -169,8 +188,8 @@ for ab in STS:
             tot = [sum(V[j][2+q] for j in range(len(V))) for q in range(3)]
             per = collections.defaultdict(lambda: [0.0,0.0,0.0])
             for j in range(len(V)):
-                if True:
-                    for q in range(3): per[V[j][0]][q] += unk[q]*V[j][2+q]/max(tot[q],1)
+                a = spread(unk, V[j], tot, len(V))
+                for q in range(3): per[V[j][0]][q] += a[q]
             for c, a in per.items():
                 for q in range(3): resid[c][q] += a[q]; cty_tot[c][q] += a[q]
         for c, rs in resid.items():
@@ -180,7 +199,8 @@ for ab in STS:
             if sum(V[j][4] for j in js) < rs[2]: js = [j for j in range(len(V)) if V[j][0] == c]
             tot = [sum(V[j][2+q] for j in js) for q in range(3)]
             for j in js:
-                for q in range(3): vals[j][q] += rs[q]*V[j][2+q]/tot[q] if tot[q] else rs[q]/len(js)
+                a = spread(rs, V[j], tot, len(js))
+                for q in range(3): vals[j][q] += a[q]
                 alloc[j] += rs[2]*V[j][4]/tot[2] if tot[2] else rs[2]/len(js)
         for j in range(len(V)):
             if G[j] is None:
@@ -198,7 +218,7 @@ for ab in STS:
             if k not in bridge: c = cname(k) or (f'fips {k[0]}' if k[0] else f'(no county) {k[1]}'); um[c][0] += 1; um[c][1] += s[2]
         rep[race] = {'medsl_state': st_tot, 'matched_share': round(m_tot/max(st_tot[2],1), 4), 'medsl_precincts': len(S),
                      'matched_precincts': len(bridge), 'matched_polys': len(pj), 'bridge': dict(how), 'unknown_county_votes': unk[2],
-                     'counties': {c: [int(round(x)) for x in a] for c, a in cty_tot.items()},
+                     'counties': rcounties(cty_tot),
                      'precincts': {f'{V[j][0]}|{V[j][1]}|{j}': a for j, a in pj.items()}, 'unmatched_by_county': dict(um)}
         print(ab, race, 'medsl', st_tot, 'bridged', len(bridge), '/', len(S), dict(how), 'share', rep[race]['matched_share'], 'polys', len(pj), '/', len(V), flush=True)
     json.dump(rep, open(f'{wd}/{ab}.json', 'w'))

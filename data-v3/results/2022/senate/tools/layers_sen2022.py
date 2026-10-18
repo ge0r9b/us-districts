@@ -66,7 +66,9 @@ def job(args):
             if cover < 0.5: gray[lay].append((nm, f'cover {cover:.0%}')); continue
             vals = (v[idx]*fr[:,None]).sum(0)
             split = (fr>0)&(fr<1); sv = (v[idx][split,2]*fr[split]).sum(); av = (al[idx]*fr).sum()
-            tr = [int(round(x)) for x in vals]
+            # d, r and all-others are area-weighted and rounded separately; t = their sum, so all-others is never negative
+            vo = (np.maximum(v[idx,2]-v[idx,0]-v[idx,1], 0)*fr).sum()
+            tr = [int(round(vals[0])), int(round(vals[1]))]; tr.append(tr[0] + tr[1] + int(round(vo)))
             if tr[2] <= 0: gray[lay].append((nm,'no votes')); continue
             if sv > 0.02*vals[2] or av > 0.02*vals[2]: tr.append(1)
             res[lay][f'{st}|{nm}'] = tr
