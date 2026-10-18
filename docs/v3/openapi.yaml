@@ -3,9 +3,11 @@ info:
   title: US Districts API
   version: "1.0.0"
   description: >
-    Read-only /api/v1. Alpha.1 implements manifest, contests, results, units, geocode, and locate.
+    Read-only /api/v1. Manifest, contests, results, units, geocode, locate, and company locations.
+    Geocode is Census, then Nominatim, then a PostGIS point-in-polygon.
     Unit keys are Census GEOIDs. The v2 name is returned as legacy.
     One contest returns a flat row. Several contests return series.
+    Company locations are also a clustered PMTiles archive at /tiles/companies.pmtiles.
 servers:
   - url: /api/v1
 paths:
@@ -124,6 +126,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Locate"
+  /locations:
+    get:
+      summary: Company locations inside a bounding box
+      parameters:
+        - $ref: "#/components/parameters/dv"
+        - { in: query, name: bbox, required: true, schema: { type: string }, description: west,south,east,north }
+        - { in: query, name: limit, schema: { type: integer, maximum: 500 } }
+      responses:
+        "200":
+          description: Locations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationList"
+        "400":
+          $ref: "#/components/responses/Error"
+  /locations/clusters:
+    get:
+      summary: Company locations snapped to a grid
+      parameters:
+        - $ref: "#/components/parameters/dv"
+        - { in: query, name: bbox, required: true, schema: { type: string }, description: west,south,east,north }
+        - { in: query, name: z, schema: { type: integer, minimum: 0, maximum: 6 } }
+      responses:
+        "200":
+          description: Clusters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClusterList"
+        "400":
+          $ref: "#/components/responses/Error"
 components:
   parameters:
     dv:
@@ -272,6 +306,35 @@ components:
         units:
           type: object
           additionalProperties: { type: string }
+    LocationList:
+      type: object
+      required: [dv, locations]
+      properties:
+        dv: { type: integer }
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              location_key: { type: string }
+              name: { type: string, nullable: true }
+              country_code: { type: string, nullable: true }
+              lon: { type: number }
+              lat: { type: number }
+    ClusterList:
+      type: object
+      required: [dv, z, clusters]
+      properties:
+        dv: { type: integer }
+        z: { type: integer }
+        clusters:
+          type: array
+          items:
+            type: object
+            properties:
+              n: { type: integer }
+              lon: { type: number }
+              lat: { type: number }
     Geocode:
       allOf:
         - $ref: "#/components/schemas/Locate"

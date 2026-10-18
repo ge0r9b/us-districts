@@ -92,6 +92,7 @@ export async function locatePoint(pool: pg.Pool, lon: number, lat: number, dv: n
 
 /**
  * Census one-line, then Census components when the query parses, then Nominatim.
+ * The point then goes through locatePoint, which is the PostGIS ST_Covers point-in-polygon.
  * A cache hit skips providers. A 5-digit ZIP never calls a provider (no ZCTA table in alpha.1).
  */
 export async function geocodeAddress(

@@ -1,4 +1,4 @@
-# US Districts v3 (alpha.1)
+# US Districts v3 (alpha.2)
 
 Local only. Nothing here is deployed. The app listens on port **8860** and the API on **8861**. Do not use port 8765.
 
@@ -30,7 +30,24 @@ npm run dev
 
 A host ending in `neon.tech` is opened with `@neondatabase/serverless` over WebSocket, so port 5432 is not required. Any other host, including this local example, uses `pg` over TCP. Both paths run `db/migrations/*.sql` and then `db/seed.sql`.
 
-`db:load` always uses `pg` and needs a reachable Postgres port. It does not read `.env`.
+`db:load` uses the same host switch. A `neon.tech` host goes through `@neondatabase/serverless` over WebSocket. Any other host uses `pg`. It reads `v3/.env` when that file exists. Inserts are chunked multi-row statements (the WebSocket driver has no COPY). Each source file is its own transaction: an applied or rejected sha is skipped on the next run, and `data_version` moves when a file changes rows. `result.source_record_id` is the CSV line number. `unit.source_record_id` is the geo `row`, or the precinct key.
+
+The default load is core (states, counties, congressional districts, and the official result files from alpha.1), state legislative districts, schools, and precincts. Precinct result files are about 530 MB of table space. They are skipped when they would push the database past 350 MB (the free Neon cap is 0.5 GB). There is no precinct polygon file in `data/geo`. Companies, institutions, governments, seating, and people stay behind flags. Companies are global (the size check uses 193,000 locations) and, when loaded, also write clustered PMTiles at `app/public/tiles/companies.pmtiles`.
+
+```bash
+cd v3
+npm run db:migrate
+npm run db:seed
+npm run db:load
+# precincts print a size line and stay out until you accept it:
+npm run db:load -- --allow-over-budget=precincts
+# companies are not in the default load:
+npm run db:load -- --include=companies
+# add the flag only if the script says the live database size plus ~100 MB would pass 350 MB:
+npm run db:load -- --include=companies --allow-over-budget=companies
+```
+
+Institutions, governments, seating, and people print an estimate and do not insert. Their column maps are not reviewed, so `--allow-over-budget` does not load them either. Re-running `db:load` is safe. It does not deploy.
 
 Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and 2024 show Pennsylvania counties. `%` / `#` re-sorts the list locally.
 

@@ -15,7 +15,9 @@ Done on `v3/build`:
 - Shared rules in `v3/packages/core` (slots, sort, filters). Design tokens and a MapLibre style a native client can reuse. See NATIVE.md and D24.
 - Tests: schema, loader round-trip, API contract, in-process results latency. GitHub Actions `.github/workflows/v3.yml` runs them against PostGIS.
 
-Left for alpha.2: full UI parity (filters, charts, time slider, back stack, hash links), precincts / schools / state legislative districts, PMTiles via tippecanoe (the shell uses GeoJSON states until an archive exists), result packs, entities and officeholders, R12–R14, ZCTA, a read-only database role, and Playwright. The Neon project `ultrevote` exists; this repo does not connect to it. The user runs migrate and seed there.
+Alpha.2 on the same branch adds `009_load_columns.sql`, a WebSocket `db:load` (chunked inserts, per-file resume, `source_record_id`, `data_version`), state-legislative and school units, a 350 MB gate around precinct results, and company locations behind `--include=companies` (`country_code`, bbox and cluster endpoints, clustered PMTiles). Institutions, governments, seating, and people stay unloaded. `/api/v1` geocode is Census, then Nominatim, then PostGIS point-in-polygon. OpenAPI lists the location routes. Tests refuse a `neon.tech` host.
+
+Still open: full UI parity (filters, charts, time slider, back stack, hash links), tippecanoe PMTiles for election geometry (the shell uses GeoJSON states until an archive exists), result packs, the institution and officeholder column maps, R12–R14, ZCTA, a read-only database role, and Playwright. The user runs migrate, seed, and load against Neon. This repo does not store the connection string and does not deploy.
 
 ## A. Process and global rules
 - [ ] **Instant response is the top priority in every UI change** (RR 7). Budgets in PERFORMANCE.md.

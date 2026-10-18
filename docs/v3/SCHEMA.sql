@@ -216,6 +216,7 @@ create table unit (
   state_fips       char(2),
   state_abbr       char(2),
   geoid            text,                             -- Census GEOID where one exists
+  source_record_id text,                             -- id of this unit inside its source file (geo csv row, precinct key)
   parent_unit_id   bigint references unit(id),       -- containment: precinct -> county -> state; may cross sets (ec-2025-pd poll -> ec-2023-fed)
   parent_boundary_set text,                          -- slug of the parent's set when it differs (files: parent_boundary_set + parent_unit_key)
   area_m2          double precision,
@@ -412,6 +413,7 @@ create table entity_location (
   name         text,                                 -- site name ('Target Store T-1234')
   address      text,                                 -- public business address as published: address, city, state zip
   geom         geometry(Point, 4326),                -- from lat/lon
+  country_code char(2),                              -- ISO 3166-1 alpha-2; companies are global
   geoid        text,                                 -- county FIPS (locations/*.csv county_geoid, Census 2024 point-in-polygon)
   boundary_set text,                                 -- 'v2-2024' when geoid is a v2 county; null for PR/VI (not in v2's county layer)
   unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load; null + flag 'no_unit_resolved' when the point
@@ -428,6 +430,7 @@ create table entity_location (
 create index entity_location_entity on entity_location (entity_id) where not retracted;
 create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
+create index entity_location_country on entity_location (country_code);
 
 -- Seals, flags and logos: inst entity_images.csv (seals/flags) + Companies brands.csv logo_* (logos).
 -- The image is a static asset (/img/<role>/<entity_id>.<ext>), not a DB blob. Only freely licensed files are served
@@ -616,6 +619,7 @@ create table result (
                    'official','whole_county','area_weighted','allocated','town_apportioned',
                    'votes_in_split','retabulated','v2_import')),
   source_id      text not null references source(source_id),
+  source_record_id text,                             -- line number inside the source file
   retrieved_at   timestamptz not null,
   load_batch_id  bigint,
   updated_at     timestamptz not null default now(),

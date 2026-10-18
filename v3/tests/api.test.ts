@@ -151,15 +151,16 @@ describe("/api/v1", () => {
       const url = String(input);
       calls.push(url);
       if (url.includes("nominatim")) {
-        return new Response(JSON.stringify([{ lon: "-75.0", lat: "40.0" }]), { status: 200 });
+        return new Response(JSON.stringify([{ lon: "-77.0", lat: "40.3" }]), { status: 200 });
       }
       return new Response(JSON.stringify({ result: { addressMatches: [] } }), { status: 200 });
     };
     const local = createApp({ pool, fetchImpl, sleep: async () => {} });
     const res = await local.request("http://127.0.0.1/api/v1/geocode?q=Somewhere%20Unknown%20Lane");
     expect(res.status).toBe(200);
-    const body = (await res.json()) as { provider: string };
+    const body = (await res.json()) as { provider: string; units: Record<string, string> };
     expect(body.provider).toBe("nominatim");
+    expect(body.units.state).toBe("42");
     expect(calls.some((url) => url.includes("census"))).toBe(true);
     expect(calls.some((url) => url.includes("nominatim"))).toBe(true);
   });

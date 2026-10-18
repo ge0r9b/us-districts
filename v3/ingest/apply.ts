@@ -14,6 +14,7 @@ import {
   shortLabel,
   canonicalUnitType,
 } from "@usd/core";
+import { insertJsonChunks } from "./batch.ts";
 import { markDuplicates, validateRow, type RawResult, type Reject } from "./validate.ts";
 
 export type ApplyMeta = {
@@ -56,10 +57,21 @@ type Fact = {
   source_id: string;
   source_url: string;
   source_notes: string | null;
+  source_record_id: string;
   retrieved_at: string;
 };
 
 const HARD_REJECT_RATE = 0.005;
+
+export type ApplyOptions = {
+  /** When false, the caller refreshes unit_contest_agg and answer_share once after the batch. */
+  refreshAggregates?: boolean;
+};
+
+export async function refreshAggregates(db: pg.Pool | pg.PoolClient): Promise<void> {
+  await db.query("refresh materialized view unit_contest_agg");
+  await db.query("refresh materialized view answer_share");
+}
 
 export function sha256Hex(body: Buffer | string): string {
   return createHash("sha256").update(body).digest("hex");
@@ -141,6 +153,7 @@ function toFacts(rows: RawResult[]): { facts: Fact[]; rejects: Reject[] } {
         source_id: sourceId(src.url, row.retrievedAt.trim()),
         source_url: src.url,
         source_notes: src.notes,
+        source_record_id: String(row.lineNo),
         retrieved_at: new Date(row.retrievedAt.trim()).toISOString(),
       };
       const dedupeKey = `${fact.boundary_set}|${fact.unit_type}|${fact.unit_key}|${fact.answer_key}`;
@@ -180,23 +193,21 @@ async function writeFacts(client: pg.PoolClient, facts: Fact[], batchId: string)
       boundary_set text, unit_type text, unit_key text, answer_key text, label text,
       candidate_key text, candidate_name text, short_name text, party_key text, color text,
       votes numeric, weight numeric, is_estimate boolean, method text, is_aggregate boolean,
-      source_id text, source_url text, source_notes text, retrieved_at timestamptz
+      source_id text, source_url text, source_notes text, source_record_id text, retrieved_at timestamptz
     ) on commit drop`,
   );
-  const chunk = 4000;
-  for (let i = 0; i < facts.length; i += chunk) {
-    await client.query(
-      `insert into incoming
-       select * from jsonb_to_recordset($1::jsonb) as x(
-         contest_key text, office_key text, office_label text, year int, stage text, state_abbr text,
-         boundary_set text, unit_type text, unit_key text, answer_key text, label text,
-         candidate_key text, candidate_name text, short_name text, party_key text, color text,
-         votes numeric, weight numeric, is_estimate boolean, method text, is_aggregate boolean,
-         source_id text, source_url text, source_notes text, retrieved_at timestamptz
-       )`,
-      [JSON.stringify(facts.slice(i, i + chunk))],
-    );
-  }
+  await insertJsonChunks(
+    client,
+    `insert into incoming
+     select * from jsonb_to_recordset($1::jsonb) as x(
+       contest_key text, office_key text, office_label text, year int, stage text, state_abbr text,
+       boundary_set text, unit_type text, unit_key text, answer_key text, label text,
+       candidate_key text, candidate_name text, short_name text, party_key text, color text,
+       votes numeric, weight numeric, is_estimate boolean, method text, is_aggregate boolean,
+       source_id text, source_url text, source_notes text, source_record_id text, retrieved_at timestamptz
+     )`,
+    facts,
+  );
 
   await client.query(
     `insert into source (source_id, url, retrieved_at, notes)
@@ -290,11 +301,12 @@ async function writeFacts(client: pg.PoolClient, facts: Fact[], batchId: string)
 
   const upserted = await client.query(
     `insert into result (
-       contest_id, unit_id, answer_id, votes, weight, is_estimate, method, source_id, retrieved_at, load_batch_id
+       contest_id, unit_id, answer_id, votes, weight, is_estimate, method, source_id, source_record_id,
+       retrieved_at, load_batch_id
      )
      select distinct on (c.id, u.id, a.id)
-            c.id, u.id, a.id, i.votes, i.weight, i.is_estimate, i.method, i.source_id, i.retrieved_at,
-            $1::bigint
+            c.id, u.id, a.id, i.votes, i.weight, i.is_estimate, i.method, i.source_id, i.source_record_id,
+            i.retrieved_at, $1::bigint
      from incoming i
      join contest c on c.contest_key = i.contest_key
      join boundary_set b on b.slug = i.boundary_set and b.unit_type = i.unit_type
@@ -303,7 +315,8 @@ async function writeFacts(client: pg.PoolClient, facts: Fact[], batchId: string)
      order by c.id, u.id, a.id, i.votes desc
      on conflict (contest_id, unit_id, answer_id) do update
        set votes = excluded.votes, weight = excluded.weight, is_estimate = excluded.is_estimate,
-           method = excluded.method, source_id = excluded.source_id, retrieved_at = excluded.retrieved_at,
+           method = excluded.method, source_id = excluded.source_id,
+           source_record_id = excluded.source_record_id, retrieved_at = excluded.retrieved_at,
            load_batch_id = excluded.load_batch_id, updated_at = now()
        where (
          (case excluded.method when 'official' then 3 when 'v2_import' then 1 else 2 end)
@@ -387,12 +400,14 @@ export async function applyResults(
   pool: pg.Pool,
   meta: ApplyMeta,
   rows: RawResult[],
+  options: ApplyOptions = {},
 ): Promise<ApplyReport> {
   const existing = await pool.query<{ status: string }>(
     `select status from load_batch where file_sha256 = $1`,
     [meta.sha256],
   );
-  if (existing.rows[0]?.status === "applied") {
+  // Same bytes are terminal: applied stays applied, rejected stays rejected. A changed file is a new sha.
+  if (existing.rows[0]?.status === "applied" || existing.rows[0]?.status === "rejected") {
     return { fileName: meta.fileName, status: "skipped", rows: rows.length, rejected: 0, changed: 0, rejects: [] };
   }
 
@@ -438,7 +453,8 @@ export async function applyResults(
     await client.query(`delete from stg_reject where load_batch_id = $1`, [batchId]);
     await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
     if (rows.length > 0) {
-      await client.query(
+      await insertJsonChunks(
+        client,
         `insert into stg_result_row (
            load_batch_id, line_no, state, year, office, district, unit_id, unit_type,
            candidate_id, answer, party, votes, weight, source_url, retrieved_at, method, boundary_set
@@ -450,38 +466,36 @@ export async function applyResults(
            candidate_id text, answer text, party text, votes text, weight text, source_url text,
            retrieved_at text, method text, boundary_set text
          )`,
-        [
-          batchId,
-          JSON.stringify(
-            rows.map((row) => ({
-              line_no: row.lineNo,
-              state: row.state,
-              year: row.year,
-              office: row.office,
-              district: row.district,
-              unit_id: row.unitId,
-              unit_type: row.unitType,
-              candidate_id: row.candidateId,
-              answer: row.answer,
-              party: row.party,
-              votes: row.votes,
-              weight: row.weight,
-              source_url: row.sourceUrl,
-              retrieved_at: row.retrievedAt,
-              method: row.method,
-              boundary_set: row.boundarySet,
-            })),
-          ),
-        ],
+        rows.map((row) => ({
+          line_no: row.lineNo,
+          state: row.state,
+          year: row.year,
+          office: row.office,
+          district: row.district,
+          unit_id: row.unitId,
+          unit_type: row.unitType,
+          candidate_id: row.candidateId,
+          answer: row.answer,
+          party: row.party,
+          votes: row.votes,
+          weight: row.weight,
+          source_url: row.sourceUrl,
+          retrieved_at: row.retrievedAt,
+          method: row.method,
+          boundary_set: row.boundarySet,
+        })),
+        [batchId],
       );
     }
     if (rejects.length > 0) {
-      await client.query(
+      await insertJsonChunks(
+        client,
         `insert into stg_reject (load_batch_id, line_no, rule, detail)
          select $1, line_no, rule, detail
          from jsonb_to_recordset($2::jsonb) as x(line_no int, rule text, detail text)
          on conflict do nothing`,
-        [batchId, JSON.stringify(rejects.map((r) => ({ line_no: r.lineNo, rule: r.rule, detail: r.detail })))],
+        rejects.map((r) => ({ line_no: r.lineNo, rule: r.rule, detail: r.detail })),
+        [batchId],
       );
     }
     if (rate > HARD_REJECT_RATE) {
@@ -489,6 +503,7 @@ export async function applyResults(
         `update load_batch set status = 'rejected', finished_at = now(), report = $2::jsonb where id = $1`,
         [batchId, JSON.stringify({ rejected: rejects.length, sample: rejects.slice(0, 20) })],
       );
+      await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
       await client.query("commit");
       return {
         fileName: meta.fileName,
@@ -507,13 +522,13 @@ export async function applyResults(
         `update contest set data_version = data_version + 1
          where contest_key in (select distinct contest_key from incoming)`,
       );
-      await client.query("refresh materialized view unit_contest_agg");
-      await client.query("refresh materialized view answer_share");
+      if (options.refreshAggregates !== false) await refreshAggregates(client);
     }
     await client.query(
       `update load_batch set status = 'applied', finished_at = now(), report = $2::jsonb where id = $1`,
       [batchId, JSON.stringify({ rows: rows.length, rejected: rejects.length, changed, facts: facts.length })],
     );
+    await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
     await client.query("commit");
     return {
       fileName: meta.fileName,

@@ -27,6 +27,33 @@ export function isNeonHost(connectionString: string): boolean {
  * Neon hosts use the serverless WebSocket client. Any other host (local Postgres,
  * CI) uses node-pg over TCP. Both run the same SQL. The URL is never logged.
  */
+/**
+ * One connection for db:load. A neon.tech host uses the WebSocket client, which
+ * does not open TCP 5432. Other hosts use a pg pool. Queries on a Neon connection
+ * must stay sequential: the wrapper hands back that single client.
+ */
+export async function openLoadDb(connectionString: string): Promise<pg.Pool> {
+  if (!isNeonHost(connectionString)) {
+    return new pg.Pool({
+      connectionString,
+      max: 4,
+      options: "-c search_path=usd,public",
+    });
+  }
+  const client = new Client(connectionString);
+  await client.connect();
+  await client.query("set search_path = usd, public");
+  const session = {
+    query: (text: string, params?: unknown[]) => client.query(text, params),
+    release: () => {},
+  };
+  return {
+    query: session.query,
+    connect: async () => session,
+    end: () => client.end(),
+  } as unknown as pg.Pool;
+}
+
 export async function withDatabase<T>(connectionString: string, fn: (db: Queryable) => Promise<T>): Promise<T> {
   if (isNeonHost(connectionString)) {
     const client = new Client(connectionString);

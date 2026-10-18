@@ -87,7 +87,7 @@ Name, type, parent chain (breadcrumb), bbox, centroid, the institutions linked t
 Unisearch over entities, units, aliases, candidates, offices and ZIPs (pg_trgm plus alias prefix). A government-and-place entity returns two rows, `institution` and `place` (spec §5.3). A state abbreviation or name ranks the state first (`state_abbr_search.py`). p95 target 80 ms (PERFORMANCE.md).
 
 ### `GET /geocode?q=` and `GET /locate?lon=&lat=`
-`/geocode` turns an address into a point (Census → fallback chain, GEOCODER.md) and then runs `/locate`. `/locate` does point-in-polygon against every current boundary set.
+`/geocode` turns an address into a point (Census one-line, then Census components, then Nominatim) and then runs `/locate`. `/locate` is a PostGIS `ST_Covers` point-in-polygon against every current public boundary set.
 ```json
 {"dv":42,"query":"…","point":{"lon":<lon>,"lat":<lat>},"match":"exact","provider":"census",
  "units":{"state":"PA","county":"PA|Erie County","county_subdivision":"PA|Erie County|<town>",
@@ -95,6 +95,9 @@ Unisearch over entities, units, aliases, candidates, offices and ZIPs (pg_trgm p
           "sldu":"senate:PA:<nnn>","sldl":"statehouse:PA:<nnn>","school":"schools:PA:<district name>"}}
 ```
 Cache: `/locate` is `public, s-maxage=86400` on coordinates rounded to 5 decimals. `/geocode` is `private, max-age=3600`.
+
+### `GET /locations?bbox=` and `GET /locations/clusters?bbox=&z=`
+Company sites inside `west,south,east,north`. `country_code` is the ISO alpha-2 from the companies file. Clusters snap points with `ST_SnapToGrid`. The same points are a clustered PMTiles archive at `/tiles/companies.pmtiles` (manifest key `companies`) when `db:load --include=companies` has been run. Cache follows the versioned `/api/v1` rules.
 
 ### `GET /tiles/{set}/{z}/{x}/{y}.mvt` (fallback only)
 Dynamic vector tiles via `ST_AsMVT` for custom or private boundary sets. Public sets use static PMTiles. Cache: `public, max-age=86400, s-maxage=31536000, immutable` when `bv` is pinned.

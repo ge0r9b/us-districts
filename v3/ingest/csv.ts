@@ -1,4 +1,13 @@
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+
 /** RFC 4180 reader. Columns are addressed by header name, never by position. */
+
+export function readFileText(path: string): { text: string; bytes: Buffer } {
+  const bytes = readFileSync(path);
+  const text = path.endsWith(".gz") ? gunzipSync(bytes).toString("utf8") : bytes.toString("utf8");
+  return { text, bytes };
+}
 
 export function parseCsv(text: string): { headers: string[]; rows: Record<string, string>[] } {
   const src = text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;

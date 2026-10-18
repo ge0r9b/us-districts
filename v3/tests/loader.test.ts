@@ -37,6 +37,12 @@ describe("loaders", () => {
        where g.lod = 0 and u.unit_type = 'state'`,
     );
     expect(Number(geoms.rows[0]?.n)).toBeGreaterThanOrEqual(50);
+    const state = await pool.query<{ source_record_id: string }>(
+      `select u.source_record_id
+       from unit u join boundary_set b on b.id = u.boundary_set_id
+       where b.slug = 'v2-2024' and u.unit_type = 'state' and u.unit_key = '01'`,
+    );
+    expect(state.rows[0]?.source_record_id).toBe("01");
   });
 
   it("loads every 2016 FEC state row and the Pennsylvania county files", async () => {
@@ -49,6 +55,15 @@ describe("loaders", () => {
        where c.contest_key = '2016|US|president|' and u.unit_type = 'state' and r.method = 'official'`,
     );
     expect(Number(loaded.rows[0]?.n)).toBe(fec);
+    const line = await pool.query<{ source_record_id: string | null }>(
+      `select r.source_record_id
+       from result r
+       join contest c on c.id = r.contest_id
+       join unit u on u.id = r.unit_id
+       where c.contest_key = '2016|US|president|' and u.unit_type = 'state' and r.method = 'official'
+       limit 1`,
+    );
+    expect(line.rows[0]?.source_record_id).toMatch(/^\d+$/);
 
     for (const [file, year] of [
       ["data-v3/results/PA/pa_president_county_official.csv", "2020"],
@@ -128,7 +143,7 @@ describe("loaders", () => {
     const before = await pool.query<{ dv: number }>("select dv from data_version where id = 1");
     const summary = await loadAll(pool, root);
     const after = await pool.query<{ dv: number }>("select dv from data_version where id = 1");
-    expect(summary.boundaries.status).toBe("skipped");
+    expect(summary.boundaries?.status).toBe("skipped");
     expect(summary.results.every((row) => row.status === "skipped")).toBe(true);
     expect(after.rows[0]?.dv).toBe(before.rows[0]?.dv);
   });

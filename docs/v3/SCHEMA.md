@@ -12,6 +12,8 @@ The rest of the DDL applied unchanged (42 boundary sets, 21 unit types, both mat
 
 2. **`data_version` table (addition, not an apply failure).** ARCHITECTURE.md §5 and the API's `dv` field need one global integer. The DDL only had `contest.data_version`. Alpha.1 adds a one-row `data_version (id smallint check (id = 1), dv, built_at)`, seeded at `dv = 1`. Ingest bumps it when a batch changes rows.
 
+3. **Alpha.2 columns (`009_load_columns.sql`).** `result.source_record_id` (CSV line), `unit.source_record_id` (geo `row` or precinct key), and `entity_location.country_code` for the global company file. Applied files 001–008 are unchanged.
+
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
   1. **Institution and geography are separate tables** (`entity` and `unit`), joined by `entity_unit`. This mirrors v2's two filters, which are "separate by design" (spec §5): the top filter searches institutions and the bottom filter searches places.

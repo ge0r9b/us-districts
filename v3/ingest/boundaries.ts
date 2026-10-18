@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import type pg from "pg";
 import { STATE_ABBR } from "@usd/core";
+import { insertJsonChunks } from "./batch.ts";
 import { parseCsv } from "./csv.ts";
 import { multiPolygon, unwrapJson } from "./geom.ts";
 import { sha256Hex } from "./apply.ts";
@@ -34,6 +35,7 @@ type UnitRow = {
   state_fips: string;
   state_abbr: string;
   geoid: string;
+  source_record_id: string;
 };
 
 type GeomRow = { unit_type: string; unit_key: string; geojson: string };
@@ -121,6 +123,7 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
       state_fips: fips,
       state_abbr: abbr,
       geoid: fips,
+      source_record_id: fips,
     });
   }
   for (const row of counties) {
@@ -138,6 +141,7 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
       state_fips: fips,
       state_abbr: abbr,
       geoid: row.geoid,
+      source_record_id: row.row?.trim() || row.geoid,
     });
   }
   for (const row of houses) {
@@ -155,6 +159,7 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
       state_fips: fips,
       state_abbr: abbr,
       geoid: row.geoid,
+      source_record_id: row.row?.trim() || row.geoid,
     });
   }
 
@@ -187,19 +192,25 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
        on conflict (file_sha256) do update set status = 'staged'`,
       [sha, units.length],
     );
-    await client.query(
-      `insert into unit (boundary_set_id, unit_type, unit_key, legacy_key, name, state_fips, state_abbr, geoid, country)
-       select b.id, x.unit_type, x.unit_key, x.legacy_key, x.name, x.state_fips, x.state_abbr, x.geoid, 'us'
+    const unitWrites = await insertJsonChunks(
+      client,
+      `insert into unit (
+         boundary_set_id, unit_type, unit_key, legacy_key, name, state_fips, state_abbr, geoid, country, source_record_id
+       )
+       select b.id, x.unit_type, x.unit_key, x.legacy_key, x.name, x.state_fips, x.state_abbr, x.geoid, 'us', x.source_record_id
        from jsonb_to_recordset($1::jsonb) as x(
-         unit_type text, unit_key text, legacy_key text, name text, state_fips text, state_abbr text, geoid text
+         unit_type text, unit_key text, legacy_key text, name text, state_fips text, state_abbr text, geoid text,
+         source_record_id text
        )
        join boundary_set b on b.slug = 'v2-2024' and b.unit_type = x.unit_type
        on conflict (boundary_set_id, unit_key) do update
          set legacy_key = excluded.legacy_key, name = excluded.name,
-             state_fips = excluded.state_fips, state_abbr = excluded.state_abbr, geoid = excluded.geoid
+             state_fips = excluded.state_fips, state_abbr = excluded.state_abbr, geoid = excluded.geoid,
+             source_record_id = excluded.source_record_id
          where unit.name is distinct from excluded.name
-            or unit.legacy_key is distinct from excluded.legacy_key`,
-      [JSON.stringify(units)],
+            or unit.legacy_key is distinct from excluded.legacy_key
+            or unit.source_record_id is distinct from excluded.source_record_id`,
+      units,
     );
     await client.query(
       `update unit child set parent_unit_id = parent.id
@@ -210,6 +221,9 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
          and child.state_abbr = parent.state_abbr`,
     );
     const geomCount = await insertGeoms(client, geoms, gaps);
+    if (unitWrites > 0 || geomCount > 0) {
+      await client.query(`update data_version set dv = dv + 1, built_at = now() where id = 1`);
+    }
     await client.query(
       `update unit u
        set centroid = st_pointonsurface(g.geom),

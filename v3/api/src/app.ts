@@ -29,6 +29,18 @@ async function readDv(pool: pg.Pool): Promise<DvRow> {
   return r.rows[0] ?? { dv: 1, built_at: new Date(0).toISOString() };
 }
 
+function parseBbox(raw: string | undefined): [number, number, number, number] | null {
+  if (!raw) return null;
+  const parts = raw.split(",").map((part) => Number(part.trim()));
+  if (parts.length !== 4 || parts.some((n) => !Number.isFinite(n))) return null;
+  const west = parts[0]!;
+  const south = parts[1]!;
+  const east = parts[2]!;
+  const north = parts[3]!;
+  if (south < -90 || north > 90 || south > north || west < -180 || east > 180 || west > east) return null;
+  return [west, south, east, north];
+}
+
 function iso(value: Date | string): string {
   return value instanceof Date ? value.toISOString() : new Date(value).toISOString();
 }
@@ -45,6 +57,7 @@ async function manifest(pool: pg.Pool) {
       "state-2024": "/tiles/state-2024@1.pmtiles",
       "county-2024": "/tiles/county-2024@1.pmtiles",
       "ushouse-2024": "/tiles/ushouse-2024@1.pmtiles",
+      companies: "/tiles/companies.pmtiles",
     },
     packs: `/packs/${version.dv}/{contest_key}/{unit_type}.json`,
     offices: offices.rows.map((row) => ({ key: row.key, label: row.label, scope: row.key === "president" ? "us" : null })),
@@ -428,6 +441,49 @@ export function createApp(deps: AppDeps) {
       boundary_set: boundary,
       ...(contest ? { contest, result: results } : {}),
     });
+  });
+
+  app.get("/api/v1/locations", async (c) => {
+    const box = parseBbox(c.req.query("bbox"));
+    const dv = c.get("dv") as number;
+    if (!box) return c.json({ error: { code: "bad_bbox", message: "bbox is west,south,east,north" }, dv }, 400);
+    const limit = Math.min(Math.max(Number(c.req.query("limit") ?? 500) || 500, 1), 500);
+    const rows = await deps.pool.query<{
+      location_key: string;
+      name: string | null;
+      country_code: string | null;
+      lon: number;
+      lat: number;
+    }>(
+      `select location_key, name, btrim(country_code) as country_code, st_x(geom) lon, st_y(geom) lat
+       from entity_location
+       where not retracted
+         and geom && st_makeenvelope($1, $2, $3, $4, 4326)
+       order by location_key
+       limit $5`,
+      [...box, limit],
+    );
+    return c.json({ dv, locations: rows.rows });
+  });
+
+  app.get("/api/v1/locations/clusters", async (c) => {
+    const box = parseBbox(c.req.query("bbox"));
+    const dv = c.get("dv") as number;
+    if (!box) return c.json({ error: { code: "bad_bbox", message: "bbox is west,south,east,north" }, dv }, 400);
+    const z = Math.min(6, Math.max(0, Number(c.req.query("z") ?? 4) || 4));
+    const cell = 360 / 2 ** z;
+    const rows = await deps.pool.query<{ n: number; lon: number; lat: number }>(
+      `select count(*)::int n,
+              st_x(st_centroid(st_collect(geom))) lon,
+              st_y(st_centroid(st_collect(geom))) lat
+       from entity_location
+       where not retracted
+         and geom && st_makeenvelope($1, $2, $3, $4, 4326)
+       group by st_snaptogrid(geom, $5)
+       limit 500`,
+      [...box, cell],
+    );
+    return c.json({ dv, z, clusters: rows.rows });
   });
 
   app.get("/api/v1/geocode", async (c) => {
