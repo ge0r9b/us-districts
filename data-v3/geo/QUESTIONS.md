@@ -166,6 +166,8 @@ see README "Canada, Statistics Canada 2021"). All counts equal StatCan's and Ele
    alone would break that nesting, so do not re-simplify them in place. For display at country/province zoom, add a separate
    derived tier (e.g. `ca_pr_2021_lo`, `ca_cd_2021_lo`: coverage_simplify of the PR/CD coverage at ≈ 500-1,000 m and dropping parts
    under ≈ 1-5 km²), sized like canada.js. Not built; needs the orchestrator's choice of target size or zoom range.
+   **Decision (Full Stack, cc orchestrator, Oct 18, 2026): closed.** No separate low-detail tier; the v3 PMTiles build simplifies
+   per zoom level, so keep shipping full-resolution official geometry (as in fdae0c3).
 3. **Server-side failures.** StatCan's REST service returned HTTP 500 for three features on every full-resolution request (again
    on Oct 18, 2026); the www12 zip downloads return 403 to scripts. Used instead: CSD 6204030 (Qikiqtaaluk, Unorganized) and FED 59028
    (Skeena--Bulkley Valley) at 10 m server generalization; FED 62001 (Nunavut) = union of Nunavut CSDs. If the CBF zips become
