@@ -345,11 +345,18 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - Kinds: `nation, territory, province, state, county, municipality, township, school_unified, school_elementary, school_secondary, chamber, dc_council`, plus `government_other`, `company`, `nonprofit` and `fund` for the bots. School kinds follow Q-G4 under the `school_district` category.
 - **World geography (non-US):**
   - Nations are `nation:<iso2>`, ISO 3166-1 alpha-2 in lowercase (`nation:ca`, `nation:fr`). The existing US row on `data/inst-entities` 348f410 is already `nation:us` and is kept as is.
-  - Foreign dependencies are kind `territory`, with the sovereign nation as `parent_id` (for example Greenland → `nation:dk`). US territories keep their existing ids (`territory:60`, `66`, `69`, `72`, `78`, parent `nation:us`). They are not loaded as nations, even where ISO gives them a code (`pr`, `gu`, ...).
-  - Canadian provinces are kind `province` with `parent_id = nation:ca`.
-  - Proposed id patterns for Institutions to confirm: `territory:<iso2>` for foreign dependencies (alphabetic, so they can't collide with the numeric US FIPS ids) and `province:ca-<iso 3166-2 code>` for provinces (`province:ca-on`).
+  - Territory ids (kind `territory`, confirmed with Institutions):
+
+    | Pattern | Use | `parent_id` |
+    |---|---|---|
+    | `territory:<2-digit US FIPS>` | US territories (`territory:60`, `66`, `69`, `72`, `78`, as on 348f410) | `nation:us` |
+    | `territory:<iso2>` (lowercase) | foreign dependencies (Greenland `territory:gl`) | the sovereign nation (`nation:dk`) |
+    | `territory:ca-<code>` | Canada's territories: `territory:ca-nt`, `ca-nu`, `ca-yt` | `nation:ca` |
+
+    US territories are not loaded as nations, even where ISO gives them a code (`pr`, `gu`, ...).
+  - Canadian provinces are kind `province`, `province:ca-<code>` (lowercase ISO 3166-2 code, e.g. `province:ca-on`), with `parent_id = nation:ca`.
   - **Non-US places carry no unit or boundary_set.** They have no `entity_geoid` / `entity_unit` rows, and `entity_location.unit_id` / `boundary_set` stay null. Their geometry is the v2 Natural Earth / Canada shapes (§ v2 inputs), not TIGER.
-  - The SCHEMA.sql checks enforce the nation id pattern, a `nation:` parent for territories, and `nation:ca` as the parent of provinces.
+  - The SCHEMA.sql checks enforce these id patterns and parents (`nation:<iso2>`; the three territory forms with `nation:us` / `nation:ca` parents where fixed; `province:ca-<code>` under `nation:ca`).
 - **District seats are units, not entities.** Officeholders = chamber `entity_id` + unit + `seat` number.
 - Column mapping: `feed` is stored raw in `entity.feed` and **mapped to `entity.origin` on load**:
 

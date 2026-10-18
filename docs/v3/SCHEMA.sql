@@ -278,8 +278,13 @@ create table entity (
   -- dependencies are kind 'territory' with the sovereign nation as parent; provinces have parent 'nation:ca'.
   -- Non-US places carry no unit or boundary_set (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
-  check (kind <> 'territory' or parent_id like 'nation:%'),
-  check (kind <> 'province' or parent_id = 'nation:ca'),
+  -- territory ids: 'territory:<2-digit US FIPS>' (parent nation:us), 'territory:<iso2>' (foreign dependency, parent = sovereign),
+  -- 'territory:ca-(nt|nu|yt)' (Canada's territories, parent nation:ca). Provinces: 'province:ca-<code>' (parent nation:ca).
+  check (kind <> 'territory' or (parent_id like 'nation:%'
+         and (entity_id ~ '^territory:[0-9]{2}$' or entity_id ~ '^territory:[a-z]{2}$' or entity_id ~ '^territory:ca-(nt|nu|yt)$'))),
+  check (kind <> 'territory' or entity_id !~ '^territory:ca-' or parent_id = 'nation:ca'),
+  check (kind <> 'territory' or entity_id !~ '^territory:[0-9]{2}$' or parent_id = 'nation:us'),
+  check (kind <> 'province' or (parent_id = 'nation:ca' and entity_id ~ '^province:ca-[a-z]{2}$')),
   check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
