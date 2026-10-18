@@ -17,7 +17,7 @@ async def run(b,tag,vp,mobile):
     await pg.evaluate("m=>window.__setNum(m)",mode); await pg.wait_for_timeout(2000)
     r=await pg.evaluate(Q); o=r['out']; L=r['L']
     ck(tag+" %s: delta rows rendered"%mode,len(o)>=40,len(o))
-    ck(tag+" %s: abbreviation starts at x~90, icon centre x=73 (left candidate column since build 1546)"%mode,all(abs(x['rn']-44-46)<=1.5 and abs(x['ic']-27-46)<=1.5 for x in o),[(round(x['rn']),round(x['ic'])) for x in o[:3]])
+    ck(tag+" %s: abbreviation starts at x~90 (left candidate column since build 1546), no per-row icon (build 1551)"%mode,all(abs(x['rn']-44-46)<=1.5 and x['ic']==0 for x in o),[(round(x['rn']),round(x['ic'])) for x in o[:3]])
     ck(tag+" %s: net value column sits after the abbreviation, before the bar"%mode,all(x['netL']>=x['rn'] and x['netR']<=x['left']+0.5 for x in o),o[:2])
     mx=max(o,key=lambda x:x['T']); ck(tag+" %s: largest total delta -> longest bar, ends left of the button column"%mode,mx['w']>=max(x['w'] for x in o)-1 and mx['right']<=L-5,(mx['w'],mx['right'],L))
     big=[x for x in o if x['w']>30 and x['T']>0]

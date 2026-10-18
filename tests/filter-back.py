@@ -48,7 +48,7 @@ async def run(b,tag,vp):
   await pg.evaluate("()=>document.getElementById('bTime').click()"); await pg.wait_for_timeout(900); s2=await pg.evaluate(S)
   ck(tag+" time filter expanded: chevron and sort glyph raised half-way from the chart button centre line toward the list-area top, clear of the first row",s2['btn'] and s2['sortCy'] is not None and abs(s2['sortCy']-s2['cy'])<=1.5 and s2['texp'] and s2['chartCy'] is not None and abs(s2['cy']-(s2['chartCy']-(s2['chartCy']-s2['lvTop'])/2))<=1.5 and (s2['row1'] is None or s2['cy']+8.5<s2['row1']) and abs(s2['cx']-18.5)<=1.5,(s,s2))
   await pg.evaluate("()=>document.getElementById('bTime').click()"); await pg.wait_for_timeout(700)
-  await pg.click("#bBack"); await pg.wait_for_timeout(6000); s=await pg.evaluate(S); ck(tag+" back -> states list-all again, depth 0, button gone, sort/format kept",s['la'] and s['st']=='' and s['lv']=='states' and s['depth']==0 and not s['btn'] and s['sort']=='asc' and s['view']=='list',s)
+  await pg.click("#bBack"); await pg.wait_for_timeout(6000); s=await pg.evaluate(S); ck(tag+" back -> states list-all again, depth 0, button gone, format kept, sort back to the default high-to-low (build 1551: a re-entered list starts high-to-low)",s['la'] and s['st']=='' and s['lv']=='states' and s['depth']==0 and not s['btn'] and s['sort']=='desc' and s['view']=='list',s)
   await pg.context.close()
   # E: district-type switch -> back; keyboard; browser back
   pg=await fresh(b,vp,"alabama"); await tog(pg); await pg.evaluate("()=>document.querySelector('.lbtn[data-k=schools]').click()"); await pg.wait_for_timeout(3500)
