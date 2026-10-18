@@ -6,7 +6,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181580";</script>
+<script>window.BUILD="202610181581";</script>
+<script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
+<style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
+<script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -552,6 +555,7 @@
   .cands .cand.ph img, body.listmode .cands .cand.ph img, body:not(.listmode) .cands .cand.ph img { box-sizing: border-box !important; width: var(--thw) !important; height: var(--thw) !important; flex: 0 0 var(--thw) !important; border-radius: 2.5px !important; border: 0 !important; box-shadow: 0 0 0 2px #a8a29e !important; position: relative !important; left: auto !important; top: auto !important; margin: 0 0 0 var(--thx) !important; filter: none !important; }
   .cands .cand.ph.on.r img { box-shadow: 0 0 0 2px #b91c1c !important; } .cands .cand.ph.on.d img { box-shadow: 0 0 0 2px #1d4ed8 !important; }
   body:not(.listmode) .cands .cand.ph, body:not(.listmode) .cands .cand.ph.on { width: calc(var(--thx) + var(--thw) + 16px) !important; height: calc(var(--thw) + 6px) !important; flex: 0 0 auto !important; display: flex !important; align-items: center !important; justify-content: flex-start !important; padding: 0 !important; }
+  body:not(.listmode) .cands .cand.ph .cpt { min-width: 23px; box-sizing: border-box; text-align: center; } /* build 1581: fixed-width badge slot ('50%' and '2.1M' take the same box) */
   body:not(.listmode) .cands .cand.ph .cpt { left: calc(var(--thx) + var(--thw) - 4px) !important; bottom: -1px !important; border-radius: 1px !important; font-size: 8px !important; padding: 1px 2px !important; line-height: 1.15 !important; }
   body.listmode .cands .cand.ph .cw { margin-left: calc(52px - 16px - var(--thx) - var(--thw)) !important; padding-left: 0 !important; }
   body.listmode .cands { margin-top: -3px !important; }
@@ -3842,6 +3846,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(typeof o.w==="string"&&o.w&&window.__worldEnter){ try{ window.__worldEnter(o.w); }catch(e){} await sleep(800); }
       else if(typeof o.st==="string"&&o.st&&allStates().indexOf(o.st)>=0){ try{ county.value=""; hier.dist=null; state.value=o.st; state.onchange&&state.onchange(); bump(); await sleep(1800);
           if(typeof o.co==="string"&&o.co&&[...county.options].some(x=>x.value===o.co)){ county.value=o.co; county.onchange&&county.onchange(); bump(); await sleep(1200); }
+          await sleep(250); document.documentElement.classList.remove("rstc"); /* build 1581: thumbnails appear once, final */
           const g=document.getElementById("gq"); if(g){ const lbl=o.co?o.co+", "+(ABBR[o.st]||o.st):o.st; g.placeholder=lbl; g.title=lbl; try{ nameLock=lbl; }catch(e){} window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; } }catch(e){} }
       bump();
       /* build 1561: bar belongs to plural lists -> a saved bar list gets its chart back after the list is re-entered (below) */
@@ -3853,10 +3858,10 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(typeof o.la==="string"&&o.vw==="list"){ try{ const lv=level(); if(lv&&lv.id===o.la){ await enter(); } else if(o.la==="precincts"&&o.lap&&lv){ /* build 1580 (QA-050): reopen the town's precinct list (town list, then the town row) */ await enter(); let r=null; for(let i=0;i<30&&!r;i++){ r=[...document.querySelectorAll("#listView .lvrow.la")].find(x=>x.__a&&String(aname(x.__a))===o.lap); if(!r) await sleep(200); } if(r) window.__laPick(r.__a); } }catch(e){} }
       if(o.ch==="bar"&&typeof o.la==="string"){ for(let i=0;i<10&&!LA.on;i++) await sleep(300); if(LA.on&&window.chartMode!=="bar") await applyCh(); }
       if(Array.isArray(o.ll)&&o.ll.length===3&&o.ll.every(x=>typeof x==="number"&&isFinite(x))&&Math.abs(o.ll[0])<=85&&Math.abs(o.ll[1])<=180&&o.ll[2]>=1&&o.ll[2]<=19&&o.vw!=="list"){ bump(); try{ map.setView([o.ll[0],o.ll[1]],o.ll[2],{animate:false}); }catch(e){} bump(); }
-    }catch(e){ try{ console.warn("state restore",e); }catch(_){} } await sleep(600); window.__selAt=Date.now(); restoring=false; last=""; save(); }
+    }catch(e){ try{ console.warn("state restore",e); }catch(_){} } document.documentElement.classList.remove("rstc"); await sleep(600); window.__selAt=Date.now(); restoring=false; last=""; save(); }
     window.__stateApply=apply; window.__stateRestoring=()=>restoring;
     const init=async()=>{ let o=null; try{ const m=/[#&]s=([^&]+)/.exec(location.hash); if(m) o=dec(m[1]); }catch(e){} if(!o){ try{ const j=localStorage.getItem(KEY); if(j) o=JSON.parse(j); }catch(e){} }
-      await sleep(1800); if(o&&typeof o==="object"&&Object.keys(o).filter(k=>k!=="v"&&k!=="ll").length) await apply(o); else { restoring=false; } };
+      await sleep(1800); if(o&&typeof o==="object"&&Object.keys(o).filter(k=>k!=="v"&&k!=="ll").length) await apply(o); else { restoring=false; document.documentElement.classList.remove("rstc"); } };
     if(document.readyState==="complete") init(); else addEventListener("load",init);
   // ===== district-type group is data-driven per country context: US = school, state house, state senate, US House; other countries/contexts = none for now (add a key to extend). Non-US context hides the group (slot kept: no layout jump) and resets any selected district layer to the default =====
   { const DT=["ushouse","senate","statehouse","schools"]; window.DISTRICT_TYPES_BY_COUNTRY=window.DISTRICT_TYPES_BY_COUNTRY||{us:["schools","statehouse","senate","ushouse"]}; // other countries: no entry = no district types yet
