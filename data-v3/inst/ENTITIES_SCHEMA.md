@@ -36,6 +36,9 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 28 | `inception_precision` | `day`, `month`, `year` | precision of `inception`: the bot writes P571 at its Wikidata precision (`YYYY` / `YYYY-MM` / `YYYY-MM-DD`), so it is read from that string's form; empty when `inception` is empty |
 | 29 | `inception_source` | `Wikidata Q244 P571, reference: …` | the bot's `valid_from_source` for that value (`Wikidata <QID> P571, reference: <P248 item or P854 URL>`) |
 | 30 | `valid_from_source` | `Governments bot tceq_wdd:101792: tceq_wdd (https://www14.tceq.texas.gov/…)` | where `valid_from` came from: the bot row id, its source key(s), source URL and the row's note (TCEQ WDD creation date; Census GCN incorporation date). Filled on every row with a `valid_from` (checked by the builder) |
+| 31 | `code_scheme` | `gss`, `ars`, `insee_com`, `insee_ctcd`, `insee_reg`, `siren` | country layers (gb/de/fr) only: the official code system of `code` |
+| 32 | `code` | `E04000001`, `091620000000`, `75056`, `971D` | country layers only: the unit's **current** official code. The `entity_id` keeps the code it had when it was minted and does not follow a later recode; the bot's feed id (`gss:` / `de-ars:` / `fr-cog:<level>:` / `fr-siren:`) is in `entity_feed_map.csv` |
+| 33 | `code_valid_from` | `2009-01-01`, `2008-12-31` | country layers only: the date the **code** (not the government) took effect: UK ONS RGC operative date (2009-01-01 = the GSS recoding), DE BKG VG250 `WSK` (Rechtsstand, date of the last legal/territorial change). Never copied to `valid_from` |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -115,9 +118,70 @@ Other countries' first-level ISO 3166-2 subdivisions, from the Governments bot f
 ## entity_relations.csv
 `entity_id, relation, related_entity_id, method, note, source_id` (approved by Full Stack, Oct 18). relation: `parent`
 (minted courts, foreign territories / subdivisions, special districts), `consolidated_with`, `in_county` (special district →
-its county). `method` (how the link was made) ∈ `sourced` (a source states it) | `overlay` (area overlap of boundaries) |
+its county), `area` (a council → the area entity it governs, when council and area are separate rows: FR région councils →
+`subdivision:fr-*`, Guadeloupe / Réunion councils → `territory:gp` / `territory:re`), `predecessor` (entity → the entity it
+replaced, `method` sourced; from the Governments bot's official link tables: UK ONS Code History Database `Changes`
+(note `ons_chd`), FR COG mouvements (note `insee_cog_mouvements`), DE BKG VG250 editions (note `bkg_vg250_editions`). The
+related entity is an ended one, except an FR commune created / re-established by splitting off a commune that still exists
+(note suffix `;split_from_current`); a link between two current governments otherwise is a boundary transfer, not a
+relation. A sourced `valid_from` with no link gets the flag `predecessor_none_in_source`; links the feed pruned or cleared
+are never flagged `predecessor_pending`). The country layers write no `parent` rows (their `parent_id` column carries the link). `method` (how the link was made) ∈ `sourced` (a source states it) | `overlay` (area overlap of boundaries) |
 `point_in_polygon` (a point inside a boundary; an estimate) | `manual`; `note` holds the detail (e.g.
 `tceq_wdd_primary_county`). Every current row is `sourced` (parent, consolidated_with and in_county all come from a cited source); the builder rejects any other value.
+
+## Country layers: UK, Germany, France (Full Stack, Oct 18; applied)
+
+From the Governments bot `foreign/gb|de|fr/` (units*.csv + code_xwalk.csv, pinned commit, one sources.csv row per file
+with sha256); tools/inst_foreign_local.py.
+- **id** `<kind>:<cc>-<code at minting>`, lowercase, **frozen**: `municipality:de-091620000000`, `municipality:fr-75056`,
+  `county:fr-01` (the département code; `county:fr-69m`, `county:fr-6ae` for the CTCD-coded collectivities),
+  `submunicipal:fr-comd-77316` (FR sub-municipal ids carry the level: 584 communes déléguées share their commune's code),
+  `intermunicipal:fr-<siren>`, `regional_authority:fr-<INSEE région code>`, `local_authority:gb-<gss>`, `parish:gb-<gss>`.
+  A later recode changes `code`, never the id; a new government is a new id with a `predecessor` relation.
+- **feed ids** `gss:<code>`, `de-ars:<12 digits>`, `fr-cog:<reg|dep|ctcd|com|comd|coma|arm>:<code>`, `fr-siren:<siren>` live
+  only in `entity_feed_map.csv` (status mapped; Regierungsbezirke and erfüllende Gemeinde rows feed_only). Crosswalk codes
+  are feed-map rows too: `gss:`, `de-ars:`, `iso3166:`, `insee_dep:`, `insee_reg:`, `insee_ctcd:`, `insee_comer:`,
+  `fr-siren:` (a commune's / département's SIREN = `fr-siren:` row, note `alt_code`). One code may map to two bodies
+  that each govern part of the area (`insee_dep:69` → Métropole de Lyon and the Rhône council); that is the only feed id
+  with two rows.
+- **kinds** (new: `regional_authority`, `local_authority`, `intermunicipal`, `submunicipal`, `parish`):
+
+  | kind | gov_status | GB | DE | FR |
+  |---|---|---|---|---|
+  | `regional_authority` | government | GLA, 15 combined authorities | – | région councils (13 mainland incl. Collectivité de Corse; Guadeloupe, Réunion: the bot's units, parent the territory) |
+  | `county` | government | 21 county councils | Landkreise / Kreise | 91 conseils départementaux, Métropole de Lyon, CEA, Guadeloupe / Réunion département councils (bot units `fr-cog:dep:971/974`) |
+  | `local_authority` | government | 361 LAs (unitary, districts, boroughs, Welsh principal councils, Scottish council areas, NI districts) | – | – |
+  | `intermunicipal` | FR government (EPCI à fiscalité propre / EPT: councils); DE empty + `gov_status_unknown:council_not_in_feed` + gap `intermunicipal_council_unknown` (the feed gives the designation only) | – | Ämter, Verbandsgemeinden, Samtgemeinden, Verwaltungsgemeinschaften, Verwaltungsverbände | EPCI, EPT |
+  | `municipality` | government | – | Gemeinden / Städte; kreisfreie Städte and Stadtkreise with flag `county_powers` | communes; Ville de Paris (flag `county_powers`) |
+  | `submunicipal` | dependent | – | – | communes déléguées / associées, arrondissements municipaux |
+  | `parish` | empty + flag `council_status_unknown` | civil parishes, Welsh communities | – | – |
+
+  `administrative` (a body without an elected council) is in the vocabulary for intermunicipal rows but unused: no feed field
+  says so. Regierungsbezirke and erfüllende Gemeinde rows are not minted: Kreise get their Land as parent, Gemeinden under an
+  erfüllende Gemeinde its Kreis. `level` regional_authority subnational, county county, all others local.
+- **areas**: council and area are separate rows where both exist. FR région areas stay `subdivision:<iso>` (no units);
+  `territory:gp` / `territory:re` stay the areas (Q17012 / Q17070) with the département and région councils as children
+  (the bot's mapping is overridden in the builder and logged as `govbot_mapping_overridden`). These areas and
+  `subdivision:gb-eng` are `gov_status` area_only. England's councils sit under `nation:gb`. French Guiana, Martinique and
+  Mayotte (single collectivities) keep the bot's mapping to their `territory:` rows (pending a ruling).
+- **dates**: FR establishment dates (INSEE mouvements) → `valid_from` + `valid_from_source` (flag
+  `predecessor_none_in_source` when the COG has no predecessor); UK / DE code dates → `code_valid_from`. Dates the feed
+  clears (history cutoff) are cleared here too; ids the feed prunes are never minted.
+- **history** (terminated codes, `is_active` N in the feed, ended on or after the feed's HISTORY_CUTOFF 2016-01-01; UK ONS
+  RGC/CHD, FR COG, DE BKG VG250 2025/2026 editions):
+  - code change of the same government → not minted; the old feed id is an `entity_feed_map` row to the current entity,
+    note `code_history:terminated_<date>;current=<feed id>`. UK: an official successor with the same name and subtype
+    (followed through terminated successors); FR: COG mouvement 41 (département change) or 50 (chef-lieu transfer); DE:
+    a single successor with the same name (name or alt_name; e.g. Hanau becoming kreisfrei);
+  - a distinct government that ended → minted (same id pattern, the code it had) with `valid_to` = the code's end date (RGC
+    TERM_DATE / COG end of period) and flag `is_active_false:code_terminated`; UK: successor(s) of another name or a split,
+    or no link and no current unit of the same name under the same parent; FR: every other mouvement (30 suppression, 31 / 33 fusion, 32 commune nouvelle); DE: a merger or no link;
+  - no link but a current same-name unit under the same parent → `feed_only`, gap `code_terminated_unresolved` (not decided);
+  - an ended GB row whose parent is outside the table gets the bot's own fallback (devolved government row by the GSS
+    country letter, else `nation:gb`).
+- **lean rows**: empty optional fields stay empty; no `source_record_id` (the feed id is in entity_feed_map), no
+  `outside_v2_scope` flag and no `parent` relation rows; `alias` = Welsh name (UK) or VG250 short name (DE) where it differs.
+  Images: none (the bot has no images for these units).
 
 ## Kind `court` (approved by Full Stack, Oct 18; applied)
 

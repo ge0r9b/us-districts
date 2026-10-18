@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "632810a877ef6ca9040fefecccddeb01eff62643",
+  "repo_head": "f0f1f6de52e18b829696ece1e70327a187667215",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -29,7 +29,7 @@
    "places_2024.geojson.gz": "a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182"
   }
  },
- "entities": 58219,
+ "entities": 122329,
  "by_kind": {
   "nation": 196,
   "state": 51,
@@ -39,8 +39,13 @@
   "dc_council": 1,
   "court": 37,
   "subdivision": 3480,
-  "county": 3080,
-  "municipality": 19525,
+  "regional_authority": 32,
+  "county": 3496,
+  "local_authority": 403,
+  "intermunicipal": 2428,
+  "municipality": 66245,
+  "submunicipal": 2621,
+  "parish": 11490,
   "township": 18076,
   "school_unified": 10872,
   "school_elementary": 1952,
@@ -51,14 +56,19 @@
   "chamber|": 101,
   "county|": 1,
   "county|area_only": 43,
-  "county|government": 3036,
+  "county|government": 3452,
   "court|": 37,
   "dc_council|": 1,
+  "intermunicipal|": 1165,
+  "intermunicipal|government": 1263,
+  "local_authority|government": 403,
   "municipality|": 33,
   "municipality|area_only": 28,
-  "municipality|government": 19464,
+  "municipality|government": 66184,
   "nation|government": 196,
+  "parish|": 11490,
   "province|": 10,
+  "regional_authority|government": 32,
   "school_elementary|": 115,
   "school_elementary|dependent": 132,
   "school_elementary|government": 1705,
@@ -70,8 +80,11 @@
   "school_unified|government": 9877,
   "special_district|government": 305,
   "state|government": 51,
-  "subdivision|": 3480,
-  "territory|": 52,
+  "subdivision|": 3466,
+  "subdivision|area_only": 14,
+  "submunicipal|dependent": 2621,
+  "territory|": 50,
+  "territory|area_only": 2,
   "township|": 24,
   "township|area_only": 272,
   "township|dependent": 1603,
@@ -195,6 +208,8 @@
   "nation_not_un_member": 2,
   "not_in_source_list": 2,
   "image_entity_unmapped": 44,
+  "code_terminated_unresolved": 4,
+  "intermunicipal_council_unknown": 1165,
   "govbot_ceased_partial": 1,
   "govbot_new_unit_not_in_registry": 13,
   "special_district_county_unknown": 14,
@@ -213,12 +228,12 @@
   "bot_school_rows_with_leaid": 13205,
   "bot_leaids_not_a_tiger2024_school_entity": 274
  },
- "governments_ref": "bb5e3423c5897be09aa5d9442890b812cc10971c",
+ "governments_ref": "bd0ce1a98874f74acca1f806ead45c033f2aad80",
  "foreign": {
   "carried_constituent_qid": 2,
-  "carried_inception": 173,
-  "carried_inception_precision": 173,
-  "carried_inception_source": 173,
+  "carried_inception": 4,
+  "carried_inception_precision": 4,
+  "carried_inception_source": 4,
   "feed_only_parent_review": 22,
   "feed_only_review_status": 2,
   "feed_rows": 3836,
@@ -233,13 +248,13 @@
   "minted|territory": 35,
   "qid_carried_minted": 3409,
   "relations_parent": 3515,
-  "ref": "bb5e3423c5897be09aa5d9442890b812cc10971c",
+  "ref": "bd0ce1a98874f74acca1f806ead45c033f2aad80",
   "files": {
-   "foreign/dependencies.csv": "b154a74f3527f475c4857a357465c5dd07c6dddf5e5e886f8ac109009a95f6a4",
+   "foreign/dependencies.csv": "05124af0601757907b3be4b885ad9135a1ad25fa1961d9dd2670d37dbcde4567",
    "foreign/iso_domestic_crosswalk.csv": "f970df22bd678bdb4ea0c3bf920ab49894b5e11899c834e9a058d73299c79aa2",
-   "foreign/nations.csv": "e5a6858ce7315268eeec6c6c8fdb9a9d72272c68576ecd132dbf3ed50f7af3b4",
-   "foreign/subdivisions.csv": "dee0fbacbea5776acb48783b78437878ed4d1b9f34beab36d914fb9949193dbc",
-   "images.csv": "c164094696a4390a4667617bbfb4af77c727d05070c64c408c684c3526a981d4"
+   "foreign/nations.csv": "8cd09986d50fbb55275c55a7a0e4b120a0af52e9bf6623779127d2bfb7b485c7",
+   "foreign/subdivisions.csv": "ce969f01e50d62dcb33483f37dcbf93aeb064b0f0fca71da6bc17b205ba77ca1",
+   "images.csv": "dbb4a3d497d1aeb411cc79007737ccec141a89f64cabb4bb5fbbc194ba244d00"
   },
   "review_status": [
    "nation:eh",
@@ -272,19 +287,177 @@
   "county|sourced": 291,
   "minted": 305
  },
+ "country_layers": {
+  "feed_id_area_only_shadowed": 2,
+  "feed_id_two_targets": 1,
+  "feed_only|erfuellende_gemeinde": 38,
+  "feed_only|regierungsbezirk": 19,
+  "feed_rows": 100377,
+  "feed_rows_deduped": 1,
+  "history_cutoff": "2016-01-01",
+  "history|de|code_change": 3,
+  "history|de|ended_minted": 4,
+  "history|de|feed_only_kind": 1,
+  "history|fr|code_change": 5,
+  "history|fr|ended_minted": 1013,
+  "history|gb|code_change": 853,
+  "history|gb|ended_minted": 198,
+  "history|gb|unresolved_feed_only": 4,
+  "mapped_existing": 2,
+  "minted|de|county": 294,
+  "minted|de|intermunicipal": 1165,
+  "minted|de|municipality": 10749,
+  "minted|fr|county": 95,
+  "minted|fr|intermunicipal": 1263,
+  "minted|fr|municipality": 35971,
+  "minted|fr|regional_authority": 15,
+  "minted|fr|submunicipal": 2621,
+  "minted|gb|county": 27,
+  "minted|gb|local_authority": 403,
+  "minted|gb|parish": 11490,
+  "minted|gb|regional_authority": 17,
+  "parent_from_gss_country_letter": 9,
+  "parent_not_resolvable_empty": 1,
+  "predecessor_link_not_ended_skipped": 916,
+  "predecessor_link_unresolved": 1,
+  "predecessor_none_in_source": 2,
+  "predecessor_split_from_current": 9,
+  "pruned_already_minted_by_us": 0,
+  "pruned_registry_ids": 5571,
+  "qid_carried": 57721,
+  "relations_area": 17,
+  "relations_predecessor": 1272,
+  "reparented_past_feed_only|erfuellende_gemeinde": 127,
+  "reparented_past_feed_only|regierungsbezirk": 220,
+  "set_area_only": 16,
+  "successor_link_not_ended_skipped": 595,
+  "successor_link_unresolved": 1,
+  "valid_from": 821,
+  "valid_from_at_cutoff_links_pruned": 274,
+  "valid_from_with_predecessor": 545,
+  "ref": "bd0ce1a98874f74acca1f806ead45c033f2aad80",
+  "workarounds": [
+   {
+    "workaround": "fr-cog:com:97701->territory:bl",
+    "outcome": "noop",
+    "detail": "bot code_xwalk maps it same_government and the row has no QID"
+   },
+   {
+    "workaround": "fr-cog:com:97801->territory:mf",
+    "outcome": "noop",
+    "detail": "bot code_xwalk maps it same_government and the row has no QID"
+   },
+   {
+    "workaround": "siren 215500398",
+    "outcome": "noop",
+    "detail": "on 1 of fr-cog:com:55039/fr-cog:com:55102"
+   },
+   {
+    "workaround": "siren 213100068",
+    "outcome": "noop",
+    "detail": "on 1 of fr-cog:com:31006/fr-cog:com:46002"
+   },
+   {
+    "workaround": "subdivision:gb-eng area_only",
+    "outcome": "noop",
+    "detail": "bot crosswalk relations: area_only;area_only"
+   },
+   {
+    "workaround": "territory:gp council split",
+    "outcome": "dropped",
+    "detail": "bot units fr-cog:dep:971 / fr-cog:reg:01 present, parent territory:gp"
+   },
+   {
+    "workaround": "territory:re council split",
+    "outcome": "dropped",
+    "detail": "bot units fr-cog:dep:974 / fr-cog:reg:04 present, parent territory:re"
+   }
+  ],
+  "pruned_already_minted": [],
+  "files": {
+   "de/code_xwalk.csv": "57d1c8d72060e782f7759286ac8e5e9b8a0f23208e05ccada347d4e659fddfe7",
+   "de/units.csv": "d0f457d9f1fb18cbe3e197ce53dbbd66e1b2f4afe0f49e3f18f740c1c6f8be24",
+   "fr/code_xwalk.csv": "833829be12edb07d3f7ed567ec1a7e4dc4ed18a5707aa937977ccc466deeaa71",
+   "fr/units_communes_01.csv": "5803bc5f747d2efef983cec1f5f835c7a10bfcb8b75b784750d4a1b010c364e3",
+   "fr/units_communes_02.csv": "0e54a539d7594f38e4d3ea2b3de47f7d749accd7904ae0e52758b7010f91f06f",
+   "fr/units_communes_03.csv": "3d4e7b2fff3f167e7b2b8764a0012b52faa0cda7cbf618625541c30f9b86e160",
+   "fr/units_communes_04.csv": "09014e75dcef519238b632ddf4d85883075dee5371c7e23585421e7d88fb432f",
+   "fr/units_communes_06.csv": "3b6b6e3afa74f0c6b78a9444a13b5d1a3538028bf922be611e2fed1753784b2c",
+   "fr/units_communes_11.csv": "9f1b6ed749a8b60f8868485bd6b964b6f3a5a91d9c47fa54902062cf5020d4c6",
+   "fr/units_communes_24.csv": "ff1032d1ee1d9400ecfb932eb279c1d3ee6fc395d43bfa0d976cf84e4bd5d2f9",
+   "fr/units_communes_27.csv": "b3682036685d1c3018e420cd2ba6031d7d70eef43d8242c8d1948c4474b969b5",
+   "fr/units_communes_28.csv": "eb357985c47254c4cac56cfb0905ca18931e7fcf078bf05c3e6975f388875c13",
+   "fr/units_communes_32.csv": "dbcd63e910a52012f160ecc5eff4f8d7237ae8c0a82bd35cffe75008fcb1ef27",
+   "fr/units_communes_44.csv": "e6d155112bfc83a3811a3c91f1a29e355a7f0daa8b3f688eb34e7e4ea0ff9ba2",
+   "fr/units_communes_52.csv": "68765c356f3190477e59d1392102eb2005ef4c1274cf755d1b4e209379100cf7",
+   "fr/units_communes_53.csv": "76d7d696515eb4190f8fab6d21c0ebc2d5ca392658236241b44dd6c7e91e4a55",
+   "fr/units_communes_75.csv": "d1cb655418797e01061ca1782955c0b94897faddc4a074405169a9427d29f3cc",
+   "fr/units_communes_76.csv": "7cd732cb43481be90bab1ef6c498a8d098ee2e52f56e8a09b590ee1df9db9ba1",
+   "fr/units_communes_84.csv": "edc5afcf988a95117b5d1a55ab740185ee3d42f4504b0b3f688d73449c69f5ca",
+   "fr/units_communes_93.csv": "8fd7143a95b9a76b52b6dd0f5798c5c7ab6f8b4f49ee07ad2bb1c1e2b678ebbe",
+   "fr/units_communes_94.csv": "fb95df7f5c5e54057107a451179d44c58a28ef562d6619e8ab9219815e884ae4",
+   "fr/units_communes_om.csv": "e88bdc54df49d9ac0fbd7b7537b4a36bde49d0f06e45e0b7c595eb6cad638ae3",
+   "fr/units_communes_terminated.csv": "9b1546eef11438e8c10567ee9cdcc298167bab5cdb3a7d022204ea36892bcc5f",
+   "fr/units_upper.csv": "d54609b2a4cabc097a48895699201d0866541fd68807c4ded3ed02ee09e39a18",
+   "gb/code_xwalk.csv": "16a43efa75a32fe210f400aa617c0707845ef4a8828f6e9fb3c76046a80d4b9d",
+   "gb/units.csv": "d80ddd4391b63d611ec4ac93aedad135fdb15d49cd9cd472737c6c4289e5df60"
+  },
+  "areas_set_area_only": [
+   "subdivision:gb-eng",
+   "subdivision:fr-20r",
+   "subdivision:fr-ara",
+   "subdivision:fr-bfc",
+   "subdivision:fr-bre",
+   "subdivision:fr-cvl",
+   "subdivision:fr-ges",
+   "subdivision:fr-hdf",
+   "subdivision:fr-idf",
+   "subdivision:fr-naq",
+   "subdivision:fr-nor",
+   "subdivision:fr-occ",
+   "subdivision:fr-pac",
+   "subdivision:fr-pdl",
+   "territory:gp",
+   "territory:re"
+  ],
+  "by_country_kind": {
+   "de|county": 294,
+   "de|intermunicipal": 1165,
+   "de|municipality": 10749,
+   "fr|county": 95,
+   "fr|intermunicipal": 1263,
+   "fr|municipality": 35971,
+   "fr|regional_authority": 15,
+   "fr|submunicipal": 2621,
+   "gb|county": 27,
+   "gb|local_authority": 403,
+   "gb|parish": 11490,
+   "gb|regional_authority": 17
+  },
+  "gov_status_by_kind": {
+   "de|county|government": 294,
+   "de|intermunicipal|unknown": 1165,
+   "de|municipality|government": 10749,
+   "fr|county|government": 95,
+   "fr|intermunicipal|government": 1263,
+   "fr|municipality|government": 35971,
+   "fr|regional_authority|government": 15,
+   "fr|submunicipal|dependent": 2621,
+   "gb|county|government": 27,
+   "gb|local_authority|government": 403,
+   "gb|parish|unknown": 11490,
+   "gb|regional_authority|government": 17
+  }
+ },
  "inception": {
-  "rows": 173,
+  "rows": 4,
   "by_precision": {
-   "day": 139,
-   "year": 34
+   "day": 4
   },
   "by_kind": {
-   "nation": 20,
-   "province": 2,
-   "subdivision": 146,
-   "territory": 5
+   "subdivision": 4
   },
-  "valid_from_rows": 321
+  "valid_from_rows": 1142
  },
  "images_attribution_filled": {
   "issuing_body_name:governments_bot_row": 1,
@@ -296,24 +469,26 @@
   "attribution|filled|commons_license|was_unknown": 268,
   "attribution|filled|commons_uploader": 25,
   "license|still_missing": 1,
-  "overrides_applied": 1,
+  "overrides_applied": 0,
   "source_url|filled": 4725,
   "switched_to_private": 1,
   "unknown_attribution_rows": 286,
   "cache_sha256": "824e61b2779d9652dd3435c9c6d72f585727495d2d4a1fcc1ee136e86f47270a"
  },
  "licence_url": {
-  "commons_licenseurl": 1315
+  "cc_canonical_deed": 1,
+  "commons_licenseurl": 1314
  },
  "image_overrides": [
   {
    "override": "province:ca-qc|seal",
-   "outcome": "applied",
-   "detail": "Coat of arms of Quebec (without crown).svg -> Coat of arms of Quebec.svg"
+   "outcome": "dropped",
+   "detail": "feed already points at Coat of arms of Quebec.svg; override no longer needed"
   }
  ],
  "licence_url_canonicalised": {
-  "form_only": 1077,
+  "already_canonical": 1,
+  "form_only": 1076,
   "scheme_http_to_https": 231
  },
  "images_fair_use_missing_field": {
@@ -327,8 +502,8 @@
   "source_url": 0
  },
  "feed_map_by_status": {
-  "feed_only": 40630,
-  "mapped": 55816,
+  "feed_only": 40691,
+  "mapped": 156132,
   "unmapped": 974
  },
  "images_by_public_role": {
@@ -337,6 +512,17 @@
   "no|seal": 4433,
   "yes|flag": 1782,
   "yes|seal": 3489
+ },
+ "governments_id_registry": {
+  "files": [
+   "id_registry/de.csv",
+   "id_registry/foreign.csv",
+   "id_registry/fr.csv",
+   "id_registry/gb.csv",
+   "id_registry/us.csv"
+  ],
+  "rows": 167931,
+  "domestic_rows": 93584
  },
  "governments_feed": {
   "ceased_applied": 24,
@@ -368,19 +554,19 @@
   "unmapped|tribe": 577,
   "wikidata_duplicates_blanked": 0
  },
- "feed_map_rows": 97420,
+ "feed_map_rows": 197797,
  "images_rows": 9846,
- "wikidata_filled": 42249,
- "sources": 112,
- "sources_used_here": 37,
+ "wikidata_filled": 99970,
+ "sources": 152,
+ "sources_used_here": 74,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 141,
+ "source_urls": 181,
  "source_record_id_filled": {
   "entities": 58116,
   "xwalk": 58591
  },
  "feed_values": {
-  "governments-bot": 3821,
+  "governments-bot": 67931,
   "inst-lane": 356,
   "tiger/cog": 54042
  },
@@ -444,9 +630,11 @@
    "WV_SC"
   ],
   "relations": {
+   "area": 17,
    "consolidated_with": 5,
    "in_county": 291,
-   "parent": 3857
+   "parent": 3857,
+   "predecessor": 1272
   },
   "entities_without_body": []
  },

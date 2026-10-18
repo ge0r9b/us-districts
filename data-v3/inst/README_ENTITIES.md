@@ -50,7 +50,9 @@ Status and QIDs come only from Wikidata (current statements: rank not deprecated
 ## Governments bot foreign layer (tools/inst_foreign.py, `--foreign-ref`)
 Read only from `data-v3/institutions/governments/foreign/` (nations.csv, dependencies.csv, subdivisions.csv,
 iso_domestic_crosswalk.csv) plus the foreign rows of its `images.csv`, at the pinned commit. Every file has its sha256 and
-the commit in sources.csv. The domestic feed is read with `--gov-ref`; both refs pin the same commit (bb5e342).
+the commit in sources.csv. The domestic feed is read with `--gov-ref`; both refs pin the same commit (bd0ce1a; the
+nations / dependencies / subdivisions differ from bb5e342 only in `retrieved_at`; the bot's frozen-id registry is read
+from `id_registry/<scope>.csv` since b198633, rows unchanged).
 - **Ids already in the registry are mapped, never renamed.** That covers the 194 shared nations, the 9 foreign territories
   we had, and Canada's province/territory rows. A parent disagreement → `govbot_foreign_parent_differs`. A QID is carried
   only into an empty `wikidata`; a different QID → `wikidata_qid_conflict` (registry kept). A QID already held by another
@@ -81,6 +83,26 @@ the commit in sources.csv. The domestic feed is read with `--gov-ref`; both refs
   - `public` = yes only for free licences (fair-use rows stay hidden);
   - `icon` = yes on at most one public image per entity: a nation's flag, or a seal for every government below the
     sovereign level. There is no flag fallback below nation level and logos are never icons.
+
+## Governments bot country layers: UK, Germany, France (tools/inst_foreign_local.py, `--foreign-ref`)
+Read only from `foreign/gb/`, `foreign/de/`, `foreign/fr/` (units*.csv, code_xwalk.csv) at the same pinned commit;
+every file has its own sources.csv row with sha256, and each row also cites the bot's upstream source ids from its
+`source` column (ons_rgc, destatis_rs, bkg_vg250, insee_cog2026, insee_epci2026, ign_adminexpress, wikidata_foreign, ...).
+See ENTITIES_SCHEMA.md "Country layers" for ids, kinds, gov_status and history. Feed-defect workarounds are self-checking
+and logged in entities_summary.json `country_layers.workarounds`; at bd0ce1a all are no-ops: Saint-Barthélemy /
+Saint-Martin communes map to `territory:bl` / `territory:mf` through the bot's own crosswalk (no QID on the commune rows);
+commune SIRENs come from the DGCL table, so 215500398 / 213100068 are each on one commune; GB-ENG is area_only in the bot's
+crosswalk. GP/RE:
+- Guadeloupe / Réunion (ruling Oct 18): self-checking too; since 310086f the bot emits the département and région
+  councils as units under the area (territory:gp / re, area_only), so the override logs `dropped`; the councils get an
+  `area` relation, and the area_only crosswalk rows for codes the council also holds are dropped from the feed map.
+- wikidata: carried only when no other entity holds the QID (else `wikidata_qid_conflict`); none conflicted.
+- History follows the feed's HISTORY_CUTOFF (2016-01-01, read from the bot's scripts/common.py): rows ended before it are
+  not in the feed and their ids are pruned in the bot's registry (`pruned` column) -> never minted here (the builder
+  asserts no minted id equals one derived from a pruned id); dates the feed clears (valid_from, P571 inceptions) are
+  cleared here too; communes nouvelles created on the cutoff date whose predecessors were pruned carry no flag (not
+  `predecessor_pending`). DE history is limited upstream to the 2026 VG250 change; no DE row carries a `valid_from`.
+Not carried (pending a ruling): the bot's `member_of` (UK combined authority, FR EPCI / EPT membership; 34,983 rows).
 
 ## Governments bot feed (tools/inst_govfeed.py)
 `entity_feed_map.csv` (`feed, feed_id, entity_id` (empty when not mapped), `status` = mapped / feed_only / unmapped, `note`
@@ -301,6 +323,13 @@ entities.csv like this:
 | `not_un_member(wikidata_P463)`, `not_sovereign_state(wikidata_P31)`, `sovereign_via_wikidata_<P17/P361/P300>:<QIDs>`, `wikidata_p297_item_is_home_part:<QID>(...)` | world rows: Wikidata status used (see World institutions) |
 | `outside_v2_scope:no_unit_no_boundary_set` | world row: no xwalk unit, no boundary_set (SCHEMA 62cb622) |
 | `gov_status_unknown:outside_cog2022_scope` | foreign territory / Canadian province or territory: no CoG-type government status source |
+| `council_status_unknown` | UK civil parish / Welsh community: the register does not say whether it has an elected council or only a parish meeting; `gov_status` empty |
+| `gov_status_unknown:council_not_in_feed` | DE Gemeindeverband: the feed gives its designation only, not whether it has a council; `gov_status` empty, gap `intermunicipal_council_unknown` |
+| `county_powers` | a municipality that also carries county / département powers (DE kreisfreie Stadt / Stadtkreis, Ville de Paris) or a région council governing départements (Collectivité de Corse) |
+| `is_active_false:code_terminated` | country layers: a distinct government that ended (terminated code, not a code change); `valid_to` = the code's end date |
+| `predecessor_none_in_source` | the row has a sourced `valid_from` (FR creation / commune nouvelle) and the COG lists no predecessor (e.g. DOM communes 1946, Mayotte 2011) |
+| `predecessor_pending` | reserved: a sourced `valid_from` whose predecessor the feed does not carry yet; not used (pruned / cleared links are never pending; no DE row has a `valid_from`) |
+| `epci_spans_regions`, `no_epci`, `qid_is_shared_area_item:<QID>`, `cauth_from_district_lookup`, `not_in_vg250`, `verband_not_in_vg250`, `kreisfrei_from_ars_structure`, `no_member_in_destatis_<date>` | carried from the Governments bot country layers (see its SCHEMA.md) |
 | `is_active_false:governments_bot_<ids>` | the Governments bot marks the unit ceased (changes_since_cog2022.csv); `valid_to` set |
 | `xwalk_partial_overlap`, `county_share_unmeasured`, `multiple_cog_units`, `officeholder_entity_id_alias`, `officeholder_entity_id_missing`, `name_missing`, `no_geoid_in_gazetteer`, `no_tiger_geoid`, `county_area_governed_by_cog_municipal_unit` | defined by the builder; no row of the current build carries them |
 
@@ -313,17 +342,21 @@ entities.csv like this:
 Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
 `govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
 `wikidata_qid_conflict`, `wikidata_qid_duplicate`, `image_entity_unmapped`, `image_fair_use_inconsistent`;
-source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; foreign layer: `govbot_foreign_parent_differs`, `govbot_foreign_parent_missing`, `govbot_foreign_attr_differs`; special districts: `special_district_county_unknown`; images: `image_attribution_missing`.
+source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; foreign layer: `govbot_foreign_parent_differs`, `govbot_foreign_parent_missing`, `govbot_foreign_attr_differs`; special districts: `special_district_county_unknown`; images: `image_attribution_missing`; country layers:
+`intermunicipal_council_unknown`, `govbot_mapping_overridden`, `code_terminated_unresolved`; defined for the feed-defect
+workarounds (none at bd0ce1a): `govbot_unit_duplicates_registry`, `siren_bad_join`, `govbot_xwalk_relation_overridden`.
 `feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
-Counts in the current build (58,219 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
-court 37, subdivision 3,480, county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary
-1,952, school_secondary 481, special_district 305; 712 gap rows; 97,420 feed-map rows (feed_only 40,630, mapped 55,816, unmapped 974); 9,846 images
+Counts in the current build (122,329 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
+court 37, subdivision 3,480, county 3,496, municipality 66,245, township 18,076, school_unified 10,872, school_elementary
+1,952, school_secondary 481, special_district 305, regional_authority 32, local_authority 403, intermunicipal 2,428,
+submunicipal 2,621, parish 11,490; country layers GB 11,937 / DE 12,208 / FR 39,965, of them 1,215 ended
+(is_active_false:code_terminated); 1,881 gap rows; 197,797 feed-map rows (feed_only 40,691, mapped 156,132, unmapped 974); 9,846 images
 (no|flag 1, no|logo 141, no|seal 4,433, yes|flag 1,782, yes|seal 3,489 as public|role; 3,381 icons; licence_url on 1,315 rows (all from Commons
 LicenseUrl); Commons backfill: source_url 4,725; attribution: 385 commons_license (PD 381 incl. 268 Unknown, CC0 2,
-Copyrighted free use 2), 25 commons_uploader, 18 Commons Credit for an Unknown author; Quebec arms replaced by
-Coat of arms of Quebec.svg; 1 free row private: subdivision:jp-34 flag, no determinable licence); 4,153 relations (parent 3,857, in_county 291, consolidated_with 5); 198 body_entity rows, 0 body_key
+Copyrighted free use 2), 25 commons_uploader, 18 Commons Credit for an Unknown author; Quebec arms: the feed now carries
+Coat of arms of Quebec.svg (override dropped); 1 free row private: subdivision:jp-34 flag, no determinable licence); 5,442 relations (parent 3,857, predecessor 1,272, in_county 291, area 17, consolidated_with 5); 198 body_entity rows, 0 body_key
 gaps; wikidata on 42,249 entities; valid_from on 321 entities (305 special districts:
 TCEQ creation date; 16 new units: incorporation dates; valid_from_source on all 321); inception on 173 (day 139, year 34), all foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before the first `:`:
 `outside_v2_scope:no_unit_no_boundary_set` 4,037; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;

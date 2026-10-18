@@ -27,8 +27,13 @@ def load(R, sha):
         for r in _csv(R, sha, f): r['_file'] = f; rows.append(r)
     # the foreign layer (foreign/*.csv and the images of foreign ids, territory:74 included) is read by tools/inst_foreign.py
     import inst_foreign
-    dom = lambda i: not (inst_foreign.is_foreign_id(i) or i == 'territory:74')
-    return {'rows': rows, 'registry': [x for x in _csv(R, sha, 'id_registry.csv') if dom(x['entity_id'])], 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
+    import inst_foreign_local   # country layers (gss:, de-ars:, fr-cog:, fr-siren:) are read by tools/inst_foreign_local.py
+    dom = lambda i: not (inst_foreign.is_foreign_id(i) or i == 'territory:74' or inst_foreign_local.is_feed_id(i))
+    # frozen-id registry: id_registry.csv until b198633, then id_registry/<scope>.csv (us, foreign, gb, de, fr; rows unchanged), read as one
+    regf = subprocess.run(['git', '-C', R, 'ls-tree', '--name-only', sha, P + 'id_registry/'], capture_output=True, text=True, check=True).stdout.split()
+    reg = [x for f in sorted(regf) for x in _csv(R, sha, f[len(P):])] if regf else _csv(R, sha, 'id_registry.csv')
+    assert len({x['source_key'] for x in reg}) == len(reg), 'id_registry source_key not unique'
+    return {'rows': rows, 'registry': [x for x in reg if dom(x['entity_id'])], 'registry_files': [f[len(P):] for f in sorted(regf)] or ['id_registry.csv'], 'registry_rows_all': len(reg), 'changes': _csv(R, sha, 'changes_since_cog2022.csv'),
             'images': [x for x in _csv(R, sha, 'images.csv') if dom(x['entity_id'])], 'images_gaps': _csv(R, sha, 'images_gaps.csv'), 'sources': _csv(R, sha, 'sources.csv')}
 
 # special districts (kind special_district, Full Stack Oct 18): id special_district:<st>-<source>-<source_id>, frozen.
