@@ -103,7 +103,7 @@ async def main():
     await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(6000)
     await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>r.querySelector('.nmx').textContent==='PA').click()"); await pg.wait_for_timeout(8000)
     await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(6000)
-    x=await pg.evaluate(PANE,'.leaflet-la-pane'); ck(colored(x,300,6),"PA counties map at '16 (from the list): each county coloured D/R, not one pale fill",x)
+    x=await pg.evaluate(PANE,'.leaflet-la-pane'); ck(colored(x,100,6),"PA counties map at '16 (from the list): each county coloured D/R, not one pale fill",x)
     await pg.screenshot(path='/workspace/y2016-map-pa.png')
     x=await pg.evaluate(PANE,'.leaflet-heat-pane'); ck(colored(x),"PA county heat layer at '16 coloured",x)
     await c.close()

@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181572";</script>
+<script>window.BUILD="202610181573";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -3355,6 +3355,13 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       h='<div class="cwideWrap">'+main+'</div>'; }
     if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn); if(pn.innerHTML!==h) pn.innerHTML=h; };
   const _rcX=renderCands; renderCands=function(){ const r=_rcX.apply(this,arguments); draw(); return r; };
+  /* build 1573: pie view = thumbnails only, stacked top-left in rank order (winner first); no names or numbers beside them. A tap shows the full name and value in the standard bubble */
+  { const css=document.createElement("style"); css.textContent="body.piethumbs #cands .cand .cw, body.piethumbs #cands .cand .cn, body.piethumbs #cands .cand .cs, body.piethumbs #cands .cand .cpt { display: none !important; } body.piethumbs #cands .cand { width: auto !important; min-width: 0 !important; }"; document.head.append(css);
+    const _rcQ=renderCands; renderCands=function(){ const r=_rcQ.apply(this,arguments); try{ const on=window.chartMode==="pie"&&document.body.classList.contains("listmode")&&!(window.__LA&&window.__LA.on)&&!!candBox.querySelector(".cpanel");
+        document.body.classList.toggle("piethumbs",on); if(on){ let a=null; try{ a=scopeArea(); }catch(e){}
+          candBox.querySelectorAll(".cand").forEach(b=>{ const yr=(b.title.match(/(2016|2020|2024)$/)||[])[1]; const c=yr&&CANDS[yr].find(c=>b.title.startsWith(c.full)); let t=c?c.full:b.title;
+            try{ const v=a&&scopeVals(a,yr); if(c&&v&&v.tot){ const n=c.ix?v.rep:v.dem; t+=" · "+(numMode==="pct"?(n/v.tot*100).toFixed(1)+"%":fmtN(n)); } }catch(e){}
+            b.setAttribute("aria-label",t); b.onclick=e=>{ e.stopPropagation(); showBub(b,2500); }; }); } }catch(e){} return r; }; }
   setInterval(draw,700); document.addEventListener("click",()=>setTimeout(draw,50),true); $("yslider").addEventListener("input",()=>setTimeout(()=>{ draw(); try{ renderCands(); }catch(e){} },30)); }
 // ===== zoom level-of-detail (no district type): a county filling the view or a close zoom shows its precincts; a state shows counties =====
 { const lod=()=>{ try{ if(natTypeOn()||!state.value||!heatOn||!plotting()) return; if(![...heatLevelSel.options].some(o=>o.value==="precinct")) return;
