@@ -1,0 +1,67 @@
+{
+ "current": {
+  "rows": 441,
+  "by_status": {
+   "serving": 439,
+   "vacant": 2
+  },
+  "by_join": {
+   "joined": 436,
+   "no_v3_unit": 5
+  },
+  "vacant": [
+   "FL20",
+   "TX23"
+  ],
+  "not_joined": [
+   "AQ00",
+   "GU00",
+   "MP00",
+   "PR00",
+   "VI00"
+  ]
+ },
+ "2024": {
+  "rows": 441,
+  "by_status": {
+   "elected": 440,
+   "vacant": 1
+  },
+  "by_join": {
+   "joined": 436,
+   "no_v3_unit": 5
+  },
+  "vacant": [
+   "FL01"
+  ],
+  "not_joined": [
+   "AQ00",
+   "GU00",
+   "MP00",
+   "PR00",
+   "VI00"
+  ]
+ },
+ "2020": {
+  "rows": 441,
+  "by_status": {
+   "elected": 439,
+   "vacant": 2
+  },
+  "by_join": {
+   "pending_geo_2020": 436,
+   "no_v3_unit": 5
+  },
+  "vacant": [
+   "LA05",
+   "NY22"
+  ],
+  "not_joined": [
+   "AQ00",
+   "GU00",
+   "MP00",
+   "PR00",
+   "VI00"
+  ]
+ }
+}
