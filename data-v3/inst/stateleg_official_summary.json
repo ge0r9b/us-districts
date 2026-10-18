@@ -168,22 +168,24 @@
    "official_vacancies": []
   },
   "Missouri": {
-   "source": "Missouri House of Representatives, member grid (2026)",
+   "source": "Missouri House of Representatives, member grid (2026); Missouri Senate senator list (party not listed there)",
    "chambers": [
-    "lower"
+    "lower",
+    "upper"
    ],
-   "official_records": 163,
-   "official_serving": 155,
-   "openstates_current_rows": 155,
-   "official_rows_written": 163,
-   "joined": 155,
+   "official_records": 196,
+   "official_serving": 188,
+   "openstates_current_rows": 188,
+   "official_rows_written": 196,
+   "joined": 188,
    "vacant_rows": 8,
    "floterial": 0,
    "no_v3_unit": 0,
-   "units_filled_official": 155,
-   "units_filled_openstates": 155,
+   "units_filled_official": 188,
+   "units_filled_openstates": 188,
    "units_newly_filled": [],
    "units_empty_official": [
+    "29010",
     "29029",
     "29095",
     "29099",
@@ -195,8 +197,8 @@
    ],
    "diffs": 0,
    "vintage_2024_check": {
-    "confirmed_current_roster": 155,
-    "not_in_official_roster": 7
+    "confirmed_current_roster": 188,
+    "not_in_official_roster": 8
    },
    "official_vacancies": [
     "lower 029",
@@ -872,16 +874,242 @@
     "confirmed_current_roster": 102
    },
    "official_vacancies": []
+  },
+  "Tennessee": {
+   "source": "Tennessee General Assembly legislator directory (114th GA)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 130,
+   "official_serving": 130,
+   "openstates_current_rows": 131,
+   "official_rows_written": 130,
+   "joined": 130,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 130,
+   "units_filled_openstates": 131,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "47031",
+    "47084"
+   ],
+   "diffs": 1,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 129,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": []
+  },
+  "Utah": {
+   "source": "Utah Legislature roster",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 104,
+   "official_serving": 103,
+   "openstates_current_rows": 103,
+   "official_rows_written": 103,
+   "joined": 103,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 103,
+   "units_filled_openstates": 103,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "49016"
+   ],
+   "diffs": 7,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 101,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": []
+  },
+  "Colorado": {
+   "source": "Colorado General Assembly legislator list",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 102,
+   "official_serving": 99,
+   "openstates_current_rows": 99,
+   "official_rows_written": 99,
+   "joined": 99,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 99,
+   "units_filled_openstates": 99,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "08032"
+   ],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 94,
+    "not_in_official_roster": 5
+   },
+   "official_vacancies": []
+  },
+  "Arizona": {
+   "source": "Arizona Legislature member rosters (57th Legislature)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 93,
+   "official_serving": 90,
+   "openstates_current_rows": 90,
+   "official_rows_written": 90,
+   "joined": 90,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 60,
+   "units_filled_openstates": 60,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 90
+   },
+   "official_vacancies": []
+  },
+  "Oregon": {
+   "source": "Oregon Legislature OData API, Legislators of session 2026R1",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 90,
+   "official_serving": 90,
+   "openstates_current_rows": 90,
+   "official_rows_written": 90,
+   "joined": 90,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 90,
+   "units_filled_openstates": 90,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 85,
+    "not_in_official_roster": 4
+   },
+   "official_vacancies": []
+  },
+  "Nevada": {
+   "source": "Nevada Legislature current Assembly and Senate lists",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 63,
+   "official_serving": 63,
+   "openstates_current_rows": 63,
+   "official_rows_written": 63,
+   "joined": 63,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 63,
+   "units_filled_openstates": 63,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 61,
+    "not_in_official_roster": 2
+   },
+   "official_vacancies": []
+  },
+  "Alaska": {
+   "source": "Alaska State Legislature House and Senate member pages (34th Legislature)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 60,
+   "official_serving": 60,
+   "openstates_current_rows": 60,
+   "official_rows_written": 60,
+   "joined": 60,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 60,
+   "units_filled_openstates": 60,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 56,
+    "not_in_official_roster": 2
+   },
+   "official_vacancies": []
+  },
+  "Nebraska": {
+   "source": "Nebraska Legislature senator list (nonpartisan; no party listed)",
+   "chambers": [
+    "upper"
+   ],
+   "official_records": 49,
+   "official_serving": 49,
+   "openstates_current_rows": 49,
+   "official_rows_written": 49,
+   "joined": 49,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 49,
+   "units_filled_openstates": 49,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 48,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "Illinois": {
+   "source": "Illinois General Assembly House and Senate member lists (104th GA)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 183,
+   "official_serving": 177,
+   "openstates_current_rows": 177,
+   "official_rows_written": 177,
+   "joined": 177,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 177,
+   "units_filled_openstates": 177,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 176
+   },
+   "official_vacancies": []
   }
  },
  "fallback_reasons": {
   "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box; the official alternative, the NY Senate Open Legislation API (legislation.nysenate.gov/api/3/members), returns 401 without an API key, and a key needs an account sign-up (not done)",
-  "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round",
   "Georgia/upper": "legis.ga.gov member pages are an Angular app; its member API (legis.ga.gov/api/members/list) returns 401 without the app's session token; no CSV/XML/PDF roster found",
   "Georgia/lower": "same as Georgia/upper",
   "Florida/lower": "myfloridahouse.gov returns a WAF 'Request Rejected' page to the box (a block; not routed around)",
-  "Illinois/upper": "ilga.gov returns 503 to the box on every member-list request this round (after supplying its missing TLS intermediate from the Mozilla CCADB list)",
-  "Illinois/lower": "same as Illinois/upper",
   "Indiana/upper": "iga.in.gov is a client-side app; the IGA data API requires a registered API key (not requested); no CSV/XML/PDF roster found",
   "Indiana/lower": "same as Indiana/upper",
   "Montana/upper": "api.legmt.gov/legislators/v1/legislators answers, but its 209 records do not give a consistent current roster (legislature tags 69/70 mixed with start/end dates; only 119 of 150 seats under the 69th tag; placeholder district 999), so it was not used",
@@ -890,9 +1118,17 @@
   "Alabama/upper": "alison.legislature.state.al.us member pages are a client-side app with no member data in the HTML; no CSV/XML/PDF roster found",
   "Alabama/lower": "same as Alabama/upper",
   "Virginia/upper": "lis.virginia.gov is a client-side app; legacylis.virginia.gov member pages (legp604 ...+mbr+H/S) answer 'document does not exist' for the 2026 session",
-  "Virginia/lower": "same as Virginia/upper"
+  "Virginia/lower": "same as Virginia/upper",
+  "Hawaii/upper": "capitol.hawaii.gov answers with a Cloudflare 'Attention Required' challenge (HTTP 403); a block, not routed around; no other official machine-readable roster found",
+  "Hawaii/lower": "same as Hawaii/upper",
+  "Delaware/upper": "legis.delaware.gov member lists are a client-side grid filled from the site's internal JSON; /json/House/GetRepresentatives and /json/Senate/GetSenators answer 'Page not found'; no CSV/XML/PDF roster found",
+  "Delaware/lower": "same as Delaware/upper",
+  "Rhode Island/upper": "rilegislature.gov member pages load the list client-side from SharePoint; no CSV/XML/PDF roster found (RIGeneralAssemblyMembers.xlsx 404)",
+  "Rhode Island/lower": "same as Rhode Island/upper",
+  "Wyoming/upper": "wyoleg.gov LsoService legislator API answers [] for 2025 and 2026; the site is a client-side app",
+  "Wyoming/lower": "same as Wyoming/upper"
  },
- "current_rows": 7320,
- "current_joined": 7270,
- "current_official_rows": 5043
+ "current_rows": 7319,
+ "current_joined": 7269,
+ "current_official_rows": 5937
 }

@@ -304,3 +304,67 @@ Totals for the current file after batch 4:
 - 5,043 rows come from official rosters and 2,277 from the OpenStates fallback.
 - 98 diffs.
 - `persons.csv` has 8,188 rows and 954 aliases.
+
+## Official rosters, batch 5 (2026-10-18): TN, UT, CO, AZ, OR, NV, AK, NE, MO Senate, IL
+
+| State | Source | Official serving | Diffs |
+|---|---|---|---|
+| TN | wapp.capitol.tn.gov LegislatorInfo directory, 114th GA | 130 | 1 |
+| UT | le.utah.gov roster | 103 | 7 (3 seats with different people; 1 not asserted) |
+| CO | leg.colorado.gov legislators | 99 | 2 not asserted (HD 32) |
+| AZ | azleg.gov member rosters, 57th Legislature | 90 | 0 |
+| OR | Oregon Legislature OData API, session 2026R1 | 90 | 0 |
+| NV | leg.state.nv.us current Assembly + Senate | 63 | 0 |
+| AK | akleg.gov House + Senate pages | 60 | 0 |
+| NE | nebraskalegislature.gov senator list (nonpartisan) | 49 | 0 |
+| MO Senate | senate.mo.gov senators | 33 | 0 |
+| IL | ilga.gov House + Senate member lists, 104th GA | 177 | 0 |
+
+Source notes:
+- **IL:** ilga.gov answered on retry. Its list includes former members, so it is handled as an undated session list. For example, Paul Jacobs is listed under both House 118 and Senate 59, and the tool keeps the person OpenStates lists as current.
+- **Undated session lists:** UT, CO and AZ are handled the same way.
+- **Name parsing:** "Last, Jr., First" is now parsed correctly.
+- **Party comparison:** "Not Affiliated" counts as Independent.
+
+### Final state of the swap
+
+Switched to official rosters: 41 states, 76 chambers. Both chambers in:
+
+AK, AR, AZ, CA, CO, CT, IA, ID, IL, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, NC, ND, NH, NJ, NM, NV, OH, OR, PA, SC, SD, TN, TX, UT, VT, WA, WI and WV.
+
+Also switched:
+- NE, its single chamber;
+- one chamber each in FL (Senate), NY (Assembly) and OK (House).
+
+Still on the OpenStates fallback, with reasons (`fallback_reasons` in `stateleg_official_summary.json`):
+- **AL, DE, GA, IN, MT, RI, VA, WY:** both chambers. There is no official machine-readable roster that can be fetched without the sites' internal app endpoints, keys or session tokens. MT is the exception: its API answers but is internally inconsistent.
+- **HI:** Cloudflare challenge.
+- **FL House:** WAF block.
+- **OK Senate:** Sucuri block.
+- **NY Senate:** Cloudflare, and the Open Legislation API needs a key.
+- None of these blocks was worked around.
+
+Current file, before and after:
+- **Before the swap (OpenStates only):** 7,323 rows, all serving, of which 7,266 joined.
+- **After:** 7,361 rows. 7,302 are serving, and 7,252 of those are joined, plus 48 NH floterial and 2 ME tribal rows. The other 59 rows are vacant.
+- **Official rows:** 5,937 now come from official rosters, 1,382 stay on the OpenStates fallback, and 42 are vacant rows the persons step added for units with no member in either source.
+
+The 2024 file has 7,384 rows: 7,348 serving at 2025-04-01 and 36 vacant. Its cross-check against the official rosters:
+- 3,387 confirmed in the current roster;
+- 2,431 confirmed in the session roster;
+- 5 confirmed by name only;
+- 142 not in the official roster, mostly people who have since left;
+- 1,383 still on the OpenStates fallback.
+
+`stateleg_official_diffs.csv` has 120 diffs:
+- 49 OpenStates members not in the official roster;
+- 31 people in the 2024 file not in the session roster;
+- 23 official members sitting in a different unit from OpenStates;
+- 9 not asserted (an undated session roster lists someone in a unit where OpenStates has nobody current);
+- 7 party differences;
+- 1 official member in a unit OpenStates leaves empty.
+
+`persons.csv` has 8,185 rows:
+- 601 bioguide, 7,572 ocd-person, 9 vt-leg, 1 tx-leg, 1 ok-leg and 1 la-leg;
+- 957 aliases, spread over 947 persons;
+- 0 state legislators are bioguide-canonical.
