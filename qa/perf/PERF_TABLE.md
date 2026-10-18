@@ -16,7 +16,11 @@ Box is shared and was loaded (load avg 3-5) so treat single numbers as +/-30%.
 | 1575 (7a23208) | 320x568 | 1.57 / 7.76 | 3.64 / 13.28 | 690 | 956 | 697 | 166 | 82 / 276 (cold 276) | 89 / 315 (cold 315) | 19 / 35 | 19 / 56 | 52 / 215 | 45 / 67 | 59.8 fps, p95 16.7, max 33.3, dropped 1/278 |
 | 1575 (7a23208) | ipad820x1180 | 1.57 / 7.76 | 3.64 / 13.28 | 1417 | 1442 | 1147 | 214 | 150 / 233 (cold 233) | 93 / 372 (cold 372) | 18 / 22 | 15 / 19 | 51 / 62 | 53 / 73 | 44.8 fps, p95 33.4, max 166.6, dropped 82/241 |
 
-Raw JSON: raw/b1575-live-<viewport>.json (per-try latencies, top-10 resources, notes).
+| 1576 (615fa5a) | 390x844 | 1.57 / 7.76 | 3.64 / 13.29 | 930 | 976 | 630 | 177 | 82 / 240 (cold 240) | 102 / 346 (cold 346) | 21 / 25 | 15 / 20 | 53 / 57 | 55 / 116 | 59.3 fps, p95 16.7, max 50, dropped 3/273 |
+| 1576 (615fa5a) | 375x667 | 1.57 / 7.76 | 3.64 / 13.29 | 845 | 880 | 752 | 132 | 99 / 260 (cold 260) | 101 / 272 (cold 272) | 8 / 12 | 15 / 140 | 76 / 278 | 49 / 71 | 59.4 fps, p95 16.8, max 50, dropped 3/277 |
+| 1576 (615fa5a) | 320x568 | 1.57 / 7.76 | 3.64 / 13.29 | 1044 | 1092 | 990 | 176 | 84 / 270 (cold 270) | 78 / 374 (cold 374) | 9 / 33 | 14 / 34 | 46 / 58 | 64 / 82 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1576 (615fa5a) | ipad820x1180 | 1.57 / 7.76 | 3.64 / 13.29 | 1158 | 1179 | 793 | 174 | 170 / 195 (cold 190) | 81 / 353 (cold 353) | 17 / 23 | 18 / 34 | 57 / 94 | 49 / 66 | 47.4 fps, p95 33.4, max 83.3, dropped 60/226 |
+Raw JSON: raw/b<build>-live-<viewport>.json (per-try latencies, top-10 resources, notes).
 
 ## Top 10 resources, PA session, build 1575 (same at every viewport)
 | resource | gz KB | raw KB |
@@ -50,3 +54,10 @@ ussch.js (4.6 MB) and data/precincts2024/Alaska.js (3.7 MB) are **not** fetched 
 | D (deferred fit + pointInItem loop) | 390x844 | - | - | 87 / 53 | 303 / 87 | - |
 | A | 320x568 | - | - | 230 / 78 | 313 / 95 | - |
 | D | 320x568 | - | - | 86 / 50 | 139 / 99 | - |
+
+## 1576 vs 1575 (live, Chromium, same method; box load 2-5, so ±30% noise)
+- Bytes are the same: 1.57 MB initial, 3.64 MB PA session, same top 10 files.
+- Startup is mixed and probably noise. 390: DCL 1155 -> 930, first map 787 -> 630 (better). 320: DCL 690 -> 1044, first map 697 -> 990 (worse). 375: DCL 549 -> 845. iPad: DCL 1417 -> 1158. If 320/375 stay high on the next build, treat it as a regression.
+- Taps are the same within noise. All States cold 190-270 ms (1575: 233-334). US House pick cold 272-374 ms (299-372). Line 8-21 ms median. Drill 14-18 ms. First Back 278 ms at 375 (1575: 241). Time step median 49-64 ms.
+- Pan: iPad 47 fps, 60 dropped of 226 frames (1575: 45 fps, 82 of 241). Phones 59-60 fps.
+- No regression above noise. QA-007 (first All States / US House) still reproduces. QA-041 (Line) still fixed.

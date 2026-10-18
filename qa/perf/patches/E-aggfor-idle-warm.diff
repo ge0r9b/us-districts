@@ -1,0 +1,50 @@
+--- a/v2/index.html
++++ b/v2/index.html
+@@ -1381,25 +1381,33 @@
+ function centroid(polys){ let best=null,ba=-1; polys.forEach(p=>{ const a=ringArea(p[0]); if(a>ba){ba=a;best=p[0];} });
+   let A=0,cx=0,cy=0; for(let i=0,j=best.length-1;i<best.length;j=i++){ const f=best[j][0]*best[i][1]-best[i][0]*best[j][1]; A+=f; cx+=(best[j][0]+best[i][0])*f; cy+=(best[j][1]+best[i][1])*f; }
+   return A? [cx/(3*A),cy/(3*A)] : best[0]; }
+-function aggFor(k,yr){
+-  yr=yr||(ym()==="2020"?"2020":"2024"); const st=state.value, key=st+"|"+k+"|"+yr; if(AGG[key]) return AGG[key];
+-  const P=yr==="2020"?(window.PREC20||{})[st]:PREC[st]; if(!P) return null; const EL=yr==="2020"?window.ELECTION2020:window.ELECTION2024;
+-  const dists=(k==="towns"?[...(GEOM.towns||[]),...(GEOM.places||[])]:(GEOM[k]||[])).filter(inArea); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
++function* aggGen(k,yr,st,P,EL){ /* perf E: aggFor's work as resumable steps (same maths, same result); run to the end by aggFor, or in idle slices by aggWarm */
++  const own=d=>d[0]===st, key=st+"|"+k+"|"+yr;
++  const dists=(k==="towns"?[...(GEOM.towns||[]),...(GEOM.places||[])]:(GEOM[k]||[])).filter(own); dists.forEach(d=>{ if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); });
+   const DG=grid(dists,d=>d.__bb,0.1), res=new Map(); dists.forEach(d=>res.set(d,{dem:0,rep:0,tot:0,n:0}));
+-  P.forEach(r=>{ if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const b=r[6]; c=[(b[0]+b[2])/2,(b[1]+b[3])/2]; } r.__c=c; }
+-    const [x,y]=r.__c; const d=gq(DG,x,y).find(d=>x>=d.__bb[0]&&x<=d.__bb[2]&&y>=d.__bb[1]&&y<=d.__bb[3]&&pointInItem(d,x,y)); if(!d) return;
+-    const a=res.get(d); a.dem+=r[2]; a.rep+=r[3]; a.tot+=r[4]; a.n++; });
+-  // coverage: sample points weighted by county vote density; covered if inside a reported precinct
++  for(let i=0;i<P.length;i++){ const r=P[i]; if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const b=r[6]; c=[(b[0]+b[2])/2,(b[1]+b[3])/2]; } r.__c=c; }
++    const x=r.__c[0], y=r.__c[1]; const d=gq(DG,x,y).find(d=>x>=d.__bb[0]&&x<=d.__bb[2]&&y>=d.__bb[1]&&y<=d.__bb[3]&&pointInItem(d,x,y));
++    if(d){ const a=res.get(d); a.dem+=r[2]; a.rep+=r[3]; a.tot+=r[4]; a.n++; }
++    if((i&127)===127) yield; }
+   const PG=grid(P.filter(r=>r[4]>0),r=>r[6],0.05);
+-  const C=(GEOM.counties||[]).filter(inArea); C.forEach(c=>{ if(!c.__bb) c.__bb=bboxOf(c[c.length-1]); const e=EL&&EL[c[0]+"|"+c[1]]; let ar=0; c[c.length-1].forEach(p=>ar+=ringArea(p[0])); c["__dens"+yr]=e&&ar?e[2]/ar:0; });
+-  const CG=grid(C,c=>c.__bb,0.25);
+-  dists.forEach(d=>{ const [x0,y0,x1,y1]=d.__bb, N=16; let w=0,wc=0;
++  const C=(GEOM.counties||[]).filter(own); C.forEach(c=>{ if(!c.__bb) c.__bb=bboxOf(c[c.length-1]); const e=EL&&EL[c[0]+"|"+c[1]]; let ar=0; c[c.length-1].forEach(p=>ar+=ringArea(p[0])); c["__dens"+yr]=e&&ar?e[2]/ar:0; });
++  const CG=grid(C,c=>c.__bb,0.25); yield;
++  for(const d of dists){ const [x0,y0,x1,y1]=d.__bb, N=16; let w=0,wc=0;
+     for(let i=0;i<N;i++) for(let j=0;j<N;j++){ const x=x0+(x1-x0)*(i+.5)/N, y=y0+(y1-y0)*(j+.5)/N; if(!pointInItem(d,x,y)) continue;
+       const c=gq(CG,x,y).find(c=>pointInItem(c,x,y)); const dw=c?c["__dens"+yr]:0; if(!dw) continue; w+=dw;
+       if(gq(PG,x,y).some(r=>x>=r[6][0]&&x<=r[6][2]&&y>=r[6][1]&&y<=r[6][3]&&pointInItem(r.slice(0,6),x,y))) wc+=dw; }
+-    res.get(d).cov=w? wc/w : 0; });
+-  return AGG[key]=res;
+-}
++    res.get(d).cov=w? wc/w : 0; yield; }
++  AGG[key]=res; }
++const AGGJOB={};
++function aggArgs(k,yr){ yr=yr||(ym()==="2020"?"2020":"2024"); const st=state.value; const P=yr==="2020"?(window.PREC20||{})[st]:PREC[st]; return {yr,st,P,EL:yr==="2020"?window.ELECTION2020:window.ELECTION2024,key:st+"|"+k+"|"+yr}; }
++function aggFor(k,yr){ const A=aggArgs(k,yr); if(AGG[A.key]) return AGG[A.key]; if(!A.P) return null;
++  const j=AGGJOB[A.key]||(AGGJOB[A.key]=aggGen(k,A.yr,A.st,A.P,A.EL)); while(!j.next().done){} delete AGGJOB[A.key]; return AGG[A.key]; } /* a tap before the idle warm-up ends finishes the same job synchronously (no work repeated) */
++const rIC=window.requestIdleCallback?f=>requestIdleCallback(f,{timeout:4000}):f=>setTimeout(()=>{ const t=performance.now(); f({timeRemaining:()=>Math.max(0,8-(performance.now()-t)),didTimeout:false}); },60); /* iOS Safari has no requestIdleCallback */
++function aggWarm(k){ const A=aggArgs(k); if(AGG[A.key]||!A.P||AGGJOB[A.key]||!(GEOM[k]||[]).some(d=>d[0]===A.st)) return;
++  const j=AGGJOB[A.key]=aggGen(k,A.yr,A.st,A.P,A.EL);
++  const step=dl=>{ if(AGG[A.key]||AGGJOB[A.key]!==j) return; while(dl.timeRemaining()>2){ if(j.next().done){ delete AGGJOB[A.key]; return; } } rIC(step); }; rIC(step); }
++window.__aggWarm=aggWarm;
++{ const _lpw=loadPrecincts; loadPrecincts=function(st){ const p=_lpw(st); p.then(()=>{ if(st&&st===state.value&&typeof loadState==="function") loadState(st).then(()=>{ if(st===state.value) aggWarm("ushouse"); }); }); return p; }; }
+ function aggHtml(k,d,a){ const lab=LYR.find(l=>l[1]===k)[2];
+   let h="<strong>"+(k==="ushouse"?"District ":"")+esc(dname(k,d))+"</strong><br>"+esc(t32(lab+", "+d[0]))+"<br>";
+   if(ym()!=="2024") return h+"District totals need precinct results; 2020 precinct results aren't available, so there's no "+(ym()==="delta"?"change":"2020")+" figure for this district.";

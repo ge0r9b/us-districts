@@ -1,0 +1,56 @@
+A2 390x844 0 warm False pick [269.7, 83.8, 6.6, 72.1, 72.4] back [None, 49.2, 32.5] rows 17 []
+E 390x844 0 warm True pick [52.8, 80.9, 82.6, 102.4, 71.1] back [None, 49.6, 88.4] rows 17 []
+F 390x844 0 warm False pick [84.2, 71.2, 74.5, 95, 180.3] back [None, 44.6, 94.1] rows 17 []
+A2 320x568 0 warm False pick [288.8, 86.2, 77.1, 86.7, 105.5] back [None, 55.9, 87.7] rows 17 []
+E 320x568 0 warm True pick [46.1, 81.5, 106.7, 89.1, 102] back [None, 51.4, 87.1] rows 17 []
+F 320x568 0 warm False pick [65, 98, 127, 163.2, 92.3] back [None, 59.7, 104.8] rows 17 []
+A2 390x844 1 warm False pick [389.4, 96.7, 41.2, 95.1, 89.3] back [None, 57.7, 76.5] rows 17 []
+E 390x844 1 warm True pick [73.2, 150.9, 84, 102.7, 124.3] back [None, 51.8, 101.7] rows 17 []
+F 390x844 1 warm False pick [72.4, 82.2, 82.6, 110.9, 79.4] back [None, 51.6, 96.5] rows 17 []
+A2 320x568 1 warm False pick [298, 88.6, 149.2, 85.6, 85.3] back [None, 45.9, 101.5] rows 17 []
+E 320x568 1 warm True pick [51.3, 129.4, 90.8, 81.6, 108.2] back [None, 7.6, 43] rows 17 []
+F 320x568 1 warm False pick [114.5, 105.6, 78.8, 141.9, 80.7] back [None, 44.1, 87.1] rows 17 []
+A2 390x844 2 warm False pick [288.7, 77.8, 69.4, 75.7, 75.5] back [None, 46.8, 4.1] rows 17 []
+E 390x844 2 warm True pick [70.3, 80.9, 75.2, 94.4, 98.6] back [None, 55.6, 100.1] rows 17 []
+F 390x844 2 warm False pick [61.2, 90.3, 91.6, 94.9, 147.3] back [None, 53.8, 82.6] rows 17 []
+A2 320x568 2 warm False pick [357.7, 117.9, 80.4, 112.3, 74.4] back [None, 47.6, 79.9] rows 17 []
+E 320x568 2 warm True pick [67.5, 83.8, 93.1, 86.3, 112.2] back [None, 67.3, 93.4] rows 17 []
+Traceback (most recent call last):
+  File "/workspace/w/perf/qa/perf/tools/ushouse.py", line 58, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/perf/qa/perf/tools/ushouse.py", line 45, in main
+    if i==0: R['agg']=await pg.evaluate(AGGJ); R['rows']=await pg.evaluate("()=>document.querySelectorAll('#listView .lvrow.la').length")
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 9421, in evaluate
+    await self._impl_obj.evaluate(
+        expression=expression, arg=mapping.to_impl(arg)
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 474, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.evaluate: Target crashed 
+A2 390x844 0 warm False pick [292, 75.8, 79, 73.7, 74.7] back [None, 41.3, 78.8] rows 17 []
+E 390x844 0 warm False pick [50.2, 77.6, 71.4, 73.9, 82.5] back [None, 54.1, 78.3] rows 17 []
+F 390x844 0 warm False pick [52.3, 79.9, 70.5, 75.7, 74.7] back [None, 49.1, 83.2] rows 17 []
