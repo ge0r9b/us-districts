@@ -125,6 +125,11 @@ rerun with a full cache makes no requests. Not covered: federal agencies (Wikida
 property, so no QID), special districts (no identifier property), school districts (skipped by rule), and the
 enwiki seal fallback for municipalities and townships (not attempted in this pass; their gaps say so).
 
+## Tribal GEOIDs vs the Geography bot's areas
+`scripts/check_aiannh_join.py` reads `data-v3/geo/aiannh_2024.csv`, `anrc_2024.csv` and `aitsn_2024.csv` from data/geo
+@ ed866a4 (read-only, via `git show`) and writes `aiannh_join_check.csv`: every tribe GEOID in `tribes.csv` and the
+crosswalk (376 entity-GEOID pairs, 304 tribes, 374 distinct GEOIDs) joins to a Geo feature; none fail.
+
 ## Rerun
 ```
 cd data-v3/institutions/governments

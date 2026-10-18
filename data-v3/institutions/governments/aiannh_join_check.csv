@@ -1,0 +1,377 @@
+entity_id,geoid,found_in,joins,geo_file,geo_namelsad,geo_ref
+bia:agua-caliente-band-of-cahuilla-indians-of-the-agua-caliente-indian-reservation-california,0020R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Agua Caliente Indian Reservation,data/geo@ed866a4
+bia:agua-caliente-band-of-cahuilla-indians-of-the-agua-caliente-indian-reservation-california,0020T,xwalk trust_land,yes,aiannh_2024.csv,Agua Caliente Off-Reservation Trust Land,data/geo@ed866a4
+bia:akiachak-native-community,6020R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Akiachak ANVSA,data/geo@ed866a4
+bia:akiak-native-community,6025R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Akiak ANVSA,data/geo@ed866a4
+bia:alatna-village,6040R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Alatna ANVSA,data/geo@ed866a4
+bia:algaaciq-native-village,6065R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Algaaciq ANVSA,data/geo@ed866a4
+bia:allakaket-village,6070R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Allakaket ANVSA,data/geo@ed866a4
+bia:alturas-indian-rancheria-california,0095R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Alturas Indian Rancheria,data/geo@ed866a4
+bia:angoon-community-association,6100R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Angoon ANVSA,data/geo@ed866a4
+bia:anvik-village,6125R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Anvik ANVSA,data/geo@ed866a4
+bia:assiniboine-and-sioux-tribes-of-the-fort-peck-indian-reservation-montana,1250R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Peck Indian Reservation,data/geo@ed866a4
+bia:assiniboine-and-sioux-tribes-of-the-fort-peck-indian-reservation-montana,1250T,xwalk trust_land,yes,aiannh_2024.csv,Fort Peck Off-Reservation Trust Land,data/geo@ed866a4
+bia:bad-river-band-of-the-lake-superior-tribe-of-chippewa-indians-of-the-bad-river-reservation-wisconsin,0140R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Bad River Reservation,data/geo@ed866a4
+bia:beaver-village,6190R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Beaver ANVSA,data/geo@ed866a4
+bia:berry-creek-rancheria-of-maidu-indians-of-california,0200R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Berry Creek Rancheria,data/geo@ed866a4
+bia:berry-creek-rancheria-of-maidu-indians-of-california,0200T,xwalk trust_land,yes,aiannh_2024.csv,Berry Creek Off-Reservation Trust Land,data/geo@ed866a4
+bia:big-lagoon-rancheria-california,0240R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Big Lagoon Rancheria,data/geo@ed866a4
+bia:big-sandy-rancheria-of-western-mono-indians-of-california,0265R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Big Sandy Rancheria,data/geo@ed866a4
+bia:big-sandy-rancheria-of-western-mono-indians-of-california,0265T,xwalk trust_land,yes,aiannh_2024.csv,Big Sandy Off-Reservation Trust Land,data/geo@ed866a4
+bia:big-valley-band-of-pomo-indians-of-the-big-valley-rancheria-california,0275R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Big Valley Rancheria,data/geo@ed866a4
+bia:birch-creek-tribe,6235R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Birch Creek ANVSA,data/geo@ed866a4
+bia:blackfeet-tribe-of-the-blackfeet-indian-reservation-of-montana,0305R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Blackfeet Indian Reservation,data/geo@ed866a4
+bia:blackfeet-tribe-of-the-blackfeet-indian-reservation-of-montana,0305T,xwalk trust_land,yes,aiannh_2024.csv,Blackfeet Off-Reservation Trust Land,data/geo@ed866a4
+bia:blue-lake-rancheria-california,0325R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Blue Lake Rancheria,data/geo@ed866a4
+bia:blue-lake-rancheria-california,0325T,xwalk trust_land,yes,aiannh_2024.csv,Blue Lake Off-Reservation Trust Land,data/geo@ed866a4
+bia:cachil-dehe-band-of-wintun-indians-of-the-colusa-indian-community-of-the-colusa-rancheria-california,0750R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Colusa Rancheria,data/geo@ed866a4
+bia:cahto-tribe-of-the-laytonville-rancheria,1925R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Laytonville Rancheria,data/geo@ed866a4
+bia:campo-band-of-diegueno-mission-indians-of-the-campo-indian-reservation-california,0450R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Campo Indian Reservation,data/geo@ed866a4
+bia:cedarville-rancheria-california,0555R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Cedarville Rancheria,data/geo@ed866a4
+bia:cedarville-rancheria-california,0555T,xwalk trust_land,yes,aiannh_2024.csv,Cedarville Off-Reservation Trust Land,data/geo@ed866a4
+bia:chalkyitsik-village,6265R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chalkyitsik ANVSA,data/geo@ed866a4
+bia:chemehuevi-indian-tribe-of-the-chemehuevi-reservation-california,0585R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chemehuevi Reservation,data/geo@ed866a4
+bia:cher-ae-heights-indian-community-of-the-trinidad-rancheria-california,4275R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Trinidad Rancheria,data/geo@ed866a4
+bia:cher-ae-heights-indian-community-of-the-trinidad-rancheria-california,4275T,xwalk trust_land,yes,aiannh_2024.csv,Trinidad Off-Reservation Trust Land,data/geo@ed866a4
+bia:chevak-native-village,6285R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chevak ANVSA,data/geo@ed866a4
+bia:cheyenne-river-sioux-tribe-of-the-cheyenne-river-reservation-south-dakota,0605R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Cheyenne River Reservation,data/geo@ed866a4
+bia:cheyenne-river-sioux-tribe-of-the-cheyenne-river-reservation-south-dakota,0605T,xwalk trust_land,yes,aiannh_2024.csv,Cheyenne River Off-Reservation Trust Land,data/geo@ed866a4
+bia:chickaloon-native-village,6290R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chickaloon ANVSA,data/geo@ed866a4
+bia:chicken-ranch-rancheria-of-me-wuk-indians-of-california,0620R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chicken Ranch Rancheria,data/geo@ed866a4
+bia:chicken-ranch-rancheria-of-me-wuk-indians-of-california,0620T,xwalk trust_land,yes,aiannh_2024.csv,Chicken Ranch Off-Reservation Trust Land,data/geo@ed866a4
+bia:chignik-lake-village,6305R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chignik Lake ANVSA,data/geo@ed866a4
+bia:chippewa-cree-indians-of-the-rocky-boys-reservation-montana,3205R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Rocky Boy's Reservation,data/geo@ed866a4
+bia:chippewa-cree-indians-of-the-rocky-boys-reservation-montana,3205T,xwalk trust_land,yes,aiannh_2024.csv,Rocky Boy's Off-Reservation Trust Land,data/geo@ed866a4
+bia:chuloonawick-native-village,6340R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chuloonawick ANVSA,data/geo@ed866a4
+bia:circle-native-community,6350R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Circle ANVSA,data/geo@ed866a4
+bia:cold-springs-rancheria-of-mono-indians-of-california,0720R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Cold Springs Rancheria,data/geo@ed866a4
+bia:colorado-river-indian-tribes-of-the-colorado-river-indian-reservation-arizona-and-california,0735R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Colorado River Indian Reservation,data/geo@ed866a4
+bia:confederated-salish-and-kootenai-tribes-of-the-flathead-reservation,1110R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Flathead Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-chehalis-reservation,0575R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chehalis Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-chehalis-reservation,0575T,xwalk trust_land,yes,aiannh_2024.csv,Chehalis Off-Reservation Trust Land,data/geo@ed866a4
+bia:confederated-tribes-of-the-colville-reservation,0760R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Colville Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-colville-reservation,0760T,xwalk trust_land,yes,aiannh_2024.csv,Colville Off-Reservation Trust Land,data/geo@ed866a4
+bia:confederated-tribes-of-the-goshute-reservation-nevada-and-utah,1340R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Goshute Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-grand-ronde-community-of-oregon,1365R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Grand Ronde Community,data/geo@ed866a4
+bia:confederated-tribes-of-the-grand-ronde-community-of-oregon,1365T,xwalk trust_land,yes,aiannh_2024.csv,Grand Ronde Off-Reservation Trust Land,data/geo@ed866a4
+bia:confederated-tribes-of-the-umatilla-indian-reservation,4405R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Umatilla Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-umatilla-indian-reservation,4405T,xwalk trust_land,yes,aiannh_2024.csv,Umatilla Off-Reservation Trust Land,data/geo@ed866a4
+bia:confederated-tribes-of-the-warm-springs-reservation-of-oregon,4545R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Warm Springs Reservation,data/geo@ed866a4
+bia:confederated-tribes-of-the-warm-springs-reservation-of-oregon,4545T,xwalk trust_land,yes,aiannh_2024.csv,Warm Springs Off-Reservation Trust Land,data/geo@ed866a4
+bia:crow-creek-sioux-tribe-of-the-crow-creek-reservation-south-dakota,0855R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Crow Creek Reservation,data/geo@ed866a4
+bia:dry-creek-rancheria-band-of-pomo-indians-california,0955R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Dry Creek Rancheria,data/geo@ed866a4
+bia:dry-creek-rancheria-band-of-pomo-indians-california,0955T,xwalk trust_land,yes,aiannh_2024.csv,Dry Creek Off-Reservation Trust Land,data/geo@ed866a4
+bia:eastern-shoshone-tribe-of-the-wind-river-reservation-wyoming,4610R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Wind River Reservation,data/geo@ed866a4
+bia:eastern-shoshone-tribe-of-the-wind-river-reservation-wyoming,4610T,xwalk trust_land;shared_area,yes,aiannh_2024.csv,Wind River Off-Reservation Trust Land,data/geo@ed866a4
+bia:egegik-village,6445R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Egegik ANVSA,data/geo@ed866a4
+bia:eklutna-native-village,6450R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Eklutna ANVSA,data/geo@ed866a4
+bia:elem-indian-colony-of-pomo-indians-of-the-sulphur-bank-rancheria-california,4030R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Sulphur Bank Rancheria,data/geo@ed866a4
+bia:elk-valley-rancheria-california,1010R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Elk Valley Rancheria,data/geo@ed866a4
+bia:elk-valley-rancheria-california,1010T,xwalk trust_land,yes,aiannh_2024.csv,Elk Valley Off-Reservation Trust Land,data/geo@ed866a4
+bia:emmonak-village,6480R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Emmonak ANVSA,data/geo@ed866a4
+bia:enterprise-rancheria-of-maidu-indians-of-california,1055R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Enterprise Rancheria,data/geo@ed866a4
+bia:enterprise-rancheria-of-maidu-indians-of-california,1055T,xwalk trust_land,yes,aiannh_2024.csv,Enterprise Off-Reservation Trust Land,data/geo@ed866a4
+bia:evansville-village,6490R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Evansville ANVSA,data/geo@ed866a4
+bia:forest-county-potawatomi-community-wisconsin,1135R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Forest County Potawatomi Community,data/geo@ed866a4
+bia:forest-county-potawatomi-community-wisconsin,1135T,xwalk trust_land,yes,aiannh_2024.csv,Forest County Potawatomi Off-Reservation Trust Land,data/geo@ed866a4
+bia:fort-belknap-indian-community-of-the-fort-belknap-reservation-of-montana,1150R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Belknap Reservation,data/geo@ed866a4
+bia:fort-belknap-indian-community-of-the-fort-belknap-reservation-of-montana,1150T,xwalk trust_land,yes,aiannh_2024.csv,Fort Belknap Off-Reservation Trust Land,data/geo@ed866a4
+bia:fort-bidwell-indian-community-of-the-fort-bidwell-reservation-of-california,1170R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Bidwell Reservation,data/geo@ed866a4
+bia:fort-bidwell-indian-community-of-the-fort-bidwell-reservation-of-california,1170T,xwalk trust_land,yes,aiannh_2024.csv,Fort Bidwell Off-Reservation Trust Land,data/geo@ed866a4
+bia:fort-independence-indian-community-of-paiute-indians-of-the-fort-independence-reservation-california,1195R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Independence Reservation,data/geo@ed866a4
+bia:fort-mcdermitt-paiute-and-shoshone-tribes-of-the-fort-mcdermitt-indian-reservation-nevada-and-oregon,1210R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort McDermitt Indian Reservation,data/geo@ed866a4
+bia:gila-river-indian-community-of-the-gila-river-indian-reservation-arizona,1310R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Gila River Indian Reservation,data/geo@ed866a4
+bia:greenville-rancheria,1380R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Greenville Rancheria,data/geo@ed866a4
+bia:grindstone-indian-rancheria-of-wintun-wailaki-indians-of-california,1395R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Grindstone Indian Rancheria,data/geo@ed866a4
+bia:guidiville-rancheria-of-california,1400R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Guidiville Rancheria,data/geo@ed866a4
+bia:guidiville-rancheria-of-california,1400T,xwalk trust_land,yes,aiannh_2024.csv,Guidiville Off-Reservation Trust Land,data/geo@ed866a4
+bia:hannahville-indian-community-michigan,1410R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Hannahville Indian Community,data/geo@ed866a4
+bia:hannahville-indian-community-michigan,1410T,xwalk trust_land,yes,aiannh_2024.csv,Hannahville Off-Reservation Trust Land,data/geo@ed866a4
+bia:havasupai-tribe-of-the-havasupai-reservation-arizona,1440R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Havasupai Reservation,data/geo@ed866a4
+bia:healy-lake-village,6575R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Healy Lake ANVSA,data/geo@ed866a4
+bia:holy-cross-tribe,6585R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Holy Cross ANVSA,data/geo@ed866a4
+bia:hualapai-indian-tribe-of-the-hualapai-indian-reservation-arizona,1545R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Hualapai Indian Reservation,data/geo@ed866a4
+bia:hualapai-indian-tribe-of-the-hualapai-indian-reservation-arizona,1545T,xwalk trust_land,yes,aiannh_2024.csv,Hualapai Off-Reservation Trust Land,data/geo@ed866a4
+bia:hughes-village,6605R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Hughes ANVSA,data/geo@ed866a4
+bia:huslia-village,6610R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Huslia ANVSA,data/geo@ed866a4
+bia:igiugig-village,6620R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Igiugig ANVSA,data/geo@ed866a4
+bia:inaja-band-of-diegueno-mission-indians-of-the-inaja-and-cosmit-reservation-california,1560R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Inaja and Cosmit Reservation,data/geo@ed866a4
+bia:ivanof-bay-tribe,6650R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ivanof Bay ANVSA,data/geo@ed866a4
+bia:jamul-indian-village-of-california,1670R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Jamul Indian Village,data/geo@ed866a4
+bia:kaibab-band-of-paiute-indians-of-the-kaibab-indian-reservation-arizona,1720R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kaibab Indian Reservation,data/geo@ed866a4
+bia:kaktovik-village,6680R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kaktovik ANVSA,data/geo@ed866a4
+bia:kalispel-indian-community-of-the-kalispel-reservation,1735R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kalispel Reservation,data/geo@ed866a4
+bia:kalispel-indian-community-of-the-kalispel-reservation,1735T,xwalk trust_land,yes,aiannh_2024.csv,Kalispel Off-Reservation Trust Land,data/geo@ed866a4
+bia:kashia-band-of-pomo-indians-of-the-stewarts-point-rancheria-california,3985R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Stewarts Point Rancheria,data/geo@ed866a4
+bia:kashia-band-of-pomo-indians-of-the-stewarts-point-rancheria-california,3985T,xwalk trust_land,yes,aiannh_2024.csv,Stewarts Point Off-Reservation Trust Land,data/geo@ed866a4
+bia:king-salmon-tribe,6740R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,King Salmon ANVSA,data/geo@ed866a4
+bia:kletsel-dehe-wintun-nation-of-the-cortina-rancheria,0780R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Cortina Indian Rancheria,data/geo@ed866a4
+bia:knik-tribe,6785R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Knik ANVSA,data/geo@ed866a4
+bia:kokhanok-village,6800R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kokhanok ANVSA,data/geo@ed866a4
+bia:koyukuk-native-village,6830R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Koyukuk ANVSA,data/geo@ed866a4
+bia:la-posta-band-of-diegueno-mission-indians-of-the-la-posta-indian-reservation-california,1895R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,La Posta Indian Reservation,data/geo@ed866a4
+bia:lac-du-flambeau-band-of-lake-superior-chippewa-indians-of-the-lac-du-flambeau-reservation-of-wisconsin,1825R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lac du Flambeau Reservation,data/geo@ed866a4
+bia:las-vegas-tribe-of-paiute-indians-of-the-las-vegas-indian-colony-nevada,1915R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Las Vegas Indian Colony,data/geo@ed866a4
+bia:levelock-village,6865R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Levelock ANVSA,data/geo@ed866a4
+bia:lovelock-paiute-tribe-of-the-lovelock-indian-colony-nevada,2015R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lovelock Indian Colony,data/geo@ed866a4
+bia:lower-brule-sioux-tribe-of-the-lower-brule-reservation-south-dakota,2030R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lower Brule Reservation,data/geo@ed866a4
+bia:lower-brule-sioux-tribe-of-the-lower-brule-reservation-south-dakota,2030T,xwalk trust_land,yes,aiannh_2024.csv,Lower Brule Off-Reservation Trust Land,data/geo@ed866a4
+bia:lower-sioux-indian-community-in-the-state-of-minnesota,2055R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lower Sioux Indian Community,data/geo@ed866a4
+bia:lower-sioux-indian-community-in-the-state-of-minnesota,2055T,xwalk trust_land,yes,aiannh_2024.csv,Lower Sioux Off-Reservation Trust Land,data/geo@ed866a4
+bia:lummi-tribe-of-the-lummi-reservation,2070R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lummi Reservation,data/geo@ed866a4
+bia:lytton-rancheria-of-california,2075R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lytton Rancheria,data/geo@ed866a4
+bia:makah-indian-tribe-of-the-makah-indian-reservation,2085R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Makah Indian Reservation,data/geo@ed866a4
+bia:manley-hot-springs-village,6900R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Manley Hot Springs ANVSA,data/geo@ed866a4
+bia:manokotak-village,6905R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Manokotak ANVSA,data/geo@ed866a4
+bia:manzanita-band-of-diegueno-mission-indians-of-the-manzanita-reservation-california,2115R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Manzanita Reservation,data/geo@ed866a4
+bia:manzanita-band-of-diegueno-mission-indians-of-the-manzanita-reservation-california,2115T,xwalk trust_land,yes,aiannh_2024.csv,Manzanita Off-Reservation Trust Land,data/geo@ed866a4
+bia:mcgrath-native-village,6895R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,McGrath ANVSA,data/geo@ed866a4
+bia:mesa-grande-band-of-diegueno-mission-indians-of-the-mesa-grande-reservation-california,2190R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Mesa Grande Reservation,data/geo@ed866a4
+bia:mescalero-apache-tribe-of-the-mescalero-reservation-new-mexico,2205R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Mescalero Reservation,data/geo@ed866a4
+bia:middletown-rancheria-of-pomo-indians-of-california,2255R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Middletown Rancheria,data/geo@ed866a4
+bia:moapa-band-of-paiute-indians-of-the-moapa-river-indian-reservation-nevada,2315R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Moapa River Indian Reservation,data/geo@ed866a4
+bia:mooretown-rancheria-of-maidu-indians-of-california,2340R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Mooretown Rancheria,data/geo@ed866a4
+bia:mooretown-rancheria-of-maidu-indians-of-california,2340T,xwalk trust_land,yes,aiannh_2024.csv,Mooretown Off-Reservation Trust Land,data/geo@ed866a4
+bia:naknek-native-village,6990R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Naknek ANVSA,data/geo@ed866a4
+bia:native-village-of-akhiok,6015R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Akhiok ANVSA,data/geo@ed866a4
+bia:native-village-of-akutan,6030R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Akutan ANVSA,data/geo@ed866a4
+bia:native-village-of-aleknagik,6045R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Aleknagik ANVSA,data/geo@ed866a4
+bia:native-village-of-ambler,6075R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ambler ANVSA,data/geo@ed866a4
+bia:native-village-of-atka,6150R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Atka ANVSA,data/geo@ed866a4
+bia:native-village-of-atqasuk,6165R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Atqasuk ANVSA,data/geo@ed866a4
+bia:native-village-of-belkofski,6195R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Belkofski ANVSA,data/geo@ed866a4
+bia:native-village-of-brevig-mission,6240R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Brevig Mission ANVSA,data/geo@ed866a4
+bia:native-village-of-buckland,6250R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Buckland ANVSA,data/geo@ed866a4
+bia:native-village-of-cantwell,6255R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Cantwell ANVSA,data/geo@ed866a4
+bia:native-village-of-chenega,6280R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chenega ANVSA,data/geo@ed866a4
+bia:native-village-of-chignik-lagoon,6300R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chignik Lagoon ANVSA,data/geo@ed866a4
+bia:native-village-of-chitina,6330R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chitina ANVSA,data/geo@ed866a4
+bia:native-village-of-chuathbaluk,6335R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chuathbaluk ANVSA,data/geo@ed866a4
+bia:native-village-of-council,6380R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Council ANVSA,data/geo@ed866a4
+bia:native-village-of-deering,6400R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Deering ANVSA,data/geo@ed866a4
+bia:native-village-of-eagle,6430R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Eagle ANVSA,data/geo@ed866a4
+bia:native-village-of-eek,6440R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Eek ANVSA,data/geo@ed866a4
+bia:native-village-of-ekuk,6455R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ekuk ANVSA,data/geo@ed866a4
+bia:native-village-of-ekwok,6460R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ekwok ANVSA,data/geo@ed866a4
+bia:native-village-of-elim,6470R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Elim ANVSA,data/geo@ed866a4
+bia:native-village-of-eyak,6495R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Eyak ANVSA,data/geo@ed866a4
+bia:native-village-of-false-pass,6500R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,False Pass ANVSA,data/geo@ed866a4
+bia:native-village-of-fort-yukon,6515R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Yukon ANVSA,data/geo@ed866a4
+bia:native-village-of-gakona,6520R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Gakona ANVSA,data/geo@ed866a4
+bia:native-village-of-gambell,6530R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Gambell ANVSA,data/geo@ed866a4
+bia:native-village-of-georgetown,6535R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Georgetown ANVSA,data/geo@ed866a4
+bia:native-village-of-goodnews-bay,6545R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Goodnews Bay ANVSA,data/geo@ed866a4
+bia:native-village-of-hamilton,6570R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Hamilton ANVSA,data/geo@ed866a4
+bia:native-village-of-hooper-bay,6595R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Hooper Bay ANVSA,data/geo@ed866a4
+bia:native-village-of-karluk,6700R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Karluk ANVSA,data/geo@ed866a4
+bia:native-village-of-kiana,6730R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kiana ANVSA,data/geo@ed866a4
+bia:native-village-of-kipnuk,6750R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kipnuk ANVSA,data/geo@ed866a4
+bia:native-village-of-kivalina,6755R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kivalina ANVSA,data/geo@ed866a4
+bia:native-village-of-kobuk,6790R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kobuk ANVSA,data/geo@ed866a4
+bia:native-village-of-kongiganak,6810R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kongiganak ANVSA,data/geo@ed866a4
+bia:native-village-of-kotzebue,6820R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kotzebue ANVSA,data/geo@ed866a4
+bia:native-village-of-koyuk,6825R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Koyuk ANVSA,data/geo@ed866a4
+bia:native-village-of-kwigillingok,6840R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kwigillingok ANVSA,data/geo@ed866a4
+bia:native-village-of-kwinhagak,6845R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kwinhagak ANVSA,data/geo@ed866a4
+bia:native-village-of-larsen-bay,6855R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Larsen Bay ANVSA,data/geo@ed866a4
+bia:native-village-of-marshall,6910R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Marshall ANVSA,data/geo@ed866a4
+bia:native-village-of-marys-igloo,6915R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Mary's Igloo ANVSA,data/geo@ed866a4
+bia:native-village-of-mekoryuk,6935R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Mekoryuk ANVSA,data/geo@ed866a4
+bia:native-village-of-minto,6965R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Minto ANVSA,data/geo@ed866a4
+bia:native-village-of-nanwalek,6995R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nanwalek ANVSA,data/geo@ed866a4
+bia:native-village-of-napaimute,7005R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Napaimute ANVSA,data/geo@ed866a4
+bia:native-village-of-napakiak,7010R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Napakiak ANVSA,data/geo@ed866a4
+bia:native-village-of-napaskiak,7020R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Napaskiak ANVSA,data/geo@ed866a4
+bia:native-village-of-nelson-lagoon,7025R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nelson Lagoon ANVSA,data/geo@ed866a4
+bia:native-village-of-nightmute,7065R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nightmute ANVSA,data/geo@ed866a4
+bia:native-village-of-nikolski,7075R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nikolski ANVSA,data/geo@ed866a4
+bia:native-village-of-noatak,7085R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Noatak ANVSA,data/geo@ed866a4
+bia:native-village-of-nuiqsut,7125R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nuiqsut ANVSA,data/geo@ed866a4
+bia:native-village-of-nunam-iqua,7133R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nunam Iqua ANVSA,data/geo@ed866a4
+bia:native-village-of-nunapitchuk,7135R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nunapitchuk ANVSA,data/geo@ed866a4
+bia:native-village-of-ouzinkie,7180R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ouzinkie ANVSA,data/geo@ed866a4
+bia:native-village-of-paimiut,7185R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Paimiut ANVSA,data/geo@ed866a4
+bia:native-village-of-perryville,7215R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Perryville ANVSA,data/geo@ed866a4
+bia:native-village-of-pilot-point,7225R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pilot Point ANVSA,data/geo@ed866a4
+bia:native-village-of-point-hope,7250R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Point Hope ANVSA,data/geo@ed866a4
+bia:native-village-of-point-lay,7255R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Point Lay ANVSA,data/geo@ed866a4
+bia:native-village-of-port-graham,7265R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Port Graham ANVSA,data/geo@ed866a4
+bia:native-village-of-port-heiden,7270R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Port Heiden ANVSA,data/geo@ed866a4
+bia:native-village-of-port-lions,7275R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Port Lions ANVSA,data/geo@ed866a4
+bia:native-village-of-ruby,7310R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ruby ANVSA,data/geo@ed866a4
+bia:native-village-of-savoonga,7415R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Savoonga ANVSA,data/geo@ed866a4
+bia:native-village-of-scammon-bay,7425R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Scammon Bay ANVSA,data/geo@ed866a4
+bia:native-village-of-selawik,7430R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Selawik ANVSA,data/geo@ed866a4
+bia:native-village-of-shaktoolik,7450R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shaktoolik ANVSA,data/geo@ed866a4
+bia:native-village-of-shishmaref,7465R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shishmaref ANVSA,data/geo@ed866a4
+bia:native-village-of-shungnak,7470R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shungnak ANVSA,data/geo@ed866a4
+bia:native-village-of-south-naknek,7505R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,South Naknek ANVSA,data/geo@ed866a4
+bia:native-village-of-tanacross,7535R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tanacross ANVSA,data/geo@ed866a4
+bia:native-village-of-tanana,7540R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tanana ANVSA,data/geo@ed866a4
+bia:native-village-of-tatitlek,7555R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tatitlek ANVSA,data/geo@ed866a4
+bia:native-village-of-tazlina,7560R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tazlina ANVSA,data/geo@ed866a4
+bia:native-village-of-teller,7570R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Teller ANVSA,data/geo@ed866a4
+bia:native-village-of-tetlin,7580R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tetlin ANVSA,data/geo@ed866a4
+bia:native-village-of-tuntutuliak,7640R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tuntutuliak ANVSA,data/geo@ed866a4
+bia:native-village-of-tununak,7645R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tununak ANVSA,data/geo@ed866a4
+bia:native-village-of-tyonek,7655R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tyonek ANVSA,data/geo@ed866a4
+bia:native-village-of-unalakleet,7690R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Unalakleet ANVSA,data/geo@ed866a4
+bia:native-village-of-wales,7740R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Wales ANVSA,data/geo@ed866a4
+bia:native-village-of-white-mountain,7745R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,White Mountain ANVSA,data/geo@ed866a4
+bia:nenana-native-association,7030R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nenana ANVSA,data/geo@ed866a4
+bia:new-stuyahok-village,7050R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,New Stuyahok ANVSA,data/geo@ed866a4
+bia:newhalen-village,7035R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Newhalen ANVSA,data/geo@ed866a4
+bia:newtok-village,7055R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Newtok ANVSA,data/geo@ed866a4
+bia:nikolai-village,7070R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nikolai ANVSA,data/geo@ed866a4
+bia:ninilchik-village,7080R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ninilchik ANVSA,data/geo@ed866a4
+bia:nondalton-tribe,7100R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nondalton ANVSA,data/geo@ed866a4
+bia:noorvik-native-community,7110R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Noorvik ANVSA,data/geo@ed866a4
+bia:northern-arapaho-tribe-of-the-wind-river-reservation-wyoming,4610R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Wind River Reservation,data/geo@ed866a4
+bia:northern-arapaho-tribe-of-the-wind-river-reservation-wyoming,4610T,xwalk trust_land;shared_area,yes,aiannh_2024.csv,Wind River Off-Reservation Trust Land,data/geo@ed866a4
+bia:northern-cheyenne-tribe-of-the-northern-cheyenne-indian-reservation-montana,2490R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Northern Cheyenne Indian Reservation,data/geo@ed866a4
+bia:northern-cheyenne-tribe-of-the-northern-cheyenne-indian-reservation-montana,2490T,xwalk trust_land,yes,aiannh_2024.csv,Northern Cheyenne Off-Reservation Trust Land,data/geo@ed866a4
+bia:northway-village,7115R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Northway ANVSA,data/geo@ed866a4
+bia:nulato-village,7130R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nulato ANVSA,data/geo@ed866a4
+bia:ohkay-owingeh-new-mexico,2510R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ohkay Owingeh,data/geo@ed866a4
+bia:organized-village-of-grayling,6550R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Grayling ANVSA,data/geo@ed866a4
+bia:organized-village-of-kake,6670R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kake ANVSA,data/geo@ed866a4
+bia:organized-village-of-kasaan,6705R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kasaan ANVSA,data/geo@ed866a4
+bia:organized-village-of-kwethluk,6835R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kwethluk ANVSA,data/geo@ed866a4
+bia:organized-village-of-saxman,7420R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Saxman ANVSA,data/geo@ed866a4
+bia:oscarville-traditional-village,7175R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Oscarville ANVSA,data/geo@ed866a4
+bia:pauma-band-of-luiseno-mission-indians-of-the-pauma-and-yuima-reservation-california,2715R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pauma and Yuima Reservation,data/geo@ed866a4
+bia:pedro-bay-village,7205R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pedro Bay ANVSA,data/geo@ed866a4
+bia:picayune-rancheria-of-chukchansi-indians-of-california,2775R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Picayune Rancheria,data/geo@ed866a4
+bia:picayune-rancheria-of-chukchansi-indians-of-california,2775T,xwalk trust_land,yes,aiannh_2024.csv,Picayune Off-Reservation Trust Land,data/geo@ed866a4
+bia:pilot-station-traditional-village,7230R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pilot Station ANVSA,data/geo@ed866a4
+bia:pitkas-point-traditional-council,7235R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pitkas Point ANVSA,data/geo@ed866a4
+bia:platinum-traditional-village,7245R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Platinum ANVSA,data/geo@ed866a4
+bia:portage-creek-village,7260R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Portage Creek ANVSA,data/geo@ed866a4
+bia:prairie-island-indian-community-in-the-state-of-minnesota,2985R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Prairie Island Indian Community,data/geo@ed866a4
+bia:prairie-island-indian-community-in-the-state-of-minnesota,2985T,xwalk trust_land,yes,aiannh_2024.csv,Prairie Island Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-acoma-new-mexico,0010R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Acoma Pueblo,data/geo@ed866a4
+bia:pueblo-of-acoma-new-mexico,0010T,xwalk trust_land,yes,aiannh_2024.csv,Acoma Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-isleta-new-mexico,1625R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Isleta Pueblo,data/geo@ed866a4
+bia:pueblo-of-jemez-new-mexico,1685R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Jemez Pueblo,data/geo@ed866a4
+bia:pueblo-of-laguna-new-mexico,1840R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Laguna Pueblo,data/geo@ed866a4
+bia:pueblo-of-laguna-new-mexico,1840T,xwalk trust_land,yes,aiannh_2024.csv,Laguna Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-nambe-new-mexico,2400R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Nambe Pueblo,data/geo@ed866a4
+bia:pueblo-of-nambe-new-mexico,2400T,xwalk trust_land,yes,aiannh_2024.csv,Nambe Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-picuris-new-mexico,2785R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Picuris Pueblo,data/geo@ed866a4
+bia:pueblo-of-pojoaque-new-mexico,2990R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Pueblo of Pojoaque,data/geo@ed866a4
+bia:pueblo-of-pojoaque-new-mexico,2990T,xwalk trust_land,yes,aiannh_2024.csv,Pojoaque Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-san-felipe-new-mexico,3400R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,San Felipe Pueblo,data/geo@ed866a4
+bia:pueblo-of-san-ildefonso-new-mexico,3415R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,San Ildefonso Pueblo,data/geo@ed866a4
+bia:pueblo-of-san-ildefonso-new-mexico,3415T,xwalk trust_land,yes,aiannh_2024.csv,San Ildefonso Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-sandia-new-mexico,3370R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Sandia Pueblo,data/geo@ed866a4
+bia:pueblo-of-sandia-new-mexico,3370T,xwalk trust_land,yes,aiannh_2024.csv,Sandia Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-santa-ana-new-mexico,3480R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Santa Ana Pueblo,data/geo@ed866a4
+bia:pueblo-of-santa-clara-new-mexico,3495R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Santa Clara Pueblo,data/geo@ed866a4
+bia:pueblo-of-santa-clara-new-mexico,3495T,xwalk trust_land,yes,aiannh_2024.csv,Santa Clara Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-taos-new-mexico,4140R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Taos Pueblo,data/geo@ed866a4
+bia:pueblo-of-taos-new-mexico,4140T,xwalk trust_land,yes,aiannh_2024.csv,Taos Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-tesuque-new-mexico,4170R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tesuque Pueblo,data/geo@ed866a4
+bia:pueblo-of-tesuque-new-mexico,4170T,xwalk trust_land,yes,aiannh_2024.csv,Tesuque Off-Reservation Trust Land,data/geo@ed866a4
+bia:pueblo-of-zia-new-mexico,4770R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Zia Pueblo,data/geo@ed866a4
+bia:pueblo-of-zia-new-mexico,4770T,xwalk trust_land,yes,aiannh_2024.csv,Zia Off-Reservation Trust Land,data/geo@ed866a4
+bia:puyallup-tribe-of-the-puyallup-reservation,3000R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Puyallup Reservation,data/geo@ed866a4
+bia:puyallup-tribe-of-the-puyallup-reservation,3000T,xwalk trust_land,yes,aiannh_2024.csv,Puyallup Off-Reservation Trust Land,data/geo@ed866a4
+bia:quartz-valley-indian-community-of-the-quartz-valley-reservation-of-california,3020R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Quartz Valley Reservation,data/geo@ed866a4
+bia:quartz-valley-indian-community-of-the-quartz-valley-reservation-of-california,3020T,xwalk trust_land,yes,aiannh_2024.csv,Quartz Valley Off-Reservation Trust Land,data/geo@ed866a4
+bia:quechan-tribe-of-the-fort-yuma-indian-reservation-california-and-arizona,1280R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Yuma Indian Reservation,data/geo@ed866a4
+bia:quileute-tribe-of-the-quileute-reservation,3030R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Quileute Reservation,data/geo@ed866a4
+bia:rampart-village,7300R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Rampart ANVSA,data/geo@ed866a4
+bia:redding-rancheria-california,3095R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Redding Rancheria,data/geo@ed866a4
+bia:redwood-valley-or-little-river-band-of-pomo-indians-of-the-redwood-valley-rancheria-california,3115R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Redwood Valley Rancheria,data/geo@ed866a4
+bia:reno-sparks-indian-colony-nevada,3130R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Reno-Sparks Indian Colony,data/geo@ed866a4
+bia:reno-sparks-indian-colony-nevada,3130T,xwalk trust_land,yes,aiannh_2024.csv,Reno-Sparks Off-Reservation Trust Land,data/geo@ed866a4
+bia:robinson-rancheria,3195R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Robinson Rancheria,data/geo@ed866a4
+bia:robinson-rancheria,3195T,xwalk trust_land,yes,aiannh_2024.csv,Robinson Off-Reservation Trust Land,data/geo@ed866a4
+bia:rosebud-sioux-tribe-of-the-rosebud-indian-reservation-south-dakota,3235R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Rosebud Indian Reservation,data/geo@ed866a4
+bia:rosebud-sioux-tribe-of-the-rosebud-indian-reservation-south-dakota,3235T,xwalk trust_land,yes,aiannh_2024.csv,Rosebud Off-Reservation Trust Land,data/geo@ed866a4
+bia:round-valley-indian-tribes-round-valley-reservation-california,3250R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Round Valley Reservation,data/geo@ed866a4
+bia:round-valley-indian-tribes-round-valley-reservation-california,3250T,xwalk trust_land,yes,aiannh_2024.csv,Round Valley Off-Reservation Trust Land,data/geo@ed866a4
+bia:salamatof-tribe,7400R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Salamatof ANVSA,data/geo@ed866a4
+bia:salt-river-pima-maricopa-indian-community-of-the-salt-river-reservation-arizona,3340R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Salt River Reservation,data/geo@ed866a4
+bia:san-carlos-apache-tribe-of-the-san-carlos-reservation-arizona,3355R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,San Carlos Reservation,data/geo@ed866a4
+bia:santa-rosa-indian-community-of-the-santa-rosa-rancheria-california,3520R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Santa Rosa Rancheria,data/geo@ed866a4
+bia:santa-ynez-band-of-chumash-mission-indians-of-the-santa-ynez-reservation-california,3540R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Santa Ynez Reservation,data/geo@ed866a4
+bia:santo-domingo-pueblo,3585R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Santo Domingo Pueblo,data/geo@ed866a4
+bia:shageluk-native-village,7440R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shageluk ANVSA,data/geo@ed866a4
+bia:shakopee-mdewakanton-sioux-community-of-minnesota,3680R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shakopee Mdewakanton Sioux Community,data/geo@ed866a4
+bia:shakopee-mdewakanton-sioux-community-of-minnesota,3680T,xwalk trust_land,yes,aiannh_2024.csv,Shakopee Mdewakanton Sioux Off-Reservation Trust Land,data/geo@ed866a4
+bia:sherwood-valley-rancheria-of-pomo-indians-of-california,3735R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Sherwood Valley Rancheria,data/geo@ed866a4
+bia:sherwood-valley-rancheria-of-pomo-indians-of-california,3735T,xwalk trust_land,yes,aiannh_2024.csv,Sherwood Valley Off-Reservation Trust Land,data/geo@ed866a4
+bia:shingle-springs-band-of-miwok-indians-shingle-springs-rancheria,3750R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shingle Springs Rancheria,data/geo@ed866a4
+bia:shingle-springs-band-of-miwok-indians-shingle-springs-rancheria,3750T,xwalk trust_land,yes,aiannh_2024.csv,Shingle Springs Off-Reservation Trust Land,data/geo@ed866a4
+bia:shoalwater-bay-indian-tribe-of-the-shoalwater-bay-indian-reservation,3780R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Shoalwater Bay Indian Reservation,data/geo@ed866a4
+bia:shoalwater-bay-indian-tribe-of-the-shoalwater-bay-indian-reservation,3780T,xwalk trust_land,yes,aiannh_2024.csv,Shoalwater Bay Off-Reservation Trust Land,data/geo@ed866a4
+bia:shoshone-bannock-tribes-of-the-fort-hall-reservation,1185R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Hall Reservation,data/geo@ed866a4
+bia:shoshone-bannock-tribes-of-the-fort-hall-reservation,1185T,xwalk trust_land,yes,aiannh_2024.csv,Fort Hall Off-Reservation Trust Land,data/geo@ed866a4
+bia:shoshone-paiute-tribes-of-the-duck-valley-reservation-nevada,0965R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Duck Valley Reservation,data/geo@ed866a4
+bia:shoshone-paiute-tribes-of-the-duck-valley-reservation-nevada,0965T,xwalk trust_land,yes,aiannh_2024.csv,Duck Valley Off-Reservation Trust Land,data/geo@ed866a4
+bia:sisseton-wahpeton-oyate-of-the-lake-traverse-reservation-south-dakota,1860R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lake Traverse Reservation,data/geo@ed866a4
+bia:sisseton-wahpeton-oyate-of-the-lake-traverse-reservation-south-dakota,1860T,xwalk trust_land,yes,aiannh_2024.csv,Lake Traverse Off-Reservation Trust Land,data/geo@ed866a4
+bia:skagway-village,7485R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Skagway ANVSA,data/geo@ed866a4
+bia:sokaogon-chippewa-community-wisconsin,3885R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Sokaogon Chippewa Community,data/geo@ed866a4
+bia:sokaogon-chippewa-community-wisconsin,3885T,xwalk trust_land,yes,aiannh_2024.csv,Sokaogon Chippewa Off-Reservation Trust Land,data/geo@ed866a4
+bia:southern-ute-indian-tribe-of-the-southern-ute-reservation-colorado,3925R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Southern Ute Reservation,data/geo@ed866a4
+bia:spokane-tribe-of-the-spokane-reservation,3940R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Spokane Reservation,data/geo@ed866a4
+bia:spokane-tribe-of-the-spokane-reservation,3940T,xwalk trust_land,yes,aiannh_2024.csv,Spokane Off-Reservation Trust Land,data/geo@ed866a4
+bia:squaxin-island-tribe-of-the-squaxin-island-reservation,3955R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Squaxin Island Reservation,data/geo@ed866a4
+bia:squaxin-island-tribe-of-the-squaxin-island-reservation,3955T,xwalk trust_land,yes,aiannh_2024.csv,Squaxin Island Off-Reservation Trust Land,data/geo@ed866a4
+bia:stebbins-community-association,7510R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Stebbins ANVSA,data/geo@ed866a4
+bia:stockbridge-munsee-community-wisconsin,4015R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Stockbridge Munsee Community,data/geo@ed866a4
+bia:stockbridge-munsee-community-wisconsin,4015T,xwalk trust_land,yes,aiannh_2024.csv,Stockbridge Munsee Off-Reservation Trust Land,data/geo@ed866a4
+bia:suquamish-indian-tribe-of-the-port-madison-reservation,2925R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Port Madison Reservation,data/geo@ed866a4
+bia:susanville-indian-rancheria-california,4060R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Susanville Indian Rancheria,data/geo@ed866a4
+bia:susanville-indian-rancheria-california,4060T,xwalk trust_land,yes,aiannh_2024.csv,Susanville Off-Reservation Trust Land,data/geo@ed866a4
+bia:table-mountain-rancheria,4110R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Table Mountain Rancheria,data/geo@ed866a4
+bia:table-mountain-rancheria,4110T,xwalk trust_land,yes,aiannh_2024.csv,Table Mountain Off-Reservation Trust Land,data/geo@ed866a4
+bia:takotna-village,7530R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Takotna ANVSA,data/geo@ed866a4
+bia:telida-village,7565R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Telida ANVSA,data/geo@ed866a4
+bia:three-affiliated-tribes-of-the-fort-berthold-reservation-north-dakota,1160R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Berthold Reservation,data/geo@ed866a4
+bia:traditional-village-of-togiak,7605R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Togiak ANVSA,data/geo@ed866a4
+bia:tule-river-indian-tribe-of-the-tule-river-reservation-california,4300R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tule River Reservation,data/geo@ed866a4
+bia:tule-river-indian-tribe-of-the-tule-river-reservation-california,4300T,xwalk trust_land,yes,aiannh_2024.csv,Tule River Off-Reservation Trust Land,data/geo@ed866a4
+bia:tuluksak-native-community,7630R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tuluksak ANVSA,data/geo@ed866a4
+bia:tuolumne-band-of-me-wuk-indians-of-the-tuolumne-rancheria-of-california,4330R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Tuolumne Rancheria,data/geo@ed866a4
+bia:twin-hills-village,7650R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Twin Hills ANVSA,data/geo@ed866a4
+bia:ugashik-village,7665R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ugashik ANVSA,data/geo@ed866a4
+bia:united-auburn-indian-community-of-the-auburn-rancheria-of-california,0120R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Auburn Rancheria,data/geo@ed866a4
+bia:united-auburn-indian-community-of-the-auburn-rancheria-of-california,0120T,xwalk trust_land,yes,aiannh_2024.csv,Auburn Off-Reservation Trust Land,data/geo@ed866a4
+bia:upper-sioux-community-minnesota,4445R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Upper Sioux Community,data/geo@ed866a4
+bia:upper-sioux-community-minnesota,4445T,xwalk trust_land,yes,aiannh_2024.csv,Upper Sioux Off-Reservation Trust Land,data/geo@ed866a4
+bia:ute-indian-tribe-of-the-uintah-and-ouray-reservation-utah,4390R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Uintah and Ouray Reservation,data/geo@ed866a4
+bia:ute-indian-tribe-of-the-uintah-and-ouray-reservation-utah,4390T,xwalk trust_land,yes,aiannh_2024.csv,Uintah and Ouray Off-Reservation Trust Land,data/geo@ed866a4
+bia:utu-utu-gwaitu-paiute-tribe-of-the-benton-paiute-reservation-california,0185R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Benton Paiute Reservation,data/geo@ed866a4
+bia:utu-utu-gwaitu-paiute-tribe-of-the-benton-paiute-reservation-california,0185T,xwalk trust_land,yes,aiannh_2024.csv,Benton Paiute Off-Reservation Trust Land,data/geo@ed866a4
+bia:village-of-alakanuk,6035R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Alakanuk ANVSA,data/geo@ed866a4
+bia:village-of-anaktuvuk-pass,6080R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Anaktuvuk Pass ANVSA,data/geo@ed866a4
+bia:village-of-aniak,6105R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Aniak ANVSA,data/geo@ed866a4
+bia:village-of-atmautluak,6160R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Atmautluak ANVSA,data/geo@ed866a4
+bia:village-of-chefornak,6275R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Chefornak ANVSA,data/geo@ed866a4
+bia:village-of-clarks-point,6360R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Clarks Point ANVSA,data/geo@ed866a4
+bia:village-of-crooked-creek,6390R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Crooked Creek ANVSA,data/geo@ed866a4
+bia:village-of-dot-lake,6415R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Dot Lake ANVSA,data/geo@ed866a4
+bia:village-of-iliamna,6625R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Iliamna ANVSA,data/geo@ed866a4
+bia:village-of-kalskag,6685R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kalskag ANVSA,data/geo@ed866a4
+bia:village-of-kaltag,6690R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kaltag ANVSA,data/geo@ed866a4
+bia:village-of-kotlik,6815R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Kotlik ANVSA,data/geo@ed866a4
+bia:village-of-lower-kalskag,6890R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Lower Kalskag ANVSA,data/geo@ed866a4
+bia:village-of-ohogamiut,7145R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ohogamiut ANVSA,data/geo@ed866a4
+bia:village-of-red-devil,7305R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Red Devil ANVSA,data/geo@ed866a4
+bia:village-of-sleetmute,7495R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Sleetmute ANVSA,data/geo@ed866a4
+bia:village-of-solomon,7500R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Solomon ANVSA,data/geo@ed866a4
+bia:village-of-stony-river,7525R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Stony River ANVSA,data/geo@ed866a4
+bia:village-of-wainwright,7735R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Wainwright ANVSA,data/geo@ed866a4
+bia:walker-river-paiute-tribe-of-the-walker-river-reservation-nevada,4515R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Walker River Reservation,data/geo@ed866a4
+bia:white-mountain-apache-tribe-of-the-fort-apache-reservation-arizona,1140R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Fort Apache Reservation,data/geo@ed866a4
+bia:winnemucca-indian-colony-of-nevada,4635R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Winnemucca Indian Colony,data/geo@ed866a4
+bia:yerington-paiute-tribe-of-the-yerington-colony-and-campbell-ranch-nevada,4725R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Yerington Colony,data/geo@ed866a4
+bia:yomba-shoshone-tribe-of-the-yomba-reservation-nevada,4740R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Yomba Reservation,data/geo@ed866a4
+bia:ysleta-del-sur-pueblo,4755R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Ysleta del Sur Pueblo,data/geo@ed866a4
+bia:ysleta-del-sur-pueblo,4755T,xwalk trust_land,yes,aiannh_2024.csv,Ysleta del Sur Off-Reservation Trust Land,data/geo@ed866a4
+bia:yurok-tribe-of-the-yurok-reservation-california,4760R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Yurok Reservation,data/geo@ed866a4
+bia:zuni-tribe-of-the-zuni-reservation-new-mexico,4785R,tribes.csv primary (aiannh),yes,aiannh_2024.csv,Zuni Reservation,data/geo@ed866a4
+bia:zuni-tribe-of-the-zuni-reservation-new-mexico,4785T,xwalk trust_land,yes,aiannh_2024.csv,Zuni Off-Reservation Trust Land,data/geo@ed866a4
