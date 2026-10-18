@@ -24,7 +24,7 @@ async def main():
          fails+=0 if ok else 1; print(t,ch,mode,'OK' if ok else 'FAIL',json.dumps(r)[:380],flush=True)
          await pg.screenshot(path=f"/workspace/shots/ln-{tag}-{t}-{ch}-{mode}.png")
          if mode=='num':
-           await pg.evaluate("()=>document.querySelector('#cands .dlx g, #cands .dlx path').dispatchEvent(new MouseEvent('click',{bubbles:true}))"); await pg.wait_for_timeout(300)
+           await pg.evaluate("()=>document.querySelector('#cands .dlx g[data-party], #cands .dlx path[data-party]').dispatchEvent(new MouseEvent('click',{bubbles:true}))"); await pg.wait_for_timeout(300)
            bt=await pg.evaluate("()=>{const e=document.getElementById('partyBub');return e&&e.textContent}"); ok=bool(bt) and len(bt)<=32 and re.search(r'\d',bt); fails+=0 if ok else 1; print(t,'line bubble','OK' if ok else 'FAIL',bt)
            await pg.evaluate("()=>document.querySelector('#cands .dlx img').click()"); await pg.wait_for_timeout(300)
            bt=await pg.evaluate("()=>{const e=document.getElementById('partyBub');return e&&e.textContent}"); ok=bool(bt) and ('Trump' in bt or 'Biden' in bt or 'Harris' in bt); fails+=0 if ok else 1; print(t,'thumb bubble','OK' if ok else 'FAIL',bt)
