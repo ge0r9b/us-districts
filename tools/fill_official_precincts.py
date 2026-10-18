@@ -10,13 +10,15 @@ copy only, for the official rows of a replacement file, and then the unchanged r
     < 2 % failing counties), flagged ≈ ('e24' / 'e20' / 'est');
  3. otherwise the row stays gray and the reason is reported.
 Only rows that are gray for the year (value null) are written, and only those named with --targets (layer:name,...)
-or, with --all-gray, every gray row of the state in the layers given by --layers.
+or, with --all-gray, every gray row of the state in the layers given by --layers. With --recompute, the rows named in
+--targets are recomputed even when they already have a value (for values built on a county the replacement corrects);
+the old value is kept in the report.
 Replacement file (JSON, built from the raw official downloads, kept outside the repo):
   {"state": S, "year": "2024", "counties": {"<v2 county name>": {"source": "...", "rows": [[precinct, dem, rep, total, <GeoJSON geometry, lon/lat>], ...],
    "not_located": {"<unit>": [dem, rep, total]}}}}
   'not_located' = official units with no geography (early voting, absentee, provisional, vote centres): they are
   not placed anywhere; the county scaling of rule 2 spreads them like fill_gray does for every state.
-usage: fill_official_precincts.py <repo> <replacement.json> (--targets ussldl:057,... | --all-gray --layers ussch) --report OUT.json [--dry]
+usage: fill_official_precincts.py <repo> <replacement.json> (--targets ussldl:057,... [--recompute] | --all-gray --layers ussch) --report OUT.json [--dry]
 """
 import sys, os, json, tempfile, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ from add_tiger_schools import load_fill_gray, strict
 from resimplify_towns import enc_geom
 
 def main():
-    a = sys.argv[1:]; dry = "--dry" in a
+    a = sys.argv[1:]; dry = "--dry" in a; rec = "--recompute" in a
     opt = lambda k: a[a.index(k) + 1] if k in a else None
     repo, rf = [x for x in a if not x.startswith("--") and x not in (opt("--targets"), opt("--report"), opt("--layers"))][:2]
     R = json.load(open(rf)); st = R["state"]; year = R.get("year", "2024"); YI = 3 if year == "2024" else 4
@@ -62,12 +64,13 @@ def main():
         d = json.loads(s[i:j]); ch = 0
         for r in d:
             if r[0] != st or (targets and r[1] not in targets[L]): continue
-            if len(r) > YI and r[YI] is not None: continue
+            if len(r) > YI and r[YI] is not None and not (rec and targets): continue
             D = ns["mp"](r[2], 1000)
             v, w = strict(ns, st, D, year); how = "exact"
             if not v:
                 v, w2 = ns["estimate"](st, D); how = "estimate" if v else "gray"; w = "exact: %s; estimate: %s" % (w, w2) if not v else "exact: " + w
             old = list(r)
+            if not v and rec: how = "unchanged (no rule applies; old value kept)"
             if v:
                 while len(r) < 5: r.append(None)
                 r[YI] = v
@@ -76,7 +79,7 @@ def main():
                     nf = {"2024": {None: "e24", "cty": "e24", "e20": "est", "e24": "e24", "est": "est"}, "2020": {None: "e20", "cty": "e20", "e24": "est", "e20": "e20", "est": "est"}}[year].get(fl, "est")
                     r[5:] = [nf]
                 ch += 1
-            out["rows"].append({"layer": L, "name": r[1], "method": how, "value": v, "flag_before": old[5] if len(old) > 5 else None, "flag_after": r[5] if len(r) > 5 else None, "why": w})
+            out["rows"].append({"layer": L, "name": r[1], "method": how, "value": v, "value_before": old[YI] if len(old) > YI else None, "flag_before": old[5] if len(old) > 5 else None, "flag_after": r[5] if len(r) > 5 else None, "why": w})
         if ch and not dry: open(p, "w").write(s[:i] + json.dumps(d, separators=(",", ":")) + s[j:])
         print(L, "changed", ch)
     json.dump(out, open(opt("--report"), "w"), indent=1, ensure_ascii=False)

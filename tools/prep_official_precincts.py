@@ -152,8 +152,36 @@ def wy(D):
         "source": "Shapes: Fremont County GIS, Voter Precincts (FremontCountyWY_BeaconStatic FeatureServer layer 15, https://services8.arcgis.com/rlGvD2ZEQWYJHMZp/arcgis/rest/services/FremontCountyWY_BeaconStatic/FeatureServer/15); votes: Wyoming Secretary of State, Fremont County Official Precinct-by-Precinct Summary, General Election Nov 5 2024 (https://sos.wyo.gov/Elections/Docs/2024/Results/General/2024_Fremont_County_General_PbP.pdf)",
         "rows": rows, "not_located": {}}}}
 
+def sd(D, repo="."):
+    # Pennington County: official 2024 canvass (SD SOS, 2024 General Election county canvass documents, Marshall-Ziebach
+    # bundle p. 89, scanned; transcribed to pennington_2024_canvass.csv, every column sums to the printed Total and to the
+    # official county result). The app's precinct file already has 39 of the 46 precincts (same votes, same shapes as the
+    # county GIS, IoU >= 0.95 except VV); those shapes are kept. The 7 missing ones (2-2, 3-4, 3-5, 4-5, CL, NH, WP) take
+    # their shape from the county GIS precinct layer (2025-26 vintage), minus the area of the 39 kept shapes. Precinct 1-6
+    # (created 2025) has no 2024 result and is left out. Absentee ballots are inside the precincts (no absentee row).
+    import csv
+    from shapely.ops import unary_union
+    sys.path.insert(0, os.path.join(repo, "tools")); from add_tiger_schools import load_fill_gray
+    V = {r["precinct"]: [int(r["harris"]), int(r["trump"]), sum(int(r[k]) for k in ("harris", "oliver", "trump", "kennedy"))]
+         for r in csv.DictReader(open(D + "/pennington_2024_canvass.csv"))}
+    assert [sum(v[k] for v in V.values()) for k in range(3)] == [20051, 35009, 56580]
+    t = open(os.path.join(repo, "data/precincts2024/South_Dakota.js")).read()
+    app = [r for r in json.loads("[" + t[t.index(",") + 1:t.rindex(");")] + "]")[0] if r[0] == "Pennington County"]
+    ns = load_fill_gray(repo, "2024"); rows = []; kept = []
+    for r in app:
+        assert V[r[1]] == r[2:5], r[1]
+        g = ns["mp"](r[5], 10000); kept.append(g); rows.append([r[1]] + V[r[1]] + [mapping(g)])
+    K = unary_union(kept); G = {}
+    for f in json.load(open(D + "/pennington_precincts.geojson"))["features"]:
+        G.setdefault(f["properties"]["Precinct"], []).append(shape(f["geometry"]).buffer(0))
+    miss = sorted(set(V) - {r[1] for r in app})
+    for k in miss: rows.append([k] + V[k] + [mapping(unary_union(G[k]).difference(K).buffer(0))])
+    return {"state": "South Dakota", "year": "2024", "counties": {"Pennington County": {
+        "source": "Votes: South Dakota Secretary of State, 2024 General Election official county canvass, Pennington County (https://sdsos.gov/elections-voting/assets/2024/Recount-Canvass-and-Canvass-Docs-General/Marshall-Ziebach.pdf, p. 89); shapes: precincts of the app's 2024 precinct file for 39 precincts, Pennington County GIS Voting MapServer layer 13 (https://gis.rcgov.org/server/rest/services/AGOL/Voting/MapServer/13, 2025-26 edits) for 2-2, 3-4, 3-5, 4-5, CL, NH, WP",
+        "rows": rows, "not_located": {}, "gis_only_precincts_without_2024_result": sorted(set(G) - set(V)), "added_from_county_gis": miss}}}
+
 if __name__ == "__main__":
     D, st, o = sys.argv[1:4]
-    R = globals()[st](D); json.dump(R, open(o, "w"))
+    R = globals()[st](D, *sys.argv[4:5]); json.dump(R, open(o, "w"))
     for c, v in R["counties"].items():
         print(c, "units", len(v["rows"]), "located", [sum(r[k] for r in v["rows"]) for k in (1, 2, 3)], "not located", v["not_located"])
