@@ -451,6 +451,16 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   | `user-upload` | `user` |
 
   Any other value is rejected and reported. `alias` (`;`, with `\;` escaped) → `entity_alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source_id` (`;`-list; 51,800 of 54,144 rows cite several) → `entity_source` (`ord` keeps the order). Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk (348f410: `entity_id, unit_layer, geoid, vintage, boundary_set, relation, source_id, overlap, share_of_geoid_in_entity, share_of_entity_in_geoid`): `unit_layer` = `unit_type_def.tiger_set`, and `boundary_set`, `relation`, `overlap`, `share_of_geoid_in_entity` and `share_of_entity_in_geoid` (same names, numeric 0–1) → `entity_geoid`. `source_id` (72 rows cite several) → `entity_geoid_source`. Each row is then then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
+- **Rulings to Institutions (Oct 18, 2026) and counts at data/inst-entities 574c290:**
+  - **Counts:** 57,914 entities, 9,846 images, 3,381 icons, 1,233 gaps.
+  - **Kind `special_district`:** frozen ids `special_district:<st>-<source>-<source_id>`. The first 305 are `tx-tceq` (Texas Commission on Environmental Quality). Each has a `parent` relation to its state. None are in 574c290 yet.
+  - **`constituent_qid`:** the constituent country's Wikidata item where it differs from the state's own item (`nation:dk` → `Q35`, `nation:nl` → `Q55`). It is stored bare, as in the file.
+  - **Founding dates:**
+    - **`inception`** (+ `inception_precision`, `inception_source`) is the earliest sourced founding date, from Wikidata P571. A year-only date is stored as `YYYY-01-01` with precision `year`.
+    - **`valid_from`** now means only the start of the **current form of government**, and only when a source states it. The file's `valid_from_source` → `entity.valid_from_source`.
+  - **Images:**
+    - Agency (`fr:*`) and BIA (`bia:*`) images stay **feed_only**: `entity_id` is null and `feed_entity_id` is set.
+    - Hidden fair-use images (`public = false`) must carry licence, attribution and `source_url` (a CHECK enforces it). They may have no Commons file.
 - **Counts at data/inst-entities 1fde48d:**
   - 57,914 entities, 3,557 relations (`entity_relations.csv`), 5,553 images, 2,925 icons.
   - Kinds: municipality 19,525; township 18,076; school_unified 10,872; **subdivision 3,480**; county 3,080; school_elementary 1,952; school_secondary 481; nation 196; chamber 101 (incl. `us-senate`); territory 52; state 51; court 37; province 10; dc_council 1.

@@ -313,6 +313,7 @@ create table entity (
                   'nation','territory','province','state','county','municipality','township',  -- province: Canadian provinces (parent nation:ca)
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
+                  'special_district',                                        -- 'special_district:<st>-<source>-<source_id>', frozen (first 305: tx-tceq)
                   'subdivision',                                             -- foreign first-level subdivisions: 'subdivision:<iso3166-2 lowercase>', frozen, no units
                   'court',                                                   -- 35 state supreme courts + TX/OK courts of criminal appeals
                   'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
@@ -332,7 +333,11 @@ create table entity (
                                                    -- federally_recognized->government (+ meta.recognition='federal')
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
-  valid_from    date,
+  valid_from    date,                                -- start of the CURRENT form of government, only when a source states it
+  valid_from_source text,                            -- entities.csv valid_from_source
+  inception     date,                                -- earliest sourced founding date (Wikidata P571)
+  inception_precision text check (inception_precision in ('day','month','year')),   -- year precision stored as YYYY-01-01
+  inception_source text,                             -- 'wikidata:P571' / source_id of the statement
   valid_to      date,
   v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
   v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
@@ -352,6 +357,7 @@ create table entity (
   -- (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
   check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
+  check (kind <> 'special_district' or entity_id ~ '^special_district:[a-z]{2}-[a-z0-9]+-[A-Za-z0-9._-]+$'),
   check (kind <> 'subdivision' or (entity_id ~ '^subdivision:[a-z]{2}-[a-z0-9]{1,3}$' and iso_3166_2 is not null)),
   -- Canada: municipality:ca-<CSDUID>, county:ca-<CDUID> (county / regional governments), first_nation:ca-<band number>
   check (country is distinct from 'ca' or kind <> 'municipality' or entity_id ~ '^municipality:ca-[0-9]{7}$'),
@@ -368,6 +374,7 @@ create table entity (
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
   iso_3166_2    text unique,                         -- 'AD-02' (entities.csv iso_3166_2; subdivisions)
+  constituent_qid text check (constituent_qid ~ '^Q[0-9]+$'),  -- constituent country item where it differs from the state ('nation:dk' Q35, 'nation:nl' Q55)
   wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (bare 'Q228' in the file; prefixed on load)
   has_region    boolean not null default true,
                                                    -- seals / flags / logos: entity_image (replaces the old icon_flag column)
@@ -481,6 +488,7 @@ create table entity_image (
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
   check (not icon or public),                        -- icons are always freely licensed
+  check (public or (attribution is not null and source_url is not null)),   -- hidden fair-use rows: licence + attribution + source_url; file may be null
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
 create unique index entity_image_one_icon on entity_image (coalesce(entity_id, feed_entity_id)) where icon;   -- at most one icon per entity
