@@ -1,0 +1,1244 @@
+{
+ "iphone390": {
+  "lat": {
+   "open_institution": 91,
+   "list_all_states": 120,
+   "sort_flip": 64,
+   "sort_flip_back": 13,
+   "num_toggle": 50,
+   "num_pick": 45,
+   "time_open": 40,
+   "chart_menu": 7,
+   "chart_gbar": 18,
+   "chart_menu_re": 8,
+   "chart_line": 13,
+   "chart_menu_single": 9,
+   "drill_PA": 13,
+   "drill_county": 24,
+   "drill_town": 16,
+   "back": 447,
+   "type_menu": 26,
+   "type_ushouse": 123,
+   "type_deselect": 74
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [
+     "\u22121.83M x laSort"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "District 22 x School districts",
+     "204K x School districts",
+     "District 02 x School districts"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6067,
+   "list_all_states": 7824,
+   "sort_flip": 13129,
+   "sort_flip_back": 14504,
+   "num_toggle": 16780,
+   "time_open": 20622,
+   "chart_menu": 28287,
+   "chart_gbar": 29346,
+   "chart_menu_re": 32015,
+   "chart_line": 32985,
+   "chart_menu_single": 38698,
+   "back": 58035,
+   "type_menu": 61673,
+   "type_ushouse": 63086,
+   "type_deselect": 67525
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M | \u2212614K",
+   "NY | R +953K | \u2212626K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Texas\",6393597],[\"Florida\",6110125],[\"California\",6081697],[\"New York\",3578899],[\"Pennsylvania\",3543308],[\"Ohio\",3180116],[\"No",
+  "county_rows": [
+   "Harris | 723K",
+   "Tarrant | 427K | 385K",
+   "Bexar | 338K | 411K",
+   "Dallas | 323K | 511K",
+   "Collin",
+   "Denton | 449K",
+   "Montgomery | 307K",
+   "Fort Bend | 362K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "town_rows": [
+   "Houston city | 272K",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Bellaire city | 10K",
+   "West University Place city | 9K",
+   "Deer Park city | 14K",
+   "La Porte city | 10K",
+   "Seabrook city | 7K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Houston city\",432550],[\"Pasadena city\",14584],[\"Baytown city\",7705],[\"Bellaire city\",5577],[\"West University Place city\",49",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "ushouse_rows": [
+   "District 21 | 266K",
+   "District 01 | 246K",
+   "District 26 | 242K",
+   "District 04 | 239K",
+   "District 03 | 233K",
+   "District 08 | 231K",
+   "District 25 | 231K",
+   "District 31 | 231K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.2742,-99.6374,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.2742,-99.6374,4]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone375": {
+  "lat": {
+   "open_institution": 91,
+   "list_all_states": 109,
+   "sort_flip": 17,
+   "sort_flip_back": 16,
+   "num_toggle": 17,
+   "num_pick": 42,
+   "time_open": 45,
+   "chart_menu": 13,
+   "chart_gbar": 23,
+   "chart_menu_re": 10,
+   "chart_line": 14,
+   "chart_menu_single": 9,
+   "drill_PA": 14,
+   "drill_county": 22,
+   "drill_town": 16,
+   "back": 271,
+   "type_menu": 18,
+   "type_ushouse": 109,
+   "type_deselect": 55
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [
+     "\u22121.83M x laSort"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "District 24 x School districts",
+     "217K x School districts",
+     "District 19 x School districts",
+     "213K x School districts"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6045,
+   "list_all_states": 7782,
+   "sort_flip": 13057,
+   "sort_flip_back": 14421,
+   "num_toggle": 16699,
+   "time_open": 20513,
+   "chart_menu": 28374,
+   "chart_gbar": 29400,
+   "chart_menu_re": 32119,
+   "chart_line": 33041,
+   "chart_menu_single": 38744,
+   "back": 57890,
+   "type_menu": 61288,
+   "type_ushouse": 62744,
+   "type_deselect": 67050
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "TX | 6.39M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Texas\",6393597],[\"Florida\",6110125],[\"California\",6081697],[\"New York\",3578899],[\"Pennsylvania\",3543308],[\"Ohio\",3180116],[\"No",
+  "county_rows": [
+   "Harris | 723K",
+   "Tarrant | 427K | 385K",
+   "Bexar | 338K | 411K",
+   "Dallas | 511K",
+   "Collin",
+   "Denton | 449K",
+   "Montgomery | 307K",
+   "Fort Bend | 362K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "town_rows": [
+   "Houston city | 272K",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Bellaire city | 10K",
+   "West University Place city | 9K",
+   "Deer Park city | 14K",
+   "La Porte city | 10K",
+   "Seabrook city | 7K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Houston city\",432550],[\"Pasadena city\",14584],[\"Baytown city\",7705],[\"Bellaire city\",5577],[\"West University Place city\",49",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "ushouse_rows": [
+   "District 21 | 266K",
+   "District 01 | 246K",
+   "District 26 | 242K",
+   "District 04 | 239K",
+   "District 03 | 233K",
+   "District 08 | 231K",
+   "District 25 | 231K",
+   "District 31 | 231K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.2742,-99.6374,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.2742,-99.6374,4]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone320": {
+  "lat": {
+   "open_institution": 96,
+   "list_all_states": 144,
+   "sort_flip": 19,
+   "sort_flip_back": 12,
+   "num_toggle": 15,
+   "num_pick": 37,
+   "time_open": 39,
+   "chart_menu": 7,
+   "chart_gbar": 11,
+   "chart_menu_re": 9,
+   "chart_line": 11,
+   "chart_menu_single": 5,
+   "drill_PA": 10,
+   "drill_county": 9,
+   "drill_town": 22,
+   "back": 313,
+   "type_menu": 19,
+   "type_ushouse": 131,
+   "type_deselect": 74
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [
+     "\u22121.83M x laSort"
+    ],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "District 31 x State house",
+     "District 31 x School districts",
+     "231K x State house",
+     "District 13 x State house",
+     "District 13 x School districts",
+     "222K x State house"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6207,
+   "list_all_states": 7917,
+   "sort_flip": 13250,
+   "sort_flip_back": 14595,
+   "num_toggle": 16865,
+   "time_open": 20668,
+   "chart_menu": 28286,
+   "chart_gbar": 29320,
+   "chart_menu_re": 31957,
+   "chart_line": 32921,
+   "chart_menu_single": 38598,
+   "back": 57666,
+   "type_menu": 61132,
+   "type_ushouse": 62508,
+   "type_deselect": 66875
+  },
+  "rows_default": [
+   "WY | 72.3%",
+   "WV | 70.0%",
+   "ND | 67.5%",
+   "ID | 66.9%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 5.24M",
+   "IL",
+   "PA",
+   "MI",
+   "NC"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "TX | 6.39M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Texas\",6393597],[\"Florida\",6110125],[\"California\",6081697],[\"New York\",3578899],[\"Pennsylvania\",3543308],[\"Ohio\",3180116],[\"No",
+  "county_rows": [
+   "Harris",
+   "Tarrant",
+   "Bexar",
+   "Dallas | 511K",
+   "Collin",
+   "Denton | 449K",
+   "Montgomery | 307K",
+   "Fort Bend | 362K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "town_rows": [
+   "Houston city",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Bellaire city | 10K",
+   "West University Place city | 9K",
+   "Deer Park city | 14K",
+   "La Porte city | 10K",
+   "Seabrook city | 7K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Houston city\",432550],[\"Pasadena city\",14584],[\"Baytown city\",7705],[\"Bellaire city\",5577],[\"West University Place city\",49",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "ushouse_rows": [
+   "District 21 | 266K",
+   "District 01 | 246K",
+   "District 26 | 242K",
+   "District 04 | 239K",
+   "District 03 | 233K",
+   "District 08 | 231K",
+   "District 25 | 231K",
+   "District 31 | 231K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.3071,-99.668,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.3071,-99.668,4]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x576": {
+  "lat": {
+   "open_institution": 80,
+   "list_all_states": 122,
+   "sort_flip": 33,
+   "sort_flip_back": 11,
+   "num_toggle": 28,
+   "num_pick": 28,
+   "time_open": 42,
+   "chart_menu": 8,
+   "chart_gbar": 25,
+   "chart_menu_re": 14,
+   "chart_line": 17,
+   "chart_menu_single": 7,
+   "drill_PA": 14,
+   "drill_county": 11,
+   "drill_town": 20,
+   "back": 275,
+   "type_menu": 26,
+   "type_ushouse": 132,
+   "type_deselect": 69
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6053,
+   "list_all_states": 7792,
+   "sort_flip": 13136,
+   "sort_flip_back": 14543,
+   "num_toggle": 16816,
+   "time_open": 20763,
+   "chart_menu": 28587,
+   "chart_gbar": 29630,
+   "chart_menu_re": 32335,
+   "chart_line": 33304,
+   "chart_menu_single": 39036,
+   "back": 58326,
+   "type_menu": 61736,
+   "type_ushouse": 63125,
+   "type_deselect": 67519
+  },
+  "rows_default": [
+   "WY | 72.3% | 26.1%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 2.45M | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI | 2.65M | 2.80M",
+   "NC | 2.76M | 2.68M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Texas\",6393597],[\"Florida\",6110125],[\"California\",6081697],[\"New York\",3578899],[\"Pennsylvania\",3543308],[\"Ohio\",3180116],[\"No",
+  "county_rows": [
+   "Harris | 723K | 809K",
+   "Tarrant | 427K | 385K",
+   "Bexar | 338K | 411K",
+   "Dallas | 323K | 511K",
+   "Collin | 280K | 222K",
+   "Denton | 251K | 192K | 449K",
+   "Montgomery | 222K | 82K | 307K",
+   "Fort Bend | 174K | 179K | 362K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "town_rows": [
+   "Houston city | 272K | 433K",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Bellaire city | 10K",
+   "West University Place city | 9K",
+   "Deer Park city | 14K",
+   "La Porte city | 10K",
+   "Seabrook city | 7K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Houston city\",432550],[\"Pasadena city\",14584],[\"Baytown city\",7705],[\"Bellaire city\",5577],[\"West University Place city\",49",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "ushouse_rows": [
+   "District 21 | 266K | 164K",
+   "District 01 | 246K | 79K",
+   "District 26 | 242K | 149K",
+   "District 04 | 239K | 120K",
+   "District 03 | 233K | 153K",
+   "District 08 | 231K | 113K",
+   "District 25 | 231K | 107K",
+   "District 31 | 231K | 143K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[34.2742,-99.6374,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[31.3202,-100.0765,5]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x768": {
+  "lat": {
+   "open_institution": 81,
+   "list_all_states": 125,
+   "sort_flip": 27,
+   "sort_flip_back": 41,
+   "num_toggle": 9,
+   "num_pick": 51,
+   "time_open": 44,
+   "chart_menu": 15,
+   "chart_gbar": 12,
+   "chart_menu_re": 15,
+   "chart_line": 18,
+   "chart_menu_single": 8,
+   "drill_PA": 9,
+   "drill_county": 46,
+   "drill_town": 48,
+   "back": 268,
+   "type_menu": 19,
+   "type_ushouse": 122,
+   "type_deselect": 71
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6122,
+   "list_all_states": 7902,
+   "sort_flip": 13283,
+   "sort_flip_back": 14722,
+   "num_toggle": 16992,
+   "time_open": 21020,
+   "chart_menu": 28926,
+   "chart_gbar": 30088,
+   "chart_menu_re": 32809,
+   "chart_line": 33776,
+   "chart_menu_single": 39549,
+   "back": 58922,
+   "type_menu": 62438,
+   "type_ushouse": 63869,
+   "type_deselect": 68255
+  },
+  "rows_default": [
+   "WY | 72.3% | 26.1%",
+   "WV | 70.0% | 28.1%",
+   "ND | 67.5% | 30.8%",
+   "ID | 66.9% | 30.4%",
+   "OK | 66.2% | 31.9%",
+   "AL | 64.8% | 34.2%",
+   "KY | 64.5% | 34.0%",
+   "AR | 64.2% | 33.6%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Wyoming\",72.322],[\"West Virginia\",69.985],[\"North Dakota\",67.525],[\"Idaho\",66.892],[\"Oklahoma\",66.162],[\"Alabama\",64.822],[\"Kentucky\",64.51],[\"Arkansas\",64.197],[\"Tennessee\",64.194],[\"South Dakota\",63.434],[\"Mississippi\",60.89",
+  "rows_flipped": [
+   "DC | 90.3%",
+   "VT | 32.6% | 64.4%",
+   "MD | 34.3% | 63.1%",
+   "MA | 36.2% | 61.6%",
+   "HI | 37.5% | 60.6%",
+   "CA | 38.3% | 58.5%",
+   "WA | 39.3% | 57.6%",
+   "OR | 41.0% | 55.3%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "FL | 5.67M | 5.30M",
+   "TX | 5.89M | 5.26M",
+   "NY | 3.25M | 5.24M",
+   "IL | 2.45M | 3.47M",
+   "PA | 3.38M | 3.46M",
+   "MI | 2.65M | 2.80M",
+   "NC | 2.76M | 2.68M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "CA | 6.08M | 9.28M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Texas\",6393597],[\"Florida\",6110125],[\"California\",6081697],[\"New York\",3578899],[\"Pennsylvania\",3543308],[\"Ohio\",3180116],[\"No",
+  "county_rows": [
+   "Harris | 723K | 809K",
+   "Tarrant | 427K | 385K",
+   "Bexar | 338K | 411K",
+   "Dallas | 323K | 511K",
+   "Collin | 280K | 222K",
+   "Denton | 251K | 192K | 449K",
+   "Montgomery | 222K | 82K | 307K",
+   "Fort Bend | 174K | 179K | 362K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "town_rows": [
+   "Houston city | 272K | 433K",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Bellaire city | 10K",
+   "West University Place city | 9K",
+   "Deer Park city | 14K",
+   "La Porte city | 10K",
+   "Seabrook city | 7K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Houston city\",432550],[\"Pasadena city\",14584],[\"Baytown city\",7705],[\"Bellaire city\",5577],[\"West University Place city\",49",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Harris County\",722695],[\"Tarrant County\",426626],[\"Bexar County\",337545],[\"Dallas County\",322569],[\"Collin County\",279534],[",
+  "ushouse_rows": [
+   "District 21 | 266K | 164K",
+   "District 01 | 246K | 79K",
+   "District 26 | 242K | 149K",
+   "District 04 | 239K | 120K",
+   "District 03 | 233K | 153K",
+   "District 08 | 231K | 113K",
+   "District 25 | 231K | 107K",
+   "District 31 | 231K | 143K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[32.8092,-99.8571,5]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[32.8092,-99.8571,5]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ }
+}

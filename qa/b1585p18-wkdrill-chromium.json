@@ -1,0 +1,74 @@
+[
+ {
+  "mode": "chart-off",
+  "dx": 60,
+  "before": [
+   "states",
+   "All States",
+   null,
+   "listall listmode lathumb"
+  ],
+  "efp": "SPAN.nmx # < rn",
+  "after": [
+   "counties",
+   "Pennsylvania",
+   null,
+   "listall listmode canback lathumb"
+  ],
+  "err": []
+ },
+ {
+  "mode": "chart-off",
+  "dx": 150,
+  "before": [
+   "states",
+   "All States",
+   null,
+   "listall listmode lathumb"
+  ],
+  "efp": "I.sg rep # < sbw",
+  "after": [
+   "states",
+   "All States",
+   null,
+   "listall listmode lathumb"
+  ],
+  "err": []
+ },
+ {
+  "mode": "bar",
+  "dx": 60,
+  "before": [
+   "states",
+   "All States",
+   "bar",
+   "listall listmode lathumb"
+  ],
+  "efp": "SPAN.nmx # < rn",
+  "after": [
+   "counties",
+   "Pennsylvania",
+   "bar",
+   "listall listmode canback lathumb"
+  ],
+  "err": []
+ },
+ {
+  "mode": "bar",
+  "dx": 150,
+  "before": [
+   "states",
+   "All States",
+   "bar",
+   "listall listmode lathumb"
+  ],
+  "efp": "I.sg rep # < sbw",
+  "after": [
+   "states",
+   "All States",
+   "bar",
+   "listall listmode lathumb"
+  ],
+  "err": []
+ }
+]

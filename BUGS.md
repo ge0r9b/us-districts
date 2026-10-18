@@ -676,7 +676,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## New on build 1582 (pass 14)
 
-### QA-072 [Critical] DC > School districts (or US House) shows the national numbers under "District of Columbia"
+### QA-072 [Fixed on 1585 (verified pass 18, 5:00 PM EDT)] [Critical] DC > School districts (or US House) shows the national numbers under "District of Columbia"
 - Severity: Critical (wrong numbers under a place's name) | Build 1583 (also seen in the 1582/1583 school run at ~2:05 PM EDT) | Chromium 390x844
 - Steps: type "District of Columbia" in the geo field > Enter (title District of Columbia, thumbnails Harris 90% / Trump 6%) > district-type button > School districts (or US House). Then the globe (list) button.
 - Expected: DC's one school district (DC Public Schools) with DC's numbers (90% / 6%), or DC's delegate district; the title and numbers agree.
@@ -708,6 +708,39 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Re-test status, build 1585 (pass 18, `5a0df17`, live line 9 = 202610181585; Oct 18 ~4:55-5:35 PM EDT)
+- No v3 preview or live URL yet. Box quiet (load 1-4).
+- **QA-072 fixed (Critical, verified Chromium and WebKit 390x844 touch):** DC > School districts shows DC's own numbers (Harris 90% / Trump 6%) with one row "District of Columbia Public Sch… 90.3%"; DC > US House shows 90% / 6% and one row "District 00 90.3%". Official DC 2024: Harris 90.28%. Data: `qa/b1585p18-dcschools-{chromium,webkit}-390.json`, shots shots/b1585p18-{ch,we}-390-DC-*.png. (Minor: the DC delegate row is labelled "District 00".)
+- **QA-075 fixed:** "Georgia" + Enter opens the US state (crumb Georgia, US House / State senate / State house / School districts buttons all visible). Washington, New Mexico and Texas also open the US states. Log `qa/p18-ga.log`, shot shots/b1585p18-ch-390-Georgia-layers.png.
+- **New chart layout (1585), Chromium 5 sizes + WebKit 390 and 1024x768:** single-place bars sit on their thumbnail rows (centre within 3 px, start 6 px right of the icon), gray "Other" chip present, labels never under a button, pie fits between thumbnails and buttons and above the bottom field (272 px at 390, 370 px at 1024x576), list chart menu offers bar / split bar / line and never pie, no list row draws a pie, Other-chip bubble says "Other" and bubbles close after 3 s, thumbnail tap never toggles the candidate. No console errors. Taps 3-45 ms. Data: `qa/b1585p18-chart-*.json`.
+- **5-size smoke flow, Chromium and WebKit:** no console errors, page errors or failed requests; CLS 0; reload restores the list, bar, #, 2024; DC address opens DC. (WebKit drill to PA was skipped by the harness: the chart menu was left open, and in WebKit the tap only closes it; not an app bug.)
+- **Layout sweep 390 (Chromium, WebKit) and 1024x768 (Chromium):** same as pass 17: QA-054 dy -3/+3 on map/list, QA-058 +23 px in the plain range list, QA-057 chart button hidden while the layers row is open, QA-060 left column 50 px wide for ~550-620 ms on list > map. Slider, top fields, right buttons and bottom bar did not move on year changes, drill-ins or Back.
+- **Still open:** QA-070 (`#bTime` off screen at (1336,488) for 258 ms Chromium 390 and at (3872,488) for 185 ms at 1024x768; not seen in WebKit this run), QA-007 (All States row 94-121 ms Chromium, 109-144 ms WebKit, 168-226 ms in the chart probe), QA-005 (US House from the Pittsburgh towns list: 0 rows, Chromium all sizes), QA-044 ("−1.83M" under the sort chip in the range line list at 390/375/320, both engines; also widened, see below), QA-020 (WebKit Back from Harris County towns to the Texas counties 268-447 ms), QA-003 unchanged.
+
+### QA-076 [MEDIUM] Chart view: the thumbnail's name bubble covers the photo and the bar's number (phone) or floats far from the photo (iPad)
+- Build 1585 | Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768; WebKit 390x844, 1024x768 (touch)
+- Steps: fresh load (US, 2024) > chart button > Bar > tap Trump's thumbnail.
+- Expected: the white "Donald Trump" bubble next to the photo (the code aims for 8 px right of the icon), not covering the photo or the 49.9% label.
+- Actual: phones: the bubble sits at x 6-116, y 123-151, on top of the photo and the "49.9%" label. iPad: it sits at x 316-426 in the middle of the bar, 270 px away from the photo. Looks like it is placed from the wide `.cand` row box (318 px wide) instead of the photo.
+- Screenshots: shots/b1585p18-ch-390-chart-bubble.png, shots/b1585p18-ch-1024x768-chart-bubble.png
+
+### QA-077 [MEDIUM] Range chart for one place: change bars are below the thumbnails with name labels, not on the icon rows
+- Build 1585 | Chromium and WebKit 390x844 (all sizes in the chart probe)
+- Steps: fresh load > chart button > Bar > time row: select 2020 > 2024.
+- Expected (1585 note): range bars sit on their icon rows (Republican, Democratic, Other at 44 px steps), no name labels.
+- Actual: the two thumbnails stay alone at the top; under them is the old block "Republican +3.1 pts / Democratic -2.9 pts / Other -0.2 pts / Change 2020 → 2024 / R+5.9 shift" with text labels, 100 px lower than the icons.
+- Screenshots: shots/b1585p18-ch-390-chart-us-range.png, shots/b1585p18-we-390-chart-us-range.png
+
+### QA-078 [HIGH] Split bar list in a range: each row is scaled to its own biggest change, not one common scale
+- Build 1585 | Chromium 390x844, 320x568 (seen in every row)
+- Steps: All States list > time row 2020 > 2024 > chart button > split bar.
+- Expected: change bars on one common scale for the whole list (spec rule, and the 1585 code comment says "the change on the list's common scale").
+- Actual: every row's largest change is drawn full width: NY +5.9 (red) and CT −2.8 (blue) are both about 275 px long at 390, as are NJ −5.2, CA −5.0, RI −3.5, SC −3.1. Bar lengths can't be compared across rows.
+- Screenshots: shots/b1585p18-ch-390-chart-list-gbar.png, shots/b1585p18-ch-320-chart-list-gbar.png
+
+### QA-044 (widened on 1585) Split bar list: the sort chip also covers the first row's red bar (+5.9 for NY) at 390 and 320
+- Shots: shots/b1585p18-ch-390-chart-list-gbar.png, shots/b1585p18-ch-320-chart-list-gbar.png
+
 ## Re-test status, build 1584 (pass 17, Oct 18 ~3:55-4:20 PM EDT)
 - Live build still 202610181584; no v3 preview or live URL yet. Box quiet (load 3-9), so the pass 16 carry-overs ran to the end.
 - **5-size smoke flow, Chromium and WebKit (touch), all 5 sizes:** no console errors, page errors or failed requests; CLS 0 to 0.014 (the 0.014 is the range slider track on Chromium 390). Reload restores PA > Allegheny list, pie, #, 2024. The DC address goes to District of Columbia (294K Harris in the pie). Data: `qa/b1584p17-flow-{chromium,webkit}-.json`, shots shots/b1584p17-{ch,we}-*.png.
@@ -728,7 +761,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Back works in Chromium and WebKit at 1024x768 by touch, mouse, keyboard Enter and script click; a second Back 3 s after the first also works (WebKit 390 and 1024). Data: `qa/b1584p16-backclick-*.json`, `qa/b1584p16-back2-webkit-*.json`.
 - Layout sweep at 1024x768 (Chromium): identical to pass 14, nothing new and nothing fixed (QA-058 23 px in the plain range list, QA-054/060 transient on map/list, QA-070 clock button off screen for one frame on All States). The 390 sweep and the 5-size flow run crashed after step 12 when another job pushed the load average to 40; carry over.
 
-### QA-075 [HIGH] Typing "Georgia" + Enter in the geo field opens the country Georgia, not the US state
+### QA-075 [Fixed on 1585 (verified pass 18)] [HIGH] Typing "Georgia" + Enter in the geo field opens the country Georgia, not the US state
 - Severity: HIGH (navigation goes to the wrong place; a US state can't be reached by its name) | Build 1584 | Chromium 390x844 touch
 - Steps: fresh load > type "Georgia" in the bottom geo field > Enter.
 - Expected: the US state of Georgia (its map, thumbnails and district types), or at least the US state listed first.
