@@ -1,0 +1,203 @@
+{
+"file": "Oregon.js",
+"bytes": 681319,
+"precincts": 1336,
+"counties": 36,
+"dem": 1002106,
+"rep": 782403,
+"total": 2001336,
+"nearest_county": 2,
+"cap_bytes": 686780,
+"tol": 0.0004,
+"zero_vote_skipped": 12,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Tillamook County": [
+5768,
+6538,
+13803
+],
+"Yamhill County": [
+19301,
+23250,
+48753
+],
+"Benton County": [
+29193,
+13445,
+48753
+],
+"Polk County": [
+16420,
+18940,
+40295
+],
+"Washington County": [
+153251,
+83197,
+269232
+],
+"Multnomah County": [
+292561,
+67954,
+399103
+],
+"Clackamas County": [
+102095,
+88392,
+214039
+],
+"Coos County": [
+10448,
+17865,
+31313
+],
+"Curry County": [
+4300,
+7212,
+12611
+],
+"Josephine County": [
+13453,
+26923,
+44560
+],
+"Klamath County": [
+7210,
+20435,
+30507
+],
+"Wasco County": [
+4781,
+5833,
+11964
+],
+"Deschutes County": [
+42444,
+45692,
+98557
+],
+"Jefferson County": [
+2980,
+5483,
+9459
+],
+"Baker County": [
+1797,
+6218,
+8779
+],
+"Harney County": [
+683,
+2912,
+3974
+],
+"Union County": [
+3249,
+8431,
+12968
+],
+"Umatilla County": [
+7673,
+17059,
+27597
+],
+"Wallowa County": [
+1116,
+2848,
+4366
+],
+"Crook County": [
+2637,
+8511,
+12172
+],
+"Grant County": [
+739,
+3210,
+4340
+],
+"Wheeler County": [
+155,
+591,
+818
+],
+"Morrow County": [
+1017,
+2721,
+4167
+],
+"Gilliam County": [
+239,
+671,
+1019
+],
+"Hood River County": [
+6510,
+3272,
+10910
+],
+"Sherman County": [
+202,
+732,
+1017
+],
+"Jackson County": [
+44447,
+53870,
+109327
+],
+"Linn County": [
+18030,
+33559,
+58840
+],
+"Lane County": [
+102753,
+67141,
+191950
+],
+"Clatsop County": [
+9252,
+8138,
+19664
+],
+"Columbia County": [
+10167,
+13217,
+26618
+],
+"Marion County": [
+57753,
+63306,
+136719
+],
+"Malheur County": [
+2246,
+7194,
+10435
+],
+"Lincoln County": [
+12501,
+10039,
+25256
+],
+"Lake County": [
+639,
+3022,
+3930
+],
+"Douglas County": [
+14096,
+34582,
+53521
+]
+},
+"vest_zip": "or_2016.zip"
+}

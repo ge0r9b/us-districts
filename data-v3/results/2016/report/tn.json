@@ -1,0 +1,498 @@
+{
+"file": "Tennessee.js",
+"bytes": 1252593,
+"precincts": 1983,
+"counties": 95,
+"dem": 870695,
+"rep": 1522925,
+"total": 2508027,
+"nearest_county": 0,
+"cap_bytes": 1295531,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Crockett County": [
+1303,
+3982,
+5397
+],
+"Cumberland County": [
+5202,
+20413,
+26360
+],
+"Blount County": [
+12100,
+37443,
+52208
+],
+"Campbell County": [
+2248,
+9870,
+12532
+],
+"Carter County": [
+3453,
+16898,
+21084
+],
+"Cheatham County": [
+3878,
+11297,
+15924
+],
+"Davidson County": [
+148864,
+84550,
+249068
+],
+"Cannon County": [
+1127,
+4007,
+5314
+],
+"Carroll County": [
+2327,
+7756,
+10384
+],
+"Chester County": [
+1243,
+5081,
+6507
+],
+"Bradley County": [
+7070,
+29768,
+38666
+],
+"Claiborne County": [
+1832,
+8602,
+10740
+],
+"Clay County": [
+707,
+2141,
+2920
+],
+"Cocke County": [
+1981,
+9791,
+12126
+],
+"Anderson County": [
+9013,
+19212,
+29881
+],
+"Coffee County": [
+4743,
+14417,
+19971
+],
+"Bedford County": [
+3395,
+11486,
+15355
+],
+"Benton County": [
+1474,
+4716,
+6328
+],
+"Bledsoe County": [
+897,
+3622,
+4664
+],
+"Fentress County": [
+1100,
+6038,
+7333
+],
+"Franklin County": [
+4374,
+11532,
+16404
+],
+"Gibson County": [
+5258,
+13786,
+19547
+],
+"Giles County": [
+2917,
+7970,
+11137
+],
+"Grainger County": [
+1154,
+6626,
+8008
+],
+"Greene County": [
+4216,
+18562,
+23583
+],
+"Decatur County": [
+894,
+3588,
+4592
+],
+"DeKalb County": [
+1569,
+5171,
+6955
+],
+"Grundy County": [
+999,
+3636,
+4763
+],
+"Dickson County": [
+4722,
+13233,
+18699
+],
+"Hamblen County": [
+4075,
+15857,
+20692
+],
+"Dyer County": [
+2816,
+10180,
+13336
+],
+"Fayette County": [
+5874,
+13055,
+19394
+],
+"Knox County": [
+62878,
+105767,
+180697
+],
+"Henry County": [
+3063,
+9508,
+12945
+],
+"Hickman County": [
+1824,
+5695,
+7813
+],
+"Houston County": [
+866,
+2182,
+3168
+],
+"Humphreys County": [
+1967,
+4930,
+7153
+],
+"Jackson County": [
+1129,
+3236,
+4466
+],
+"Jefferson County": [
+3494,
+14776,
+19072
+],
+"Johnson County": [
+988,
+5410,
+6579
+],
+"Hancock County": [
+322,
+1843,
+2231
+],
+"Hardeman County": [
+4185,
+4919,
+9273
+],
+"Hardin County": [
+1622,
+8012,
+9949
+],
+"Hawkins County": [
+3507,
+16648,
+20774
+],
+"Haywood County": [
+3711,
+3013,
+6834
+],
+"Henderson County": [
+1800,
+8138,
+10217
+],
+"Rutherford County": [
+36706,
+64515,
+107436
+],
+"Loudon County": [
+4919,
+17610,
+23391
+],
+"Maury County": [
+10038,
+23799,
+35369
+],
+"McMinn County": [
+3510,
+14691,
+18755
+],
+"Perry County": [
+597,
+2167,
+2855
+],
+"Pickett County": [
+536,
+2021,
+2615
+],
+"Macon County": [
+1072,
+6263,
+7504
+],
+"Polk County": [
+1252,
+5097,
+6520
+],
+"Putnam County": [
+6851,
+19002,
+27212
+],
+"McNairy County": [
+1848,
+7841,
+10038
+],
+"Madison County": [
+15448,
+21335,
+38120
+],
+"Meigs County": [
+856,
+3342,
+4320
+],
+"Monroe County": [
+3186,
+13374,
+17093
+],
+"Rhea County": [
+1942,
+8660,
+11062
+],
+"Montgomery County": [
+21699,
+32341,
+57620
+],
+"Roane County": [
+4837,
+15880,
+21669
+],
+"Robertson County": [
+6637,
+19410,
+27113
+],
+"Lake County": [
+577,
+1357,
+1970
+],
+"Lauderdale County": [
+3056,
+4884,
+8087
+],
+"Lawrence County": [
+2821,
+12420,
+15666
+],
+"Marion County": [
+2832,
+7696,
+10862
+],
+"Moore County": [
+496,
+2325,
+2926
+],
+"Lewis County": [
+890,
+3585,
+4622
+],
+"Morgan County": [
+1054,
+5441,
+6705
+],
+"Marshall County": [
+2852,
+8184,
+11455
+],
+"Obion County": [
+2426,
+9526,
+12249
+],
+"Lincoln County": [
+2554,
+10398,
+13348
+],
+"Overton County": [
+1945,
+6059,
+8229
+],
+"Sullivan County": [
+12578,
+46979,
+62278
+],
+"Shelby County": [
+208992,
+116344,
+337383
+],
+"Sumner County": [
+18161,
+50129,
+71505
+],
+"Scott County": [
+934,
+6044,
+7123
+],
+"Sequatchie County": [
+1053,
+4441,
+5694
+],
+"Sevier County": [
+6297,
+28629,
+36312
+],
+"Stewart County": [
+1222,
+3864,
+5299
+],
+"Smith County": [
+1689,
+5494,
+7436
+],
+"Washington County": [
+13024,
+34252,
+49750
+],
+"Williamson County": [
+31013,
+68212,
+106271
+],
+"Wilson County": [
+14385,
+39406,
+56734
+],
+"Wayne County": [
+717,
+5036,
+5857
+],
+"Weakley County": [
+2772,
+9008,
+12184
+],
+"White County": [
+1845,
+7671,
+9825
+],
+"Tipton County": [
+5785,
+16910,
+23481
+],
+"Trousdale County": [
+946,
+2103,
+3160
+],
+"Unicoi County": [
+1262,
+5671,
+7195
+],
+"Union County": [
+1012,
+5053,
+6247
+],
+"Van Buren County": [
+539,
+1820,
+2419
+],
+"Warren County": [
+3535,
+9540,
+13612
+],
+"Hamilton County": [
+55316,
+78733,
+142408
+]
+},
+"vest_zip": "tn_2016.zip"
+}

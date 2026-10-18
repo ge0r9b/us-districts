@@ -1,0 +1,818 @@
+{
+"file": "Georgia.js",
+"bytes": 1348184,
+"precincts": 2674,
+"counties": 159,
+"dem": 1877963,
+"rep": 2089104,
+"total": 4092373,
+"nearest_county": 3,
+"cap_bytes": 1656561,
+"tol": 0.0004,
+"zero_vote_skipped": 26,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT_N",
+"county": {
+"Fulton County": [
+297051,
+117783,
+430599
+],
+"Columbia County": [
+18887,
+43085,
+64242
+],
+"Lincoln County": [
+1273,
+2759,
+4102
+],
+"Fayette County": [
+23284,
+35048,
+60435
+],
+"Taliaferro County": [
+545,
+349,
+897
+],
+"Wilkes County": [
+1848,
+2572,
+4477
+],
+"Greene County": [
+3199,
+5490,
+8840
+],
+"Oconee County": [
+5581,
+13425,
+19931
+],
+"Banks County": [
+684,
+6134,
+6950
+],
+"Morgan County": [
+2663,
+6559,
+9440
+],
+"Walton County": [
+8292,
+31125,
+40472
+],
+"Newton County": [
+20788,
+20696,
+42412
+],
+"Clayton County": [
+78220,
+12645,
+92512
+],
+"Rockdale County": [
+24410,
+13695,
+39047
+],
+"Gwinnett County": [
+166153,
+146989,
+325636
+],
+"DeKalb County": [
+251370,
+51468,
+312504
+],
+"Henry County": [
+50057,
+45724,
+98286
+],
+"Heard County": [
+743,
+3370,
+4206
+],
+"Carroll County": [
+12464,
+30029,
+43839
+],
+"Paulding County": [
+18025,
+44662,
+64641
+],
+"Whitfield County": [
+7937,
+21537,
+30398
+],
+"Coweta County": [
+16583,
+42533,
+61351
+],
+"Early County": [
+2168,
+2552,
+4785
+],
+"Spalding County": [
+9357,
+15646,
+25600
+],
+"Screven County": [
+2300,
+3305,
+5699
+],
+"Burke County": [
+4731,
+4491,
+9351
+],
+"Chattooga County": [
+1613,
+6462,
+8252
+],
+"Richmond County": [
+48814,
+24461,
+75086
+],
+"Warren County": [
+1314,
+991,
+2333
+],
+"Jefferson County": [
+3821,
+3063,
+6954
+],
+"Thomas County": [
+7142,
+11228,
+18738
+],
+"Brooks County": [
+2528,
+3701,
+6318
+],
+"Jasper County": [
+1544,
+4360,
+6023
+],
+"Butts County": [
+2566,
+6717,
+9477
+],
+"Monroe County": [
+3571,
+8832,
+12687
+],
+"Bibb County": [
+36787,
+24043,
+62277
+],
+"Sumter County": [
+5520,
+5276,
+10974
+],
+"Dooly County": [
+1872,
+1951,
+3859
+],
+"Peach County": [
+5100,
+5413,
+10724
+],
+"Tift County": [
+4347,
+9584,
+14175
+],
+"Worth County": [
+2020,
+6152,
+8280
+],
+"Crisp County": [
+2837,
+4549,
+7512
+],
+"Brantley County": [
+619,
+5567,
+6292
+],
+"Colquitt County": [
+3463,
+9898,
+13601
+],
+"Lowndes County": [
+15064,
+21635,
+37628
+],
+"Lee County": [
+3170,
+10646,
+14115
+],
+"Lamar County": [
+2270,
+5190,
+7586
+],
+"Pike County": [
+1240,
+7278,
+8681
+],
+"Grady County": [
+3013,
+6053,
+9201
+],
+"Mitchell County": [
+3493,
+4279,
+7865
+],
+"Randolph County": [
+1598,
+1271,
+2897
+],
+"Terrell County": [
+2267,
+1874,
+4181
+],
+"Dougherty County": [
+23311,
+10232,
+34018
+],
+"Marion County": [
+1213,
+1921,
+3183
+],
+"Seminole County": [
+1189,
+2345,
+3582
+],
+"Decatur County": [
+4124,
+6020,
+10270
+],
+"Miller County": [
+623,
+1891,
+2544
+],
+"Baker County": [
+650,
+775,
+1440
+],
+"Muscogee County": [
+39851,
+26976,
+68658
+],
+"Quitman County": [
+461,
+575,
+1044
+],
+"Stewart County": [
+1222,
+805,
+2055
+],
+"Harris County": [
+4086,
+11936,
+16401
+],
+"Meriwether County": [
+3804,
+5222,
+9191
+],
+"Taylor County": [
+1296,
+2064,
+3405
+],
+"Upson County": [
+3475,
+7292,
+10934
+],
+"Schley County": [
+401,
+1472,
+1909
+],
+"Talbot County": [
+2002,
+1196,
+3244
+],
+"Charlton County": [
+1004,
+2951,
+4009
+],
+"Turner County": [
+1246,
+2095,
+3394
+],
+"Appling County": [
+1434,
+5494,
+7005
+],
+"Wayne County": [
+2041,
+8153,
+10386
+],
+"Camden County": [
+5930,
+12310,
+18869
+],
+"Coffee County": [
+4094,
+9588,
+13915
+],
+"Irwin County": [
+891,
+2716,
+3665
+],
+"Tattnall County": [
+1681,
+5096,
+6886
+],
+"Long County": [
+1360,
+2626,
+4117
+],
+"Bacon County": [
+608,
+3364,
+4019
+],
+"Cook County": [
+1753,
+4176,
+6041
+],
+"Evans County": [
+1130,
+2404,
+3602
+],
+"Bulloch County": [
+9261,
+15097,
+25248
+],
+"Lanier County": [
+806,
+1984,
+2863
+],
+"Clinch County": [
+686,
+1727,
+2447
+],
+"Ware County": [
+3440,
+8513,
+12159
+],
+"Berrien County": [
+1047,
+5422,
+6584
+],
+"McIntosh County": [
+2303,
+3487,
+5903
+],
+"Liberty County": [
+9556,
+6134,
+16117
+],
+"Glynn County": [
+11775,
+21512,
+34112
+],
+"Atkinson County": [
+697,
+1878,
+2610
+],
+"Echols County": [
+156,
+1007,
+1176
+],
+"Pierce County": [
+903,
+6302,
+7298
+],
+"Pulaski County": [
+1104,
+2437,
+3599
+],
+"Telfair County": [
+1313,
+2450,
+3795
+],
+"Wilcox County": [
+852,
+2096,
+2973
+],
+"Dodge County": [
+1839,
+5021,
+6998
+],
+"Bleckley County": [
+1101,
+3719,
+4943
+],
+"Montgomery County": [
+847,
+2670,
+3562
+],
+"Laurens County": [
+6752,
+12411,
+19476
+],
+"Wheeler County": [
+646,
+1421,
+2102
+],
+"Candler County": [
+1026,
+2664,
+3763
+],
+"Houston County": [
+22553,
+35430,
+59744
+],
+"Jeff Davis County": [
+901,
+4104,
+5091
+],
+"Johnson County": [
+1136,
+2519,
+3682
+],
+"Washington County": [
+4200,
+4149,
+8447
+],
+"Emanuel County": [
+2435,
+5335,
+7845
+],
+"Glascock County": [
+138,
+1235,
+1390
+],
+"Toombs County": [
+2338,
+6615,
+9111
+],
+"Wilkinson County": [
+1894,
+2333,
+4278
+],
+"Ben Hill County": [
+2101,
+3739,
+5931
+],
+"Putnam County": [
+2758,
+6544,
+9472
+],
+"McDuffie County": [
+3699,
+5432,
+9268
+],
+"Effingham County": [
+4853,
+17874,
+23406
+],
+"Chatham County": [
+62290,
+45688,
+111481
+],
+"Forsyth County": [
+23462,
+69851,
+97404
+],
+"Hall County": [
+16180,
+51733,
+70220
+],
+"Dawson County": [
+1448,
+9900,
+11704
+],
+"White County": [
+1674,
+9761,
+11783
+],
+"Barrow County": [
+6580,
+21108,
+28831
+],
+"Lumpkin County": [
+2220,
+9619,
+12334
+],
+"Murray County": [
+1800,
+10341,
+12424
+],
+"Jackson County": [
+4491,
+21784,
+27109
+],
+"Catoosa County": [
+4771,
+20876,
+26528
+],
+"Walker County": [
+4215,
+18950,
+23956
+],
+"Dade County": [
+965,
+5051,
+6242
+],
+"Haralson County": [
+1475,
+9585,
+11324
+],
+"Polk County": [
+2867,
+11014,
+14170
+],
+"Cherokee County": [
+25231,
+80649,
+110895
+],
+"Cobb County": [
+160121,
+152912,
+327499
+],
+"Madison County": [
+2425,
+9201,
+11954
+],
+"Elbert County": [
+2539,
+5292,
+7970
+],
+"Hart County": [
+2585,
+7286,
+10080
+],
+"Oglethorpe County": [
+1831,
+4625,
+6655
+],
+"Habersham County": [
+2483,
+13190,
+16134
+],
+"Rabun County": [
+1444,
+6287,
+7950
+],
+"Franklin County": [
+1243,
+7054,
+8474
+],
+"Stephens County": [
+1837,
+7686,
+9766
+],
+"Clarke County": [
+29603,
+12717,
+44339
+],
+"Webster County": [
+473,
+630,
+1116
+],
+"Bryan County": [
+4014,
+10529,
+15085
+],
+"Clay County": [
+697,
+566,
+1271
+],
+"Jones County": [
+3961,
+8305,
+12526
+],
+"Macon County": [
+2705,
+1540,
+4287
+],
+"Twiggs County": [
+1971,
+2035,
+4056
+],
+"Calhoun County": [
+1179,
+830,
+2025
+],
+"Gilmer County": [
+1965,
+10477,
+12735
+],
+"Union County": [
+1963,
+9852,
+12044
+],
+"Hancock County": [
+2701,
+843,
+3580
+],
+"Douglas County": [
+31005,
+24817,
+57416
+],
+"Chattahoochee County": [
+594,
+751,
+1390
+],
+"Bartow County": [
+8212,
+29911,
+39306
+],
+"Pickens County": [
+1979,
+11651,
+13984
+],
+"Troup County": [
+9713,
+15750,
+26024
+],
+"Towns County": [
+1210,
+5383,
+6739
+],
+"Crawford County": [
+1421,
+3635,
+5162
+],
+"Jenkins County": [
+1123,
+1895,
+3052
+],
+"Baldwin County": [
+7970,
+7697,
+16086
+],
+"Treutlen County": [
+862,
+1809,
+2703
+],
+"Fannin County": [
+1923,
+9632,
+11777
+],
+"Gordon County": [
+3181,
+15191,
+18879
+],
+"Floyd County": [
+9159,
+24114,
+34357
+]
+},
+"vest_zip": "ga_2016.zip"
+}

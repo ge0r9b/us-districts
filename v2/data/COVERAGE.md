@@ -551,3 +551,280 @@ Source: DC Board of Elections (DCBOE) certified results by ward, official PDFs: 
 | DC (= DCPS) | 294,185 | 21,076 | 325,869 | 317,323 | 18,586 | 344,356 |
 
 Caveat: 2024 was voted on the 2022 ward plan, 2020 on the 2012 plan (same ward numbers, some boundary changes, mainly Wards 6, 7 and 8). The map draws the current (2022) ward lines; 2020 ward rows are DCBOE's official 2020 ward totals, not re-tabulated onto the new lines. The ward sums equal the citywide totals exactly in both years. Ward rows renamed "001"…"008" -> "Ward 1"…"Ward 8". Precincts: 144 (2024, current precincts) and 144 (2020, 2019 precincts) from DCBOE certified precinct results (added build 202610141330; the table row above was stale). Test: `tests/dc-wards.py`.
+
+## Coverage audit, geo & institution data lane (Oct 18, 2026, branch `data/geo`)
+
+Made by `tools/coverage_audit.py` (read-only on data files; run `python3 tools/coverage_audit.py . --csv /tmp/cov.csv --md /tmp/cov.md`, about 5 s; downloads the Census 2024 Gazetteer once to `~/.cache/us-districts/tiger2024`). Audited on main 509d31d (data unchanged since 08d298c). This section replaces the separate `docs/COVERAGE.md` of commit fcb87ac (single inventory).
+
+### What is checked
+- **Layers and files:** states `v2/data/usstates.js`; counties `v2/data/uscounties.js` + `data/election2020.js` / `data/election2024.js` (+ `v2/data/ak.js` boroughs); towns (county subdivisions) `data/<State>.js` `towns` + `v2/data/parts/<State>.js`; precincts `data/precincts20XX/<State>.js` (+ `v2/data/precincts20XX-DC.js`); US House `v2/data/uscd.js`; state senate `v2/data/ussldu.js`; state house `v2/data/ussldl.js`; school districts `v2/data/ussch.js`; DC wards `v2/data/dc.js` (applied over the national files the way the app does at runtime).
+- **Expected counts:** Census TIGER 2024 Gazetteer (public domain): counties, county subdivisions, 119th CDs, SLDU, SLDL, unified + elementary + secondary school districts; "not defined" (ZZ/ZZZ) units dropped. Towns are expected only in states with governmental county subdivisions (FUNCSTAT A/B/C/G); expected count = all cousubs except FUNCSTAT N/S/I. Nebraska state house = its 49 LDs (unicameral); DC = 8 wards under senate, house and wards, 1 school district (DCPS), 1 delegate district.
+- **Per cell (layer x year x state):** feature count vs TIGER (exact for states/counties/CD/SLD, 2 % for towns/schools), features without results (gray, listed by name), empty geometries, duplicate or missing names, broken references (election rows without a shape, shapes without results, precinct county names not in the county layer, `v2/data/x20` keys with no 2024 precinct, per-state file vs national file feature counts), precinct vote sum vs official state total (98-102 %) and per county (90-110 %).
+- **Status:** P present; S suspect (any check fails); M missing; `-` not applicable. Boundaries are 2024 for both years (app rule), so the 2020 column differs only in results.
+
+### Matrix (status 2020/2024; P present, S suspect, M missing, - not applicable; refreshed after the Oklahoma, Iowa and GEOID commits)
+| State | states | counties | towns | precincts | ushouse | senate | statehouse | schools | dcwards |
+|---|---|---|---|---|---|---|---|---|---|
+| AL | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/S | -/- |
+| AK | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/S | -/- |
+| AZ | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| AR | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/S | -/- |
+| CA | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/S | -/- |
+| CO | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/S | -/- |
+| CT | P/P | P/P | P/P | P/S | P/P | P/P | P/P | P/P | -/- |
+| DE | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| DC | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | P/P |
+| FL | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| GA | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/P | -/- |
+| HI | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| ID | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| IL | P/P | P/P | P/P | P/S | P/P | P/P | P/P | S/S | -/- |
+| IN | P/P | P/P | P/P | P/P | P/P | P/P | P/P | P/P | -/- |
+| IA | P/P | P/P | S/S | P/P | P/P | P/P | P/P | P/P | -/- |
+| KS | P/P | P/P | S/S | P/S | P/P | P/P | P/P | P/P | -/- |
+| KY | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/S | -/- |
+| LA | P/P | P/P | -/- | P/P | P/P | P/P | P/S | P/P | -/- |
+| ME | P/P | P/P | S/S | P/P | P/P | P/P | P/P | S/S | -/- |
+| MD | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| MA | P/P | P/P | P/P | P/S | P/P | P/P | P/P | P/P | -/- |
+| MI | P/P | P/P | P/P | P/S | P/P | P/P | P/P | P/P | -/- |
+| MN | P/P | P/P | P/P | P/P | P/P | P/P | P/P | P/P | -/- |
+| MS | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/S | -/- |
+| MO | P/P | P/P | P/P | P/S | P/P | P/P | P/P | S/S | -/- |
+| MT | P/P | P/P | -/- | P/S | P/P | P/P | P/P | S/S | -/- |
+| NE | P/P | P/P | S/S | P/P | P/P | P/P | P/P | P/P | -/- |
+| NV | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| NH | P/P | P/P | S/S | P/P | P/P | P/P | P/P | P/P | -/- |
+| NJ | P/P | P/P | P/P | P/P | P/P | P/P | P/P | S/S | -/- |
+| NM | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/P | -/- |
+| NY | P/P | P/P | P/P | P/P | P/P | P/P | P/P | S/S | -/- |
+| NC | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/P | -/- |
+| ND | P/P | P/P | P/P | P/S | P/P | P/P | P/P | P/P | -/- |
+| OH | P/P | P/P | P/P | P/S | P/P | P/P | P/P | S/S | -/- |
+| OK | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/S | -/- |
+| OR | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/S | -/- |
+| PA | P/P | P/P | P/P | P/P | P/P | P/P | P/P | P/P | -/- |
+| RI | P/P | P/P | P/P | P/P | P/P | P/P | P/P | P/P | -/- |
+| SC | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| SD | P/P | P/P | P/P | P/S | P/P | P/P | P/P | P/S | -/- |
+| TN | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/P | -/- |
+| TX | P/P | P/P | -/- | P/P | P/P | P/P | P/P | S/S | -/- |
+| UT | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| VT | P/P | P/P | S/S | P/P | P/P | P/P | P/P | S/S | -/- |
+| VA | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/P | -/- |
+| WA | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
+| WV | P/P | P/P | -/- | P/S | P/P | P/P | P/P | P/P | -/- |
+| WI | P/P | P/P | P/P | P/P | P/P | P/P | P/P | P/S | -/- |
+| WY | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/S | -/- |
+
+| Layer | Year | Features | TIGER 2024 expected | With results | P | S | M |
+|---|---|---|---|---|---|---|---|
+| states | 2020 | 51 | 51 | 51 | 51 | 0 | 0 |
+| states | 2024 | 51 | 51 | 51 | 51 | 0 | 0 |
+| counties | 2020 | 3144 | 3144 | 3143 | 51 | 0 | 0 |
+| counties | 2024 | 3144 | 3144 | 3143 | 51 | 0 | 0 |
+| towns | 2020 | 22319 | 22450 | 22319 | 15 | 6 | 0 |
+| towns | 2024 | 22319 | 22450 | 22319 | 15 | 6 | 0 |
+| precincts | 2020 | 163570 |  | 163051 | 51 | 0 | 0 |
+| precincts | 2024 | 173276 |  | 166529 | 31 | 20 | 0 |
+| ushouse | 2020 | 436 | 436 | 436 | 51 | 0 | 0 |
+| ushouse | 2024 | 436 | 436 | 436 | 51 | 0 | 0 |
+| senate | 2020 | 1950 | 1950 | 1950 | 51 | 0 | 0 |
+| senate | 2024 | 1950 | 1950 | 1950 | 51 | 0 | 0 |
+| statehouse | 2020 | 4890 | 4890 | 4890 | 51 | 0 | 0 |
+| statehouse | 2024 | 4890 | 4890 | 4885 | 46 | 5 | 0 |
+| schools | 2020 | 13305 | 13305 | 13279 | 37 | 14 | 0 |
+| schools | 2024 | 13305 | 13305 | 13221 | 30 | 21 | 0 |
+| dcwards | 2020 | 8 | 8 | 8 | 1 | 0 | 0 |
+| dcwards | 2024 | 8 | 8 | 8 | 1 | 0 | 0 |
+
+Town rows carry no results of their own (values come from precincts at runtime), so towns are judged on boundaries only. US House / senate / counties show no gray because ≈ estimates count as "with results" (≈ shares in the build 1539 table above).
+
+### Cross-check with the gray inventory in `v2/data/COVERAGE.md` (build 1539/1559)
+| Item | Inventory | This audit | Agrees |
+|---|---|---|---|
+| 2024 state house gray | 5: AL 004, LA 057, MS 115, VA 089, WY 054 | same 5 | yes |
+| 2024 school districts gray | 84 | 84 (SD 26, ME 14, VT 8, MO 8, AK 5, KY 3, then 2/1 each) | yes |
+| 2020 school districts gray | 26 (AK 14, CA 4, VT 3 …) | 26 | yes |
+| 2024 counties with no precinct file | 9 (SD 8, MS Issaquena) | 9, same counties | yes |
+| 2024 counties outside 90-110 % | 41 (OR 6) | 41 by the inventory rule (Dem+Rep); 40 by all votes (OR 5) | yes, see note |
+| Counties | 3,112 | 3,144 shapes = TIGER 3,144; 3,143 with results (Alaska's 30 via `ak.js` ≈; Kalawao reported with Maui) | yes (inventory counts Alaska/DC differently) |
+| US House / senate / house boundaries | 435 / 1,942 / 4,882 | 436 / 1,950 / 4,890 incl. DC delegate + 8 wards; all equal TIGER 2024 | yes |
+| School district boundaries | 13,208 | 13,209 incl. DCPS vs TIGER 13,305: Oklahoma short by 96 (all other states within 2 %) | **new gap** |
+
+**Note on 41 vs 40 counties (traced).** The first audit pass (commit fcb87ac) reported 40 because it compared *all* presidential votes; the inventory (`/workspace/db/tools/qc.py`) compares Harris+Trump only. Both are right under their own rule; the one county that differs is **Oregon Polk County**: precinct file 19,232 / 21,576 / 42,431 (Harris / Trump / all) vs official 21,908 / 23,695 / 47,025, i.e. Dem+Rep 0.895 (outside) but all votes 0.902 (inside), because the precinct file has 1,623 other-candidate votes against 1,422 official. So the inventory's **41 (Oregon 6) stands; no correction is needed.** The audit now uses the inventory's Dem+Rep rule and lists the all-votes result as info. By the all-votes rule two 2020 counties are also outside (Idaho Camas 0.894, North Dakota Sioux 0.848: VEST precinct files carry 18 and 16 other-candidate votes vs 98 and 124 official; Dem+Rep are 1.000 and 0.932).
+
+Not yet checked against official state sources beyond what the inventory already records (county totals = certified).
+
+### Prioritized gaps (with reasons and likely source)
+1. ~~**Oklahoma school districts: 96 missing boundaries.**~~ Done, see 'Oklahoma elementary school districts added' below. Layer has 413 = TIGER 2024 unified districts; the 96 TIGER 2024 elementary districts (ELSD) are absent in both years. Source: Census TIGER 2024 ELSD (+ results from OK State Election Board precinct returns via MEDSL, CC0).
+2. ~~**Iowa townships missing.**~~ Done (1,425 shown, 173 hidden by the app's name de-duplication), see 'Iowa townships added' below. 60 town rows (cities only) vs 1,660 TIGER county subdivisions (1,598 townships, FUNCSTAT G). Town drill-down in Iowa has no townships. Source: TIGER 2024 COUSUB.
+3. **South Dakota 2024 precincts: 81.6 % of official votes;** 8 counties have no precincts (Brookings, Brown, Haakon, Hughes, Lawrence, Potter, Sully, Yankton: vote centers or no published shapes), Pennington outside 90-110 %; causes 26 gray 2024 school districts. Partly structural (vote centers have no geography). Source: SD SOS official results; county GIS for Lawrence.
+4. **2024 state house gray (5): AL 004, LA 057, MS 115, VA 089, WY 054.** Precinct polygons cover 39-80 % of the districts (AL Limestone/Morgan, LA St. John the Baptist, MS Harrison, VA Suffolk/Chesapeake, WY Fremont 05-1 split). Source: official 2024 precinct shapes with district attributes from state/county GIS.
+5. **Oregon 2024 precincts: 97.0 % of official;** 5 counties outside 90-110 % (Columbia, Gilliam, Jefferson, Lane, Sherman); 2 gray schools (Pleasant Hill 1, Scappoose 1J). Source: county clerk precinct results + county precinct GIS (OR SOS).
+6. **Wyoming 2024 precincts: 95.9 % of official;** Albany, Fremont, Uinta, Weston outside 90-110 % (shape names do not match 2024 codes); HD 054 + 2 schools gray. Source: WY SOS precinct results + county clerk precinct maps.
+7. **Missouri 2024:** 6 counties outside 90-110 % (Cape Girardeau, Cole, Dallas, Miller, Pettis, Shelby; renumbered/merged precincts) and 8 gray schools. Source: county clerk 2024 precinct maps; MEDSL official returns (CC0).
+8. **District rows have no stable ids (GEOID) and some (state, name) keys collide** (orchestrator: GEOIDs go to `data-v3/geo/`, not into v2 rows; breaking cases listed separately): OH 49, NJ 27, CA 22, TX 22, AR 4, IL/MO/MT/OK 2 duplicate school names (all real TIGER duplicates). An earlier pass summed same-named districts (see `v2/data/COVERAGE.md`). Source: TIGER 2024.
+9. **No institution attributes beyond name:** no district rows carry representatives/officeholders, party of member, or GEOIDs in any layer (only state, name/number, geometry, results). Source: official rosters (Clerk of the House, state legislature sites); out of scope for this pass, logged.
+10. **Alaska schools:** 14 gray (2020), 5 gray (2024), area-weighting rejected; **Maine:** 14 gray 2024 (unorganized territories reported combined with towns) and 453 town rows vs 486 TIGER. Mostly structural. Source: AK Division of Elections precinct results + AK DEED REAA boundaries; ME SOS town returns.
+11. Smaller: VT 8 gores (structural, no voters), KY 3, CO 2 (Aspen, Salida), AL 2 (Fort Rucker, Guntersville), MS/MT/NY/OH 2 each, AR/NJ/TX/WI 1 gray 2024 schools; 2020: CA 4, VT 3, ME/NJ/NM/NY/TX 1. 2024 precinct counties outside 90-110 % elsewhere: AL 2, CO 3, GA 3, OH 3, KS 2, VA 2, CT/IL/MA/MI/MT/NC/ND/TN/WV 1; MS Issaquena has no precincts. 2020 (VEST): Idaho Camas, North Dakota Sioux outside 90-110 %.
+12. Town counts slightly above TIGER (KS 1,441 vs 1,391, NE 410 vs 396, NH 241 vs 234, VT 252 vs 247): probably places merged into town rows; verify for duplicates. `data/Nebraska.js` has no `statehouse` key (the national file has 49 rows; app uses the national file).
+
+Info: 2024 California precinct file has 6,154 zero-vote rows of 24,202 (Statewide Database SR precincts), Texas 364, Washington 206; 2020 Nevada 152, Texas 157, Washington 108, Maryland 41, Kentucky 20. Not counted as gaps.
+
+### All suspect cells (refreshed)
+| State | Layer | Year | Features | TIGER | Reasons |
+|---|---|---|---|---|---|
+| Alabama | precincts | 2024 | 1911 |  | 2 counties outside 90-110% (Dem+Rep) |
+| Alabama | statehouse | 2024 | 105 | 105 | gray 1/105 (004) |
+| Alabama | schools | 2024 | 141 | 141 | gray 2/141 (Fort Rucker School District, Guntersville City School District) |
+| Alaska | schools | 2020 | 53 | 53 | gray 14/53 (Yupiit School District, Kashunamiut School District, Dillingham City School District, Galena City School District, Hoonah City School District, Hydaburg City School District, Kake City School District, Klawock City School District …) |
+| Alaska | schools | 2024 | 53 | 53 | gray 5/53 (Kashunamiut School District, Hydaburg City School District, Klawock City School District, Pelican City School District, Tanana City School District) |
+| Arkansas | schools | 2020 | 234 | 234 | 4 duplicate names |
+| Arkansas | schools | 2024 | 234 | 234 | gray 1/234 (Jessieville School District); 4 duplicate names |
+| California | schools | 2020 | 974 | 974 | gray 4/974 (Washington Unified School District, Mountain View Elementary School District, Ocean View Elementary School District, Kashia Elementary School District); 22 duplicate names |
+| California | schools | 2024 | 974 | 974 | 22 duplicate names |
+| Colorado | precincts | 2024 | 3144 |  | 3 counties outside 90-110% (Dem+Rep) |
+| Colorado | schools | 2024 | 178 | 178 | gray 2/178 (Aspen School District 1, Salida School District R-32) |
+| Connecticut | precincts | 2024 | 167 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Georgia | precincts | 2024 | 2636 |  | 3 counties outside 90-110% (Dem+Rep) |
+| Illinois | precincts | 2024 | 8498 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Illinois | schools | 2020 | 862 | 862 | 2 duplicate names |
+| Illinois | schools | 2024 | 862 | 862 | 2 duplicate names |
+| Iowa | towns | 2020 | 1485 | 1660 | count 1485 vs TIGER 1660 |
+| Iowa | towns | 2024 | 1485 | 1660 | count 1485 vs TIGER 1660 |
+| Kansas | towns | 2020 | 1441 | 1391 | count 1441 vs TIGER 1391 |
+| Kansas | towns | 2024 | 1441 | 1391 | count 1441 vs TIGER 1391 |
+| Kansas | precincts | 2024 | 3665 |  | 2 counties outside 90-110% (Dem+Rep) |
+| Kentucky | schools | 2024 | 177 | 177 | gray 3/177 (Somerset Independent School District, East Bernstadt Independent School District, Laurel County School District for East Bernstadt ISD) |
+| Louisiana | statehouse | 2024 | 105 | 105 | gray 1/105 (057) |
+| Maine | towns | 2020 | 453 | 486 | count 453 vs TIGER 486 |
+| Maine | towns | 2024 | 453 | 486 | count 453 vs TIGER 486 |
+| Maine | schools | 2020 | 267 | 267 | gray 1/267 (Sagadahoc Unorganized Territory) |
+| Maine | schools | 2024 | 267 | 267 | gray 14/267 (Indian Island, Kingsbury Plantation, School Administrative District 41, Oxford Unorganized Territory, Franklin Unorganized Territory, Sagadahoc Unorganized Territory, Kennebec Unorganized Territory, Lincoln Unorganized Territory …) |
+| Massachusetts | precincts | 2024 | 2337 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Michigan | precincts | 2024 | 3975 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Mississippi | precincts | 2024 | 1703 |  | 1 counties with no precincts |
+| Mississippi | statehouse | 2024 | 122 | 122 | gray 1/122 (115) |
+| Mississippi | schools | 2024 | 137 | 137 | gray 2/137 (South Delta School District, Western Line School District) |
+| Missouri | precincts | 2024 | 3021 |  | 6 counties outside 90-110% (Dem+Rep) |
+| Missouri | schools | 2020 | 516 | 516 | 2 duplicate names |
+| Missouri | schools | 2024 | 516 | 516 | gray 8/516 (Eldon R-I School District, La Monte R-IV School District, Sweet Springs R-VII School District, Cape Girardeau 63 School District, Miller County R-III School District, Cole Camp R-I School District, Delta C-7 School District, Pettis County R-XII School District); 2 duplicate names |
+| Montana | precincts | 2024 | 720 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Montana | schools | 2020 | 398 | 398 | 2 duplicate names |
+| Montana | schools | 2024 | 398 | 398 | gray 2/398 (Lambert Elementary School District, Lambert High School District); 2 duplicate names |
+| Nebraska | towns | 2020 | 410 | 396 | count 410 vs TIGER 396 |
+| Nebraska | towns | 2024 | 410 | 396 | count 410 vs TIGER 396 |
+| New Hampshire | towns | 2020 | 241 | 234 | count 241 vs TIGER 234 |
+| New Hampshire | towns | 2024 | 241 | 234 | count 241 vs TIGER 234 |
+| New Jersey | schools | 2020 | 557 | 557 | gray 1/557 (Ocean Township School District); 27 duplicate names |
+| New Jersey | schools | 2024 | 557 | 557 | gray 1/557 (Gibbsboro Borough School District); 27 duplicate names |
+| New Mexico | schools | 2020 | 89 | 89 | gray 1/89 (Loving Municipal Schools) |
+| New York | schools | 2020 | 680 | 680 | gray 1/680 (New Suffolk Common School District) |
+| New York | schools | 2024 | 680 | 680 | gray 2/680 (Bath Central School District, Geneva City School District) |
+| North Carolina | precincts | 2024 | 2643 |  | 1 counties outside 90-110% (Dem+Rep) |
+| North Dakota | precincts | 2024 | 379 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Ohio | precincts | 2024 | 8786 |  | 3 counties outside 90-110% (Dem+Rep) |
+| Ohio | schools | 2020 | 611 | 611 | 49 duplicate names |
+| Ohio | schools | 2024 | 611 | 611 | gray 2/611 (Shelby City School District, Carey Exempted Village School District); 49 duplicate names |
+| Oklahoma | schools | 2020 | 509 | 509 | 2 duplicate names |
+| Oklahoma | schools | 2024 | 509 | 509 | 2 duplicate names |
+| Oregon | precincts | 2024 | 1244 |  | votes 97.0% of official; 6 counties outside 90-110% (Dem+Rep) |
+| Oregon | schools | 2024 | 197 | 197 | gray 2/197 (Pleasant Hill School District 1, Scappoose School District 1J) |
+| South Dakota | precincts | 2024 | 623 |  | votes 81.6% of official; 8 counties with no precincts; 1 counties outside 90-110% (Dem+Rep) |
+| South Dakota | schools | 2024 | 148 | 148 | gray 26/148 (Britton-Hecla School District 45-4, Agar-Blunt-Onida School District 58-3, Groton Area School District 06-6, Aberdeen School District 06-1, Arlington School District 38-1, Brookings School District 05-1, Elkton School District 05-3, Frederick Area School District 06-2 …) |
+| Tennessee | precincts | 2024 | 1845 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Texas | schools | 2020 | 1019 | 1019 | gray 1/1019 (Boys Ranch Independent School District); 22 duplicate names |
+| Texas | schools | 2024 | 1019 | 1019 | gray 1/1019 (Boys Ranch Independent School District); 22 duplicate names |
+| Vermont | towns | 2020 | 252 | 247 | count 252 vs TIGER 247 |
+| Vermont | towns | 2024 | 252 | 247 | count 252 vs TIGER 247 |
+| Vermont | schools | 2020 | 131 | 131 | gray 3/131 (Averys Gore School District, Lewis School District, Warners Grant School District) |
+| Vermont | schools | 2024 | 131 | 131 | gray 8/131 (Buels Gore School District, Ferdinand School District, Glastenbury School District, Somerset School District, Averill School District, Averys Gore School District, Warners Grant School District, Warrens Gore School District) |
+| Virginia | precincts | 2024 | 2518 |  | 2 counties outside 90-110% (Dem+Rep) |
+| Virginia | statehouse | 2024 | 100 | 100 | gray 1/100 (089) |
+| West Virginia | precincts | 2024 | 1611 |  | 1 counties outside 90-110% (Dem+Rep) |
+| Wisconsin | schools | 2024 | 421 | 421 | gray 1/421 (Sturgeon Bay School District) |
+| Wyoming | precincts | 2024 | 415 |  | votes 95.9% of official; 4 counties outside 90-110% (Dem+Rep) |
+| Wyoming | statehouse | 2024 | 62 | 62 | gray 1/62 (054) |
+| Wyoming | schools | 2024 | 48 | 48 | gray 2/48 (Uinta County School District 4, Weston County School District 1) |
+
+## Oklahoma elementary school districts added (Oct 18, 2026, branch `data/geo`, no app/BUILD change)
+
+The school layer had Oklahoma's 413 TIGER 2024 unified districts but not its **96 elementary (K-8 dependent) districts**, so their territory was a hole in the map. TIGER 2024 ELSD for Oklahoma (`tl_2024_40_elsd.zip`, Census, public domain) was added to `v2/data/ussch.js` with `tools/add_tiger_schools.py` (raw download kept untouched outside the repo). The elementary districts do not overlap the unified ones (overlap area 0 for all 96), so no area is counted twice. No name collides with an existing Oklahoma row.
+
+- **Geometry:** same convention as the existing school rows (buffer(0), simplify 0.004°, ×1000 integer deltas); 2,678 vertices for the 96 rows (28 per row; existing Oklahoma rows average 45).
+- **Results:** exact where the strict school rule holds on the app's own precinct files (every overlapping precinct ≥ 97 % inside, ≥ 97 % cover, touched counties within 0.5 % of official): Allen-Bowden (2024 and 2020) and Pretty Water (2020). All others: the `tools/fill_gray.py` area-weighted estimate (precincts scaled per county and party to official county totals), flagged ≈ (`est` 94 rows, `e24` 1 row: Pretty Water). Reason for ≈ in each case: a precinct straddles the district boundary (rural precincts are larger than these districts). None left gray. Sources: `data/precincts2024/Oklahoma.js` (OK State Election Board returns via MEDSL, CC0, + VEST/OK shapes, see build 1534) and `data/precincts2020/Oklahoma.js` (VEST 2020, CC BY 4.0); county totals `data/election20XX.js` (official).
+- **Effect:** Oklahoma schools 413 → 509 (= TIGER 509); national school rows 13,208 → 13,304 (13,305 with DCPS, = TIGER 2024); gray unchanged (2024: 84, 2020: 26). The 96 rows hold 71,629 votes (2024) and 70,799 (2020). `v2/data/ussch.js` 4,725,484 → 4,749,158 bytes (+23,674, +0.5 %).
+- **Not updated (v1 / app-owned):** `data/Oklahoma.js` (v1, root) still lists 413 school districts. In `v2/index.html`, `schoolsInCounty()` builds its county school list from that v1 geometry (`GEOM.schools`) and `PACK.lists.localities`, so the 96 new districts will not appear in that list until the app side changes. The district map, list-all and county tier (`distInCounty`, built from `v2/data/ussch.js`) do include them.
+- Per-district report (method, reason, values): `/workspace/w/lanes/geo-data-raw/reports/ok_elsd.json` on the box.
+
+## Iowa townships added to the town layer (Oct 18, 2026, branch `data/geo`, no app/BUILD change)
+
+Iowa's town layer had 60 city rows (v1 `data/Iowa.js`) plus 1,011 city-part rows (`v2/data/parts/Iowa.js`) but **none of its 1,598 townships**. TIGER 2024 county subdivisions for Iowa (`tl_2024_19_cousub.zip`, Census, public domain; FUNCSTAT G = township) were appended to `v2/data/parts/Iowa.js` with `tools/add_tiger_towns.py` as `[county, NAMELSAD, polygons]` rows (county names from the Census 2024 Gazetteer).
+
+- **Geometry:** the v1 town-row convention (buffer(0), simplify 0.0002°, ×10000 deltas; at this tolerance the 60 Iowa city rows rebuilt from TIGER match the v1 rows' vertex counts, median ratio 1.00). 1,598 rows, 30,396 vertices in total (19 per row).
+- **Results:** none stored; as for every town row, the app computes them at runtime from `data/precincts20XX/Iowa.js` (sum of precincts whose centroid lies inside, else its area-weighted ≈ estimate). Nothing invented.
+- **Size: `v2/data/parts/Iowa.js` 59,591 → 339,540 bytes (+279,949, 5.7×).** About 217 KB of that is geometry. The file is lazy-loaded when Iowa towns are opened. At 0.0005° the geometry would be about 155 KB and at 0.001° about 133 KB (townships are mostly 6×6-mile squares); the existing convention was kept, so a coarser tolerance needs the orchestrator to decide.
+- **173 townships are hidden by the app**: `townsIn()` in `v2/index.html` drops a parts row when `normT()` (name with the city/town/township/village… suffix removed) equals a town already listed in that county, e.g. Adair County "Greenfield township" behind "Greenfield city". So 1,425 townships show now and 173 will show once the app's de-duplication also compares the suffix. The same rule already hides other rows in other states (counts from `tools/coverage_audit.py`): IL 473, NY 197, KS 154, MI 100, OH 83, IN 63, NE 54, MO 33, CT 23, VT 15, MN 1 (mostly villages and cities behind same-named townships).
+- **Effect:** Iowa towns shown 60 → 1,485 (TIGER 2024 governmental county subdivisions incl. cities-as-MCDs: 1,660; 1,658 once the 173 hidden rows show; the other 2: TIGER has 62 city MCDs (FUNCSTAT F) where v1 has 60 rows; every F name is in v1, so 2 cities that TIGER lists in two counties have one v1 row each). Gray counts for district layers unchanged.
+- Per-row report (GEOID, county, vertices, hidden flag): `/workspace/w/lanes/geo-data-raw/reports/ia_townships.json` on the box.
+
+## Stable GEOIDs (data-v3/geo) and same-name collisions in v2 (Oct 18, 2026, report only)
+
+`data-v3/geo/` now has a TIGER 2024 GEOID for every v2 boundary row (US House 436, senate 1,950, state house 4,890, schools 13,305, counties 3,144, Iowa townships 1,598; format in `data-v3/geo/README.md`, tool `tools/v3_geoids.py`). v2 rows are unchanged.
+
+**Where a (state, name) collision breaks v2.** Only the school layer has shared names (counties, US House, senate and state house have none). In `v2/index.html`, list rows carry only `[state, name]` and get their numbers and ≈ flag from `dsRow()`, a `Map` keyed `state|name`, so the **last** row with that name wins: every other same-named district shows the wrong district's numbers in list-all views (national/state list, county tier from `distInCounty`, district-type lists). The map polygons and pop-ups use the row itself and are right. (Thumbnails or the zoom on tap may also use the wrong shape; not tested.)
+- 58 name groups, **74 shadowed rows**: Ohio 29, New Jersey 16, California 12, Texas 11, Arkansas 2, Illinois, Missouri, Montana, Oklahoma 1 each.
+- The list shows the wrong 2024 numbers for 71 rows and the wrong 2020 numbers for all 74; the ≈ marker is wrong for 14.
+- 3 shadowed California rows have exactly the same 2024 numbers as the other same-named district, which suggests one district's figure was copied to the other in an earlier pass: Pioneer Union Elementary (0630480 vs 0630520, 113/247/364), Lakeside Union Elementary (0620790 vs 0620760, 52/204/263), Ocean View Elementary (0628170 vs 0628140, 22,009/25,523/48,859). Not changed; needs a re-tabulation.
+- The full list with both GEOIDs and both sets of numbers: `data-v3/geo/v2_name_collisions.csv`.
+- Precincts: 12 precinct rows share (county, name) within a state (NC 10: Forsyth County blank names, Buncombe "ASHEVILLE APOSTOLIC CHURCH"; PA 2: Somerset "ADDISON"); none of them is an `x20` key, so the 2020 side is not mixed up. Whether the app mixes them up anywhere else was not checked.
+- Towns: the app's `townsIn()` hides a parts row whose name without its suffix equals a town already listed in that county (e.g. IL 473, NY 197, KS 154, Iowa 173 new townships). These rows are missing from the list, not shown wrong.
+
+## School names made unique (Oct 18, 2026, branch `data/geo`)
+
+All **58 same-name groups (132 rows)** in `v2/data/ussch.js` were renamed `<TIGER name> (<county>)`, using the county that holds most of the district's area (`v2/data/uscounties.js`; " County"/" Parish" dropped), e.g. "Pioneer Union Elementary School District (Kings)". The county separated every group, so no GEOID suffix was needed. Tool: `tools/dedupe_school_names.py`. The two counts agree: 132 = every row in the 58 groups (the v3 bot's count); 74 = the rows that showed another row's figures in list views (132 − 58 rows that won the `state|name` lookup). Every row is renamed, including the 58 that won the lookup. Only names changed; geometry, 2024/2020 results and ≈ flags stay on their own row. Old name, new name, GEOID, county and area share: `data-v3/geo/v2_name_collisions.csv`; `data-v3/geo/schools.csv` updated. Now no (state, name) repeats in any v2 district layer. Counties, US House, senate, state house and DC rows had no collisions. `v2/data/ussch.js` 4,749,158 → 4,750,438 bytes.
+
+Not changed (outside this lane): v1 `data/<State>.js` and `PACK.lists.localities` in `v2/index.html` keep the old names; they feed only `schoolsInCounty()`, which reads v1 geometry. Saved URL/localStorage states that name one of these 132 districts by its old name will not find it. Precinct name repeats (NC 10 rows, PA 2) are in root `data/precincts2024/` (v1 folder, not edited).
+
+## Different districts with identical figures: California copy errors and a full scan (Oct 18, 2026, branch `data/geo`)
+
+Scan (`tools/recheck_identical.py`): every pair of rows in one layer, state and year with the same [dem, rep, total] (US House, senate, state house, schools). **186 pairs**: 137 cover the same territory (shape IoU ≥ 0.9, e.g. an elementary and a high-school district on one territory, or a city district and the county district's part in that city), which is legitimate; **12 are disjoint** (IoU < 0.05, so one figure was copied onto another district); **37 overlap partly** (listed below for review, not changed).
+
+Each row of a disjoint pair was recomputed on its own polygon from the app's precinct files: exact by the strict school rule if possible (none qualified), else the `tools/fill_gray.py` area-weighted estimate (precincts scaled per county and party to official county totals), flagged ≈. A row whose stored figure was within 3 % of its own recomputation keeps it; others get the recomputation; rows that cannot be computed are grayed. Sources: `data/precincts2024/California.js` (Statewide Database SR precincts, official SOS returns), VEST 2020 (CC BY 4.0), MEDSL/official 2024 precinct files of the other states as listed in earlier sections; county totals `data/election20XX.js` (official).
+
+| Layer, year | District | Before | After | How |
+|---|---|---|---|---|
+| schools 2024 | Pioneer Union Elementary (El Dorado) | 113 / 247 / 364 | 1,053 / 1,890 / 3,018 ≈ | estimate (the Butte district's figure had been copied) |
+| | Pioneer Union Elementary (Butte) | 113 / 247 / 364 | unchanged | own estimate 366 (0.5 % off) |
+| schools 2024 | Lakeside Union Elementary (San Diego) | 52 / 204 / 263 | 7,023 / 13,562 / 21,065 ≈ | estimate |
+| | Lakeside Union Elementary (Kings) | 52 / 204 / 263 | 208 / 360 / 582 ≈ | estimate (stored figure 55 % below its own estimate) |
+| schools 2024 | Ocean View Elementary (Ventura) | 22,009 / 25,523 / 48,859 | 2,869 / 1,555 / 4,539 ≈ | estimate (the Orange district's figure had been copied) |
+| | Ocean View Elementary (Orange) | 22,009 / 25,523 / 48,859 | unchanged | own estimate 48,869 (0.0 %) |
+| senate 2024 | Wyoming SD 027 | 2,346 / 6,156 / 8,721 | unchanged | own estimate 8,543 (2.0 %) |
+| | Wyoming SD 018 | 2,346 / 6,156 / 8,721 | gray | not computable: usable 2024 precinct cover 89 % (< 90 % rule; a Park County precinct straddles the boundary) |
+| schools 2024 | Alaska Kake City, Nenana City | 1 / 1 / 2 each | gray | area-weighting rejected for Alaska (build 1533); 2 votes is not credible for either town |
+| schools 2024, 2020 | Illinois Bethel 82 / McClellan CCSD 12 | 129/382/516 (2024), 137/433/583 (2020) on both | Bethel 70/190/261 and 79/231/317 ≈; McClellan 106/384/496 and 120/388/518 ≈ | estimates |
+| schools 2024, 2020 | Montana Baker K-12 / Plevna K-12 | 163/1,303/1,507 (2024), 172/1,375/1,575 (2020) on both (= the two districts together) | Baker 91/724/838 and 96/764/876 ≈; Plevna 72/578/668 and 76/610/699 ≈ | estimates |
+| schools 2020 | Montana Kila / Marion Elementary | 142 / 724 / 894 on both | Kila 352/1,309/1,712 ≈; Marion 118/549/689 ≈ | estimates |
+| schools 2020 | Kentucky Graves County SD / Mayfield ISD | 3,560 / 13,206 / 17,019 on both (= all of Graves County) | both gray | VEST 2020 reports Graves County as one unit; the Mayfield part cannot be separated and area-weighting would give the city ~160 votes |
+| schools 2020 | Vermont Averill / Canaan | 239 / 241 / 498 on both | Averill gray; Canaan unchanged | official unit "Canaan/Averill" covers both; Averill (about 24 residents) has no own return (same rule as the 2024 Averill row) |
+
+Effect: no two disjoint districts share figures any more. Gray: 2024 senate 0 → 1 (WY 018); 2024 schools 84 → 86 (AK Kake, Nenana); 2020 schools 26 → 29 (KY Graves, Mayfield; VT Averill). `v2/data/ussch.js` 4,750,438 → 4,750,426 bytes, `v2/data/ussldu.js` 1,256,882 → 1,256,870. Report with every recomputation: `/workspace/w/lanes/geo-data-raw/reports/identical_fix.json`.
+
+**Partial overlaps, not changed (37 pairs, review):** identical figures on an elementary and a high-school district (mostly Montana) whose territories overlap only in part. These are not clear copies (the extra territory can be nearly empty), and the area-weighted recomputation is rough on such pairs (e.g. Illinois Grand Prairie CCSD 6 is exact at 475, while its own 9-12 overlay "Woodlawn … in Grand Prairie" estimates at 316 only because the TIGER shapes differ). They need precinct-level checks: 2024 Illinois: Grand Prairie Community Consolidated School District 6 / Woodlawn Unit District 209 (9-12) in Grand Prairie (IoU 0.67); 2024 Montana: Drummond Elementary School District / Drummond High School District (IoU 0.78); 2024 Montana: Reed Point Elementary School District / Reed Point High School District (IoU 0.81); 2024 Montana: Box Elder Elementary School District / Box Elder High School District (IoU 0.85); 2024 Montana: Culbertson Elementary School District / Culbertson High School District (IoU 0.41); 2024 Montana: Fairview Elementary School District / Fairview High School District (IoU 0.67); 2024 Montana: Moore Elementary School District / Moore High School District (IoU 0.87); 2024 Montana: Judith Gap Elementary School District / Judith Gap High School District (IoU 0.84); 2024 Montana: Fairfield Elementary School District / Fairfield High School District (IoU 0.51); 2024 Montana: Power Elementary School District / Power High School District (IoU 0.89); 2024 Montana: Savage Elementary School District / Savage High School District (IoU 0.38); 2024 Montana: Richey Elementary School District / Richey High School District (IoU 0.51); 2020 California: Big Creek Elementary School District / Sierra Unified School District (9-12) (IoU 0.68); 2020 California: Monson-Sultana Joint Union Elementary School District / Dinuba Unified School District (9-12) (IoU 0.78); 2020 California: Marcum-Illinois Union Elementary School District / East Nicolaus Joint Union High School District (IoU 0.42); 2020 Illinois: Grand Prairie Community Consolidated School District 6 / Woodlawn Unit District 209 (9-12) in Grand Prairie (IoU 0.67); 2020 Illinois: Dwight Common School District 232 / Dwight Township High School District 230 (IoU 0.80); 2020 Montana: Drummond Elementary School District / Drummond High School District (IoU 0.78); 2020 Montana: Three Forks Elementary School District / Three Forks High School District (IoU 0.76); 2020 Montana: Reed Point Elementary School District / Reed Point High School District (IoU 0.81); 2020 Montana: Box Elder Elementary School District / Box Elder High School District (IoU 0.85); 2020 Montana: Havre Elementary School District / Havre High School District (IoU 0.60); 2020 Montana: Gardiner Elementary School District / Gardiner High School District (IoU 0.70); 2020 Montana: Lambert Elementary School District / Lambert High School District (IoU 0.69); 2020 Montana: Culbertson Elementary School District / Culbertson High School District (IoU 0.41); 2020 Montana: Fairview Elementary School District / Fairview High School District (IoU 0.67); 2020 Montana: Moore Elementary School District / Moore High School District (IoU 0.87); 2020 Montana: Judith Gap Elementary School District / Judith Gap High School District (IoU 0.84); 2020 Montana: Harlem Elementary School District / Harlem High School District (IoU 0.45); 2020 Montana: Conrad Elementary School District / Conrad High School District (IoU 0.87); 2020 Montana: Fairfield Elementary School District / Fairfield High School District (IoU 0.51); 2020 Montana: Power Elementary School District / Power High School District (IoU 0.89); 2020 Montana: Frazer Elementary School District / Frazer High School District (IoU 0.62); 2020 Montana: Savage Elementary School District / Savage High School District (IoU 0.38); 2020 Montana: Richey Elementary School District / Richey High School District (IoU 0.51); 2020 Montana: Fort Benton Elementary School District / Fort Benton High School District (IoU 0.58); 2020 Oregon: Harney County School District 4 / Harney County Union High School District 1J (IoU 0.24).
+
+## Iowa townships re-simplified at 0.0005° with shared edges (Oct 18, 2026, branch `data/geo`)
+
+The 1,598 Iowa township rows in `v2/data/parts/Iowa.js` were re-simplified at 0.0005° (orchestrator decision) with `tools/resimplify_towns.py`. Simplifying each polygon on its own leaves neighbours with slightly different copies of the same edge (gaps and overlaps). Instead, the whole TIGER 2024 Iowa county-subdivision coverage (townships + city MCDs) was split into shared arcs, each arc was Douglas-Peucker simplified once at 0.0005° (end nodes fixed), and the faces were rebuilt and given back to their township. Neighbouring townships therefore use identical vertices.
+
+| | before (per polygon, 0.0002°) | after (shared arcs, 0.0005°) |
+|---|---|---|
+| `v2/data/parts/Iowa.js` bytes | 339,540 | **281,314** (the file was 59,591 before the townships) |
+| township vertices | 30,396 | 20,429 |
+| overlap between townships (% of township area) | 0.0098 % | **0.0000 %** |
+| interior gaps (% of township area, > 0.003° from the state outline) | 0.0155 % | 0.0036 % (against TIGER: where a township meets a city MCD whose shared arc moved; no gaps between two townships) |
+| against the v1 city rows (other source, simplified on their own at 0.0002°) | | overlap 0.0019 %, gaps 0.0023 % |
+| deviation from TIGER (Hausdorff) | | median 0.00033°, max 0.0042° (Marion township, 1911392859) |
+
+Same 1,598 rows, names and counties; town values are still computed by the app from precincts. Per-polygon Douglas-Peucker at 0.0005° (rejected) would have been about 155 KB of geometry but with 0.017 % overlap and 0.034 % gaps. Report: `/workspace/w/lanes/geo-data-raw/reports/ia_resimplify.json`.

@@ -1,0 +1,518 @@
+{
+"file": "Iowa.js",
+"bytes": 345775,
+"precincts": 1680,
+"counties": 99,
+"dem": 653669,
+"rep": 800983,
+"total": 1566031,
+"nearest_county": 0,
+"cap_bytes": 373831,
+"tol": 0.0006,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Dickinson County": [
+3056,
+6753,
+10354
+],
+"Clay County": [
+2249,
+5877,
+8617
+],
+"Palo Alto County": [
+1398,
+3081,
+4703
+],
+"Osceola County": [
+552,
+2531,
+3213
+],
+"Lyon County": [
+920,
+5192,
+6377
+],
+"Cherokee County": [
+1679,
+4192,
+6258
+],
+"Plymouth County": [
+2885,
+9680,
+13190
+],
+"O'Brien County": [
+1315,
+5752,
+7406
+],
+"Sioux County": [
+2300,
+14785,
+18194
+],
+"Story County": [
+25709,
+19458,
+50667
+],
+"Greene County": [
+1691,
+2820,
+4821
+],
+"Boone County": [
+5541,
+7484,
+14196
+],
+"Hamilton County": [
+2726,
+4463,
+7694
+],
+"Webster County": [
+6305,
+10056,
+17430
+],
+"Grundy County": [
+1856,
+4527,
+6872
+],
+"Hardin County": [
+2787,
+5254,
+8533
+],
+"Butler County": [
+2157,
+4921,
+7513
+],
+"Floyd County": [
+3179,
+4375,
+8060
+],
+"Cerro Gordo County": [
+9862,
+11621,
+22965
+],
+"Chickasaw County": [
+2266,
+3742,
+6435
+],
+"Franklin County": [
+1493,
+3163,
+4968
+],
+"Woodbury County": [
+16210,
+24727,
+43718
+],
+"Kossuth County": [
+2543,
+5653,
+8607
+],
+"Hancock County": [
+1587,
+3977,
+5871
+],
+"Wright County": [
+1896,
+3800,
+6026
+],
+"Emmet County": [
+1357,
+3124,
+4753
+],
+"Winnebago County": [
+1931,
+3447,
+5787
+],
+"Calhoun County": [
+1398,
+3468,
+5159
+],
+"Humboldt County": [
+1252,
+3568,
+5087
+],
+"Pocahontas County": [
+963,
+2702,
+3865
+],
+"Buena Vista County": [
+2856,
+4903,
+8278
+],
+"Sac County": [
+1270,
+3703,
+5212
+],
+"Audubon County": [
+1080,
+2136,
+3412
+],
+"Crawford County": [
+1991,
+4617,
+6935
+],
+"Carroll County": [
+3309,
+6638,
+10544
+],
+"Shelby County": [
+1662,
+4362,
+6370
+],
+"Harrison County": [
+2131,
+4902,
+7465
+],
+"Monona County": [
+1247,
+3120,
+4572
+],
+"Ida County": [
+792,
+2655,
+3612
+],
+"Dallas County": [
+15701,
+19339,
+38252
+],
+"Polk County": [
+119804,
+93492,
+231555
+],
+"Adair County": [
+1133,
+2461,
+3811
+],
+"Cass County": [
+1951,
+4761,
+7125
+],
+"Guthrie County": [
+1732,
+3628,
+5750
+],
+"Pottawattamie County": [
+15355,
+24447,
+42680
+],
+"Union County": [
+1922,
+3525,
+5832
+],
+"Adams County": [
+565,
+1395,
+2106
+],
+"Taylor County": [
+758,
+2111,
+3029
+],
+"Montgomery County": [
+1314,
+3436,
+5044
+],
+"Ringgold County": [
+753,
+1824,
+2707
+],
+"Mills County": [
+2090,
+5067,
+7698
+],
+"Wayne County": [
+719,
+2069,
+2940
+],
+"Scott County": [
+40440,
+39149,
+86220
+],
+"Black Hawk County": [
+32233,
+27476,
+64405
+],
+"Linn County": [
+58935,
+48390,
+117098
+],
+"Iowa County": [
+3084,
+5205,
+8904
+],
+"Poweshiek County": [
+4304,
+4946,
+9833
+],
+"Fremont County": [
+963,
+2407,
+3595
+],
+"Warren County": [
+10411,
+14814,
+27300
+],
+"Madison County": [
+2678,
+5360,
+8636
+],
+"Jasper County": [
+7109,
+10560,
+19034
+],
+"Cedar County": [
+3599,
+5295,
+9541
+],
+"Johnson County": [
+50200,
+21044,
+76940
+],
+"Muscatine County": [
+8368,
+9584,
+19434
+],
+"Washington County": [
+3943,
+6173,
+10929
+],
+"Keokuk County": [
+1342,
+3390,
+4985
+],
+"Monroe County": [
+1056,
+2638,
+3865
+],
+"Appanoose County": [
+1814,
+4033,
+6136
+],
+"Wapello County": [
+5594,
+8715,
+15149
+],
+"Mahaska County": [
+2619,
+7432,
+10632
+],
+"Marion County": [
+5482,
+10962,
+17816
+],
+"Van Buren County": [
+845,
+2527,
+3561
+],
+"Davis County": [
+977,
+2723,
+3882
+],
+"Jefferson County": [
+3710,
+3748,
+8156
+],
+"Lee County": [
+6215,
+8803,
+16151
+],
+"Henry County": [
+2904,
+5779,
+9404
+],
+"Clarke County": [
+1465,
+2713,
+4454
+],
+"Decatur County": [
+1201,
+2296,
+3734
+],
+"Lucas County": [
+1239,
+2877,
+4354
+],
+"Louisa County": [
+1648,
+3069,
+5008
+],
+"Des Moines County": [
+8212,
+9529,
+19103
+],
+"Clinton County": [
+10095,
+11276,
+23067
+],
+"Worth County": [
+1530,
+2453,
+4257
+],
+"Mitchell County": [
+1888,
+3190,
+5417
+],
+"Winneshiek County": [
+5254,
+5344,
+11362
+],
+"Allamakee County": [
+2421,
+4093,
+6923
+],
+"Clayton County": [
+3237,
+5317,
+9129
+],
+"Fayette County": [
+3689,
+5620,
+9975
+],
+"Dubuque County": [
+22850,
+23460,
+49721
+],
+"Jones County": [
+3787,
+5720,
+10133
+],
+"Jackson County": [
+3837,
+5824,
+10310
+],
+"Bremer County": [
+5356,
+7208,
+13538
+],
+"Buchanan County": [
+3970,
+5510,
+10252
+],
+"Marshall County": [
+7652,
+9146,
+17980
+],
+"Tama County": [
+3196,
+4971,
+8752
+],
+"Benton County": [
+4678,
+8232,
+13844
+],
+"Delaware County": [
+2957,
+5694,
+9241
+],
+"Howard County": [
+1677,
+2611,
+4559
+],
+"Page County": [
+1807,
+4893,
+7044
+]
+},
+"vest_zip": "ia.zip"
+}

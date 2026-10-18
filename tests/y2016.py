@@ -1,4 +1,4 @@
-# Build 1569: the time slider has three points (2016, 2020, 2024). 2016 has a Hillary Clinton thumbnail in the Democratic slot
+# Build 1569 (1570: 2016 values wired): the time slider has three points (2016, 2020, 2024). 2016 has a Hillary Clinton thumbnail in the Democratic slot
 # (same answerId / colour / side as Biden and Harris; Trump the Republican answer every year). Until the 2016 data lands, 2016
 # shows no data: gray map (no fills), list names without values, thumbnails without figures, a short note. Back to 2024 restores
 # the values. The 2016 tap paints within 150 ms (4x CPU).
@@ -36,8 +36,8 @@ async def main():
       ms=await pg.evaluate(TAPX,0); await cdp.send("Emulation.setCPUThrottlingRate",{"rate":1}); await pg.wait_for_timeout(1500)
       ck(0<ms<150,f"{t}: tap on 2016 answers in {ms}ms (<150, 4x CPU)",ms)
       s=await pg.evaluate(ST)
-      ck(s['y16'] and all(v=='hidden' for v in s['vis']) and 'No 2016' in s['note'],f"{t}: 2016 = no data yet: names without values + note",s)
-      th=s['th']; ck(len(th)==2 and th[0][0]=='c16' and 'clinton.jpg' in th[0][2] and ' d' in ' '+th[0][1] and th[1][0]=='t16' and 'trump.jpg' in th[1][2] and all(x[3]=='hidden' for x in th),f"{t}: Clinton (D, blue) + Trump (R) thumbnails, no figures",th)
+      ck(s['y16'] and all(v=='visible' for v in s['vis']),f"{t}: 2016 shows its values once the 2016 file is in (1570)",s)
+      th=s['th']; ck(len(th)==2 and th[0][0]=='c16' and 'clinton.jpg' in th[0][2] and ' d' in ' '+th[0][1] and th[1][0]=='t16' and 'trump.jpg' in th[1][2] and all(x[3]=='visible' for x in th),f"{t}: Clinton (D, blue) + Trump (R) thumbnails with 2016 figures",th)
       ok=await pg.evaluate("()=>new Promise(r=>{const i=new Image();i.onload=()=>r([i.naturalWidth,i.naturalHeight]);i.onerror=()=>r(null);i.src='img/clinton.jpg'})")
       ck(ok==[96,96],f"{t}: clinton.jpg loads (96x96, like the others)",ok)
       if W==390: await pg.screenshot(path='/workspace/y2016-list.png')

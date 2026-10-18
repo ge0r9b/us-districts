@@ -1,0 +1,253 @@
+{
+"file": "South_Carolina.js",
+"bytes": 899334,
+"precincts": 2232,
+"counties": 46,
+"dem": 855373,
+"rep": 1155389,
+"total": 2103027,
+"nearest_county": 39,
+"cap_bytes": 1092654,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Aiken County": [
+25455,
+46025,
+74851
+],
+"Richland County": [
+108000,
+52469,
+168722
+],
+"Berkeley County": [
+30705,
+44587,
+79517
+],
+"Colleton County": [
+7627,
+9091,
+17251
+],
+"Horry County": [
+39410,
+89288,
+132920
+],
+"Laurens County": [
+8889,
+16816,
+26566
+],
+"Spartanburg County": [
+39997,
+76277,
+121090
+],
+"McCormick County": [
+2479,
+2652,
+5216
+],
+"Allendale County": [
+2735,
+789,
+3592
+],
+"Cherokee County": [
+6092,
+15167,
+21759
+],
+"Hampton County": [
+5170,
+3488,
+8806
+],
+"Pickens County": [
+10354,
+36236,
+49049
+],
+"Williamsburg County": [
+9953,
+4864,
+15054
+],
+"Abbeville County": [
+3741,
+6763,
+10775
+],
+"Bamberg County": [
+3898,
+2204,
+6214
+],
+"Barnwell County": [
+4400,
+4889,
+9485
+],
+"Calhoun County": [
+3573,
+3787,
+7549
+],
+"Charleston County": [
+89299,
+75443,
+176345
+],
+"Chesterfield County": [
+6858,
+9312,
+16581
+],
+"Clarendon County": [
+7732,
+7386,
+15395
+],
+"Darlington County": [
+13888,
+14989,
+29674
+],
+"Dillon County": [
+5834,
+5637,
+11698
+],
+"Fairfield County": [
+6945,
+4027,
+11267
+],
+"Florence County": [
+26710,
+29573,
+57931
+],
+"Georgetown County": [
+13310,
+17389,
+31657
+],
+"Greenville County": [
+74483,
+127832,
+215165
+],
+"Lee County": [
+5199,
+2803,
+8156
+],
+"Marion County": [
+8569,
+5444,
+14276
+],
+"Marlboro County": [
+5954,
+4267,
+10389
+],
+"Newberry County": [
+6217,
+10017,
+16807
+],
+"Orangeburg County": [
+26318,
+11931,
+38910
+],
+"Saluda County": [
+2813,
+5526,
+8564
+],
+"Sumter County": [
+24047,
+18745,
+44086
+],
+"Union County": [
+4729,
+7061,
+12092
+],
+"Jasper County": [
+5956,
+5187,
+11427
+],
+"Anderson County": [
+21097,
+56232,
+80483
+],
+"Beaufort County": [
+32138,
+42922,
+78524
+],
+"Greenwood County": [
+10711,
+16961,
+28763
+],
+"Lexington County": [
+35230,
+80026,
+122093
+],
+"Dorchester County": [
+24055,
+34987,
+62567
+],
+"Edgefield County": [
+4491,
+6842,
+11644
+],
+"Chester County": [
+6579,
+7265,
+14192
+],
+"Kershaw County": [
+10330,
+17542,
+28995
+],
+"Lancaster County": [
+13812,
+23719,
+38938
+],
+"Oconee County": [
+7998,
+24178,
+33635
+],
+"York County": [
+41593,
+66754,
+114357
+]
+},
+"vest_zip": "sc_2016.zip"
+}

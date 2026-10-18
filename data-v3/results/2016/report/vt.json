@@ -1,0 +1,93 @@
+{
+"file": "Vermont.js",
+"bytes": 65455,
+"precincts": 275,
+"counties": 14,
+"dem": 178573,
+"rep": 95369,
+"total": 315067,
+"nearest_county": 0,
+"cap_bytes": 68418,
+"tol": 0.0004,
+"zero_vote_skipped": 3,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME20",
+"county": {
+"Addison County": [
+11219,
+5297,
+19031
+],
+"Windham County": [
+14340,
+5454,
+22634
+],
+"Bennington County": [
+9539,
+5925,
+17381
+],
+"Caledonia County": [
+6445,
+5534,
+14074
+],
+"Essex County": [
+1019,
+1506,
+2925
+],
+"Rutland County": [
+13635,
+12479,
+29615
+],
+"Windsor County": [
+17556,
+8605,
+29928
+],
+"Chittenden County": [
+54814,
+18601,
+83416
+],
+"Orleans County": [
+5185,
+5159,
+12046
+],
+"Lamoille County": [
+7241,
+3570,
+12762
+],
+"Orange County": [
+7541,
+5007,
+14649
+],
+"Washington County": [
+18594,
+7993,
+31086
+],
+"Grand Isle County": [
+2094,
+1487,
+4109
+],
+"Franklin County": [
+9351,
+8752,
+21411
+]
+},
+"vest_zip": "vt.zip"
+}

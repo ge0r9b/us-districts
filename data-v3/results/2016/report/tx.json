@@ -1,0 +1,1293 @@
+{
+"file": "Texas.js",
+"bytes": 3185671,
+"precincts": 8589,
+"counties": 254,
+"dem": 3877865,
+"rep": 4684856,
+"total": 8983408,
+"nearest_county": 23,
+"cap_bytes": 3985406,
+"tol": 0.0004,
+"zero_vote_skipped": 243,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PREC",
+"county": {
+"Tarrant County": [
+288392,
+345921,
+668514
+],
+"Bell County": [
+37801,
+51998,
+95701
+],
+"Bosque County": [
+1278,
+6339,
+7867
+],
+"Harris County": [
+707914,
+545955,
+1312112
+],
+"Collin County": [
+140624,
+201014,
+364430
+],
+"Hill County": [
+2547,
+10108,
+13046
+],
+"Navarro County": [
+4002,
+11994,
+16438
+],
+"Bexar County": [
+319550,
+240333,
+594574
+],
+"Angelina County": [
+7538,
+21668,
+30077
+],
+"Atascosa County": [
+4651,
+8618,
+13673
+],
+"Bastrop County": [
+10569,
+16328,
+28665
+],
+"Anderson County": [
+3369,
+13206,
+16981
+],
+"Andrews County": [
+838,
+3924,
+4944
+],
+"Aransas County": [
+2465,
+7740,
+10572
+],
+"Archer County": [
+394,
+3786,
+4283
+],
+"Austin County": [
+2320,
+9637,
+12350
+],
+"Bandera County": [
+1726,
+8163,
+10218
+],
+"Baylor County": [
+191,
+1267,
+1499
+],
+"Bee County": [
+3444,
+4744,
+8485
+],
+"Blanco County": [
+1244,
+4212,
+5745
+],
+"Bowie County": [
+8838,
+24924,
+34602
+],
+"Calhoun County": [
+2118,
+4638,
+6957
+],
+"Collingsworth County": [
+145,
+983,
+1156
+],
+"Comanche County": [
+789,
+4333,
+5237
+],
+"Concho County": [
+148,
+885,
+1068
+],
+"Cooke County": [
+2352,
+13181,
+15910
+],
+"Coryell County": [
+5064,
+12225,
+18253
+],
+"Crane County": [
+299,
+1049,
+1386
+],
+"Crockett County": [
+372,
+980,
+1395
+],
+"Crosby County": [
+468,
+1181,
+1728
+],
+"Culberson County": [
+454,
+280,
+767
+],
+"Dallam County": [
+222,
+1261,
+1550
+],
+"Dallas County": [
+461080,
+262945,
+754164
+],
+"Dawson County": [
+835,
+2636,
+3563
+],
+"Deaf Smith County": [
+1185,
+2911,
+4216
+],
+"Delta County": [
+400,
+1836,
+2281
+],
+"Denton County": [
+110890,
+170603,
+298645
+],
+"DeWitt County": [
+1163,
+5519,
+6844
+],
+"Dimmit County": [
+2173,
+974,
+3225
+],
+"Donley County": [
+191,
+1225,
+1465
+],
+"Duval County": [
+2783,
+1316,
+4168
+],
+"Edwards County": [
+303,
+746,
+1077
+],
+"Ellis County": [
+16253,
+44941,
+64110
+],
+"El Paso County": [
+147843,
+55512,
+215922
+],
+"Erath County": [
+2160,
+11210,
+13893
+],
+"Fannin County": [
+2132,
+9548,
+12044
+],
+"Fort Bend County": [
+134686,
+117291,
+262066
+],
+"Franklin County": [
+665,
+3585,
+4380
+],
+"Freestone County": [
+1471,
+6026,
+7684
+],
+"Galveston County": [
+43658,
+73757,
+122903
+],
+"Jefferson County": [
+42443,
+42862,
+87618
+],
+"Montague County": [
+885,
+7526,
+8656
+],
+"Montgomery County": [
+45835,
+150314,
+205904
+],
+"Smith County": [
+22300,
+58930,
+84768
+],
+"Trinity County": [
+1154,
+4737,
+6015
+],
+"Williamson County": [
+84468,
+104175,
+204659
+],
+"Brazos County": [
+23121,
+38738,
+67211
+],
+"Brewster County": [
+1873,
+2077,
+4252
+],
+"Burnet County": [
+3797,
+14638,
+19204
+],
+"Ector County": [
+10249,
+25020,
+36530
+],
+"Glasscock County": [
+34,
+553,
+604
+],
+"Hidalgo County": [
+118809,
+48642,
+174408
+],
+"Johnson County": [
+10988,
+44382,
+57606
+],
+"Nueces County": [
+49198,
+50766,
+104405
+],
+"Robertson County": [
+2203,
+4668,
+7053
+],
+"Walker County": [
+6091,
+12884,
+19955
+],
+"Maverick County": [
+10397,
+2816,
+13588
+],
+"Midland County": [
+10025,
+36973,
+48868
+],
+"Reagan County": [
+167,
+709,
+904
+],
+"Travis County": [
+308260,
+127209,
+468720
+],
+"Henderson County": [
+5669,
+23650,
+30043
+],
+"Lubbock County": [
+28023,
+65651,
+99013
+],
+"Gregg County": [
+11677,
+28764,
+41749
+],
+"Hood County": [
+4008,
+21382,
+26343
+],
+"Houston County": [
+1978,
+6205,
+8353
+],
+"Washington County": [
+3382,
+10945,
+14832
+],
+"Cameron County": [
+59402,
+29472,
+92665
+],
+"Armstrong County": [
+70,
+924,
+1021
+],
+"Borden County": [
+31,
+330,
+365
+],
+"Brazoria County": [
+43200,
+72791,
+121181
+],
+"Briscoe County": [
+91,
+625,
+738
+],
+"Brooks County": [
+1937,
+613,
+2596
+],
+"Brown County": [
+1621,
+12017,
+14026
+],
+"Burleson County": [
+1491,
+5316,
+6960
+],
+"Carson County": [
+249,
+2620,
+2964
+],
+"Chambers County": [
+2948,
+13339,
+16836
+],
+"Cherokee County": [
+3469,
+12919,
+16790
+],
+"Comal County": [
+14238,
+45136,
+62178
+],
+"Dickens County": [
+128,
+755,
+909
+],
+"Eastland County": [
+776,
+6011,
+6963
+],
+"Floyd County": [
+435,
+1474,
+1959
+],
+"Foard County": [
+113,
+383,
+513
+],
+"Gillespie County": [
+2288,
+10446,
+13214
+],
+"Grayson County": [
+10301,
+35325,
+47615
+],
+"Guadalupe County": [
+18391,
+36632,
+58123
+],
+"Hale County": [
+2101,
+6366,
+8871
+],
+"Hardin County": [
+2780,
+19606,
+22780
+],
+"Haskell County": [
+314,
+1403,
+1765
+],
+"Hays County": [
+33224,
+33826,
+72164
+],
+"Hemphill County": [
+181,
+1462,
+1689
+],
+"Hockley County": [
+1261,
+5800,
+7348
+],
+"Hopkins County": [
+2510,
+10707,
+13538
+],
+"Howard County": [
+1770,
+6637,
+8750
+],
+"Hudspeth County": [
+324,
+503,
+871
+],
+"Hunt County": [
+6396,
+23910,
+31554
+],
+"Hutchinson County": [
+854,
+7042,
+8155
+],
+"Irion County": [
+90,
+660,
+766
+],
+"Jackson County": [
+904,
+4266,
+5303
+],
+"Jasper County": [
+2590,
+10608,
+13468
+],
+"Lamar County": [
+3583,
+14561,
+18714
+],
+"Live Oak County": [
+742,
+3464,
+4302
+],
+"San Jacinto County": [
+2038,
+8059,
+10372
+],
+"Sterling County": [
+70,
+549,
+633
+],
+"Upshur County": [
+2380,
+13209,
+16013
+],
+"Limestone County": [
+1778,
+5796,
+7777
+],
+"Jones County": [
+936,
+4819,
+5989
+],
+"Randall County": [
+8367,
+43462,
+54305
+],
+"Rockwall County": [
+9655,
+28451,
+40180
+],
+"Newton County": [
+1156,
+4288,
+5534
+],
+"Rains County": [
+628,
+3968,
+4701
+],
+"Titus County": [
+2597,
+6511,
+9419
+],
+"Tyler County": [
+1248,
+6624,
+8030
+],
+"Willacy County": [
+3422,
+1548,
+5095
+],
+"La Salle County": [
+1129,
+872,
+2059
+],
+"Real County": [
+262,
+1382,
+1691
+],
+"Camp County": [
+1260,
+3201,
+4542
+],
+"Cass County": [
+2391,
+9726,
+12344
+],
+"Castro County": [
+526,
+1414,
+1997
+],
+"Childress County": [
+253,
+1802,
+2084
+],
+"Clay County": [
+536,
+4377,
+5030
+],
+"Coke County": [
+140,
+1267,
+1425
+],
+"Colorado County": [
+1987,
+6325,
+8545
+],
+"Garza County": [
+230,
+1225,
+1484
+],
+"Goliad County": [
+973,
+2620,
+3726
+],
+"Gonzales County": [
+1571,
+4587,
+6349
+],
+"Grimes County": [
+2194,
+7065,
+9533
+],
+"Hall County": [
+164,
+893,
+1091
+],
+"Hamilton County": [
+479,
+3060,
+3615
+],
+"Hansford County": [
+171,
+1730,
+1947
+],
+"Motley County": [
+40,
+566,
+615
+],
+"Harrison County": [
+7151,
+18749,
+26548
+],
+"Hartley County": [
+172,
+1727,
+1956
+],
+"Jack County": [
+314,
+2973,
+3350
+],
+"Jeff Davis County": [
+422,
+695,
+1191
+],
+"Karnes County": [
+1145,
+2965,
+4198
+],
+"Lampasas County": [
+1483,
+6385,
+8205
+],
+"Lavaca County": [
+1170,
+7347,
+8665
+],
+"Lee County": [
+1372,
+4997,
+6558
+],
+"Leon County": [
+909,
+6391,
+7439
+],
+"Liberty County": [
+4862,
+18892,
+24267
+],
+"McCulloch County": [
+482,
+2552,
+3103
+],
+"McMullen County": [
+40,
+454,
+499
+],
+"Madison County": [
+881,
+3351,
+4289
+],
+"Marion County": [
+1165,
+2983,
+4238
+],
+"Martin County": [
+266,
+1455,
+1762
+],
+"Mason County": [
+354,
+1656,
+2057
+],
+"Medina County": [
+4634,
+12085,
+17246
+],
+"Menard County": [
+154,
+682,
+864
+],
+"Milam County": [
+2051,
+6364,
+8664
+],
+"Mills County": [
+243,
+1951,
+2245
+],
+"Mitchell County": [
+354,
+1780,
+2204
+],
+"Nacogdoches County": [
+6846,
+14771,
+22622
+],
+"Orange County": [
+5735,
+25513,
+32142
+],
+"Parker County": [
+8344,
+46473,
+56817
+],
+"Pecos County": [
+1554,
+2468,
+4183
+],
+"Presidio County": [
+1458,
+474,
+2020
+],
+"Roberts County": [
+20,
+524,
+554
+],
+"Shelby County": [
+1758,
+7179,
+9088
+],
+"Terry County": [
+753,
+2459,
+3355
+],
+"Uvalde County": [
+3867,
+4835,
+8964
+],
+"Victoria County": [
+8866,
+21275,
+31324
+],
+"Wharton County": [
+4238,
+10149,
+14784
+],
+"Wilson County": [
+4790,
+13998,
+19395
+],
+"Wood County": [
+2630,
+15700,
+18727
+],
+"Yoakum County": [
+426,
+1797,
+2310
+],
+"Young County": [
+876,
+6601,
+7707
+],
+"Zapata County": [
+2063,
+1029,
+3142
+],
+"Zavala County": [
+2633,
+692,
+3390
+],
+"King County": [
+5,
+149,
+159
+],
+"Lamb County": [
+771,
+3111,
+4013
+],
+"Loving County": [
+4,
+58,
+65
+],
+"Lynn County": [
+403,
+1546,
+2010
+],
+"Palo Pinto County": [
+1708,
+8284,
+10300
+],
+"Panola County": [
+1835,
+8445,
+10416
+],
+"Polk County": [
+4187,
+15176,
+19932
+],
+"Rusk County": [
+3935,
+14675,
+19134
+],
+"Upton County": [
+286,
+1007,
+1349
+],
+"Winkler County": [
+420,
+1403,
+1876
+],
+"Bailey County": [
+397,
+1344,
+1792
+],
+"Webb County": [
+42307,
+12947,
+57585
+],
+"Caldwell County": [
+4795,
+6691,
+12178
+],
+"Cottle County": [
+92,
+510,
+619
+],
+"Kaufman County": [
+10278,
+29587,
+41265
+],
+"Kendall County": [
+3643,
+15700,
+20283
+],
+"Kerr County": [
+4681,
+17727,
+23297
+],
+"Kleberg County": [
+4716,
+4367,
+9587
+],
+"McLennan County": [
+27063,
+48260,
+79075
+],
+"Matagorda County": [
+3500,
+8366,
+12165
+],
+"Moore County": [
+1098,
+3977,
+5302
+],
+"Morris County": [
+1425,
+3443,
+4994
+],
+"Nolan County": [
+1029,
+3552,
+4818
+],
+"Frio County": [
+2444,
+1856,
+4400
+],
+"Jim Hogg County": [
+1635,
+430,
+2119
+],
+"Jim Wells County": [
+6694,
+5420,
+12379
+],
+"Llano County": [
+1825,
+8299,
+10447
+],
+"Potter County": [
+7657,
+19630,
+28654
+],
+"Wise County": [
+3412,
+20670,
+24776
+],
+"Wichita County": [
+8770,
+27631,
+38119
+],
+"Stephens County": [
+348,
+3034,
+3457
+],
+"Callahan County": [
+569,
+4865,
+5579
+],
+"Ochiltree County": [
+274,
+2628,
+3011
+],
+"Oldham County": [
+78,
+850,
+953
+],
+"Red River County": [
+1149,
+3926,
+5161
+],
+"Reeves County": [
+1659,
+1417,
+3202
+],
+"Refugio County": [
+1034,
+1830,
+2948
+],
+"Runnels County": [
+453,
+3250,
+3782
+],
+"Sabine County": [
+614,
+3998,
+4648
+],
+"San Augustine County": [
+910,
+2622,
+3579
+],
+"San Patricio County": [
+7871,
+13030,
+21656
+],
+"Schleicher County": [
+208,
+821,
+1059
+],
+"Scurry County": [
+733,
+4410,
+5312
+],
+"Shackelford County": [
+103,
+1378,
+1504
+],
+"Sherman County": [
+95,
+807,
+935
+],
+"Somervell County": [
+541,
+3206,
+3897
+],
+"Starr County": [
+9289,
+2224,
+11763
+],
+"Swisher County": [
+462,
+1671,
+2209
+],
+"Taylor County": [
+10085,
+33250,
+45759
+],
+"Throckmorton County": [
+84,
+715,
+808
+],
+"Val Verde County": [
+6964,
+5890,
+13744
+],
+"Van Zandt County": [
+2799,
+18473,
+21899
+],
+"Waller County": [
+5748,
+10531,
+16784
+],
+"Ward County": [
+783,
+2547,
+3439
+],
+"Wheeler County": [
+194,
+2087,
+2306
+],
+"Cochran County": [
+190,
+679,
+901
+],
+"Coleman County": [
+388,
+3177,
+3643
+],
+"Falls County": [
+1684,
+3441,
+5248
+],
+"Fayette County": [
+2144,
+8743,
+11227
+],
+"Fisher County": [
+403,
+1265,
+1730
+],
+"Hardeman County": [
+249,
+1207,
+1515
+],
+"Parmer County": [
+484,
+1911,
+2475
+],
+"Gaines County": [
+597,
+3907,
+4620
+],
+"Tom Green County": [
+9173,
+27494,
+38479
+],
+"Kenedy County": [
+99,
+84,
+186
+],
+"Kent County": [
+59,
+360,
+434
+],
+"Kimble County": [
+206,
+1697,
+1952
+],
+"Kinney County": [
+458,
+936,
+1430
+],
+"Knox County": [
+247,
+1078,
+1367
+],
+"Lipscomb County": [
+135,
+1159,
+1332
+],
+"Stonewall County": [
+135,
+555,
+701
+],
+"Wilbarger County": [
+809,
+3166,
+4105
+],
+"Sutton County": [
+313,
+1075,
+1416
+],
+"Terrell County": [
+140,
+288,
+438
+],
+"Gray County": [
+701,
+6500,
+7405
+],
+"San Saba County": [
+293,
+2025,
+2357
+]
+},
+"vest_zip": "tx.zip"
+}

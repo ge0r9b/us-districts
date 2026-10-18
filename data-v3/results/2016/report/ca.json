@@ -1,0 +1,313 @@
+{
+"file": "California.js",
+"bytes": 3342449,
+"precincts": 21416,
+"counties": 58,
+"dem": 8752066,
+"rep": 4483301,
+"total": 14058363,
+"nearest_county": 76,
+"cap_bytes": 3640851,
+"tol": 0.0012,
+"zero_vote_skipped": 342,
+"dem_fields": [
+"G16PREDCli"
+],
+"rep_fields": [
+"G16PRERTru"
+],
+"name_field": "SRPREC",
+"county": {
+"Los Angeles County": [
+2463893,
+769745,
+3420948
+],
+"Orange County": [
+609614,
+506834,
+1185510
+],
+"San Diego County": [
+734671,
+477630,
+1290035
+],
+"San Bernardino County": [
+340758,
+271188,
+647377
+],
+"Riverside County": [
+373695,
+333243,
+745780
+],
+"Modoc County": [
+877,
+2696,
+3758
+],
+"Mono County": [
+2773,
+2111,
+5271
+],
+"Del Norte County": [
+3485,
+5134,
+9361
+],
+"Siskiyou County": [
+7234,
+11341,
+20113
+],
+"Inyo County": [
+3155,
+4248,
+7996
+],
+"Imperial County": [
+32665,
+12704,
+47674
+],
+"Marin County": [
+109441,
+21818,
+138971
+],
+"Monterey County": [
+89088,
+34895,
+132014
+],
+"Fresno County": [
+141340,
+124048,
+279809
+],
+"Kern County": [
+98689,
+129584,
+242041
+],
+"Tulare County": [
+47583,
+58296,
+111935
+],
+"Contra Costa County": [
+319287,
+115956,
+461569
+],
+"San Joaquin County": [
+121124,
+88936,
+222146
+],
+"Humboldt County": [
+33200,
+18373,
+57796
+],
+"Mendocino County": [
+22071,
+10885,
+36543
+],
+"Sonoma County": [
+160435,
+51408,
+228856
+],
+"Plumas County": [
+3459,
+5420,
+9505
+],
+"Lassen County": [
+2224,
+7574,
+10422
+],
+"Shasta County": [
+22301,
+51778,
+79090
+],
+"Trinity County": [
+2214,
+2812,
+5588
+],
+"Tehama County": [
+6809,
+15494,
+23684
+],
+"San Luis Obispo County": [
+67107,
+56164,
+133017
+],
+"Merced County": [
+37317,
+28723,
+70113
+],
+"Stanislaus County": [
+81646,
+78494,
+170350
+],
+"Sierra County": [
+601,
+1048,
+1804
+],
+"Nevada County": [
+26053,
+23365,
+54070
+],
+"Tuolumne County": [
+9123,
+14551,
+25222
+],
+"Santa Clara County": [
+511989,
+144838,
+697602
+],
+"Santa Cruz County": [
+95249,
+22438,
+127124
+],
+"Butte County": [
+41567,
+45144,
+94431
+],
+"Yuba County": [
+7910,
+13170,
+22749
+],
+"Placer County": [
+73509,
+95140,
+180633
+],
+"San Benito County": [
+12521,
+7841,
+21679
+],
+"Alameda County": [
+514841,
+95922,
+648661
+],
+"Calaveras County": [
+7944,
+13511,
+23039
+],
+"San Francisco County": [
+344873,
+37754,
+403173
+],
+"San Mateo County": [
+237047,
+57801,
+310402
+],
+"El Dorado County": [
+36403,
+49247,
+92292
+],
+"Sutter County": [
+13076,
+18176,
+33269
+],
+"Sacramento County": [
+326023,
+189787,
+552624
+],
+"Yolo County": [
+54752,
+20739,
+80974
+],
+"Amador County": [
+6004,
+10485,
+17575
+],
+"Mariposa County": [
+3122,
+5185,
+8877
+],
+"Alpine County": [
+334,
+217,
+600
+],
+"Madera County": [
+17029,
+23357,
+42775
+],
+"Santa Barbara County": [
+107142,
+56364,
+174665
+],
+"Glenn County": [
+3065,
+5788,
+9379
+],
+"Colusa County": [
+2661,
+3551,
+6596
+],
+"Lake County": [
+11500,
+10603,
+24232
+],
+"Solano County": [
+102360,
+51920,
+164109
+],
+"Napa County": [
+39199,
+17411,
+60630
+],
+"Kings County": [
+13617,
+18093,
+33710
+],
+"Ventura County": [
+194397,
+132323,
+348195
+]
+},
+"vest_zip": "ca_2016.zip"
+}

@@ -1,0 +1,598 @@
+{
+"file": "Missouri.js",
+"bytes": 898975,
+"precincts": 3061,
+"counties": 115,
+"dem": 1071068,
+"rep": 1594511,
+"total": 2801449,
+"nearest_county": 0,
+"cap_bytes": 940746,
+"tol": 0.0004,
+"zero_vote_skipped": 263,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Dallas County": [
+1272,
+5895,
+7443
+],
+"Jackson County": [
+168972,
+116211,
+300994
+],
+"Barry County": [
+2710,
+11428,
+14605
+],
+"Buchanan County": [
+12013,
+21320,
+35571
+],
+"Wayne County": [
+948,
+4658,
+5761
+],
+"Cass County": [
+14846,
+33098,
+50846
+],
+"Washington County": [
+1926,
+7048,
+9280
+],
+"Reynolds County": [
+540,
+2406,
+3037
+],
+"Maries County": [
+794,
+3561,
+4500
+],
+"Jasper County": [
+10572,
+35070,
+48201
+],
+"Boone County": [
+41125,
+36200,
+83426
+],
+"Audrain County": [
+2570,
+6981,
+10046
+],
+"Lincoln County": [
+5575,
+18159,
+24920
+],
+"Franklin County": [
+12341,
+35430,
+50058
+],
+"Warren County": [
+3915,
+11111,
+15768
+],
+"Montgomery County": [
+1119,
+4127,
+5429
+],
+"Greene County": [
+42728,
+78035,
+128660
+],
+"Jefferson County": [
+31568,
+69036,
+106056
+],
+"Linn County": [
+1240,
+4088,
+5577
+],
+"Bollinger County": [
+705,
+4827,
+5669
+],
+"Ray County": [
+3090,
+7104,
+10839
+],
+"Lawrence County": [
+2901,
+13089,
+16683
+],
+"Cole County": [
+10913,
+24616,
+37275
+],
+"Nodaway County": [
+2529,
+6380,
+9440
+],
+"Phelps County": [
+4766,
+12709,
+18518
+],
+"Saline County": [
+2789,
+5977,
+9247
+],
+"St. Clair County": [
+936,
+3501,
+4630
+],
+"Platte County": [
+20057,
+25933,
+48902
+],
+"Barton County": [
+795,
+4959,
+5933
+],
+"Webster County": [
+3177,
+12840,
+16707
+],
+"Taney County": [
+4373,
+18276,
+23445
+],
+"Iron County": [
+933,
+3173,
+4260
+],
+"Ripley County": [
+830,
+4522,
+5520
+],
+"Stone County": [
+2887,
+13158,
+16549
+],
+"Miller County": [
+1750,
+9285,
+11414
+],
+"Osage County": [
+998,
+5856,
+7089
+],
+"Pemiscot County": [
+1947,
+3964,
+6027
+],
+"Christian County": [
+8508,
+30946,
+41403
+],
+"Caldwell County": [
+838,
+3232,
+4311
+],
+"Howell County": [
+2881,
+13893,
+17422
+],
+"St. Francois County": [
+6250,
+17468,
+24715
+],
+"St. Charles County": [
+68626,
+121650,
+200737
+],
+"Callaway County": [
+4989,
+13057,
+19138
+],
+"Putnam County": [
+353,
+1936,
+2343
+],
+"Scott County": [
+3575,
+13168,
+17246
+],
+"Livingston County": [
+1265,
+4879,
+6408
+],
+"Shannon County": [
+776,
+2966,
+3904
+],
+"Pettis County": [
+4324,
+12810,
+18067
+],
+"Randolph County": [
+2283,
+7529,
+10309
+],
+"Cedar County": [
+1011,
+5021,
+6281
+],
+"Harrison County": [
+574,
+2965,
+3682
+],
+"Stoddard County": [
+1876,
+11079,
+13283
+],
+"Newton County": [
+4990,
+20553,
+26515
+],
+"Madison County": [
+1005,
+4102,
+5318
+],
+"Clay County": [
+45304,
+57476,
+109536
+],
+"Ste. Genevieve County": [
+2542,
+5496,
+8464
+],
+"Carroll County": [
+745,
+3480,
+4361
+],
+"Ozark County": [
+724,
+3639,
+4501
+],
+"Bates County": [
+1618,
+6001,
+8023
+],
+"Camden County": [
+4768,
+16944,
+22476
+],
+"Dunklin County": [
+2360,
+8026,
+10574
+],
+"Lewis County": [
+934,
+3344,
+4454
+],
+"Macon County": [
+1548,
+5798,
+7613
+],
+"Sullivan County": [
+526,
+1884,
+2484
+],
+"Laclede County": [
+2553,
+12881,
+16016
+],
+"Vernon County": [
+1707,
+6533,
+8585
+],
+"Johnson County": [
+5930,
+13719,
+21119
+],
+"Andrew County": [
+2045,
+6665,
+9140
+],
+"Dade County": [
+637,
+3184,
+3951
+],
+"New Madrid County": [
+1933,
+5270,
+7352
+],
+"Schuyler County": [
+354,
+1505,
+1932
+],
+"Perry County": [
+1520,
+6908,
+8733
+],
+"Clark County": [
+724,
+2458,
+3316
+],
+"Gentry County": [
+605,
+2304,
+3033
+],
+"Crawford County": [
+1824,
+7724,
+9920
+],
+"Pike County": [
+1806,
+5274,
+7375
+],
+"Mercer County": [
+216,
+1486,
+1739
+],
+"Benton County": [
+2025,
+7213,
+9589
+],
+"Mississippi County": [
+1458,
+3600,
+5165
+],
+"Cooper County": [
+1932,
+5624,
+7977
+],
+"Cape Girardeau County": [
+8492,
+27017,
+36982
+],
+"Henry County": [
+2357,
+7075,
+9859
+],
+"Oregon County": [
+865,
+3671,
+4667
+],
+"Wright County": [
+1170,
+6707,
+8094
+],
+"DeKalb County": [
+824,
+3540,
+4590
+],
+"Adair County": [
+3500,
+6030,
+10153
+],
+"Morgan County": [
+1768,
+6760,
+8818
+],
+"Texas County": [
+1728,
+8875,
+10935
+],
+"Ralls County": [
+1138,
+3969,
+5266
+],
+"Hickory County": [
+1016,
+3542,
+4720
+],
+"Douglas County": [
+984,
+5486,
+6664
+],
+"Carter County": [
+436,
+2324,
+2844
+],
+"Chariton County": [
+888,
+2950,
+3965
+],
+"Worth County": [
+195,
+808,
+1046
+],
+"Dent County": [
+978,
+5600,
+6779
+],
+"Knox County": [
+379,
+1416,
+1870
+],
+"Shelby County": [
+606,
+2524,
+3252
+],
+"Pulaski County": [
+2922,
+9876,
+13461
+],
+"Moniteau County": [
+1237,
+5347,
+6813
+],
+"Polk County": [
+2631,
+10438,
+13713
+],
+"Butler County": [
+3036,
+13650,
+17235
+],
+"McDonald County": [
+1329,
+6599,
+8233
+],
+"Lafayette County": [
+4053,
+10988,
+15833
+],
+"Marion County": [
+2994,
+9419,
+12905
+],
+"Gasconade County": [
+1520,
+5670,
+7445
+],
+"Clinton County": [
+2572,
+7067,
+10208
+],
+"Daviess County": [
+730,
+2767,
+3696
+],
+"Grundy County": [
+780,
+3462,
+4413
+],
+"Howard County": [
+1283,
+3277,
+4855
+],
+"Scotland County": [
+365,
+1525,
+1968
+],
+"Atchison County": [
+541,
+2060,
+2724
+],
+"Holt County": [
+347,
+1926,
+2349
+],
+"Monroe County": [
+853,
+3159,
+4147
+],
+"St. Louis County": [
+286704,
+202434,
+513228
+],
+"St. Louis city": [
+104235,
+20832,
+130884
+]
+},
+"vest_zip": "mo_2016.zip"
+}

@@ -1,0 +1,408 @@
+{
+"file": "Oklahoma.js",
+"bytes": 667547,
+"precincts": 1938,
+"counties": 77,
+"dem": 420375,
+"rep": 949136,
+"total": 1452992,
+"nearest_county": 0,
+"cap_bytes": 867638,
+"tol": 0.0004,
+"zero_vote_skipped": 18,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Adair County": [
+1382,
+4787,
+6513
+],
+"Alfalfa County": [
+216,
+1933,
+2258
+],
+"Atoka County": [
+795,
+4084,
+5018
+],
+"Beaver County": [
+176,
+1993,
+2243
+],
+"Beckham County": [
+960,
+6308,
+7552
+],
+"Blaine County": [
+711,
+2884,
+3793
+],
+"Caddo County": [
+2420,
+6482,
+9348
+],
+"Canadian County": [
+11674,
+39986,
+55278
+],
+"Carter County": [
+4002,
+13752,
+18534
+],
+"Cherokee County": [
+5456,
+9994,
+16490
+],
+"Choctaw County": [
+1067,
+4206,
+5426
+],
+"Cimarron County": [
+71,
+963,
+1079
+],
+"Cleveland County": [
+38829,
+62538,
+109450
+],
+"Coal County": [
+411,
+1898,
+2399
+],
+"Comanche County": [
+11463,
+19183,
+32564
+],
+"Cotton County": [
+424,
+2054,
+2602
+],
+"Craig County": [
+1252,
+4283,
+5785
+],
+"Creek County": [
+5841,
+21575,
+28830
+],
+"Custer County": [
+2104,
+7826,
+10541
+],
+"Delaware County": [
+3311,
+11826,
+15716
+],
+"Dewey County": [
+222,
+1965,
+2248
+],
+"Ellis County": [
+155,
+1611,
+1827
+],
+"Garfield County": [
+4397,
+16009,
+21710
+],
+"Garvin County": [
+1855,
+8253,
+10546
+],
+"Grady County": [
+3882,
+17316,
+22286
+],
+"Grant County": [
+288,
+1827,
+2201
+],
+"Greer County": [
+323,
+1482,
+1896
+],
+"Harmon County": [
+225,
+715,
+977
+],
+"Harper County": [
+134,
+1318,
+1499
+],
+"Haskell County": [
+882,
+3701,
+4738
+],
+"Hughes County": [
+961,
+3388,
+4526
+],
+"Jackson County": [
+1473,
+5969,
+7806
+],
+"Jefferson County": [
+365,
+1910,
+2350
+],
+"Johnston County": [
+786,
+3093,
+4018
+],
+"Kay County": [
+3738,
+12172,
+16803
+],
+"Kingfisher County": [
+786,
+5156,
+6131
+],
+"Kiowa County": [
+767,
+2596,
+3493
+],
+"Latimer County": [
+797,
+3100,
+4056
+],
+"Le Flore County": [
+3250,
+13362,
+17221
+],
+"Lincoln County": [
+2430,
+10854,
+14025
+],
+"Logan County": [
+4248,
+13633,
+18979
+],
+"Love County": [
+735,
+2922,
+3789
+],
+"Major County": [
+310,
+2948,
+3407
+],
+"Marshall County": [
+1096,
+4206,
+5492
+],
+"Mayes County": [
+3423,
+11555,
+15717
+],
+"McClain County": [
+2894,
+13169,
+16858
+],
+"McCurtain County": [
+1802,
+8656,
+10726
+],
+"McIntosh County": [
+2123,
+5505,
+7963
+],
+"Murray County": [
+1087,
+4175,
+5528
+],
+"Muskogee County": [
+7977,
+15043,
+24216
+],
+"Noble County": [
+901,
+3715,
+4878
+],
+"Nowata County": [
+742,
+3321,
+4237
+],
+"Okfuskee County": [
+943,
+2800,
+3943
+],
+"Oklahoma County": [
+112813,
+141569,
+273942
+],
+"Osage County": [
+5597,
+12577,
+18966
+],
+"Ottawa County": [
+2584,
+7631,
+10690
+],
+"Pawnee County": [
+1344,
+4729,
+6364
+],
+"Payne County": [
+8788,
+16651,
+27760
+],
+"Pittsburg County": [
+3711,
+12753,
+17271
+],
+"Pontotoc County": [
+3637,
+10431,
+14831
+],
+"Pottawatomie County": [
+6015,
+17848,
+25452
+],
+"Roger Mills County": [
+151,
+1547,
+1759
+],
+"Rogers County": [
+7902,
+30913,
+40862
+],
+"Seminole County": [
+2071,
+5613,
+8037
+],
+"Sequoyah County": [
+3061,
+10888,
+14437
+],
+"Stephens County": [
+3086,
+14182,
+17904
+],
+"Texas County": [
+858,
+4621,
+5780
+],
+"Tillman County": [
+657,
+1944,
+2706
+],
+"Tulsa County": [
+87847,
+144258,
+247054
+],
+"Wagoner County": [
+6723,
+23005,
+31300
+],
+"Washington County": [
+5048,
+15825,
+22224
+],
+"Washita County": [
+588,
+3854,
+4631
+],
+"Woods County": [
+522,
+2947,
+3668
+],
+"Woodward County": [
+873,
+6347,
+7595
+],
+"Bryan County": [
+2804,
+10478,
+13818
+],
+"Okmulgee County": [
+4385,
+8944,
+13949
+],
+"Pushmataha County": [
+748,
+3581,
+4483
+]
+},
+"vest_zip": "ok_2016.zip"
+}

@@ -1,0 +1,143 @@
+{
+"file": "Maryland.js",
+"bytes": 636653,
+"precincts": 1987,
+"counties": 24,
+"dem": 1677928,
+"rep": 943169,
+"total": 2781446,
+"nearest_county": 0,
+"cap_bytes": 715653,
+"tol": 0.0006,
+"zero_vote_skipped": 52,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Howard County": [
+102597,
+47484,
+162193
+],
+"Montgomery County": [
+357837,
+92704,
+478873
+],
+"Prince George's County": [
+344049,
+32811,
+390385
+],
+"Queen Anne's County": [
+7973,
+16993,
+26523
+],
+"St. Mary's County": [
+17534,
+28663,
+49842
+],
+"Washington County": [
+21129,
+40998,
+65991
+],
+"Wicomico County": [
+18050,
+22198,
+42547
+],
+"Charles County": [
+49341,
+25614,
+78303
+],
+"Caroline County": [
+4009,
+9368,
+14113
+],
+"Dorchester County": [
+6245,
+8413,
+15225
+],
+"Worcester County": [
+9753,
+17210,
+28273
+],
+"Somerset County": [
+4196,
+5341,
+9900
+],
+"Allegany County": [
+7875,
+21270,
+30654
+],
+"Anne Arundel County": [
+128419,
+122403,
+270081
+],
+"Baltimore city": [
+202673,
+25205,
+239402
+],
+"Baltimore County": [
+218412,
+149477,
+390682
+],
+"Calvert County": [
+18225,
+26176,
+47408
+],
+"Carroll County": [
+26567,
+58215,
+91848
+],
+"Cecil County": [
+13650,
+28868,
+45269
+],
+"Frederick County": [
+56522,
+59522,
+125677
+],
+"Garrett County": [
+2567,
+10776,
+14011
+],
+"Harford County": [
+47077,
+77860,
+133672
+],
+"Kent County": [
+4575,
+4876,
+10021
+],
+"Talbot County": [
+8653,
+10724,
+20553
+]
+},
+"vest_zip": "md.zip"
+}

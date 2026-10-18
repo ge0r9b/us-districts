@@ -1,0 +1,488 @@
+{
+"file": "Nebraska.js",
+"bytes": 272709,
+"precincts": 1373,
+"counties": 93,
+"dem": 284494,
+"rep": 495961,
+"total": 828176,
+"nearest_county": 0,
+"cap_bytes": 296313,
+"tol": 0.0004,
+"zero_vote_skipped": 2,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAMELSAD",
+"county": {
+"Washington County": [
+2623,
+7424,
+10657
+],
+"Wayne County": [
+835,
+2693,
+3765
+],
+"Webster County": [
+306,
+1330,
+1697
+],
+"Wheeler County": [
+62,
+377,
+460
+],
+"York County": [
+1186,
+4700,
+6283
+],
+"Antelope County": [
+383,
+2732,
+3239
+],
+"Arthur County": [
+17,
+244,
+272
+],
+"Banner County": [
+19,
+357,
+393
+],
+"Blaine County": [
+30,
+276,
+316
+],
+"Boone County": [
+414,
+2299,
+2867
+],
+"Box Butte County": [
+965,
+3617,
+4848
+],
+"Boyd County": [
+128,
+983,
+1147
+],
+"Brown County": [
+153,
+1385,
+1584
+],
+"Buffalo County": [
+4763,
+14569,
+20733
+],
+"Burt County": [
+930,
+2367,
+3533
+],
+"Butler County": [
+691,
+3079,
+3926
+],
+"Cass County": [
+3484,
+8452,
+12707
+],
+"Cedar County": [
+571,
+3532,
+4358
+],
+"Chase County": [
+171,
+1648,
+1879
+],
+"Cherry County": [
+317,
+2623,
+3082
+],
+"Cheyenne County": [
+711,
+3665,
+4635
+],
+"Clay County": [
+477,
+2422,
+3030
+],
+"Colfax County": [
+859,
+2171,
+3174
+],
+"Cuming County": [
+719,
+3122,
+4024
+],
+"Custer County": [
+641,
+4695,
+5579
+],
+"Dakota County": [
+2314,
+3616,
+6209
+],
+"Dawes County": [
+801,
+2632,
+3676
+],
+"Dawson County": [
+2136,
+5984,
+8559
+],
+"Deuel County": [
+120,
+809,
+977
+],
+"Dixon County": [
+556,
+2041,
+2744
+],
+"Dodge County": [
+4544,
+9933,
+15263
+],
+"Dundy County": [
+89,
+823,
+949
+],
+"Fillmore County": [
+613,
+2130,
+2915
+],
+"Franklin County": [
+250,
+1347,
+1658
+],
+"Frontier County": [
+161,
+1110,
+1315
+],
+"Furnas County": [
+304,
+1921,
+2321
+],
+"Gage County": [
+2935,
+6380,
+9911
+],
+"Garden County": [
+153,
+869,
+1063
+],
+"Garfield County": [
+121,
+821,
+970
+],
+"Gosper County": [
+166,
+794,
+1004
+],
+"Grant County": [
+20,
+367,
+394
+],
+"Greeley County": [
+210,
+912,
+1166
+],
+"Hall County": [
+6282,
+14408,
+21777
+],
+"Hamilton County": [
+878,
+3783,
+4928
+],
+"Hayes County": [
+30,
+472,
+511
+],
+"Hitchcock County": [
+161,
+1232,
+1461
+],
+"Holt County": [
+531,
+4354,
+5074
+],
+"Hooker County": [
+40,
+355,
+414
+],
+"Howard County": [
+544,
+2284,
+2958
+],
+"Jefferson County": [
+837,
+2399,
+3448
+],
+"Johnson County": [
+563,
+1355,
+2062
+],
+"Kearney County": [
+550,
+2531,
+3255
+],
+"Keith County": [
+571,
+3235,
+3995
+],
+"Keya Paha County": [
+40,
+460,
+517
+],
+"Kimball County": [
+230,
+1330,
+1656
+],
+"Knox County": [
+720,
+3188,
+4074
+],
+"Lincoln County": [
+2913,
+12164,
+15895
+],
+"Logan County": [
+32,
+400,
+451
+],
+"Loup County": [
+48,
+323,
+382
+],
+"McPherson County": [
+14,
+257,
+286
+],
+"Madison County": [
+2711,
+10628,
+14134
+],
+"Merrick County": [
+602,
+2926,
+3722
+],
+"Morrill County": [
+284,
+1802,
+2184
+],
+"Nance County": [
+281,
+1261,
+1604
+],
+"Nemaha County": [
+785,
+2116,
+3108
+],
+"Nuckolls County": [
+353,
+1726,
+2187
+],
+"Otoe County": [
+2025,
+4860,
+7318
+],
+"Pawnee County": [
+279,
+974,
+1318
+],
+"Perkins County": [
+161,
+1217,
+1437
+],
+"Phelps County": [
+572,
+3849,
+4629
+],
+"Pierce County": [
+382,
+3052,
+3580
+],
+"Platte County": [
+2646,
+10965,
+14192
+],
+"Polk County": [
+413,
+2028,
+2549
+],
+"Red Willow County": [
+645,
+4258,
+5120
+],
+"Richardson County": [
+818,
+2769,
+3773
+],
+"Rock County": [
+70,
+687,
+794
+],
+"Saline County": [
+1733,
+3004,
+5073
+],
+"Saunders County": [
+2523,
+7555,
+10690
+],
+"Scotts Bluff County": [
+3207,
+10076,
+14092
+],
+"Seward County": [
+1875,
+5454,
+7750
+],
+"Sheridan County": [
+287,
+2211,
+2586
+],
+"Sherman County": [
+340,
+1150,
+1562
+],
+"Sioux County": [
+81,
+616,
+729
+],
+"Stanton County": [
+417,
+2187,
+2762
+],
+"Thayer County": [
+499,
+2051,
+2684
+],
+"Thomas County": [
+30,
+344,
+387
+],
+"Thurston County": [
+919,
+1043,
+2067
+],
+"Valley County": [
+339,
+1780,
+2184
+],
+"Sarpy County": [
+28033,
+45143,
+78694
+],
+"Adams County": [
+3302,
+9287,
+13294
+],
+"Douglas County": [
+113798,
+108077,
+235159
+],
+"Harlan County": [
+254,
+1496,
+1819
+],
+"Lancaster County": [
+61898,
+61588,
+132569
+]
+},
+"vest_zip": "ne_2016.zip"
+}

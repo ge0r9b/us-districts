@@ -1,0 +1,358 @@
+{
+"file": "Pennsylvania.js",
+"bytes": 1862771,
+"precincts": 9163,
+"counties": 67,
+"dem": 2926156,
+"rep": 2971303,
+"total": 6115691,
+"nearest_county": 0,
+"cap_bytes": 2219789,
+"tol": 0.0004,
+"zero_vote_skipped": 3,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Cambria County": [
+18867,
+42258,
+63072
+],
+"Lackawanna County": [
+51983,
+48384,
+103456
+],
+"Luzerne County": [
+52451,
+78688,
+134983
+],
+"McKean County": [
+4025,
+11635,
+16296
+],
+"Schuylkill County": [
+16770,
+44001,
+62869
+],
+"Monroe County": [
+33918,
+33386,
+69752
+],
+"Carbon County": [
+8936,
+18743,
+28776
+],
+"Greene County": [
+4455,
+10773,
+15655
+],
+"Montour County": [
+2857,
+5288,
+8556
+],
+"Westmoreland County": [
+59045,
+115691,
+180536
+],
+"Columbia County": [
+8934,
+18004,
+28228
+],
+"Armstrong County": [
+7670,
+23975,
+32632
+],
+"Butler County": [
+28584,
+64428,
+97071
+],
+"Huntingdon County": [
+4539,
+14494,
+19706
+],
+"Lawrence County": [
+14009,
+25428,
+40753
+],
+"Indiana County": [
+11396,
+24777,
+37513
+],
+"Lebanon County": [
+18953,
+40525,
+61845
+],
+"Mifflin County": [
+3577,
+14094,
+18301
+],
+"Pike County": [
+9268,
+16061,
+26120
+],
+"Lycoming County": [
+13020,
+35627,
+50565
+],
+"Snyder County": [
+4002,
+11725,
+16363
+],
+"Tioga County": [
+3901,
+13614,
+18325
+],
+"Perry County": [
+4632,
+15616,
+21158
+],
+"Potter County": [
+1302,
+6251,
+7784
+],
+"Union County": [
+6180,
+10622,
+17468
+],
+"Venango County": [
+6309,
+16021,
+23348
+],
+"Warren County": [
+5145,
+12477,
+18434
+],
+"Susquehanna County": [
+5123,
+13356,
+19330
+],
+"Centre County": [
+37088,
+35274,
+76148
+],
+"Clarion County": [
+4282,
+12686,
+17658
+],
+"Dauphin County": [
+64672,
+60750,
+130719
+],
+"Crawford County": [
+10971,
+24987,
+37492
+],
+"Elk County": [
+3853,
+10025,
+14426
+],
+"Erie County": [
+58112,
+60069,
+123679
+],
+"Jefferson County": [
+3650,
+15192,
+19478
+],
+"Juniata County": [
+1821,
+8273,
+10454
+],
+"Fulton County": [
+912,
+5694,
+6771
+],
+"Berks County": [
+78437,
+96626,
+183065
+],
+"Clearfield County": [
+8200,
+24932,
+34271
+],
+"Fayette County": [
+18040,
+34757,
+54041
+],
+"Sullivan County": [
+750,
+2291,
+3136
+],
+"Somerset County": [
+7376,
+27379,
+35773
+],
+"Mercer County": [
+18733,
+31544,
+52309
+],
+"Bedford County": [
+3645,
+19552,
+23637
+],
+"Cumberland County": [
+47085,
+69076,
+121617
+],
+"Washington County": [
+36255,
+61295,
+101285
+],
+"Montgomery County": [
+256470,
+163008,
+435391
+],
+"Allegheny County": [
+367872,
+259921,
+650849
+],
+"Blair County": [
+13958,
+39135,
+54909
+],
+"Franklin County": [
+17465,
+49768,
+69731
+],
+"York County": [
+68524,
+128528,
+205986
+],
+"Clinton County": [
+4744,
+10022,
+15394
+],
+"Northampton County": [
+66275,
+71736,
+143522
+],
+"Philadelphia County": [
+582697,
+108711,
+706247
+],
+"Delaware County": [
+178730,
+110704,
+299018
+],
+"Chester County": [
+141294,
+115837,
+268096
+],
+"Lehigh County": [
+81324,
+73690,
+160993
+],
+"Adams County": [
+14219,
+31423,
+47489
+],
+"Northumberland County": [
+9822,
+25540,
+36775
+],
+"Bucks County": [
+167060,
+164361,
+344297
+],
+"Beaver County": [
+32531,
+48167,
+83571
+],
+"Lancaster County": [
+91093,
+137914,
+241112
+],
+"Wyoming County": [
+3811,
+8837,
+13144
+],
+"Wayne County": [
+7008,
+16244,
+24018
+],
+"Forest County": [
+626,
+1683,
+2401
+],
+"Cameron County": [
+531,
+1589,
+2186
+],
+"Bradford County": [
+6369,
+18141,
+25708
+]
+},
+"vest_zip": "pa.zip"
+}

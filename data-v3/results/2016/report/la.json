@@ -1,0 +1,343 @@
+{
+"file": "Louisiana.js",
+"bytes": 1062553,
+"precincts": 3679,
+"counties": 64,
+"dem": 780154,
+"rep": 1178638,
+"total": 2029032,
+"nearest_county": 7,
+"cap_bytes": 1223369,
+"tol": 0.0006,
+"zero_vote_skipped": 25,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME10",
+"county": {
+"Union Parish": [
+2691,
+7972,
+10894
+],
+"Vermilion Parish": [
+4857,
+20063,
+25632
+],
+"Ouachita Parish": [
+24428,
+41734,
+68017
+],
+"Rapides Parish": [
+18322,
+36816,
+56844
+],
+"Acadia Parish": [
+5638,
+21162,
+27389
+],
+"Caldwell Parish": [
+788,
+3822,
+4692
+],
+"LaSalle Parish": [
+605,
+5836,
+6569
+],
+"Grant Parish": [
+1181,
+7408,
+8821
+],
+"Lafayette Parish": [
+32726,
+68195,
+105603
+],
+"Avoyelles Parish": [
+5035,
+11165,
+16586
+],
+"Evangeline Parish": [
+4208,
+10360,
+14882
+],
+"St. Landry Parish": [
+17209,
+21971,
+39977
+],
+"Sabine Parish": [
+1703,
+7879,
+9787
+],
+"Natchitoches Parish": [
+7144,
+8968,
+16621
+],
+"Cameron Parish": [
+323,
+3256,
+3692
+],
+"Beauregard Parish": [
+2393,
+12238,
+15078
+],
+"Calcasieu Parish": [
+26296,
+54191,
+83785
+],
+"Vernon Parish": [
+2665,
+13471,
+16633
+],
+"Jefferson Davis Parish": [
+3080,
+10775,
+14277
+],
+"Allen Parish": [
+2106,
+6867,
+9245
+],
+"Webster Parish": [
+6260,
+11542,
+18145
+],
+"Caddo Parish": [
+53348,
+48408,
+105053
+],
+"Bossier Parish": [
+12776,
+36072,
+50599
+],
+"Bienville Parish": [
+3129,
+3756,
+7005
+],
+"Red River Parish": [
+1938,
+2391,
+4422
+],
+"Lincoln Parish": [
+7107,
+10761,
+18669
+],
+"De Soto Parish": [
+5165,
+8068,
+13500
+],
+"Winn Parish": [
+1644,
+4608,
+6372
+],
+"Jackson Parish": [
+2139,
+5169,
+7464
+],
+"Claiborne Parish": [
+2717,
+3585,
+6421
+],
+"Plaquemines Parish": [
+3347,
+6900,
+10573
+],
+"Jefferson Parish": [
+73670,
+100398,
+181639
+],
+"Lafourche Parish": [
+8423,
+31959,
+41645
+],
+"Terrebonne Parish": [
+10665,
+31902,
+43896
+],
+"St. Mary Parish": [
+8050,
+14359,
+22877
+],
+"Iberia Parish": [
+10698,
+20903,
+32454
+],
+"Concordia Parish": [
+3272,
+5477,
+8872
+],
+"Washington Parish": [
+5692,
+12556,
+18628
+],
+"Catahoula Parish": [
+1322,
+3479,
+4856
+],
+"St. Tammany Parish": [
+27717,
+90915,
+124392
+],
+"St. Charles Parish": [
+8559,
+16621,
+26192
+],
+"West Feliciana Parish": [
+2248,
+3390,
+5799
+],
+"East Feliciana Parish": [
+4235,
+5569,
+10042
+],
+"Tangipahoa Parish": [
+16878,
+33959,
+52416
+],
+"St. Martin Parish": [
+8266,
+16873,
+25750
+],
+"Assumption Parish": [
+3931,
+6714,
+10904
+],
+"Iberville Parish": [
+8324,
+7320,
+16043
+],
+"East Baton Rouge Parish": [
+102828,
+84660,
+196491
+],
+"Livingston Parish": [
+6950,
+48824,
+57730
+],
+"West Baton Rouge Parish": [
+5383,
+6927,
+12712
+],
+"Pointe Coupee Parish": [
+4764,
+6789,
+11761
+],
+"St. John the Baptist Parish": [
+12661,
+7569,
+20743
+],
+"St. James Parish": [
+6418,
+5456,
+12085
+],
+"Ascension Parish": [
+16476,
+36143,
+54678
+],
+"St. Helena Parish": [
+3353,
+2497,
+5964
+],
+"East Carroll Parish": [
+1838,
+1059,
+2939
+],
+"Madison Parish": [
+2744,
+1927,
+4732
+],
+"Tensas Parish": [
+1332,
+1182,
+2548
+],
+"Richland Parish": [
+3157,
+6287,
+9597
+],
+"Morehouse Parish": [
+5155,
+6502,
+11852
+],
+"Franklin Parish": [
+2506,
+6514,
+9162
+],
+"West Carroll Parish": [
+715,
+3970,
+4759
+],
+"St. Bernard Parish": [
+4960,
+10237,
+15815
+],
+"Orleans Parish": [
+133996,
+24292,
+165812
+]
+},
+"vest_zip": "la_2016.zip"
+}

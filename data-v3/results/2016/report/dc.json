@@ -1,0 +1,28 @@
+{
+"file": "District_of_Columbia.js",
+"bytes": 20151,
+"precincts": 143,
+"counties": 1,
+"dem": 282830,
+"rep": 12723,
+"total": 311268,
+"nearest_county": 0,
+"cap_bytes": 29181,
+"tol": 0.0004,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"District of Columbia": [
+282830,
+12723,
+311268
+]
+},
+"vest_zip": "dc_2016.zip"
+}

@@ -1,0 +1,333 @@
+{
+"file": "New_York.js",
+"bytes": 2312760,
+"precincts": 14661,
+"counties": 62,
+"dem": 4556131,
+"rep": 2819552,
+"total": 7720570,
+"nearest_county": 30,
+"cap_bytes": 2367910,
+"tol": 0.0004,
+"zero_vote_skipped": 215,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Albany County": [
+83071,
+47808,
+139818
+],
+"Broome County": [
+39212,
+40943,
+86072
+],
+"Cattaraugus County": [
+9497,
+19692,
+31161
+],
+"Chenango County": [
+6775,
+11921,
+20160
+],
+"Cortland County": [
+8771,
+9900,
+20244
+],
+"Delaware County": [
+6627,
+11942,
+19767
+],
+"Dutchess County": [
+62285,
+61821,
+131122
+],
+"Essex County": [
+7762,
+7958,
+16921
+],
+"Fulton County": [
+6496,
+13462,
+21214
+],
+"Greene County": [
+7405,
+13073,
+22050
+],
+"Hamilton County": [
+949,
+2064,
+3225
+],
+"Herkimer County": [
+8083,
+16699,
+26255
+],
+"Jefferson County": [
+13809,
+21763,
+38236
+],
+"Livingston County": [
+10697,
+17290,
+30031
+],
+"Madison County": [
+11667,
+15936,
+30064
+],
+"Montgomery County": [
+6595,
+11301,
+19054
+],
+"Niagara County": [
+35559,
+51961,
+92402
+],
+"Oneida County": [
+33743,
+51437,
+91009
+],
+"Ontario County": [
+22225,
+26025,
+52245
+],
+"Orleans County": [
+4470,
+10936,
+16380
+],
+"Oswego County": [
+17095,
+27688,
+48180
+],
+"Otsego County": [
+10451,
+13308,
+25668
+],
+"Putnam County": [
+19366,
+27024,
+48563
+],
+"Rensselaer County": [
+32717,
+33726,
+71562
+],
+"Rockland County": [
+69342,
+60911,
+135087
+],
+"Saratoga County": [
+50913,
+54575,
+114094
+],
+"Schenectady County": [
+33747,
+28953,
+67280
+],
+"Schuyler County": [
+3088,
+5049,
+8773
+],
+"Seneca County": [
+5697,
+7236,
+13982
+],
+"St. Lawrence County": [
+16488,
+19942,
+39162
+],
+"Suffolk County": [
+303951,
+350570,
+681254
+],
+"Tioga County": [
+7526,
+13260,
+22299
+],
+"Wayne County": [
+13473,
+23380,
+39687
+],
+"Wyoming County": [
+3904,
+12442,
+17323
+],
+"Yates County": [
+3659,
+5660,
+10066
+],
+"Genesee County": [
+7650,
+16915,
+26432
+],
+"Lewis County": [
+3146,
+7400,
+11325
+],
+"Allegany County": [
+4882,
+12525,
+18692
+],
+"Cayuga County": [
+13522,
+17384,
+33169
+],
+"Chautauqua County": [
+19091,
+31594,
+54234
+],
+"Chemung County": [
+13757,
+20097,
+36119
+],
+"Clinton County": [
+15059,
+14449,
+32105
+],
+"Columbia County": [
+15284,
+13756,
+30902
+],
+"Erie County": [
+215456,
+188303,
+423625
+],
+"Franklin County": [
+7297,
+8221,
+16952
+],
+"Monroe County": [
+188592,
+136582,
+347790
+],
+"Nassau County": [
+333766,
+293247,
+650062
+],
+"Queens County": [
+513139,
+147786,
+680557
+],
+"New York County": [
+580029,
+65143,
+670253
+],
+"Kings County": [
+639582,
+141004,
+804541
+],
+"Richmond County": [
+74143,
+101437,
+180960
+],
+"Bronx County": [
+351521,
+37745,
+397349
+],
+"Westchester County": [
+277475,
+131450,
+425475
+],
+"Onondaga County": [
+112337,
+83649,
+208440
+],
+"Orange County": [
+68278,
+76645,
+152021
+],
+"Schoharie County": [
+4240,
+8831,
+14050
+],
+"Steuben County": [
+12526,
+26831,
+42002
+],
+"Sullivan County": [
+12568,
+15931,
+29956
+],
+"Tompkins County": [
+28890,
+10371,
+42678
+],
+"Ulster County": [
+44597,
+35239,
+84535
+],
+"Warren County": [
+13091,
+15751,
+31408
+],
+"Washington County": [
+9098,
+13610,
+24528
+]
+},
+"vest_zip": "ny_2016.zip"
+}

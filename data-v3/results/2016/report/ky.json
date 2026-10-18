@@ -1,0 +1,623 @@
+{
+"file": "Kentucky.js",
+"bytes": 609752,
+"precincts": 3675,
+"counties": 120,
+"dem": 628847,
+"rep": 1202957,
+"total": 1923375,
+"nearest_county": 0,
+"cap_bytes": 646222,
+"tol": 0.0032,
+"zero_vote_skipped": 58,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME16",
+"county": {
+"Carroll County": [
+1106,
+2588,
+3855
+],
+"Washington County": [
+1420,
+4013,
+5630
+],
+"Barren County": [
+4275,
+13483,
+18483
+],
+"Clark County": [
+4706,
+10710,
+16202
+],
+"Anderson County": [
+2634,
+8242,
+11420
+],
+"Bracken County": [
+705,
+2711,
+3527
+],
+"Allen County": [
+1349,
+6466,
+8091
+],
+"Ballard County": [
+816,
+3161,
+4101
+],
+"Bath County": [
+1361,
+3082,
+4583
+],
+"Bullitt County": [
+8255,
+26210,
+36054
+],
+"Livingston County": [
+887,
+3570,
+4643
+],
+"Knott County": [
+1245,
+4357,
+5763
+],
+"Montgomery County": [
+3158,
+7856,
+11444
+],
+"Hardin County": [
+13944,
+26971,
+43142
+],
+"Clay County": [
+752,
+5861,
+6765
+],
+"Warren County": [
+16966,
+28673,
+48436
+],
+"Kenton County": [
+24213,
+42958,
+71947
+],
+"Daviess County": [
+14163,
+28907,
+45781
+],
+"Caldwell County": [
+1260,
+4507,
+5975
+],
+"McLean County": [
+988,
+3381,
+4566
+],
+"Casey County": [
+767,
+5482,
+6439
+],
+"Gallatin County": [
+749,
+2443,
+3337
+],
+"Greenup County": [
+4146,
+11546,
+16273
+],
+"Green County": [
+832,
+4372,
+5333
+],
+"Boyle County": [
+4281,
+8040,
+12938
+],
+"Edmonson County": [
+979,
+4135,
+5241
+],
+"Crittenden County": [
+617,
+3290,
+4037
+],
+"Clinton County": [
+547,
+3809,
+4458
+],
+"Garrard County": [
+1453,
+5904,
+7619
+],
+"Owsley County": [
+256,
+1474,
+1759
+],
+"Grant County": [
+1910,
+7268,
+9556
+],
+"Lee County": [
+444,
+2151,
+2667
+],
+"Adair County": [
+1323,
+6637,
+8231
+],
+"Campbell County": [
+14658,
+25050,
+42489
+],
+"Grayson County": [
+1959,
+8219,
+10572
+],
+"Harrison County": [
+2031,
+5435,
+7780
+],
+"Hancock County": [
+1244,
+2788,
+4293
+],
+"Wayne County": [
+1431,
+6370,
+7991
+],
+"Hopkins County": [
+4310,
+15277,
+20341
+],
+"Carter County": [
+2276,
+7587,
+10274
+],
+"Wolfe County": [
+753,
+1804,
+2635
+],
+"Boyd County": [
+6021,
+13591,
+20454
+],
+"Henry County": [
+1828,
+4944,
+7145
+],
+"Henderson County": [
+6707,
+12159,
+19705
+],
+"Larue County": [
+1278,
+4799,
+6367
+],
+"Lawrence County": [
+1045,
+4816,
+6042
+],
+"Bourbon County": [
+2791,
+5569,
+8795
+],
+"Jessamine County": [
+6144,
+15474,
+23306
+],
+"Union County": [
+1331,
+4701,
+6211
+],
+"Hart County": [
+1730,
+5320,
+7263
+],
+"Breathitt County": [
+1537,
+3991,
+5735
+],
+"Fleming County": [
+1348,
+4722,
+6257
+],
+"Letcher County": [
+1542,
+7293,
+9134
+],
+"Laurel County": [
+3440,
+20592,
+24824
+],
+"Graves County": [
+3308,
+12671,
+16592
+],
+"Madison County": [
+11793,
+23431,
+37336
+],
+"Lewis County": [
+785,
+4363,
+5298
+],
+"Robertson County": [
+222,
+759,
+1013
+],
+"Mercer County": [
+2395,
+7740,
+10584
+],
+"Franklin County": [
+10717,
+11819,
+23860
+],
+"Perry County": [
+2136,
+8158,
+10572
+],
+"Bell County": [
+1720,
+7764,
+9718
+],
+"Rowan County": [
+3295,
+5174,
+8842
+],
+"Shelby County": [
+6276,
+13196,
+20573
+],
+"Powell County": [
+1272,
+3513,
+4957
+],
+"Oldham County": [
+10268,
+20469,
+32853
+],
+"Ohio County": [
+2080,
+7942,
+10398
+],
+"Owen County": [
+1062,
+3745,
+4999
+],
+"Meade County": [
+3026,
+8660,
+12229
+],
+"Simpson County": [
+2144,
+5077,
+7529
+],
+"Martin County": [
+363,
+3503,
+3953
+],
+"Knox County": [
+1761,
+9885,
+12012
+],
+"Menifee County": [
+700,
+2010,
+2780
+],
+"Taylor County": [
+2553,
+8320,
+11304
+],
+"Muhlenberg County": [
+3272,
+9393,
+13054
+],
+"Boone County": [
+15026,
+39082,
+57570
+],
+"Lyon County": [
+1045,
+2789,
+3961
+],
+"Woodford County": [
+4958,
+7697,
+13560
+],
+"McCracken County": [
+9134,
+20774,
+31294
+],
+"Morgan County": [
+1006,
+3628,
+4770
+],
+"Nicholas County": [
+787,
+1957,
+2840
+],
+"Rockcastle County": [
+915,
+5609,
+6688
+],
+"Trimble County": [
+879,
+2771,
+3788
+],
+"Mason County": [
+1970,
+4944,
+7216
+],
+"Trigg County": [
+1587,
+4928,
+6745
+],
+"Pendleton County": [
+1164,
+4604,
+6007
+],
+"Nelson County": [
+6434,
+13431,
+20773
+],
+"Logan County": [
+2755,
+7778,
+10899
+],
+"McCreary County": [
+664,
+5012,
+5776
+],
+"Russell County": [
+1093,
+6863,
+8174
+],
+"Spencer County": [
+1921,
+7196,
+9513
+],
+"Harlan County": [
+1372,
+9129,
+10757
+],
+"Fulton County": [
+774,
+1549,
+2382
+],
+"Calloway County": [
+4749,
+10367,
+16045
+],
+"Christian County": [
+7188,
+14108,
+22083
+],
+"Estill County": [
+1108,
+4236,
+5545
+],
+"Whitley County": [
+2067,
+11312,
+13769
+],
+"Elliott County": [
+740,
+2000,
+2855
+],
+"Carlisle County": [
+432,
+2094,
+2601
+],
+"Cumberland County": [
+459,
+2502,
+3066
+],
+"Lincoln County": [
+1865,
+7338,
+9561
+],
+"Floyd County": [
+4015,
+11993,
+16540
+],
+"Hickman County": [
+449,
+1657,
+2157
+],
+"Johnson County": [
+1250,
+8043,
+9572
+],
+"Jackson County": [
+482,
+4889,
+5500
+],
+"Butler County": [
+947,
+4428,
+5576
+],
+"Jefferson County": [
+190836,
+143768,
+352957
+],
+"Monroe County": [
+601,
+4278,
+4991
+],
+"Leslie County": [
+400,
+4015,
+4492
+],
+"Webster County": [
+1240,
+4397,
+5805
+],
+"Scott County": [
+7714,
+15052,
+24179
+],
+"Pike County": [
+4277,
+19741,
+24651
+],
+"Marion County": [
+2679,
+5122,
+8109
+],
+"Fayette County": [
+69776,
+56890,
+136239
+],
+"Magoffin County": [
+1172,
+3824,
+5116
+],
+"Marshall County": [
+3672,
+12322,
+16688
+],
+"Metcalfe County": [
+976,
+3491,
+4619
+],
+"Pulaski County": [
+4208,
+22902,
+28036
+],
+"Todd County": [
+1042,
+3612,
+4774
+],
+"Breckinridge County": [
+1960,
+6484,
+8771
+]
+},
+"vest_zip": "ky_2016.zip"
+}

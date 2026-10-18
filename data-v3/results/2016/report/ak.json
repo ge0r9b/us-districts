@@ -1,0 +1,173 @@
+{
+"file": "Alaska.js",
+"bytes": 1205347,
+"precincts": 441,
+"counties": 30,
+"dem": 116454,
+"rep": 163387,
+"total": 318608,
+"nearest_county": 38,
+"cap_bytes": 1497787,
+"tol": 0.0006,
+"zero_vote_skipped": 0,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "NAME",
+"county": {
+"Matanuska-Susitna Borough": [
+8602,
+31798,
+45050
+],
+"Anchorage Municipality": [
+54157,
+61059,
+130223
+],
+"Kenai Peninsula Borough": [
+7659,
+18326,
+29045
+],
+"Kodiak Island Borough": [
+1854,
+2950,
+5502
+],
+"Chugach Census Area": [
+1046,
+1676,
+3225
+],
+"Juneau City and Borough": [
+8277,
+5510,
+15727
+],
+"Hoonah-Angoon Census Area": [
+1296,
+675,
+2300
+],
+"Haines Borough": [
+672,
+618,
+1518
+],
+"Prince of Wales-Hyder Census Area": [
+939,
+1277,
+2662
+],
+"Petersburg Borough": [
+599,
+919,
+1741
+],
+"Sitka City and Borough": [
+2188,
+1792,
+4479
+],
+"Yakutat City and Borough": [
+128,
+109,
+273
+],
+"Ketchikan Gateway Borough": [
+2065,
+3498,
+6442
+],
+"Skagway Municipality": [
+357,
+199,
+690
+],
+"Wrangell City and Borough": [
+293,
+769,
+1168
+],
+"Fairbanks North Star Borough": [
+13572,
+22029,
+40938
+],
+"Yukon-Koyukuk Census Area": [
+1399,
+779,
+2584
+],
+"Denali Borough": [
+457,
+587,
+1185
+],
+"Copper River Census Area": [
+319,
+1036,
+1559
+],
+"Southeast Fairbanks Census Area": [
+595,
+2241,
+3140
+],
+"Aleutians West Census Area": [
+673,
+392,
+1180
+],
+"Dillingham Census Area": [
+908,
+604,
+1735
+],
+"Bethel Census Area": [
+2714,
+1106,
+4944
+],
+"Kusilvak Census Area": [
+1133,
+361,
+1904
+],
+"Nome Census Area": [
+1721,
+956,
+3307
+],
+"North Slope Borough": [
+1102,
+791,
+2317
+],
+"Aleutians East Borough": [
+181,
+282,
+535
+],
+"Lake and Peninsula Borough": [
+294,
+231,
+681
+],
+"Bristol Bay Borough": [
+132,
+269,
+441
+],
+"Northwest Arctic Borough": [
+1122,
+548,
+2113
+]
+},
+"vest_zip": "ak_2016.zip"
+}

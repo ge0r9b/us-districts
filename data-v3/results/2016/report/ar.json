@@ -1,0 +1,398 @@
+{
+"file": "Arkansas.js",
+"bytes": 907928,
+"precincts": 2486,
+"counties": 75,
+"dem": 380494,
+"rep": 684872,
+"total": 1130676,
+"nearest_county": 0,
+"cap_bytes": 993455,
+"tol": 0.0004,
+"zero_vote_skipped": 39,
+"dem_fields": [
+"G16PREDCLI"
+],
+"rep_fields": [
+"G16PRERTRU"
+],
+"name_field": "PRECINCT",
+"county": {
+"Cross County": [
+1999,
+4584,
+6874
+],
+"Washington County": [
+33366,
+41476,
+81861
+],
+"Sebastian County": [
+12300,
+29127,
+44637
+],
+"Newton County": [
+699,
+2875,
+3753
+],
+"Independence County": [
+2881,
+9936,
+13614
+],
+"Yell County": [
+1480,
+4608,
+6439
+],
+"Lawrence County": [
+1263,
+4064,
+5685
+],
+"Greene County": [
+3071,
+10720,
+14600
+],
+"Sharp County": [
+1472,
+5407,
+7249
+],
+"Stone County": [
+1203,
+4113,
+5618
+],
+"Crawford County": [
+4488,
+16686,
+22450
+],
+"Woodruff County": [
+1118,
+1347,
+2571
+],
+"Johnson County": [
+2427,
+6091,
+9112
+],
+"Pope County": [
+5000,
+16256,
+22569
+],
+"Lonoke County": [
+5664,
+19958,
+27100
+],
+"Fulton County": [
+1067,
+3471,
+4772
+],
+"Faulkner County": [
+14629,
+29346,
+47527
+],
+"Pulaski County": [
+89574,
+61257,
+159776
+],
+"Franklin County": [
+1376,
+5039,
+6770
+],
+"Jefferson County": [
+15772,
+9250,
+25894
+],
+"Polk County": [
+1212,
+6618,
+8231
+],
+"Sevier County": [
+1075,
+3282,
+4562
+],
+"Lincoln County": [
+1252,
+2455,
+3826
+],
+"Howard County": [
+1351,
+3157,
+4674
+],
+"Drew County": [
+2365,
+3968,
+6595
+],
+"Pike County": [
+685,
+3150,
+3981
+],
+"Hempstead County": [
+2377,
+4401,
+7049
+],
+"Union County": [
+5855,
+10456,
+16894
+],
+"Ashley County": [
+2408,
+5338,
+8083
+],
+"Calhoun County": [
+639,
+1556,
+2269
+],
+"Ouachita County": [
+4321,
+5351,
+9935
+],
+"Arkansas County": [
+1939,
+3826,
+6212
+],
+"Grant County": [
+1373,
+5725,
+7445
+],
+"Hot Spring County": [
+3149,
+8172,
+11944
+],
+"Prairie County": [
+814,
+2505,
+3444
+],
+"Monroe County": [
+1312,
+1489,
+2884
+],
+"Montgomery County": [
+748,
+2643,
+3559
+],
+"Dallas County": [
+1165,
+1509,
+2771
+],
+"Nevada County": [
+1157,
+2000,
+3246
+],
+"Miller County": [
+4273,
+11294,
+16091
+],
+"Garland County": [
+12311,
+26087,
+40805
+],
+"Phillips County": [
+4310,
+2446,
+6953
+],
+"Saline County": [
+13256,
+35863,
+52100
+],
+"Crittenden County": [
+8410,
+6964,
+15952
+],
+"Mississippi County": [
+5670,
+7061,
+13204
+],
+"Scott County": [
+602,
+2731,
+3510
+],
+"Perry County": [
+1049,
+3008,
+4306
+],
+"Izard County": [
+1113,
+4042,
+5448
+],
+"Lafayette County": [
+1032,
+1758,
+2860
+],
+"Randolph County": [
+1425,
+4509,
+6379
+],
+"Desha County": [
+2228,
+1919,
+4257
+],
+"Jackson County": [
+1583,
+3267,
+5156
+],
+"Searcy County": [
+601,
+2955,
+3728
+],
+"Van Buren County": [
+1549,
+5382,
+7339
+],
+"White County": [
+5170,
+21077,
+27999
+],
+"Logan County": [
+1715,
+5746,
+7921
+],
+"Baxter County": [
+4169,
+14682,
+19766
+],
+"Benton County": [
+28005,
+60871,
+96824
+],
+"Bradley County": [
+1317,
+2164,
+3653
+],
+"Little River County": [
+1397,
+3605,
+5227
+],
+"Carroll County": [
+3342,
+6786,
+10758
+],
+"Marion County": [
+1434,
+5336,
+7107
+],
+"Chicot County": [
+2350,
+1716,
+4176
+],
+"Clark County": [
+3620,
+4404,
+8526
+],
+"Clay County": [
+1199,
+3781,
+5200
+],
+"Cleburne County": [
+2101,
+9458,
+12085
+],
+"Cleveland County": [
+723,
+2462,
+3354
+],
+"Columbia County": [
+3140,
+5456,
+8887
+],
+"Conway County": [
+2656,
+4849,
+7927
+],
+"Lee County": [
+1735,
+1229,
+3026
+],
+"Craighead County": [
+10538,
+22892,
+35573
+],
+"Madison County": [
+1588,
+4928,
+6841
+],
+"Poinsett County": [
+1880,
+5502,
+7722
+],
+"St. Francis County": [
+4031,
+3195,
+7430
+],
+"Boone County": [
+2926,
+12235,
+16111
+]
+},
+"vest_zip": "ar_2016.zip"
+}
