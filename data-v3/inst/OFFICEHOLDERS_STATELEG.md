@@ -374,4 +374,5 @@ The 2024 file has 7,384 rows: 7,348 serving at 2025-04-01 and 36 vacant. Its cro
 Rows are keyed **chamber entity + unit + seat**: `entity_id` is now the chamber entity of `entities.csv` (`us-house`,
 `chamber:<ab>-upper|lower`; old slug in `entity_id_legacy`), the unit is `unit_layer` + `unit_geoid` + `unit_vintage`
 (TIGER year; the old `cd119`/`sldl2024` token is in `unit_plan`), and `seat` carries the source's seat label (Idaho House A/B).
-Every row has full `source_url`s, `retrieved_at` and `source_commit`. Columns: README_OFFICEHOLDERS.md.
+Step 5 (`tools/inst_oh_sources.py`) normalizes provenance into `sources.csv`: rows carry `source_id`; `source`, `license`,
+`retrieved_at`, `source_commit` moved there, the old record-id column `source_id` is now `source_record_id`. Columns and flags: README_OFFICEHOLDERS.md.

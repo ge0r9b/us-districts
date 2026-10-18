@@ -35,8 +35,13 @@ def fullurls(s):
     parts = [p.strip() for p in s.split(' ; ') if p.strip()]
     out = []
     for p in parts:
+        if out and re.match(r'^https?://[^ ]*/\.\.\.\w+=', p): p = '...' + p.split('/...', 1)[1]   # repair an earlier bad join
         if re.match(r'^https?://', p) or not out: out.append(p); continue
         base = out[0]
+        if p.startswith('...') and '=' in p and '?' in base:      # '...chamber=Senate': same URL, that one parameter changed
+            k, v = p[3:].split('=', 1)
+            q = re.sub(r'(?i)(^|&)%s=[^&]*' % re.escape(k), lambda m: '%s%s=%s' % (m.group(1), k, v), base.split('?', 1)[1])
+            out.append(base.split('?')[0] + '?' + q); continue
         if p.startswith('?'): out.append(base.split('?')[0] + p)
         elif p.startswith('.../'): out.append(base.split('?')[0].rstrip('/').rsplit('/', 1)[0] + '/' + p[4:])
         else: out.append(urllib.parse.urljoin(base.split('?')[0], p))

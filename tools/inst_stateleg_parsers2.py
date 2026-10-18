@@ -186,7 +186,7 @@ def p_ar(R):
         t = open(R + "/" + f, errors="ignore").read()
         for code, nm, d in re.findall(r'(?:Representative|Senator)\s*<a href="/Legislators/Detail\?member=([^&"]+)[^"]*">([^<]+)</a>.*?<span class="screenreader">District:</span>\s*(\d+)', t, re.S):
             out.append(rec(ch, d, nm, "", "ar-%s-%s" % (ch[0], code), nostatus=True, session=True, status_src="2025 regular session member list (no in-office dates)"))
-    return out, "Arkansas State Legislature member lists, 2025 session (party not listed there)", "https://arkleg.state.ar.us/Legislators/List?chamber=House&ddBienniumSession=2025%2F2025R ; ...chamber=Senate", ["ar_house_2025.html", "ar_senate_2025.html"]
+    return out, "Arkansas State Legislature member lists, 2025 session (party not listed there)", "https://arkleg.state.ar.us/Legislators/List?chamber=House&ddBienniumSession=2025%2F2025R ; https://arkleg.state.ar.us/Legislators/List?chamber=Senate&ddBienniumSession=2025%2F2025R", ["ar_house_2025.html", "ar_senate_2025.html"]
 
 def p_wi(R):
     out = []

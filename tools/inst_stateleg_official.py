@@ -124,7 +124,7 @@ def p_tx(R):
         if not d: NODISTRICT[("Texas", ch)].append(nm); continue   # 89th member whose page has no district any more: left office during the 89th
         out.append(dict(chamber=ch, district=d.group(1), name=nm, last=last(nm), party="", oid="tx-" + os.path.basename(f)[:-5], serving=True, session=True,
                         status_src="89th Legislature member page", nostatus=True))
-    return out, "Texas Legislature Online, 89th Legislature member pages (party not listed there)", "https://capitol.texas.gov/Members/Members.aspx?Chamber=H ; ...Chamber=S", ["tx_house.html", "tx_senate.html", "tx89/*.html"]
+    return out, "Texas Legislature Online, 89th Legislature member pages (party not listed there)", "https://capitol.texas.gov/Members/Members.aspx?Chamber=H ; https://capitol.texas.gov/Members/Members.aspx?Chamber=S", ["tx_house.html", "tx_senate.html", "tx89/*.html"]
 
 PARSERS = {"Texas": p_tx, "New Hampshire": p_nh, "Pennsylvania": p_pa, "Massachusetts": p_ma, "Minnesota": p_mn, "Vermont": p_vt, "Missouri": p_mo, "New York": p_ny, "California": p_ca}
 # chambers a state's official source covers (the other chamber stays OpenStates)

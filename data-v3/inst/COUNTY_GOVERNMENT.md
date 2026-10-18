@@ -2,7 +2,7 @@
 
 `county_government.csv` is built by `tools/inst_county_government.py`. It answers ENTITIES_SCHEMA Q1 (`has_own_government`) and is keyed by county GEOID plus vintage. It is v3 only: nothing in v2 loads it.
 
-- **Source (official):** U.S. Census Bureau, *2022 Census of Governments: Organization*, Government Units Listing (`govt_units_2022.ZIP` → `Govt_Units_2022_Final.xlsx`, tab General Purpose). Public domain. Retrieved Oct 18, 2026. The sha256 of the ZIP is in every row and in `inst-raw/cog2022/SHA256SUMS`.
+- **Source (official):** U.S. Census Bureau, *2022 Census of Governments: Organization*, Government Units Listing (`govt_units_2022.ZIP` → `Govt_Units_2022_Final.xlsx`, tab General Purpose). Public domain. Retrieved Oct 18, 2026. The sha256 of the ZIP is in `sources.csv` (`census-cog2022-0fba3401`) and in `inst-raw/cog2022/SHA256SUMS`.
 - **Rule:** `has_own_government=yes` if and only if the listing has a `1 - COUNTY` unit with that state and county FIPS. That gives **3,031 yes and 113 no** over the 3,144 county equivalents of 2024. Every CoG county unit maps to a data-v3 county GEOID, and none is left over.
 - **`government_kind`:** one of four values:
   - `county`: 3,031.
@@ -27,7 +27,8 @@ So 3,032 − 2 + 1 = 3,031, which accounts for the whole difference. The consoli
 `county_government.csv`, UTF-8, header row: `county_geoid` (TIGER county GEOID), `vintage` (TIGER year; 2020 rows only for
 CT's 8 old counties), `county_name`, `has_own_government` (yes/no/unknown), `government_kind` (county / municipal / none /
 none in this county area), `cog_pid6`, `cog_unit_name`, `cog_unit_type` (CoG 2022 unit), `tiger_funcstat`,
-`agrees_with_tiger`, `government_note`, `source`, `source_url`, `retrieved_at`, `sha256`, `license`.
+`agrees_with_tiger`, `government_note`, `source_id` (`;`-list into `sources.csv`: `census-cog2022-0fba3401` plus
+`census-tiger2024-county-9437f0ab` (FUNCSTAT cross-check) for 2024 rows or `census-gaz2020-counties-2c7dd420` for the 2020 CT rows).
 Sources: U.S. Census Bureau 2022 Census of Governments, Government Units Listing
 (https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP) and TIGER 2024 county FUNCSTAT
 (data-v3/geo/county_funcstat.csv). Licence: public domain (US government work). No OpenStates input, so no `source_commit`.

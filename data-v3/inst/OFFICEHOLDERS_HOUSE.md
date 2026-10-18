@@ -12,7 +12,7 @@ Joins are by code only, never by name. `statedistrict` maps to state + 2-digit d
 
 Sources:
 - House Clerk `MemberData.xml`: public domain. sha256 `01833c6c646873b2…`.
-- unitedstates/congress-legislators commit `d5af3d2` (2026-09-24), CC0 1.0. sha256 per file is in every row.
+- unitedstates/congress-legislators commit `d5af3d2` (2026-09-24), CC0 1.0. sha256 per file is in `sources.csv`.
 
 Names and parties are written exactly as each source gives them: the Clerk uses `R`/`D`/`I`, congress-legislators uses `Republican`/`Democrat`. Summary: `officeholders_house_summary.json`.
 
@@ -33,4 +33,5 @@ Names and parties are written exactly as each source gives them: the Clerk uses 
 Rows are keyed **chamber entity + unit + seat**: `entity_id` is now the chamber entity of `entities.csv` (`us-house`,
 `chamber:<ab>-upper|lower`; old slug in `entity_id_legacy`), the unit is `unit_layer` + `unit_geoid` + `unit_vintage`
 (TIGER year; the old `cd119`/`sldl2024` token is in `unit_plan`), and `seat` carries the source's seat label (Idaho House A/B).
-Every row has full `source_url`s, `retrieved_at` and `source_commit`. Columns: README_OFFICEHOLDERS.md.
+Step 5 (`tools/inst_oh_sources.py`) normalizes provenance into `sources.csv`: rows carry `source_id`; `source`, `license`,
+`retrieved_at`, `source_commit` moved there, the old record-id column `source_id` is now `source_record_id`. Columns and flags: README_OFFICEHOLDERS.md.
