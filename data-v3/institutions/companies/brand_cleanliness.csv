@@ -36,8 +36,9 @@ rank,entity_id,name,locations,states_covered,pct_with_geoid,pct_coords_cc0,pct_c
 35,wikidata:Q1439966,Four Points by Sheraton,538,37,21.6,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
 36,wikidata:Q109329542,City Express,181,24,26.5,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
 37,wikidata:Q5264274,Design Hotels,277,15,17.3,100.0,100.0,True,False,,False,atp-marriott_hotels-2026-10-10
-38,wikidata:Q72636824,Marriott Executive Apartments,56,0,0.0,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
-39,wikidata:Q6772996,Marriott Vacation Club International,92,14,78.3,76.1,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
-40,wikidata:Q1067636,JW Marriott Hotels,142,16,24.6,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
-41,wikidata:Q5430314,Fairfield by Marriott,1470,50,82.0,99.9,99.9,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
-42,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18
+38,wikidata:Q4982335,Buc-ee's,50,12,100.0,100.0,100.0,True,False,,False,atp-bucees_us-2026-10-03
+39,wikidata:Q72636824,Marriott Executive Apartments,56,0,0.0,100.0,100.0,True,False,,True,atp-marriott_hotels-2026-10-10
+40,wikidata:Q6772996,Marriott Vacation Club International,92,14,78.3,76.1,100.0,True,False,,False,atp-marriott_hotels-2026-10-10;marriott-pacsys-2026-10-18
+41,wikidata:Q1067636,JW Marriott Hotels,142,16,24.6,0.0,100.0,True,False,,False,marriott-pacsys-2026-10-18
+42,wikidata:Q5430314,Fairfield by Marriott,1470,50,82.0,99.9,99.9,True,False,,True,atp-marriott_hotels-2026-10-10;marriott-v5-user-approved-2026-10-18
+43,wikidata:Q5936320,Wawa,1320,15,99.8,0.0,0.0,True,False,,False,wawa-user-list-2026-10-18

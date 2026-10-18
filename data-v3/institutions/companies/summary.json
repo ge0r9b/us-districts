@@ -1205,6 +1205,20 @@
   "us_with_county_geoid": 4599,
   "us_rows": 4599
  },
+ "bucees": {
+  "file": "bucees.csv",
+  "rows": 50,
+  "features:bucees_us@2026-10-03": 50,
+  "rows_by_country": {
+   "US": 50
+  },
+  "rows_by_store_type": {
+   "Buc-ee's": 50
+  },
+  "missing_coordinates": 0,
+  "us_with_county_geoid": 50,
+  "us_rows": 50
+ },
  "mcdonalds": {
   "file": "mcdonalds.csv.gz",
   "rows": 36378,
@@ -10548,14 +10562,14 @@
    "Schedule Type"
   ]
  },
- "brands_rows": 58,
+ "brands_rows": 59,
  "brands_by_kind": {
-  "brand": 46,
+  "brand": 47,
   "company": 12
  },
  "brand_relationships_rows": 38,
  "brand_relationships_review_flags": 4,
- "company_locations_rows": 173782,
+ "company_locations_rows": 173832,
  "company_locations_by_entity_top": {
   "wikidata:Q259340": 54135,
   "wikidata:Q38076": 35952,
@@ -10568,7 +10582,7 @@
   "wikidata:Q1046951": 2026,
   "wikidata:Q1373493": 1761
  },
- "company_locations_with_geoid": 77457,
+ "company_locations_with_geoid": 77507,
  "company_locations_excluded": {
   "mcdonalds:no_point_no_geoid": 426,
   "starbucks:no_point_no_geoid": 47,
@@ -10609,29 +10623,29 @@
   "TownePlace Suites": "Q7830092"
  },
  "marriott_brand_name_to_qid_wikidata": {
-  "TownePlace Suites": "Q7830092",
-  "The Ritz-Carlton": "Q782200",
-  "Tribute Portfolio": "Q92021343",
-  "AC Hotels": "Q5653536",
-  "SpringHill Suites": "Q7580351",
-  "Le Méridien": "Q261077",
-  "Aloft": "Q4734166",
+  "Gaylord": "Q3099664",
   "JW Marriott": "Q1067636",
-  "Westin": "Q1969162",
-  "Protea": "Q17092570",
+  "Le Méridien": "Q261077",
+  "TownePlace Suites": "Q7830092",
+  "Aloft": "Q4734166",
   "Autograph Collection": "Q19872869",
-  "Renaissance": "Q2143252",
-  "EDITION": "Q91218404",
-  "Moxy": "Q70287020",
-  "Courtyard": "Q1053170",
   "Element": "Q91948072",
+  "W Hotels": "Q7958488",
+  "EDITION": "Q91218404",
+  "SpringHill Suites": "Q7580351",
+  "Westin": "Q1969162",
+  "Tribute Portfolio": "Q92021343",
   "Delta Hotels": "Q5254663",
+  "Moxy": "Q70287020",
   "Residence Inn": "Q7315394",
+  "The Luxury Collection": "Q2412604",
+  "Renaissance": "Q2143252",
+  "The Ritz-Carlton": "Q782200",
   "Sheraton": "Q634831",
   "citizenM": "Q5122531",
-  "The Luxury Collection": "Q2412604",
-  "W Hotels": "Q7958488",
-  "Gaylord": "Q3099664"
+  "Courtyard": "Q1053170",
+  "AC Hotels": "Q5653536",
+  "Protea": "Q17092570"
  },
  "built": "2026-10-18"
 }
