@@ -45,7 +45,8 @@ NO_GOVERNMENT = {'AQ': 'Antarctica: no government (Antarctic Treaty area)',
                  'BV': 'Bouvet Island: uninhabited Norwegian dependency without its own government',
                  'HM': 'Heard Island and McDonald Islands: uninhabited Australian external territory without its own government'}
 FOREIGN_COLUMNS = ['entity_id', 'name', 'official_name', 'type', 'subtype', 'gov_status', 'parent_id', 'iso_alpha2', 'iso_alpha3',
-                   'iso_numeric', 'iso_3166_2', 'un_status', 'un_admission_date', 'wikidata_qid', 'capital_qid', 'capital',
+                   'iso_numeric', 'iso_3166_2', 'un_status', 'un_admission_date', 'wikidata_qid', 'constituent_qid',
+                   'valid_from', 'valid_to', 'valid_from_source', 'capital_qid', 'capital',
                    'head_of_government_office_qid', 'head_of_government_office', 'external_ids', 'alias', 'is_active', 'note', 'flags',
                    'source', 'source_url', 'retrieved_at', 'license']
 XW_COLUMNS = ['iso_code', 'iso_name', 'entity_id', 'relation', 'source', 'source_url']
@@ -99,6 +100,97 @@ def labelled(key, qids, prop):
             if v not in out[qv(b, 'i')]:
                 out[qv(b, 'i')].append(v)
     return out
+
+
+def sovereign_items(nations, stats):
+    """The nation row carries the sovereign-state item (P31 Q3624078). When the ISO alpha-2 (P297) item is not a sovereign
+    state but is part of exactly one live sovereign-state item (P361, or the state's P150 / P527), that item becomes
+    wikidata_qid and the P297 item moves to constituent_qid (Denmark: Q35 -> Kingdom of Denmark Q756617). When the P297
+    item is the sovereign state, constituent_qid is its single part that is a constituent country (P31/P279? Q1763527)
+    without its own P297 (Kingdom of the Netherlands Q29999 -> the Netherlands Q55); several such parts (the United
+    Kingdom's four countries, which are subdivisions here) leave it blank."""
+    qs = [r['wikidata_qid'] for r in nations if r['wikidata_qid']]
+    vals = ' '.join('wd:' + q for q in qs)
+    sov = {qv(b, 'i') for b in sparql('wdf_sov_state', 'SELECT ?i WHERE { VALUES ?i { %s } ?i wdt:P31 wd:Q3624078 }' % vals, True)}
+    up = collections.defaultdict(set)
+    for b in sparql('wdf_sovereign_of', 'SELECT DISTINCT ?p ?s WHERE { VALUES ?p { %s } ?s wdt:P31 wd:Q3624078 . '
+                    'FILTER NOT EXISTS { ?s wdt:P576 [] } FILTER(?s != ?p) { ?p wdt:P361 ?s } UNION { ?s wdt:P150 ?p } '
+                    'UNION { ?s wdt:P527 ?p } }' % ' '.join('wd:' + q for q in qs if q not in sov), True):
+        up[qv(b, 'p')].add(qv(b, 's'))
+    parts = collections.defaultdict(set)
+    for b in sparql('wdf_constituent1', 'SELECT DISTINCT ?s ?part WHERE { VALUES ?s { %s } { ?part wdt:P361 ?s } UNION '
+                    '{ ?s wdt:P150 ?part } UNION { ?s wdt:P527 ?part } ?part wdt:P31/wdt:P279? wd:Q1763527 . '
+                    'FILTER NOT EXISTS { ?part wdt:P297 [] } FILTER NOT EXISTS { ?part wdt:P576 [] } }'
+                    % ' '.join('wd:' + q for q in sorted(set(qs) | {s for v in up.values() for s in v})), True):
+        parts[qv(b, 's')].add(qv(b, 'part'))
+    for r in nations:
+        q = r['wikidata_qid']
+        if not q:
+            continue
+        if q not in sov and len(up.get(q, ())) == 1:
+            s = next(iter(up[q]))
+            r.update(wikidata_qid=s, constituent_qid=q)
+            r['flags'] += ';qid_sovereign_state_item'
+            r['note'] = (r['note'] + '; ' if r['note'] else '') + \
+                'wikidata_qid = sovereign state {} (P297 item {} is part of it, now constituent_qid)'.format(s, q)
+            stats['qid_moved_to_sovereign_item'] += 1
+        elif len(parts.get(q, ())) == 1:
+            r['constituent_qid'] = next(iter(parts[q]))
+            stats['constituent_qid_set'] += 1
+
+
+def wd_date(v, prec):
+    """Wikidata time value -> ISO date at its precision (day, month or year); coarser precision -> ''"""
+    m = re.match(r'^\+?(\d{4})-(\d\d)-(\d\d)', v)
+    if not m or int(prec) < 9:
+        return ''
+    return '-'.join(m.groups()[:{9: 1, 10: 2}.get(int(prec), 3)])
+
+
+def inception(rows, stats):
+    """valid_from = Wikidata P571 (inception) only when the statement has a real reference (stated in P248 or reference
+    URL P854; 'imported from Wikimedia project' P143 / P4656 alone does not count) and all referenced non-deprecated
+    values agree; valid_from_source names that reference. valid_to stays blank (no dissolved items are built)."""
+    qs = sorted({r['wikidata_qid'] for r in rows if r['wikidata_qid']}, key=lambda q: int(q[1:]))
+    got = collections.defaultdict(set)
+    for k in range(0, len(qs), 300):
+        q = ('SELECT ?i ?t ?pr ?src ?url WHERE { VALUES ?i { %s } ?i p:P571 ?st . ?st psv:P571 ?v . ?v wikibase:timeValue ?t ; '
+             'wikibase:timePrecision ?pr . ?st wikibase:rank ?rk . FILTER(?rk != wikibase:DeprecatedRank) ?st prov:wasDerivedFrom ?ref . '
+             'OPTIONAL { ?ref pr:P248 ?src } OPTIONAL { ?ref pr:P854 ?url } FILTER(BOUND(?src) || BOUND(?url)) }'
+             % ' '.join('wd:' + c for c in qs[k:k + 300]))
+        for b in sparql('wdf_p571', q, True):
+            d = wd_date(b['t']['value'], b['pr']['value'])
+            if d:
+                cite = qv(b, 'src') if b.get('src') else b['url']['value']
+                got[qv(b, 'i')].add((d, cite))
+    for r in rows:
+        ds = got.get(r['wikidata_qid'], set())
+        if ds and len({d for d, _ in ds}) == 1:
+            r['valid_from'] = next(iter(ds))[0]
+            r['valid_from_source'] = 'Wikidata {} P571, reference: {}'.format(r['wikidata_qid'], '; '.join(sorted({c for _, c in ds})))
+            stats['valid_from_p571_referenced'] += 1
+        elif ds:
+            stats['valid_from_p571_conflicting'] += 1
+
+
+def withdrawn(subs, stats):
+    """ISO changes going forward: a subdivision that an earlier build wrote but iso-codes no longer lists keeps its frozen
+    entity_id and row, with is_active=N and flag iso_code_withdrawn; valid_to is filled only from a sourced date (ISO
+    Online Browsing Platform change notice), never guessed."""
+    path = os.path.join(ROOT, 'foreign', 'subdivisions.csv')
+    if not os.path.exists(path):
+        return []
+    import csv
+    now = {r['entity_id'] for r in subs}
+    old = [r for r in csv.DictReader(open(path, encoding='utf-8')) if r['entity_id'] not in now]
+    for r in old:
+        for k in FOREIGN_COLUMNS:
+            r.setdefault(k, '')
+        if r['is_active'] == 'Y':
+            r['is_active'] = 'N'
+            r['flags'] = ';'.join(f for f in (r['flags'], 'iso_code_withdrawn') if f)
+    stats['subdivisions_withdrawn_kept'] = len(old)
+    return old
 
 
 def build(reg):
@@ -217,7 +309,9 @@ def build(reg):
     sgc = sgc_codes()
     from common import state_table
     us_fips = {u: fp for fp, (u, _, _) in state_table().items()}   # USPS -> state FIPS (DC: the CoG municipality cog:124214)
+    sovereign_items(nations, stats)
     qid_of_entity = {r['wikidata_qid']: r['entity_id'] for r in nations + deps if r['wikidata_qid']}
+    qid_of_entity.update({r['constituent_qid']: r['entity_id'] for r in nations if r['constituent_qid']})
     for s in sorted(iso2, key=lambda s: s['code']):
         if s.get('parent'):
             stats['iso2_not_first_level'] += 1
@@ -280,11 +374,15 @@ def build(reg):
         r['head_of_government_office_qid'] = ';'.join(v for v, _ in hog.get(q, []))
         r['head_of_government_office'] = ';'.join(l for _, l in hog.get(q, []))
         r['retrieved_at'] = max(r['retrieved_at'], ra_wd)
+    inception(rows, stats)
+    subs += withdrawn(subs, stats)
+    rows = nations + deps + subs
     for r in rows:
         lic = [LIC_ISO] + (['CC0 1.0 (Wikidata)'] if 'wikidata_foreign' in r['source'] else []) + \
               (['facts only (UN website)'] if ';un_' in r['source'] else []) + \
               (['Statistics Canada Open Licence'] if 'statcan_sgc' in r['source'] else [])
         r['license'] = '; '.join(lic)
+    qids += [r['constituent_qid'] for r in rows if r['constituent_qid']]
     cl = claims('wdf_img', qids, ['P41'])
     cl2 = claims('wdf_img2', qids, ['P158', 'P94'])
     files = [f for q in qids for f in cl.get(q, {}).get('P41', [])] + \
@@ -294,14 +392,18 @@ def build(reg):
     images = []
     for r in rows:
         q, eid = r['wikidata_qid'], r['entity_id']
-        for ik, props in (('flag', [('P41', cl)]), ('seal', [('P158', cl2), ('P94', cl2)])):
+        if r['is_active'] != 'Y':
+            continue
+        for ik, props0 in (('flag', [('P41', cl)]), ('seal', [('P158', cl2), ('P94', cl2)])):
+            # an image stays on the item it is on: the sovereign item first, then the constituent country's item
+            props = [(p_, s_, q) for p_, s_ in props0] + [(p_, s_, r['constituent_qid']) for p_, s_ in props0 if r['constituent_qid']]
             if not q:
                 gaps.append({'entity_id': eid, 'image_kind': ik, 'wikidata_qid': '', 'reason': 'no_qid: ' + r['flags'].split(':', 1)[-1]})
                 continue
             done = False
-            for prop, src in props:
+            for prop, src, iq in props:
                 cands = []
-                for f in src.get(q, {}).get(prop, []):
+                for f in src.get(iq, {}).get(prop, []):
                     m = cm.get(f)
                     if not m or m['missing']:
                         continue
@@ -312,7 +414,7 @@ def build(reg):
                 if cands:
                     _, f, url, lic, att = sorted(cands)[0]
                     images.append({'entity_id': eid, 'image_kind': ik, 'commons_file': f, 'commons_url': url, 'license': lic,
-                                   'attribution': att[:300], 'wikidata_qid': q, 'retrieved_at': ra_c,
+                                   'attribution': att[:300], 'wikidata_qid': iq, 'retrieved_at': ra_c,
                                    'usage_basis': 'coat of arms (P94) used as the seal' if prop == 'P94' else '', 'source_url': ''})
                     stats['{}|{}|{}'.format(ik, r['type'] if r['type'] == 'sovereign' else r['subtype'] if r in deps else 'subdivision', prop)] += 1
                     done = True

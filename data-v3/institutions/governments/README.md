@@ -174,6 +174,19 @@ matched item: `capital_qid`/`capital` (P36), `head_of_government_office_qid`/`he
 Images (in `images.csv`, same rules as domestic): flag = P41; seal = P158, else P94 coat of arms (stored as
 `image_kind=seal` with `usage_basis=coat of arms (P94) used as the seal`); most open license first. 3529 rows
 (1726 flags, 1803 seals); gaps in `images_gaps.csv`: no P41 1922, no P158/P94 1845, no QID 107 (per kind).
+Sovereign items: the nation row's `wikidata_qid` is the sovereign-state item (P31 Q3624078). If the P297 item is not one
+but is part of exactly one live sovereign state (its P361, or the state's P150/P527), that state is taken and the P297
+item goes to `constituent_qid`; if the P297 item is the sovereign state and has exactly one part that is a constituent
+country (P31/P279? Q1763527) without its own P297, that part is `constituent_qid`. Checked on Wikidata (2026-10-18): Denmark
+Q35 (not a sovereign state) -> Kingdom of Denmark Q756617, constituent Q35; P297 NL is already on Kingdom of the
+Netherlands Q29999 (sovereign state), constituent the Netherlands Q55; New Zealand Q664 and the United Kingdom Q145 are the
+sovereign-state items themselves (Realm of New Zealand Q889033 and "realm of the United Kingdom" Q124653007 are not
+sovereign states; the UK's four countries are subdivisions here, so no constituent). Images stay on the item they are on:
+the sovereign item first, then the constituent item (`images.csv` `wikidata_qid` says which); nation:dk's flag and coat
+of arms are the same files on Q756617, so only their `wikidata_qid` changed (Q35 -> Q756617).
+`valid_from`: Wikidata P571 with a P248/P854 reference only (174 rows: 21 nations, 5 dependencies, 148 subdivisions;
+7 with disagreeing referenced values left blank); `valid_to` blank. ISO changes go forward with frozen IDs: a code
+dropped by a later iso-codes release keeps its row (`is_active=N`, `iso_code_withdrawn`).
 Not done in this pass: CIA World Factbook government type (no column yet), INEGI (MX) and ONS (UK) codes as
 `external_ids`, local-language labels, an enwiki fair-use fallback for foreign seals.
 

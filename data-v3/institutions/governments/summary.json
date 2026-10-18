@@ -149,6 +149,7 @@
   "qid_by_p882": 3030
  },
  "foreign": {
+  "constituent_qid_set": 1,
   "dependencies": 44,
   "domestic_cross_reference": 6,
   "flag|country|P41": 3,
@@ -166,6 +167,7 @@
   "iso_not_built_no_government": 3,
   "nations": 196,
   "non_un_nation_rows": 2,
+  "qid_moved_to_sovereign_item": 1,
   "qid_nations_deps": 240,
   "qid_subdivisions": 3408,
   "seal|country|P94": 3,
@@ -181,9 +183,12 @@
   "seal|subdivision|P158": 147,
   "seal|subdivision|P94": 1424,
   "subdivisions": 3515,
+  "subdivisions_withdrawn_kept": 0,
   "un_members": 193,
   "un_members_also_wikidata_p463": 192,
-  "us_subdivision_cross_reference": 57
+  "us_subdivision_cross_reference": 57,
+  "valid_from_p571_conflicting": 7,
+  "valid_from_p571_referenced": 174
  },
  "foreign_not_built": [
   "iso AQ not built: Antarctica: no government (Antarctic Treaty area)",
@@ -578,17 +583,47 @@
    "retrieved_at_min": "2026-10-18T15:47:30Z",
    "retrieved_at_max": "2026-10-18T15:47:51Z"
   },
+  "wdf_constituent_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:35Z",
+   "retrieved_at_max": "2026-10-18T17:20:35Z"
+  },
+  "wdf_constituent1_*": {
+   "api_requests": 2,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:50Z",
+   "retrieved_at_max": "2026-10-18T17:23:04Z"
+  },
+  "wdf_constituent_probe_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:19Z",
+   "retrieved_at_max": "2026-10-18T17:20:19Z"
+  },
   "wdf_img_*": {
-   "api_requests": 21,
+   "api_requests": 31,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T16:53:50Z",
-   "retrieved_at_max": "2026-10-18T17:05:10Z"
+   "retrieved_at_max": "2026-10-18T17:23:46Z"
   },
   "wdf_img2_*": {
-   "api_requests": 21,
+   "api_requests": 31,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T16:54:05Z",
-   "retrieved_at_max": "2026-10-18T17:05:14Z"
+   "retrieved_at_max": "2026-10-18T17:24:01Z"
+  },
+  "wdf_img_probe_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:37Z",
+   "retrieved_at_max": "2026-10-18T17:20:37Z"
+  },
+  "wdf_notsov_probe_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:20Z",
+   "retrieved_at_max": "2026-10-18T17:20:20Z"
   },
   "wdf_p131_*": {
    "api_requests": 1,
@@ -597,10 +632,10 @@
    "retrieved_at_max": "2026-10-18T16:57:17Z"
   },
   "wdf_p1313_*": {
-   "api_requests": 27,
+   "api_requests": 29,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T16:53:27Z",
-   "retrieved_at_max": "2026-10-18T17:05:05Z"
+   "retrieved_at_max": "2026-10-18T17:23:11Z"
   },
   "wdf_p17_*": {
    "api_requests": 1,
@@ -609,10 +644,10 @@
    "retrieved_at_max": "2026-10-18T16:52:57Z"
   },
   "wdf_p36_*": {
-   "api_requests": 27,
+   "api_requests": 29,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T16:52:59Z",
-   "retrieved_at_max": "2026-10-18T17:04:58Z"
+   "retrieved_at_max": "2026-10-18T17:23:08Z"
   },
   "wdf_p361_*": {
    "api_requests": 1,
@@ -620,11 +655,41 @@
    "retrieved_at_min": "2026-10-18T16:57:19Z",
    "retrieved_at_max": "2026-10-18T16:57:19Z"
   },
+  "wdf_p571_*": {
+   "api_requests": 13,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:23:13Z",
+   "retrieved_at_max": "2026-10-18T17:23:31Z"
+  },
   "wdf_probe_realm_*": {
    "api_requests": 1,
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T16:56:48Z",
    "retrieved_at_max": "2026-10-18T16:56:48Z"
+  },
+  "wdf_probe_realm2_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:19:41Z",
+   "retrieved_at_max": "2026-10-18T17:19:41Z"
+  },
+  "wdf_sov_no_p297_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:19:42Z",
+   "retrieved_at_max": "2026-10-18T17:19:42Z"
+  },
+  "wdf_sov_state_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:23:01Z",
+   "retrieved_at_max": "2026-10-18T17:23:01Z"
+  },
+  "wdf_sovereign_of_*": {
+   "api_requests": 2,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T17:20:36Z",
+   "retrieved_at_max": "2026-10-18T17:23:02Z"
   }
  }
 }

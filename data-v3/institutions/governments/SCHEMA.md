@@ -104,7 +104,8 @@ School-district seals/logos are skipped by rule.
 
 ## foreign/nations.csv, foreign/dependencies.csv, foreign/subdivisions.csv
 Columns: `entity_id, name, official_name, type, subtype, gov_status, parent_id, iso_alpha2, iso_alpha3, iso_numeric,
-iso_3166_2, un_status, un_admission_date, wikidata_qid, capital_qid, capital, head_of_government_office_qid,
+iso_3166_2, un_status, un_admission_date, wikidata_qid, constituent_qid, valid_from, valid_to, valid_from_source,
+capital_qid, capital, head_of_government_office_qid,
 head_of_government_office, external_ids, alias, is_active, note, flags, source, source_url, retrieved_at, license`.
 
 | column | values |
@@ -117,9 +118,13 @@ head_of_government_office, external_ids, alias, is_active, note, flags, source, 
 | `un_status` | `member`, `observer` (Holy See, State of Palestine), `none` |
 | `un_admission_date` | ISO date from the un.org Member States page |
 | `wikidata_qid` | P297 (nations, dependencies) or P300 (subdivisions) exact code; one live item per code and one code per item |
+| `constituent_qid` | nations only: the constituent country's item when it differs from the sovereign state item in `wikidata_qid` (rule in README; today Denmark Q35 under Kingdom of Denmark Q756617, the Netherlands Q55 under Kingdom of the Netherlands Q29999) |
+| `valid_from` | Wikidata P571 (inception) at its precision (`YYYY`, `YYYY-MM`, `YYYY-MM-DD`), only when the statement has a reference with stated in (P248) or reference URL (P854) and all such values agree; blank otherwise. Not the UN admission date |
+| `valid_to` | blank unless a sourced end date exists (none today); for an ISO code withdrawn from a later iso-codes release the row and its frozen ID stay, `is_active=N`, flag `iso_code_withdrawn`, and `valid_to` is filled only from a sourced date |
+| `valid_from_source` | `Wikidata <QID> P571, reference: <P248 item or P854 URL>` |
 | `capital*`, `head_of_government_office*` | Wikidata P36 and P1313 of that item (several joined by `;`), English labels |
 | `external_ids` | `statcan_sgc:<code>` for Canada |
-| `flags` | `qid_by_p297`, `qid_by_p297_and_p463`, `qid_by_p300`, `no_qid:<why>`, `review_status` |
+| `flags` | `qid_by_p297`, `qid_by_p297_and_p463`, `qid_by_p300`, `qid_sovereign_state_item`, `no_qid:<why>`, `review_status`, `iso_code_withdrawn` |
 
 `foreign/iso_domestic_crosswalk.csv`: `iso_code, iso_name, entity_id, relation (domestic_row | same_wikidata_item |
 duplicate_of_iso_3166_1), source, source_url`.
