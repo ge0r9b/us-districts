@@ -802,7 +802,7 @@ Each row of a disjoint pair was recomputed on its own polygon from the app's pre
 | schools 2024 | Ocean View Elementary (Ventura) | 22,009 / 25,523 / 48,859 | 2,869 / 1,555 / 4,539 ≈ | estimate (the Orange district's figure had been copied) |
 | | Ocean View Elementary (Orange) | 22,009 / 25,523 / 48,859 | unchanged | own estimate 48,869 (0.0 %) |
 | senate 2024 | Wyoming SD 027 | 2,346 / 6,156 / 8,721 | unchanged | own estimate 8,543 (2.0 %) |
-| | Wyoming SD 018 | 2,346 / 6,156 / 8,721 | gray | not computable (Fremont/Uinta-area county precincts fail the county check) |
+| | Wyoming SD 018 | 2,346 / 6,156 / 8,721 | gray | not computable: usable 2024 precinct cover 89 % (< 90 % rule; a Park County precinct straddles the boundary) |
 | schools 2024 | Alaska Kake City, Nenana City | 1 / 1 / 2 each | gray | area-weighting rejected for Alaska (build 1533); 2 votes is not credible for either town |
 | schools 2024, 2020 | Illinois Bethel 82 / McClellan CCSD 12 | 129/382/516 (2024), 137/433/583 (2020) on both | Bethel 70/190/261 and 79/231/317 ≈; McClellan 106/384/496 and 120/388/518 ≈ | estimates |
 | schools 2024, 2020 | Montana Baker K-12 / Plevna K-12 | 163/1,303/1,507 (2024), 172/1,375/1,575 (2020) on both (= the two districts together) | Baker 91/724/838 and 96/764/876 ≈; Plevna 72/578/668 and 76/610/699 ≈ | estimates |
