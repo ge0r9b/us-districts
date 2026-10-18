@@ -9,17 +9,20 @@ Schema: CANADA_SCHEMA_PROPOSALS.md (Full Stack rulings R1-R6 accepted and applie
 | file | rows | what |
 |---|---|---|
 | `entities_ca_federal.csv` | 2 | `chamber:ca-house`, `chamber:ca-senate` (parent `nation:ca`) |
+| `entities_ca_municipal.csv` | 3,545 | 3,406 `municipality` (`muni:ca-csd:<CSDUID>`, parent province / territory) + 139 CD governments (`county:ca-cd:<CDUID>`) |
+| `entity_geoid_xwalk_ca.csv` | 3,547 | entity -> `ca_csd` / `ca_cd` unit, columns of `entity_geoid_xwalk.csv` (`part` rows for Flin Flon / Lloydminster) |
+| `statcan_types_ca.csv` | 78 | every StatCan CSD type (57) and CD type x province, with class, count and the quoted StatCan basis |
 | `entities_ca_provincial.csv` | 13 | `chamber:ca-<iso>-legislature` (parent `province:ca-*` / `territory:ca-*`) |
-| `boundary_sets_ca.csv` | 24 | one row per boundary set: `boundary_set, country, province, unit_type, vintage, is_current, source_id` (`is_current` unique per country + province + unit_type; province empty for Canada-wide sets) |
+| `boundary_sets_ca.csv` | 26 | one row per boundary set: `boundary_set, country, province, unit_type, vintage, is_current, source_id` (`is_current` unique per country + province + unit_type; province empty for Canada-wide sets) |
 | `units_ca_fed.csv` | 681 | FEDs: `ec-2023-fed` 343, `ec-2013-fed` 338 |
 | `units_ca_pd_2025.csv` / `_2021` / `_2019` | 71,217 / 69,797 / 66,064 | Elections Canada polling divisions, parent = FED |
-| `units_ca_ped.csv` | 665 | provincial electoral districts (ON, QC, BC, AB, MB, SK, NB, PE, NL) |
-| `units_ca_ppoll.csv` | 34,024 | provincial polling divisions / voting areas / sections de vote (QC, BC, AB, MB, SK, NB, PE, NL) |
-| `units_ca_cd.csv` / `units_ca_csd.csv` | 293 / 5,161 | StatCan 2021 census divisions / subdivisions (units only; types blocked, see plan) |
+| `units_ca_ped.csv` | 790 | provincial electoral districts (ON, QC 2026 + 2022, BC, AB, MB, SK, NB, PE, NL) |
+| `units_ca_ppoll.csv` | 51,769 | provincial polling divisions / voting areas / sections de vote (QC, BC, AB, MB, SK, NB, PE, NL) |
+| `units_ca_cd.csv` / `units_ca_csd.csv` | 293 / 5,161 | StatCan 2021 census divisions / subdivisions (types from 92-151-X; `attrs` csd_type / csd_class / pop2021) |
 | `officeholders_ca_house_current.csv` | 343 | current MPs (337) + vacancies (6) |
 | `persons_ca.csv` | 337 | `ca-mp:<PersonId>` |
-| `gaps_ca_federal.csv`, `gaps_ca_provincial.csv`, `gaps_ca_municipal.csv` | 4 / 12 / 4 | every gap with its reason |
-| `sources_ca.csv` | 38 | same columns and id scheme as `data-v3/inst/sources.csv` (merge as a union) + `non_commercial`, `attribution_required` (`true` / `false`; empty = licence silent or none) |
+| `gaps_ca_federal.csv`, `gaps_ca_provincial.csv`, `gaps_ca_municipal.csv` | 4 / 14 / 33 | every gap with its reason |
+| `sources_ca.csv` | 43 | same columns and id scheme as `data-v3/inst/sources.csv` (merge as a union) + `non_commercial`, `attribution_required` (`true` / `false`; empty = licence silent or none) |
 | `summary_ca_*.json` | - | counts |
 
 Entity columns = `entities.csv` columns + `country` (iso2), `province` (ISO 3166-2, empty for national bodies), `labels` (JSON by language, e.g. `{"fr":"Sénat du Canada"}`), `external_id` (empty for now). `state_fips` / `state` are empty.
@@ -35,7 +38,7 @@ Flags: `renamed_after_ge45:bill_c25_2026`, `renamed_since_2017_act`, `poll_name_
 `adv_poll_empty_on_some_shapefile_parts`, `no_electors:ind_off_N` (QC section that can hold no electors), `spans_municipalities`,
 `ed_list_derived_from_polling_division_file` / `..._poll_layer` / `..._poll_file` (NB, PE, NL: district list = the districts of the
 poll file), `district_name_variants_in_poll_layer`, `vintage_2019:check_against_ge2025_polls`, `name_not_in_2018_boundary_file`,
-`incorporated_unknown:csd_type_not_retrieved`, `gov_status_unknown:cd_type_not_retrieved`, `gov_status_na:legislative_chamber`,
+`first_nations_kind_proposal`, `csd_type_ambiguous`, `cd_type_ambiguous`, `zero_population_2021`, `straddles_provinces`, `statcan_csd_type:<t>` / `statcan_cd_type:<t>` (entities), `name_not_in_2026_map`, `gov_status_na:legislative_chamber`,
 `appointed_no_electoral_units`, `seats:<n>` (chamber seats), `no_electoral_units_loaded`, `consensus_government_no_parties`.
 
 Officeholder columns follow `officeholders_house_*.csv` with `unit_id` (the Canadian unit key, R5) + `country` instead of `unit_geoid`, `unit_layer = ca_fed`, and `province` / `district` instead

@@ -26,6 +26,7 @@ Status: **built** = rows in this directory; **gap** = logged in `gaps_ca_*.csv` 
 | ON polling divisions | Elections Ontario PD shapefiles | **Limited Use** licence (no redistribution / derived products) | - | - | yes | gap (licence) |
 | QC circonscriptions | Élections Québec, circonscriptions_electorales_2026_shapefile.zip + liste_circonscriptions2026.csv | DGEQ open-data licence (attribution); file metadata says **non-commercial** | 127 | Loi 2026 c. 15 | yes | built `eq-2026-ced` |
 | QC sections de vote | Élections Québec, sections_vote_2026_shapefile.zip (tracé du 2026-07-15) | as above | 16,756 (49 without electors, 30 span municipalities) | 2026-07-15 (may change until the decree) | yes | built `eq-2026-sv` |
+| QC circonscriptions + sections de vote, 2022 GE (3 Oct 2022) | Élections Québec, circonscriptions_electorales_2022_shapefile.zip + sections_vote_2022_shapefile.zip (délimitation du 28 août 2022) | as above (non-commercial, attribution) | 125 / 17,745 (46 without electors) | G.O. 22 June 2022 | yes | built `eq-2022-ced`, `eq-2022-sv` (not current; 2026 renumbered every CO_CEP) |
 | BC electoral districts | BC Geographic Warehouse layer 74 (EBC_ELECTORAL_DISTS_BS11_SVW) | Elections BC Open Data Licence | 93 | 2023 redistribution | yes | built `ebc-2023-ed` |
 | BC voting areas | BC Geographic Warehouse layer 73 (EBC_VOTING_AREAS_BS11_POLY_SVW, gazetted 2024-09-19) | Elections BC Open Data Licence | 5,778 | 2024 | yes | built `ebc-2024-va` |
 | AB electoral divisions | Elections Alberta 2019Boundaries_ED-Shapefiles.zip (Bill 33, 2017) | not stated | 87 (1 renamed: Calgary-Bhullar-McCall) | 2017 act, GE 2019/2023 | yes | built `ea-2019-ed`; the proposed 89 = gap |
@@ -40,18 +41,24 @@ Status: **built** = rows in this directory; **gap** = logged in `gaps_ca_*.csv` 
 | NS electoral districts + polls | Elections Nova Scotia (PDF maps, online lookup) | - | 55 districts (per ENS map) | 2026 map | no open file found | gap |
 | YT / NT / NU districts + polls | Elections Yukon / Elections NWT / Elections Nunavut | - | not verified | - | no open file found | gap |
 | Provincial members (MLAs, MNAs, MPPs, MHAs) | each legislature's member list | - | - | - | - | gap (not built in this batch) |
-| Census divisions (counties, regional municipalities, MRCs, regional districts ...) | StatCan SGC 2021 structure file https://www.statcan.gc.ca/en/statistical-programs/document/sgc-cgt-2021-structure-eng.csv | Statistics Canada Open Licence | 293 | 2021 | boundary file on www12 (blocked) | built as **units** `statcan-2021-cd`; government entities = gap (CD type blocked) |
-| Census subdivisions (municipalities, reserves, unorganized) | same SGC 2021 file | Statistics Canada Open Licence | 5,161 | 2021 | boundary file on www12 (blocked) | built as **units** `statcan-2021-csd`; entities + incorporated flag = gap (CSD type blocked) |
+| Census divisions (counties, regional municipalities, MRCs, regional districts ...) | StatCan 2021 Geographic Attribute File 92-151-X (CDTYPE) + SGC 2021 | Statistics Canada Open Licence | 293 | 2021 | lcd file not downloaded | built: units `statcan-2021-cd`; 139 CD governments `county:ca-cd:<CDUID>` (MRC 81, RD 28, ON CTY 20, RM 6, UC 3, DM 1); 68 CDs of ambiguous types = gap |
+| Census subdivisions (municipalities, reserves, unorganized) | StatCan 92-151-X (CSDTYPE, DB population) + lcsd000b21a_e boundary file + SGC 2021 | Statistics Canada Open Licence | 5,161 | 2021 | yes (lcsd000b21a_e) | built: units `statcan-2021-csd`; 3,406 municipalities `muni:ca-csd:<CSDUID>`; 1,028 First Nations-type CSDs = kind proposal; 442 CSDs of 18 ambiguous types = gap |
 | School boards | no national list; provincial lists (ON Ministry of Education school board list, BC school districts, AB school authorities, QC centres de services scolaires ...) | provincial OGLs | - | - | partly | gap (not started) |
 
-## Why municipalities are units only, for now
+## Municipal and county governments (StatCan 2021 types)
 
-Which CSDs are municipal governments (city, town, village, RM, MD, municipalité ...) and which are not (Indian reserves,
-settlements, unorganized territories) comes from the 2021 CSD type, and for CDs the CD type (Ontario counties and regional
-municipalities, Quebec MRCs, BC regional districts are governments; NB/PEI/NS counties and Ontario districts are not). The
-official 2021 type tables are on www12.statcan.gc.ca (HTTP 403 "Security Check" bot challenge) and www150.statcan.gc.ca (TLS
-refused from this box). Both are logged; nothing was bypassed. Because entity ids are frozen at first sight, no municipal entity
-is minted on a guess. Unblock options: (a) the user downloads `98100002-eng.zip` (table 98-10-0002) or `lcsd000b21a_e.zip` in a
-normal browser and drops it on the box; (b) the ftp.maps.canada.ca mirror has only the 2016 CSD/CD files (GDB), usable for a
-2016-typed cross-check but not for 2021. Quebec has a second official route: Élections Québec's sections carry the MAMH
-municipality code and its legal designation (`muni_code`, `muni_design` in `units_ca_ppoll.csv`), and CSDUID = `24` + that code.
+Inputs: `2021_92-151_X.zip` (one row per dissemination block, collapsed by the builder to one row per CSD / CD; every DB of a CSD
+agrees on name and type, asserted), `lcsd000b21a_e.zip` (CSDUID, name, type agree with 92-151-X for all 5,161), SGC 2021 structure
+file. Classification uses only StatCan's own definitions (Census Dictionary 2021 geo012 / geo008 and Tables 1.5 / 1.4; SGC 2021
+Appendix A / B titles); `statcan_types_ca.csv` lists every type with its class, count, provinces and the quoted basis.
+
+- CSD -> `municipality` (parent = province / territory; joined to its `ca_csd` unit in `entity_geoid_xwalk_ca.csv`) when the type's
+  official title is a municipality / city / town / village / township / parish municipality (26 types, 3,408 CSDs, 3,406
+  entities: Flin Flon and Lloydminster are one municipality with a CSD in each province, keyed on the larger part, logged).
+- First Nations types (geo012's eight on-reserve types: IRI, S-É, IGD, TC, TK, NL, TWL, TAL; 1,028 CSDs): not minted; open kind proposal.
+- NO, SNO, SC (unorganized / statistical equivalents) and SET, SÉ (settlements): units only.
+- 18 types StatCan's text does not settle (NB parishes P, hamlets, NT chartered communities / community governments, LGD, RCR,
+  AB ID / SA, PE fire districts, BC regional district electoral areas, CN, GR, QC villages cris / naskapi, terres inuites,
+  YT self-government / Teslin lands): units only, one gap row per type.
+- CD governments: MRC, RD, RM, UC, DM and Ontario CTY (geo008: legislated "group of neighbouring municipalities joined together for
+  ... regional planning and managing common services"). CDR / TER are StatCan creations; NB CT, NS / PE CTY, ON DIS, REG and QC TÉ = gap.

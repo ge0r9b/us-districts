@@ -35,4 +35,10 @@ R6 values (licence texts read 2026-10-18):
 4. Person scheme `ca-mp` (`ca-mp:<House of Commons PersonId>`) in the `person.scheme` check; later `ca-<iso>-leg`.
 5. Chamber ids `chamber:ca-house`, `chamber:ca-senate`, `chamber:ca-<iso>-legislature` (kind `chamber`).
 6. Licence rows for the `license` table (list above); `feed = inst-lane` → origin `inst`.
-7. First Nations governments (Indian reserves and similar CSD types): a separate kind, not `municipality`; waits for the StatCan 2021 CSD type file (see CANADA_PLAN.md, municipal section).
+7. First Nations governments: a new kind (e.g. `first_nation`) for band / First Nation governments. Not minted: StatCan's eight
+   First Nations CSD types (IRI 992, S-É 21, TC 9, IGD 2, TK 1, NL 1, TWL 1, TAL 1 = 1,028 CSDs) are land units, and one band can
+   hold many reserves, so the entity should come from the band list (CIRNAC First Nation profiles, band number), linked to its
+   reserve CSDs through the xwalk. Yukon SG / TL and QC VC / VK / TI are related but logged as gaps.
+8. Canadian government ids: `muni:ca-csd:<CSDUID>` (kind `municipality`) and `county:ca-cd:<CDUID>` (kind `county`), mirroring
+   `muni:place:<GEOID>`; the `ca-` prefix keeps them apart from US GEOIDs. Unit layers in the xwalk: `ca_csd`, `ca_cd`.
+9. Xwalk relation `part` (one municipality, a CSD in each province: Flin Flon, Lloydminster).

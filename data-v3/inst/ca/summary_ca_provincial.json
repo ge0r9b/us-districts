@@ -8,9 +8,9 @@
  "retrieved_at": "2026-10-18",
  "rows": {
   "entities_ca_provincial.csv": 13,
-  "gaps_ca_provincial.csv": 12,
-  "units_ca_ped.csv": 665,
-  "units_ca_ppoll.csv": 34024
+  "gaps_ca_provincial.csv": 14,
+  "units_ca_ped.csv": 790,
+  "units_ca_ppoll.csv": 51769
  },
  "seats_loaded": {
   "AB": 87,
@@ -23,7 +23,7 @@
   "QC": 127,
   "SK": 61
  },
- "sources": 26,
+ "sources": 28,
  "units_by_set": {
   "AB ea-2019-ed ped": 87,
   "AB ea-2026-va ppoll": 4904,
@@ -38,6 +38,8 @@
   "ON eo-2022-ed ped": 124,
   "PE epei-2017-ed ped": 27,
   "PE epei-2017-poll ppoll": 241,
+  "QC eq-2022-ced ped": 125,
+  "QC eq-2022-sv ppoll": 17745,
   "QC eq-2026-ced ped": 127,
   "QC eq-2026-sv ppoll": 16756,
   "SK esk-2022-ed ped": 61,

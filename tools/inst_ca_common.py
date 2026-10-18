@@ -72,7 +72,7 @@ ENTITY_COLS = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'lab
 UNIT_COLS = ['boundary_set', 'unit_type', 'unit_key', 'name', 'labels', 'alias', 'country', 'province', 'parent_boundary_set',
              'parent_unit_key', 'entity_id', 'attrs', 'source_id', 'source_record_id', 'external_id', 'geometry_ref', 'flags']
 BSET_COLS = ['boundary_set', 'country', 'province', 'unit_type', 'vintage', 'is_current', 'source_id']
-NOT_CURRENT = {'ec-2013-fed', 'ec-2021-pd', 'ec-2019-pd'}   # superseded sets; every other Canadian set is the current one of its (country, province, unit_type)
+NOT_CURRENT = {'ec-2013-fed', 'ec-2021-pd', 'ec-2019-pd', 'eq-2022-ced', 'eq-2022-sv'}   # superseded sets; every other Canadian set is the current one of its (country, province, unit_type)
 GAP_COLS = ['level', 'gap', 'key', 'detail', 'source_id']
 SOURCE_COLS = ['source_id', 'source', 'source_url', 'license', 'retrieved_at', 'commit', 'sha256', 'non_commercial', 'attribution_required']
 # Full Stack ruling 6: set only from each licence's own text ('' = the licence text does not say, or there is no licence)

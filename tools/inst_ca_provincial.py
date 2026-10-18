@@ -113,6 +113,34 @@ for (ed, sv), (cu, off) in sorted(g.items()):
           ';'.join(x for x in ('' if off == 'O' else 'no_electors:ind_off_N', 'spans_municipalities' if len(m) > 1 else '') if x), 'sections_vote_2026_shapefile.zip:sections_de_vote_15_07_2026_shapefile')
 gap('ppoll', 'boundaries_may_change', 'QC', 'Élections Québec: sections de vote of 15 July 2026 "could still change until the 2026 election decree"; re-pull after the 2026 general election', SV)
 
+# ---- Quebec, 2022 general election (3 Oct 2022): 125 circonscriptions (Gazette officielle 22 June 2022, in force from the end of
+# the 42nd legislature) + sections de vote as delimited on 28 August 2022 (file metadata). Superseded by the 2026 map (not current).
+S22 = src('eq-ced-2022', 'Élections Québec, données ouvertes: circonscriptions électorales 2022 (shapefile; G.O. partie 2, no 25, 22 juin 2022, p. 3465)',
+          'https://donnees.electionsquebec.qc.ca/autres/provincial/circonscriptions_electorales_2022_shapefile.zip', ['circonscriptions_electorales_2022_shapefile.zip'], LQC)
+SV22 = src('eq-sv-2022', 'Élections Québec, données ouvertes: sections de vote 2022 (shapefile, délimitation du 28 août 2022, élection générale du 3 octobre 2022)',
+           'https://donnees.electionsquebec.qc.ca/autres/provincial/sections_vote_2022_shapefile.zip', ['sections_vote_2022_shapefile.zip'], LQC)
+rows, enc = dbf(f'{P}/circonscriptions_electorales_2022_shapefile.zip', '*.dbf')
+eds22 = {}
+for r in rows: assert eds22.setdefault(r['CO_CEP'], r['NM_CEP']) == r['NM_CEP']
+assert len(eds22) == 125, len(eds22)
+for k, n in sorted(eds22.items()):
+    ped('QC', 'eq-2022-ced', k, n, S22, 'CO_CEP=%d' % k, n, gref='circonscriptions_electorales_2022_shapefile.zip:Circonscription_electorale_2022_shapefile',
+        flags='' if n in set(eds.values()) else 'name_not_in_2026_map')
+assert not set(eds22) & set(eds), 'CO_CEP reused between the 2022 and 2026 maps'
+gap('ped', 'superseded_map', 'QC 2022', '2022 map (125 circonscriptions, %d names recur in 2026) is not current: the 2026 map (127) renumbers every CO_CEP, so 2022 and 2026 keys never collide; no 2022->2026 crosswalk built' % len(set(eds22.values()) & set(eds.values())), S22)
+rows, enc = dbf(f'{P}/sections_vote_2022_shapefile.zip', '*.dbf')
+for r in rows: assert r['NO_SV_VG'] == int(r['NO_SV_VG']), r
+g = dedupe_polls(rows, lambda r: (r['CO_CEP_VG'], int(r['NO_SV_VG'])), lambda r: (r['IND_OFF'], r['NM_CEP_VG']), 'QC SV 2022')
+mun = collections.defaultdict(set)
+for r in rows: mun[(r['CO_CEP_VG'], int(r['NO_SV_VG']))].add((r['CO_MUNCP'], r['NM_MUNCP'], r['CO_DESIGN']))
+for (ed, sv), (off, en) in sorted(g.items()):
+    assert eds22[ed] == en, (ed, en)
+    m = sorted(mun[(ed, sv)])
+    nm = ('Section %d (%s)' % (sv, ' / '.join(x[1] for x in m))) if (len(m) <= 3 or off == 'O') else 'Section %d (no electors; %d municipalities)' % (sv, len(m))
+    ppoll('QC', 'eq-2022-sv', 'eq-2022-ced', ed, sv, nm, SV22, 'CO_CEP_VG=%d;NO_SV_VG=%d' % (ed, sv),
+          'muni_code=%s;muni_name=%s;muni_design=%s;ind_off=%s' % (','.join(str(x[0]) for x in m), ' | '.join(x[1].replace(';', ',') for x in m), ','.join(x[2] for x in m), off),
+          ';'.join(x for x in ('' if off == 'O' else 'no_electors:ind_off_N', 'spans_municipalities' if len(m) > 1 else '') if x), 'sections_vote_2022_shapefile.zip:Section_de_vote')
+
 # ---- British Columbia: BC Geographic Warehouse (Elections BC), 2023 redistribution EDs + voting areas gazetted 2024-09-19
 LBC = 'Elections BC Open Data Licence (BC Data Catalogue)'
 B = 'https://delivery.maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_admin_boundaries/MapServer'
@@ -155,6 +183,7 @@ for k in sorted(eds):
 seats['AB'] = len(eds)
 g = dedupe_polls(var, lambda r: (int(r['ED_NUM']), r['VA_NUMBER']), lambda r: (), 'AB VA')
 for (ed, v) in sorted(g): ppoll('AB', 'ea-2026-va', 'ea-2019-ed', ed, v, 'Voting area %s' % v, VA, 'ED_NUM=%d;VA_NUMBER=%s' % (ed, v), gref='EA_Voting_Area_Boundaries_2026.zip:EA_Voting_Area_Boundaries_2026')
+gap('ppoll', 'not_the_2023_ge_voting_areas', 'AB', 'EA_Voting_Area_Boundaries_2026: files dated 2026-09-23, the only VA file on elections.ab.ca/resources/maps (page modified 2026-09-24); same 87-ED map as the 2023 general election (2017 Electoral Divisions Act, Bill 33, in force 2019-03-19; ED 17 now Calgary-Bhullar-McCall), but the voting areas are the 2026 revision; the 2023 GE voting-area file is not published there (uploads/*2023* VA names 404). Do not join 2023 poll results to these units without checking', VA)
 gap('ped', 'next_boundaries_not_loaded', 'AB', 'Electoral Boundaries Commission final report (2026-03-23) proposes 89 divisions for the next election; no official shapefile found; current 87 loaded', S)
 
 # ---- Manitoba: Elections Manitoba 2018 final boundaries (57 EDs, rural + Winnipeg files) + voting areas 2023
