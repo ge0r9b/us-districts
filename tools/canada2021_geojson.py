@@ -144,9 +144,13 @@ def W(name, head, rows):
         w = csv.writer(f, lineterminator="\n"); w.writerow(head); w.writerows(rows)
     R.setdefault("csv", {})[name] = len(rows)
 TR = pyproj.Transformer.from_crs(3347, 4326, always_xy=True).transform
-def gj(g):
-    g = shapely.set_precision(transform(TR, g), 1e-5)
+def polys(g):  # polygonal part of a make_valid result
     if g.geom_type == "GeometryCollection": g = MultiPolygon([p for q in g.geoms for p in getattr(q, "geoms", [q]) if p.geom_type == "Polygon"])
+    return g
+def gj(g):
+    g = transform(TR, g)
+    if not g.is_valid: g = polys(shapely.make_valid(g))  # reprojection can make a ring self-touch; repair before snapping
+    g = polys(shapely.set_precision(g, 1e-5))
     m = mapping(g); rd = lambda c: [round(c[0], 5), round(c[1], 5)]
     if m["type"] == "Polygon": return {"type": "Polygon", "coordinates": [[rd(c) for c in r] for r in m["coordinates"]]}
     return {"type": "MultiPolygon", "coordinates": [[[rd(c) for c in r] for r in p] for p in m["coordinates"]]}
@@ -181,6 +185,10 @@ def dissolve(n):
         try: D[k] = shapely.coverage_union_all(v)
         except shapely.errors.GEOSException: D[k] = shapely.make_valid(shapely.unary_union(v)); FB.append(k)
     R[nm + "_union_fallback"] = FB
+    # CoverageUnion does not guarantee a valid result (self-touching rings in the Arctic archipelago): repair those with make_valid
+    BAD = sorted(k for k, g in D.items() if not g.is_valid)
+    for k in BAD: D[k] = polys(shapely.make_valid(D[k]))
+    R[nm + "_made_valid"] = BAD
     # check: the summed area of the full-resolution CSDs (a coverage, no overlaps) against the CBF SHAPE_Area of the published PR / CD
     err = {k: abs(sum(g.area for g in full[k]) - A[k]["SHAPE_Area"]) / A[k]["SHAPE_Area"] for k in A if k in full}
     R[nm + "_vs_CBF_shape_area_pct_max"] = round(100 * max(err.values()), 4)
