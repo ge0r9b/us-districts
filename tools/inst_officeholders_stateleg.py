@@ -41,9 +41,8 @@ def nk(s):
     s = re.sub(r"\b0+(\d)", r"\1", s)
     return re.sub(r"[^A-Z0-9]", "", s)
 
-def main():
-    a = sys.argv[1:]; repo = a[0]; osd = a[a.index("--os") + 1]; out = a[a.index("--out") + 1]; retrieved = a[a.index("--retrieved") + 1]
-    commit = subprocess.run(["git", "-C", osd, "log", "-1", "--format=%H %cI"], capture_output=True, text=True).stdout.split()
+def build_join(repo):
+    """district label -> data-v3/geo GEOID (TIGER 2024); returns (join(st, ch, label) -> (geoid, seat, status), units)"""
     G = collections.defaultdict(dict); amb = collections.defaultdict(set); units = collections.defaultdict(set)
     for fn, ch in (("senate.csv", "upper"), ("statehouse.csv", "lower")):
         for r in csv.DictReader(open(os.path.join(repo, "data-v3/geo", fn))):
@@ -63,6 +62,12 @@ def main():
             g = G[(st, ch)].get(nk(m.group(1)))
             if g: return g, m.group(2), "joined"
         return "", "", "no_v3_unit"
+    return join, units
+
+def main():
+    a = sys.argv[1:]; repo = a[0]; osd = a[a.index("--os") + 1]; out = a[a.index("--out") + 1]; retrieved = a[a.index("--retrieved") + 1]
+    commit = subprocess.run(["git", "-C", osd, "log", "-1", "--format=%H %cI"], capture_output=True, text=True).stdout.split()
+    join, units = build_join(repo)
     people = []
     for ab in AB:
         for sub in ("legislature", "retired"):
@@ -93,6 +98,10 @@ def main():
                 note = ["official roster not fetched this round; OpenStates (CC0) fallback"]
                 if not s0: note.append("start date not recorded in OpenStates")
                 if js == "joined_alias": note.append("district label 'Barnstable, Dukes and Nantucket' = TIGER 'Cape and Islands District' (the only MA Senate district containing Dukes and Nantucket counties)")
+                if js == "no_v3_unit" and st == "Maine" and re.search(r"Tribe|Indians", str(r["district"])):
+                    js = "no_v3_unit_tribal"; note.append("Maine tribal representative (non-voting seat with no district); deliberately not joined")
+                elif js == "no_v3_unit" and st == "New Hampshire" and ch == "lower":
+                    js = "no_v3_unit_floterial"; note.append("NH House floterial district: label '%s' is not among the 164 TIGER 2024 SLDL base districts (floterials overlay base districts, RSA 662:5); deliberately not joined" % r["district"])
                 if js == "no_v3_unit": note.append("district label '%s' matches no unit of data-v3/geo/%s.csv (TIGER 2024 %s)" % (r["district"], "senate" if ch == "upper" else "statehouse", "SLDU" if ch == "upper" else "SLDL"))
                 party = p.get("party") or []
                 pty = next((x["name"] for x in party if (not x.get("start_date") or str(x["start_date"]) <= day) and (not x.get("end_date") or str(x["end_date"]) > day)), party[0]["name"] if party else "")
@@ -116,11 +125,12 @@ def main():
                 m = [r for r in mine if (r["chamber"] in ("upper", "legislature")) == (ch == "upper")]
                 if st == "Nebraska" and ch == "lower": continue
                 filled = {r["unit_geoid"] for r in m if r["unit_geoid"]}
-                d[ch] = {"members": len(m), "joined": sum(r["join_status"] == "joined" for r in m), "no_v3_unit": sorted({r["district"] for r in m if r["join_status"] == "no_v3_unit"}),
+                d[ch] = {"members": len(m), "joined": sum(r["join_status"] == "joined" for r in m), "no_v3_unit": sorted({r["district"] for r in m if r["join_status"].startswith("no_v3_unit")}),
                          "units": len(units[(st, ch)]), "units_with_member": len(filled & units[(st, ch)]), "units_without_member": sorted(units[(st, ch)] - filled),
                          "no_start_date": sum("start date not recorded" in r["note"] for r in m)}
             per[st] = d
-        S[vint] = {"rows": len(rs), "joined": sum(r["join_status"] == "joined" for r in rs), "no_v3_unit": sum(r["join_status"] == "no_v3_unit" for r in rs), "by_state": per}
+        S[vint] = {"rows": len(rs), "joined": sum(r["join_status"] == "joined" for r in rs), "no_v3_unit": sum(r["join_status"] == "no_v3_unit" for r in rs),
+                   "no_v3_unit_floterial": sum(r["join_status"] == "no_v3_unit_floterial" for r in rs), "no_v3_unit_tribal": sum(r["join_status"] == "no_v3_unit_tribal" for r in rs), "by_state": per}
     S["openstates_commit"] = commit; S["snapshot_2024"] = SNAP_2024
     json.dump(S, open(os.path.join(out, "officeholders_stateleg_summary.json"), "w"), indent=1)
     for vint in ("current", "2024"):
