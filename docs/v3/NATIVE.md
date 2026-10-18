@@ -36,3 +36,39 @@ What this means for every v3 feature:
 | Analytics / error beacons (`sendBeacon`) | Web transport | The native SDK or a URLSession post to the same endpoint and event names |
 
 Anything not in this table that touches the DOM or browser APIs needs a note in the PR saying why, and what its native equivalent is.
+
+## Same app on web and native (user refinements, 2026-10-18)
+
+The user, relayed via Trailblazer, at **11:52 AM EDT**:
+
+> "they will be idenitical except for what apple allows its native developers to do better, unfortunately the browser version will sometimes have a url bar and navigation popup futher"
+
+**Rule:** web and native have identical features and identical design. Native may go further only where Apple's APIs allow it. Each such item is an **optional enhancement over a shared baseline** that the web also has, never a feature only native has:
+
+| Native enhancement (optional) | Shared baseline (web and native) |
+|---|---|
+| Haptics (selection and impact feedback on slider, filter and pin) | The same interaction with visual feedback (pressed state, animation tokens) |
+| Widgets (Home / Lock Screen / desktop: a watched contest or district) | The same view as a shareable deep link / pinned view in the app |
+| Live Activities (election-night count for a watched contest) | The same live contest view with auto-refresh in the app and on the web |
+| Share sheet (`ShareLink`) | Web Share API, or copy link, with the same URL and title |
+| Background refresh (`BGAppRefreshTask`: refresh watched contests and packs) | Refresh on open / focus, with the service worker revalidating the same versioned URLs |
+
+**The web accepts the browser chrome** (URL bar, Safari's bottom bar, navigation pop-ups). These layout rules make it safe. They are **shared design tokens**, and native maps them to its safe-area insets (`safeAreaInsets` / SwiftUI `safeAreaPadding`):
+
+- Insets come from `env(safe-area-inset-top|right|bottom|left)` (with `viewport-fit=cover`), exposed as tokens `space.safe.top|right|bottom|left`. Native fills the same tokens from its safe-area insets.
+- Heights use `100dvh` (or `100svh` where a stable minimum is needed), **never `100vh`**. The token is `size.viewport.height`, and native uses the container height.
+- Floating Liquid Glass controls (the map buttons, layers button, time row) stay **inside the safe areas**. Their offsets are `space.safe.*` plus `space.float.gap`.
+- Bottom controls must not collide with Safari's bottom URL bar. Anchor them above `space.safe.bottom` plus `space.chrome.bottomReserve`, which is a token: non-zero on the web for iOS Safari, 0 on native. Keep tap targets out of the bar's collapse zone.
+- Nothing critical depends on fullscreen. Every control and every piece of data is reachable with the browser chrome showing. Fullscreen / standalone (PWA) is only an enhancement.
+
+## Layout modes: phone, tablet, desktop
+
+The user, relayed via Trailblazer, at **11:53 AM EDT**:
+
+> "the ios app will run natively on mac os as ios sized window just like iphone mirroring. but the desktop /tablet sized will be an option two. we will allow users to select from"
+
+- **Three layout modes**, `phone`, `tablet` and `desktop`, are design tokens with breakpoints: `layout.breakpoint.tablet` and `layout.breakpoint.desktop`, by container width (values set in the token file and shared by CSS and Swift).
+- **User-selectable mode:** `auto` (default) picks the mode from the width. A manual override (`phone` / `tablet` / `desktop`) is **persisted per device**: `localStorage` on the web, `UserDefaults` on native. It is not synced to the account.
+- **macOS:** the iOS app runs natively on the Mac in an **iPhone-sized window by default** (like iPhone Mirroring), with `tablet` and `desktop` as choices in the same selector.
+- **Web** gets the same selector, with the same labels and the same `auto` default.
+- **Purely presentational:** the layout mode changes only arrangement and density. All three modes use the same `/api/v1` and the same shared core: the same data, the same rules, the same results. No feature is missing in any mode, and the PR checklist item above applies to each mode.

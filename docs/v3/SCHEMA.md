@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 116 statements; re-checked after the source / seat / county_government update) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 117 statements; re-checked after the source / seat / county_government update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:

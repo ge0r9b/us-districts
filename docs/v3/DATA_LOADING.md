@@ -398,6 +398,19 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
     - Ids are `municipality:ca-<CSDUID>` (kind `municipality`) and `county:ca-<CDUID>` (kind `county`, for county and regional governments). SCHEMA.sql checks both.
     - First Nations use the new kind `indigenous_government` (US tribes can move to it later), with id `first_nation:ca-<band number>` from the CIRNAC band list. These are not minted from StatCan's First Nations CSD types, because one band can hold many reserves.
     - Reserve, settlement and land CSDs stay `ca_csd` units, linked to their First Nation by `entity_unit` with `role = 'reserve_of'`.
+    - **`reserve_of` (data/inst-canada 0e83355, `entity_unit_ca.csv`):**
+      - **How the links are made:** NRCan reserve polygons (Aboriginal Lands, edition 2.189) are overlaid on the 2021 First Nations CSDs (the 8 First Nations CSD types), with areas computed in Albers equal-area (ESRI:102001). A reserve–CSD pair links when the overlap is at least 50% of either area.
+      - **Shape of the data:** many-to-many, one row per (band, CSD, reserve).
+        - `source_record_id` is a single `isc_reserve_no` (`isc_reserve_no=06000`).
+        - Every link is approximate (≈): `method = overlay`, `is_estimate = true`, plus `share_of_geoid_in_entity` (share of the CSD inside the reserve) and `share_of_entity_in_geoid` (share of the reserve inside the CSD).
+        - `source_id` (`;`-list) → `entity_unit_source`. `flags` (`shared_reserve`, `several_reserves_in_csd`) → `flags`.
+      - **Counts:**
+        - 1,162 links covering 1,059 reserves.
+        - 571 of 638 bands have links.
+        - 996 of the 1,028 First Nations CSDs are linked. The other 32 have no band (flag `fn_csd_without_band`).
+        - `gaps_ca_reserve_overlay.csv` has 2,631 gaps: 361 below-threshold overlaps plus 2,270 reserves flagged `no_csd`.
+        - `gaps_ca_indigenous.csv` has another 146 gaps.
+      - **Why an overlay:** no StatCan 2021 file maps reserves to CSDUIDs. StatCan's correspondence files cover only dissemination blocks (DB) and dissemination areas (DA).
     - Xwalk relation **`part`** (with `share_of_geoid_in_entity` / `share_of_entity_in_geoid`) covers the two municipalities that span a provincial border, each with a CSD in both provinces: Flin Flon (`4621064` MB + `4718052` SK) and Lloydminster (`4810039` AB + `4717029` SK).
     - Boundary sets `eq-2022-ced` (125) and `eq-2022-sv` (17,745, key `<CO_CEP>:<NO_SV>`), from the 2022 Quebec general election, are registered as not current.
   - **Tiles:** Canadian ridings and polls get PMTiles built from the source layers (Elections Canada, provincial agency and StatCan shapefiles named in `geometry_ref`). This is part of the **v3.1 tile build**, one archive per boundary set.

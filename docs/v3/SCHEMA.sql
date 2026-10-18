@@ -513,11 +513,24 @@ create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where uni
 --  'seat_district' : a chamber's seat area (chamber:pa-lower -> each sldl unit)
 --  'same_as'       : entity and unit are the same thing (school:0100003 -> its polygon)
 create table entity_unit (
+  id         bigint generated always as identity primary key,
   entity_id  text not null references entity(entity_id) on delete cascade,
   unit_id    bigint not null references unit(id) on delete cascade,
   role       text not null check (role in ('jurisdiction','seat_district','same_as','reserve_of')),  -- reserve_of: a First Nation's reserve /
-                                                   -- settlement / land ca_csd units
-  primary key (entity_id, unit_id, role)
+                                                   -- settlement / land ca_csd units (many-to-many, one row per band x CSD x reserve)
+  method     text check (method in ('overlay')),     -- how the link was derived; null = taken from the source as-is
+  is_estimate boolean not null default false,        -- approximate (≈) link; every reserve_of row is
+  share_of_geoid_in_entity numeric(5,4) check (share_of_geoid_in_entity between 0 and 1),   -- reserve_of: share of the CSD inside the reserve
+  share_of_entity_in_geoid numeric(5,4) check (share_of_entity_in_geoid between 0 and 1),   -- reserve_of: share of the reserve inside the CSD
+  source_record_id text,                             -- one id per row ('isc_reserve_no=06000')
+  flags      text[],                                 -- 'shared_reserve', 'several_reserves_in_csd'
+  unique nulls not distinct (entity_id, unit_id, role, source_record_id)
+);
+create table entity_unit_source (
+  entity_unit_id bigint not null references entity_unit(id) on delete cascade,
+  source_id      text not null references source(source_id),
+  ord            smallint not null default 1,
+  primary key (entity_unit_id, source_id)
 );
 create index entity_unit_unit on entity_unit (unit_id);
 
