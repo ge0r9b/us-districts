@@ -16,6 +16,8 @@ export type BoundaryPaths = {
   uscdJs: string;
   /** Written for the shell. Omitted in tests that only check counts. */
   statesGeojson?: string;
+  /** origin/data/geo commit stamped on the boundary load_batch. */
+  gitCommit?: string | null;
 };
 
 export type BoundaryReport = {
@@ -92,6 +94,12 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
   const sha = sha256Hex(Buffer.concat(bodies));
   const known = await pool.query<{ status: string }>(`select status from load_batch where file_sha256 = $1`, [sha]);
   if (known.rows[0]?.status === "applied") {
+    if (paths.gitCommit) {
+      await pool.query(
+        `update load_batch set git_commit = $2 where file_sha256 = $1 and git_commit is distinct from $2`,
+        [sha, paths.gitCommit],
+      );
+    }
     if (paths.statesGeojson) await writeStateGeojson(pool, paths.statesGeojson);
     const counts = await countsOf(pool);
     return { status: "skipped", ...counts, geoms: 0, gaps: [] };
@@ -187,10 +195,11 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
   try {
     await client.query("begin");
     await client.query(
-      `insert into load_batch (file_name, file_sha256, row_count, status)
-       values ('boundary:v2-2024', $1, $2, 'staged')
-       on conflict (file_sha256) do update set status = 'staged'`,
-      [sha, units.length],
+      `insert into load_batch (file_name, file_sha256, git_commit, row_count, status)
+       values ('boundary:v2-2024', $1, $2, $3, 'staged')
+       on conflict (file_sha256) do update set status = 'staged',
+         git_commit = coalesce(excluded.git_commit, load_batch.git_commit)`,
+      [sha, paths.gitCommit ?? null, units.length],
     );
     const unitWrites = await insertJsonChunks(
       client,

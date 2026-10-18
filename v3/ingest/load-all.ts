@@ -1,16 +1,17 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
+import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type pg from "pg";
 import { applyResults, refreshAggregates, sha256Hex, type ApplyReport } from "./apply.ts";
+import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
 import { loadBoundaries, type BoundaryReport } from "./boundaries.ts";
-import { BUDGET_BYTES, EST_RESULT_BYTES, EST_UNIT_BYTES, estimateRowsFromGzip, fitsBudget, formatMb } from "./budget.ts";
+import { BUDGET_BYTES, EST_UNIT_BYTES, fitsBudget, formatMb } from "./budget.ts";
 import { companyEstimateBytes, loadCompanies, type CompanyLoadReport } from "./companies.ts";
 import { missingResultHeaders, parseCsv, readFileText } from "./csv.ts";
 import { countyPresRows, ds2016Rows, readLegacy, uscdResultRows, type LegacyContext } from "./legacy.ts";
-import { ensureUnits, unitsFromGeoCsv, unitsFromResultRows } from "./units.ts";
-import type { RawResult } from "./validate.ts";
+import { ensureUnits, unitsFromGeoCsv } from "./units.ts";
+import { formatRejectRules, type RawResult } from "./validate.ts";
 
 export function repoRoot(): string {
   return fileURLToPath(new URL("../..", import.meta.url));
@@ -47,11 +48,14 @@ const ELECTION_FILES = [
   "data-v3/results/2024/senate/us_senate_2024_county.csv",
 ];
 
-const DISTRICT_FILES = [
+/** State legislative districts plus US House. The two ushouse files are clean at data/election 0e058f7 (1,023 rows each). */
+export const DISTRICT_FILES = [
   "data-v3/results/2022/senate/us_senate_2022_sldu.csv",
   "data-v3/results/2022/senate/us_senate_2022_sldl.csv",
+  "data-v3/results/2022/senate/us_senate_2022_ushouse.csv",
   "data-v3/results/2024/senate/us_senate_2024_sldu.csv",
   "data-v3/results/2024/senate/us_senate_2024_sldl.csv",
+  "data-v3/results/2024/senate/us_senate_2024_ushouse.csv",
 ];
 
 const SCHOOL_FILES = [
@@ -59,23 +63,11 @@ const SCHOOL_FILES = [
   "data-v3/results/2024/senate/us_senate_2024_school.csv.gz",
 ];
 
-/** Left out of every load: negative all-others residuals trip the 0.5% hard reject. */
-const DEFERRED_FILES: [string, string][] = [
-  [
-    "data-v3/results/2022/senate/us_senate_2022_ushouse.csv",
-    "54 negative all-others votes (above the 0.5% reject rate)",
-  ],
-  [
-    "data-v3/results/2024/senate/us_senate_2024_ushouse.csv",
-    "42 negative all-others votes (above the 0.5% reject rate)",
-  ],
-];
-
 const HELD: { id: string; bytes: number; detail: string }[] = [
   {
     id: "institutions",
     bytes: 120 * 1024 * 1024,
-    detail: "data/inst-* entities and crosswalks are about 120 MB in Postgres, and the column map is not reviewed",
+    detail: "the full data/inst-* registry is about 120 MB in Postgres, and that column map is not reviewed beyond parent relations and entity images",
   },
   {
     id: "governments",
@@ -94,59 +86,65 @@ const HELD: { id: string; bytes: number; detail: string }[] = [
   },
 ];
 
-export function ensureDataCache(root = repoRoot()): { election: string; geo: string } {
+export type DataCache = {
+  election: string;
+  geo: string;
+  electionCommit: string;
+  geoCommit: string;
+};
+
+const ELECTION_MARKERS = [
+  "data-v3/results/2024/senate/precincts/CT.csv.gz",
+  "data-v3/results/2024/senate/us_senate_2024_ushouse.csv",
+  "data-v3/results/2022/senate/us_senate_2022_ushouse.csv",
+];
+
+const GEO_MARKERS = ["data-v3/geo/senate.csv", "data-v3/geo/schools.csv", "data-v3/geo/ushouse.csv"];
+
+/** Refill a data-branch cache when origin's commit differs from the stamped one. */
+export function ensureDataCache(root = repoRoot()): DataCache {
   const dest = join(root, "v3/.cache");
   const election = join(dest, "election");
   const geo = join(dest, "geo");
-  const marker = join(election, "data-v3/results/2024/senate/precincts/CT.csv.gz");
-  const geoMarker = join(geo, "data-v3/geo/senate.csv");
-  if (existsSync(marker) && existsSync(geoMarker) && existsSync(join(geo, "data-v3/geo/schools.csv"))) {
-    return { election, geo };
+  fetchOrigin(root, ["data/election", "data/geo"]);
+  const electionCommit = originCommit(root, "data/election");
+  const geoCommit = originCommit(root, "data/geo");
+  if (needsRefresh(election, electionCommit, ELECTION_MARKERS)) {
+    const electionTar = execFileSync(
+      "git",
+      [
+        "archive",
+        "origin/data/election",
+        "data-v3/results/2016",
+        "data-v3/results/PA",
+        "data-v3/results/2022/senate",
+        "data-v3/results/2024/senate",
+      ],
+      { cwd: root, encoding: "buffer", maxBuffer: 64 * 1024 * 1024 },
+    );
+    mkdirSync(election, { recursive: true });
+    execFileSync("tar", ["-x", "-C", election], { input: electionTar });
+    stampCommit(election, electionCommit);
   }
-  mkdirSync(dest, { recursive: true });
-  try {
-    execFileSync("git", ["fetch", "--no-tags", "origin", "data/election", "data/geo"], {
-      cwd: root,
-      stdio: "pipe",
-      timeout: 120_000,
-    });
-  } catch {
-    // The refs may already be on disk from an earlier fetch.
+  if (needsRefresh(geo, geoCommit, GEO_MARKERS)) {
+    const geoTar = execFileSync(
+      "git",
+      [
+        "archive",
+        "origin/data/geo",
+        "data-v3/geo/counties.csv",
+        "data-v3/geo/ushouse.csv",
+        "data-v3/geo/senate.csv",
+        "data-v3/geo/statehouse.csv",
+        "data-v3/geo/schools.csv",
+      ],
+      { cwd: root, encoding: "buffer", maxBuffer: 32 * 1024 * 1024 },
+    );
+    mkdirSync(geo, { recursive: true });
+    execFileSync("tar", ["-x", "-C", geo], { input: geoTar });
+    stampCommit(geo, geoCommit);
   }
-  return extractArchives(root, election, geo);
-}
-
-function extractArchives(root: string, election: string, geo: string): { election: string; geo: string } {
-  const electionTar = execFileSync(
-    "git",
-    [
-      "archive",
-      "origin/data/election",
-      "data-v3/results/2016",
-      "data-v3/results/PA",
-      "data-v3/results/2022/senate",
-      "data-v3/results/2024/senate",
-    ],
-    { cwd: root, encoding: "buffer", maxBuffer: 64 * 1024 * 1024 },
-  );
-  mkdirSync(election, { recursive: true });
-  execFileSync("tar", ["-x", "-C", election], { input: electionTar });
-  const geoTar = execFileSync(
-    "git",
-    [
-      "archive",
-      "origin/data/geo",
-      "data-v3/geo/counties.csv",
-      "data-v3/geo/ushouse.csv",
-      "data-v3/geo/senate.csv",
-      "data-v3/geo/statehouse.csv",
-      "data-v3/geo/schools.csv",
-    ],
-    { cwd: root, encoding: "buffer", maxBuffer: 32 * 1024 * 1024 },
-  );
-  mkdirSync(geo, { recursive: true });
-  execFileSync("tar", ["-x", "-C", geo], { input: geoTar });
-  return { election, geo };
+  return { election, geo, electionCommit, geoCommit };
 }
 
 function gitFileTime(root: string, path: string): { sha: string; iso: string } {
@@ -163,15 +161,6 @@ async function legacyMap(pool: pg.Pool, unitType: string): Promise<Map<string, s
     [unitType],
   );
   return new Map(r.rows.map((row) => [row.legacy_key, row.unit_key]));
-}
-
-async function fipsByAbbr(pool: pg.Pool): Promise<Map<string, string>> {
-  const r = await pool.query<{ abbr: string; fips: string }>(
-    `select btrim(u.state_abbr) abbr, btrim(u.state_fips) fips
-     from unit u join boundary_set b on b.id = u.boundary_set_id
-     where b.slug = 'v2-2024' and u.unit_type = 'state' and u.state_fips is not null`,
-  );
-  return new Map(r.rows.map((row) => [row.abbr, row.fips]));
 }
 
 function toRaw(rows: Record<string, string>[]): RawResult[] {
@@ -200,18 +189,68 @@ export async function databaseBytes(pool: pg.Pool): Promise<number> {
   return Number(r.rows[0]?.n ?? 0);
 }
 
+const emptyReport = (fileName: string, status: ApplyReport["status"]): ApplyReport => ({
+  fileName,
+  status,
+  rows: 0,
+  rejected: 0,
+  changed: 0,
+  rejects: [],
+  rejectRules: {},
+  examples: [],
+});
+
+async function storedRejects(pool: pg.Pool, sha: string): Promise<Pick<ApplyReport, "rejected" | "rejectRules" | "examples">> {
+  const rules = await pool.query<{ rule: string; n: number }>(
+    `select s.rule, count(*)::int n
+     from stg_reject s join load_batch b on b.id = s.load_batch_id
+     where b.file_sha256 = $1
+     group by s.rule`,
+    [sha],
+  );
+  const examples = await pool.query<{ line_no: number; detail: string }>(
+    `select s.line_no, s.detail
+     from stg_reject s join load_batch b on b.id = s.load_batch_id
+     where b.file_sha256 = $1 and s.rule = 'R03_votes'
+     order by s.line_no
+     limit 3`,
+    [sha],
+  );
+  const rejectRules: Record<string, number> = {};
+  let rejected = 0;
+  for (const row of rules.rows) {
+    rejectRules[row.rule] = row.n;
+    rejected += row.n;
+  }
+  return {
+    rejected,
+    rejectRules,
+    examples: examples.rows.map((row) => ({ lineNo: row.line_no, detail: row.detail })),
+  };
+}
+
 /** One election file. A known sha (applied or rejected) returns skipped without rewriting facts. */
 export async function loadElectionFile(
   pool: pg.Pool,
   path: string,
-  opts: { fileName?: string; gitCommit?: string | null; unitsFromRows?: boolean; refreshAggregates?: boolean } = {},
+  opts: { fileName?: string; gitCommit?: string | null; refreshAggregates?: boolean } = {},
 ): Promise<ApplyReport> {
   const fileName = opts.fileName ?? path;
+  if (path.includes("/precincts/") || path.includes("\\precincts\\")) {
+    return emptyReport(fileName, "skipped");
+  }
   const { text, bytes } = readFileText(path);
   const sha = sha256Hex(bytes);
   const existing = await pool.query<{ status: string }>(`select status from load_batch where file_sha256 = $1`, [sha]);
   if (existing.rows[0]?.status === "applied" || existing.rows[0]?.status === "rejected") {
-    return { fileName, status: "skipped", rows: 0, rejected: 0, changed: 0, rejects: [] };
+    if (opts.gitCommit) {
+      await pool.query(
+        `update load_batch set git_commit = $2 where file_sha256 = $1 and git_commit is distinct from $2`,
+        [sha, opts.gitCommit],
+      );
+    }
+    const prior = await storedRejects(pool, sha);
+    return { ...emptyReport(fileName, "skipped"), ...prior };
   }
   const parsed = parseCsv(text);
   const missing = missingResultHeaders(parsed.headers);
@@ -223,12 +262,11 @@ export async function loadElectionFile(
       rejected: 1,
       changed: 0,
       rejects: [{ lineNo: 1, rule: "headers", detail: missing.join(",") }],
+      rejectRules: { headers: 1 },
+      examples: [],
     };
   }
   const rows = toRaw(parsed.rows);
-  if (opts.unitsFromRows) {
-    await ensureUnits(pool, unitsFromResultRows(rows, await fipsByAbbr(pool)));
-  }
   return applyResults(
     pool,
     { fileName, sha256: sha, gitCommit: opts.gitCommit ?? null },
@@ -237,30 +275,20 @@ export async function loadElectionFile(
   );
 }
 
-function precinctPaths(election: string): string[] {
-  const out: string[] = [];
-  for (const year of ["2022", "2024"]) {
-    const dir = join(election, "data-v3/results", year, "senate", "precincts");
-    if (!existsSync(dir)) continue;
-    for (const name of readdirSync(dir)) {
-      if (name.endsWith(".csv") || name.endsWith(".csv.gz")) out.push(join(dir, name));
-    }
+function resultGap(report: ApplyReport): string | null {
+  if (report.rejected <= 0) return null;
+  const why = formatRejectRules(report.rejectRules, report.examples);
+  if (report.status === "applied") {
+    return `${report.fileName}: applied, ${report.rejected} rows not loaded (${why}).`;
   }
-  return out.sort();
-}
-
-function precinctEstimate(paths: string[]): { rows: number; bytes: number } {
-  let compressed = 0;
-  for (const path of paths) compressed += statSync(path).size;
-  const rows = estimateRowsFromGzip(compressed);
-  return { rows, bytes: rows * EST_RESULT_BYTES + Math.ceil(rows / 4) * EST_UNIT_BYTES };
+  return `${report.fileName}: rejected ${report.rejected} rows (${why}). Facts were not written.`;
 }
 
 export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOptions = {}): Promise<LoadSummary> {
   const include = new Set(options.include ?? ["core"]);
   const allow = new Set(options.allowOverBudget ?? []);
   const cache = ensureDataCache(root);
-  const gaps: string[] = DEFERRED_FILES.map(([file, why]) => `${file}: not loaded (${why})`);
+  const gaps: string[] = [];
   const results: ApplyReport[] = [];
   const estimates: SizeEstimate[] = [];
   let boundaries: BoundaryReport | null = null;
@@ -276,6 +304,7 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
       uscountiesJs: join(v2, "uscounties.js"),
       uscdJs: join(v2, "uscd.js"),
       statesGeojson: join(root, "v3/app/public/geo/states.geojson"),
+      gitCommit: cache.geoCommit,
     });
     gaps.push(...boundaries.gaps);
     const countyLegacy = await legacyMap(pool, "county");
@@ -309,21 +338,19 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
         { refreshAggregates: false },
       );
       if (report.changed > 0) changed = true;
+      const gap = resultGap(report);
+      if (gap) gaps.push(gap);
       results.push(report);
-    }
-    let electionCommit = "";
-    try {
-      electionCommit = execFileSync("git", ["rev-parse", "origin/data/election"], { cwd: root, encoding: "utf8" }).trim();
-    } catch {
-      electionCommit = "";
     }
     for (const rel of ELECTION_FILES) {
       const report = await loadElectionFile(pool, join(cache.election, rel), {
         fileName: rel,
-        gitCommit: electionCommit,
+        gitCommit: cache.electionCommit,
         refreshAggregates: false,
       });
       if (report.changed > 0) changed = true;
+      const gap = resultGap(report);
+      if (gap) gaps.push(gap);
       results.push(report);
     }
   }
@@ -348,47 +375,23 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     for (const rel of files) {
       const report = await loadElectionFile(pool, join(cache.election, rel), {
         fileName: rel,
+        gitCommit: cache.electionCommit,
         refreshAggregates: false,
       });
       if (report.changed > 0) changed = true;
-      if (report.status === "rejected") {
-        gaps.push(`${rel}: rejected ${report.rejected} rows (${report.rejects[0]?.rule ?? "rule"}); facts were not written`);
-      }
+      const gap = resultGap(report);
+      if (gap) gaps.push(gap);
       results.push(report);
     }
   }
 
-  const precincts = precinctPaths(cache.election);
-  const precinctSize = precinctEstimate(precincts);
   if (include.has("precincts")) {
-    const current = await databaseBytes(pool);
-    if (!fitsBudget(current, precinctSize.bytes) && !allow.has("precincts")) {
-      estimates.push({ group: "precincts", bytes: precinctSize.bytes, action: "skipped, over budget" });
-      gaps.push(
-        `precincts: ${precincts.length} files, about ${precinctSize.rows} rows, estimated ${formatMb(precinctSize.bytes)} on top of ${formatMb(current)} would pass ${formatMb(BUDGET_BYTES)}. No precinct polygons are in data/geo, so this load is results plus unit keys only. Not loaded. Re-run with: npm run db:load -- --allow-over-budget=precincts`,
-      );
-    } else {
-      estimates.push({ group: "precincts", bytes: precinctSize.bytes, action: "load" });
-      for (const path of precincts) {
-        const rel = path.slice(cache.election.length + 1);
-        const report = await loadElectionFile(pool, path, {
-          fileName: rel,
-          unitsFromRows: true,
-          refreshAggregates: false,
-        });
-        if (report.changed > 0) changed = true;
-        if (report.status === "rejected") {
-          gaps.push(`${rel}: rejected ${report.rejected} rows (${report.rejects[0]?.rule ?? "rule"})`);
-        }
-        results.push(report);
-      }
-    }
+    estimates.push({ group: "precincts", bytes: 0, action: "packs and PMTiles, not Postgres" });
+    gaps.push(
+      "precincts: kept out of Postgres. Geometry is PMTiles and results are content-hashed packs keyed by precinct id. The database stores precinct-to-district membership and rolled-up aggregates only. Run: npm run precincts",
+    );
   } else {
-    estimates.push({
-      group: "precincts",
-      bytes: precinctSize.bytes,
-      action: "not requested",
-    });
+    estimates.push({ group: "precincts", bytes: 0, action: "not requested (npm run precincts)" });
   }
 
   const companyBytes = companyEstimateBytes();

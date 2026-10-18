@@ -1,8 +1,7 @@
 import type pg from "pg";
-import { STATE_ABBR, canonicalUnitType } from "@usd/core";
+import { STATE_ABBR } from "@usd/core";
 import { insertJsonChunks } from "./batch.ts";
 import { parseCsv } from "./csv.ts";
-import type { RawResult } from "./validate.ts";
 
 export type UnitInsert = {
   unit_type: string;
@@ -60,32 +59,6 @@ export function unitsFromGeoCsv(text: string, tigerSets?: readonly string[]): { 
     });
   }
   return { units: [...units.values()], gaps };
-}
-
-/** Precinct rows have no polygon file. The unit key is the CSV unit_id. */
-export function unitsFromResultRows(rows: RawResult[], fipsByAbbr: Map<string, string>): UnitInsert[] {
-  const seen = new Set<string>();
-  const units: UnitInsert[] = [];
-  for (const row of rows) {
-    const unitType = canonicalUnitType(row.unitType);
-    if (unitType !== "precinct") continue;
-    const key = row.unitId.trim();
-    const id = `${unitType}|${key}`;
-    if (!key || seen.has(id)) continue;
-    seen.add(id);
-    const abbr = row.state.trim().toUpperCase();
-    units.push({
-      unit_type: unitType,
-      unit_key: key,
-      legacy_key: key,
-      name: key,
-      state_fips: fipsByAbbr.get(abbr) ?? null,
-      state_abbr: abbr || null,
-      geoid: null,
-      source_record_id: key,
-    });
-  }
-  return units;
 }
 
 export async function ensureUnits(db: pg.Pool, units: UnitInsert[]): Promise<number> {

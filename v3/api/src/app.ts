@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type pg from "pg";
@@ -14,12 +15,17 @@ import {
   type ValueFormat,
 } from "@usd/core";
 import { geocodeAddress, locatePoint } from "./geocode.ts";
+import { precinctResults } from "./precinct-results.ts";
+import { locatePack } from "../../ingest/precincts.ts";
+
+const defaultPacksDir = fileURLToPath(new URL("../../app/public/packs/precinct", import.meta.url));
 
 export type AppDeps = {
   pool: pg.Pool;
   fetchImpl?: typeof fetch;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
+  packsDir?: string;
 };
 
 type DvRow = { dv: number; built_at: Date | string };
@@ -58,8 +64,10 @@ async function manifest(pool: pg.Pool) {
       "county-2024": "/tiles/county-2024@1.pmtiles",
       "ushouse-2024": "/tiles/ushouse-2024@1.pmtiles",
       companies: "/tiles/companies.pmtiles",
+      "precinct-2024": "/tiles/precinct-2024/{ST}.pmtiles",
     },
     packs: `/packs/${version.dv}/{contest_key}/{unit_type}.json`,
+    precinct_packs: "/packs/precinct/{ST}/{year}/{office}/{sha}.json",
     offices: offices.rows.map((row) => ({ key: row.key, label: row.label, scope: row.key === "president" ? "us" : null })),
   };
 }
@@ -87,6 +95,7 @@ function answerJson(row: AnswerRow) {
 }
 
 export function createApp(deps: AppDeps) {
+  const packsDir = deps.packsDir ?? defaultPacksDir;
   const app = new Hono();
   app.use(
     "*",
@@ -125,6 +134,18 @@ export function createApp(deps: AppDeps) {
   });
 
   app.get("/api/v1/manifest", async (c) => c.json(await manifest(deps.pool)));
+
+  app.get("/api/v1/packs/precinct/:state/:year/:office", (c) => {
+    const year = Number(c.req.param("year"));
+    const found = locatePack(packsDir, c.req.param("state") ?? "", year, c.req.param("office") ?? "");
+    if (!found) {
+      return c.json(
+        { error: { code: "pack_not_found", message: "No precinct pack for that state and contest" }, dv: c.get("dv") },
+        404,
+      );
+    }
+    return c.redirect(found.publicPath, 302);
+  });
 
   app.get("/api/v1/contests", async (c) => {
     const year = c.req.query("year");
@@ -241,6 +262,23 @@ export function createApp(deps: AppDeps) {
     const by = (c.req.query("sort") === "votes" ? "votes" : "share") as SortBy;
     const dir = (c.req.query("dir") === "asc" ? "asc" : "desc") as SortDir;
     const dv = c.get("dv") as number;
+    if (unitType === "precinct") {
+      if (!state) {
+        return c.json({ error: { code: "bad_request", message: "state is required for precincts" }, dv }, 400);
+      }
+      const built = precinctResults({
+        packsDir,
+        contests: contestParams,
+        state,
+        fmt,
+        by,
+        dir,
+        sortAnswer: sortAnswer ?? null,
+        dv,
+        boundary,
+      });
+      return c.json(built.body, built.status as 200);
+    }
 
     const contests = await deps.pool.query<{ contest_key: string }>(
       `select contest_key from contest where contest_key = any($1::text[])`,

@@ -15,7 +15,14 @@ import {
   canonicalUnitType,
 } from "@usd/core";
 import { insertJsonChunks } from "./batch.ts";
-import { markDuplicates, validateRow, type RawResult, type Reject } from "./validate.ts";
+import {
+  countRejectRules,
+  markDuplicates,
+  negativeVoteExamples,
+  validateRow,
+  type RawResult,
+  type Reject,
+} from "./validate.ts";
 
 export type ApplyMeta = {
   fileName: string;
@@ -30,6 +37,9 @@ export type ApplyReport = {
   rejected: number;
   changed: number;
   rejects: Reject[];
+  /** Every rule on this file, not only the first one in the sample. */
+  rejectRules: Record<string, number>;
+  examples: { lineNo: number; detail: string }[];
 };
 
 type Fact = {
@@ -408,7 +418,16 @@ export async function applyResults(
   );
   // Same bytes are terminal: applied stays applied, rejected stays rejected. A changed file is a new sha.
   if (existing.rows[0]?.status === "applied" || existing.rows[0]?.status === "rejected") {
-    return { fileName: meta.fileName, status: "skipped", rows: rows.length, rejected: 0, changed: 0, rejects: [] };
+    return {
+      fileName: meta.fileName,
+      status: "skipped",
+      rows: rows.length,
+      rejected: 0,
+      changed: 0,
+      rejects: [],
+      rejectRules: {},
+      examples: [],
+    };
   }
 
   const client = await pool.connect();
@@ -445,9 +464,16 @@ export async function applyResults(
     const batch = await client.query<{ id: string }>(
       `insert into load_batch (file_name, file_sha256, git_commit, row_count, status, report)
        values ($1, $2, $3, $4, 'staged', $5::jsonb)
-       on conflict (file_sha256) do update set status = 'staged', report = excluded.report
+       on conflict (file_sha256) do update set status = 'staged', report = excluded.report,
+         git_commit = coalesce(excluded.git_commit, load_batch.git_commit)
        returning id`,
-      [meta.fileName, meta.sha256, meta.gitCommit ?? null, rows.length, JSON.stringify({ rejects: rejects.slice(0, 50) })],
+      [
+        meta.fileName,
+        meta.sha256,
+        meta.gitCommit ?? null,
+        rows.length,
+        JSON.stringify({ rules: countRejectRules(rejects), rejects: rejects.slice(0, 50) }),
+      ],
     );
     const batchId = batch.rows[0]!.id;
     await client.query(`delete from stg_reject where load_batch_id = $1`, [batchId]);
@@ -498,10 +524,12 @@ export async function applyResults(
         [batchId],
       );
     }
+    const rejectRules = countRejectRules(rejects);
+    const examples = negativeVoteExamples(rejects);
     if (rate > HARD_REJECT_RATE) {
       await client.query(
         `update load_batch set status = 'rejected', finished_at = now(), report = $2::jsonb where id = $1`,
-        [batchId, JSON.stringify({ rejected: rejects.length, sample: rejects.slice(0, 20) })],
+        [batchId, JSON.stringify({ rejected: rejects.length, rules: rejectRules, sample: rejects.slice(0, 20) })],
       );
       await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
       await client.query("commit");
@@ -512,6 +540,8 @@ export async function applyResults(
         rejected: rejects.length,
         changed: 0,
         rejects: rejects.slice(0, 20),
+        rejectRules,
+        examples,
       };
     }
 
@@ -526,7 +556,7 @@ export async function applyResults(
     }
     await client.query(
       `update load_batch set status = 'applied', finished_at = now(), report = $2::jsonb where id = $1`,
-      [batchId, JSON.stringify({ rows: rows.length, rejected: rejects.length, changed, facts: facts.length })],
+      [batchId, JSON.stringify({ rows: rows.length, rejected: rejects.length, rules: rejectRules, changed, facts: facts.length })],
     );
     await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
     await client.query("commit");
@@ -537,6 +567,8 @@ export async function applyResults(
       rejected: rejects.length,
       changed,
       rejects: rejects.slice(0, 20),
+      rejectRules,
+      examples,
     };
   } catch (err) {
     await client.query("rollback");

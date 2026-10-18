@@ -6,6 +6,8 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 
 The boxes below stay unchecked. Alpha.1 is a running foundation, not v2 parity.
 
+Alpha.3 adds institution and geography filters as separate controls, safe-area and layout-mode tokens, and a list band 16px below the geography band (Build 1575). This checklist has no Build 1576 heading. Boxes stay open.
+
 Done on `v3/build`:
 
 - Vite + TypeScript + MapLibre shell (light mode, Liquid Glass year and %/# buttons, bars sorted high to low). Default view is 2016 president by state. 2020 and 2024 open Pennsylvania counties, because those years have no official state presidential totals and alpha.1 does not sum counties.

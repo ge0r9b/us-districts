@@ -29,6 +29,8 @@ The current data and boundary versions plus pack and tile URLs. Fetched once at 
 ```
 Cache: `public, max-age=60, s-maxage=60, stale-while-revalidate=600`.
 
+Alpha.3 adds `tiles["precinct-2024"]` = `/tiles/precinct-2024/{ST}.pmtiles` and `precinct_packs` = `/packs/precinct/{ST}/{year}/{office}/{sha}.json`. `GET /results?unit_type=precinct&state=VT&contest=2024|US|president|` reads that pack and returns the same row shape. `GET /packs/precinct/{state}/{year}/{office}` redirects to the hashed file. Precinct result rows are not in Postgres.
+
 ### `GET /contests`
 Filter: `year`, `office`, `state`, `district`, `kind` (candidate|measure|poll), `stage`, `entity` (institution key), `q` (text), `limit`, `cursor`.
 ```json

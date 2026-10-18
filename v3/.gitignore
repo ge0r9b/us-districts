@@ -2,5 +2,7 @@ node_modules/
 dist/
 .cache/
 app/public/geo/
+app/public/tiles/
+app/public/packs/
 *.log
 .env*

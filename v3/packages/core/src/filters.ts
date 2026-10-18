@@ -26,6 +26,20 @@ export function canonicalUnitType(raw: string): string {
   return ALIASES[t] ?? t;
 }
 
+/** Geography filter. Place and district level. Not the institution filter. */
+export const GEOGRAPHY_LEVELS = [
+  { key: "state", label: "States" },
+  { key: "county", label: "Counties" },
+  { key: "precinct", label: "Precincts" },
+] as const;
+
+export type GeographyLevel = (typeof GEOGRAPHY_LEVELS)[number]["key"];
+
+export function geographyLevel(raw: string | null | undefined): GeographyLevel | null {
+  const key = (raw ?? "").trim().toLowerCase();
+  return GEOGRAPHY_LEVELS.some((level) => level.key === key) ? (key as GeographyLevel) : null;
+}
+
 export const ALLOWED_UNIT_TYPES = new Set([
   "state",
   "county",

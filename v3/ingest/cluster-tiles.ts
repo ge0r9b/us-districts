@@ -94,6 +94,58 @@ export function buildClusterArchive(points: ClusterPoint[], zoom = ZOOM): Uint8A
   return out;
 }
 
+export function writeVectorPmtiles(opts: {
+  tiles: { tileId: number; bytes: Uint8Array }[];
+  metadata: string;
+  zoom: number;
+  minLon: number;
+  minLat: number;
+  maxLon: number;
+  maxLat: number;
+  clustered: boolean;
+}): Uint8Array {
+  const ordered = [...opts.tiles].sort((a, b) => a.tileId - b.tileId);
+  let cursor = 0;
+  const entries = ordered.map((tile) => {
+    const entry = { tileId: tile.tileId, runLength: 1, length: tile.bytes.length, offset: cursor };
+    cursor += tile.bytes.length;
+    return entry;
+  });
+  const placed = encodeDirectory(entries);
+  if (placed.length > 16_000) {
+    throw new Error(`PMTiles directory is ${placed.length} bytes; one state at zoom ${opts.zoom} must fit in the root.`);
+  }
+  const rootOffset = 127;
+  const metaOffset = rootOffset + placed.length;
+  const metadata = new TextEncoder().encode(opts.metadata);
+  const tileOffset = metaOffset + metadata.length;
+  const header = encodeHeader({
+    rootOffset,
+    rootLength: placed.length,
+    metaOffset,
+    metaLength: metadata.length,
+    tileOffset,
+    tileLength: cursor,
+    addressed: ordered.length,
+    zoom: opts.zoom,
+    minLon: opts.minLon,
+    minLat: opts.minLat,
+    maxLon: opts.maxLon,
+    maxLat: opts.maxLat,
+    clustered: opts.clustered ? 1 : 0,
+  });
+  const out = new Uint8Array(tileOffset + cursor);
+  out.set(header, 0);
+  out.set(placed, rootOffset);
+  out.set(metadata, metaOffset);
+  let at = tileOffset;
+  for (const tile of ordered) {
+    out.set(tile.bytes, at);
+    at += tile.bytes.length;
+  }
+  return out;
+}
+
 export function writeClusterPmtiles(points: ClusterPoint[], outPath: string): number {
   const bytes = buildClusterArchive(points);
   mkdirSync(dirname(outPath), { recursive: true });
@@ -132,6 +184,7 @@ function encodeHeader(h: {
   minLat: number;
   maxLon: number;
   maxLat: number;
+  clustered?: number;
 }): Uint8Array {
   const buf = new Uint8Array(HEADER_BYTES);
   const view = new DataView(buf.buffer);
@@ -148,7 +201,7 @@ function encodeHeader(h: {
   setUint64(view, 72, h.addressed);
   setUint64(view, 80, h.addressed);
   setUint64(view, 88, h.addressed);
-  view.setUint8(96, 1);
+  view.setUint8(96, h.clustered ?? 1);
   view.setUint8(97, 1);
   view.setUint8(98, 1);
   view.setUint8(99, 1);

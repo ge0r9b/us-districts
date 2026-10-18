@@ -34,6 +34,7 @@ try {
           rows: row.rows,
           rejected: row.rejected,
           changed: row.changed,
+          rules: row.rejectRules,
         })),
         companies: summary.companies,
         estimates: summary.estimates.map((row) => ({ ...row, mb: formatMb(row.bytes) })),

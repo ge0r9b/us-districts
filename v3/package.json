@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-    "description": "US Districts v3 alpha.2: Vite + TypeScript + MapLibre shell, read-only /api/v1, PostGIS.",
+    "description": "US Districts v3 alpha.3: Vite + TypeScript + MapLibre shell, read-only /api/v1, PostGIS.",
   "engines": {
-    "node": ">=22"
+    "node": ">=20.19"
   },
   "scripts": {
     "dev": "tsx scripts/dev.ts",
@@ -15,6 +15,7 @@
     "db:migrate": "node --env-file-if-exists=.env --import tsx scripts/migrate.ts",
     "db:seed": "node --env-file-if-exists=.env --import tsx scripts/seed.ts",
     "db:load": "node --env-file-if-exists=.env --import tsx scripts/load.ts",
+    "precincts": "node --env-file-if-exists=.env --import tsx scripts/precincts.ts",
     "check:bundle": "tsx scripts/check-bundle.ts"
   },
   "dependencies": {

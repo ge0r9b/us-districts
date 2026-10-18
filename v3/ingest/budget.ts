@@ -7,10 +7,14 @@ export const EST_RESULT_BYTES = 800;
 
 export const EST_UNIT_BYTES = 280;
 
-/** Point row plus the GiST index. The companies branch is about 193k global locations. */
+/** Point row plus the GiST index. */
 export const EST_LOCATION_BYTES = 520;
 
-export const COMPANY_LOCATION_ROWS = 193_000;
+/**
+ * company_locations.csv.gz at data/companies c6f1cf9: 212,439 rows, 172 brands.
+ * Four sub-brand QIDs are only in sub_entity_id (1,146 rows). Their entity rows are tiny next to the points.
+ */
+export const COMPANY_LOCATION_ROWS = 212_439;
 
 export function fitsBudget(currentBytes: number, addBytes: number): boolean {
   return currentBytes + addBytes <= BUDGET_BYTES;

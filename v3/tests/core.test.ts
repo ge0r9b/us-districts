@@ -4,6 +4,10 @@ import {
   assignAnswerKeys,
   contestKey,
   displaySlots,
+  GEOGRAPHY_LEVELS,
+  geographyLevel,
+  INSTITUTIONS,
+  matchesInstitution,
   methodRank,
   sortRows,
 } from "@usd/core";
@@ -108,5 +112,14 @@ describe("answer keys and sort", () => {
     const row = { votes: [1], share: [0.5], total: 2, name: "Ada" };
     expect(applyFormat(row, "pct")).toEqual({ share: [0.5], name: "Ada" });
     expect(applyFormat(row, "num")).toEqual({ votes: [1], total: 2, name: "Ada" });
+  });
+
+  it("keeps institution and geography filters apart", () => {
+    expect(INSTITUTIONS.map((item) => item.key)).toEqual(["president"]);
+    expect(matchesInstitution("president", "president")).toBe(true);
+    expect(matchesInstitution("sldu", "president")).toBe(false);
+    expect(GEOGRAPHY_LEVELS.map((item) => item.key)).toEqual(["state", "county", "precinct"]);
+    expect(geographyLevel("precinct")).toBe("precinct");
+    expect(geographyLevel("president")).toBeNull();
   });
 });

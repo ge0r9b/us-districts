@@ -8,6 +8,8 @@ info:
     Unit keys are Census GEOIDs. The v2 name is returned as legacy.
     One contest returns a flat row. Several contests return series.
     Company locations are also a clustered PMTiles archive at /tiles/companies.pmtiles.
+    Precinct geometry is /tiles/precinct-2024/{ST}.pmtiles. Precinct results are content-hashed packs.
+    GET /results?unit_type=precinct reads the pack. GET /packs/precinct/{state}/{year}/{office} redirects to it.
 servers:
   - url: /api/v1
 paths:

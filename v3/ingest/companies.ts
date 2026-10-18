@@ -3,6 +3,7 @@ import { existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import type pg from "pg";
 import { insertJsonChunks } from "./batch.ts";
+import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
 import { BUDGET_BYTES, COMPANY_LOCATION_ROWS, EST_LOCATION_BYTES, fitsBudget, formatMb } from "./budget.ts";
 import { writeClusterPmtiles, type ClusterPoint } from "./cluster-tiles.ts";
 import { parseCsv, readFileText } from "./csv.ts";
@@ -18,6 +19,8 @@ export type CompanyLoadReport = {
 
 const ENTITY_ID = /^wikidata:Q[0-9]+$/;
 const COMPANY_REL = "data-v3/institutions/companies/company_locations.csv.gz";
+const BRANDS_REL = "data-v3/institutions/companies/brands.csv";
+const ENTITY_KINDS = new Set(["brand", "organization", "company", "nonprofit", "fund"]);
 
 export function companyEstimateBytes(): number {
   return COMPANY_LOCATION_ROWS * EST_LOCATION_BYTES;
@@ -26,23 +29,17 @@ export function companyEstimateBytes(): number {
 export function ensureCompaniesCache(root: string): string {
   const dest = join(root, "v3/.cache/companies");
   const file = join(dest, COMPANY_REL);
-  if (existsSync(file)) return file;
+  fetchOrigin(root, ["data/companies"]);
+  const head = originCommit(root, "data/companies");
+  if (!needsRefresh(dest, head, [COMPANY_REL, BRANDS_REL])) return file;
   mkdirSync(dest, { recursive: true });
-  try {
-    execFileSync("git", ["fetch", "--no-tags", "origin", "data/companies"], {
-      cwd: root,
-      stdio: "pipe",
-      timeout: 120_000,
-    });
-  } catch {
-    // The ref may already be local.
-  }
-  const tar = execFileSync("git", ["archive", "origin/data/companies", COMPANY_REL], {
+  const tar = execFileSync("git", ["archive", "origin/data/companies", COMPANY_REL, BRANDS_REL], {
     cwd: root,
     encoding: "buffer",
-    maxBuffer: 32 * 1024 * 1024,
+    maxBuffer: 64 * 1024 * 1024,
   });
   execFileSync("tar", ["-x", "-C", dest], { input: tar });
+  stampCommit(dest, head);
   return file;
 }
 
@@ -63,12 +60,43 @@ export type CompanyInput = {
   country_code?: string;
 };
 
-export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promise<{ locations: number; skipped: number }> {
-  const entities = new Map<string, { entity_id: string; name: string; country: string | null; brand_name: string | null }>();
+export type BrandName = { name: string; brand_name: string; kind: string };
+
+export function readBrandCatalog(text: string): Map<string, BrandName> {
+  const parsed = parseCsv(text);
+  const names = new Map<string, BrandName>();
+  for (const row of parsed.rows) {
+    const id = (row.entity_id ?? "").trim();
+    if (!ENTITY_ID.test(id)) continue;
+    const kind = ENTITY_KINDS.has(row.kind ?? "") ? row.kind! : "brand";
+    const name = (row.name ?? "").trim() || (row.brand_name ?? "").trim() || id;
+    names.set(id, { name, brand_name: (row.brand_name ?? "").trim() || name, kind });
+  }
+  return names;
+}
+
+export async function loadCompanyRows(
+  db: pg.Pool,
+  rows: CompanyInput[],
+  names: Map<string, BrandName> = new Map(),
+): Promise<{ locations: number; skipped: number; relations: number }> {
+  const entities = new Map<string, { entity_id: string; kind: string; name: string; country: string | null; brand_name: string | null }>();
+  const relations = new Map<string, { parent_id: string; child_id: string }>();
   const locations: Record<string, unknown>[] = [];
   const sources = new Map<string, string | null>();
   let skipped = 0;
   const seen = new Set<string>();
+  const remember = (entityId: string, fallback: string, country: string | null) => {
+    if (entities.has(entityId)) return;
+    const known = names.get(entityId);
+    entities.set(entityId, {
+      entity_id: entityId,
+      kind: known?.kind ?? "brand",
+      name: known?.name ?? fallback,
+      country,
+      brand_name: known?.brand_name ?? fallback,
+    });
+  };
   for (const row of rows) {
     const locationId = row.location_id.trim();
     const entityId = row.entity_id.trim();
@@ -87,8 +115,12 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
     seen.add(locationId);
     const country = countryCode(row.country_code);
     const brand = row.brand_name?.trim() || row.name?.trim() || entityId;
-    if (!entities.has(entityId)) {
-      entities.set(entityId, { entity_id: entityId, name: brand, country: country?.toLowerCase() ?? null, brand_name: brand });
+    remember(entityId, brand, country?.toLowerCase() ?? null);
+    const subRaw = row.sub_entity_id?.trim() || "";
+    const subId = ENTITY_ID.test(subRaw) ? subRaw : "";
+    if (subId) {
+      remember(subId, names.get(subId)?.name ?? subId, null);
+      if (subId !== entityId) relations.set(`${entityId}|${subId}`, { parent_id: entityId, child_id: subId });
     }
     const sourceId = row.source_id?.trim() || "companies-bot";
     if (!sources.has(sourceId)) sources.set(sourceId, timestamp(row.retrieved_at));
@@ -96,7 +128,7 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
     locations.push({
       location_key: locationId,
       entity_id: entityId,
-      sub_entity_id: row.sub_entity_id?.trim() || null,
+      sub_entity_id: subId,
       role,
       name: row.name?.trim() || brand,
       address: row.address?.trim() || null,
@@ -109,7 +141,7 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
       retrieved_at: timestamp(row.retrieved_at),
     });
   }
-  if (locations.length === 0) return { locations: 0, skipped };
+  if (locations.length === 0) return { locations: 0, skipped, relations: 0 };
   const client = await db.connect();
   try {
     await client.query("begin");
@@ -124,11 +156,32 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
     await insertJsonChunks(
       client,
       `insert into entity (entity_id, kind, name, origin, country, brand_name, source_record_id)
-       select entity_id, 'brand', name, 'companies_bot', nullif(country, ''), brand_name, entity_id
-       from jsonb_to_recordset($1::jsonb) as x(entity_id text, name text, country text, brand_name text)
-       on conflict (entity_id) do nothing`,
+       select entity_id, kind, name, 'companies_bot', nullif(country, ''), brand_name, entity_id
+       from jsonb_to_recordset($1::jsonb) as x(entity_id text, kind text, name text, country text, brand_name text)
+       on conflict (entity_id) do update
+         set name = excluded.name, brand_name = excluded.brand_name
+         where entity.name = entity.entity_id`,
       [...entities.values()],
     );
+    if (relations.size > 0) {
+      if (!sources.has("companies-bot")) sources.set("companies-bot", null);
+      await insertJsonChunks(
+        client,
+        `insert into source (source_id, title, retrieved_at)
+         select source_id, 'companies', retrieved_at
+         from jsonb_to_recordset($1::jsonb) as x(source_id text, retrieved_at timestamptz)
+         on conflict (source_id) do nothing`,
+        [...sources.entries()].map(([source_id, retrieved_at]) => ({ source_id, retrieved_at })),
+      );
+      await insertJsonChunks(
+        client,
+        `insert into entity_relation (parent_id, child_id, relation, source_id, source_record_id)
+         select parent_id, child_id, 'brand_of', 'companies-bot', parent_id || '|' || child_id
+         from jsonb_to_recordset($1::jsonb) as x(parent_id text, child_id text)
+         on conflict (parent_id, child_id, relation, valid_from) do nothing`,
+        [...relations.values()],
+      );
+    }
     const written = await insertJsonChunks(
       client,
       `insert into entity_location (
@@ -147,6 +200,7 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
        )
        on conflict (location_key) do update
          set country_code = excluded.country_code, geom = excluded.geom, name = excluded.name,
+             sub_entity_id = excluded.sub_entity_id,
              address = excluded.address, source_record_id = excluded.source_record_id, geoid = excluded.geoid`,
       locations,
     );
@@ -160,7 +214,7 @@ export async function loadCompanyRows(db: pg.Pool, rows: CompanyInput[]): Promis
   } finally {
     client.release();
   }
-  return { locations: locations.length, skipped };
+  return { locations: locations.length, skipped, relations: relations.size };
 }
 
 export async function loadCompanies(
@@ -170,6 +224,8 @@ export async function loadCompanies(
   const estimateBytes = companyEstimateBytes();
   const file = ensureCompaniesCache(opts.root);
   const { text } = readFileText(file);
+  const brandsPath = join(opts.root, "v3/.cache/companies", BRANDS_REL);
+  const names = existsSync(brandsPath) ? readBrandCatalog(readFileText(brandsPath).text) : new Map();
   const parsed = parseCsv(text);
   const points: ClusterPoint[] = [];
   const inputs: CompanyInput[] = parsed.rows.map((row) => {
@@ -205,7 +261,7 @@ export async function loadCompanies(
       gap: `companies: estimated ${formatMb(estimateBytes)} on top of ${formatMb(opts.currentBytes)} would pass ${formatMb(BUDGET_BYTES)}. Rows were not inserted. Tiles were written. Re-run with: npm run db:load -- --include=companies --allow-over-budget=companies`,
     };
   }
-  const loaded = await loadCompanyRows(db, inputs);
+  const loaded = await loadCompanyRows(db, inputs, names);
   return {
     status: "applied",
     rows: parsed.rows.length,

@@ -75,6 +75,31 @@ export function naturalKey(row: RawResult): string {
   ].join("\u001f");
 }
 
+export function countRejectRules(rejects: Reject[]): Record<string, number> {
+  const rules: Record<string, number> = {};
+  for (const reject of rejects) rules[reject.rule] = (rules[reject.rule] ?? 0) + 1;
+  return rules;
+}
+
+/** Up to three negative vote cells, for the load report. The value is the votes column. */
+export function negativeVoteExamples(rejects: Reject[], limit = 3): { lineNo: number; detail: string }[] {
+  return rejects
+    .filter((reject) => reject.rule === "R03_votes")
+    .slice(0, limit)
+    .map((reject) => ({ lineNo: reject.lineNo, detail: reject.detail }));
+}
+
+export function formatRejectRules(
+  rules: Record<string, number>,
+  examples: { lineNo: number; detail: string }[] = [],
+): string {
+  const parts = Object.keys(rules)
+    .sort()
+    .map((rule) => `${rule} ${rules[rule]}`);
+  const sample = examples.map((example) => `line ${example.lineNo} votes=${example.detail}`);
+  return [parts.join(", "), sample.length > 0 ? `examples: ${sample.join("; ")}` : ""].filter(Boolean).join("; ");
+}
+
 export function markDuplicates(rows: RawResult[]): Reject[] {
   const seen = new Map<string, number[]>();
   for (const row of rows) {

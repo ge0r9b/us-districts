@@ -19,6 +19,8 @@ const expected = [
   "007_aggregates.sql",
   "008_ingest.sql",
   "009_load_columns.sql",
+  "010_precinct_rollup.sql",
+  "011_inst_entities.sql",
 ];
 
 describe("migration files", () => {
@@ -27,7 +29,7 @@ describe("migration files", () => {
   const seed = readFileSync(join(root, "db", "seed.sql"), "utf8");
   const schema = readFileSync(schemaPath, "utf8");
 
-  it("lists the nine ordered files and no connection string", () => {
+  it("lists the ordered files and no connection string", () => {
     expect(names).toEqual(expected);
     expect(sql + seed).not.toMatch(/postgres(ql)?:\/\//);
     expect(sql).toContain("create extension if not exists postgis");
