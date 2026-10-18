@@ -562,7 +562,7 @@ Made by `tools/coverage_audit.py` (read-only on data files; run `python3 tools/c
 - **Per cell (layer x year x state):** feature count vs TIGER (exact for states/counties/CD/SLD, 2 % for towns/schools), features without results (gray, listed by name), empty geometries, duplicate or missing names, broken references (election rows without a shape, shapes without results, precinct county names not in the county layer, `v2/data/x20` keys with no 2024 precinct, per-state file vs national file feature counts), precinct vote sum vs official state total (98-102 %) and per county (90-110 %).
 - **Status:** P present; S suspect (any check fails); M missing; `-` not applicable. Boundaries are 2024 for both years (app rule), so the 2020 column differs only in results.
 
-### Matrix (status 2020/2024; P present, S suspect, M missing, - not applicable)
+### Matrix (status 2020/2024; P present, S suspect, M missing, - not applicable; refreshed after the Oklahoma, Iowa and GEOID commits)
 | State | states | counties | towns | precincts | ushouse | senate | statehouse | schools | dcwards |
 |---|---|---|---|---|---|---|---|---|---|
 | AL | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/S | -/- |
@@ -592,7 +592,7 @@ Made by `tools/coverage_audit.py` (read-only on data files; run `python3 tools/c
 | MS | P/P | P/P | -/- | P/S | P/P | P/P | P/S | P/S | -/- |
 | MO | P/P | P/P | P/P | P/S | P/P | P/P | P/P | S/S | -/- |
 | MT | P/P | P/P | -/- | P/S | P/P | P/P | P/P | S/S | -/- |
-| NE | P/P | P/P | S/S | P/P | P/P | P/P | P/S | P/P | -/- |
+| NE | P/P | P/P | S/S | P/P | P/P | P/P | P/P | P/P | -/- |
 | NV | P/P | P/P | -/- | P/P | P/P | P/P | P/P | P/P | -/- |
 | NH | P/P | P/P | S/S | P/P | P/P | P/P | P/P | P/P | -/- |
 | NJ | P/P | P/P | P/P | P/P | P/P | P/P | P/P | S/S | -/- |
@@ -623,8 +623,8 @@ Made by `tools/coverage_audit.py` (read-only on data files; run `python3 tools/c
 | states | 2024 | 51 | 51 | 51 | 51 | 0 | 0 |
 | counties | 2020 | 3144 | 3144 | 3143 | 51 | 0 | 0 |
 | counties | 2024 | 3144 | 3144 | 3143 | 51 | 0 | 0 |
-| towns | 2020 | 20894 | 22450 | 20894 | 15 | 6 | 0 |
-| towns | 2024 | 20894 | 22450 | 20894 | 15 | 6 | 0 |
+| towns | 2020 | 22319 | 22450 | 22319 | 15 | 6 | 0 |
+| towns | 2024 | 22319 | 22450 | 22319 | 15 | 6 | 0 |
 | precincts | 2020 | 163570 |  | 163051 | 51 | 0 | 0 |
 | precincts | 2024 | 173276 |  | 166529 | 31 | 20 | 0 |
 | ushouse | 2020 | 436 | 436 | 436 | 51 | 0 | 0 |
@@ -632,9 +632,9 @@ Made by `tools/coverage_audit.py` (read-only on data files; run `python3 tools/c
 | senate | 2020 | 1950 | 1950 | 1950 | 51 | 0 | 0 |
 | senate | 2024 | 1950 | 1950 | 1950 | 51 | 0 | 0 |
 | statehouse | 2020 | 4890 | 4890 | 4890 | 51 | 0 | 0 |
-| statehouse | 2024 | 4890 | 4890 | 4885 | 45 | 6 | 0 |
-| schools | 2020 | 13209 | 13305 | 13183 | 37 | 14 | 0 |
-| schools | 2024 | 13209 | 13305 | 13125 | 30 | 21 | 0 |
+| statehouse | 2024 | 4890 | 4890 | 4885 | 46 | 5 | 0 |
+| schools | 2020 | 13305 | 13305 | 13279 | 37 | 14 | 0 |
+| schools | 2024 | 13305 | 13305 | 13221 | 30 | 21 | 0 |
 | dcwards | 2020 | 8 | 8 | 8 | 1 | 0 | 0 |
 | dcwards | 2024 | 8 | 8 | 8 | 1 | 0 | 0 |
 
@@ -657,8 +657,8 @@ Town rows carry no results of their own (values come from precincts at runtime),
 Not yet checked against official state sources beyond what the inventory already records (county totals = certified).
 
 ### Prioritized gaps (with reasons and likely source)
-1. **Oklahoma school districts: 96 missing boundaries.** Layer has 413 = TIGER 2024 unified districts; the 96 TIGER 2024 elementary districts (ELSD) are absent in both years. Source: Census TIGER 2024 ELSD (+ results from OK State Election Board precinct returns via MEDSL, CC0).
-2. **Iowa townships missing.** 60 town rows (cities only) vs 1,660 TIGER county subdivisions (1,598 townships, FUNCSTAT G). Town drill-down in Iowa has no townships. Source: TIGER 2024 COUSUB.
+1. ~~**Oklahoma school districts: 96 missing boundaries.**~~ Done, see 'Oklahoma elementary school districts added' below. Layer has 413 = TIGER 2024 unified districts; the 96 TIGER 2024 elementary districts (ELSD) are absent in both years. Source: Census TIGER 2024 ELSD (+ results from OK State Election Board precinct returns via MEDSL, CC0).
+2. ~~**Iowa townships missing.**~~ Done (1,425 shown, 173 hidden by the app's name de-duplication), see 'Iowa townships added' below. 60 town rows (cities only) vs 1,660 TIGER county subdivisions (1,598 townships, FUNCSTAT G). Town drill-down in Iowa has no townships. Source: TIGER 2024 COUSUB.
 3. **South Dakota 2024 precincts: 81.6 % of official votes;** 8 counties have no precincts (Brookings, Brown, Haakon, Hughes, Lawrence, Potter, Sully, Yankton: vote centers or no published shapes), Pennington outside 90-110 %; causes 26 gray 2024 school districts. Partly structural (vote centers have no geography). Source: SD SOS official results; county GIS for Lawrence.
 4. **2024 state house gray (5): AL 004, LA 057, MS 115, VA 089, WY 054.** Precinct polygons cover 39-80 % of the districts (AL Limestone/Morgan, LA St. John the Baptist, MS Harrison, VA Suffolk/Chesapeake, WY Fremont 05-1 split). Source: official 2024 precinct shapes with district attributes from state/county GIS.
 5. **Oregon 2024 precincts: 97.0 % of official;** 5 counties outside 90-110 % (Columbia, Gilliam, Jefferson, Lane, Sherman); 2 gray schools (Pleasant Hill 1, Scappoose 1J). Source: county clerk precinct results + county precinct GIS (OR SOS).
@@ -672,7 +672,7 @@ Not yet checked against official state sources beyond what the inventory already
 
 Info: 2024 California precinct file has 6,154 zero-vote rows of 24,202 (Statewide Database SR precincts), Texas 364, Washington 206; 2020 Nevada 152, Texas 157, Washington 108, Maryland 41, Kentucky 20. Not counted as gaps.
 
-### All suspect cells
+### All suspect cells (refreshed)
 | State | Layer | Year | Features | TIGER | Reasons |
 |---|---|---|---|---|---|
 | Alabama | precincts | 2024 | 1911 |  | 2 counties outside 90-110% (Dem+Rep) |
@@ -691,8 +691,8 @@ Info: 2024 California precinct file has 6,154 zero-vote rows of 24,202 (Statewid
 | Illinois | precincts | 2024 | 8498 |  | 1 counties outside 90-110% (Dem+Rep) |
 | Illinois | schools | 2020 | 862 | 862 | 2 duplicate names |
 | Illinois | schools | 2024 | 862 | 862 | 2 duplicate names |
-| Iowa | towns | 2020 | 60 | 1660 | count 60 vs TIGER 1660 |
-| Iowa | towns | 2024 | 60 | 1660 | count 60 vs TIGER 1660 |
+| Iowa | towns | 2020 | 1485 | 1660 | count 1485 vs TIGER 1660 |
+| Iowa | towns | 2024 | 1485 | 1660 | count 1485 vs TIGER 1660 |
 | Kansas | towns | 2020 | 1441 | 1391 | count 1441 vs TIGER 1391 |
 | Kansas | towns | 2024 | 1441 | 1391 | count 1441 vs TIGER 1391 |
 | Kansas | precincts | 2024 | 3665 |  | 2 counties outside 90-110% (Dem+Rep) |
@@ -715,7 +715,6 @@ Info: 2024 California precinct file has 6,154 zero-vote rows of 24,202 (Statewid
 | Montana | schools | 2024 | 398 | 398 | gray 2/398 (Lambert Elementary School District, Lambert High School District); 2 duplicate names |
 | Nebraska | towns | 2020 | 410 | 396 | count 410 vs TIGER 396 |
 | Nebraska | towns | 2024 | 410 | 396 | count 410 vs TIGER 396 |
-| Nebraska | statehouse | 2024 | 49 | 49 | data/Nebraska.js statehouse has 0 features vs 49 in v2 national file |
 | New Hampshire | towns | 2020 | 241 | 234 | count 241 vs TIGER 234 |
 | New Hampshire | towns | 2024 | 241 | 234 | count 241 vs TIGER 234 |
 | New Jersey | schools | 2020 | 557 | 557 | gray 1/557 (Ocean Township School District); 27 duplicate names |
@@ -728,8 +727,8 @@ Info: 2024 California precinct file has 6,154 zero-vote rows of 24,202 (Statewid
 | Ohio | precincts | 2024 | 8786 |  | 3 counties outside 90-110% (Dem+Rep) |
 | Ohio | schools | 2020 | 611 | 611 | 49 duplicate names |
 | Ohio | schools | 2024 | 611 | 611 | gray 2/611 (Shelby City School District, Carey Exempted Village School District); 49 duplicate names |
-| Oklahoma | schools | 2020 | 413 | 509 | count 413 vs TIGER 509; 2 duplicate names |
-| Oklahoma | schools | 2024 | 413 | 509 | count 413 vs TIGER 509; 2 duplicate names |
+| Oklahoma | schools | 2020 | 509 | 509 | 2 duplicate names |
+| Oklahoma | schools | 2024 | 509 | 509 | 2 duplicate names |
 | Oregon | precincts | 2024 | 1244 |  | votes 97.0% of official; 6 counties outside 90-110% (Dem+Rep) |
 | Oregon | schools | 2024 | 197 | 197 | gray 2/197 (Pleasant Hill School District 1, Scappoose School District 1J) |
 | South Dakota | precincts | 2024 | 623 |  | votes 81.6% of official; 8 counties with no precincts; 1 counties outside 90-110% (Dem+Rep) |
