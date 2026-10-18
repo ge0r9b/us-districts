@@ -1,0 +1,89 @@
+{
+ "rule": "existing area-weighted ≈ value whose total exceeds the district's whole Census 2020 population (P.L. 94-171 block POP20 inside TIGER 2024 UNSD) and that no precinct sum confirms within 3 %: grayed",
+ "changes": [
+  {
+   "name": "Aleutian Region School District",
+   "year": "2024",
+   "before": [
+    328,
+    395,
+    735
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (498); grayed",
+   "district_pop2020": 498
+  },
+  {
+   "name": "Aleutian Region School District",
+   "year": "2020",
+   "before": [
+    539,
+    532,
+    1098
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (498); grayed",
+   "district_pop2020": 498
+  },
+  {
+   "name": "Southeast Island School District",
+   "year": "2024",
+   "before": [
+    1008,
+    1296,
+    2421
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (1512); grayed",
+   "district_pop2020": 1512
+  },
+  {
+   "name": "Southeast Island School District",
+   "year": "2020",
+   "before": [
+    727,
+    1002,
+    1794
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (1512); grayed",
+   "district_pop2020": 1512
+  },
+  {
+   "name": "Chatham School District",
+   "year": "2024",
+   "before": [
+    842,
+    539,
+    1450
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (1336); grayed",
+   "district_pop2020": 1336
+  },
+  {
+   "name": "Chatham School District",
+   "year": "2020",
+   "before": [
+    1699,
+    792,
+    2566
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (1336); grayed",
+   "district_pop2020": 1336
+  },
+  {
+   "name": "Chugach School District",
+   "year": "2020",
+   "before": [
+    337,
+    571,
+    955
+   ],
+   "after": null,
+   "why": "≈ value has more votes than the district's whole 2020 population (508); grayed",
+   "district_pop2020": 508
+  }
+ ]
+}
