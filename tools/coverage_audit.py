@@ -187,7 +187,7 @@ def main():
             if ly in geo and st != "District of Columbia":
                 n_nat = C(st, ly, "2024")["n"]
                 if len(geo[ly]) != n_nat:
-                    C(st, ly, "2024")["notes"].append("data/%s %s has %d features vs %d in v2 national file" % (fn, ly, len(geo[ly]), n_nat))
+                    cc = C(st, ly, "2024"); cc["info"] = ((cc.get("info") or "") + "; v1 data/%s %s has %d features vs %d in the v2 file" % (fn, ly, len(geo[ly]), n_nat)).strip("; ")
         for yr in YEARS:
             c = C(st, "precincts", yr)
             if st == "District of Columbia": pf = os.path.join(V, "precincts%s-DC.js" % yr)
