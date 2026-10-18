@@ -815,6 +815,7 @@ _cons = {CG24[c]['cog_pid6']: f'county:{c}' for c in UNLINKED_CONS if CG24[c]['c
 S_TCEQ = 'TCEQ Water Districts Database (Governments bot source tceq_wdd)'
 import inst_commons
 CM, CM_SHA, CM_AT = inst_commons.info(A.commons_cache)
+CM_AT = CM_AT + ' (v2: ' + open(os.path.join(A.commons_cache, 'v2_retrieved_at.txt')).read().strip() + ')'
 S_COMMONS = 'Wikimedia Commons API cache (tools/inst_commons.py)'
 SDGAPS, SDRELS, SDSTAT, _sdmint = [], [], C.Counter(), {}
 for sid_, r in inst_govfeed.special_districts(GOVF):
@@ -1065,24 +1066,48 @@ for i in GIMG + FRES['imgs']:
 # never invented. A free row still missing license or attribution -> public no + gap image_free_field_missing. Free rows
 # with a Copyrighted-free-use / Attribution licence stay public only with an attribution (same rule).
 CMSTAT = C.Counter()
+CMPG = inst_commons.pages(A.commons_cache)
+PD_TXT = 'Public domain, via Wikimedia Commons'
+def _is_pd(rec):   # a Commons public-domain licence (LicenseShortName or License), not merely the absence of an author
+    ls, li = rec['LicenseShortName'].lower(), rec['License'].lower()
+    return ls == 'public domain' or ls.startswith(('public domain', 'pd-', 'pd ')) or li == 'pd' or li.startswith('pd-')
+def _page_reason(t):
+    pg = CMPG.get(t)
+    if not pg: return ''
+    lic_t = [x for x in pg['templates'] if re.match(r'Template:(PD|Cc-|CC-|GFDL|FAL|Copyrighted free use|Attribution|OGL|Licen)', x)]
+    if lic_t: return ''
+    r_ = f"Commons file page (revid {pg['revid']}) has no licence template: only " + ', '.join('{{' + x[len('Template:'):] + '}}' for x in pg['templates'] if x in ('Template:Insignia', 'Template:Non-copyright restriction'))
+    r_ += '; categories: ' + ', '.join(c_[len('Category:'):] for c_ in pg['categories'] if 'license' in c_.lower() or 'deletion' in c_.lower())
+    return r_ + '; licence not determined, not guessed'
 for i in GIMG + FRES['imgs']:
     if i['fair_use'] == 'yes': continue
+    unk = inst_commons.is_unknown(i['attribution'])
+    if unk: CMSTAT['unknown_attribution_rows'] += 1; i['attribution'] = ''
     need = [c for c in ('source_url', 'attribution', 'license') if not i[c]]
     if not need: continue
-    rec = CM.get(inst_commons.norm(i['file'])) if i['file'] else None
+    t_ = inst_commons.norm(i['file']) if i['file'] else ''
+    rec = CM.get(t_) if t_ else None
+    ok = rec and not rec['missing']
     for c in need:
         v, how = '', ''
-        if rec and not rec['missing']:
+        if ok:
             if c == 'source_url': v = rec['descriptionurl']
             elif c == 'license': v = rec['LicenseShortName']
-            else: v, how = (rec['Artist'], 'commons_artist') if rec['Artist'] else (rec['Credit'], 'commons_credit')
+            else:
+                art = '' if inst_commons.is_unknown(rec['Artist']) else rec['Artist']
+                if unk and _is_pd(rec): v, how = PD_TXT, 'commons_license'   # Unknown artist + PD licence -> rule 1
+                elif art: v, how = art, 'commons_artist'
+                elif rec['Credit'] and not inst_commons.is_unknown(rec['Credit']): v, how = rec['Credit'], 'commons_credit'
+                elif _is_pd(rec): v, how = PD_TXT, 'commons_license'
         if v:
-            i[c] = v; i['_cm'] = True; CMSTAT[f'{c}|filled'] += 1
+            i[c] = v; i['_cm'] = True; CMSTAT[f'{c}|filled' + (f'|{how}' if how else '') + ('|was_unknown' if unk and c == 'attribution' else '')] += 1
             if how: i['attribution_source'] = how
-        else: CMSTAT[f'{c}|still_missing'] += 1
+        else: CMSTAT[f'{c}|still_missing' + ('|was_unknown' if unk and c == 'attribution' else '')] += 1
     miss = [c for c in ('license', 'attribution', 'source_url') if not i[c]]
     if miss:
-        why = 'file not in the Commons cache' if not rec else ('Commons has no such file page' if rec['missing'] else 'Commons extmetadata has no ' + '/'.join({'license': 'LicenseShortName', 'attribution': 'Artist or Credit', 'source_url': 'descriptionurl'}[c] for c in miss))
+        pr_ = _page_reason(t_) if 'license' in miss else ''
+        why = pr_ or ('file not in the Commons cache' if not rec else ('Commons has no such file page' if rec['missing'] else 'Commons extmetadata has no ' + '/'.join({'license': 'LicenseShortName', 'attribution': 'Artist or Credit (and no PD licence)', 'source_url': 'descriptionurl'}[c] for c in miss)))
+        if unk and 'attribution' in miss: why += '; feed/Commons author is only "Unknown"'
         priv = any(c in miss for c in ('license', 'attribution'))
         GAPS.append({'gap': 'image_free_field_missing', 'key': i['entity_id'] or i['feed_id'], 'detail': f"{i['role']} {i['file']}: missing {','.join(miss)} ({why})" + ('; set public=no' if priv else '; stays public (licence and attribution present)')})
         if priv: i['_private'] = True; CMSTAT['switched_to_private'] += 1
@@ -1153,6 +1178,10 @@ for r_ in FRES['rels']: r_['source_id'] = IDS_FOR([S_GF[r_['_file']]])
 _tq = [k for k in GOVSRC if k == 'tceq_wdd']; assert _tq
 for r_ in SDRELS: r_['source_id'] = GV_ID if r_['_k'] == 'parent' else ';'.join([GV_ID] + _tq)
 RELS = GRELS + FRES['rels'] + SDRELS + [{'entity_id': e['entity_id'], 'relation': 'parent', 'related_entity_id': e['parent_id'], 'source_id': _bsid} for e in rows if e['kind'] == 'court']
+# Full Stack (Oct 18): every current relation is stated by its cited source -> method sourced (parent, consolidated_with, in_county)
+for r_ in RELS:
+    if not r_.get('method'): r_['method'] = 'sourced'
+    assert r_['method'] in ('sourced', 'overlay', 'point_in_polygon', 'manual'), r_
 with open(os.path.join(OUT, 'entity_relations.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(RELS, key=lambda r: (r['entity_id'], r['relation'])))
 for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)

@@ -117,7 +117,7 @@ Other countries' first-level ISO 3166-2 subdivisions, from the Governments bot f
 (minted courts, foreign territories / subdivisions, special districts), `consolidated_with`, `in_county` (special district →
 its county). `method` (how the link was made) ∈ `sourced` (a source states it) | `overlay` (area overlap of boundaries) |
 `point_in_polygon` (a point inside a boundary; an estimate) | `manual`; `note` holds the detail (e.g.
-`tceq_wdd_primary_county`). Today `method` is set on the `in_county` rows (all `sourced`) and empty on the older relations.
+`tceq_wdd_primary_county`). Every current row is `sourced` (parent, consolidated_with and in_county all come from a cited source); the builder rejects any other value.
 
 ## Kind `court` (approved by Full Stack, Oct 18; applied)
 

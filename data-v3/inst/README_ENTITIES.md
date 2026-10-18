@@ -111,6 +111,14 @@ sources.csv row with the sha256 of SHA256SUMS): `source_url` = the Commons file 
 Credit (`attribution_source` commons_artist / commons_credit), `license` = LicenseShortName; never invented. A free row still
 missing licence or attribution is set `public` no with an `image_free_field_missing` gap (reason in `detail`); one missing only
 `source_url` keeps `public` and gets the gap. Copyrighted-free-use / attribution-only licences stay public with an attribution.
+Second ruling (Full Stack, Oct 18): an attribution that is only "Unknown" ("Unknown author", "Author unknown", …) counts as
+missing. A free row with no usable Artist/Credit whose Commons licence is public domain (LicenseShortName / License, from a
+second cached query that also asks for License, UsageTerms, Copyrighted) gets `attribution` "Public domain, via Wikimedia
+Commons", `attribution_source` commons_license, and stays public; an Unknown artist with a PD licence gets the same. The two
+rows with no Commons licence (province:ca-qc arms, subdivision:jp-34 flag) were checked on their file pages (wikitext,
+templates, categories, cached as v2_page_*.json): no licence template, only {{Insignia}} (a non-copyright restriction) and the
+category "Files with no machine-readable license" (Quebec also has an open deletion request) → licence not determined, kept
+private with that reason.
 Consolidated city-counties kept as two entities (CoG code not a TIGER place: Athens-Clarke, Greeley, Louisville-Jefferson,
 Butte-Silver Bow, Nashville-Davidson): the CoG id maps to the **county** entity (`status` mapped, `note` consolidated), the place
 GEOID stays on the city entity, and `entity_relations.csv` (`entity_id, relation, related_entity_id, method, note, source_id`) has one
@@ -293,9 +301,10 @@ source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`; fore
 
 Counts in the current build (58,219 entities: nation 196, state 51, territory 52, province 10, chamber 101, dc_council 1,
 court 37, subdivision 3,480, county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary
-1,952, school_secondary 481, special_district 305; 855 gap rows; 97,420 feed-map rows (feed_only 40,630, mapped 55,816, unmapped 974); 9,846 images
-(no|flag 97, no|logo 141, no|seal 4,480, yes|flag 1,686, yes|seal 3,442 as public|role; 3,332 icons; Commons backfill:
-source_url 4,726 filled, 144 free rows private for a missing attribution (142) or licence (2)); 4,153 relations (parent 3,857, in_county 291, consolidated_with 5); 198 body_entity rows, 0 body_key
+1,952, school_secondary 481, special_district 305; 742 gap rows; 97,420 feed-map rows (feed_only 40,630, mapped 55,816, unmapped 974); 9,846 images
+(no|flag 19, no|logo 141, no|seal 4,445, yes|flag 1,764, yes|seal 3,477 as public|role; 3,369 icons; Commons backfill:
+source_url 4,726 filled; attribution: 381 "Public domain, via Wikimedia Commons" (113 empty + 268 Unknown), 18 Commons Credit
+for an Unknown author; 31 free rows private: 29 no attribution under a non-PD licence, 2 no determinable licence); 4,153 relations (parent 3,857, in_county 291, consolidated_with 5); 198 body_entity rows, 0 body_key
 gaps; wikidata on 42,249 entities; valid_from on 321 entities (305 special districts:
 TCEQ creation date; 16 new units: incorporation dates; valid_from_source on all 321); inception on 173 (day 139, year 34), all foreign layer; constituent_qid on 2). `flags` tokens, grouped by the text before the first `:`:
 `outside_v2_scope:no_unit_no_boundary_set` 4,037; `gov_status_unknown:outside_cog2022_scope` 3,536; `tiger_funcstat:A` 3,031;
@@ -311,7 +320,7 @@ TCEQ creation date; 16 new units: incorporation dates; valid_from_source on all 
 `gov_status_unknown:consolidated_government_not_linked_to_tiger_code`,
 `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`, `multiple_cog_units`, `tiger_funcstat:G`,
 `tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `un_observer(governments_bot)`, `wikidata_p297_item_is_home_part`.
-Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `image_free_field_missing` 144; `excluded_not_defined` 49; `image_entity_unmapped` 44;
+Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `image_free_field_missing` 31; `excluded_not_defined` 49; `image_entity_unmapped` 44;
 `officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `not_in_seating_charts` 15; `special_district_county_unknown` 14; `govbot_new_unit_not_in_registry` 13;
 `nation_not_un_member` 2; `not_in_source_list` 2;
 `same_code_place_cousub_overlap_unmeasured` 2; one each of `consolidated_county_cog_code_not_in_tiger`,

@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "4215fabde19c2e8d56f57ad7ae624f02db20ee65",
+  "repo_head": "29390cad3135f021ee8d3ab163f3997ed16d71dc",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -202,7 +202,7 @@
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
   "cog2022_unit_not_linked_by_code": 57,
-  "image_free_field_missing": 144
+  "image_free_field_missing": 31
  },
  "school_gov_status_fill": {
   "no_bot_row": 375,
@@ -253,18 +253,18 @@
    "wikidata_qid_via_home_part_rule|nation:dk"
   ],
   "images_icons": {
-   "icons": 3332,
+   "icons": 3369,
    "icons_by_kind_role": {
-    "county|seal": 319,
-    "municipality|seal": 883,
-    "nation|flag": 190,
+    "county|seal": 323,
+    "municipality|seal": 886,
+    "nation|flag": 195,
     "province|seal": 9,
-    "state|seal": 50,
-    "subdivision|seal": 1506,
+    "state|seal": 51,
+    "subdivision|seal": 1528,
     "territory|seal": 42,
-    "township|seal": 333
+    "township|seal": 335
    },
-   "entities_with_images_no_icon": 4739
+   "entities_with_images_no_icon": 4702
   }
  },
  "special_districts": {
@@ -291,11 +291,15 @@
   "issuing_body_name:registry_entity": 37
  },
  "commons_backfill": {
-  "attribution|still_missing": 142,
+  "attribution|filled|commons_credit|was_unknown": 18,
+  "attribution|filled|commons_license": 113,
+  "attribution|filled|commons_license|was_unknown": 268,
+  "attribution|still_missing": 29,
   "license|still_missing": 2,
   "source_url|filled": 4726,
-  "switched_to_private": 144,
-  "cache_sha256": "08fb37990ab8e1cd4b759a1553ddb211805c8dc1d75f2fdcb505043e3cf5ab3e"
+  "switched_to_private": 31,
+  "unknown_attribution_rows": 286,
+  "cache_sha256": "1889e2b28290c60d5ef57380fad59b06cdb97f936c336a9e424f96f56902f8c6"
  },
  "images_fair_use_missing_field": {
   "license": [],
@@ -304,7 +308,7 @@
  },
  "images_missing_field_all_rows": {
   "license": 2,
-  "attribution": 142,
+  "attribution": 29,
   "source_url": 0
  },
  "feed_map_by_status": {
@@ -313,11 +317,11 @@
   "unmapped": 974
  },
  "images_by_public_role": {
-  "no|flag": 97,
+  "no|flag": 19,
   "no|logo": 141,
-  "no|seal": 4480,
-  "yes|flag": 1686,
-  "yes|seal": 3442
+  "no|seal": 4445,
+  "yes|flag": 1764,
+  "yes|seal": 3477
  },
  "governments_feed": {
   "ceased_applied": 24,
