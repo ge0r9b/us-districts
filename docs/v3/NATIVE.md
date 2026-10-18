@@ -15,7 +15,8 @@ What this means for every v3 feature:
    Examples of shared-core code: result math (shares, deltas, d/r slots), filters, sort and list rules, the time-slider state, formatting, and URL state ↔ app state. The native apps call the same API, and they either run the shared core (JavaScriptCore) or port it against its test fixtures.
 2. **No browser-only logic.** The UI layer only renders and handles input. A rule that lives only in a component, a CSS selector or a DOM handler is a bug against this rule.
 3. **UI rules are design tokens.** Colours (party, margin ramps), sizes (the 30 px thumbnails, badges), spacing, type scale, z-order and animation timings live in a token file (JSON). That file is exported to CSS variables for the web, and to Swift for native.
-4. **The map uses PMTiles plus a style that MapLibre Native can load.** Only style-spec features that MapLibre Native supports are used: no custom JS layers and no DOM overlays carrying data. Feature-state colouring is driven by the same core and API data.
+4. **Icons (flags, seals, logos) render as they are.** Inside the fixed 30 px thumbnail, an icon uses `object-fit: contain` on a transparent background (native: `.scaledToFit()` / `contentMode = .scaleAspectFit`, with a clear background). Non-rectangular flags such as Nepal's display in their true shape, with no fallback, cropping or substitute box. The thumbnail size and transparency are design tokens.
+5. **The map uses PMTiles plus a style that MapLibre Native can load.** Only style-spec features that MapLibre Native supports are used: no custom JS layers and no DOM overlays carrying data. Feature-state colouring is driven by the same core and API data.
 
 ### PR checklist item
 

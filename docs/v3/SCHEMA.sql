@@ -313,6 +313,7 @@ create table entity (
                   'nation','territory','province','state','county','municipality','township',  -- province: Canadian provinces (parent nation:ca)
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
+                  'subdivision',                                             -- foreign first-level subdivisions: 'subdivision:<iso3166-2 lowercase>', frozen, no units
                   'court',                                                   -- 35 state supreme courts + TX/OK courts of criminal appeals
                   'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
@@ -351,6 +352,7 @@ create table entity (
   -- (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
   check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
+  check (kind <> 'subdivision' or (entity_id ~ '^subdivision:[a-z]{2}-[a-z0-9]{1,3}$' and iso_3166_2 is not null)),
   -- Canada: municipality:ca-<CSDUID>, county:ca-<CDUID> (county / regional governments), first_nation:ca-<band number>
   check (country is distinct from 'ca' or kind <> 'municipality' or entity_id ~ '^municipality:ca-[0-9]{7}$'),
   check (country is distinct from 'ca' or kind <> 'county' or entity_id ~ '^county:ca-[0-9]{4}$'),
@@ -365,6 +367,7 @@ create table entity (
   check (kind not in ('brand','organization','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
+  iso_3166_2    text unique,                         -- 'AD-02' (entities.csv iso_3166_2; subdivisions)
   wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (bare 'Q228' in the file; prefixed on load)
   has_region    boolean not null default true,
                                                    -- seals / flags / logos: entity_image (replaces the old icon_flag column)
@@ -408,7 +411,7 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with')),
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
                                                    -- city-county's county entity (parent) and its place entity (child)
   valid_from    date,
@@ -466,7 +469,8 @@ create table entity_image (
   fair_use      boolean not null default false,
   usage_basis   text,                                -- fair-use rationale ('identification icon, small size')
   is_trademark  boolean not null default false,      -- licence mentions 'trademarked': trademark notice, never altered
-  public        boolean not null default true,       -- served publicly; forced false for fair_use rows (v3 rule)
+  public        boolean not null default true,       -- served publicly: free licence only (entity_images.csv public); false for fair_use rows
+  icon          boolean not null default false,      -- the entity's one display icon (nation flag, else seal); entity_images.csv icon
   attribution   text,
   source_url    text,                                -- file description page / article the file came from
   wikidata      text,                                -- 'wikidata:Q...' the image statement belongs to
@@ -476,8 +480,10 @@ create table entity_image (
   retrieved_at  timestamptz,                         -- sources: entity_image_source (';'-list)
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
+  check (not icon or public),                        -- icons are always freely licensed
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
+create unique index entity_image_one_icon on entity_image (coalesce(entity_id, feed_entity_id)) where icon;   -- at most one icon per entity
 create table entity_image_source (
   image_id   bigint not null references entity_image(id) on delete cascade,
   source_id  text not null references source(source_id),
