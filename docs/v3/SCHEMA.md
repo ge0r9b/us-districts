@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 110 statements; re-checked after the source / seat / county_government update) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 111 statements; re-checked after the source / seat / county_government update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
@@ -28,6 +28,7 @@
 | Contests | `party`, `candidate`, `office`, `contest`, `answer` | See below. |
 | Results | `result`, `result_total`, `result_history` | Facts, totals and coverage, plus an audit trail of overwritten values. A result is identified by `(year, office, stage, boundary_set, unit_type, unit_id)` + answer (Q-E12): contest = year + office token (stage derived from `_special` / `_runoff`), unit = `unit_key` within its `boundary_set` (`slug` = the rows' `boundary_set`, e.g. `v2-2024`). Geometry joins on the set, not the year. |
 | | `contest_display_slot` | v2-parity view: which answer fills v2's **d** and **r** columns (Q-E13: the Democratic nominee, or an independent who beat the Democrat or ran with no Democrat; the Republican). Every answer is still stored; colour follows party. |
+| Brand logos | `entity_logo` | One free-licensed logo per brand, from `brands.csv` `logo_file` / `logo_license` / `logo_attribution` / `logo_source_url` / `logo_flags`. The image is a static asset (`/logos/<entity_id>.<ext>`, sanitised and optimised at build time, immutable CDN cache). The row keeps the licence, the attribution, the Commons page and `asset_path`. |
 | Seats | `unit` with `unit_type = 'seat'`, `seat_member_unit` | Seats with no TIGER district (NH floterials, ME tribal seats, House delegates of territories) are units with null geometry, key `seat:<chamber slug>:<district>`, so `officeholder.unit_id` stays NOT NULL. They can optionally link to the member units they overlay. |
 | People | `person` | One canonical `person_id` = `scheme:id` per person, priority `bioguide:` > `ocd-person:` > `<st>-leg:` (Q-I1, Q-I2). Holds `bioguide`, `ocd_person`, `official_ids`, `name`, optional link to `candidate`. |
 | | `person_alias` | Former canonical IDs (OpenStates duplicate merges, resolved session-scoped IDs) → current person, with the OpenStates commit. |

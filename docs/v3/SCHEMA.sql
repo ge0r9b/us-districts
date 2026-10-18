@@ -354,7 +354,8 @@ create table entity_location (
   geom         geometry(Point, 4326),                -- from lat/lon
   geoid        text,                                 -- county FIPS (locations/*.csv county_geoid, Census 2024 point-in-polygon)
   boundary_set text,                                 -- 'v2-2024' when geoid is a v2 county; null for PR/VI (not in v2's county layer)
-  unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load
+  unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load; null + flag 'no_unit_resolved' when the point
+                                                   -- falls in no unit (e.g. Wawa 9598/9599, in the Atlantic); the row still loads
   valid_from   date,
   valid_to     date,
   source_record_id text,                             -- store_id / MARSHA code inside the brand's source; sources: entity_location_source
@@ -367,6 +368,22 @@ create table entity_location (
 create index entity_location_entity on entity_location (entity_id) where not retracted;
 create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
+
+-- Brand logos (Companies brands.csv logo_* columns: Wikidata P154 + Wikimedia Commons licence metadata).
+-- Only freely licensed files are kept; the image itself is a static asset (/logos/<qid>.<ext>), not a DB blob.
+create table entity_logo (
+  entity_id     text primary key references entity(entity_id) on update cascade on delete cascade,
+  logo_file     text not null,                       -- brands.csv logo_file: Commons file name ('Walgreens 2020 primary logo.svg')
+  license       text not null,                       -- brands.csv logo_license, verbatim ('Public domain (PD textlogo), restrictions: trademarked')
+  attribution   text,                                -- brands.csv logo_attribution (Commons Artist / Credit)
+  source_url    text not null,                       -- brands.csv logo_source_url (Commons file description page)
+  is_trademark  boolean not null default false,      -- license mentions 'trademarked': show with a trademark notice, never altered
+  asset_path    text,                                -- '/logos/wikidata-Q1591889.svg' once the build step has fetched and optimised it
+  sha256        text,                                -- of the served asset (cache-busting + change detection)
+  flags         text[],                              -- brands.csv logo_flags ('logo_multiple_p154_no_rank_or_dates_review', ...)
+  source_id     text references source(source_id),   -- 'wikidata-commons-logos-<date>'
+  retrieved_at  timestamptz
+);
 
 -- Dedupe / merge across data-v3/inst (registry), data-v3/institutions (bots) and user submissions.
 -- A merged-away id never disappears: it becomes an entity_alias row pointing at the survivor (like person_alias).

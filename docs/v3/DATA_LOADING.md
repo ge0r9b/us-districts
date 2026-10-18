@@ -392,12 +392,18 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **User adds** (moderated form or CSV, phase 3+) get a minted **`usd:<uuid>`** once approved. When a QID appears later, the entity is re-keyed to `wikidata:Q…` (`entity_merge`, rule `usd_to_qid`), and `usd:` stays as an `entity_alias`.
   - `lei:` / `cik:` are **reserved `entity_alias` schemes only** (`kind = reserved`). There is no v3 loader for them, and they are never served by the public API.
 - **Kind / name:** `entity.kind` is one of `brand`, `organization`, `company`, `nonprofit` or `fund`. `brand_name` / `name` hold the Wikidata label (public-facing brand). `legal_form_code` / `legal_form` are optional, filled only when Wikidata states a legal form.
-- **Files (verified at `data/companies` 5faf8aa):** `brands.csv` (40 rows: 36 `brand`, 4 `organization`), `sources.csv` (8 rows: `source_id, source, source_url, license, retrieved_at, commit, sha256`, the same layout as the inst lane's), and `locations/<brand>.csv`: `cvs.csv` 9,001, `marriott.csv` 10,417, `mcdonalds.csv` 13,486, `walgreens.csv` 7,991. These are plain `.csv`; the loader also streams `.csv.gz` when a file is larger than about 5 MB. All files are read by header name.
+- **Files (verified at `data/companies` 67c8cef):**
+  - `brands.csv`: 45 rows, 34 `brand` and 11 `company`.
+  - `brand_cleanliness.csv`: a ranking, not loaded.
+  - `sources.csv`: 11 rows, with the same columns as the inst lane's: `source_id, source, source_url, license, retrieved_at, commit, sha256`.
+  - `locations/<brand>.csv`: `cvs.csv` 9,001, `marriott.csv` 6,261, `mcdonalds.csv` 13,486, `walgreens.csv` 7,991, `wawa.csv` 1,320.
+  - `company_locations.csv.gz`: 38,059 rows, all of the above. These are plain `.csv`; the loader also streams `.csv.gz` when a file is larger than about 5 MB. All files are read by header name.
 - **`brands.csv` → `entity`:**
   - `entity_id` → `entity_id`. `name` → `name` and `brand_name`.
   - `kind` (`brand` / `organization`) → `entity.kind`.
   - `instance_of` (P31 labels, `;`) → `type` (first label) plus `meta.instance_of`. `website` (`;`) → `meta.website`.
-  - `source` (a sources.csv `source_id`) → `source_id`. `source_url` (the Wikidata page) → `meta.wikidata_url`. `source_date` → the source's `retrieved_at`.
+  - `source_id` (a sources.csv id) → `entity_source`. `source_url` (the Wikidata page) → `meta.wikidata_url`. `retrieved_at` → the source's `retrieved_at`. `flags` → `flags`. `parent_brand_name` is ignored. The `logo_*` columns → `entity_logo` (below).
+  - (Column names verified at 67c8cef. Earlier drafts said `source` / `source_date`, which `brands.csv` does not use.)
   - `location_files` / `location_count` are only checked against the loaded rows (they matched for all 40 brands).
 - **`brands.csv` `parent_brand_id` → `entity_relation`**, with `child_id = entity_id`, `parent_id` = each QID in the `;`-list, and `relation = parent_org` (Wikidata P749; P127 is not used).
   - **Multi-parent links are kept**, one row per parent: 28 links in total, 2 of them multi-parent (`wikidata:Q634831` and `wikidata:Q30715430` → Starwood `Q552363` + `Q1141173`). Every parent is itself a row in `brands.csv`. `parent_brand_name` is ignored, since the label comes from the parent's own row.
@@ -427,10 +433,35 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 
 - **Superseded:** the earlier notes about the SEC/GLEIF pull (`cik:` rows that had an LEI, missing `company_locations.csv` and LEI side file, GLEIF relationship columns, `type = other`) **no longer apply**; that data is not loaded in v3.
 
-- **Release scope (D21, proposed):**
-  - v3.0 ships the brand/location schema plus a small **demo set**: Wawa (from the user's own list) and the one or two cleanest brands Companies names. The demo brands load through the same §15.2 pipeline.
+- **Release scope (D21, resolved):**
+  - v3.0 ships the brand/location schema plus a **demo set**, loaded through the same §15.2 pipeline by filtering `company_locations.csv.gz` / `brands.csv` on `entity_id`:
+
+    | Brand | `entity_id` | Rows (67c8cef) | Coordinates |
+    |---|---|---|---|
+    | Wawa | `wikidata:Q5936320` | 1,320 | user-provided list (`wawa-user-list-2026-10-18`), loaded as-is |
+    | Walgreens | `wikidata:Q1591889` | 7,991 | Walgreens locator API (first-party) |
+    | Courtyard by Marriott | `wikidata:Q1053170` | 1,052 | All The Places (CC0) |
+    | *Alternate:* Residence Inn by Marriott | `wikidata:Q7315394` | 897 | All The Places (CC0) |
+
+    Each brand's parent rows (Walgreens Boots Alliance, Marriott International) load too, so `entity_relation` resolves.
   - The full brand/location set stays on `data/companies` and loads in a later release: v3.1 or v4, the user decides.
-  - Size estimate for the full set: 36,675 locations, 1.4 MB gzipped, a few MB in Postgres.
+  - Size at 67c8cef: 38,059 locations in `company_locations.csv.gz` (1.4 MB gzipped), a few MB in Postgres.
+- **Points with no unit:** a location whose point falls in no unit (for example Wawa 9598 and 9599, both "260 W. Baltimore Pike, Media PA" at 36.000282, −45.406712, in the Atlantic) still loads. It gets `unit_id`, `geoid` and `boundary_set` null and the loader adds the flag `no_unit_resolved`. The row is listed in the load report, and the map shows it only if its point is inside the map extent. The user's Wawa list is loaded as-is, so the coordinates are not corrected.
+- **Logos (`brands.csv` `logo_*`, source `wikidata-commons-logos-<date>`) → `entity_logo`:**
+
+  | `brands.csv` | `entity_logo` | Rule |
+  |---|---|---|
+  | `logo_file` | `logo_file` | Commons file name (Wikidata P154); a blank means no row |
+  | `logo_license` | `license` | verbatim; `is_trademark = true` when it contains `trademarked` |
+  | `logo_attribution` | `attribution` | Commons Artist / Credit |
+  | `logo_source_url` | `source_url` | Commons file page |
+  | `logo_flags` | `flags` | `logo_no_p154` (15 brands, incl. Wawa) and `logo_multiple_p154_no_rank_or_dates_review` (CVS) have no logo |
+
+  - At 67c8cef, 29 of 45 brands have a logo, all public domain (26 `PD textlogo, restrictions: trademarked`). A `logo_not_free_or_unknown_licence:*` flag means the row is not loaded.
+  - **Serving as static assets:** a build step (not the request path) downloads each file from Commons (`Special:FilePath/<logo_file>`). SVGs are sanitised (scripts and external refs stripped) and optimised. Raster files are resized to 128 px PNG/WebP. The result is written to `public/logos/<entity_id with ':' → '-'>.<ext>`, and `asset_path` and `sha256` are recorded.
+  - Vercel serves the logos from its CDN with `Cache-Control: public, max-age=31536000, immutable`. A changed file gets a new `?v=<sha8>` query.
+  - The API returns `logo: {url, license, attribution, source_url}` with the entity. The UI shows the attribution and Commons link in the institution panel and the credits page. Logos are never recoloured or cropped, and trademarked logos carry a short trademark notice.
+  - Not loaded until a free logo exists: Wawa (no P154) and CVS (two P154 values with no rank or dates).
 
 ### 15.2 Pipeline: staging → validation → dedupe/merge → upsert
 1. **Stage:** each file → `load_batch` + `stg_entity_row` (raw row as JSON, by header name).
@@ -472,11 +503,16 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 | `v2/data/geo_index/<a-z|0>.js` (115,745 rows) | `__geoIndex([[name,type,stateAbbr,key],…])`, labels as the app shows them ("District 1", "OH Senate 2") | parity source for the v3 search box: `GET /v1/search` must return the same rows (served from `unit` + `unit_name_trgm`, plus ZCTA rows); see GEOCODER.md |
 
 **Companies (30b1777, "Full Stack fixes").** The loader now reads the ready-made files:
-- `company_locations.csv.gz` (36,675) → `entity_location`: `location_id` (`<file stem>:<store_id>`) → `location_key`; `entity_id`, `sub_entity_id`, `role` (`establishment_at`), `name`, `address`, `lat`/`lon` → `geom`, `geoid` + `boundary_set` (`v2-2024`, set only when the county is in v2's layer; PR/VI keep the point, `geoid` empty, flag `county_not_in_v2-2024:<geoid>`), `source_id`, `retrieved_at`; extras `brand_name`, `geoid_method`, `flags`. `locations/<brand>.csv` are joined by `location_id` only for `meta` (phone, status, store type).
+- `company_locations.csv.gz` (36,675 at 30b1777; 38,059 at 67c8cef, incl. Wawa; for Wawa `source_id` keeps only the coordinate source, while `wawa.csv` `source` lists 3 ids) → `entity_location`: `location_id` (`<file stem>:<store_id>`) → `location_key`; `entity_id`, `sub_entity_id`, `role` (`establishment_at`), `name`, `address`, `lat`/`lon` → `geom`, `geoid` + `boundary_set` (`v2-2024`, set only when the county is in v2's layer; PR/VI keep the point, `geoid` empty, flag `county_not_in_v2-2024:<geoid>`), `source_id`, `retrieved_at`; extras `brand_name`, `geoid_method`, `flags`. `locations/<brand>.csv` are joined by `location_id` only for `meta` (phone, status, store type).
 - `brand_relationships.csv` (34 P749 statements) → `entity_relation` (`relation = parent_org`, `valid_from`/`valid_to` from P580/P582, `current`, `wikidata_rank` → meta, `flags`). Sheraton and St. Regis keep both current parents with `multiple_current_parents_no_dates_review`.
 - `retracted_locations.csv` (`location_id, retracted_at, reason, source_id`; header only today) → `retraction` with target `entity_location`.
-- `brands.csv` (44: 33 `brand`, 11 `company`; `organization` still accepted) → `entity`; `kind_review` → `flags`.
-- Marriott is US + PR/VI only (6,197). **400 rows carry `v5_unknown_license:coordinates|address`** (values only the user's v5 list supplies, partly from OSM/Photon or the Esri geocoder). How they may be shown publicly is a user call: DECISIONS.md D20.
+- `brands.csv` (67c8cef: 45 rows, 34 `brand` and 11 `company`; `organization` is still accepted) → `entity`. `kind_review` → `flags`.
+- Marriott is US and territories only. At 67c8cef it has 6,261 rows: 5,797 with All The Places coordinates and 464 from Marriott's first-party pacsys feed.
+  - **D20 (resolved by user decision):** all ~400 locations that earlier had coordinates only from the user's v5 list are kept, unless they are duplicates.
+    - 367 of them are re-sourced from the pacsys feed and stay as they are.
+    - The other 33 come back after dedupe. Dedupe is on the MARSHA code, then name + point within 150 m, against the rest of `marriott.csv`.
+    - Those 33 use first-party or ATP coordinates where available. Otherwise they use the v5 values with the flag `v5_user_approved` and `source_id = marriott-properties-v5-2026-10-04`.
+  - The other rows in `marriott_dropped_us.csv` (23 with no coordinates and no address, 12 with no QID, 1 with no store_id) stay out under the existing rules.
 
 **Governments (bc02908) → `entity`.**
 - IDs: `state:<FIPS>` equals the registry id (same row). `cog:<PID6>` units dedupe against registry rows by `cog_pid6` first, then GEOID + layer (§15.2); school districts by `nces_leaid` = school GEOID. `fr:<id>`, `bia:<slug>` are new entities. `id_registry.csv` (`entity_id, source_key, first_seen`) → `entity_alias` (`kind = external_id`), so a refresh never re-mints an id.

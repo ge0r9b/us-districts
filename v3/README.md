@@ -7,8 +7,8 @@ Planned layout (Phase 2): `app/` (Vite SPA + MapLibre), `api/` (Vercel functions
 Rules: the v3 lane edits only `v3/` and `docs/v3/`. No deploy or merge to main until v2.0 is tagged and the user approves (REPO-RULES rule 5). Local ports 8860–8899.
 
 Roadmap (details in `docs/v3/ARCHITECTURE.md` §9):
-- **v3.0:** parity with v2, plus the brand/location schema with a small demo set: Wawa (from the user's own list) and the one or two cleanest brands Companies names (D21, proposed).
-- **v3.1:** list ingest: Wikidata brands and locations (Companies bot) plus governments. The full brand/location set stays on `data/companies` and loads in v3.1 or v4, as the user decides (D21; est. 36,675 locations, 1.4 MB gz, a few MB in Postgres).
+- **v3.0:** parity with v2, plus the brand/location schema with a small demo set: Wawa (user's own list), Walgreens and Courtyard by Marriott, with Residence Inn as the alternate (D21, resolved).
+- **v3.1:** list ingest: Wikidata brands and locations (Companies bot) plus governments. The full brand/location set stays on `data/companies` and loads in v3.1 or v4, as the user decides (D21; 38,059 locations at 67c8cef, 1.4 MB gz, a few MB in Postgres).
 - **v3.2:** scheduled refresh.
 - **v3.3:** auth and moderated add/upload.
 - **v4+:** live voting and custom boundary sets.
