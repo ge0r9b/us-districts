@@ -176,6 +176,12 @@ def main():
             for x in recs: grp[(x["chamber"], x["unit"])].append(x)
             for k, xs in grp.items():
                 osn = [r["name"] for r in cur if r["state"] == st and r["unit_geoid"] == k[1] and (("upper" if r["chamber"] in ("upper", "legislature") else "lower") == k[0])]
+                if not osn and k[1]:   # undated session roster + OpenStates has nobody current here: the listed member may have left; do not assert
+                    for x in xs:
+                        if x.get("serving") and not x.get("term_start"):
+                            x["serving"] = False; x["status_src"] += "; NOT ASSERTED: undated session roster and OpenStates lists no current member for this unit"
+                            diffs.append({"state": st, "chamber": x["chamber"], "unit_geoid": x["unit"], "district": x["district"], "kind": "session_roster_member_not_asserted_unit_empty_in_openstates", "official": x["name"], "openstates": ""})
+                    continue
                 if len(xs) > max(1, len(osn)):   # more listed members than seats (seat count taken from OpenStates current rows of the unit)
                     keep = [x for x in xs if any(same(x["last"], n) for n in osn)]
                     for x in xs:

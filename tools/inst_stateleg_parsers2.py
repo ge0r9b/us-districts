@@ -157,8 +157,89 @@ def p_nd(R):
                        status_src="69th Legislative Assembly members by district (no in-office dates)"))
     return out, "North Dakota Legislative Assembly, 69th (2025) members by district", "https://ndlegis.gov/assembly/69-2025/regular/members/members-by-district", ["nd_members_by_district.html"]
 
+def chunks(t, sep):
+    return t.split(sep)[1:]
+
+def p_ky(R):
+    out = []
+    for f, ch in (("ky_house_bydistrict.html", "lower"), ("ky_senate_bydistrict.html", "upper")):
+        for d, nm, pty in re.findall(r'<tr><td>(\d+)</td><td><div class="hover_img"><a href="[^"]*">([^<]+)<span>.*?</td><td>([^<]*)</td>', open(R + "/" + f, errors="ignore").read()):
+            out.append(rec(ch, d, nm, pty, "ky-%s-%s" % (ch[0], d), vacant=bool(re.search("vacant", nm, re.I))))
+    return out, "Kentucky General Assembly members by district (House, Senate)", "https://apps.legislature.ky.gov/Legislators/hmembers_district.html ; smembers_district.html", ["ky_house_bydistrict.html", "ky_senate_bydistrict.html"]
+
+def p_wv(R):
+    out = []
+    for f, ch in (("wv_house_roster.html", "lower"), ("wv_senate_roster.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for code, nm, pty, d in re.findall(r'lawmaker.cfm\?member=([^"]*)" style="vertical-align:top">([^<]+)</a></td>\s*<td class="tdborder">([^<]*)</td>\s*<td class="tdborder">(\d+)', t):
+            out.append(rec(ch, int(d), nm, pty, "wv-%s-%s" % (ch[0], code.replace(" ", "_"))))
+    return out, "West Virginia Legislature House and Senate rosters (2025-2026)", "https://www.wvlegislature.gov/House/roster.cfm ; https://www.wvlegislature.gov/Senate1/roster.cfm", ["wv_house_roster.html", "wv_senate_roster.html"]
+
+def p_ar(R):
+    out = []
+    for f, ch in (("ar_house_2025.html", "lower"), ("ar_senate_2025.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for code, nm, d in re.findall(r'(?:Representative|Senator)\s*<a href="/Legislators/Detail\?member=([^&"]+)[^"]*">([^<]+)</a>.*?<span class="screenreader">District:</span>\s*(\d+)', t, re.S):
+            out.append(rec(ch, d, nm, "", "ar-%s-%s" % (ch[0], code), nostatus=True, session=True, status_src="2025 regular session member list (no in-office dates)"))
+    return out, "Arkansas State Legislature member lists, 2025 session (party not listed there)", "https://arkleg.state.ar.us/Legislators/List?chamber=House&ddBienniumSession=2025%2F2025R ; ...chamber=Senate", ["ar_house_2025.html", "ar_senate_2025.html"]
+
+def p_wi(R):
+    out = []
+    for f, ch in (("wi_assembly_2025.html", "lower"), ("wi_senate_2025.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for c in chunks(t, '<span class="info" style="width:16em;">'):
+            m = re.search(r'<strong><a href="[^"]*">([^<]+)</a></strong>\s*<small>\((\w+)\s*-[^)]*\)</small>', c); d = re.search(r"<small>District (\d+)</small>", c)
+            dl = re.search(r'href="/2025/legislators/(?:assembly|senate)/(\d+)"', c)
+            if m and d: out.append(rec(ch, d.group(1), m.group(1), m.group(2), "wi-%s-%s" % (ch[0], dl.group(1) if dl else d.group(1))))
+    return out, "Wisconsin Legislature 2025 member lists (Assembly, Senate)", "https://docs.legis.wisconsin.gov/2025/legislators/assembly ; .../senate", ["wi_assembly_2025.html", "wi_senate_2025.html"]
+
+def p_oh(R):
+    out = []
+    for f, ch in (("oh_house_dir.html", "lower"), ("oh_senate_dir.html", "upper")):
+        for nm, d, pty in re.findall(r'media-overlay-caption-text-line-1">([^<]+)</div>\s*<div class="media-overlay-caption-text-line-2"><div>District (\d+) \| (\w+)</div>', open(R + "/" + f, errors="ignore").read()):
+            out.append(rec(ch, d, nm, pty, "oh-%s-%s" % (ch[0], d), vacant=bool(re.search("vacant", nm, re.I))))
+    return out, "Ohio General Assembly House and Senate directories", "https://www.legislature.ohio.gov/legislators/house-directory ; senate-directory", ["oh_house_dir.html", "oh_senate_dir.html"]
+
+def p_nj(R):
+    out = []
+    t = open(R + "/nj_roster.html", errors="ignore").read()
+    j = json.loads(re.search(r'__NEXT_DATA__" type="application/json">(.*?)</script>', t, re.S).group(1))
+    for x in j["props"]["pageProps"]["legrosterData"][0]:
+        ch = "upper" if x["RosterHouseCode"] == "S" else "lower"
+        vac = bool(re.search("vacan", (x.get("Full_Name") or "") + str(x.get("VacantSort") or ""), re.I)) and not x.get("Last_Name")
+        nm = " ".join(v for v in (x.get("First_Name"), x.get("Middle_Name"), x.get("Last_Name"), x.get("Suffix")) if v and v.strip())
+        out.append(dict(rec(ch, x["Roster_District"], nm, x.get("Party") or "", "nj-" + (x.get("BioLink") or "").rstrip("/").split("/")[-2] if x.get("BioLink") else "nj-%s-%s" % (ch[0], x["Roster_District"]), vacant=vac), last=last(nm) if x.get("Last_Name") else ""))
+    return out, "New Jersey Legislature legislative roster", "https://www.njleg.state.nj.us/legislative-roster", ["nj_roster.html"]
+
+def p_nm(R):
+    out = []
+    for f, ch in (("nm_house_list.html", "lower"), ("nm_senate_list.html", "upper")):
+        t = open(R + "/" + f, errors="ignore").read()
+        for c in chunks(t, "linkLegislatorPicture_"):
+            sp = re.search(r'SponCode=(\w+)"', c); m = re.search(r'lblName_\d+"[^>]*>\s*([^<]+?)\s*-\s*\((\w+)\)\s*</span>', c); d = re.search(r"District:\s*(\d+)", c)
+            if sp and m and d: out.append(rec(ch, d.group(1), m.group(1), m.group(2), "nm-" + sp.group(1)))
+    return out, "New Mexico Legislature legislator lists (House, Senate)", "https://www.nmlegis.gov/Members/Legislator_List?T=R ; ?T=S", ["nm_house_list.html", "nm_senate_list.html"]
+
+def p_id(R):
+    out = []
+    for f, ch in (("id_house_2026.html", "lower"), ("id_senate_2026.html", "upper")):
+        for nm, pty, d in re.findall(r'<p><strong>([^<]+)</strong>\s*\((\w+)\)<br />.*?district=(\d+)">District \d+</a>', open(R + "/" + f, errors="ignore").read(), re.S):
+            out.append(rec(ch, d, html.unescape(nm).replace("\xa0", " "), pty, "id-%s-%s-%s" % (ch[0], d, fold(nm)[:12])))
+    return out, "Idaho Legislature 2026 House and Senate membership pages", "https://legislature.idaho.gov/house/membership/ ; https://legislature.idaho.gov/senate/membership/", ["id_house_2026.html", "id_senate_2026.html"]
+
+def p_sd(R):
+    out = []
+    for x in json.load(open(R + "/sd_session71_members.json")):
+        ch = "upper" if x["MemberType"] == "S" else "lower"
+        nm = " ".join(v for v in (x.get("FirstName"), x.get("Initial"), x.get("LastName")) if v)
+        k = {}
+        if x.get("InactiveDate"): k = dict(serving=False, term_end=x["InactiveDate"][:10], status_src="inactive since %s" % x["InactiveDate"][:10])
+        out.append(dict(rec(ch, x["District"], nm, x.get("Politics") or "", "sd-%s" % x["PersonId"]), last=fold(x["LastName"].split()[-1]), **k))
+    return out, "South Dakota Legislature API, SessionMembers for session 71 (2026, 101st session)", "https://sdlegislature.gov/api/SessionMembers/Session/71", ["sd_session71_members.json"]
+
 PARSERS = {"Maine": p_me, "Maryland": p_md, "Connecticut": p_ct, "Mississippi": p_ms, "North Carolina": p_nc, "South Carolina": p_sc, "Kansas": p_ks, "Florida": p_fl,
-           "Iowa": p_ia, "Michigan": p_mi, "Washington": p_wa, "Oklahoma": p_ok, "Louisiana": p_la, "North Dakota": p_nd}
+           "Iowa": p_ia, "Michigan": p_mi, "Washington": p_wa, "Oklahoma": p_ok, "Louisiana": p_la, "North Dakota": p_nd,
+           "Kentucky": p_ky, "West Virginia": p_wv, "Arkansas": p_ar, "Wisconsin": p_wi, "Ohio": p_oh, "New Jersey": p_nj, "New Mexico": p_nm, "Idaho": p_id, "South Dakota": p_sd}
 CHAMBERS = {"Florida": {"upper"}, "Oklahoma": {"lower"}}
 EXTRA = {"California": p_ca_sen}   # additional chamber for a state whose first parser is in inst_stateleg_official.py
 FALLBACK = {
