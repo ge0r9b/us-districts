@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171555";</script>
+<script>window.BUILD="202610171557";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -318,6 +318,7 @@
   /* build 1555: S/H subscripts of the capitol icons are black wherever the icon sits on a light surface (institution field, crumbs, rows, chips); white only on black buttons */
   .fsq svg text, .fqi svg text, .fsqrec svg text, #crumbs svg text, #barGeo svg text, #sheet li svg text, #orgSearch li svg text, .tlab svg text { fill: #000 !important; }
   #barGeo .rbtn.on svg text, #bLyr.typed svg text { fill: #fff !important; }
+  /* build 1556: line-chart vertical axis: light hairlines, small mid-gray labels */ .dlx svg text.dlat { fill: #8e8e93 !important; font-weight: 400; }
   input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration { -webkit-appearance: none; display: none; }
   @keyframes slL { from { transform: translateX(40%); opacity: 0; } to { transform: none; opacity: 1; } }
   @keyframes slR { from { transform: translateX(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -2368,8 +2369,9 @@ setInterval(placeLegend,500);
   const dim=document.createElement("div"); dim.id="chartDim"; document.body.append(dim);
   const main=w.querySelector(".cmain"), opts=w.querySelector(".copts");
   let auto=null; /* the type the user chose before it was auto-switched to bar (line needs a range, pie needs a single point); restored when valid again */
-  const okT=(k,two)=>k==="bar"||(two?k==="line":k==="pie"); const isTwo=()=>{ try{ return ym()==="delta"; }catch(e){ return false; } };
-  const paint=()=>{ const k=window.chartMode||(okT(last,isTwo())?last:"bar"); if(main.dataset.ch!==k||!main.innerHTML){ main.innerHTML=SV[k]; main.dataset.ch=k; } main.classList.toggle("on",!!window.chartMode&&view==="list"); }; /* dark = a chart is actually displayed (not in the full-screen map) */
+  const multi=()=>{ try{ const i=window.__laInfo&&window.__laInfo(); return !!(i&&(i.on||i.pend)); }catch(e){ return true; } }; /* build 1556: bar is the plural (list) chart; a single entity gets one big pie (one year) or line (two years) */
+  const okT=(k,two)=>(k==="bar"&&multi())||(two?k==="line":k==="pie"); const fb=two=>multi()?"bar":(two?"line":"pie"); const isTwo=()=>{ try{ return ym()==="delta"; }catch(e){ return false; } };
+  const paint=()=>{ const k=window.chartMode||(okT(last,isTwo())?last:fb(isTwo())); if(main.dataset.ch!==k||!main.innerHTML){ main.innerHTML=SV[k]; main.dataset.ch=k; } main.classList.toggle("on",!!window.chartMode&&view==="list"); }; /* dark = a chart is actually displayed (not in the full-screen map) */
   const close=()=>{ w.classList.remove("open"); dim.classList.remove("on"); };
   const pick=k=>{ auto=null; if(window.chartMode===k) window.chartMode=null; else { window.chartMode=k; } last=k; paint(); close(); if(window.chartMode&&view!=="list") $("bGlobe").click(); if(window.chartMode==="line"){ if($("barTime").hidden) $("bTime").click(); if(window.__ySelectAll) window.__ySelectAll(); else { const ys=$("yslider"); if(+ys.value!==1){ ys.value=1; ys.dispatchEvent(new Event("input",{bubbles:true})); } } } try{ renderCands(); }catch(e){} };
   const open=()=>{ const cur=window.chartMode||last; opts.innerHTML=""; K.filter(k=>k!==cur&&okT(k,isTwo())).forEach(k=>{ const b=document.createElement("button"); b.className="rbtn"; b.dataset.ch=k; b.setAttribute("aria-label",k+" chart"); b.innerHTML=SV[k]; b.onclick=e=>{ e.stopPropagation(); pick(k); }; opts.append(b); });
@@ -2378,9 +2380,9 @@ setInterval(placeLegend,500);
   dim.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); close(); });
   window.chartMode=null; paint();
   /* single year selected while line is on -> fall back to bar; two points again -> restore line (only if it was auto-switched) */
-  const sync=()=>{ try{ const two=isTwo(), m=window.chartMode; if(m&&!okT(m,two)){ auto=m; window.chartMode="bar"; paint(); try{ renderCands(); }catch(e){} return; }
-    if(auto&&m==="bar"&&okT(auto,two)){ window.chartMode=auto; auto=null; paint(); try{ renderCands(); }catch(e){} return; }
-    if(auto&&m!=="bar") auto=null; paint(); }catch(e){} };
+  const sync=()=>{ try{ const two=isTwo(), m=window.chartMode; if(m&&!okT(m,two)){ if(!auto) auto=m; window.chartMode=fb(two); paint(); try{ renderCands(); }catch(e){} return; }
+    if(auto&&m&&m!==auto&&okT(auto,two)){ window.chartMode=auto; auto=null; paint(); try{ renderCands(); }catch(e){} return; }
+    if(auto&&m===auto) auto=null; paint(); }catch(e){} };
   window.__chartSync=sync; $("yslider").addEventListener("input",()=>setTimeout(sync,0)); setInterval(sync,250); new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:["class"]});
   const pos=()=>{ const g=parseFloat(getComputedStyle($("barGeo")).gap)||8; const tb=$("barTime"); let t=rail.getBoundingClientRect().bottom; if(!tb.hidden) t=tb.getBoundingClientRect().bottom; let top=t+3; w.style.top=top+"px";
     for(let k=0;k<0;k++){ const r=w.getBoundingClientRect(); let push=0; document.querySelectorAll("button, .chip, .cyr").forEach(o=>{ if(w.contains(o)||!o.offsetParent||getComputedStyle(o).visibility==="hidden") return; const q=o.getBoundingClientRect(); if(q.width<20||q.right<r.left||q.left>r.right||q.bottom<=r.top||q.top>=r.bottom) return; if(q.top<r.top+r.height/2) push=Math.max(push,q.bottom+3-r.top); }); if(!push) break; top+=push; w.style.top=top+"px"; } };
@@ -2512,14 +2514,24 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     return '<svg width="'+g.W+'" height="'+S+'" viewBox="0 0 '+g.W+' '+S+'" role="img" aria-label="2020 to 2024 change">'+ring(v0,p0,Rm,S*0.05,"2020")+ring(v1,p1,R1,R0,"2024")+'</svg>'; }
   function build(box){ const a=scopeArea(), v0=scopeVals(a,"2020"), v1=scopeVals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; const g=geom(box), pc=numMode==="pct", H=innerWidth>=700?170:112, yT=12, yB=H-12;
     if(window.chartMode==="pie"){ const th0=(c,yr)=>'<img class="dmt '+(c.ix?"r":"d")+'" alt="" src="'+PHOTO[c.id]+'" width="30" height="30" data-party="'+esc(c.full+" "+yr)+'">'; const col0=(yr,v,cx)=>'<div class="dlc" style="left:'+(cx-15).toFixed(1)+'px">'+[...CANDS[yr]].sort((x,y)=>(y.ix?v.rep:v.dem)-(x.ix?v.rep:v.dem)).map(c=>th0(c,yr)).join("")+'</div>'; const Sx=innerWidth>=700?240:156; return '<div class="dlch" style="width:'+g.W+'px;height:'+Sx+'px">'+pieBlock(g,v0,v1)+'</div><div class="dlt">'+col0("2020",v0,g.x0)+col0("2024",v1,g.x1)+'</div>'; }
-    const H2=innerWidth>=700?200:140, yT2=24, yB2=H2-34;
-    const V=(v,k)=>pc?v[k]/v.tot*100:v[k]; const all=[V(v0,"rep"),V(v0,"dem"),V(v1,"rep"),V(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.3||(pc?3:1000); lo-=pad; hi+=pad; const Y=q=>yB2-(q-lo)/(hi-lo)*(yB2-yT2);
+    const H2=innerWidth>=700?260:200, yT2=16, yB2=H2-16;
+    const V=(v,k)=>pc?v[k]/v.tot*100:v[k]; const all=[V(v0,"rep"),V(v0,"dem"),V(v1,"rep"),V(v1,"dem")]; let lo=Math.min(...all),hi=Math.max(...all); const pad=(hi-lo)*0.3||(pc?3:1000); lo=Math.max(0,lo-pad); hi+=pad; if(pc) hi=Math.min(100,hi);
+    /* build 1556: nice round ticks (3-5 hairlines); the plot spans exactly the outer gridlines */
+    let st=1; { const m=Math.pow(10,Math.floor(Math.log10(((hi-lo)/4)||1))); for(const f of [1,2,2.5,5,10,20,25,50,100]){ st=f*m; if(Math.round((Math.ceil(hi/st-1e-9)-Math.floor(lo/st+1e-9)))+1<=5) break; } lo=Math.floor(lo/st+1e-9)*st; hi=Math.ceil(hi/st-1e-9)*st; if(hi-lo<2*st){ if(lo-st>=0) lo-=st; else hi+=st; } }
+    const Y=q=>yB2-(q-lo)/(hi-lo)*(yB2-yT2);
+    const fT=q=>{ if(pc) return (st<1?q.toFixed(1):String(Math.round(q)))+"%"; if(q>=1e6){ const d=st>=1e6?0:st>=1e5?1:2; return String(+(q/1e6).toFixed(d))+"M"; } if(q>=1e3){ const d=st>=1e3?0:1; return String(+(q/1e3).toFixed(d))+"K"; } return String(Math.round(q)); };
     const ks=["rep","dem"], c24=ix=>CANDS["2024"].find(c=>!!c.ix===!!ix), c20=ix=>CANDS["2020"].find(c=>!!c.ix===!!ix);
     const nudge=(o)=>{ o=o.map(([k,y])=>[k,y]).sort((p,q)=>p[1]-q[1]); const out={}, M=54; if(o.length===2&&o[1][1]-o[0][1]<M){ const d=(M-(o[1][1]-o[0][1]))/2; o[0][1]-=d; o[1][1]+=d; if(o[0][1]<16){ o[1][1]+=16-o[0][1]; o[0][1]=16; } if(o[1][1]>H2-30){ o[0][1]-=o[1][1]-(H2-30); o[1][1]=H2-30; } } o.forEach(([k,y])=>out[k]=y); return out; };
     const ty0=nudge(ks.map(k=>[k,Y(V(v0,k))])), ty1=nudge(ks.map(k=>[k,Y(V(v1,k))])), TX1=g.c1;
     /* value label sits directly under its own line, centred between the line's two points (never under the thumbnails); nudged apart when the two lines are close */
     const lby={}; { const o=ks.map(k=>[k,(Y(V(v0,k))+Y(V(v1,k)))/2+14]).sort((p,q)=>p[1]-q[1]); if(o.length===2&&o[1][1]-o[0][1]<16){ const dd=(16-(o[1][1]-o[0][1]))/2; o[0][1]-=dd; o[1][1]+=dd; } o.forEach(([k,y])=>lby[k]=Math.max(8,Math.min(H2-8,y))); }
     let svg='<svg width="'+g.W+'" height="'+H2+'" viewBox="0 0 '+g.W+' '+H2+'" role="img" aria-label="2020 to 2024 change">', imgs='';
+    { const gx0=g.c0+15+6, gx1=g.c1-15-6, E0=ks.map(k=>Y(V(v0,k))), E1=ks.map(k=>Y(V(v1,k))), hitE=(E,y)=>E.some(e=>e>y-17&&e<y+6); svg+='<g class="dlax">';
+      for(let q=lo;q<=hi+st*1e-6;q+=st){ const y=Y(q); const yy=y.toFixed(1); svg+='<line x1="'+gx0.toFixed(1)+'" y1="'+yy+'" x2="'+gx1.toFixed(1)+'" y2="'+yy+'" stroke="#d6d6db" stroke-width="1" shape-rendering="crispEdges"/>';
+        /* label above its hairline at the left end; if a line end-point sits there, the right end; else below the hairline; else no label (the hairline stays) */
+        const hitB=(E,y)=>E.some(e=>e>y-5&&e<y+16), P=[[gx0,y-3.5,"start",hitE(E0,y)],[gx1,y-3.5,"end",hitE(E1,y)],[gx0,y+11,"start",hitB(E0,y)],[gx1,y+11,"end",hitB(E1,y)]].find(c=>!c[3]&&c[1]<H2-1&&c[1]>8);
+        if(P) svg+='<text class="dlat" x="'+P[0].toFixed(1)+'" y="'+P[1].toFixed(1)+'" text-anchor="'+P[2]+'" font-size="9.5" font-weight="400" fill="#8e8e93">'+fT(q)+'</text>'; }
+      svg+='</g>'; }
     ks.forEach(k=>{ const a0=Y(V(v0,k)), a1=Y(V(v1,k)), d=V(v1,k)-V(v0,k), c=PCc[k];
       const exact=pc?(d>=0?"+":"\u2212")+Math.abs(d).toFixed(1)+" pts":(d>=0?"+":"\u2212")+Math.round(Math.abs(d)).toLocaleString("en-US"), who=NMc[k]+" ("+(c24(k==="rep"?1:0).short)+")"; const tip=esc(who+": "+exact);
       svg+='<g data-party="'+tip+'" style="cursor:pointer"><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="transparent" stroke-width="18"/><line x1="'+g.x0+'" y1="'+a0.toFixed(1)+'" x2="'+g.x1+'" y2="'+a1.toFixed(1)+'" stroke="'+c+'" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="'+g.x0+'" cy="'+a0.toFixed(1)+'" r="4.5" fill="'+c+'"/><circle cx="'+g.x1+'" cy="'+a1.toFixed(1)+'" r="4.5" fill="'+c+'"/>'
@@ -3220,7 +3232,14 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     const two=ym()==="delta"; let v0=null,v1=null; try{ if(two){ v0=scopeVals(a,"2020"); v1=scopeVals(a,"2024"); } else v0=scopeVals(a,ym()); }catch(e){}
     if(!v0||!v0.tot||(two&&(!v1||!v1.tot))){ if(pn) pn.remove(); return; }
     const wide=innerWidth>=600; const one=k=>k==="line"?(two?'<div class="clinechart">'+(window.__lineSvg?window.__lineSvg(a):"")+'</div>':""):k==="pie"?'<div class="cpie1">'+pieSvg(v0,v1)+'</div>':barHtml(v0,v1);
-    let h; if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
+    let h; if(!wide&&mode==="pie"&&!two){ if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn);
+      /* build 1556: ONE big pie, centred in the band from the text indent (x=52) to the right edge, below the floating buttons, clear of the lower rail */
+      const pr=pn.getBoundingClientRect(), cs=getComputedStyle(pn), cl=pr.left+(parseFloat(cs.paddingLeft)||0), t0=pr.top+(parseFloat(cs.paddingTop)||0), vw=innerWidth, L0=52, M=8, cx=(L0+vw)/2;
+      const bt=[...document.querySelectorAll("button.rbtn, .rail .rbtn")].filter(b=>{ if(!b.offsetParent||getComputedStyle(b).visibility==="hidden") return false; const r=b.getBoundingClientRect(); return r.width>0&&r.left>vw*0.6; }).map(b=>b.getBoundingClientRect());
+      const up=bt.filter(r=>r.top<innerHeight*0.45), dn=bt.filter(r=>r.top>=innerHeight*0.45); const top=Math.round(Math.max(t0+4,up.reduce((m,r)=>Math.max(m,r.bottom),0)+10)); const low=dn.reduce((m,r)=>Math.min(m,r.top),innerHeight)-10;
+      const S=Math.max(140,Math.floor(Math.min(2*Math.min(cx-L0-10,vw-M-cx),low-top))); const ml=Math.round(cx-S/2-cl), mt=Math.max(0,top-Math.round(t0));
+      h='<div class="cblk cbig"><div class="cpie1 big" style="align-items:flex-start">'+pieSvg(v0,null).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'" style="width:'+S+'px;height:'+S+'px;max-width:none;margin-left:'+ml+'px;margin-top:'+mt+'px"').replace(/font-size="11"/g,'font-size="'+(S>=260?9:11)+'"')+'</div></div>'; }
+    else if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
     else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);
       const yrs=two?[["2020",v0],["2024",v1]]:[[ym(),v0]]; const leg=legend(yrs);
       let main; if(mode==="pie"){ const S=Math.min(pw-480,avail-30,560); main='<div class="cwide pieonly"><div class="cpieL">'+pieBig(v0,v1,Math.max(220,Math.min(S+480,avail-30,560)))+'</div></div>'; }
