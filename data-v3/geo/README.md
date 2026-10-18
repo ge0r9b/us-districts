@@ -237,6 +237,23 @@ for s in load base vwg krs lan; do
 Uncompressed GeoJSON bytes: LAN 2,573,446; KRS 9,195,565; VWG 25,970,089; GEM 36,540,967. Libraries: shapely 2.2.0 / GEOS 3.14.1,
 pyproj 3.8.0, pyogrio 0.13.0 / GDAL 3.12.4. Per-stage numbers in `../geo-data-raw/v3de/report.json`.
 
+### Does VG250 01.01.2026 carry the 1 Jan 2026 changes? Yes (checked Oct 18, 2026)
+
+Compared with the previous edition, VG250 Stand 31.12.2025 (`vg250_12-31.ee.excel.ebenen.zip`, attribute tables only, from
+https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_1231/2025/, sha256 `03aaa3a5bc7e3eee63b7bb1e952a9b722cff82e10ea279270a61c361279f7f54`),
+table `VGTB_ATT_VG` against our GF = 4 rows, matched on (ARS, GEN, BEZ):
+- **Hanau kreisfrei**: new Kreis 06415 Hanau (Kreisfreie Stadt); Gemeinde 064350014014 → **064150000000** (AGS 06415000),
+  VWG 064350014 → 064150000. Main-Kinzig-Kreis 06435 keeps its code, now without Hanau. Kreise 400 → 401, kreisfreie Städte 106 → 107.
+- Schleswig-Holstein: Bönebüttel 010570008008 → 010575785008 (joins an Amt); Forstgutsbezirke Sachsenwald (010539105105) and
+  Buchholz (010609014014) dissolved.
+- Bavaria: gemeindefreie Gebiete Frauenforst (092739452452), Forst Schwarzenbach a.Wald (094759451451), Geroldsgrüner Forst
+  (094759453453), Langenbacher Forst (094769453453) dissolved.
+- Thuringia: Kiliansroda, Kleinschwabhausen, Mechelroda (VG 160715008) gone; Dobitschen merged into Schmölln, new code
+  160770043043 (old Schmölln 160775052043; Erfüllende Gemeinde 160775052 replaced by Gemeinschaftsfreie Gemeinde 160770043).
+- Totals: Gemeinden 10,949 → 10,939, VWG 4,587 → 4,580, Länder unchanged. A crosswalk keyed to the old ARS (e.g. 064350014014 Hanau)
+  must map to the new code; our CSVs only carry 2026 codes. BKG's `BEGINN` dates (2026-02-18, 2026-06-11) are BKG processing dates,
+  not the legal effective dates.
+
 ## France, IGN ADMIN EXPRESS COG 2026 (`tools/foreign_geojson.py … fr`)
 
 Source and licence:
@@ -292,10 +309,10 @@ at 20 m (2,000,181 → 451,612 vertices, area error 0.15 %, Hausdorff median 14 
 so they nest exactly in `fr_com`; no unit became empty. They do not always fill the parent: COMA cover only the associated part
 (578 of 934 parents ≥ 99 % covered). Check against INSEE `v_commune_2026.csv` (COG 2026, sha256
 `7be1153de3a63df48fa0ca77f8490c8a0c5c9c4eb12f5cec1ca7f70b0237b1d3`): no extra rows; 10 COG rows missing from IGN, all under 3 parents:
-COMD 25303 Hauterive-la-Fresse, 25347 La Longeville, 25390 Montbenoît, 25398 Montflovin, 25620 Ville-du-Pont (parent 25390);
-COMA 55294 Liouville, 55319 Marbotte, 55451 Saint-Agnant-sous-les-Côtes (parent 55012); COMD 69144 Nuelles, 69208
-Saint-Germain-sur-l'Arbresle (parent 69208). No other IGN product carries them (ADMIN EXPRESS COG CARTO is a generalization of the
-same data; BD TOPO's commune_associee_ou_deleguee is the same IGN source). Their area is inside the parent's `fr_com` polygon.
+COMD 25303 Hauterive-la-Fresse, 25347 La Longeville, 25390 Montbenoît, 25398 Montflovin, 25620 Ville-du-Pont (parent 25390 Pays-de-Montbenoît);
+COMA 55294 Liouville, 55319 Marbotte, 55451 Saint-Agnant-sous-les-Côtes (parent 55012 Apremont-la-Forêt); COMD 69144 Nuelles, 69208
+Saint-Germain-sur-l'Arbresle (parent 69208 Saint-Germain-Nuelles). IGN's only download for them is this layer; COG CARTO is a generalization of the same
+data, and BD TOPO was not checked. Their land is inside the parent's `fr_com` polygon, so a crosswalk can fall back to the parent.
 
 Regenerate (inputs about 247 MB of .7z; sha256 of each, also in `../geo-data-raw/adminexpress/SHA256SUMS`):
 FXX `688eb44505d9b4a8e422ded2f4afaac799f10783de563132ca1a60e9491c6278`, GLP `53f6340c0143c17dd554fd3c191046dd2af288e255ca11d6cf8b480340c91e6e`,

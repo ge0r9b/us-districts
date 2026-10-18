@@ -42,6 +42,8 @@ is the later one. Only the land parts (GF = 4) are used; the coastal and lake wa
 For Gemeinden the ARS is the primary key (unique; it includes the Gemeindeverband). AGS is carried as a second column for
 joins to sources that only have AGS. VG250 VWG covers the whole country: it also contains Einheitsgemeinden and
 verbandsfreie Gemeinden as their own units (the `type` column carries BKG's `BEZ`).
+The 01.01.2026 edition includes the 1 Jan 2026 changes (checked against the 31.12.2025 edition; list in README.md): Hanau is
+Kreis **06415** (kreisfreie Stadt), Gemeinde ARS 064150000000 (was 064350014014 in Main-Kinzig-Kreis).
 
 ## FR: IGN ADMIN EXPRESS COG, Licence Ouverte / Open Licence 2.0 (Etalab)
 
@@ -64,7 +66,7 @@ apart. Built: 1,264 = 22 Métropole (21 + Métropole de Lyon) + 14 CU + 229 CA +
 territorial; minus Lyon and the 11 EPT = 1,252. IGN still types 243100781 Le Grand Ouest Toulousain as a CC (DGCL: a CA since
 2025), hence CA 229 / CC 988 vs DGCL 230 / 987. The 4 communes in no EPCI carry `epci_siren` = `NR`.
 Communes associées/déléguées: 582 share their parent's INSEE code, so join on (code, type). INSEE COG 2026 lists 2,576; the 10
-IGN lacks (under parents 25390 Montbenoît, 55012 Apremont-la-Forêt, 69208 Saint-Germain-Nuelles) are listed in README.md; IGN
+IGN lacks (under parents 25390, 55012 Apremont-la-Forêt, 69208 Saint-Germain-Nuelles; 25390 is Pays-de-Montbenoît) are listed in README.md; IGN
 publishes no other layer with them.
 Overseas collectivités Saint-Barthélemy (977), Saint-Martin (978), Saint-Pierre-et-Miquelon (975) are in `fr_com_om.csv`, keyed
 by INSEE code, outside the 34,875 communes.
