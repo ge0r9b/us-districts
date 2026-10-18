@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write data-v3/results/2024/senate/*.csv: the 13 bot columns plus the optional 14th column 'method' (Q-E3).
+"""Write data-v3/results/2024/senate/*.csv: the 13 bot columns, then boundary_set (column 14, Q-E12) and the optional method (column 15, Q-E3).
 usage: write_csv_sen2024.py <repo> <work_dir> <clerk_senate.json> <raw_dir>
  state    : Clerk of the House, Statistics of the Nov 5 2024 election (official), every candidate; fusion lines merged into their candidate.
  county   : MEDSL 2024 precinct returns summed by county (d slot, r, all-others).          method=retabulated
@@ -10,7 +10,10 @@ import sys, os, csv, json, gzip, re, io, datetime, collections
 sys.path.insert(0, os.path.dirname(__file__)); from races import *
 repo, wd, clerkj, raw = sys.argv[1:5]
 OUT = f'{repo}/data-v3/results/2024/senate'; os.makedirs(OUT + '/precincts', exist_ok=True)
-COLS = ['state','year','office','district','unit_id','unit_type','candidate_id','answer','party','votes','weight','source_url','retrieved_at','method']
+# Q-E12: boundary_set is column 14 (right after retrieved_at); the optional method column is column 15.
+# Values are lowercase with hyphens (e.g. tiger-2020, v2-2016-precincts). Every row here, state rows included, is v2-2024.
+BOUNDARY_SET = 'v2-2024'
+COLS = ['state','year','office','district','unit_id','unit_type','candidate_id','answer','party','votes','weight','source_url','retrieved_at','boundary_set','method']
 CLERK = 'https://clerk.house.gov/member_info/electionInfo/2024/statistics2024.pdf'
 MURL = lambda ab: f'https://github.com/MEDSL/2024-elections-official/raw/main/individual_states/{ab.lower()}24.zip'
 def ts(p): return datetime.datetime.fromtimestamp(os.path.getmtime(p), datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -28,7 +31,7 @@ for lay in ('counties', 'ushouse', 'senate', 'statehouse', 'schools'):
     for r in csv.DictReader(open(f'{repo}/data-v3/geo/{lay}.csv')):
         GEO[(lay, r['state'], r['v2_name'])] = (r['geoid'], r['tiger_set']); STF[r['state']] = r['geoid'][:2]
 def write(name, rows, gz=False):
-    b = io.StringIO(); w = csv.writer(b, lineterminator='\n'); w.writerow(COLS); w.writerows(rows); s = b.getvalue().encode()
+    b = io.StringIO(); w = csv.writer(b, lineterminator='\n'); w.writerow(COLS); w.writerows([list(x[:13]) + [BOUNDARY_SET] + list(x[13:]) for x in rows]); s = b.getvalue().encode()
     p = f'{OUT}/{name}'
     for q in (p, p + '.gz'):
         if os.path.exists(q): os.remove(q)

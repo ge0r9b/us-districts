@@ -1,189 +1,189 @@
-state,year,office,district,unit_id,unit_type,candidate_id,answer,party,votes,weight,source_url,retrieved_at,method
-AL,2022,us_senate,statewide,01,state,britt-katie,Katie Britt,REP,942154,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AL,2022,us_senate,statewide,01,state,boyd-will,Will Boyd,DEM,436746,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AL,2022,us_senate,statewide,01,state,sophocleus-john,John Sophocleus,LIB,32879,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AL,2022,us_senate,statewide,01,state,write-ins,Write-in,WRI,2459,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AK,2022,us_senate,statewide,02,state,murkowski-lisa,Lisa Murkowski,REP,113495,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AK,2022,us_senate,statewide,02,state,tshibaka-kelly-c,Kelly C. Tshibaka,REP,111480,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AK,2022,us_senate,statewide,02,state,kelley-buzz-a,Buzz A. Kelley,REP,7557,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AK,2022,us_senate,statewide,02,state,chesbro-patricia-r,Patricia R. Chesbro,DEM,27145,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AK,2022,us_senate,statewide,02,state,write-ins,Write-in (1),WRI,2028,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,masters-blake,Blake Masters,REP,1196308,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,kelly-mark,Mark Kelly,DEM,1322027,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,victor-marc,Marc Victor,LIB,53762,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,maul-lester,Lester “Skip” Maul,WRI,95,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,bullock-christopher,Christopher Bullock,WRI,27,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,mclean-ty-richard-jr,Ty Richard McLean Jr,WRI,21,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,rodriguez-roxanne-renee,Roxanne Renee Rodriguez,WRI,20,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,bordes-sherrise,Sherrise Bordes,WRI,17,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,taylor-william-michael,William “Will” Michael Taylor,WRI,8,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,smeltzer-todd-james,Todd James Smeltzer,WRI,6,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AZ,2022,us_senate,statewide,04,state,davida-edward,Edward Davida,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AR,2022,us_senate,statewide,05,state,boozman-john,John Boozman,REP,592437,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AR,2022,us_senate,statewide,05,state,james-natalie,Natalie James,DEM,280187,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-AR,2022,us_senate,statewide,05,state,cates-kenneth,Kenneth Cates,LIB,28682,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CA,2022,us_senate_special,statewide,06,state,meuser-mark-p,Mark P. Meuser,REP,4212450,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CA,2022,us_senate_special,statewide,06,state,padilla-alex,Alex Padilla,DEM,6559308,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CA,2022,us_senate,statewide,06,state,meuser-mark-p,Mark P. Meuser,REP,4222029,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CA,2022,us_senate,statewide,06,state,padilla-alex,Alex Padilla,DEM,6621621,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CO,2022,us_senate,statewide,08,state,o’dea-joe,Joe O’Dea,REP,1031693,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CO,2022,us_senate,statewide,08,state,bennet-michael-f,Michael F. Bennet,DEM,1397170,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CO,2022,us_senate,statewide,08,state,peotter-brian,Brian Peotter,LIB,43534,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CO,2022,us_senate,statewide,08,state,cole-t-j,T. J. Cole,UNITYPARTY,16379,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CO,2022,us_senate,statewide,08,state,atwood-frank,Frank Atwood,APPROVALVO,11354,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CT,2022,us_senate,statewide,09,state,levy-leora-r,Leora R. Levy,REP,535943,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CT,2022,us_senate,statewide,09,state,blumenthal-richard,Richard Blumenthal,DEM,723864,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CT,2022,us_senate,statewide,09,state,anderson-john,John Anderson,WRI,68,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-CT,2022,us_senate,statewide,09,state,bharara-shabadjot,Shabadjot Bharara,WRI,12,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,rubio-marco,Marco Rubio,REP,4474847,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,demings-val-butler,Val Butler Demings,DEM,3201522,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,misigoy-dennis,Dennis Misigoy,LIB,32177,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,grant-steven-b,Steven B. Grant,NOPARTYAFF,31816,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,nguyen-tuan,Tuan “TQ” Nguyen,NOPARTYAFF,17385,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,gray-edward-a,Edward A. Gray,WRI,190,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,ekpete-uloma-uma,Uloma Uma Ekpete,WRI,42,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,quiles-moses,Moses Quiles,WRI,33,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-FL,2022,us_senate,statewide,12,state,knepper-howard,Howard Knepper,WRI,2,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-GA,2022,us_senate,statewide,13,state,walker-herschel-junior,Herschel Junior Walker,REP,1908442,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-GA,2022,us_senate,statewide,13,state,warnock-raphael-g,Raphael G. Warnock,DEM,1946117,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-GA,2022,us_senate,statewide,13,state,oliver-chase,Chase Oliver,LIB,81365,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-GA,2022,us_senate_runoff,statewide,13,state,walker-herschel-junior,Herschel Junior Walker,REP,1721244,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-GA,2022,us_senate_runoff,statewide,13,state,warnock-raphael-g,Raphael G. Warnock,DEM,1820633,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-HI,2022,us_senate,statewide,15,state,mcdermott-bob,Bob McDermott,REP,106358,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-HI,2022,us_senate,statewide,15,state,schatz-brian,Brian Schatz,DEM,290894,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-HI,2022,us_senate,statewide,15,state,bonoan-feena-m,Feena M. Bonoan,LIB,4915,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-HI,2022,us_senate,statewide,15,state,pohlman-emma-jane-a,Emma Jane A. Pohlman,GRN,4142,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-HI,2022,us_senate,statewide,15,state,decker-dan,Dan Decker,ALOHAAINA,2208,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ID,2022,us_senate,statewide,16,state,crapo-mike,Mike Crapo,REP,358539,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ID,2022,us_senate,statewide,16,state,roth-david,David Roth,DEM,169808,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ID,2022,us_senate,statewide,16,state,cleveland-scott-oh,Scott OH Cleveland,IND,49917,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ID,2022,us_senate,statewide,16,state,writz-ray-j,Ray J. Writz,CON,8500,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ID,2022,us_senate,statewide,16,state,sierra-carta-reale,Carta Reale Sierra,LIB,4126,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IL,2022,us_senate,statewide,17,state,salvi-kathy,Kathy Salvi,REP,1701055,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IL,2022,us_senate,statewide,17,state,duckworth-tammy,Tammy Duckworth,DEM,2329136,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IL,2022,us_senate,statewide,17,state,redpath-bill,Bill Redpath,LIB,68671,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IL,2022,us_senate,statewide,17,state,seida-lowell-martin,Lowell Martin Seida,WRI,23,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IL,2022,us_senate,statewide,17,state,vlakancic-constant,Constant “Connor” Vlakancic,WRI,11,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,young-todd,Todd Young,REP,1090165,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,mcdermott-thomas-m-jr,Thomas M. McDermott Jr,DEM,704411,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,sceniak-james-m,James M. Sceniak,LIB,63814,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,niederberger-danny,Danny Niederberger,WRI,1294,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,khaaliq-haneefah,Haneefah Khaaliq,WRI,148,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,beachy-phillip,Phillip Beachy,WRI,7,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,storer-david-g,David G. Storer,WRI,7,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,alvarez-antonio-xavier,Antonio Xavier Alvarez,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IN,2022,us_senate,statewide,18,state,baer-thomas,Thomas Baer,WRI,2,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IA,2022,us_senate,statewide,19,state,grassley-chuck,Chuck Grassley,REP,681501,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IA,2022,us_senate,statewide,19,state,franken-michael,Michael Franken,DEM,533330,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-IA,2022,us_senate,statewide,19,state,write-ins,Write-in,WRI,1815,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KS,2022,us_senate,statewide,20,state,moran-jerry,Jerry Moran,REP,602976,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KS,2022,us_senate,statewide,20,state,holland-mark-r,Mark R. Holland,DEM,372214,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KS,2022,us_senate,statewide,20,state,graham-david-c,David C. Graham,LIB,29766,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KY,2022,us_senate,statewide,21,state,paul-rand,Rand Paul,REP,913326,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KY,2022,us_senate,statewide,21,state,booker-charles,Charles Booker,DEM,564311,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KY,2022,us_senate,statewide,21,state,thomason-charles-lee,Charles Lee Thomason,WRI,145,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-KY,2022,us_senate,statewide,21,state,wilson-billy-ray,Billy Ray Wilson,WRI,48,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,kennedy-john,John Kennedy,REP,851568,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,graham-devin-lance,Devin Lance Graham,REP,25275,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,chambers-gary-jr,Gary Chambers Jr,DEM,246933,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,mixon-luke,“Luke” Mixon,DEM,182887,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,steib-syrita,Syrita Steib,DEM,31568,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,mendoza-m-v,M. V. “Vinny” Mendoza,DEM,11910,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,rodriguez-salvador-p,Salvador P. Rodriguez,DEM,7767,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,billiot-beryl-a,Beryl A. Billiot,NPA,9378,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,mcmorris-bradley,Bradley McMorris,IND,5388,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,sigler-aaron-c,Aaron C. Sigler,LIB,4865,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,john-xan,“Xan” John,OTH,2753,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,olson-w-thomas-la-fontaine,W. Thomas La Fontaine Olson,NPA,1676,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-LA,2022,us_senate,statewide,22,state,wenn-thomas,Thomas Wenn,OTH,1322,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MD,2022,us_senate,statewide,24,state,chaffee-chris,Chris Chaffee,REP,682293,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MD,2022,us_senate,statewide,24,state,hollen-chris-van,Chris Van Hollen,DEM,1316897,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MD,2022,us_senate,statewide,24,state,griffin-scottie,Scottie Griffin,WRI,334,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MD,2022,us_senate,statewide,24,state,wildman-andrew-j,Andrew J. Wildman,WRI,89,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MD,2022,us_senate,statewide,24,state,write-ins,Other Write-ins,WRI,2723,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,schmitt-eric,Eric Schmitt,REP,1146966,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,valentine-trudy-busch,Trudy Busch Valentine,DEM,872694,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,dine-jonathan,Jonathan Dine,LIB,34821,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,venable-paul,Paul Venable,CON,14608,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,mooney-nathan,Nathan Mooney,WRI,14,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,price-steven,Steven Price,WRI,9,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,combs-rik,Rik Combs,WRI,6,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,bufe-gina,Gina Bufe,WRI,5,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,brown-theo,Theo Brown,WRI,4,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-MO,2022,us_senate,statewide,29,state,kirk-david,David Kirk,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NV,2022,us_senate,statewide,32,state,laxalt-adam-paul,Adam Paul Laxalt,REP,490388,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NV,2022,us_senate,statewide,32,state,masto-catherine-cortez,Catherine Cortez Masto,DEM,498316,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NV,2022,us_senate,statewide,32,state,lindemann-barry,Barry Lindemann,NOPOLITICA,8075,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NV,2022,us_senate,statewide,32,state,scott-neil,Neil Scott,LIB,6422,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NV,2022,us_senate,statewide,32,state,rubinson-barry,Barry Rubinson,IAP,5208,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NH,2022,us_senate,statewide,33,state,bolduc-donald-c,Donald C. Bolduc,REP,275928,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NH,2022,us_senate,statewide,33,state,hassan-maggie,Maggie Hassan,DEM,332193,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NH,2022,us_senate,statewide,33,state,kauffman-jeremy,Jeremy Kauffman,LIB,12390,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NH,2022,us_senate,statewide,33,state,write-ins,Scatter,WRI,464,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NY,2022,us_senate,statewide,36,state,pinion-joe,Joe Pinion,REP,2501151,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NY,2022,us_senate,statewide,36,state,schumer-charles-e,Charles E. Schumer,DEM,3320561,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NY,2022,us_senate,statewide,36,state,sare-diane,Diane Sare,LAR,26844,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NY,2022,us_senate,statewide,36,state,write-ins,Scattering,WRI,4151,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,budd-ted,Ted Budd,REP,1905786,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,beasley-cheri,Cheri Beasley,DEM,1784049,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,bray-shannon-w,Shannon W. Bray,LIB,51640,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,hoh-matthew,Matthew Hoh,GRN,29934,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,lewis-michelle-estelle,Michelle Estelle Lewis,WRI,137,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-NC,2022,us_senate,statewide,37,state,write-ins,Write-in (Miscellaneous),WRI,2378,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ND,2022,us_senate,statewide,38,state,hoeven-john,John Hoeven,REP,135474,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ND,2022,us_senate,statewide,38,state,christiansen-katrina,Katrina Christiansen,DEM,59995,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ND,2022,us_senate,statewide,38,state,becker-rick,Rick Becker,IND,44406,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-ND,2022,us_senate,statewide,38,state,write-ins,Write-in,WRI,265,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,vance-jd,JD Vance,REP,2192114,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,ryan-tim,Tim Ryan,DEM,1939489,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,cheng-john,John Cheng,WRI,702,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,hoffman-shane,Shane Hoffman,WRI,403,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,tinsley-lashondra,LaShondra Tinsley,WRI,362,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,faris-stephen,Stephen Faris,WRI,194,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OH,2022,us_senate,statewide,39,state,esh-matthew-r,Matthew R. Esh,WRI,78,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate_special,statewide,40,state,mullin-markwayne,Markwayne Mullin,REP,710643,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate_special,statewide,40,state,horn-kendra,Kendra Horn,DEM,405389,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate_special,statewide,40,state,murphy-robert,Robert Murphy,LIB,17386,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate_special,statewide,40,state,woods-ray,Ray Woods,IND,17063,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate,statewide,40,state,lankford-james,James Lankford,REP,739960,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate,statewide,40,state,horn-madison,Madison Horn,DEM,369370,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate,statewide,40,state,delaney-michael-l,Michael L. Delaney,IND,20907,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OK,2022,us_senate,statewide,40,state,blevins-kenneth-d,Kenneth D. Blevins,LIB,20495,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OR,2022,us_senate,statewide,41,state,perkins-jo-rae,Jo Rae Perkins,REP,788991,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OR,2022,us_senate,statewide,41,state,wyden-ron,Ron Wyden,DEM,1076424,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OR,2022,us_senate,statewide,41,state,henry-chris,Chris Henry,PROGRESSIV,36883,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-OR,2022,us_senate,statewide,41,state,pulju-dan,Dan Pulju,PACIFICGRE,25651,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-PA,2022,us_senate,statewide,42,state,oz-mehmet,Mehmet Oz,REP,2487260,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-PA,2022,us_senate,statewide,42,state,fetterman-john,John Fetterman,DEM,2751012,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-PA,2022,us_senate,statewide,42,state,gerhardt-erik,Erik Gerhardt,LIB,72887,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-PA,2022,us_senate,statewide,42,state,weiss-richard-l,Richard L. Weiss,GRN,30434,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-PA,2022,us_senate,statewide,42,state,wassmer-daniel,Daniel Wassmer,KEYSTONEPA,26428,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SC,2022,us_senate,statewide,45,state,scott-tim,Tim Scott,REP,1066274,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SC,2022,us_senate,statewide,45,state,matthews-krystle,Krystle Matthews,DEM,627616,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SC,2022,us_senate,statewide,45,state,write-ins,Write-in,WRI,1812,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SD,2022,us_senate,statewide,46,state,thune-john,John Thune,REP,242316,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SD,2022,us_senate,statewide,46,state,bengs-brian-l,Brian L. Bengs,DEM,91007,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-SD,2022,us_senate,statewide,46,state,lesnar-tamara-j,Tamara J. Lesnar,LIB,14697,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,lee-mike,Mike Lee,REP,571974,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,mcmullin-evan,Evan McMullin,UNA,459958,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,hansen-james-arthur,James Arthur Hansen,LIB,31784,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,williams-tommy,Tommy Williams,IAP,12103,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,fetzer-hamblin-laird,Laird Fetzer-Hamblin,WRI,152,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,seguin-michael,Michael Seguin,WRI,60,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-UT,2022,us_senate,statewide,49,state,korb-abraham,Abraham Korb,WRI,37,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,malloy-gerald,Gerald Malloy,REP,80468,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,welch-peter,Peter Welch,DEM,196575,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,ellis-dawn-marie,Dawn Marie Ellis,IND,2752,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,diamondstone-kohout-natasha,Natasha Diamondstone-Kohout,GREENMOUNT,1574,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,raheb-kerry-patrick,Kerry Patrick Raheb,IND,1532,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,coester-mark,Mark Coester,IND,1273,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,duke-stephen,Stephen Duke,IND,1209,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,ericson-cris,Cris Ericson,IND,1105,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-VT,2022,us_senate,statewide,50,state,write-ins,Write-in,WRI,612,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WA,2022,us_senate,statewide,53,state,smiley-tiffany,Tiffany Smiley,REP,1299322,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WA,2022,us_senate,statewide,53,state,murray-patty,Patty Murray,DEM,1741827,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WA,2022,us_senate,statewide,53,state,write-ins,Write-in,WRI,6751,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WI,2022,us_senate,statewide,55,state,johnson-ron,Ron Johnson,REP,1337185,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WI,2022,us_senate,statewide,55,state,barnes-mandela,Mandela Barnes,DEM,1310467,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WI,2022,us_senate,statewide,55,state,paul-adam,Adam Paul,WRI,67,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
-WI,2022,us_senate,statewide,55,state,write-ins,Scattering,WRI,4758,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,official
+state,year,office,district,unit_id,unit_type,candidate_id,answer,party,votes,weight,source_url,retrieved_at,boundary_set,method
+AL,2022,us_senate,statewide,01,state,britt-katie,Katie Britt,REP,942154,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AL,2022,us_senate,statewide,01,state,boyd-will,Will Boyd,DEM,436746,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AL,2022,us_senate,statewide,01,state,sophocleus-john,John Sophocleus,LIB,32879,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AL,2022,us_senate,statewide,01,state,write-ins,Write-in,WRI,2459,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AK,2022,us_senate,statewide,02,state,murkowski-lisa,Lisa Murkowski,REP,113495,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AK,2022,us_senate,statewide,02,state,tshibaka-kelly-c,Kelly C. Tshibaka,REP,111480,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AK,2022,us_senate,statewide,02,state,kelley-buzz-a,Buzz A. Kelley,REP,7557,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AK,2022,us_senate,statewide,02,state,chesbro-patricia-r,Patricia R. Chesbro,DEM,27145,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AK,2022,us_senate,statewide,02,state,write-ins,Write-in (1),WRI,2028,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,masters-blake,Blake Masters,REP,1196308,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,kelly-mark,Mark Kelly,DEM,1322027,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,victor-marc,Marc Victor,LIB,53762,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,maul-lester,Lester “Skip” Maul,WRI,95,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,bullock-christopher,Christopher Bullock,WRI,27,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,mclean-ty-richard-jr,Ty Richard McLean Jr,WRI,21,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,rodriguez-roxanne-renee,Roxanne Renee Rodriguez,WRI,20,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,bordes-sherrise,Sherrise Bordes,WRI,17,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,taylor-william-michael,William “Will” Michael Taylor,WRI,8,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,smeltzer-todd-james,Todd James Smeltzer,WRI,6,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AZ,2022,us_senate,statewide,04,state,davida-edward,Edward Davida,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AR,2022,us_senate,statewide,05,state,boozman-john,John Boozman,REP,592437,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AR,2022,us_senate,statewide,05,state,james-natalie,Natalie James,DEM,280187,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+AR,2022,us_senate,statewide,05,state,cates-kenneth,Kenneth Cates,LIB,28682,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CA,2022,us_senate_special,statewide,06,state,meuser-mark-p,Mark P. Meuser,REP,4212450,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CA,2022,us_senate_special,statewide,06,state,padilla-alex,Alex Padilla,DEM,6559308,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CA,2022,us_senate,statewide,06,state,meuser-mark-p,Mark P. Meuser,REP,4222029,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CA,2022,us_senate,statewide,06,state,padilla-alex,Alex Padilla,DEM,6621621,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CO,2022,us_senate,statewide,08,state,o’dea-joe,Joe O’Dea,REP,1031693,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CO,2022,us_senate,statewide,08,state,bennet-michael-f,Michael F. Bennet,DEM,1397170,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CO,2022,us_senate,statewide,08,state,peotter-brian,Brian Peotter,LIB,43534,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CO,2022,us_senate,statewide,08,state,cole-t-j,T. J. Cole,UNITYPARTY,16379,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CO,2022,us_senate,statewide,08,state,atwood-frank,Frank Atwood,APPROVALVO,11354,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CT,2022,us_senate,statewide,09,state,levy-leora-r,Leora R. Levy,REP,535943,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CT,2022,us_senate,statewide,09,state,blumenthal-richard,Richard Blumenthal,DEM,723864,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CT,2022,us_senate,statewide,09,state,anderson-john,John Anderson,WRI,68,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+CT,2022,us_senate,statewide,09,state,bharara-shabadjot,Shabadjot Bharara,WRI,12,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,rubio-marco,Marco Rubio,REP,4474847,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,demings-val-butler,Val Butler Demings,DEM,3201522,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,misigoy-dennis,Dennis Misigoy,LIB,32177,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,grant-steven-b,Steven B. Grant,NOPARTYAFF,31816,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,nguyen-tuan,Tuan “TQ” Nguyen,NOPARTYAFF,17385,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,gray-edward-a,Edward A. Gray,WRI,190,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,ekpete-uloma-uma,Uloma Uma Ekpete,WRI,42,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,quiles-moses,Moses Quiles,WRI,33,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+FL,2022,us_senate,statewide,12,state,knepper-howard,Howard Knepper,WRI,2,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+GA,2022,us_senate,statewide,13,state,walker-herschel-junior,Herschel Junior Walker,REP,1908442,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+GA,2022,us_senate,statewide,13,state,warnock-raphael-g,Raphael G. Warnock,DEM,1946117,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+GA,2022,us_senate,statewide,13,state,oliver-chase,Chase Oliver,LIB,81365,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+GA,2022,us_senate_runoff,statewide,13,state,walker-herschel-junior,Herschel Junior Walker,REP,1721244,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+GA,2022,us_senate_runoff,statewide,13,state,warnock-raphael-g,Raphael G. Warnock,DEM,1820633,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+HI,2022,us_senate,statewide,15,state,mcdermott-bob,Bob McDermott,REP,106358,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+HI,2022,us_senate,statewide,15,state,schatz-brian,Brian Schatz,DEM,290894,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+HI,2022,us_senate,statewide,15,state,bonoan-feena-m,Feena M. Bonoan,LIB,4915,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+HI,2022,us_senate,statewide,15,state,pohlman-emma-jane-a,Emma Jane A. Pohlman,GRN,4142,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+HI,2022,us_senate,statewide,15,state,decker-dan,Dan Decker,ALOHAAINA,2208,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ID,2022,us_senate,statewide,16,state,crapo-mike,Mike Crapo,REP,358539,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ID,2022,us_senate,statewide,16,state,roth-david,David Roth,DEM,169808,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ID,2022,us_senate,statewide,16,state,cleveland-scott-oh,Scott OH Cleveland,IND,49917,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ID,2022,us_senate,statewide,16,state,writz-ray-j,Ray J. Writz,CON,8500,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ID,2022,us_senate,statewide,16,state,sierra-carta-reale,Carta Reale Sierra,LIB,4126,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IL,2022,us_senate,statewide,17,state,salvi-kathy,Kathy Salvi,REP,1701055,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IL,2022,us_senate,statewide,17,state,duckworth-tammy,Tammy Duckworth,DEM,2329136,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IL,2022,us_senate,statewide,17,state,redpath-bill,Bill Redpath,LIB,68671,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IL,2022,us_senate,statewide,17,state,seida-lowell-martin,Lowell Martin Seida,WRI,23,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IL,2022,us_senate,statewide,17,state,vlakancic-constant,Constant “Connor” Vlakancic,WRI,11,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,young-todd,Todd Young,REP,1090165,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,mcdermott-thomas-m-jr,Thomas M. McDermott Jr,DEM,704411,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,sceniak-james-m,James M. Sceniak,LIB,63814,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,niederberger-danny,Danny Niederberger,WRI,1294,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,khaaliq-haneefah,Haneefah Khaaliq,WRI,148,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,beachy-phillip,Phillip Beachy,WRI,7,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,storer-david-g,David G. Storer,WRI,7,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,alvarez-antonio-xavier,Antonio Xavier Alvarez,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IN,2022,us_senate,statewide,18,state,baer-thomas,Thomas Baer,WRI,2,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IA,2022,us_senate,statewide,19,state,grassley-chuck,Chuck Grassley,REP,681501,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IA,2022,us_senate,statewide,19,state,franken-michael,Michael Franken,DEM,533330,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+IA,2022,us_senate,statewide,19,state,write-ins,Write-in,WRI,1815,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KS,2022,us_senate,statewide,20,state,moran-jerry,Jerry Moran,REP,602976,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KS,2022,us_senate,statewide,20,state,holland-mark-r,Mark R. Holland,DEM,372214,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KS,2022,us_senate,statewide,20,state,graham-david-c,David C. Graham,LIB,29766,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KY,2022,us_senate,statewide,21,state,paul-rand,Rand Paul,REP,913326,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KY,2022,us_senate,statewide,21,state,booker-charles,Charles Booker,DEM,564311,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KY,2022,us_senate,statewide,21,state,thomason-charles-lee,Charles Lee Thomason,WRI,145,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+KY,2022,us_senate,statewide,21,state,wilson-billy-ray,Billy Ray Wilson,WRI,48,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,kennedy-john,John Kennedy,REP,851568,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,graham-devin-lance,Devin Lance Graham,REP,25275,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,chambers-gary-jr,Gary Chambers Jr,DEM,246933,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,mixon-luke,“Luke” Mixon,DEM,182887,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,steib-syrita,Syrita Steib,DEM,31568,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,mendoza-m-v,M. V. “Vinny” Mendoza,DEM,11910,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,rodriguez-salvador-p,Salvador P. Rodriguez,DEM,7767,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,billiot-beryl-a,Beryl A. Billiot,NPA,9378,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,mcmorris-bradley,Bradley McMorris,IND,5388,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,sigler-aaron-c,Aaron C. Sigler,LIB,4865,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,john-xan,“Xan” John,OTH,2753,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,olson-w-thomas-la-fontaine,W. Thomas La Fontaine Olson,NPA,1676,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+LA,2022,us_senate,statewide,22,state,wenn-thomas,Thomas Wenn,OTH,1322,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MD,2022,us_senate,statewide,24,state,chaffee-chris,Chris Chaffee,REP,682293,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MD,2022,us_senate,statewide,24,state,hollen-chris-van,Chris Van Hollen,DEM,1316897,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MD,2022,us_senate,statewide,24,state,griffin-scottie,Scottie Griffin,WRI,334,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MD,2022,us_senate,statewide,24,state,wildman-andrew-j,Andrew J. Wildman,WRI,89,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MD,2022,us_senate,statewide,24,state,write-ins,Other Write-ins,WRI,2723,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,schmitt-eric,Eric Schmitt,REP,1146966,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,valentine-trudy-busch,Trudy Busch Valentine,DEM,872694,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,dine-jonathan,Jonathan Dine,LIB,34821,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,venable-paul,Paul Venable,CON,14608,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,mooney-nathan,Nathan Mooney,WRI,14,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,price-steven,Steven Price,WRI,9,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,combs-rik,Rik Combs,WRI,6,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,bufe-gina,Gina Bufe,WRI,5,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,brown-theo,Theo Brown,WRI,4,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+MO,2022,us_senate,statewide,29,state,kirk-david,David Kirk,WRI,3,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NV,2022,us_senate,statewide,32,state,laxalt-adam-paul,Adam Paul Laxalt,REP,490388,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NV,2022,us_senate,statewide,32,state,masto-catherine-cortez,Catherine Cortez Masto,DEM,498316,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NV,2022,us_senate,statewide,32,state,lindemann-barry,Barry Lindemann,NOPOLITICA,8075,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NV,2022,us_senate,statewide,32,state,scott-neil,Neil Scott,LIB,6422,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NV,2022,us_senate,statewide,32,state,rubinson-barry,Barry Rubinson,IAP,5208,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NH,2022,us_senate,statewide,33,state,bolduc-donald-c,Donald C. Bolduc,REP,275928,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NH,2022,us_senate,statewide,33,state,hassan-maggie,Maggie Hassan,DEM,332193,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NH,2022,us_senate,statewide,33,state,kauffman-jeremy,Jeremy Kauffman,LIB,12390,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NH,2022,us_senate,statewide,33,state,write-ins,Scatter,WRI,464,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NY,2022,us_senate,statewide,36,state,pinion-joe,Joe Pinion,REP,2501151,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NY,2022,us_senate,statewide,36,state,schumer-charles-e,Charles E. Schumer,DEM,3320561,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NY,2022,us_senate,statewide,36,state,sare-diane,Diane Sare,LAR,26844,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NY,2022,us_senate,statewide,36,state,write-ins,Scattering,WRI,4151,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,budd-ted,Ted Budd,REP,1905786,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,beasley-cheri,Cheri Beasley,DEM,1784049,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,bray-shannon-w,Shannon W. Bray,LIB,51640,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,hoh-matthew,Matthew Hoh,GRN,29934,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,lewis-michelle-estelle,Michelle Estelle Lewis,WRI,137,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+NC,2022,us_senate,statewide,37,state,write-ins,Write-in (Miscellaneous),WRI,2378,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ND,2022,us_senate,statewide,38,state,hoeven-john,John Hoeven,REP,135474,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ND,2022,us_senate,statewide,38,state,christiansen-katrina,Katrina Christiansen,DEM,59995,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ND,2022,us_senate,statewide,38,state,becker-rick,Rick Becker,IND,44406,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+ND,2022,us_senate,statewide,38,state,write-ins,Write-in,WRI,265,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,vance-jd,JD Vance,REP,2192114,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,ryan-tim,Tim Ryan,DEM,1939489,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,cheng-john,John Cheng,WRI,702,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,hoffman-shane,Shane Hoffman,WRI,403,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,tinsley-lashondra,LaShondra Tinsley,WRI,362,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,faris-stephen,Stephen Faris,WRI,194,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OH,2022,us_senate,statewide,39,state,esh-matthew-r,Matthew R. Esh,WRI,78,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate_special,statewide,40,state,mullin-markwayne,Markwayne Mullin,REP,710643,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate_special,statewide,40,state,horn-kendra,Kendra Horn,DEM,405389,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate_special,statewide,40,state,murphy-robert,Robert Murphy,LIB,17386,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate_special,statewide,40,state,woods-ray,Ray Woods,IND,17063,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate,statewide,40,state,lankford-james,James Lankford,REP,739960,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate,statewide,40,state,horn-madison,Madison Horn,DEM,369370,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate,statewide,40,state,delaney-michael-l,Michael L. Delaney,IND,20907,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OK,2022,us_senate,statewide,40,state,blevins-kenneth-d,Kenneth D. Blevins,LIB,20495,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OR,2022,us_senate,statewide,41,state,perkins-jo-rae,Jo Rae Perkins,REP,788991,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OR,2022,us_senate,statewide,41,state,wyden-ron,Ron Wyden,DEM,1076424,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OR,2022,us_senate,statewide,41,state,henry-chris,Chris Henry,PROGRESSIV,36883,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+OR,2022,us_senate,statewide,41,state,pulju-dan,Dan Pulju,PACIFICGRE,25651,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+PA,2022,us_senate,statewide,42,state,oz-mehmet,Mehmet Oz,REP,2487260,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+PA,2022,us_senate,statewide,42,state,fetterman-john,John Fetterman,DEM,2751012,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+PA,2022,us_senate,statewide,42,state,gerhardt-erik,Erik Gerhardt,LIB,72887,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+PA,2022,us_senate,statewide,42,state,weiss-richard-l,Richard L. Weiss,GRN,30434,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+PA,2022,us_senate,statewide,42,state,wassmer-daniel,Daniel Wassmer,KEYSTONEPA,26428,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SC,2022,us_senate,statewide,45,state,scott-tim,Tim Scott,REP,1066274,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SC,2022,us_senate,statewide,45,state,matthews-krystle,Krystle Matthews,DEM,627616,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SC,2022,us_senate,statewide,45,state,write-ins,Write-in,WRI,1812,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SD,2022,us_senate,statewide,46,state,thune-john,John Thune,REP,242316,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SD,2022,us_senate,statewide,46,state,bengs-brian-l,Brian L. Bengs,DEM,91007,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+SD,2022,us_senate,statewide,46,state,lesnar-tamara-j,Tamara J. Lesnar,LIB,14697,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,lee-mike,Mike Lee,REP,571974,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,mcmullin-evan,Evan McMullin,UNA,459958,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,hansen-james-arthur,James Arthur Hansen,LIB,31784,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,williams-tommy,Tommy Williams,IAP,12103,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,fetzer-hamblin-laird,Laird Fetzer-Hamblin,WRI,152,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,seguin-michael,Michael Seguin,WRI,60,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+UT,2022,us_senate,statewide,49,state,korb-abraham,Abraham Korb,WRI,37,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,malloy-gerald,Gerald Malloy,REP,80468,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,welch-peter,Peter Welch,DEM,196575,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,ellis-dawn-marie,Dawn Marie Ellis,IND,2752,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,diamondstone-kohout-natasha,Natasha Diamondstone-Kohout,GREENMOUNT,1574,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,raheb-kerry-patrick,Kerry Patrick Raheb,IND,1532,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,coester-mark,Mark Coester,IND,1273,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,duke-stephen,Stephen Duke,IND,1209,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,ericson-cris,Cris Ericson,IND,1105,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+VT,2022,us_senate,statewide,50,state,write-ins,Write-in,WRI,612,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WA,2022,us_senate,statewide,53,state,smiley-tiffany,Tiffany Smiley,REP,1299322,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WA,2022,us_senate,statewide,53,state,murray-patty,Patty Murray,DEM,1741827,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WA,2022,us_senate,statewide,53,state,write-ins,Write-in,WRI,6751,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WI,2022,us_senate,statewide,55,state,johnson-ron,Ron Johnson,REP,1337185,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WI,2022,us_senate,statewide,55,state,barnes-mandela,Mandela Barnes,DEM,1310467,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WI,2022,us_senate,statewide,55,state,paul-adam,Adam Paul,WRI,67,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official
+WI,2022,us_senate,statewide,55,state,write-ins,Scattering,WRI,4758,1,https://clerk.house.gov/member_info/electionInfo/2022/statistics2022.pdf,2026-10-18T11:18:48Z,v2-2024,official

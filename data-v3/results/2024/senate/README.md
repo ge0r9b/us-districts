@@ -3,7 +3,7 @@
 The 34 regular (Class I) races in 33 states, plus the two specials held the same day: the **California** unexpired term (Schiff v. Garvey) and the **Nebraska** unexpired term (Ricketts v. Love). Nebraska's regular race is Fischer v. Osborn. Results are on v2's current boundaries and layers: states, counties, US House, state senate, state house, school districts and 2024 precincts. States without a 2024 Senate race (17 states and DC) have **no rows**, so they show gray. Nothing in `v2/data/`, root `data/`, `v2/index.html` or `BUILD` was touched.
 
 ## Files
-All files use the 13 bot columns plus the optional 14th `method` (Q-E3). `.gz` = gzip of the same CSV.
+Columns (Q-E12): the 13 bot columns unchanged and in order, then **`boundary_set`** (column 14), then the optional `method` (column 15, Q-E3). `boundary_set = v2-2024` on every row of every file here, all layers and the `.gz` files included: precinct rows sit on v2's 2024 precinct polygons, district rows on v2's current district shapes, and county rows on v2's counties. **State rows also carry `v2-2024`** for consistency, although a state's outline does not depend on a boundary vintage. Format for this column going forward: lowercase with hyphens (e.g. `v2-2024`, `tiger-2020`, `v2-2016-precincts`). The writers (`tools/write_csv_*.py`) emit it by default; `data-v3/results/tools/add_boundary_set.py` added it to the files already committed. `.gz` = gzip of the same CSV.
 
 | File | Rows | unit_type | Source / method |
 |---|---|---|---|

@@ -5,7 +5,7 @@ All 35 Senate races of Nov 8, 2022 in 34 states: the 34 regular (Class III) race
 **Polygons: v2 has no 2022 precinct polygons, so the 2022 precinct values sit on v2's 2024 precinct polygons** (`v2/data/precincts2024/<State>.js`). 2022 precincts are bridged to them (below); where 2022 and 2024 precinct lines differ, votes are allocated and the district values are ≈. Nothing in `v2/data/`, root `data/`, `v2/index.html` or `BUILD` was touched.
 
 ## Files
-All files use the 13 bot columns plus the optional 14th `method`. `.gz` = gzip of the same CSV.
+Columns (Q-E12): the 13 bot columns unchanged and in order, then **`boundary_set`** (column 14), then the optional `method` (column 15, Q-E3). `boundary_set = v2-2024` on every row of every file here, all layers and the `.gz` files included: precinct rows sit on v2's 2024 precinct polygons, district rows on v2's current district shapes, and county rows on v2's counties. **State rows also carry `v2-2024`** for consistency, although a state's outline does not depend on a boundary vintage. Format for this column going forward: lowercase with hyphens (e.g. `v2-2024`, `tiger-2020`, `v2-2016-precincts`). The writers (`tools/write_csv_*.py`) emit it by default; `data-v3/results/tools/add_boundary_set.py` added it to the files already committed. `.gz` = gzip of the same CSV.
 
 | File | Rows | unit_type | Source / method |
 |---|---|---|---|
