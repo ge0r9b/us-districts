@@ -1,7 +1,7 @@
 {
  "built_from": {
-  "repo_head": "7250e8b21ceb0c522dc28430aeb0123c5638c51e",
-  "officeholder_ref": "origin/data/inst-officeholders 4a0845302187990c953cb9ebfadd316788271b82",
+  "repo_head": "8e1db01bfa8a8a5a7b398a4c49633464adba2ce4",
+  "officeholder_ref": "f1d64f6 f1d64f683b81d59fa5040ddfba7b53bdd845cbc8",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
    "2024_Gaz_counties_national.txt": "0a121d136b434e3ae749d053db19dfbacbb56eebf30335cfa5031388803b4451",
@@ -53,9 +53,15 @@
   "municipality|area_only": 28,
   "municipality|government": 19464,
   "nation|government": 1,
-  "school_elementary|": 1952,
-  "school_secondary|": 481,
-  "school_unified|": 10872,
+  "school_elementary|": 115,
+  "school_elementary|dependent": 132,
+  "school_elementary|government": 1705,
+  "school_secondary|": 189,
+  "school_secondary|dependent": 3,
+  "school_secondary|government": 289,
+  "school_unified|": 73,
+  "school_unified|dependent": 924,
+  "school_unified|government": 9875,
   "state|government": 51,
   "territory|": 5,
   "township|": 24,
@@ -90,10 +96,10 @@
  },
  "multi_geoid_entities": 4422,
  "district_units_checked": {
-  "sldl|2024": 4833,
-  "sldu|2020": 1946,
   "sldl|2020": 4785,
+  "sldu|2020": 1946,
   "cd|2024": 437,
+  "sldl|2024": 4833,
   "sldu|2024": 1950,
   "cd|2020": 437
  },
@@ -176,9 +182,21 @@
   "same_code_place_cousub_overlap_unmeasured": 2,
   "consolidated_county_cog_code_not_in_tiger": 6,
   "excluded_not_defined": 49,
+  "gov_status_unknown": 440,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
-  "cog2022_unit_not_linked_by_code": 57,
-  "gov_status_unknown": 63
- }
+  "cog2022_unit_not_linked_by_code": 57
+ },
+ "school_gov_status_fill": {
+  "no_bot_row": 377,
+  "government": 11869,
+  "dependent": 1059,
+  "bot_leaids": 13202,
+  "bot_school_rows_with_leaid": 13202,
+  "bot_leaids_not_a_tiger2024_school_entity": 274
+ },
+ "governments_ref": "971d1fe4ac767b25119fc61a01a98582b1a2039a",
+ "sources": 70,
+ "sources_used_here": 26,
+ "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2"
 }

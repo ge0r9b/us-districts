@@ -2,7 +2,8 @@
 
 Status: **settled Oct 18, 2026 (v3 Full Stack design)**, built by `tools/inst_entities.py` on branch `data/inst-entities`.
 All files are UTF-8 CSV with one header row. v3 reads columns by header name: the names below are stable.
-Columns after `license` (entities) and after `retrieved_at` (xwalk) are additive extras that v3 may ignore.
+Columns after `source_id` (entities: `feed` onward) and after `source_id` (xwalk: `overlap` onward) are additive extras that v3 may ignore.
+Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` were replaced by `source_id` into `sources.csv` (README_SOURCES.md).
 
 ## entities.csv: one row per institution, no vintage
 
@@ -24,12 +25,9 @@ Columns after `license` (entities) and after `retrieved_at` (xwalk) are additive
 | 14 | `v2_layer` | `v2:counties;v2:parts` | `;`-list of v2 (and v1) layers that show this entity |
 | 15 | `v2_row` | `v2:counties#342` | `;`-list `layer#row` as of the build (indexes shift between builds; informational) |
 | 16 | `v2_key` | `Alabama\|Autauga County` | `;`-list of `state\|name` keys (stable join to v2; parts rows use `state\|county\|name`) |
-| 17 | `source` | `U.S. Census Bureau, 2024 TIGER/Line Gazetteer (...)` | `; `-list of every source used for the row |
-| 18 | `source_url` | `https://www2.census.gov/...` | `;`-list, one URL per source that has one |
-| 19 | `retrieved_at` | `2026-10-18` | date the raw sources were downloaded |
-| 20 | `license` | `public domain (US government work)` | |
-| 21 | `feed` | `tiger/cog` | provenance: which list the row came from: `tiger/cog` (this build), `inst-lane` (nation, chambers, DC Council), later `governments-bot`, `companies-bot`, `user-upload` |
-| 22+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local), finer type (TIGER LSAD text), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
+| 17 | `source_id` | `census-gaz2024-counties-…;repo-governments-6dd77539` | `;`-list of every source of the row, keys of `sources.csv` (source, URL, licence, retrieved_at, commit, sha256) |
+| 18 | `feed` | `tiger/cog` | provenance: which list the row came from: `tiger/cog` (this build), `inst-lane` (nation, chambers, DC Council), later `governments-bot`, `companies-bot`, `user-upload` |
+| 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local), finer type (TIGER LSAD text), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -39,11 +37,10 @@ Columns after `license` (entities) and after `retrieved_at` (xwalk) are additive
 | 2 | `unit_layer` | `state`, `county`, `cousub`, `place`, `unsd`, `elsd`, `scsd` | TIGER set token (= `unit_type_def.tiger_set` in docs/v3/SCHEMA.sql) |
 | 3 | `geoid` | `1703114000` | Census GEOID |
 | 4 | `vintage` | `2024` | TIGER vintage year |
-| 5 | `relation` | `primary`, `coextensive`, `also_cousub`, `consolidated_city_county`, `independent_city_county_equivalent`, `consolidated_town_city`, `federal_district_city` | how this GEOID names the entity |
-| 6 | `source` | | |
-| 7 | `source_url` | | |
-| 8 | `retrieved_at` | | |
-| 9+ | `overlap`, `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | `equal` / `split` / `contained` | geometric relationship (mutual ≥ 0.9 = equal; GEOID ≥ 0.9 inside entity = split; entity ≥ 0.9 inside GEOID = contained), measured on the TIGER 2024 geometry in EPSG:6933 |
+| 5 | `boundary_set` | `v2-2024` | boundary-set slug of the unit (Election's Q-E12 tokens): `v2-2024` for TIGER 2024 units, `tiger-2020-county` for the CT 2020 counties |
+| 6 | `relation` | `primary`, `coextensive`, `also_cousub`, `consolidated_city_county`, `independent_city_county_equivalent`, `consolidated_town_city`, `federal_district_city` | how this GEOID names the entity |
+| 7 | `source_id` | | `;`-list into `sources.csv` |
+| 8+ | `overlap`, `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | `equal` / `split` / `contained` | geometric relationship (mutual ≥ 0.9 = equal; GEOID ≥ 0.9 inside entity = split; entity ≥ 0.9 inside GEOID = contained), measured on the TIGER 2024 geometry in EPSG:6933 |
 
 ## Officeholder rows (data-v3/inst/officeholders_*.csv)
 
@@ -53,21 +50,27 @@ multi-member seats where the source gives one.
 
 ---
 
-## Alignment with docs/v3/SCHEMA.sql (origin/v3/plan c61b7cc; the file is not on main)
+## Alignment with docs/v3/SCHEMA.sql (origin/v3/plan c47e2a4, newest head on Oct 18, 2026)
 
-| entities.csv | SCHEMA.sql | note for review |
-|---|---|---|
-| `entity_id` | `entity.entity_key` | different token style: SCHEMA.sql examples use `us`, `us-pa`, `us-pa-house`, `us-pa-sch-4218990`; this file uses kind prefix + first-seen GEOID (`state:42`, `chamber:pa-lower`, `school:4218990`). Needs a ruling; ids are opaque either way |
-| `kind` | `entity.kind` check list | SCHEMA.sql allows `country, state, province, county, city, town, township, borough, village, legislature, chamber, school_district, office, ...`. Map: `nation`→`country`; `municipality`→`city`/`town`/`borough`/`village` via `type`; `school_*`→`school_district` (unit_type keeps the three school types); `dc_council`, `territory` are not in the check list |
-| `label` | `entity.gov_kind` | `sovereign` / `incorporated` match; `unincorporated` is not in the check list |
-| `parent_id` | `entity.parent_id` | same |
-| `alias` | `alias` table | one alias row per `;` item |
-| `entity_geoid_xwalk.csv` | `entity_unit` (role `jurisdiction` / `same_as`) | `relation=primary` and `coextensive` → `same_as` (school, municipality) or `jurisdiction` (state, county); every other relation → `jurisdiction` |
-| `valid_from/valid_to/predecessor_id/successor_id`, `gov_status`, `v2_*`, `source*` | — | not in SCHEMA.sql `entity`; would go to new columns or `meta` |
-| officeholder `entity_id` | `officeholder.entity_id` (bigint → entity) | chamber entity, as SCHEMA.sql comments (`'us-house'`, `'al-house'` there; `chamber:al-lower` here) |
-| `person_id` `ocd-person:<uuid>` | `person.person_id` comment `ocd-person/<uuid>` | the confirmed person spec uses `:`; the SCHEMA.sql comment still shows `/` |
+c47e2a4 already carries the registry (`entity`, `entity_succession`, `entity_geoid`, `alias`, `entity_unit`, `person`,
+`person_alias`, `officeholder`). Matches: `entity_id` text key and token style, `kind` list (nation, territory, state, county,
+municipality, township, school_*, chamber, dc_council + bot kinds), `label`, `gov_status` values, `parent_id`,
+`valid_from/valid_to`, predecessor/successor → `entity_succession`, `v2_layer/v2_key/v2_row` arrays from `;`-lists,
+`level/type/cog_pid6/flags`, alias `;`-list → `alias`, xwalk → `entity_geoid` (same relation list, `overlap` check),
+officeholder chamber `entity_id` + unit + `seat`, `ocd-person:` spec. **Remaining differences:**
 
----
+| # | here | SCHEMA.sql c47e2a4 | proposed resolution |
+|---|---|---|---|
+| 1 | `source_id` text, `<slug>-<sha8>`, `;`-list on a row | `source_id bigint references source(id)`, one per row; `source.id` identity | give `source` a unique text key (`source_key`) loaded from `sources.csv`, and map a `;`-list either to the first id + the rest in `meta`, or add a `*_source` link table |
+| 2 | `sources.csv` columns `source`, `commit` | `source` has `publisher`/`title`, no `commit`; `unique (url, retrieved_at)` | `source` → `title`; `commit` → new column or `notes`. Two of our sources can share url + retrieved_at only if the commit differs (OpenStates) — then the unique key needs `commit` |
+| 3 | `source_url` may be a ` ; `-list (House + Senate pages) | `url text not null` (one URL) | keep the list in one text value, or split into one source per URL |
+| 4 | `feed` (`tiger/cog`, `inst-lane`, `governments-bot`, `companies-bot`, `user-upload`) | `origin` (`inst`, `governments_bot`, `companies_bot`, `user`) | rename on load: `tiger/cog`,`inst-lane` → `inst`; `-` → `_`; `user-upload` → `user` (or adopt `origin` name here; asked) |
+| 5 | xwalk `boundary_set` column | `entity_geoid` has no `boundary_set` (vintage only) | add `boundary_set text` to `entity_geoid` or derive from `(unit_layer, vintage)` |
+| 6 | xwalk `share_of_geoid_in_entity`, `share_of_entity_in_geoid` | not in `entity_geoid` | extras → `meta` or two numeric columns |
+| 7 | officeholder rows: no `source_commit` (commit is in `sources.csv`) | `officeholder.source_commit text` | fill from `source.commit` at load |
+| 8 | officeholder units without TIGER geometry (NH floterials, ME tribal seats, territory delegates): empty `unit_geoid`/`boundary_set` | `officeholder.unit_id not null` | load them as units of a `no-geometry` boundary set, or relax `not null` |
+| 9 | `source_record_id` on officeholder rows (id inside the source) | no column | `meta` or a new column |
+| 10 | `county_government.csv` (`gov_status`, `govbot_entity_id`) | no county-government table | loads onto `entity` (`gov_status`) and `alias` (scheme `cog_pid6` / bot id) |
 
 # Original proposal (kept for history; superseded where it differs from the column list above)
 

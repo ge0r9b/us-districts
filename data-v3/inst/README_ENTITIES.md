@@ -1,9 +1,15 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
-Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`.
+Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
-Format: UTF-8, one header row, stable column names (v3 reads by header). Every entity and xwalk row has `source`,
-`source_url`, `retrieved_at`. Open public sources only.
+Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
+family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
+README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `license` text columns are gone. Ids are
+`<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
+
+Build: `tools/inst_entities.py <repo> --gaz24 DIR --gaz20 DIR --cog XLSX --geojson DIR --oh-ref <data/inst-officeholders sha>
+--gov-ref <data/governments sha> [--stability-test]`. Officeholder files, county_government.csv and the Governments bot's
+`data-v3/institutions/governments/local/*.csv` are read with `git show` (read only).
 
 ## What is an entity
 
@@ -39,7 +45,10 @@ or GEOID changes. A new id is minted only when the government itself changes, li
   - TIGER FUNCSTAT G with no CoG unit → `dependent` (Iowa townships, NYC boroughs as cousubs).
   - FUNCSTAT F/I/N/S → `area_only`.
   - Counties: from county_government.csv.
-  - Schools: empty. CoG school lists carry no NCES or TIGER code, so no code join is possible; these are flagged.
+  - Schools: from the Governments bot (`--gov-ref`, `local/<ST>.csv`): its `nces_leaid` is the NCES LEA ID = the TIGER
+    school GEOID, joined by code; bot `independent` → `government`, `dependent` → `dependent`; `cog_pid6` = the bot's
+    `cog_id`. Schools without a bot row stay empty and flagged `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid`;
+    bot rows disagreeing on one LEA ID would be flagged and listed as gap `school_gov_status_conflict`.
   - Chambers: not applicable.
 - **parent_id.**
   - school, county and chamber → state;
@@ -48,7 +57,9 @@ or GEOID changes. A new id is minted only when the government itself changes, li
 
 ## entity_geoid_xwalk.csv
 
-One row per entity × unit_layer × GEOID × vintage. `relation`: `primary`, `coextensive` (mutual ≥ 0.9), `also_cousub`
+One row per entity × unit_layer × GEOID × vintage. `boundary_set` = the boundary-set slug of the unit (same tokens as
+Election, DATA_LOADING Q-E12): `v2-2024` for every TIGER 2024 unit (the v2 lines); `tiger-2020-county` for the 8 CT county
+units of TIGER 2020 (same lowercase-hyphen form; not yet a registered set). `relation`: `primary`, `coextensive` (mutual ≥ 0.9), `also_cousub`
 (part of a place split across county subdivisions), `consolidated_city_county`, `independent_city_county_equivalent`,
 `consolidated_town_city`, `federal_district_city`. `overlap` gives the geometry (equal / split / contained) and the two
 `share_*` columns the area shares on TIGER 2024 (geo lane GeoJSON, EPSG:6933).
@@ -66,14 +77,17 @@ entities.csv like this:
 
 | feed field | entities.csv |
 |---|---|
-| feed's stable id | `entity_id` = `<feed prefix>:<feed id>` (e.g. `co:<id>`, `gov:<id>`); never reused |
-| entity type | `kind` (open vocabulary: company kinds such as `company`, `subsidiary`, `brand` are added as they arrive) |
+| feed's stable id | `entity_id` = `<feed prefix>:<feed id>` (e.g. `cog:<pid6>` from the Governments bot); never reused |
+| user upload | moderator-approved uploads get `entity_id` = `usd:<uuid>` with `feed` = `user-upload`. When one later gets a Wikidata QID it is re-keyed to `wikidata:Q…` and the `usd:` id is kept in `alias` (and stays resolvable) |
+| scraped brand without a QID | gets **no** entity_id (not written to entities.csv) |
+| parent of national rows | `nation:us` (the nation row; the Governments bot uses it as `parent_id`) |
+| entity type | `kind` (open vocabulary; feed kinds now: `company`, `nonprofit`, `fund`, `brand`, plus the bot's government kinds) |
 | parent / owner | `parent_id` (generic: a corporate parent, or a government parent) |
 | jurisdiction | `state_fips`, `state` (empty if national or foreign) |
 | GEOID, if a government | an `entity_geoid_xwalk.csv` row (relation `primary`). If the GEOID already belongs to a `tiger/cog` entity, the feed row is an alias of that entity, not a new one |
 | name, other names | `name`, `alias` |
 | start / end, mergers | `valid_from`, `valid_to`, `predecessor_id`, `successor_id` |
-| provenance | `feed` = `governments-bot` / `companies-bot` / `user-upload`; `source`, `source_url`, `retrieved_at`, `license` from the feed row |
+| provenance | `feed` = `governments-bot` / `companies-bot` / `user-upload`; the feed row's source becomes a `sources.csv` row, referenced by `source_id` |
 
 ## Sources and licences
 
@@ -83,4 +97,47 @@ entities.csv like this:
 | Census TIGER/Line 2024 county subdivisions + places (FUNCSTAT, CLASSFP, geometry; via data-v3/geo GeoJSON) | https://www2.census.gov/geo/tiger/TIGER2024/ | public domain |
 | Census 2022 Census of Governments, Government Units Listing | https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP | public domain |
 | ANSI/FIPS state codes | https://www.census.gov/library/reference/code-lists/ansi.html | public domain |
-| data-v3/geo tables (v2 row links), data-v3/inst county_government.csv and officeholder files | this repo | as listed per file |
+| Governments bot, data-v3/institutions/governments (school gov_status, nces_leaid; county check via county_government.csv) | this repo, origin/data/governments (pinned commit in sources.csv) | public domain (from CoG) |
+| data-v3/geo tables (v2 row links), data-v3/inst county_government.csv and officeholder files | this repo (pinned commits in sources.csv) | as listed per file |
+
+## Flags vocabulary (`entities.csv` `flags`; `;` separates flags, `,` separates values inside one flag)
+
+| flag | meaning |
+|---|---|
+| `gov_status_unknown:tiger_funcstat_<A/B/C>_no_cog2022_code_match` | TIGER says active government, but no CoG 2022 unit has this FIPS code; `gov_status` left empty |
+| `gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=<id>` | a consolidated city-county whose CoG municipal code is not a TIGER 2024 place; county kept, `gov_status` empty |
+| `gov_status_unknown:not_in_cog2022_scope` | territory: CoG 2022 does not cover territories |
+| `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` | school district with no Governments-bot row carrying its NCES LEA ID |
+| `gov_status_unknown:governments_bot_rows_disagree` | several bot rows on one LEA ID with different gov_status (none in this build) |
+| `gov_status_na:legislative_chamber` / `gov_status_na:legislative_body_of_state:11` | not a government in the CoG sense: a chamber / the DC Council |
+| `tiger_funcstat:<A/B/C/F/G/I/N/S>` | county: TIGER 2024 FUNCSTAT, kept for the CoG cross-check |
+| `tiger_funcstat_G:active_government_subordinate_to_another_unit` | cousub/place FUNCSTAT G with no CoG unit; `gov_status=dependent` |
+| `tiger_funcstat_F:fictitious_entity`, `tiger_funcstat_I:inactive_governmental_unit`, `tiger_funcstat_N:nonfunctioning_legal_entity`, `tiger_funcstat_S:statistical_entity` | FUNCSTAT says no functioning government; `gov_status=area_only` |
+| `tiger_funcstat_I_but_in_cog2022`, `tiger_funcstat_N_but_in_cog2022` | TIGER says inactive/nonfunctioning, CoG 2022 still lists a government (CoG wins: `government`) |
+| `not_in_cog2022` | no CoG 2022 unit with this code |
+| `cog2022_is_active_N` | the CoG unit linked by code has IS_ACTIVE = N |
+| `coextensive_separate_government:<entity_id>` | geo town_pairs "same" area, but CoG lists both as governments: two entities, this is the other one |
+| `consolidated_government_covers_county:<county>(primary_place_is_smaller,CoG_lists_the_place_code)` | consolidated government whose place GEOID is smaller than the county it governs (balance-of-county cases) |
+| `spans_counties:<geoid>,<geoid>` | municipality/town < 98 % in one county, so `parent_id` = state; the counties it spans |
+| `chamber_name_generic` | chamber name is the generic "<State> Senate / House", not the official body name |
+| `outside_v2_scope:territory_with_house_delegate` | territory: included only because it sends a House delegate |
+| `vintage_2020_only:replaced_by_ct_planning_regions_2022` | CT county: only in TIGER 2020 |
+| `valid_to_not_recorded:last_tiger_vintage_here_2020` | end date unknown; last seen in TIGER 2020 |
+| `replaced_by_planning_regions_in_tiger_2022` | see `successor_id` |
+| `xwalk_partial_overlap`, `county_share_unmeasured`, `multiple_cog_units`, `officeholder_entity_id_alias`, `officeholder_entity_id_missing`, `name_missing`, `no_geoid_in_gazetteer`, `no_tiger_geoid`, `county_area_governed_by_cog_municipal_unit` | defined by the builder; no row of the current build carries them |
+
+`entity_gaps.csv` `gap` values: `orphan_v2_row`, `orphan_officeholder_unit`, `officeholder_unit_without_tiger_geoid`,
+`cog2022_unit_not_linked_by_code`, `gov_status_unknown`, `excluded_not_defined` (TIGER "not defined"/water pseudo-units),
+`consolidated_county_cog_code_not_in_tiger`, `consolidated_county_no_government_linked`,
+`same_code_place_cousub_overlap_unmeasured`, `town_pair_same_neither_in_cog`, `school_gov_status_conflict`.
+`feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council); later `governments-bot`,
+`companies-bot`, `user-upload`.
+
+Counts in the current build: `tiger_funcstat` 3,072; `tiger_funcstat_G` 1,603 (= `not_in_cog2022` 1,603); `spans_counties` 899;
+`gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 377; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
+`gov_status_na:legislative_chamber` 100; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
+`gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
+`coextensive_separate_government` 26; `tiger_funcstat_N` 20; CT flags 8 each; `gov_status_unknown:consolidated_…` 6;
+`outside_v2_scope` 5; `gov_status_unknown:not_in_cog2022_scope` 5; `consolidated_government_covers_county` 4; one each of
+`gov_status_na:legislative_body_of_state:11`, `gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match`,
+`tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`.

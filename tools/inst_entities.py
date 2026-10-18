@@ -17,7 +17,8 @@ from pyproj import Transformer
 ap = argparse.ArgumentParser()
 ap.add_argument('repo'); ap.add_argument('--gaz24', required=True); ap.add_argument('--gaz20', required=True)
 ap.add_argument('--cog', required=True); ap.add_argument('--geojson', required=True)
-ap.add_argument('--oh-ref', required=True); ap.add_argument('--out')
+ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_argument('--stability-test', action='store_true')
+ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
 A = ap.parse_args()
 R = A.repo; OUT = A.out or os.path.join(R, 'data-v3/inst'); os.makedirs(OUT, exist_ok=True)
 GEO = os.path.join(R, 'data-v3/geo')
@@ -379,7 +380,7 @@ for k, g in GROUP.items():
     else:
         fs = prim['funcstat']
         if fs == 'G':
-            e['gov_status'] = 'dependent'; flag(e, 'tiger_funcstat_G:active_government_subordinate_to_another_unit;not_in_cog2022')
+            e['gov_status'] = 'dependent'; flag(e, 'tiger_funcstat_G:active_government_subordinate_to_another_unit'); flag(e, 'not_in_cog2022')
         elif fs in 'ABC': flag(e, f'gov_status_unknown:tiger_funcstat_{fs}_no_cog2022_code_match')
         else: e['gov_status'] = 'area_only'; flag(e, f'tiger_funcstat_{fs}:' + FUNC[fs].replace(' ', '_'))
     if prim['funcstat'] in 'IN' and pids: flag(e, f"tiger_funcstat_{prim['funcstat']}_but_in_cog2022")
@@ -443,6 +444,42 @@ for ss, (kind, typ) in SCH.items():
         idx(ss, g, '2024', e['entity_id'])
         XW.append({'entity_id': e['entity_id'], 'geoid_layer': ss, 'geoid': g, 'relation': 'primary', 'relation_detail': '',
                    'share_of_geoid_in_entity': '1.0000', 'share_of_entity_in_geoid': '1.0000', 'vintage': '2024', 'source': gazsrc(2024, fn)})
+
+# school gov_status from the Governments bot: its nces_leaid = the TIGER school GEOID (NCES LEA ID); read only
+GOV_SHA = subprocess.run(['git', '-C', R, 'rev-parse', A.gov_ref], capture_output=True, text=True, check=True).stdout.strip()
+S_GOV = f'Governments bot local/<ST>.csv (gov_status, nces_leaid; CoG 2022 + F-33 NCESID) at {GOV_SHA}'
+GP = 'data-v3/institutions/governments/local/'
+BOTSCH = C.defaultdict(list)
+for f_ in subprocess.run(['git', '-C', R, 'ls-tree', '--name-only', GOV_SHA, GP], capture_output=True, text=True, check=True).stdout.split():
+    for r in csv.DictReader(io.StringIO(subprocess.run(['git', '-C', R, 'show', f'{GOV_SHA}:{f_}'], capture_output=True, check=True).stdout.decode('utf-8'))):
+        if r['type'] == 'school_district' and r.get('nces_leaid'): BOTSCH[r['nces_leaid']].append(r)
+GSM = {'independent': 'government', 'dependent': 'dependent'}
+SCHFILL = C.Counter(); SCHCONF = []
+for (eid, vint), e in ENT.items():
+    if not eid.startswith('school:'): continue
+    b = BOTSCH.get(e['geoid'], [])
+    st = sorted({GSM.get(x['gov_status'], '?' + x['gov_status']) for x in b})
+    if not b: SCHFILL['no_bot_row'] += 1; continue
+    if len(st) > 1 or st[0].startswith('?'):
+        SCHFILL['conflict'] += 1; SCHCONF.append((eid, ';'.join(x['entity_id'] + '=' + x['gov_status'] for x in b))); continue
+    e['gov_status'] = st[0]; SCHFILL[st[0]] += 1
+    e['_flags'] = [x for x in e['_flags'] if not x.startswith('gov_status_unknown:cog2022_school')]
+    pids = sorted({x['cog_id'] for x in b})
+    e['cog_pid6'] = ';'.join(pids)
+    if len(b) > 1: flag(e, 'multiple_cog_units:' + ','.join(pids)); SCHFILL['filled_from_several_bot_rows_same_status'] += 1
+    src(e, S_GOV)
+for e in ENT.values():
+    if e['entity_id'].startswith('school:') and not e['gov_status']:
+        e['_flags'] = [x if not x.startswith('gov_status_unknown:cog2022_school') else 'gov_status_unknown:no_governments_bot_row_with_this_nces_leaid' for x in e['_flags']]
+for eid, d in SCHCONF:
+    GAPS.append({'gap': 'school_gov_status_conflict', 'key': eid, 'detail': d})
+    e = ENT[(eid, '2024')]; e['_flags'] = [x for x in e['_flags'] if not x.startswith('gov_status_unknown')]; flag(e, 'gov_status_unknown:governments_bot_rows_disagree')
+for e in ENT.values():
+    if e['entity_id'].startswith('school:') and not e['gov_status']: GAPS.append({'gap': 'gov_status_unknown', 'key': e['entity_id'], 'detail': ';'.join(e['_flags'])})
+ours_ = {e['geoid'] for e in ENT.values() if e['entity_id'].startswith('school:')}
+SCHFILL['bot_leaids'] = len(BOTSCH); SCHFILL['bot_school_rows_with_leaid'] = sum(len(v) for v in BOTSCH.values())
+SCHFILL['bot_leaids_not_a_tiger2024_school_entity'] = len(set(BOTSCH) - ours_)
+print('school gov_status fill', dict(SCHFILL), file=sys.stderr)
 
 # ---------------- legislatures ----------------
 geo_names = {}
@@ -542,7 +579,7 @@ for r in OHC + OH24:
     if (eid, '2024') in ENT: continue
     e = add(entity_id=eid, vintage='2024', level='state', kind='district_seat', type=typ, state_fips=f, state=FIPS[f][1], name=r['district'],
             parent_entity_id=f'chamber:{ab.lower()}-{ch}', officeholder_entity_id=r['entity_id'], officeholder_unit_vintage=r['unit_vintage'],
-            officeholder_unit_key=r['district'], source=S_OH + ' (district); ' + r['source'].split(',')[0], license=r['license'] if r['license'] else '')
+            officeholder_unit_key=r['district'], source=S_OH + ' (district)', license='')
     flag(e, 'no_tiger_geoid'); flag(e, 'gov_status_na:district_seat')
 
 # ---------------- v2 / v1 row back-links + validation ----------------
@@ -662,7 +699,7 @@ def ent_of_county(c):
 for old, news in ct.items():
     eo = ENT[(f'county:{old}', '2020')]
     succ = sorted({ent_of_county(n) for n in news})
-    eo['successor_id'] = ';'.join(succ); eo['_flags'].append('valid_to_not_recorded:last_tiger_vintage_here_2020;replaced_by_planning_regions_in_tiger_2022')
+    eo['successor_id'] = ';'.join(succ); eo['_flags'] += ['valid_to_not_recorded:last_tiger_vintage_here_2020', 'replaced_by_planning_regions_in_tiger_2022']
     for n in succ:
         en = ENT[(n, '2024')]
         en['predecessor_id'] = ';'.join(sorted(set([x for x in en.get('predecessor_id', '').split(';') if x] + [eo['entity_id']])))
@@ -699,9 +736,7 @@ for (eid, vint), e in ENT.items():
     e['alias'] = ';'.join(sorted(esc(a) for a in e['_alias'] if a and a != e['name']))
     if e['kind'] == 'state': e['label'] = 'sovereign'
     elif e['kind'] in ('county', 'township') and e['gov_status'] == 'government' and not e['label']: e['label'] = 'incorporated'
-    e['flags'] = ';'.join(e['_flags']); e['source'] = '; '.join(e['_src'])
-    e['source_url'] = urls_for(e['_src']); e['retrieved_at'] = RETRIEVED
-    if not e['source_url']: e['flags'] = ';'.join([x for x in [e['flags'], 'source_url_missing'] if x])
+    e['flags'] = ';'.join(f_.replace(';', ',') for f_ in e['_flags']); e['source'] = '; '.join(e['_src'])   # ';' separates flags; ',' inside one
     lays = []
     for l, _ in e['_v2']:
         if l not in lays: lays.append(l)
@@ -712,10 +747,60 @@ for (eid, vint), e in ENT.items():
     e.setdefault('predecessor_id', ''); e.setdefault('successor_id', '')
     OUTROWS.append(e)
 ids = [e['entity_id'] for e in OUTROWS]; assert len(ids) == len(set(ids)), 'entity_id not unique'
+
+# ---------------- sources.csv: every cited source once, stable ids (tools/inst_sources.py) ----------------
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from inst_sources import Registry
+GEO_SHA = subprocess.run(['git', '-C', R, 'merge-base', 'HEAD', 'origin/data/geo'], capture_output=True, text=True).stdout.strip()
+OH_SOURCES = git_show('data-v3/inst/sources.csv')
+REPO = 'https://github.com/ge0r9b/us-districts'
+OHLIC = 'per row: CC0 1.0 / public domain (US government work) / official public record (see the officeholder rows)'
+GAZ = re.compile(r'(\d{4}) TIGER/Line Gazetteer \((\d{4}_Gaz_\w+?_national)\.txt\)')
+def build_registry():
+    reg = Registry(); reg.load(OH_SOURCES, text=True)
+    CGID = next(r['source_id'] for r in CG if r['vintage'] == '2024').split(';')   # exact ids county_government.csv cites
+    def pre(p): return next(k for k in CGID if k.startswith(p))
+    def atom(t):
+        m = GAZ.search(t)
+        if m: return [reg.add(None, f'U.S. Census Bureau, {m.group(1)} TIGER/Line Gazetteer ({m.group(2)}.txt)',
+                              f'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/{m.group(1)}_Gazetteer/{m.group(2)}.zip', PD, RETRIEVED)]
+        if t.startswith('ANSI/FIPS state codes'): return [reg.add(None, S_ST, 'https://www.census.gov/library/reference/code-lists/ansi.html', PD, RETRIEVED)]
+        if t.startswith('U.S. Constitution'): return [reg.add(None, 'U.S. Constitution (National Archives transcript)', 'https://www.archives.gov/founding-docs/constitution-transcript', PD, RETRIEVED)]
+        if 'Home Rule Act' in t: return [reg.add(None, 'District of Columbia Home Rule Act (D.C. Code title 1 ch. 2)', 'https://code.dccouncil.gov/us/dc/council/code/titles/1/chapters/2', PD, RETRIEVED)]
+        if t == S_GEOJSON or 'town_pairs.csv' in t:
+            return [reg.add(None, 'U.S. Census Bureau TIGER/Line 2024 county subdivisions + places (FUNCSTAT, CLASSFP, NAMELSAD, geometry; via data-v3/geo GeoJSON and town_pairs.csv)',
+                            'https://www2.census.gov/geo/tiger/TIGER2024/COUSUB/ ; https://www2.census.gov/geo/tiger/TIGER2024/PLACE/', PD, RETRIEVED)]
+        if t == S_COG: return [pre('census-cog2022-')]
+        if t == S_GOV: return [reg.add(None, 'Governments bot, data-v3/institutions/governments (local/<ST>.csv gov_status + nces_leaid)', f'{REPO}/tree/{GOV_SHA}/data-v3/institutions/governments', 'public domain (US government work)', RETRIEVED, GOV_SHA)]
+        if t == S_CG: return [pre('repo-governments-'), pre('census-cog2022-'), pre('census-tiger2024-county-')]
+        if t.startswith(S_OH): return [reg.add(None, 'data-v3/inst officeholder files (entity_id + unit as published there)', f'{REPO}/tree/{OH_SHA}/data-v3/inst', OHLIC, RETRIEVED, OH_SHA)]
+        if t.startswith('v2/data/dc.js'): return [reg.add(None, 'v2/data/dc.js (DC wards stand in for state senate and house)', f'{REPO}/blob/{GEO_SHA}/v2/data/dc.js', 'project data (v2), derived from public-domain Census TIGER', RETRIEVED, GEO_SHA)]
+        if t == 'U.S. Census Bureau Gazetteer': return []
+        raise SystemExit('unmapped source text: ' + t)
+    def ids_for(texts):
+        out = []
+        for t in texts:
+            for part in re.split(r' \+ (?=U\.S\. )', t):
+                for i in atom(part.strip()):
+                    if i not in out: out.append(i)
+        return ';'.join(out)
+    geo = reg.add(None, 'data-v3/geo crosswalk tables (v2 row -> TIGER GEOID; counties, schools, ushouse, sldu/sldl, v1_towns, town_pairs)', f'{REPO}/tree/{GEO_SHA}/data-v3/geo', 'project data, derived from public-domain Census TIGER', RETRIEVED, GEO_SHA)
+    v2p = reg.add(None, 'v2/data/parts/*.js (v2 county-part rows)', f'{REPO}/tree/{GEO_SHA}/v2/data/parts', 'project data (v2)', RETRIEVED, GEO_SHA)
+    v2c = reg.add(None, 'v2/data/places/*.js (v2 place rows)', f'{REPO}/tree/{GEO_SHA}/v2/data/places', 'project data (v2)', RETRIEVED, GEO_SHA)
+    tig = atom(S_GEOJSON)[0]; cog = pre('census-cog2022-'); oh = atom(S_OH)[0]
+    V2SRC = {'v2:parts': f'{geo};{v2p};{tig}', 'v2:places': f'{geo};{v2c};{tig}'}
+    GAPSRC = {'orphan_officeholder_unit': oh, 'officeholder_unit_without_tiger_geoid': oh, 'cog2022_unit_not_linked_by_code': cog,
+              'gov_status_unknown': f'{tig};{cog}', 'excluded_not_defined': '', 'consolidated_county_cog_code_not_in_tiger': f'{cog};{tig}',
+              'consolidated_county_no_government_linked': f'{cog};{tig}', 'same_code_place_cousub_overlap_unmeasured': tig,
+              'town_pair_same_neither_in_cog': f'{geo};{cog}', 'school_gov_status_conflict': atom(S_GOV)[0]}
+    return reg, ids_for, (lambda l: V2SRC.get(l, geo)), GAPSRC
+REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
-         'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source', 'source_url', 'retrieved_at', 'license',
+         'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
          'feed', 'level', 'type', 'cog_pid6', 'flags']
 ORDER = ['nation', 'state', 'territory', 'chamber', 'dc_council', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
+for e in OUTROWS:
+    e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
 rows = sorted(OUTROWS, key=lambda e: (ORDER.index(e['kind']), e['state_fips'], e['entity_id']))
 for e in rows:
     assert e['parent_id'] == '' or e['parent_id'] in set(ids), (e['entity_id'], e['parent_id'])
@@ -735,21 +820,22 @@ for x in XW:
     if x['geoid_layer'] in ('cd', 'sldu', 'sldl'): continue
     srcs = [y for y in x['source'].split('; ') if y]
     XW2.append({'entity_id': x['entity_id'], 'unit_layer': x['geoid_layer'], 'geoid': x['geoid'], 'vintage': x['vintage'], 'relation': relname(x),
-                'source': x['source'], 'source_url': urls_for(srcs), 'retrieved_at': RETRIEVED,
+                'boundary_set': 'v2-2024' if x['vintage'] == '2024' else f"tiger-{x['vintage']}-{x['geoid_layer']}", 'source_id': IDS_FOR(srcs),
                 'overlap': 'equal' if x['relation'] == 'primary' else x['relation'], 'share_of_geoid_in_entity': x['share_of_geoid_in_entity'],
                 'share_of_entity_in_geoid': x['share_of_entity_in_geoid']})
-XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'relation', 'source', 'source_url', 'retrieved_at', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid']
+XC2 = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid']
 xk = [(x['entity_id'], x['unit_layer'], x['geoid'], x['vintage']) for x in XW2]; assert len(xk) == len(set(xk))
 assert {x['entity_id'] for x in XW2} <= set(ids)
 with open(os.path.join(OUT, 'entity_geoid_xwalk.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, XC2, lineterminator='\n'); w.writeheader(); w.writerows(sorted(XW2, key=lambda x: (x['entity_id'], x['vintage'], x['relation'] != 'primary', x['unit_layer'], x['geoid'])))
 # v2 back-link table: district rows resolve to chamber entity + unit
 SEATPAR = {e['entity_id']: e['parent_entity_id'] for e in SEATS}
-VC = ['v2_layer', 'state', 'v2_row', 'v2_name', 'unit_layer', 'geoid', 'vintage', 'entity_id', 'resolved', 'note']
+VC = ['v2_layer', 'state', 'v2_row', 'v2_name', 'unit_layer', 'geoid', 'vintage', 'entity_id', 'resolved', 'note', 'source_id']
 V2OUT = []
 for v in V2:
     o = dict(v); o['unit_layer'] = o.pop('geoid_layer')
     if o['entity_id'] in SEATPAR: o['entity_id'] = SEATPAR[o['entity_id']]; o['note'] = ('district unit of the chamber; ' + o['note']).rstrip('; ')
+    o['source_id'] = V2SRC_FOR(o['v2_layer'])
     V2OUT.append(o)
 with open(os.path.join(OUT, 'entity_v2_rows.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, VC, lineterminator='\n'); w.writeheader(); w.writerows(V2OUT)
@@ -769,8 +855,36 @@ for e in rows:
     for fl in e['_flags']:
         if fl.startswith('gov_status_unknown:tiger') or fl.startswith('gov_status_unknown:consolidated'):
             GAPS.append({'gap': 'gov_status_unknown', 'key': e['entity_id'], 'detail': fl})
+def gap_sid(g, ids_for, v2f, gapsrc):
+    if g['gap'] == 'orphan_v2_row': return v2f(g['key'].split('|')[0])
+    if g['gap'] == 'excluded_not_defined':   # TIGER 'not defined' pseudo-units (ZZZ / water), from the Gazetteer of that layer
+        lay = g['key'].split(':')[0]; yr = g['key'].split(':')[2] if g['key'].count(':') >= 2 else '2024'
+        fn_ = {('cd', '2024'): '2024_Gaz_119CDs_national.txt', ('cd', '2020'): '2020_Gaz_116CDs_national.txt'}.get((lay, yr), f'{yr}_Gaz_{lay}_national.txt')
+        return ids_for([gazsrc(int(yr), fn_)])
+    return gapsrc[g['gap']]
+for g in GAPS: g['source_id'] = gap_sid(g, IDS_FOR, V2SRC_FOR, GAPSRC)
 with open(os.path.join(OUT, 'entity_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, ['gap', 'key', 'detail'], lineterminator='\n'); w.writeheader(); w.writerows(GAPS)
+    w = csv.DictWriter(fh, ['gap', 'key', 'detail', 'source_id'], lineterminator='\n'); w.writeheader(); w.writerows(GAPS)
+USED = set()
+for tbl in (rows, XW2, V2OUT, GAPS):
+    for x in tbl: USED.update(i for i in x['source_id'].split(';') if i)
+assert USED <= set(REG.rows), USED - set(REG.rows)
+REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
+if A.stability_test:   # rebuild the registry and every row's ids a second time (texts in reverse order) and compare
+    reg2, ids2, v2f, gs2 = build_registry()
+    def setof(x): return set(i for i in x.split(';') if i)
+    bad = [(e['entity_id'], e['source_id'], ids2(e['_src'][::-1])) for e in rows if setof(ids2(e['_src'][::-1])) != setof(e['source_id'])]
+    XWF = [x for x in XW if x['geoid_layer'] not in ('cd', 'sldu', 'sldl')]
+    bad += [(x2['entity_id'], x2['source_id'], ids2([y for y in x['source'].split('; ') if y][::-1])) for x, x2 in zip(XWF, XW2)
+            if setof(ids2([y for y in x['source'].split('; ') if y][::-1])) != setof(x2['source_id'])]
+    bad += [(v['v2_layer'], v['source_id'], v2f(v['v2_layer'])) for v in V2OUT if v2f(v['v2_layer']) != v['source_id']]
+    bad += [(g['key'], g['source_id']) for g in GAPS[::-1] if gap_sid(g, ids2, v2f, gs2) != g['source_id']]
+    bad += [(k, REG.rows[k], reg2.rows.get(k)) for k in sorted(USED) if reg2.rows.get(k) != REG.rows[k]]
+    same = not bad
+    if bad: print('stability mismatches', len(bad), bad[:5])
+    n = REG.check_ids()
+    print(f'stability test: {n} sources; second build identical: {same}; ids re-derive from url+commit: OK')
+    assert same
 summ = {
   'built_from': {'repo_head': subprocess.run(['git', '-C', R, 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip(),
                  'officeholder_ref': f'{A.oh_ref} {OH_SHA}',
@@ -792,6 +906,8 @@ summ = {
   'v2_rows': {l: dict(C.Counter(v['resolved'] for v in V2OUT if v['v2_layer'] == l)) for l in sorted({v['v2_layer'] for v in V2OUT})},
   'officeholders': oh_stats,
   'gaps': dict(C.Counter(g['gap'] for g in GAPS)),
+  'school_gov_status_fill': dict(SCHFILL), 'governments_ref': GOV_SHA,
+  'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA,
 }
 json.dump(summ, open(os.path.join(OUT, 'entities_summary.json'), 'w'), indent=1)
 print(json.dumps(summ, indent=1))
