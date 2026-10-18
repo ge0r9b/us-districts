@@ -68,7 +68,8 @@ S_CEN = src("census-cb2024-county", "U.S. Census Bureau cartographic boundary fi
             INP / "cb_2024_us_county_500k.shp")
 S_WD = src(f"wikidata-brands-{read_meta('wikidata_brands')['retrieved_at']}", "Wikidata (labels, P31, P749, P856)",
            "https://query.wikidata.org/", "CC0 1.0", read_meta("wikidata_brands")["retrieved_at"], RAW / "wikidata_brands.json")
-ATP_USED = ("mcdonalds", "marriott_hotels", "ritz_carlton")
+ATP_SBUX = sorted(k for k, v in ATP["spiders"].items() if k.startswith("starbucks_") and v["features"])
+ATP_USED = ("mcdonalds", "marriott_hotels", "ritz_carlton", *ATP_SBUX)
 S_ATP = {s: src(f"atp-{s}-{ATP_DATE}", f"All The Places spider '{s}' (run {ATP['run_id']})", ATP["spiders"][s]["url"],
                 "CC0 1.0", ATP_DATE, RAW / "atp" / f"{s}.geojson") for s in ATP_USED}
 S_V5OK = src("marriott-v5-user-approved-2026-10-18", "Marriott property list v5 values (coordinates/address) kept where no ATP or Marriott-feed value exists; approved by the user on 2026-10-18",
@@ -414,16 +415,66 @@ for x in rows:
 df = finish(rows, check_county=False)
 stats["v5_user_approved_rows"] = int(df["flags"].str.contains("v5_user_approved").sum())
 v5_codes = set(v5.marsha)
-lic = Counter(f for fl in df["flags"] for f in fl.split(";") if f.startswith("v5_unknown_license"))
-stats["v5_unknown_license_rows"] = int(df["flags"].str.contains("v5_unknown_license").sum())
-stats["v5_unknown_license_coordinates"] = lic["v5_unknown_license:coordinates"]  # always 0 now
-stats["v5_unknown_license_address"] = lic["v5_unknown_license:address"]
 summary["marriott"] = {"file": write(df, "marriott"), "rows": len(df), "input_rows": n_in, "exact_duplicate_rows_dropped": exact_dups,
                        "v5_missing_coordinates": int((v5.coordinates == "").sum()), **stats,
                        "still_missing_coordinates": int((df.lat == "").sum()),
                        "atp_properties_not_in_v5": len(set(atp) - v5_codes),
                        "rows_by_country": dict(Counter(df.country_code)),
                        "flags": dict(Counter(re.sub(r"_[\d.]+km$", "_km", f.split(":")[0]) for fl in df["flags"] for f in fl.split(";") if f))}
+
+# ---------------- Starbucks (All The Places, all countries) ----------------
+# Every ATP starbucks_* spider with features. ATP refs are numbered per licensee system, so the same number can be two
+# different stores in two spiders (e.g. starbucks_th 14091 vs starbucks_us 14091). store_id is therefore
+# <namespace>-<ref>: namespace = the country domain for refs like "locations.starbucks.ae/#15480757" (starbucks_ae and
+# starbucks_mena publish the same stores this way), else the spider suffix without "_" (us, cn, eu, arcl, hkmo, ...).
+# Same store_id twice = the same store; the first spider in name order is kept. starbucks_reserve (6 Roasteries,
+# brand Q71150001, no ref) is not loaded: no store id.
+SBQ = "Q37158"
+rows, seen, sb = [], {}, Counter()
+for spider in ATP_SBUX:
+    t = (RAW / "atp" / f"{spider}.geojson").read_text().strip()
+    for f in json.loads(t)["features"] if t else []:
+        p = f["properties"]
+        sb["features"] += 1
+        if p.get("brand:wikidata") != SBQ:
+            sb[f"skipped_brand_{p.get('brand:wikidata')}"] += 1
+            continue
+        ref = str(p.get("ref") or "")
+        if not ref:
+            sb["skipped_no_ref"] += 1
+            continue
+        m = re.match(r"locations\.starbucks\.(?:com\.|co\.)?([a-z]{2})/#(\d+)$", ref)
+        sid = f"{m.group(1)}-{m.group(2)}" if m else f"{spider[10:].replace('_', '')}-{ref}"
+        g = f.get("geometry")
+        lat, lon = (g["coordinates"][1], g["coordinates"][0]) if g else ("", "")
+        if sid in seen:
+            sb["duplicate_store_id_dropped"] += 1
+            o = seen[sid]
+            if lat != "" and o["lat"] != "" and km(lat, lon, o["lat"], o["lon"]) > 1:
+                o["flags"].append(f"duplicate_in_{spider}_{km(lat, lon, o['lat'], o['lon']):.1f}km")
+            continue
+        cc = p.get("addr:country", "")
+        name = p.get("name") or p.get("name:en") or ""
+        if name == "Starbucks" and p.get("branch"):
+            name = f"Starbucks {p['branch']}"
+        phone = p.get("phone", "") or ""
+        if cc == "US":
+            phone = phone_us(phone) or phone
+        x = dict(store_id=sid, brand="Starbucks", brand_qid=qid(SBQ), parent_brand_qid=parent_of(SBQ),
+                 address=p.get("addr:street_address") or p.get("addr:full") or "", city=p.get("addr:city", ""),
+                 state=p.get("addr:state", ""), zip=p.get("addr:postcode", ""), county="",
+                 lat=round(lat, 6) if lat != "" else "", lon=round(lon, 6) if lon != "" else "", phone=phone, sub_brand="",
+                 flags=[] if p.get("addr:street_address") or not p.get("addr:full") else ["address_is_addr_full"],
+                 source=";".join([S_ATP[spider], S_CEN, S_WD]) if cc == "US" else ";".join([S_ATP[spider], S_WD]),
+                 source_url=p.get("website") or p.get("@source_uri", ""), source_date=SOURCES[S_ATP[spider]]["retrieved_at"],
+                 name=name, sub_brand_qid="", county_geoid="", country_code=cc, status="", store_type="")
+        seen[sid] = x
+        rows.append(x)
+df = finish(rows, check_county=True)  # county point-in-polygon runs only for US / territory country codes
+summary["starbucks"] = {"file": write(df, "starbucks"), "rows": len(df), **dict(sb), "spiders": ATP_SBUX,
+                        "rows_by_country": dict(Counter(df.country_code).most_common()),
+                        "missing_coordinates": int((df.lat == "").sum()),
+                        "us_with_county_geoid": int(((df.country_code == "US") & (df.county_geoid != "")).sum())}
 
 # ---------------- Wawa (user-provided list, used as-is) ----------------
 # raw/inputs/wawa-stores-user-2026-10-18.numbers: the user's own list (sheet "Wawa Stores"; its "About" sheet says it was
@@ -445,9 +496,10 @@ for r in _wt:
     rows.append(dict(store_id=v("Store ID"), brand="Wawa", brand_qid=qid(WQ), parent_brand_qid=parent_of(WQ), address=v("Street"),
                      city=v("City"), state=v("State"), zip=v("ZIP"), county="", lat=x["Latitude"] if x["Latitude"] is not None else "",
                      lon=x["Longitude"] if x["Longitude"] is not None else "", phone=v("Phone"), sub_brand="", flags=[],
-                     source=";".join([S_WAWA, S_CEN, S_WD]), source_url=v("URL"), source_date="2026-10-18", name=v("Name"),
+                     source=S_WAWA, source_url=v("URL"), source_date="2026-10-18", name=v("Name"),
                      sub_brand_qid="", county_geoid="", country_code="US", status="", store_type=""))  # Timezone, Schedule Type: no schema column
 df = finish(rows, check_county=False)
+df.loc[df.county_geoid == "", "flags"] = df.loc[df.county_geoid == "", "flags"].map(lambda f: ";".join([t for t in f.split(";") if t] + ["no_county"]))
 summary["wawa"] = {"file": write(df, "wawa"), "rows": len(df), "with_county_geoid": int((df.county_geoid != "").sum()),
                    "input_columns": list(_hdr)}
 
@@ -455,7 +507,7 @@ summary["wawa"] = {"file": write(df, "wawa"), "rows": len(df), "with_county_geoi
 used = Counter()
 files = defaultdict(set)
 LOC = {}
-for name in ("walgreens", "cvs", "mcdonalds", "marriott", "wawa"):
+for name in ("walgreens", "cvs", "mcdonalds", "marriott", "starbucks", "wawa"):
     p = OUT / summary[name]["file"]
     d = pd.read_csv(p, dtype=str, keep_default_na=False)
     LOC[name] = d
@@ -565,7 +617,7 @@ summary["brand_relationships_review_flags"] = int((rel["flags"] != "").sum())
 # geoid only when the county is in the agreed v2-2024 set (data-v3/geo/counties.csv); PR/VI are not in it
 V2_COUNTIES = set(pd.read_csv(ROOT.parents[1] / "geo" / "counties.csv", dtype=str, keep_default_na=False).geoid)
 LCOL = ["location_id", "entity_id", "sub_entity_id", "role", "name", "address", "geoid", "boundary_set", "lat", "lon", "source_id",
-        "retrieved_at", "brand_name", "geoid_method", "flags"]
+        "retrieved_at", "brand_name", "geoid_method", "flags", "country_code"]
 lrows, excluded = [], Counter()
 for fname, d in LOC.items():
     for x in d.itertuples(index=False):
@@ -599,7 +651,7 @@ for fname, d in LOC.items():
                           source_id=sid, retrieved_at=SOURCES[sid]["retrieved_at"], brand_name=WD.get(ent[9:], {}).get("label", ""),
                           geoid_method=("nearest_county_within_2km" if "county_nearest_within_2km" in x.flags else
                                         "point_in_polygon_cb2024" if geoid else ""),
-                          flags=";".join(lfl)))
+                          flags=";".join(lfl), country_code=x.country_code))
 locs = pd.DataFrame(lrows, columns=LCOL)
 dupl = locs.location_id.duplicated(keep=False)
 locs.loc[dupl, "flags"] = locs.loc[dupl, "flags"].map(lambda f: ";".join(filter(None, [f, "duplicate_location_id_review"])))

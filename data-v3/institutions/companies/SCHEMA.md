@@ -9,20 +9,19 @@ No SEC / GLEIF / LEI data and no operator or corporate-parent fields; the earlie
 ## IDs (final)
 Bare `scheme:id`, no extra prefix: brands and organizations are `wikidata:Q<n>` (e.g. `wikidata:Q38076` McDonald's).
 An id is never reused; if an item is merged on Wikidata the old id stays resolvable as an alias.
-Store / property ids are the brand's own number or code (`store_id`), unique within a brand file.
+Store / property ids are the brand's own number or code (`store_id`), unique within a brand file (Starbucks: `<namespace>-<ref>`, see below).
 
 ## Files
 | file | rows (this build) | loads into |
 |---|---|---|
-| `locations/wawa.csv` | 1,320 | Wawa stores from the user's own list |
-| `brand_cleanliness.csv` | 32 | brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring for columns and rank order) |
-| `brands.csv` | 45 (34 brand, 11 company) | `entity` |
+| `brands.csv` | 46 (35 brand, 11 company) | `entity` |
 | `brand_relationships.csv` | 34 | `entity_relation` |
-| `company_locations.csv.gz` | 36,675 | `entity_location` |
+| `company_locations.csv.gz` | 73,120 (54,669 with a v2-2024 county geoid) | `entity_location` |
 | `retracted_locations.csv` | 0 (header only) | `retraction` (target `entity_location`) |
-| `locations/<brand>.csv` | walgreens 7,991; cvs 9,001; mcdonalds 13,486; marriott 6,197 | source tables for company_locations (full store detail) |
-| `locations/marriott_dropped_us.csv` | 36 | not loaded: US/PR/VI Marriott rows that could not be kept, with reason |
-| `sources.csv` | 8 | `source` |
+| `locations/<brand>.csv` | walgreens 7,991; cvs 9,001; mcdonalds 13,486; marriott 6,294; wawa 1,320; starbucks 35,075 (`starbucks.csv.gz`) | source tables for company_locations (full store detail) |
+| `locations/marriott_dropped_us.csv` | 36 | not loaded: US/territory Marriott rows that could not be kept, with reason |
+| `brand_cleanliness.csv` | 33 | not loaded: brands with locations ranked by cleanliness (`scripts/rank_brands.py`; measurements only, see the script docstring) |
+| `sources.csv` | 29 | `source` |
 
 ## brands.csv: one row per brand or parent organization
 | column | meaning |
@@ -59,15 +58,15 @@ Scope: every brand used by a location row, plus every ancestor reachable through
 ## company_locations.csv.gz: one row per establishment (loader file)
 | column | meaning |
 |---|---|
-| `location_id` | `<file stem>:<store_id>` (`walgreens:15196`, `marriott:NYCMQ`) = `entity_location.location_key`; rows without a store_id are excluded |
+| `location_id` | `<file stem>:<store_id>` (`walgreens:15196`, `marriott:NYCMQ`, `starbucks:us-1040242`) = `entity_location.location_key`; rows without a store_id are excluded |
 | `entity_id` | `brand_qid` of the location row (`wikidata:Q…`) |
 | `sub_entity_id` | `sub_brand_qid` when given (Duane Reade, CVS Pharmacy y más) |
 | `role` | `establishment_at` (no `hq_in` rows yet: no HQ addresses in scope) |
 | `name`, `address` | store name; published business address `street, city, state, zip` |
-| `geoid`, `boundary_set` | county GEOID from point-in-polygon on Census 2024 counties, set only when the GEOID is in the agreed `v2-2024` county set (`data-v3/geo/counties.csv`); `boundary_set = v2-2024` then. PR/VI points keep lat/lon with geoid empty and flag `county_not_in_v2-2024:<geoid>` |
-| `lat`, `lon` | WGS84 point (every row has one) |
+| `geoid`, `boundary_set` | county GEOID from point-in-polygon on Census 2024 counties, set only when the GEOID is in the agreed `v2-2024` county set (`data-v3/geo/counties.csv`); `boundary_set = v2-2024` then. PR/VI points keep lat/lon with geoid empty and flag `county_not_in_v2-2024:<geoid>`. Non-US rows (Starbucks outside the US) have `geoid` and `boundary_set` empty |
+| `lat`, `lon` | WGS84 point (every row has one; rows with neither a point nor a geoid are excluded: 47 Starbucks rows in BR/AU) |
 | `source_id`, `retrieved_at` | source of the location's coordinates (ATP id when ATP supplied them, `marriott-pacsys-*` when Marriott's own feed did) and its date |
-| extras | `brand_name`, `geoid_method` (`point_in_polygon_cb2024` / `nearest_county_within_2km`), `flags` (copied from the location row) |
+| extras | `brand_name`, `geoid_method` (`point_in_polygon_cb2024` / `nearest_county_within_2km`), `flags` (copied from the location row), `country_code` (ISO 3166-1 alpha-2 from the location row) |
 
 ## retracted_locations.csv
 `location_id, retracted_at, reason, source_id`. Only known permanent closures; none are known in this build (the inputs carry temporary statuses only, kept as `status_*` flags), so the file is the header.
@@ -107,19 +106,24 @@ Scope: every brand used by a location row, plus every ancestor reachable through
   **brand_qid** order: exact normalized-name match to a Wikidata item parented/owned by Marriott or Starwood (`brand_qid_from_wikidata_name_match`),
   else the matched ATP item's `brand:wikidata`, else a v5-brand → QID map learned from ≥ 5 MARSHA-matched rows with ≥ 90 % agreement (`brand_qid_from_brand_name`).
   **Provenance caveat:** v5 addresses were partly filled from OpenStreetMap/Photon (ODbL) and the ArcGIS World Geocoder (Esri terms restrict storing results); v5 does not record which rows, so v5 addresses and points are used only where ATP and Marriott's feed have none, and those 33 rows carry `v5_user_approved`. Full provenance of v5: `PROVENANCE-marriott-v5.md`.
-- **wawa.csv**: the user's own Wawa list (Apple Numbers file uploaded 2026-10-18, copied untouched to `raw/inputs/wawa-stores-user-2026-10-18.numbers`; its About sheet says it was collected 2026-09-16 from order.wawa.com's store API). The user checked it, so values are copied as-is: no validation, phone reformatting, flagging or geocoding.
+- **wawa.csv**: the user's own Wawa list (Apple Numbers file uploaded 2026-10-18, copied untouched to `raw/inputs/wawa-stores-user-2026-10-18.numbers`; its About sheet says it was collected 2026-09-16 from order.wawa.com's store API). The user checked it, so values are copied as-is: no validation, phone reformatting or geocoding. `source` is `wawa-user-list-2026-10-18` alone, the same id `company_locations` carries.
   Column map: Store ID → `store_id`, Name → `name`, Street → `address`, City, State, ZIP → `zip`, Phone, Latitude/Longitude → `lat`/`lon`, URL → `source_url`. Timezone and Schedule Type have no schema column and are not carried.
-  Added: `brand_qid` = wikidata:Q5936320 (Wawa; no P749 parent on Wikidata, so `parent_brand_qid` is blank), `location_id` = `wawa:<store id>`, county by point-in-polygon on cb_2024 (1,318 of 1,320; 2 points fall outside the 1:500k polygons and are not snapped further than 2 km).
+  Added: `brand_qid` = wikidata:Q5936320 (Wawa; no P749 parent on Wikidata, so `parent_brand_qid` is blank), `location_id` = `wawa:<store id>`, county by point-in-polygon on cb_2024 (1,318 of 1,320). Stores 9598 and 9599 (260 W. Baltimore Pike, Media PA; 36.000282, -45.406712, in the Atlantic) get the flag `no_county`; their values are unchanged.
+- **starbucks.csv.gz**: all countries, from every All The Places `starbucks_*` spider with features in run 2026-10-10 (CC0): ae, ar_cl, au, br, ca, cn, eu, hk_mo, jp, mena, pe, sg, th, tw, us, za (`starbucks_in` returned 0 features). `brand_qid` = wikidata:Q37158; Wikidata has no P749 for it, so `parent_brand_qid` is blank.
+  **store_id** = `<namespace>-<ATP ref>`: ATP refs are numbered per licensee system, so one number can be two different stores in two spiders (e.g. starbucks_th 14091 and starbucks_us 14091). The namespace is the country domain for refs of the form `locations.starbucks.<tld>/#<n>` (starbucks_ae and starbucks_mena publish the same stores that way, so they dedupe to one id), else the spider suffix without `_` (`us`, `cn`, `eu`, `arcl`, `hkmo`, ...). Duplicate store_ids keep the first spider in name order: 255 dropped (all ae/mena, same point and address).
+  Not loaded: `starbucks_reserve` (6 Roasteries, brand Starbucks Reserve Q71150001, no ref).
+  `name` = ATP `name` (or `name:en`); when it is just "Starbucks" and ATP gives a `branch`, `Starbucks <branch>`. 178 hkmo rows have no name in ATP. `address` = `addr:street_address`, else `addr:full` (flag `address_is_addr_full`). US phones are normalized like the other files; others are as given.
+  County geoid only for `country_code = US` (16,708 of 16,708); 34 PR rows from starbucks_eu keep it empty. 47 rows (BR 45, AU 2) have no coordinates in ATP (`missing_coordinates`) and are not in company_locations.
 
 ## Flags
 `missing_coordinates`, `coordinates_from_atp`, `coordinates_from_marriott_feed`, `address_from_marriott_feed`, `v5_user_approved` (v5 coordinates/address kept by user decision 2026-10-18), `county_not_in_v2-2024:<geoid>`, `address_from_atp`, `v5_vs_atp_coordinates_<d>km` (> 1 km apart; ATP kept), `no_marsha_code`, `duplicate_marsha_in_v5`,
 `brand_qid_from_wikidata_name_match`, `brand_qid_from_brand_name`, `atp_brand_qid_differs:<Q>`, `county_nearest_within_2km` (point just outside the 1:500k shoreline, e.g. Navy Pier),
-`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`.
+`point_outside_us_counties`, `point_state_<XX>_vs_address_<YY>`, `phone_unparsed`, `status_<status>`, `independent_walgreens_affiliate_operator_unknown`, `powered_by_walgreens_affiliate_operator_unknown`, `address_is_addr_full`, `duplicate_in_<spider>_<d>km`, `no_county` (Wawa).
 
 ## Rebuild
 ```
 cd data-v3/institutions/companies/scripts
-python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton
+python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton starbucks_ae starbucks_ar_cl starbucks_au starbucks_br starbucks_ca starbucks_cn starbucks_eu starbucks_hk_mo starbucks_in starbucks_jp starbucks_mena starbucks_pe starbucks_reserve starbucks_sg starbucks_th starbucks_tw starbucks_us starbucks_za
 python3 fetch_marriott_pacsys.py AK WI TX JW WH LC MV SV WV PR XR RZ BR MD EB DE EL OX GE ER BG FI CY RI MC TS SH FP SI AR DS AL XE
 python3 fetch_wikidata_brands.py <brand QIDs…>      # list in summary.json / brands.csv
 python3 rank_brands.py                              # after build_locations.py -> brand_cleanliness.csv
