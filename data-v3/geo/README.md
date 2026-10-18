@@ -19,7 +19,7 @@ One CSV per layer, UTF-8, header row, one line per row as the v2 app shows it:
 
 Columns (layer files): `layer, state, row, v2_name, geoid, tiger_name, tiger_set, match`.
 - `row` = 0-based index of the row in the v2 file's array, or `dc.js` for rows injected at runtime by `v2/data/dc.js`.
-  Rows are identified by (`layer`, `row`); (`state`, `v2_name`) is **not** unique for 74 school rows.
+  Rows are identified by (`layer`, `row`). Since 9ff4c00 (`state`, `v2_name`) is also unique in every layer: the 58 same-name school groups (132 rows) were renamed "<name> (<county>)", see `v2_name_collisions.csv`.
 - `match`: `code+point` / `name+point` (code or name matched and the TIGER internal point lies inside the v2 polygon,
   buffered 0.002°), `code` / `name` (single candidate, internal point outside the simplified polygon), `point`
   (no name match, exactly one internal point inside), empty = unmatched. Same-named TIGER features are told apart only by the point test.

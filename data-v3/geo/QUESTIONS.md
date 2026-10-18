@@ -1,0 +1,81 @@
+# Geo & Institution Data lane: answers to Q-G1 to Q-G7
+
+Answers to `docs/v3/DATA_LOADING.md` §10 (branch `v3/plan`, 973c96c). State of branch `data/geo` on Oct 18, 2026.
+Each answer separates **Done** (committed on `data/geo`, with the commit) from **Planned** (not built yet; nothing
+here should be loaded until it is listed as done). Counts are from the files on `data/geo` at a9deb5f.
+
+## Q-G1: v2 name → GEOID table, including the duplicate school keys
+**Done** (bbc8854, 9ff4c00). `data-v3/geo/<layer>.csv`, one line per v2 row, matched against the Census TIGER 2024 Gazetteer:
+
+| File | Rows | Match (from `summary.json`) |
+|---|---|---|
+| `ushouse.csv` | 436 (435 + DC delegate) | code+point 434, code 2 |
+| `senate.csv` | 1,950 (1,942 + 8 DC wards) | code+point 1,919, code 23, name+point 8 |
+| `statehouse.csv` | 4,890 (4,882 + 8 DC wards) | code+point 4,843, code 39, name+point 8 |
+| `schools.csv` | 13,305 (13,208 on main + 96 Oklahoma elementary on `data/geo` + DCPS) | name+point 13,256, name 49; `tiger_set` unsd 10,872, elsd 1,952, scsd 481 |
+| `counties.csv` | 3,144 (3,143 + DC) | name+point 3,139, name 5 |
+| `towns.csv` | 1,598 (Iowa townships in `parts/Iowa.js`) | from the TIGER build report |
+
+Every row is matched and no GEOID is used twice in a layer. Columns: `layer, state, row, v2_name, geoid, tiger_name, tiger_set, match`
+(`towns.csv`: `layer, state, county, v2_name, geoid, funcstat, match`). `row` is the 0-based index in the v2 array, or `dc.js`.
+
+**Duplicates.** The 58 duplicate school keys (132 rows) no longer exist in `v2/data/ussch.js` on `data/geo`: 9ff4c00 renamed every
+row in those groups to `<name> (<county>)`. The county always separated the group, so GEOID digits were never needed.
+`v2_name_collisions.csv` has, per renamed row: `state, old_name, new_name, geoid, county, county_area_share, row, rows_in_group`, plus what
+the app wrongly showed before (74 of the 132 rows were hidden behind another row's figures). After the rename,
+(`state`, `v2_name`) is unique in all five district layers. The legacy importer can therefore key on `state|name` from a
+`data/geo` (or later `main`) commit, or on `(layer, row)` with these CSVs. For the old `main` names (before 9ff4c00), use `old_name` → `geoid`.
+The §8 "≥ 90 % IoU" geometry fallback is not needed for these rows.
+
+**Not covered yet (planned):** v1 `data/<State>.js` `towns` (20,935 rows) and `places` (19,477 rows), and the parts rows of
+other states. Root `data/` is outside this lane's write area; their GEOID table would be a new `data-v3/geo/v1_towns.csv`
+and `v1_places.csv` (cousub SSCCCMMMMM, place SSPPPPP) in the same format. Be aware of the app's `normT()` de-duplication:
+it hides same-named towns in IL 473, NY 197, KS 154, IA 173, MI 100, OH 83, IN 63, NE 54, MO 33, CT 23, VT 15 and MN 1, so `state|county|name` is not unique there either.
+
+## Q-G2: format of data-v3/geo
+**Done:** attribute tables only. UTF-8 CSV with a header and one file per layer, all TIGER **2024** vintage (the vintage is
+fixed for every file today; a future vintage would get its own file, e.g. `schools_2026.csv`). Format details are in `README.md`. No geometry is in
+`data-v3/geo/` yet. The geometry v3 can read today is the v2 encoding (÷1000 national, ÷10000 per state and parts),
+with lon/lat in EPSG:4269 (NAD83, TIGER's native CRS; it differs from EPSG:4326 by less than 1 m, and v2 does not reproject).
+**Planned (proposal; the orchestrator has not decided yet):** geometry as GeoJSON keyed by `geoid`, one file per layer × vintage
+(`data-v3/geo/<layer>_2024.geojson`), properties `geoid, name, state_fips, tiger_set`, coordinates EPSG:4326 rounded to 6 decimals.
+GeoJSON was chosen because the repo is plain git with GitHub Pages and the v3 loader already parses GeoJSON. FlatGeobuf or GeoPackage would only be used if v3 asks.
+
+## Q-G3: full-resolution TIGER
+**Done:** nothing full-resolution is committed. The untouched raw TIGER 2024 shapefiles used so far are on the box,
+outside the repo: `/workspace/w/lanes/geo-data-raw/tiger2024/tl_2024_19_cousub.zip`, `tl_2024_40_elsd.zip` and `tl_2024_40_unsd.zip`. The Gazetteer files are in `/workspace/w/tiger/`.
+**Planned:** this lane will **not** commit full-resolution national TIGER to git, because the national shapefiles are hundreds of MB.
+For point-in-polygon accuracy v3 should load TIGER/Line 2024 itself from `https://www2.census.gov/geo/tiger/TIGER2024/<LAYER>/`
+(public domain), and join it on the `geoid` in these CSVs. The lane can provide a fetch script `tools/fetch_tiger.py`
+(URL list + sha256 manifest, `data-v3/geo/tiger_manifest.csv`) on request. Simplified display geometry (the proposal under Q-G2) would be
+lod-style: districts at 0.0005° on shared arcs, the same method as the Iowa townships in a9deb5f (no gaps or overlaps between neighbours).
+
+## Q-G4: school district types
+**Done:** each school row already carries its TIGER type in `schools.csv` `tiger_set` (`unsd` 10,872, `elsd` 1,952, `scsd` 481).
+Elementary and secondary districts do overlap: a point in an ELSD state can lie in one elsd and one scsd row (for example
+CA, IL, AZ, MT). Oklahoma's 96 added elementary districts (a6e4360) do not overlap any Oklahoma unified district; this was checked.
+**Recommendation:** three v3 unit types `school_unified`, `school_elementary` and `school_secondary`, mapped 1:1 from `tiger_set`, and allow
+several school units per point. A single `school` type would lose which board a voter elects.
+
+## Q-G5: canonical town layer
+**Done / fact:** the three are different things. `data/<State>.js` `towns` are county subdivisions (v1, ÷10000).
+`places` are incorporated places and CDPs (they are not county subdivisions). `v2/data/parts/<State>.js` rows are `[county, town, polys|null]`,
+the county-part of a town (null = use the v1 geometry). The Iowa townships (3ec03fb, re-simplified in a9deb5f) are **new**
+TIGER FUNCSTAT-G county subdivisions placed in `parts/Iowa.js` (1,598 rows), keyed `county|name`, with GEOIDs in `towns.csv`.
+**Recommendation:** the canonical v3 county-subdivision layer is TIGER `cousub` keyed by GEOID (SSCCCMMMMM). v1 `towns` and `parts` rows
+map onto it; `places` stays a separate `place` layer. The Iowa townships use the same `county|name` key as other parts rows, plus a GEOID.
+
+## Q-G6: institution data as a file
+**Done:** nothing. **Planned:** the lane can deliver `data-v3/geo/entities.csv` (`entity_id, kind, state, name, alias, label, unit_layer, geoid`
+for state governments, chambers, school boards, counties, towns and the `sovereign`/`incorporated` labels), built from `PACK`/`XREF`
+(read-only) and cross-checked against TIGER and Census Governments data. This is not scheduled. Until it is committed, v3 should derive these from
+`PACK`/`XREF` as §9.1 says.
+
+## Q-G7: stable precinct IDs by year
+**Done:** nothing in `data-v3/geo/`. Precinct geometry stays embedded in `data/precincts2020|2024/*.js` (root `data/`, read-only
+for this lane). Today the only key is the v2 `County|Precinct` name, and it is **not unique**. Repeated (county, name) rows:
+2024: North Carolina 7, Pennsylvania 1; 2020: Massachusetts 1,918, Oklahoma 556, Pennsylvania 51, Arizona 4, North Carolina 2,
+Georgia 1, New Mexico 1. The source datasets (VEST, state files) also have their own precinct codes, but v2 does not keep them.
+**Planned (proposal):** `data-v3/geo/precincts_<year>.csv` with `precinct_id = <USPS>-<year>-<county FIPS>-<row ordinal in the v2 file>`, plus
+`county, v2_name, source_id` (VEST/official code where it can be recovered) and a centroid. The ID would be stable for a given year
+and source file. Precincts are not stable across years, so a 2020↔2024 link would be an area crosswalk table, not shared IDs.
