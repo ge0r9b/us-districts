@@ -865,3 +865,90 @@ Not changed:
 - Seven of these counties are vote-centre counties (marked "(Vote Center)" by SD SOS; Haakon's units are also polling places, not precincts): Brookings, Brown, Haakon, Hughes, Potter, Sully and Yankton. Their official canvass reports by vote centre plus one countywide Absentee Precinct, and neither unit has a geography. Absentee share of the vote: Brookings ≈ 62 %, Brown ≈ 59 %, Yankton ≈ 66 %, Hughes ≈ 43 %.
 - Lawrence reports 10 geographic precincts, but its countywide Absentee Precinct holds 59.5 % of Harris+Trump. The precincts would place only 40.5 %, under the 50 % usability floor, so even with county GIS shapes the Lead-Deadwood and Spearfish districts can't be estimated.
 - Sources: SD SOS 2024 General Election official county canvass documents (Aurora-Clark, Clay-Faulk, Grant-Lyman, Marshall-Ziebach bundles); SD SOS election-night site precinct/vote-centre listing.
+
+## Self-contained town and place files for all 50 states (Oct 18, 2026, branch `data/geo`, no app/BUILD change)
+
+`tools/build_town_files.py` rebuilt `v2/data/parts/<State>.js` and added a lazy `v2/data/places/<State>.js` for all 50 states
+(commits 2845888, 52f21c5, 0698944, 30242ac, bf039d8, 1b2c5a7). Source: Census TIGER 2024 county subdivisions, places and
+counties (public domain); no results are stored.
+
+- **parts/**: every row carries its own geometry (no row borrows a `data/` or `states/` polygon any more). Rows are, in order, the
+  v1 town rows of `data/<State>.js`, the earlier parts rows (exact duplicates of a v1 row dropped: 4,639), then TIGER gap fills
+  (111: governmental county subdivisions, FUNCSTAT A/B/C/G, and incorporated places with ≥ 2 % or ≥ 0.5 km² in the county, clipped
+  to the county), e.g. Kansas 30 numbered townships, Maine 29 (plantations and others), Missouri 12, Oklahoma 9. Names are the
+  real TIGER/v1 names (option A + `town_pairs.js`); (county, name) keys are unique (one duplicate TIGER key, Ohio Union County
+  Washington township, gets " (GEOID)" on the second feature).
+- **places/**: `__places("State",[["State", name, enc], ...])`, the same row style as the `places` layer of `data/<State>.js`:
+  all 19,477 v1 place rows plus 36 missing incorporated places. A name used twice in a state gets "Name (County)" (22 rows, Q-G8).
+- **Counts**: all 20,935 v1 town rows are in parts/ and all 19,477 v1 place rows in places/; every governmental county
+  subdivision (17,806) and every incorporated place (19,512) of TIGER 2024 has a row.
+- **Geometry**: shared-edge simplification. All feature and county boundaries are noded and polygonized at full resolution into
+  an exact face coverage, simplified as a whole with `shapely.coverage_simplify`; each row is the union of its faces, so neighbours
+  share identical vertices. Tiling check: overlap and interior gaps between county-subdivision rows are 0.0000 % in every state;
+  place pieces outside their county ≤ 0.08 %.
+- **Tolerance**: the smallest of 0.0002–0.002° that keeps a file ≤ 300 KB, otherwise 0.002° (orchestrator ruling Q-G9: 0.002° as
+  is, since Pages serves `.js` gzipped). 14 parts files and 4 places files stay over 300 KB raw (bold; all ≤ 288 KB gzipped).
+- **Accuracy**: area error = symmetric difference against TIGER as % of TIGER area. At 0.002° it is highest where cities have
+  ragged annexation edges (North Carolina 4.9 %, South Carolina 3.8 %, Georgia 2.8 %, Alabama 2.7 %, Texas 2.3 %; no single row
+  above 0.13 % of the state total). Hausdorff maxima of county-clipped place rows are inflated by zero-area slivers in the TIGER
+  clip (e.g. Marana town, Pinal County: 0.16° with matching area), so they are not listed.
+- **Kept old geometry**: 47 parts rows that do not resolve to a TIGER 2024 feature in their county (e.g. Pennsylvania
+  "Osceola Mills borough" under Centre County) keep their existing geometry; listed per state in the build reports.
+- The Iowa township section above is superseded: Iowa parts is now 397,156 bytes at 0.002° coverage simplification.
+- **App reads**: parts/ and places/ now cover everything the app reads from `states/` for towns and places (`GEOM.towns`,
+  `GEOM.places`, and the townsIn borrowing). `states/` stays for counties, schools and districts.
+
+| State | parts bytes before → after (gzip) | tol ° | places bytes (gzip) | tol ° | parts rows: v1 towns + old parts → after | TIGER fills parts / places | gov. cousubs / TIGER | inc. places / TIGER | cousub overlap / gap % | parts area error % | Hausdorff median ° |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Alabama | 177,767 → **372,075** (137,950) | 0.002 | **363,366** (134,741) | 0.002 | 0 + 509 → 510 | 1 / 0 | 0 / 0 | 463 / 463 | – | 2.744 | 0.00235 |
+| Alaska | 7,250 → 86,944 (30,907) | 0.0002 | 84,504 (30,377) | 0.0002 | 0 + 148 → 149 | 1 / 1 | 0 / 0 | 149 / 149 | – | 0.001 | 3e-05 |
+| Arizona | 12,459 → 166,832 (56,590) | 0.0002 | 165,185 (56,028) | 0.0002 | 0 + 98 → 98 | 0 / 0 | 0 / 0 | 91 / 91 | – | 0.019 | 0.00013 |
+| Arkansas | 31,943 → 292,135 (98,577) | 0.0002 | 286,792 (96,182) | 0.0002 | 0 + 520 → 520 | 0 / 0 | 0 / 0 | 500 / 500 | – | 0.058 | 8e-05 |
+| California | 20,701 → 259,939 (96,202) | 0.0015 | 257,182 (95,066) | 0.0015 | 0 + 482 → 482 | 0 / 0 | 0 / 0 | 482 / 482 | – | 0.804 | 0.00171 |
+| Colorado | 53,335 → 298,565 (102,546) | 0.0003 | 294,457 (100,604) | 0.0003 | 0 + 294 → 295 | 1 / 1 | 0 / 0 | 272 / 272 | – | 0.143 | 0.00025 |
+| Connecticut | 1,943 → 169,912 (55,789) | 0.0002 | 22,598 (8,222) | 0.0002 | 169 + 30 → 199 | 0 / 0 | 169 / 169 | 30 / 30 | 0.0 / 0.0 | 0.014 | 9e-05 |
+| Delaware | 8,569 → 53,422 (18,292) | 0.0002 | 51,786 (17,943) | 0.0002 | 0 + 60 → 60 | 0 / 0 | 0 / 0 | 57 / 57 | – | 0.164 | 0.00016 |
+| Florida | 18,877 → 284,718 (105,253) | 0.002 | 281,532 (103,909) | 0.002 | 0 + 414 → 414 | 0 / 0 | 0 / 0 | 411 / 411 | – | 2.097 | 0.00253 |
+| Georgia | 90,338 → 260,083 (98,839) | 0.002 | 295,124 (109,657) | 0.0015 | 0 + 591 → 591 | 0 / 0 | 0 / 0 | 537 / 537 | – | 2.809 | 0.00227 |
+| Hawaii | 66 → 2,023 (850) | 0.0002 | 2,016 (845) | 0.0002 | 0 + 1 → 1 | 0 / 0 | 0 / 0 | 0 / 0 | – | 0.017 | 0.00013 |
+| Idaho | 16,714 → 174,631 (57,744) | 0.0002 | 172,344 (56,868) | 0.0002 | 0 + 204 → 206 | 2 / 2 | 0 / 0 | 200 / 200 | – | 0.082 | 0.00011 |
+| Illinois | 208,476 → **785,524** (287,951) | 0.002 | **452,831** (166,278) | 0.002 | 1,433 + 1,420 → 2,847 | 0 / 0 | 1,426 / 1,426 | 1,294 / 1,294 | 0.0 / 0.0 | 0.58 | 0.00092 |
+| Indiana | 33,066 → **357,788** (130,807) | 0.002 | 258,579 (89,610) | 0.0005 | 1,009 + 589 → 1,594 | 0 / 0 | 1,005 / 1,005 | 566 / 566 | 0.0 / 0.0 | 0.4 | 0.00075 |
+| Iowa | 281,314 → **397,156** (137,289) | 0.002 | 265,715 (89,721) | 0.0002 | 60 + 2,609 → 2,609 | 0 / 0 | 1,598 / 1,598 | 940 / 940 | 0.0 / 0.0 | 0.249 | 0.00029 |
+| Kansas | 38,383 → **391,969** (142,729) | 0.002 | 263,792 (88,182) | 0.0002 | 1,441 + 647 → 1,990 | 30 / 0 | 1,262 / 1,262 | 626 / 626 | 0.0 / 0.0 | 0.211 | 0.0004 |
+| Kentucky | 30,224 → 299,116 (104,989) | 0.0005 | 294,640 (102,934) | 0.0005 | 0 + 435 → 436 | 1 / 1 | 0 / 0 | 419 / 419 | – | 0.498 | 0.00035 |
+| Louisiana | 35,134 → 258,361 (88,407) | 0.0002 | 253,146 (86,130) | 0.0002 | 1 + 315 → 315 | 0 / 0 | 0 / 0 | 304 / 304 | 0.0 / 0.0 | 0.064 | 9e-05 |
+| Maine | 962 → 260,703 (95,486) | 0.0005 | 22,987 (8,625) | 0.0002 | 453 + 23 → 482 | 29 / 0 | 459 / 459 | 23 / 23 | 0.0 / 0.0 | 0.051 | 0.0002 |
+| Maryland | 8,922 → 129,864 (43,635) | 0.0002 | 127,943 (43,057) | 0.0002 | 1 + 161 → 161 | 0 / 0 | 0 / 0 | 157 / 157 | 0.0 / 0.0 | 0.138 | 0.00013 |
+| Massachusetts | 2,476 → 239,321 (83,080) | 0.0002 | 43,179 (15,592) | 0.0002 | 351 + 58 → 351 | 0 / 0 | 293 / 293 | 58 / 58 | 0.0 / 0.0 | 0.019 | 0.0001 |
+| Michigan | 38,305 → **362,658** (132,828) | 0.002 | 237,135 (80,375) | 0.0002 | 1,540 + 561 → 1,803 | 0 / 0 | 1,240 / 1,240 | 533 / 533 | 0.0 / 0.0 | 0.218 | 0.00051 |
+| Minnesota | 63,284 → **541,209** (192,797) | 0.002 | 273,439 (95,271) | 0.0005 | 2,671 + 901 → 2,681 | 0 / 0 | 1,776 / 1,776 | 855 / 855 | 0.0 / 0.0 | 0.32 | 0.00074 |
+| Mississippi | 21,593 → 156,060 (54,025) | 0.0002 | 152,059 (52,082) | 0.0002 | 0 + 320 → 321 | 1 / 1 | 0 / 0 | 300 / 300 | – | 0.038 | 7e-05 |
+| Missouri | 89,202 → **300,106** (111,381) | 0.002 | 299,007 (108,334) | 0.001 | 284 + 1,002 → 1,297 | 12 / 10 | 283 / 283 | 948 / 948 | 0.0 / 0.0 | 0.779 | 0.00144 |
+| Montana | 5,189 → 119,026 (40,210) | 0.0002 | 118,065 (39,492) | 0.0002 | 0 + 127 → 127 | 0 / 0 | 0 / 0 | 127 / 127 | – | 0.03 | 9e-05 |
+| Nebraska | 24,803 → 258,750 (89,571) | 0.0005 | 167,426 (55,710) | 0.0002 | 410 + 542 → 883 | 5 / 0 | 320 / 320 | 528 / 528 | 0.0 / 0.0 | 0.045 | 0.00019 |
+| Nevada | 750 → 45,945 (15,891) | 0.0002 | 45,821 (15,782) | 0.0002 | 0 + 19 → 19 | 0 / 0 | 0 / 0 | 19 / 19 | – | 0.016 | 0.00012 |
+| New Hampshire | 565 → 188,850 (67,227) | 0.0002 | 14,670 (5,397) | 0.0002 | 241 + 13 → 241 | 0 / 0 | 221 / 221 | 13 / 13 | 0.0 / 0.0 | 0.015 | 7e-05 |
+| New Jersey | 14,281 → 295,578 (102,031) | 0.0005 | 158,356 (53,229) | 0.0002 | 564 + 323 → 564 | 0 / 0 | 241 / 241 | 323 / 323 | 0.0 / 0.0 | 0.159 | 0.00033 |
+| New Mexico | 8,525 → 93,445 (32,798) | 0.0002 | 92,147 (32,091) | 0.0002 | 0 + 110 → 110 | 0 / 0 | 0 / 0 | 105 / 105 | – | 0.039 | 8e-05 |
+| New York | 33,833 → **343,128** (129,972) | 0.002 | 257,640 (87,885) | 0.0002 | 999 + 609 → 1,547 | 0 / 0 | 938 / 938 | 595 / 595 | 0.0 / 0.0 | 0.308 | 0.00106 |
+| North Carolina | 165,120 → **423,870** (159,761) | 0.002 | **418,199** (155,816) | 0.002 | 1 + 598 → 603 | 5 / 3 | 0 / 0 | 552 / 552 | 0.0 / 0.0 | 4.857 | 0.00267 |
+| North Dakota | 15,591 → 286,441 (99,636) | 0.0015 | 95,809 (32,373) | 0.0002 | 1,672 + 365 → 1,675 | 0 / 0 | 1,306 / 1,306 | 355 / 355 | 0.0 / 0.0 | 0.134 | 0.00028 |
+| Ohio | 120,769 → **592,518** (217,857) | 0.002 | 293,014 (108,765) | 0.0015 | 1,602 + 1,005 → 2,336 | 2 / 2 | 1,313 / 1,313 | 925 / 925 | 0.0 / 0.0 | 0.61 | 0.0011 |
+| Oklahoma | 79,692 → 275,754 (95,771) | 0.0005 | 267,593 (92,613) | 0.0005 | 0 + 643 → 652 | 9 / 8 | 0 / 0 | 599 / 599 | – | 0.167 | 0.00025 |
+| Oregon | 26,866 → 244,081 (79,606) | 0.0002 | 239,282 (78,050) | 0.0002 | 0 + 251 → 255 | 4 / 1 | 0 / 0 | 241 / 241 | – | 0.092 | 0.00013 |
+| Pennsylvania | 55,166 → **613,204** (220,949) | 0.002 | 257,259 (88,532) | 0.0005 | 2,572 + 1,041 → 2,588 | 0 / 0 | 1,546 / 1,546 | 1,013 / 1,013 | 0.0 / 0.0 | 0.65 | 0.00121 |
+| Rhode Island | 376 → 41,508 (14,729) | 0.0002 | 8,410 (3,142) | 0.0002 | 39 + 8 → 39 | 0 / 0 | 31 / 31 | 8 / 8 | 0.0 / 0.0 | 0.022 | 0.00012 |
+| South Carolina | 154,054 → 264,196 (96,729) | 0.0015 | 260,674 (94,873) | 0.0015 | 0 + 293 → 293 | 0 / 0 | 0 / 0 | 271 / 271 | – | 3.75 | 0.0019 |
+| South Dakota | 20,859 → 275,308 (96,475) | 0.001 | 99,929 (33,960) | 0.0002 | 1,219 + 320 → 1,220 | 0 / 0 | 899 / 899 | 310 / 310 | 0.0 / 0.0 | 0.082 | 0.00021 |
+| Tennessee | 74,026 → 278,100 (100,815) | 0.001 | 271,794 (98,027) | 0.001 | 0 + 379 → 379 | 0 / 0 | 0 / 0 | 345 / 345 | – | 0.993 | 0.00108 |
+| Texas | 334,967 → **547,224** (209,042) | 0.002 | **518,306** (198,599) | 0.002 | 0 + 1,390 → 1,396 | 6 / 4 | 0 / 0 | 1,228 / 1,228 | – | 2.29 | 0.00219 |
+| Utah | 16,301 → 183,286 (61,557) | 0.0002 | 179,073 (60,306) | 0.0002 | 0 + 260 → 260 | 0 / 0 | 0 / 0 | 255 / 255 | – | 0.036 | 0.00011 |
+| Vermont | 1,779 → 153,707 (55,297) | 0.0002 | 17,599 (6,438) | 0.0002 | 252 + 39 → 282 | 1 / 1 | 237 / 237 | 40 / 40 | 0.0 / 0.0 | 0.007 | 3e-05 |
+| Virginia | 14,422 → 156,043 (53,072) | 0.0002 | 152,824 (51,884) | 0.0002 | 38 + 238 → 238 | 0 / 0 | 0 / 0 | 227 / 227 | 0.0 / 0.0 | 0.034 | 0.00011 |
+| Washington | 15,509 → 229,471 (76,991) | 0.0002 | 227,355 (75,896) | 0.0002 | 0 + 289 → 289 | 0 / 0 | 0 / 0 | 281 / 281 | – | 0.048 | 0.00012 |
+| West Virginia | 17,778 → 172,591 (58,199) | 0.0002 | 170,977 (56,900) | 0.0002 | 0 + 238 → 239 | 1 / 1 | 0 / 0 | 231 / 231 | – | 0.191 | 0.0001 |
+| Wisconsin | 68,012 → **521,592** (190,927) | 0.002 | 287,923 (100,722) | 0.0007 | 1,913 + 662 → 1,914 | 0 / 0 | 1,243 / 1,243 | 607 / 607 | 0.0 / 0.0 | 0.4 | 0.00138 |
+| Wyoming | 4,125 → 70,131 (24,459) | 0.0002 | 69,335 (24,116) | 0.0002 | 0 + 100 → 100 | 0 / 0 | 0 / 0 | 99 / 99 | – | 0.074 | 0.0001 |
+
+Build reports (size table per tolerance, kept rows, renames, fills): `/workspace/w/lanes/geo-data-raw/reports/townfiles/<State>.json`.
