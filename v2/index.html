@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171549";</script>
+<script>window.BUILD="202610171550";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2569,6 +2569,24 @@ const _al14=areaLabel; areaLabel=function(a){ return a.kind==="natcd"?_al14({kin
 LYR.push(["N","none","Counties"]); TYPE_LBL.none="County";
 lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ setType(ltype===b.dataset.k?"none":b.dataset.k); drawNat(); lrow.hidden=true; const lb=document.getElementById("bLyr"); if(lb){ lb.classList.remove("on"); } try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); }; });
 drawNat();
+// ===== district-type label bubbles (restored, build 1550): a tap on a type button names the picked type in the
+// bubble above the type button it now shows on (bLyr); long-press names any type without picking it and tolerates
+// finger jitter (iOS reports tiny touchmoves during a hold, which cancelled the old 450 ms timer); no iOS callout =====
+{ const st=document.createElement("style"); st.textContent=".xrow .lbtn,#bLyr{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}"; document.head.append(st);
+  const lbOf=b=>b.getAttribute("aria-label")||b.title||"";
+  window.__typeBub=(k,ms)=>{ const b=lrow.querySelector('.lbtn[data-k="'+k+'"]'), host=document.getElementById("bLyr"); if(!b) return;
+    const vis=e=>{ const r=e&&e.getBoundingClientRect(); return r&&r.width>0&&r.height>0; };
+    const at=vis(b)&&!lrow.hidden?b:host; if(!vis(at)) return;
+    showBub({getAttribute:()=>lbOf(b),getBoundingClientRect:()=>at.getBoundingClientRect()},ms||1200); };
+  lrow.querySelectorAll(".lbtn").forEach(b=>{ let t=null, x0=0, y0=0, fired=false;
+    b.addEventListener("touchstart",e=>{ fired=false; const p=e.touches&&e.touches[0]; if(!p) return; x0=p.clientX; y0=p.clientY; clearTimeout(t);
+      t=setTimeout(()=>{ fired=true; window.__typeBub(b.dataset.k,1800); },450); },{passive:true});
+    b.addEventListener("touchmove",e=>{ const p=e.touches&&e.touches[0]; if(p&&Math.hypot(p.clientX-x0,p.clientY-y0)>12) clearTimeout(t); },{passive:true});
+    b.addEventListener("touchend",e=>{ clearTimeout(t); if(fired){ e.preventDefault(); } },{passive:false});
+    b.addEventListener("touchcancel",()=>clearTimeout(t),{passive:true});
+    b.addEventListener("contextmenu",e=>e.preventDefault());
+    b.addEventListener("click",()=>{ if(fired){ fired=false; return; } const k=b.dataset.k; setTimeout(()=>{ if(ltype===k) window.__typeBub(k,1200); },0); });
+  }); }
 // ===== clearing the bottom field zooms to the org selection (All = whole US) =====
 function fitOrgSel(){ if(!(window.__selAt&&Date.now()-window.__selAt<2500)) nameLock=null; if(hier.dist){ zoomItem(ltype==="none"?"county":ltype,hier.dist); return; }
   if(state.value){ const cs=(GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)); if(cs.length){ fitItems(cs); return; } const n=(NAT||[]).filter(d=>d.st===state.value); if(n.length){ let b=L.latLngBounds([]); n.forEach(d=>b.extend(L.polygon(natLL(d)).getBounds())); map.fitBounds(b,{paddingTopLeft:[70,200],paddingBottomRight:[80,140]}); return; } }
