@@ -91,5 +91,32 @@ async def main():
         ck(len(same)>=10 and not diff,f"QA-017/029 {k}: state rows equal the All States list at '16",diff[:2])
       await pg.evaluate("(k)=>{const b=document.querySelector('#lyrRow .lbtn[data-k=\"'+k+'\"]');if(b&&b.classList.contains('on'))b.click()}",k); await pg.wait_for_timeout(1500)
     await c.close()
+    # map fills at '16 (live 1571 report: "heat map from 2016 is not colored"): every pane that draws results must show real D/R fills
+    PANE="""(sel)=>{const cv=document.querySelector(sel+' canvas');if(!cv)return null;const g=cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data;let n=0,sat=0;const B=new Set();
+      for(let i=0;i<g.length;i+=4*37){if(g[i+3]<60)continue;n++;const r=g[i],G=g[i+1],b=g[i+2],s=Math.max(r,G,b)-Math.min(r,G,b);if(s>70){sat++;B.add((r>>5)+','+(G>>5)+','+(b>>5));}}return {n,sat,buckets:B.size}}"""
+    def colored(x,minsat=100,minb=4): return bool(x) and x['sat']>=minsat and x['sat']>=0.4*x['n'] and x['buckets']>=minb
+    c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True); pg=await c.new_page(); pg.on('pageerror',lambda e:er.append(str(e)))
+    await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+    await pg.evaluate("()=>window.__ySet16(0)"); await pg.wait_for_timeout(5000)
+    x=await pg.evaluate(PANE,'.leaflet-st-pane') or await pg.evaluate(PANE,'.leaflet-nat-pane'); ck(colored(x),"US map at '16: states coloured D/R",x)
+    await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(1200)
+    await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(6000)
+    await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>r.querySelector('.nmx').textContent==='PA').click()"); await pg.wait_for_timeout(8000)
+    await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(6000)
+    x=await pg.evaluate(PANE,'.leaflet-la-pane'); ck(colored(x,100,6),"PA counties map at '16 (from the list): each county coloured D/R, not one pale fill",x)
+    await pg.screenshot(path='/workspace/y2016-map-pa.png')
+    x=await pg.evaluate(PANE,'.leaflet-heat-pane'); ck(colored(x),"PA county heat layer at '16 coloured",x)
+    await c.close()
+    c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True); pg=await c.new_page(); pg.on('pageerror',lambda e:er.append(str(e)))
+    await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+    await pg.evaluate("()=>window.__ySet16(0)"); await pg.wait_for_timeout(2000)
+    await pg.evaluate("()=>{const b=document.querySelector('#lyrRow .lbtn[data-k=\"ushouse\"]');if(b)b.click()}"); await pg.wait_for_timeout(7000)
+    if await pg.evaluate("()=>document.body.classList.contains('listmode')"): await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(5000)
+    x=None
+    for sel in ('.leaflet-type-pane','.leaflet-nat-pane','.leaflet-la-pane'):
+      y=await pg.evaluate(PANE,sel)
+      if colored(y): x=y; break
+    ck(colored(x),"US House map at '16: districts coloured D/R",x)
+    await pg.screenshot(path='/workspace/y2016-map-cd.png'); await c.close()
     ck(not er,"no page errors",er[:3]); await b.close()
 asyncio.run(main()); print("FAILS",len(F)); sys.exit(1 if F else 0)
