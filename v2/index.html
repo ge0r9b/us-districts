@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171557";</script>
+<script>window.BUILD="202610171558";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -446,7 +446,7 @@
   .fsq .fsqlbl span { overflow: hidden; text-overflow: ellipsis; }
   /* build 1555: a state institution is its flag-in-shape (no outline silhouette, no frame) */ .fsq .fsqrec img.stf { height: 22px !important; max-width: 30px; width: auto; box-shadow: none !important; border-radius: 0 !important; } #orgSearch .oic img.stf, .xcur .oic img.stf { max-width: 30px; max-height: 22px; width: auto; height: auto; object-fit: contain; box-shadow: none; border-radius: 0; } .xcur .nm .lnoun, li.la-row .nm .lnoun { color: #8e8e93; font-weight: 400; } li.la-row .nm b { font-weight: 600; }
   .fsq.typing .fsqlbl { display: none; }
-  #barGeo .fsq:has(.fsqrec) input { padding-left: 44px !important; } .fsq .fsqrec { position: absolute; left: 12px; top: 0; bottom: 0; width: 30px; display: none; align-items: center; justify-content: center; pointer-events: none; transition: none; } body.fqtyping .fsq .fsqrec:not(:empty) { display: flex; } .fsq .fsqrec img { width: auto; height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); } .fsq .fsqrec svg { width: 22px; height: 22px; }
+  #barGeo .fsq:has(.fsqrec) input { padding-left: 44px !important; } .fsq .fsqrec { position: absolute; left: 12px; top: 0; bottom: 0; width: 30px; display: none; align-items: center; justify-content: center; pointer-events: none; transition: none; } body.foldfs #barGeo .fsq:focus-within .fsqrec:not(:empty), body.fqtyping .fsq .fsqrec:not(:empty) { display: flex; } .fsq .fsqrec img { width: auto; height: 16px; max-width: 30px; box-shadow: 0 0 0 .5px rgba(0,0,0,.25); } .fsq .fsqrec svg { width: 22px; height: 22px; }
   .fsq:has(.fsqlbl):not(.typing) input:not(:focus)::placeholder { color: transparent !important; }
   body.wcountry .cands, body.wcountry #chartBox, body.wcountry .crow, body.wcountry .cpanel, body.wcountry #legend, body.wcountry .legend, body.wcountry .leaflet-overlay-pane, body.wcountry .leaflet-marker-pane, body.wcountry .leaflet-tooltip-pane { display: none !important; }
   .fsq.fqfocus .fsqlbl { display: none !important; }
@@ -3657,7 +3657,9 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(x.iso==="ca"){ window.__laBusy=1; window.__orgCountry("ca"); setTimeout(()=>{ window.__laBusy=0; },300); return; }
     B().remove("orgglobal"); const g=$("orgGlobal"); g&&g.remove(); closeSheet(); window.__worldEnter(x.iso); };
   const rec=q=>{ const box=$("barGeo").querySelector(".fsq"); if(!box) return; let r=box.querySelector(".fsqrec"); if(!r){ r=document.createElement("span"); r.className="fsqrec"; box.append(r); }
-    const k=window.__NAMES.canon(q); const x=k&&window.__entities().find(e=>e.kind!=="Province"&&e.name.toLowerCase()===k); const h=x?icon(x):""; if(r.innerHTML!==h) r.innerHTML=h; };
+    const k=window.__NAMES.canon(q); const x=k&&window.__entities().find(e=>e.kind!=="Province"&&e.name.toLowerCase()===k); /* build 1558: while editing/typing the institution field ALWAYS shows an institution icon (flag-filled state shape, country flag, district-type icon): the exact match, else the current institution's own icon; never the geo silhouette */
+    const cur=box.querySelector(".fsqlbl .fqi"); const h=x?icon(x):(cur?cur.innerHTML.replace(/style="[^"]*"/g,""):""); if(r.innerHTML!==h) r.innerHTML=h; };
+  document.addEventListener("focusin",e=>{ if(e.target&&e.target.matches&&e.target.matches("#barGeo .fsq input")) rec(e.target.value||""); });
   setInterval(()=>{ const box=document.querySelector("#barGeo .fsq"); if(box&&!box.querySelector(".fsqrec")){ const r=document.createElement("span"); r.className="fsqrec"; box.append(r); } },300);
   const run=q=>{ rec(q); clear(); q=(q||"").trim(); if(!q||!B().contains("foldfs")||!top()) return;
     const og=B().contains("orgglobal"); let A=window.__entities(); if(!og) A=[]; /* build 1555: countries/provinces only under 'All countries'; the US level lists its states itself */
