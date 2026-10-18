@@ -103,8 +103,8 @@ create table unit (
                      'ward','custom')),
   unit_key         text not null,                    -- canonical key = TIGER GEOID where one exists ('42001' county,
                                                    -- '4201' CD ...), else the bot's unit_id (precincts: 'PA|Erie County|420491492')
-  legacy_key       text,                             -- v2 name key ('Pennsylvania|Erie County', 'Ohio|<school name>'); NOT unique
-                                                   -- (ussch.js has 58 duplicate state+name keys) - see DATA_LOADING.md §8
+  legacy_key       text,                             -- v2 name key ('Pennsylvania|Erie County', 'Ohio|<school name> (<county>)'); unique per
+                                                   -- boundary set in the national layers after the Geo renames - see DATA_LOADING.md §8
   name             text not null,
   state_fips       char(2),
   state_abbr       char(2),
@@ -117,7 +117,7 @@ create table unit (
   unique (boundary_set_id, unit_key)
 );
 create index unit_parent on unit (parent_unit_id);
-create index unit_legacy on unit (legacy_key);
+create unique index unit_legacy on unit (boundary_set_id, legacy_key) where legacy_key is not null;
 create index unit_geoid on unit (geoid);
 create index unit_state_type on unit (state_abbr, unit_type);
 create index unit_name_trgm on unit using gin (lower(name) gin_trgm_ops);

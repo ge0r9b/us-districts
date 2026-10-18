@@ -1,6 +1,6 @@
 # v2 → v3 migration checklist (feature parity)
 
-Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text plus later builds), `docs/us-districts-spec.md` (SPEC), `v2/index.html` at build **202610181567** (`main` 509d31d), and the 79 Playwright tests in `tests/` (at e8040d3) (the de facto spec). Nothing here is invented. If an item has no source, it is not listed. **v3 reaches parity when every box is checked and each listed v2 test, ported to v3, passes.**
+Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text plus later builds), `docs/us-districts-spec.md` (SPEC), `v2/index.html` at build **202610181567** (`main` 509d31d), and the 80 Playwright tests in `tests/` (at 9ac59a9) (the de facto spec). Nothing here is invented. If an item has no source, it is not listed. **v3 reaches parity when every box is checked and each listed v2 test, ported to v3, passes.**
 
 ## A. Process and global rules
 - [ ] **Instant response is the top priority in every UI change** (RR 7). Budgets in PERFORMANCE.md.
@@ -57,7 +57,7 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 - [ ] Drill-in answers at once: cached or skeleton rows within about 15–50 ms; chevron and thumbnails appear together in their final spot (1567). Test: `drill-instant`.
 
 ## G. Answers, estimates, gray
-- [ ] **2016 `[d, r, tot]` triple**: imported for every layer v2 ships it for; Clinton = `dem_nominee`, aligned with Biden (2020) and Harris (2024); Trump = `rep_nominee`; `other = tot − d − r`; gray where v2 has no 2016 source; ≈ per v2's 2016 flags (DATA_LOADING.md §8, Q-E9).
+- [ ] **2016 `[d, r, tot]` triple**: imported for every layer v2 ships it for; Clinton = `dem_nominee`, aligned with Biden (2020) and Harris (2024); Trump = `rep_nominee`; `other = tot − d − r`; gray where v2 has no 2016 source; ≈ where the `ds2016-*` value has a 4th element `1`; **missing key = gray**; source files are the lazy-loaded `v2/data/election2016.js`, `ds2016-{states,cd,sldu,sldl,sch}.js`, `precincts2016/` (DATA_LOADING.md §8, Q-E9 resolved). Main 9ac59a9 (Build 1569) has the 3-point slider and Clinton thumbnail and shows 2016 as gray until the files are wired (`tests/y2016.py`).
 - [ ] **Answers shown as D and R plus the total of all candidates** (v2 data rows are `[dem, rep, total]`; `candidates.csv` `other = total − dem − rep`). v3 generalizes to N answers but must render the v2 view identically for presidential contests.
 - [ ] **≈ marks area-weighted or allocated estimates** (SPEC §3, §9.1.5). Flags `est` (both years), `e24`, `e20` (per year) as read by `v2/index.html` (`ef==="e24"&&ym()!=="2020"`). ≈ prefixes the first visible in-bar value / net value (1563). Tests: `est-list`, `est-popup`, `idaho-towns`.
 - [ ] **Gray = no source** (no fabricated data). The remaining 2024 gaps are listed in COVERAGE.md (HO §4 item 8).
@@ -75,7 +75,7 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 - [ ] Back button: exists only when the history stack is non-empty; thin black chevron, 44 px target, positions per HO §3; keyboard Backspace / Alt+Left / Cmd+[, browser back via popstate (HO §2). Tests: `filter-back`, `back-band`.
 - [ ] Persistence: URL hash `#s=<base64url JSON>` + `localStorage usd.state`, versioned `v:1` (HO §2). v3 reads v1 hashes and maps them (old links keep working). Tests: `state-persist`, `view-persist`.
 - [ ] New builds reach open tabs (1560 BUILD check). v3: short-TTL HTML + hashed assets. Test: `build-check`.
-- [ ] **Clinton thumbnail** for 2016 (photo plus credit, as the v2 portraits are Wikimedia Commons official portraits, spec §9.3), shown in the Democratic slot whenever the slider is on 2016, in the same position as Biden / Harris.
+- [ ] **Clinton thumbnail** for 2016 (v2 Build 1569: a 96 px public-domain State Department portrait in `v2/img`; copy it with its credit), shown in the Democratic slot whenever the slider is on 2016, in the same position as Biden / Harris.
 - [ ] Candidate thumbnails upper left, same spot in map, list and chart; tapping toggles the answer; badges centred below the photo (SPEC §7.1; 1564). Test: `list-thumbs-sort`.
 
 ## J. iOS Safari specifics (SPEC §2)
@@ -85,12 +85,13 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 - [ ] Coverage counts per SPEC §9.2 and the latest COVERAGE.md (2024: US House 435, senate 1,942, house 4,877/4,882, schools 13,124/13,208 at build 1539; check against the export at parity time).
 - [ ] Sources and credits displayed; NYT credit kept until no NYT-derived data remains (HO §3).
 
-## L. Port of the Playwright suite (79 tests at e8040d3)
+## L. Port of the Playwright suite (80 tests at 9ac59a9)
 Plan: copy the intent, not the selectors. Each v2 test becomes a v3 test with the same name under `v3/tests/`, run against a local v3 build (ports 8860–8899) and against v2 as the reference. Data tests (`district-consistency`, `est-*`, `data-2020`, `ak-2020`, `dc-wards`, `idaho-towns`) become API/SQL assertions plus one UI check. The HANDOFF §6 "core set" is ported first: `sort-scale, scroll-stable, type-switch, filter-back, sort-flip, label-clamp, delta-scale, chart-line-single, chart-modes-list, district-list-view, district-consistency, idaho-towns, unisearch, list-all-renders, list-all-clean`.
 
 | Test | What it checks (from its docstring) |
 |---|---|
 | `addr-search` | Build 1547: typed geo-field text searches nationwide even with a state/county selected; addresses resolve via Census/OSM; |
+| `y2016` | Build 1569: three-point slider (2016, 2020, 2024); Clinton thumbnail in the Democratic slot (same answerId / colour / side as Biden and Harris; Trump every year); until 2016 data lands, 2016 shows gray map, names without values, a note; the 2016 tap paints within 150 ms (4× CPU) |
 | `ak-2020` | Alaska boroughs in 2020/delta: borough results (≈, from __ak.boro2020) must be present once ELECTION2020 loads, |
 | `back-band` | Build 1549: list-view back chevron and sort glyph always sit inside the list band (below the time row, above the first row), |
 | `bar-single` | bar-single.py URL tag -- build 1563: a single entity (US) offers bar again: ONE bar per answer in the chart panel (.seb |
@@ -170,9 +171,11 @@ Plan: copy the intent, not the selectors. Each v2 test becomes a v3 test with th
 | `us-level-clean` | us-level-clean.py URL -- build 1559: at nationwide scope (no state picked) only state shapes draw. |
 | `view-persist` | view-persist.py URL tag -- view settings (list vs map, chart type, #/%, time range/delta, sort) persist across selectio |
 
+- [ ] **Lazy loading per year** (v2 pattern to keep): v2 loads each year's results only when that year is shown (`loadE2020`, `loadPrec20(st)`, and the 2016 files are lazy-loaded the same way), so the default 2024 view never pays for 2016/2020. v3 keeps this with **per-year result packs** (one pack per contest = per year, per unit type, per state for precincts; ARCHITECTURE.md §4, PERFORMANCE.md).
+
 ## M. v2 intake alignment (UI and test side)
 See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] Every v2 row value shown in the UI (`[dem, rep, total]`, `est`/`e20`/`e24`/`cty`, null = gray) maps to `result` + `result_total` + `is_estimate`, and the v3 pop-up and list render identically. Gate: ported `district-consistency` and `est-*` pass on both v2 and v3 with identical numbers.
-- [ ] School district names are **not unique** within a state in v2 (`v2/data/ussch.js`: 58 duplicate state+name keys covering 132 rows; Ohio alone 49 rows). v3 keys schools by TIGER GEOID (geo lane, `data-v3/geo/`), so two same-named districts no longer collide in lists or pop-ups. Q-G1 in DATA_LOADING.md §10.
+- [ ] School names: the Geo lane renamed the 132 duplicate school rows to `Name (County)`, so `state|name` is unique in every national layer (on `data/geo`; main 9ac59a9 still has the old 58 duplicate keys). v3 shows the renamed names exactly as v2 does and keys units by TIGER GEOID through a 1:1 `legacy_key → geoid` table (Q-G1). Per-state `data/<State>.js` school names and 22 `places` rows are still duplicated (Q-G8).
 - [ ] Hash links from v2 (`#s=…`, names not GEOIDs) resolve through the name → GEOID crosswalk; ambiguous names open a chooser instead of guessing.
 - [ ] In-flight v2 UI work to re-check before the parity gate: the 2016 data and 3-point slider (decided, not on main at e8040d3), the time-slider speed work (build 1568 shipped `slider-fast`), bug fixes from the Bug Tester's `BUGS.md` (not yet on any remote branch at the time of writing: `qa/bugs` exists only as a local clone with no BUGS.md), and the uncommitted `v2/index.html` change in the orchestrator clone (not inspected: lane rule).

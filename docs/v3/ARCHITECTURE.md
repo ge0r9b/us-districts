@@ -70,6 +70,7 @@ flowchart LR
 3. **Result packs** (static, immutable):
    `/packs/{data_version}/{contest_key}/{unit_type}.json`, or per state for precincts: `/packs/{data_version}/{contest_key}/precinct/{ST}.json`.
    Shape: `{"v":3,"answers":["dem_nominee","rep_nominee","other"],"ids":[...],"votes":[[d,r,o],...],"total":[...],"est":"<bitset base64>"}`. That is about 20 KB gzip for all 3,143 counties. Packs for a year pair (2020 + 2024) let delta mode compute locally.
+   Packs are **per year** (one per contest), mirroring v2's lazy per-year files (`election2016.js`, `ds2016-*.js`, `precincts2016/` are loaded only when 2016 is shown). Adding a year adds files and never grows existing ones.
 4. **Postgres is the source of truth and the dynamic path.** Packs and tiles are rebuilt from it after each data load (`data_version` increments), never on request.
 5. **Custom or paid boundary sets** (later): served from `/api/v1/tiles/{set}/{z}/{x}/{y}.mvt` (PostGIS `ST_AsMVT` over `unit_geom` lod 1–3) with tenant auth, until they are popular enough to pre-build.
 
