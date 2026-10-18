@@ -35,6 +35,10 @@ Box is shared and was loaded (load avg 3-5) so treat single numbers as +/-30%.
 | 1585 (5a0df17) | 375x667 | 1.59 / 7.80 | 3.66 / 13.33 | 669 | 868 | 671 | 121 | 44 / 93 (cold 93) | 65 / 88 (cold 55) | 15 / 27 | 13 / 50 | 36 / 46 | 42 / 66 | 59.8 fps, p95 16.8, max 33.3, dropped 1/279 |
 | 1585 (5a0df17) | 320x568 | 1.59 / 7.80 | 3.66 / 13.33 | 445 | 747 | 554 | 130 | 35 / 91 (cold 91) | 87 / 94 (cold 66) | 24 / 31 | 14 / 15 | 36 / 41 | 41 / 76 | 59.6 fps, p95 16.8, max 33.3, dropped 2/277 |
 | 1585 (5a0df17) | ipad820x1180 | 1.59 / 7.80 | 3.66 / 13.32 | 1046 | 1340 | 638 | 170 | 44 / 91 (cold 91) | 74 / 133 (cold 133) | 22 / 33 | 14 / 33 | 45 / 47 | 44 / 57 | 43.6 fps, p95 33.4, max 133.4, dropped 79/210 |
+| 1588 (5a7711c) | 390x844 | 1.59 / 7.81 | 3.66 / 13.33 | 794 | 1155 | 974 | 100 | 39 / 99 (cold 99) | 72 / 121 (cold 57) | 14 / 22 | 13 / 26 | 39 / 51 | 47 / 58 | 59.8 fps, p95 16.7, max 33.4, dropped 1/277 |
+| 1588 (5a7711c) | 375x667 | 1.59 / 7.81 | 3.66 / 13.34 | 611 | 955 | 911 | 118 | 33 / 83 (cold 83) | 68 / 88 (cold 47) | 14 / 33 | 15 / 76 | 36 / 42 | 40 / 62 | 60.0 fps, p95 16.7, max 16.8, dropped 0/280 |
+| 1588 (5a7711c) | 320x568 | 1.59 / 7.81 | 3.66 / 13.34 | 460 | 833 | 674 | 120 | 45 / 79 (cold 79) | 68 / 86 (cold 44) | 14 / 26 | 13 / 18 | 35 / 37 | 43 / 52 | 60.0 fps, p95 16.7, max 16.8, dropped 0/280 |
+| 1588 (5a7711c) | ipad820x1180 | 1.59 / 7.81 | 3.66 / 13.34 | 459 | 973 | 689 | 135 | 36 / 155 (cold 155) | 61 / 81 (cold 49) | 12 / 20 | 18 / 74 | 43 / 61 | 49 / 76 | 47.7 fps, p95 33.4, max 83.2, dropped 55/214 |
 
 Raw JSON: raw/b<build>-live-<viewport>.json (per-try latencies, top-10 resources, notes).
 
@@ -117,3 +121,11 @@ Run 2026-10-18 16:50-17:05 EDT, load avg 0.4-4.5 (other bots' browsers running),
 - Startup within noise: DCL 801/458/750/576 -> 672/669/445/1046, first map 585/644/574/993 -> 810/671/554/638 (iPad 1584 was during a load spike; rerun first map 755). Bytes unchanged at 1.59 MB gz initial, 3.66 MB PA session.
 - Pan: phones 59.6-59.8 fps; iPad 47.1 fps / 61 dropped -> 43.6-43.7 fps / 79-82 dropped (back to 1575 level, within noise; iPad pan is still the weakest spot).
 - Proposals: nothing new landed (#1 PACK/XREF still inline, #2 content versioning not landed). QA-007 and QA-041 still not reproduced.
+
+
+## 1588 (5a7711c) vs 1585 (5a0df17)
+Run 2026-10-18 18:49-19:01 EDT, load avg 0.7-2.0 (QA bot's browser running alongside), same tools/baseline.py and selectors (0 notes, 0 page errors). 1586-1588 are chart, menu, list-sort and thumbnail builds with no speed changes; 1588 is the newest, 1586/1587 were not measured separately. Medians vs medians (390/375/320/iPad).
+- Bytes: 1.59 / 7.81 MB initial and 3.66 / 13.34 MB PA session (+0.01 MB raw), flat.
+- Taps flat or slightly better: All States 39/33/45/36 (1585: 39/44/35/44), US House pick 72/68/68/61 (69/65/87/74), Line 14/14/14/12 (17/15/24/22), back 39/36/35/43 (34/36/36/45), time step 47/40/43/49 (48/42/41/44). Every median under 100 ms; maxes over 100 only on cold or single tries (390 US House one 121 ms try; iPad All States cold 155 ms, 1584 cold 117, 1582 cold 191), within the usual spread.
+- First map 974/911/674/689 ms (1585: 810/671/554/638); 375x667 is +36%, just past the +/-30% band, but within the 620-1147 ms range seen since 1575 and DCL/load were flat or faster, so treated as noise, not a regression. Pan unchanged (60 fps phones, iPad 47.7 fps, 55 dropped).
+- No proposal landed in 1586-1588; QA-007 and QA-041 remain fixed-looking (All States median 33-45 ms, Line 12-14 ms).
