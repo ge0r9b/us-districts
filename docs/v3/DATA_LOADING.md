@@ -603,7 +603,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **Serving as static assets:**
     - A build step (not the request path) downloads each public file from Commons. SVGs are sanitised (scripts and external refs stripped) and optimised. Raster files are resized to 128 px PNG/WebP.
     - The result is written to `public/img/<role>/<entity_id with ':' → '-'>.<ext>`, and `served_path` and `sha256` are recorded.
-    - Vercel's CDN serves it with `Cache-Control: public, max-age=31536000, immutable`. A changed file gets a new `?v=<sha8>`.
+    - Cloudflare Pages serves it (D3) with `Cache-Control: public, max-age=31536000, immutable` (set in `_headers`). A changed file gets a new `?v=<sha8>`.
     - Rows with `public = false` are never fetched into `public/`.
     - The API returns `images: [{role, url, license, attribution, source_url}]` for public rows only. The UI shows the attribution and source link in the institution panel and the credits page. Images are never recoloured or cropped, and trademarked logos carry a short trademark notice.
 
@@ -618,7 +618,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 4. **Upsert:** `insert … on conflict (entity_id) do update` only when values changed; every change writes `entity_history` (before/after JSON).
 
 ### 15.3 Refresh jobs (v3.2)
-- Later versions refresh automatically: scheduled scrapes run as server cron (**Vercel Cron**, or a worker if runs exceed function limits), with a separate writer role, never the API's read-only role.
+- Later versions refresh automatically: scheduled scrapes run offline on a schedule (box or CI; Workers Free caps Cron Triggers at 10 ms CPU, so on Cloudflare they would need Workers Paid), with a separate writer role, never the API's read-only role.
 - Each run is a new `load_batch`. Diffs are applied **with history**: changed rows close the old relation/location (`valid_to`) and open a new one (`valid_from`). A row **missing** from a newer scrape is **not deleted**; it is closed only through an explicit **retract list** (`retraction`, D7). `entity_history` records every op.
 - Scraped-data policy: public sources only; honour robots.txt and terms of service; identify the crawler; rate-limit; no logins or paywalls; license recorded per source (`source.license`, `license_verified`, `robots_ok`).
 

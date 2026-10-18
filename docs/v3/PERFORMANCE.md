@@ -10,7 +10,7 @@
 | Sort flip, %/# toggle, answer toggle | **≤ 1 frame (16 ms)** after input, no network | local data only |
 | Drill-in (tap row → child list painted) | ≤ 50 ms with prefetched pack; skeleton within 16 ms otherwise | prefetch child packs on row hover/touchstart |
 | Layout shift | **CLS = 0**, no fades, no jumps (HANDOFF §3) | port `load-stable.py`, `list-scroll-stay.py` |
-| HTML TTFB (CDN hit) | ≤ 50 ms p75 (US) | RUM / Vercel Speed Insights |
+| HTML TTFB (CDN hit) | ≤ 50 ms p75 (US) | RUM (Cloudflare Web Analytics on Pages, or a small `PerformanceObserver` beacon) |
 | First map paint (LCP) on 4G | ≤ 1.5 s | Lighthouse mobile |
 | JS shipped before first paint | ≤ 300 KB gzip including MapLibre (≈ 220 KB); app code ≤ 80 KB | bundle report in CI (fails the build if over) |
 | Result pack (all counties, one contest) | ≤ 25 KB gzip | build-time check |

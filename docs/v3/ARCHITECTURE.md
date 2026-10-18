@@ -1,6 +1,6 @@
 # US Districts v3: architecture (Phase 1 plan)
 
-> Status: **plan only**. The user has a Neon account (no project yet; a `dev` branch comes first, and its connection string reaches v3 only as a secret once builds are approved; see HOSTING_COST.md). Branch `v3/plan`, based on `main` at `509d31d` (build 1567). Nothing has been deployed and no accounts have been created. v2 (`v2/`, live at https://ge0r9b.github.io/us-districts/v2/) stays untouched and remains the reference until v3 reaches parity. Per REPO-RULES.md rule 5, v3 does not deploy or merge to main until v2.0 is tagged and the user approves.
+> Status: **plan only**. The user has a Neon account (no project yet; a `dev` branch comes first, and its connection string reaches v3 only as a secret once builds are approved; see HOSTING_COST.md). Branch `v3/plan`, based on `main` at `509d31d` (build 1567). Nothing has been deployed. Hosting is **Cloudflare free plan** (Pages + Worker + R2) with Neon (D3, decided 2026-10-18; Vercel superseded); a static `/v3-preview/` on GitHub Pages comes first (§5c), and the Cloudflare account is created by the user later. v2 (`v2/`, live at https://ge0r9b.github.io/us-districts/v2/) stays untouched and remains the reference until v3 reaches parity. Per REPO-RULES.md rule 5, v3 does not deploy or merge to main until v2.0 is tagged and the user approves.
 
 ## 1. What v3 must do (from the repo docs)
 - Keep everything v2 does (MIGRATION_CHECKLIST.md): institution and geo filters, map/list/chart views, time slider with delta, % / # mode, sort, back stack, ≈ estimates, gray where data is missing, light mode, Liquid Glass round buttons, and an iOS-Safari-first layout.
@@ -16,7 +16,8 @@
 | Map | **MapLibre GL JS** (BSD-3) with vector tiles | WebGL; it recolours through `feature-state` without re-creating geometry. v2 had to hand-build this (build 1564: "map year change recolours existing polygons"). |
 | Geometry delivery | **Pre-built PMTiles** (one archive per boundary set, built with tippecanoe) on a static CDN | Immutable, cached forever, no database in the map path. Dynamic `ST_AsMVT` from PostGIS is only a fallback (custom or private sets). |
 | Results delivery | **Static result packs** (compact JSON, gzip/brotli) per contest × unit type (× state for precincts), at versioned immutable URLs; the same shapes come from the API for anything not pre-built | Past elections are static (spec §4.2, §10.2), so a pack fetch is a CDN hit. |
-| API | **Vercel Functions** (Node, Fluid compute) with a small router (Hono), in the region nearest Neon (us-east) | Thin, read-only. Used for geocode, point-in-polygon, search, aggregates not pre-built, and custom sets. |
+| Static hosting | **Cloudflare Pages** for the app shell, JS/CSS, result packs and images; **R2** for PMTiles (D3) | Static asset requests are free and unlimited on Pages. PMTiles need HTTP Range, which Pages does not serve (§5b). |
+| API | **Cloudflare Worker** serving `/api/v1` (Web Fetch API handler, small router such as Hono), talking to Neon through `@neondatabase/serverless` (HTTP for single queries, WebSocket `Pool` for transactions); `DATABASE_URL` is a Worker secret (`wrangler secret put DATABASE_URL`) | Thin, read-only. Used for geocode, point-in-polygon, search, aggregates not pre-built, and custom sets. Runtime-portable rules in §5b. |
 | Database | **Neon Postgres 16 + PostGIS + pg_trgm** | Serverless Postgres with branching (one branch per preview), scale-to-zero, PostGIS included on every plan (neon.com/pricing, read Oct 18, 2026). Supabase was the spec's earlier pick and is still an option (D2). |
 | Basemap | Keep Esri World Street Map for parity at first; evaluate a self-hosted Protomaps/OSM basemap PMTiles before commercial use | Esri commercial terms are unverified (spec §9.3). |
 | Geocoder | Census Geocoder, server-side, cached; then PostGIS point-in-polygon | Free, public domain, US only. See GEOCODER.md. |
@@ -30,12 +31,12 @@ flowchart LR
     ML["MapLibre GL<br/>feature-state colouring"]
     SW["HTTP cache / SW<br/>(immutable assets)"]
   end
-  subgraph CDN["CDN edge (Vercel / R2)"]
+  subgraph CDN["Cloudflare edge (Pages + R2)"]
     SHELL["index.html + JS/CSS<br/>(hashed)"]
     TILES["PMTiles per boundary set<br/>/tiles/{set}@{ver}.pmtiles"]
     PACKS["Result packs<br/>/packs/{data_ver}/{contest}/{unit_type}[/{state}].json"]
   end
-  subgraph API["Vercel Functions /api/v1"]
+  subgraph API["Cloudflare Worker /api/v1"]
     R["contests, results,<br/>aggregate, search"]
     G["geocode + point-in-polygon"]
     T["dynamic MVT (custom sets only)"]
@@ -88,6 +89,43 @@ flowchart LR
 
 The client fetches the manifest once at load. Every later URL embeds its versions, so almost every request is a CDN hit and invalidation is just a new version number.
 
+## 5b. Hosting and runtime: Cloudflare free plan + Neon (D3, decided 2026-10-18)
+Vercel is superseded. The static app is on **Cloudflare Pages**, `/api/v1` is a **Cloudflare Worker**, PMTiles are on **R2**, and **Neon** stays the database. `DATABASE_URL` exists only as a Worker secret (`wrangler secret put DATABASE_URL`), never in the repo, the bundle or a `.env` that is committed.
+
+**Runtime-portable API code** (so the same handlers run in the Worker, in Node for tests and the box loaders, and anywhere else later):
+- Handlers are **Web Fetch API** functions: `(request: Request, env) => Promise<Response>`. A router such as Hono is fine because it is built on the same API.
+- **No Node-only modules on the request path**: no `fs`, `path`, `net`, `child_process`, `pg` or TCP drivers. Database access goes through `@neondatabase/serverless` (`neon()` over HTTPS for single queries, `Pool` over WebSocket for transactions). The Node-only code stays in `v3/ingest` and `v3/scripts`, which never run on a request.
+- Configuration comes in through `env` bindings, not `process.env`, so the handler does not care where it runs.
+- **Keep CPU per request small.** Network wait for Neon does not count as CPU, but JSON building does. Heavy work belongs in SQL, in materialized aggregates or in static packs.
+- **Version-keyed caching, free tiers only.** Pinned URLs (`?dv=`) are immutable, so browsers and the edge reuse them. In the Worker, the **Cache API** (`caches.default`) is free, but it only works when the Worker runs on a **custom domain** (on `*.workers.dev` it does nothing; Pages Functions get it on `*.pages.dev` too). **KV is not used for API responses**: the free plan allows only 1,000 writes/day and 100,000 reads/day, which a cache would use up. Until a custom domain exists, the API relies on browser caching of `?dv=` URLs.
+
+**Free-plan limits that shape the design** (read 2026-10-18 from developers.cloudflare.com: Workers limits page updated Oct 12, 2026; Pages limits Sep 5, 2026; R2 pricing Oct 1, 2026; KV limits Oct 8, 2026):
+| Limit (free plan) | Value | Design consequence |
+|---|---|---|
+| Worker requests | **100,000/day**, reset at 00:00 UTC; over the limit the Worker returns error 1027 (or bypasses, if set to fail open) | Only the dynamic API counts. Map, list and charts run from static packs and tiles, so an average session should make only a handful of API calls (manifest, geocode, search). |
+| Worker CPU time | **10 ms per request** (network wait excluded) | No in-Worker aggregation or big JSON transforms; SQL and packs do the work. |
+| Worker subrequests | 50 per request; 6 connections waiting for headers at once | A handler makes a few Neon queries, never one per row. |
+| Worker memory / size / startup | 128 MB per isolate; 64 MiB bundle (uncompressed); 1 s startup | Keep the Worker bundle small; no data in the bundle. |
+| Cron Triggers | 5 per account, 10 ms CPU each | Scheduled refresh stays offline (§9 v3.2). |
+| Pages static requests | **free and unlimited** (requests to static assets are not billed) | The app shell, packs and images live on Pages. |
+| Pages file size | **25 MiB per file** | Every pack and asset on Pages must be ≤ 25 MiB; split anything larger. |
+| Pages files per site | **20,000** (free) | No exploded `{z}/{x}/{y}` tile directories on Pages; keep one PMTiles archive per set. |
+| Pages builds | 500/month, one at a time, 20 min timeout | Build packs and tiles offline; Pages only uploads them. |
+| Pages HTTP Range | **Pages answers Range requests with `200`, not `206`** (Pages docs, "Serving Pages") | **PMTiles cannot be served from Pages at any size.** |
+| R2 (free) | **10 GB-month storage, 1M Class A and 10M Class B operations per month, egress free**; object size up to 5 TiB | PMTiles go to R2. All sets plus precincts are estimated at 200–600 MB, well within 10 GB. |
+| R2 public access | `r2.dev` URLs are for development only (rate-limited, no caching); production needs a **custom domain** on Cloudflare, which turns on the CDN cache | Until a domain exists, PMTiles can be served through a small Worker that reads R2 with Range support, but **every tile request then counts against the 100,000/day Worker limit**. With a custom domain, cached tile reads cost neither Worker requests nor most R2 Class B reads. |
+| KV (free) | 100,000 reads/day, 1,000 writes/day, 1 GB, 25 MiB per value | Not used for caching API responses. |
+
+**PMTiles over 25 MiB:** splitting does not help on Pages, because the problem is Range support, not size. **All PMTiles go to R2** (free 10 GB), served from a custom domain with `Cache-Control: public, max-age=31536000, immutable, no-transform`. `no-transform` stops Cloudflare compression from breaking byte ranges, a known PMTiles failure. Splitting still pays off for the precinct archives, one per state (`precinct-2024/<ST>.pmtiles`), so a session fetches only the states it shows. The GitHub Pages preview (§5c) serves Range correctly, but its own file limit is 100 MB.
+
+## 5c. Preview first: static `/v3-preview/` on the us-districts GitHub Pages site
+Before any Cloudflare account exists, v3 is previewed as a **static build at `https://ge0r9b.github.io/us-districts/v3-preview/`**:
+- Bundled or exported data only (packs, PMTiles and JSON exported from the loaded database at a recorded `data_version`). **No live Neon, no API, no secrets**: the build must contain no `DATABASE_URL`, no `neon.tech` host and no tokens (checked by grepping the bundle).
+- Vite `base` is `/us-districts/v3-preview/`. Features that need the API (geocode, free-text search beyond the bundled index, custom sets) are hidden or show a "preview" notice.
+- GitHub limits apply: no file over 100 MB, and the site has a 1 GB limit, which v2 shares. Precinct archives stay per state.
+- Publishing it is a separate, approved step. It changes the us-districts Pages site, so it follows REPO-RULES; v2 under `/v2/` is not touched.
+- **The Cloudflare account comes later and is created by the user** (D3, D17). Then Pages, the Worker (with `DATABASE_URL` as a secret) and R2 replace the preview.
+
 ## 6. Restore strategy: milestone git tags
 Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok Bot … releases/tags"). The v3 lane **proposes** tags in its reports and never creates or moves them itself.
 
@@ -104,7 +142,7 @@ Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok B
 | `data-YYYYMMDD[-N]` | A data snapshot loaded into Postgres (DB `data_version` recorded in the tag message) | `data-20261018` |
 
 **Restore paths**
-- **Code:** redeploy any tag (Vercel lets you redeploy a past deployment or Git ref; GitHub Pages v2 can be restored by checking out `v2.0` into `v2/` in a normal new commit, never a force push).
+- **Code:** redeploy any tag (Cloudflare Pages keeps every deployment and can roll back to one; Workers keep versions and `wrangler rollback` restores one; GitHub Pages v2 can be restored by checking out `v2.0` into `v2/` in a normal new commit, never a force push).
 - **Database:** every `data-*` tag records the `data_version` and the Neon branch or snapshot name. Restore = point the API at that Neon branch, or re-run the idempotent ingest from the tagged data files (DATA_LOADING.md §7).
 - **Tiles and packs:** URLs are versioned and immutable. Rolling back is a manifest change to the old versions (files are kept at least 90 days).
 
@@ -120,7 +158,7 @@ Releases and tags are owned by the orchestrator (REPO-RULES lanes table: "Grok B
 docs/v3/        this plan
 v3/README.md    scaffold note (no app yet)
 v3/app/         SPA (Phase 2)
-v3/api/         Vercel functions (Phase 2)
+v3/api/         Cloudflare Worker for /api/v1 (Web Fetch API handlers; Phase 2)
 v3/db/          migrations (SCHEMA.sql split into numbered files) + SQL tests
 v3/ingest/      staging loader, validators, pack + tile builders
 ```
@@ -134,7 +172,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 |---|---|
 | **Live and weighted voting** (spec §10.3: one vote per user per topic, aggregated by the voter's precinct or institution) | `contest.kind = 'poll'`, `contest.is_static = false` (no static pack, served live); `result.weight` + `weighted_votes` already support weighted tallies; geocoder + `/locate` resolve a voter to units; `POST /votes` reserved in API.md |
 | **Auth and accounts** | read-only API role today; `tenant` table; writes isolated from the public read path; RLS planned on tenant-owned rows (§7) |
-| **Paid custom boundary sets** | `boundary_set.owner_tenant_id`, `visibility` (public/shared/private), `boundary_set_grant`, `license_id`, `price_tier`; `unit_crosswalk` re-tabulates results into any new set; dynamic MVT path for private sets. Needs the commercial licence work first (NYT-derived data replaced, Vercel Pro) |
+| **Paid custom boundary sets** | `boundary_set.owner_tenant_id`, `visibility` (public/shared/private), `boundary_set_grant`, `license_id`, `price_tier`; `unit_crosswalk` re-tabulates results into any new set; dynamic MVT path for private sets. Needs the commercial licence work first (NYT-derived data replaced; Cloudflare Workers Paid only if the free limits are hit, D3) |
 | **More years** (2016 is v2's last vote data set; the 3-point slider 2016 / 2020 / 2024 is decided) | every year is a `contest` row with shared `answer_key`s; `boundary_set_default (unit_type, results_year)`; API takes any number of `contest` params |
 | **More offices and contest types** (US House, legislatures, school boards, ballot measures, multi-choice, primaries) | `office`, `contest.stage/kind/vote_for`, N answers per contest, `candidate_key` stable across offices; the bot row format already carries `office` and `district` |
 | **Institution lists**: public-facing brands, establishments and organizations from Wikidata (`wikidata:Q<id>`, store locations) from the Companies bot (7e7bba2a), and governments flagged sovereign or incorporated from the Governments bot (a901cced) | `entity.kind` `brand` / `company` / `nonprofit` / `fund` / `government_other`, `entity_relation` (brand → parent QID, dates), `entity_location` (`hq_in` / `establishment_at`, Point + GIST), `entity_merge` + `entity_alias` (former QIDs, `usd:` re-keys), `entity_history` + `retraction`. Pipeline in DATA_LOADING §15 |
@@ -148,9 +186,9 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **Phase 2 → v3.0-alpha** | Neon `dev` branch; SCHEMA migrations; loaders for results (`data-v3/results`), geography (`data-v3/geo`), the entity registry (`data-v3/inst/entities.csv` + xwalk), persons and officeholders; static packs + PMTiles; SPA at v2 parity on open data; QA by the Bug Tester on a preview URL or a branch served on ports 8850–8859 | D1–D4, D17 accounts |
 | **v3.0** | Public launch at parity; milestone tag. The brand/location schema ships empty; its data loads in v3.1 (D21) | v2.0 tag; QA sign-off |
 | **v3.1** | List ingest: **Wikidata brands + locations** (Companies bot; **the complete set**: all brands and all ~38,000 locations from `data/companies`, 38,092 at b583b2c; about 1.4 MB gz and roughly 10–20 MB in Postgres with the GIST index (estimate); D21) **plus governments** (Governments bot) **plus Canada** (D23: units, officeholders and people from `data/inst-canada`; v3-only, no v2 JSON; the v3.1 tile build adds PMTiles for the Canadian ridings and polls, built from the source layers), deduped and merged with the registry | Companies + Governments bots' files; scraped-data policy (DATA_LOADING §15.3) |
-| **v3.2** | Scheduled refresh: Vercel Cron (or a worker) runs the scrapers, diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Vercel Pro if cron frequency or duration exceeds Hobby |
+| **v3.2** | Scheduled refresh: scrapers run offline (box or CI) with the writer role, because Workers Free caps Cron Triggers at 10 ms CPU (5 per account); diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Workers Paid ($5/month, 30 s to 15 min CPU per cron run) only if refresh moves onto Cloudflare |
 | **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
-| **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Vercel Pro |
+| **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Cloudflare Workers Paid if the free limits are hit |
 | **v4 / v5** | **Native macOS and iOS apps**, built in Cursor, on the same public API. v3 stays **API-first**, so every app feature goes through `/v1` and static packs, with no app-only server logic | Stable versioned API; Apple developer account |
 | **v5 / v6** | **Bridge to the user's private corporate database** (LEI/CIK crosswalk via `entity_alias` reserved schemes). It stays **off the public v3 surface**: no public API fields, no static packs, server-side only | User's server + auth; a separate private connection |
 
@@ -159,5 +197,5 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 2. `v3/db`: SCHEMA.sql split into migrations; SQL fixture tests.
 3. `v3/ingest`: results loader (by header name; `boundary_set` col 14, `method` 15), geography loader, entity registry + xwalk loader, persons/officeholders loader, validations R01–R14, packs and tiles.
 4. `v3/app` + `v3/api`: parity features (MIGRATION_CHECKLIST), Playwright port.
-5. **QA:** the Bug Tester QAs v3 as soon as there is a Vercel preview URL or a servable branch on **ports 8850–8859** (local static server), at phone and iPad sizes. Findings go to `BUGS.md` on `qa/bugs`, and v3 fixes are tracked against those IDs. (The v3 lane's own Playwright runs keep using ports 8860–8899.)
+5. **QA:** the Bug Tester QAs v3 as soon as there is the static `/v3-preview/` on GitHub Pages (§5c), a Cloudflare Pages preview URL, or a servable branch on **ports 8850–8859** (local static server), at phone and iPad sizes. Findings go to `BUGS.md` on `qa/bugs`, and v3 fixes are tracked against those IDs. (The v3 lane's own Playwright runs keep using ports 8860–8899.)
 6. Parity gate: MIGRATION_CHECKLIST all green, QA open Criticals = 0, then the orchestrator tags `v3.0-alpha`.
