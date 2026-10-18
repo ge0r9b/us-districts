@@ -78,12 +78,6 @@ for b in sorted(bands, key=lambda b: int(b['BAND_NUMBER'])):
     ents.append({'entity_id': 'first_nation:ca-%s' % n, 'kind': 'indigenous_government', 'name': b['BAND_NAME'], 'gov_status': 'government',
                  'parent_id': parent, 'source_id': S_BAND + ';' + S_BND, 'feed': 'inst-lane', 'level': 'local', 'type': 'First Nation (Indian Act band)',
                  'flags': ';'.join(fl), 'country': 'ca', 'province': prov, 'external_id': 'isc:band:%s' % n})
-for r in sorted(rel, key=lambda r: (int(r['BAND_NUMBER']), r['ADMIN_LAND_ID'])):
-    k = len(share[r['ADMIN_LAND_ID']])
-    res.append({'entity_id': 'first_nation:ca-%s' % r['BAND_NUMBER'], 'band_number': r['BAND_NUMBER'], 'isc_reserve_number': r['ADMIN_LAND_ID'],
-                'reserve_name_en': r['ADMIN_LAND_EN'], 'reserve_name_fr': r['ADMIN_LAND_FR'], 'bands_sharing': k,
-                'csd_boundary_set': '', 'csd_unit_key': '', 'source_id': S_REL,
-                'flags': ';'.join(x for x in ('shared_reserve' if k > 1 else '', 'csd_link_pending') if x)})
 for a in sorted(share):
     if len(share[a]) > 1:
         nm = next(r['ADMIN_LAND_EN'] for r in rel if r['ADMIN_LAND_ID'] == a)
@@ -157,8 +151,24 @@ linked_csd = {k for (_, k) in agg}
 for k in sorted(set(csd_alb) - linked_csd):
     gap('fn_csd_without_band', 'csd:' + k, '%s (%s): no ISC reserve overlaps this 2021 CSD >= 50%%; no reserve_of link' % (csdn[k], ctp[k]), S_AL + ';' + S_BND)
 gap('reserve_of_by_overlay', 'all', 'no official ISC reserve number -> CSDUID crosswalk (StatCan 2021 correspondence files: DB / DA only); reserve_of links are an equal-area overlay (method=overlay, ≈), threshold 50%% of CSD or reserve; %d below-threshold overlaps and %d no_csd reserves in gaps_ca_reserve_overlay.csv' % (len(below), len(nocsd)), S_AL + ';' + S_REL)
+# first_nation_reserves_ca.csv: one row per ISC band x reserve, CSD key filled from the overlay above. Exactly one link status
+# flag per row: csd_linked (>= 1 linked CSD; several -> semicolon-joined, sorted CSDUIDs, csd_link_count > 1), below_threshold
+# (no link, but >= 1 First Nations-type CSD overlap under 50%, listed as below_threshold in gaps_ca_reserve_overlay.csv), no_csd
+# (no link and no overlap at all, or no NRCan polygon: no_al_ta_polygon). Both unlinked kinds are 'no_csd: ...' rows in the gaps file.
+lk = collections.defaultdict(set)
+for e in eu: lk[e['source_record_id'].split('=', 1)[1]].add(e['unit_key'])
+bel_r = collections.Counter(b_[0] for b_ in below)
+for r in sorted(rel, key=lambda r: (int(r['BAND_NUMBER']), r['ADMIN_LAND_ID'])):
+    a_ = r['ADMIN_LAND_ID']; k = len(share[a_]); ks = sorted(lk.get(a_, ()))
+    st = ['csd_linked'] if ks else ['below_threshold'] if bel_r[a_] else ['no_csd'] + (['no_al_ta_polygon'] if a_ not in al else [])
+    if ks and bel_r[a_]: st.append('also_below_threshold_overlaps:%d' % bel_r[a_])
+    res.append({'entity_id': 'first_nation:ca-%s' % r['BAND_NUMBER'], 'band_number': r['BAND_NUMBER'], 'isc_reserve_number': a_,
+                'reserve_name_en': r['ADMIN_LAND_EN'], 'reserve_name_fr': r['ADMIN_LAND_FR'], 'bands_sharing': k,
+                'csd_boundary_set': 'statcan-2021-csd' if ks else '', 'csd_unit_key': ';'.join(ks), 'csd_link_count': len(ks),
+                'source_id': S_REL + (';' + S_AL + ';' + S_BND if a_ in al else ''),
+                'flags': ';'.join((['shared_reserve'] if k > 1 else []) + st)})
 EU_COLS = ['entity_id', 'boundary_set', 'unit_type', 'unit_key', 'role', 'method', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid', 'is_estimate', 'share_basis', 'source_id', 'source_record_id', 'flags']
-R_COLS = ['entity_id', 'band_number', 'isc_reserve_number', 'reserve_name_en', 'reserve_name_fr', 'bands_sharing', 'csd_boundary_set', 'csd_unit_key', 'source_id', 'flags']
+R_COLS = ['entity_id', 'band_number', 'isc_reserve_number', 'reserve_name_en', 'reserve_name_fr', 'bands_sharing', 'csd_boundary_set', 'csd_unit_key', 'csd_link_count', 'source_id', 'flags']
 counts = {'entities_ca_indigenous.csv': write_csv(f'{OUT}/entities_ca_indigenous.csv', ENTITY_COLS, ents),
           'entity_unit_ca.csv': write_csv(f'{OUT}/entity_unit_ca.csv', EU_COLS, eu),
           'gaps_ca_reserve_overlay.csv': write_csv(f'{OUT}/gaps_ca_reserve_overlay.csv', OV_COLS, ov),
@@ -170,6 +180,8 @@ write_json(f'{OUT}/summary_ca_indigenous.json', {'rows': counts, 'bands': len(en
   'shared_reserves': sum(1 for v in share.values() if len(v) > 1), 'reserve_of_links': len(eu), 'method': 'overlay',
   'distinct_reserves_linked': len({e['source_record_id'] for e in eu}), 'below_threshold_individually_was_merged': len(merged_fail), 'approx_rows': sum(1 for e in eu if e['is_estimate'] == 'true'), 'below_threshold_overlaps': len(below),
   'no_csd_reserves': len(nocsd), 'fn_csds_linked': len(linked_csd), 'fn_csds': len(csd_alb), 'bands_with_links': len({b for b, _ in agg}),
+  'reserve_rows_by_link_status': dict(sorted(collections.Counter(next(f for f in r['flags'].split(';') if f in ('csd_linked', 'below_threshold', 'no_csd')) + ('_multi' if r['csd_link_count'] > 1 else '') for r in res).items())),
+  'reserves_by_link_status': dict(sorted(collections.Counter(v for v in {r['isc_reserve_number']: next(f for f in r['flags'].split(';') if f in ('csd_linked', 'below_threshold', 'no_csd')) + ('_multi' if r['csd_link_count'] > 1 else '') for r in res}.values()).items())),
   'parents': dict(sorted(collections.Counter(e['parent_id'] for e in ents).items())),
   'gaps': dict(sorted(collections.Counter(g['gap'] for g in gaps).items())), 'retrieved_at': RET})
 print(counts)

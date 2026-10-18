@@ -32,6 +32,18 @@
   "territory:ca-yt": 16
  },
  "reserve_of_links": 1162,
+ "reserve_rows_by_link_status": {
+  "below_threshold": 157,
+  "csd_linked": 1118,
+  "csd_linked_multi": 22,
+  "no_csd": 2246
+ },
+ "reserves_by_link_status": {
+  "below_threshold": 151,
+  "csd_linked": 1051,
+  "csd_linked_multi": 8,
+  "no_csd": 2119
+ },
  "retrieved_at": "2026-10-18",
  "rows": {
   "entities_ca_indigenous.csv": 638,

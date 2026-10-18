@@ -84,5 +84,5 @@ b6567c5c-8339-4055-99fa-63f92114d9e4; browser download 2026-10-18, data.sac-isc.
   `share_of_entity_in_geoid` = share of the reserve inside the CSD; `source_record_id` = `isc_reserve_no=<ALCODE>`. Bands without a reserve get no rows; names are never matched.
 - `gaps_ca_reserve_overlay.csv`: 361 below-threshold overlaps (not linked) + 2,270 reserves flagged `no_csd` (no 2021 First
   Nations-type CSD overlaps >= 50%; mostly uninhabited reserves StatCan does not delineate as CSDs). They are never mapped to a parent
-  CSD. `first_nation_reserves_ca.csv` is kept unchanged. 1,059 distinct reserves linked; 996 of the 1,028 First Nations CSDs are
+  CSD. `first_nation_reserves_ca.csv` carries the linked CSDUID(s) in `csd_unit_key` (semicolon-joined if several) with `csd_link_count` and one status flag: `csd_linked` / `below_threshold` / `no_csd` (see README_CA.md). 1,059 distinct reserves linked; 996 of the 1,028 First Nations CSDs are
   linked to at least one band (32 not, gap `fn_csd_without_band`: S-É 17, IRI 13, TWL 1, TAL 1).
