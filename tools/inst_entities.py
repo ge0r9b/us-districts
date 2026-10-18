@@ -19,7 +19,7 @@ ap.add_argument('repo'); ap.add_argument('--gaz24', required=True); ap.add_argum
 ap.add_argument('--cog', required=True); ap.add_argument('--geojson', required=True)
 ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_argument('--stability-test', action='store_true')
 ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
-ap.add_argument('--bodies', required=True, help="Seating Charts bot bodies.csv (key, st, kind, office); read only, sha256 recorded in sources.csv")
+ap.add_argument('--seating-ref', required=True, help='Seating Charts bot commit (data-v3/seating/bodies.csv, build_meta.json, city_bodies.csv; read with git show)')
 ap.add_argument('--world-raw', required=True, help='dir written by tools/inst_world.py fetch (Wikidata answers); Natural Earth lists read from origin/main')
 A = ap.parse_args()
 R = A.repo; OUT = A.out or os.path.join(R, 'data-v3/inst'); os.makedirs(OUT, exist_ok=True)
@@ -493,6 +493,22 @@ for fn, gcol, ncol, vint in [('ushouse.csv', 'geoid', 'tiger_name', '2024'), ('s
 add(entity_id='us-house', level='federal', kind='chamber', type='lower_chamber', name='United States House of Representatives',
     parent_entity_id='nation:us', officeholder_entity_id='us-house', source='U.S. Constitution art. I', license=PD)
 flag(ENT[('us-house', '')], 'gov_status_na:legislative_chamber')
+add(entity_id='us-senate', level='federal', kind='chamber', type='upper_chamber', name='United States Senate',
+    parent_entity_id='nation:us', source='U.S. Constitution art. I', license=PD)   # frozen id, mirrors us-house (Full Stack, Oct 18)
+flag(ENT[('us-senate', '')], 'gov_status_na:legislative_chamber')
+# Seating Charts bodies (pinned commit; tools/inst_bodies.py): courts are minted from bodies.csv, links written to body_entity.csv
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import inst_bodies
+SEAT = inst_bodies.load(R, A.seating_ref); SEAT_SHA = SEAT['commit']
+S_BODIES = 'Seating Charts bot bodies.csv'; S_SEATMETA = 'Seating Charts bot build_meta.json'; S_CITYB = 'Seating Charts bot city_bodies.csv'
+ABBR2F = {ab: f for f, ab, nm in ST}
+for cid, ctyp, cst, cname, ckey in inst_bodies.courts(SEAT['bodies']):
+    cf = ABBR2F[cst]
+    e = add(entity_id=cid, level='state', kind='court', type=ctyp, state_fips=cf, state=FIPS[cf][1], name=cname,
+            parent_entity_id=f'state:{cf}', source=S_BODIES, license=PD, source_record_id=ckey)
+    flag(e, 'gov_status_na:judicial_body')
+SEAT_GAPS = [{'gap': 'not_in_seating_charts', 'key': code, 'detail': f"Seating Charts build_meta.json {lst}: no body in bodies.csv; court not minted"}
+             for code, lst in inst_bodies.not_in_seating(SEAT['meta'])]
 for vint, uv, fn, yr in [('2024', 'cd119', '2024_Gaz_119CDs_national.txt', 2024), ('2020', 'cd116', '2020_Gaz_116CDs_national.txt', 2020)]:
     for r in gaz(os.path.join(A.gaz24 if yr == 2024 else A.gaz20, fn)):
         g = r['GEOID']; f = g[:2]
@@ -745,7 +761,7 @@ for (eid, vint), e in ENT.items():
     e['v2_layer'] = ';'.join(lays)
     e['v2_row'] = ';'.join(esc(f'{l}#{r}') for l, r in e['_v2'])
     e['v2_key'] = ';'.join(esc(k) for k in e.get('_v2key', []))
-    e['feed'] = 'inst-lane' if e['kind'] in ('nation', 'chamber', 'dc_council') else 'tiger/cog'
+    e['feed'] = 'inst-lane' if e['kind'] in ('nation', 'chamber', 'dc_council', 'court') else 'tiger/cog'
     e.setdefault('predecessor_id', ''); e.setdefault('successor_id', '')
     OUTROWS.append(e)
 # ---------------- world: nations, foreign dependencies, Canadian provinces/territories (tools/inst_world.py) ----------------
@@ -814,15 +830,12 @@ for e in OUTROWS:
     if e.pop('_gov', False): src(e, S_GOV)
     e['flags'] = ';'.join(f_.replace(';', ',') for f_ in e['_flags'])
 print('governments feed', dict(sorted(GSTAT.items())), file=sys.stderr)
-# body_key (Seating Charts bot bodies.csv `key`): structural st + office match, tools/inst_bodies.py; unique; courts -> body_key_gaps.csv
-import inst_bodies
-BODIES, BODIES_SHA = inst_bodies.load(A.bodies)
-S_BODIES = 'Seating Charts bot bodies.csv'
-BKEY, BGAPS, BJUDGED, BSTAT = inst_bodies.match(BODIES, {e['entity_id']: e for e in OUTROWS}, {f: v[0] for f, v in FIPS.items()})
-for e in OUTROWS:
-    e['body_key'] = BKEY.get(e['entity_id'], '')
-    if e['body_key']: src(e, S_BODIES)
-_bk = [e['body_key'] for e in OUTROWS if e['body_key']]; assert len(_bk) == len(set(_bk)), 'body_key not unique'
+# body_entity.csv (Full Stack, Oct 18): body_key (PK) -> entity_id + role; officeholders and seats attach to body_key, not the entity
+_xwp = {}
+for x in XW:
+    if x['geoid_layer'] == 'place': _xwp.setdefault(x['entity_id'], set()).add(x['geoid'])
+BLINKS, BGAPS, BSTAT = inst_bodies.match(SEAT, {e['entity_id']: e for e in OUTROWS}, {f: v[0] for f, v in FIPS.items()}, _xwp, GRELS)
+GAPS.extend(SEAT_GAPS)
 ids = [e['entity_id'] for e in OUTROWS]; assert len(ids) == len(set(ids)), 'entity_id not unique'
 
 # ---------------- sources.csv: every cited source once, stable ids (tools/inst_sources.py) ----------------
@@ -858,11 +871,15 @@ def build_registry():
             return [reg.add(None, t + ' (Natural Earth, public domain; list of institutions only, no geometry used)',
                             f"{REPO}/blob/{ne_['commit']}/{f_} ; https://www.naturalearthdata.com/downloads/50m-cultural-vectors/",
                             'public domain (Natural Earth)', RETRIEVED, ne_['commit'], ne_['sha256'])]
-        if t == S_BODIES:
-            return [reg.add('seating-bodies', 'Seating Charts bot, v3data/bodies.csv (legislative chambers and courts; key, st, kind, office). '
-                            'Repo-local input: the Seating Charts bot\'s file, not committed by this lane and not on any branch of the repo at build time; '
-                            'pinned by sha256 only', 'repo-local:seating/v3data/bodies.csv (Seating Charts bot)',
-                            'project data (Seating Charts bot; its sources: congress-legislators, Ballotpedia, Open States, court pages)', RETRIEVED, '', BODIES_SHA)]
+        if t in (S_BODIES, S_SEATMETA, S_CITYB):
+            f_ = {S_BODIES: 'bodies.csv', S_SEATMETA: 'build_meta.json', S_CITYB: 'city_bodies.csv'}[t]; F_ = SEAT['files'][f_]
+            what = {S_BODIES: 'bodies (legislative chambers, courts, city councils and mayors; key, st, kind, office, name, geoid, entity)',
+                    S_SEATMETA: 'build metadata (excluded_courts, dropped_courts, skipped_cities)',
+                    S_CITYB: 'city bodies (geoid, entity per council/mayor; read-only cross-check of the bodies.csv geoid/entity)'}[t]
+            return [reg.add(None, f"Seating Charts bot, {F_['path']}: {what}; committed on branch data/seating, pinned at this commit; joined on bodies.csv key only",
+                            f"{REPO}/blob/{SEAT_SHA}/{F_['path']}",
+                            'project data (Seating Charts bot; its sources: congress-legislators, senate.gov, House Clerk, Ballotpedia, Open States, court and city pages)',
+                            RETRIEVED, SEAT_SHA, F_['sha256'])]
         if t == S_WD:
             qs = hashlib.sha256(''.join(open(os.path.join(A.world_raw, f_)).read() for f_ in sorted(WORLD['files']) if f_.endswith('.rq')).encode('utf-8')).hexdigest()
             return [reg.add(None, 'Wikidata Query Service: ISO 3166-1 P297 / ISO 3166-2 P300 items + current P31 Q3624078, P463 Q1065, P17, P361, P300, P36 '
@@ -887,6 +904,8 @@ def build_registry():
               'town_pair_same_neither_in_cog': f'{geo};{cog}', 'school_gov_status_conflict': atom(S_GOV)[0]}
     wd_ = atom(S_WD)[0]; nec = atom(S_NE_C)[0]
     GAPSRC['not_in_source_list'] = f'{nec};{wd_}'
+    GAPSRC['not_in_seating_charts'] = atom(S_SEATMETA)[0]
+    atom(S_BODIES); atom(S_CITYB)   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
     for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
                'territory_sovereign_several_candidates', 'wikidata_status_ambiguous', 'world_entity_excluded_no_sovereign'): GAPSRC[g_] = wd_
     GAPSRC['wikidata_qid_missing'] = f'{nec};{wd_}'
@@ -897,8 +916,8 @@ def build_registry():
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'body_key']
-ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata']
+ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:
     e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
@@ -969,12 +988,15 @@ def gap_sid(g, ids_for, v2f, gapsrc):
 for g in GAPS: g['source_id'] = gap_sid(g, IDS_FOR, V2SRC_FOR, GAPSRC)
 with open(os.path.join(OUT, 'entity_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, ['gap', 'key', 'detail', 'source_id'], lineterminator='\n'); w.writeheader(); w.writerows(GAPS)
-_bsid = IDS_FOR([S_BODIES])
+_bsid = IDS_FOR([S_BODIES]); _csid = IDS_FOR([S_CITYB])
 for g in BGAPS: g['source_id'] = _bsid
+for l_ in BLINKS: l_['source_id'] = _bsid + (';' + _csid if l_.pop('_m') else '')
 with open(os.path.join(OUT, 'body_key_gaps.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, inst_bodies.GAPCOLS, lineterminator='\n'); w.writeheader(); w.writerows(sorted(BGAPS, key=lambda g: g['body_key']))
+    w = csv.DictWriter(fh, inst_bodies.GAPCOLS, lineterminator='\n'); w.writeheader(); w.writerows(BGAPS)
+with open(os.path.join(OUT, 'body_entity.csv'), 'w', newline='', encoding='utf-8') as fh:
+    w = csv.DictWriter(fh, inst_bodies.LINKCOLS, lineterminator='\n'); w.writeheader(); w.writerows(BLINKS)
 USED = set()
-for tbl in (rows, XW2, V2OUT, GAPS, BGAPS):
+for tbl in (rows, XW2, V2OUT, GAPS, BGAPS, BLINKS):
     for x in tbl: USED.update(i for i in x['source_id'].split(';') if i)
 assert USED <= set(REG.rows), USED - set(REG.rows)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
@@ -998,8 +1020,10 @@ RC = ['entity_id', 'relation', 'related_entity_id', 'source_id']
 _rsid = ';'.join([IDS_FOR([S_COG]), GV_ID, IDS_FOR([S_CG])][:1] + [GV_ID] + IDS_FOR([S_CG]).split(';'))
 _rsid = ';'.join(dict.fromkeys(x for x in _rsid.split(';') if x))
 for r_ in GRELS: r_['source_id'] = _rsid
+# court -> its state government: relation `parent` (related_entity_id is the parent of entity_id; same as entities.parent_id)
+RELS = GRELS + [{'entity_id': e['entity_id'], 'relation': 'parent', 'related_entity_id': e['parent_id'], 'source_id': _bsid} for e in rows if e['kind'] == 'court']
 with open(os.path.join(OUT, 'entity_relations.csv'), 'w', newline='', encoding='utf-8') as fh:
-    w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(GRELS, key=lambda r: r['entity_id']))
+    w = csv.DictWriter(fh, RC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(sorted(RELS, key=lambda r: (r['entity_id'], r['relation'])))
 for k, v in GOVSRC.items(): REG.rows.setdefault(k, v)
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
 # source_urls.csv (SCHEMA source_url): every URL of every source, ord = position in the ' ; '-list, label for multi-URL sources
@@ -1030,6 +1054,7 @@ if A.stability_test:   # rebuild the registry and every row's ids a second time 
             if setof(ids2([y for y in x['source'].split('; ') if y][::-1])) != setof(x2['source_id'])]
     bad += [(v['v2_layer'], v['source_id'], v2f(v['v2_layer'])) for v in V2OUT if v2f(v['v2_layer']) != v['source_id']]
     bad += [(g['key'], g['source_id']) for g in GAPS[::-1] if gap_sid(g, ids2, v2f, gs2) != g['source_id']]
+    bad += [(l_['body_key'], l_['source_id']) for l_ in BLINKS if l_['source_id'] != ids2([S_BODIES] + ([S_CITYB] if l_['kind'] == 'M' else []))]
     bad += [(k, REG.rows[k], reg2.rows.get(k)) for k in sorted(USED) if reg2.rows.get(k) != REG.rows[k]]
     same = not bad
     if bad: print('stability mismatches', len(bad), bad[:5])
@@ -1064,8 +1089,10 @@ summ = {
   'sources': len(REG.rows), 'sources_used_here': len(USED), 'geo_base': GEO_SHA, 'source_urls': len(SU),
   'source_record_id_filled': {'entities': sum(1 for e in rows if e['source_record_id']), 'xwalk': sum(1 for x in XW2 if x['source_record_id'])},
   'feed_values': dict(sorted(C.Counter(e['feed'] for e in rows).items())),
-  'body_key': dict(BSTAT, bodies_sha256=BODIES_SHA, body_key_gaps=len(BGAPS),
-                   entities_without_body=sorted(e['entity_id'] for e in rows if e['kind'] in ('chamber', 'dc_council') and not e['body_key'])),
+  'bodies': dict(BSTAT, seating_ref=SEAT_SHA, files={f_: v_['sha256'] for f_, v_ in sorted(SEAT['files'].items())}, body_entity_rows=len(BLINKS),
+                 body_key_gaps=len(BGAPS), courts_minted=sum(1 for e in rows if e['kind'] == 'court'), not_in_seating_charts=[g['key'] for g in SEAT_GAPS],
+                 relations=dict(sorted(C.Counter(r['relation'] for r in RELS).items())),
+                 entities_without_body=sorted(set(e['entity_id'] for e in rows if e['kind'] in ('chamber', 'dc_council', 'court')) - {l_['entity_id'] for l_ in BLINKS})),
   'world': {'natural_earth': {f_: {'commit': v_['commit'], 'sha256': v_['sha256'], 'rows': len(v_['rows'])} for f_, v_ in sorted(WORLD['ne'].items())},
             'wikidata_retrieved_at': WORLD['retrieved_at'], 'files': WORLD['files'],
             'by_kind': dict(sorted(C.Counter(e['kind'] for e in rows if e['feed'] == 'inst-lane' and e['level'] in ('national', 'subnational')).items())),

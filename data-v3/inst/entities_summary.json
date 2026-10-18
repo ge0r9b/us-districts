@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "19c3a5b82523448c07159141253e8483aeb70470",
+  "repo_head": "e661d9efcc83eabcd166cad9f7c54fc54ca02fec",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -29,14 +29,15 @@
    "places_2024.geojson.gz": "a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182"
   }
  },
- "entities": 54360,
+ "entities": 54398,
  "by_kind": {
   "nation": 195,
   "state": 51,
   "territory": 17,
   "province": 10,
-  "chamber": 100,
+  "chamber": 101,
   "dc_council": 1,
+  "court": 37,
   "county": 3080,
   "municipality": 19525,
   "township": 18076,
@@ -45,10 +46,11 @@
   "school_secondary": 481
  },
  "by_kind_gov_status": {
-  "chamber|": 100,
+  "chamber|": 101,
   "county|": 1,
   "county|area_only": 43,
   "county|government": 3036,
+  "court|": 37,
   "dc_council|": 1,
   "municipality|": 33,
   "municipality|area_only": 28,
@@ -194,6 +196,7 @@
   "govbot_ceased_partial": 1,
   "govbot_new_unit_not_in_registry": 12,
   "image_entity_unmapped": 6,
+  "not_in_seating_charts": 15,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
   "cog2022_unit_not_linked_by_code": 57
@@ -239,39 +242,82 @@
  "feed_map_rows": 93278,
  "images_rows": 2024,
  "wikidata_filled": 38840,
- "sources": 98,
- "sources_used_here": 30,
+ "sources": 100,
+ "sources_used_here": 32,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 127,
+ "source_urls": 129,
  "source_record_id_filled": {
-  "entities": 54258,
+  "entities": 54295,
   "xwalk": 58591
  },
  "feed_values": {
-  "inst-lane": 318,
+  "inst-lane": 356,
   "tiger/cog": 54042
  },
- "body_key": {
-  "bodies": 138,
+ "bodies": {
+  "bodies": 198,
   "by_body_kind": {
    "C": {
-    "mapped": 0,
-    "unmapped": 37
+    "mapped": 37,
+    "unmapped": 0
    },
    "L": {
-    "mapped": 100,
-    "unmapped": 1
+    "mapped": 101,
+    "unmapped": 0
+   },
+   "M": {
+    "mapped": 60,
+    "unmapped": 0
    }
   },
-  "entities_with_body_key": 100,
+  "mapped_by_kind_role": {
+   "C|court": 37,
+   "L|chamber": 101,
+   "M|board": 1,
+   "M|council": 29,
+   "M|mayor": 30
+  },
+  "gaps_by_reason": {},
   "judged": [
-   "us-ne-legislature -> chamber:ne-upper: key is not the us-ne-senate pattern; matched on st=NE + office=state_senate (entity type unicameral, Nebraska Legislature)"
+   "us-ne-legislature -> chamber:ne-upper: key is not the us-ne-senate pattern; matched on st=NE + office=state_senate (entity type unicameral)",
+   "us-ca-san-francisco-board-of-supervisors -> muni:place:0667000: role board (key ends in -board-of-supervisors; office city_council)",
+   "us-tn-nashville-davidson-metro-council: file entity muni:place:4752006 is the area_only balance place of a consolidated_with pair; mapped to county:47037 (holds the consolidated government: CoG id, gov_status government)",
+   "us-tn-nashville-davidson-mayor: file entity muni:place:4752006 is the area_only balance place of a consolidated_with pair; mapped to county:47037 (holds the consolidated government: CoG id, gov_status government)",
+   "us-ky-louisville-jefferson-county-metro-council: file entity muni:place:2148006 is the area_only balance place of a consolidated_with pair; mapped to county:21111 (holds the consolidated government: CoG id, gov_status government)",
+   "us-ky-louisville-jefferson-county-mayor: file entity muni:place:2148006 is the area_only balance place of a consolidated_with pair; mapped to county:21111 (holds the consolidated government: CoG id, gov_status government)"
   ],
-  "bodies_sha256": "8d5ed9db239fb4b11a8bcf2f81a51b4d9221bc599f3dc7447ca47eb40d291c93",
-  "body_key_gaps": 38,
-  "entities_without_body": [
-   "chamber:dc-council"
-  ]
+  "entities_with_bodies": 169,
+  "seating_ref": "06a2cc39dfcad10846ede2d7d98360926e327829",
+  "files": {
+   "bodies.csv": "5f69fd10102e6485118ea716f3504116da02e8a63bfffe56b99cf568c14cfc83",
+   "build_meta.json": "8a9422db379d6bebd404356c396e1bf09a2b96ba5ee17a9a10b25f21e96eb479",
+   "city_bodies.csv": "63dccfc7a33bcf44dddb63beea95d445bcdf6dc8434f502fce7349a2abe70b1f"
+  },
+  "body_entity_rows": 198,
+  "body_key_gaps": 0,
+  "courts_minted": 37,
+  "not_in_seating_charts": [
+   "CT_SC",
+   "DE_SC",
+   "HI_SC",
+   "MA_SC",
+   "ME_SC",
+   "NH_SC",
+   "NJ_SC",
+   "NY_SC",
+   "RI_SC",
+   "SC_SC",
+   "VA_SC",
+   "VT_SC",
+   "CA_SC",
+   "KS_SC",
+   "WV_SC"
+  ],
+  "relations": {
+   "consolidated_with": 5,
+   "parent": 37
+  },
+  "entities_without_body": []
  },
  "world": {
   "natural_earth": {

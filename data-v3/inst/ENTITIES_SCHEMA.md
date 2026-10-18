@@ -11,7 +11,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 |---|---|---|---|
 | 1 | `entity_id` | `nation:fr`, `territory:gl`, `province:ca-on`, `territory:ca-yt`, `county:01001`, `muni:place:1714000`, `town:cousub:0911001080`, `school:0100003`, `chamber:al-lower`, `us-house`, `state:01`, `nation:us`, `chamber:dc-council` | stable, opaque. Minted once from the kind prefix + the GEOID the entity was **first seen** with, then frozen: never re-derived when a boundary or GEOID changes. A new id is minted only when the government itself changes (merger, dissolution, new incorporation, CT counties → planning regions) |
 | 2 | `kind` (open vocabulary; company kinds will be added by external feeds) | `nation`, `state`, `territory`, `province` (**new**, Canadian provinces, parent `nation:ca`; confirmed by Full Stack, SCHEMA 62cb622), `county`, `municipality`, `township`, `school_unified`, `school_elementary`, `school_secondary`, `chamber`, `dc_council` | district seats are **units, not entities** (no `district_seat` kind) |
-| 3 | `state_fips` | `01` | jurisdiction (empty for nation / us-house) |
+| 3 | `state_fips` | `01` | jurisdiction (empty for nation / us-house / us-senate) |
 | 4 | `state` | `Alabama` | |
 | 5 | `name` | `Autauga County` | TIGER NAMELSAD (Census) or the official body name |
 | 6 | `alias` | `Hartford town;Hartford` | `;`-list; a `;` inside a name is escaped as `\;` |
@@ -30,7 +30,6 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 19+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local; world rows national/subnational), finer type (TIGER LSAD text; sovereign_state / dependency / province / territory), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 | 23 | `source_record_id` | `01001`, `Q228` | SCHEMA `entity.source_record_id`: the id inside the row's first cited source (GEOID / FIPS for Census rows, QID for Wikidata rows) |
 | 24 | `wikidata` | `wikidata:Q156168` | Wikidata QID (world rows: from P297/P300; US rows: the Governments bot's wikidata_qid; nation:us Q30) → `entity_alias` (kind external_id, scheme wikidata) |
-| 25 | `body_key` | `us-pa-house` | nullable, unique: the Seating Charts bot's `bodies.csv` `key` for this chamber / council (structural st + office match, tools/inst_bodies.py); bodies with no entity → `body_key_gaps.csv` |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -75,19 +74,36 @@ external_id scheme wikidata); `entity_feed_map.csv` (feed id → registry id; SC
 kind `merged_id`/`external_id` but no feed-map table) and `entity_images.csv` (no image table; `entity.icon_flag` is a single
 text column). Full Stack rulings (Oct 18), applied in this build: `wikidata` nullable + unique `wikidata:Q…`; images columns role/file/license/fair_use/usage_basis/source_url/attribution; feed map feed/feed_id/entity_id/status/note; `entity_relations.csv` `consolidated_with`. Seal/flag rows carry `license`/`fair_use`/`usage_basis`.
 
-## Proposal for Full Stack: kind `court` (draft, not applied)
+## Kind `court` (approved by Full Stack, Oct 18; applied)
 
-The Seating Charts bot's `bodies.csv` has 37 court bodies (kind C: 35 `state_supreme_court`, 2 `state_court_criminal_appeals`,
-TX and OK). They have no entity because `court` is not an approved kind, so this build mints none. They are listed in
-`body_key_gaps.csv` instead. Proposed:
-- `kind` `court`; `entity_id` `court:<st>-<slug>`, for example `court:pa-supreme`, `court:tx-criminal-appeals` (lower-case, stable, no names
-  of people); `level` state (federal courts later, `court:us-supreme`); `type` `supreme_court` / `court_of_criminal_appeals` / ….
-- `parent_id` `state:<fips>`; `gov_status` `na` with flag `gov_status_na:judicial_body` (like chambers); `feed` `inst-lane`.
-- `body_key` = the bodies.csv key; seats and terms stay in the Seating Charts files (no seat units, no GEOIDs; judicial
-  districts, where a court has them, would be a later unit_layer).
-- Source: the court's official page or the state constitution's judicial article, plus bodies.csv as a repo-local input.
-Open questions: whether intermediate appellate and trial courts are in scope, and whether courts excluded or dropped by the
-Seating Charts bot (build_meta.json: 12 excluded, CA/KS/WV dropped) still get entities.
+Minted from the Seating Charts bot's `bodies.csv` (pinned commit, see sources.csv): every kind C body becomes one entity.
+- `kind` `court`; `entity_id` `court:<st>-<slug>`, lower-case and frozen. The slug is deterministic from bodies.csv `office`:
+  `state_supreme_court` → `supreme`, `state_court_criminal_appeals` → `criminal-appeals` (examples: `court:pa-supreme`,
+  `court:tx-criminal-appeals`). `level` state, `type` `supreme_court` / `court_of_criminal_appeals`.
+- `name` is the bodies.csv `name`, copied verbatim. `source_record_id` is the bodies.csv `key`, and `source_id` cites bodies.csv.
+- `parent_id` `state:<fips>`, plus a `parent` row in `entity_relations.csv` (court → state). `gov_status` is empty and the
+  row carries the flag `gov_status_na:judicial_body`, the same as chambers. `feed` `inst-lane`.
+- Seats, terms and holders stay in the Seating Charts files and attach to the body_key (`body_entity.csv`). Courts get no
+  seat units and no GEOIDs.
+- Courts the Seating Charts build excluded or dropped (build_meta.json `excluded_courts` / `dropped_courts`) are not minted.
+  They are listed in `entity_gaps.csv` as gap `not_in_seating_charts`, keyed by the bot's code (for example `CA_SC`).
+Still open: intermediate appellate and trial courts (not in bodies.csv; none minted).
+
+## body_entity.csv (Full Stack, Oct 18): Seating Charts body → entity
+
+| column | example | meaning |
+|---|---|---|
+| `body_key` | `us-ny-new-york-mayor` | primary key, unique: bodies.csv `key` (the join is on key only; the bot's integer `b` is never stored) |
+| `entity_id` | `muni:place:3651000` | the institution entity. Several bodies may share one entity: NYC's council and mayor both point to the municipality |
+| `role` | `council` | `chamber` / `court` / `council` / `mayor` / `board` (extensible) |
+| `st`, `kind`, `office` | `NY`, `M`, `mayor` | copied from bodies.csv for the record |
+| `match` | `file_entity_verified` | `structural` (L: st + office → chamber slot); `minted_from_body` (C); `file_entity_verified` (M: the file's `entity` exists here, is in `st`, carries the body's place GEOID in the xwalk, and city_bodies.csv lists it); `file_entity_verified_via_parent:<id>` (the GEOID is on the parent, e.g. DC council → state:11); `consolidated_government` (the file's area_only balance place → the county of its consolidated_with pair) |
+| `source_record_id` | `us-ny-new-york-mayor` | the id inside the source (the bodies.csv key) |
+| `source_id` | `repo-bodies-…;repo-city-bodies-…` | bodies.csv, plus city_bodies.csv for the M rows |
+
+`entities.csv` has no body column; council and mayor entities are not created. **Officeholders and seats attach to the
+`body_key`, not to the entity.** Bodies that match no entity go to `body_key_gaps.csv`
+(`body_key, st, kind, office, name, reason, source_id`).
 
 # Original proposal (kept for history; superseded where it differs from the column list above)
 

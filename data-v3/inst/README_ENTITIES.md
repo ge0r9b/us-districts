@@ -1,7 +1,7 @@
 # File family: institution registry (data-v3/inst, institutions lane)
 
 Files: `entities.csv`, `entity_geoid_xwalk.csv`, `entity_v2_rows.csv`, `entity_gaps.csv`, `entities_summary.json`, `sources.csv`,
-`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`, `body_key_gaps.csv`.
+`source_urls.csv`, `entity_feed_map.csv`, `entity_images.csv`, `entity_relations.csv`, `body_entity.csv`, `body_key_gaps.csv`.
 Builder: `tools/inst_entities.py` (read-only inputs; deterministic). Column list and SCHEMA.sql alignment: ENTITIES_SCHEMA.md.
 Format: UTF-8, one header row, stable column names (v3 reads by header). **Provenance:** every row of every file in the
 family has `source_id` (`;`-list) into `sources.csv` (source, full URL(s), licence, `retrieved_at`, pinned `commit`, `sha256`;
@@ -9,14 +9,14 @@ README_SOURCES.md); the repeated `source` / `source_url` / `retrieved_at` / `lic
 `<slug>-<sha8(url|commit)>`, deterministic; `--stability-test` rebuilds them a second time and compares. Open public sources only.
 
 Build: `tools/inst_entities.py <repo> --gaz24 DIR --gaz20 DIR --cog XLSX --geojson DIR --oh-ref <data/inst-officeholders sha>
---gov-ref <data/governments sha> --world-raw DIR --bodies <bodies.csv> [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
+--gov-ref <data/governments sha> --world-raw DIR --seating-ref <data/seating sha> [--stability-test]`. `--world-raw` is the directory `tools/inst_world.py fetch <repo> DIR`
 writes (the Wikidata .rq queries + .json answers, sha256s recorded in `entities_summary.json` `world.files`). Officeholder files, county_government.csv and the Governments bot's
 `data-v3/institutions/governments/local/*.csv` are read with `git show` (read only).
 
 ## What is an entity
 
 One row per **institution** (government, governing body, later companies), no vintage. Kinds now: `nation`, `state`
-(50 + DC), `territory` (5, only because they send House delegates), `chamber` (99 state chambers + `us-house`), `dc_council`,
+(50 + DC), `territory` (5, only because they send House delegates), `chamber` (99 state chambers + `us-house` + `us-senate`), `dc_council`, `court` (37 state high courts),
 `county`, `municipality` (place-based government), `township` (county-subdivision government), `school_unified`,
 `school_elementary`, `school_secondary`. District seats are **units** (cd / sldu / sldl GEOIDs), not entities: an officeholder
 row is keyed chamber `entity_id` + `unit_layer` + `unit_geoid` + `unit_vintage` + `seat`.
@@ -84,19 +84,36 @@ ours as a union on the bot's own ids (`cog2022`, `wikidata_images`, ...); a coll
 - Seat units for officeholder rows without a TIGER district, and NH floterial member links: data/inst-officeholders step 7
   (README_OFFICEHOLDERS.md).
 
-## body_key (Seating Charts bodies, tools/inst_bodies.py)
-`entities.csv` `body_key` (nullable, unique) is the `key` of the Seating Charts bot's `v3data/bodies.csv`, which feeds the v3
-seating-chart toggle. Matching uses structure only, never names: US `us_senate` → `us-senate`, US `us_house` → `us-house`,
-`<st>` `state_senate` (sldu) → `chamber:<st>-upper`, `<st>` `state_house` (sldl) → `chamber:<st>-lower`, and a DC council body
-→ `chamber:dc-council`. st, office and the entity's type are checked on every match. Assemblies, General Assembly (NJ) and
-Houses of Delegates (MD, VA, WV) are office `state_house`, so they match by structure. Nebraska is `us-ne-legislature`
-(office state_senate) → `chamber:ne-upper` (type unicameral). This is the only key that does not follow the
-`us-<st>-senate|house` pattern, and the build summary lists it under `body_key.judged`. Bodies without an entity are in
-`body_key_gaps.csv` (`body_key, st, kind, office, name, reason, source_id`): the 37 courts (`court` is not an approved kind,
-see the proposal in ENTITIES_SCHEMA.md) and the US Senate (the registry has no `us-senate` chamber entity, and none is minted here).
-bodies.csv has no DC body, so `chamber:dc-council` has no body_key. bodies.csv is the Seating Charts bot's file. It is not
-committed by this lane and was not on any branch of the repo at build time, so `sources.csv` pins it by sha256 only
-(`seating-bodies-…`, url `repo-local:seating/v3data/bodies.csv`).
+## Seating Charts bodies: body_entity.csv and courts (tools/inst_bodies.py)
+Input: the Seating Charts bot's committed `data-v3/seating/bodies.csv`, `build_meta.json` and `city_bodies.csv` at the pinned
+`--seating-ref` commit (branch data/seating), read with `git show`. sources.csv records each file's commit and sha256.
+The join is on bodies.csv `key` only. `body_entity.csv` (`body_key` PK, `entity_id`, `role`, `st`, `kind`, `office`,
+`match`, `source_record_id`, `source_id`) links every body to one entity. Column rules are in ENTITIES_SCHEMA.md.
+- **L (role chamber), structure only, never names:** US `us_senate` → `us-senate`, US `us_house` → `us-house`,
+  `<st>` `state_senate` / `state_legislature` (sldu) → `chamber:<st>-upper`, `<st>` `state_house` (sldl) → `chamber:<st>-lower`.
+  st, office and the entity's type are asserted on every match. Assemblies, the NJ General Assembly and Houses of Delegates
+  (MD, VA, WV) are office `state_house`. Nebraska's `us-ne-legislature` (office state_senate) → `chamber:ne-upper` (type
+  unicameral) is the only key outside the `us-<st>-senate|house` pattern, and the summary lists it under `bodies.judged`.
+- **C (role court):** each court body is minted as `court:<st>-<slug>` (kind `court`, approved Oct 18). Courts the bot
+  excluded or dropped are `entity_gaps.csv` `not_in_seating_charts`.
+- **M (roles council / board / mayor):** the file's `entity` is a claim. It is used only after it is verified: the entity
+  exists here and is in state `st`; the body's place `geoid` is a place GEOID of that entity in entity_geoid_xwalk, or of
+  its parent (DC's council sits under `state:11`, which carries place 1150000 as `federal_district_city`); and
+  city_bodies.csv (read-only cross-check) lists the geoid. A council and its mayor share one entity; no council or mayor
+  entities are created. Role `board` applies when the key ends in `-board-of-supervisors` (San Francisco).
+- **Consolidated governments** (rule applied the same way to all four): a body goes to the entity that holds the
+  consolidated government.
+  - San Francisco and Indianapolis: `muni:place:0667000` and `muni:place:1836003` already carry the county GEOID
+    (06075 / 18097, xwalk `consolidated_city_county`) and have `gov_status` government. They are single entities, so no
+    relation is needed and none is added.
+  - Nashville and Louisville: bodies.csv names the balance places `muni:place:4752006` / `2148006`, which here are
+    `area_only` (TIGER FUNCSTAT F). Per the Oct 18 ruling, the CoG government is mapped to the county side of their
+    `consolidated_with` pair, so the metro council and mayor map to `county:47037` / `county:21111` (match
+    `consolidated_government`; listed under `bodies.judged`).
+- **DC:** `us-dc-washington-council` → `chamber:dc-council` (role council). `us-dc-washington-mayor` → `state:11`, the DC
+  government entity (gov_status government, CoG 124214, carries place 1150000, county 11001 and cousub 1100150000).
+- **Officeholders and seats attach to `body_key`, not to the entity.** An entity can carry several bodies with different roles.
+- A body that fails any rule goes to `body_key_gaps.csv` with a reason.
 
 ## How the rows are built (all links by Census code, never by name)
 
@@ -128,7 +145,7 @@ committed by this lane and was not on any branch of the repo at build time, so `
 - **parent_id.**
   - school, county and chamber → state;
   - municipality or town → county (when ≥ 98 % of it is in one county), else state;
-  - state → nation:us; us-house → nation:us.
+  - state → nation:us; us-house and us-senate → nation:us; court → state (also a `parent` row in entity_relations.csv).
 
 ## entity_geoid_xwalk.csv
 
@@ -184,7 +201,7 @@ entities.csv like this:
 | `gov_status_unknown:not_in_cog2022_scope` | territory: CoG 2022 does not cover territories |
 | `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` | school district with no Governments-bot row carrying its NCES LEA ID |
 | `gov_status_unknown:governments_bot_rows_disagree` | several bot rows on one LEA ID with different gov_status (none in this build) |
-| `gov_status_na:legislative_chamber` / `gov_status_na:legislative_body_of_state:11` | not a government in the CoG sense: a chamber / the DC Council |
+| `gov_status_na:legislative_chamber` / `gov_status_na:legislative_body_of_state:11` / `gov_status_na:judicial_body` | not a government in the CoG sense: a chamber / the DC Council / a court |
 | `tiger_funcstat:<A/B/C/F/G/I/N/S>` | county: TIGER 2024 FUNCSTAT, kept for the CoG cross-check |
 | `tiger_funcstat_G:active_government_subordinate_to_another_unit` | cousub/place FUNCSTAT G with no CoG unit; `gov_status=dependent` |
 | `tiger_funcstat_F:fictitious_entity`, `tiger_funcstat_I:inactive_governmental_unit`, `tiger_funcstat_N:nonfunctioning_legal_entity`, `tiger_funcstat_S:statistical_entity` | FUNCSTAT says no functioning government; `gov_status=area_only` |
@@ -214,17 +231,17 @@ entities.csv like this:
 Governments feed: `govbot_mapping_conflict`, `govbot_mapping_ambiguous`, `govbot_frozen_id_conflict`, `govbot_territory_key_differs`,
 `govbot_ceased_partial`, `govbot_ceased_dates_disagree`, `govbot_new_unit_not_in_registry`, `govbot_registry_id_not_in_files`,
 `wikidata_qid_conflict`, `wikidata_qid_duplicate`, `image_entity_unmapped`, `image_fair_use_inconsistent`;
-source list: `not_in_source_list`.
+source list: `not_in_source_list`; Seating Charts: `not_in_seating_charts`.
 `feed` values: `tiger/cog` (built here from TIGER + CoG), `inst-lane` (nation, chambers, DC Council, world nations/territories/provinces); later `governments-bot`,
 `companies-bot`, `user-upload`.
 
-Counts in the current build (54,360 entities: nation 195, state 51, territory 17, province 10, chamber 100, dc_council 1,
+Counts in the current build (54,398 entities: nation 195, state 51, territory 17, province 10, chamber 101, dc_council 1, court 37,
 county 3,080, municipality 19,525, township 18,076, school_unified 10,872, school_elementary 1,952, school_secondary 481;
-648 gap rows; 93,278 feed-map rows; 2,024 images; 5 relations; wikidata on 38,840 entities). `flags` tokens, grouped by
+663 gap rows; 93,278 feed-map rows; 2,024 images; 42 relations (5 consolidated_with, 37 parent); 198 body_entity rows, 0 body_key gaps; wikidata on 38,840 entities). `flags` tokens, grouped by
 the text before the first `:` (the detail after it varies per row): `tiger_funcstat:A` 3,031; `not_in_cog2022` 1,619;
 `tiger_funcstat_G` 1,603; `spans_counties` 899; `gov_status_unknown:no_governments_bot_row_with_this_nces_leaid` 375;
 `outside_v2_scope:no_unit_no_boundary_set` 216; `tiger_funcstat_F` 152; `tiger_funcstat_I` 127;
-`gov_status_na:legislative_chamber` 100; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
+`gov_status_na:legislative_chamber` 101; `gov_status_na:judicial_body` 37; `chamber_name_generic` 98; `cog2022_is_active_N` 90;
 `gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match` 56; `tiger_funcstat_I_but_in_cog2022` 39;
 `coextensive_separate_government` 26; `is_active_false` 24; `tiger_funcstat:N` 23; `gov_status_unknown:outside_cog2022_scope` 22;
 `tiger_funcstat_N` 20; `not_un_member(wikidata_P463)` 11; `tiger_funcstat:S` 11; `not_sovereign_state(wikidata_P31)` 9;
@@ -235,7 +252,7 @@ the text before the first `:` (the detail after it varies per row): `tiger_funcs
 `tiger_funcstat_N_but_in_cog2022`, `tiger_funcstat_S`, `multiple_cog_units`.
 Gap rows by `gap`: `gov_status_unknown` 433; `cog2022_unit_not_linked_by_code` 57; `excluded_not_defined` 49;
 `officeholder_unit_without_tiger_geoid` 49; `orphan_v2_row` 28; `govbot_new_unit_not_in_registry` 12; `image_entity_unmapped` 6;
-`not_in_source_list` 4; `nation_not_un_member` 2; `same_code_place_cousub_overlap_unmeasured` 2; one each of
+`not_in_seating_charts` 15; `not_in_source_list` 4; `nation_not_un_member` 2; `same_code_place_cousub_overlap_unmeasured` 2; one each of
 `consolidated_county_cog_code_not_in_tiger` (Honolulu), `govbot_ceased_partial`, `territory_sovereign_unknown`,
 `wikidata_p297_several_items`, `wikidata_qid_via_home_part_rule`, `world_entity_excluded_no_sovereign`; none of
 `wikidata_qid_duplicate`, `image_fair_use_inconsistent`, `govbot_mapping_conflict`.

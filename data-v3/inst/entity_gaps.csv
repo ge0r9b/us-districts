@@ -455,6 +455,21 @@ image_entity_unmapped,bia:eastern-band-of-cherokee-indians,seal ,repo-government
 image_entity_unmapped,bia:ewiiaapaayp-band-of-kumeyaay-indians,seal Ewiiaapaayp band seal.png,repo-governments-e4797d09
 image_entity_unmapped,bia:oneida-nation,seal ,repo-governments-e4797d09
 image_entity_unmapped,bia:ute-mountain-ute-tribe,seal ,repo-governments-e4797d09
+not_in_seating_charts,CT_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,DE_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,HI_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,MA_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,ME_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,NH_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,NJ_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,NY_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,RI_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,SC_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,VA_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,VT_SC,Seating Charts build_meta.json excluded_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,CA_SC,Seating Charts build_meta.json dropped_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,KS_SC,Seating Charts build_meta.json dropped_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
+not_in_seating_charts,WV_SC,Seating Charts build_meta.json dropped_courts: no body in bodies.csv; court not minted,repo-build-meta-5d3439f5
 orphan_v2_row,v2:parts|Iowa|Ida County|Cushing city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 1917940 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Minnesota|Ramsey County|Birchwood Village city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2706058 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
 orphan_v2_row,v2:parts|Minnesota|Ramsey County|Lilydale city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2737016 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)",repo-geo-dfd55777;repo-parts-f7a3e90c;census-tiger2024-cousub-place-497997db
