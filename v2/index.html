@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181566";</script>
+<script>window.BUILD="202610181567";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -3177,6 +3177,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(g.k===cur.k){ cur=g; cand=""; return; }
     if(g.k!==cand){ cand=g.k; return; }
     stack.push(cur); cur=g; cand=""; },120);
+  window.__navCommit=()=>{ if(nav||!cur||restoring()) return; let g; try{ g=grab(); }catch(e){ return; } if(g.k!==cur.k){ stack.push(cur); cur=g; cand=""; } }; /* build 1567: the drill-in's first render commits the step at once */
   function restore(T){ const g=grab();
     try{ if((T.top||"-")!==(g.top||"-")&&window.__setTopic) window.__setTopic(T.top&&T.top!=="-"?T.top:null); }catch(e){}
     try{ if(T.nm&&window.__setNum&&T.nm!==g.nm) window.__setNum(T.nm); }catch(e){}
@@ -3548,7 +3549,25 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       lvw.addEventListener("pointerout",e=>{ if(e.pointerType!=="mouse") return; const o=cut(e.target); if(o&&!(e.relatedTarget&&o.rn.contains(e.relatedTarget))){ try{ hideBub(); }catch(_){} } }); } }
   function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const dl=g.classList.contains("dl"), cmp=!!r.closest(".lvrow.cmp"); /* single-year chart rows: name text at x=52 = the top fields' text (the thumbnail column ends at 50) */ const d=(dl?44:52)+(document.body.classList.contains("lathumb")&&(dl||!cmp)?46:0)-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
   window.addEventListener("resize",()=>{ if(LA.on) setTimeout(()=>{ alignRows(); setDlen(); clampLabels(); fitLabels(); },60); });
-  function render(){ if(!LA.on) return; const lv=document.getElementById("listView"); if(!LA.__noMap){ computeAgg(); drawMap(); } LA.__noMap=0; /* build 1564: a sort flip changes no map colour: skip the aggregate + map redraw */
+  /* build 1567: drill-in answers at once. The tap swaps the list for the target's cached rows (or skeleton rows) in the same task, with the
+     thumbnails hidden (body.laskel); the first render of the new scope then commits the history step, shows the chevron and places the
+     thumbnails in that same task, so they appear together, in their final spot, in one frame. */
+  const SKC=new Map();
+  function skel(a){ try{ const lv=document.getElementById("listView"), g0=lv&&lv.querySelector(".lvgrid"); if(!g0) return;
+      const k=[a.kind,String(aname(a)),typeof ltype!=="undefined"?ltype:"",numMode,ym()].join("|"); LA.__dk=k; LA.__skS=scopeK();
+      const c=SKC.get(k); let h=c; if(!h){ h=""; const n=Math.min(30,Math.ceil((lv.clientHeight||800)/23)+2); for(let i=0;i<n;i++) h+='<div class="lvskel" style="--w:'+(92-((i*37)%28))+'%"></div>'; }
+      g0.innerHTML=h; g0.classList.add("skel"); lv.scrollTop=0; document.body.classList.add("laskel");
+      clearTimeout(LA.__skTo); LA.__skTo=setTimeout(()=>{ if(!document.body.classList.contains("laskel")) return; if(g0.classList.contains("skel")){ g0.classList.remove("skel"); LA.__skS=null; try{ if(LA.on) render(); }catch(e){} } skelDone(); },3500); }catch(e){} }
+  window.__laSkel=skel;
+  function render(){ const B=document.body.classList, g=document.querySelector("#listView .lvgrid");
+    if(B.contains("laskel")&&g&&g.classList.contains("skel")){ if(!LA.on||scopeK()===LA.__skS) return; g.classList.remove("skel"); g.innerHTML=""; } /* the new scope's rows replace the skeleton */
+    const r=render0.apply(this,arguments);
+    if(B.contains("laskel")&&!(g&&g.classList.contains("skel"))&&document.querySelector("#listView .lvrow.la.cmp")) skelDone(); /* results are in: chevron + thumbnails together */
+    return r; }
+  function skelDone(){ const B=document.body.classList; if(!B.contains("laskel")) return; clearTimeout(LA.__skTo);
+    try{ window.__navCommit&&window.__navCommit(); }catch(e){} B.remove("laskel"); try{ window.__bbSync&&window.__bbSync(); }catch(e){} try{ place(); laThumbs(); }catch(e){}
+    try{ const g=document.querySelector("#listView .lvgrid"); if(LA.__dk&&g){ const kids=[...g.children].slice(0,40); if(kids.length) SKC.set(LA.__dk,kids.map(e=>e.outerHTML).join("")); if(SKC.size>40) SKC.delete(SKC.keys().next().value); } }catch(e){} LA.__dk=null; }
+  function render0(){ if(!LA.on) return; const lv=document.getElementById("listView"); if(!LA.__noMap){ computeAgg(); drawMap(); } LA.__noMap=0; /* build 1564: a sort flip changes no map colour: skip the aggregate + map redraw */
     LA.sc=null; if(ym()!=="delta"){ try{ LA.sc=sortCand(ym()); }catch(e){} } { const k=[LA.sc&&LA.sc.id,numMode,ym(),scopeK()].join("|"); if(LA.skey!==undefined&&LA.skey!==k) LA.sort="desc"; LA.skey=k; } /* a new sort key (answer, %/#, year, list) starts high→low */
     nounSync();
     const rows=LA.items.map(a=>{ let s=null; try{ s=sortVal(a); }catch(e){} return {a,s}; }); const dir=LA.sort==="asc"?1:-1;
@@ -3672,7 +3691,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     li.addEventListener("touchend",e=>{ if(ty===null) return; const d=Math.abs((e.changedTouches[0]||{clientY:ty}).clientY-ty); ty=null; if(d>10) return; e.preventDefault(); e.stopPropagation(); act(); },{passive:false});
     li.onclick=e=>{ e.stopPropagation(); act(); }; h.prepend(li); }
   // ---- tapping a list-all row selects that entity (same result as picking it in the institution list) ----
-  window.__laPick=async function(a){ const kl=view==='list'||LA.on; if(a&&a.nat){ county.value=""; hier.dist=null; state.value=a.d[0]; state.onchange&&state.onchange(); return; } const tomap=()=>{ if(!kl) setView('map'); else setView('list'); }; const after=()=>{ if(!kl||(a&&a.st==="District of Columbia")) return; const go=async n=>{ try{ if(LA.on) return; setView('list'); const lv=level(); if(lv) await enter(); else setView('list'); }catch(e){} if(!LA.on&&n<3) setTimeout(()=>go(n+1),1200); }; setTimeout(()=>go(0),1400); }; try{ if(!a) return; if(a.kind==="county"&&LA.lv&&LA.lv.dt){ /* state -> counties -> districts: tapping a county lists that county's districts of the selected type (same list-all, same view settings) */ exit(); window.__geoLock=null; county.value=a.d[1]; county.onchange&&county.onchange(); return; } after(); window.__geoLock=null; try{ nameLock=null; }catch(e){}
+  window.__laPick=async function(a){ const kl=view==='list'||LA.on; if(kl&&LA.on&&a&&!a.nat&&(a.kind==="county"||(a.kind==="sum"&&a.st!=="District of Columbia"))) { skel(a); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))); } /* build 1567: one frame with the skeleton painted before the heavy switch work */ if(a&&a.nat){ county.value=""; hier.dist=null; state.value=a.d[0]; state.onchange&&state.onchange(); return; } const tomap=()=>{ if(!kl) setView('map'); else setView('list'); }; const after=()=>{ if(!kl||(a&&a.st==="District of Columbia")) return; const go=async n=>{ try{ if(LA.on) return; setView('list'); const lv=level(); if(lv) await enter(); else setView('list'); }catch(e){} if(!LA.on&&n<3) setTimeout(()=>go(n+1),1200); }; setTimeout(()=>go(0),1400); }; try{ if(!a) return; if(a.kind==="county"&&LA.lv&&LA.lv.dt){ /* state -> counties -> districts: tapping a county lists that county's districts of the selected type (same list-all, same view settings) */ exit(); window.__geoLock=null; county.value=a.d[1]; county.onchange&&county.onchange(); return; } after(); window.__geoLock=null; try{ nameLock=null; }catch(e){}
     if(a.kind==="ctry"){ exit(); tomap(); if(a.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange&&state.onchange(); } else window.__worldEnter(a.iso); return; }
     if(a.kind==="prov"){ exit(); tomap(); window.__W_prov(a.p[0]); return; }
     if(a.kind==="sum"&&a.st==="District of Columbia"&&kl&&["senate","statehouse","schools"].indexOf(ltype)>=0&&!state.value){ /* build 1556: DC drills into its wards (state house / senate) or DCPS (schools) */ LA.dc=true; exit(); return; }
@@ -3932,6 +3951,13 @@ html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed)
 }
 #laSort::before { background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.07) 100%); } /* half the 1564 fill: lighter glass */
 #laSort svg { stroke: #111 !important; opacity: 1 !important; } /* arrows stay fully dark, same size and weight */
+
+/* build 1567: drill-in skeleton / cached rows */
+html body.laskel #laCands#laCands, html body.laskel #bBack#bBack { display: none !important; } /* both appear together with the new list (double id beats the canback show rule) */
+#listView .lvgrid.skel > * { pointer-events: none; }
+#listView .lvgrid.skel > .lvrow { opacity: .55; }
+#listView .lvgrid.skel > .lvskel { height: 23px; box-sizing: border-box; padding: 6px 8px 5px 52px; border-bottom: 1px solid rgba(0,0,0,.06);
+  background: linear-gradient(90deg, #d6d3d1 0 64px, transparent 64px 72px, #e7e5e4 72px var(--w,90%), transparent var(--w,90%)) content-box; }
 
 /* bar lists: name column = measured longest name (fitNames sets --rnw, max 84px, no minimum) + a 6px gap
    (the row's flex gap is 8px, so the name cell takes -2px margin); the bar starts right after the names */
