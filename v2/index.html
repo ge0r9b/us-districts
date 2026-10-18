@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181573";</script>
+<script>window.BUILD="202610181574";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -1038,11 +1038,13 @@ let E2020L=null;
 function loadE2020(){ if(window.ELECTION2020) return Promise.resolve(); return E2020L||(E2020L=new Promise(r=>{const s=document.createElement("script");s.src="data/election2020.js?v="+window.BUILD;s.onload=r;s.onerror=r;document.head.append(s);})); }
 function deltaColor(d){ if(typeof heatSel==="function"&&heatSel().m==="none") return "rgba(0,0,0,0)"; if(typeof heatSel==="function"){ const S=heatSel(); if(S.m==="one"){ const f=(S.ix?d:-d); return f<=0?"rgb(247,247,247)":shareColor(0.5+Math.min(1,f/0.2)*0.3,S.color); } } const st=[[-0.2,[8,48,107]],[-0.1,[33,113,181]],[-0.03,[158,202,225]],[0,[247,247,247]],[0.03,[252,174,145]],[0.1,[222,45,38]],[0.2,[103,0,13]]];
   if(d<=st[0][0]) return "rgb("+st[0][1]+")"; for(let i=1;i<st.length;i++){ if(d<=st[i][0]){ const [a,ca]=st[i-1],[b,cb]=st[i],t=(d-a)/(b-a); return "rgb("+ca.map((c,j)=>Math.round(c+(cb[j]-c)*t)).join(",")+")"; } } return "rgb("+st[st.length-1][1]+")"; }
-function ymRaw(){ if(window.__y16) return "2016"; /* build 1571: a range from '16 shows 2016 too (never stuck loading) until the 2016 change view exists */ /* build 1570: 2016 alone; vals() is the only 2016 data gate */ return window.__ymode ? window.__ymode() : "2024"; }
+window.__VY=null; function vy(y){ const V=window.__VY; return (V&&V[y])||y; } /* build 1574: a range from '16 runs the change view with virtual years: "2020" = start (2016), "2024" = end */
+function ymRaw(){ if(window.__y16&&!window.__y16hi) return "2016"; /* build 1571: a range from '16 shows 2016 too (never stuck loading) until the 2016 change view exists */ /* build 1570: 2016 alone; vals() is the only 2016 data gate */ return window.__ymode ? window.__ymode() : "2024"; }
+function EYt(y){ return y==="2016"?window.ELECTION2016:y==="2020"?window.ELECTION2020:window.ELECTION2024; }
 function ym(){ const m=ymRaw(); if(m==="delta"&&window.chartMode==="pie"&&document.body.classList.contains("listmode")) return (window.__y16&&window.__y16hi===1)?"2020":"2024"; /* build 1571: a pie in a range shows the END year; the chart type never changes with the timeline */ return m; } window.__ymRaw=ymRaw;
 function yrHtml(r,yr){ const [dem,rep,tot]=r,pd=dem/tot*100,pr=rep/tot*100,m=pr-pd,dn=yr==="2016"?"Clinton":yr==="2020"?"Biden":"Harris";
   return "<b>"+yr+"</b> "+dn+": "+VP(dem,pd)+"<br>Trump: "+VP(rep,pr)+"<br>Margin: "+(m>=0?"Trump +":dn+" +")+Math.abs(m).toFixed(1)+" pts<br>"; }
-function countyFill(k){ const m=ym(), a=window.ELECTION2024&&window.ELECTION2024[k], b=window.ELECTION2020&&window.ELECTION2020[k]; if(m==="2016"){ const c=window.ELECTION2016&&window.ELECTION2016[k]; return c&&c[2]?heatC(c[0],c[1],c[2]):null; }
+function countyFill(k){ const m=ym(), A=EYt(vy("2024")), B=EYt(vy("2020")), a=A&&A[k], b=B&&B[k]; if(m==="2016"){ const c=window.ELECTION2016&&window.ELECTION2016[k]; return c&&c[2]?heatC(c[0],c[1],c[2]):null; }
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):null;
   if(m==="2020") return b?heatC(b[0],b[1],b[2]):null;
   return a&&b?deltaColor((a[1]-a[0])/a[2]-(b[1]-b[0])/b[2]):null; }
@@ -1243,12 +1245,12 @@ function syncYears(){
   $("c2020").classList.toggle("on", years.has("2020")); $("c2024").classList.toggle("on", years.has("2024"));
   $("yslider").value = ymode()==="2020"?0:ymode()==="delta"?1:2;
   const m=ymode();
-  $("ynote").textContent = m==="2024" ? "" : m==="2020" ? "" : (heatLevel==="precinct" ? "Change 20→24, same-shape only" : "Change in margin, 2020→2024");
+  $("ynote").textContent = m==="2024" ? "" : m==="2020" ? "" : (heatLevel==="precinct" ? "Change "+vy("2020").slice(2)+"→"+vy("2024").slice(2)+", same-shape only" : "Change in margin, "+vy("2020")+"→"+vy("2024"));
   (m==="2024" ? Promise.resolve() : loadE2020()).then(()=>window.ensure20?ensure20():null).then(()=>{ updateLegend(); drawHeat(); });
 }
 $("c2020").onclick=()=>{ years.has("2020")?years.delete("2020"):years.add("2020"); syncYears(); };
 $("c2024").onclick=()=>{ years.has("2024")?years.delete("2024"):years.add("2024"); syncYears(); };
-$("yslider").oninput=e=>{ if(window.__y16){ window.__y16=false; document.body.classList.remove("y16","y16d"); } const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
+$("yslider").oninput=e=>{ if(window.__y16){ window.__y16=false; window.__y16hi=0; document.body.classList.remove("y16","y16d"); window.__vyApply&&window.__vyApply(null); } const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
 $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").classList.toggle("on",!b.hidden); layoutRail(); };
 ($("bList")||{}).onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
 // legend
@@ -1258,7 +1260,7 @@ window.updateLegend = function(){
   { const S=heatSel(); if(S.m==="none"){ div.innerHTML="<strong>No answer selected · no shading</strong>"; return; }
     if(S.m==="one"&&m!=="delta"){ const c=candsOn().find(x=>candOn.has(x.id)); const st=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]; div.innerHTML="<strong>"+m+" "+esc(c?c.short:"")+" share, "+heatLevel+"</strong><div class='heatbar'>"+st.map(f=>"<span style='background:"+shareColor(f,S.color)+"'></span>").join("")+"</div><div class='heatlbl'><span>20%</span><span>50%</span><span>80%</span></div>"; return; } }
   if(m==="delta"){ const st=[-0.2,-0.1,-0.05,0,0.05,0.1,0.2];
-    div.innerHTML="<strong>Margin change 20→24 · "+heatLevel+"</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
+    div.innerHTML="<strong>Margin change "+vy("2020").slice(2)+"→"+vy("2024").slice(2)+" · "+heatLevel+"</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+deltaColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>Dem +20</span><span>no change</span><span>Rep +20</span></div>";
   } else { const st=[-0.6,-0.4,-0.2,-0.1,0,0.1,0.2,0.4,0.6]; const d=m==="2020"?"Biden":"Harris";
     div.innerHTML="<strong>"+m+" president, "+heatLevel+" margin</strong><div class='heatbar'>"+st.map(s=>"<span style='background:"+marginColor(s)+"'></span>").join("")+"</div><div class='heatlbl'><span>"+d+" +60</span><span>even</span><span>Trump +60</span></div>"; }
 };
@@ -1560,7 +1562,7 @@ function aggHtml(k,d){ const lab=LYR.find(l=>l[1]===k)[2], m=ym(), {a24,a20}=dis
 function refreshLayers(){
   if(!lyrGroup) return; const seq=++drawSeq; lyrGroup.clearLayers(); crumbs2();
   if(!state.value) return; const m=ym();
-  const lgd=document.querySelector(".heatlegend strong"); if(lgd&&heatOn&&fillTop){ const L2=LYR.find(l=>l[1]===fillTop)[2]; lgd.textContent=t32(m==="delta"?"Change 20→24 · "+L2:m+" · "+L2+" margin"); } else if(window.updateLegend) updateLegend();
+  const lgd=document.querySelector(".heatlegend strong"); if(lgd&&heatOn&&fillTop){ const L2=LYR.find(l=>l[1]===fillTop)[2]; lgd.textContent=t32(m==="delta"?"Change "+vy("2020").slice(2)+"→"+vy("2024").slice(2)+" · "+L2:m+" · "+L2+" margin"); } else if(window.updateLegend) updateLegend();
   const need=heatOn&&fillTop;
   loadState(state.value).then(()=>need?Promise.all([m!=="2020"?loadPrecincts(state.value):null,m!=="2024"?loadPrec20(state.value):null,m!=="2024"?loadE2020():null]):null).then(()=>{
     if(seq!==drawSeq) return;
@@ -1938,10 +1940,10 @@ function scopeVals(a,yr){ if(a.kind!=="sum") return vals(a,yr);
 renderCands=function(){ const lst=document.body.classList.contains("listmode"), yrs=yrsOn(), a=scopeArea();
   candBox.innerHTML=""; candBox.classList.toggle("two",yrs.length>1);
   yrs.forEach(yr=>{ const v=scopeVals(a,yr); const col=document.createElement("div"); col.className="ccol";
-    if(yrs.length>1){ const l=document.createElement("div"); l.className="cyr"; l.textContent=yr; col.append(l); }
+    if(yrs.length>1){ const l=document.createElement("div"); l.className="cyr"; l.textContent=vy(yr); col.append(l); }
     const cs=[...CANDS[yr]].sort((x,y)=>v?((y.ix?v.rep:v.dem)-(x.ix?v.rep:v.dem)):0);
     cs.forEach(c=>{ const b=document.createElement("button"); b.type="button"; b.className="cand ph "+c.p+(candOn.has(c.id)?" on":"");
-      b.setAttribute("aria-pressed",candOn.has(c.id)); b.setAttribute("aria-label",c.full+" "+yr); b.title=c.full+" "+yr;
+      b.setAttribute("aria-pressed",candOn.has(c.id)); b.setAttribute("aria-label",c.full+" "+(c.yr||yr)); b.title=c.full+" "+(c.yr||yr);
       b.innerHTML="<img src='"+PHOTO[c.id]+"' alt='' width='48' height='48' decoding='async'>"+(lst?"<span class='cn'>"+esc(t32(c.full))+"</span>":"");
       b.onclick=()=>{ candOn.has(c.id)?candOn.delete(c.id):candOn.add(c.id); renderCands(); refreshBubble(); if(view==="list") renderList(); };
       col.append(b); });
@@ -2337,7 +2339,7 @@ setInterval(updShift,1000);
   const _rbS=refreshBubble; refreshBubble=function(){ const r=_rbS.apply(this,arguments); try{ if(ym()==="delta"&&cur&&bubPop&&map.hasLayer(bubPop)){ const t=shiftTxt(cur); const c=String(bubPop.getContent()||""); if(c.indexOf("data-sh")<0){ const nm=c.split("<br>")[0]; bubPop.setContent(nm+"<br><b data-sh>"+esc(t||"No exact 2020 match")+"</b>"+(t&&window.__isEst&&window.__isEst(cur)?"<br>≈ estimate":"")); } } }catch(e){} return r; }; }
 // ===== county fallback where the state lacks precinct data for the selected year(s) =====
 function precMissing(){ const st=state.value; if(!st) return false; const m=ym(); if(m==="2016") return !(window.PREC16||{})[st]; return (m!=="2020"&&!PREC[st])||(m!=="2024"&&!(window.PREC20||{})[st]); }
-function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(window.ELECTION2024||{})[k], b=(window.ELECTION2020||{})[k]; if(m==="2016"){ const c=(window.ELECTION2016||{})[k]; return c&&c[2]?heatC(c[0],c[1],c[2]):"#d6d3d1"; }
+function ctyFill(d){ const m=ym(), k=d[0]+"|"+d[1], a=(EYt(vy("2024"))||{})[k], b=(EYt(vy("2020"))||{})[k]; if(m==="2016"){ const c=(window.ELECTION2016||{})[k]; return c&&c[2]?heatC(c[0],c[1],c[2]):"#d6d3d1"; }
   if(m==="2024") return a&&a[2]?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b&&b[2]?heatC(b[0],b[1],b[2]):"#a8a29e";
   return a&&b&&a[2]&&b[2]?deltaColor((a[1]-a[0])/a[2]-(b[1]-b[0])/b[2]):"#a8a29e"; }
 const ctyFillGroup=L.layerGroup().addTo(map);
@@ -2349,7 +2351,7 @@ const _dh10=drawHeat; drawHeat=function(){ _dh10(); drawCtyFill(); };
 const _aa10=areaAt; areaAt=function(ll){ if(heatOn&&state.value&&precMissing()&&!hier.dist){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&pointInItem(d,ll.lng,ll.lat)); if(c) return {kind:"county",d:c}; } return _aa10(ll); };
 // ===== plotting on/off: topic set + at least one year =====
 let topicOn=true;
-function plotting(){ return years.size>0||!!window.__y16; } /* build 1570: 2016 plots (shapes always drawn; gray only where a unit has no 2016 value) */ window.__topicOn=()=>topicOn; { let saved=null, wasOut=null; const scopeOf=()=>{ const B=document.body.classList; return B.contains("worldmode")?(B.contains("wcountry")?"country":"all"):"us"; };
+function plotting(){ return years.size>0||(!!window.__y16&&!window.__y16hi); } /* build 1570: 2016 plots (shapes always drawn; gray only where a unit has no 2016 value) */ window.__topicOn=()=>topicOn; { let saved=null, wasOut=null; const scopeOf=()=>{ const B=document.body.classList; return B.contains("worldmode")?(B.contains("wcountry")?"country":"all"):"us"; };
   setInterval(()=>{ const sc=scopeOf(), out=sc!=="us"; if(out===wasOut) return; wasOut=out; const o=OFFICES.find(o=>o.id===office);
     if(out){ if(topicOn&&o&&o.scope&&o.scope!==sc){ saved=o.label; window.__setTopic(null); } }
     else if(saved&&!topicOn){ const l=saved; saved=null; window.__setTopic(l); } },200); } window.__setTopic=lab=>{ topicOn=!!lab; if(lab){ const o=OFFICES.find(o=>o.label===lab); if(o) office=o.id; } $("vtitle").textContent=lab||""; $("vtitle").classList.toggle("seal",!!lab); syncPlot(); try{ drawHeat(); }catch(e){} try{ drawNat(); }catch(e){} try{ renderCands(); }catch(e){} if(!lab){ cur=null; try{ map.closePopup(); }catch(e){} try{ refreshBubble(); }catch(e){} } };
@@ -2380,7 +2382,7 @@ function natFill(d){ return ctyFill([d.st,d.nm]); }
 let natSeq=0;
 function drawNat(){ if(window.__mapLaterOn&&window.__mapLaterOn()){ window.__later("drawNat",()=>drawNat()); return; } /* build 1568 */ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
   const m=ym(); Promise.all([loadNat(), window.ELECTION2024?null:loadElection(), m==="2016"?(window.__load16&&window.__load16("counties")):m!=="2024"?loadE2020():null]).then(()=>{ if(seq!==natSeq||!NAT) return;
-    const mk=m+"|"+JSON.stringify(heatSel()); if(!natGroup.__m||natGroup.__m!==mk){ const ls=natGroup.getLayers(); natGroup.__m=mk;
+    const mk=m+"|"+JSON.stringify(heatSel())+"|"+JSON.stringify(window.__VY); if(!natGroup.__m||natGroup.__m!==mk){ const ls=natGroup.getLayers(); natGroup.__m=mk;
       if(ls.length===NAT.length&&ls.every((l,i)=>l.__d===NAT[i])) ls.forEach(l=>{ const f=natFill(l.__d); if(l.options.fillColor!==f) l.setStyle({fillColor:f}); }); /* build 1564: a year/answer change recolours the existing shapes (no rebuild of ~3,000 polygons) */
       else { natGroup.clearLayers(); NAT.forEach(d=>{ const l=L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:natFill(d),fillOpacity:0.72,color:"#fff",weight:0.5,interactive:false}); l.__d=d; l.addTo(natGroup); }); } }
     natDetail(seq); }); }
@@ -2448,7 +2450,7 @@ let lastYr="2024";
 $("c2020").addEventListener("click",()=>{ const y="2020"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
 $("c2024").addEventListener("click",()=>{ const y="2024"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
 $("yslider").addEventListener("input",e=>{ const v=+e.target.value; if(v===0) lastYr="2020"; if(v===2) lastYr="2024"; });
-const _yo=yrsOn; yrsOn=function(){ if(window.__y16) return ["2016"]; const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
+const _yo=yrsOn; yrsOn=function(){ if(window.__y16&&!window.__y16hi) return ["2016"]; const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
 
 // ===== time row: tick slider (single year = one knob; range = two knobs + black fill = change mode) =====
 { const YRS=["2016","2020","2024"], N=YRS.length; /* build 1569: three points; 2016 = index 0 (no results until the 2016 data lands -> gray) */ const yr=document.querySelector("#barTime .yr"); const w=document.createElement("div"); w.id="ysl"; w.setAttribute("role","group"); w.setAttribute("aria-label","Year");
@@ -2462,13 +2464,14 @@ const _yo=yrsOn; yrsOn=function(){ if(window.__y16) return ["2016"]; const y=_yo
   window.__ySelectAll=()=>{ A=1; B=N-1; commit(); }; /* the 2020-24 change range (2016 has no results yet) */ window.__ySet16=hi=>{ A=0; B=hi||0; commit(); }; // full available range (all years), generic for N years
   const commit=()=>{ const lo=Math.min(A,B),hi=Math.max(A,B);
     if(lo===0){ /* 2016 alone or a range from 2016: no 2016 results in the data yet -> no-data view (gray map, names without values, Clinton/Trump thumbnails without figures) */
-      const was=window.__y16; window.__y16=true; window.__y16hi=hi; paint(); document.body.classList.add("y16"); try{ $("ynote").textContent=hi?"Showing 2016 (change from 2016 is coming)":""; }catch(e){} /* the no-data look is pure CSS: it paints at once */
+      const was=window.__y16; window.__y16=true; window.__y16hi=hi; paint(); document.body.classList.add("y16"); try{ $("ynote").textContent=""; }catch(e){} /* the no-data look is pure CSS: it paints at once */
       window.__y16Render=()=>{ try{ renderCands(); }catch(e){} try{ if(view==="list") renderList(); }catch(e){} try{ window.__laThumbs&&window.__laThumbs(); }catch(e){} };
       window.__y16Map=()=>{ try{ syncPlot(); }catch(e){} try{ updateLegend(); }catch(e){} try{ drawNat(); }catch(e){} try{ Promise.resolve(ensure20()).then(()=>{ if(window.__y16) drawHeat(); }); }catch(e){} try{ drawDist&&drawDist(); }catch(e){} };
-      const heavy=()=>{ if(!window.__y16) return; if(!was||years.size){ years=new Set(); try{ syncYears(); }catch(e){} } try{ window.__load16("counties"); window.__load16("states"); if(typeof ltype!=="undefined"&&["ushouse","senate","statehouse","schools"].indexOf(ltype)>=0) window.__load16(ltype); }catch(e){} window.__y16Map(); window.__y16Render(); };
+      window.__vyApply&&window.__vyApply(hi?{"2020":"2016","2024":hi===1?"2020":"2024"}:null);
+      const heavy=()=>{ if(!window.__y16) return; if(hi){ years=new Set(["2020","2024"]); try{ syncYears(); }catch(e){} } else if(!was||years.size){ years=new Set(); try{ syncYears(); }catch(e){} } try{ window.__load16("counties"); window.__load16("states"); if(typeof ltype!=="undefined"&&["ushouse","senate","statehouse","schools"].indexOf(ltype)>=0) window.__load16(ltype); }catch(e){} window.__y16Map(); window.__y16Render(); };
       requestAnimationFrame(()=>requestAnimationFrame(heavy)); return; } /* map clear + thumbnails swap follow one frame later */
-    if(window.__y16){ window.__y16=false; document.body.classList.remove("y16","y16d"); }
-    const v=lo!==hi?1:(lo===1?0:2); paint(); if(+$("yslider").value!==v||(v!==1&&!years.has(YRS[lo]))){ $("yslider").value=v; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } };
+    let wasR=false; if(window.__y16){ wasR=true; window.__y16=false; window.__y16hi=0; document.body.classList.remove("y16","y16d"); window.__vyApply&&window.__vyApply(null); }
+    const v=lo!==hi?1:(lo===1?0:2); paint(); if(wasR||+$("yslider").value!==v||(v!==1&&!years.has(YRS[lo]))){ $("yslider").value=v; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } };
   const P=new Map(); let g=null;
   w.addEventListener("pointerdown",e=>{ e.preventDefault(); try{w.setPointerCapture(e.pointerId);}catch(_){}
     P.set(e.pointerId,e.clientX); const r=w.getBoundingClientRect();
@@ -2637,7 +2640,7 @@ window.__uscd=function(rows){ CD=rows.map(([st,nm,enc,a24,a20])=>{ const polys=e
   let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20},est:est}; }); };
 function loadCD(){ return cdL||(cdL=new Promise(r=>{ const s=document.createElement("script"); s.src="data/uscd.js?v="+window.BUILD; s.onload=r; s.onerror=r; document.head.append(s); })); }
 const cdGroup=L.layerGroup().addTo(map);
-function cdFill(d){ const m=ym(), a=d.v["2024"], b=d.v["2020"], mg=v=>(v[1]-v[0])/v[2];
+function cdFill(d){ const m=ym(), a=d.v[vy("2024")], b=d.v[vy("2020")], mg=v=>(v[1]-v[0])/v[2];
   if(m==="2024") return a?heatC(a[0],a[1],a[2]):"#a8a29e"; if(m==="2020") return b?heatC(b[0],b[1],b[2]):"#a8a29e"; return a&&b?deltaColor(mg(a)-mg(b)):"#a8a29e"; }
 const DISTT=["ushouse","senate","statehouse","schools"];
 function natTypeOn(){ return ltype==="ushouse"; }
@@ -2741,7 +2744,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
   const sc=document.createElement("script"); sc.src="data/usstates.js?v="+window.BUILD; sc.onload=()=>{ drawLines(); upd(true); }; document.head.append(sc);
   const LL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
   function drawLines(){ stLineG.clearLayers(); if(!ST) return; ST.forEach(d=>L.polygon(LL(d),{renderer:stLR,pane:"stLinePane",fill:false,color:"#fff",weight:1.2,opacity:1,interactive:false}).addTo(stLineG)); }
-  function stTot(st,yr){ if(st==="Alaska"&&window.__ak) return __ak["state"+yr]; const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; const t=[0,0,0]; let n=0; const pre=st+"|"; for(const k in E){ if(k.startsWith(pre)){ const v=E[k]; t[0]+=v[0]; t[1]+=v[1]; t[2]+=v[2]; n++; } } return n?t:null; }
+  function stTot(st,yr){ yr=vy(yr); if(yr==="2016"){ const R=(window.DS16||{}).states, v=R&&R[st]; return v&&v[2]?v:null; } if(st==="Alaska"&&window.__ak) return __ak["state"+yr]; const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; if(!E) return null; const t=[0,0,0]; let n=0; const pre=st+"|"; for(const k in E){ if(k.startsWith(pre)){ const v=E[k]; t[0]+=v[0]; t[1]+=v[1]; t[2]+=v[2]; n++; } } return n?t:null; }
   window.__stTot=stTot;
   // statewide solid fills + statewide pop-ups while the view is bigger than a Texas-sized view (shorter screen side, lat-corrected degrees); county/district/precinct detail once zoomed in to about one big state or less. Hysteresis: in at <=15.5, back out at >=19. US House districts keep district detail at every zoom.
   let solidOn=null;
@@ -3439,13 +3442,23 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     const _n=aname; aname=function(a){ if(a.kind==="laagg") return LA.title; if(a.kind==="ctry"||a.kind==="prov") return a.name; return _n(a); };
     const _s=scopeArea; scopeArea=function(){ if(LA.on) return {kind:"laagg"}; return _s(); };
     const _aa=areaAt; areaAt=function(ll){ if(LA.on){ return LA.polys.some(r=>pip(r,ll.lng,ll.lat))?{kind:"laagg"}:null; } return _aa(ll); }; }
+  /* build 1574: change view for a range from '16. The '20>'24 machinery runs unchanged on virtual years: "2020" = 2016, "2024" = the end year.
+     Only the outermost data reads (vals / scopeVals), the map fills and the answer lists translate; everything keyed by the real year stays real. */
+  (function(){ const C0={}; Object.keys(CANDS).forEach(k=>C0[k]=CANDS[k]); let dep=0;
+    const _V=vals, _S=scopeVals;
+    vals=function(a,yr){ if(window.__VY&&dep===0){ dep++; try{ return _V(a,vy(yr)); } finally{ dep--; } } return _V(a,yr); };
+    scopeVals=function(a,yr){ if(window.__VY&&dep===0){ dep++; try{ return _S(a,vy(yr)); } finally{ dep--; } } return _S(a,yr); };
+    window.__vyApply=function(V){ const same=JSON.stringify(V)===JSON.stringify(window.__VY); window.__VY=V;
+      CANDS["2020"]=V?C0[V["2020"]]:C0["2020"]; CANDS["2024"]=V?C0[V["2024"]]:C0["2024"];
+      if(!same){ try{ if(typeof natGroup!=="undefined") natGroup.__m=null; }catch(e){} try{ window.__LA&&(window.__LA.sig=""); }catch(e){} } };
+  })();
   function pip(r,x,y){ let ins=false; for(let i=0,j=r.length-1;i<r.length;j=i++){ const [yi,xi]=r[i],[yj,xj]=r[j]; if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi)) ins=!ins; } return ins; }
   function ringsOf(a){ // -> array of rings of [lat,lng]
     if(a.kind==="sum"){ const S=window.__STget&&window.__STget(); const d=S&&S.find(x=>x.st===a.st); return d?d.polys.map(p=>p[0].map(([x,y])=>[y,x])):[]; }
     if(a.kind==="ctry"){ const r=window.CTRYSHAPE&&CTRYSHAPE[a.iso]; return r?r.map(ring=>ring.map(([x,y])=>[y,x])):[]; }
     if(a.kind==="prov") return a.p[6].map(r=>r.map(([x,y])=>[y,x]));
     try{ const it=a.kind==="precinct"?a.d.slice(0,6):a.d; return toLatLngs(it).map(rings=>rings[0]); }catch(e){ return []; } }
-  const yrsNow=()=>window.__y16?["2016"]:ym()==="delta"?["2020","2024"]:[ym()];
+  const yrsNow=()=>(window.__y16&&!window.__y16hi)?["2016"]:ym()==="delta"?["2020","2024"]:[ym()];
   function sortVal(a){ const m=ym(); // sort key = TOTAL votes cast; in delta mode = |net change| as displayed
     if(m==="delta"){ const v0=vals(a,"2020"), v1=vals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; /* delta: sort by the magnitude of the NET change exactly as displayed ('R +13.6' = margin change in points in %, vote-count margin change in #); party side ignored */ if(numMode==="pct") return Math.round(Math.abs(((v1.rep-v1.dem)/v1.tot-(v0.rep-v0.dem)/v0.tot)*100)*10)/10; return Math.abs((v1.rep-v1.dem)-(v0.rep-v0.dem)); }
     const v=vals(a,m); if(!v||!v.tot) return null; /* build 1551: the key is ONE answer for every row = the topmost toggled-on thumbnail of the left column (LA.sc, set by render): its share in % mode, its votes in # mode */
@@ -3470,7 +3483,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
           if(sp.classList.contains("m")){ if(!two) sp.remove(); return; }
           if(sp.dataset.rt||!(sp.classList.contains("d")||sp.classList.contains("r"))) return;
           const tx=sp.textContent.trim(); const cs=(CANDS[yr]||[]); const c=cs.find(q=>tx.startsWith(q.full))||cs.find(q=>q.p===(sp.classList.contains("r")?"r":"d")); if(!c) return;
-          const val=tx.startsWith(c.full)?tx.slice(c.full.length).trim():tx; sp.dataset.rt=1; sp.classList.add("rt"); sp.title=c.full+" "+yr; sp.setAttribute("aria-label",c.full+" "+yr+" "+val);
+          const val=tx.startsWith(c.full)?tx.slice(c.full.length).trim():tx; sp.dataset.rt=1; sp.classList.add("rt"); sp.title=c.full+" "+(c.yr||yr); sp.setAttribute("aria-label",c.full+" "+(c.yr||yr)+" "+val);
           sp.innerHTML='<img class="rt" alt="" src="'+PHOTO[c.id]+'" width="20" height="20"><span class="rv"></span>'; sp.querySelector(".rv").textContent=val; sp.dataset.party=(c.p==="r"?"Republican":"Democratic")+" ("+c.full+")"; }); }); }catch(e){} }
   const stImg=st=>(st==="District of Columbia"||(typeof STATE_FILES!=="undefined"&&STATE_FILES[st]))?'<img alt="" src="img/stateflags/'+String(st).replace(/ /g,"_")+'.png?v='+(window.BUILD||1)+'">':"";
   function iconFor(a){ try{ if(a.kind==="ctry") return '<img alt="" src="img/flags/c/'+a.iso+'.png?v='+(window.BUILD||1)+'">'; if(a.kind==="prov") return window.__sil?window.__sil(a.p[6]):""; if(a.kind==="sum") return stImg(a.st);
@@ -3483,7 +3496,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     { const yr=yrs[yrs.length-1], v=vals(a,yr); if(!v) return h+"<span class='sbw nd'>no data</span>"; if(two&&!vals(a,"2020")){ /* 2020 side not available (e.g. precinct boundaries changed, no same-shape 2020 precinct): show the real 2024 value, 2020 marked n/a, never an empty row */ const pp=parts(v), rl=pp.rep>=pp.dem, mx=rl?pp.rep:pp.dem; return h+"<span class='sbw nd' title=\"2020 not available for this row (no same-shape 2020 precinct); 2024 value shown\">'20 n/a \u00b7 '24 "+(rl?"R ":"D ")+(numMode==="pct"?(mx/(v.tot||1)*100).toFixed(1)+"%":fmtN(Math.round(mx)))+"</span>"; }
       const pr=parts(v), t=v.tot||1, cs=CANDS[yr], win=pr.rep>=pr.dem?cs.find(c=>c.ix):cs.find(c=>!c.ix); let d=null; if(two){ const v0=vals(a,"2020"); if(v0){ const q=parts(v0); d={}; ["rep","dem","oth"].forEach(k=>d[k]=numMode==="pct"?((pr[k]/t)-(q[k]/(v0.tot||1)))*100:pr[k]-q[k]); } }
       const nmP={rep:"Republican",dem:"Democratic",oth:"Other"}, cn=k=>k==="rep"?(cs.find(c=>c.ix)||{}).full:k==="dem"?(cs.find(c=>!c.ix)||{}).full:"";
-      const bub=k=>{ const who=nmP[k]+(k==="oth"?"":" ("+((cs.find(c=>k==="rep"?c.ix:!c.ix)||{}).short||"")+")"); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":fmtC(Math.abs(d[k])))+" ('20→'24)"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":fmtC(pr[k])); };
+      const bub=k=>{ const who=nmP[k]+(k==="oth"?"":" ("+((cs.find(c=>k==="rep"?c.ix:!c.ix)||{}).short||"")+")"); if(d) return who+": "+(d[k]>=0?"+":"−")+(numMode==="pct"?Math.abs(d[k]).toFixed(1)+" pts":fmtC(Math.abs(d[k])))+" ('"+vy("2020").slice(2)+"→'"+vy("2024").slice(2)+")"; return who+": "+(numMode==="pct"?(pr[k]/t*100).toFixed(1)+"%":fmtC(pr[k])); };
       const sgT=k=>{ const f=pr[k]/t; if(f<(numMode==="pct"?0.13:0.19)) return ""; if(d) return "";/*delta: only the net value (next to the thumbnail), no per-candidate change numbers*/ if(d) return numMode==="pct"?(d[k]>=0?"+":"\u2212")+Math.abs(d[k]).toFixed(1):(d[k]>=0?"+":"\u2212")+(Math.abs(d[k])>=1e6?(Math.abs(d[k])/1e6).toFixed(2)+"M":Math.abs(d[k])>=1e3?Math.round(Math.abs(d[k])/1e3)+"K":String(Math.round(Math.abs(d[k])))); return numMode==="pct"?(f*100).toFixed(1)+"%":(pr[k]>=1e6?(pr[k]/1e6).toFixed(2)+"M":pr[k]>=1e3?Math.round(pr[k]/1e3)+"K":String(Math.round(pr[k]))); };
       if(window.chartMode==="line"&&two&&d){ /* LINE: two-point lines 2020 -> 2024 per party (red/blue), candidate thumbnails outside the plot at the endpoints; common y-scale in % mode, per-row scale in # mode */
         const v0=vals(a,"2020"), q=parts(v0), t0=v0.tot||1, c20=CANDS["2020"], c24=CANDS[yr]; const sh=(p,tt,k)=>p[k]/tt*100; /* positions always use vote SHARE on one common scale, so the slope means the same thing on every row (labels still show the # or % change) */ const raw=(p,k)=>numMode==="pct"?null:p[k]; const R=[sh(q,t0,"rep"),sh(pr,t,"rep")], D=[sh(q,t0,"dem"),sh(pr,t,"dem")];
@@ -3904,6 +3917,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   setInterval(()=>{ try{ const LA=window.__LA; if(!(LA&&LA.on&&LA.lv&&LA.lv.id==="dcdist")) return; const c=document.querySelector("#crumbs .crumb.cur"); if(c&&c.textContent!=="District of Columbia"){ c.textContent="District of Columbia"; c.title="District of Columbia"; c.setAttribute("aria-label","District of Columbia"); } }catch(e){} },200);
   document.addEventListener("click",e=>{ try{ const LA=window.__LA; if(LA&&LA.dc&&e.target&&e.target.closest&&e.target.closest("#orgTypes li, .foldlist li, #orgGlobal li")) LA.dc=null; }catch(_){} },true);
 })();
+
 
 </script>
 <script defer src="data/countries.js?v=202610141526"></script>

@@ -69,8 +69,8 @@ async def main():
     await p3.evaluate("()=>document.getElementById('bGeo').click()"); await p3.wait_for_timeout(1200)
     await p3.evaluate("()=>document.querySelector('li.la-row').click()"); await p3.wait_for_timeout(6000)
     await p3.evaluate("()=>window.__ySet16(1)"); await p3.wait_for_timeout(5000)
-    rows=await p3.evaluate(ROWS); n=sum('Clinton' in r[1] for r in rows); ld=await p3.evaluate("()=>getComputedStyle(document.querySelector('#listView .lvgrid'),'::before').content")
-    ck(len(rows)>=40 and n>=40 and 'Loading' not in ld,f"fresh page, All States, '16-'20 range: values, not stuck loading ({n}/{len(rows)})",[ld,rows[:2]])
+    rows=await p3.evaluate(ROWS); n=sum("'16→" in r[1] for r in rows); ld=await p3.evaluate("()=>getComputedStyle(document.querySelector('#listView .lvgrid'),'::before').content")
+    ck(len(rows)>=40 and n>=40 and 'Loading' not in ld,f"fresh page, All States, '16-'20 range: change values (build 1574), not stuck loading ({n}/{len(rows)})",[ld,rows[:2]])
     await c3.close()
     # live 1570 report: All States at a '16-'20 range was stuck on 'Loading 2016 results…' with 2020/24 order and no values
     def clv(r):
@@ -79,8 +79,8 @@ async def main():
     ck(all(x is not None for x in od) and od==sorted(od,reverse=True),"All States at '16: rows sorted by 2016 Clinton values",od)
     for hi in (1,2):
       await pg.evaluate("(h)=>window.__ySet16(h)",hi); await pg.wait_for_timeout(4000)
-      rows=await pg.evaluate(ROWS); n=sum('Clinton' in r[1] for r in rows); ld=await pg.evaluate("()=>getComputedStyle(document.querySelector('#listView .lvgrid'),'::before').content")
-      ck(len(rows)>=40 and n>=40 and 'Loading' not in ld,f"All States at a '16-{'20' if hi==1 else '24'} range: values, not stuck loading ({n}/{len(rows)})",[ld,rows[:2]])
+      rows=await pg.evaluate(ROWS); n=sum("'16→" in r[1] for r in rows); ld=await pg.evaluate("()=>getComputedStyle(document.querySelector('#listView .lvgrid'),'::before').content")
+      ck(len(rows)>=40 and n>=40 and 'Loading' not in ld,f"All States at a '16-{'20' if hi==1 else '24'} range: change values (build 1574), not stuck loading ({n}/{len(rows)})",[ld,rows[:2]])
     await pg.evaluate("()=>window.__ySet16(0)"); await pg.wait_for_timeout(3000)
     for k in ('ushouse','senate','statehouse','schools'):
       await pg.evaluate("(k)=>{const b=document.querySelector('#lyrRow .lbtn[data-k=\"'+k+'\"]');if(b)b.click()}",k); await pg.wait_for_timeout(6000)
