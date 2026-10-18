@@ -32,3 +32,22 @@ none in this county area), `cog_pid6`, `cog_unit_name`, `cog_unit_type` (CoG 202
 Sources: U.S. Census Bureau 2022 Census of Governments, Government Units Listing
 (https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP) and TIGER 2024 county FUNCSTAT
 (data-v3/geo/county_funcstat.csv). Licence: public domain (US government work). No OpenStates input, so no `source_commit`.
+
+## Since Oct 18, 2026: derived from the Governments bot (step 6, `tools/inst_county_government_govbot.py --gov-ref 93b7a90`)
+
+The TIGER 2024 rows now come from the Governments bot's `data-v3/institutions/governments/county_government_check.csv`
+(origin/data/governments 93b7a90, read only) plus the `gov_status` of the governing unit in its `local/<ST>.csv`:
+- `has_own_government` = bot `cog_county_government`; `cog_pid6` = bot `cog_id`, or the independent city named in its note
+  (`county-equivalent governed by independent city cog:<id>`); `govbot_entity_id` = the bot's `cog:<pid6>` id.
+- new column **`gov_status`**: bot `independent` → `government`, bot `dependent` → `dependent` (no county rows are dependent);
+  `area_only` (ours) for county-equivalents with no CoG government (35 `none`, 4 `none in this county area`, 8 CT 2020 counties).
+  Result: 3,105 `government`, 47 `area_only`.
+- 33 consolidated city-counties (AK boroughs, San Francisco, Broomfield, Denver, Philadelphia ...): the bot check names no
+  unit; our CoG 2022 pull's municipal government (CoG type 2) is kept and the row's `government_note` says so.
+- `source_id` = `repo-governments-6dd77539` (bot at 93b7a90) ; `census-cog2022-0fba3401` ; `census-tiger2024-county-9437f0ab`.
+- The 8 CT 2020 county rows are not in the bot file and are unchanged. The bot's 78 PR municipios are not carried.
+
+Every difference between the bot and our CoG 2022 pull is in `county_government_govbot_diffs.csv`
+(`county_geoid, kind, field, ours_cog2022_pull, governments_bot, note, source_id`): 0 `has_own_government` differences,
+0 county-name differences, 0 `cog_pid6` conflicts; 33 `bot_no_unit_ours_consolidated_municipal`, 41 `bot_unit_name_blank`
+(independent cities named only by id in the bot's note), 78 `bot_only_not_carried` (PR).

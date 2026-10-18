@@ -5,6 +5,7 @@ v3 Full Stack format. Idempotent; edits in place.
 - officeholder files: entity_id = the CHAMBER ENTITY of data-v3/inst/entities.csv ('us-house', 'chamber:al-lower');
   the old slug stays in entity_id_legacy. The unit is unit_layer (cd/sldu/sldl) + unit_geoid + unit_vintage (TIGER year);
   the old token (cd119, sldl2024 ...) stays in unit_plan. seat = the source's seat label where it gives one.
+- boundary_set: the unit's boundary-set slug (tiger-2020-cd116, tiger-2020-sldu/-sldl, v2-2024); empty without TIGER geometry.
 - every row: source_url as full URLs (' ; '-list), retrieved_at, and source_commit (OpenStates / congress-legislators commit).
 - persons.csv, person_id_matches.csv, stateleg_official_diffs.csv get source_url, retrieved_at, source_commit.
 usage: inst_v3format.py <repo> [--dir data-v3/inst]
@@ -31,6 +32,8 @@ def chamber(eid):
     return 'chamber:%s-%s' % (m.group(1), 'lower' if m.group(2) == 'house' else 'upper')
 PLAN = {'cd119': ('cd', '2024'), 'cd116': ('cd', '2020'), 'cd118': ('cd', '2022'),
         'sldu2024': ('sldu', '2024'), 'sldl2024': ('sldl', '2024'), 'sldu2018': ('sldu', '2020'), 'sldl2018': ('sldl', '2020')}
+BSET = {'cd116': 'tiger-2020-cd116', 'sldu2018': 'tiger-2020-sldu', 'sldl2018': 'tiger-2020-sldl',
+        'cd119': 'v2-2024', 'sldu2024': 'v2-2024', 'sldl2024': 'v2-2024'}
 def fullurls(s):
     parts = [p.strip() for p in s.split(' ; ') if p.strip()]
     out = []
@@ -68,12 +71,14 @@ for f in OHF:
         if not r.get('unit_layer'):
             tok = r['unit_vintage']; lay, yr = PLAN[tok]
             r['unit_layer'], r['unit_vintage'], r['unit_plan'] = lay, yr, tok
+        # boundary set of the unit (DATA_LOADING Q-E12 slugs, as Election uses); empty when the unit has no TIGER geometry
+        r['boundary_set'] = BSET[r['unit_plan']] if r['unit_geoid'] else ''
         r['source_url'] = fullurls(r['source_url'])
         if 'upstream_url' in r: r['upstream_url'] = fullurls(r['upstream_url'])
         r['source_commit'] = commit(r)
         assert r['retrieved_at'], (f, r)
     cols = ['unit_layer'] + [c for c in cols if c != 'unit_layer']
-    cols = ins(cols, 'unit_vintage', 'unit_plan'); cols = ins(cols, 'entity_id', 'entity_id_legacy'); cols = ins(cols, 'source_url', 'source_commit')
+    cols = ins(cols, 'unit_vintage', 'unit_plan'); cols = ins(cols, 'unit_plan', 'boundary_set'); cols = ins(cols, 'entity_id', 'entity_id_legacy'); cols = ins(cols, 'source_url', 'source_commit')
     wr(f, cols, rows); allrows[f] = rows
     print(f, len(rows), collections.Counter(r['entity_id'] for r in rows).most_common(2), 'seats', sum(1 for r in rows if r['seat']))
 

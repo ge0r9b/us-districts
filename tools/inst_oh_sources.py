@@ -77,7 +77,7 @@ def normalize(tables, reverse=False):
     ret = next(iter(reg.rows.values()))['retrieved_at']
     # county_government: CoG 2022 (cross-checked against TIGER FUNCSTAT, named in the source text)
     cols, rows = T['county_government']
-    for r in rows:
+    for r in (rows if 'source' in cols else []):   # already normalized (inst_county_government_govbot.py output): pass through
         cog, second = r['source'].split('; ', 1)
         ids = [reg.add(None, cog, r['source_url'], r['license'], r['retrieved_at'], '', r['sha256'])]
         if 'FUNCSTAT' in second:
@@ -90,7 +90,7 @@ def normalize(tables, reverse=False):
         else: raise SystemExit('unknown county_government source ' + second)
         r['source_id'] = ';'.join(ids)
         for c in DROP + ['source_url', 'sha256']: r.pop(c, None)
-    out['county_government'] = ([('source_id' if c == 'source' else c) for c in cols if c not in DROP[1:] + ['source_url', 'sha256']], rows)
+    out['county_government'] = ([('source_id' if c == 'source' else c) for c in cols if c not in DROP[1:] + ['source_url', 'sha256']], rows) if 'source' in cols else (cols, rows)
     # persons: every source behind the person's officeholder rows (canonical id and aliases)
     cols, rows = T['persons']
     for p in rows:
@@ -123,6 +123,7 @@ def normalize(tables, reverse=False):
     if reverse:
         for f in OTHER: out[f] = (out[f][0], out[f][1][::-1])
     for f in OHF + OTHER:
+        if f == 'county_government' and 'source' not in T[f][0]: continue   # its ids are in the existing sources.csv
         for r in out[f][1]:
             for s in r['source_id'].split(';'): assert s in reg.rows, (f, s)
     return out, reg

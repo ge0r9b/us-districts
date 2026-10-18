@@ -1,0 +1,153 @@
+county_geoid,kind,field,ours_cog2022_pull,governments_bot,note,source_id
+02020,bot_no_unit_ours_consolidated_municipal,cog_pid6,194463,,MUNICIPALITY OF ANCHORAGE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+02110,bot_no_unit_ours_consolidated_municipal,cog_pid6,160762,,CITY AND BOROUGH OF JUNEAU (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+02220,bot_no_unit_ours_consolidated_municipal,cog_pid6,160787,,CITY AND BOROUGH OF SITKA (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+02275,bot_no_unit_ours_consolidated_municipal,cog_pid6,239781,,CITY AND BOROUGH OF WRANGELL (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+06075,bot_no_unit_ours_consolidated_municipal,cog_pid6,161258,,CITY AND COUNTY OF SAN FRANCISCO (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+08014,bot_no_unit_ours_consolidated_municipal,cog_pid6,196483,,CITY AND COUNTY OF BROOMFIELD (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+08031,bot_no_unit_ours_consolidated_municipal,cog_pid6,194647,,CITY AND COUNTY OF DENVER (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+11001,bot_no_unit_ours_consolidated_municipal,cog_pid6,124214,,CITY OF WASHINGTON DC (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+12031,bot_no_unit_ours_consolidated_municipal,cog_pid6,101942,,CITY OF JACKSONVILLE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13021,bot_no_unit_ours_consolidated_municipal,cog_pid6,102163,,COUNTY OF MACON-BIBB (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13053,bot_no_unit_ours_consolidated_municipal,cog_pid6,161828,,UNIFIED GOVERNMENT OF CUSSETA-CHATTAHOOCHEE COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13059,bot_no_unit_ours_consolidated_municipal,cog_pid6,161834,,UNIFIED GOVERNMENT OF ATHENS-CLARKE COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13215,bot_no_unit_ours_consolidated_municipal,cog_pid6,161944,,CONSOLIDATED GOVERNMENT OF COLUMBUS (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13239,bot_no_unit_ours_consolidated_municipal,cog_pid6,161958,,UNIFIED GOVERNMENT OF GEORGETOWN AND QUITMAN COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13245,bot_no_unit_ours_consolidated_municipal,cog_pid6,194679,,CONSOLIDATED GOVERNMENT OF AUGUSTA-RICHMOND COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+13307,bot_no_unit_ours_consolidated_municipal,cog_pid6,201573,,UNIFIED GOVERNMENT OF WEBSTER COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+15003,bot_no_unit_ours_consolidated_municipal,cog_pid6,183701,,CITY AND COUNTY OF HONOLULU (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+18097,bot_no_unit_ours_consolidated_municipal,cog_pid6,207957,,CITY OF INDIANAPOLIS (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+20071,bot_no_unit_ours_consolidated_municipal,cog_pid6,164742,,UNIFIED GOVERNMENT OF GREELEY COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+20209,bot_no_unit_ours_consolidated_municipal,cog_pid6,164911,,UNIFIED GOVERNMENT OF WYANDOTTE COUNTY AND KANSAS CITY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+21067,bot_no_unit_ours_consolidated_municipal,cog_pid6,165831,,URBAN COUNTY GOVERNMENT OF LEXINGTON-FAYETTE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+21111,bot_no_unit_ours_consolidated_municipal,cog_pid6,165866,,METRO GOVERNMENT OF LOUISVILLE-JEFFERSON COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+22033,bot_no_unit_ours_consolidated_municipal,cog_pid6,166054,,CITY-PARISH OF BATON ROUGE-EAST BATON ROUGE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+22055,bot_no_unit_ours_consolidated_municipal,cog_pid6,166076,,CITY-PARISH OF LAFAYETTE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+22071,bot_no_unit_ours_consolidated_municipal,cog_pid6,166094,,CITY OF NEW ORLEANS (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+22109,bot_no_unit_ours_consolidated_municipal,cog_pid6,127857,,CONSOLIDATED GOVERNMENT OF TERREBONNE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+24510,bot_unit_name_blank,cog_unit_name,CITY OF BALTIMORE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+29510,bot_unit_name_blank,cog_unit_name,CITY OF ST LOUIS,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+30023,bot_no_unit_ours_consolidated_municipal,cog_pid6,169444,,COUNTY OF ANACONDA-DEER LODGE (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+30093,bot_no_unit_ours_consolidated_municipal,cog_pid6,108124,,CITY AND COUNTY OF BUTTE-SILVER BOW (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+32510,bot_unit_name_blank,cog_unit_name,CITY OF CARSON CITY,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+36061,bot_no_unit_ours_consolidated_municipal,cog_pid6,194805,,CITY OF NEW YORK (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+42101,bot_no_unit_ours_consolidated_municipal,cog_pid6,133602,,CITY OF PHILADELPHIA (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+47037,bot_no_unit_ours_consolidated_municipal,cog_pid6,175728,,METROPOLITAN GOVERNMENT OF NASHVILLE-DAVIDSON COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+47127,bot_no_unit_ours_consolidated_municipal,cog_pid6,175805,,METROPOLITAN GOVERNMENT OF LYNCHBURG-MOORE COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+47169,bot_no_unit_ours_consolidated_municipal,cog_pid6,175834,,METROPOLITAN GOVERNMENT OF HARTSVILLE-TROUSDALE COUNTY (2 - MUNICIPAL); kept from our pull,census-cog2022-0fba3401;repo-governments-6dd77539
+51510,bot_unit_name_blank,cog_unit_name,CITY OF ALEXANDRIA,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51520,bot_unit_name_blank,cog_unit_name,CITY OF BRISTOL,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51530,bot_unit_name_blank,cog_unit_name,CITY OF BUENA VISTA,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51540,bot_unit_name_blank,cog_unit_name,CITY OF CHARLOTTESVILLE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51550,bot_unit_name_blank,cog_unit_name,CITY OF CHESAPEAKE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51570,bot_unit_name_blank,cog_unit_name,CITY OF COLONIAL HEIGHTS,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51580,bot_unit_name_blank,cog_unit_name,CITY OF COVINGTON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51590,bot_unit_name_blank,cog_unit_name,CITY OF DANVILLE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51595,bot_unit_name_blank,cog_unit_name,CITY OF EMPORIA,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51600,bot_unit_name_blank,cog_unit_name,CITY OF FAIRFAX,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51610,bot_unit_name_blank,cog_unit_name,CITY OF FALLS CHURCH,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51620,bot_unit_name_blank,cog_unit_name,CITY OF FRANKLIN,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51630,bot_unit_name_blank,cog_unit_name,CITY OF FREDERICKSBURG,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51640,bot_unit_name_blank,cog_unit_name,CITY OF GALAX,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51650,bot_unit_name_blank,cog_unit_name,CITY OF HAMPTON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51660,bot_unit_name_blank,cog_unit_name,CITY OF HARRISONBURG,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51670,bot_unit_name_blank,cog_unit_name,CITY OF HOPEWELL,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51678,bot_unit_name_blank,cog_unit_name,CITY OF LEXINGTON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51680,bot_unit_name_blank,cog_unit_name,CITY OF LYNCHBURG,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51683,bot_unit_name_blank,cog_unit_name,CITY OF MANASSAS,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51685,bot_unit_name_blank,cog_unit_name,CITY OF MANASSAS PARK,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51690,bot_unit_name_blank,cog_unit_name,CITY OF MARTINSVILLE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51700,bot_unit_name_blank,cog_unit_name,CITY OF NEWPORT NEWS,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51710,bot_unit_name_blank,cog_unit_name,CITY OF NORFOLK,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51720,bot_unit_name_blank,cog_unit_name,CITY OF NORTON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51730,bot_unit_name_blank,cog_unit_name,CITY OF PETERSBURG,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51735,bot_unit_name_blank,cog_unit_name,CITY OF POQUOSON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51740,bot_unit_name_blank,cog_unit_name,CITY OF PORTSMOUTH,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51750,bot_unit_name_blank,cog_unit_name,CITY OF RADFORD,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51760,bot_unit_name_blank,cog_unit_name,CITY OF RICHMOND,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51770,bot_unit_name_blank,cog_unit_name,CITY OF ROANOKE,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51775,bot_unit_name_blank,cog_unit_name,CITY OF SALEM,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51790,bot_unit_name_blank,cog_unit_name,CITY OF STAUNTON,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51800,bot_unit_name_blank,cog_unit_name,CITY OF SUFFOLK,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51810,bot_unit_name_blank,cog_unit_name,CITY OF VIRGINIA BEACH,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51820,bot_unit_name_blank,cog_unit_name,CITY OF WAYNESBORO,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51830,bot_unit_name_blank,cog_unit_name,CITY OF WILLIAMSBURG,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+51840,bot_unit_name_blank,cog_unit_name,CITY OF WINCHESTER,,bot names the unit only in note as cog:<id>,census-cog2022-0fba3401;repo-governments-6dd77539
+72001,bot_only_not_carried,county_geoid,,Adjuntas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72003,bot_only_not_carried,county_geoid,,Aguada Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72005,bot_only_not_carried,county_geoid,,Aguadilla Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72007,bot_only_not_carried,county_geoid,,Aguas Buenas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72009,bot_only_not_carried,county_geoid,,Aibonito Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72011,bot_only_not_carried,county_geoid,,Añasco Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72013,bot_only_not_carried,county_geoid,,Arecibo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72015,bot_only_not_carried,county_geoid,,Arroyo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72017,bot_only_not_carried,county_geoid,,Barceloneta Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72019,bot_only_not_carried,county_geoid,,Barranquitas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72021,bot_only_not_carried,county_geoid,,Bayamón Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72023,bot_only_not_carried,county_geoid,,Cabo Rojo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72025,bot_only_not_carried,county_geoid,,Caguas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72027,bot_only_not_carried,county_geoid,,Camuy Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72029,bot_only_not_carried,county_geoid,,Canóvanas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72031,bot_only_not_carried,county_geoid,,Carolina Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72033,bot_only_not_carried,county_geoid,,Cataño Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72035,bot_only_not_carried,county_geoid,,Cayey Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72037,bot_only_not_carried,county_geoid,,Ceiba Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72039,bot_only_not_carried,county_geoid,,Ciales Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72041,bot_only_not_carried,county_geoid,,Cidra Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72043,bot_only_not_carried,county_geoid,,Coamo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72045,bot_only_not_carried,county_geoid,,Comerío Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72047,bot_only_not_carried,county_geoid,,Corozal Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72049,bot_only_not_carried,county_geoid,,Culebra Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72051,bot_only_not_carried,county_geoid,,Dorado Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72053,bot_only_not_carried,county_geoid,,Fajardo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72054,bot_only_not_carried,county_geoid,,Florida Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72055,bot_only_not_carried,county_geoid,,Guánica Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72057,bot_only_not_carried,county_geoid,,Guayama Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72059,bot_only_not_carried,county_geoid,,Guayanilla Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72061,bot_only_not_carried,county_geoid,,Guaynabo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72063,bot_only_not_carried,county_geoid,,Gurabo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72065,bot_only_not_carried,county_geoid,,Hatillo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72067,bot_only_not_carried,county_geoid,,Hormigueros Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72069,bot_only_not_carried,county_geoid,,Humacao Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72071,bot_only_not_carried,county_geoid,,Isabela Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72073,bot_only_not_carried,county_geoid,,Jayuya Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72075,bot_only_not_carried,county_geoid,,Juana Díaz Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72077,bot_only_not_carried,county_geoid,,Juncos Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72079,bot_only_not_carried,county_geoid,,Lajas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72081,bot_only_not_carried,county_geoid,,Lares Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72083,bot_only_not_carried,county_geoid,,Las Marías Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72085,bot_only_not_carried,county_geoid,,Las Piedras Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72087,bot_only_not_carried,county_geoid,,Loíza Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72089,bot_only_not_carried,county_geoid,,Luquillo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72091,bot_only_not_carried,county_geoid,,Manatí Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72093,bot_only_not_carried,county_geoid,,Maricao Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72095,bot_only_not_carried,county_geoid,,Maunabo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72097,bot_only_not_carried,county_geoid,,Mayagüez Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72099,bot_only_not_carried,county_geoid,,Moca Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72101,bot_only_not_carried,county_geoid,,Morovis Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72103,bot_only_not_carried,county_geoid,,Naguabo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72105,bot_only_not_carried,county_geoid,,Naranjito Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72107,bot_only_not_carried,county_geoid,,Orocovis Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72109,bot_only_not_carried,county_geoid,,Patillas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72111,bot_only_not_carried,county_geoid,,Peñuelas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72113,bot_only_not_carried,county_geoid,,Ponce Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72115,bot_only_not_carried,county_geoid,,Quebradillas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72117,bot_only_not_carried,county_geoid,,Rincón Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72119,bot_only_not_carried,county_geoid,,Río Grande Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72121,bot_only_not_carried,county_geoid,,Sabana Grande Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72123,bot_only_not_carried,county_geoid,,Salinas Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72125,bot_only_not_carried,county_geoid,,San Germán Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72127,bot_only_not_carried,county_geoid,,San Juan Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72129,bot_only_not_carried,county_geoid,,San Lorenzo Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72131,bot_only_not_carried,county_geoid,,San Sebastián Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72133,bot_only_not_carried,county_geoid,,Santa Isabel Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72135,bot_only_not_carried,county_geoid,,Toa Alta Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72137,bot_only_not_carried,county_geoid,,Toa Baja Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72139,bot_only_not_carried,county_geoid,,Trujillo Alto Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72141,bot_only_not_carried,county_geoid,,Utuado Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72143,bot_only_not_carried,county_geoid,,Vega Alta Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72145,bot_only_not_carried,county_geoid,,Vega Baja Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72147,bot_only_not_carried,county_geoid,,Vieques Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72149,bot_only_not_carried,county_geoid,,Villalba Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72151,bot_only_not_carried,county_geoid,,Yabucoa Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539
+72153,bot_only_not_carried,county_geoid,,Yauco Municipio (PR),Puerto Rico municipio: CoG 2022 covers no PR governments; v2 has no PR counties,census-cog2022-0fba3401;repo-governments-6dd77539

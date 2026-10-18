@@ -14,7 +14,8 @@ congress-legislators CC0); no paywalled or press sources.
 
 Pipeline (idempotent): `inst_officeholders_house.py` → `inst_officeholders_stateleg.py` → `inst_stateleg_official.py` →
 `inst_persons.py` → `inst_v3format.py` (step 4: chamber entity ids, unit_layer/unit_plan, full URLs, commits) →
-**`inst_oh_sources.py`** (step 5: `sources.csv` + `source_id`; `--stability-test` rebuilds twice and compares).
+**`inst_oh_sources.py`** (step 5: `sources.csv` + `source_id`; `--stability-test` rebuilds twice and compares) →
+**`inst_county_government_govbot.py --gov-ref <sha>`** (step 6: county_government.csv from the Governments bot).
 
 ## Key of an officeholder row
 
@@ -29,6 +30,7 @@ Pipeline (idempotent): `inst_officeholders_house.py` → `inst_officeholders_sta
 | `unit_geoid` | TIGER GEOID of the district unit; empty for units without TIGER geography (NH floterials, ME tribal seats, House delegates of territories) |
 | `unit_vintage` | TIGER vintage year of the unit (`2024`; `2020` = cd116) |
 | `unit_plan` | the former token: `cd119`, `cd116`, `sldu2024`, `sldl2024` |
+| `boundary_set` | boundary-set slug the unit belongs to (DATA_LOADING Q-E12, same tokens as Election): `tiger-2020-cd116` (House 2020), `tiger-2020-sldu` / `tiger-2020-sldl` (2018 state plans, none in these files yet), `v2-2024` (current and 2024 units: the v2 lines, TIGER 2024); empty when the unit has no TIGER geometry (`no_v3_unit*`) |
 | `join_status` | `joined`, `joined_unpaired_2020`, `no_v3_unit`, `no_v3_unit_floterial`, `no_v3_unit_tribal` |
 | `entity_id` | chamber entity: `us-house`, `chamber:<ab>-upper`, `chamber:<ab>-lower` (Nebraska: `chamber:ne-upper`) |
 | `entity_id_legacy` | former chamber slug (`al-house`, `ne-senate`, `ne-legislature`) |
