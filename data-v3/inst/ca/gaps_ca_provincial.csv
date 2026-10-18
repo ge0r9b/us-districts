@@ -1,0 +1,13 @@
+level,gap,key,detail,source_id
+officeholder,provincial_members_not_built,all,MLAs / MNAs / MPPs / MHAs are not loaded in this batch (each legislature publishes a member list; OpenStates does not cover Canada),
+ped,next_boundaries_not_loaded,AB,Electoral Boundaries Commission final report (2026-03-23) proposes 89 divisions for the next election; no official shapefile found; current 87 loaded,ea-ed-2019-884e5c37
+ped,no_open_structured_source_found,NS,Elections Nova Scotia publishes the 55 districts as PDF maps and an online lookup (enstools.electionsnovascotia.ca/edinfo); no open shapefile/CSV of districts or polling divisions found,legislature-ns-75b9fd65
+ped,no_open_structured_source_found,NT,Elections NWT: no open structured district / polling-division file found in this pass,legislature-nt-1e7c310d
+ped,no_open_structured_source_found,NU,Elections Nunavut: no open structured constituency / polling-division file found in this pass,legislature-nu-da083afb
+ped,no_open_structured_source_found,YT,Elections Yukon: no open structured district / polling-division file found in this pass,legislature-yt-09b5cd59
+ppoll,blank_records_skipped,PE,"26 features with DIST_NO 0, empty DISTRICT/POLL_NAME and AREA_SQM 0 skipped",pei-wards-polls-02662875
+ppoll,boundaries_may_change,QC,"Élections Québec: sections de vote of 15 July 2026 ""could still change until the 2026 election decree""; re-pull after the 2026 general election",eq-sv-2026-4b4e6589
+ppoll,by_election_voting_areas_not_loaded,MB,"Elections Manitoba also publishes by-election voting-area files (Fort Whyte, Kirkfield Park, Thompson, Tuxedo, Transcona 2025, Spruce Woods 2025, The Pas-Kameesak 2026); only the 2023 general-election set is loaded",em-va-2023-030f5c5f
+ppoll,licence_restricts_redistribution,ON,"Elections Ontario polling-division shapefiles are offered only under the Limited Use Data Product Licence (no redistribution, no derived products); not downloaded, no ON polling-division units",eo-ed-2022-16408e04
+ppoll,vintage_not_stated,PE,"PEI GIS layer gives no boundary date; the 27 districts are those recommended in 2017 (used 2019, 2023); polls loaded as epei-2017-poll; verify against Elections PEI poll maps",pei-wards-polls-02662875
+ppoll,vintage_older_than_last_election,NL,Elections NL GIS page offers the April 2019 poll file only; the 2021 and 2025 general elections may have used revised polls (Open Data NL mentioned as access route),enl-polls-2019-21c69861

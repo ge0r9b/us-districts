@@ -1,0 +1,46 @@
+{
+ "provinces_without_units": [
+  "NS",
+  "NT",
+  "NU",
+  "YT"
+ ],
+ "retrieved_at": "2026-10-18",
+ "rows": {
+  "entities_ca_provincial.csv": 13,
+  "gaps_ca_provincial.csv": 12,
+  "units_ca_ped.csv": 665,
+  "units_ca_ppoll.csv": 34024
+ },
+ "seats_loaded": {
+  "AB": 87,
+  "BC": 93,
+  "MB": 57,
+  "NB": 49,
+  "NL": 40,
+  "ON": 124,
+  "PE": 27,
+  "QC": 127,
+  "SK": 61
+ },
+ "sources": 26,
+ "units_by_set": {
+  "AB ea-2019-ed ped": 87,
+  "AB ea-2026-va ppoll": 4904,
+  "BC ebc-2023-ed ped": 93,
+  "BC ebc-2024-va ppoll": 5778,
+  "MB em-2018-ed ped": 57,
+  "MB em-2023-va ppoll": 2371,
+  "NB enb-2024-ed ped": 49,
+  "NB enb-2024-pd ppoll": 1753,
+  "NL enl-2015-ed ped": 40,
+  "NL enl-2019-poll ppoll": 1438,
+  "ON eo-2022-ed ped": 124,
+  "PE epei-2017-ed ped": 27,
+  "PE epei-2017-poll ppoll": 241,
+  "QC eq-2026-ced ped": 127,
+  "QC eq-2026-sv ppoll": 16756,
+  "SK esk-2022-ed ped": 61,
+  "SK esk-2024-va ppoll": 783
+ }
+}
