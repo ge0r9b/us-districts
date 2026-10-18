@@ -4,17 +4,25 @@ Input : cache/Govt_Units_2022_Final.xlsx (from govt_units_2022.ZIP), cache/2024_
 Output: local/<USPS>.csv, county_government_check.csv; returns crosswalk rows to build_all.py
 
 GEOID rules (Geography bot conventions, TIGER 2024 vintage, strings with leading zeros):
-  county        -> counties  SS+CCC       from FIPS_STATE+FIPS_COUNTY, kept only if it exists in the 2024 Gazetteer
-  municipality  -> place     SS+PPPPP     from FIPS_STATE+FIPS_PLACE, kept only if it exists in the 2024 place Gazetteer;
-                   a 2024 cousub with the same code in FIPS_COUNTY is added to the crosswalk (relation coextensive_cousub)
-  township      -> cousub    SS+CCC+CCCCC from FIPS_STATE+FIPS_COUNTY+FIPS_PLACE, kept only if it exists in the 2024 cousub
-                   Gazetteer; other county parts with the same state+code go to the crosswalk (relation county_part)
-  school        -> unsd/elsd/scsd SS+LEA  only by exact normalized name match within the state, unique candidate only
+  county        -> counties  SS+CCC from FIPS_STATE+FIPS_COUNTY, kept only if it exists in the 2024 Gazetteer
+  municipality  -> place     SS+PPPPP if in the 2024 place Gazetteer (+ coextensive cousub / independent-city county /
+                   consolidated city-county in the crosswalk). CoG codes that are TIGER CONCITY codes take the
+                   '(balance)' place (Greeley County KS takes its county, Geography bot ruling); 'CITY AND COUNTY OF X'
+                   without a place takes county X (Honolulu).
+  township      -> cousub    SS+CCC+CCCCC if in the 2024 cousub Gazetteer (other county parts -> county_part); else the
+                   same code once elsewhere in the state (fips_other_county)
+  not in 2024   -> the code in the 2022, then 2020 Gazetteer; followed into 2024 by ANSI code (ansi_via_YYYY), else
+                   a labeled name fallback in 2024 (fallback_name_2024), else the old GEOID carried with
+                   geoid_vintage=YYYY and tiger_status=absent_2024 (fips_YYYY)
+  school        -> code join CoG PID6 = F-33 PID6 -> NCESID (= NCES LEAID = TIGER unsd/elsd/scsd GEOID); name matching
+                   is only a labeled fallback (fallback_name_*) for units absent from the F-33 files
   special       -> none (TIGER has no special-district layer)
 Nothing is guessed: no match leaves geoid blank and geoid_match says why.
 """
 import collections, os, re, openpyxl
-from common import CACHE, ROOT, COLUMNS, PUBLIC_DOMAIN, meta, read_gaz, norm, write_csv, state_table
+from common import (CACHE, ROOT, COLUMNS, PUBLIC_DOMAIN, CONCITY_STATES, F33_YEARS, meta, read_gaz, read_dbf, norm,
+                    write_csv, state_table)
+import csv
 
 SRC = 'U.S. Census Bureau, 2022 Census of Governments: Organization, Government Units Listing (Govt_Units_2022_Final.xlsx)'
 LEVEL = {'01': 'elementary', '02': 'secondary', '03': 'unified', '04': 'post_secondary',
@@ -32,6 +40,9 @@ ABBR = {'SCH': 'SCHOOL', 'SCHS': 'SCHOOLS', 'DIST': 'DISTRICT', 'DISTS': 'DISTRI
         'USD': 'UNIFIED SCHOOL DISTRICT', 'UFSD': 'UNION FREE SCHOOL DISTRICT', 'CSD': 'CENTRAL SCHOOL DISTRICT',
         'SD': 'SCHOOL DISTRICT', 'TWN': 'TOWN', 'VLG': 'VILLAGE', 'UF': 'UNION FREE', 'MUN': 'MUNICIPAL',
         'SEP': 'SEPARATE', 'NO': '', 'NUMBER': ''}
+# Geography bot ruling (Oct 18, 2026): Greeley County KS unified government takes its county GEOID as primary;
+# the other consolidated governments take the TIGER '(balance)' place. Keyed by the TIGER CONCITY GEOID.
+CONSOLIDATED_COUNTY_PRIMARY = {'2028410'}
 GENERIC = {'SCHOOL', 'SCHOOLS', 'DISTRICT', 'DISTRICTS', 'PUBLIC', 'INDEPENDENT', 'THE', 'OF', 'BOARD', 'EDUCATION', 'SYSTEM'}
 
 
@@ -73,6 +84,33 @@ def build():
                     continue
                 school_by_name[(tier, r['USPS'], layer, k)].add(g)
 
+    # TIGER 2024 consolidated cities and their '(balance)' places
+    concity, balance = {}, {}
+    for ss in CONCITY_STATES:
+        for c in read_dbf(os.path.join(CACHE, 'tl_2024_{}_concity.dbf'.format(ss))):
+            concity[c['GEOID']] = c
+            want = c['NAMELSAD'] + ' (balance)'
+            hits = [g for g, p in gaz['place'].items() if g[:2] == ss and p['NAME'] == want]
+            if len(hits) == 1:
+                balance[c['GEOID']] = hits[0]
+    concity_of_balance = {b: c for c, b in balance.items()}
+    # earlier vintages (2022, 2020) for units missing from TIGER 2024, linked forward by ANSI (GNIS) code
+    prior = {y: {g: {r['GEOID']: r for r in read_gaz(g, y)} for g in ('place', 'cousubs')} for y in ('2022', '2020')}
+    prior_cbc = {y: collections.defaultdict(list) for y in prior}
+    for y in prior:
+        for g in prior[y]['cousubs']:
+            prior_cbc[y][(g[:2], g[5:])].append(g)
+    ansi24 = {g: {r['ANSICODE']: k for k, r in gaz[g].items()} for g in ('place', 'cousubs')}
+    # F-33 school finance unit files: PID6 -> (fiscal year, NCESID), newest file first
+    f33 = {}
+    for y in F33_YEARS:
+        with open(os.path.join(CACHE, 'elsec{}.txt'.format(y[2:])), encoding='latin-1', newline='') as f:
+            for r in csv.DictReader(f):
+                pid, nces = r['PID6'].strip(), r['NCESID'].strip()
+                if pid and pid not in f33:
+                    f33[pid] = (y, nces)
+    school_layer_of = {g: l for l in ('unsd', 'elsd', 'scsd') for g in gaz[l]}
+
     wb = openpyxl.load_workbook(os.path.join(CACHE, 'Govt_Units_2022_Final.xlsx'), read_only=True)
     rows, xw = [], []
 
@@ -86,10 +124,93 @@ def build():
                     cog_id=r['CENSUS_ID_PID6'], cog_gidid=r['CENSUS_ID_GIDID'],
                     is_active=r['IS_ACTIVE'], geoid_vintage='')
 
-    def setgeo(row, layer, geoid, how, gnis=''):
-        row.update(geoid=geoid, geoid_layer=layer, geoid_vintage='2024', geoid_match=how, gnis_id=gnis)
-        xw.append({'entity_id': row['entity_id'], 'unit_layer': layer, 'geoid': geoid, 'vintage': '2024',
+    def setgeo(row, layer, geoid, how, gnis='', vintage='2024'):
+        row.update(geoid=geoid, geoid_layer=layer, geoid_vintage=vintage, geoid_match=how, gnis_id=gnis,
+                   tiger_status='current_2024' if vintage == '2024' else 'absent_2024')
+        xw.append({'entity_id': row['entity_id'], 'unit_layer': layer, 'geoid': geoid, 'vintage': vintage,
                    'relation': 'primary', 'match': how})
+
+    def addx(row, layer, geoid, relation, how, vintage='2024'):
+        xw.append({'entity_id': row['entity_id'], 'unit_layer': layer, 'geoid': geoid, 'vintage': vintage,
+                   'relation': relation, 'match': how})
+
+    def addnote(row, text):
+        row['note'] = (row['note'] + '; ' if row.get('note') else '') + text
+
+    # labeled fallback for general-purpose units whose CoG code is in no TIGER vintage, or only as a predecessor:
+    # same state (and same county for cousubs), same core name, compatible kind, exactly one candidate in TIGER 2024
+    KIND_PREFIX = ('CHARTER TOWNSHIP OF ', 'TOWNSHIP OF ', 'TOWN OF ', 'CITY OF ', 'VILLAGE OF ', 'BOROUGH OF ',
+                   'PLANTATION OF ', 'METRO GOVERNMENT OF ', 'UNIFIED GOVERNMENT OF ')
+    TOWN_KINDS = {'town', 'township', 'plantation', 'town city'}
+
+    def tiger_core(name):
+        n = re.sub(r'^(Town|Village|City) of ', '', name)
+        core, _, kind = n.rpartition(' ')
+        if kind == 'city' and core.endswith(' Town'):
+            core, kind = core[:-5], 'town city'
+        return norm(core), kind
+
+    name_index = collections.defaultdict(list)          # (layer, SS, core) -> [(GEOID, kind)]
+    for lay in ('place', 'cousubs'):
+        for g, p in gaz[lay].items():
+            core, kind = tiger_core(p['NAME'])
+            if kind not in ('CDP', 'CCD', 'UT', 'area', 'district', 'precinct', 'reservation'):
+                name_index[(lay, g[:2], core)].append((g, kind))
+
+    def name_fallback(row, typ, r, ss, cc):
+        n = r['UNIT_NAME']
+        pre = next((p for p in KIND_PREFIX if n.startswith(p)), '')
+        core = norm(n[len(pre):])
+        cores = {core} | {core[:-len(sfx)] for sfx in (' TOWN', ' CITY') if core.endswith(sfx)}
+        lay = 'place' if typ == 'municipality' else 'cousubs'
+        cands = set()
+        for c in cores:
+            for g, kind in name_index.get((lay, ss, c), []):
+                if typ == 'township' and (kind not in TOWN_KINDS or g[2:5] != cc):
+                    continue
+                if typ == 'municipality' and kind in ('town', 'township', 'plantation') and pre == 'TOWNSHIP OF ':
+                    continue
+                cands.add(g)
+        if len(cands) == 1:
+            g = cands.pop()
+            L = 'place' if lay == 'place' else 'cousub'
+            setgeo(row, L, g, 'fallback_name_2024', gaz[lay][g]['ANSICODE'])
+            addnote(row, 'CoG code {} not usable; matched by name to TIGER 2024 "{}" (same state{}, unique)'.format(
+                r['FIPS_PLACE'], gaz[lay][g]['NAME'], ' and county' if L == 'cousub' else ''))
+            return True
+        return False
+
+    def prior_vintage(row, typ, ss, cc, pp, r):
+        """Unit not in TIGER 2024: find its code in the 2022, then 2020 Gazetteer; follow the ANSI code into 2024."""
+        order = ('place', 'cousubs') if typ == 'municipality' else ('cousubs', 'place')
+        for y in ('2022', '2020'):
+            for lay in order:
+                if lay == 'place':
+                    g = ss + pp
+                else:
+                    g = ss + cc + pp
+                    if g not in prior[y]['cousubs'] and len(prior_cbc[y].get((ss, pp), [])) == 1:
+                        g = prior_cbc[y][(ss, pp)][0]
+                rec = prior[y][lay].get(g)
+                if not rec:
+                    continue
+                L = 'place' if lay == 'place' else 'cousub'
+                new = ansi24[lay].get(rec['ANSICODE'])
+                if new:
+                    setgeo(row, L, new, 'ansi_via_' + y, rec['ANSICODE'])
+                    addx(row, L, g, 'prior_vintage_code', 'fips', y)
+                    addnote(row, 'code {} ({} "{}") changed to {} "{}" in TIGER 2024 (same ANSI code {})'.format(
+                        pp, y, rec['NAME'], new, gaz[lay][new]['NAME'], rec['ANSICODE']))
+                elif name_fallback(row, typ, r, ss, cc):
+                    addx(row, L, g, 'predecessor_code', 'fips', y)
+                    addnote(row, 'CoG code {} is {} "{}" in the {} Gazetteer'.format(pp, g, rec['NAME'], y))
+                else:
+                    setgeo(row, L, g, 'fips_' + y, rec['ANSICODE'], vintage=y)
+                    addnote(row, 'not in TIGER 2024 (dissolved, merged or re-coded after {}); GEOID from the {} Gazetteer "{}"'.format(
+                        y, y, rec['NAME']))
+                return
+        if not name_fallback(row, typ, r, ss, cc):
+            row['geoid_match'] = 'not_in_tiger_2020_2024'
 
     for r in sheet(wb, 'General Purpose'):
         typ = GP_TYPE[r['UNIT_TYPE'][:1]]
@@ -104,7 +225,26 @@ def build():
                 row['geoid_match'] = 'not_in_tiger_2024'
         elif typ == 'municipality':
             g = ss + pp
-            if g in gaz['place']:
+            cg = ss + cc
+            if g in concity:            # CoG code = TIGER consolidated-city code
+                c, bal = concity[g], balance.get(g)
+                if g in CONSOLIDATED_COUNTY_PRIMARY and cg in gaz['counties']:
+                    setgeo(row, 'counties', cg, 'concity_county', gaz['counties'][cg]['ANSICODE'])
+                    if bal:
+                        addx(row, 'place', bal, 'balance_place', 'concity_name')
+                elif bal:
+                    setgeo(row, 'place', bal, 'concity_balance', gaz['place'][bal]['ANSICODE'])
+                    if cg in gaz['counties']:
+                        addx(row, 'counties', cg, 'consolidated_city_county', 'fips')
+                else:
+                    row['geoid_match'] = 'ambiguous'
+                addx(row, 'concity', g, 'consolidated_city', 'fips')
+                addnote(row, 'TIGER 2024 consolidated city {} "{}"'.format(g, c['NAMELSAD']))
+            elif r['UNIT_NAME'].startswith('CITY AND COUNTY OF ') and cg in gaz['counties'] and \
+                    norm(gaz['counties'][cg]['NAME']).startswith(norm(r['UNIT_NAME'][19:]) + ' ') and g not in gaz['place']:
+                setgeo(row, 'counties', cg, 'city_and_county_name', gaz['counties'][cg]['ANSICODE'])
+                addnote(row, 'CoG place code {} not in TIGER 2024; consolidated city-county mapped to county {}'.format(pp, cg))
+            elif g in gaz['place']:
                 setgeo(row, 'place', g, 'fips', gaz['place'][g]['ANSICODE'])
                 cs = ss + cc + pp
                 if cs in gaz['cousubs']:
@@ -115,6 +255,14 @@ def build():
                         norm(gaz['counties'][cg]['NAME']) == norm(gaz['place'][g]['NAME']):
                     xw.append({'entity_id': row['entity_id'], 'unit_layer': 'counties', 'geoid': cg, 'vintage': '2024',
                                'relation': 'independent_city_county_equivalent', 'match': 'fips+name'})
+                if r['UNIT_NAME'].startswith('CITY AND COUNTY OF ') and cg in gaz['counties'] and \
+                        norm(gaz['counties'][cg]['NAME']).startswith(norm(r['UNIT_NAME'][19:]) + ' '):
+                    addx(row, 'counties', cg, 'consolidated_city_county', 'fips+name')
+                if g in concity_of_balance:       # CoG already uses the balance code (Augusta, Indianapolis, Milford CT)
+                    c = concity_of_balance[g]
+                    addx(row, 'concity', c, 'consolidated_city', 'concity_name')
+                    if cg in gaz['counties'] and 'Planning Region' not in gaz['counties'][cg]['NAME']:
+                        addx(row, 'counties', cg, 'consolidated_city_county', 'fips')
             elif (ss + cc + pp) in gaz['cousubs']:      # municipal government that TIGER carries as a county subdivision
                 g = ss + cc + pp
                 setgeo(row, 'cousub', g, 'fips', gaz['cousubs'][g]['ANSICODE'])
@@ -131,11 +279,15 @@ def build():
                                    'relation': 'county_part', 'match': 'fips'})
             elif len(parts) == 1:
                 setgeo(row, 'cousub', parts[0], 'fips_other_county', gaz['cousubs'][parts[0]]['ANSICODE'])
-                row['note'] = 'cousub code found in county {} (CoG county area {})'.format(parts[0][2:5], cc)
+                cn = gaz['counties'].get(parts[0][:5], {}).get('NAME', '')
+                row['note'] = ('cousub code found only in county {} {} (CoG county area {}{}); the CoG county code looks like '
+                               'a coding slip (Geography bot review, Oct 18, 2026)').format(parts[0][:5], cn, ss, cc)
             elif (ss + pp) in gaz['place']:             # township government that TIGER carries as a place
                 setgeo(row, 'place', ss + pp, 'fips', gaz['place'][ss + pp]['ANSICODE'])
             else:
                 row['geoid_match'] = 'not_in_tiger_2024' if not parts else 'ambiguous'
+        if row.get('geoid_match') == 'not_in_tiger_2024' and typ in ('municipality', 'township'):
+            prior_vintage(row, typ, ss, cc, pp, r)
         rows.append(row)
 
     for r in sheet(wb, 'Special District'):
@@ -149,17 +301,26 @@ def build():
         row = common(r, 'school_district')
         lvl = LEVEL.get(r['SCHOOL_LEVEL_DESCRIPTION'][:2], r['SCHOOL_LEVEL_DESCRIPTION'].lower())
         row.update(gov_status=status, subtype=lvl)
+        hit = f33.get(r['CENSUS_ID_PID6'])
+        if hit and hit[1]:              # code join: CoG PID6 = F-33 PID6 -> NCESID (= NCES LEAID = TIGER school GEOID)
+            y, nces = hit
+            row['nces_leaid'] = nces
+            if nces in school_layer_of:
+                setgeo(row, school_layer_of[nces], nces, 'f33_ncesid_' + y)
+            else:
+                row['geoid_match'] = 'f33_ncesid_not_in_tiger_2024'
+            return row
         layers = SCHOOL_LAYER.get(lvl)
         if not layers:
             row['geoid_match'] = 'no_tiger_layer'
             return row
         row['geoid_match'] = 'no_name_match'
-        for tier, k in school_keys(r['UNIT_NAME']):
+        for tier, k in school_keys(r['UNIT_NAME']):     # fallback only: unit absent from the F-33 files
             cands = sorted({g for l in layers for g in school_by_name.get((tier, row['state'], l, k), ())})
             if len(cands) == 1:
                 g = cands[0]
                 layer = next(l for l in ('unsd', 'elsd', 'scsd') if g in gaz[l])
-                setgeo(row, layer, g, tier)
+                setgeo(row, layer, g, 'fallback_' + tier)
                 break
             if cands:
                 row['geoid_match'] = 'ambiguous'
@@ -176,16 +337,17 @@ def build():
 
     # a GEOID may be claimed by only one entity as primary. If several units claim it, the single claim with the
     # strongest match tier keeps it; on a tie all claims are dropped (left blank, never guessed).
-    rank = {'fips': 0, 'fips_other_county': 1, 'name_exact': 2, 'name_core': 3, 'name_core_no_number': 4}
+    rank = {'fips_other_county': 1, 'city_and_county_name': 1, 'fallback_name_2024': 2, 'fallback_name_exact': 2, 'fallback_name_core': 3,
+            'fallback_name_core_no_number': 4}
     claims = collections.defaultdict(list)
     for x in xw:
         if x['relation'] == 'primary':
-            claims[(x['unit_layer'], x['geoid'])].append(x)
+            claims[(x['unit_layer'], x['geoid'], x['vintage'])].append(x)
     lose = set()
     for k, cl in claims.items():
         if len(cl) > 1:
-            best = min(rank[c['match']] for c in cl)
-            winners = [c for c in cl if rank[c['match']] == best]
+            best = min(rank.get(c['match'], 0) for c in cl)
+            winners = [c for c in cl if rank.get(c['match'], 0) == best]
             for c in cl:
                 if len(winners) > 1 or c is not winners[0]:
                     lose.add(c['entity_id'])
@@ -194,7 +356,7 @@ def build():
             if row['entity_id'] in lose:
                 row['note'] = (row.get('note', '') + '; ' if row.get('note') else '') + \
                     'candidate GEOID {} {} is claimed by another CoG unit; left blank'.format(row['geoid_layer'], row['geoid'])
-                row.update(geoid='', geoid_layer='', geoid_vintage='', geoid_match='ambiguous', gnis_id='')
+                row.update(geoid='', geoid_layer='', geoid_vintage='', geoid_match='ambiguous', gnis_id='', tiger_status='')
         xw = [x for x in xw if x['entity_id'] not in lose]
 
     rows.sort(key=lambda r: (r['state_fips'], r['type'], r['county_geoid'], r['name'], r['cog_id']))

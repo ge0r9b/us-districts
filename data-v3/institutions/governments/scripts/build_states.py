@@ -14,7 +14,7 @@ def build():
             continue
         rows.append({'entity_id': 'state:' + ss, 'name': name, 'type': 'state', 'gov_status': 'independent',
                      'parent_id': '', 'state_fips': ss, 'state': usps, 'geoid': ss, 'geoid_layer': 'states',
-                     'geoid_vintage': '2024', 'geoid_match': 'fips', 'gnis_id': ns, 'alias': usps,
+                     'geoid_vintage': '2024', 'geoid_match': 'fips', 'tiger_status': 'current_2024', 'gnis_id': ns, 'alias': usps,
                      'source': 'U.S. Census Bureau, 2020 FIPS state codes (national_state2020.txt); 50 state governments per 2022 Census of Governments',
                      'source_url': m['url'], 'source_date': m['last_modified'], 'retrieved_at': m['retrieved_at'],
                      'license': PUBLIC_DOMAIN})

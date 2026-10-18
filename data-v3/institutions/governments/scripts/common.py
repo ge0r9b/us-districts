@@ -24,12 +24,27 @@ SOURCES = {
 SOURCES['tiger_aiannh'] = ('https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip', 'tl_2024_us_aiannh.zip')
 for g in ('counties', 'cousubs', 'place', 'unsd', 'elsd', 'scsd', 'aiannh'):
     SOURCES['gaz_' + g] = (GAZ.format(g), '2024_Gaz_{}_national.zip'.format(g))
+# earlier vintages, used only for units that are not in TIGER 2024 (renamed, dissolved, new)
+for y in ('2022', '2020'):
+    for g in ('cousubs', 'place'):
+        SOURCES['gaz{}_{}'.format(y, g)] = (GAZ.replace('2024', y).format(g), '{}_Gaz_{}_national.zip'.format(y, g))
+# TIGER 2024 consolidated cities (only these states have one)
+CONCITY_STATES = ('09', '13', '18', '20', '21', '30', '47')
+for ss in CONCITY_STATES:
+    SOURCES['concity_' + ss] = ('https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_{}_concity.zip'.format(ss),
+                                'tl_2024_{}_concity.zip'.format(ss))
+# Annual Survey of School System Finances (F-33) unit files: PID6 (= CoG CENSUS_ID_PID6) + NCESID (= NCES LEAID)
+F33 = 'https://www2.census.gov/programs-surveys/school-finances/tables/{0}/secondary-education-finance/elsec{1}.txt'
+F33_YEARS = ('2024', '2023', '2022')            # newest first; a unit takes the newest file that lists it
+for y in F33_YEARS:
+    SOURCES['f33_' + y] = (F33.format(y, y[2:]), 'elsec{}.txt'.format(y[2:]))
 
 PUBLIC_DOMAIN = 'public domain (U.S. Government work, 17 U.S.C. 105)'
 COLUMNS = ['entity_id', 'name', 'type', 'subtype', 'gov_status', 'parent_id', 'state_fips', 'state',
            'county_geoid', 'geoid', 'geoid_layer', 'geoid_vintage', 'geoid_match', 'cog_id', 'cog_gidid',
            'fips_place', 'alias', 'gnis_id', 'ocd_id', 'wikidata_qid', 'is_active', 'note',
-           'source', 'source_url', 'source_date', 'retrieved_at', 'license']
+           'source', 'source_url', 'source_date', 'retrieved_at', 'license',
+           'nces_leaid', 'tiger_status']     # appended Oct 18, 2026 (columns are only ever appended)
 XWALK_COLUMNS = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'relation', 'match', 'source', 'source_date']  # source = short code, see README
 
 
@@ -69,9 +84,9 @@ def meta(key):
     return manifest()[key]
 
 
-def read_gaz(name):
-    """2024 Gazetteer national file -> list of dicts (tab separated, trailing spaces stripped)."""
-    path = os.path.join(CACHE, '2024_Gaz_{}_national.txt'.format(name))
+def read_gaz(name, year='2024'):
+    """Gazetteer national file -> list of dicts (tab separated, trailing spaces stripped)."""
+    path = os.path.join(CACHE, '{}_Gaz_{}_national.txt'.format(year, name))
     with open(path, encoding='utf-8', errors='replace') as f:
         rows = list(csv.reader(f, delimiter='\t'))
     hdr = [h.strip() for h in rows[0]]

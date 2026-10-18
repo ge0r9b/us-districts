@@ -7,7 +7,7 @@ two overlap, and the Geography bot's GEOID conventions (TIGER 2024, strings with
 ## Entity files (same columns in every file)
 `states.csv`, `local/<USPS>.csv`, `federal_agencies.csv`, `tribes.csv`. UTF-8, header row, comma separated,
 RFC 4180 quoting, `\n` line ends. Empty string = unknown / not applicable. Column names are stable; new columns
-are only ever appended.
+are only ever appended (`nces_leaid`, `tiger_status` added Oct 18, 2026).
 
 | column | example | meaning |
 |---|---|---|
@@ -21,8 +21,8 @@ are only ever appended.
 | `county_geoid` | `01001` | CoG `COUNTY_AREA_NAME` county (the county area the unit mainly serves or is headquartered in). Not a parent. |
 | `geoid` | `0100124` | primary TIGER GEOID (string). County 5, place 7, cousub 10, school 7 (= NCES LEAID), state 2, AIANNH as TIGER prints it (`0010R`) |
 | `geoid_layer` | `counties` / `place` / `cousub` / `unsd` / `elsd` / `scsd` / `states` / `aiannh` | which TIGER layer `geoid` belongs to (matches `data-v3/geo/` layer names where they exist) |
-| `geoid_vintage` | `2024` | TIGER vintage of `geoid` |
-| `geoid_match` | `fips`, `name_exact`, `no_name_match` | how `geoid` was found, or why it is blank (see README) |
+| `geoid_vintage` | `2024` | TIGER vintage of `geoid` (2022 or 2020 only for units missing from TIGER 2024) |
+| `geoid_match` | `fips`, `f33_ncesid_2024`, `ansi_via_2022`, `fallback_name_2024` | how `geoid` was found, or why it is blank (full list in README); names starting `fallback_` are name matches |
 | `cog_id` | `100001` | 2022 CoG `CENSUS_ID_PID6` (Institution filter bot join key) |
 | `cog_gidid` | `01100100100000` | legacy CoG 14-digit `CENSUS_ID_GIDID` (Census is phasing it out) |
 | `fips_place` | `07000` | CoG `FIPS_PLACE` as given (general-purpose governments only) |
@@ -36,6 +36,8 @@ are only ever appended.
 | `source_date` | `2023-08-24` | publication date (server Last-Modified for Census files, FR publication date). The FR agencies API has no date, so its retrieval date is used. |
 | `retrieved_at` | `2026-10-18T13:16:51Z` | UTC time the cached copy was downloaded |
 | `license` | `public domain (U.S. Government work, 17 U.S.C. 105)` | |
+| `nces_leaid` | `0100270` | school districts: NCES LEAID from the F-33 file (filled even when TIGER 2024 has no polygon for it) |
+| `tiger_status` | `current_2024` / `absent_2024` | whether `geoid` exists in TIGER 2024; `absent_2024` = an older-vintage GEOID was carried (dissolved / merged / re-coded unit) |
 
 ### entity_id schemes
 | scheme | id | stability |
@@ -67,7 +69,7 @@ Shape of `data-v3/inst/entity_geoid_xwalk.csv`. One row per (entity, GEOID); the
 | `unit_layer` | `place` | TIGER layer |
 | `geoid` | `1150000` | |
 | `vintage` | `2024` | |
-| `relation` | `primary` / `coextensive_cousub` / `independent_city_county_equivalent` / `county_part` / `trust_land` (`;shared_area` appended when several tribes share the area) | |
+| `relation` | `primary` / `coextensive_cousub` / `independent_city_county_equivalent` / `consolidated_city_county` / `consolidated_city` (TIGER CONCITY, layer `concity`) / `balance_place` / `county_part` / `prior_vintage_code` / `predecessor_code` / `trust_land` (`;shared_area` appended when several tribes share the area) | |
 | `match` | same codes as `geoid_match` | |
 | `source`, `source_date` | `cog2022;gaz2024`, `2023-08-24` | short source codes, expanded in README |
 

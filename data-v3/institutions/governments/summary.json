@@ -3,7 +3,7 @@
   "states.csv": 50,
   "federal_agencies.csv": 473,
   "tribes.csv": 577,
-  "governments_geoid_xwalk.csv": 52904,
+  "governments_geoid_xwalk.csv": 56484,
   "county_government_check.csv": 3222,
   "local/AK.csv": 236,
   "local/AL.csv": 1208,
@@ -75,18 +75,30 @@
  },
  "geoid_match": {
   "county|fips": 3031,
+  "municipality|ansi_via_2020": 1,
+  "municipality|ansi_via_2022": 9,
+  "municipality|city_and_county_name": 1,
+  "municipality|concity_balance": 4,
+  "municipality|concity_county": 1,
+  "municipality|fallback_name_2024": 4,
   "municipality|fips": 19465,
-  "municipality|not_in_tiger_2024": 26,
-  "school_district|ambiguous": 133,
-  "school_district|name_core": 1079,
-  "school_district|name_core_no_number": 2283,
-  "school_district|name_exact": 6084,
-  "school_district|no_name_match": 3526,
-  "school_district|no_tiger_layer": 754,
+  "municipality|fips_2020": 1,
+  "municipality|fips_2022": 2,
+  "municipality|not_in_tiger_2020_2024": 3,
+  "school_district|ambiguous": 4,
+  "school_district|f33_ncesid_2023": 8,
+  "school_district|f33_ncesid_2024": 12920,
+  "school_district|f33_ncesid_not_in_tiger_2024": 274,
+  "school_district|fallback_name_core": 5,
+  "school_district|fallback_name_exact": 5,
+  "school_district|no_name_match": 114,
+  "school_district|no_tiger_layer": 529,
   "special_district|no_tiger_layer": 39555,
+  "township|fallback_name_2024": 3,
   "township|fips": 16176,
+  "township|fips_2022": 33,
   "township|fips_other_county": 1,
-  "township|not_in_tiger_2024": 37,
+  "township|not_in_tiger_2020_2024": 1,
   "tribe|cross_reference": 4,
   "tribe|legal_name_in_tribe_name": 133,
   "tribe|name_core_anvsa": 171,
@@ -95,6 +107,17 @@
  "tiger_counties_without_cog_county_government": 191,
  "bia_list_lines": 577,
  "dangling_parent_ids": [],
+ "school_geoids_vs_data_v3_geo_schools_csv": {
+  "entity_geoids": 12938,
+  "found_in_geo_schools_csv": 12938,
+  "geo_schools_csv_geoids": 13305,
+  "geo_schools_csv_geoids_without_cog_entity": 367
+ },
+ "tiger_status": {
+  "": 40753,
+  "absent_2024": 36,
+  "current_2024": 51988
+ },
  "sources": {
   "bia_notice": {
    "url": "https://www.federalregister.gov/documents/full_text/xml/2026/01/30/2026-01899.xml",
@@ -111,10 +134,80 @@
    "last_modified": "2023-08-24",
    "retrieved_at": "2026-10-18T13:16:51Z"
   },
+  "concity_09": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_09_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:08Z"
+  },
+  "concity_13": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_13_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:08Z"
+  },
+  "concity_18": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_18_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:08Z"
+  },
+  "concity_20": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_20_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:09Z"
+  },
+  "concity_21": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_21_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:09Z"
+  },
+  "concity_30": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_30_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:09Z"
+  },
+  "concity_47": {
+   "url": "https://www2.census.gov/geo/tiger/TIGER2024/CONCITY/tl_2024_47_concity.zip",
+   "last_modified": "2025-06-27",
+   "retrieved_at": "2026-10-18T13:34:09Z"
+  },
+  "f33_2022": {
+   "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2022/secondary-education-finance/elsec22.txt",
+   "last_modified": "2025-04-29",
+   "retrieved_at": "2026-10-18T13:34:11Z"
+  },
+  "f33_2023": {
+   "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2023/secondary-education-finance/elsec23.txt",
+   "last_modified": "2026-05-07",
+   "retrieved_at": "2026-10-18T13:34:10Z"
+  },
+  "f33_2024": {
+   "url": "https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24.txt",
+   "last_modified": "2026-05-07",
+   "retrieved_at": "2026-10-18T13:34:10Z"
+  },
   "fr_agencies": {
    "url": "https://www.federalregister.gov/api/v1/agencies",
    "last_modified": "",
    "retrieved_at": "2026-10-18T13:16:52Z"
+  },
+  "gaz2020_cousubs": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2020_Gazetteer/2020_Gaz_cousubs_national.zip",
+   "last_modified": "2021-01-22",
+   "retrieved_at": "2026-10-18T13:34:07Z"
+  },
+  "gaz2020_place": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2020_Gazetteer/2020_Gaz_place_national.zip",
+   "last_modified": "2021-01-22",
+   "retrieved_at": "2026-10-18T13:34:07Z"
+  },
+  "gaz2022_cousubs": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2022_Gazetteer/2022_Gaz_cousubs_national.zip",
+   "last_modified": "2022-08-24",
+   "retrieved_at": "2026-10-18T13:34:07Z"
+  },
+  "gaz2022_place": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2022_Gazetteer/2022_Gaz_place_national.zip",
+   "last_modified": "2022-08-24",
+   "retrieved_at": "2026-10-18T13:34:07Z"
   },
   "gaz_aiannh": {
    "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_aiannh_national.zip",

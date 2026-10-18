@@ -26,6 +26,15 @@ def main():
     assert len(ids) == len(set(ids)), 'duplicate entity_id'
     known = set(ids)
     dangling = sorted({r['parent_id'] for r in states + local + fed + tribes if r['parent_id'] and r['parent_id'] not in known})
+    # verification of school GEOIDs against the Geography bot's v2 school table (data-v3/geo/schools.csv), if present
+    geo_schools = os.path.join(ROOT, '..', '..', 'geo', 'schools.csv')
+    school_check = {}
+    if os.path.exists(geo_schools):
+        import csv
+        gs = {r['geoid'] for r in csv.DictReader(open(geo_schools, encoding='utf-8')) if r['geoid']}
+        ng = {r['geoid'] for r in local if r['type'] == 'school_district' and r.get('geoid')}
+        school_check = {'entity_geoids': len(ng), 'found_in_geo_schools_csv': len(ng & gs),
+                        'geo_schools_csv_geoids': len(gs), 'geo_schools_csv_geoids_without_cog_entity': len(gs - ng)}
     summary = {
         'files': out,
         'rows_total_entities': len(ids),
@@ -35,6 +44,8 @@ def main():
         'tiger_counties_without_cog_county_government': sum(1 for c in chk if c['cog_county_government'] == 'no'),
         'bia_list_lines': n_lines,
         'dangling_parent_ids': dangling,
+        'school_geoids_vs_data_v3_geo_schools_csv': school_check,
+        'tiger_status': dict(sorted(collections.Counter(r.get('tiger_status', '') for r in local + tribes + states).items())),
         'sources': {k: {kk: v[kk] for kk in ('url', 'last_modified', 'retrieved_at')} for k, v in sorted(manifest().items())},
     }
     json.dump(summary, open(os.path.join(ROOT, 'summary.json'), 'w'), indent=1, sort_keys=False)

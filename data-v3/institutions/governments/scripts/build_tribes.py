@@ -148,7 +148,7 @@ def build():
         if ces:
             parts = sorted(by_ce[next(iter(ces))], key=lambda a: a['GEOID'])
             prim = next((p for p in parts if p['GEOID'].endswith('R')), parts[0])
-            row.update(geoid=prim['GEOID'], geoid_layer='aiannh', geoid_vintage='2024', geoid_match=how,
+            row.update(geoid=prim['GEOID'], geoid_layer='aiannh', geoid_vintage='2024', geoid_match=how, tiger_status='current_2024',
                        gnis_id=prim['AIANNHNS'])
             for p in parts:
                 xw.append({'entity_id': eid, 'unit_layer': 'aiannh', 'geoid': p['GEOID'], 'vintage': '2024',
