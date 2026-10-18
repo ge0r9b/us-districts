@@ -155,7 +155,10 @@ def gb_load():
                      "l2c": l2c, "l2a": l2a, "lad_area": lad_area, "cty_area": cty_area, "ca_area": ca_area})
 def gb_base():
     L = cget("gb_load"); base = L["base"]; c2 = {k: v[0] for k, v in L["l2c"].items()}
-    S = simp([g for *_, g in base], "gb_base", [c2[l] for l in L["lad_of"]]); cput("gb_simpl", S)
+    # validation groups = CTYUA, except that the units along the England-Scotland border (where parish edges meet Scottish council
+    # areas from a different ONS product) form one group, so coverage_clean can match those edges before simplification
+    BORDER = {"E06000057", "E06000063", "S12000006", "S12000026"}
+    S = simp([g for *_, g in base], "gb_base", ["border" if c2[l] in BORDER else c2[l] for l in L["lad_of"]]); cput("gb_simpl", S)
     TY = {"E04": "parish", "W04": "community", "E43": "non-civil parished area"}
     feats, rows = [], []
     for (t, c, d, g), s, l, ar in zip(base, S, L["lad_of"], L["area"]):
@@ -164,6 +167,7 @@ def gb_base():
         feats.append((c, {"code": c, "name": nm, "name_cy": nw, "type": TY[c[:3]], "lad": l, "lad_name": d["LAD26NM"], "area_km2": ar}, s, GBC))
         rows.append([c, nm, nw, TY[c[:3]], l, ar])
     write("gb_par_2026", feats); W("gb_par.csv", ["code", "name", "name_cy", "type", "parent_lad", "area_km2"], sorted(rows))
+CTRY = {"E": "E92000001", "W": "W92000004", "S": "S92000003", "N": "N92000002"}  # GSS country codes
 GBLT = {"E06": "unitary authority", "E07": "non-metropolitan district", "E08": "metropolitan district", "E09": "London borough",
         "S12": "council area", "W06": "principal area", "N09": "local government district", "E10": "county"}
 def gb_lads():
@@ -188,13 +192,13 @@ def gb_up(name, A, key, nmk, nwk, l2x, areas, typ, fname, parent):
     feats, rows = [], []
     for d, g in A:
         c = d[key]; nw = (d.get(nwk) or "").strip() if nwk else ""
-        mem = ";".join(lk[i] for i in m[c])
-        feats.append((c, {"code": c, "name": d[nmk], "name_cy": nw, "type": typ(c), "parent": parent, "lads": mem, "area_km2": areas[c]}, D[c], GBC))
-        rows.append([c, d[nmk], nw, typ(c), parent, areas[c], len(m[c]), mem])
+        mem = ";".join(lk[i] for i in m[c]); par = parent or CTRY[c[0]]
+        feats.append((c, {"code": c, "name": d[nmk], "name_cy": nw, "type": typ(c), "parent": par, "lads": mem, "area_km2": areas[c]}, D[c], GBC))
+        rows.append([c, d[nmk], nw, typ(c), par, areas[c], len(m[c]), mem])
     write(fname, feats); W(name + ".csv", ["code", "name", "name_cy", "type", "parent", "area_km2", "n_lad", "lads"], sorted(rows))
 def gb_ctyua():
     L = cget("gb_load")
-    gb_up("gb_ctyua", L["CTY"], "CTYUA25CD", "CTYUA25NM", "CTYUA25NMW", L["l2c"], L["cty_area"], lambda c: GBLT[c[:3]], "gb_ctyua_2025", "")
+    gb_up("gb_ctyua", L["CTY"], "CTYUA25CD", "CTYUA25NM", "CTYUA25NMW", L["l2c"], L["cty_area"], lambda c: GBLT[c[:3]], "gb_ctyua_2025", None)
 def gb_cauth():
     L = cget("gb_load")
     gb_up("gb_cauth", L["CA"], "CAUTH25CD", "CAUTH25NM", None, L["l2a"], L["ca_area"], lambda c: "combined authority", "gb_cauth_2025", "E92000001")
