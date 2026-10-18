@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171561";</script>
+<script>window.BUILD="202610171562";</script>
 <script>/* build 1560: new builds reach open tabs. GitHub Pages serves index.html with max-age=600 and iOS Safari keeps a tab's page alive for hours/days (resume, bfcache), so a tab could run an old build long after a push.
    Check the deployed BUILD (first 2 KB of this page, cache-busting query + no-store, Range request) on load, on return to the tab (visibilitychange/pageshow) and every 5 min; a newer build reloads once
    via ?v=<build> (a fresh URL for every cache) with the current view in the hash. Loop guard: at most one reload per target build per 5 min (sessionStorage); no sessionStorage = never auto-reload. */
@@ -2530,7 +2530,7 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
   const on=()=>{ try{ return document.body.classList.contains("listmode")&&!document.body.classList.contains("listall")&&window.chartMode==="line"&&ym()==="delta"&&!$("barTime").hidden; }catch(e){ return false; } };
   const geom=box=>{ const rl=document.querySelector(".rail"), cap=(rl?rl.getBoundingClientRect().left:innerWidth-64)-3, L=box.getBoundingClientRect().left;
     const dots=[...document.querySelectorAll("#ysl .tk i")].map(d=>{ const b=d.getBoundingClientRect(); return b.left+b.width/2; }), lb=document.querySelector("#ysl .ylb.l").getBoundingClientRect(), lr=document.querySelector("#ysl .ylb.r").getBoundingClientRect();
-    return {L,W:Math.max(160,cap-L),x0:dots[0]-L,x1:dots[dots.length-1]-L,c0:lb.left+lb.width/2-L,c1:lr.left+lr.width/2-L}; };
+    return {L,W:Math.max(160,cap-L),xs:dots.map(x=>x-L),x0:dots[0]-L,x1:dots[dots.length-1]-L,c0:lb.left+lb.width/2-L,c1:lr.left+lr.width/2-L}; };
   const parts3=v=>({rep:v.rep||0,dem:v.dem||0,oth:Math.max(0,(v.tot||0)-(v.rep||0)-(v.dem||0))}), PCo={rep:"rgb(220,38,38)",dem:"rgb(37,99,235)",oth:"rgb(168,162,158)"}, NMo={rep:"Republican",dem:"Democratic",oth:"Other"};
   function pieBlock(g,v0,v1){ const S=innerWidth>=700?240:156, cx=(g.x0+g.x1)/2, cy=S/2, pc=numMode==="pct", p0=parts3(v0), p1=parts3(v1);
     const exact=(n,t)=>pc?(n/t*100).toFixed(1)+"%":Math.round(n).toLocaleString("en-US"), sh=k=>p1[k]/v1.tot*100-p0[k]/v0.tot*100;
@@ -2555,10 +2555,12 @@ candStats=(function(){ return function(){ const a=scopeArea(), two=candBox.class
     /* value label sits directly under its own line, centred between the line's two points (never under the thumbnails); nudged apart when the two lines are close */
     const lby={}; { const o=ks.map(k=>[k,(Y(V(v0,k))+Y(V(v1,k)))/2+14]).sort((p,q)=>p[1]-q[1]); if(o.length===2&&o[1][1]-o[0][1]<16){ const dd=(16-(o[1][1]-o[0][1]))/2; o[0][1]-=dd; o[1][1]+=dd; } o.forEach(([k,y])=>lby[k]=Math.max(8,Math.min(H2-8,y))); }
     let svg='<svg width="'+g.W+'" height="'+H2+'" viewBox="0 0 '+g.W+' '+H2+'" role="img" aria-label="2020 to 2024 change">', imgs='';
-    { const gx0=g.c0+15+6, gx1=g.c1-15-6, E0=ks.map(k=>Y(V(v0,k))), E1=ks.map(k=>Y(V(v1,k))), hitE=(E,y)=>E.some(e=>e>y-17&&e<y+6); svg+='<g class="dlax">';
+    { const gx0=g.c0+15+6, gx1=g.c1-15-6, lx0=g.x0+4, lx1=g.x1-4, E0=ks.map(k=>Y(V(v0,k))), E1=ks.map(k=>Y(V(v1,k))), hitE=(E,y)=>E.some(e=>e>y-17&&e<y+6); svg+='<g class="dlax">';
+      /* build 1562: vertical hairlines at every time-slider year position ('20, '24 and any in-between years), spanning the plot (outer gridlines) */
+      (g.xs||[g.x0,g.x1]).forEach(x=>{ svg+='<line class="dlvx" x1="'+x.toFixed(1)+'" y1="'+Y(hi).toFixed(1)+'" x2="'+x.toFixed(1)+'" y2="'+Y(lo).toFixed(1)+'" stroke="#d6d6db" stroke-width="1" shape-rendering="crispEdges"/>'; });
       for(let q=lo;q<=hi+st*1e-6;q+=st){ const y=Y(q); const yy=y.toFixed(1); svg+='<line x1="'+gx0.toFixed(1)+'" y1="'+yy+'" x2="'+gx1.toFixed(1)+'" y2="'+yy+'" stroke="#d6d6db" stroke-width="1" shape-rendering="crispEdges"/>';
         /* label above its hairline at the left end; if a line end-point sits there, the right end; else below the hairline; else no label (the hairline stays) */
-        const hitB=(E,y)=>E.some(e=>e>y-5&&e<y+16), P=[[gx0,y-3.5,"start",hitE(E0,y)],[gx1,y-3.5,"end",hitE(E1,y)],[gx0,y+11,"start",hitB(E0,y)],[gx1,y+11,"end",hitB(E1,y)]].find(c=>!c[3]&&c[1]<H2-1&&c[1]>8);
+        const hitB=(E,y)=>E.some(e=>e>y-5&&e<y+16), P=[[lx0,y-3.5,"start",hitE(E0,y)],[lx1,y-3.5,"end",hitE(E1,y)],[lx0,y+11,"start",hitB(E0,y)],[lx1,y+11,"end",hitB(E1,y)]].find(c=>!c[3]&&c[1]<H2-1&&c[1]>8);
         if(P) svg+='<text class="dlat" x="'+P[0].toFixed(1)+'" y="'+P[1].toFixed(1)+'" text-anchor="'+P[2]+'" font-size="9.5" font-weight="400" fill="#8e8e93">'+fT(q)+'</text>'; }
       svg+='</g>'; }
     ks.forEach(k=>{ const a0=Y(V(v0,k)), a1=Y(V(v1,k)), d=V(v1,k)-V(v0,k), c=PCc[k];
@@ -3263,11 +3265,15 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(!v0||!v0.tot||(two&&(!v1||!v1.tot))){ if(pn) pn.remove(); return; }
     const wide=innerWidth>=600; const one=k=>k==="line"?(two?'<div class="clinechart">'+(window.__lineSvg?window.__lineSvg(a):"")+'</div>':""):k==="pie"?'<div class="cpie1">'+pieSvg(v0,v1)+'</div>':barHtml(v0,v1);
     let h; if(!wide&&mode==="pie"&&!two){ if(!pn){ pn=document.createElement("div"); pn.className="cpanel"; } if(candBox.firstChild!==pn) candBox.prepend(pn);
-      /* build 1556: ONE big pie, centred in the band from the text indent (x=52) to the right edge, below the floating buttons, clear of the lower rail */
-      const pr=pn.getBoundingClientRect(), cs=getComputedStyle(pn), cl=pr.left+(parseFloat(cs.paddingLeft)||0), t0=pr.top+(parseFloat(cs.paddingTop)||0), vw=innerWidth, L0=52, M=8, cx=(L0+vw)/2;
-      const bt=[...document.querySelectorAll("button.rbtn, .rail .rbtn")].filter(b=>{ if(!b.offsetParent||getComputedStyle(b).visibility==="hidden") return false; const r=b.getBoundingClientRect(); return r.width>0&&r.left>vw*0.6; }).map(b=>b.getBoundingClientRect());
-      const up=bt.filter(r=>r.top<innerHeight*0.45), dn=bt.filter(r=>r.top>=innerHeight*0.45); const top=Math.round(Math.max(t0+4,up.reduce((m,r)=>Math.max(m,r.bottom),0)+10)); const low=dn.reduce((m,r)=>Math.min(m,r.top),innerHeight)-10;
-      const S=Math.max(140,Math.floor(Math.min(2*Math.min(cx-L0-10,vw-M-cx),low-top))); const ml=Math.round(cx-S/2-cl), mt=Math.max(0,top-Math.round(t0));
+      /* build 1562: ONE big pie, centred on the full screen width (cx = innerWidth/2), as large as fits without touching the left thumbnails or the right floating buttons (shrinks when needed) */
+      const pr=pn.getBoundingClientRect(), cs=getComputedStyle(pn), cl=pr.left+(parseFloat(cs.paddingLeft)||0), t0=pr.top+(parseFloat(cs.paddingTop)||0), vw=innerWidth, M=8, G=10, cx=vw/2;
+      const visR=e=>{ if(!e.offsetParent||getComputedStyle(e).visibility==="hidden") return null; const r=e.getBoundingClientRect(); return r.width>0&&r.height>0?r:null; };
+      const obs=[...document.querySelectorAll("button.rbtn, .rail .rbtn, .tlab")].map(visR).filter(r=>r&&r.left>vw*0.5).concat([...candBox.querySelectorAll("img")].filter(e=>!pn.contains(e)).map(visR).filter(Boolean));
+      const bb=document.getElementById("barBottom"), bot=((bb&&visR(bb))?bb.getBoundingClientRect().top:innerHeight)-G;
+      const tops=[Math.round(t0+4)].concat(obs.map(r=>Math.round(r.bottom+G)).filter(t=>t>t0+4)).sort((a,b)=>a-b);
+      const fits=(S,t)=>{ const l=cx-S/2, r=cx+S/2; if(l<M-0.5||r>vw-M+0.5||t+S>bot) return false; return !obs.some(o=>o.right+G>l&&o.left-G<r&&o.bottom+G>t&&o.top-G<t+S); };
+      let S=140, top=tops[0]; for(let z=Math.floor(Math.min(vw-2*M,bot-tops[0])); z>=140; z-=2){ const t=tops.find(t=>fits(z,t)); if(t!==undefined){ S=z; top=t; break; } }
+      const ml=Math.round(cx-S/2-cl), mt=Math.max(0,top-Math.round(t0));
       h='<div class="cblk cbig"><div class="cpie1 big" style="align-items:flex-start">'+pieSvg(v0,null).replace(/width="160" height="160"/,'width="'+S+'" height="'+S+'" style="width:'+S+'px;height:'+S+'px;max-width:none;margin-left:'+ml+'px;margin-top:'+mt+'px"').replace(/font-size="11"/g,'font-size="'+(S>=260?9:11)+'"')+'</div></div>'; }
     else if(!wide){ h=[mode].map(k=>{ const c=one(k); return c?'<div class="cblk">'+c+'</div>':""; }).join(""); }
     else { const pw=Math.max(300,(pn&&pn.clientWidth||innerWidth-420)-24), avail=Math.max(260,innerHeight-(candBox.getBoundingClientRect().top||150)-120);

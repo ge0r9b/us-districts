@@ -1,7 +1,7 @@
 # usage: python3 tests/single-entity-chart.py URL -- build 1556: a single entity (Alabama) shows ONE big chart and no bar option:
-# one year -> big pie centred between the text indent (x=52) and the right edge, clear of the thumbnails and floating buttons;
+# one year -> big pie centred on the full screen width (build 1562), clear of the thumbnails and floating buttons;
 # two years -> line chart whose vertical axis has 3-5 light hairlines with small mid-gray labels (% in % mode, abbreviated votes in # mode)
-# and whose points sit on the time slider's '20 / '24 positions; the plural row ('Alabama counties') brings the bar list back.
+# and whose points sit on the time slider's '20 / '24 positions, with vertical hairlines at every slider year (build 1562); the plural row ('Alabama counties') brings the bar list back.
 import asyncio,sys,json,re
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -10,7 +10,7 @@ def ck(n,ok,d=''):
   print(('OK   ' if ok else 'FAIL ')+n,'' if ok else json.dumps(d)[:700]); fails+=0 if ok else 1
 R="""()=>{const R=e=>{if(!e) return null; const r=e.getBoundingClientRect(); return [r.left,r.top,r.right,r.bottom]};
  const vis=e=>e.offsetParent&&getComputedStyle(e).visibility!=='hidden'&&e.getBoundingClientRect().width>0;
- return {mode:window.chartMode, vw:innerWidth, pie:R(document.querySelector('.cpanel .cpie1 svg, .cpanel .cpieL svg')), ax:[...document.querySelectorAll('.dlx .dlat')].map(t=>[t.textContent,R(t),getComputedStyle(t).fill]), grid:[...document.querySelectorAll('.dlx .dlax line')].map(l=>[l.getAttribute('stroke'),R(l)]),
+ return {mode:window.chartMode, vw:innerWidth, pie:R(document.querySelector('.cpanel .cpie1 svg, .cpanel .cpieL svg')), ax:[...document.querySelectorAll('.dlx .dlat')].map(t=>[t.textContent,R(t),getComputedStyle(t).fill]), grid:[...document.querySelectorAll('.dlx .dlax line:not(.dlvx)')].map(l=>[l.getAttribute('stroke'),R(l)]), vg:[...document.querySelectorAll('.dlx .dlax line.dlvx')].map(l=>[l.getAttribute('stroke'),R(l),l.getAttribute('stroke-width')]),
    dots:[...document.querySelectorAll('.dlx circle')].map(R), ticks:[...document.querySelectorAll('#ysl .tk i')].map(d=>{const r=d.getBoundingClientRect(); return r.left+r.width/2}),
    imgs:[...document.querySelectorAll('.dlx img, .cands img')].filter(vis).map(R), btns:[...document.querySelectorAll('button.rbtn')].filter(vis).map(R), rows:document.querySelectorAll('#listView .lvrow.la').length, la:window.__laInfo().on}}"""
 OPTS="()=>{const c=document.querySelector('button.rbtn.cmain'); c.click(); return new Promise(r=>setTimeout(()=>{const o=[c.dataset.ch,...[...document.querySelectorAll('.copts button')].map(b=>b.dataset.ch)]; document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true})); r(o)},600))}"
@@ -27,7 +27,7 @@ async def run(b,tag,vp,mob):
   await pick(pg,'pie'); s=await pg.evaluate(R); ck(tag+" one big pie, no list rows",s['mode']=='pie' and s['pie'] and s['rows']==0 and not s['la'],s)
   if s['pie'] and vp['width']<600:
     p=s['pie']; cx=(p[0]+p[2])/2; S=p[2]-p[0]
-    ck(tag+f" pie centred between x=52 and the right edge (cx {cx:.1f} vs {(52+s['vw'])/2:.1f}), large (S={S:.0f})",abs(cx-(52+s['vw'])/2)<=2 and S>=0.75*(s['vw']-52),p)
+    ck(tag+f" pie centred on the full screen width (cx {cx:.1f} vs {s['vw']/2:.1f}), large (S={S:.0f})",abs(cx-s['vw']/2)<=1.5 and S>=0.7*s['vw'],p)
     hit=[x for x in s['btns']+s['imgs'] if ov(p,x,1)]; ck(tag+" pie clear of the thumbnails and floating buttons",not hit,hit)
   await pg.evaluate("()=>{ if(document.getElementById('barTime').hidden) document.getElementById('bTime').click(); window.__ySelectAll&&window.__ySelectAll(); }"); await pg.wait_for_timeout(3000)
   s=await pg.evaluate(R); ck(tag+" two years: the single entity switches to the line chart",s['mode']=='line',s['mode'])
@@ -41,6 +41,10 @@ async def run(b,tag,vp,mob):
     ck(f"{tag} line {nm}: label format ({labs})",labs and all(re.match(pat,l) for l in labs),labs)
     if nm=='num': ck(f"{tag} line num: abbreviated vote counts (K/M)",any(l.endswith('M') or l.endswith('K') for l in labs),labs)
     dx=sorted(set(round((d[0]+d[2])/2) for d in s['dots'])); tk=[round(t) for t in s['ticks']]
+    vg=s['vg']; vx=[round((v[1][0]+v[1][2])/2) for v in vg]; gy=[(x[1][1]+x[1][3])/2 for x in g]
+    ck(f"{tag} line {nm}: one vertical hairline per slider year position ({vx} vs {tk})",len(vg)==len(tk) and all(abs(a-b)<=1.5 for a,b in zip(sorted(vx),sorted(tk))),[vx,tk])
+    ck(f"{tag} line {nm}: vertical hairlines styled like the horizontal ones",vg and all(v[0]==g[0][0] and v[2]=='1' for v in vg),vg)
+    ck(f"{tag} line {nm}: vertical hairlines span the plot (outer horizontal gridlines)",gy and all(abs(v[1][1]-min(gy))<=1.5 and abs(v[1][3]-max(gy))<=1.5 for v in vg),[vg,gy])
     ck(f"{tag} line {nm}: points on the slider's '20/'24 x positions",len(dx)==2 and len(tk)>=2 and abs(dx[0]-tk[0])<=1.5 and abs(dx[-1]-tk[-1])<=1.5,[dx,tk])
     bad=[(a[0],x) for a in ax for x in s['imgs']+s['btns'] if ov(a[1],x)]; ck(f"{tag} line {nm}: axis labels clear of thumbnails and buttons",not bad,bad)
     gb=[(x[1],y) for x in g for y in s['imgs']+s['btns'] if ov([x[1][0],x[1][1]-0.5,x[1][2],x[1][3]+0.5],y)]; ck(f"{tag} line {nm}: hairlines clear of thumbnails and buttons",not gb,gb)
