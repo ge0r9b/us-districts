@@ -1,0 +1,82 @@
+iso_code,iso_name,entity_id,relation,source,source_url
+AS,American Samoa,territory:60,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json
+CN-HK,Hong Kong SAR,territory:hk,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+CN-MO,Macao SAR,territory:mo,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+CN-TW,Taiwan Sheng,nation:tw,duplicate_of_iso_3166_1,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FI-01,Landskapet Åland,territory:ax,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-971,Guadeloupe,territory:gp,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-972,Martinique,territory:mq,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-973,Guyane (française),territory:gf,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-974,La Réunion,territory:re,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-976,Mayotte,territory:yt,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-BL,Saint-Barthélemy,territory:bl,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-MF,Saint-Martin,territory:mf,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-NC,Nouvelle-Calédonie,territory:nc,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-PF,Polynésie française,territory:pf,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-PM,Saint-Pierre-et-Miquelon,territory:pm,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-TF,Terres australes françaises,territory:tf,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+FR-WF,Wallis-et-Futuna,territory:wf,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+GU,Guam,territory:66,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json
+MP,Northern Mariana Islands,territory:69,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json
+NL-AW,Aruba,territory:aw,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+NL-CW,Curaçao,territory:cw,same_wikidata_item,iso_codes;wikidata_foreign,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+PR,Puerto Rico,territory:72,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json
+US,United States,nation:us,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json
+US-AK,Alaska,state:02,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-AL,Alabama,state:01,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-AR,Arkansas,state:05,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-AS,American Samoa,territory:60,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-AZ,Arizona,state:04,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-CA,California,state:06,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-CO,Colorado,state:08,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-CT,Connecticut,state:09,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-DC,District of Columbia,cog:124214,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-DE,Delaware,state:10,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-FL,Florida,state:12,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-GA,Georgia,state:13,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-GU,Guam,territory:66,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-HI,Hawaii,state:15,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-IA,Iowa,state:19,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-ID,Idaho,state:16,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-IL,Illinois,state:17,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-IN,Indiana,state:18,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-KS,Kansas,state:20,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-KY,Kentucky,state:21,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-LA,Louisiana,state:22,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MA,Massachusetts,state:25,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MD,Maryland,state:24,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-ME,Maine,state:23,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MI,Michigan,state:26,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MN,Minnesota,state:27,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MO,Missouri,state:29,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MP,Northern Mariana Islands,territory:69,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MS,Mississippi,state:28,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-MT,Montana,state:30,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NC,North Carolina,state:37,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-ND,North Dakota,state:38,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NE,Nebraska,state:31,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NH,New Hampshire,state:33,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NJ,New Jersey,state:34,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NM,New Mexico,state:35,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NV,Nevada,state:32,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-NY,New York,state:36,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-OH,Ohio,state:39,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-OK,Oklahoma,state:40,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-OR,Oregon,state:41,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-PA,Pennsylvania,state:42,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-PR,Puerto Rico,territory:72,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-RI,Rhode Island,state:44,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-SC,South Carolina,state:45,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-SD,South Dakota,state:46,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-TN,Tennessee,state:47,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-TX,Texas,state:48,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-UM,United States Minor Outlying Islands,territory:74,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-UT,Utah,state:49,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-VA,Virginia,state:51,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-VI,"Virgin Islands, U.S.",territory:78,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-VT,Vermont,state:50,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-WA,Washington,state:53,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-WI,Wisconsin,state:55,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-WV,West Virginia,state:54,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+US-WY,Wyoming,state:56,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json
+VI,"Virgin Islands, U.S.",territory:78,domestic_row,iso_codes,https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json

@@ -5,11 +5,11 @@
   "tribes.csv": 577,
   "governments_geoid_xwalk.csv": 56529,
   "county_government_check.csv": 3222,
-  "id_registry.csv": 93584,
-  "sources.csv": 24,
+  "id_registry.csv": 97339,
+  "sources.csv": 29,
   "changes_since_cog2022.csv": 449,
-  "images.csv": 6317,
-  "images_gaps.csv": 33603,
+  "images.csv": 9846,
+  "images_gaps.csv": 37584,
   "local/AK.csv": 236,
   "local/AL.csv": 1211,
   "local/AR.csv": 1563,
@@ -148,6 +148,48 @@
   "qid_by_p774": 19390,
   "qid_by_p882": 3030
  },
+ "foreign": {
+  "dependencies": 44,
+  "domestic_cross_reference": 6,
+  "flag|country|P41": 3,
+  "flag|dependency|P41": 30,
+  "flag|outlying area|P41": 1,
+  "flag|overseas collectivity with special status|P41": 1,
+  "flag|overseas collectivity|P41": 5,
+  "flag|overseas territory|P41": 1,
+  "flag|sovereign|P41": 195,
+  "flag|special administrative region|P41": 2,
+  "flag|subdivision|P41": 1488,
+  "iso2_duplicate_of_iso1_reviewed": 1,
+  "iso2_not_first_level": 1456,
+  "iso2_same_item_as_iso1": 17,
+  "iso_not_built_no_government": 3,
+  "nations": 196,
+  "non_un_nation_rows": 2,
+  "qid_nations_deps": 240,
+  "qid_subdivisions": 3408,
+  "seal|country|P94": 3,
+  "seal|dependency|P158": 1,
+  "seal|dependency|P94": 25,
+  "seal|overseas collectivity with special status|P94": 1,
+  "seal|overseas collectivity|P94": 5,
+  "seal|overseas territory|P94": 1,
+  "seal|sovereign|P158": 14,
+  "seal|sovereign|P94": 180,
+  "seal|special administrative region|P158": 1,
+  "seal|special administrative region|P94": 1,
+  "seal|subdivision|P158": 147,
+  "seal|subdivision|P94": 1424,
+  "subdivisions": 3515,
+  "un_members": 193,
+  "un_members_also_wikidata_p463": 192,
+  "us_subdivision_cross_reference": 57
+ },
+ "foreign_not_built": [
+  "iso AQ not built: Antarctica: no government (Antarctic Treaty area)",
+  "iso BV not built: Bouvet Island: uninhabited Norwegian dependency without its own government",
+  "iso HM not built: Heard Island and McDonald Islands: uninhabited Australian external territory without its own government"
+ ],
  "images_by_kind_and_entity_type": {
   "flag|dc": 1,
   "flag|nation": 1,
@@ -174,22 +216,55 @@
   "seal|tribe|enwiki_fair_use": 3,
   "seal|tribe|enwiki_free": 2
  },
+ "foreign_images_by_kind_and_type": {
+  "flag|country|P41": 3,
+  "flag|dependency|P41": 30,
+  "flag|outlying area|P41": 1,
+  "flag|overseas collectivity with special status|P41": 1,
+  "flag|overseas collectivity|P41": 5,
+  "flag|overseas territory|P41": 1,
+  "flag|sovereign|P41": 195,
+  "flag|special administrative region|P41": 2,
+  "flag|subdivision|P41": 1488,
+  "seal|country|P94": 3,
+  "seal|dependency|P158": 1,
+  "seal|dependency|P94": 25,
+  "seal|overseas collectivity with special status|P94": 1,
+  "seal|overseas collectivity|P94": 5,
+  "seal|overseas territory|P94": 1,
+  "seal|sovereign|P158": 14,
+  "seal|sovereign|P94": 180,
+  "seal|special administrative region|P158": 1,
+  "seal|special administrative region|P94": 1,
+  "seal|subdivision|P158": 147,
+  "seal|subdivision|P94": 1424
+ },
  "images_by_license": {
-  "CC-BY-3.0": 3,
-  "CC-BY-4.0": 15,
-  "CC-BY-SA-3.0": 31,
-  "CC-BY-SA-4.0": 115,
-  "CC0-1.0": 40,
+  "": 2,
+  "CC-BY-2.5": 11,
+  "CC-BY-3.0": 22,
+  "CC-BY-4.0": 34,
+  "CC-BY-SA-1.0": 1,
+  "CC-BY-SA-2.5": 52,
+  "CC-BY-SA-3.0": 515,
+  "CC-BY-SA-4.0": 501,
+  "CC0-1.0": 171,
   "GFDL-1.2-or-later": 1,
-  "LicenseRef-Attribution": 2,
-  "LicenseRef-Copyrighted-free-use": 4,
+  "LicenseRef-Attribution": 7,
+  "LicenseRef-Copyrighted-free-use": 6,
+  "LicenseRef-FAL": 2,
+  "LicenseRef-GFDL": 1,
   "LicenseRef-GPL": 1,
-  "LicenseRef-PublicDomain": 1531,
+  "LicenseRef-OGL-om-1.0": 2,
+  "LicenseRef-PublicDomain": 3943,
   "fair-use": 4574
  },
  "image_gaps_by_reason": {
+  "flag|no_P41_on_wikidata": 1922,
+  "flag|no_qid": 107,
   "seal|no_P158_on_wikidata; enwiki article fallback": 33000,
-  "seal|no_qid": 603
+  "seal|no_P158_or_P94_on_wikidata": 1845,
+  "seal|no_qid": 710
  },
  "changes_by_state": {
   "AL": 31,
@@ -385,6 +460,21 @@
    "last_modified": "2026-03-10",
    "retrieved_at": "2026-10-18T14:02:26Z"
   },
+  "iso_3166-1": {
+   "url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:52:53Z"
+  },
+  "iso_3166-2": {
+   "url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-2.json",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:52:54Z"
+  },
+  "statcan_sgc": {
+   "url": "https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:59:34Z"
+  },
   "states": {
    "url": "https://www2.census.gov/geo/docs/reference/codes2020/national_state2020.txt",
    "last_modified": "2023-02-13",
@@ -394,6 +484,16 @@
    "url": "https://www2.census.gov/geo/tiger/TIGER2024/AIANNH/tl_2024_us_aiannh.zip",
    "last_modified": "2025-06-27",
    "retrieved_at": "2026-10-18T13:25:07Z"
+  },
+  "un_members": {
+   "url": "https://www.un.org/en/about-us/member-states",
+   "last_modified": "2026-10-18",
+   "retrieved_at": "2026-10-18T16:52:54Z"
+  },
+  "un_observers": {
+   "url": "https://www.un.org/en/about-us/non-member-states",
+   "last_modified": "2026-10-18",
+   "retrieved_at": "2026-10-18T16:52:55Z"
   },
   "wd_ids_p5087": {
    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fv%20WHERE%20%7B%20%3Fi%20wdt%3AP5087%20%3Fv%20%7D",
@@ -410,16 +510,31 @@
    "last_modified": "",
    "retrieved_at": "2026-10-18T14:13:33Z"
   },
+  "wdf_p297": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fc%20WHERE%20%7B%20%3Fi%20wdt%3AP297%20%3Fc%20.%20FILTER%20NOT%20EXISTS%20%7B%20%3Fi%20wdt%3AP576%20%5B%5D%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:51:00Z"
+  },
+  "wdf_p300": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Fc%20WHERE%20%7B%20%3Fi%20wdt%3AP300%20%3Fc%20.%20FILTER%20NOT%20EXISTS%20%7B%20%3Fi%20wdt%3AP576%20%5B%5D%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:51:05Z"
+  },
+  "wdf_un": {
+   "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20WHERE%20%7B%20%3Fi%20p%3AP463%20%3Fs%20.%20%3Fs%20ps%3AP463%20wd%3AQ1065%20.%20FILTER%20NOT%20EXISTS%20%7B%20%3Fs%20pq%3AP582%20%5B%5D%20%7D%20FILTER%20NOT%20EXISTS%20%7B%20%3Fi%20wdt%3AP576%20%5B%5D%20%7D%20%7D",
+   "last_modified": "",
+   "retrieved_at": "2026-10-18T16:51:02Z"
+  },
   "wikidata_tribes": {
    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fi%20%3Flabel%20%3Foff%20WHERE%20%7B%20%3Fi%20wdt%3AP31%20wd%3AQ7840353%20.%20OPTIONAL%20%7B%20%3Fi%20rdfs%3Alabel%20%3Flabel%20FILTER%28LANG%28%3Flabel%29%3D%22en%22%29%20%7D%20OPTIONAL%20%7B%20%3Fi%20wdt%3AP1448%20%3Foff%20%7D%20%7D",
    "last_modified": "",
    "retrieved_at": "2026-10-18T13:44:48Z"
   },
   "commons_*": {
-   "api_requests": 90,
+   "api_requests": 224,
    "host": "commons.wikimedia.org",
    "retrieved_at_min": "2026-10-18T14:37:34Z",
-   "retrieved_at_max": "2026-10-18T15:53:11Z"
+   "retrieved_at_max": "2026-10-18T17:06:55Z"
   },
   "enwd_sl_*": {
    "api_requests": 1478,
@@ -462,6 +577,54 @@
    "host": "query.wikidata.org",
    "retrieved_at_min": "2026-10-18T15:47:30Z",
    "retrieved_at_max": "2026-10-18T15:47:51Z"
+  },
+  "wdf_img_*": {
+   "api_requests": 21,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:53:50Z",
+   "retrieved_at_max": "2026-10-18T17:05:10Z"
+  },
+  "wdf_img2_*": {
+   "api_requests": 21,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:54:05Z",
+   "retrieved_at_max": "2026-10-18T17:05:14Z"
+  },
+  "wdf_p131_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:57:17Z",
+   "retrieved_at_max": "2026-10-18T16:57:17Z"
+  },
+  "wdf_p1313_*": {
+   "api_requests": 27,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:53:27Z",
+   "retrieved_at_max": "2026-10-18T17:05:05Z"
+  },
+  "wdf_p17_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:52:57Z",
+   "retrieved_at_max": "2026-10-18T16:52:57Z"
+  },
+  "wdf_p36_*": {
+   "api_requests": 27,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:52:59Z",
+   "retrieved_at_max": "2026-10-18T17:04:58Z"
+  },
+  "wdf_p361_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:57:19Z",
+   "retrieved_at_max": "2026-10-18T16:57:19Z"
+  },
+  "wdf_probe_realm_*": {
+   "api_requests": 1,
+   "host": "query.wikidata.org",
+   "retrieved_at_min": "2026-10-18T16:56:48Z",
+   "retrieved_at_max": "2026-10-18T16:56:48Z"
   }
  }
 }

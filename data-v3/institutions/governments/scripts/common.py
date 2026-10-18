@@ -91,12 +91,27 @@ SOURCE_TABLE = {
                      'federal agencies: P856 official website = Federal Register agency_url, item an organisation)',
                      'https://query.wikidata.org/', ['wd_ids_*', 'wd_p590_*', 'wd_p856_*', 'wd_p856org_*']),
     'wikidata_images': ('Wikidata SPARQL: P158 seal image and P41 flag image of the matched items', 'https://query.wikidata.org/', ['wd_img_*']),
+    'iso_codes': ('Debian iso-codes v4.20.1: ISO 3166-1 and ISO 3166-2 codes, English names and subdivision types (iso_3166-1.json, iso_3166-2.json)',
+                  'https://salsa.debian.org/iso-codes-team/iso-codes/-/tree/v4.20.1/data', ['iso_3166-1', 'iso_3166-2']),
+    'un_members': ('United Nations, Member States (names and dates of admission)', 'https://www.un.org/en/about-us/member-states', ['un_members']),
+    'un_observers': ('United Nations, Non-member States (permanent observers: Holy See, State of Palestine)',
+                     'https://www.un.org/en/about-us/non-member-states', ['un_observers']),
+    'statcan_sgc': ('Statistics Canada, Standard Geographical Classification (SGC) 2021, classification structure CSV (province and territory codes)',
+                    'https://www.statcan.gc.ca/eng/statistical-programs/document/sgc-cgt-2021-structure-eng.csv', ['statcan_sgc']),
+    'wikidata_foreign': ('Wikidata SPARQL: items by exact ISO code (P297 alpha-2, P300 ISO 3166-2), UN membership (P463 Q1065), sovereign (P17/P131/P361), '
+                         'capital (P36), office of head of government (P1313), flag (P41), seal (P158), coat of arms (P94)',
+                         'https://query.wikidata.org/', ['wdf_*']),
     'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
                     'https://commons.wikimedia.org/w/api.php', ['commons_*']),
     'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
                    '(fair-use fallback for seals)', 'https://en.wikipedia.org/w/api.php', ['enwd_sl_*', 'enwp_*']),
 }
 LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
+            'iso_codes': 'LGPL-2.1-or-later (Debian iso-codes); the codes themselves are ISO 3166 facts',
+            'un_members': 'facts only (United Nations website, terms of use https://www.un.org/en/about-us/terms-of-use)',
+            'un_observers': 'facts only (United Nations website, terms of use https://www.un.org/en/about-us/terms-of-use)',
+            'statcan_sgc': 'Statistics Canada Open Licence (https://www.statcan.gc.ca/en/terms-conditions/open-licence)',
+            'wikidata_foreign': 'CC0 1.0 (Wikidata)',
             'enwiki_api': 'metadata: CC BY-SA 4.0 (Wikipedia); each image under its own license or fair use (images.csv)', 'commons_api': 'metadata: CC BY-SA 4.0 / CC0 (Wikimedia); each image under its own license (images.csv)'}
 
 
