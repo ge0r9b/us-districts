@@ -1,0 +1,75 @@
+state,name,rows_with_name,shadowed_geoid,shown_instead_geoid,shadowed_2024,shown_2024,shadowed_2020,shown_2020,wrong_2024,wrong_2020,wrong_est_flag
+Arkansas,Harmony Grove School District,2,0507290,0507320,"[397, 1279, 1702]","[331, 1356, 1722]","[533, 1292, 1881]","[312, 1361, 1714]",yes,yes,no
+Arkansas,Lakeside School District,2,0508640,0508670,"[1335, 1416, 2783]","[2563, 5708, 8473]","[1665, 1490, 3232]","[2856, 6258, 9314]",yes,yes,no
+California,Washington Unified School District,2,0641580,0601415,"[12840, 7960, 21572]","[1497, 1028, 2597]",null,"[1572, 760, 2369]",yes,yes,no
+California,Pioneer Union Elementary School District,3,0630480,0630520,"[113, 247, 364]","[113, 247, 364]","[1089, 1858, 3024]","[239, 376, 625]",no,yes,no
+California,Pioneer Union Elementary School District,3,0630510,0630520,"[2331, 4930, 7418]","[113, 247, 364]","[2522, 4186, 6851]","[239, 376, 625]",yes,yes,no
+California,Lakeside Union Elementary School District,2,0620790,0620760,"[52, 204, 263]","[52, 204, 263]","[7617, 14367, 22551]","[242, 278, 539]",no,yes,no
+California,Mountain View Elementary School District,2,0626190,0626220,"[6294, 3417, 10010]","[8110, 6877, 15371]",null,"[8485, 5179, 13922]",yes,yes,no
+California,Jefferson Elementary School District,3,0618870,0618810,"[20420, 8009, 29400]","[76, 123, 204]","[28667, 7964, 37185]","[152, 188, 348]",yes,yes,no
+California,Jefferson Elementary School District,3,0618840,0618810,"[4120, 3495, 7901]","[76, 123, 204]","[5036, 3319, 8515]","[152, 188, 348]",yes,yes,no
+California,Pacific Union Elementary School District,2,0629400,0629430,"[244, 383, 636]","[1843, 629, 2614]","[431, 465, 913]","[2123, 666, 2904]",yes,yes,no
+California,Junction Elementary School District,2,0619200,0619230,"[717, 2165, 2944]","[109, 138, 258]","[635, 1885, 2576]","[104, 101, 215]",yes,yes,no
+California,Hope Elementary School District,2,0617490,0617520,"[6313, 2197, 8810]","[69, 196, 270]","[6576, 2331, 9095]","[161, 267, 434]",yes,yes,no
+California,Ocean View Elementary School District,2,0628170,0628140,"[22009, 25523, 48859]","[22009, 25523, 48859]",null,"[25682, 26558, 53463]",no,yes,no
+California,Liberty Elementary School District,2,0621540,0621570,"[723, 435, 1199]","[405, 972, 1405]","[985, 511, 1535]","[377, 720, 1116]",yes,yes,no
+Illinois,Oak Grove School District 68,2,1729100,1729130,"[664, 856, 1553]","[1889, 1433, 3490]","[690, 861, 1589]","[2313, 1661, 4073]",yes,yes,no
+Missouri,Miami R-I School District,2,2920820,2920840,"[135, 591, 734]","[199, 499, 706]","[149, 655, 823]","[224, 503, 738]",yes,yes,no
+Montana,Cottonwood Elementary School District,2,3014150,3007500,"[63, 191, 268]","[317, 306, 638]","[137, 284, 437]","[169, 126, 303]",yes,yes,no
+New Jersey,Franklin Township School District,4,3405490,3405430,"[22069, 9714, 32923]","[3246, 6036, 9450]","[25587, 9040, 35023]","[3649, 5948, 9746]",yes,yes,yes
+New Jersey,Franklin Township School District,4,3405460,3405430,"[807, 1306, 2155]","[3246, 6036, 9450]","[840, 1300, 2183]","[3649, 5948, 9746]",yes,yes,yes
+New Jersey,Franklin Township School District,4,3405520,3405430,"[593, 1215, 1844]","[3246, 6036, 9450]","[626, 1159, 1827]","[3649, 5948, 9746]",yes,yes,yes
+New Jersey,Monroe Township School District,2,3410500,3410470,"[16677, 16345, 33637]","[9910, 10479, 20755]","[16593, 13841, 30691]","[10502, 10261, 21078]",yes,yes,no
+New Jersey,Greenwich Township School District,3,3406180,3406150,"[1244, 1700, 2999]","[206, 264, 474]","[1321, 1742, 3112]","[226, 261, 498]",yes,yes,yes
+New Jersey,Greenwich Township School District,3,3406210,3406150,"[1388, 1756, 3203]","[206, 264, 474]","[1503, 1786, 3335]","[226, 261, 498]",yes,yes,no
+New Jersey,Ocean Township School District,2,3412060,3412090,"[7405, 7507, 15216]","[1939, 4085, 6110]","[8717, 7426, 16336]",null,yes,yes,yes
+New Jersey,Springfield Township School District,2,3415630,3415660,"[5110, 3792, 9117]","[770, 1213, 2012]","[6006, 3710, 9838]","[870, 1251, 2148]",yes,yes,yes
+New Jersey,Hamilton Township School District,2,3406540,3406510,"[24133, 21211, 46138]","[6927, 6803, 13976]","[26875, 21584, 49139]","[7847, 6567, 14643]",yes,yes,no
+New Jersey,Lawrence Township School District,2,3408400,3408370,"[11519, 4875, 16833]","[392, 1092, 1495]","[12300, 4879, 17444]","[468, 1063, 1542]",yes,yes,yes
+New Jersey,Union Township School District,2,3416500,3416440,"[19183, 9620, 29517]","[1318, 1628, 3013]","[21027, 8314, 29596]","[1443, 1644, 3151]",yes,yes,yes
+New Jersey,Washington Township School District,4,3417070,3417130,"[12347, 15279, 28095]","[4681, 6047, 10936]","[14265, 15908, 30567]","[5602, 6505, 12308]",yes,yes,no
+New Jersey,Washington Township School District,4,3417040,3417130,"[152, 274, 430]","[4681, 6047, 10936]","[171, 242, 420]","[5602, 6505, 12308]",yes,yes,yes
+New Jersey,Washington Township School District,4,3417160,3417130,"[1565, 2640, 4266]","[4681, 6047, 10936]","[1561, 2462, 4088]","[5602, 6505, 12308]",yes,yes,yes
+New Jersey,Fairfield Township School District,2,3405040,3405010,"[1294, 696, 2004]","[1191, 3454, 4711]","[1621, 721, 2359]","[1452, 3436, 4918]",yes,yes,yes
+New Jersey,Mansfield Township School District,2,3409540,3409510,"[1590, 2477, 4156]","[2678, 2780, 5541]","[1674, 2260, 4021]","[3044, 3058, 6169]",yes,yes,no
+Ohio,Green Local School District,3,3905055,3904961,"[933, 3072, 4032]","[389, 1496, 1891]","[978, 2949, 3987]","[490, 1424, 1925]",yes,yes,yes
+Ohio,Green Local School District,3,3905001,3904961,"[6078, 8851, 15049]","[389, 1496, 1891]","[6401, 9148, 15761]","[490, 1424, 1925]",yes,yes,yes
+Ohio,Springfield Local School District,3,3904837,3904822,"[1511, 3244, 4789]","[7759, 7749, 15631]","[1602, 3260, 4913]","[8246, 7691, 16184]",yes,yes,no
+Ohio,Springfield Local School District,3,3905006,3904822,"[3457, 6106, 9657]","[7759, 7749, 15631]","[3483, 5932, 9553]","[8246, 7691, 16184]",yes,yes,no
+Ohio,Southeast Local School District,2,3904922,3905058,"[1538, 4355, 5938]","[732, 3626, 4389]","[1583, 4273, 5942]","[791, 3761, 4604]",yes,yes,no
+Ohio,Crestview Local School District,3,3904942,3905035,"[654, 3001, 3679]","[499, 2135, 2652]","[724, 2935, 3700]","[520, 2142, 2692]",yes,yes,no
+Ohio,Crestview Local School District,3,3904643,3905035,"[731, 2436, 3192]","[499, 2135, 2652]","[872, 2736, 3664]","[520, 2142, 2692]",yes,yes,no
+Ohio,Northeastern Local School District,2,3904672,3904625,"[1307, 2988, 4335]","[3315, 8128, 11544]","[1395, 2987, 4451]","[4608, 9288, 14095]",yes,yes,no
+Ohio,Buckeye Local School District,3,3904847,3904585,"[3034, 6595, 9722]","[1833, 3349, 5222]","[2947, 6272, 9341]","[2019, 3248, 5359]",yes,yes,yes
+Ohio,Buckeye Local School District,3,3904778,3904585,"[1863, 4526, 6433]","[1833, 3349, 5222]","[2205, 4752, 7076]","[2019, 3248, 5359]",yes,yes,no
+Ohio,Western Reserve Local School District,2,3904839,3904774,"[608, 1865, 2490]","[930, 2612, 3573]","[648, 1729, 2400]","[926, 2376, 3355]",yes,yes,no
+Ohio,Eastern Local School District,3,3904603,3904851,"[829, 3724, 4575]","[493, 2245, 2758]","[887, 3457, 4394]","[543, 2228, 2806]",yes,yes,no
+Ohio,Eastern Local School District,3,3904912,3904851,"[430, 1760, 2200]","[493, 2245, 2758]","[503, 1798, 2324]","[543, 2228, 2806]",yes,yes,no
+Ohio,Madison Local School District,3,3904612,3904788,"[936, 3885, 4846]","[3218, 5685, 8985]","[952, 3738, 4749]","[3443, 5749, 9340]",yes,yes,no
+Ohio,Madison Local School District,3,3904945,3904788,"[3226, 8413, 11733]","[3218, 5685, 8985]","[3470, 8226, 11877]","[3443, 5749, 9340]",yes,yes,no
+Ohio,Northwest Local School District,3,3904736,3904990,"[17292, 22004, 39692]","[2591, 5108, 7755]","[17691, 23538, 41814]","[2706, 5038, 7868]",yes,yes,no
+Ohio,Northwest Local School District,3,3904963,3904990,"[984, 3324, 4339]","[2591, 5108, 7755]","[1087, 3177, 4315]","[2706, 5038, 7868]",yes,yes,no
+Ohio,Northridge Local School District,2,3904803,3904873,"[1617, 4914, 6579]","[1114, 1821, 2959]","[1531, 4827, 6446]","[1187, 1881, 3124]",yes,yes,no
+Ohio,Southeastern Local School District,2,3904952,3904627,"[753, 2600, 3366]","[650, 2048, 2723]","[843, 2501, 3389]","[694, 1941, 2674]",yes,yes,no
+Ohio,Lakota Local School District,2,3904611,3904956,"[24694, 33999, 59296]","[1209, 2815, 4052]","[25225, 34477, 60616]","[1251, 2642, 3960]",yes,yes,no
+Ohio,Northwestern Local School District,2,3904626,3910033,"[1564, 4579, 6206]","[903, 3355, 4297]","[1832, 4516, 6442]","[849, 3187, 4094]",yes,yes,no
+Ohio,Southern Local School District,3,3904906,3904644,"[475, 1477, 1973]","[555, 2308, 2889]","[533, 1442, 1998]","[627, 2280, 2958]",yes,yes,no
+Ohio,Southern Local School District,3,3904853,3904644,"[392, 1862, 2264]","[555, 2308, 2889]","[458, 1870, 2349]","[627, 2280, 2958]",yes,yes,no
+Ohio,Manchester Local School District,2,3900537,3905000,"[360, 1500, 1870]","[1680, 3258, 4977]","[388, 1521, 1928]","[1749, 3086, 4903]",yes,yes,no
+Ohio,Perry Local School District,3,3904992,3904790,"[6233, 9820, 16183]","[1805, 3443, 5298]","[6464, 9739, 16452]","[1702, 3229, 4996]",yes,yes,no
+Ohio,Perry Local School District,3,3904578,3904790,"[588, 1353, 1960]","[1805, 3443, 5298]","[706, 1322, 2049]","[1702, 3229, 4996]",yes,yes,no
+Ohio,Lake Local School District,2,3905069,3904986,"[2223, 3226, 5507]","[3592, 8068, 11766]","[2662, 3467, 6240]","[3675, 7844, 11665]",yes,yes,no
+Ohio,Highland Local School District,2,3904880,3904849,"[1239, 4615, 5896]","[4643, 8746, 13519]","[1212, 4386, 5691]","[4724, 8685, 13585]",yes,yes,no
+Ohio,Riverside Local School District,2,3910014,3904809,"[8462, 14048, 22725]","[192, 1222, 1426]","[8725, 14330, 23343]","[266, 1664, 1956]",yes,yes,no
+Oklahoma,Wilson Public Schools,2,4032880,4032940,"[55, 289, 350]","[110, 963, 1080]","[196, 574, 793]","[113, 926, 1050]",yes,yes,no
+Texas,Edgewood Independent School District,2,4818150,4818120,"[7938, 3661, 11710]","[346, 2491, 2856]","[10700, 3015, 13924]","[347, 2302, 2669]",yes,yes,no
+Texas,Midway Independent School District,2,4830660,4830640,"[65, 871, 944]","[8011, 17176, 25504]","[63, 800, 869]","[8417, 16871, 25695]",yes,yes,no
+Texas,Centerville Independent School District,2,4813380,4813410,"[72, 408, 481]","[284, 2229, 2526]","[81, 405, 487]","[327, 2129, 2476]",yes,yes,no
+Texas,Chapel Hill Independent School District,2,4813680,4813650,"[247, 1045, 1302]","[2807, 6811, 9743]","[300, 990, 1305]","[2815, 6668, 9627]",yes,yes,no
+Texas,Big Sandy Independent School District,2,4810170,4810140,"[184, 1314, 1508]","[328, 1792, 2142]","[176, 981, 1167]","[355, 1725, 2112]",yes,yes,no
+Texas,Dawson Independent School District,2,4816350,4816380,"[31, 222, 255]","[220, 1257, 1486]","[11, 98, 109]","[224, 1193, 1431]",yes,yes,no
+Texas,Northside Independent School District,2,4833090,4833120,"[69, 199, 271]","[148564, 119436, 271141]","[143, 426, 574]","[159825, 108281, 272497]",yes,yes,no
+Texas,Highland Park Independent School District,2,4835560,4823250,"[348, 939, 1305]","[6099, 12278, 18808]","[401, 916, 1343]","[7678, 13065, 21042]",yes,yes,no
+Texas,Wylie Independent School District,2,4846530,4846500,"[14121, 20513, 36087]","[2595, 11611, 14353]","[15104, 19040, 34819]","[2227, 10088, 12505]",yes,yes,no
+Texas,Hubbard Independent School District,2,4823730,4823700,"[164, 605, 777]","[17, 240, 257]","[176, 639, 821]","[25, 227, 254]",yes,yes,no
+Texas,Valley View Independent School District,2,4843800,4843860,"[1477, 2080, 3600]","[286, 1551, 1846]","[2609, 2049, 4723]","[274, 1369, 1656]",yes,yes,no

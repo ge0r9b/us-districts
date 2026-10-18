@@ -1,0 +1,32 @@
+{
+ "ushouse": {
+  "code+point": 434,
+  "code": 2,
+  "rows": 436
+ },
+ "senate": {
+  "code+point": 1919,
+  "code": 23,
+  "name+point": 8,
+  "rows": 1950
+ },
+ "statehouse": {
+  "code+point": 4843,
+  "code": 39,
+  "name+point": 8,
+  "rows": 4890
+ },
+ "schools": {
+  "name+point": 13256,
+  "name": 49,
+  "rows": 13305
+ },
+ "counties": {
+  "name+point": 3139,
+  "name": 5,
+  "rows": 3144
+ },
+ "towns": {
+  "rows": 1598
+ }
+}
