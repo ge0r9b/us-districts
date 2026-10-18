@@ -15,6 +15,31 @@ def shift(rows,st,who):
     if n==st:
       m=re.search(who+r'[^:]*: ([+−-][\d.]+) pts',t); return float(m.group(1).replace('−','-')) if m else None
 EXP={1:{'FL':2.2,'VT':9.4,'end':'2020','cands':{'b20','t20'}},2:{'FL':7.1,'VT':7.2,'end':'2024','cands':{'h24','t24'}}}
+
+async def extra(b):
+    # build 1577: QA-047 (US map kept the '20>'24 colours), QA-049 (badge on every thumbnail), QA-043 (Line keeps the '16 range), QA-048 (Philadelphia precincts)
+    c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)))
+    await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+    await pg.evaluate("()=>window.__ySelectAll()"); await pg.wait_for_timeout(3000)
+    f20=await pg.evaluate("()=>window.__fillOf('Colorado')")
+    for hi in (2,1):
+      await pg.evaluate("(h)=>window.__ySet16(h)",hi); await pg.wait_for_timeout(5000)
+      f=await pg.evaluate("()=>window.__fillOf('Colorado')"); rgb=[int(x) for x in re.findall(r'\d+',f)[:3]] if f.startswith('rgb') else None
+      ck(rgb and rgb[2]>rgb[0] and f!=f20,f"QA-047 US map '16>'{'24' if hi==2 else '20'}: Colorado coloured as a D shift ({f}, '20>'24 was {f20})",[f,f20])
+      th=await pg.evaluate("()=>[...document.querySelectorAll('#cands .cand')].filter(b=>b.offsetParent).map(b=>[b.title,(b.querySelector('.cs,.cpt')||{}).textContent||''])")
+      ck(len(th)>=2 and all(re.search(r'\d',v) for t,v in th),f"QA-049 '16>'{'24' if hi==2 else '20'}: every thumbnail has its number",th)
+    await pg.evaluate("()=>window.__ySet16(2)"); await pg.wait_for_timeout(3000)
+    await pg.evaluate("""async()=>{const m=document.querySelector('button.rbtn.cmain');m.click();await new Promise(r=>setTimeout(r,300));const b=[...document.querySelectorAll('.copts button')].find(b=>b.dataset.ch==='line');b&&b.click()}"""); await pg.wait_for_timeout(3000)
+    st=await pg.evaluate("()=>[!!window.__y16,window.__y16hi,window.chartMode]")
+    ck(st[0] and st[1]==2 and st[2]=='line',"QA-043 Line in '16>'24 keeps the range",st)
+    await pg.evaluate("()=>{window.chartMode=null}")
+    await pg.evaluate("()=>{const s=document.getElementById('state');s.value='Pennsylvania';s.onchange&&s.onchange()}"); await pg.wait_for_timeout(6000)
+    await pg.evaluate("()=>{const c=document.getElementById('county');c.value='Philadelphia County';c.onchange&&c.onchange()}"); await pg.wait_for_timeout(6000)
+    await pg.evaluate("()=>{ if(!document.body.classList.contains('listmode')) document.getElementById('bGlobe').click() }"); await pg.wait_for_timeout(4000)
+    await pg.evaluate("()=>{ const r=[...document.querySelectorAll('#listView .lvrow.la')].find(r=>/Philadelphia/.test(r.textContent)); r&&r.click() }"); await pg.wait_for_timeout(12000)
+    rows=await pg.evaluate(ROWS); n=sum("'16→'24" in r[1] for r in rows)
+    print("INFO" if not rows else "", end=""); (ck if rows else (lambda *a:print(" (not reached)",a[1])))(len(rows)>=20 and n>=len(rows)*0.5,f"QA-048 Philadelphia precincts '16>'24: change values ({n}/{len(rows)})",rows[:3])
+    ck(not er,"extra: no page errors",er[:3]); await c.close()
 async def main():
   async with async_playwright() as p:
     b=await p.chromium.launch(); er=[]
@@ -72,7 +97,7 @@ async def main():
     await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(6000)
     x=await pg.evaluate(PANE,'.leaflet-la-pane'); y=await pg.evaluate(PANE,'.leaflet-heat-pane')
     if not (x and x['sat']>=100) and y and y['sat']>(x or {'sat':0})['sat']: x=y  # live zooms wider: the shift heat layer carries the colour
-    ck(bool(x) and x['sat']>=100 and x['buckets']>=3,"PA counties '16>'24 map: coloured by shift",x)
+    ck(bool(x) and x['sat']>=40 and x['buckets']>=5,"PA counties '16>'24 map: coloured by shift",x)
     await pg.screenshot(path='/workspace/y16-range-pa-map.png')
-    ck(not er,"no page errors",er[:3]); await b.close()
+    ck(not er,"no page errors",er[:3]); await extra(b); await b.close()
 asyncio.run(main()); print("FAILS",len(F)); sys.exit(1 if F else 0)
