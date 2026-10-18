@@ -28,6 +28,8 @@ CURATED_SOURCES = {   # source_id -> description, landing URL
     'ne_kearney_election': ('Nebraska Secretary of State county election results (Kearney County 2020 General, official) '
                             'and Nebraska Revised Statutes 23-295', 'https://countyelectionresults.nebraska.gov/'),
     'sc_legislature': ('South Carolina Legislature, 124th session bills and acts', 'https://www.scstatehouse.gov/'),
+    'tceq_wdd': ('Texas Commission on Environmental Quality, Water Districts Database (district list and detail pages: '
+                 'creation date, activity status and date)', 'https://www14.tceq.texas.gov/iwud/'),
     'wi_mds': ('Wisconsin Department of Administration, Municipal Data System (incorporations)', 'https://mds.wi.gov/View/Incorporations'),
 }
 
@@ -191,6 +193,9 @@ def build(reg, rows):
     # ---- curated official state sources
     with open(os.path.join(ROOT, 'changes_curated.csv'), encoding='utf-8') as f:
         cur = list(csv.DictReader(f))
+    # generated in the same format from the TCEQ Water Districts Database (scripts/tx_wdd_changes.py)
+    with open(os.path.join(ROOT, 'changes_tceq_wdd.csv'), encoding='utf-8') as f:
+        cur += list(csv.DictReader(f))
     used_src = set()
     for c in cur:
         used_src.add(c['source_id'])
@@ -207,11 +212,12 @@ def build(reg, rows):
             row.update(entity_id=eid, name=c['name'], type=c['new_type'], subtype=c['new_subtype'], gov_status='independent',
                        parent_id='state:' + ss, state_fips=ss, state=c['state'], county_geoid=c['county_geoid'],
                        geoid=c['geoid'], geoid_layer=c['geoid_layer'], geoid_vintage='2024' if c['geoid'] else '',
-                       geoid_match='official_source_code_2024' if c['geoid'] else 'not_in_tiger_2024',
+                       geoid_match='official_source_code_2024' if c['geoid'] else '' if c['new_type'] == 'special_district' else 'not_in_tiger_2024',
                        nces_leaid=c['geoid'] if c['new_type'] == 'school_district' else '', is_active='Y',
                        note=c['detail'], source=c['source_id'] + (';gaz2024' if c['geoid'] else ''), source_url=c['source_url'],
                        retrieved_at=c['retrieved_at'], license=STATE_LICENSE,
-                       tiger_status='current_2024' if c['geoid'] else 'not_in_tiger_2024', flags='not_in_cog2022',
+                       tiger_status='current_2024' if c['geoid'] else '' if c['new_type'] == 'special_district' else 'not_in_tiger_2024',
+                       flags='not_in_cog2022',
                        valid_from=c['effective_date'])
             # a CoG predecessor whose F-33 code was carried into the new district's LEAID gives that GEOID up
             for r in rows:

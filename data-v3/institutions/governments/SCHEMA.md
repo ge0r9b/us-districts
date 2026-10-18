@@ -64,6 +64,7 @@ sources; empty for files served over HTTP).
 | `bia:` | slug of the listed name at first registration | frozen in `id_registry.csv`; renames keep the ID (former name in `alias`) |
 | `gcn:` | Census code of a unit created after CoG 2022: place `SSPPPPP`, or cousub GEOID `SSCCCMMMMM` (registry key `census_code:place:` / `census_code:cousub:`) | frozen in the registry |
 | `nces_leaid:` | NCES LEAID of a school district created after CoG 2022 | permanent |
+| `tceq_wdd:` | TCEQ Water Districts Database district ID (Texas special district created after CoG 2022) | frozen in the registry |
 | `wi_mds_incorporation:` | Wisconsin DOA Municipal Data System incorporation record ID (unit not yet in any Census file) | frozen in the registry |
 
 ## Types
@@ -114,7 +115,7 @@ One row per (government, change) after the 2022 Census of Governments snapshot. 
 | column | meaning |
 |---|---|
 | `entity_id` | the CoG unit, or the new unit's ID (new rows are added to `local/<USPS>.csv` with `valid_from`) |
-| `change_type` | `dissolution` (disincorporated, merged into another unit, deorganized, township organization discontinued), `incorporation` (new municipality), `new_township` (new organized township), `consolidation_abolished` / `consolidation_new_entity` (school district consolidations), `reclassification` (legal kind changed, e.g. town to city; name and ID unchanged), `rename` |
+| `change_type` | `dissolution` (disincorporated, merged into another unit, deorganized, township organization discontinued), `incorporation` (new municipality), `new_township` (new organized township), `consolidation_abolished` / `consolidation_new_entity` (school district consolidations), `reclassification` (legal kind changed, e.g. town to city; name and ID unchanged), `rename`, `creation` (new special district, TCEQ WDD) |
 | `effective_date` | ISO date (or `YYYY-MM`) from the source |
 | `name`, `state` | CoG name (for a rename: the new name) and USPS code |
 | `source_url` | the record's URL (several separated by ` ; ` when a state source and the Census record both cite it) |
