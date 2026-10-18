@@ -6,8 +6,9 @@ import type pg from "pg";
 import { applyResults, refreshAggregates, sha256Hex, type ApplyReport } from "./apply.ts";
 import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
 import { loadBoundaries, type BoundaryReport } from "./boundaries.ts";
-import { BUDGET_BYTES, EST_UNIT_BYTES, fitsBudget, formatMb } from "./budget.ts";
-import { companyEstimateBytes, loadCompanies, type CompanyLoadReport } from "./companies.ts";
+import { loadCompanies, type CompanyLoadReport } from "./companies.ts";
+import { loadInstitutions, type InstitutionLoadReport } from "./inst-entities.ts";
+import { assignLocationUnits, type LocationAssignReport } from "./locations.ts";
 import { missingResultHeaders, parseCsv, readFileText } from "./csv.ts";
 import { countyPresRows, ds2016Rows, readLegacy, uscdResultRows, type LegacyContext } from "./legacy.ts";
 import { ensureUnits, unitsFromGeoCsv } from "./units.ts";
@@ -33,6 +34,8 @@ export type LoadSummary = {
   boundaries: BoundaryReport | null;
   results: ApplyReport[];
   companies: CompanyLoadReport | null;
+  institutions: InstitutionLoadReport | null;
+  locations: LocationAssignReport | null;
   gaps: string[];
   estimates: SizeEstimate[];
   databaseBytes: number;
@@ -63,26 +66,18 @@ const SCHOOL_FILES = [
   "data-v3/results/2024/senate/us_senate_2024_school.csv.gz",
 ];
 
-const HELD: { id: string; bytes: number; detail: string }[] = [
-  {
-    id: "institutions",
-    bytes: 120 * 1024 * 1024,
-    detail: "the full data/inst-* registry is about 120 MB in Postgres, and that column map is not reviewed beyond parent relations and entity images",
-  },
+const HELD: { id: string; detail: string }[] = [
   {
     id: "governments",
-    bytes: 40 * 1024 * 1024,
-    detail: "data/governments crosswalks are about 40 MB in Postgres, and the column map is not reviewed",
+    detail: "data/governments crosswalks are not loaded, and the column map is not reviewed",
   },
   {
     id: "seating",
-    bytes: 30 * 1024 * 1024,
-    detail: "officeholder files on data/inst-officeholders are about 30 MB in Postgres, and the column map is not reviewed",
+    detail: "officeholder files on data/inst-officeholders are not loaded, and the column map is not reviewed",
   },
   {
     id: "people",
-    bytes: 20 * 1024 * 1024,
-    detail: "data/people is about 20 MB in Postgres, and the column map is not reviewed",
+    detail: "data/people is not loaded, and the column map is not reviewed",
   },
 ];
 
@@ -293,6 +288,8 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
   const estimates: SizeEstimate[] = [];
   let boundaries: BoundaryReport | null = null;
   let companies: CompanyLoadReport | null = null;
+  let institutions: InstitutionLoadReport | null = null;
+  let locations: LocationAssignReport | null = null;
   let changed = false;
 
   if (include.has("core")) {
@@ -364,8 +361,7 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     for (const [rel, tigerSets] of geoJobs) {
       const built = unitsFromGeoCsv(readFileText(join(cache.geo, rel)).text, tigerSets);
       gaps.push(...built.gaps.slice(0, 20));
-      const bytes = built.units.length * EST_UNIT_BYTES;
-      estimates.push({ group: rel, bytes, action: "load units" });
+      estimates.push({ group: rel, bytes: 0, action: "units loaded; budget is pg_database_size" });
       await ensureUnits(pool, built.units);
     }
     const files = [
@@ -394,7 +390,6 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     estimates.push({ group: "precincts", bytes: 0, action: "not requested (npm run precincts)" });
   }
 
-  const companyBytes = companyEstimateBytes();
   if (include.has("companies")) {
     const current = await databaseBytes(pool);
     companies = await loadCompanies(pool, {
@@ -405,33 +400,61 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     });
     estimates.push({
       group: "companies",
-      bytes: companyBytes,
-      action: companies.status === "applied" ? "load" : "tiles only",
+      bytes: current,
+      action: `${companies.status}; budget is pg_database_size`,
     });
     if (companies.gap) gaps.push(companies.gap);
   } else {
     estimates.push({
       group: "companies",
-      bytes: companyBytes,
+      bytes: 0,
       action: "not requested (npm run db:load -- --include=companies)",
     });
   }
 
-  const currentForHeld = await databaseBytes(pool);
+  if (include.has("institutions")) {
+    const current = await databaseBytes(pool);
+    institutions = await loadInstitutions(pool, { root, currentBytes: current, allow: allow.has("institutions") });
+    estimates.push({
+      group: "institutions",
+      bytes: institutions.estimate.fileBytes,
+      action: `${institutions.status}; file bytes, budget is pg_database_size`,
+    });
+    if (institutions.gap) gaps.push(institutions.gap);
+  } else {
+    estimates.push({
+      group: "institutions",
+      bytes: 0,
+      action: "not requested (npm run db:load -- --include=institutions)",
+    });
+  }
+
   for (const held of HELD) {
-    const over = !fitsBudget(currentForHeld, held.bytes);
     if (!include.has(held.id)) {
-      estimates.push({ group: held.id, bytes: held.bytes, action: "not requested" });
+      estimates.push({ group: held.id, bytes: 0, action: "not requested" });
       continue;
     }
-    estimates.push({ group: held.id, bytes: held.bytes, action: "refused" });
-    const budget = over
-      ? ` Estimated ${formatMb(held.bytes)} on top of ${formatMb(currentForHeld)} would pass ${formatMb(BUDGET_BYTES)}.`
-      : "";
+    estimates.push({ group: held.id, bytes: 0, action: "refused" });
     const override = allow.has(held.id) ? " --allow-over-budget was set, and" : "";
-    gaps.push(`${held.id}:${override} ${held.detail}.${budget} Rows were not inserted.`);
+    gaps.push(`${held.id}:${override} ${held.detail}. Rows were not inserted.`);
+  }
+
+  locations = await assignLocationUnits(pool);
+  if (locations.outside > 0) {
+    gaps.push(
+      `locations: ${locations.outside} US points fall outside every county, state, and US House unit (flag no_unit_resolved). ${locations.skippedNonUs} non-US points were left unit-less.`,
+    );
   }
 
   if (changed) await refreshAggregates(pool);
-  return { boundaries, results, companies, gaps, estimates, databaseBytes: await databaseBytes(pool) };
+  return {
+    boundaries,
+    results,
+    companies,
+    institutions,
+    locations,
+    gaps,
+    estimates,
+    databaseBytes: await databaseBytes(pool),
+  };
 }

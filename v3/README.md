@@ -11,7 +11,7 @@ Business rules (the d/r slot, sort, `%` / `#`) live in `packages/core` and behin
 - A superuser-capable role for a local dev database (the local example is `usd` / `usd`)
 - `DATABASE_URL` in the environment, or in a gitignored `v3/.env` for migrate and seed
 
-The loader reads `v2/data` from this checkout and the election, geo, and companies files from `origin/data/election`, `origin/data/geo`, and `origin/data/companies` (git archive into `v3/.cache`, which is gitignored). A cache refills when that branch's commit differs from the `.commit` stamp in the cache directory. The same commit is stored on `load_batch.git_commit`.
+The loader reads `v2/data` from this checkout and the election, geo, companies, and institution files from `origin/data/election`, `origin/data/geo`, `origin/data/companies`, and `origin/data/inst-entities` (git archive into `v3/.cache`, which is gitignored). A cache refills when that branch's commit differs from the `.commit` stamp in the cache directory. The same commit is stored on `load_batch.git_commit`. When a later batch for a file is applied, older rejected batches of that file are marked `superseded`.
 
 ## Run
 
@@ -32,24 +32,28 @@ A host ending in `neon.tech` is opened with `@neondatabase/serverless` over WebS
 
 `db:load` uses the same host switch. A `neon.tech` host goes through `@neondatabase/serverless` over WebSocket. Any other host uses `pg`. It reads `v3/.env` when that file exists. Inserts are chunked multi-row statements (the WebSocket driver has no COPY). Each source file is its own transaction: an applied or rejected sha is skipped on the next run, and `data_version` moves when a file changes rows. `result.source_record_id` is the CSV line number. `unit.source_record_id` is the geo `row`, or the precinct key.
 
-The default load is core (states, counties, congressional districts, and the official result files from alpha.1), state legislative districts, the 2022 and 2024 US House Senate files (1,023 rows each), and schools. Precinct facts stay out of Postgres. `npm run precincts` writes per-state PMTiles under `app/public/tiles/precinct-2024/`, content-hashed packs under `app/public/packs/precinct/`, and precinct-to-district membership plus rolled-up aggregates. Those directories are generated and gitignored. Companies, institutions, governments, seating, and people stay behind flags. Companies are global (212,439 locations at `data/companies` `c6f1cf9`, about 105 MB) and, when loaded, also write clustered PMTiles at `app/public/tiles/companies.pmtiles`. A rejected file's gap lists each rule with its count.
+The default load is core (states, counties, congressional districts, and the official result files from alpha.1), state legislative districts, the 2022 and 2024 US House Senate files (1,023 rows each), and schools. At the end it assigns each US company location to its county, state, and US House district. `entity_location.unit_id` is the county. Points that hit nothing are flagged `no_unit_resolved`. Non-US rows stay unit-less. Precinct facts stay out of Postgres. `npm run precincts` writes per-state PMTiles under `app/public/tiles/precinct-2024/`, content-hashed packs under `app/public/packs/precinct/`, and precinct-to-district membership plus rolled-up aggregates. Those directories are generated and gitignored. `--dry-run` prints the row counts and a size taken from `pg_database_size` and `pg_total_relation_size`, and writes nothing. Companies and institutions stay behind flags. The 350 MB check is the live database size. Companies, when loaded, also write clustered PMTiles at `app/public/tiles/companies.pmtiles`. Institutions load entities, relations, image metadata, and `body_entity` from `data/inst-entities`, with no image files. Governments, seating, and people still print a gap and do not insert. A rejected file's gap lists each rule with its count.
 
 ```bash
 cd v3
 npm run db:migrate
 npm run db:seed
 npm run db:load
-# precinct geometry, packs, membership, and rollups (not result rows):
+# precinct geometry, packs, membership, and rollups (not result rows).
+# Read the dry-run first. It does not write.
+npm run precincts -- --dry-run
 npm run precincts
 # one state while you check it:
 npm run precincts -- --state=Vermont
-# companies are not in the default load. Run migrate first so nothing else is pending:
+# institutions (entities, relations, image metadata, body_entity; no image files):
+npm run db:load -- --include=institutions
+# companies are not in the default load:
 npm run db:load -- --include=companies
-# add the flag only if the script says the live database size plus the company estimate would pass 350 MB:
+# add the flag only if pg_database_size is already over 350 MB:
 npm run db:load -- --include=companies --allow-over-budget=companies
 ```
 
-Institutions, governments, seating, and people print an estimate and do not insert. Parent relations and entity images from `data/inst-entities` `1fde48d` are mapped (`parent` fills `entity.parent_id`; images use `role`, `file`, and `feed_id`). The rest of those column maps are not reviewed, so `--allow-over-budget` does not load the full registry either. Re-running `db:load` is safe. It does not deploy.
+`db:load` prints `database`, which is `pg_database_size`. The institution block prints source-file bytes and, where a table already has rows, a projection from `pg_total_relation_size`. Governments, seating, and people are still not inserted. Re-running `db:load` is safe. It does not deploy.
 
 Open http://127.0.0.1:8860 . The map starts on 2016 president by state. 2020 and 2024 show Pennsylvania counties. `%` / `#` re-sorts the list locally.
 

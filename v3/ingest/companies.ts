@@ -4,7 +4,7 @@ import { join } from "node:path";
 import type pg from "pg";
 import { insertJsonChunks } from "./batch.ts";
 import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-cache.ts";
-import { BUDGET_BYTES, COMPANY_LOCATION_ROWS, EST_LOCATION_BYTES, fitsBudget, formatMb } from "./budget.ts";
+import { BUDGET_BYTES, COMPANY_LOCATION_ROWS, EST_LOCATION_BYTES, companyLoadAllowed, formatMb } from "./budget.ts";
 import { writeClusterPmtiles, type ClusterPoint } from "./cluster-tiles.ts";
 import { parseCsv, readFileText } from "./csv.ts";
 
@@ -13,7 +13,8 @@ export type CompanyLoadReport = {
   rows: number;
   locations: number;
   tiles: number;
-  estimateBytes: number;
+  /** Live `pg_database_size` at the moment the gate ran. */
+  databaseBytes: number;
   gap: string | null;
 };
 
@@ -221,7 +222,6 @@ export async function loadCompanies(
   db: pg.Pool,
   opts: { root: string; currentBytes: number; allow: boolean; tilesPath: string },
 ): Promise<CompanyLoadReport> {
-  const estimateBytes = companyEstimateBytes();
   const file = ensureCompaniesCache(opts.root);
   const { text } = readFileText(file);
   const brandsPath = join(opts.root, "v3/.cache/companies", BRANDS_REL);
@@ -250,15 +250,14 @@ export async function loadCompanies(
     };
   });
   const tiles = points.length > 0 ? writeClusterPmtiles(points, opts.tilesPath) : 0;
-  const over = !fitsBudget(opts.currentBytes, estimateBytes);
-  if (over && !opts.allow) {
+  if (!companyLoadAllowed(opts.currentBytes, opts.allow)) {
     return {
       status: "tiles-only",
       rows: parsed.rows.length,
       locations: 0,
       tiles,
-      estimateBytes,
-      gap: `companies: estimated ${formatMb(estimateBytes)} on top of ${formatMb(opts.currentBytes)} would pass ${formatMb(BUDGET_BYTES)}. Rows were not inserted. Tiles were written. Re-run with: npm run db:load -- --include=companies --allow-over-budget=companies`,
+      databaseBytes: opts.currentBytes,
+      gap: `companies: database is ${formatMb(opts.currentBytes)} (pg_database_size), over ${formatMb(BUDGET_BYTES)}. Rows were not inserted. Tiles were written. Re-run with: npm run db:load -- --include=companies --allow-over-budget=companies`,
     };
   }
   const loaded = await loadCompanyRows(db, inputs, names);
@@ -267,7 +266,7 @@ export async function loadCompanies(
     rows: parsed.rows.length,
     locations: loaded.locations,
     tiles,
-    estimateBytes,
+    databaseBytes: opts.currentBytes,
     gap: null,
   };
 }

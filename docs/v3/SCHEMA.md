@@ -37,6 +37,8 @@ The rest of the DDL applied unchanged (42 boundary sets, 21 unit types, both mat
 | Institutions | `entity` | Governments, chambers, school districts, and later companies or brands. `gov_kind`: sovereign / incorporated / body / private. `has_region=false` is allowed. |
 | | `entity_unit` | `jurisdiction` (PA → PA polygon), `seat_district` (PA House → each sldl unit), `same_as` (school district ↔ its polygon). |
 | | `entity_alias` | Shared names for both filters (plus external ids, former QIDs, `usd:` ids re-keyed to a QID, and the reserved `lei:`/`cik:` schemes kept only for the v5/v6 bridge) (PA = Pennsylvania, USA = United States), per spec §5.3. |
+| | `entity_location_unit` | County, state, and US House for one company point. `entity_location.unit_id` stays the county. Non-US points are not rows. A US point that hits nothing keeps `no_unit_resolved`. |
+| | `body_entity` | A council, mayor, chamber, court, or board, pointing at its entity. | |
 | Contests | `party`, `candidate`, `office`, `contest`, `answer` | See below. |
 | Results | `result`, `result_total`, `result_history` | Facts, totals and coverage, plus an audit trail of overwritten values. A result is identified by `(year, office, stage, boundary_set, unit_type, unit_id)` + answer (Q-E12): contest = year + office token (stage derived from `_special` / `_runoff`), unit = `unit_key` within its `boundary_set` (`slug` = the rows' `boundary_set`, e.g. `v2-2024`). Geometry joins on the set, not the year. |
 | | `contest_display_slot` | v2-parity view: which answer fills v2's **d** and **r** columns (Q-E13: the Democratic nominee, or an independent who beat the Democrat or ran with no Democrat; the Republican). Every answer is still stored; colour follows party. |

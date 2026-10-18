@@ -37,6 +37,8 @@ try {
           rules: row.rejectRules,
         })),
         companies: summary.companies,
+        institutions: summary.institutions,
+        locations: summary.locations,
         estimates: summary.estimates.map((row) => ({ ...row, mb: formatMb(row.bytes) })),
         gaps: summary.gaps,
       },

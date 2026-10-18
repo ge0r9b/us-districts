@@ -124,6 +124,113 @@ export async function buildPrecinctState(
   return { abbr: state.abbr, features: state.features.length, gaps: state.gaps };
 }
 
+export type PrecinctGrowth = {
+  states: number;
+  /** Precinct unit keys this command would write. */
+  units: number;
+  /** Upper bound: one county membership and one US House membership per precinct. */
+  crosswalk: number;
+  /** Upper bound: county and US House parents, times the three presidential years. */
+  rollup: number;
+  databaseBytes: number;
+  /** Sum of the parts that have a measured bytes-per-row. Null when any part is unmeasured. */
+  estimatedBytes: number | null;
+  projectedBytes: number | null;
+  parts: { table: string; rows: number; bytesPerRow: number | null; bytes: number | null }[];
+  note: string;
+};
+
+/**
+ * Count precinct units, crosswalk rows, and rollup rows, and price the ones
+ * whose tables already have rows. Writes nothing: no units, no packs, no tiles.
+ */
+export async function dryRunPrecincts(
+  db: pg.Pool,
+  repo: string,
+  opts: { state?: string } = {},
+): Promise<PrecinctGrowth> {
+  const names = opts.state
+    ? [opts.state.length === 2 ? (stateName(opts.state) ?? opts.state) : opts.state]
+    : precinctStateNames(repo);
+  let units = 0;
+  const abbrs: string[] = [];
+  for (const name of names) {
+    const state = loadPrecinctState(repo, name);
+    units += state.features.length;
+    abbrs.push(state.abbr);
+  }
+  const parents = await db.query<{ n: string }>(
+    `select count(*)::text n
+     from unit u
+     join boundary_set b on b.id = u.boundary_set_id
+     where b.slug = 'v2-2024'
+       and u.unit_type in ('county', 'ushouse')
+       and btrim(u.state_abbr) = any($1::text[])`,
+    [abbrs],
+  );
+  const crosswalk = units * 2;
+  const rollup = Number(parents.rows[0]?.n ?? 0) * YEARS.length;
+  const sized = await db.query<{
+    db: string;
+    unit_bytes: string;
+    unit_rows: string;
+    crosswalk_bytes: string;
+    crosswalk_rows: string;
+    rollup_bytes: string;
+    rollup_rows: string;
+  }>(
+    `select pg_database_size(current_database())::text db,
+            pg_total_relation_size('usd.unit')::text unit_bytes,
+            (select count(*)::text from unit) unit_rows,
+            pg_total_relation_size('usd.unit_crosswalk')::text crosswalk_bytes,
+            (select count(*)::text from unit_crosswalk) crosswalk_rows,
+            pg_total_relation_size('usd.precinct_rollup')::text rollup_bytes,
+            (select count(*)::text from precinct_rollup) rollup_rows`,
+  );
+  const size = sized.rows[0];
+  const part = (table: string, addRows: number, relBytes: string | undefined, relRows: string | undefined) => {
+    const rows = Number(relRows ?? 0);
+    const bytes = Number(relBytes ?? 0);
+    const bytesPerRow = rows > 0 ? bytes / rows : null;
+    return {
+      table,
+      rows: addRows,
+      bytesPerRow,
+      bytes: bytesPerRow == null ? null : Math.round(addRows * bytesPerRow),
+    };
+  };
+  const parts = [
+    part("unit", units, size?.unit_bytes, size?.unit_rows),
+    part("unit_crosswalk", crosswalk, size?.crosswalk_bytes, size?.crosswalk_rows),
+    part("precinct_rollup", rollup, size?.rollup_bytes, size?.rollup_rows),
+  ];
+  const unmeasured = parts.filter((row) => row.bytes == null).map((row) => row.table);
+  const estimatedBytes = unmeasured.length === 0 ? parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0) : null;
+  const databaseBytes = Number(size?.db ?? 0);
+  const measured = parts.filter((row) => row.bytes != null).map((row) => `${row.table} ${row.bytes} bytes`);
+  const note = [
+    "Upper bound if these precinct rows are not loaded yet. A second run does not insert another copy.",
+    "Precinct result facts stay out of Postgres. This counts unit keys, unit_crosswalk membership, and precinct_rollup only.",
+    unmeasured.length
+      ? `Unmeasured (empty table, no bytes-per-row): ${unmeasured.join(", ")}.`
+      : "Every part is pg_total_relation_size divided by the live row count.",
+    measured.length ? `Measured: ${measured.join("; ")}.` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return {
+    states: names.length,
+    units,
+    crosswalk,
+    rollup,
+    databaseBytes,
+    estimatedBytes,
+    projectedBytes: estimatedBytes == null ? null : databaseBytes + estimatedBytes,
+    parts,
+    note,
+  };
+}
+
 export async function buildPrecincts(
   db: pg.Pool,
   repo: string,

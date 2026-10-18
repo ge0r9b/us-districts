@@ -406,6 +406,20 @@ async function fillSlots(client: pg.PoolClient): Promise<void> {
   }
 }
 
+/** Older rejected batches of the same file, once a later batch has applied. */
+export async function markSuperseded(
+  db: pg.Pool | pg.PoolClient,
+  fileName: string,
+  appliedBatchId: string,
+): Promise<number> {
+  const updated = await db.query(
+    `update load_batch set status = 'superseded'
+     where file_name = $1 and id <> $2 and status = 'rejected'`,
+    [fileName, appliedBatchId],
+  );
+  return updated.rowCount ?? 0;
+}
+
 export async function applyResults(
   pool: pg.Pool,
   meta: ApplyMeta,
@@ -558,6 +572,7 @@ export async function applyResults(
       `update load_batch set status = 'applied', finished_at = now(), report = $2::jsonb where id = $1`,
       [batchId, JSON.stringify({ rows: rows.length, rejected: rejects.length, rules: rejectRules, changed, facts: facts.length })],
     );
+    await markSuperseded(client, meta.fileName, batchId);
     await client.query(`delete from stg_result_row where load_batch_id = $1`, [batchId]);
     await client.query("commit");
     return {

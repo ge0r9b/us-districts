@@ -21,6 +21,7 @@ const expected = [
   "009_load_columns.sql",
   "010_precinct_rollup.sql",
   "011_inst_entities.sql",
+  "012_location_units.sql",
 ];
 
 describe("migration files", () => {

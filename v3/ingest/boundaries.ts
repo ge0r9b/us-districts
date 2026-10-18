@@ -6,7 +6,7 @@ import { STATE_ABBR } from "@usd/core";
 import { insertJsonChunks } from "./batch.ts";
 import { parseCsv } from "./csv.ts";
 import { multiPolygon, unwrapJson } from "./geom.ts";
-import { sha256Hex } from "./apply.ts";
+import { markSuperseded, sha256Hex } from "./apply.ts";
 
 export type BoundaryPaths = {
   countiesCsv: string;
@@ -256,10 +256,13 @@ export async function loadBoundaries(pool: pg.Pool, paths: BoundaryPaths): Promi
        ) c
        where b.id = c.boundary_set_id and b.slug = 'v2-2024'`,
     );
-    await client.query(
-      `update load_batch set status = 'applied', finished_at = now(), report = $2::jsonb where file_sha256 = $1`,
+    const applied = await client.query<{ id: string }>(
+      `update load_batch set status = 'applied', finished_at = now(), report = $2::jsonb
+       where file_sha256 = $1
+       returning id`,
       [sha, JSON.stringify({ units: units.length, geoms: geomCount, gaps: gaps.slice(0, 30) })],
     );
+    if (applied.rows[0]) await markSuperseded(client, "boundary:v2-2024", applied.rows[0].id);
     await client.query("commit");
   } catch (err) {
     await client.query("rollback");

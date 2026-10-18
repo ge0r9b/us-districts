@@ -316,6 +316,8 @@ create table entity (
                   'chamber','dc_council',
                   'subdivision',                                             -- foreign first-level subdivisions: 'subdivision:<iso3166-2 lowercase>', frozen, no units
                   'court',                                                   -- 'court:<st>-<slug>' (state supreme courts and criminal appeals)
+                  'special_district',                                        -- 'special_district:<st>-<source>-<source_id>', frozen (first 305: tx-tceq)
+                  'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
                   'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
                   'other')),
@@ -332,7 +334,11 @@ create table entity (
                                                    -- federally_recognized->government (+ meta.recognition='federal')
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
-  valid_from    date,
+  valid_from    date,                                -- start of the current form of government, only when a source states it
+  valid_from_source text,                            -- entities.csv valid_from_source, when the file has that column
+  inception     date,                                -- earliest sourced founding date (Wikidata P571)
+  inception_precision text check (inception_precision is null or inception_precision in ('day','month','year')),
+  inception_source text,
   valid_to      date,
   v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
   v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
@@ -353,6 +359,7 @@ create table entity (
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
   check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
   check (kind <> 'subdivision' or (entity_id ~ '^subdivision:[a-z]{2}-[a-z0-9]{1,3}$' and iso_3166_2 is not null)),
+  check (kind <> 'special_district' or entity_id ~ '^special_district:[a-z]{2}-[a-z0-9]+-[A-Za-z0-9._-]+$'),
   -- territory ids: 'territory:<2-digit US FIPS>' (parent nation:us), 'territory:<iso2>' (foreign dependency, parent = sovereign),
   -- 'territory:ca-(nt|nu|yt)' (Canada's territories, parent nation:ca). Provinces: 'province:ca-<code>' (parent nation:ca).
   check (kind <> 'territory' or (parent_id like 'nation:%'
@@ -364,6 +371,7 @@ create table entity (
   source_record_id text,                              -- the entity's id inside its primary source (CoG pid6, Wikidata QID, ...)
                                                    -- sources: entity_source (sources.csv ';'-list)
   iso_3166_2    text,                                -- 'AD-02' (entities.csv iso_3166_2; subdivisions). Unique when set.
+  constituent_qid text check (constituent_qid is null or constituent_qid ~ '^Q[0-9]+$'),  -- bare Q id where the constituent country differs ('nation:dk' Q35)
   wikidata      text unique check (wikidata ~ '^wikidata:Q[0-9]+$'),   -- entities.csv 'wikidata' (already 'wikidata:Q228' at 1fde48d; a bare Q id is prefixed once)
   has_region    boolean not null default true,
                                                    -- seals / flags / logos: entity_image (replaces the old icon_flag column)
@@ -408,10 +416,12 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent')),
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
                                                    -- city-county's county entity (parent) and its place entity (child).
                                                    -- entity_relations.csv relation 'parent' also fills entity.parent_id (child = entity_id).
+                                                   -- in_county: special district (child) to its primary county (parent); does not set entity.parent_id.
+  method        text check (method is null or method in ('sourced','overlay','point_in_polygon','manual')),
   valid_from    date,
   valid_to      date,
   source_id     text references source(source_id),   -- one source per link (Wikidata)
@@ -452,6 +462,17 @@ create index entity_location_geoid on entity_location (geoid);
 create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
 create index entity_location_country on entity_location (country_code);
 
+-- County, state, and US House for one point. entity_location.unit_id is the county.
+-- Non-US locations are not rows here. A US point that hits nothing keeps unit_id null
+-- and the flag no_unit_resolved.
+create table entity_location_unit (
+  location_id bigint not null references entity_location(location_id) on delete cascade,
+  unit_id     bigint not null references unit(id) on delete cascade,
+  unit_type   text not null check (unit_type in ('county','state','ushouse')),
+  primary key (location_id, unit_type)
+);
+create index entity_location_unit_unit on entity_location_unit (unit_id);
+
 -- Seals, flags and logos: inst entity_images.csv (seals/flags) + Companies brands.csv logo_* (logos).
 -- The image is a static asset (/img/<role>/<entity_id>.<ext>), not a DB blob. Only freely licensed files are served
 -- publicly in v3; fair_use rows load with public = false until D22 is decided.
@@ -478,6 +499,8 @@ create table entity_image (
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
   check (not icon or public),                        -- icons are always freely licensed
+  check (not public or attribution is not null),     -- a public file needs attribution
+  check (public or (attribution is not null and source_url is not null)),  -- a hidden file needs both
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
 create unique index entity_image_one_icon on entity_image (coalesce(entity_id, feed_entity_id)) where icon;   -- at most one icon per entity
@@ -533,6 +556,15 @@ create table entity_alias (
 create index alias_alias on entity_alias (alias text_pattern_ops);
 create unique index alias_entity_uq on entity_alias (alias, entity_id) where entity_id is not null;
 create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where unit_id   is not null;
+
+-- A seat- or office-holding body. Several bodies can share one entity.
+create table body_entity (
+  body_key         text primary key,
+  entity_id        text not null references entity(entity_id) on update cascade,
+  role             text not null check (role in ('council','mayor','chamber','court','board')),
+  source_record_id text
+);
+create index body_entity_entity on body_entity (entity_id);
 
 -- Resolved entity -> unit links (derived at load time: entity_geoid joined to unit.geoid within the
 -- boundary sets of that vintage; chambers get one 'seat_district' row per seat unit).

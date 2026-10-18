@@ -125,6 +125,7 @@ describe("alpha.2 load and API", () => {
       fair_use: "no",
       public: "yes",
       icon: "yes",
+      attribution: "Cherokee Nation",
       wikidata_qid: "Q14708404",
       source_id: "repo-governments-e4797d09",
     })?.wikidata).toBe("wikidata:Q14708404");
@@ -177,6 +178,7 @@ describe("alpha.2 load and API", () => {
         fair_use: "no",
         public: "yes",
         icon: "yes",
+        attribution: "State of Alaska",
         wikidata_qid: "wikidata:Q797",
         source_id: "wikidata_images",
       },
@@ -189,6 +191,8 @@ describe("alpha.2 load and API", () => {
         fair_use: "yes",
         public: "no",
         icon: "no",
+        attribution: "Cherokee Nation",
+        source_url: "https://example.test/cherokee-seal",
         wikidata_qid: "Q5330004",
         source_id: "repo-governments-e4797d09",
       },
@@ -217,9 +221,9 @@ describe("alpha.2 load and API", () => {
     expect(companyEstimateBytes()).toBe(212_439 * 520);
   });
 
-  it("refuses institutions even when the override is set", async () => {
+  it("refuses governments even when the override is set", async () => {
     const before = await pool.query<{ n: string }>("select count(*)::text n from entity");
-    const summary = await loadAll(pool, root, { include: ["institutions"], allowOverBudget: ["institutions"] });
+    const summary = await loadAll(pool, root, { include: ["governments"], allowOverBudget: ["governments"] });
     expect(summary.gaps.some((line) => line.includes("not reviewed") && line.includes("not inserted"))).toBe(true);
     const after = await pool.query<{ n: string }>("select count(*)::text n from entity");
     expect(after.rows[0]?.n).toBe(before.rows[0]?.n);

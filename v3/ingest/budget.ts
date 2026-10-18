@@ -20,6 +20,15 @@ export function fitsBudget(currentBytes: number, addBytes: number): boolean {
   return currentBytes + addBytes <= BUDGET_BYTES;
 }
 
+/** The load gate. `pg_database_size` is the measurement. A rounded row estimate is not added. */
+export function overMeasuredBudget(databaseBytes: number): boolean {
+  return databaseBytes > BUDGET_BYTES;
+}
+
+export function companyLoadAllowed(databaseBytes: number, allow: boolean): boolean {
+  return allow || !overMeasuredBudget(databaseBytes);
+}
+
 export function formatMb(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(0)} MB`;
 }
