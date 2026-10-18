@@ -1,3 +1,4 @@
+# build 1563: the ≈ prefixes the first visible in-bar value ('≈82.2%'; the net value in change mode) instead of a column after the name.
 # ≈ marks on list rows: shown only where the value shown is an estimate (district rows flagged est; e24 = 2024-only estimate); gray districts filled by build 1526 are marked
 import asyncio,sys,json,os
 from playwright.async_api import async_playwright
@@ -6,7 +7,7 @@ EST=json.load(open(os.path.join(os.path.dirname(__file__),"est-al-senate.json"))
 def ck(n,ok,d=''):
   global fails
   print(('OK   ' if ok else 'FAIL ')+n,'' if ok else json.dumps(d)[:400]); fails+=0 if ok else 1
-ROWS="()=>[...document.querySelectorAll('#listView .lvrow.la')].filter(x=>x.offsetParent).map(r=>({n:r.querySelector('.nmx').textContent.trim(),est:!!r.querySelector('.estm'),nd:/no\\s+(data|'\\d\\d data)/i.test(r.innerText),sg:[...r.querySelectorAll('.sg')].map(s=>s.innerText.trim()).join('|'),vis:(()=>{const e=r.querySelector('.estm'),n=r.querySelector('.nmx'); if(!e) return true; const a=e.getBoundingClientRect(),b=n.getBoundingClientRect(); return a.right<=r.getBoundingClientRect().right&&a.left>=b.left})()}))"
+ROWS="()=>[...document.querySelectorAll('#listView .lvrow.la')].filter(x=>x.offsetParent).map(r=>({n:r.querySelector('.nmx').textContent.trim(),est:!!r.querySelector('.estm'),nd:/no\\s+(data|'\\d\\d data)/i.test(r.innerText),sg:[...r.querySelectorAll('.sg')].map(s=>s.innerText.trim()).join('|'),vis:(()=>{if(!r.querySelector('.estm')) return true; const e=r.querySelector('.estp'); if(!e||getComputedStyle(e,'::before').content.indexOf('\\u2248')<0) return false; const any=[...r.querySelectorAll('.sg b')].some(b=>b.textContent&&b.style.visibility!=='hidden'); return e.classList.contains('net')||!any||e.style.visibility!=='hidden'})()}))"
 async def setmode(pg,v):
   await pg.evaluate("v=>{const y=document.getElementById('yslider'); y.value=v; y.dispatchEvent(new Event('input',{bubbles:true}))}",v); await pg.wait_for_timeout(2500)
 async def open_list(b,vp,st,kind):
@@ -21,7 +22,7 @@ async def run(b,tag,vp):
   c,pg,errs=await open_list(b,vp,"Alabama","senate")
   r=await pg.evaluate(ROWS); m={x['n'].replace('District ',''):x for x in r}
   ck(tag+" AL senate 2024: ≈ exactly on estimated districts",all(m[k]['est']==EST[k] for k in EST if k in m) and len(m)>=30,[ (k,m[k]['est'],EST[k]) for k in EST if k in m and m[k]['est']!=EST[k]][:5])
-  ck(tag+" ≈ sits inside the row, after the name, not clipped",all(x['vis'] for x in r),[x for x in r if not x['vis']][:3])
+  ck(tag+" ≈ prefixes the first visible in-bar value (build 1563: no separate ≈ column)",all(x['vis'] for x in r),[x for x in r if not x['vis']][:3])
   await pg.screenshot(path="/workspace/shots/el-%s-al.png"%tag); await c.close()
   c,pg,errs=await open_list(b,vp,"Mississippi","statehouse"); await pg.evaluate("()=>document.getElementById('bTime')&&document.getElementById('bTime').click()"); await pg.wait_for_timeout(500)
   g=lambda r:{x['n'].replace('District ',''):x for x in r}

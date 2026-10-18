@@ -1,4 +1,4 @@
-# t250u (updated build 1557: single entity = pie/line only): line chart auto-falls back to pie on a single year (restored on two points); chart button is dark only when a chart is displayed (not in full-screen map)
+# t250u (updated build 1557: single entity = pie/line only; build 1563: bar is offered again for a single entity, one bar per answer): line chart auto-falls back to pie on a single year (restored on two points); chart button is dark only when a chart is displayed (not in full-screen map)
 import asyncio,sys
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -39,13 +39,14 @@ async def run(b,tag,vp,mobile):
   await slide(pg,0); s=await pg.evaluate(ST); ck(tag+" single year 2020 -> pie too",s['mode']=="pie",s)
   await slide(pg,1); s=await pg.evaluate(ST); ck(tag+" 2020 -> two points restores line",s['mode']=="line",s)
   await slide(pg,2); s=await pg.evaluate(ST); ck(tag+" single point, line was on -> pie",s['mode']=="pie",s)
-  o=await opts(pg); ck(tag+" single point menu offers no other type (no line, no bar)",o==[],o)
+  o=await opts(pg); ck(tag+" single point menu offers bar only besides the pie (no line)",o==["bar"],o)
   r=await pg.evaluate("()=>({pie:!!document.querySelector('.cpie1,.cpieL,.pwr')})"); ck(tag+" single point: pie chart displayed",r['pie'],r)
   await slide(pg,1); s=await pg.evaluate(ST); ck(tag+" pie + range -> line (no pie in a range, no bar for a single entity)",s['mode']=="line" and s['ico']=="line",s)
   r=await pg.evaluate("()=>({pie:!!document.querySelector('.cpie1,.cpieL')})"); ck(tag+" range: no pie / concentric ring displayed",not r['pie'],r)
-  o=await opts(pg); ck(tag+" range menu offers no other type (no pie, no bar)",o==[],o)
+  o=await opts(pg); ck(tag+" range menu offers bar only besides the line (no pie)",o==["bar"],o)
   await slide(pg,2); s=await pg.evaluate(ST); ck(tag+" back to a single point -> pie",s['mode']=="pie",s)
-  await pick(pg,"bar"); s=await pg.evaluate(ST); ck(tag+" bar cannot be picked for a single entity",s['mode']!="bar",s)
+  await pick(pg,"bar"); s=await pg.evaluate(ST); r=await pg.evaluate("()=>document.querySelectorAll('.cpanel .sebar .sebr').length"); ck(tag+" bar can be picked for a single entity (build 1563): one bar per answer",s['mode']=="bar" and s['ico']=="bar" and r>=2,[s,r])
+  await pick(pg,"pie"); s=await pg.evaluate(ST); ck(tag+" ...and pie again",s['mode']=="pie",s)
   await pg.evaluate("()=>document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}))"); await pg.wait_for_timeout(400)
   await slide(pg,1); await pg.wait_for_timeout(500); s=await pg.evaluate(ST); ck(tag+" line in range",s['mode']=="line" and s['yv']==1,s)
   # map view: button inactive, list: active

@@ -1,4 +1,4 @@
-# usage: python3 tests/single-entity-chart.py URL -- build 1556: a single entity (Alabama) shows ONE big chart and no bar option:
+# usage: python3 tests/single-entity-chart.py URL -- build 1563: bar offered again for a single entity (one bar per answer), chart options distinct, pie labels with one decimal ('49.9%'). build 1556: a single entity (Alabama) shows ONE big chart and no bar option:
 # one year -> big pie centred on the full screen width (build 1562), clear of the thumbnails and floating buttons;
 # two years -> line chart whose vertical axis has 3-5 light hairlines with small mid-gray labels (% in % mode, abbreviated votes in # mode)
 # and whose points sit on the time slider's '20 / '24 positions, with vertical hairlines at every slider year (build 1562); the plural row ('Alabama counties') brings the bar list back.
@@ -12,7 +12,7 @@ R="""()=>{const R=e=>{if(!e) return null; const r=e.getBoundingClientRect(); ret
  const vis=e=>e.offsetParent&&getComputedStyle(e).visibility!=='hidden'&&e.getBoundingClientRect().width>0;
  return {mode:window.chartMode, vw:innerWidth, pie:R(document.querySelector('.cpanel .cpie1 svg, .cpanel .cpieL svg')), ax:[...document.querySelectorAll('.dlx .dlat')].map(t=>[t.textContent,R(t),getComputedStyle(t).fill]), grid:[...document.querySelectorAll('.dlx .dlax line:not(.dlvx)')].map(l=>[l.getAttribute('stroke'),R(l)]), vg:[...document.querySelectorAll('.dlx .dlax line.dlvx')].map(l=>[l.getAttribute('stroke'),R(l),l.getAttribute('stroke-width')]),
    dots:[...document.querySelectorAll('.dlx circle')].map(R), ticks:[...document.querySelectorAll('#ysl .tk i')].map(d=>{const r=d.getBoundingClientRect(); return r.left+r.width/2}),
-   imgs:[...document.querySelectorAll('.dlx img, .cands img')].filter(vis).map(R), btns:[...document.querySelectorAll('button.rbtn')].filter(vis).map(R), rows:document.querySelectorAll('#listView .lvrow.la').length, la:window.__laInfo().on}}"""
+   imgs:[...document.querySelectorAll('.dlx img, .cands img')].filter(vis).map(R), btns:[...document.querySelectorAll('button.rbtn')].filter(vis).map(R), rows:document.querySelectorAll('#listView .lvrow.la').length, la:window.__laInfo().on, sebar:document.querySelectorAll('.cpanel .sebar .sebr').length, plab:[...document.querySelectorAll('.cpanel .cpie1 svg text, .cpanel .cpieL svg text')].map(t=>t.textContent)}}"""
 OPTS="()=>{const c=document.querySelector('button.rbtn.cmain'); c.click(); return new Promise(r=>setTimeout(()=>{const o=[c.dataset.ch,...[...document.querySelectorAll('.copts button')].map(b=>b.dataset.ch)]; document.getElementById('chartDim').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true})); r(o)},600))}"
 def ov(a,b,m=0): return a[0]<b[2]-m and b[0]<a[2]-m and a[1]<b[3]-m and b[1]<a[3]-m
 async def pick(pg,m):
@@ -22,16 +22,17 @@ async def run(b,tag,vp,mob):
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
   await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.wait_for_timeout(400); await pg.keyboard.type("alabama"); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(3800)
   await pg.evaluate("()=>{window.__v2.setView('list'); window.__setNum('pct')}"); await pg.wait_for_timeout(2500)
-  await pick(pg,'bar'); s=await pg.evaluate(R); ck(tag+" single entity, one year: bar cannot be chosen",s['mode']!='bar',s['mode'])
-  o=await pg.evaluate(OPTS); ck(tag+" single entity, one year: chart options = pie only (no bar)",'bar' not in o and 'pie' in o,o)
+  await pick(pg,'bar'); s=await pg.evaluate(R); ck(tag+" single entity, one year: bar can be chosen (build 1563), one bar per answer",s['mode']=='bar' and s['sebar']>=2,[s['mode'],s['sebar']])
+  o=await pg.evaluate(OPTS); ck(tag+" single entity, one year: chart options = pie + bar, no duplicates",len(o)==len(set(o)) and set(o)=={'pie','bar'},o)
   await pick(pg,'pie'); s=await pg.evaluate(R); ck(tag+" one big pie, no list rows",s['mode']=='pie' and s['pie'] and s['rows']==0 and not s['la'],s)
+  ck(tag+f" pie slice labels have one decimal place ({s['plab']})",s['plab'] and all(re.match(r'^\d+\.\d%$',x) for x in s['plab']),s['plab'])
   if s['pie'] and vp['width']<600:
     p=s['pie']; cx=(p[0]+p[2])/2; S=p[2]-p[0]
     ck(tag+f" pie centred on the full screen width (cx {cx:.1f} vs {s['vw']/2:.1f}), large (S={S:.0f})",abs(cx-s['vw']/2)<=1.5 and S>=0.7*s['vw'],p)
     hit=[x for x in s['btns']+s['imgs'] if ov(p,x,1)]; ck(tag+" pie clear of the thumbnails and floating buttons",not hit,hit)
   await pg.evaluate("()=>{ if(document.getElementById('barTime').hidden) document.getElementById('bTime').click(); window.__ySelectAll&&window.__ySelectAll(); }"); await pg.wait_for_timeout(3000)
   s=await pg.evaluate(R); ck(tag+" two years: the single entity switches to the line chart",s['mode']=='line',s['mode'])
-  o=await pg.evaluate(OPTS); ck(tag+" two years: chart options = line only (no bar)",'bar' not in o and 'line' in o,o)
+  o=await pg.evaluate(OPTS); ck(tag+" two years: chart options = line + bar, no duplicates",len(o)==len(set(o)) and set(o)=={'line','bar'},o)
   for nm in ('pct','num'):
     await pg.evaluate("(m)=>window.__setNum(m)",nm); await pg.wait_for_timeout(2500); s=await pg.evaluate(R)
     g=s['grid']; ax=s['ax']; labs=[a[0] for a in ax]
