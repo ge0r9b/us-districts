@@ -89,6 +89,45 @@ def ms(D):
         "source": "Shapes: Harrison County GIS, Voting Precincts (https://geo.co.harrison.ms.us/server/rest/services/District/Precincts/MapServer/1, 49 precincts on the Census 2020 VTD lines); votes: Harrison County Election Commission, Official Recapitulation, 11/5/2024 Federal General Election, received by the MS SOS Elections Division Nov 14 2024 (https://sos.ms.gov/elections/electionresults/2024General/County%20Results/Harrison.pdf), transcribed; all 9 candidate columns equal the recap TOTAL column",
         "rows": rows, "not_located": {}, "water_source": "Harrison County GIS, AssetMap MapServer layer 16 MS Sound/Back bay"}}}
 
+def al(D):
+    # Morgan County: county voter GIS (KCS GIS 'Morgan County Voting Districts', VAM/AL52_VAM_MS layer 9 Voting Precincts,
+    # precinct number + current polling place name); votes: Alabama SOS 2024 General precinct-level results
+    # (2024-General-Morgan.xls), reported by polling place. Polling places are matched to precinct numbers by name
+    # (MATCH below, checked against registered-voter counts). Three units whose 2024 polling place has no
+    # unambiguous match in the current layer, plus ABSENTEE and PROVISIONAL, are kept as not located (none of the
+    # three candidate precincts touches HD 004).
+    import pandas as pd
+    MATCH = {"00101": "MACEDONIA C P CHURCH", "00301": "COUNTY COURTHOUSE", "00303": "AQUADOME REC CTR", "00304": "FORT DECATUR REC CTR",
+             "00306": "WESTMEADE BAPT CH", "00307": "DECATUR UTILITIES", "00308": "1ST BAPT AUSTINVILLE", "00309": "AMER LEGION BLDG POST 15",
+             "00310": "DECATUR BAPT CH", "00312": "TURNER SURLES COMM CTR", "00314": "DECATUR CH OF CHRIST", "00315": "FIRST BIBLE CH",
+             "00401": "BURNINGTREE COUNTRY CLUB", "00402": "BCOMING CH / EPIC CH", "00403": "POINT MALLARD EVENT CTR", "00501": "PRICEVILLE EVENT CTR",
+             "00601": "CTR SPRINGS METHODIST CH", "00701": "COTACO FIRE STATION", "00801": "LACEY'S SPRING SR CTR", "00901": "UNION HILL SR CTR",
+             "01001": "TRI-COUNTY VFD", "01301": "S_A_V_E_S_ FIRE DEPT #1", "01401": "NEW CTR BAPT CH", "01501": "JOHN J SPARKMAN CIVIC",
+             "01502": "1ST BAPT CH HARTSELLE", "01601": "TRINITY MUN BLDG", "01701": "W MORGAN E LAWRENCE W&S", "01801": "NEEL VFD",
+             "01901": "DANVILLE VFD", "02001": "MASSEY FIRE DEPT", "02101": "FALKVILLE MUN BLDG", "02201": "COUNTY DISTRICT 3 VOTING",
+             "02301": "ODEN RIDGE VFD", "02501": "EVA TOWN HALL", "02701": "GUM POND FIRE STATION", "02801": "LEBANON BAPT CH"}
+    x = pd.read_excel(D + "/2024-General-Morgan.xls", header=None)
+    cols = [str(c).strip() for c in x.iloc[0, 3:]]
+    pr = x[x[0].astype(str).str.startswith("PRESIDENT AND VICE")]
+    cand = [str(c).strip() for c in pr.iloc[:, 2]]
+    V = {}
+    for k, c in enumerate(cols):
+        vals = dict(zip(cand, [int(v) for v in pr.iloc[:, 3 + k]]))
+        V[c] = [vals["Kamala D. Harris"], vals["Donald J. Trump"], sum(v for n, v in vals.items() if n not in ("Over Votes", "Under Votes"))]
+    G = {}
+    from shapely.ops import unary_union
+    for f in json.load(open(D + "/morgan_layer9.geojson"))["features"]:
+        G.setdefault(f["properties"]["Precinct"], []).append(shape(f["geometry"]).buffer(0))
+    rows, nl = [], {}
+    used = set()
+    for pnum, poll in MATCH.items():
+        used.add(poll); rows.append([pnum + " " + poll] + V[poll] + [mapping(unary_union(G[pnum]))])
+    for c in cols:
+        if c not in used: nl[c] = V[c]
+    return {"state": "Alabama", "year": "2024", "counties": {"Morgan County": {
+        "source": "Shapes: Morgan County voting precincts, KCS GIS VAM/AL52_VAM_MS MapServer layer 9 (https://web4.kcsgis.com/kcsgis/rest/services/VAM/AL52_VAM_MS/MapServer/9); votes: Alabama Secretary of State, 2024 General Election precinct level results (2024-General Precinct Level Results.zip, 2024-General-Morgan.xls), https://www.sos.alabama.gov/alabama-votes/voter/election-data",
+        "rows": rows, "not_located": nl, "unmatched_precincts": sorted(set(G) - set(MATCH))}}}
+
 if __name__ == "__main__":
     D, st, o = sys.argv[1:4]
     R = globals()[st](D); json.dump(R, open(o, "w"))
