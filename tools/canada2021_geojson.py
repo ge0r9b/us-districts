@@ -6,6 +6,7 @@ Inputs (tools/statcan2021_fetch.py <raw> PR:attr CD:attr FED CSD, then --gen10 C
 FederalElectoralDistricts_SHP.zip unzipped to <raw>/fed2023):
   CSD.jsonl.gz, FED.jsonl.gz (Esri JSON, EPSG:3347), CSD_gen10/FED_gen10, PR_attr.jsonl.gz, CD_attr.jsonl.gz, fed2023/ED_CF.shp.
 Geometry is processed in NAD83 / Statistics Canada Lambert (EPSG:3347, metres).
+  - Coverages are validated per province and repaired with shapely.coverage_clean where needed (see simp()).
   - CSD: the CBF CSD coverage, simplified as a whole with shapely.coverage_simplify at --tol metres (default 50 m, about the
     0.0005 deg used for towns_2024 / places_2024). CD and PR are the unions of the simplified CSDs (CSDUID[:4] / [:2]), so the
     three layers nest exactly and share identical edges.
@@ -18,6 +19,7 @@ Runs in resumable stages (each caches its geometry as pickles in <out>/cache, so
   csd      coverage-simplify the CSDs -> cache/csd_simpl.pkl, ca_csd_2021.geojson.gz, data-v3/geo/ca_csd.csv
   pr, cd   dissolve the simplified CSDs -> ca_pr_2021 / ca_cd_2021 .geojson.gz, ca_pr.csv / ca_cd.csv
   fed2013, fed2023  simplify -> ca_fed2013 / ca_fed2023 .geojson.gz, ca_fed2013.csv / ca_fed2023.csv
+  csv      rewrite the five attribute CSVs from cache/load.pkl only
   xref     full-resolution overlaps -> ca_csd_fed.csv (CSD -> FED 2013/2023 shares), ca_fed2013_2023.csv
 Each stage merges its numbers into <out>/report.json.
 usage: canada2021_geojson.py <repo> <raw_dir> --out DIR [--tol 50] --stage load|csd|pr|cd|fed2013|fed2023|xref|all"""
@@ -109,13 +111,30 @@ def stage_load():
     cput("load", {"PRa": PRa, "CDa": CDa, "CSD": CSD, "F13": F13, "F23": F23})
     R.update(R0); save_report(); log("load cached")
 
-def simp(G, name):
-    v = bool(shapely.coverage_is_valid(G)); S = list(shapely.coverage_simplify(G, TOL)) if v else [g.simplify(TOL) for g in G]
+def simp(G, name, grp):
+    """Coverage simplification of the whole national coverage G (grp[i] = province of G[i]). Validity is checked per province
+    (a national coverage_is_valid on the full-resolution data does not finish in reasonable time); a province whose coverage is
+    not valid (edges not exactly matched next to the features patched from 10 m generalized geometry) is first repaired with
+    shapely.coverage_clean (GEOS CoverageCleaner, automatic snapping distance, gap_width 0, so gaps are kept and only overlaps and
+    unmatched edges are fixed). Then the whole coverage is simplified at once, so edges shared across provinces stay identical."""
+    G = list(G); idx = collections.defaultdict(list); cleaned = {}
+    for i, k in enumerate(grp): idx[k].append(i)
+    for k, ii in sorted(idx.items()):
+        sub = [G[i] for i in ii]
+        if not shapely.coverage_is_valid(sub):
+            bad = int(sum(not e.is_empty for e in shapely.coverage_invalid_edges(sub))); K = list(shapely.coverage_clean(sub))
+            cleaned[k] = {"features_with_invalid_edges": bad, "area_moved_m2": round(sum(x.symmetric_difference(y).area for x, y in zip(sub, K)), 1),
+                          "valid_after": bool(shapely.coverage_is_valid(K))}
+            for i, g in zip(ii, K): G[i] = g
+            log(name, "cleaned", k, cleaned[k])
+    t = time.time(); S = list(shapely.coverage_simplify(G, TOL)); log(name, "simplified", round(time.time() - t))
     S = [s if not s.is_empty else g.simplify(TOL / 4) for s, g in zip(S, G)]
     sd = sum(s.symmetric_difference(g).area for s, g in zip(S, G)); ar = sum(g.area for g in G)
     # Hausdorff is quadratic in vertices; measured only on features under 20,000 input vertices (others: area error only)
     H = sorted(s.hausdorff_distance(g) for s, g in zip(S, G) if shapely.get_num_coordinates(g) < 20000) or [0]
-    R[name] = {"tol_m": TOL, "input_valid_coverage": v, "output_valid_coverage": bool(shapely.coverage_is_valid(S)),
+    outv = {k: bool(shapely.coverage_is_valid([S[i] for i in ii])) for k, ii in sorted(idx.items())}
+    R[name] = {"tol_m": TOL, "cleaned_before_simplify": cleaned, "output_valid_coverage_per_province": all(outv.values()),
+               "output_invalid_provinces": [k for k, v in outv.items() if not v], "all_valid_geometry": bool(all(s.is_valid for s in S)),
                "area_error_pct": round(100 * sd / ar, 4), "hausdorff_m_median": round(H[len(H) // 2], 1), "hausdorff_m_max": round(H[-1], 1),
                "vertices_in": int(sum(shapely.get_num_coordinates(G))), "vertices_out": int(sum(shapely.get_num_coordinates(S)))}
     log(name, R[name]); return S
@@ -140,23 +159,30 @@ def write(name, feats):
     os.replace(p + ".tmp", p)
     R.setdefault("files", {})[os.path.basename(p)] = {"bytes": os.path.getsize(p), "features": len(feats), "geojson_bytes": len(b)}
     log(name, R["files"][os.path.basename(p)])
+la = lambda d: round(d["LANDAREA"], 4)  # CBF LANDAREA (km2, 4 decimals in the source)
 TERR = {"60", "61", "62"}
 
 def stage_csd():
     L = cget("load"); CSD, CDa = L["CSD"], L["CDa"]
-    S = simp([g for _, g in CSD], "CSD"); cput("csd_simpl", S)
+    S = simp([g for _, g in CSD], "CSD", [d["PRUID"] for d, _ in CSD]); cput("csd_simpl", S)
     write("ca_csd_2021", sorted([(d["CSDUID"], {"csduid": d["CSDUID"], "dguid": d["DGUID"], "name": d["CSDNAME"], "type": d["CSDTYPE"],
-          "landarea_km2": d["LANDAREA"], "pruid": d["PRUID"], "cduid": d["CSDUID"][:4], "cdname": CDa[d["CSDUID"][:4]]["CDNAME"]}, s)
+          "landarea_km2": la(d), "pruid": d["PRUID"], "cduid": d["CSDUID"][:4], "cdname": CDa[d["CSDUID"][:4]]["CDNAME"]}, s)
           for (d, g), s in zip(CSD, S)], key=lambda x: x[0]))
     W("ca_csd.csv", ["csduid", "dguid", "name", "type", "pruid", "cduid", "landarea_km2"],
-      sorted([[d["CSDUID"], d["DGUID"], d["CSDNAME"], d["CSDTYPE"], d["PRUID"], d["CSDUID"][:4], d["LANDAREA"]] for d, _ in CSD]))
+      sorted([[d["CSDUID"], d["DGUID"], d["CSDNAME"], d["CSDTYPE"], d["PRUID"], d["CSDUID"][:4], la(d)] for d, _ in CSD]))
 def dissolve(n):
     L = cget("load"); S = cget("csd_simpl"); grp, full = collections.defaultdict(list), collections.defaultdict(list)
     for (d, g), s in zip(L["CSD"], S): grp[d["CSDUID"][:n]].append(s); full[d["CSDUID"][:n]].append(g)
     A = L["PRa"] if n == 2 else L["CDa"]; nm = "PR" if n == 2 else "CD"
-    D = {k: shapely.coverage_union_all(v) for k, v in grp.items()}
-    # check: the union of the full-resolution CSDs against the CBF SHAPE_Area of the published PR / CD polygon
-    err = {k: abs(shapely.coverage_union_all(full[k]).area - A[k]["SHAPE_Area"]) / A[k]["SHAPE_Area"] for k in A if k in full}
+    D, FB = {}, []
+    for k, v in sorted(grp.items()):
+        # GEOS CoverageUnion needs exactly noded inputs and can refuse a coverage that coverage_is_valid accepts (a TopologyException
+        # on PR 62); such groups fall back to the general unary_union (same result, slower) and are listed in the report.
+        try: D[k] = shapely.coverage_union_all(v)
+        except shapely.errors.GEOSException: D[k] = shapely.make_valid(shapely.unary_union(v)); FB.append(k)
+    R[nm + "_union_fallback"] = FB
+    # check: the summed area of the full-resolution CSDs (a coverage, no overlaps) against the CBF SHAPE_Area of the published PR / CD
+    err = {k: abs(sum(g.area for g in full[k]) - A[k]["SHAPE_Area"]) / A[k]["SHAPE_Area"] for k in A if k in full}
     R[nm + "_vs_CBF_shape_area_pct_max"] = round(100 * max(err.values()), 4)
     R[nm + "_vs_CBF_shape_area_worst"] = max(err, key=err.get)
     R[nm + "_missing"] = sorted(set(A) - set(D)); R[nm + "_extra"] = sorted(set(D) - set(A))
@@ -165,23 +191,23 @@ def stage_pr():
     L, D = dissolve(2); P = L["PRa"]
     t = lambda k: "territory" if k in TERR else "province"
     write("ca_pr_2021", [(k, {"pruid": k, "dguid": d["DGUID"], "name_en": d["PRENAME"], "name_fr": d["PRFNAME"], "abbr_en": d["PREABBR"],
-          "abbr_fr": d["PRFABBR"], "type": t(k), "landarea_km2": d["LANDAREA"]}, D[k]) for k, d in sorted(P.items())])
+          "abbr_fr": d["PRFABBR"], "type": t(k), "landarea_km2": la(d)}, D[k]) for k, d in sorted(P.items())])
     W("ca_pr.csv", ["pruid", "dguid", "name_en", "name_fr", "abbr_en", "abbr_fr", "type", "parent", "landarea_km2"],
-      [[k, d["DGUID"], d["PRENAME"], d["PRFNAME"], d["PREABBR"], d["PRFABBR"], t(k), "CA", d["LANDAREA"]] for k, d in sorted(P.items())])
+      [[k, d["DGUID"], d["PRENAME"], d["PRFNAME"], d["PREABBR"], d["PRFABBR"], t(k), "CA", la(d)] for k, d in sorted(P.items())])
 def stage_cd():
     L, D = dissolve(4); P, C = L["PRa"], L["CDa"]
-    write("ca_cd_2021", [(k, {"cduid": k, "dguid": d["DGUID"], "name": d["CDNAME"], "type": d["CDTYPE"], "landarea_km2": d["LANDAREA"],
+    write("ca_cd_2021", [(k, {"cduid": k, "dguid": d["DGUID"], "name": d["CDNAME"], "type": d["CDTYPE"], "landarea_km2": la(d),
           "pruid": d["PRUID"], "prname_en": P[d["PRUID"]]["PRENAME"], "prname_fr": P[d["PRUID"]]["PRFNAME"]}, D[k]) for k, d in sorted(C.items())])
     W("ca_cd.csv", ["cduid", "dguid", "name", "type", "pruid", "landarea_km2"],
-      [[k, d["DGUID"], d["CDNAME"], d["CDTYPE"], d["PRUID"], d["LANDAREA"]] for k, d in sorted(C.items())])
+      [[k, d["DGUID"], d["CDNAME"], d["CDTYPE"], d["PRUID"], la(d)] for k, d in sorted(C.items())])
 def stage_fed2013():
-    F = cget("load")["F13"]; S = simp([g for _, g in F], "FED2013")
+    F = cget("load")["F13"]; S = simp([g for _, g in F], "FED2013", [d["PRUID"] for d, _ in F])
     write("ca_fed2013", sorted([(d["FEDUID"], {"feduid": d["FEDUID"], "dguid": d["DGUID"], "name": d["FEDNAME"], "name_en": d["FEDENAME"],
-          "name_fr": d["FEDFNAME"], "landarea_km2": d["LANDAREA"], "pruid": d["PRUID"], "rep_order": "2013"}, s) for (d, g), s in zip(F, S)], key=lambda x: x[0]))
+          "name_fr": d["FEDFNAME"], "landarea_km2": la(d), "pruid": d["PRUID"], "rep_order": "2013"}, s) for (d, g), s in zip(F, S)], key=lambda x: x[0]))
     W("ca_fed2013.csv", ["feduid", "dguid", "name", "name_en", "name_fr", "pruid", "landarea_km2"],
-      sorted([[d["FEDUID"], d["DGUID"], d["FEDNAME"], d["FEDENAME"], d["FEDFNAME"], d["PRUID"], d["LANDAREA"]] for d, _ in F]))
+      sorted([[d["FEDUID"], d["DGUID"], d["FEDNAME"], d["FEDENAME"], d["FEDFNAME"], d["PRUID"], la(d)] for d, _ in F]))
 def stage_fed2023():
-    F = cget("load")["F23"]; S = simp([g for _, g in F], "FED2023")
+    F = cget("load")["F23"]; S = simp([g for _, g in F], "FED2023", [str(d["ED_CF_NUM"])[:2] for d, _ in F])
     write("ca_fed2023", sorted([(str(d["ED_CF_NUM"]), {"fed_num": str(d["ED_CF_NUM"]), "name_en": d["ED_NAMEE"], "name_fr": d["CF_NOMF"],
           "pruid": str(d["ED_CF_NUM"])[:2], "land_km2_cbf_clip": round(g.area / 1e6, 4), "rep_order": "2023"}, s) for (d, g), s in zip(F, S)], key=lambda x: x[0]))
     W("ca_fed2023.csv", ["fed_num", "name_en", "name_fr", "pruid", "land_km2_cbf_clip"],
@@ -212,6 +238,18 @@ def stage_xref():
     W("ca_fed2013_2023.csv", ["feduid_2013", "name_2013", "fed_num_2023", "name_2023", "pct_of_2013", "pct_of_2023", "same_number"], pr)
     R["fed_pairs"] = len(pr); R["fed_essentially_same_ge99"] = sum(1 for p in pr if p[4] >= 99 and p[5] >= 99); R["fed_same_number"] = sum(p[6] for p in pr)
 
-ST = {"load": stage_load, "csd": stage_csd, "pr": stage_pr, "cd": stage_cd, "fed2013": stage_fed2013, "fed2023": stage_fed2023, "xref": stage_xref}
-for s in (list(ST) if STAGE == "all" else STAGE.split(",")):
+def stage_csv():  # rewrite the five attribute CSVs only (no geometry work)
+    L = cget("load"); P, C = L["PRa"], L["CDa"]; t = lambda k: "territory" if k in TERR else "province"
+    W("ca_pr.csv", ["pruid", "dguid", "name_en", "name_fr", "abbr_en", "abbr_fr", "type", "parent", "landarea_km2"],
+      [[k, d["DGUID"], d["PRENAME"], d["PRFNAME"], d["PREABBR"], d["PRFABBR"], t(k), "CA", la(d)] for k, d in sorted(P.items())])
+    W("ca_cd.csv", ["cduid", "dguid", "name", "type", "pruid", "landarea_km2"],
+      [[k, d["DGUID"], d["CDNAME"], d["CDTYPE"], d["PRUID"], la(d)] for k, d in sorted(C.items())])
+    W("ca_csd.csv", ["csduid", "dguid", "name", "type", "pruid", "cduid", "landarea_km2"],
+      sorted([[d["CSDUID"], d["DGUID"], d["CSDNAME"], d["CSDTYPE"], d["PRUID"], d["CSDUID"][:4], la(d)] for d, _ in L["CSD"]]))
+    W("ca_fed2013.csv", ["feduid", "dguid", "name", "name_en", "name_fr", "pruid", "landarea_km2"],
+      sorted([[d["FEDUID"], d["DGUID"], d["FEDNAME"], d["FEDENAME"], d["FEDFNAME"], d["PRUID"], la(d)] for d, _ in L["F13"]]))
+    W("ca_fed2023.csv", ["fed_num", "name_en", "name_fr", "pruid", "land_km2_cbf_clip"],
+      sorted([[str(d["ED_CF_NUM"]), d["ED_NAMEE"], d["CF_NOMF"], str(d["ED_CF_NUM"])[:2], round(g.area / 1e6, 4)] for d, g in L["F23"]]))
+ST = {"csv": stage_csv, "load": stage_load, "csd": stage_csd, "pr": stage_pr, "cd": stage_cd, "fed2013": stage_fed2013, "fed2023": stage_fed2023, "xref": stage_xref}
+for s in ([k for k in ST if k != "csv"] if STAGE == "all" else STAGE.split(",")):
     log("stage", s); ST[s](); save_report(); log("stage", s, "done")
