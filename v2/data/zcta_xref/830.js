@@ -1,0 +1,1 @@
+__zxref("830",{"83001":{st:"WY",place:[["Jackson town",0.01]],county:[["Teton County",1.0]]},"83011":{st:"WY",county:[["Teton County",1.0]]},"83012":{st:"WY",county:[["Teton County",1.0]]},"83013":{st:"WY",county:[["Teton County",1.0]]},"83014":{st:"WY",county:[["Teton County",1.0]]},"83025":{st:"WY",county:[["Teton County",1.0]]}});

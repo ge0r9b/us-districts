@@ -1,0 +1,1 @@
+__zxref("994",{"99401":{st:"WA",county:[["Asotin County",1.0]]},"99402":{st:"WA",place:[["Asotin city",0.0]],county:[["Asotin County",1.0]]},"99403":{st:"WA",place:[["Clarkston city",0.01]],county:[["Asotin County",0.8],["Garfield County",0.2]]}});
