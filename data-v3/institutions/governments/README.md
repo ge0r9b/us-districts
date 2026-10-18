@@ -16,6 +16,8 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | `id_registry.csv` | 93,278 | frozen entity IDs (see SCHEMA.md); committed and appended by every build |
 | `sources.csv` | 19 | stable source codes used in `source` columns |
 | `changes_since_cog2022.csv` | 131 | incorporations, dissolutions, mergers, consolidations, reclassifications after the CoG 2022 snapshot (see below) |
+| `images.csv` | 2,024 | seal (1,967) and flag (57) image records: Commons/Wikipedia file, license, attribution, QID (no binaries) |
+| `images_gaps.csv` | 37,896 | in-scope entities without an image, with the reason |
 | `changes_curated.csv` | 26 | hand-entered input for the changes cited to state sources |
 | `summary.json` | | row counts, match counts, source URLs/dates (written by the build) |
 | `scripts/` | | Python 3 stdlib + `openpyxl` (to read the CoG .xlsx) |
@@ -107,17 +109,27 @@ School Districts 1 and 3 (CoG 2022 lists them; Act 106 names only districts 2 an
 districts, CA State Controller special districts) are not done yet; CoG 2022 omissions that are not changes (Howard KS,
 Keene KY, St. Mary KY, Plantersville TX, Poetry TX existed before 2022) are not added.
 
+## Wikidata QIDs and images
+QIDs come only from exact identifier links (rules in SCHEMA.md): qid_by_p5087 50, qid_by_p590 16,194, qid_by_p774 19,390, qid_by_p882 3,030. Unassigned: item_shared 10, multiple_items 5, no_item 68, p774_p590_disagree 64.
+`images.csv`: 1,967 seals and 57 flags (821 seals are `fair-use` files from English Wikipedia used as
+identification icons, usage_basis `identification icon, small size`). By kind and entity type: flag / dc 1, flag / nation 1, flag / state 50, flag / territory 5, seal / county 250, seal / county / enwiki_fair_use 818, seal / county / enwiki_free 70, seal / dc 1, seal / municipality 648, seal / nation 1, seal / state 50, seal / territory 1, seal / territory / enwiki_free 3, seal / township 119, seal / tribe 1, seal / tribe / enwiki_fair_use 3, seal / tribe / enwiki_free 2.
+By license: CC-BY-3.0 3, CC-BY-4.0 5, CC-BY-SA-3.0 28, CC-BY-SA-4.0 77, CC0-1.0 18, LicenseRef-Attribution 2, LicenseRef-Copyrighted-free-use 4, LicenseRef-GPL 1, LicenseRef-PublicDomain 1065, fair-use 821. Queries: Wikidata SPARQL in batches of at most 400 VALUES, Commons/Wikipedia API at 50 titles per
+request, one request per second, User-Agent naming this repo; all responses are cached in `cache/` (gitignored), so a
+rerun with a full cache makes no requests. Not covered: federal agencies (Wikidata has no Federal Register agency-ID
+property, so no QID), special districts (no identifier property), school districts (skipped by rule), and the
+enwiki seal fallback for municipalities and townships (not attempted in this pass; their gaps say so).
+
 ## Rerun
 ```
 cd data-v3/institutions/governments
 pip install openpyxl                         # only non-stdlib dependency
 python3 scripts/fetch_sources.py             # downloads into cache/ (gitignored); skips cached files
 python3 scripts/fetch_sources.py --refresh   # re-download everything (new retrieved_at)
-python3 scripts/build_all.py                 # rewrites all CSVs + summary.json
+python3 scripts/build_all.py                 # rewrites all CSVs + summary.json (first run also fetches Wikidata/Commons/enwiki metadata into cache/)
 ```
 The build is deterministic: with the same `cache/` it reproduces byte-identical files. `fetch_sources.py` always
 picks the newest BIA list notice from the Federal Register search, so a refresh after a new notice picks it up.
 `cache/manifest.json` records URL, Last-Modified and retrieval time per file. Raw downloads are never committed.
 
 Scripts: `common.py` (download/cache, readers, column lists), `build_states.py`, `build_cog.py`,
-`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `build_all.py`.
+`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `wikidata.py` (QIDs, Commons/enwiki metadata), `build_images.py`, `build_all.py`.

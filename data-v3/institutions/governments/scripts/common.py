@@ -87,8 +87,16 @@ SOURCE_TABLE = {
     'census_gcn': ('U.S. Census Bureau, Geographic Change Notes (Boundary and Annexation Survey), national files by effective year '
                    + '-'.join((GCN_YEARS[0], GCN_YEARS[-1])), 'https://www2.census.gov/geo/docs/reference/bndrychange/',
                    ['gcn_' + y for y in GCN_YEARS]),
+    'wikidata_ids': ('Wikidata SPARQL: items by exact identifier (P5087 FIPS 5-2 numeric, P882 FIPS 6-4, P774 FIPS 55-3, P590 GNIS ID)',
+                     'https://query.wikidata.org/', ['wd_ids_*', 'wd_p590_*']),
+    'wikidata_images': ('Wikidata SPARQL: P158 seal image and P41 flag image of the matched items', 'https://query.wikidata.org/', ['wd_img_*']),
+    'commons_api': ('Wikimedia Commons API imageinfo/extmetadata (license, author, attribution of each file)',
+                    'https://commons.wikimedia.org/w/api.php', ['commons_*']),
+    'enwiki_api': ('English Wikipedia API: the matched Wikidata item\'s enwiki article (sitelink), its seal file and the file metadata '
+                   '(fair-use fallback for seals)', 'https://en.wikipedia.org/w/api.php', ['enwd_sl_*', 'enwp_*']),
 }
-LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)'}
+LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)', 'wikidata_ids': 'CC0 1.0 (Wikidata)', 'wikidata_images': 'CC0 1.0 (Wikidata)',
+            'enwiki_api': 'metadata: CC BY-SA 4.0 (Wikipedia); each image under its own license or fair use (images.csv)', 'commons_api': 'metadata: CC BY-SA 4.0 / CC0 (Wikimedia); each image under its own license (images.csv)'}
 
 
 class Registry:
@@ -146,7 +154,7 @@ def fetch(key, refresh=False, url=None, fname=None):
     if os.path.exists(path) and key in m and not refresh:
         return path
     req = urllib.request.Request(url.replace('[', '%5B').replace(']', '%5D'),
-                                 headers={'User-Agent': 'us-districts-governments-dataset/1.0'})
+                                 headers={'User-Agent': 'us-districts-governments-dataset/1.0 (https://github.com/ge0r9b/us-districts; ge0r9b@users.noreply.github.com)'})
     with urllib.request.urlopen(req, timeout=300) as r:
         data = r.read()
         lm = r.headers.get('Last-Modified')

@@ -29,7 +29,7 @@ are only ever appended (`nces_leaid`, `tiger_status`, then `flags`, `valid_from`
 | `alias` | `AO;administrative-office-...` | `;`-separated other names from the source (FR short name + slug; BIA former / aka names; state USPS) |
 | `gnis_id` | `02403054` | ANSI/GNIS feature code of the matched TIGER feature (TIGER `ANSICODE` / `AIANNHNS` / `STATENS`) |
 | `ocd_id` | | optional, empty |
-| `wikidata_qid` | `Q356979` | tribes: only when the BIA current name equals exactly one Wikidata item's English label or official name (P1448) among instances of Q7840353 (federally recognized Native American tribe), and no other BIA line matches that item (`flags` says `qid_by_p1448` or `qid_by_label`). Wikidata has no BIA-ID property. Other types: from exact identifier links only (see images part) |
+| `wikidata_qid` | `Q356979` | only from exact identifier links, never from names: states P5087 (FIPS 5-2 numeric) = state FIPS; counties P882 (FIPS 6-4) = county GEOID; municipalities P774 (FIPS 55-3, digits) = place GEOID, else P590 (GNIS ID) = TIGER ANSI code (if both exist and disagree: none); townships P590 only (MCD and place FIPS codes collide). Set only when exactly one item links and that item links to no other entity; `flags` says `qid_by_p5087` / `qid_by_p882` / `qid_by_p774` / `qid_by_p590`. Tribes: exact BIA-name = Wikidata label/P1448 among instances of Q7840353 (`qid_by_p1448` / `qid_by_label`; Wikidata has no BIA-ID property). Federal agencies, special and school districts: none (no identifier property). |
 | `is_active` | `Y` / `N` / `false` | CoG `IS_ACTIVE` (`N` = dormant but still a government); `false` = the government has ceased to exist (dissolved, merged, deorganized, consolidated) on `valid_to`, per a cited record in `changes_since_cog2022.csv`. Rows are never deleted. |
 | `note` | | free text (why a value is blank, cross-reference text, etc.) |
 | `source` | `cog2022;f33_2024;gaz2024` | `;`-separated stable source codes, defined in `sources.csv`: the record's source first, then the source(s) of its GEOID / QID |
@@ -78,6 +78,33 @@ sources; empty for files served over HTTP).
 | `federal_agency` | agency or sub-agency in the Federal Register agency list; `subtype` = `agency` / `sub_agency` | FR API | (new) |
 | `tribe` | entity on the BIA list of federally recognized tribes; `subtype` = `contiguous_48` / `alaska_native` / `cross_reference` | BIA FR notice | `tribal` |
 | `sovereign`, `foreign` | reserved for later non-US rows (countries, foreign governments); not used yet | | `sovereign`, `foreign` |
+
+## images.csv
+Seal and flag image records, long format, one row per (entity, image_kind). URLs and metadata only; no image files.
+
+| column | meaning |
+|---|---|
+| `entity_id` | entity row (`nation:us` = Q30, defined on `data/inst-entities`; `state:60/66/69/72/78` = territories, which have no entity row here yet) |
+| `image_kind` | `seal` (Wikidata P158) or `flag` (P41; nation, states, DC, territories only) |
+| `commons_file`, `commons_url` | Commons file name and description page (empty for files hosted only on English Wikipedia) |
+| `license` | SPDX-style id from Commons `LicenseShortName` (`LicenseRef-PublicDomain`, `CC0-1.0`, `CC-BY-SA-4.0`, ...), or `fair-use` |
+| `attribution` | Commons/Wikipedia `Artist` (else `Credit`), HTML stripped |
+| `wikidata_qid` | the item the image came from |
+| `retrieved_at` | metadata retrieval time |
+| `usage_basis` | fair-use rows only: `identification icon, small size` |
+| `source_url` | fallback rows only: the English Wikipedia file page (fair use) or article (free file shown there) |
+
+Selection: P158/P41 of the entity's QID; several files → most open license first (PD/CC0, CC BY, CC BY-SA, other).
+Fallback for seals (nation, states, DC, territories, counties, tribes without P158): the seal file on the item's own
+English Wikipedia article (its enwiki sitelink), only if exactly one file named "...seal..." is on the page, that
+file is on no other fetched article (navbox images such as state seals are excluded) and is no other item's P158.
+School-district seals/logos are skipped by rule.
+
+## images_gaps.csv
+`entity_id, image_kind, wikidata_qid, reason`: in-scope entities (nation, states, DC, territories, counties,
+municipalities, townships, tribes, federal agencies) with no image: `no_qid` (no exact identifier link; federal
+agencies: no identifier property), `no_P158_on_wikidata; enwiki article fallback: no single seal file | not attempted
+for this type`, `commons_file_missing`.
 
 ## changes_since_cog2022.csv
 One row per (government, change) after the 2022 Census of Governments snapshot. Built by `scripts/build_changes.py`.
