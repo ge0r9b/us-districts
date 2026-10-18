@@ -15,7 +15,9 @@ import datetime as dt
 import hashlib
 import json
 import math
+import html
 import re
+import urllib.parse
 import sys
 from collections import Counter, defaultdict
 
@@ -419,6 +421,48 @@ while frontier:
     in_tree |= nxt
     frontier = nxt
 RELS = [r for r in RELS if f"wikidata:{r['child']}" in in_tree]
+# ---- logos: Wikidata P154 + Commons licence (scripts/fetch_logos.py) ----
+LOGO_META = read_meta("logos")
+S_LOGO = src(f"wikidata-commons-logos-{LOGO_META['retrieved_at']}", "Wikidata P154 (logo image) + Wikimedia Commons file licence metadata",
+             "https://commons.wikimedia.org/w/api.php", "per file: see brands.csv logo_license (Wikidata statements CC0)",
+             LOGO_META["retrieved_at"], RAW / "logos.json")
+_lg = json.loads((RAW / "logos.json").read_text())
+_cm = {}
+for t, m in _lg["commons"].items():
+    _cm[m["requested"]] = _cm[t] = m
+FREE = re.compile(r"^(pd|cc0|cc-by(-sa)?(-[\d.]+)?(-[a-z]+)?)$", re.I)
+def _txt(h):
+    h = re.sub(r"<(span|div)[^>]*display: ?none[^>]*>.*?</\1>", "", h or "", flags=re.S)
+    return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", h))).strip()
+_by = defaultdict(list)
+for r in _lg["wdqs"]:
+    _by[r["item"].rsplit("/", 1)[-1]].append(r)
+def logo_for(q):
+    """Pick one P154 value: preferred rank, else the only one without an end date. Return (cols, flags)."""
+    st = _by.get(q, [])
+    if not st:
+        return {}, ["logo_no_p154"]
+    pref = [r for r in st if r["rank"].endswith("PreferredRank")]
+    open_ = [r for r in st if not r.get("end")]
+    pick = pref if len(pref) == 1 else open_ if len(open_) == 1 else []
+    if not pick:
+        return {}, ["logo_multiple_p154_no_rank_or_dates_review"]
+    fname = urllib.parse.unquote(pick[0]["logo"].rsplit("/", 1)[-1])
+    m = _cm.get("File:" + fname, {})
+    em = m.get("imageinfo", {}).get("extmetadata", {})
+    g = lambda k: (em.get(k) or {}).get("value", "")
+    lic, short = g("License"), _txt(g("LicenseShortName"))
+    cats = g("Categories").split("|")
+    basis = [c for c in cats if c.startswith("PD ") or c.startswith("PD-") or c.startswith("CC-")]
+    restr = g("Restrictions")
+    said = ", ".join(t for t in [short + (f" ({', '.join(basis)})" if basis else ""), f"restrictions: {restr}" if restr else ""] if t)
+    fl = []
+    if m.get("missing") or not FREE.match(lic or ""):
+        return {}, [f"logo_not_free_or_unknown_licence:{said}"]
+    att = _txt(g("Artist")) or _txt(g("Credit"))
+    return dict(logo_file=fname, logo_license=said, logo_attribution=att,
+                logo_source_url=m["imageinfo"].get("descriptionurl", "")), fl
+
 brows = []
 for q, e in sorted(WD.items(), key=lambda t: int(t[0][1:])):
     wid = f"wikidata:{q}"
@@ -441,6 +485,9 @@ for q, e in sorted(WD.items(), key=lambda t: int(t[0][1:])):
                       parent_brand_name=";".join(WD.get(p, {}).get("label", "") for p in cur), website=";".join(e["website"]),
                       location_files=";".join(sorted(files.get(wid, []))), location_count=used.get(wid, 0), flags=";".join(fl),
                       source_id=S_WD, source_url=f"https://www.wikidata.org/wiki/{q}", retrieved_at=SOURCES[S_WD]["retrieved_at"]))
+    lc, lfl = logo_for(q)
+    brows[-1].update({k: lc.get(k, "") for k in ("logo_file", "logo_license", "logo_attribution", "logo_source_url")})
+    brows[-1]["logo_flags"] = ";".join(lfl)
 pd.DataFrame(brows).to_csv(ROOT / "brands.csv", index=False, lineterminator="\n")
 summary["brands_rows"] = len(brows)
 summary["brands_by_kind"] = dict(Counter(r["kind"] or "(review)" for r in brows))

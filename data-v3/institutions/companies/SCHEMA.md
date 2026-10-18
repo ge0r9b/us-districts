@@ -35,6 +35,11 @@ Store / property ids are the brand's own number or code (`store_id`), unique wit
 | `location_files`, `location_count` | where this QID is used as `brand_qid` / `sub_brand_qid` |
 | `flags` | `kind_review` |
 | `source_id`, `source_url`, `retrieved_at` | sources.csv id; the Wikidata item page; retrieval date |
+| `logo_file` | Wikimedia Commons file name from Wikidata P154 (logo image). One value is chosen: the preferred-rank statement, else the only statement without an end date (P582); otherwise blank with `logo_multiple_p154_no_rank_or_dates_review`. Filled **only** when Commons gives a free licence (PD, CC0, CC-BY, CC-BY-SA); otherwise blank, and the app falls back to a building icon |
+| `logo_license` | what Commons says: `LicenseShortName` (PD/CC basis category), plus `restrictions: …` (e.g. `trademarked`). Most are `Public domain (PD textlogo), restrictions: trademarked`: free of copyright, still a trademark |
+| `logo_attribution` | Commons `Artist` field (HTML stripped), else `Credit` |
+| `logo_source_url` | the Commons file description page |
+| `logo_flags` | `logo_no_p154`, `logo_multiple_p154_no_rank_or_dates_review`, `logo_not_free_or_unknown_licence:<what Commons says>`. Source: `wikidata-commons-logos-<date>` in sources.csv (raw: `raw/logos.json`, `scripts/fetch_logos.py`) |
 
 Scope: every brand used by a location row, plus every ancestor reachable through P749 statements (current or historical), so all relationship endpoints resolve.
 
@@ -112,6 +117,7 @@ cd data-v3/institutions/companies/scripts
 python3 fetch_atp.py mcdonalds marriott_hotels ritz_carlton
 python3 fetch_marriott_pacsys.py AK WI TX JW WH LC MV SV WV PR XR RZ BR MD EB DE EL OX GE ER BG FI CY RI MC TS SH FP SI AR DS AL XE
 python3 fetch_wikidata_brands.py <brand QIDs…>      # list in summary.json / brands.csv
+python3 fetch_logos.py                              # P154 + Commons licences for the entities in brands.csv
 # copy inputs to raw/inputs/: all_stores.csv, marriott-properties-v5.csv, cb_2024_us_county_500k.*
 python3 build_locations.py
 ```
