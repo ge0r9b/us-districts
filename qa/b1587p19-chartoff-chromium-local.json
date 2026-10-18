@@ -1,0 +1,49 @@
+[
+ {
+  "W": 390,
+  "place": "US",
+  "ch": "bar",
+  "start": {
+   "mode": null,
+   "cls": "",
+   "crumb": "United States",
+   "rows": 0,
+   "mapvis": [
+    390,
+    844,
+    "visible",
+    "block"
+   ],
+   "lv": false
+  },
+  "chart": {
+   "mode": "bar",
+   "cls": "listmode chv",
+   "crumb": "United States",
+   "rows": 0,
+   "mapvis": [
+    390,
+    844,
+    "hidden",
+    "block"
+   ],
+   "lv": false
+  },
+  "off": {
+   "mode": null,
+   "cls": "listmode",
+   "crumb": "United States",
+   "rows": 0,
+   "mapvis": [
+    390,
+    844,
+    "hidden",
+    "block"
+   ],
+   "lv": false
+  },
+  "lat": 14.8,
+  "shot": "../shots/b1587p19-old1585-ch-390-chartoff-US-bar.png",
+  "err": []
+ }
+]

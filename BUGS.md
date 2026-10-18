@@ -343,7 +343,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 
 ## New on build 1575 (pass 7)
 
-### QA-044 Line list: the first row's change number is hidden under the sort chip
+### QA-044 [Changed on 1587, see pass 19] Line list: the first row's change number is hidden under the sort chip
 - Severity: High (a number on the first row can't be read; regression from the 1575 rows-up change) | Build 1575 | 390x844 and 375x667 (Chromium, touch). Not at 320x568, 1024x576 or 1024x768, where the chip sits clear of the labels.
 - Steps: All States list > open the time row > select the full range ('20 > '24) > chart button > Line. Same in `#`, and in PA counties.
 - Expected: the first row's numbers stay fully readable (they were clear on 1574, when the rows started 15 px lower).
@@ -612,7 +612,7 @@ The live build moved during the pass: 1578 at 12:56, 1579 by ~1:05, 1580 by ~1:3
 - Expected: a readable name such as "AD 75 ED 15" (as the popup has).
 - Screenshot: shots/b1577p13-ch-375-addr2-0.png
 
-### QA-070 [HIGH, seen once, recheck] Opening All States: the clock button jumps off screen for one frame
+### QA-070 [Fixed on 1586 (verified pass 19, 6:10 PM EDT)] [HIGH] Opening All States: the clock button jumps off screen for one frame
 - Build 1580 | Chromium 390x844
 - Steps: US map > geo button > All States row.
 - Actual: `#bTime` sits at (334,122) then at 1,758 ms jumps to (1336,488) (**dx +1002, dy +366**, so it vanishes) and returns to (334,122) at 1,801 ms. New on 1580 (the clock-button change); not seen on 1579 at 375/320/1024x576.
@@ -700,13 +700,41 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-schools-Ohio.png, shots/b1582p14-ch-390-schools-California.png, shots/b1582p14-ch-390-schools-Vermont-list.png
 - Data: `qa/b1582p14-school2-chromium-390.json` (`dups`, `order_dups`)
 
-### QA-060 (widened, HIGH, was "Blount County results > list") Candidate icons jump 8 px sideways for 250-560 ms on every map/list switch
+### QA-060 [Fixed on 1586 (verified pass 19, 6:10 PM EDT)] (widened, HIGH, was "Blount County results > list") Candidate icons jump 8 px sideways for 250-560 ms on every map/list switch
 - Severity: HIGH (layout jump; contradicts the 1582 "fixed spot" rule while it lasts) | Build 1582 (Blount on 1583) | Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768; WebKit 390x844, 1024x768
 - Steps: Massachusetts > globe button (map > list), then a chart pick, then globe again (list > map). Same at '24, '20>'24 and '16>'24.
 - Expected: the icons stay at the map's spot in every frame (x 12).
 - Actual: map > list: the icons go to x 4 (**dx -8**) on the first frame (23-45 ms) and return to x 12 at 262-561 ms. List > map: the left column goes to x 20 (**dx +8**) at 15-34 ms and returns at 265-624 ms (in a range only the left column moves). Settled positions match. Blount County (1583, 390): 12 > 4 at 22 ms > 12 at 273 ms, as first logged.
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
+
+## Re-test status, build 1587 (pass 19, live line 9 = 202610181587; Oct 18 ~5:57-6:30 PM EDT)
+- Builds since pass 18: 1586 (`ec95444`: '16 charts blank after returning to '16, menus are overlays with no dim, QA-060 icons re-measured, QA-070 clock button) and 1587 (`0c711df`: list sort chip at the right end of the bar area). No v3 preview or live URL yet. Box quiet (load 1-2).
+- **QA-070 fixed (HIGH):** US map > time row > geo button > All States: `#bTime` no longer leaves its spot in any frame (Chromium 390 and 1024x768, WebKit 390; only the geo field moves, as the full-screen menu opens). Data: `qa/b1587p19-layout-*.json` step 25.
+- **QA-060 fixed (HIGH):** map > list and list > map at MA > Worcester County: no transient icon positions in any frame (Chromium 390 and 1024x768, WebKit 390). Was 50 px wide for 550-620 ms on 1585. Data: same files, steps 9 and 17.
+- **1586 '16 chart fix verified (Chromium 390):** Pennsylvania and Alabama, bar and pie, '16 > '24 > '16 > '20 > '16: the chart is drawn at every step. Data: `qa/b1587p19-new-chromium-iphone390.json` (`y16_*`).
+- **1586 menus verified (Chromium and WebKit, all 5 sizes, US and Alabama):** with the pie showing, opening the district-type menu or the chart menu leaves the pie at the same rect, `#chartDim` is transparent and no tinted full-screen layer appears. Taps 5-26 ms. Data: `qa/b1587p19-menus-{chromium,webkit}.json`, shots shots/b1587p19-*-menus-*.png.
+- **1587 sort chip:** same spot in every list mode (bar %, #, range bar, split bar, line); it moves only with the time row, as specced, and is never under a floating button (5 sizes Chromium, WebKit 390). But see QA-044 (changed).
+- **5-size smoke flow, Chromium and WebKit (touch):** no console errors, page errors or failed requests; CLS 0; reload restores PA > Allegheny list, bar, #, 2024; the DC address opens DC. DC > School districts / US House still show DC's own 90% / 6% (QA-072 stays fixed). "Georgia", "Texas", "Washington" + Enter open the US states (QA-075 stays fixed).
+- **Layout sweep 390 (Chromium, WebKit) and 1024x768 (Chromium):** slider, top fields, right buttons and bottom bar did not move on year changes, drill-ins or Back. Still: QA-054 thumbnails dy -3/+3 on map/list, QA-058 +23 px in the plain range list (at 1024x768 the icons also narrow 300 > 123 px over 95 ms), QA-057 chart button hidden while the layers row is open. (WebKit steps 26-32 skipped: harness could not find the MA row, as in pass 17.)
+- **Still open, unchanged:** QA-076 (bubble x 6-116 on phones, 316-426 on iPad), QA-077 (US 2020 > 2024 chart still shows the old "Republican +3.1 pts" block below the icons), QA-078 (split bar rows each full width: NY +5.9 and CT +2.7 the same length), QA-005 (US House from the Pittsburgh towns list: 0 rows, Chromium all sizes), QA-007 (All States row 70-113 ms Chromium, 104-169 ms WebKit), QA-020 (WebKit Back from Harris County towns 268 ms at 390), QA-003.
+- Shots: shots/b1587p19-ch-390-chart-us-range.png, shots/b1587p19-ch-390-chart-list-gbar.png, shots/b1587p19-ch-390-chart-bubble.png
+
+### QA-044 [Changed on 1587] Sort chip now sits on the first row's bar end in split bar and range bar lists
+- Severity: MEDIUM | Build 1587 | Chromium 390x844, 375x667, 320x568; WebKit 390x844 (touch). Not seen at 1024x576 / 1024x768.
+- Steps: All States list > time row 2020 > 2024 > chart button > split bar (also: range bar at 375; back to '24 in split bar at 320).
+- Expected: the chip clear of every row's bars and labels.
+- Actual: chip at x 288-322 (390), 273-307 (375), 218-252 (320), y 119-141, on top of NY's red split bar (bar to x 347 / 334 / 286). At 375 in the range bar list it also covers the top of NY's "−4.5" label (label x 256-278, y 139-150). At 320 after going back to '24 it sits on WY's red bar end. The old "−1.83M under the chip" in the range line list did not reproduce in % mode (the chip is now right of the lines); # mode not re-checked.
+- Shots: shots/b1587p19-ch-390-new-sort-range-gbar.png, shots/b1587p19-ch-375-new-sort-range-bar.png, shots/b1587p19-ch-320-new-sort-back-2024.png, shots/b1587p19-we-390-new-sort-range-gbar.png
+- Data: `qa/b1587p19-new-*.json` (`iss`, `sort_seen`)
+
+### QA-079 [LOW, question] Turning the chart off from a chart opened on the map leaves an almost empty gray list instead of the map
+- Build 1587 (same on 1585, checked on a local copy) | Chromium and WebKit 390x844 and 1024x768, US and Alabama, bar and pie
+- Steps: fresh load (US map) > chart button > Bar (or Pie) > chart button (menu opens) > chart button again.
+- Expected: hunch only: back to the map the user started from (the spec says picking a chart opens the list view, but says nothing about turning it off).
+- Actual: the chart turns off, the map stays hidden and the screen is gray with just the two thumbnails (the place's list view with no rows). This state is saved, so a reload comes back to the same gray screen; one globe tap brings the map back.
+- Shots: shots/b1587p19-ch-390-chartoff-US-bar.png, shots/b1587p19-ch-390-chartoff-reload.png, shots/b1587p19-ch-390-chartoff-globe1.png
+- Data: `qa/b1587p19-chartoff-{chromium,webkit}.json`
 
 ## Re-test status, build 1585 (pass 18, `5a0df17`, live line 9 = 202610181585; Oct 18 ~4:55-5:35 PM EDT)
 - No v3 preview or live URL yet. Box quiet (load 1-4).
