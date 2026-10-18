@@ -9,14 +9,14 @@ Columns after `license` (entities) and after `retrieved_at` (xwalk) are additive
 | # | column | example | meaning |
 |---|---|---|---|
 | 1 | `entity_id` | `county:01001`, `muni:place:1714000`, `town:cousub:0911001080`, `school:0100003`, `chamber:al-lower`, `us-house`, `state:01`, `nation:us`, `chamber:dc-council` | stable, opaque. Minted once from the kind prefix + the GEOID the entity was **first seen** with, then frozen: never re-derived when a boundary or GEOID changes. A new id is minted only when the government itself changes (merger, dissolution, new incorporation, CT counties → planning regions) |
-| 2 | `kind` | `nation`, `state`, `territory`, `county`, `municipality`, `township`, `school_unified`, `school_elementary`, `school_secondary`, `chamber`, `dc_council` | district seats are **units, not entities** (no `district_seat` kind) |
+| 2 | `kind` (open vocabulary; company kinds will be added by external feeds) | `nation`, `state`, `territory`, `county`, `municipality`, `township`, `school_unified`, `school_elementary`, `school_secondary`, `chamber`, `dc_council` | district seats are **units, not entities** (no `district_seat` kind) |
 | 3 | `state_fips` | `01` | jurisdiction (empty for nation / us-house) |
 | 4 | `state` | `Alabama` | |
 | 5 | `name` | `Autauga County` | TIGER NAMELSAD (Census) or the official body name |
 | 6 | `alias` | `Hartford town;Hartford` | `;`-list; a `;` inside a name is escaped as `\;` |
 | 7 | `label` | `incorporated` / `unincorporated` / `sovereign` | v2 wording: states sovereign; TIGER CLASSFP for places |
 | 8 | `gov_status` | `government` / `area_only` / `dependent` / empty | CoG 2022 by FIPS code, county_government.csv for counties, TIGER FUNCSTAT G = dependent; empty = unknown (see `flags`) or not applicable (chambers) |
-| 9 | `parent_id` | `state:01` | school district → state, county → state, town/municipality → county (if ≥ 98 % inside one county, else state), chamber → state, us-house → nation:us, state → nation:us |
+| 9 | `parent_id` | `state:01` | generic containment / ownership link (a corporate parent works the same way). School district → state, county → state, town/municipality → county (if ≥ 98 % inside one county, else state), chamber → state, us-house → nation:us, state → nation:us |
 | 10 | `valid_from` | | date the institution began, only when a source gives it; empty = not recorded |
 | 11 | `valid_to` | | empty = still exists |
 | 12 | `predecessor_id` | | `;`-list of entity_ids this one replaced |
@@ -28,7 +28,8 @@ Columns after `license` (entities) and after `retrieved_at` (xwalk) are additive
 | 18 | `source_url` | `https://www2.census.gov/...` | `;`-list, one URL per source that has one |
 | 19 | `retrieved_at` | `2026-10-18` | date the raw sources were downloaded |
 | 20 | `license` | `public domain (US government work)` | |
-| 21+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local), finer type (TIGER LSAD text), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
+| 21 | `feed` | `tiger/cog` | provenance: which list the row came from: `tiger/cog` (this build), `inst-lane` (nation, chambers, DC Council), later `governments-bot`, `companies-bot`, `user-upload` |
+| 22+ | `level`, `type`, `cog_pid6`, `flags` | `local`, `city`, `162236`, `gov_status_unknown:...` | extras: government tier (federal/state/county/local), finer type (TIGER LSAD text), CoG 2022 unit id, `;`-list of flags for unknowns and review items |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 

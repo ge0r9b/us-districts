@@ -1,0 +1,184 @@
+{
+ "built_from": {
+  "repo_head": "7250e8b21ceb0c522dc28430aeb0123c5638c51e",
+  "officeholder_ref": "origin/data/inst-officeholders 4a0845302187990c953cb9ebfadd316788271b82",
+  "gazetteer_2024": {
+   "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
+   "2024_Gaz_counties_national.txt": "0a121d136b434e3ae749d053db19dfbacbb56eebf30335cfa5031388803b4451",
+   "2024_Gaz_cousubs_national.txt": "d51c213f1ca004202810729192441a9aeb88049d1064813345904fad7f844d30",
+   "2024_Gaz_elsd_national.txt": "bb39248f2a264c607d0b0886f75645ed922f4015953caa9a44e8c4ed528d0fd8",
+   "2024_Gaz_place_national.txt": "ba197a3c0cef828d47981ed7435d820d040d3199bf39a719cd9b11412c59afa6",
+   "2024_Gaz_scsd_national.txt": "1a5ad22a90c1d85ff576594dc936f62eee9f1d433e55db019868f5485016c86e",
+   "2024_Gaz_sldl_national.txt": "c1f3c2e03551e52300aa12f4f36156f1e790f485053592d4eee05df01d1eec54",
+   "2024_Gaz_sldu_national.txt": "c50df3cb685f8b143b2a2e35aa4d106e50fea0da5ae53d855d7db25b4ba61447",
+   "2024_Gaz_unsd_national.txt": "786df29997ff09669f096794c0d2375e187a8b0793425ed6e5f1c08249d8b015"
+  },
+  "gazetteer_2020": {
+   "2020_Gaz_116CDs_national.txt": "b5ac3dc2da315b3acac32848b1bff1e1d8bce46c0d43578c1d1185b9f172b814",
+   "2020_Gaz_counties_national.txt": "0f309672a9aa8b1bd34cbcb62d84e7e1bdbb91ceb977f1cbc9d25ab85668c13f",
+   "2020_Gaz_cousubs_national.txt": "73137b8204c6d6858e9dba3eabb69f7597c4767b188797877921383affa6f22e",
+   "2020_Gaz_elsd_national.txt": "765f7c09a4356718a28088df5708b72c1b0891abca31224a2f557202f86b1ae9",
+   "2020_Gaz_scsd_national.txt": "58c1d6e00bea0e9458750f3845fbf196b31dab82063c6436bc0608b5ea689551",
+   "2020_Gaz_sldl_national.txt": "05a31636f889b21cf28588a179e1a98e0d76bb1442a23428d82a946ea88a0a4e",
+   "2020_Gaz_sldu_national.txt": "4a6cd6054c9aaad5e8701bea17af610b49542e6d6ef96f60568d337b7e5d40db",
+   "2020_Gaz_unsd_national.txt": "6c7b1aa6fa9bfe4be82356380b00f9cc7bba1623350157a8b1e21f037dc25c4b"
+  },
+  "cog2022": "ad040315527f4e4cc4f3a1d373c97779e98a6d9a1ec2077bf43d43b2d8fee6df",
+  "geojson": {
+   "towns_2024.geojson.gz": "dc9082137847a3de24bf7a514041906fe4f9bd5d139bf2c0e7755a1087ba88f8",
+   "places_2024.geojson.gz": "a03515169c78ffb3dc1a99897274c96ac35a6ec0633573113857d6f7d55a2182"
+  }
+ },
+ "entities": 54144,
+ "by_kind": {
+  "nation": 1,
+  "state": 51,
+  "territory": 5,
+  "chamber": 100,
+  "dc_council": 1,
+  "county": 3080,
+  "municipality": 19525,
+  "township": 18076,
+  "school_unified": 10872,
+  "school_elementary": 1952,
+  "school_secondary": 481
+ },
+ "by_kind_gov_status": {
+  "chamber|": 100,
+  "county|": 6,
+  "county|area_only": 43,
+  "county|government": 3031,
+  "dc_council|": 1,
+  "municipality|": 33,
+  "municipality|area_only": 28,
+  "municipality|government": 19464,
+  "nation|government": 1,
+  "school_elementary|": 1952,
+  "school_secondary|": 481,
+  "school_unified|": 10872,
+  "state|government": 51,
+  "territory|": 5,
+  "township|": 24,
+  "township|area_only": 272,
+  "township|dependent": 1603,
+  "township|government": 16177
+ },
+ "xwalk_rows": 58663,
+ "xwalk_by_layer_vintage": {
+  "county|2020": 8,
+  "county|2024": 3144,
+  "cousub|2024": 22624,
+  "elsd|2024": 1952,
+  "place|2024": 19526,
+  "scsd|2024": 481,
+  "state|2024": 56,
+  "unsd|2024": 10872
+ },
+ "xwalk_by_relation": {
+  "primary": 54042,
+  "consolidated_city_county": 30,
+  "consolidated_town_city": 23,
+  "federal_district_city": 1,
+  "coextensive": 4219,
+  "independent_city_county_equivalent": 42,
+  "also_cousub": 306
+ },
+ "xwalk_by_overlap": {
+  "equal": 4306,
+  "split": 311,
+  "contained": 4
+ },
+ "multi_geoid_entities": 4422,
+ "district_units_checked": {
+  "sldl|2024": 4833,
+  "sldu|2020": 1946,
+  "sldl|2020": 4785,
+  "cd|2024": 437,
+  "sldu|2024": 1950,
+  "cd|2020": 437
+ },
+ "town_pairs_same_merged": 23,
+ "town_pairs_same_two_cog_governments": 13,
+ "counties_merged_into_city": 72,
+ "v2_rows": {
+  "v1:places": {
+   "yes": 19477
+  },
+  "v1:towns": {
+   "yes": 20935
+  },
+  "v2:counties": {
+   "yes": 3144
+  },
+  "v2:parts": {
+   "yes": 38633,
+   "no": 28
+  },
+  "v2:places": {
+   "yes": 19513
+  },
+  "v2:schools": {
+   "yes": 13305
+  },
+  "v2:senate": {
+   "yes": 1950
+  },
+  "v2:senate@2020": {
+   "yes": 1951
+  },
+  "v2:statehouse": {
+   "yes": 4890
+  },
+  "v2:statehouse@2020": {
+   "yes": 4957
+  },
+  "v2:states": {
+   "yes": 50
+  },
+  "v2:towns(IA townships)": {
+   "yes": 1598
+  },
+  "v2:ushouse": {
+   "yes": 436
+  },
+  "v2:ushouse@2020": {
+   "yes": 443
+  }
+ },
+ "officeholders": {
+  "officeholders_house_current": {
+   "resolved": 436,
+   "resolved_chamber_unit_without_tiger_geoid": 5,
+   "rows": 441
+  },
+  "officeholders_house_2024": {
+   "resolved": 436,
+   "resolved_chamber_unit_without_tiger_geoid": 5,
+   "rows": 441
+  },
+  "officeholders_house_2020": {
+   "resolved": 436,
+   "resolved_chamber_unit_without_tiger_geoid": 5,
+   "rows": 441
+  },
+  "officeholders_stateleg_current": {
+   "resolved": 7311,
+   "resolved_chamber_unit_without_tiger_geoid": 50,
+   "rows": 7361
+  },
+  "officeholders_stateleg_2024": {
+   "resolved": 7325,
+   "resolved_chamber_unit_without_tiger_geoid": 59,
+   "rows": 7384
+  }
+ },
+ "gaps": {
+  "same_code_place_cousub_overlap_unmeasured": 2,
+  "consolidated_county_cog_code_not_in_tiger": 6,
+  "excluded_not_defined": 49,
+  "orphan_v2_row": 28,
+  "officeholder_unit_without_tiger_geoid": 49,
+  "cog2022_unit_not_linked_by_code": 57,
+  "gov_status_unknown": 63
+ }
+}

@@ -1,0 +1,255 @@
+gap,key,detail
+same_code_place_cousub_overlap_unmeasured,3905721000,place 3921000; share_in_place=0.000 place_in_cousub=0.000; cousub aland=1192; merged on FIPS code
+same_code_place_cousub_overlap_unmeasured,5509751875,place 5551875; share_in_place=0.000 place_in_cousub=0.000; cousub aland=4037; merged on FIPS code
+consolidated_county_cog_code_not_in_tiger,13059,Clarke County: CoG 161834 UNIFIED GOVERNMENT OF ATHENS-CLARKE COUNTY FIPS_PLACE 03436 matches no TIGER 2024 place/cousub code; county kept as its own entity
+consolidated_county_cog_code_not_in_tiger,15003,Honolulu County: CoG 183701 CITY AND COUNTY OF HONOLULU FIPS_PLACE 17000 matches no TIGER 2024 place/cousub code; county kept as its own entity
+consolidated_county_cog_code_not_in_tiger,20071,Greeley County: CoG 164742 UNIFIED GOVERNMENT OF GREELEY COUNTY FIPS_PLACE 28410 matches no TIGER 2024 place/cousub code; county kept as its own entity
+consolidated_county_cog_code_not_in_tiger,21111,Jefferson County: CoG 165866 METRO GOVERNMENT OF LOUISVILLE-JEFFERSON COUNTY FIPS_PLACE 48003 matches no TIGER 2024 place/cousub code; county kept as its own entity
+consolidated_county_cog_code_not_in_tiger,30093,Silver Bow County: CoG 108124 CITY AND COUNTY OF BUTTE-SILVER BOW FIPS_PLACE 11390 matches no TIGER 2024 place/cousub code; county kept as its own entity
+consolidated_county_cog_code_not_in_tiger,47037,Davidson County: CoG 175728 METROPOLITAN GOVERNMENT OF NASHVILLE-DAVIDSON COUNTY FIPS_PLACE 52004 matches no TIGER 2024 place/cousub code; county kept as its own entity
+excluded_not_defined,unsd:0499997,School District Not Defined
+excluded_not_defined,unsd:0699997,School District Not Defined
+excluded_not_defined,unsd:0999997,School District Not Defined
+excluded_not_defined,unsd:1799997,School District Not Defined
+excluded_not_defined,unsd:1899997,School District Not Defined
+excluded_not_defined,unsd:2199997,School District Not Defined
+excluded_not_defined,unsd:2599997,School District Not Defined
+excluded_not_defined,unsd:2699997,School District Not Defined
+excluded_not_defined,unsd:2799997,School District Not Defined
+excluded_not_defined,unsd:3399997,School District Not Defined
+excluded_not_defined,unsd:3499997,School District Not Defined
+excluded_not_defined,unsd:3699997,School District Not Defined
+excluded_not_defined,unsd:3999997,School District Not Defined
+excluded_not_defined,unsd:4199997,School District Not Defined
+excluded_not_defined,unsd:4299997,School District Not Defined
+excluded_not_defined,unsd:4499997,School District Not Defined
+excluded_not_defined,unsd:4599997,School District Not Defined
+excluded_not_defined,unsd:4799997,School District Not Defined
+excluded_not_defined,unsd:5599997,School District Not Defined
+excluded_not_defined,unsd:5699997,School District Not Defined
+excluded_not_defined,cd:09ZZ:2024,Congressional Districts not defined (water)
+excluded_not_defined,cd:17ZZ:2024,Congressional Districts not defined (water)
+excluded_not_defined,cd:33ZZ:2024,Congressional Districts not defined (water)
+excluded_not_defined,cd:09ZZ:2020,Congressional Districts not defined (water)
+excluded_not_defined,cd:17ZZ:2020,Congressional Districts not defined (water)
+excluded_not_defined,cd:26ZZ:2020,Congressional Districts not defined (water)
+excluded_not_defined,sldu:09ZZZ:2024,State Senate Districts not defined
+excluded_not_defined,sldu:17ZZZ:2024,State Senate Districts not defined
+excluded_not_defined,sldu:22ZZZ:2024,State Senate Districts not defined
+excluded_not_defined,sldu:33ZZZ:2024,State Senate Districts not defined
+excluded_not_defined,sldu:55ZZZ:2024,State Senate Districts not defined
+excluded_not_defined,sldl:09ZZZ:2024,State House Districts not defined
+excluded_not_defined,sldl:17ZZZ:2024,State House Districts not defined
+excluded_not_defined,sldl:25ZZZ:2024,State House Districts not defined
+excluded_not_defined,sldl:33ZZZ:2024,State House Districts not defined
+excluded_not_defined,sldl:55ZZZ:2024,State House Districts not defined
+excluded_not_defined,sldu:09ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldu:17ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldu:22ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldu:24ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldu:26ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldu:39ZZZ:2020,State Senate Districts not defined
+excluded_not_defined,sldl:09ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:17ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:22ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:24ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:25ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:26ZZZ:2020,State House Districts not defined
+excluded_not_defined,sldl:39ZZZ:2020,State House Districts not defined
+orphan_v2_row,v2:parts|Iowa|Ida County|Cushing city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 1917940 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Minnesota|Ramsey County|Birchwood Village city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2706058 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Minnesota|Ramsey County|Lilydale city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2737016 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Missouri|Daviess County|McFall city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 2945020 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Nebraska|Webster County|Campbell village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3107870 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Nebraska|Gage County|De Witt village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3113015 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|North Dakota|Pembina County|Hoople city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3838780 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|North Dakota|Eddy County|Warwick city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3883580 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|North Dakota|Stutsman County|Gackle city,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3828860 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Ohio|Hancock County|Bairdstown village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3903646 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Ohio|Carroll County|Bowerston village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3907916 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Ohio|Athens County|Murray City village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 3953410 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Centre County|Osceola Mills borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4257232 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Washington County|Newell borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4253504 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Westmoreland County|North Charleroi borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4254888 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Dauphin County|New Buffalo borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4253320 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Clarion County|South Bethlehem borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4271976 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Fayette County|Coal Center borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4214568 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Schuylkill County|Lansford borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4241464 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Philadelphia County|Rockledge borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4265568 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Armstrong County|Oklahoma borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4256496 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Indiana County|Bolivar borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4207480 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Westmoreland County|Apollo borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4202720 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Allegheny County|Valencia borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4279504 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Lackawanna County|Factoryville borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4224488 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Pennsylvania|Fayette County|Elco borough,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4222800 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Texas|Travis County|Bear Creek village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 4806242 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+orphan_v2_row,v2:parts|Wisconsin|Barron County|Ridgeland village,"no GEOID in data-v3/geo GeoJSON; 0 exact-NAMELSAD candidates overlapping this county in TIGER 2024; candidate (not linked): place 5567800 (same NAMELSAD in state, does not reach this county in TIGER 2024: likely a v2 simplification sliver)"
+officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|AQ00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|GU00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|MP00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district
+officeholder_unit_without_tiger_geoid,us-house|VI00,delegate_district
+officeholder_unit_without_tiger_geoid,chamber:me-lower|Houlton Band of Maliseet Indians,tribal_representative
+officeholder_unit_without_tiger_geoid,chamber:me-lower|Passamaquoddy Tribe,tribal_representative
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Belknap 8,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 7,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Carroll 8,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 15,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 16,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 17,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Cheshire 18,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Coos 7,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 17,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Grafton 18,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 37,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 38,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 40,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 41,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 44,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 25,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 26,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 27,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 28,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 29,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 31,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 33,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 34,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 35,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 36,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 37,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 38,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 39,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 40,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 18,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 19,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 20,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Strafford 21,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 7,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Sullivan 8,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 39,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Hillsborough 45,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Merrimack 30,floterial_district
+officeholder_unit_without_tiger_geoid,chamber:nh-lower|Rockingham 32,floterial_district
+cog2022_unit_not_linked_by_code,189810,CITY OF WEEKI WACHEE (2 - MUNICIPAL) FIPS 12-053-75625
+cog2022_unit_not_linked_by_code,162584,VILLAGE OF TIME (2 - MUNICIPAL) FIPS 17-149-75419
+cog2022_unit_not_linked_by_code,162945,TOWNSHIP OF ROCKY RUN-WILCOX (3 - TOWNSHIP) FIPS 17-067-65234
+cog2022_unit_not_linked_by_code,185256,TOWN OF DE MOTTE (2 - MUNICIPAL) FIPS 18-073-17722
+cog2022_unit_not_linked_by_code,164366,CITY OF DECATUR CITY (2 - MUNICIPAL) FIPS 19-053-19360
+cog2022_unit_not_linked_by_code,164921,TOWNSHIP OF NORTH RICH (3 - TOWNSHIP) FIPS 20-003-51325
+cog2022_unit_not_linked_by_code,104834,TOWNSHIP OF CATHERINE (3 - TOWNSHIP) FIPS 20-051-11050
+cog2022_unit_not_linked_by_code,104835,TOWNSHIP OF LOOKOUT (3 - TOWNSHIP) FIPS 20-051-42700
+cog2022_unit_not_linked_by_code,127041,TOWNSHIP OF ELLIS (3 - TOWNSHIP) FIPS 20-051-20475
+cog2022_unit_not_linked_by_code,165107,TOWNSHIP OF VICTORIA (3 - TOWNSHIP) FIPS 20-051-73800
+cog2022_unit_not_linked_by_code,165108,TOWNSHIP OF WHEATLAND (3 - TOWNSHIP) FIPS 20-051-77650
+cog2022_unit_not_linked_by_code,204606,PLANTATION OF DREW (3 - TOWNSHIP) FIPS 23-019-18580
+cog2022_unit_not_linked_by_code,193449,PLANTATION OF CODYVILLE (3 - TOWNSHIP) FIPS 23-029-13610
+cog2022_unit_not_linked_by_code,166445,CITY OF METHUEN TOWN (2 - MUNICIPAL) FIPS 25-009-40710
+cog2022_unit_not_linked_by_code,224803,CITY OF AMESBURY (2 - MUNICIPAL) FIPS 25-009-01260
+cog2022_unit_not_linked_by_code,224809,CITY OF GREENFIELD (2 - MUNICIPAL) FIPS 25-011-27100
+cog2022_unit_not_linked_by_code,195851,CITY OF EASTHAMPTON TOWN (2 - MUNICIPAL) FIPS 25-015-19370
+cog2022_unit_not_linked_by_code,194919,CITY OF WATERTOWN TOWN (2 - MUNICIPAL) FIPS 25-017-73440
+cog2022_unit_not_linked_by_code,128148,TOWN OF RANDOLPH (3 - TOWNSHIP) FIPS 25-021-55955
+cog2022_unit_not_linked_by_code,166545,TOWN OF BRIDGEWATER (3 - TOWNSHIP) FIPS 25-023-08085
+cog2022_unit_not_linked_by_code,167489,CITY OF MINNETONKA BEACH (2 - MUNICIPAL) FIPS 27-053-43270
+cog2022_unit_not_linked_by_code,186122,CITY OF CREDIT RIVER (2 - MUNICIPAL) FIPS 27-139-13726
+cog2022_unit_not_linked_by_code,106975,TOWNSHIP OF LIMA (3 - TOWNSHIP) FIPS 27-021-37034
+cog2022_unit_not_linked_by_code,193567,TOWNSHIP OF LENT (3 - TOWNSHIP) FIPS 27-025-36440
+cog2022_unit_not_linked_by_code,167891,TOWNSHIP OF EMPIRE (3 - TOWNSHIP) FIPS 27-037-19376
+cog2022_unit_not_linked_by_code,208561,TOWNSHIP OF HONNER (3 - TOWNSHIP) FIPS 27-127-30068
+cog2022_unit_not_linked_by_code,169115,VILLAGE OF BELLERIVE (2 - MUNICIPAL) FIPS 29-189-04240
+cog2022_unit_not_linked_by_code,108530,TOWNSHIP OF GRANT (3 - TOWNSHIP) FIPS 31-099-19875
+cog2022_unit_not_linked_by_code,108531,TOWNSHIP OF ONEIDA (3 - TOWNSHIP) FIPS 31-099-37070
+cog2022_unit_not_linked_by_code,130354,TOWNSHIP OF EATON (3 - TOWNSHIP) FIPS 31-099-14345
+cog2022_unit_not_linked_by_code,130355,TOWNSHIP OF LIBERTY (3 - TOWNSHIP) FIPS 31-099-27050
+cog2022_unit_not_linked_by_code,130356,TOWNSHIP OF MAY (3 - TOWNSHIP) FIPS 31-099-31255
+cog2022_unit_not_linked_by_code,130357,TOWNSHIP OF SHERMAN (3 - TOWNSHIP) FIPS 31-099-44980
+cog2022_unit_not_linked_by_code,169897,TOWNSHIP OF BLAINE (3 - TOWNSHIP) FIPS 31-099-05315
+cog2022_unit_not_linked_by_code,169898,TOWNSHIP OF HAYES (3 - TOWNSHIP) FIPS 31-099-21625
+cog2022_unit_not_linked_by_code,169899,TOWNSHIP OF LINCOLN (3 - TOWNSHIP) FIPS 31-099-27295
+cog2022_unit_not_linked_by_code,169900,TOWNSHIP OF LOGAN (3 - TOWNSHIP) FIPS 31-099-28840
+cog2022_unit_not_linked_by_code,169901,TOWNSHIP OF MIRAGE (3 - TOWNSHIP) FIPS 31-099-32375
+cog2022_unit_not_linked_by_code,169902,TOWNSHIP OF NEWARK (3 - TOWNSHIP) FIPS 31-099-34055
+cog2022_unit_not_linked_by_code,193697,TOWNSHIP OF COSMO (3 - TOWNSHIP) FIPS 31-099-10670
+cog2022_unit_not_linked_by_code,219555,TOWNSHIP OF LOWELL (3 - TOWNSHIP) FIPS 31-099-29610
+cog2022_unit_not_linked_by_code,171132,VILLAGE OF GRANDFATHER (2 - MUNICIPAL) FIPS 37-011-27320
+cog2022_unit_not_linked_by_code,131769,TOWN OF EAST LAURINBURG (2 - MUNICIPAL) FIPS 37-165-19620
+cog2022_unit_not_linked_by_code,110298,TOWNSHIP OF STEIBER (3 - TOWNSHIP) FIPS 38-015-75820
+cog2022_unit_not_linked_by_code,171618,TOWNSHIP OF SCHRUNK (3 - TOWNSHIP) FIPS 38-015-71220
+cog2022_unit_not_linked_by_code,172227,TOWNSHIP OF NEW HOME (3 - TOWNSHIP) FIPS 38-105-56300
+cog2022_unit_not_linked_by_code,175500,TOWNSHIP OF RING THUNDER (3 - TOWNSHIP) FIPS 46-095-54940
+cog2022_unit_not_linked_by_code,191598,VILLAGE OF HILLCREST (2 - MUNICIPAL) FIPS 48-039-33980
+cog2022_unit_not_linked_by_code,176012,TOWN OF MILLICAN (2 - MUNICIPAL) FIPS 48-041-48516
+cog2022_unit_not_linked_by_code,176097,TOWN OF CORRAL CITY (2 - MUNICIPAL) FIPS 48-121-17024
+cog2022_unit_not_linked_by_code,205463,TOWN OF POST OAK BEND CITY (2 - MUNICIPAL) FIPS 48-257-59066
+cog2022_unit_not_linked_by_code,113699,CITY OF PECOS (2 - MUNICIPAL) FIPS 48-389-56516
+cog2022_unit_not_linked_by_code,248439,VILLAGE OF YORKVILLE (2 - MUNICIPAL) FIPS 55-101-89575
+cog2022_unit_not_linked_by_code,115168,TOWN OF MADISON (3 - TOWNSHIP) FIPS 55-025-48025
+cog2022_unit_not_linked_by_code,209897,TOWN OF RIB MOUNTAIN (3 - TOWNSHIP) FIPS 55-073-67325
+cog2022_unit_not_linked_by_code,136739,TOWN OF GREENVILLE (3 - TOWNSHIP) FIPS 55-087-31550
+cog2022_unit_not_linked_by_code,184101,TOWN OF LISBON (3 - TOWNSHIP) FIPS 55-133-44850
+gov_status_unknown,county:13059,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=161834
+gov_status_unknown,county:15003,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=183701
+gov_status_unknown,county:20071,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=164742
+gov_status_unknown,county:21111,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=165866
+gov_status_unknown,county:30093,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=108124
+gov_status_unknown,county:47037,gov_status_unknown:consolidated_government_not_linked_to_tiger_code:cog_pid6=175728
+gov_status_unknown,muni:place:0114202,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:1326156,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:1348288,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:1817704,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:1919315,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2033250,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2141716,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2167890,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2501185,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2508130,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2519365,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2527060,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2540675,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2556000,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2573405,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2713708,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2719358,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2767130,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2827900,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:2904248,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:3727324,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4035030,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4077150,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4817021,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4834018,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4858040,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4858502,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4859065,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4873493,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:4942010,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:5544847,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:5567320,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,muni:place:5589550,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:0917047535,gov_status_unknown:tiger_funcstat_C_no_cog2022_code_match
+gov_status_unknown,town:cousub:1706765240,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:1801158968,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2003911650,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2012959225,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2014116100,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2014169150,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2015741075,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2017966400,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2020557425,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:2702747932,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3112109235,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3801571223,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3803726580,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3804364940,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3808356265,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:3808374600,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:4601964980,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:4608909820,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:4609367262,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:4609552060,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:4611564580,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:5501532800,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
+gov_status_unknown,town:cousub:5502787225,gov_status_unknown:tiger_funcstat_A_no_cog2022_code_match
