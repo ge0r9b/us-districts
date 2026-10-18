@@ -331,7 +331,7 @@ States processed this build: CA, NY, MI, VA, NJ, FL, NC, WI, CO, MA, IL, IN, OR,
 | Colorado | 3143 | 3200 | 64 | 64 | 0% |
 | Connecticut | 167 | 0 | 9 | 0 | 100% |
 | Delaware | 525 | 407 | 3 | 3 | 0% |
-| District of Columbia | 0 | 0 | 0 | 0 | NaN% |
+| District of Columbia | 144 | 144 | 1 | 1 | 0% |
 | Florida | 5546 | 5659 | 67 | 67 | 0% |
 | Georgia | 2634 | 2450 | 158 | 159 | 0% |
 | Hawaii | 233 | 249 | 4 | 4 | 0% |
@@ -531,3 +531,23 @@ Counts from the data files (`/workspace/db/tools/cov.py`, `qc.py`, `flags.py` on
 - 1546: list charts (bar, pie, line, change bars) drop per-row candidate photos; candidates float in a left-edge column like the map (ranked, tap toggles, rank-number badge when no photo); # mode bars always drawn to a common vote scale; sort follows the selected candidate(s) (% share, # votes, change = displayed net); chevron half-way to the left edge and hidden while the geo field/search is open (UI only). Test: `tests/list-thumbs-sort.py`.
 - 1547: chevron and sort glyph raised by half the empty band between the list-area top and the chart/clock button centre line (UI only).
 - 1548: address search: looser address detection, input normalisation, Census one-line -> Census street/city/state/ZIP -> OpenStreetMap Nominatim, suggestions from both; ZIP row; address rows in the universal search; typed geo-field results are nationwide whatever state/county is selected. 20 of 22 test addresses in 14 states + DC resolve (misses: '4 Yawkey Way, Boston' (street renamed), 'PO Box 123, Juneau AK' (no geocoder handles PO boxes; it falls back to ZIP 99801)). Test: `tests/addr-search.py` (needs network).
+
+## Build 202610171559 (Oct 17, 2026): District of Columbia under state house, state senate and school districts
+
+DC has no state legislature. Its 8 Council wards now stand in for **both** state house and state senate districts (before, the wards were only in the state senate layer and had no 2020 values; the state house layer had no DC rows, so All States showed DC as "no data"). DCPS is DC's one school district. In All States, DC now has a real bar for all three types, and tapping it lists "District of Columbia wards" (or "school districts": DCPS). Back returns to All States.
+
+Source: DC Board of Elections (DCBOE) certified results by ward, official PDFs: `https://electionresults.dcboe.org/Downloads/Reports/November_5_2024_General_Election_Certified_Results.pdf` and `.../November_3_2020_General_Election_Certified_Results.pdf` (public record). Totals = all presidential candidates incl. write-ins; over/under votes excluded. No estimates.
+
+| Ward | 2024 Harris | 2024 Trump | 2024 total | 2020 Biden | 2020 Trump | 2020 total |
+|---|---|---|---|---|---|---|
+| 1 | 36,882 | 2,056 | 40,463 | 39,041 | 1,725 | 41,681 |
+| 2 | 33,571 | 2,982 | 37,959 | 29,078 | 2,918 | 32,881 |
+| 3 | 39,521 | 3,544 | 44,584 | 39,397 | 3,705 | 44,231 |
+| 4 | 38,628 | 2,511 | 42,403 | 42,489 | 1,913 | 45,296 |
+| 5 | 41,413 | 2,309 | 45,114 | 43,320 | 1,769 | 46,107 |
+| 6 | 43,262 | 3,638 | 48,678 | 56,719 | 4,337 | 62,918 |
+| 7 | 33,972 | 2,092 | 37,037 | 36,382 | 1,134 | 38,384 |
+| 8 | 26,936 | 1,944 | 29,631 | 30,897 | 1,085 | 32,858 |
+| DC (= DCPS) | 294,185 | 21,076 | 325,869 | 317,323 | 18,586 | 344,356 |
+
+Caveat: 2024 was voted on the 2022 ward plan, 2020 on the 2012 plan (same ward numbers, some boundary changes, mainly Wards 6, 7 and 8). The map draws the current (2022) ward lines; 2020 ward rows are DCBOE's official 2020 ward totals, not re-tabulated onto the new lines. The ward sums equal the citywide totals exactly in both years. Ward rows renamed "001"…"008" -> "Ward 1"…"Ward 8". Precincts: 144 (2024, current precincts) and 144 (2020, 2019 precincts) from DCBOE certified precinct results (added build 202610141330; the table row above was stale). Test: `tests/dc-wards.py`.

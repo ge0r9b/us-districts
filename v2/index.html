@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171558";</script>
+<script>window.BUILD="202610171559";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -3097,7 +3097,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   const B=()=>document.body.classList, inp=()=>document.querySelector("#barGeo .fsq input"), DT=["ushouse","senate","statehouse","schools"], norm=lt=>DT.indexOf(lt)>=0?lt:"x";
   const stack=[]; let cur=null, cand="", nav=0, navT=0;
   const restoring=()=>{ try{ return window.__stateRestoring&&window.__stateRestoring(); }catch(e){ return false; } };
-  const keyOf=o=>[o.top||"",o.w||"",o.st||"",o.co||"",o.dist||"",norm(o.lt)].join("|");
+  const keyOf=o=>[o.top||"",o.w||"",o.st||"",o.co||"",o.dist||"",norm(o.lt),o.dc?"dc":""].join("|");
   const grab=()=>{ const o=window.__stateSnapshot(); o.dist=hier.dist?hier.dist.join("~"):""; o.dd=hier.dist?hier.dist.slice():null; o.k=keyOf(o); return o; };
   const vis=()=>stack.length>0&&(B().contains("foldfs")||(view==="list"&&B().contains("listall")));
   function finish(T){ try{ const I=window.__laInfo();
@@ -3114,6 +3114,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     try{ if(T.nm&&window.__setNum&&T.nm!==g.nm) window.__setNum(T.nm); }catch(e){}
     try{ if(T.so&&window.__laSort) window.__laSort(T.so); }catch(e){}
     try{ if(typeof T.yv==="number"&&+$("yslider").value!==T.yv){ $("yslider").value=T.yv; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } }catch(e){}
+    try{ const L0=window.__LA; if(L0&&!!L0.dc!==!!T.dc){ L0.dc=T.dc?true:null; if(!T.st&&!T.w) window.__laSoft&&window.__laSoft(); } }catch(e){}
     const W=g.w||""; try{ if((T.w||"")!==W){ if(T.w) window.__worldEnter(T.w); else window.__worldExit(); } }catch(e){}
     if(!T.w){
       if(norm(g.lt)!==norm(T.lt)){ const k=DT.indexOf(T.lt)>=0?T.lt:g.lt, b=document.querySelector('#lyrRow .lbtn[data-k="'+k+'"]'); if(b) try{ b.click(); }catch(e){} }
@@ -3279,9 +3280,11 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   window.__distInCounty=distInCounty; window.__dtier=dtier;
   // ---- level of the current selection ----
   function level(){ const W=Wk();
+    if(LA.dc&&(W||state.value||["senate","statehouse","schools"].indexOf(ltype)<0)) LA.dc=null; /* build 1556: DC has no state legislature -> its 8 Council wards (and DCPS) are listed under District of Columbia */
     if(W==="all") return {id:"countries",label:"List all countries",noun:"countries"};
     if(W==="ca") return {id:"provinces",label:"List all provinces",noun:"provinces and territories"};
     if(W) return null;
+    if(!state.value&&LA.dc){ const nn=ltype==="schools"?"school districts":"wards"; return {id:"dcdist",label:"List all "+nn+" in District of Columbia",noun:nn}; }
     if(!state.value){ if(ltype==="ushouse") return {id:"districts",nat:true,label:"List all US House districts",noun:"US House districts"}; return {id:"states",label:"List all states",noun:"states"}; }
     if(hier.dist) return {id:"precincts",label:"List all precincts",noun:"precincts"};
     if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]&&dtier()){ if(!county.value) return {id:"counties",dt:true,label:"List all counties",noun:"counties"}; return {id:"districts",dt:true,label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())+" in "+county.value,noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; }
@@ -3294,6 +3297,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(lv.id==="provinces") return (window.CANADA||[]).map(p=>({kind:"prov",p,name:p[0]}));
     if(lv.nat){ try{ await loadDS(ltype); }catch(e){} return (DS[ltype]||[]).map(x=>({kind:ltype,d:[x.st,String(x.nm)],nat:true})); }
     if(lv.id==="states"&&["ushouse","senate","statehouse","schools"].indexOf(ltype)>=0){ try{ await loadDS(ltype); }catch(e){} }
+    if(lv.id==="dcdist"){ try{ await loadDS(ltype); }catch(e){} return (DS[ltype]||[]).filter(x=>x.st==="District of Columbia").map(x=>({kind:ltype,d:[x.st,String(x.nm)]})); }
     if(lv.id==="states") return allStates().concat((window.ELECTION2024&&window.ELECTION2024["District of Columbia|District of Columbia"])?["District of Columbia"]:[]).map(st=>({kind:"sum",st,d:[st]}));
     if(lv.id==="districts"&&lv.dt){ try{ await loadDS(ltype); }catch(e){} return distInCounty(ltype,state.value,county.value); }
     await ensureFor(); const ch=children();
@@ -3476,7 +3480,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   try{ window.__v2.renderList=renderList; }catch(e){} // other modules call __v2.renderList(); it must keep the list-all rows
   setInterval(()=>{ if(LA.on&&LA.items.length&&document.body.classList.contains('listmode')&&!document.querySelector('#listView .lvrow.la')) render(); },400);
   // ---- enter / exit ----
-  async function enter(){ try{ if(state.value&&ltype!=="ushouse"&&ALLLBL[ltype]) await ensureFor(); }catch(e){} const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(()=>{ let n=""; try{ n=String(aname({kind:ltype==="counties"||ltype==="none"?"towns":ltype,d:hier.dist})||""); }catch(e){} if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[2]||""); if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[1]||""); return (n.length>60||/^-?\d/.test(n))?"":n; })():""));
+  async function enter(){ try{ if(state.value&&ltype!=="ushouse"&&ALLLBL[ltype]) await ensureFor(); }catch(e){} const lv=level(); if(!lv) return; LA.lv=lv; LA.noun=lv.noun; LA.parent=lv.id==="dcdist"?"District of Columbia":lv.id==="states"||lv.id==="countries"||lv.id==="provinces"?"":(lv.id==="counties"||lv.id==="districts"?state.value:lv.id==="townships"?county.value+", "+state.value:(hier.dist?(()=>{ let n=""; try{ n=String(aname({kind:ltype==="counties"||ltype==="none"?"towns":ltype,d:hier.dist})||""); }catch(e){} if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[2]||""); if(!n||n.length>60||/^-?\d/.test(n)) n=String(hier.dist[1]||""); return (n.length>60||/^-?\d/.test(n))?"":n; })():""));
     try{ closeSheet(); }catch(e){} try{ if(ym()!=="2024"&&state.value&&!(state.value in PREC20)) await loadPrec20(state.value); }catch(e){} LA.items=await itemsFor(lv); LA.on=true; document.body.classList.add("listall"); cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){}
     setView("list"); LA.sig=sig(); render(); try{ layoutSide(); }catch(e){} fit(); }
   function fit(){ if(LA.nofit&&Date.now()-LA.nofit<5000){ LA.nofit=0; return; } LA.nofit=0; try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
@@ -3538,6 +3542,8 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   window.__laPick=async function(a){ const kl=view==='list'||LA.on; if(a&&a.nat){ county.value=""; hier.dist=null; state.value=a.d[0]; state.onchange&&state.onchange(); return; } const tomap=()=>{ if(!kl) setView('map'); else setView('list'); }; const after=()=>{ if(!kl||(a&&a.st==="District of Columbia")) return; const go=async n=>{ try{ if(LA.on) return; setView('list'); const lv=level(); if(lv) await enter(); else setView('list'); }catch(e){} if(!LA.on&&n<3) setTimeout(()=>go(n+1),1200); }; setTimeout(()=>go(0),1400); }; try{ if(!a) return; if(a.kind==="county"&&LA.lv&&LA.lv.dt){ /* state -> counties -> districts: tapping a county lists that county's districts of the selected type (same list-all, same view settings) */ exit(); window.__geoLock=null; county.value=a.d[1]; county.onchange&&county.onchange(); return; } after(); window.__geoLock=null; try{ nameLock=null; }catch(e){}
     if(a.kind==="ctry"){ exit(); tomap(); if(a.iso==="us"){ window.__worldExit&&window.__worldExit(); state.value=""; state.onchange&&state.onchange(); } else window.__worldEnter(a.iso); return; }
     if(a.kind==="prov"){ exit(); tomap(); window.__W_prov(a.p[0]); return; }
+    if(a.kind==="sum"&&a.st==="District of Columbia"&&kl&&["senate","statehouse","schools"].indexOf(ltype)>=0&&!state.value){ /* build 1556: DC drills into its wards (state house / senate) or DCPS (schools) */ LA.dc=true; exit(); return; }
+    if(LA.lv&&LA.lv.id==="dcdist"&&a.d&&a.d[0]==="District of Columbia"&&["senate","statehouse","schools"].indexOf(a.kind)>=0){ const x=window.__dsRow(a.kind,a.d); exit(); tomap(); let c=L.latLng(38.9,-77.03); try{ if(x&&x.polys) c=zoomItem(a.kind,[x.st,x.nm,x.polys]); }catch(e){} setTimeout(()=>{ try{ showArea({kind:a.kind,d:a.d,yr:ym()==="2020"?"2020":"2024"},c); }catch(e){} },350); return; }
     if(a.kind==="sum"&&a.st==="District of Columbia"){ LA.nofit=Date.now(); exit(); tomap(); map.fitBounds([[38.79,-77.12],[38.995,-76.909]],{padding:[10,10]}); const lbl="District of Columbia"; try{ const gq=$("gq"); gq.placeholder=lbl; gq.title=lbl; nameLock=lbl; window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; window.__selAt=Date.now(); }catch(e){} setTimeout(()=>{ try{ showArea({kind:"county",d:["District of Columbia","District of Columbia"],yr:ym()==="2020"?"2020":"2024"},L.latLng(38.9,-77.03)); }catch(e){} },500); return; }
     if(a.kind==="sum"){ exit(); tomap(); navTo(String(a.st)); setTimeout(()=>{ try{ if(state.value!==a.st){ county.value=""; hier.dist=null; state.value=a.st; state.onchange&&state.onchange(); } }catch(e){} },1500); return; }
     if(kl&&a.kind==="towns"&&a.d){ exit(); try{ zoomItem("towns",a.d); }catch(e){} hier.dist=a.d; try{ drawDist(); }catch(e){} try{ crumbs(); }catch(e){} return; }
@@ -3564,7 +3570,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     const dec=t=>{ try{ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; return JSON.parse(decodeURIComponent(escape(atob(t)))); }catch(e){ return null; } };
     const snap=()=>{ const o={v:VER}; try{ o.top=(window.__topicOn&&window.__topicOn())?(OFFICES.find(x=>x.id===office)||{}).label||null:"-"; }catch(e){}
       try{ o.w=window.__W?window.__W():null; }catch(e){} try{ o.st=state.value||""; o.co=county.value||""; }catch(e){} try{ o.lt=ltype; }catch(e){}
-      try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; }catch(e){}
+      try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; o.dc=LA.dc?1:null; }catch(e){}
       try{ const c=map.getCenter(); o.ll=[+c.lat.toFixed(4),+c.lng.toFixed(4),+map.getZoom().toFixed(2)]; }catch(e){}
       Object.keys(o).forEach(k=>{ if(o[k]===null||o[k]===undefined||o[k]==="") delete o[k]; }); return o; };
     window.__stateSnapshot=snap; window.__stateEncode=enc; window.__stateDecode=dec;
@@ -3690,8 +3696,15 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   setInterval(flip,80); ["click","pointerup","input","change"].forEach(t=>document.addEventListener(t,()=>{ setTimeout(flip,0); setTimeout(flip,60); },true)); })();
 })();
 
+// ===== build 1556: DC wards / DCPS list helpers =====
+(function(){
+  /* DC wards / DCPS list: the org crumb names District of Columbia (noun 'wards' / 'school districts' drawn gray by the noun sync); picking any institution in the filter leaves the DC sub-list */
+  setInterval(()=>{ try{ const LA=window.__LA; if(!(LA&&LA.on&&LA.lv&&LA.lv.id==="dcdist")) return; const c=document.querySelector("#crumbs .crumb.cur"); if(c&&c.textContent!=="District of Columbia"){ c.textContent="District of Columbia"; c.title="District of Columbia"; c.setAttribute("aria-label","District of Columbia"); } }catch(e){} },200);
+  document.addEventListener("click",e=>{ try{ const LA=window.__LA; if(LA&&LA.dc&&e.target&&e.target.closest&&e.target.closest("#orgTypes li, .foldlist li, #orgGlobal li")) LA.dc=null; }catch(_){} },true);
+})();
+
 </script>
 <script defer src="data/countries.js?v=202610141526"></script>
-<script src="data/dc.js?v=202610141526"></script>
+<script src="data/dc.js?v=202610171559"></script>
 </body>
 </html>
