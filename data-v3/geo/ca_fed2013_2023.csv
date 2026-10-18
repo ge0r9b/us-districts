@@ -1,0 +1,692 @@
+feduid_2013,name_2013,fed_num_2023,name_2023,pct_of_2013,pct_of_2023,same_number
+10001,Avalon,10007,The Eastern Peninsulas,21.901,7.798,0
+10001,Avalon,10001,Avalon,77.693,94.048,1
+10001,Avalon,10002,Cape Spear—Mount Pearl—Paradise,0.407,21.252,0
+10002,Bonavista--Burin--Trinity,10007,The Eastern Peninsulas,99.04,91.759,0
+10002,Bonavista--Burin--Trinity,10003,Coast of Bays—Central—Notre Dame,0.934,0.394,0
+10003,Coast of Bays--Central--Notre Dame,10007,The Eastern Peninsulas,0.203,0.442,0
+10003,Coast of Bays--Central--Notre Dame,10003,Coast of Bays—Central—Notre Dame,99.765,99.291,1
+10004,Labrador,10004,Labrador,100.0,100.0,1
+10005,Long Range Mountains,10003,Coast of Bays—Central—Notre Dame,0.334,0.314,0
+10005,Long Range Mountains,10005,Long Range Mountains,99.666,99.965,1
+10006,St. John's East,10006,St. John's East,98.973,98.95,1
+10006,St. John's East,10002,Cape Spear—Mount Pearl—Paradise,1.027,2.637,0
+10007,St. John's South--Mount Pearl,10006,St. John's East,0.812,1.05,0
+10007,St. John's South--Mount Pearl,10001,Avalon,76.277,5.869,0
+10007,St. John's South--Mount Pearl,10002,Cape Spear—Mount Pearl—Paradise,22.912,76.111,0
+11001,Cardigan,11004,Malpeque,1.197,1.953,0
+11001,Cardigan,11001,Cardigan,98.803,100.0,1
+11002,Charlottetown,11002,Charlottetown,100.0,98.979,1
+11003,Egmont,11003,Egmont,100.0,95.74,1
+11004,Malpeque,11004,Malpeque,95.88,98.047,1
+11004,Malpeque,11002,Charlottetown,0.028,1.021,0
+11004,Malpeque,11003,Egmont,4.092,4.26,0
+12001,Cape Breton--Canso,12011,Sydney—Glace Bay,3.226,58.493,0
+12001,Cape Breton--Canso,12002,Cape Breton—Canso—Antigonish,96.774,63.468,0
+12002,Central Nova,12003,Central Nova,90.317,97.413,0
+12002,Central Nova,12002,Cape Breton—Canso—Antigonish,9.683,6.795,1
+12003,Cumberland--Colchester,12004,Cumberland—Colchester,100.0,100.0,0
+12004,Dartmouth--Cole Harbour,12005,Dartmouth—Cole Harbour,68.951,65.31,0
+12004,Dartmouth--Cole Harbour,12009,Sackville—Bedford—Preston,31.049,4.861,0
+12005,Halifax,12007,Halifax West—Peggy's Cove,2.144,0.89,0
+12005,Halifax,12006,"Halifax,Halifax",97.856,100.0,0
+12006,Halifax West,12007,Halifax West—Peggy's Cove,47.168,21.326,0
+12006,Halifax West,12009,Sackville—Bedford—Preston,52.832,21.126,0
+12007,Kings--Hants,12008,Kings—Hants,100.0,91.484,0
+12008,Sackville--Preston--Chezzetcook,12005,Dartmouth—Cole Harbour,4.905,34.69,0
+12008,Sackville--Preston--Chezzetcook,12009,Sackville—Bedford—Preston,63.314,74.013,0
+12008,Sackville--Preston--Chezzetcook,12003,Central Nova,31.781,2.587,0
+12009,South Shore--St. Margarets,12007,Halifax West—Peggy's Cove,4.608,77.784,0
+12009,South Shore--St. Margarets,12010,South Shore—St. Margarets,95.392,100.0,0
+12010,Sydney--Victoria,12011,Sydney—Glace Bay,4.806,41.507,0
+12010,Sydney--Victoria,12002,Cape Breton—Canso—Antigonish,95.194,29.738,0
+12011,West Nova,12008,Kings—Hants,4.192,8.516,0
+12011,West Nova,12001,Acadie—Annapolis,95.808,100.0,0
+13001,Acadie--Bathurst,13001,Acadie—Bathurst,100.0,98.701,1
+13002,Beauséjour,13002,Beauséjour,99.88,99.961,1
+13002,Beauséjour,13007,Moncton—Dieppe,0.12,2.986,0
+13003,Fredericton,13003,Fredericton—Oromocto,13.947,81.022,1
+13003,Fredericton,13009,New Brunswick Southwest,16.328,2.884,0
+13003,Fredericton,13006,Miramichi—Grand Lake,69.344,6.149,0
+13003,Fredericton,13010,Tobique—Mactaquac,0.381,0.042,0
+13004,Fundy Royal,13008,Saint John—Kennebecasis,1.096,21.62,0
+13004,Fundy Royal,13006,Miramichi—Grand Lake,6.881,2.783,0
+13004,Fundy Royal,13004,Fundy Royal,91.882,99.868,1
+13004,Fundy Royal,13007,Moncton—Dieppe,0.14,6.485,0
+13005,Madawaska--Restigouche,13005,Madawaska—Restigouche,99.626,89.635,1
+13005,Madawaska--Restigouche,13006,Miramichi—Grand Lake,0.374,0.234,0
+13006,Miramichi--Grand Lake,13005,Madawaska—Restigouche,0.556,0.731,0
+13006,Miramichi--Grand Lake,13001,Acadie—Bathurst,0.392,1.299,0
+13006,Miramichi--Grand Lake,13006,Miramichi—Grand Lake,99.052,90.833,1
+13007,Moncton--Riverview--Dieppe,13002,Beauséjour,1.006,0.039,0
+13007,Moncton--Riverview--Dieppe,13004,Fundy Royal,5.613,0.128,0
+13007,Moncton--Riverview--Dieppe,13007,Moncton—Dieppe,93.381,90.529,1
+13008,New Brunswick Southwest,13003,Fredericton—Oromocto,0.024,0.88,0
+13008,New Brunswick Southwest,13009,New Brunswick Southwest,85.153,95.576,0
+13008,New Brunswick Southwest,13010,Tobique—Mactaquac,14.823,10.309,0
+13009,Saint John--Rothesay,13009,New Brunswick Southwest,32.46,1.54,1
+13009,Saint John--Rothesay,13008,Saint John—Kennebecasis,67.478,78.38,0
+13010,Tobique--Mactaquac,13003,Fredericton—Oromocto,0.347,18.099,0
+13010,Tobique--Mactaquac,13005,Madawaska—Restigouche,8.438,9.634,0
+13010,Tobique--Mactaquac,13010,Tobique—Mactaquac,91.215,89.649,1
+24001,Abitibi--Baie-James--Nunavik--Eeyou,24001,Abitibi—Baie-James—Nunavik—Eeyou,100.0,100.0,1
+24002,Abitibi--Témiscamingue,24002,Abitibi—Témiscamingue,100.0,100.0,1
+24003,Ahuntsic-Cartierville,24068,Saint-Laurent,4.748,2.341,0
+24003,Ahuntsic-Cartierville,24003,Ahuntsic-Cartierville,95.252,100.0,1
+24004,Alfred-Pellan,24004,Alfred-Pellan,100.0,97.817,1
+24005,Argenteuil--La Petite-Nation,24005,Argenteuil—Papineau—Des Collines,87.913,89.608,1
+24005,Argenteuil--La Petite-Nation,24039,Les Pays-d'en-Haut,12.087,36.814,0
+24006,Avignon--La Mitis--Matane--Matapédia,24024,"Gaspésie—Les Îles-de-la-Madeleine—Listuguj,Gaspésie—Les Îles-de-la-Madeleine—Listuguj",46.838,28.842,0
+24006,Avignon--La Mitis--Matane--Matapédia,24062,Rimouski-Neigette—Mitis—Matapédia—Les Basques,53.162,66.382,0
+24007,Beauce,24006,Beauce,100.0,100.0,0
+24008,Beauport--Limoilou,24008,Beauport—Limoilou,100.0,76.764,1
+24009,Bécancour--Nicolet--Saurel,24009,Bécancour—Nicolet—Saurel—Alnôbak,100.0,100.0,1
+24010,Bellechasse--Les Etchemins--Lévis,24040,Lévis—Lotbinière,0.274,0.791,0
+24010,Bellechasse--Les Etchemins--Lévis,24010,Bellechasse—Les Etchemins—Lévis,99.726,100.0,1
+24011,Beloeil--Chambly,24011,Beloeil—Chambly,85.72,100.0,1
+24011,Beloeil--Chambly,24049,Mont-Saint-Bruno—L’Acadie,14.28,26.793,0
+24012,Berthier--Maskinongé,24012,Berthier—Maskinongé,100.0,99.159,1
+24013,Thérèse-De Blainville,24074,Thérèse-De Blainville,100.0,96.81,0
+24014,Pierre-Boucher--Les Patriotes--Verchères,24055,Pierre-Boucher—Les Patriotes—Verchères,100.0,100.0,0
+24015,Bourassa,24013,Bourassa,100.0,100.0,0
+24016,Brome--Missisquoi,24014,Brome—Missisquoi,100.0,100.0,0
+24017,Brossard--Saint-Lambert,24015,Brossard—Saint-Lambert,100.0,100.0,0
+24018,Rimouski-Neigette--Témiscouata--Les Basques,24020,Côte-du-Sud—Rivière-du-Loup—Kataskomiq—Témiscouata,50.906,35.34,0
+24018,Rimouski-Neigette--Témiscouata--Les Basques,24062,Rimouski-Neigette—Mitis—Matapédia—Les Basques,49.094,33.618,0
+24019,Charlesbourg--Haute-Saint-Charles,24008,Beauport—Limoilou,2.641,6.898,0
+24019,Charlesbourg--Haute-Saint-Charles,24051,Montmorency—Charlevoix,2.488,0.025,0
+24019,Charlesbourg--Haute-Saint-Charles,24016,Charlesbourg—Haute-Saint-Charles,94.858,89.557,0
+24020,Beauport--Côte-de-Beaupré--Île d’Orléans--Charlevoix,24008,Beauport—Limoilou,0.063,16.339,0
+24020,Beauport--Côte-de-Beaupré--Île d’Orléans--Charlevoix,24051,Montmorency—Charlevoix,99.937,98.484,0
+24021,Châteauguay--Lacolle,24017,Châteauguay—Les Jardins-de-Napierville,99.92,61.813,0
+24021,Châteauguay--Lacolle,24032,La Prairie—Atateken,0.08,0.261,0
+24022,Chicoutimi--Le Fjord,24018,Chicoutimi—Le Fjord,100.0,70.693,0
+24023,Compton--Stanstead,24072,Sherbrooke,0.009,0.408,0
+24023,Compton--Stanstead,24019,Compton—Stanstead,99.991,99.929,0
+24024,Dorval--Lachine--LaSalle,24035,LaSalle—Émard—Verdun,1.407,3.536,0
+24024,Dorval--Lachine--LaSalle,24022,Dorval—Lachine—LaSalle,98.593,100.0,0
+24025,Drummond,24023,Drummond,100.0,100.0,0
+24026,Gaspésie--Les Îles-de-la-Madeleine,24024,"Gaspésie—Les Îles-de-la-Madeleine—Listuguj,Gaspésie—Les Îles-de-la-Madeleine—Listuguj",100.0,71.158,0
+24027,Gatineau,24005,Argenteuil—Papineau—Des Collines,49.838,1.238,0
+24027,Gatineau,24025,Gatineau,49.894,69.514,0
+24027,Gatineau,24028,Hull—Aylmer,0.268,0.458,0
+24028,Hochelaga,24026,Hochelaga—Rosemont-Est,100.0,99.068,0
+24029,Honoré-Mercier,24027,Honoré-Mercier,100.0,97.625,0
+24030,Hull--Aylmer,24057,Pontiac—Kitigan Zibi,2.303,0.006,0
+24030,Hull--Aylmer,24028,Hull—Aylmer,97.697,99.542,0
+24031,Joliette,24036,Laurentides—Labelle,7.303,3.32,0
+24031,Joliette,24029,Joliette—Manawan,88.649,99.717,0
+24031,Joliette,24039,Les Pays-d'en-Haut,4.047,20.407,0
+24032,Jonquière,24030,Jonquière—Hébertville—Pays-des-Bleuets,97.233,69.325,0
+24032,Jonquière,24018,Chicoutimi—Le Fjord,2.767,29.307,0
+24033,La Pointe-de-l'Île,24027,Honoré-Mercier,0.107,0.115,0
+24033,La Pointe-de-l'Île,24031,La Pointe-de-l'Île,99.893,100.0,0
+24034,La Prairie,24032,La Prairie—Atateken,100.0,99.739,0
+24035,Lac-Saint-Jean,24033,Lac-Saint-Jean,70.007,100.0,0
+24035,Lac-Saint-Jean,24030,Jonquière—Hébertville—Pays-des-Bleuets,29.993,30.675,0
+24036,Lac-Saint-Louis,24034,Lac-Saint-Louis,100.0,100.0,0
+24037,LaSalle--Émard--Verdun,24035,LaSalle—Émard—Verdun,99.442,95.26,0
+24037,LaSalle--Émard--Verdun,24052,Notre-Dame-de-Grâce—Westmount,0.558,0.628,0
+24038,Laurentides--Labelle,24036,Laurentides—Labelle,98.214,96.68,0
+24038,Laurentides--Labelle,24039,Les Pays-d'en-Haut,1.786,19.499,0
+24039,Laurier--Sainte-Marie,24037,Laurier—Sainte-Marie,90.705,65.168,0
+24039,Laurier--Sainte-Marie,24053,Outremont,8.994,7.253,0
+24039,Laurier--Sainte-Marie,24026,Hochelaga—Rosemont-Est,0.301,0.158,0
+24040,Laval--Les Îles,24038,Laval—Les Îles,100.0,100.0,0
+24041,Longueuil--Charles-LeMoyne,24041,Longueuil—Charles-LeMoyne—Greenfield Park,100.0,100.0,1
+24042,Lévis--Lotbinière,24040,Lévis—Lotbinière,53.29,99.209,0
+24042,Lévis--Lotbinière,24046,Mégantic—L’Érable—Lotbinière,46.71,13.633,0
+24043,Longueuil--Saint-Hubert,24042,Longueuil—Saint-Hubert,100.0,100.0,0
+24044,Louis-Hébert,24043,Louis-Hébert,97.165,100.0,0
+24044,Louis-Hébert,24059,Québec Centre,2.835,7.082,0
+24045,Louis-Saint-Laurent,24044,Louis-Saint-Laurent—Akiawenhrahk,90.807,100.0,0
+24045,Louis-Saint-Laurent,24016,Charlesbourg—Haute-Saint-Charles,9.193,10.443,0
+24046,Manicouagan,24021,"Côte-Nord—Kawawachikamach—Nitassinan,Côte-Nord—Kawawachikamach—Nitassinan,Côte-Nord—Kaw",100.0,100.0,0
+24047,Mégantic--L'Érable,24046,Mégantic—L’Érable—Lotbinière,100.0,86.367,0
+24048,Mirabel,24064,Rivière-du-Nord,11.114,31.533,0
+24048,Mirabel,24047,Mirabel,77.629,97.2,0
+24048,Mirabel,24039,Les Pays-d'en-Haut,11.252,5.409,0
+24049,Montarville,24049,Mont-Saint-Bruno—L’Acadie,100.0,73.207,1
+24050,Montcalm,24050,Montcalm,83.397,100.0,1
+24050,Montcalm,24039,Les Pays-d'en-Haut,16.603,8.34,0
+24051,Montmagny--L'Islet--Kamouraska--Rivière-du-Loup,24020,Côte-du-Sud—Rivière-du-Loup—Kataskomiq—Témiscouata,100.0,64.66,0
+24052,Mount Royal,24048,Mount Royal,100.0,98.999,0
+24053,Notre-Dame-de-Grâce--Westmount,24035,LaSalle—Émard—Verdun,1.456,1.181,0
+24053,Notre-Dame-de-Grâce--Westmount,24048,Mount Royal,1.423,1.0,0
+24053,Notre-Dame-de-Grâce--Westmount,24052,Notre-Dame-de-Grâce—Westmount,97.12,92.616,0
+24054,Outremont,24053,Outremont,99.995,92.746,0
+24055,Papineau,24054,Papineau,100.0,100.0,0
+24056,Pierrefonds--Dollard,24056,Pierrefonds—Dollard,100.0,100.0,1
+24057,Pontiac,24057,Pontiac—Kitigan Zibi,98.305,99.994,1
+24057,Pontiac,24005,Argenteuil—Papineau—Des Collines,1.6,9.154,0
+24057,Pontiac,24025,Gatineau,0.095,30.479,0
+24058,Portneuf--Jacques-Cartier,24058,Saint-Augustin—Portneuf—Jacques-Cartier,97.682,100.0,1
+24058,Portneuf--Jacques-Cartier,24051,Montmorency—Charlevoix,2.318,1.492,0
+24059,Québec,24059,Québec Centre,100.0,92.88,1
+24060,Repentigny,24060,Repentigny,71.02,100.0,1
+24060,Repentigny,24029,Joliette—Manawan,11.019,0.283,0
+24060,Repentigny,24012,Berthier—Maskinongé,17.962,0.841,0
+24061,Richmond--Arthabaska,24061,Richmond—Arthabaska—des-Sources,100.0,100.0,1
+24062,Rivière-des-Mille-Îles,24063,Rivière-des-Mille-Îles,83.641,99.954,0
+24062,Rivière-des-Mille-Îles,24047,Mirabel,16.359,2.8,0
+24063,Rivière-du-Nord,24064,Rivière-du-Nord,54.894,68.467,0
+24063,Rivière-du-Nord,24039,Les Pays-d'en-Haut,45.106,9.532,0
+24064,Rosemont--La Petite-Patrie,24065,Rosemont—La Petite-Patrie,100.0,100.0,0
+24065,Marc-Aurèle-Fortin,24045,Marc-Aurèle-Fortin,100.0,100.0,0
+24066,Saint-Hyacinthe--Bagot,24066,Saint-Hyacinthe—Bagot—Acton,100.0,99.989,1
+24067,Saint-Jean,24067,Saint-Jean,100.0,100.0,1
+24068,Saint-Laurent,24068,Saint-Laurent,100.0,97.659,1
+24069,Saint-Léonard--Saint-Michel,24069,Saint-Léonard—Saint-Michel,94.917,100.0,1
+24069,Saint-Léonard--Saint-Michel,24027,Honoré-Mercier,4.328,2.26,0
+24069,Saint-Léonard--Saint-Michel,24026,Hochelaga—Rosemont-Est,0.755,0.774,0
+24070,Saint-Maurice--Champlain,24070,Saint-Maurice—Champlain,100.0,100.0,1
+24071,Salaberry--Suroît,24007,Vallée-du-Haut-Saint-Laurent,73.979,95.103,0
+24071,Salaberry--Suroît,24017,Châteauguay—Les Jardins-de-Napierville,26.021,38.187,0
+24072,Shefford,24071,Shefford,99.986,100.0,0
+24073,Sherbrooke,24072,Sherbrooke,96.742,99.592,0
+24073,Sherbrooke,24019,Compton—Stanstead,3.258,0.071,0
+24074,Vaudreuil--Soulanges,24007,Vallée-du-Haut-Saint-Laurent,20.764,4.897,0
+24074,Vaudreuil--Soulanges,24076,Vaudreuil,79.236,100.0,0
+24075,Terrebonne,24073,Terrebonne,98.395,100.0,0
+24075,Terrebonne,24074,Thérèse-De Blainville,1.605,3.19,0
+24076,Trois-Rivières,24075,Trois-Rivières,100.0,100.0,0
+24077,Ville-Marie--Le Sud-Ouest--Île-des-Soeurs,24037,Laurier—Sainte-Marie,22.496,34.829,0
+24077,Ville-Marie--Le Sud-Ouest--Île-des-Soeurs,24077,Ville-Marie—Le Sud-Ouest—Île-des-Soeurs,72.397,99.999,1
+24077,Ville-Marie--Le Sud-Ouest--Île-des-Soeurs,24052,Notre-Dame-de-Grâce—Westmount,5.087,6.756,0
+24078,Vimy,24004,Alfred-Pellan,7.432,2.183,0
+24078,Vimy,24078,Vimy,92.568,100.0,1
+35001,Ajax,35001,Ajax,100.0,100.0,1
+35002,Algoma--Manitoulin--Kapuskasing,35091,Sault Ste. Marie—Algoma,37.854,86.403,0
+35002,Algoma--Manitoulin--Kapuskasing,35104,Sudbury East—Manitoulin—Nickel Belt,6.573,17.71,0
+35002,Algoma--Manitoulin--Kapuskasing,35108,Thunder Bay—Superior North,6.264,4.264,0
+35002,Algoma--Manitoulin--Kapuskasing,35044,Kapuskasing—Timmins—Mushkegowuk,49.31,17.829,0
+35003,Aurora--Oak Ridges--Richmond Hill,35089,Richmond Hill South,4.655,10.055,0
+35003,Aurora--Oak Ridges--Richmond Hill,35003,Aurora—Oak Ridges—Richmond Hill,95.345,94.229,1
+35004,Barrie--Innisfil,35004,Barrie South—Innisfil,100.0,100.0,1
+35005,Barrie--Springwater--Oro-Medonte,35005,Barrie—Springwater—Oro-Medonte,100.0,76.281,1
+35006,Bay of Quinte,35040,Hastings—Lennox and Addington—Tyendinaga,11.405,2.126,0
+35006,Bay of Quinte,35006,Bay of Quinte,88.595,100.0,1
+35007,Beaches--East York,35007,Beaches—East York,99.821,100.0,1
+35007,Beaches--East York,35096,Scarborough Southwest,0.177,0.099,0
+35008,Brampton Centre,35013,Brampton South,8.952,7.183,0
+35008,Brampton Centre,35010,Brampton—Chinguacousy Park,60.221,71.247,0
+35008,Brampton Centre,35009,Brampton Centre,30.827,45.431,0
+35009,Brampton East,35012,Brampton North—Caledon,4.363,2.445,0
+35009,Brampton East,35011,Brampton East,95.637,100.0,0
+35010,Brampton North,35010,Brampton—Chinguacousy Park,31.461,28.753,1
+35010,Brampton North,35012,Brampton North—Caledon,68.539,15.256,0
+35011,Brampton South,35013,Brampton South,73.205,62.96,0
+35011,Brampton South,35009,Brampton Centre,26.795,42.331,0
+35012,Brampton West,35013,Brampton South,28.079,29.857,0
+35012,Brampton West,35014,Brampton West,65.655,100.0,0
+35012,Brampton West,35009,Brampton Centre,6.265,12.238,0
+35013,Brantford--Brant,35032,Flamborough—Glanbrook—Brant North,16.804,12.758,0
+35013,Brantford--Brant,35015,Brantford—Brant South,83.196,77.004,0
+35014,Bruce--Grey--Owen Sound,35016,Bruce—Grey—Owen Sound,100.0,100.0,0
+35015,Burlington,35017,Burlington,100.0,100.0,0
+35016,Cambridge,35032,Flamborough—Glanbrook—Brant North,26.562,8.494,0
+35016,Cambridge,35019,Cambridge,73.438,100.0,0
+35017,Chatham-Kent--Leamington,35028,Essex,10.038,16.438,0
+35017,Chatham-Kent--Leamington,35021,Chatham-Kent—Leamington,89.962,66.323,0
+35018,Davenport,35022,Davenport,100.0,82.55,0
+35019,Don Valley East,35024,Don Valley West,42.399,30.279,0
+35019,Don Valley East,35093,Scarborough Centre—Don Valley East,51.983,40.148,0
+35019,Don Valley East,35023,Don Valley North,5.618,4.85,0
+35020,Don Valley North,35023,Don Valley North,78.863,72.405,0
+35020,Don Valley North,35092,Scarborough—Agincourt,21.137,19.458,0
+35021,Don Valley West,35024,Don Valley West,74.09,69.721,0
+35021,Don Valley West,35111,Toronto—St. Paul's,5.916,11.514,0
+35021,Don Valley West,35023,Don Valley North,19.995,22.745,0
+35022,Dufferin--Caledon,35025,Dufferin—Caledon,94.27,100.0,0
+35022,Dufferin--Caledon,35012,Brampton North—Caledon,5.73,82.299,0
+35023,Durham,35008,Bowmanville—Oshawa North,43.183,99.992,0
+35023,Durham,35121,York—Durham,56.817,23.279,0
+35024,Eglinton--Lawrence,35026,Eglinton—Lawrence,100.0,100.0,0
+35025,Elgin--Middlesex--London,35027,Elgin—St. Thomas—London South,82.509,100.0,0
+35025,Elgin--Middlesex--London,35059,Middlesex—London,17.491,14.849,0
+35026,Essex,35118,Windsor—Tecumseh—Lakeshore,5.035,25.446,0
+35026,Essex,35028,Essex,94.956,83.562,0
+35026,Essex,35119,Windsor West,0.009,0.127,0
+35027,Etobicoke Centre,35122,York South—Weston—Etobicoke,7.042,11.013,0
+35027,Etobicoke Centre,35029,Etobicoke Centre,87.138,85.697,0
+35027,Etobicoke Centre,35031,Etobicoke North,4.863,3.746,0
+35027,Etobicoke Centre,35030,Etobicoke—Lakeshore,0.956,0.985,0
+35028,Etobicoke--Lakeshore,35029,Etobicoke Centre,10.287,10.836,0
+35028,Etobicoke--Lakeshore,35030,Etobicoke—Lakeshore,89.713,99.015,0
+35029,Etobicoke North,35122,York South—Weston—Etobicoke,0.322,0.649,0
+35029,Etobicoke North,35029,Etobicoke Centre,2.734,3.467,1
+35029,Etobicoke North,35031,Etobicoke North,96.944,96.254,0
+35030,Flamborough--Glanbrook,35039,Hamilton West—Ancaster—Dundas,0.099,0.857,0
+35030,Flamborough--Glanbrook,35032,Flamborough—Glanbrook—Brant North,97.601,78.747,0
+35030,Flamborough--Glanbrook,35038,Hamilton Mountain,0.535,12.592,0
+35030,Flamborough--Glanbrook,35037,Hamilton East—Stoney Creek,1.763,21.796,0
+35031,Glengarry--Prescott--Russell,35088,Prescott—Russell—Cumberland,77.807,96.624,0
+35031,Glengarry--Prescott--Russell,35020,Carleton,0.423,0.655,0
+35031,Glengarry--Prescott--Russell,35102,Stormont—Dundas—Glengarry,21.771,19.488,0
+35032,Guelph,35115,Wellington—Halton Hills North,26.299,1.677,0
+35032,Guelph,35033,Guelph,73.701,100.0,0
+35033,Haldimand--Norfolk,35034,Haldimand—Norfolk,100.0,100.0,0
+35034,Haliburton--Kawartha Lakes--Brock,35035,Haliburton—Kawartha Lakes,94.556,81.918,0
+35034,Haliburton--Kawartha Lakes--Brock,35121,York—Durham,5.444,21.04,0
+35035,Hamilton Centre,35036,Hamilton Centre,100.0,69.907,0
+35036,Hamilton East--Stoney Creek,35037,Hamilton East—Stoney Creek,82.598,78.204,0
+35036,Hamilton East--Stoney Creek,35036,Hamilton Centre,17.397,27.497,1
+35037,Hamilton Mountain,35038,Hamilton Mountain,100.0,87.399,0
+35038,Hamilton West--Ancaster--Dundas,35039,Hamilton West—Ancaster—Dundas,98.939,99.143,0
+35038,Hamilton West--Ancaster--Dundas,35036,Hamilton Centre,1.061,2.527,0
+35039,Hastings--Lennox and Addington,35040,Hastings—Lennox and Addington—Tyendinaga,99.996,97.874,0
+35040,Huron--Bruce,35042,Huron—Bruce,100.0,100.0,0
+35041,Kanata--Carleton,35043,Kanata,19.747,70.517,0
+35041,Kanata--Carleton,35020,Carleton,80.253,33.513,0
+35042,Kenora,35108,Thunder Bay—Superior North,8.998,19.619,0
+35042,Kenora,35045,Kenora—Kiiwetinoong,89.926,99.943,0
+35042,Kenora,35044,Kapuskasing—Timmins—Mushkegowuk,1.07,1.24,0
+35043,King--Vaughan,35047,King—Vaughan,97.044,89.868,0
+35043,King--Vaughan,35106,Thornhill,0.979,6.267,0
+35043,King--Vaughan,35113,Vaughan—Woodbridge,1.976,9.625,0
+35044,Kingston and the Islands,35046,Kingston and the Islands,100.0,55.98,0
+35045,Kitchener Centre,35048,Kitchener Centre,95.55,81.397,0
+35045,Kitchener Centre,35049,Kitchener—Conestoga,4.45,0.205,0
+35046,Kitchener--Conestoga,35049,Kitchener—Conestoga,99.993,99.795,0
+35047,Kitchener South--Hespeler,35050,Kitchener South—Hespeler,100.0,100.0,0
+35048,Lambton--Kent--Middlesex,35090,Sarnia—Lambton—Bkejwanong,31.075,50.942,0
+35048,Lambton--Kent--Middlesex,35059,Middlesex—London,49.849,84.026,0
+35048,Lambton--Kent--Middlesex,35021,Chatham-Kent—Leamington,19.076,33.677,0
+35049,Lanark--Frontenac--Kingston,35051,Lanark—Frontenac,95.92,99.997,0
+35049,Lanark--Frontenac--Kingston,35046,Kingston and the Islands,4.079,44.02,0
+35050,Leeds--Grenville--Thousand Islands and Rideau Lakes,35052,Leeds—Grenville—Thousand Islands—Rideau Lakes,100.0,99.999,0
+35051,London--Fanshawe,35054,London—Fanshawe,92.739,100.0,0
+35051,London--Fanshawe,35059,Middlesex—London,7.261,0.29,0
+35052,London North Centre,35053,London Centre,73.909,88.104,0
+35052,London North Centre,35059,Middlesex—London,26.091,0.528,0
+35053,London West,35053,London Centre,7.611,11.896,1
+35053,London West,35055,London West,80.829,99.99,0
+35053,London West,35059,Middlesex—London,11.56,0.307,0
+35054,Markham--Stouffville,35057,Markham—Thornhill,5.894,28.62,0
+35054,Markham--Stouffville,35056,Markham—Stouffville,26.83,97.214,0
+35054,Markham--Stouffville,35121,York—Durham,67.276,8.646,0
+35055,Markham--Thornhill,35057,Markham—Thornhill,100.0,71.38,0
+35056,Markham--Unionville,35058,Markham—Unionville,97.405,100.0,0
+35056,Markham--Unionville,35056,Markham—Stouffville,2.595,2.786,1
+35057,Milton,35060,Milton East—Halton Hills South,21.715,39.927,0
+35057,Milton,35018,Burlington North—Milton West,78.285,92.938,0
+35058,Mississauga Centre,35062,Mississauga East—Cooksville,8.524,6.441,0
+35058,Mississauga Centre,35066,Mississauga—Streetsville,5.722,2.889,0
+35058,Mississauga Centre,35061,Mississauga Centre,85.755,84.695,0
+35059,Mississauga East--Cooksville,35062,Mississauga East—Cooksville,89.47,93.559,0
+35059,Mississauga East--Cooksville,35064,Mississauga—Lakeshore,2.327,1.216,0
+35059,Mississauga East--Cooksville,35061,Mississauga Centre,8.203,11.212,0
+35060,Mississauga--Erin Mills,35063,Mississauga—Erin Mills,94.907,100.0,0
+35060,Mississauga--Erin Mills,35066,Mississauga—Streetsville,5.093,3.769,0
+35061,Mississauga--Lakeshore,35064,Mississauga—Lakeshore,100.0,98.784,0
+35062,Mississauga--Malton,35065,Mississauga—Malton,99.014,95.907,0
+35062,Mississauga--Malton,35061,Mississauga Centre,0.986,4.093,0
+35063,Mississauga--Streetsville,35065,Mississauga—Malton,8.762,4.093,0
+35063,Mississauga--Streetsville,35066,Mississauga—Streetsville,91.238,93.342,0
+35064,Nepean,35043,Kanata,10.668,8.231,0
+35064,Nepean,35067,Nepean,47.082,98.649,0
+35064,Nepean,35020,Carleton,41.869,3.778,0
+35064,Nepean,35082,Ottawa West—Nepean,0.381,1.126,0
+35065,Newmarket--Aurora,35003,Aurora—Oak Ridges—Richmond Hill,9.411,5.771,0
+35065,Newmarket--Aurora,35068,Newmarket—Aurora,90.589,99.949,0
+35066,Niagara Centre,35071,Niagara South,94.95,64.042,0
+35066,Niagara Centre,35101,St. Catharines,3.183,15.252,0
+35066,Niagara Centre,35072,Niagara West,1.867,0.583,0
+35067,Niagara Falls,35070,Niagara Falls—Niagara-on-the-Lake,67.582,100.0,0
+35067,Niagara Falls,35071,Niagara South,32.418,35.958,0
+35068,Niagara West,35072,Niagara West,100.0,99.127,0
+35069,Nickel Belt,35104,Sudbury East—Manitoulin—Nickel Belt,97.703,80.454,0
+35069,Nickel Belt,35103,Sudbury,2.297,70.295,0
+35070,Nipissing--Timiskaming,35073,Nipissing—Timiskaming,100.0,80.333,0
+35071,Northumberland--Peterborough South,35074,Northumberland—Clarke,80.319,100.0,0
+35071,Northumberland--Peterborough South,35086,Peterborough,19.68,26.914,0
+35072,Oakville,35075,Oakville East,46.378,50.986,0
+35072,Oakville,35076,Oakville West,53.622,62.149,0
+35073,Oakville North--Burlington,35075,Oakville East,40.122,49.014,0
+35073,Oakville North--Burlington,35018,Burlington North—Milton West,30.489,7.062,0
+35073,Oakville North--Burlington,35076,Oakville West,29.39,37.851,0
+35074,Oshawa,35078,Oshawa,100.0,100.0,0
+35075,Ottawa Centre,35079,Ottawa Centre,86.151,79.056,0
+35075,Ottawa Centre,35082,Ottawa West—Nepean,13.849,8.794,0
+35076,Orléans,35088,Prescott—Russell—Cumberland,38.228,3.364,0
+35076,Orléans,35077,Orléans,34.02,100.0,0
+35076,Orléans,35081,Ottawa—Vanier—Gloucester,4.661,17.974,0
+35076,Orléans,35020,Carleton,23.091,2.533,0
+35077,Ottawa South,35080,Ottawa South,88.254,67.16,0
+35077,Ottawa South,35020,Carleton,0.247,0.009,0
+35077,Ottawa South,35079,Ottawa Centre,11.499,20.811,0
+35078,Ottawa--Vanier,35088,Prescott—Russell—Cumberland,0.661,0.012,0
+35078,Ottawa--Vanier,35081,Ottawa—Vanier—Gloucester,99.323,82.026,0
+35079,Ottawa West--Nepean,35043,Kanata,39.651,15.779,0
+35079,Ottawa West--Nepean,35067,Nepean,1.25,1.351,0
+35079,Ottawa West--Nepean,35079,Ottawa Centre,0.052,0.114,1
+35079,Ottawa West--Nepean,35082,Ottawa West—Nepean,59.048,90.08,0
+35080,Oxford,35083,Oxford,90.77,100.0,0
+35080,Oxford,35015,Brantford—Brant South,9.227,22.996,0
+35081,Parkdale--High Park,35105,Taiaiako'n—Parkdale—High Park,99.854,85.145,0
+35081,Parkdale--High Park,35122,York South—Weston—Etobicoke,0.146,0.093,0
+35082,Parry Sound--Muskoka,35084,Parry Sound—Muskoka,100.0,99.991,0
+35083,Perth--Wellington,35085,Perth—Wellington,99.997,99.998,0
+35084,Peterborough--Kawartha,35035,Haliburton—Kawartha Lakes,54.053,18.082,0
+35084,Peterborough--Kawartha,35086,Peterborough,45.947,73.082,0
+35085,Pickering--Uxbridge,35087,Pickering—Brooklin,35.564,79.929,0
+35085,Pickering--Uxbridge,35121,York—Durham,64.436,19.023,0
+35086,Renfrew--Nipissing--Pembroke,35002,Algonquin—Renfrew—Pembroke,100.0,100.0,0
+35087,Richmond Hill,35089,Richmond Hill South,100.0,89.945,0
+35088,Carleton,35043,Kanata,1.036,5.473,0
+35088,Carleton,35080,Ottawa South,2.668,32.84,0
+35088,Carleton,35020,Carleton,96.297,59.513,0
+35089,St. Catharines,35101,St. Catharines,94.999,84.748,0
+35089,St. Catharines,35072,Niagara West,5.001,0.291,0
+35090,Toronto--St. Paul's,35111,Toronto—St. Paul's,94.389,79.632,0
+35090,Toronto--St. Paul's,35022,Davenport,5.611,5.029,0
+35091,Sarnia--Lambton,35090,Sarnia—Lambton—Bkejwanong,100.0,49.058,0
+35092,Sault Ste. Marie,35091,Sault Ste. Marie—Algoma,100.0,13.597,0
+35093,Scarborough--Agincourt,35092,Scarborough—Agincourt,100.0,80.542,0
+35094,Scarborough Centre,35093,Scarborough Centre—Don Valley East,63.18,59.852,0
+35094,Scarborough Centre,35097,Scarborough—Woburn,36.81,42.826,0
+35095,Scarborough--Guildwood,35094,Scarborough—Guildwood—Rouge Park,39.278,17.029,0
+35095,Scarborough--Guildwood,35097,Scarborough—Woburn,53.075,57.174,0
+35095,Scarborough--Guildwood,35096,Scarborough Southwest,7.647,6.634,0
+35096,Scarborough North,35095,Scarborough North,100.0,88.034,0
+35097,Scarborough--Rouge Park,35095,Scarborough North,7.657,11.966,0
+35097,Scarborough--Rouge Park,35094,Scarborough—Guildwood—Rouge Park,92.343,82.802,0
+35098,Scarborough Southwest,35094,Scarborough—Guildwood—Rouge Park,0.361,0.169,0
+35098,Scarborough Southwest,35096,Scarborough Southwest,99.639,93.258,0
+35099,Simcoe--Grey,35069,York—South Simcoe,14.738,38.059,0
+35099,Simcoe--Grey,35098,Simcoe—Grey,85.262,100.0,0
+35100,Simcoe North,35099,Simcoe North,85.424,100.0,0
+35100,Simcoe North,35005,Barrie—Springwater—Oro-Medonte,14.52,23.719,0
+35101,Spadina--Fort York,35105,Taiaiako'n—Parkdale—High Park,3.059,2.177,0
+35101,Spadina--Fort York,35110,Toronto—Danforth,1.268,0.783,0
+35101,Spadina--Fort York,35100,Spadina—Harbourfront,76.271,98.635,0
+35101,Spadina--Fort York,35022,Davenport,1.512,1.321,0
+35101,Spadina--Fort York,35112,University—Rosedale,12.591,11.634,0
+35101,Spadina--Fort York,35109,Toronto Centre,5.298,10.549,0
+35102,Stormont--Dundas--South Glengarry,35102,Stormont—Dundas—Glengarry,100.0,80.512,1
+35103,Sudbury,35104,Sudbury East—Manitoulin—Nickel Belt,69.671,1.836,0
+35103,Sudbury,35103,Sudbury,30.329,29.705,1
+35104,Thornhill,35047,King—Vaughan,0.188,0.026,0
+35104,Thornhill,35106,Thornhill,99.812,93.733,0
+35105,Thunder Bay--Rainy River,35107,Thunder Bay—Rainy River,99.991,99.991,0
+35106,Thunder Bay--Superior North,35108,Thunder Bay—Superior North,100.0,59.677,0
+35107,Timmins--James Bay,35108,Thunder Bay—Superior North,9.592,16.439,0
+35107,Timmins--James Bay,35044,Kapuskasing—Timmins—Mushkegowuk,88.906,80.931,0
+35107,Timmins--James Bay,35073,Nipissing—Timiskaming,1.502,19.667,0
+35108,Toronto Centre,35100,Spadina—Harbourfront,2.297,1.365,0
+35108,Toronto Centre,35112,University—Rosedale,5.808,2.466,0
+35108,Toronto Centre,35109,Toronto Centre,91.895,84.053,0
+35109,Toronto--Danforth,35110,Toronto—Danforth,100.0,99.214,0
+35110,University--Rosedale,35111,Toronto—St. Paul's,10.115,8.854,0
+35110,University--Rosedale,35112,University—Rosedale,87.338,85.9,0
+35110,University--Rosedale,35109,Toronto Centre,2.547,5.399,0
+35111,Vaughan--Woodbridge,35047,King—Vaughan,0.989,0.172,0
+35111,Vaughan--Woodbridge,35113,Vaughan—Woodbridge,99.011,90.375,0
+35112,Waterloo,35114,Waterloo,87.724,100.0,0
+35112,Waterloo,35048,Kitchener Centre,12.276,18.603,0
+35113,Wellington--Halton Hills,35115,Wellington—Halton Hills North,90.269,98.311,0
+35113,Wellington--Halton Hills,35060,Milton East—Halton Hills South,9.731,60.073,0
+35114,Whitby,35087,Pickering—Brooklin,39.618,20.071,0
+35114,Whitby,35116,Whitby,60.382,100.0,0
+35115,Willowdale,35117,Willowdale,100.0,99.997,0
+35116,Windsor--Tecumseh,35118,Windsor—Tecumseh—Lakeshore,99.772,74.554,0
+35116,Windsor--Tecumseh,35119,Windsor West,0.228,0.475,0
+35117,Windsor West,35119,Windsor West,99.996,99.397,0
+35118,York Centre,35120,North York,99.998,100.0,0
+35119,York--Simcoe,35047,King—Vaughan,4.131,9.934,0
+35119,York--Simcoe,35069,York—South Simcoe,40.023,61.941,0
+35119,York--Simcoe,35121,York—Durham,55.844,28.012,0
+35120,York South--Weston,35105,Taiaiako'n—Parkdale—High Park,9.114,12.678,0
+35120,York South--Weston,35122,York South—Weston—Etobicoke,84.389,88.245,0
+35120,York South--Weston,35022,Davenport,6.498,11.1,0
+35121,Humber River--Black Creek,35041,Humber River—Black Creek,100.0,100.0,0
+46001,Brandon--Souris,46001,"Brandon—Souris,Brandon—Souris",99.994,92.909,1
+46002,Charleswood--St. James--Assiniboia--Headingley,46014,Winnipeg West,100.0,31.699,0
+46003,Churchill--Keewatinook Aski,46002,Churchill—Keewatinook Aski,99.887,99.977,0
+46003,Churchill--Keewatinook Aski,46009,"Selkirk—Interlake—Eastman,Selkirk—Interlake—Eastman,Selkirk—Interlake—Eastman,Selkirk—",0.073,1.411,0
+46004,Dauphin--Swan River--Neepawa,46001,"Brandon—Souris,Brandon—Souris",0.444,1.283,0
+46004,Dauphin--Swan River--Neepawa,46007,Riding Mountain,99.55,98.488,0
+46005,Elmwood--Transcona,46003,Elmwood—Transcona,96.479,27.914,0
+46005,Elmwood--Transcona,46004,Kildonan—St. Paul,3.521,0.583,0
+46006,Kildonan--St. Paul,46011,Winnipeg North,1.043,4.936,0
+46006,Kildonan--St. Paul,46004,Kildonan—St. Paul,98.926,56.612,0
+46007,Portage--Lisgar,46005,Portage—Lisgar,84.115,99.982,0
+46007,Portage--Lisgar,46001,"Brandon—Souris,Brandon—Souris",9.029,5.806,0
+46007,Portage--Lisgar,46007,Riding Mountain,6.849,1.509,1
+46008,Provencher,46003,Elmwood—Transcona,0.667,72.085,0
+46008,Provencher,46006,Provencher,98.613,99.992,0
+46008,Provencher,46004,Kildonan—St. Paul,0.691,42.725,0
+46009,Saint Boniface--Saint Vital,46008,St. Boniface—St. Vital,99.99,96.315,0
+46010,Selkirk--Interlake--Eastman,46002,Churchill—Keewatinook Aski,0.283,0.015,0
+46010,Selkirk--Interlake--Eastman,46014,Winnipeg West,1.702,67.5,0
+46010,Selkirk--Interlake--Eastman,46009,"Selkirk—Interlake—Eastman,Selkirk—Interlake—Eastman,Selkirk—Interlake—Eastman,Selkirk—",98.008,98.586,0
+46011,Winnipeg Centre,46010,Winnipeg Centre,100.0,90.321,0
+46012,Winnipeg North,46010,Winnipeg Centre,8.176,9.679,0
+46012,Winnipeg North,46011,Winnipeg North,91.824,95.064,0
+46013,Winnipeg South,46013,Winnipeg South Centre,4.648,10.484,1
+46013,Winnipeg South,46008,St. Boniface—St. Vital,2.342,3.655,0
+46013,Winnipeg South,46012,Winnipeg South,93.0,99.923,0
+46014,Winnipeg South Centre,46013,Winnipeg South Centre,89.587,89.516,0
+46014,Winnipeg South Centre,46014,Winnipeg West,10.413,0.741,1
+47001,Battlefords--Lloydminster,47001,Battlefords—Lloydminster—Meadow Lake,68.193,56.64,1
+47001,Battlefords--Lloydminster,47013,Swift Current—Grasslands—Kindersley,31.803,11.616,0
+47002,Cypress Hills--Grasslands,47013,Swift Current—Grasslands—Kindersley,81.628,77.029,0
+47002,Cypress Hills--Grasslands,47012,Souris—Moose Mountain,6.966,11.149,0
+47002,Cypress Hills--Grasslands,47004,Moose Jaw—Lake Centre—Lanigan,11.401,21.689,0
+47003,Desnethé--Missinippi--Churchill River,47001,Battlefords—Lloydminster—Meadow Lake,4.589,43.357,0
+47003,Desnethé--Missinippi--Churchill River,47005,Prince Albert,4.479,55.247,0
+47003,Desnethé--Missinippi--Churchill River,47003,Desnethé—Missinippi—Churchill River,90.915,99.937,1
+47004,Carlton Trail--Eagle Creek,47013,Swift Current—Grasslands—Kindersley,32.24,11.351,0
+47004,Carlton Trail--Eagle Creek,47011,Saskatoon West,0.061,16.478,0
+47004,Carlton Trail--Eagle Creek,47002,Carlton Trail—Eagle Creek,67.695,81.373,0
+47005,Moose Jaw--Lake Centre--Lanigan,47004,Moose Jaw—Lake Centre—Lanigan,97.29,78.207,0
+47005,Moose Jaw--Lake Centre--Lanigan,47002,Carlton Trail—Eagle Creek,2.616,3.561,0
+47005,Moose Jaw--Lake Centre--Lanigan,47006,Regina—Lewvan,0.095,37.134,0
+47006,Prince Albert,47014,Yorkton—Melville,20.707,8.312,0
+47006,Prince Albert,47002,Carlton Trail—Eagle Creek,13.579,10.64,0
+47006,Prince Albert,47005,Prince Albert,65.671,44.751,0
+47007,Regina--Lewvan,47007,Regina—Qu'Appelle,7.948,0.036,1
+47007,Regina--Lewvan,47004,Moose Jaw—Lake Centre—Lanigan,0.6,0.001,0
+47007,Regina--Lewvan,47006,Regina—Lewvan,91.452,62.866,0
+47008,Regina--Qu'Appelle,47007,Regina—Qu'Appelle,94.276,99.915,0
+47008,Regina--Qu'Appelle,47014,Yorkton—Melville,5.45,1.552,0
+47008,Regina--Qu'Appelle,47008,Regina—Wascana,0.03,7.432,1
+47008,Regina--Qu'Appelle,47004,Moose Jaw—Lake Centre—Lanigan,0.241,0.079,0
+47009,Regina--Wascana,47007,Regina—Qu'Appelle,7.537,0.038,0
+47009,Regina--Wascana,47008,Regina—Wascana,77.973,92.568,0
+47009,Regina--Wascana,47004,Moose Jaw—Lake Centre—Lanigan,14.489,0.022,0
+47010,Saskatoon--Grasswood,47009,Saskatoon South,15.525,100.0,0
+47010,Saskatoon--Grasswood,47002,Carlton Trail—Eagle Creek,84.36,1.195,0
+47010,Saskatoon--Grasswood,47010,Saskatoon East,0.085,0.412,1
+47011,Saskatoon--University,47010,Saskatoon East,100.0,99.588,0
+47012,Saskatoon West,47011,Saskatoon West,97.478,83.522,0
+47012,Saskatoon West,47002,Carlton Trail—Eagle Creek,2.522,0.01,0
+47013,Souris--Moose Mountain,47012,Souris—Moose Mountain,99.996,88.85,0
+47014,Yorkton--Melville,47014,Yorkton—Melville,98.2,90.124,1
+47014,Yorkton--Melville,47002,Carlton Trail—Eagle Creek,1.796,3.218,0
+48001,Banff--Airdrie,48037,Yellowhead,94.513,14.075,0
+48001,Banff--Airdrie,48001,Airdrie—Cochrane,4.713,100.0,1
+48001,Banff--Airdrie,48003,Bow River,0.759,0.434,0
+48001,Banff--Airdrie,48006,Calgary Crowfoot,0.002,0.358,0
+48002,Battle River--Crowfoot,48028,Leduc—Wetaskiwin,0.318,2.732,0
+48002,Battle River--Crowfoot,48002,Battle River—Crowfoot,99.672,96.954,1
+48003,Bow River,48003,Bow River,87.596,99.554,1
+48003,Bow River,48002,Battle River—Crowfoot,6.745,3.02,0
+48003,Bow River,48024,Foothills,5.634,7.105,0
+48004,Calgary Centre,48004,Calgary Centre,90.324,99.774,1
+48004,Calgary Centre,48013,Calgary Signal Hill,9.669,7.482,0
+48005,Calgary Confederation,48011,Calgary Nose Hill,15.617,13.879,0
+48005,Calgary Confederation,48005,Calgary Confederation,83.887,85.972,1
+48005,Calgary Confederation,48006,Calgary Crowfoot,0.496,0.372,0
+48006,Calgary Forest Lawn,48007,Calgary East,68.044,32.688,0
+48006,Calgary Forest Lawn,48009,Calgary McKnight,31.956,22.904,0
+48007,Calgary Heritage,48004,Calgary Centre,0.071,0.112,0
+48007,Calgary Heritage,48010,Calgary Midnapore,1.873,1.587,0
+48007,Calgary Heritage,48008,Calgary Heritage,98.026,93.966,0
+48008,Calgary Midnapore,48004,Calgary Centre,0.059,0.114,0
+48008,Calgary Midnapore,48010,Calgary Midnapore,94.805,98.413,0
+48008,Calgary Midnapore,48008,Calgary Heritage,5.135,6.03,1
+48009,Calgary Nose Hill,48011,Calgary Nose Hill,76.994,71.946,0
+48009,Calgary Nose Hill,48014,Calgary Skyview,23.006,14.906,0
+48010,Calgary Rocky Ridge,48011,Calgary Nose Hill,2.41,3.555,0
+48010,Calgary Rocky Ridge,48037,Yellowhead,0.2,0.0,0
+48010,Calgary Rocky Ridge,48006,Calgary Crowfoot,79.761,99.27,0
+48010,Calgary Rocky Ridge,48014,Calgary Skyview,17.63,18.035,0
+48011,Calgary Shepard,48007,Calgary East,39.992,67.311,0
+48011,Calgary Shepard,48012,Calgary Shepard,60.008,100.0,0
+48012,Calgary Signal Hill,48013,Calgary Signal Hill,88.726,92.32,0
+48012,Calgary Signal Hill,48005,Calgary Confederation,11.232,14.026,0
+48013,Calgary Skyview,48011,Calgary Nose Hill,5.283,10.62,0
+48013,Calgary Skyview,48014,Calgary Skyview,48.111,67.06,0
+48013,Calgary Skyview,48009,Calgary McKnight,46.606,77.096,0
+48014,Edmonton Centre,48017,Edmonton Griesbach,0.578,0.594,0
+48014,Edmonton Centre,48023,Edmonton West,20.015,12.356,0
+48014,Edmonton Centre,48015,Edmonton Centre,79.408,80.986,0
+48015,Edmonton Griesbach,48017,Edmonton Griesbach,86.924,89.02,0
+48015,Edmonton Griesbach,48019,Edmonton Northwest,3.386,1.524,0
+48015,Edmonton Griesbach,48015,Edmonton Centre,9.69,9.84,1
+48016,Edmonton Manning,48018,Edmonton Manning,96.111,99.923,0
+48016,Edmonton Manning,48017,Edmonton Griesbach,2.26,7.901,0
+48016,Edmonton Manning,48019,Edmonton Northwest,1.629,2.502,0
+48017,Edmonton Mill Woods,48021,Edmonton Southeast,62.899,44.975,0
+48017,Edmonton Mill Woods,48035,Sherwood Park—Fort Saskatchewan,0.185,0.007,0
+48017,Edmonton Mill Woods,48022,Edmonton Strathcona,1.753,1.046,0
+48017,Edmonton Mill Woods,48016,Edmonton Gateway,35.163,27.838,0
+48018,Edmonton Riverbend,48023,Edmonton West,11.324,9.009,0
+48018,Edmonton Riverbend,48022,Edmonton Strathcona,7.208,5.147,0
+48018,Edmonton Riverbend,48016,Edmonton Gateway,11.306,10.716,0
+48018,Edmonton Riverbend,48020,Edmonton Riverbend,70.163,34.226,0
+48019,Edmonton Strathcona,48035,Sherwood Park—Fort Saskatchewan,0.142,0.009,0
+48019,Edmonton Strathcona,48017,Edmonton Griesbach,1.405,2.485,0
+48019,Edmonton Strathcona,48022,Edmonton Strathcona,98.452,93.775,0
+48020,Edmonton West,48023,Edmonton West,55.519,77.764,0
+48020,Edmonton West,48019,Edmonton Northwest,40.317,41.352,0
+48020,Edmonton West,48015,Edmonton Centre,3.964,9.173,0
+48020,Edmonton West,48020,Edmonton Riverbend,0.2,0.171,1
+48021,Edmonton--Wetaskiwin,48028,Leduc—Wetaskiwin,96.754,77.363,0
+48021,Edmonton--Wetaskiwin,48021,Edmonton Southeast,0.778,55.012,1
+48021,Edmonton--Wetaskiwin,48023,Edmonton West,0.013,0.87,0
+48021,Edmonton--Wetaskiwin,48016,Edmonton Gateway,0.785,61.446,0
+48021,Edmonton--Wetaskiwin,48020,Edmonton Riverbend,1.628,65.602,0
+48022,Foothills,48037,Yellowhead,20.762,5.252,0
+48022,Foothills,48013,Calgary Signal Hill,0.0,0.164,0
+48022,Foothills,48024,Foothills,79.238,85.374,0
+48023,Fort McMurray--Cold Lake,48025,Fort McMurray—Cold Lake,99.834,99.895,0
+48023,Fort McMurray--Cold Lake,47003,Desnethé—Missinippi—Churchill River,0.126,0.06,0
+48024,Grande Prairie--Mackenzie,48032,Peace River—Westlock,47.777,32.983,0
+48024,Grande Prairie--Mackenzie,48026,Grande Prairie,52.182,99.943,0
+48025,Lakeland,48027,Lakeland,99.617,99.983,0
+48025,Lakeland,48025,Fort McMurray—Cold Lake,0.364,0.079,1
+48026,Lethbridge,48029,Lethbridge,99.977,99.95,0
+48027,Medicine Hat--Cardston--Warner,48030,Medicine Hat—Cardston—Warner,95.109,99.98,0
+48027,Medicine Hat--Cardston--Warner,48024,Foothills,4.848,7.521,0
+48028,Peace River--Westlock,48032,Peace River—Westlock,99.976,66.988,0
+48029,Red Deer--Mountain View,48033,Ponoka—Didsbury,49.269,38.95,0
+48029,Red Deer--Mountain View,48037,Yellowhead,24.88,2.31,0
+48029,Red Deer--Mountain View,48034,Red Deer,25.834,94.651,0
+48030,Red Deer--Lacombe,48033,Ponoka—Didsbury,93.506,61.018,0
+48030,Red Deer--Lacombe,48028,Leduc—Wetaskiwin,4.69,4.794,0
+48030,Red Deer--Lacombe,48034,Red Deer,1.76,5.322,0
+48031,St. Albert--Edmonton,48036,St. Albert—Sturgeon River,45.79,1.059,0
+48031,St. Albert--Edmonton,48019,Edmonton Northwest,54.21,54.622,0
+48032,Sherwood Park--Fort Saskatchewan,48035,Sherwood Park—Fort Saskatchewan,99.989,99.945,0
+48033,Sturgeon River--Parkland,48036,St. Albert—Sturgeon River,76.919,68.809,0
+48033,Sturgeon River--Parkland,48031,Parkland,23.06,9.092,0
+48034,Yellowhead,48028,Leduc—Wetaskiwin,1.228,15.111,0
+48034,Yellowhead,48037,Yellowhead,84.847,78.288,0
+48034,Yellowhead,48036,St. Albert—Sturgeon River,1.771,30.115,0
+48034,Yellowhead,48031,Parkland,12.128,90.889,0
+59001,Abbotsford,59018,Mission—Matsqui—Abbotsford,69.496,2.546,0
+59001,Abbotsford,59001,Abbotsford—South Langley,30.504,23.016,1
+59002,Burnaby North--Seymour,59003,Burnaby North—Seymour,94.741,77.985,0
+59002,Burnaby North--Seymour,59002,Burnaby Central,5.259,15.849,1
+59003,Burnaby South,59002,Burnaby Central,63.339,77.308,0
+59003,Burnaby South,59037,Vancouver Fraserview—South Burnaby,36.615,52.707,0
+59004,Cariboo--Prince George,59004,Cariboo—Prince George—Omineca,99.994,92.352,1
+59005,Central Okanagan--Similkameen--Nicola,59030,Similkameen—South Okanagan—West Kootenay,44.96,42.474,0
+59005,Central Okanagan--Similkameen--Nicola,59015,Kamloops—Thompson—Nicola,41.966,13.581,0
+59005,Central Okanagan--Similkameen--Nicola,59023,Okanagan Lake West—South Kelowna,10.211,80.18,0
+59005,Central Okanagan--Similkameen--Nicola,59016,Kelowna,0.067,0.405,0
+59005,Central Okanagan--Similkameen--Nicola,59041,Vernon—Lake Country—Monashee,2.796,2.992,0
+59006,Chilliwack--Hope,59005,Chilliwack—Hope,100.0,48.212,0
+59007,Cloverdale--Langley City,59017,Langley Township—Fraser Heights,7.834,2.212,0
+59007,Cloverdale--Langley City,59034,Surrey Newton,1.112,2.271,0
+59007,Cloverdale--Langley City,59006,Cloverdale—Langley City,79.819,100.0,0
+59007,Cloverdale--Langley City,59013,Fleetwood—Port Kells,11.218,12.522,0
+59008,Coquitlam--Port Coquitlam,59025,Port Moody—Coquitlam,2.943,16.86,0
+59008,Coquitlam--Port Coquitlam,59008,Coquitlam—Port Coquitlam,97.057,99.998,1
+59009,Courtenay--Alberni,59021,North Island—Powell River,0.215,0.033,0
+59009,Courtenay--Alberni,59009,"Courtenay—Alberni,Courtenay—Alberni",99.785,99.61,1
+59010,Cowichan--Malahat--Langford,59010,Cowichan—Malahat—Langford,99.876,99.967,1
+59010,Cowichan--Malahat--Langford,59012,Esquimalt—Saanich—Sooke,0.124,1.817,0
+59011,Delta,59011,Delta,100.0,98.167,1
+59012,Fleetwood--Port Kells,59017,Langley Township—Fraser Heights,38.787,13.621,0
+59012,Fleetwood--Port Kells,59013,Fleetwood—Port Kells,61.213,84.987,0
+59013,Kamloops--Thompson--Cariboo,59014,Kamloops—Shuswap—Central Rockies,4.214,4.813,0
+59013,Kamloops--Thompson--Cariboo,59015,Kamloops—Thompson—Nicola,77.814,59.538,0
+59013,Kamloops--Thompson--Cariboo,59004,Cariboo—Prince George—Omineca,17.972,7.648,0
+59014,Kelowna--Lake Country,59023,Okanagan Lake West—South Kelowna,24.493,19.82,0
+59014,Kelowna--Lake Country,59016,Kelowna,14.168,8.791,0
+59014,Kelowna--Lake Country,59041,Vernon—Lake Country—Monashee,61.339,6.764,0
+59015,Kootenay--Columbia,59014,Kamloops—Shuswap—Central Rockies,36.635,70.259,0
+59015,Kootenay--Columbia,59007,Columbia—Kootenay—Southern Rockies,63.304,99.126,0
+59016,Langley--Aldergrove,59017,Langley Township—Fraser Heights,46.511,84.167,0
+59016,Langley--Aldergrove,59018,Mission—Matsqui—Abbotsford,6.351,0.504,0
+59016,Langley--Aldergrove,59001,Abbotsford—South Langley,47.139,76.984,0
+59017,Mission--Matsqui--Fraser Canyon,59018,Mission—Matsqui—Abbotsford,21.438,96.95,0
+59017,Mission--Matsqui--Fraser Canyon,59005,Chilliwack—Hope,16.545,51.788,0
+59017,Mission--Matsqui--Fraser Canyon,59024,Pitt Meadows—Maple Ridge,1.001,9.242,0
+59017,Mission--Matsqui--Fraser Canyon,59015,Kamloops—Thompson—Nicola,61.015,26.521,0
+59018,Nanaimo--Ladysmith,59019,Nanaimo—Ladysmith,98.162,100.0,0
+59018,Nanaimo--Ladysmith,59009,"Courtenay—Alberni,Courtenay—Alberni",1.838,0.39,0
+59019,New Westminster--Burnaby,59002,Burnaby Central,9.268,6.843,0
+59019,New Westminster--Burnaby,59037,Vancouver Fraserview—South Burnaby,4.602,4.007,0
+59019,New Westminster--Burnaby,59020,New Westminster—Burnaby—Maillardville,86.129,83.069,0
+59020,North Okanagan--Shuswap,59014,Kamloops—Shuswap—Central Rockies,49.901,24.893,0
+59020,North Okanagan--Shuswap,59015,Kamloops—Thompson—Nicola,1.076,0.36,0
+59020,North Okanagan--Shuswap,59041,Vernon—Lake Country—Monashee,49.022,54.161,0
+59021,North Vancouver,59003,Burnaby North—Seymour,8.998,22.015,0
+59021,North Vancouver,59022,North Vancouver—Capilano,91.002,97.842,0
+59022,Pitt Meadows--Maple Ridge,59024,Pitt Meadows—Maple Ridge,100.0,90.758,0
+59023,Port Moody--Coquitlam,59025,Port Moody—Coquitlam,95.032,83.14,0
+59023,Port Moody--Coquitlam,59020,New Westminster—Burnaby—Maillardville,4.959,16.857,0
+59024,Prince George--Peace River--Northern Rockies,59026,Prince George—Peace River—Northern Rockies,99.979,99.99,0
+59025,Richmond Centre,59027,Richmond Centre—Marpole,91.965,89.936,0
+59025,Richmond Centre,59028,Richmond East—Steveston,8.035,3.836,0
+59026,Esquimalt--Saanich--Sooke,59010,Cowichan—Malahat—Langford,0.458,0.033,0
+59026,Esquimalt--Saanich--Sooke,59012,Esquimalt—Saanich—Sooke,93.663,98.183,0
+59026,Esquimalt--Saanich--Sooke,59029,Saanich—Gulf Islands,5.879,3.766,0
+59027,Saanich--Gulf Islands,59029,Saanich—Gulf Islands,100.0,96.234,0
+59028,Skeena--Bulkley Valley,59031,Skeena—Bulkley Valley,99.999,99.987,0
+59029,South Okanagan--West Kootenay,59007,Columbia—Kootenay—Southern Rockies,1.98,0.874,0
+59029,South Okanagan--West Kootenay,59030,Similkameen—South Okanagan—West Kootenay,54.412,57.526,0
+59029,South Okanagan--West Kootenay,59016,Kelowna,13.477,90.804,0
+59029,South Okanagan--West Kootenay,59041,Vernon—Lake Country—Monashee,30.131,36.083,0
+59030,South Surrey--White Rock,59032,South Surrey—White Rock,98.575,99.993,0
+59030,South Surrey--White Rock,59011,Delta,1.425,1.061,0
+59031,Steveston--Richmond East,59028,Richmond East—Steveston,100.0,96.164,0
+59032,Surrey Centre,59033,Surrey Centre,96.966,100.0,0
+59032,Surrey Centre,59013,Fleetwood—Port Kells,3.034,2.491,0
+59033,Surrey--Newton,59034,Surrey Newton,94.957,97.729,0
+59033,Surrey--Newton,59011,Delta,5.043,0.772,0
+59034,Vancouver Centre,59038,Vancouver Granville,14.812,7.196,0
+59034,Vancouver Centre,59035,Vancouver Centre,85.188,100.0,0
+59035,Vancouver East,59036,Vancouver East,100.0,100.0,0
+59036,Vancouver Granville,59027,Richmond Centre—Marpole,18.213,9.227,0
+59036,Vancouver Granville,59038,Vancouver Granville,74.129,70.651,0
+59036,Vancouver Granville,59040,Vancouver Quadra,7.658,4.119,0
+59037,North Island--Powell River,59021,North Island—Powell River,99.979,99.964,0
+59038,Vancouver Kingsway,59039,Vancouver Kingsway,100.0,91.28,0
+59039,Vancouver Quadra,59027,Richmond Centre—Marpole,0.919,0.838,0
+59039,Vancouver Quadra,59040,Vancouver Quadra,99.061,95.881,0
+59040,Vancouver South,59039,Vancouver Kingsway,7.078,8.72,0
+59040,Vancouver South,59038,Vancouver Granville,25.123,22.118,0
+59040,Vancouver South,59037,Vancouver Fraserview—South Burnaby,67.8,43.286,0
+59041,Victoria,59042,Victoria,100.0,100.0,0
+59042,West Vancouver--Sunshine Coast--Sea to Sky Country,59043,West Vancouver—Sunshine Coast—Sea to Sky Country,99.948,100.0,0
+59042,West Vancouver--Sunshine Coast--Sea to Sky Country,59022,North Vancouver—Capilano,0.052,2.158,0
+60001,Yukon,60001,Yukon,99.995,99.999,1
+61001,Northwest Territories,61001,Northwest Territories,99.724,99.401,1
+61001,Northwest Territories,62001,Nunavut,0.275,0.175,0
+62001,Nunavut,61001,Northwest Territories,0.376,0.591,0
+62001,Nunavut,62001,Nunavut,99.624,99.824,1
