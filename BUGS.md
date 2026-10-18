@@ -363,7 +363,8 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 
 ## New on builds 1574 / 1575 (pass 8)
 
-### QA-045 [HIGH] Candidate thumbnails shrink in 33 of 50 states (up to -66% in Delaware), not just Alabama
+### QA-045 [Fixed on 1576 (verified pass 10, 11:55 AM EDT)] Candidate thumbnails shrink in 33 of 50 states (up to -66% in Delaware), not just Alabama
+- **Re-test on 1576 (`615fa5a`, live line 9 = 202610181576), Chromium, one browser, 1024x768 and 390x844, all 50 states + DC: FIXED.** Every switch shows 30 x 30 px photos in a 42 x 36 box at the first painted frame (12-46 ms after the switch, the earliest rAF that has thumbnails), at 300 ms and settled at 3 s, 0 frames at any other size (`qa/b1576-thumbs-{1024x768,390}.json`, every rAF for 1.2 s). Transitions: DE after DC 30 px from the first frame (14/16 ms); AK after AL 30 px (13 ms); Blount County 30 px, then the US view (298/308 ms) and US > All States list (214/291 ms) 30 px. `--thw` is now a constant 30px; the crumb icon still uses the state outline (e.g. DE 22x48 drawn 10.1x22), which no longer matters. No clipping (img inside its box and the viewport, all states), no overlapping thumbnail boxes, the new % badge (20 x 11) sits on the photo's lower-right corner inside the 42 px box, every crumb icon loaded (stateflags/<State>.png, US flag at US/DC). No page errors. Two thumbnail jumps in list mode remain/appear: QA-059, QA-060. Shots: shots/b1576-thumbs-ch-{1024x768,390}-{AL,DE,NH,GA,NE,DC,DE-after-DC,AK-after-AL,Blount,Blount-list,US-after-Blount,USlist-after-Blount}.png. Script `qa/b1576-thumbs.py`.
 - Severity: HIGH | Build 1575 (same on 1574) | WebKit and Chromium, 1440x900, 1024x768, 390x844 (full sweep: Chromium 1024x768 and 390x844, every state plus DC)
 - Steps: pick any state from the state menu (e.g. Delaware, New Hampshire, Illinois, Alabama) and look at the candidate thumbnails; compare with United States or Pennsylvania.
 - Expected: the same thumbnail size everywhere (30 x 30 px photo in a 42 x 36 box).
@@ -452,6 +453,31 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Build 1575 | 1024x768 and 390x844 (Chromium) | Worcester County list summary
 - Year > range ('16>'24): thumbnails dy +23 and narrow (-175 / -138 px) to make room for the two year columns; back to one year: dy -23. Probably by design (column headers); logged as asked.
 - Screenshots: shots/b1574-ch-1024x768-ls15-list-range-16-24-before.png / -after.png, shots/b1574-ch-390-ls15-list-range-16-24-after.png
+
+## New on build 1576 (pass 10, Oct 18 ~11:30-11:55 AM EDT)
+
+### QA-059 [HIGH] List view: candidate thumbnails drop 30 px after switching state (DE after DC)
+- Severity: HIGH (QA-054-style jump) | Build 1576 | Chromium 1024x768 and 390x844
+- Steps: Geo > All States > tap the DC row; then pick Delaware in the state menu (stays in the list view, "Delaware counties").
+- Expected: thumbnails painted at their final place.
+- Actual: the first frame (14 ms) has the thumbnails at y=131/183; at 258 ms (1024) / 448 ms (390) they move to y=161/213: **dx 0, dy +30, dw 0, dh 0**, layout-shift entry on `laCands` (0.0004 / 0.0013). Per-state switches in the results view had no jumps (0 of 100).
+- Screenshots: shots/b1576-jump-390-DEafterDC-before-after.png, shots/b1576-jump-{1024x768,390}-DEafterDC-{before,after}.png (the "before" capture landed after the move even with 6x CPU throttle; the rAF positions above are the evidence), shots/b1576-thumbs-ch-{1024x768,390}-DE-after-DC.png
+- Data: `qa/b1576-thumbs-*.json` > trans.DE_after_DC.frames, `qa/b1576-jump.json`
+
+### QA-060 [HIGH] Blount County results > list: thumbnails jump 8 px left and back
+- Severity: HIGH (QA-054-style jump) | Build 1576 | Chromium 1024x768 and 390x844
+- Steps: Geo > Alabama > Blount County (results view), then tap the globe/list button.
+- Expected: thumbnails stay at x=12.
+- Actual: 390: x 12 > 4 at 16 ms (**dx -8**) > 12 at 261 ms (**dx +8**), shifts on `cands` (0.0013) and the two IMGs. 1024: first frame at x=4 (23 ms), then x=12 at 256 ms (**dx +8, dy 0, dw 0, dh 0**).
+- Screenshots: shots/b1576-thumbs-ch-{1024x768,390}-Blount.png (before), shots/b1576-thumbs-ch-{1024x768,390}-Blount-list.png (after)
+- Data: `qa/b1576-thumbs-*.json` > trans.Blount_list.frames
+
+### QA-061 [MEDIUM] Bottom geo field keeps saying "District of Columbia" after switching to another state
+- Severity: MEDIUM | Build 1576 (same on 1575) | Chromium 1024x768 and 390x844
+- Steps: Geo > All States > DC row; then pick Delaware in the state menu.
+- Expected: bottom field reads Delaware (or the current area).
+- Actual: top crumb says "Delaware counties", the bottom field shows the Delaware outline icon but the text "District of Columbia" (DC's `nameLock`/placeholder isn't cleared).
+- Screenshots: shots/b1576-thumbs-ch-1024x768-DE-after-DC.png, shots/b1576-thumbs-ch-390-DE-after-DC.png, shots/b1575-thumbs-ch-390-DE-after-DC.png (1575)
 
 ## Passed on 1571 (pass 5)
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
