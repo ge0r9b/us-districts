@@ -174,3 +174,76 @@ All 73 diffs are in `stateleg_official_diffs.csv`:
 Special cases, which are never joined:
 - **NH House floterials:** labels that are not among the 164 TIGER 2024 SLDL base districts (RSA 662:5).
 - **Maine tribal representatives:** non-voting seats with no district. They appear as `no_v3_unit_tribal` in both files.
+
+## Official rosters, batch 2 (2026-10-18): ME, MD, CT, MS, NC, SC, KS, FL Senate, CA Senate
+
+Parsers are in `tools/inst_stateleg_parsers2.py`, which `inst_stateleg_official.py` imports. They use the same method, cross-check and diffs file as batch 1.
+
+| State | Source | Official serving | OpenStates current | Joined | Diffs |
+|---|---|---|---|---|---|
+| ME | House district listing (deceased/resigned marked) + 132nd Senate list | 188 | 188 | 186 | 4 |
+| MD | MGA member index, 2026 session | 187 | 188 | 187 | 2 |
+| CT | CGA `LegislatorDatabase.csv` | 187 | 187 | 187 | 0 |
+| MS | billstatus member XML, term 2024-2027 | 172 | 171 | 172 | 15 |
+| NC | NCGA member tables (resigned/appointed marked) | 170 | 170 | 170 | 2 |
+| SC | scstatehouse member lists | 170 | 170 | 170 | 0 |
+| KS | KLISS API v13 | 165 | 165 | 165 | 0 |
+| FL Senate | flsenate.gov senator list | 39 | 39 | 39 | 1 |
+| CA Senate | senate.ca.gov roster | 40 | 40 | 40 | 0 |
+
+ME notes:
+- The two ME tribal seats appear only as seat numbers in the official list. They take the tribe label OpenStates gives the same person, and their join status is `no_v3_unit_tribal`.
+
+MS notes:
+- MS member XML carries no in-office dates.
+- Senate District 44 lists two members, Polk and Johnson, both shown as "present". The tool keeps the one OpenStates lists as current (Johnson), and the row note records this.
+- MS units that OpenStates leaves empty and the official list fills: House 70 and 77, Senate 34.
+
+Correction to batch 1: senate.ca.gov/senators is rendered on the server, so the CA Senate has switched to its official list.
+
+How the official sources were reached:
+- ilga.gov, cga.ct.gov and billstatus.ls.state.ms.us send an incomplete TLS chain. Each was fetched with the system CA store plus the Mozilla CCADB public intermediate list (`inst-raw/rosters/ca_bundle_plus_aia.pem`). Verification stayed on throughout.
+
+Party comparison:
+- Party labels are normalized before comparing: U, Unenrolled, NPA and "No Party Affiliation" all count as Independent, and DFL counts as Democratic.
+
+Still on the OpenStates fallback, with reasons (also in `stateleg_official_summary.json` under `fallback_reasons`):
+- **GA, both chambers:** legis.ga.gov is an Angular app. Its member API returns 401 without the app's session token, and no CSV, XML or PDF roster was found.
+- **FL House:** myfloridahouse.gov returns a WAF "Request Rejected" page. That is a block, and it was not routed around.
+- **IL, both chambers:** ilga.gov returned 503 to every member-list request this round.
+- **NY Senate:** 403 (Cloudflare). The official Open Legislation API needs an API key, which requires an account sign-up, and that was not done.
+- **MO Senate:** the listing returns 404.
+
+Join counts for the current file, from the official-roster step (before the vacant-row pass below):
+- After batch 1: 7,309 rows, 7,259 joined.
+- After batch 2: 7,318 rows, 7,268 joined.
+- The vacant-row pass below then brings the rows to 7,361.
+
+Diffs: 88 in total. 41 are OpenStates members missing from the official roster, 18 are official members sitting in a different unit from OpenStates, 18 are people in the 2024 file missing from the session roster, 7 are party differences and 4 are official members in units OpenStates leaves empty.
+
+## Person IDs (v3 spec, 2026-10-18), via `tools/inst_persons.py`
+
+This step runs last, after the house, stateleg and official tools. It edits all five officeholder files in place and is idempotent. Each row's `person_id` is `scheme:id`, with one canonical ID per person, chosen in this order:
+
+1. `bioguide:<ID>`;
+2. `ocd-person:<uuid>` (the old `ocd-person/<uuid>` form is normalized to this);
+3. `<st>-leg:<official id>`.
+
+Rules:
+- **Bioguide comes only from OpenStates' own person records,** from `other_identifiers` with scheme `bioguide`, on the same ocd-person ID or on an ID OpenStates merged into it. There is no name matching across levels.
+  - Result: 0 state legislators are bioguide-canonical. In this OpenStates commit, no state-legislature person record carries a bioguide ID. Only 1 ocd-person ID appears in both `data/us` and a state directory, and that person is not in our state-legislature files.
+- **Bare official IDs** are the official-only members. Each one is matched to an OpenStates person only when exactly one OpenStates person has a role (of any date) in the same state, chamber and district label, with the same last name and the same first initial. Every match is logged in `person_id_matches.csv`.
+  - 12 were matched: MN 3, MS 7, NH 2.
+  - 10 were kept as `<st>-leg:`: VT 9, TX 1. Each of these had 0 candidates.
+- **`persons.csv`** has the columns person_id, bioguide, ocd_person, official_ids, name, sources and aliases.
+  - It has 8,186 rows: 601 bioguide, 7,575 ocd-person, 9 vt-leg and 1 tx-leg.
+  - `aliases` holds 957 former or alternate IDs, spread over 947 persons. These are mostly IDs that OpenStates merged (scheme `openstates`), plus the 12 matched `<st>-leg` IDs. No previously published ID is orphaned.
+  - Every `person_id` in all five files is in `persons.csv`.
+- **Vacancies:** `person_id` is empty and status is `vacant`.
+  - Official-roster vacancies (MO House 8, CA Assembly 1, FL Senate 1) are written as vacant rows.
+  - Every data-v3 geo unit with no member row gets a vacant row: 43 in the current file and 36 in the 2024 file.
+  - A multi-member unit that is only partly vacant is marked only where the official roster says so, because the v3 geo files carry no seat counts.
+- **Dates:** a `date_flags` column is now in every officeholder file. `term_start_missing` means a non-vacant row has no start date. `term_end_open` means there is no end date in the source, which is normal for serving members.
+  - State legislature, current file: 105 `term_start_missing` and 7,302 `term_end_open`.
+  - State legislature, 2024 file: 87 `term_start_missing` and 7,076 `term_end_open`.
+  - Official rows now carry the matched OpenStates role's `term_end` where OpenStates has one.

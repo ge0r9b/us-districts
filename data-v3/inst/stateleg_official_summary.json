@@ -11,6 +11,7 @@
    "openstates_current_rows": 178,
    "official_rows_written": 178,
    "joined": 178,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 178,
@@ -40,6 +41,7 @@
    "openstates_current_rows": 406,
    "official_rows_written": 390,
    "joined": 342,
+   "vacant_rows": 0,
    "floterial": 48,
    "no_v3_unit": 0,
    "units_filled_official": 182,
@@ -71,6 +73,7 @@
    "openstates_current_rows": 253,
    "official_rows_written": 253,
    "joined": 253,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 253,
@@ -95,6 +98,7 @@
    "openstates_current_rows": 197,
    "official_rows_written": 196,
    "joined": 196,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 196,
@@ -106,7 +110,7 @@
     "25075",
     "25D29"
    ],
-   "diffs": 2,
+   "diffs": 1,
    "vintage_2024_check": {
     "confirmed_session_roster": 197
    },
@@ -123,6 +127,7 @@
    "openstates_current_rows": 200,
    "official_rows_written": 203,
    "joined": 203,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 201,
@@ -149,6 +154,7 @@
    "openstates_current_rows": 180,
    "official_rows_written": 180,
    "joined": 180,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 125,
@@ -169,8 +175,9 @@
    "official_records": 163,
    "official_serving": 155,
    "openstates_current_rows": 155,
-   "official_rows_written": 155,
+   "official_rows_written": 163,
    "joined": 155,
+   "vacant_rows": 8,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 155,
@@ -212,6 +219,7 @@
    "openstates_current_rows": 150,
    "official_rows_written": 150,
    "joined": 150,
+   "vacant_rows": 0,
    "floterial": 0,
    "no_v3_unit": 0,
    "units_filled_official": 150,
@@ -226,39 +234,255 @@
    "official_vacancies": []
   },
   "California": {
-   "source": "California State Assembly member list",
+   "source": "California State Assembly member list; California State Senate roster",
    "chambers": [
-    "lower"
+    "lower",
+    "upper"
    ],
-   "official_records": 80,
-   "official_serving": 79,
-   "openstates_current_rows": 79,
-   "official_rows_written": 79,
-   "joined": 79,
+   "official_records": 119,
+   "official_serving": 118,
+   "openstates_current_rows": 118,
+   "official_rows_written": 119,
+   "joined": 118,
+   "vacant_rows": 1,
    "floterial": 0,
    "no_v3_unit": 0,
-   "units_filled_official": 79,
-   "units_filled_openstates": 79,
+   "units_filled_official": 118,
+   "units_filled_openstates": 118,
    "units_newly_filled": [],
    "units_empty_official": [
-    "06003"
+    "06003",
+    "06010"
    ],
    "diffs": 0,
    "vintage_2024_check": {
-    "confirmed_current_roster": 78,
-    "not_in_official_roster": 2
+    "confirmed_current_roster": 117,
+    "not_in_official_roster": 3
    },
    "official_vacancies": [
     "lower 03"
    ]
+  },
+  "Maine": {
+   "source": "Maine Legislature: House member listing by district (132nd, with deceased/resigned marked); 132nd Senate senator list",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 190,
+   "official_serving": 188,
+   "openstates_current_rows": 188,
+   "official_rows_written": 188,
+   "joined": 186,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 186,
+   "units_filled_openstates": 186,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 187
+   },
+   "official_vacancies": []
+  },
+  "Maryland": {
+   "source": "Maryland General Assembly member index (2026 session)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 187,
+   "official_serving": 187,
+   "openstates_current_rows": 188,
+   "official_rows_written": 187,
+   "joined": 187,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 118,
+   "units_filled_openstates": 118,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 2,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 181,
+    "not_in_official_roster": 6
+   },
+   "official_vacancies": []
+  },
+  "Connecticut": {
+   "source": "Connecticut General Assembly LegislatorDatabase.csv",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 187,
+   "official_serving": 187,
+   "openstates_current_rows": 187,
+   "official_rows_written": 187,
+   "joined": 187,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 187,
+   "units_filled_openstates": 187,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 185,
+    "not_in_official_roster": 1
+   },
+   "official_vacancies": []
+  },
+  "Mississippi": {
+   "source": "Mississippi Legislature member XML (term 2024-2027)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 172,
+   "official_serving": 171,
+   "openstates_current_rows": 171,
+   "official_rows_written": 171,
+   "joined": 171,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 171,
+   "units_filled_openstates": 171,
+   "units_newly_filled": [
+    "28034",
+    "28070",
+    "28077"
+   ],
+   "units_empty_official": [
+    "28024",
+    "28026",
+    "28045"
+   ],
+   "diffs": 14,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 168,
+    "not_in_official_roster": 2
+   },
+   "official_vacancies": []
+  },
+  "North Carolina": {
+   "source": "North Carolina General Assembly member tables (2025-2026 session, with resignations/appointments marked)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 179,
+   "official_serving": 170,
+   "openstates_current_rows": 170,
+   "official_rows_written": 170,
+   "joined": 170,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 170,
+   "units_filled_openstates": 170,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_session_roster": 170
+   },
+   "official_vacancies": []
+  },
+  "South Carolina": {
+   "source": "South Carolina Legislature member lists",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 170,
+   "official_serving": 170,
+   "openstates_current_rows": 170,
+   "official_rows_written": 170,
+   "joined": 170,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 170,
+   "units_filled_openstates": 170,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 165,
+    "not_in_official_roster": 4
+   },
+   "official_vacancies": []
+  },
+  "Kansas": {
+   "source": "Kansas Legislature KLISS API v13 (members list + member records)",
+   "chambers": [
+    "lower",
+    "upper"
+   ],
+   "official_records": 165,
+   "official_serving": 165,
+   "openstates_current_rows": 165,
+   "official_rows_written": 165,
+   "joined": 165,
+   "vacant_rows": 0,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 165,
+   "units_filled_openstates": 165,
+   "units_newly_filled": [],
+   "units_empty_official": [],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 157,
+    "not_in_official_roster": 7
+   },
+   "official_vacancies": []
+  },
+  "Florida": {
+   "source": "Florida Senate senator list (2024-2026)",
+   "chambers": [
+    "upper"
+   ],
+   "official_records": 40,
+   "official_serving": 39,
+   "openstates_current_rows": 39,
+   "official_rows_written": 40,
+   "joined": 39,
+   "vacant_rows": 1,
+   "floterial": 0,
+   "no_v3_unit": 0,
+   "units_filled_official": 39,
+   "units_filled_openstates": 39,
+   "units_newly_filled": [],
+   "units_empty_official": [
+    "12039"
+   ],
+   "diffs": 0,
+   "vintage_2024_check": {
+    "confirmed_current_roster": 35,
+    "not_in_official_roster": 3
+   },
+   "official_vacancies": [
+    "upper 39"
+   ]
   }
  },
  "fallback_reasons": {
-  "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box",
-  "California/upper": "senate.ca.gov/senators page carries no machine-readable member list (rendered client-side)",
-  "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round"
+  "New York/upper": "nysenate.gov returns 403 (Cloudflare challenge) to the box; the official alternative, the NY Senate Open Legislation API (legislation.nysenate.gov/api/3/members), returns 401 without an API key, and a key needs an account sign-up (not done)",
+  "Missouri/upper": "senate.mo.gov senator listing URL returned 404; not located this round",
+  "Georgia/upper": "legis.ga.gov member pages are an Angular app; its member API (legis.ga.gov/api/members/list) returns 401 without the app's session token; no CSV/XML/PDF roster found",
+  "Georgia/lower": "same as Georgia/upper",
+  "Florida/lower": "myfloridahouse.gov returns a WAF 'Request Rejected' page to the box (a block; not routed around)",
+  "Illinois/upper": "ilga.gov returns 503 to the box on every member-list request this round (after supplying its missing TLS intermediate from the Mozilla CCADB list)",
+  "Illinois/lower": "same as Illinois/upper"
  },
- "current_rows": 7309,
- "current_joined": 7259,
- "current_official_rows": 1784
+ "current_rows": 7318,
+ "current_joined": 7268,
+ "current_official_rows": 3110
 }

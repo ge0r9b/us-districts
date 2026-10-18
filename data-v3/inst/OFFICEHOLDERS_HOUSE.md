@@ -17,3 +17,13 @@ Sources:
 Names and parties are written exactly as each source gives them: the Clerk uses `R`/`D`/`I`, congress-legislators uses `Republican`/`Democrat`. Summary: `officeholders_house_summary.json`.
 
 **Connecticut (2020 vintage).** TIGER 2020 and the 116th-Congress files use CT's 8 old counties (09001–09015). data-v3 and v2 use the 9 planning regions (09110–09190) for both years. So any county-level 2020 join for CT has to go town → planning region, using the TIGER 2022+ town GEOIDs 091x0xxxxx (`data-v3/geo/ALIGNMENT.md` §2). The House join is by district code, so it isn't affected. Each CT row in `officeholders_house_2020.csv` carries this note.
+
+## Person IDs and dates (v3 spec, 2026-10-18)
+
+`tools/inst_persons.py` runs after `inst_officeholders_house.py` and edits the three House files in place.
+- `person_id` was already canonical (`bioguide:<ID>`). Vacant seats keep an empty `person_id` and status `vacant`: 2 seats for 2020, 1 for 2024 and 2 for current.
+- `persons.csv` links each bioguide ID to its OpenStates `data/us` ocd-person ID (in `ocd_person`) where OpenStates' record lists that bioguide. No name matching is used.
+- New `date_flags` column:
+  - `term_start_missing`: 0 rows in all three files.
+  - `term_end_open`: 439 rows in the current file. The Clerk's member XML gives no term end.
+  - The 2020 and 2024 files have full start and end dates from congress-legislators.
