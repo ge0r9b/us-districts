@@ -1017,3 +1017,27 @@ Three Forks was verified identical, but its shared figure was wrong. In 2020 bot
 Gray counts are unchanged by fix 5. Sizes: `v2/data/ussch.js` went 4,750,557 → 4,750,717 (5a) → 4,750,718 (5b). Gzip -9 went 1,584,078 → 1,584,136 → 1,584,133. No new requests.
 
 Sources: Census 2020 TIGER/Line tabblock20 for MT, CA, IL and OR, and TIGER 2024 UNSD/ELSD/SCSD (sha256 in `inst-raw/fix5/SHA256SUMS`); the app's precinct files (2024: NYT from official county returns, MEDSL CC0; 2020: MEDSL CC0 + Census VTDs); VEST 2020 MT (Harvard Dataverse, CC BY 4.0); official county totals in `data/election2024.js` / `data/election2020.js`.
+
+## Institutions lane: method note for population-weighted ≈ (fixes 4 and 5)
+
+In this file ≈ means any estimate. Area-weighted and population-weighted figures both carry it (flags `est` / `e24` / `e20`).
+
+- **Population weighting.** Votes are placed by where people live, not by land area. People are counted with Census 2020 P.L. 94-171 block population (TIGER/Line `tabblock20` POP20, block internal points, public domain). The district polygon is the full-resolution TIGER 2024 UNSD/ELSD/SCSD shape.
+  - A precinct gives a district the share of its 2020 block population that lies inside.
+  - The same 2020 blocks are used for both 2020 and 2024 precincts.
+- **Alaska (`tools/inst_ak_schools.py`).** The two 97 % rules:
+  - every precinct with more than 3 % of its population inside the district must have at least 97 % of its population inside it;
+  - those precincts must hold at least 97 % of the district's population.
+  
+  The value is then the sum of those whole precincts. No borough scaling is applied, because the Alaska precinct files already sum to the official statewide result. Rows that fail stay gray.
+- **Other states (`tools/inst_pairs_check.py`).**
+  - Each precinct's votes are scaled per county to the official county totals in `data/election2024.js` / `data/election2020.js`, separately for Democratic, Republican and other votes, the same way as `tools/fill_gray.py`.
+  - At least 97 % of the district's population must fall in precincts with votes.
+- **Plausibility bar.**
+  - Outside Alaska, an estimate above 90 % of the district's 2020 population is rejected.
+  - In Alaska, an existing ≈ figure above 100 % of population is grayed. The bar is higher there because Alaska's voter rolls run high: Skagway and Denali reach about 80 %.
+- **Consistency rule.** A new figure must agree with the row's other-year figure:
+  - 2024/2020 turnout ratio between 0.7 and 1.4;
+  - Republican share within 12 points.
+  
+  The check is skipped only when the other-year figure itself fails the plausibility bar. Figures that fail stay gray or keep their old value, and the reason is logged in the fix's report.
