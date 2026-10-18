@@ -239,7 +239,7 @@ create table contest (
   id               bigint generated always as identity primary key,
   contest_key      text not null unique,             -- '{year}|{state}|{office}|{district}' e.g. '2024|US|president|', '2024|PA|state_house|101'
   office_id        bigint not null references office(id),
-  year             int not null,
+  year             int not null check (year between 1789 and 2100),  -- any year (2016/2020/2024 today)
   election_date    date,
   stage            text not null default 'general' check (stage in ('general','primary','runoff','special','recall','poll')),
   kind             text not null default 'candidate' check (kind in ('candidate','measure','poll')),
@@ -262,6 +262,7 @@ create table answer (
   id            bigint generated always as identity primary key,
   contest_id    bigint not null references contest(id) on delete cascade,
   answer_key    text not null,                       -- 'dem_nominee','rep_nominee','other','yes','no','choice:3','cand:<candidate_key>'
+                                                   -- presidential: dem_nominee = Clinton 2016 / Biden 2020 / Harris 2024 (one slot, any number of years)
   label         text not null,
   candidate_id  bigint references candidate(id),
   party_id      bigint references party(id),

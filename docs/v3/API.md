@@ -68,7 +68,7 @@ Rules carried over from v2:
 - Delta sort (`sort=delta_margin`) orders by the **magnitude** of the net margin change as displayed (% mode = points, # mode = vote margin), ignoring which party gained (spec §7.3, build 1530).
 - For school districts, state house and state senate, scope `us` returns states first, a state returns counties, and a county returns its districts. A district spanning counties appears under each county with whole-district numbers and `est:true` (spec §7.3). US House at `us` returns all 435 (HANDOFF §4).
 - States in list-all use two-letter abbreviations (`abbr`) (HANDOFF §3).
-- Rows without a 2020 side return the real 2024 value with `"prev":null`, which the client shows as `'20 n/a` (spec §7.3).
+- Rows without an earlier side return the real later value with `"prev":null`, which the client shows as `'20 n/a` (spec §7.3), or `'16 n/a` for 2016 in the 3-point slider.
 Served from `answer_share` (an index range scan; SCHEMA.md). Cache as `/results`.
 
 ### `GET /units/{unit_key}`

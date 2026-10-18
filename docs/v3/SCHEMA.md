@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 60 statements) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 60 statements; re-checked after the 2016 update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
@@ -51,6 +51,7 @@
 - `is_estimate` drives the ≈ mark. v2 flags estimates explicitly (`est`, `e20`, `e24`). The bot format has no such column, so `is_estimate` is derived (`weight < 1`, or `method` ≠ official) until the bot adds `method`. See DECISIONS.md D6.
 - `numeric` is used rather than `int` because re-tabulation produces fractions. This is the same reasoning as spec §4.2.
 - `result_total.coverage` keeps v2's rule that districts with < 50 % vote coverage stay gray.
+- **Any number of years**: every year is just another `contest` row (`2016|US|president|`, `2020|…`, `2024|…`) with the same `answer_key`s. v2's 3-point slider (2016 / 2020 / 2024, decided Oct 18, 2026) needs no schema change: the 2016 `[d, r, tot]` triple becomes three `result` rows (`dem_nominee` = Clinton, `rep_nominee` = Trump, `other` = tot − d − r) plus `result_total`.
 - Deltas are computed, never stored: margin(2024) − margin(2020) for the same unit and `answer_key`.
 
 ## Boundary sets and paid custom sets later

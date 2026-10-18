@@ -2,6 +2,8 @@
 
 Each item has a **recommended default**. If the user says nothing, Phase 2 proceeds with the default. Data-format questions for the data lanes are listed separately in DATA_LOADING.md §10 (Q-E1…Q-E8, Q-G1…Q-G7).
 
+**Resolved Oct 18, 2026 (orchestrator):** D11 (2016 in v2, 3-point slider) and Q-E8 (official values win over v2's, and v2's are kept in history). **Pending:** D10 (orchestrator triage).
+
 | # | Decision | Options | Recommended default | Why |
 |---|---|---|---|---|
 | D1 | Front-end framework | (a) Vite + TypeScript SPA (Preact/React) + Hono functions; (b) Next.js App Router on Vercel | **(a) Vite SPA** | One interactive screen; a static shell gives the lowest TTFB and no SSR cold start. Choose (b) only if SEO pages per place matter. |
@@ -13,8 +15,8 @@ Each item has a **recommended default**. If the user says nothing, Phase 2 proce
 | D7 | Rows missing from a newer batch | keep; delete; explicit retract list | **Keep; deletes only via an explicit retract file** | Idempotent, no silent data loss. |
 | D8 | Candidate IDs | v2 short keys (`biden`, `trump`); bot slugs (`biden-joseph-robinette-jr`) | **Bot slugs are canonical**; v2 keys kept as aliases | Matches `data-v3/results` already committed on `data/election`. |
 | D9 | Basemap | Esri World Street Map (as v2); Protomaps/OSM PMTiles self-hosted | **Esri for parity in alpha; decide before any commercial use** | Esri commercial terms unverified (spec §9.3). |
-| D10 | "pts" in # mode (spec §11.3 known gap) | keep v2 behaviour; strict rule (no % or pts in # mode) | **Strict rule in v3** | It is the stated rule (spec §8); v2's deviation is listed as a bug. |
-| D11 | Years in the time slider | 2020/2024 only (v2); N years incl. 2016 | **Schema and API support N years now; show 2016 only after the user confirms and the data lane delivers it** | The roadmap mentions 2016 as possible but unconfirmed. |
+| D10 | "pts" in # mode (spec §11.3 known gap) | keep v2 behaviour; strict rule (no % or pts in # mode) | **PENDING: the orchestrator is triaging this in v2 (Oct 18, 2026).** v3 follows whatever v2 ships | Parity first: the outcome in v2 becomes the v3 rule. |
+| D11 | Years in the time slider | — | **RESOLVED (orchestrator, Oct 18, 2026): 2016 presidential is in v2 as a 3-point slider 2016 / 2020 / 2024, with Clinton as the Democratic answer aligned with Biden / Harris (`dem_nominee`). 2016 is the last vote data set for v2.** v3 schema and API already take N years | More years and offices after that are v3 work (ARCHITECTURE.md §9). |
 | D12 | District-type outlines | near-black (v2 today) vs white (rule "white with data") | **Follow v2 as shipped** (`boundary-color` test) and confirm | Spec §11.7 marks it "Decision needed". |
 | D13 | School district granularity | one `school` layer (v2) vs unified/elementary/secondary (TIGER) | **Keep the v2 single layer in the UI; store TIGER types in `unit_type`** | Parity first; the geo lane is adding OK elementary districts (Q-G4). |
 | D14 | Old v2 links (`#s=` hash, `v:1`) | break; map to v3 | **Map v1 hashes to v3 state** | No broken shared links. |

@@ -5,7 +5,7 @@
 ## 1. What v3 must do (from the repo docs)
 - Keep everything v2 does (MIGRATION_CHECKLIST.md): institution and geo filters, map/list/chart views, time slider with delta, % / # mode, sort, back stack, ≈ estimates, gray where data is missing, light mode, Liquid Glass round buttons, and an iOS-Safari-first layout.
 - Replace the 5.9 MB single file plus about 190 MB of JS-wrapped data (HANDOFF §2, §5) with a database, an API, static tiles and result packs. Spec §12: "Serve geometry as tiles. Do not ship 59 MB of precinct JS."
-- Generalize to any contest and any year (2016 is possible; the time slider takes N years): offices beyond President, ballot measures, multi-choice, and any number of answers. **Intake: `data-v3/` (bot rows, TIGER GEOIDs) is primary, and `v2/data` is the legacy fallback** (DATA_LOADING.md §0, §8, §9).
+- Generalize to any contest and any year (2016 is in v2 as a 3-point slider 2016 / 2020 / 2024, decided Oct 18, 2026; the v3 time slider takes N years): offices beyond President, ballot measures, multi-choice, and any number of answers. **Intake: `data-v3/` (bot rows, TIGER GEOIDs) is primary, and `v2/data` is the legacy fallback** (DATA_LOADING.md §0, §8, §9).
 - Leave room for paid custom boundary sets, live votes (spec §10) and non-geographic institutions.
 - **Instant response time is the top priority** (REPO-RULES rule 7). Every choice below is ranked by that first.
 
@@ -123,3 +123,13 @@ v3/db/          migrations (SCHEMA.sql split into numbered files) + SQL tests
 v3/ingest/      staging loader, validators, pack + tile builders
 ```
 Data files stay in the data lanes (`data-v3/results/`, `data-v3/geo/`, per REPO-RULES). v3 reads them and never writes them.
+
+## 9. Beyond v3 (deliberately left room for, not built in v3.0)
+| Later capability | What already makes room for it |
+|---|---|
+| **Live and weighted voting** (spec §10.3: one vote per user per topic, aggregated by the voter's precinct or institution) | `contest.kind = 'poll'`, `contest.is_static = false` (no static pack, served live); `result.weight` + `weighted_votes` already support weighted tallies; geocoder + `/locate` resolve a voter to units; `POST /votes` reserved in API.md |
+| **Auth and accounts** | read-only API role today; `tenant` table; writes isolated from the public read path; RLS planned on tenant-owned rows (§7) |
+| **Paid custom boundary sets** | `boundary_set.owner_tenant_id`, `visibility` (public/shared/private), `boundary_set_grant`, `license_id`, `price_tier`; `unit_crosswalk` re-tabulates results into any new set; dynamic MVT path for private sets. Needs the commercial licence work first (NYT-derived data replaced, Vercel Pro) |
+| **More years** (2016 is v2's last vote data set; the 3-point slider 2016 / 2020 / 2024 is decided) | every year is a `contest` row with shared `answer_key`s; `boundary_set_default (unit_type, results_year)`; API takes any number of `contest` params |
+| **More offices and contest types** (US House, legislatures, school boards, ballot measures, multi-choice, primaries) | `office`, `contest.stage/kind/vote_for`, N answers per contest, `candidate_key` stable across offices; the bot row format already carries `office` and `district` |
+| **Non-geographic institutions** (companies, brands; spec §10.4) and other countries (Canada parked) | `entity.has_region = false`, `entity.kind` includes company/brand/subsidiary; `alias`; per-country config for district types |
