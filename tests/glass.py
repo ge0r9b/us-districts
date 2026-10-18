@@ -1,5 +1,5 @@
 # usage: python3 tests/glass.py URL -- build 1563 (Liquid Glass, approved preview v3):
-# every floating/round button: clear glass + dark 1.5px outline + dark glyph when unselected; darker smoky glass + white outline + white glyph when selected;
+# every floating/round button: clear glass + dark crisp 1px outline (1566; sort chip fill halved) + dark glyph when unselected; darker smoky glass + white outline + white glyph when selected;
 # sizes unchanged (48x48); sort chip 31x26 r9 and back-chevron 26px circle centred on their glyphs; shorter sort arrows (~10.2px tall);
 # bar lists: name column = longest name + 6px (All States bars start at x=82), 84px cap; in-bar labels fit-or-hide (never partial, % and #);
 # thumbnail value badges on top and unclipped; one shared label-bubble style.
@@ -18,8 +18,8 @@ BADGE="""()=>[...document.querySelectorAll('#laCands .lact .cpt')].filter(e=>e.t
 BUB="""()=>[...document.querySelectorAll('.tlab')].filter(e=>e.getBoundingClientRect().height>0&&getComputedStyle(e).display!=='none').map(e=>{const c=getComputedStyle(e);return [e.textContent,c.fontSize,c.whiteSpace,c.backgroundColor,Math.round(e.getBoundingClientRect().height)]})"""
 def glassok(x):
   if x['w']!=48 and x['w']!=44 and x['w']<40: return False
-  if x['on']: return '0, 0, 0, 0.88' in x['bg'] and '0, 0, 0, 0.92' in x['bg'] and x['bc'].startswith('rgba(255, 255, 255') and x['st'] in ('rgb(255, 255, 255)','') and x['col']=='rgb(255, 255, 255)' and 1<=x['bw']<=1.5
-  return '255, 255, 255, 0.22' in x['bg'] and '255, 255, 255, 0.14' in x['bg'] and 'brightness(1.12)' in x['bf'] and '0px -1px 1px 0px inset' not in x.get('sh','') and x['bc']=='rgba(0, 0, 0, 0.75)' and x['st'] in ('rgb(17, 17, 17)','') and x['col']=='rgb(17, 17, 17)' and 1<=x['bw']<=1.5
+  if x['on']: return '0, 0, 0, 0.88' in x['bg'] and '0, 0, 0, 0.92' in x['bg'] and x['bc'] in ('rgb(255, 255, 255)','rgba(255, 255, 255, 0.95)') and x['st'] in ('rgb(255, 255, 255)','') and x['col']=='rgb(255, 255, 255)' and x['bw']==1 # build 1566: crisp 1px outline
+  return '255, 255, 255, 0.22' in x['bg'] and '255, 255, 255, 0.14' in x['bg'] and 'brightness(1.12)' in x['bf'] and '0px -1px 1px 0px inset' not in x.get('sh','') and x['bc']=='rgba(0, 0, 0, 0.85)' and x['st'] in ('rgb(17, 17, 17)','') and x['col']=='rgb(17, 17, 17)' and x['bw']==1 # build 1566: crisp 1px outline
 async def main():
   async with async_playwright() as p:
     b=await p.chromium.launch(); errs=[]
@@ -53,7 +53,7 @@ async def main():
       bars=min(xs); ck(f"All States {nm}: bars clear of the badges",all(x['r']<bars for x in bd),[bars,bd])
     await pg.evaluate("()=>window.__setNum('pct')"); await pg.wait_for_timeout(1200)
     chip=await pg.evaluate("()=>['laSort','bBack'].map(id=>{const e=document.getElementById(id); if(!e) return null; const c=getComputedStyle(e,'::before'); return [id,c.backgroundImage,c.backdropFilter||c.webkitBackdropFilter,c.boxShadow]}).filter(Boolean)")
-    ck("sort chip (and back chevron if shown): whiter, more transparent glass .22->.14 + brightness(1.12), no dark bottom inner shadow",chip and all('255, 255, 255, 0.22' in x[1] and '255, 255, 255, 0.14' in x[1] and 'brightness(1.12)' in x[2] and 'rgba(0, 0, 0, 0.07) 0px -1px' not in x[3] for x in chip),chip)
+    ck("sort chip (and back chevron if shown): whiter, more transparent glass .22->.14 + brightness(1.12), no dark bottom inner shadow",chip and all((('255, 255, 255, 0.11' in x[1] and '255, 255, 255, 0.07' in x[1]) if x[0]=='laSort' else ('255, 255, 255, 0.22' in x[1] and '255, 255, 255, 0.14' in x[1])) and 'brightness(1.12)' in x[2] and 'rgba(0, 0, 0, 0.07) 0px -1px' not in x[3] for x in chip),chip)
     # build 1564: selected = near-black in the right column and in the menus that open from it (time row, chart options)
     if await pg.evaluate("()=>document.getElementById('barTime').hidden"): await pg.evaluate("()=>document.getElementById('bTime').click()"); await pg.wait_for_timeout(1000)
     await pg.evaluate("()=>{const m=document.querySelector('button.rbtn.cmain'); if(m) m.click()}"); await pg.wait_for_timeout(900)

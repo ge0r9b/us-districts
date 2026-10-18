@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171565";</script>
+<script>window.BUILD="202610181566";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -3652,7 +3652,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   sp.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LA.sort=b.dataset.s; sp.hidden=true; LA.sig=sig(); render(); });
   document.addEventListener("pointerdown",e=>{ if(!sp.hidden&&!sp.contains(e.target)&&e.target!==sb&&!sb.contains(e.target)) sp.hidden=true; });
   function place(){ const t=$("barTime"), anchor=(t&&!t.hidden)?t:$("barGeo"); const r=anchor.getBoundingClientRect(); const gap=parseFloat(getComputedStyle($("barGeo")).gap)||8; const btn=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--btn"))||44;
-    const right=btn+gap*2+4; let st=Math.round(r.bottom+2); try{ if(document.body.classList.contains("listmode")&&!document.body.classList.contains("foldfs")){ const tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), ref=tb&&tb.classList.contains("on")&&cb&&cb.getBoundingClientRect().height>0?cb:tb, q=ref&&ref.getBoundingClientRect(); const gc=window.__glyphCy&&window.__glyphCy(); if(gc!=null) st=Math.round(gc-11); else if(q&&q.height>0) st=Math.round(q.top+q.height/2-11); } }catch(e){} if(!(r.height>0)||st<20){ if(sb.__st!=null) st=sb.__st; } else sb.__st=st; /* build 1565: anchor not laid out (one frame mid-switch) -> keep the last good line instead of jumping to y=2 */ sb.style.top=st+"px"; sb.style.right=right+"px"; sp.style.top=(st+22)+"px"; sp.style.right=right+"px"; bub.style.top=(st+24)+"px"; bub.style.right=right+"px"; document.documentElement.style.setProperty("--lasortTop",Math.round(r.bottom+2)+"px"); }
+    const right=btn+gap*2+4+(document.body.classList.contains("listmode")?btn+gap+4:0); /* build 1566: in the list the sort chip sits one button width + a gap left of the right button column */ let st=Math.round(r.bottom+2); try{ if(document.body.classList.contains("listmode")&&!document.body.classList.contains("foldfs")){ const tb=$("bTime"), cb=document.querySelector("button.rbtn.cmain"), ref=tb&&tb.classList.contains("on")&&cb&&cb.getBoundingClientRect().height>0?cb:tb, q=ref&&ref.getBoundingClientRect(); const gc=window.__glyphCy&&window.__glyphCy(); if(gc!=null) st=Math.round(gc-11); else if(q&&q.height>0) st=Math.round(q.top+q.height/2-11); } }catch(e){} if(!(r.height>0)||st<20){ if(sb.__st!=null) st=sb.__st; } else sb.__st=st; /* build 1565: anchor not laid out (one frame mid-switch) -> keep the last good line instead of jumping to y=2 */ sb.style.top=st+"px"; sb.style.right=right+"px"; sp.style.top=(st+22)+"px"; sp.style.right=right+"px"; bub.style.top=(st+24)+"px"; bub.style.right=right+"px"; document.documentElement.style.setProperty("--lasortTop",Math.round(r.bottom+2)+"px"); }
   // ---- menu row ----
   function host(){ if(!document.body.classList.contains("foldfs")) return null; const B=document.body.classList;
     const oc=document.getElementById("orgCountry"); if(oc&&Wk()&&Wk()!=="all") return oc;
@@ -3915,6 +3915,23 @@ html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed)
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) svg { stroke: #fff !important; }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) svg text,
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) svg .f { fill: #fff !important; }
+
+/* build 1566: crisp Liquid Glass edges. A whole-pixel 1px outline (3 device pixels on iPhone, so it lands on the pixel grid)
+   at full contrast, a sharp 1px top highlight, and only a tight 0 1px 2px lift, so the edge is not smeared by soft outer shadows. */
+html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) {
+  border: 1px solid rgba(0,0,0,.85) !important; border-width: 1px !important; background-clip: padding-box !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(0,0,0,.12) !important;
+}
+html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) {
+  border: 1px solid #fff !important; border-width: 1px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 0 0 0.5px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.18) !important;
+}
+#laSort::before, #bBack::before {
+  border: 1px solid rgba(0,0,0,.85); background-clip: padding-box;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(0,0,0,.12);
+}
+#laSort::before { background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.07) 100%); } /* half the 1564 fill: lighter glass */
+#laSort svg { stroke: #111 !important; opacity: 1 !important; } /* arrows stay fully dark, same size and weight */
 
 /* bar lists: name column = measured longest name (fitNames sets --rnw, max 84px, no minimum) + a 6px gap
    (the row's flex gap is 8px, so the name cell takes -2px margin); the bar starts right after the names */
