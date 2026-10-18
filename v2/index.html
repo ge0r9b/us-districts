@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171553";</script>
+<script>window.BUILD="202610171554";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -2591,8 +2591,8 @@ drawNat();
     b.addEventListener("click",()=>{ if(fired){ fired=false; return; } const k=b.dataset.k; setTimeout(()=>{ if(ltype===k) window.__typeBub(k,1200); },0); });
   }); }
 // ===== build 1553: persistent, tucked-in type labels (new app, users learning): the type button (bLyr) always carries the
-// current type's name; with the type row open every type button carries its own. White label chips that overlap the top edge of
-// their button by 3px, never auto-hide, wrap to two short lines so neighbours never collide, and take no taps (pointer-events:none). =====
+// current type's name; with the type row open every type button carries its own. White label chips sitting 4px above the top edge of
+// their button (build 1554; was a 3px overlap), never auto-hide, wrap to two short lines so neighbours never collide, and take no taps (pointer-events:none). =====
 { const st=document.createElement("style"); st.textContent=".tlab{position:fixed;z-index:1001;transform:translate(-50%,-100%);background:#fff;color:#1c1c1e;border:0.5px solid rgba(0,0,0,.18);box-shadow:0 2px 10px rgba(0,0,0,.18),0 1px 2px rgba(0,0,0,.12);font:500 11px/1.15 system-ui,-apple-system,sans-serif;padding:3px 6px;border-radius:8px;text-align:center;white-space:normal;pointer-events:none;box-sizing:border-box;width:max-content} .tlab[hidden]{display:none} body.foldfs .tlab,body.srchfs .tlab,body.geofs .tlab,body.ctxedit .tlab{display:none!important}"; document.head.append(st);
   const pool=[]; const lbOf=b=>b&&(b.getAttribute("aria-label")||b.title)||"";
   const vis=e=>{ if(!e) return null; const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).display!=="none"&&getComputedStyle(e).visibility!=="hidden"?r:null; };
@@ -2601,7 +2601,7 @@ drawNat();
       else { const hr=vis(host); if(hr){ const ob=lrow.querySelector(".lbtn.on"), k=ob&&["ushouse","senate","statehouse","schools"].includes(ob.dataset.k)?ob.dataset.k:"ushouse"; T.push([lbOf(lrow.querySelector('.lbtn[data-k="'+k+'"]')),hr,110,"host:"+k]); } }
       while(pool.length<T.length){ const d=document.createElement("div"); d.className="tlab"; d.setAttribute("aria-hidden","true"); document.body.append(d); pool.push(d); }
       pool.forEach((d,i)=>{ const t=T[i]; if(!t){ if(!d.hidden) d.hidden=true; return; } const [txt,r,mw,k]=t; if(d.textContent!==txt) d.textContent=txt; d.dataset.k=k; d.style.maxWidth=Math.round(mw)+"px";
-        let x=r.left+r.width/2; d.hidden=false; const w=d.offsetWidth; x=Math.max(4+w/2,Math.min(innerWidth-4-w/2,x)); d.style.left=x+"px"; d.style.top=(r.top+3)+"px"; }); }catch(e){} };
+        let x=r.left+r.width/2; d.hidden=false; const w=d.offsetWidth; x=Math.max(4+w/2,Math.min(innerWidth-4-w/2,x)); d.style.left=x+"px"; d.style.top=(r.top-4)+"px"; /* build 1554: a 4px gap above the button, no overlap */ }); }catch(e){} };
   window.__typeLabels=sync; setInterval(sync,200); addEventListener("resize",sync);
   /* the transient type bubble is replaced by the persistent labels */ window.__typeBub=()=>{ sync(); }; }
 // ===== clearing the bottom field zooms to the org selection (All = whole US) =====

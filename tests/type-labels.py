@@ -1,6 +1,6 @@
 # usage: python3 tests/type-labels.py URL -- district-type buttons (US House, State senate, State house, School districts) carry
-# their names. Since build 1553 (new app, users learning) the labels are persistent white chips tucked onto the top edge of their
-# button (overlap 3px), never auto-hiding: the type button (bLyr) always shows the current type's name; with the type row open every
+# their names. Since build 1553 (new app, users learning) the labels are persistent white chips sitting 3-4px above their
+# button (no overlap, build 1554; 1553 overlapped 3px), never auto-hiding: the type button (bLyr) always shows the current type's name; with the type row open every
 # type button shows its own; long-press never picks a type; labels take no taps and never collide; list view too.
 import asyncio,sys
 from playwright.async_api import async_playwright
@@ -11,7 +11,7 @@ def ck(n,ok,d=''):
 EXP={"ushouse":"US House","senate":"State senate","statehouse":"State house","schools":"School districts"}
 LABS="""()=>[...document.querySelectorAll('.tlab')].filter(x=>!x.hidden&&getComputedStyle(x).display!=='none').map(e=>{const r=e.getBoundingClientRect(); const s=getComputedStyle(e); return {t:e.textContent,k:e.dataset.k,l:r.left,r:r.right,top:r.top,b:r.bottom,bg:s.backgroundColor,col:s.color,pe:s.pointerEvents}})"""
 RECT="k=>{const r=document.querySelector(k.startsWith('#')?k:'#lyrRow .lbtn[data-k='+k+']').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,top:r.top,l:r.left,r:r.right}}"
-def tucked(lb,r): return lb and r['top']-1<=lb['b']<=r['top']+5 and lb['l']<r['x']<lb['r']
+def tucked(lb,r): return lb and r['top']-5<=lb['b']<=r['top']-2.5 and lb['l']<r['x']<lb['r']  # 3-4px gap above the button, no overlap (build 1554)
 async def openRow(pg):
   if await pg.evaluate("()=>document.getElementById('lyrRow').hidden"): await pg.tap("#bLyr"); await pg.wait_for_timeout(700)
 async def closeRow(pg):
@@ -21,15 +21,17 @@ async def phone(b):
   pg=await c.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
   await pg.goto(base,wait_until="networkidle"); await pg.wait_for_timeout(3500)
   L=await pg.evaluate(LABS); h=await pg.evaluate(RECT,'#bLyr')
-  ck("phone, row closed: the type button carries a label (US House by default), tucked on its top edge",len(L)==1 and L[0]['t']=='US House' and tucked(L[0],h),[L,h])
+  ck("phone, row closed: the type button carries a label (US House by default), 3-4px above it, no overlap",len(L)==1 and L[0]['t']=='US House' and tucked(L[0],h),[L,h])
   ck("phone: labels are white with dark text and take no taps",L and L[0]['bg']=='rgb(255, 255, 255)' and L[0]['col']=='rgb(28, 28, 30)' and L[0]['pe']=='none',L)
   await openRow(pg)
   al=await pg.evaluate("()=>Object.fromEntries([...document.querySelectorAll('#lyrRow .lbtn')].map(b=>[b.dataset.k,b.getAttribute('aria-label')]))")
   for k,v in EXP.items(): ck("phone %s button aria-label '%s'"%(k,v),al.get(k)==v,al)
   L=await pg.evaluate(LABS); by={x['t']:x for x in L}
   for k,v in EXP.items():
-    r=await pg.evaluate(RECT,k); ck("phone, row open: '%s' label tucked on its button"%v,tucked(by.get(v),r),[by.get(v),r])
+    r=await pg.evaluate(RECT,k); ck("phone, row open: '%s' label 3-4px above its button"%v,tucked(by.get(v),r),[by.get(v),r])
   srt=sorted(L,key=lambda x:x['l']); ck("phone, row open: labels never overlap each other",all(a['r']<=b2['l']+0.5 for a,b2 in zip(srt,srt[1:])),srt)
+  hit=await pg.evaluate("""()=>{const L=[...document.querySelectorAll('.tlab')].filter(x=>!x.hidden).map(e=>e.getBoundingClientRect()); const B=[...document.querySelectorAll('#lyrRow .lbtn,.rbtn')].map(e=>e.getBoundingClientRect()).filter(r=>r.width>0); return L.flatMap(l=>B.filter(b=>b.left<l.right&&b.right>l.left&&b.top<l.bottom&&b.bottom>l.top).map(b=>[l.left,l.top,b.left,b.top]))}""")
+  ck("phone, row open: no label overlaps any button",not hit,hit)
   await pg.screenshot(path="/workspace/shots/type-labels-open.png")
   cdp=await c.new_cdp_session(pg); r=await pg.evaluate(RECT,'senate')
   await cdp.send("Input.dispatchTouchEvent",{"type":"touchStart","touchPoints":[{"x":r['x'],"y":r['y']}]}); await pg.wait_for_timeout(200)
