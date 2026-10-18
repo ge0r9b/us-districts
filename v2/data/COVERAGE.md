@@ -1001,3 +1001,25 @@ Format: each file calls `__geoIndex([[name,type,stateAbbr,key],...])`, sorted by
 - Names follow the app's labels: "District 1" or "District at-large" (cd), "OH Senate 2" (sldu), "OH House 103" (sldl).
 Rows: 115,745 in total: 51 state, 3,144 county, 38,660 town, 19,535 place, 13,437 sch, 436 cd, 1,950 sldu, 4,890 sldl and 33,642 zcta.
 Sizes: 27 files, 6.02 MB raw / 896 KB gzip in total. The largest are `0.js` at 1.01 MB / 185 KB and `s.js` at 466 KB / 65 KB; the smallest is `x.js` at 428 B / 175 B.
+
+## Canada, Statistics Canada 2021 boundaries for v3 (Oct 18, 2026, branch `data/geo`, no app/BUILD change)
+Layers in `data-v3/geo/` (CSVs in git; GeoJSON regenerated into `../geo-data-raw/v3ca`, see `data-v3/geo/README.md`):
+
+| layer | ours | published | per province |
+|---|---|---|---|
+| provinces / territories (`ca_pr`) | 13 | 13 (Census Dictionary 2021, Table 1.1) | n/a |
+| census divisions (`ca_cd`) | 293 | 293 | all 13 equal |
+| census subdivisions (`ca_csd`) | 5,161 | 5,161 | all 13 equal |
+| FED 2013 Representation Order (`ca_fed2013`) | 338 | 338 | all 13 equal |
+| FED 2023 Representation Orders (`ca_fed2023`) | 343 | 343 (SI/2023-57) | all 13 equal |
+
+Gaps and approximations (none missing):
+- 3 features came back from StatCan's REST service only in degraded form (HTTP 500 at full resolution on every try): CSD 6204030
+  Qikiqtaaluk, Unorganized and FED 59028 Skeena--Bulkley Valley use 10 m server-generalized geometry; FED 62001 Nunavut is
+  rebuilt from Nunavut's CSDs (same territory). The source lists are `CSD_failed.json` / `FED_failed.json` in `../geo-data-raw/statcan2021`.
+- FED 2023 is Elections Canada's file clipped to StatCan 2021 land; its area column is computed (`land_km2_cbf_clip`), not published.
+- Simplified at 50 m (area error 0.02 %); the full-resolution overlaps are in `ca_csd_fed.csv` and `ca_fed2013_2023.csv`.
+
+Relation to v2: the app's `v2/data/canada.js` (Natural Earth 1:50m, 13 provinces) is unchanged and is still what v2 draws.
+The new layers do not replace it in v2: they are v3 data, about 15 MB gzipped each, too large for v2 drawing. A small display tier
+is proposed in `data-v3/geo/QUESTIONS.md` Q-G11. Join canada.js rows to `ca_pr` by code (QC ↔ 24 etc.), not name ("Québec" vs "Quebec").
