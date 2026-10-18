@@ -451,6 +451,15 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   | `user-upload` | `user` |
 
   Any other value is rejected and reported. `alias` (`;`, with `\;` escaped) → `entity_alias` rows. `label` → `entity.label`. `gov_status` → `entity.gov_status`. `v2_layer` / `v2_row` / `v2_key` → arrays. `source_id` (`;`-list; 51,800 of 54,144 rows cite several) → `entity_source` (`ord` keeps the order). Extras `level`, `type`, `cog_pid6` and `flags` → columns. Xwalk (348f410: `entity_id, unit_layer, geoid, vintage, boundary_set, relation, source_id, overlap, share_of_geoid_in_entity, share_of_entity_in_geoid`): `unit_layer` = `unit_type_def.tiger_set`, and `boundary_set`, `relation`, `overlap`, `share_of_geoid_in_entity` and `share_of_entity_in_geoid` (same names, numeric 0–1) → `entity_geoid`. `source_id` (72 rows cite several) → `entity_geoid_source`. Each row is then then resolved to `entity_unit` (`primary` / `coextensive` → `same_as` for schools and municipalities, `jurisdiction` for states and counties; everything else → `jurisdiction`).
+- **Rulings and data at data/inst-entities 4215fab:**
+  - **Counts:** 58,219 entities, including **305 `tx-tceq` special districts** (parent `state:48`; 291 of them also have an `in_county` relation), and 711 gaps. `entity_relations.csv` has 4,153 rows: parent 3,857, in_county 291, consolidated_with 5.
+  - **`entity_relation.method`** is one of `sourced`, `overlay`, `point_in_polygon` or `manual`. The new relation type is **`in_county`** (a special district's primary county).
+  - **`valid_from`** holds the TCEQ creation date (special districts) and the Census incorporation date (municipalities and other governments), with its source in `valid_from_source`. 321 rows have one.
+  - **Inception precision** is `day`, `month` or `year`. Year-only values are stored as Jan 1 (`YYYY-01-01`). At 4215fab, 139 have day precision and 34 year.
+  - **Images:**
+    - Free images get `source_url`, `attribution` and licence backfilled from the Commons file metadata (`extmetadata`: `LicenseShortName`, `Artist` / `Credit`, the file page).
+    - Any row still missing a licence or an attribution after that becomes `public = false`.
+    - **`public` means a free licence**, including `LicenseRef-Copyrighted-free-use` and attribution-only licences (`LicenseRef-Attribution`). Attribution is required whenever `public = true` (a CHECK enforces it).
 - **Rulings to Institutions (Oct 18, 2026) and counts at data/inst-entities 574c290:**
   - **Counts:** 57,914 entities, 9,846 images, 3,381 icons, 1,233 gaps.
   - **Kind `special_district`:** frozen ids `special_district:<st>-<source>-<source_id>`. The first 305 are `tx-tceq` (Texas Commission on Environmental Quality). Each has a `parent` relation to its state. None are in 574c290 yet.

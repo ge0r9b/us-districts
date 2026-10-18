@@ -334,6 +334,7 @@ create table entity (
   parent_id     text references entity(entity_id),   -- containment tree (state:42 > chamber:pa-lower); corporate ownership is entity_relation
                                                    -- predecessor_id / successor_id (;-lists in entities.csv) load into entity_succession
   valid_from    date,                                -- start of the CURRENT form of government, only when a source states it
+                                                   -- (TCEQ creation date, Census incorporation date); source in valid_from_source
   valid_from_source text,                            -- entities.csv valid_from_source
   inception     date,                                -- earliest sourced founding date (Wikidata P571)
   inception_precision text check (inception_precision in ('day','month','year')),   -- year precision stored as YYYY-01-01
@@ -418,12 +419,13 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
   child_id      text not null references entity(entity_id),   -- the brand
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent')),
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
                                                    -- city-county's county entity (parent) and its place entity (child)
   valid_from    date,
   valid_to      date,
   source_id     text references source(source_id),   -- one source per link (Wikidata)
+  method        text check (method in ('sourced','overlay','point_in_polygon','manual')),   -- how the link was derived
   source_record_id text,                              -- e.g. the Wikidata statement id of the P749 claim
   check (parent_id <> child_id),
   check (valid_to is null or valid_from is null or valid_to >= valid_from),
@@ -488,6 +490,7 @@ create table entity_image (
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
   check (not icon or public),                        -- icons are always freely licensed
+  check (not public or attribution is not null),     -- public = free licence (incl. Copyrighted-free-use / attribution-only); attribution required
   check (public or (attribution is not null and source_url is not null)),   -- hidden fair-use rows: licence + attribution + source_url; file may be null
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
