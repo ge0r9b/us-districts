@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181568";</script>
+<script>window.BUILD="202610181569";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -1245,7 +1245,7 @@ function syncYears(){
 }
 $("c2020").onclick=()=>{ years.has("2020")?years.delete("2020"):years.add("2020"); syncYears(); };
 $("c2024").onclick=()=>{ years.has("2024")?years.delete("2024"):years.add("2024"); syncYears(); };
-$("yslider").oninput=e=>{ const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
+$("yslider").oninput=e=>{ if(window.__y16){ window.__y16=false; document.body.classList.remove("y16"); } const v=+e.target.value; years=new Set(v===0?["2020"]:v===1?["2020","2024"]:["2024"]); syncYears(); };
 $("bTime").onclick=()=>{ const b=$("barTime"); b.hidden=!b.hidden; $("bTime").classList.toggle("on",!b.hidden); layoutRail(); };
 ($("bList")||{}).onclick=()=>{ closeSheet(); panel.classList.toggle("closed"); ($("bList")||document.createElement("i")).classList.toggle("on",!panel.classList.contains("closed")); };
 // legend
@@ -1723,11 +1723,12 @@ map.on("popupopen",e=>{ const p=e.popup; const top=($("barTime").hidden?$("barGe
 // answerId is a generic slot key (this dataset maps slots to party nominees); candidateId is separate so matching can switch to candidate-based later (set MATCH="candidateId").
 // Deltas compare the SAME key across time points; margin = share(rep_nominee) - share(dem_nominee).
 const CANDS={"2024":[{id:"h24",candidateId:"harris_kamala",yr:"2024",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Harris",full:"Kamala Harris",ini:"KH",p:"d"},{id:"t24",candidateId:"trump_donald",yr:"2024",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}],
-             "2020":[{id:"b20",candidateId:"biden_joe",yr:"2020",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Biden",full:"Joe Biden",ini:"JB",p:"d"},{id:"t20",candidateId:"trump_donald",yr:"2020",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}]};
+             "2020":[{id:"b20",candidateId:"biden_joe",yr:"2020",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Biden",full:"Joe Biden",ini:"JB",p:"d"},{id:"t20",candidateId:"trump_donald",yr:"2020",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}],
+             "2016":[{id:"c16",candidateId:"clinton_hillary",yr:"2016",ix:0,answerId:"dem_nominee",color:"#2563eb",short:"Clinton",full:"Hillary Clinton",ini:"HC",p:"d"},{id:"t16",candidateId:"trump_donald",yr:"2016",ix:1,answerId:"rep_nominee",color:"#dc2626",short:"Trump",full:"Donald Trump",ini:"DT",p:"r"}]}; /* build 1569: 2016 - Clinton is the Democratic answer (same slot/colour as Biden, Harris), Trump the Republican one in every year */
 const MATCH="answerId";
 function answers(v,yr){ return v?CANDS[yr].map(c=>({answerId:c.answerId,candidateId:c.candidateId,label:c.full,color:c.color,votes:c.ix?v.rep:v.dem,share:v.tot?(c.ix?v.rep:v.dem)/v.tot:0})):[]; }
 function answerDelta(v24,v20,id){ const a=answers(v24,"2024").find(x=>x[MATCH]===id), b=answers(v20,"2020").find(x=>x[MATCH]===id); return a&&b?{share:a.share-b.share,votes:a.votes-b.votes}:null; }
-const candOn=new Set(["h24","t24","b20","t20"]);
+const candOn=new Set(["h24","t24","b20","t20","c16","t16"]);
 function yrsOn(){ const m=ym(); return m==="delta"?["2020","2024"]:[m]; }
 function candsOn(){ return yrsOn().flatMap(y=>CANDS[y]); } window.__candOn=candOn; window.__candsOn=candsOn; window.__CANDS=CANDS; window.__syncYears=()=>syncYears();
 const candBox=document.createElement("div"); candBox.id="cands"; candBox.className="cands"; document.body.append(candBox);
@@ -1922,7 +1923,7 @@ const _rl=renderList; renderList=function(){ const ch=children(); if(ch.need&&!p
 setType("counties");
 const _dh3=drawHeat; drawHeat=function(){ _dh3(); if(fillTop&&heatLevel==="county"&&heatLayer&&state.value) heatLayer.clearLayers(); };
 // ===== photo candidate buttons, ranked per area =====
-const PHOTO={h24:"img/harris.jpg?v="+window.BUILD,t24:"img/trump.jpg?v="+window.BUILD,b20:"img/biden.jpg?v="+window.BUILD,t20:"img/trump.jpg?v="+window.BUILD};
+const PHOTO={h24:"img/harris.jpg?v="+window.BUILD,t24:"img/trump.jpg?v="+window.BUILD,b20:"img/biden.jpg?v="+window.BUILD,t20:"img/trump.jpg?v="+window.BUILD,c16:"img/clinton.jpg?v="+window.BUILD,t16:"img/trump.jpg?v="+window.BUILD};
 function scopeArea(){ if(cur) return cur; if(hier.dist&&state.value) return {kind:ltype,d:hier.dist};
   if(county.value){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&d[1]===county.value); if(c) return {kind:"county",d:c}; }
   return {kind:"sum",st:state.value||""}; }
@@ -2438,19 +2439,25 @@ let lastYr="2024";
 $("c2020").addEventListener("click",()=>{ const y="2020"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
 $("c2024").addEventListener("click",()=>{ const y="2024"; if(years.has(y)) lastYr=y; else if(years.size) lastYr=[...years][0]; });
 $("yslider").addEventListener("input",e=>{ const v=+e.target.value; if(v===0) lastYr="2020"; if(v===2) lastYr="2024"; });
-const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
+const _yo=yrsOn; yrsOn=function(){ if(window.__y16) return ["2016"]; const y=_yo(); if(y.length>1&&$("barTime").hidden) return [years.has(lastYr)?lastYr:y[1]]; return y; };
 
 // ===== time row: tick slider (single year = one knob; range = two knobs + black fill = change mode) =====
-{ const YRS=["2020","2024"], N=YRS.length; const yr=document.querySelector("#barTime .yr"); const w=document.createElement("div"); w.id="ysl"; w.setAttribute("role","group"); w.setAttribute("aria-label","Year");
-  w.innerHTML='<div class="trk"></div><div class="fill"></div><span class="ylb l">\'20</span><span class="ylb r">\'24</span>'+YRS.map((y,i)=>'<div class="tk" data-i="'+i+'"><i></i><span>'+y+'</span></div>').join("")+'<div class="kn a"></div><div class="kn b"></div>';
+{ const YRS=["2016","2020","2024"], N=YRS.length; /* build 1569: three points; 2016 = index 0 (no results until the 2016 data lands -> gray) */ const yr=document.querySelector("#barTime .yr"); const w=document.createElement("div"); w.id="ysl"; w.setAttribute("role","group"); w.setAttribute("aria-label","Year");
+  w.innerHTML='<div class="trk"></div><div class="fill"></div><span class="ylb l">\'16</span><span class="ylb r">\'24</span>'+YRS.map((y,i)=>'<div class="tk" data-i="'+i+'"><i></i><span>'+y+'</span></div>').join("")+'<div class="kn a"></div><div class="kn b"></div>';
   yr.insertBefore(w,$("c2024")); let A=N-1,B=N-1;
   const xs=i=>{ const r=w.getBoundingClientRect(); return 52+(N>1?i/(N-1):0)*(r.width-104); };
   const near=cx=>{ const r=w.getBoundingClientRect(); let best=0,bd=1e9; for(let i=0;i<N;i++){ const d=Math.abs(r.left+xs(i)-cx); if(d<bd){bd=d;best=i;} } return best; };
   const paint=()=>{ const W0=w.getBoundingClientRect().width; const xs=i=>52+(N>1?i/(N-1):0)*(W0-104); /* build 1568: one layout read per paint (was one per tick/knob) */ w.querySelectorAll(".tk").forEach(t=>t.style.left=xs(+t.dataset.i)+"px"); const lo=Math.min(A,B),hi=Math.max(A,B); w.classList.toggle("rng",lo!==hi);
     w.querySelector(".kn.a").style.left=xs(A)+"px"; w.querySelector(".kn.b").style.left=xs(B)+"px"; const f=w.querySelector(".fill"); f.style.left=xs(lo)+"px"; f.style.width=(xs(hi)-xs(lo))+"px"; };
-  const fromState=()=>{ const v=+$("yslider").value; if(v===1){A=0;B=N-1;} else {A=B=(v===0?0:N-1);} paint(); };
-  window.__ySelectAll=()=>{ A=0; B=N-1; commit(); }; // full available range (all years), generic for N years
-  const commit=()=>{ const lo=Math.min(A,B),hi=Math.max(A,B); const v=lo!==hi?1:(lo===0?0:2); paint(); if(+$("yslider").value!==v||(v!==1&&!years.has(YRS[lo]))){ $("yslider").value=v; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } };
+  const fromState=()=>{ if(window.__y16){ A=0; B=window.__y16hi||0; paint(); return; } const v=+$("yslider").value; if(v===1){A=1;B=2;} else {A=B=(v===0?1:2);} paint(); };
+  window.__ySelectAll=()=>{ A=1; B=N-1; commit(); }; /* the 2020-24 change range (2016 has no results yet) */ window.__ySet16=hi=>{ A=0; B=hi||0; commit(); }; // full available range (all years), generic for N years
+  const commit=()=>{ const lo=Math.min(A,B),hi=Math.max(A,B);
+    if(lo===0){ /* 2016 alone or a range from 2016: no 2016 results in the data yet -> no-data view (gray map, names without values, Clinton/Trump thumbnails without figures) */
+      const was=window.__y16; window.__y16=true; window.__y16hi=hi; paint(); document.body.classList.add("y16"); try{ $("ynote").textContent="2016 results not loaded yet"; }catch(e){} /* the no-data look is pure CSS: it paints at once */
+      const heavy=()=>{ if(!window.__y16) return; if(!was||years.size){ years=new Set(); try{ syncYears(); }catch(e){} } try{ renderCands(); }catch(e){} try{ if(view==="list") renderList(); }catch(e){} try{ window.__laThumbs&&window.__laThumbs(); }catch(e){} };
+      requestAnimationFrame(()=>requestAnimationFrame(heavy)); return; } /* map clear + thumbnails swap follow one frame later */
+    if(window.__y16){ window.__y16=false; document.body.classList.remove("y16"); }
+    const v=lo!==hi?1:(lo===1?0:2); paint(); if(+$("yslider").value!==v||(v!==1&&!years.has(YRS[lo]))){ $("yslider").value=v; $("yslider").dispatchEvent(new Event("input",{bubbles:true})); } };
   const P=new Map(); let g=null;
   w.addEventListener("pointerdown",e=>{ e.preventDefault(); try{w.setPointerCapture(e.pointerId);}catch(_){}
     P.set(e.pointerId,e.clientX); const r=w.getBoundingClientRect();
@@ -3400,6 +3407,8 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(a&&a.kind==="sum"&&DSK.has(ltype)&&LA.on&&LA.lv&&LA.lv.id==="states"){ const r=stSum(ltype,a.st,yr); return r?{dem:r.dem,rep:r.rep,tot:r.tot}:null; }
       /* district rows in the list read the same re-tabulated district numbers the map popup uses (so 2020 exists wherever the map has it) */
       if(a&&DSK.has(a.kind)&&a.d&&(a.d[0]!=="Alaska"||a.nat)&&!a.cd){ const r=dsRow(a.kind,a.d); const v=r&&r.v&&r.v[yr]; if(v&&v[2]&&(v[0]+v[1])>0) return {dem:v[0],rep:v[1],tot:v[2]}; }
+      if(yr==="2016"){ /* build 1569: 2016 is read only where a row carries a 2016 [d,r,total] triple (district rows: v["2016"]; counties: window.ELECTION2016["State|County"]); everything else has no 2016 value (gray) */
+        const E=window.ELECTION2016, t=E&&a&&a.kind==="county"&&a.d?E[a.d[0]+"|"+a.d[1]]:null; return t&&t[2]?{dem:t[0],rep:t[1],tot:t[2]}:null; }
       return _v(a,yr); };
     const _n=aname; aname=function(a){ if(a.kind==="laagg") return LA.title; if(a.kind==="ctry"||a.kind==="prov") return a.name; return _n(a); };
     const _s=scopeArea; scopeArea=function(){ if(LA.on) return {kind:"laagg"}; return _s(); };
@@ -3410,7 +3419,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(a.kind==="ctry"){ const r=window.CTRYSHAPE&&CTRYSHAPE[a.iso]; return r?r.map(ring=>ring.map(([x,y])=>[y,x])):[]; }
     if(a.kind==="prov") return a.p[6].map(r=>r.map(([x,y])=>[y,x]));
     try{ const it=a.kind==="precinct"?a.d.slice(0,6):a.d; return toLatLngs(it).map(rings=>rings[0]); }catch(e){ return []; } }
-  const yrsNow=()=>ym()==="delta"?["2020","2024"]:[ym()];
+  const yrsNow=()=>window.__y16?["2016"]:ym()==="delta"?["2020","2024"]:[ym()];
   function sortVal(a){ const m=ym(); // sort key = TOTAL votes cast; in delta mode = |net change| as displayed
     if(m==="delta"){ const v0=vals(a,"2020"), v1=vals(a,"2024"); if(!v0||!v1||!v0.tot||!v1.tot) return null; /* delta: sort by the magnitude of the NET change exactly as displayed ('R +13.6' = margin change in points in %, vote-count margin change in #); party side ignored */ if(numMode==="pct") return Math.round(Math.abs(((v1.rep-v1.dem)/v1.tot-(v0.rep-v0.dem)/v0.tot)*100)*10)/10; return Math.abs((v1.rep-v1.dem)-(v0.rep-v0.dem)); }
     const v=vals(a,m); if(!v||!v.tot) return null; /* build 1551: the key is ONE answer for every row = the topmost toggled-on thumbnail of the left column (LA.sc, set by render): its share in % mode, its votes in # mode */
@@ -3958,6 +3967,12 @@ html body.laskel #laCands#laCands, html body.laskel #bBack#bBack { display: none
 #listView .lvgrid.skel > .lvrow { opacity: .55; }
 #listView .lvgrid.skel > .lvskel { height: 23px; box-sizing: border-box; padding: 6px 8px 5px 52px; border-bottom: 1px solid rgba(0,0,0,.06);
   background: linear-gradient(90deg, #d6d3d1 0 64px, transparent 64px 72px, #e7e5e4 72px var(--w,90%), transparent var(--w,90%)) content-box; }
+
+/* build 1569: 2016 selected, no 2016 results loaded: names only, no values / charts / sort; a note on top of the list */
+body.y16 #listView .lvrow.la .sbw, body.y16 #listView .lvrow.la .sg, body.y16 #listView .lvrow.la [data-party] { visibility: hidden !important; }
+body.y16 .cpanel, body.y16 .dmx, body.y16 .dlx, body.y16 .heatlegend, body.y16 #chartLg, body.y16 #partyBub, body.y16 #laSort, body.y16 #laSortBub { display: none !important; }
+body.y16 #listView .lvgrid::before { content: "No 2016 results loaded yet"; display: block; padding: 6px 8px 6px 52px; font: 500 12px/1.3 system-ui, -apple-system, sans-serif; color: #78716c; }
+body.y16 .lact .cpt { visibility: hidden; }
 
 /* bar lists: name column = measured longest name (fitNames sets --rnw, max 84px, no minimum) + a 6px gap
    (the row's flex gap is 8px, so the name cell takes -2px margin); the bar starts right after the names */
