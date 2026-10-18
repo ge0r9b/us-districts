@@ -13,3 +13,4 @@ Branch `v3/plan` (v3 lane, REPO-RULES). Plan only: no deploy, no accounts, v2 un
 | [PERFORMANCE.md](PERFORMANCE.md) | Budget (instant response first) and how to meet it |
 | [MIGRATION_CHECKLIST.md](MIGRATION_CHECKLIST.md) | v2 → v3 parity checklist, UI rules, the 78 Playwright tests, **v2 intake alignment** |
 | [DECISIONS.md](DECISIONS.md) | Open decisions with recommended defaults |
+| [NATIVE.md](NATIVE.md) | Native macOS/iOS apps (v4/v5): **full parity rule**, PR checklist item, allowed browser-only items with native equivalents |
