@@ -443,11 +443,15 @@ create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 create table entity_relation (
   parent_nid    bigint not null references entity(nid),  -- entity.nid; the text id stays unique on entity
   child_nid     bigint not null references entity(nid),
-  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of','consolidated_with','parent','in_county')),
+  relation      text not null default 'parent_org' check (relation in (
+                    'parent_org','owned_by','brand_of','consolidated_with','parent','in_county',
+                    'member_of','area','predecessor')),
                                                    -- brands.csv parent_brand_id = P749 = parent_org; consolidated_with links a consolidated
                                                    -- city-county's county entity (parent) and its place entity (child).
                                                    -- entity_relations.csv relation 'parent' also fills entity.parent_id (child = entity_id).
                                                    -- in_county: special district (child) to its primary county (parent); does not set entity.parent_id.
+                                                   -- member_of: member (child) to the body (parent); area: council (parent) to the area (child);
+                                                   -- predecessor: the earlier entity (parent) to the current one (child). None of those set parent_id.
   method        text check (method is null or method in ('sourced','overlay','point_in_polygon','manual')),
   valid_from    date,
   valid_to      date,
@@ -546,7 +550,10 @@ create table entity_image_source (
   primary key (image_id, source_id)
 );
 
--- Feed id -> registry entity (inst entity_feed_map.csv): which bot ids map to an entity, which stay feed-only.
+-- Feed id -> registry entity. The loader does not insert this table.
+-- pack/entity_feed_map.csv is a content-hashed pack. Its key is (feed, feed_id, role),
+-- with is_primary. Feed and status are the smallint codes in enum_feed.csv and enum_feed_map_status.csv.
+-- code_scheme and code stay on entity. This table remains so an older database still matches the docs.
 create table entity_feed_map (
   feed           text not null,                      -- 'governments-bot' (raw feed value)
   feed_id        text not null,                      -- entity_feed_map.csv feed_entity_id ('cog:161834', 'bia:cherokee-nation')

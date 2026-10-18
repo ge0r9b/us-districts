@@ -39,6 +39,7 @@ try {
         })),
         companies: summary.companies,
         institutions: summary.institutions,
+        institutionsForeign: summary.institutionsForeign,
         locations: summary.locations,
         estimates: summary.estimates.map((row) => ({ ...row, mb: formatMb(row.bytes) })),
         gaps: summary.gaps,

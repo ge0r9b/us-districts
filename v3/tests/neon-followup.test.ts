@@ -7,8 +7,18 @@ import { nodePacks } from "../api/src/node-packs.ts";
 import { applyResults, markSuperseded, sha256Hex } from "../ingest/apply.ts";
 import { originCommit } from "../ingest/branch-cache.ts";
 import { BUDGET_BYTES } from "../ingest/budget.ts";
-import { instPacksRoot, readInstPack } from "../ingest/inst-pack.ts";
-import { historyDate, mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
+import { instPacksRoot, readFeedMapPack, readInstPack } from "../ingest/inst-pack.ts";
+import {
+  INST_BATCH_FILES,
+  ensureInstCache,
+  historyDate,
+  loadInstitutionTables,
+  loadInstitutions,
+  mapInstImage,
+  mapInstRelations,
+  mapRelationMethod,
+  selectInstitutionScope,
+} from "../ingest/inst-entities.ts";
 import { assignLocationUnits, isConnectionDrop } from "../ingest/locations.ts";
 import { repoRoot } from "../ingest/load-all.ts";
 import { dryRunPrecincts } from "../ingest/precincts.ts";
@@ -356,6 +366,21 @@ describe("neon follow-up", () => {
     expect(report.gitCommit).toBe(originCommit(root, "data/inst-entities"));
     expect(report.gitCommit).toMatch(/^[0-9a-f]{40}$/);
     expect(report.entities).toBeGreaterThan(50_000);
+    expect(report.entities).toBeLessThan(70_000);
+    expect(report.relations).toBeLessThan(10_000);
+    const foreign = await loadInstitutions(pool, {
+      root,
+      currentBytes: 236 * 1024 * 1024,
+      allow: false,
+      dryRun: true,
+      scope: "foreign",
+    });
+    expect(foreign.status).toBe("dry-run");
+    expect(foreign.entities).toBeGreaterThan(60_000);
+    expect(foreign.entities).toBeLessThan(80_000);
+    expect(foreign.relations).toBeGreaterThan(30_000);
+    expect(foreign.estimate.projectedBytes!).toBeLessThan(350 * 1024 * 1024);
+    expect(foreign.estimate.projectedBytes!).toBeGreaterThan(236 * 1024 * 1024);
     expect(report.estimate.projectedBytes).not.toBeNull();
     const margin = (report.estimate.projectedBytes ?? 0) - 236 * 1024 * 1024;
     expect(margin).toBeGreaterThan(5 * 1024 * 1024);
@@ -375,13 +400,8 @@ describe("neon follow-up", () => {
     expect(growing.gap).toMatch(/net/);
     expect(growing.estimate.projectedBytes!).toBeGreaterThan(BUDGET_BYTES);
 
-    const files = [
-      "data-v3/inst/entities.csv",
-      "data-v3/inst/entity_relations.csv",
-      "data-v3/inst/entity_images.csv",
-      "data-v3/inst/body_entity.csv",
-    ];
-    const dir = join(root, "v3/.cache/inst-entities");
+    const { dir } = ensureInstCache(root);
+    const files = [...INST_BATCH_FILES];
     const shas = files.map((rel) => ({
       file_name: rel,
       sha256: sha256Hex(readFileSync(join(dir, rel))),
@@ -469,6 +489,7 @@ describe("neon follow-up", () => {
           name: "Cut County",
           feed: "governments-bot",
           valid_from: "2015-06-01",
+          valid_to: "2010-03-01",
           inception: "2016-06-15",
         }),
       ],
@@ -486,10 +507,10 @@ describe("neon follow-up", () => {
     expect(present.rows[0]?.valid_from).toBeNull();
     expect(present.rows[0]?.inception).toBeNull();
     expect(present.rows[0]?.flags ?? []).not.toContain("feed_absent");
-    const cut = await pool.query<{ valid_from: string | null; inception: string | null }>(
-      `select valid_from::text, inception::text from entity where entity_id = 'county:feed-cut-demo'`,
+    const cut = await pool.query<{ valid_from: string | null; valid_to: string | null; inception: string | null }>(
+      `select valid_from::text, valid_to::text, inception::text from entity where entity_id = 'county:feed-cut-demo'`,
     );
-    expect(cut.rows[0]).toEqual({ valid_from: null, inception: "2016-06-15" });
+    expect(cut.rows[0]).toEqual({ valid_from: null, valid_to: "2010-03-01", inception: "2016-06-15" });
     await loadInstitutionTables(pool, {
       ...input,
       entities: [
@@ -505,6 +526,163 @@ describe("neon follow-up", () => {
     );
     expect(restored.rows[0]?.nid).toBe(before.rows[0]?.nid);
     expect(restored.rows[0]?.flags ?? []).not.toContain("feed_absent");
+  });
+
+  it("keeps the feed map in a pack and loads FR/DE/GB only in the foreign scope", async () => {
+    const mapped = mapInstRelations([
+      {
+        entity_id: "municipality:fr-75056",
+        relation: "member_of",
+        related_entity_id: "intermunicipal:fr-200054781",
+        method: "sourced",
+      },
+    ]);
+    expect(mapped.skipped).toBe(0);
+    expect(mapped.parents).toEqual([]);
+    expect(mapped.relations[0]?.relation).toBe("member_of");
+
+    const paris = "municipality:fr-75056";
+    const body = "intermunicipal:fr-200054781";
+    const mixed = {
+      entities: [
+        row("county:48001", { kind: "county", name: "Anderson County", load_group: "1", feed: "1" }),
+        row(paris, {
+          kind: "municipality",
+          name: "Paris",
+          load_group: "2",
+          gov_status: "unknown",
+          code_scheme: "insee_com",
+          code: "75056",
+          valid_from: "2010-01-01",
+          valid_to: "2014-05-01",
+          inception: "2001-01-01",
+          feed: "3",
+          parent_id: "nation:fr",
+          source_set: "abc",
+        }),
+        row(body, {
+          kind: "intermunicipal",
+          name: "Metropole",
+          load_group: "2",
+          gov_status: "government",
+          code_scheme: "siren",
+          code: "200054781",
+          feed: "3",
+        }),
+      ],
+      relations: [
+        {
+          entity_id: paris,
+          relation: "member_of",
+          related_entity_id: body,
+          method: "sourced",
+          load_group: "2",
+          source_set: "abc",
+        },
+      ],
+      images: [],
+      bodies: [],
+      sourceSets: [
+        { source_set: "abc", ord: "2", source_id: "second-src" },
+        { source_set: "abc", ord: "1", source_id: "first-src" },
+      ],
+      sources: [{ source_id: "first-src", source: "First title" }],
+      feedMap: [{
+        feed: "3",
+        feed_id: "gss:E08000001",
+        role: "",
+        is_primary: "1",
+        entity_id: body,
+        status: "1",
+        note: "match",
+      }],
+      feedEnums: [{ feed: "3", name: "governments-bot" }],
+      statusEnums: [{ status: "1", name: "mapped" }],
+      v2Rows: [],
+      files: [{ fileName: "fixture-foreign.csv", sha256: "fixture-foreign-sha", rows: 3 }],
+      fileBytes: 80,
+      gitCommit: "foreign",
+    };
+    expect(selectInstitutionScope(mixed, "domestic").entities.map((item) => item.entity_id)).toEqual(["county:48001"]);
+    expect(selectInstitutionScope(mixed, "foreign").entities).toHaveLength(2);
+
+    const packsDir = instPacksRoot(root);
+    await pool.query(
+      `insert into entity (entity_id, kind, name, origin, feed, country)
+       values ($1, 'municipality', 'Paris', 'inst', '3', 'fr')
+       on conflict (entity_id) do update
+         set origin = 'inst', feed = '3', country = 'fr', flags = null`,
+      [paris],
+    );
+    await loadInstitutionTables(pool, selectInstitutionScope(mixed, "domestic"), { packsDir });
+    const kept = await pool.query<{ flags: string[] | null }>(
+      `select flags from entity where entity_id = $1`,
+      [paris],
+    );
+    expect(kept.rows[0]?.flags ?? []).not.toContain("feed_absent");
+    const feedTable = await pool.query<{ n: string }>("select count(*)::text n from entity_feed_map");
+    expect(feedTable.rows[0]?.n).toBe("0");
+    const feedPack = readFeedMapPack(packsDir);
+    expect(feedPack?.rows).toEqual([
+      {
+        feed: "3",
+        feed_id: "gss:E08000001",
+        role: "",
+        primary: true,
+        entity_id: body,
+        status: "1",
+        note: "match",
+      },
+    ]);
+    expect(feedPack?.feeds).toEqual([{ code: "3", name: "governments-bot" }]);
+
+    await loadInstitutionTables(pool, selectInstitutionScope(mixed, "foreign"), { packsDir });
+    const stored = await pool.query<{
+      country: string;
+      gov_status: string;
+      code_scheme: string;
+      code: string;
+      valid_from: string | null;
+      valid_to: string | null;
+      inception: string | null;
+      parent_id: string | null;
+    }>(
+      `select country, gov_status, code_scheme, code, valid_from::text, valid_to::text, inception::text, parent_id
+       from entity where entity_id = $1`,
+      [paris],
+    );
+    expect(stored.rows[0]).toEqual({
+      country: "fr",
+      gov_status: "unknown",
+      code_scheme: "insee_com",
+      code: "75056",
+      valid_from: null,
+      valid_to: "2014-05-01",
+      inception: null,
+      parent_id: null,
+    });
+    const link = await pool.query<{ parent_id: string; child_id: string; method: string }>(
+      `select p.entity_id parent_id, c.entity_id child_id, r.method
+       from entity_relation r
+       join entity p on p.nid = r.parent_nid
+       join entity c on c.nid = r.child_nid
+       where r.relation = 'member_of' and c.entity_id = $1`,
+      [paris],
+    );
+    expect(link.rows[0]).toEqual({ parent_id: body, child_id: paris, method: "sourced" });
+    const parent = await pool.query<{ parent_id: string | null }>(
+      `select parent_id from entity where entity_id = $1`,
+      [paris],
+    );
+    expect(parent.rows[0]?.parent_id).toBeNull();
+    const cited = readInstPack(packsDir);
+    expect(cited?.extra[paris]?.sources).toEqual(["first-src", "second-src"]);
+    const title = await pool.query<{ title: string }>(
+      `select title from source where source_id = 'first-src'`,
+    );
+    expect(title.rows[0]?.title).toBe("First title");
+    const stillEmpty = await pool.query<{ n: string }>("select count(*)::text n from entity_feed_map");
+    expect(stillEmpty.rows[0]?.n).toBe("0");
   });
 });
 

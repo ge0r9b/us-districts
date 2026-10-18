@@ -25,6 +25,7 @@ const expected = [
   "013_slim_load.sql",
   "014_shrink.sql",
   "015_ipeds.sql",
+  "016_inst_relations.sql",
 ];
 
 describe("migration files", () => {

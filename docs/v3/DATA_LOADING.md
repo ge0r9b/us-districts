@@ -577,6 +577,8 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - `parent_id` (`state:..`, `fr:..`, `nation:us`), `valid_from`/`valid_to`, `flags` (`owner_unknown`, `qid_by_*`), `wikidata_qid` and `nces_leaid` (→ `entity_alias` external ids), `tiger_status`, `geoid_match` → columns / meta.
 - `governments_geoid_xwalk.csv` → `entity_geoid`. Its `relation` vocabulary is wider than the registry's (`balance_place`, `consolidated_city` on layer `concity`, `county_part`, `prior_vintage_code`, `predecessor_code`, `trust_land`, a `;shared_area` suffix), so `entity_geoid.relation` stays open text. Rows with `vintage` 2022/2020 (`tiger_status = absent_2024`) resolve to no current unit and are kept for history. `aiannh` GEOIDs have no v3 boundary set yet: kept in `entity_geoid`, no `entity_unit` until a tribal-areas set exists (v3.x).
 
+**Feed map.** The current loader writes `pack/entity_feed_map.csv` to a content-hashed pack and does not insert `entity_feed_map`. `code_scheme` and `code` stay on `entity`. The notes below describe the d332210 file, which the same loader still accepts when those columns are present.
+
 **Feed map (d332210) → `entity_feed_map`.**
 - `entity_feed_map.csv` (`feed, feed_entity_id, feed_type, entity_id, match, note, source_id`; 93,278 rows, all `governments-bot`) maps to `feed`, `feed_id`, `feed_type`, `entity_id`, `match`, `note` and `source_id`.
 - `status` is derived:

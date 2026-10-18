@@ -37,6 +37,7 @@ export type LoadSummary = {
   results: ApplyReport[];
   companies: CompanyLoadReport | null;
   institutions: InstitutionLoadReport | null;
+  institutionsForeign: InstitutionLoadReport | null;
   locations: LocationAssignReport | null;
   gaps: string[];
   estimates: SizeEstimate[];
@@ -289,12 +290,14 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     const gaps: string[] = [];
     const estimates: SizeEstimate[] = [];
     let institutions: InstitutionLoadReport | null = null;
+    let institutionsForeign: InstitutionLoadReport | null = null;
     if (include.has("institutions")) {
       institutions = await loadInstitutions(pool, {
         root,
         currentBytes: current,
         allow: allow.has("institutions"),
         dryRun: true,
+        scope: "domestic",
       });
       estimates.push({
         group: "institutions",
@@ -302,7 +305,23 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
         action: `${institutions.status}; slim row width, nothing written`,
       });
       if (institutions.gap) gaps.push(institutions.gap);
-    } else {
+    }
+    if (include.has("institutions-foreign")) {
+      institutionsForeign = await loadInstitutions(pool, {
+        root,
+        currentBytes: current,
+        allow: allow.has("institutions-foreign"),
+        dryRun: true,
+        scope: "foreign",
+      });
+      estimates.push({
+        group: "institutions-foreign",
+        bytes: institutionsForeign.estimate.projectedBytes ?? 0,
+        action: `${institutionsForeign.status}; FR/DE/GB governments, nothing written`,
+      });
+      if (institutionsForeign.gap) gaps.push(institutionsForeign.gap);
+    }
+    if (!institutions && !institutionsForeign) {
       gaps.push("dry-run writes nothing. Pass --include=institutions to price that load.");
     }
     return {
@@ -310,6 +329,7 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
       results: [],
       companies: null,
       institutions,
+      institutionsForeign,
       locations: null,
       gaps,
       estimates,
@@ -323,6 +343,7 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
   let boundaries: BoundaryReport | null = null;
   let companies: CompanyLoadReport | null = null;
   let institutions: InstitutionLoadReport | null = null;
+  let institutionsForeign: InstitutionLoadReport | null = null;
   let locations: LocationAssignReport | null = null;
   let changed = false;
 
@@ -465,7 +486,12 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
 
   if (include.has("institutions")) {
     const current = await databaseBytes(pool);
-    institutions = await loadInstitutions(pool, { root, currentBytes: current, allow: allow.has("institutions") });
+    institutions = await loadInstitutions(pool, {
+      root,
+      currentBytes: current,
+      allow: allow.has("institutions"),
+      scope: "domestic",
+    });
     estimates.push({
       group: "institutions",
       bytes: institutions.estimate.projectedBytes ?? institutions.estimate.fileBytes,
@@ -480,12 +506,35 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     });
   }
 
+  if (include.has("institutions-foreign")) {
+    const current = await databaseBytes(pool);
+    institutionsForeign = await loadInstitutions(pool, {
+      root,
+      currentBytes: current,
+      allow: allow.has("institutions-foreign"),
+      scope: "foreign",
+    });
+    estimates.push({
+      group: "institutions-foreign",
+      bytes: institutionsForeign.estimate.projectedBytes ?? institutionsForeign.estimate.fileBytes,
+      action: `${institutionsForeign.status}; FR/DE/GB governments, after domestic institutions`,
+    });
+    if (institutionsForeign.gap) gaps.push(institutionsForeign.gap);
+  } else {
+    estimates.push({
+      group: "institutions-foreign",
+      bytes: 0,
+      action: "not requested (npm run db:load -- --include=institutions-foreign)",
+    });
+  }
+
   if (changed) await refreshAggregates(pool);
   return {
     boundaries,
     results,
     companies,
     institutions,
+    institutionsForeign,
     locations,
     gaps,
     estimates,

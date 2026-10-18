@@ -8,13 +8,24 @@ import { fetchOrigin, needsRefresh, originCommit, stampCommit } from "./branch-c
 import { BUDGET_BYTES, formatMb, loadGrowthRefused } from "./budget.ts";
 import { sideTableBytes } from "../db/vacuum.ts";
 import { parseCsv, readFileText } from "./csv.ts";
-import { imagePackKey, instPacksRoot, writeInstPack, type InstPack } from "./inst-pack.ts";
+import {
+  imagePackKey,
+  instPacksRoot,
+  mergeInstPack,
+  readInstPack,
+  writeFeedMapPack,
+  writeInstPack,
+  type FeedEnum,
+  type FeedMapPackRow,
+  type InstPack,
+} from "./inst-pack.ts";
 import {
   MEASURED_ENTITY_DEAD_TUPLES,
   MEASURED_ENTITY_HEAP_BYTES,
   MEASURED_ENTITY_INDEX_BYTES,
   MEASURED_INSTITUTION_DELTA_BYTES,
   MEASURED_TOAST_BYTES,
+  FOREIGN_GOVERNMENT_BYTES_PER_ROW,
   SLIM_ALIAS_BYTES_PER_ROW,
   SLIM_BODY_BYTES_PER_ROW,
   SLIM_ENTITY_BYTES_PER_ROW,
@@ -76,10 +87,18 @@ export function mapRelationMethod(raw: string | undefined): { method: RelationMe
   return { method: "sourced", token: text };
 }
 
+export type InstRelationName =
+  | "parent"
+  | "consolidated_with"
+  | "in_county"
+  | "member_of"
+  | "area"
+  | "predecessor";
+
 export type MappedRelation = {
   parent_id: string;
   child_id: string;
-  relation: "parent" | "consolidated_with" | "in_county";
+  relation: InstRelationName;
   method: RelationMethod | null;
   source_id: string | null;
   source_record_id: string;
@@ -104,6 +123,9 @@ function sourceList(raw: string | undefined): string[] {
  * `consolidated_with` keeps entity_id as the parent (the county) and does not set parent_id.
  * `in_county` means entity_id is the special district and related_entity_id is the county.
  * It does not change `entity.parent_id` (the district's parent is still the state).
+ * `member_of` is the member (entity_id) and the body (related_entity_id). Method is sourced.
+ * `area` is the council (entity_id) and the area it governs. `predecessor` points at the
+ * entity this one replaced. None of those three change `entity.parent_id`.
  */
 export function mapInstRelations(rows: InstRelationRow[]): {
   relations: MappedRelation[];
@@ -149,6 +171,18 @@ export function mapInstRelations(rows: InstRelationRow[]): {
     }
     if (relation === "in_county") {
       record(related, child, "in_county");
+      continue;
+    }
+    if (relation === "member_of") {
+      record(related, child, "member_of");
+      continue;
+    }
+    if (relation === "area") {
+      record(child, related, "area");
+      continue;
+    }
+    if (relation === "predecessor") {
+      record(related, child, "predecessor");
       continue;
     }
     skipped++;
@@ -302,16 +336,20 @@ async function writeImageRows(client: pg.PoolClient, ready: MappedImage[]): Prom
   return written;
 }
 
-async function ensureSources(db: pg.PoolClient, ids: string[]): Promise<void> {
+async function ensureSources(
+  db: pg.PoolClient,
+  ids: string[],
+  titles?: Map<string, string>,
+): Promise<void> {
   const unique = [...new Set(ids.filter(Boolean))];
   if (unique.length === 0) return;
   await insertJsonChunks(
     db,
     `insert into source (source_id, title)
-     select source_id, 'inst-entities'
-     from jsonb_to_recordset($1::jsonb) as x(source_id text)
+     select source_id, title
+     from jsonb_to_recordset($1::jsonb) as x(source_id text, title text)
      on conflict (source_id) do nothing`,
-    unique.map((source_id) => ({ source_id })),
+    unique.map((source_id) => ({ source_id, title: titles?.get(source_id) || "inst-entities" })),
   );
 }
 
@@ -381,12 +419,24 @@ export async function applyInstImages(
   }
 }
 
-const INST_FILES = [
+/** Postgres batch identity. A changed sha re-prices the insert. Pack files are not in this list. */
+export const INST_BATCH_FILES = [
   "data-v3/inst/entities.csv",
   "data-v3/inst/entity_relations.csv",
   "data-v3/inst/entity_images.csv",
   "data-v3/inst/body_entity.csv",
+  "data-v3/inst/source_sets.csv",
+  "data-v3/inst/sources.csv",
 ] as const;
+
+const INST_PACK_FILES = [
+  "data-v3/inst/pack/entity_feed_map.csv",
+  "data-v3/inst/entity_v2_rows.csv",
+  "data-v3/inst/enum_feed.csv",
+  "data-v3/inst/enum_feed_map_status.csv",
+] as const;
+
+const INST_FILES = [...INST_BATCH_FILES, ...INST_PACK_FILES] as const;
 
 const ENTITY_KINDS = new Set([
   "nation", "territory", "province", "state", "county", "municipality", "township",
@@ -429,10 +479,38 @@ type InstInputs = {
   relations: Record<string, string>[];
   images: Record<string, string>[];
   bodies: Record<string, string>[];
+  sourceSets?: Record<string, string>[];
+  sources?: Record<string, string>[];
+  feedMap?: Record<string, string>[];
+  feedEnums?: Record<string, string>[];
+  statusEnums?: Record<string, string>[];
+  v2Rows?: Record<string, string>[];
   files: { fileName: string; sha256: string; rows: number }[];
   fileBytes: number;
   gitCommit: string | null;
+  scope?: InstitutionScope;
 };
+
+export function selectInstitutionScope(input: InstInputs, scope: InstitutionScope): InstInputs {
+  const keep = (row: { load_group?: string }) => rowScope(row) === scope;
+  return {
+    ...input,
+    scope,
+    entities: input.entities.filter(keep),
+    relations: input.relations.filter(keep),
+    images: input.images.filter(keep),
+    bodies: input.bodies.filter((row) => ((row.load_group ?? "").trim() === "" ? scope === "domestic" : keep(row))),
+    files: input.files.map((file) =>
+      scope === "domestic"
+        ? file
+        : {
+            ...file,
+            fileName: `${file.fileName}#foreign`,
+            sha256: sha256Hex(`${file.sha256}:foreign`),
+          },
+    ),
+  };
+}
 
 function blank(raw: string | undefined): string | null {
   const text = (raw ?? "").trim();
@@ -456,6 +534,141 @@ export function historyDate(raw: string | undefined): string | null {
 function textList(raw: string | undefined): string[] | null {
   const items = (raw ?? "").split(";").map((part) => part.trim()).filter(Boolean);
   return items.length ? items : null;
+}
+
+export type InstitutionScope = "domestic" | "foreign";
+
+const FOREIGN_ID = /^(?:county|municipality|local_authority|regional_authority|intermunicipal|submunicipal|parish):([a-z]{2})-/;
+
+/** Country code baked into a FR/DE/GB government id. US ids and other kinds stay null. */
+export function institutionCountry(entityId: string): string | null {
+  const cc = FOREIGN_ID.exec(entityId)?.[1];
+  if (!cc || cc === "us") return null;
+  return cc;
+}
+
+/** load_group 2 is the GB/DE/FR layer. A blank group is the older domestic file. */
+export function rowScope(row: { load_group?: string }): InstitutionScope {
+  return (row.load_group ?? "").trim() === "2" ? "foreign" : "domestic";
+}
+
+export function indexSourceSets(rows: Record<string, string>[]): Map<string, string[]> {
+  const grouped = new Map<string, { ord: number; id: string }[]>();
+  for (const row of rows) {
+    const key = (row.source_set ?? "").trim();
+    const id = (row.source_id ?? "").trim();
+    if (!key || !id) continue;
+    const ord = Number(row.ord ?? "");
+    const list = grouped.get(key) ?? [];
+    list.push({ ord: Number.isFinite(ord) ? ord : list.length + 1, id });
+    grouped.set(key, list);
+  }
+  const out = new Map<string, string[]>();
+  for (const [key, list] of grouped) {
+    list.sort((a, b) => a.ord - b.ord);
+    out.set(key, [...new Set(list.map((item) => item.id))]);
+  }
+  return out;
+}
+
+export function sourceIdsFor(row: Record<string, string>, sets: Map<string, string[]>): string[] {
+  const key = (row.source_set ?? "").trim();
+  if (key && sets.has(key)) return sets.get(key) ?? [];
+  return sourceList(row.source_id);
+}
+
+function sourceTitles(rows: Record<string, string>[]): Map<string, string> {
+  const titles = new Map<string, string>();
+  for (const row of rows) {
+    const id = (row.source_id ?? "").trim();
+    if (!id) continue;
+    titles.set(id, (row.source ?? row.title ?? "").trim() || "inst-entities");
+  }
+  return titles;
+}
+
+function enumLegend(rows: Record<string, string>[], codeKey: string): FeedEnum[] {
+  const out: FeedEnum[] = [];
+  for (const row of rows) {
+    const code = (row[codeKey] ?? "").trim();
+    const name = (row.name ?? "").trim();
+    if (code && name) out.push({ code, name });
+  }
+  return out;
+}
+
+export function mapFeedRows(rows: Record<string, string>[]): FeedMapPackRow[] {
+  const out: FeedMapPackRow[] = [];
+  for (const row of rows) {
+    const feed = (row.feed ?? "").trim();
+    const feedId = (row.feed_id ?? row.feed_entity_id ?? "").trim();
+    if (!feed || !feedId) continue;
+    out.push({
+      feed,
+      feed_id: feedId,
+      role: (row.role ?? "").trim(),
+      primary: yes(row.is_primary ?? row.primary),
+      entity_id: orNull(row.entity_id),
+      status: (row.status ?? "").trim(),
+      note: orNull(row.note),
+    });
+  }
+  return out;
+}
+
+function v2PackKey(row: Record<string, string>): string | null {
+  const state = (row.state ?? "").trim();
+  const layer = (row.v2_layer ?? "").trim();
+  const name = (row.v2_name ?? "").trim();
+  const v2Row = (row.v2_row ?? "").trim();
+  if (!state) return null;
+  if (layer === "v2:parts" || layer.startsWith("v2:towns")) return v2Row ? `${state}|${v2Row}` : null;
+  return name ? `${state}|${name}` : null;
+}
+
+type ExtraDraft = {
+  entity_id: string;
+  v2_layer: string[] | null;
+  v2_key: string[] | null;
+  v2_row: string[] | null;
+  valid_from_source: string | null;
+  inception_source: string | null;
+  sources: string[] | null;
+  v2FromRow: boolean;
+};
+
+function addUnique(list: string[] | null, value: string): string[] {
+  const next = list ? [...list] : [];
+  if (!next.includes(value)) next.push(value);
+  return next;
+}
+
+function applyV2Rows(extras: Map<string, ExtraDraft>, rows: Record<string, string>[], ids: Set<string>): void {
+  for (const row of rows) {
+    const id = (row.entity_id ?? "").trim();
+    if (!id || !ids.has(id)) continue;
+    if ((row.resolved ?? "").trim() === "no") continue;
+    const layer = (row.v2_layer ?? "").trim();
+    const key = v2PackKey(row);
+    const rowToken = layer && (row.v2_row ?? "").trim() ? `${layer}#${row.v2_row.trim()}` : "";
+    if (!layer && !key && !rowToken) continue;
+    const extra = extras.get(id) ?? {
+      entity_id: id,
+      v2_layer: null,
+      v2_key: null,
+      v2_row: null,
+      valid_from_source: null,
+      inception_source: null,
+      sources: null,
+      v2FromRow: false,
+    };
+    if (layer) extra.v2_layer = addUnique(extra.v2_layer, layer);
+    if (!extra.v2FromRow) {
+      if (key) extra.v2_key = addUnique(extra.v2_key, key);
+      if (rowToken) extra.v2_row = addUnique(extra.v2_row, rowToken);
+    }
+    extras.set(id, extra);
+  }
 }
 
 /**
@@ -512,7 +725,9 @@ export function projectInstitutionBytes(
     aliases: aliasRows,
     bodies,
   };
-  const slim = slimInstitutionBytes(counts);
+  const entityRate = input.scope === "foreign" ? FOREIGN_GOVERNMENT_BYTES_PER_ROW : SLIM_ENTITY_BYTES_PER_ROW;
+  const slim =
+    slimInstitutionBytes({ ...counts, entities: 0 }) + entities * entityRate;
   const part = (table: string, rows: number, bytesPerRow: number) => ({
     table,
     rows,
@@ -520,7 +735,7 @@ export function projectInstitutionBytes(
     bytes: alreadyLoaded ? 0 : rows * bytesPerRow,
   });
   const parts = [
-    part("entity", entities, SLIM_ENTITY_BYTES_PER_ROW),
+    part("entity", entities, entityRate),
     part("entity_relation", counts.relations, SLIM_RELATION_BYTES_PER_ROW),
     part("entity_image", images, SLIM_IMAGE_BYTES_PER_ROW),
     part("entity_alias", aliasRows, SLIM_ALIAS_BYTES_PER_ROW),
@@ -563,33 +778,49 @@ export function ensureInstCache(root: string): { dir: string; commit: string } {
   const tar = execFileSync("git", ["archive", "origin/data/inst-entities", ...INST_FILES], {
     cwd: root,
     encoding: "buffer",
-    maxBuffer: 80 * 1024 * 1024,
+    maxBuffer: 120 * 1024 * 1024,
   });
   execFileSync("tar", ["-x", "-C", dest], { input: tar });
   stampCommit(dest, head);
   return { dir: dest, commit: head };
 }
 
+let readCache: { key: string; input: InstInputs } | null = null;
+
 function readInst(root: string): InstInputs {
   const { dir, commit } = ensureInstCache(root);
-  const files = INST_FILES.map((rel) => {
-    const loaded = readFileText(join(dir, rel));
-    const parsed = parseCsv(loaded.text);
-    return { rel, buffer: loaded.bytes, rows: parsed.rows };
-  });
-  return {
-    entities: files[0]!.rows,
-    relations: files[1]!.rows,
-    images: files[2]!.rows,
-    bodies: files[3]!.rows,
-    files: files.map((file) => ({
+  const key = `${dir}\0${commit}`;
+  if (readCache?.key === key) return readCache.input;
+  const loaded = new Map(
+    INST_FILES.map((rel) => {
+      const file = readFileText(join(dir, rel));
+      return [rel, { rel, buffer: file.bytes, rows: parseCsv(file.text).rows }] as const;
+    }),
+  );
+  const table = (rel: (typeof INST_FILES)[number]) => loaded.get(rel)?.rows ?? [];
+  const batch = INST_BATCH_FILES.map((rel) => loaded.get(rel)!);
+  const input: InstInputs = {
+    entities: table("data-v3/inst/entities.csv"),
+    relations: table("data-v3/inst/entity_relations.csv"),
+    images: table("data-v3/inst/entity_images.csv"),
+    bodies: table("data-v3/inst/body_entity.csv"),
+    sourceSets: table("data-v3/inst/source_sets.csv"),
+    sources: table("data-v3/inst/sources.csv"),
+    feedMap: table("data-v3/inst/pack/entity_feed_map.csv"),
+    feedEnums: table("data-v3/inst/enum_feed.csv"),
+    statusEnums: table("data-v3/inst/enum_feed_map_status.csv"),
+    v2Rows: table("data-v3/inst/entity_v2_rows.csv"),
+    files: batch.map((file) => ({
       fileName: file.rel,
       sha256: sha256Hex(file.buffer),
       rows: file.rows.length,
     })),
-    fileBytes: files.reduce((sum, file) => sum + file.buffer.byteLength, 0),
+    fileBytes: [...loaded.values()].reduce((sum, file) => sum + file.buffer.byteLength, 0),
     gitCommit: commit || null,
+    scope: "domestic",
   };
+  readCache = { key, input };
+  return input;
 }
 
 export async function loadInstitutionTables(
@@ -597,9 +828,12 @@ export async function loadInstitutionTables(
   input: InstInputs,
   opts: { packsDir: string },
 ): Promise<Omit<InstitutionLoadReport, "estimate" | "gap"> & { imagesSkipped: number }> {
+  const scope = input.scope ?? "domestic";
+  const sets = indexSourceSets(input.sourceSets ?? []);
+  const titles = sourceTitles(input.sources ?? []);
   const entityIds = new Set(input.entities.map((row) => row.entity_id.trim()).filter(Boolean));
   const entities: Record<string, unknown>[] = [];
-  const extras: Record<string, unknown>[] = [];
+  const extras = new Map<string, ExtraDraft>();
   const aliases: { alias: string; entity_id: string }[] = [];
   const parents: { entity_id: string; parent_id: string }[] = [];
   const succession: { predecessor_id: string; successor_id: string }[] = [];
@@ -609,13 +843,17 @@ export async function loadInstitutionTables(
     const kind = (row.kind ?? "").trim();
     const name = (row.name ?? "").trim();
     if (!entityId || !name || !ENTITY_KINDS.has(kind)) continue;
-    sourceIds.push(...(textList(row.source_id) ?? []));
+    const cited = sourceIdsFor(row, sets);
+    sourceIds.push(...cited);
     const stateFips = /^\d{2}$/.test((row.state_fips ?? "").trim()) ? row.state_fips.trim() : null;
+    const code = blank(row.code);
+    const codeScheme = blank(row.code_scheme);
     entities.push({
       entity_id: entityId,
       kind,
       state_fips: stateFips,
       state: stateFips ? null : blank(row.state),
+      country: institutionCountry(entityId),
       name,
       label: blank(row.label),
       gov_status: blank(row.gov_status),
@@ -632,20 +870,24 @@ export async function loadInstitutionTables(
       constituent_qid: /^Q[0-9]+$/.test((row.constituent_qid ?? "").trim()) ? row.constituent_qid.trim() : null,
       inception: historyDate(row.inception),
       inception_precision: PRECISIONS.has((row.inception_precision ?? "").trim()) ? row.inception_precision.trim() : null,
+      code_scheme: code && codeScheme ? codeScheme : null,
+      code: code && codeScheme ? code : null,
     });
     const v2Layer = textList(row.v2_layer);
     const v2Key = textList(row.v2_key);
     const v2Row = textList(row.v2_row);
     const validFromSource = blank(row.valid_from_source);
     const inceptionSource = blank(row.inception_source);
-    if (v2Layer || v2Key || v2Row || validFromSource || inceptionSource) {
-      extras.push({
+    if (v2Layer || v2Key || v2Row || validFromSource || inceptionSource || cited.length) {
+      extras.set(entityId, {
         entity_id: entityId,
         v2_layer: v2Layer,
         v2_key: v2Key,
         v2_row: v2Row,
         valid_from_source: validFromSource,
         inception_source: inceptionSource,
+        sources: cited.length ? cited : null,
+        v2FromRow: Boolean(v2Key || v2Row),
       });
     }
     for (const alias of textList(row.alias) ?? []) {
@@ -664,13 +906,14 @@ export async function loadInstitutionTables(
       }
     }
   }
+  applyV2Rows(extras, input.v2Rows ?? [], entityIds);
   const mappedRelations = mapInstRelations(
     input.relations.map((row) => ({
       entity_id: row.entity_id ?? "",
       relation: row.relation ?? "",
       related_entity_id: row.related_entity_id ?? "",
       method: row.method,
-      source_id: row.source_id,
+      source_id: sourceIdsFor(row, sets)[0] ?? "",
     })),
   );
   sourceIds.push(...mappedRelations.relations.map((row) => row.source_id ?? ""));
@@ -682,6 +925,7 @@ export async function loadInstitutionTables(
       imagesSkipped++;
       continue;
     }
+    if (mapped.source_ids.length === 0) mapped.source_ids = sourceIdsFor(row, sets);
     images.push(mapped);
   }
   const readyImages = dedupeIcons(images);
@@ -691,21 +935,21 @@ export async function loadInstitutionTables(
     const entityId = (row.entity_id ?? "").trim();
     const bodyKey = (row.body_key ?? "").trim();
     if (!bodyKey || !entityId || !BODY_ROLES.has(role)) return [];
-    sourceIds.push(...(textList(row.source_id) ?? []));
+    sourceIds.push(...sourceIdsFor(row, sets));
     return [{ body_key: bodyKey, entity_id: entityId, role, source_record_id: blank(row.source_record_id) }];
   });
   const parentOf = new Map(parents.map((row) => [row.entity_id, row.parent_id]));
   for (const row of mappedRelations.parents) parentOf.set(row.entity_id, row.parent_id);
   for (const entity of entities) entity.parent_id = parentOf.get(String(entity.entity_id)) ?? null;
   const pack: InstPack = { v: 3, extra: {}, images: {} };
-  for (const extra of extras) {
-    const entityId = String(extra.entity_id);
-    pack.extra[entityId] = {
-      v2_layer: (extra.v2_layer as string[] | null) ?? null,
-      v2_key: (extra.v2_key as string[] | null) ?? null,
-      v2_row: (extra.v2_row as string[] | null) ?? null,
-      valid_from_source: (extra.valid_from_source as string | null) ?? null,
-      inception_source: (extra.inception_source as string | null) ?? null,
+  for (const extra of extras.values()) {
+    pack.extra[extra.entity_id] = {
+      v2_layer: extra.v2_layer,
+      v2_key: extra.v2_key,
+      v2_row: extra.v2_row,
+      valid_from_source: extra.valid_from_source,
+      inception_source: extra.inception_source,
+      sources: extra.sources,
     };
   }
   for (const image of readyImages) {
@@ -720,34 +964,61 @@ export async function loadInstitutionTables(
       sources: image.source_ids,
     };
   }
-  writeInstPack(opts.packsDir, pack);
+  writeInstPack(opts.packsDir, mergeInstPack(readInstPack(opts.packsDir), pack));
+  const feedRows = mapFeedRows(input.feedMap ?? []);
+  if (feedRows.length > 0) {
+    writeFeedMapPack(opts.packsDir, {
+      v: 3,
+      feeds: enumLegend(input.feedEnums ?? [], "feed"),
+      statuses: enumLegend(input.statusEnums ?? [], "status"),
+      rows: feedRows,
+    });
+  }
 
   const client = await db.connect();
   try {
     await client.query("begin");
     await client.query("set local statement_timeout = '10min'");
-    await ensureSources(client, sourceIds);
+    await ensureSources(client, sourceIds, titles);
+    const batchIds = new Set(entities.map((row) => String(row.entity_id)));
+    const missingParents = [...new Set(
+      entities
+        .map((row) => (row.parent_id == null ? "" : String(row.parent_id)))
+        .filter((id) => id && !batchIds.has(id)),
+    )];
+    if (missingParents.length > 0) {
+      const found = await client.query<{ entity_id: string }>(
+        `select entity_id from entity where entity_id = any($1::text[])`,
+        [missingParents],
+      );
+      const present = new Set(found.rows.map((row) => row.entity_id));
+      for (const entity of entities) {
+        const parent = entity.parent_id == null ? "" : String(entity.parent_id);
+        if (parent && !batchIds.has(parent) && !present.has(parent)) entity.parent_id = null;
+      }
+    }
     const entityWrites = await insertJsonChunks(
       client,
       `insert into entity (
-         entity_id, kind, state_fips, state, name, label, gov_status, parent_id, valid_from, valid_to,
+         entity_id, kind, state_fips, state, country, name, label, gov_status, parent_id, valid_from, valid_to,
          feed, level, type, cog_pid6, flags, origin,
          source_record_id, wikidata, iso_3166_2, constituent_qid,
-         inception, inception_precision
+         inception, inception_precision, code_scheme, code
        )
-       select entity_id, kind, state_fips, state, name, label, gov_status, parent_id, valid_from, valid_to,
+       select entity_id, kind, state_fips, state, country, name, label, gov_status, parent_id, valid_from, valid_to,
               feed, level, type, cog_pid6, flags, 'inst',
               source_record_id, wikidata, iso_3166_2, constituent_qid,
-              inception, inception_precision
+              inception, inception_precision, code_scheme, code
        from jsonb_to_recordset($1::jsonb) as x(
-         entity_id text, kind text, state_fips text, state text, name text, label text, gov_status text,
+         entity_id text, kind text, state_fips text, state text, country text, name text, label text, gov_status text,
          parent_id text, valid_from date, valid_to date,
          feed text, level text, type text, cog_pid6 text, flags text[], source_record_id text,
          wikidata text, iso_3166_2 text, constituent_qid text, inception date,
-         inception_precision text
+         inception_precision text, code_scheme text, code text
        )
        on conflict (entity_id) do update
          set kind = excluded.kind, state_fips = excluded.state_fips, state = excluded.state,
+             country = excluded.country,
              name = excluded.name, label = excluded.label, gov_status = excluded.gov_status,
              parent_id = excluded.parent_id,
              valid_from = excluded.valid_from, valid_to = excluded.valid_to,
@@ -757,11 +1028,13 @@ export async function loadInstitutionTables(
              flags = excluded.flags, source_record_id = excluded.source_record_id,
              wikidata = excluded.wikidata, iso_3166_2 = excluded.iso_3166_2,
              constituent_qid = excluded.constituent_qid, inception = excluded.inception,
-             inception_precision = excluded.inception_precision
+             inception_precision = excluded.inception_precision,
+             code_scheme = excluded.code_scheme, code = excluded.code
          where entity.origin = 'inst'
            and (entity.kind is distinct from excluded.kind
              or entity.state_fips is distinct from excluded.state_fips
              or entity.state is distinct from excluded.state
+             or entity.country is distinct from excluded.country
              or entity.name is distinct from excluded.name
              or entity.label is distinct from excluded.label
              or entity.gov_status is distinct from excluded.gov_status
@@ -769,6 +1042,8 @@ export async function loadInstitutionTables(
              or entity.valid_from is distinct from excluded.valid_from
              or entity.valid_to is distinct from excluded.valid_to
              or entity.feed is distinct from excluded.feed
+             or entity.code_scheme is distinct from excluded.code_scheme
+             or entity.code is distinct from excluded.code
              or entity.level is distinct from excluded.level
              or entity.type is distinct from excluded.type
              or entity.cog_pid6 is distinct from excluded.cog_pid6
@@ -789,8 +1064,12 @@ export async function loadInstitutionTables(
          where origin = 'inst'
            and feed is not null
            and not (entity_id = any($1::text[]))
-           and not ('feed_absent' = any(coalesce(flags, '{}')))`,
-        [entities.map((row) => String(row.entity_id))],
+           and not ('feed_absent' = any(coalesce(flags, '{}')))
+           and (
+             ($2::text = 'domestic' and (country is null or btrim(country) = 'us'))
+             or ($2::text = 'foreign' and btrim(country) in ('fr', 'de', 'gb'))
+           )`,
+        [entities.map((row) => String(row.entity_id)), scope],
       );
     }
     if (aliases.length > 0) {
@@ -870,9 +1149,11 @@ export async function loadInstitutionTables(
 
 export async function loadInstitutions(
   db: pg.Pool,
-  opts: { root: string; currentBytes: number; allow: boolean; dryRun?: boolean },
+  opts: { root: string; currentBytes: number; allow: boolean; dryRun?: boolean; scope?: InstitutionScope },
 ): Promise<InstitutionLoadReport> {
-  const input = readInst(opts.root);
+  const scope = opts.scope ?? "domestic";
+  const input = selectInstitutionScope(readInst(opts.root), scope);
+  const label = scope === "foreign" ? "institutions-foreign" : "institutions";
   const applied = await db.query(
     `select file_sha256 from load_batch
      where status = 'applied' and file_sha256 = any($1::text[])`,
@@ -893,7 +1174,7 @@ export async function loadInstitutions(
   const net = shown - opts.currentBytes;
   const netLabel = `${net < 0 ? "-" : "+"}${formatMb(Math.abs(net))}`;
   const gap = over
-    ? `institutions: projected ${formatMb(shown)} (${netLabel} net) against a live ${formatMb(opts.currentBytes)}, over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`
+    ? `${label}: projected ${formatMb(shown)} (${netLabel} net) against a live ${formatMb(opts.currentBytes)}, over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`
     : null;
   if (opts.dryRun) {
     return {
