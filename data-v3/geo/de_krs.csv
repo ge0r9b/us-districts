@@ -1,0 +1,402 @@
+code,ags,name,type,parent,n_gem,area_km2
+01001,01001,Flensburg,Kreisfreie Stadt,01,1,49.2865
+01002,01002,Kiel,Kreisfreie Stadt,01,1,112.7985
+01003,01003,Lübeck,Kreisfreie Stadt,01,1,211.7186
+01004,01004,Neumünster,Kreisfreie Stadt,01,1,71.6462
+01051,01051,Dithmarschen,Kreis,01,116,1413.3193
+01053,01053,Herzogtum Lauenburg,Kreis,01,132,1262.8805
+01054,01054,Nordfriesland,Kreis,01,133,2086.4803
+01055,01055,Ostholstein,Kreis,01,36,1386.5752
+01056,01056,Pinneberg,Kreis,01,49,637.9539
+01057,01057,Plön,Kreis,01,85,1082.9706
+01058,01058,Rendsburg-Eckernförde,Kreis,01,165,2169.2614
+01059,01059,Schleswig-Flensburg,Kreis,01,123,1990.931
+01060,01060,Segeberg,Kreis,01,95,1345.7539
+01061,01061,Steinburg,Kreis,01,111,1018.2084
+01062,01062,Stormarn,Kreis,01,55,766.0727
+02000,02000,Hamburg,Kreisfreie Stadt,02,1,742.6179
+03101,03101,Braunschweig,Kreisfreie Stadt,03,1,192.2827
+03102,03102,Salzgitter,Kreisfreie Stadt,03,1,225.2549
+03103,03103,Wolfsburg,Kreisfreie Stadt,03,1,204.9391
+03151,03151,Gifhorn,Landkreis,03,42,1569.1696
+03153,03153,Goslar,Landkreis,03,8,969.1832
+03154,03154,Helmstedt,Landkreis,03,28,675.6809
+03155,03155,Northeim,Landkreis,03,12,1269.664
+03157,03157,Peine,Landkreis,03,7,536.0899
+03158,03158,Wolfenbüttel,Landkreis,03,35,723.992
+03159,03159,Göttingen,Landkreis,03,40,1754.7592
+03241,03241,Region Hannover,Landkreis,03,21,2297.1889
+03251,03251,Diepholz,Landkreis,03,45,1991.0323
+03252,03252,Hameln-Pyrmont,Landkreis,03,8,797.7464
+03254,03254,Hildesheim,Landkreis,03,20,1207.9239
+03255,03255,Holzminden,Landkreis,03,39,694.4924
+03256,03256,Nienburg (Weser),Landkreis,03,36,1400.8825
+03257,03257,Schaumburg,Landkreis,03,38,676.3008
+03351,03351,Celle,Landkreis,03,21,1550.681
+03352,03352,Cuxhaven,Landkreis,03,29,2058.6518
+03353,03353,Harburg,Landkreis,03,42,1249.1172
+03354,03354,Lüchow-Dannenberg,Landkreis,03,29,1226.5477
+03355,03355,Lüneburg,Landkreis,03,43,1327.3571
+03356,03356,Osterholz,Landkreis,03,11,653.3226
+03357,03357,Rotenburg (Wümme),Landkreis,03,57,2073.7554
+03358,03358,Heidekreis,Landkreis,03,23,1881.7454
+03359,03359,Stade,Landkreis,03,40,1209.9328
+03360,03360,Uelzen,Landkreis,03,27,1462.2077
+03361,03361,Verden,Landkreis,03,11,789.1007
+03401,03401,Delmenhorst,Kreisfreie Stadt,03,1,62.4872
+03402,03402,Emden,Kreisfreie Stadt,03,1,111.0907
+03403,03403,Oldenburg (Oldb),Kreisfreie Stadt,03,1,103.7497
+03404,03404,Osnabrück,Kreisfreie Stadt,03,1,120.2082
+03405,03405,Wilhelmshaven,Kreisfreie Stadt,03,1,107.5031
+03451,03451,Ammerland,Landkreis,03,6,730.1447
+03452,03452,Aurich,Landkreis,03,25,1298.2889
+03453,03453,Cloppenburg,Landkreis,03,13,1421.0471
+03454,03454,Emsland,Landkreis,03,60,2883.7789
+03455,03455,Friesland,Landkreis,03,8,618.8496
+03456,03456,Grafschaft Bentheim,Landkreis,03,25,982.1004
+03457,03457,Leer,Landkreis,03,20,1067.6405
+03458,03458,Oldenburg,Landkreis,03,15,1064.9999
+03459,03459,Osnabrück,Landkreis,03,34,2121.0299
+03460,03460,Vechta,Landkreis,03,10,813.8192
+03461,03461,Wesermarsch,Landkreis,03,9,827.9706
+03462,03462,Wittmund,Landkreis,03,19,660.2143
+04011,04011,Bremen,Kreisfreie Stadt,04,1,325.688
+04012,04012,Bremerhaven,Kreisfreie Stadt,04,1,76.7497
+05111,05111,Düsseldorf,Kreisfreie Stadt,05,1,217.585
+05112,05112,Duisburg,Kreisfreie Stadt,05,1,233.2136
+05113,05113,Essen,Kreisfreie Stadt,05,1,210.428
+05114,05114,Krefeld,Kreisfreie Stadt,05,1,136.5587
+05116,05116,Mönchengladbach,Kreisfreie Stadt,05,1,170.6262
+05117,05117,Mülheim an der Ruhr,Kreisfreie Stadt,05,1,91.2881
+05119,05119,Oberhausen,Kreisfreie Stadt,05,1,77.4428
+05120,05120,Remscheid,Kreisfreie Stadt,05,1,74.0852
+05122,05122,Solingen,Kreisfreie Stadt,05,1,88.9959
+05124,05124,Wuppertal,Kreisfreie Stadt,05,1,168.4469
+05154,05154,Kleve,Kreis,05,16,1233.4443
+05158,05158,Mettmann,Kreis,05,10,407.9166
+05162,05162,Rhein-Kreis Neuss,Kreis,05,8,576.4774
+05166,05166,Viersen,Kreis,05,9,563.6159
+05170,05170,Wesel,Kreis,05,13,1042.2979
+05314,05314,Bonn,Kreisfreie Stadt,05,1,141.6065
+05315,05315,Köln,Kreisfreie Stadt,05,1,406.7723
+05316,05316,Leverkusen,Kreisfreie Stadt,05,1,78.7821
+05334,05334,Städteregion Aachen,Kreis,05,10,704.4244
+05358,05358,Düren,Kreis,05,15,940.4647
+05362,05362,Rhein-Erft-Kreis,Kreis,05,10,703.0084
+05366,05366,Euskirchen,Kreis,05,11,1250.2321
+05370,05370,Heinsberg,Kreis,05,10,627.3806
+05374,05374,Oberbergischer Kreis,Kreis,05,13,918.2356
+05378,05378,Rheinisch-Bergischer Kreis,Kreis,05,8,438.0884
+05382,05382,Rhein-Sieg-Kreis,Kreis,05,19,1152.3533
+05512,05512,Bottrop,Kreisfreie Stadt,05,1,100.2532
+05513,05513,Gelsenkirchen,Kreisfreie Stadt,05,1,105.3494
+05515,05515,Münster,Kreisfreie Stadt,05,1,303.5625
+05554,05554,Borken,Kreis,05,17,1421.3639
+05558,05558,Coesfeld,Kreis,05,11,1112.3187
+05562,05562,Recklinghausen,Kreis,05,10,761.3817
+05566,05566,Steinfurt,Kreis,05,24,1795.4129
+05570,05570,Warendorf,Kreis,05,13,1318.5525
+05711,05711,Bielefeld,Kreisfreie Stadt,05,1,259.2069
+05754,05754,Gütersloh,Kreis,05,13,969.6048
+05758,05758,Herford,Kreis,05,9,450.7037
+05762,05762,Höxter,Kreis,05,10,1200.706
+05766,05766,Lippe,Kreis,05,16,1245.8534
+05770,05770,Minden-Lübbecke,Kreis,05,11,1152.0217
+05774,05774,Paderborn,Kreis,05,10,1246.8076
+05911,05911,Bochum,Kreisfreie Stadt,05,1,144.8038
+05913,05913,Dortmund,Kreisfreie Stadt,05,1,279.6661
+05914,05914,Hagen,Kreisfreie Stadt,05,1,160.3167
+05915,05915,Hamm,Kreisfreie Stadt,05,1,227.7202
+05916,05916,Herne,Kreisfreie Stadt,05,1,51.5096
+05954,05954,Ennepe-Ruhr-Kreis,Kreis,05,9,410.9313
+05958,05958,Hochsauerlandkreis,Kreis,05,12,1959.9042
+05962,05962,Märkischer Kreis,Kreis,05,15,1060.657
+05966,05966,Olpe,Kreis,05,7,711.9484
+05970,05970,Siegen-Wittgenstein,Kreis,05,11,1134.0178
+05974,05974,Soest,Kreis,05,14,1329.5747
+05978,05978,Unna,Kreis,05,10,542.8407
+06411,06411,Darmstadt,Kreisfreie Stadt,06,1,122.7638
+06412,06412,Frankfurt am Main,Kreisfreie Stadt,06,1,248.554
+06413,06413,Offenbach am Main,Kreisfreie Stadt,06,1,45.28
+06414,06414,Wiesbaden,Kreisfreie Stadt,06,1,203.8352
+06415,06415,Hanau,Kreisfreie Stadt,06,1,77.2224
+06431,06431,Bergstraße,Landkreis,06,23,718.8867
+06432,06432,Darmstadt-Dieburg,Landkreis,06,23,658.1006
+06433,06433,Groß-Gerau,Landkreis,06,14,452.9271
+06434,06434,Hochtaunuskreis,Landkreis,06,13,480.9
+06435,06435,Main-Kinzig-Kreis,Landkreis,06,29,1319.6495
+06436,06436,Main-Taunus-Kreis,Landkreis,06,12,221.5813
+06437,06437,Odenwaldkreis,Landkreis,06,12,624.7808
+06438,06438,Offenbach,Landkreis,06,13,356.3332
+06439,06439,Rheingau-Taunus-Kreis,Landkreis,06,17,811.9153
+06440,06440,Wetteraukreis,Landkreis,06,25,1100.7701
+06531,06531,Gießen,Landkreis,06,18,855.4045
+06532,06532,Lahn-Dill-Kreis,Landkreis,06,23,1065.7069
+06533,06533,Limburg-Weilburg,Landkreis,06,19,738.8086
+06534,06534,Marburg-Biedenkopf,Landkreis,06,22,1262.1777
+06535,06535,Vogelsbergkreis,Landkreis,06,19,1458.2792
+06611,06611,Kassel,Kreisfreie Stadt,06,1,105.0042
+06631,06631,Fulda,Landkreis,06,23,1381.3952
+06632,06632,Hersfeld-Rotenburg,Landkreis,06,20,1097.7307
+06633,06633,Kassel,Landkreis,06,29,1294.8175
+06634,06634,Schwalm-Eder-Kreis,Landkreis,06,27,1539.7191
+06635,06635,Waldeck-Frankenberg,Landkreis,06,21,1847.8691
+06636,06636,Werra-Meißner-Kreis,Landkreis,06,17,1024.6487
+07111,07111,Koblenz,Kreisfreie Stadt,07,1,105.8943
+07131,07131,Ahrweiler,Landkreis,07,74,787.0412
+07132,07132,Altenkirchen (Westerwald),Landkreis,07,118,641.2111
+07133,07133,Bad Kreuznach,Landkreis,07,118,864.1475
+07134,07134,Birkenfeld,Landkreis,07,96,776.5669
+07135,07135,Cochem-Zell,Landkreis,07,89,693.0726
+07137,07137,Mayen-Koblenz,Landkreis,07,87,816.5172
+07138,07138,Neuwied,Landkreis,07,62,627.6173
+07140,07140,Rhein-Hunsrück-Kreis,Landkreis,07,137,991.2198
+07141,07141,Rhein-Lahn-Kreis,Landkreis,07,137,781.4949
+07143,07143,Westerwaldkreis,Landkreis,07,192,990.1815
+07211,07211,Trier,Kreisfreie Stadt,07,1,115.6045
+07231,07231,Bernkastel-Wittlich,Landkreis,07,107,1168.696
+07232,07232,Eifelkreis Bitburg-Prüm,Landkreis,07,233,1627.9706
+07233,07233,Vulkaneifel,Landkreis,07,109,911.6172
+07235,07235,Trier-Saarburg,Landkreis,07,104,1105.3389
+07311,07311,Frankenthal (Pfalz),Kreisfreie Stadt,07,1,43.7815
+07312,07312,Kaiserslautern,Kreisfreie Stadt,07,1,140.3391
+07313,07313,Landau in der Pfalz,Kreisfreie Stadt,07,1,82.9838
+07314,07314,Ludwigshafen am Rhein,Kreisfreie Stadt,07,1,78.0074
+07315,07315,Mainz,Kreisfreie Stadt,07,1,97.6265
+07316,07316,Neustadt an der Weinstraße,Kreisfreie Stadt,07,1,117.191
+07317,07317,Pirmasens,Kreisfreie Stadt,07,1,61.614
+07318,07318,Speyer,Kreisfreie Stadt,07,1,42.8712
+07319,07319,Worms,Kreisfreie Stadt,07,1,108.8045
+07320,07320,Zweibrücken,Kreisfreie Stadt,07,1,70.801
+07331,07331,Alzey-Worms,Landkreis,07,69,588.1074
+07332,07332,Bad Dürkheim,Landkreis,07,48,593.989
+07333,07333,Donnersbergkreis,Landkreis,07,81,644.6326
+07334,07334,Germersheim,Landkreis,07,31,463.3302
+07335,07335,Kaiserslautern,Landkreis,07,50,640.571
+07336,07336,Kusel,Landkreis,07,98,573.8118
+07337,07337,Südliche Weinstraße,Landkreis,07,75,639.687
+07338,07338,Rhein-Pfalz-Kreis,Landkreis,07,25,304.3841
+07339,07339,Mainz-Bingen,Landkreis,07,64,605.6263
+07340,07340,Südwestpfalz,Landkreis,07,84,954.087
+08111,08111,Stuttgart,Stadtkreis,08,1,209.9502
+08115,08115,Böblingen,Landkreis,08,26,617.167
+08116,08116,Esslingen,Landkreis,08,44,639.7909
+08117,08117,Göppingen,Landkreis,08,38,642.5488
+08118,08118,Ludwigsburg,Landkreis,08,39,686.6381
+08119,08119,Rems-Murr-Kreis,Landkreis,08,31,857.4328
+08121,08121,Heilbronn,Stadtkreis,08,1,100.6317
+08125,08125,Heilbronn,Landkreis,08,46,1098.6277
+08126,08126,Hohenlohekreis,Landkreis,08,16,777.1404
+08127,08127,Schwäbisch Hall,Landkreis,08,30,1483.9625
+08128,08128,Main-Tauber-Kreis,Landkreis,08,18,1304.8209
+08135,08135,Heidenheim,Landkreis,08,11,627.3728
+08136,08136,Ostalbkreis,Landkreis,08,42,1510.4533
+08211,08211,Baden-Baden,Stadtkreis,08,1,139.9678
+08212,08212,Karlsruhe,Stadtkreis,08,1,174.0844
+08215,08215,Karlsruhe,Landkreis,08,32,1084.4949
+08216,08216,Rastatt,Landkreis,08,23,738.7381
+08221,08221,Heidelberg,Stadtkreis,08,1,109.175
+08222,08222,Mannheim,Stadtkreis,08,1,145.2809
+08225,08225,Neckar-Odenwald-Kreis,Landkreis,08,27,1125.8196
+08226,08226,Rhein-Neckar-Kreis,Landkreis,08,54,1060.8718
+08231,08231,Pforzheim,Stadtkreis,08,1,98.2409
+08235,08235,Calw,Landkreis,08,25,797.5942
+08236,08236,Enzkreis,Landkreis,08,28,573.0137
+08237,08237,Freudenstadt,Landkreis,08,16,870.8902
+08311,08311,Freiburg im Breisgau,Stadtkreis,08,1,153.8488
+08315,08315,Breisgau-Hochschwarzwald,Landkreis,08,50,1377.6648
+08316,08316,Emmendingen,Landkreis,08,24,680.3809
+08317,08317,Ortenaukreis,Landkreis,08,52,1859.8436
+08325,08325,Rottweil,Landkreis,08,21,769.5008
+08326,08326,Schwarzwald-Baar-Kreis,Landkreis,08,20,1025.9049
+08327,08327,Tuttlingen,Landkreis,08,35,734.058
+08335,08335,Konstanz,Landkreis,08,25,817.2087
+08336,08336,Lörrach,Landkreis,08,35,807.1135
+08337,08337,Waldshut,Landkreis,08,32,1130.8227
+08415,08415,Reutlingen,Landkreis,08,27,1092.2606
+08416,08416,Tübingen,Landkreis,08,15,519.8744
+08417,08417,Zollernalbkreis,Landkreis,08,25,917.3295
+08421,08421,Ulm,Stadtkreis,08,1,119.2455
+08425,08425,Alb-Donau-Kreis,Landkreis,08,55,1357.3945
+08426,08426,Biberach,Landkreis,08,45,1409.9447
+08435,08435,Bodenseekreis,Landkreis,08,23,665.1942
+08436,08436,Ravensburg,Landkreis,08,39,1631.895
+08437,08437,Sigmaringen,Landkreis,08,25,1204.6854
+09161,09161,Ingolstadt,Kreisfreie Stadt,09,1,133.4375
+09162,09162,München,Kreisfreie Stadt,09,1,311.4189
+09163,09163,Rosenheim,Kreisfreie Stadt,09,1,36.9543
+09171,09171,Altötting,Landkreis,09,24,569.3509
+09172,09172,Berchtesgadener Land,Landkreis,09,17,839.7992
+09173,09173,Bad Tölz-Wolfratshausen,Landkreis,09,23,1111.6833
+09174,09174,Dachau,Landkreis,09,17,579.5772
+09175,09175,Ebersberg,Landkreis,09,24,549.8379
+09176,09176,Eichstätt,Landkreis,09,31,1214.3717
+09177,09177,Erding,Landkreis,09,26,870.8748
+09178,09178,Freising,Landkreis,09,24,798.5055
+09179,09179,Fürstenfeldbruck,Landkreis,09,23,434.6124
+09180,09180,Garmisch-Partenkirchen,Landkreis,09,23,1011.9203
+09181,09181,Landsberg am Lech,Landkreis,09,32,803.733
+09182,09182,Miesbach,Landkreis,09,17,866.758
+09183,09183,Mühldorf a.Inn,Landkreis,09,32,804.9884
+09184,09184,München,Landkreis,09,32,663.9892
+09185,09185,Neuburg-Schrobenhausen,Landkreis,09,18,740.0491
+09186,09186,Pfaffenhofen a.d.Ilm,Landkreis,09,19,760.9067
+09187,09187,Rosenheim,Landkreis,09,48,1440.3934
+09188,09188,Starnberg,Landkreis,09,15,486.8396
+09189,09189,Traunstein,Landkreis,09,37,1533.0094
+09190,09190,Weilheim-Schongau,Landkreis,09,34,967.3496
+09261,09261,Landshut,Kreisfreie Stadt,09,1,66.5218
+09262,09262,Passau,Kreisfreie Stadt,09,1,70.1073
+09263,09263,Straubing,Kreisfreie Stadt,09,1,67.6493
+09271,09271,Deggendorf,Landkreis,09,26,861.2567
+09272,09272,Freyung-Grafenau,Landkreis,09,36,983.7737
+09273,09273,Kelheim,Landkreis,09,26,1064.7803
+09274,09274,Landshut,Landkreis,09,35,1347.1366
+09275,09275,Passau,Landkreis,09,38,1530.2262
+09276,09276,Regen,Landkreis,09,24,974.8117
+09277,09277,Rottal-Inn,Landkreis,09,31,1281.0346
+09278,09278,Straubing-Bogen,Landkreis,09,37,1200.9488
+09279,09279,Dingolfing-Landau,Landkreis,09,15,877.3801
+09361,09361,Amberg,Kreisfreie Stadt,09,1,50.4053
+09362,09362,Regensburg,Kreisfreie Stadt,09,1,79.7065
+09363,09363,Weiden i.d.OPf.,Kreisfreie Stadt,09,1,70.605
+09371,09371,Amberg-Sulzbach,Landkreis,09,28,1255.0923
+09372,09372,Cham,Landkreis,09,39,1526.958
+09373,09373,Neumarkt i.d.OPf.,Landkreis,09,19,1344.5352
+09374,09374,Neustadt a.d.Waldnaab,Landkreis,09,40,1426.4712
+09375,09375,Regensburg,Landkreis,09,43,1393.0379
+09376,09376,Schwandorf,Landkreis,09,34,1458.426
+09377,09377,Tirschenreuth,Landkreis,09,26,1084.5349
+09461,09461,Bamberg,Kreisfreie Stadt,09,1,54.9764
+09462,09462,Bayreuth,Kreisfreie Stadt,09,1,67.0276
+09463,09463,Coburg,Kreisfreie Stadt,09,1,48.0173
+09464,09464,Hof,Kreisfreie Stadt,09,1,58.1598
+09471,09471,Bamberg,Landkreis,09,46,1166.9473
+09472,09472,Bayreuth,Landkreis,09,43,1275.2602
+09473,09473,Coburg,Landkreis,09,19,591.0165
+09474,09474,Forchheim,Landkreis,09,29,642.9213
+09475,09475,Hof,Landkreis,09,28,893.676
+09476,09476,Kronach,Landkreis,09,19,651.4759
+09477,09477,Kulmbach,Landkreis,09,22,658.0043
+09478,09478,Lichtenfels,Landkreis,09,13,519.6766
+09479,09479,Wunsiedel i.Fichtelgebirge,Landkreis,09,22,606.1852
+09561,09561,Ansbach,Kreisfreie Stadt,09,1,99.846
+09562,09562,Erlangen,Kreisfreie Stadt,09,1,78.0147
+09563,09563,Fürth,Kreisfreie Stadt,09,1,63.3418
+09564,09564,Nürnberg,Kreisfreie Stadt,09,1,187.6759
+09565,09565,Schwabach,Kreisfreie Stadt,09,1,40.8253
+09571,09571,Ansbach,Landkreis,09,59,1972.8271
+09572,09572,Erlangen-Höchstadt,Landkreis,09,35,564.5165
+09573,09573,Fürth,Landkreis,09,14,307.1045
+09574,09574,Nürnberger Land,Landkreis,09,41,797.6321
+09575,09575,Neustadt a.d.Aisch-Bad Windsheim,Landkreis,09,39,1267.9575
+09576,09576,Roth,Landkreis,09,21,895.1679
+09577,09577,Weißenburg-Gunzenhausen,Landkreis,09,27,970.259
+09661,09661,Aschaffenburg,Kreisfreie Stadt,09,1,61.9787
+09662,09662,Schweinfurt,Kreisfreie Stadt,09,1,35.7057
+09663,09663,Würzburg,Kreisfreie Stadt,09,1,87.7633
+09671,09671,Aschaffenburg,Landkreis,09,40,699.117
+09672,09672,Bad Kissingen,Landkreis,09,38,1137.6327
+09673,09673,Rhön-Grabfeld,Landkreis,09,45,1021.6324
+09674,09674,Haßberge,Landkreis,09,26,956.5133
+09675,09675,Kitzingen,Landkreis,09,31,683.9109
+09676,09676,Miltenberg,Landkreis,09,34,715.2659
+09677,09677,Main-Spessart,Landkreis,09,50,1321.8767
+09678,09678,Schweinfurt,Landkreis,09,36,841.2308
+09679,09679,Würzburg,Landkreis,09,55,967.1366
+09761,09761,Augsburg,Kreisfreie Stadt,09,1,146.5075
+09762,09762,Kaufbeuren,Kreisfreie Stadt,09,1,40.4319
+09763,09763,Kempten (Allgäu),Kreisfreie Stadt,09,1,63.2486
+09764,09764,Memmingen,Kreisfreie Stadt,09,1,69.8078
+09771,09771,Aichach-Friedberg,Landkreis,09,24,779.8217
+09772,09772,Augsburg,Landkreis,09,47,1071.4931
+09773,09773,Dillingen a.d.Donau,Landkreis,09,27,791.7012
+09774,09774,Günzburg,Landkreis,09,36,763.3158
+09775,09775,Neu-Ulm,Landkreis,09,21,515.6698
+09776,09776,Lindau (Bodensee),Landkreis,09,19,323.2268
+09777,09777,Ostallgäu,Landkreis,09,45,1393.2221
+09778,09778,Unterallgäu,Landkreis,09,53,1229.8765
+09779,09779,Donau-Ries,Landkreis,09,46,1274.1667
+09780,09780,Oberallgäu,Landkreis,09,29,1528.353
+10041,10041,Regionalverband Saarbrücken,Landkreis,10,10,411.4948
+10042,10042,Merzig-Wadern,Landkreis,10,7,556.9805
+10043,10043,Neunkirchen,Landkreis,10,7,248.1428
+10044,10044,Saarlouis,Landkreis,10,13,458.9859
+10045,10045,Saarpfalz-Kreis,Landkreis,10,7,419.0946
+10046,10046,St. Wendel,Landkreis,10,8,476.4068
+11000,11000,Berlin,Kreisfreie Stadt,11,1,891.7793
+12051,12051,Brandenburg an der Havel,Kreisfreie Stadt,12,1,229.5513
+12052,12052,Cottbus,Kreisfreie Stadt,12,1,165.0329
+12053,12053,Frankfurt (Oder),Kreisfreie Stadt,12,1,147.7762
+12054,12054,Potsdam,Kreisfreie Stadt,12,1,186.9601
+12060,12060,Barnim,Landkreis,12,25,1480.9938
+12061,12061,Dahme-Spreewald,Landkreis,12,37,2276.0069
+12062,12062,Elbe-Elster,Landkreis,12,33,1899.9687
+12063,12063,Havelland,Landkreis,12,26,1726.7836
+12064,12064,Märkisch-Oderland,Landkreis,12,45,2157.5472
+12065,12065,Oberhavel,Landkreis,12,19,1807.6988
+12066,12066,Oberspreewald-Lausitz,Landkreis,12,25,1223.1828
+12067,12067,Oder-Spree,Landkreis,12,37,2257.3753
+12068,12068,Ostprignitz-Ruppin,Landkreis,12,23,2526.5814
+12069,12069,Potsdam-Mittelmark,Landkreis,12,38,2592.9864
+12070,12070,Prignitz,Landkreis,12,26,2138.6699
+12071,12071,Spree-Neiße,Landkreis,12,29,1657.1008
+12072,12072,Teltow-Fläming,Landkreis,12,16,2103.6357
+12073,12073,Uckermark,Landkreis,12,30,3076.1102
+13003,13003,Rostock,Kreisfreie Stadt,13,1,170.0532
+13004,13004,Schwerin,Kreisfreie Stadt,13,1,130.1064
+13071,13071,Mecklenburgische Seenplatte,Landkreis,13,146,5495.2895
+13072,13072,Rostock,Landkreis,13,112,3429.2979
+13073,13073,Vorpommern-Rügen,Landkreis,13,101,3163.6593
+13074,13074,Nordwestmecklenburg,Landkreis,13,83,2125.3267
+13075,13075,Vorpommern-Greifswald,Landkreis,13,138,3793.6756
+13076,13076,Ludwigslust-Parchim,Landkreis,13,142,4767.2827
+14511,14511,Chemnitz,Kreisfreie Stadt,14,1,221.0226
+14521,14521,Erzgebirgskreis,Landkreis,14,59,1826.9992
+14522,14522,Mittelsachsen,Landkreis,14,52,2114.9039
+14523,14523,Vogtlandkreis,Landkreis,14,37,1412.3162
+14524,14524,Zwickau,Landkreis,14,33,949.6198
+14612,14612,Dresden,Kreisfreie Stadt,14,1,328.0937
+14625,14625,Bautzen,Landkreis,14,57,2395.6176
+14626,14626,Görlitz,Landkreis,14,53,2111.1408
+14627,14627,Meißen,Landkreis,14,28,1457.2637
+14628,14628,Sächsische Schweiz-Osterzgebirge,Landkreis,14,36,1653.7827
+14713,14713,Leipzig,Kreisfreie Stadt,14,1,298.9223
+14729,14729,Leipzig,Landkreis,14,30,1651.6868
+14730,14730,Nordsachsen,Landkreis,14,30,2027.4931
+15001,15001,Dessau-Roßlau,Kreisfreie Stadt,15,1,246.2483
+15002,15002,Halle (Saale),Kreisfreie Stadt,15,1,135.8274
+15003,15003,Magdeburg,Kreisfreie Stadt,15,1,201.0546
+15081,15081,Altmarkkreis Salzwedel,Landkreis,15,13,2303.7709
+15082,15082,Anhalt-Bitterfeld,Landkreis,15,10,1460.7662
+15083,15083,Börde,Landkreis,15,34,2376.9855
+15084,15084,Burgenlandkreis,Landkreis,15,33,1419.0374
+15085,15085,Harz,Landkreis,15,20,2108.3512
+15086,15086,Jerichower Land,Landkreis,15,8,1589.3429
+15087,15087,Mansfeld-Südharz,Landkreis,15,22,1456.2831
+15088,15088,Saalekreis,Landkreis,15,20,1440.2567
+15089,15089,Salzlandkreis,Landkreis,15,21,1434.7631
+15090,15090,Stendal,Landkreis,15,25,2437.0458
+15091,15091,Wittenberg,Landkreis,15,9,1942.8618
+16051,16051,Erfurt,Kreisfreie Stadt,16,1,270.3963
+16052,16052,Gera,Kreisfreie Stadt,16,1,152.228
+16053,16053,Jena,Kreisfreie Stadt,16,1,114.7748
+16054,16054,Suhl,Kreisfreie Stadt,16,1,142.7987
+16055,16055,Weimar,Kreisfreie Stadt,16,1,84.3615
+16061,16061,Eichsfeld,Landkreis,16,56,1001.5722
+16062,16062,Nordhausen,Landkreis,16,15,714.238
+16063,16063,Wartburgkreis,Landkreis,16,30,1365.9399
+16064,16064,Unstrut-Hainich-Kreis,Landkreis,16,25,924.3744
+16065,16065,Kyffhäuserkreis,Landkreis,16,28,1037.763
+16066,16066,Schmalkalden-Meiningen,Landkreis,16,38,1251.0668
+16067,16067,Gotha,Landkreis,16,29,935.8716
+16068,16068,Sömmerda,Landkreis,16,37,806.9915
+16069,16069,Hildburghausen,Landkreis,16,32,937.7626
+16070,16070,Ilm-Kreis,Landkreis,16,16,803.6513
+16071,16071,Weimarer Land,Landkreis,16,35,804.5468
+16072,16072,Sonneberg,Landkreis,16,8,460.696
+16073,16073,Saalfeld-Rudolstadt,Landkreis,16,26,1008.7865
+16074,16074,Saale-Holzland-Kreis,Landkreis,16,91,815.636
+16075,16075,Saale-Orla-Kreis,Landkreis,16,59,1151.6772
+16076,16076,Greiz,Landkreis,16,42,846.191
+16077,16077,Altenburger Land,Landkreis,16,29,569.4967
