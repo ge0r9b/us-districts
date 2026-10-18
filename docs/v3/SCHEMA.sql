@@ -396,6 +396,7 @@ create table officeholder (
   entity_id     bigint references entity(id),         -- chamber ('us-house', 'al-house')
   seat          text,                                 -- multi-member seats
   person_id     text references person(person_id) on update cascade,
+  name          text not null,                        -- name as recorded in the roster row
   party         text,
   status        text not null,                        -- 'elected','serving','serving_at_2025-04-01','vacant'
   valid_from    date,
@@ -404,6 +405,7 @@ create table officeholder (
   source_id     bigint references source(id),
   source_commit text,                                 -- upstream commit (congress-legislators, OpenStates)
   check (status <> 'vacant' or person_id is null),
+  unique nulls not distinct (unit_id, seat, person_id, valid_from),
   check (valid_to is null or valid_from is null or valid_to >= valid_from)
 );
 create index officeholder_unit_dates on officeholder (unit_id, valid_from, valid_to);
@@ -509,23 +511,3 @@ create table geocode_cache (
 -- create role usd_api login password '...' (set at provisioning time, not here);
 -- grant usage on schema usd to usd_api; grant select on all tables in schema usd to usd_api;
 -- Private/shared boundary sets are filtered in the API by tenant (and later RLS on unit/boundary_set).
-
-
--- Proposed (Oct 18, 2026 drift check; data-v3/inst on data/inst-officeholders).
--- Who holds a seat, per unit and date range. Vintage-aware like results: a 2020 House
--- member is joined to the cd116 unit, a current one to cd119.
-create table officeholder (
-  id           bigserial primary key,
-  unit_id      bigint not null references unit(id),
-  entity_id    bigint references entity(id),            -- chamber / body, e.g. us-house, pa-senate
-  seat         text,                                     -- multi-member seats (NH floterial etc.)
-  person_key   text not null,                            -- 'bioguide:B001323', 'ocd-person/<uuid>'
-  name         text not null,
-  party        text,
-  status       text not null default 'serving',          -- serving | vacant | ...
-  term_start   date,
-  term_end     date,
-  source_id    bigint references source(id),
-  unique (unit_id, seat, person_key, term_start)
-);
-create index officeholder_unit on officeholder (unit_id);
