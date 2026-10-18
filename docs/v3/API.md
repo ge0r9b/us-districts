@@ -37,7 +37,8 @@ Filter: `year`, `office`, `state`, `district`, `kind` (candidate|measure|poll), 
   "answers":[{"key":"dem_nominee","label":"Harris","candidate":"harris-kamala-d","party":"dem","color":"#2563eb"},
              {"key":"rep_nominee","label":"Trump","candidate":"trump-donald-j","party":"rep","color":"#dc2626"},
              {"key":"other","label":"All other","aggregate":true}],
-  "unit_types":["state","county","precinct","ushouse","sldu","sldl","school"]}],
+  "unit_types":["state","county","precinct","ushouse","sldu","sldl","school_unified","school_elementary","school_secondary"],
+  "categories":["state","county","precinct","congressional","legislative_upper","legislative_lower","school_district"]}],
  "next":null}
 ```
 
@@ -56,7 +57,7 @@ The same data is pre-built as a static **pack** for every past contest × unit t
 
 ### `GET /aggregate`
 Bar-list rows for a scope, **sorted high to low**. This is the endpoint behind list-all and the list view's bars.
-Params: `contest` (1, or 2+ for delta/range: the first and last selected years define the delta), `scope` (unit or entity key: `us`, `PA`, `PA|Erie County`, `us-pa-house`), `child_type` (state|county|county_subdivision|precinct|ushouse|sldu|sldl|school), `sort_answer` (answer key; default = the selected answer, else the leader), `sort` (`share`|`votes`|`delta_margin`), `dir` (`desc` default | `asc`), `fmt`, `limit`, `cursor`.
+Params: `contest` (1, or 2+ for delta/range: the first and last selected years define the delta), `scope` (unit or entity key: `us`, `PA`, `PA|Erie County`, `us-pa-house`), `child_type` (a unit type, or a category such as `school_district`, which lists all three school types as one list, as v2 does), `sort_answer` (answer key; default = the selected answer, else the leader), `sort` (`share`|`votes`|`delta_margin`), `dir` (`desc` default | `asc`), `fmt`, `limit`, `cursor`.
 ```json
 {"dv":42,"scope":{"key":"PA","name":"Pennsylvania","total":{"votes":[3423042,3543308,67856],"est":false}},
  "child_type":"county","sort":{"answer":"rep_nominee","by":"share","dir":"desc"},

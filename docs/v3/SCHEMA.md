@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 60 statements; re-checked after the 2016 update) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 65 statements; re-checked after the Q-G4 update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
@@ -18,6 +18,7 @@
 | Geography | `boundary_set` | A vintage of one unit type (`tiger-2024-sldl`, `precincts-2024`). It holds `owner_tenant_id`, `visibility` (public/shared/private), `license_id`, `price_tier`, `tiles_url` and `is_current`. |
 | | `boundary_set_grant` | Lets other tenants read a `shared` set. |
 | | `boundary_set_default` | Maps a bot row's (unit_type, year) to the boundary set it lands on. |
+| | `unit_type_def`, `unit_category` | Unit types and their parent category. The three school types `school_unified` / `school_elementary` / `school_secondary` (TIGER UNSD / ELSD / SCSD) share the category `school_district`, which is the one "School districts" list in the UI (Q-G4). |
 | | `unit` | One polygon in one set. `unit_key` is the bot's `unit_id`, unique per set. Holds `parent_unit_id` (precinct → county → state), centroid and bbox. |
 | | `unit_geom` | Geometry per level of detail: lod 0 is full detail, used for point-in-polygon and weighting; lods 1–3 are simplified for low zooms and the dynamic-tile fallback. |
 | | `unit_crosswalk` | Overlap weights between units: precinct → district, and 2020 precinct → 2024 precinct (the `x20` files in v2). |
@@ -32,6 +33,7 @@
 
 ## Institution vs geography (the top and bottom filters)
 - A **unit** is a polygon: a precinct, county, county subdivision (town/township), place, state, US House, state senate (`sldu`), state house (`sldl`), school district, or DC ward (v2 build 1559).
+- **School districts (Q-G4, decided Oct 18, 2026):** three unit types `school_unified`, `school_elementary` and `school_secondary`, mapped 1:1 from TIGER UNSD / ELSD / SCSD (`schools.csv` `tiger_set`: unsd 10,872, elsd 1,952, scsd 481). All three belong to the parent category `school_district` (`unit_type_def.category`). Lists and aggregates group by category, so the UI keeps v2's single "School districts" list. Point-in-polygon may return one unified district, or one elementary plus one secondary district, for the same address.
 - An **entity** is something the institution filter can select: a country or state (sovereign); a county, city, town, township or borough (incorporated); a legislature or chamber, a school district or an office (body); later a company (private).
 - Most governments are both. The `Pennsylvania` entity points at the `PA` state unit through `entity_unit(role='jurisdiction')`. This is the spec's "two rows" unisearch rule (an institution row and a Place row), linked by shared names, not shared code.
 - **Legislatures:** the entity `us-pa-house` (chamber) has one `seat_district` link per `sldl` unit. A contest `2024|PA|state_house|101` points at that chamber's office and at its district unit.
@@ -65,8 +67,8 @@
 | Point → all units (geocode) | `unit_geom_gist_lod0` (partial GiST, lod 0 only) |
 | Low-zoom bbox (dynamic MVT fallback) | `unit_geom_gist_lod2` |
 | List children of a unit (drill-down) | `unit_parent`, `unit_contest_agg_parent` |
-| All counties/districts of a state for a contest | `unit_contest_agg_list (contest_id, unit_type, state_abbr)` |
-| Bar list sorted high → low | `answer_share_sorted (..., share desc nulls last)`: an index range scan, no sort step |
+| All counties/districts of a state for a contest | `unit_contest_agg_list (contest_id, unit_type, state_abbr)`; one list across the three school types: `unit_contest_agg_cat (contest_id, category, state_abbr)` |
+| Bar list sorted high → low (per category, so the three school types rank together) | `answer_share_sorted (contest_id, category, state_abbr, answer_key, share desc nulls last)`: an index range scan, no sort step |
 | Results for one unit across contests (pop-up, time slider) | `result_unit (unit_id, contest_id)` |
 | Name search in both filters | `unit_name_trgm`, `entity_name_trgm` (pg_trgm), `alias_alias` (prefix) |
 | Contest picker | `contest_year_office`, `contest_state_year` |

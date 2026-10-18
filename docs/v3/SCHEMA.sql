@@ -52,13 +52,41 @@ create table source (
 -- 2. Geography: boundary sets, units, geometry
 -- ---------------------------------------------------------------------------
 
+-- Unit types and their shared parent category (Q-G4, orchestrator, Oct 18, 2026): three school types matching
+-- TIGER UNSD / ELSD / SCSD, all under the category 'school_district', so the UI can list them as one
+-- "School districts" list while each unit keeps the board voters actually elect. Elementary and secondary
+-- districts overlap (CA, IL, AZ, MT ...), so one point may resolve to several school units.
+create table unit_category (
+  category    text primary key,                    -- 'school_district', 'legislative', 'congressional', 'county', ...
+  label       text not null                        -- UI list label: 'School districts'
+);
+create table unit_type_def (
+  unit_type   text primary key,
+  category    text not null references unit_category(category),
+  label       text not null,                       -- 'Unified school district'
+  tiger_set   text                                 -- 'unsd','elsd','scsd','cd','sldu','sldl','county','cousub','place','state'
+);
+insert into unit_category (category, label) values
+  ('country','Countries'), ('state','States'), ('county','Counties'), ('town','Towns'), ('place','Places'),
+  ('precinct','Precincts'), ('congressional','US House districts'), ('legislative_upper','State senate districts'),
+  ('legislative_lower','State house districts'), ('school_district','School districts'), ('ward','Wards'), ('custom','Custom');
+insert into unit_type_def (unit_type, category, label, tiger_set) values
+  ('country','country','Country',null), ('state','state','State','state'), ('county','county','County','county'),
+  ('county_subdivision','town','Town / township','cousub'), ('place','place','Place','place'),
+  ('precinct','precinct','Precinct',null), ('ushouse','congressional','US House district','cd'),
+  ('sldu','legislative_upper','State senate district','sldu'), ('sldl','legislative_lower','State house district','sldl'),
+  ('school_unified','school_district','Unified school district','unsd'),
+  ('school_elementary','school_district','Elementary school district','elsd'),
+  ('school_secondary','school_district','Secondary school district','scsd'),
+  ('ward','ward','Ward',null), ('custom','custom','Custom area',null);
+
 -- A coherent set of polygons of one unit type and vintage, e.g. 'tiger-2024-sldl',
 -- 'precincts-2024', 'precincts-2020'. Custom (paid) sets later: owner_tenant_id <> 1,
 -- visibility 'private' or 'shared', license 'proprietary'.
 create table boundary_set (
   id               bigint generated always as identity primary key,
   slug             text not null unique,
-  unit_type        text not null,                    -- see unit.unit_type
+  unit_type        text not null references unit_type_def(unit_type),
   vintage_year     int  not null,                    -- boundary year (2024 = current)
   valid_from       date,
   valid_to         date,                             -- null = still in force
@@ -97,10 +125,7 @@ create table boundary_set_default (
 create table unit (
   id               bigint generated always as identity primary key,
   boundary_set_id  bigint not null references boundary_set(id),
-  unit_type        text not null check (unit_type in (
-                     'country','state','county','county_subdivision','place','precinct',
-                     'ushouse','sldu','sldl','school_unified','school_elementary','school_secondary','school',
-                     'ward','custom')),
+  unit_type        text not null references unit_type_def(unit_type),  -- category via unit_type_def (school_* -> school_district)
   unit_key         text not null,                    -- canonical key = TIGER GEOID where one exists ('42001' county,
                                                    -- '4201' CD ...), else the bot's unit_id (precincts: 'PA|Erie County|420491492')
   legacy_key       text,                             -- v2 name key ('Pennsylvania|Erie County', 'Ohio|<school name> (<county>)'); unique per
@@ -330,6 +355,7 @@ create materialized view unit_contest_agg as
 select r.contest_id,
        r.unit_id,
        u.unit_type,
+       t.category,
        u.parent_unit_id,
        u.state_abbr,
        sum(r.weighted_votes)                                         as total,
@@ -339,29 +365,32 @@ select r.contest_id,
 from result r
 join answer a on a.id = r.answer_id
 join unit   u on u.id = r.unit_id
-group by r.contest_id, r.unit_id, u.unit_type, u.parent_unit_id, u.state_abbr;
+join unit_type_def t on t.unit_type = u.unit_type
+group by r.contest_id, r.unit_id, u.unit_type, t.category, u.parent_unit_id, u.state_abbr;
 create unique index unit_contest_agg_pk on unit_contest_agg (contest_id, unit_id);
 create index unit_contest_agg_list on unit_contest_agg (contest_id, unit_type, state_abbr);
+create index unit_contest_agg_cat on unit_contest_agg (contest_id, category, state_abbr);  -- one 'School districts' list
 create index unit_contest_agg_parent on unit_contest_agg (contest_id, parent_unit_id);
 
 -- Bar-list rows: one row per contest x unit x answer with share and rank, so
 -- "sorted high to low" is an index range scan, not a sort.
 create materialized view answer_share as
 with s as (
-  select r.contest_id, r.unit_id, u.unit_type, u.parent_unit_id, u.state_abbr, a.answer_key,
+  select r.contest_id, r.unit_id, u.unit_type, t.category, u.parent_unit_id, u.state_abbr, a.answer_key,
          r.weighted_votes as votes,
          r.weighted_votes / nullif(sum(r.weighted_votes) over (partition by r.contest_id, r.unit_id), 0) as share,
          r.is_estimate
   from result r
   join answer a on a.id = r.answer_id
   join unit   u on u.id = r.unit_id
+  join unit_type_def t on t.unit_type = u.unit_type
 )
 select s.*,
-       rank() over (partition by contest_id, unit_type, state_abbr, answer_key
+       rank() over (partition by contest_id, category, state_abbr, answer_key
                     order by share desc nulls last) as rank_in_list
 from s;
 create unique index answer_share_pk on answer_share (contest_id, unit_id, answer_key);
-create index answer_share_sorted on answer_share (contest_id, unit_type, state_abbr, answer_key, share desc nulls last);
+create index answer_share_sorted on answer_share (contest_id, category, state_abbr, answer_key, share desc nulls last);
 
 -- ---------------------------------------------------------------------------
 -- 7. Staging (see DATA_LOADING.md). Exactly the Election Data bot's row format.
