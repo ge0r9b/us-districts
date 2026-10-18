@@ -992,3 +992,12 @@ Not listed, with reasons:
 
 Example: 19405 = place Bridgeport borough 0.56; towns Montgomery County|Bridgeport borough 0.56 and Montgomery County|Upper Merion township 0.44; county Montgomery County 1.0.
 Sizes: total 5.09 MB raw / 901 KB gzip. Per file: min 88 B / 93 B, median 3.7 KB / 691 B, max 29.1 KB / 4.8 KB (prefix 562).
+
+## Geo search index (Oct 18, 2026, branch `data/geo`)
+Files: `v2/data/geo_index/<a-z>.js` plus `0.js` for names that start with a non-letter (mostly ZIPs). The data is split by the first character of the lower-case name, because a single file would be 6.0 MB raw / 896 KB gzip, over the ~400 KB limit. Built by `tools/build_geo_index.py` from the points files and zcta_xref.
+Format: each file calls `__geoIndex([[name,type,stateAbbr,key],...])`, sorted by lower-case name.
+- Types: state, county, town, place, sch, cd, sldu, sldl, zcta.
+- Keys are the same as in the points files. Towns use `County|Name`, and the 86 duplicate v1 rows use their GEOID key.
+- Names follow the app's labels: "District 1" or "District at-large" (cd), "OH Senate 2" (sldu), "OH House 103" (sldl).
+Rows: 115,745 in total: 51 state, 3,144 county, 38,660 town, 19,535 place, 13,437 sch, 436 cd, 1,950 sldu, 4,890 sldl and 33,642 zcta.
+Sizes: 27 files, 6.02 MB raw / 896 KB gzip in total. The largest are `0.js` at 1.01 MB / 185 KB and `s.js` at 466 KB / 65 KB; the smallest is `x.js` at 428 B / 175 B.
