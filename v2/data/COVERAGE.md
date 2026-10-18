@@ -828,3 +828,14 @@ The 1,598 Iowa township rows in `v2/data/parts/Iowa.js` were re-simplified at 0.
 | deviation from TIGER (Hausdorff) | | median 0.00033°, max 0.0042° (Marion township, 1911392859) |
 
 Same 1,598 rows, names and counties; town values are still computed by the app from precincts. Per-polygon Douglas-Peucker at 0.0005° (rejected) would have been about 155 KB of geometry but with 0.017 % overlap and 0.034 % gaps. Report: `/workspace/w/lanes/geo-data-raw/reports/ia_resimplify.json`.
+
+## 2024 gray state house districts from official precinct sources (Oct 18, 2026, branch `data/geo`)
+
+Tools: `tools/prep_official_precincts.py` joins official precinct shapes to official precinct returns 1:1 (raw downloads untouched in `/workspace/w/lanes/geo-data-raw/step5/<st>/`, with sha256 in the report files). `tools/fill_official_precincts.py` then swaps, **in a temporary copy only**, the app's precinct rows for those counties and applies the lane's unchanged rules: the strict exact rule, else the `fill_gray.py` area-weighted estimate (≈), else gray. Root `data/` and the precinct files are not changed, so the precinct layer on the map still shows the old county gaps.
+
+| District | Before | After | How | Sources |
+|---|---|---|---|---|
+| VA 089 | gray | **≈ 25,626 D / 23,527 R / 49,763 total** (`e24`; 2020 unchanged) | Official shapes for all 64 Chesapeake and 30 Suffolk precincts, matched 1:1 to the official returns (absentee is reported by precinct in Virginia; only provisionals, 2.1 % of votes, are citywide and spread by the county scaling). Not exact: one Chesapeake precinct is only 95 % inside the district as drawn | Virginia Department of Elections, certified 2024 November General results CSV (enr.elections.virginia.gov, as of 2025-03-05); City of Chesapeake GIS Voting Precincts (Voter Registrar; has a HOUSE field, 089 for 15 precincts plus split 054 Pughsville); City of Suffolk GIS ALL Voter Precincts (layer 42) |
+| LA 057 | gray | **still gray** | Official precinct shapes (36) and returns (36 precincts) match 1:1. However, St. John the Baptist reports **early voting parish-wide**: 9,991 of 18,827 votes (53 %). The precincts hold only 46.7 % of the parish's Harris+Trump votes, under the 50 % usability floor of `fill_gray.py`. No official source places the early votes by precinct, so it is not estimated | Louisiana Legislature 2024 Precinct Shapefiles (12-31-2024); Louisiana SOS official precinct results, Presidential Electors race 67190 |
+
+Caveat for VA 089: both city layers are the current GIS layers (the Chesapeake layer was edited for precinct 052 on 2025-07-09), not a frozen November 2024 snapshot. The 2024 precinct lists match them exactly (64 and 30 units).
