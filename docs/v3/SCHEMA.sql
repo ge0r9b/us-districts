@@ -41,6 +41,8 @@ create table source (
   retrieved_at  timestamptz not null,
   publisher     text,                                -- 'MIT Election Data + Science Lab', 'Alaska Division of Elections'
   title         text,
+  source_key    text unique,                         -- sources.csv source_id (Institutions lane), when that file exists
+  source_commit text,                                -- upstream commit (congress-legislators, OpenStates) when given
   license       text,                                -- license as stated by the source, verbatim (generic provenance)
   license_id    bigint references license(id),
   license_verified boolean not null default false,   -- true once the license/terms page has been read (date in license_checked_at)
@@ -184,8 +186,11 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 
 -- Entity registry (agreed with Institutions; data-v3/inst/entities.csv + entity_geoid_xwalk.csv).
 -- One row per government / institution, NO vintage. entity_id is opaque and frozen at first-seen
--- kind + GEOID ('county:01001', 'muni:place:0107000', 'town:cousub:0900104720', 'school:0100003',
--- 'state:01'); chambers and national bodies use slugs ('chamber:al-upper', 'us-house').
+-- kind + GEOID ('county:01001', 'muni:place:0107000', 'town:cousub:0911001080', 'school:0100003',
+-- 'state:01', 'nation:us', 'territory:72'); chambers use 'chamber:<st>-lower' / 'chamber:<st>-upper' ('chamber:al-lower');
+-- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house'.
+-- Verified on data/inst-entities 8e1db01: 54,144 entities (municipality 19,525, township 18,076, school_unified 10,872,
+-- county 3,080, school_elementary 1,952, school_secondary 481, chamber 100, state 51, territory 5, nation 1, dc_council 1).
 -- The same entity_id carries across boundary vintages; a new id is minted only when the government
 -- itself changes (merger, dissolution, incorporation, CT planning regions), linked by predecessor/successor.
 -- District seats are UNITS, not entities (officeholder = chamber entity + unit + seat).
@@ -211,6 +216,7 @@ create table entity (
   v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
   v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
   v2_row        text[],                              -- 'v2:counties#342' (informational; shifts between builds)
+  feed          text,                                -- which build fed the row: 'tiger/cog' (54,042) or 'inst-lane' (102)
   level         text,                                -- extras: federal / state / county / local
   type          text,                                -- finer type (TIGER LSAD text, 'city'); companies: 'public','private','nonprofit'
   cog_pid6      text,                                -- CoG 2022 unit id
@@ -466,7 +472,7 @@ create table contest_display_slot (
 -- 5b. People and officeholders (Q-I1; data-v3/inst/ on data/inst-officeholders)
 -- ---------------------------------------------------------------------------
 -- One canonical person_id 'scheme:id' per person, chosen in priority order (Q-I1/Q-I2, data/inst-officeholders 9d25f25):
---   bioguide:<ID> (permanent) > ocd-person:<uuid> (OpenStates, normalized from 'ocd-person/'; can change on a
+--   bioguide:<ID> (permanent) > ocd-person:<uuid> (OpenStates, prefix normalized to 'ocd-person:'; can change on a
 --   duplicate merge) > <st>-leg:<id> (session-scoped). No state legislator is bioguide-canonical; no cross-level name matching.
 create table person (
   person_id     text primary key,                    -- 'bioguide:B001323', 'ocd-person:a84a3fe8-...', 'vt-leg:vt-41827'
@@ -484,7 +490,7 @@ create index person_name_trgm on person using gin (lower(name) gin_trgm_ops);
 
 -- Former canonical ids (OpenStates merges, session-scoped ids that were later resolved) -> current person.
 create table person_alias (
-  alias_id      text primary key,                    -- e.g. an old ocd-person/<uuid>, 'mn-house-15367'
+  alias_id      text primary key,                    -- e.g. an old ocd-person:<uuid>, 'mn-leg:mn-house-15367'
   person_id     text not null references person(person_id) on update cascade on delete cascade,
   kind          text not null default 'former_canonical' check (kind in ('former_canonical','session_scoped','official')),
   source_commit text                                  -- OpenStates commit where the alias was recorded
@@ -495,7 +501,11 @@ create index person_alias_person on person_alias (person_id);
 create table officeholder (
   id            bigint generated always as identity primary key,
   unit_id       bigint not null references unit(id),  -- seat polygon (cd116/cd119, sldl2024 ... via boundary_set)
-  entity_id     text references entity(entity_id),    -- chamber entity ('us-house', 'chamber:al-upper')
+  entity_id     text references entity(entity_id),    -- chamber entity ('us-house', 'chamber:al-lower', 'chamber:ne-upper')
+  unit_layer    text,                                 -- as in the file: 'cd','sldu','sldl' (resolved to unit_id, DATA_LOADING §13)
+  unit_geoid    text,
+  unit_vintage  smallint,
+  unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'
   seat          text,                                 -- seat number within a multi-member district (NH, VT, WV ...)
   person_id     text references person(person_id) on update cascade,
   name          text not null,                        -- name as recorded in the roster row

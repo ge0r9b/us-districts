@@ -46,7 +46,7 @@ Filter: `year`, `office`, `state`, `district`, `kind` (candidate|measure|poll), 
 One contest with its answers, candidates (name, photo, credit), sources and licenses (for attribution), and coverage per unit type.
 
 ### `GET /officeholders` and `GET /people/{person_id}`
-`/officeholders?unit=<key>&boundary_set=cd119&date=2026-10-18` returns who held the seat on that date (or `from`/`to` for a range): `[{person_id, name, party, status, valid_from, valid_to, source}]`, with vacancies as `person_id: null, status: "vacant"`. `/people/{person_id}` accepts a canonical ID (`bioguide:B001323`, `ocd-person/<uuid>`) or any alias, and redirects (301) from an alias to the canonical ID. Cache: `s-maxage=86400` (rosters change rarely; pinned by data version).
+`/officeholders?entity=chamber:pa-lower&unit=<key>&boundary_set=<slug>&date=2026-10-18` (or `unit_layer=sldl&geoid=42101&unit_vintage=2024`) returns who held the seat on that date (or `from`/`to` for a range): `[{person_id, name, party, status, valid_from, valid_to, source}]`, with vacancies as `person_id: null, status: "vacant"`. `/people/{person_id}` accepts a canonical ID (`bioguide:B001323`, `ocd-person:<uuid>`, `vt-leg:vt-41827`) or any alias, and redirects (301) from an alias to the canonical ID. Cache: `s-maxage=86400` (rosters change rarely; pinned by data version).
 
 ### `GET /results`
 Results for a contest by unit.
@@ -79,7 +79,7 @@ Served from `answer_share` (an index range scan; SCHEMA.md). Cache as `/results`
 Name, type, parent chain (breadcrumb), bbox, centroid, the institutions linked through `entity_unit`, and a results summary for the requested `contest`. This is the source for map pop-ups. Pop-up numbers must equal list numbers (v2 test `district-consistency.py`).
 
 ### `GET /entities/{entity_id}` and `GET /entities/{entity_id}/children`
-`entity_id` is the registry's opaque id (`state:42`, `county:01001`, `chamber:pa-lower`, `school:4218990`, `us-house`); a merged-away id answers 301 to the survivor (`entity_merge`). Companies add `?rel=subsidiaries|parents` (from `entity_relation`, current by default, `as_of=` for history) and `locations` (HQ/sites). Institution filter: children of US (states, plus district-type rows), of a state (counties, or a chamber's districts), and so on. Each item has an icon descriptor (flag or type icon; v2 HANDOFF §3).
+`entity_id` is the registry's opaque id (`state:42`, `county:01001`, `chamber:pa-lower`, `chamber:ne-upper`, `chamber:dc-council`, `school:4218990`, `us-house`, `nation:us`); a merged-away id answers 301 to the survivor (`entity_merge`). Companies add `?rel=subsidiaries|parents` (from `entity_relation`, current by default, `as_of=` for history) and `locations` (HQ/sites). Institution filter: children of US (states, plus district-type rows), of a state (counties, or a chamber's districts), and so on. Each item has an icon descriptor (flag or type icon; v2 HANDOFF §3).
 
 ### `GET /search?q=&scope=&types=`
 Unisearch over entities, units, aliases, candidates, offices and ZIPs (pg_trgm plus alias prefix). A government-and-place entity returns two rows, `institution` and `place` (spec §5.3). A state abbreviation or name ranks the state first (`state_abbr_search.py`). p95 target 80 ms (PERFORMANCE.md).
