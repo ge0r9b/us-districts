@@ -1,6 +1,6 @@
-# County-table fixes applied (data/election2020.js, data/election2024.js)
+# County-table fixes applied (v2/data/election2020.js, v2/data/election2024.js)
 Script: `tools/apply_table_fixes.py` (idempotent; rewrites only the listed entries in place, keeping key order and format).
-Only the county tables changed. Precinct files, district layers, v2/index.html and BUILD were not touched. Values are `[d, r, t]`, where t = all presidential candidates.
+Root `data/` is v1 and is never changed: `data/election2020.js` and `data/election2024.js` stay identical to origin/main. The corrected copies, with the same format and globals (`window.ELECTION2020`, `window.ELECTION2024`), are `v2/data/election2020.js` and `v2/data/election2024.js`. Only those county tables changed. Precinct files, district layers, v2/index.html and BUILD were not touched. Values are `[d, r, t]`, where t = all presidential candidates.
 
 ## Statewide sums of the county table (D / R / total)
 | Year | State | Before | After | FEC | Source | Entries |
