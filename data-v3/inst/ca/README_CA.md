@@ -9,8 +9,8 @@ Schema: CANADA_SCHEMA_PROPOSALS.md (Full Stack rulings R1-R6 accepted and applie
 | file | rows | what |
 |---|---|---|
 | `entities_ca_federal.csv` | 2 | `chamber:ca-house`, `chamber:ca-senate` (parent `nation:ca`) |
-| `entities_ca_municipal.csv` | 3,545 | 3,406 `municipality` (`muni:ca-csd:<CSDUID>`, parent province / territory) + 139 CD governments (`county:ca-cd:<CDUID>`) |
-| `entity_geoid_xwalk_ca.csv` | 3,547 | entity -> `ca_csd` / `ca_cd` unit, columns of `entity_geoid_xwalk.csv` (`part` rows for Flin Flon / Lloydminster) |
+| `entities_ca_municipal.csv` | 3,545 | 3,406 `municipality` (`municipality:ca-<CSDUID>`, parent province / territory) + 139 CD governments (`county:ca-<CDUID>`) |
+| `entity_geoid_xwalk_ca.csv` | 3,547 | entity -> `ca_csd` / `ca_cd` unit, columns of `entity_geoid_xwalk.csv` + `is_estimate`, `share_basis`; Flin Flon / Lloydminster: 4 rows `relation=part`, `overlap=split`, both shares ≈ population-weighted (92-151-X block population); all other rows `primary` / `equal` / 1.0000 |
 | `statcan_types_ca.csv` | 78 | every StatCan CSD type (57) and CD type x province, with class, count and the quoted StatCan basis |
 | `entities_ca_provincial.csv` | 13 | `chamber:ca-<iso>-legislature` (parent `province:ca-*` / `territory:ca-*`) |
 | `boundary_sets_ca.csv` | 26 | one row per boundary set: `boundary_set, country, province, unit_type, vintage, is_current, source_id` (`is_current` unique per country + province + unit_type; province empty for Canada-wide sets) |

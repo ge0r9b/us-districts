@@ -41,8 +41,8 @@ Status: **built** = rows in this directory; **gap** = logged in `gaps_ca_*.csv` 
 | NS electoral districts + polls | Elections Nova Scotia (PDF maps, online lookup) | - | 55 districts (per ENS map) | 2026 map | no open file found | gap |
 | YT / NT / NU districts + polls | Elections Yukon / Elections NWT / Elections Nunavut | - | not verified | - | no open file found | gap |
 | Provincial members (MLAs, MNAs, MPPs, MHAs) | each legislature's member list | - | - | - | - | gap (not built in this batch) |
-| Census divisions (counties, regional municipalities, MRCs, regional districts ...) | StatCan 2021 Geographic Attribute File 92-151-X (CDTYPE) + SGC 2021 | Statistics Canada Open Licence | 293 | 2021 | lcd file not downloaded | built: units `statcan-2021-cd`; 139 CD governments `county:ca-cd:<CDUID>` (MRC 81, RD 28, ON CTY 20, RM 6, UC 3, DM 1); 68 CDs of ambiguous types = gap |
-| Census subdivisions (municipalities, reserves, unorganized) | StatCan 92-151-X (CSDTYPE, DB population) + lcsd000b21a_e boundary file + SGC 2021 | Statistics Canada Open Licence | 5,161 | 2021 | yes (lcsd000b21a_e) | built: units `statcan-2021-csd`; 3,406 municipalities `muni:ca-csd:<CSDUID>`; 1,028 First Nations-type CSDs = kind proposal; 442 CSDs of 18 ambiguous types = gap |
+| Census divisions (counties, regional municipalities, MRCs, regional districts ...) | StatCan 2021 Geographic Attribute File 92-151-X (CDTYPE) + SGC 2021 | Statistics Canada Open Licence | 293 | 2021 | lcd file not downloaded | built: units `statcan-2021-cd`; 139 CD governments `county:ca-<CDUID>` (MRC 81, RD 28, ON CTY 20, RM 6, UC 3, DM 1); 68 CDs of ambiguous types = gap |
+| Census subdivisions (municipalities, reserves, unorganized) | StatCan 92-151-X (CSDTYPE, DB population) + lcsd000b21a_e boundary file + SGC 2021 | Statistics Canada Open Licence | 5,161 | 2021 | yes (lcsd000b21a_e) | built: units `statcan-2021-csd`; 3,406 municipalities `municipality:ca-<CSDUID>`; 1,028 First Nations-type CSDs = kind proposal; 442 CSDs of 18 ambiguous types = gap |
 | School boards | no national list; provincial lists (ON Ministry of Education school board list, BC school districts, AB school authorities, QC centres de services scolaires ...) | provincial OGLs | - | - | partly | gap (not started) |
 
 ## Municipal and county governments (StatCan 2021 types)
@@ -62,3 +62,12 @@ Appendix A / B titles); `statcan_types_ca.csv` lists every type with its class, 
   YT self-government / Teslin lands): units only, one gap row per type.
 - CD governments: MRC, RD, RM, UC, DM and Ontario CTY (geo008: legislated "group of neighbouring municipalities joined together for
   ... regional planning and managing common services"). CDR / TER are StatCan creations; NB CT, NS / PE CTY, ON DIS, REG and QC TÉ = gap.
+
+## First Nations governments (ruled, blocked)
+
+Full Stack ruled kind `indigenous_government`, ids `first_nation:ca-<band number>`, links `entity_unit` role `reserve_of` from the
+reserve / settlement / land `ca_csd` units. Official sources (ISC "First Nations Location", OGL-Canada, open.canada.ca dataset
+b6567c5c-8339-4055-99fa-63f92114d9e4): the band list `Premiere_Nation_First_Nation_CSV.zip` and the First Nation - reserve relation
+`Relation_Premiere_Nation_reserve_Relation_First_Nation_Reserve_CSV.zip` (+ their data dictionaries) on data.sac-isc.gc.ca. All ISC
+hosts (data.sac-isc.gc.ca, geo.sac-isc.gc.ca, data.aadnc-aandc.gc.ca) refuse TLS from this box (unexpected EOF); not bypassed.
+Nothing is minted on names alone; the build waits for the browser downloads.

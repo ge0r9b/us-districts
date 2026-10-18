@@ -145,8 +145,8 @@ for (n, t), ks in STRADDLE.items():
     for k in ks: straddle_key[k] = main
     gap('municipality', 'straddles_provinces', ';'.join(sorted(ks)), '%s: one municipality, a CSD in each province (geo012); entity keyed on the larger part %s (pop %d), parent %s; parent province to confirm' % (n[:-7], main, pop[main], SGC[main[:2]]), S_DCSD)
 
-def muni_id(k): return 'muni:ca-csd:%s' % k
-def cd_id(c): return 'county:ca-cd:%s' % c
+def muni_id(k): return 'municipality:ca-%s' % k
+def cd_id(c): return 'county:ca-%s' % c
 cd_gov = {}
 for c, (n, t) in sorted(cd.items()):
     p = SGC[c[:2]]; cl = cd_class(t, p)
@@ -157,7 +157,7 @@ for c, (n, t) in sorted(cd.items()):
                      'source_id': ';'.join([S_ATTR, S_DCD, S_VOL1]), 'feed': 'inst-lane', 'level': 'county', 'type': TITLE_CD[t],
                      'flags': 'statcan_cd_type:%s' % t, 'country': 'ca', 'province': p, 'external_id': 'statcan:cd:%s' % c})
         xw.append({'entity_id': eid, 'unit_layer': 'ca_cd', 'geoid': c, 'vintage': 2021, 'boundary_set': 'statcan-2021-cd', 'relation': 'primary',
-                   'source_id': S_ATTR, 'overlap': 'equal', 'share_of_geoid_in_entity': '1.0000', 'share_of_entity_in_geoid': '1.0000'})
+                   'source_id': S_ATTR, 'overlap': 'equal', 'share_of_geoid_in_entity': '1.0000', 'share_of_entity_in_geoid': '1.0000', 'is_estimate': 'false', 'share_basis': 'equal'})
     units.append({'boundary_set': 'statcan-2021-cd', 'unit_type': 'cd', 'unit_key': c, 'name': n, 'country': 'ca', 'province': p, 'entity_id': eid,
                   'attrs': 'cd_type=%s;cd_class=%s' % (t, cl), 'source_id': S_ATTR + ';' + S_SGC, 'source_record_id': 'CDUID=' + c,
                   'geometry_ref': 'StatCan lcd_000b21a_e (CDUID=%s), not downloaded' % c, 'flags': 'cd_type_ambiguous' if cl == 'gap' else ''})
@@ -176,9 +176,16 @@ for k, (n, t, c, pr) in sorted(csd.items()):
             ents.append({'entity_id': eid, 'kind': 'municipality', 'name': nm, 'label': 'incorporated', 'gov_status': 'government',
                          'parent_id': prov_entity(p), 'source_id': ';'.join([S_ATTR, S_BND, S_DCSD]), 'feed': 'inst-lane', 'level': 'local',
                          'type': TITLE_CSD[t], 'flags': ';'.join(ef), 'country': 'ca', 'province': p, 'external_id': 'statcan:csd:%s' % k})
-        xw.append({'entity_id': eid, 'unit_layer': 'ca_csd', 'geoid': k, 'vintage': 2021, 'boundary_set': 'statcan-2021-csd',
-                   'relation': 'primary' if main == k else 'part', 'source_id': S_ATTR, 'overlap': 'equal' if k not in straddle_key else 'part',
-                   'share_of_geoid_in_entity': '1.0000', 'share_of_entity_in_geoid': '1.0000' if k not in straddle_key else ''})
+        if k in straddle_key:   # Full Stack (docs/v3 5e561f6): relation part, overlap split, both shares ≈ population-weighted
+            tot = sum(pop[x] for x in straddle_key if straddle_key[x] == main)
+            xw.append({'entity_id': eid, 'unit_layer': 'ca_csd', 'geoid': k, 'vintage': 2021, 'boundary_set': 'statcan-2021-csd',
+                       'relation': 'part', 'source_id': S_ATTR, 'overlap': 'split', 'share_of_geoid_in_entity': '%.4f' % (pop[k] / pop[k]),
+                       'share_of_entity_in_geoid': '%.4f' % (pop[k] / tot), 'is_estimate': 'true',
+                       'share_basis': '≈ population-weighted: 92-151-X 2021 dissemination-block population, part %d of %d' % (pop[k], tot)})
+        else:
+            xw.append({'entity_id': eid, 'unit_layer': 'ca_csd', 'geoid': k, 'vintage': 2021, 'boundary_set': 'statcan-2021-csd',
+                       'relation': 'primary', 'source_id': S_ATTR, 'overlap': 'equal', 'share_of_geoid_in_entity': '1.0000',
+                       'share_of_entity_in_geoid': '1.0000', 'is_estimate': 'false', 'share_basis': 'equal'})
     elif cl == 'first_nations': fl.append('first_nations_kind_proposal')
     elif cl == 'gap': fl.append('csd_type_ambiguous')
     if pop[k] == 0: fl.append('zero_population_2021')
@@ -190,7 +197,8 @@ cnt = collections.Counter(t for _, t, _, _ in csd.values())
 for t in sorted(GAP_CSD):
     if cnt[t]: gap('municipality', 'csd_type_ambiguous', t, '%d CSDs (%s): %s; unit only, no entity' % (cnt[t], ','.join(sorted({SGC[p_] for _, tt, _, p_ in csd.values() if tt == t})), GAP_CSD[t]), S_DCSD)
 fnn = sum(cnt[t] for t in FN)
-gap('municipality', 'first_nations_kind_proposal', '+'.join(sorted(FN)), '%d CSDs of the eight First Nations types (geo012) not minted; proposed new kind for First Nations / band governments (bands are not CSDs: one band can hold several reserves) - CANADA_SCHEMA_PROPOSALS.md' % fnn, S_DCSD)
+gap('indigenous_government', 'blocked_source', 'data.sac-isc.gc.ca', 'ISC First Nations Location band list + First Nation-reserve relation (OGL-Canada): TLS refused from this box (also geo.sac-isc.gc.ca, data.aadnc-aandc.gc.ca); not bypassed; first_nation:ca-<band number> entities and reserve_of links wait for a browser download', '')
+gap('municipality', 'first_nations_kind_proposal', '+'.join(sorted(FN)), '%d CSDs of the eight First Nations types (geo012) not minted as municipalities; kind indigenous_government ruled (first_nation:ca-<band number>, entity_unit reserve_of), waiting for the ISC band list' % fnn, S_DCSD)
 gap('school_board', 'not_built', 'all', 'no national list; provincial lists exist (e.g. Ontario school board list, BC school districts, Alberta school authorities) - see CANADA_PLAN.md', '')
 
 types = []
@@ -205,7 +213,9 @@ for (t, p) in sorted(cdc):
     types.append({'level': 'cd', 'type': t, 'title': TITLE_CD[t], 'class': cl, 'minted_as': 'county' if cl == 'government' else '',
                   'count': cdc[(t, p)], 'provinces': p, 'basis': GAP_CD[t] if cl == 'gap' else BASIS[cl], 'source_id': S_DCD + ';' + S_VOL1})
 assert sum(r['count'] for r in types if r['level'] == 'csd') == 5161 and sum(r['count'] for r in types if r['level'] == 'cd') == 293
-XW_COLS = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid']
+XW_COLS = ['entity_id', 'unit_layer', 'geoid', 'vintage', 'boundary_set', 'relation', 'source_id', 'overlap', 'share_of_geoid_in_entity', 'share_of_entity_in_geoid', 'is_estimate', 'share_basis']
+assert {r['overlap'] for r in xw} <= {'equal', 'split', 'contained'}, {r['overlap'] for r in xw}
+assert sum(r['overlap'] == 'split' for r in xw) == 4
 T_COLS = ['level', 'type', 'title', 'class', 'minted_as', 'count', 'provinces', 'basis', 'source_id']
 nat = lambda r: (r['unit_type'], r['unit_key'])
 counts = {'units_ca_cd.csv': write_csv(f'{OUT}/units_ca_cd.csv', UNIT_COLS, [u for u in units if u['unit_type'] == 'cd'], key=nat),

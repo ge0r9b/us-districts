@@ -4,6 +4,7 @@ county,cd_type_ambiguous,CTY,"21 CDs (NS,PE): County outside Ontario (NS, PE): S
 county,cd_type_ambiguous,DIS,"10 CDs (ON): District (ON): StatCan does not say it has a council; units only, no entity",statcan-dict2021-cd-031af8a7
 county,cd_type_ambiguous,REG,"10 CDs (BC,NT,NU): Region (BC, NT, NU): StatCan does not say it has a council; units only, no entity",statcan-dict2021-cd-031af8a7
 county,cd_type_ambiguous,TÉ,"12 CDs (QC): Territoire équivalent (QC): equivalent of an MRC; StatCan does not say whether a regional council exists; units only, no entity",statcan-dict2021-cd-031af8a7
+indigenous_government,blocked_source,data.sac-isc.gc.ca,"ISC First Nations Location band list + First Nation-reserve relation (OGL-Canada): TLS refused from this box (also geo.sac-isc.gc.ca, data.aadnc-aandc.gc.ca); not bypassed; first_nation:ca-<band number> entities and reserve_of links wait for a browser download",
 municipality,csd_type_ambiguous,CC,"3 CSDs (NT): chartered community (NT): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
 municipality,csd_type_ambiguous,CG,"4 CSDs (NT): community government (NT): StatCan does not define its municipal status; unit only, no entity",statcan-dict2021-csd-c21352ae
 municipality,csd_type_ambiguous,CN,"1 CSDs (SK): crown colony (1 CSD, SK): StatCan does not define it; unit only, no entity",statcan-dict2021-csd-c21352ae
@@ -22,7 +23,7 @@ municipality,csd_type_ambiguous,TI,"13 CSDs (QC): terre inuite (QC): Inuit lands
 municipality,csd_type_ambiguous,TL,"1 CSDs (YT): Teslin land (YT): First Nation lands? not in geo012 on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
 municipality,csd_type_ambiguous,VC,"8 CSDs (QC): village cri (QC): geo012 describes it with the Terres réservées aux Cris, set aside for Cree bands; not in the on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
 municipality,csd_type_ambiguous,VK,"1 CSDs (QC): village naskapi (QC): geo012 describes it with the Terres réservées aux Naskapis; not in the on-reserve list; unit only, no entity",statcan-dict2021-csd-c21352ae
-municipality,first_nations_kind_proposal,IGD+IRI+NL+S-É+TAL+TC+TK+TWL,1028 CSDs of the eight First Nations types (geo012) not minted; proposed new kind for First Nations / band governments (bands are not CSDs: one band can hold several reserves) - CANADA_SCHEMA_PROPOSALS.md,statcan-dict2021-csd-c21352ae
+municipality,first_nations_kind_proposal,IGD+IRI+NL+S-É+TAL+TC+TK+TWL,"1028 CSDs of the eight First Nations types (geo012) not minted as municipalities; kind indigenous_government ruled (first_nation:ca-<band number>, entity_unit reserve_of), waiting for the ISC band list",statcan-dict2021-csd-c21352ae
 municipality,name_differs_from_sgc,1307005,'Beaubassin East / Beaubassin-est' vs SGC 'Beaubassin East',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
 municipality,name_differs_from_sgc,1312019,'Grand Falls / Grand-Sault' vs SGC 'Grand Falls',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81
 municipality,name_differs_from_sgc,3502025,'The Nation / La Nation' vs SGC 'The Nation',statcan-92-151-x-2021-c704d80a;statcan-sgc2021-structure-2b799b81

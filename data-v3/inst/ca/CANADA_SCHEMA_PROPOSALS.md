@@ -39,6 +39,8 @@ R6 values (licence texts read 2026-10-18):
    First Nations CSD types (IRI 992, S-É 21, TC 9, IGD 2, TK 1, NL 1, TWL 1, TAL 1 = 1,028 CSDs) are land units, and one band can
    hold many reserves, so the entity should come from the band list (CIRNAC First Nation profiles, band number), linked to its
    reserve CSDs through the xwalk. Yukon SG / TL and QC VC / VK / TI are related but logged as gaps.
-8. Canadian government ids: `muni:ca-csd:<CSDUID>` (kind `municipality`) and `county:ca-cd:<CDUID>` (kind `county`), mirroring
-   `muni:place:<GEOID>`; the `ca-` prefix keeps them apart from US GEOIDs. Unit layers in the xwalk: `ca_csd`, `ca_cd`.
-9. Xwalk relation `part` (one municipality, a CSD in each province: Flin Flon, Lloydminster).
+8. RULED (Full Stack, after 3bbb54a): ids `municipality:ca-<CSDUID>` and `county:ca-<CDUID>` (first freeze, applied); xwalk
+   `relation=part`, `overlap=split` with both shares ≈ population-weighted for Flin Flon / Lloydminster (docs/v3 5e561f6, applied).
+9. RULED: kind `indigenous_government`, ids `first_nation:ca-<band number>`, reserve / settlement / land `ca_csd` units linked by
+   `entity_unit` role `reserve_of`, from an official band list + official reserve-to-band relation only. NOT BUILT YET: the ISC
+   open-data hosts refuse TLS from the box (see CANADA_PLAN.md).
