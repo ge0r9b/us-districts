@@ -1,0 +1,5005 @@
+[
+ {
+  "year": "2024",
+  "name": "Lower Kuskokwim School District",
+  "current": [
+   1515,
+   1185,
+   3045
+  ],
+  "current_flag": null,
+  "geoid": "0200001",
+  "district_pop2020": 15622,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Goodnews Bay": {
+    "pop_inside": 318,
+    "pop_total": 318,
+    "votes": [
+     49,
+     27,
+     82
+    ]
+   },
+   "Quinhagak": {
+    "pop_inside": 776,
+    "pop_total": 776,
+    "votes": [
+     79,
+     61,
+     162
+    ]
+   },
+   "Mekoryuk": {
+    "pop_inside": 206,
+    "pop_total": 206,
+    "votes": [
+     37,
+     37,
+     82
+    ]
+   },
+   "Toksook Bay": {
+    "pop_inside": 658,
+    "pop_total": 658,
+    "votes": [
+     102,
+     90,
+     218
+    ]
+   },
+   "Kwigillingok": {
+    "pop_inside": 380,
+    "pop_total": 380,
+    "votes": [
+     32,
+     62,
+     98
+    ]
+   },
+   "Kipnuk": {
+    "pop_inside": 704,
+    "pop_total": 704,
+    "votes": [
+     63,
+     63,
+     136
+    ]
+   },
+   "Kongiganak": {
+    "pop_inside": 486,
+    "pop_total": 486,
+    "votes": [
+     51,
+     48,
+     113
+    ]
+   },
+   "Eek": {
+    "pop_inside": 406,
+    "pop_total": 406,
+    "votes": [
+     55,
+     48,
+     117
+    ]
+   },
+   "Napaskiak": {
+    "pop_inside": 509,
+    "pop_total": 509,
+    "votes": [
+     56,
+     15,
+     84
+    ]
+   },
+   "Napakiak": {
+    "pop_inside": 430,
+    "pop_total": 430,
+    "votes": [
+     45,
+     29,
+     86
+    ]
+   },
+   "Bethel No. 2": {
+    "pop_inside": 2800,
+    "pop_total": 2800,
+    "votes": [
+     352,
+     323,
+     712
+    ]
+   },
+   "Chefornak": {
+    "pop_inside": 506,
+    "pop_total": 506,
+    "votes": [
+     84,
+     22,
+     121
+    ]
+   },
+   "Tuntutuliak": {
+    "pop_inside": 469,
+    "pop_total": 469,
+    "votes": [
+     78,
+     55,
+     147
+    ]
+   },
+   "Nightmute": {
+    "pop_inside": 306,
+    "pop_total": 306,
+    "votes": [
+     14,
+     17,
+     38
+    ]
+   },
+   "Tununak": {
+    "pop_inside": 411,
+    "pop_total": 411,
+    "votes": [
+     56,
+     22,
+     97
+    ]
+   },
+   "Bethel No. 1": {
+    "pop_inside": 3525,
+    "pop_total": 3525,
+    "votes": [
+     384,
+     311,
+     728
+    ]
+   },
+   "Kwethluk": {
+    "pop_inside": 812,
+    "pop_total": 812,
+    "votes": [
+     108,
+     44,
+     167
+    ]
+   },
+   "Newtok": {
+    "pop_inside": 308,
+    "pop_total": 308,
+    "votes": [
+     27,
+     23,
+     65
+    ]
+   },
+   "Atmautluak": {
+    "pop_inside": 388,
+    "pop_total": 388,
+    "votes": [
+     28,
+     14,
+     52
+    ]
+   },
+   "Kasigluk": {
+    "pop_inside": 623,
+    "pop_total": 623,
+    "votes": [
+     55,
+     17,
+     81
+    ]
+   },
+   "Nunapitchuk": {
+    "pop_inside": 594,
+    "pop_total": 594,
+    "votes": [
+     50,
+     50,
+     123
+    ]
+   }
+  },
+  "pop_cover": 0.9996,
+  "result": "check_exact_row",
+  "value": [
+   1805,
+   1378,
+   3509
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Lower Yukon School District",
+  "current": [
+   844,
+   578,
+   1591
+  ],
+  "current_flag": "est",
+  "geoid": "0200003",
+  "district_pop2020": 6818,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Hooper Bay": {
+    "pop_inside": 1375,
+    "pop_total": 1375,
+    "votes": [
+     103,
+     84,
+     203
+    ]
+   },
+   "Scammon Bay": {
+    "pop_inside": 685,
+    "pop_total": 685,
+    "votes": [
+     69,
+     54,
+     131
+    ]
+   },
+   "Russian Mission": {
+    "pop_inside": 426,
+    "pop_total": 426,
+    "votes": [
+     29,
+     30,
+     71
+    ]
+   },
+   "Marshall": {
+    "pop_inside": 493,
+    "pop_total": 493,
+    "votes": [
+     39,
+     58,
+     107
+    ]
+   },
+   "Pilot Station": {
+    "pop_inside": 615,
+    "pop_total": 615,
+    "votes": [
+     70,
+     25,
+     115
+    ]
+   },
+   "St. Mary's": {
+    "pop_inside": 121,
+    "pop_total": 720,
+    "votes": [
+     107,
+     32,
+     145
+    ]
+   },
+   "Mountain Village": {
+    "pop_inside": 629,
+    "pop_total": 629,
+    "votes": [
+     83,
+     67,
+     164
+    ]
+   },
+   "Nunam Iqua": {
+    "pop_inside": 218,
+    "pop_total": 218,
+    "votes": [
+     24,
+     16,
+     46
+    ]
+   },
+   "Alakanuk": {
+    "pop_inside": 757,
+    "pop_total": 757,
+    "votes": [
+     47,
+     39,
+     108
+    ]
+   },
+   "Kotlik": {
+    "pop_inside": 662,
+    "pop_total": 662,
+    "votes": [
+     75,
+     50,
+     138
+    ]
+   },
+   "Emmonak": {
+    "pop_inside": 827,
+    "pop_total": 827,
+    "votes": [
+     100,
+     63,
+     179
+    ]
+   }
+  },
+  "pop_cover": 0.9985,
+  "result": "keep_current",
+  "why": "precincts split: {\"St. Mary's\": 0.168}"
+ },
+ {
+  "year": "2024",
+  "name": "Yupiit School District",
+  "current": [
+   6,
+   5,
+   13
+  ],
+  "current_flag": "est",
+  "geoid": "0200004",
+  "district_pop2020": 1588,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Akiachak": {
+    "pop_inside": 682,
+    "pop_total": 687,
+    "votes": [
+     96,
+     79,
+     198
+    ]
+   },
+   "Akiak": {
+    "pop_inside": 462,
+    "pop_total": 462,
+    "votes": [
+     44,
+     46,
+     110
+    ]
+   },
+   "Tuluksak": {
+    "pop_inside": 444,
+    "pop_total": 446,
+    "votes": [
+     42,
+     30,
+     98
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   182,
+   155,
+   406
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Kashunamiut School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200005",
+  "district_pop2020": 951,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Chevak": {
+    "pop_inside": 951,
+    "pop_total": 961,
+    "votes": [
+     88,
+     53,
+     161
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   88,
+   53,
+   161
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Aleutians East Borough School District",
+  "geoid": "0200007",
+  "result": "within_3pct_kept",
+  "current": [
+   128,
+   290,
+   438
+  ],
+  "value": [
+   127,
+   289,
+   438
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Aleutian Region School District",
+  "current": [
+   328,
+   395,
+   735
+  ],
+  "current_flag": "est",
+  "geoid": "0200010",
+  "district_pop2020": 498,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Aleutians No. 1": {
+    "pop_inside": 498,
+    "pop_total": 498,
+    "votes": [
+     17,
+     10,
+     27
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   17,
+   10,
+   27
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Bering Strait School District",
+  "current": [
+   1128,
+   905,
+   2207
+  ],
+  "current_flag": null,
+  "geoid": "0200020",
+  "district_pop2020": 6347,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "St. Michael": {
+    "pop_inside": 457,
+    "pop_total": 457,
+    "votes": [
+     27,
+     39,
+     75
+    ]
+   },
+   "Stebbins": {
+    "pop_inside": 634,
+    "pop_total": 634,
+    "votes": [
+     38,
+     43,
+     91
+    ]
+   },
+   "Unalakleet": {
+    "pop_inside": 806,
+    "pop_total": 806,
+    "votes": [
+     153,
+     114,
+     275
+    ]
+   },
+   "Savoonga": {
+    "pop_inside": 835,
+    "pop_total": 835,
+    "votes": [
+     119,
+     53,
+     197
+    ]
+   },
+   "Gambell": {
+    "pop_inside": 640,
+    "pop_total": 640,
+    "votes": [
+     74,
+     83,
+     174
+    ]
+   },
+   "Nome No. 2": {
+    "pop_inside": 168,
+    "pop_total": 2272,
+    "votes": [
+     365,
+     313,
+     732
+    ]
+   },
+   "Golovin": {
+    "pop_inside": 175,
+    "pop_total": 175,
+    "votes": [
+     37,
+     26,
+     62
+    ]
+   },
+   "Shaktoolik": {
+    "pop_inside": 213,
+    "pop_total": 213,
+    "votes": [
+     25,
+     41,
+     69
+    ]
+   },
+   "Koyuk": {
+    "pop_inside": 312,
+    "pop_total": 312,
+    "votes": [
+     43,
+     72,
+     121
+    ]
+   },
+   "Elim": {
+    "pop_inside": 366,
+    "pop_total": 366,
+    "votes": [
+     41,
+     78,
+     129
+    ]
+   },
+   "White Mountain": {
+    "pop_inside": 187,
+    "pop_total": 187,
+    "votes": [
+     55,
+     27,
+     88
+    ]
+   },
+   "Teller": {
+    "pop_inside": 252,
+    "pop_total": 252,
+    "votes": [
+     24,
+     18,
+     46
+    ]
+   },
+   "Brevig Mission": {
+    "pop_inside": 428,
+    "pop_total": 428,
+    "votes": [
+     64,
+     49,
+     123
+    ]
+   },
+   "Wales": {
+    "pop_inside": 168,
+    "pop_total": 168,
+    "votes": [
+     6,
+     3,
+     10
+    ]
+   },
+   "Diomede": {
+    "pop_inside": 83,
+    "pop_total": 83,
+    "votes": [
+     8,
+     4,
+     13
+    ]
+   },
+   "Shishmaref": {
+    "pop_inside": 580,
+    "pop_total": 580,
+    "votes": [
+     161,
+     47,
+     218
+    ]
+   }
+  },
+  "pop_cover": 0.9932,
+  "result": "keep_current",
+  "why": "precincts split: {'Nome No. 2': 0.074}"
+ },
+ {
+  "year": "2024",
+  "name": "Bristol Bay Borough School District",
+  "geoid": "0200030",
+  "result": "within_3pct_kept",
+  "current": [
+   139,
+   254,
+   413
+  ],
+  "value": [
+   140,
+   255,
+   416
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Alaska Gateway School District",
+  "current": [
+   271,
+   838,
+   1177
+  ],
+  "current_flag": "est",
+  "geoid": "0200050",
+  "district_pop2020": 2239,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Northway": {
+    "pop_inside": 273,
+    "pop_total": 273,
+    "votes": [
+     37,
+     65,
+     108
+    ]
+   },
+   "Chistochina": {
+    "pop_inside": 10,
+    "pop_total": 182,
+    "votes": [
+     22,
+     83,
+     108
+    ]
+   },
+   "Mentasta": {
+    "pop_inside": 118,
+    "pop_total": 120,
+    "votes": [
+     38,
+     17,
+     59
+    ]
+   },
+   "Tetlin": {
+    "pop_inside": 133,
+    "pop_total": 133,
+    "votes": [
+     20,
+     24,
+     47
+    ]
+   },
+   "Tok": {
+    "pop_inside": 1400,
+    "pop_total": 1400,
+    "votes": [
+     148,
+     605,
+     801
+    ]
+   },
+   "Eagle": {
+    "pop_inside": 197,
+    "pop_total": 197,
+    "votes": [
+     32,
+     69,
+     106
+    ]
+   },
+   "Dot Lake": {
+    "pop_inside": 108,
+    "pop_total": 134,
+    "votes": [
+     7,
+     68,
+     76
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Chistochina': 0.055, 'Dot Lake': 0.806}"
+ },
+ {
+  "year": "2024",
+  "name": "Cordova City School District",
+  "geoid": "0200060",
+  "result": "within_3pct_kept",
+  "current": [
+   405,
+   410,
+   851
+  ],
+  "value": [
+   406,
+   411,
+   854
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Copper River School District",
+  "current": [
+   463,
+   1246,
+   1811
+  ],
+  "current_flag": "est",
+  "geoid": "0200070",
+  "district_pop2020": 2489,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Kenny Lake": {
+    "pop_inside": 558,
+    "pop_total": 558,
+    "votes": [
+     70,
+     199,
+     289
+    ]
+   },
+   "Valdez No. 3": {
+    "pop_inside": 71,
+    "pop_total": 1603,
+    "votes": [
+     244,
+     470,
+     741
+    ]
+   },
+   "Copper Center": {
+    "pop_inside": 914,
+    "pop_total": 914,
+    "votes": [
+     148,
+     365,
+     548
+    ]
+   },
+   "Chistochina": {
+    "pop_inside": 172,
+    "pop_total": 182,
+    "votes": [
+     22,
+     83,
+     108
+    ]
+   },
+   "Glennallen": {
+    "pop_inside": 437,
+    "pop_total": 437,
+    "votes": [
+     50,
+     210,
+     278
+    ]
+   },
+   "Gakona": {
+    "pop_inside": 337,
+    "pop_total": 337,
+    "votes": [
+     33,
+     122,
+     165
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Valdez No. 3': 0.044, 'Chistochina': 0.945}"
+ },
+ {
+  "year": "2024",
+  "name": "Craig City School District",
+  "current": [
+   130,
+   228,
+   382
+  ],
+  "current_flag": "est",
+  "geoid": "0200090",
+  "district_pop2020": 1036,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Craig": {
+    "pop_inside": 1036,
+    "pop_total": 1251,
+    "votes": [
+     275,
+     482,
+     809
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Craig': 0.828}"
+ },
+ {
+  "year": "2024",
+  "name": "Delta/Greely School District",
+  "current": [
+   293,
+   2030,
+   2435
+  ],
+  "current_flag": "est",
+  "geoid": "0200100",
+  "district_pop2020": 4696,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Deltana": {
+    "pop_inside": 3763,
+    "pop_total": 3763,
+    "votes": [
+     223,
+     1566,
+     1862
+    ]
+   },
+   "Dot Lake": {
+    "pop_inside": 26,
+    "pop_total": 134,
+    "votes": [
+     7,
+     68,
+     76
+    ]
+   },
+   "Delta Junction": {
+    "pop_inside": 905,
+    "pop_total": 905,
+    "votes": [
+     63,
+     454,
+     554
+    ]
+   }
+  },
+  "pop_cover": 0.9996,
+  "result": "keep_current",
+  "why": "precincts split: {'Dot Lake': 0.194}"
+ },
+ {
+  "year": "2024",
+  "name": "Dillingham City School District",
+  "current": [
+   13,
+   12,
+   25
+  ],
+  "current_flag": "est",
+  "geoid": "0200120",
+  "district_pop2020": 2249,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Dillingham": {
+    "pop_inside": 2249,
+    "pop_total": 2351,
+    "votes": [
+     405,
+     374,
+     807
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Dillingham': 0.957}"
+ },
+ {
+  "year": "2024",
+  "name": "Galena City School District",
+  "current": [
+   1,
+   0,
+   1
+  ],
+  "current_flag": "est",
+  "geoid": "0200130",
+  "district_pop2020": 472,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Galena": {
+    "pop_inside": 472,
+    "pop_total": 480,
+    "votes": [
+     125,
+     98,
+     228
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   125,
+   98,
+   228
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Ketchikan Gateway Borough School District",
+  "current": [
+   2476,
+   3703,
+   6446
+  ],
+  "current_flag": "est",
+  "geoid": "0200150",
+  "district_pop2020": 13948,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "South Tongass": {
+    "pop_inside": 2119,
+    "pop_total": 2190,
+    "votes": [
+     380,
+     624,
+     1055
+    ]
+   },
+   "Saxman": {
+    "pop_inside": 384,
+    "pop_total": 384,
+    "votes": [
+     133,
+     58,
+     192
+    ]
+   },
+   "Ketchikan No. 1": {
+    "pop_inside": 2841,
+    "pop_total": 2841,
+    "votes": [
+     483,
+     436,
+     942
+    ]
+   },
+   "Ketchikan No. 2": {
+    "pop_inside": 3213,
+    "pop_total": 3213,
+    "votes": [
+     614,
+     733,
+     1421
+    ]
+   },
+   "Ketchikan No. 3": {
+    "pop_inside": 2138,
+    "pop_total": 2138,
+    "votes": [
+     327,
+     576,
+     942
+    ]
+   },
+   "North Tongass No. 1": {
+    "pop_inside": 1213,
+    "pop_total": 1213,
+    "votes": [
+     205,
+     477,
+     700
+    ]
+   },
+   "North Tongass No. 2": {
+    "pop_inside": 2040,
+    "pop_total": 2040,
+    "votes": [
+     355,
+     834,
+     1251
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'South Tongass': 0.968}"
+ },
+ {
+  "year": "2024",
+  "name": "Anchorage School District",
+  "geoid": "0200180",
+  "result": "within_3pct_kept",
+  "current": [
+   64781,
+   62922,
+   132898
+  ],
+  "value": [
+   64781,
+   62925,
+   132899
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Juneau Borough School District",
+  "geoid": "0200210",
+  "result": "within_3pct_kept",
+  "current": [
+   10294,
+   5946,
+   16986
+  ],
+  "value": [
+   10307,
+   5948,
+   17005
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Sitka School District",
+  "geoid": "0200240",
+  "result": "within_3pct_kept",
+  "current": [
+   2061,
+   1659,
+   3860
+  ],
+  "value": [
+   2062,
+   1659,
+   3860
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Haines Borough School District",
+  "current": [
+   952,
+   802,
+   1878
+  ],
+  "current_flag": "est",
+  "geoid": "0200270",
+  "district_pop2020": 2080,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Haines No. 1": {
+    "pop_inside": 1908,
+    "pop_total": 1908,
+    "votes": [
+     780,
+     674,
+     1556
+    ]
+   },
+   "Haines No. 2": {
+    "pop_inside": 172,
+    "pop_total": 172,
+    "votes": [
+     127,
+     117,
+     264
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   907,
+   791,
+   1820
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Hoonah City School District",
+  "current": [
+   1,
+   1,
+   1
+  ],
+  "current_flag": "est",
+  "geoid": "0200300",
+  "district_pop2020": 931,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Hoonah": {
+    "pop_inside": 931,
+    "pop_total": 995,
+    "votes": [
+     250,
+     251,
+     537
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Hoonah': 0.936}"
+ },
+ {
+  "year": "2024",
+  "name": "Hydaburg City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200330",
+  "district_pop2020": 380,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Hydaburg": {
+    "pop_inside": 380,
+    "pop_total": 389,
+    "votes": [
+     164,
+     31,
+     204
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   164,
+   31,
+   204
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Kake City School District",
+  "current": null,
+  "current_flag": "e20",
+  "geoid": "0200360",
+  "district_pop2020": 543,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Kake": {
+    "pop_inside": 543,
+    "pop_total": 546,
+    "votes": [
+     240,
+     124,
+     370
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   240,
+   124,
+   370
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Kenai Peninsula Borough School District",
+  "geoid": "0200390",
+  "result": "within_3pct_kept",
+  "current": [
+   10327,
+   21831,
+   33316
+  ],
+  "value": [
+   10330,
+   21831,
+   33320
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Klawock City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200450",
+  "district_pop2020": 720,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Klawock": {
+    "pop_inside": 720,
+    "pop_total": 1128,
+    "votes": [
+     310,
+     383,
+     714
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'Klawock': 0.638}"
+ },
+ {
+  "year": "2024",
+  "name": "Kodiak Island Borough School District",
+  "geoid": "0200480",
+  "result": "within_3pct_kept",
+  "current": [
+   2479,
+   3549,
+   6292
+  ],
+  "value": [
+   2473,
+   3546,
+   6285
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Lake and Peninsula Borough School District",
+  "geoid": "0200485",
+  "result": "within_3pct_kept",
+  "current": [
+   173,
+   231,
+   444
+  ],
+  "value": [
+   178,
+   233,
+   448
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Matanuska-Susitna Borough School District",
+  "geoid": "0200510",
+  "result": "within_3pct_kept",
+  "current": [
+   13380,
+   40204,
+   55472
+  ],
+  "value": [
+   13378,
+   40205,
+   55471
+  ],
+  "pop_cover": 0.9999
+ },
+ {
+  "year": "2024",
+  "name": "Iditarod Area School District",
+  "current": [
+   220,
+   170,
+   419
+  ],
+  "current_flag": "est",
+  "geoid": "0200520",
+  "district_pop2020": 1098,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Holy Cross": {
+    "pop_inside": 176,
+    "pop_total": 176,
+    "votes": [
+     50,
+     14,
+     62
+    ]
+   },
+   "Sleetmute": {
+    "pop_inside": 26,
+    "pop_total": 204,
+    "votes": [
+     21,
+     9,
+     36
+    ]
+   },
+   "McGrath": {
+    "pop_inside": 425,
+    "pop_total": 425,
+    "votes": [
+     43,
+     95,
+     142
+    ]
+   },
+   "Nikolai": {
+    "pop_inside": 89,
+    "pop_total": 89,
+    "votes": [
+     22,
+     11,
+     41
+    ]
+   },
+   "Grayling": {
+    "pop_inside": 212,
+    "pop_total": 212,
+    "votes": [
+     37,
+     30,
+     80
+    ]
+   },
+   "Anvik": {
+    "pop_inside": 70,
+    "pop_total": 70,
+    "votes": [
+     27,
+     11,
+     39
+    ]
+   },
+   "Shageluk": {
+    "pop_inside": 100,
+    "pop_total": 100,
+    "votes": [
+     30,
+     5,
+     34
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Sleetmute': 0.127}"
+ },
+ {
+  "year": "2024",
+  "name": "Annette Island School District",
+  "geoid": "0200525",
+  "result": "unchanged",
+  "current": [
+   474,
+   248,
+   758
+  ],
+  "value": [
+   474,
+   248,
+   758
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Nenana City School District",
+  "current": null,
+  "current_flag": "e20",
+  "geoid": "0200540",
+  "district_pop2020": 358,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Nenana": {
+    "pop_inside": 358,
+    "pop_total": 637,
+    "votes": [
+     163,
+     294,
+     484
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'Nenana': 0.562}"
+ },
+ {
+  "year": "2024",
+  "name": "Nome School District",
+  "current": [
+   5,
+   4,
+   10
+  ],
+  "current_flag": "est",
+  "geoid": "0200570",
+  "district_pop2020": 3699,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Nome No. 2": {
+    "pop_inside": 2104,
+    "pop_total": 2272,
+    "votes": [
+     365,
+     313,
+     732
+    ]
+   },
+   "Nome No. 1": {
+    "pop_inside": 1595,
+    "pop_total": 1638,
+    "votes": [
+     194,
+     162,
+     378
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Nome No. 2': 0.926}"
+ },
+ {
+  "year": "2024",
+  "name": "Fairbanks North Star Borough School District",
+  "geoid": "0200600",
+  "result": "within_3pct_kept",
+  "current": [
+   17027,
+   24878,
+   43663
+  ],
+  "value": [
+   17029,
+   24879,
+   43667
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "North Slope Borough School District",
+  "geoid": "0200610",
+  "result": "within_3pct_kept",
+  "current": [
+   700,
+   958,
+   1757
+  ],
+  "value": [
+   699,
+   957,
+   1758
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Northwest Arctic Borough School District",
+  "geoid": "0200625",
+  "result": "within_3pct_kept",
+  "current": [
+   662,
+   730,
+   1536
+  ],
+  "value": [
+   662,
+   732,
+   1534
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Pelican City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200630",
+  "district_pop2020": 98,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Pelican-Elfin Cove": {
+    "pop_inside": 98,
+    "pop_total": 132,
+    "votes": [
+     35,
+     45,
+     83
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'Pelican-Elfin Cove': 0.742}"
+ },
+ {
+  "year": "2024",
+  "name": "Petersburg Borough School District",
+  "geoid": "0200660",
+  "result": "within_3pct_kept",
+  "current": [
+   640,
+   968,
+   1730
+  ],
+  "value": [
+   640,
+   969,
+   1731
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Pribilof School District",
+  "current": [
+   77,
+   25,
+   111
+  ],
+  "current_flag": null,
+  "geoid": "0200670",
+  "district_pop2020": 480,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "St. George Island": {
+    "pop_inside": 67,
+    "pop_total": 67,
+    "votes": [
+     3,
+     4,
+     9
+    ]
+   },
+   "St. Paul Island": {
+    "pop_inside": 413,
+    "pop_total": 413,
+    "votes": [
+     114,
+     33,
+     156
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "check_exact_row",
+  "value": [
+   117,
+   37,
+   165
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "St. Marys City School District",
+  "current": [
+   1,
+   0,
+   2
+  ],
+  "current_flag": "est",
+  "geoid": "0200680",
+  "district_pop2020": 599,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "St. Mary's": {
+    "pop_inside": 599,
+    "pop_total": 720,
+    "votes": [
+     107,
+     32,
+     145
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {\"St. Mary's\": 0.832}"
+ },
+ {
+  "year": "2024",
+  "name": "Skagway School District",
+  "geoid": "0200690",
+  "result": "within_3pct_kept",
+  "current": [
+   721,
+   268,
+   1004
+  ],
+  "value": [
+   717,
+   264,
+   996
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Southeast Island School District",
+  "current": [
+   1008,
+   1296,
+   2421
+  ],
+  "current_flag": "est",
+  "geoid": "0200700",
+  "district_pop2020": 1512,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Craig": {
+    "pop_inside": 215,
+    "pop_total": 1251,
+    "votes": [
+     275,
+     482,
+     809
+    ]
+   },
+   "Klawock": {
+    "pop_inside": 408,
+    "pop_total": 1128,
+    "votes": [
+     310,
+     383,
+     714
+    ]
+   },
+   "Kasaan": {
+    "pop_inside": 30,
+    "pop_total": 30,
+    "votes": [
+     16,
+     25,
+     52
+    ]
+   },
+   "Thorne Bay": {
+    "pop_inside": 485,
+    "pop_total": 485,
+    "votes": [
+     65,
+     301,
+     395
+    ]
+   },
+   "Coffman Cove": {
+    "pop_inside": 213,
+    "pop_total": 213,
+    "votes": [
+     38,
+     132,
+     182
+    ]
+   },
+   "South Tongass": {
+    "pop_inside": 71,
+    "pop_total": 2190,
+    "votes": [
+     380,
+     624,
+     1055
+    ]
+   },
+   "Port Alexander": {
+    "pop_inside": 78,
+    "pop_total": 78,
+    "votes": [
+     12,
+     12,
+     23
+    ]
+   }
+  },
+  "pop_cover": 0.9921,
+  "result": "keep_current",
+  "why": "precincts split: {'Craig': 0.172, 'Klawock': 0.362, 'South Tongass': 0.032}"
+ },
+ {
+  "year": "2024",
+  "name": "Southwest Region School District",
+  "current": [
+   663,
+   758,
+   1494
+  ],
+  "current_flag": "est",
+  "geoid": "0200710",
+  "district_pop2020": 2608,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Clark's Point": {
+    "pop_inside": 73,
+    "pop_total": 73,
+    "votes": [
+     17,
+     10,
+     28
+    ]
+   },
+   "Dillingham": {
+    "pop_inside": 102,
+    "pop_total": 2351,
+    "votes": [
+     405,
+     374,
+     807
+    ]
+   },
+   "Manokotak": {
+    "pop_inside": 487,
+    "pop_total": 487,
+    "votes": [
+     37,
+     109,
+     152
+    ]
+   },
+   "Togiak": {
+    "pop_inside": 924,
+    "pop_total": 924,
+    "votes": [
+     73,
+     111,
+     201
+    ]
+   },
+   "Aleknagik": {
+    "pop_inside": 216,
+    "pop_total": 216,
+    "votes": [
+     26,
+     65,
+     98
+    ]
+   },
+   "Ekwok": {
+    "pop_inside": 111,
+    "pop_total": 111,
+    "votes": [
+     12,
+     34,
+     51
+    ]
+   },
+   "New Stuyahok": {
+    "pop_inside": 512,
+    "pop_total": 512,
+    "votes": [
+     59,
+     10,
+     76
+    ]
+   },
+   "Koliganek": {
+    "pop_inside": 183,
+    "pop_total": 183,
+    "votes": [
+     47,
+     56,
+     107
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Dillingham': 0.043}"
+ },
+ {
+  "year": "2024",
+  "name": "Tanana City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200715",
+  "district_pop2020": 246,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Tanana": {
+    "pop_inside": 246,
+    "pop_total": 249,
+    "votes": [
+     100,
+     23,
+     123
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   100,
+   23,
+   123
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Unalaska City School District",
+  "current": [
+   33,
+   41,
+   75
+  ],
+  "current_flag": "est",
+  "geoid": "0200720",
+  "district_pop2020": 4254,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Aleutians No. 2": {
+    "pop_inside": 4254,
+    "pop_total": 4254,
+    "votes": [
+     344,
+     426,
+     783
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   344,
+   426,
+   783
+  ]
+ },
+ {
+  "year": "2024",
+  "name": "Chatham School District",
+  "current": [
+   842,
+   539,
+   1450
+  ],
+  "current_flag": "est",
+  "geoid": "0200730",
+  "district_pop2020": 1336,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Angoon": {
+    "pop_inside": 377,
+    "pop_total": 377,
+    "votes": [
+     173,
+     49,
+     235
+    ]
+   },
+   "Tenakee Springs": {
+    "pop_inside": 119,
+    "pop_total": 119,
+    "votes": [
+     60,
+     23,
+     85
+    ]
+   },
+   "Pelican-Elfin Cove": {
+    "pop_inside": 34,
+    "pop_total": 132,
+    "votes": [
+     35,
+     45,
+     83
+    ]
+   },
+   "Hoonah": {
+    "pop_inside": 64,
+    "pop_total": 995,
+    "votes": [
+     250,
+     251,
+     537
+    ]
+   },
+   "Gustavus": {
+    "pop_inside": 655,
+    "pop_total": 655,
+    "votes": [
+     287,
+     160,
+     458
+    ]
+   },
+   "Klukwan": {
+    "pop_inside": 87,
+    "pop_total": 87,
+    "votes": [
+     72,
+     21,
+     99
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Pelican-Elfin Cove': 0.258, 'Hoonah': 0.064}"
+ },
+ {
+  "year": "2024",
+  "name": "Kuspuk School District",
+  "current": [
+   217,
+   144,
+   395
+  ],
+  "current_flag": "est",
+  "geoid": "0200760",
+  "district_pop2020": 1430,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Aniak": {
+    "pop_inside": 517,
+    "pop_total": 517,
+    "votes": [
+     82,
+     59,
+     155
+    ]
+   },
+   "Chuathbaluk": {
+    "pop_inside": 101,
+    "pop_total": 101,
+    "votes": [
+     12,
+     13,
+     28
+    ]
+   },
+   "Lower Kalskag": {
+    "pop_inside": 278,
+    "pop_total": 278,
+    "votes": [
+     46,
+     34,
+     89
+    ]
+   },
+   "Upper Kalskag": {
+    "pop_inside": 212,
+    "pop_total": 212,
+    "votes": [
+     49,
+     28,
+     80
+    ]
+   },
+   "Sleetmute": {
+    "pop_inside": 178,
+    "pop_total": 204,
+    "votes": [
+     21,
+     9,
+     36
+    ]
+   },
+   "Crooked Creek": {
+    "pop_inside": 144,
+    "pop_total": 144,
+    "votes": [
+     20,
+     6,
+     28
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Sleetmute': 0.873}"
+ },
+ {
+  "year": "2024",
+  "name": "Denali Borough School District",
+  "geoid": "0200770",
+  "result": "within_3pct_kept",
+  "current": [
+   484,
+   753,
+   1268
+  ],
+  "value": [
+   484,
+   753,
+   1266
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Yukon Flats School District",
+  "current": [
+   352,
+   133,
+   489
+  ],
+  "current_flag": "est",
+  "geoid": "0200775",
+  "district_pop2020": 1158,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Beaver": {
+    "pop_inside": 48,
+    "pop_total": 48,
+    "votes": [
+     18,
+     6,
+     25
+    ]
+   },
+   "Circle": {
+    "pop_inside": 220,
+    "pop_total": 277,
+    "votes": [
+     27,
+     6,
+     31
+    ]
+   },
+   "Central": {
+    "pop_inside": 66,
+    "pop_total": 66,
+    "votes": [
+     12,
+     48,
+     62
+    ]
+   },
+   "Fort Yukon": {
+    "pop_inside": 463,
+    "pop_total": 463,
+    "votes": [
+     161,
+     45,
+     211
+    ]
+   },
+   "Venetie": {
+    "pop_inside": 206,
+    "pop_total": 206,
+    "votes": [
+     52,
+     18,
+     69
+    ]
+   },
+   "Arctic Village": {
+    "pop_inside": 152,
+    "pop_total": 152,
+    "votes": [
+     80,
+     5,
+     83
+    ]
+   }
+  },
+  "pop_cover": 0.9974,
+  "result": "keep_current",
+  "why": "precincts split: {'Circle': 0.794}"
+ },
+ {
+  "year": "2024",
+  "name": "Valdez City School District",
+  "current": [
+   513,
+   847,
+   1392
+  ],
+  "current_flag": "est",
+  "geoid": "0200780",
+  "district_pop2020": 3985,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Valdez No. 1": {
+    "pop_inside": 1511,
+    "pop_total": 1511,
+    "votes": [
+     328,
+     581,
+     933
+    ]
+   },
+   "Valdez No. 3": {
+    "pop_inside": 1487,
+    "pop_total": 1603,
+    "votes": [
+     244,
+     470,
+     741
+    ]
+   },
+   "Valdez No. 2": {
+    "pop_inside": 987,
+    "pop_total": 987,
+    "votes": [
+     179,
+     254,
+     441
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'Valdez No. 3': 0.928}"
+ },
+ {
+  "year": "2024",
+  "name": "Chugach School District",
+  "current": [
+   191,
+   284,
+   493
+  ],
+  "current_flag": "est",
+  "geoid": "0200800",
+  "district_pop2020": 508,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Whittier": {
+    "pop_inside": 272,
+    "pop_total": 272,
+    "votes": [
+     64,
+     85,
+     156
+    ]
+   },
+   "Tatitlek": {
+    "pop_inside": 191,
+    "pop_total": 191,
+    "votes": [
+     27,
+     7,
+     34
+    ]
+   }
+  },
+  "pop_cover": 0.9114,
+  "result": "keep_current",
+  "why": "population cover 91 % < 97 %"
+ },
+ {
+  "year": "2024",
+  "name": "Wrangell School District",
+  "geoid": "0200810",
+  "result": "within_3pct_kept",
+  "current": [
+   359,
+   745,
+   1143
+  ],
+  "value": [
+   359,
+   744,
+   1142
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Yakutat School District",
+  "geoid": "0200840",
+  "result": "within_3pct_kept",
+  "current": [
+   271,
+   179,
+   464
+  ],
+  "value": [
+   270,
+   179,
+   464
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2024",
+  "name": "Yukon-Koyukuk School District",
+  "current": [
+   844,
+   605,
+   1514
+  ],
+  "current_flag": "est",
+  "geoid": "0200862",
+  "district_pop2020": 2038,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "Kaltag": {
+    "pop_inside": 158,
+    "pop_total": 158,
+    "votes": [
+     40,
+     14,
+     58
+    ]
+   },
+   "Ruby": {
+    "pop_inside": 142,
+    "pop_total": 142,
+    "votes": [
+     28,
+     18,
+     47
+    ]
+   },
+   "Nulato": {
+    "pop_inside": 242,
+    "pop_total": 242,
+    "votes": [
+     93,
+     17,
+     120
+    ]
+   },
+   "Huslia": {
+    "pop_inside": 308,
+    "pop_total": 308,
+    "votes": [
+     111,
+     27,
+     141
+    ]
+   },
+   "Manley": {
+    "pop_inside": 213,
+    "pop_total": 213,
+    "votes": [
+     15,
+     56,
+     73
+    ]
+   },
+   "Circle": {
+    "pop_inside": 57,
+    "pop_total": 277,
+    "votes": [
+     27,
+     6,
+     31
+    ]
+   },
+   "Bettles": {
+    "pop_inside": 101,
+    "pop_total": 104,
+    "votes": [
+     8,
+     8,
+     17
+    ]
+   },
+   "Koyukuk": {
+    "pop_inside": 98,
+    "pop_total": 98,
+    "votes": [
+     40,
+     3,
+     42
+    ]
+   },
+   "Allakaket": {
+    "pop_inside": 194,
+    "pop_total": 194,
+    "votes": [
+     58,
+     2,
+     59
+    ]
+   },
+   "Hughes": {
+    "pop_inside": 85,
+    "pop_total": 85,
+    "votes": [
+     30,
+     12,
+     47
+    ]
+   },
+   "Nenana": {
+    "pop_inside": 279,
+    "pop_total": 637,
+    "votes": [
+     163,
+     294,
+     484
+    ]
+   },
+   "Minto": {
+    "pop_inside": 150,
+    "pop_total": 150,
+    "votes": [
+     35,
+     38,
+     80
+    ]
+   }
+  },
+  "pop_cover": 0.9946,
+  "result": "keep_current",
+  "why": "precincts split: {'Circle': 0.206, 'Nenana': 0.438}"
+ },
+ {
+  "year": "2020",
+  "name": "Lower Kuskokwim School District",
+  "current": [
+   2876,
+   1578,
+   4752
+  ],
+  "current_flag": null,
+  "geoid": "0200001",
+  "district_pop2020": 15622,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "38-820 Goodnews Bay": {
+    "pop_inside": 318,
+    "pop_total": 318,
+    "votes": [
+     64,
+     24,
+     92
+    ]
+   },
+   "38-848 Quinhagak": {
+    "pop_inside": 776,
+    "pop_total": 776,
+    "votes": [
+     118,
+     69,
+     201
+    ]
+   },
+   "38-836 Mekoryuk": {
+    "pop_inside": 206,
+    "pop_total": 206,
+    "votes": [
+     48,
+     31,
+     83
+    ]
+   },
+   "38-852 Toksook Bay": {
+    "pop_inside": 658,
+    "pop_total": 658,
+    "votes": [
+     162,
+     46,
+     215
+    ]
+   },
+   "38-830 Kwigillingok": {
+    "pop_inside": 380,
+    "pop_total": 380,
+    "votes": [
+     45,
+     43,
+     92
+    ]
+   },
+   "38-824 Kipnuk": {
+    "pop_inside": 704,
+    "pop_total": 704,
+    "votes": [
+     109,
+     68,
+     185
+    ]
+   },
+   "38-826 Kongiganak": {
+    "pop_inside": 486,
+    "pop_total": 486,
+    "votes": [
+     78,
+     64,
+     160
+    ]
+   },
+   "38-818 Eek": {
+    "pop_inside": 406,
+    "pop_total": 406,
+    "votes": [
+     47,
+     33,
+     93
+    ]
+   },
+   "38-840 Napaskiak": {
+    "pop_inside": 509,
+    "pop_total": 509,
+    "votes": [
+     71,
+     20,
+     95
+    ]
+   },
+   "38-838 Napakiak": {
+    "pop_inside": 430,
+    "pop_total": 430,
+    "votes": [
+     76,
+     50,
+     129
+    ]
+   },
+   "38-810 Bethel No. 2": {
+    "pop_inside": 2767,
+    "pop_total": 2767,
+    "votes": [
+     576,
+     390,
+     997
+    ]
+   },
+   "38-812 Chefornak": {
+    "pop_inside": 506,
+    "pop_total": 506,
+    "votes": [
+     111,
+     22,
+     155
+    ]
+   },
+   "38-856 Tuntutuliak": {
+    "pop_inside": 469,
+    "pop_total": 469,
+    "votes": [
+     86,
+     38,
+     135
+    ]
+   },
+   "38-844 Nightmute": {
+    "pop_inside": 306,
+    "pop_total": 306,
+    "votes": [
+     45,
+     31,
+     79
+    ]
+   },
+   "38-858 Tununak": {
+    "pop_inside": 411,
+    "pop_total": 411,
+    "votes": [
+     105,
+     14,
+     129
+    ]
+   },
+   "38-808 Bethel No. 1": {
+    "pop_inside": 3558,
+    "pop_total": 3558,
+    "votes": [
+     605,
+     338,
+     983
+    ]
+   },
+   "38-828 Kwethluk": {
+    "pop_inside": 813,
+    "pop_total": 813,
+    "votes": [
+     138,
+     19,
+     173
+    ]
+   },
+   "38-842 Newtok": {
+    "pop_inside": 308,
+    "pop_total": 308,
+    "votes": [
+     36,
+     31,
+     88
+    ]
+   },
+   "38-806 Atmautluak": {
+    "pop_inside": 387,
+    "pop_total": 387,
+    "votes": [
+     28,
+     16,
+     57
+    ]
+   },
+   "38-822 Kasigluk": {
+    "pop_inside": 623,
+    "pop_total": 623,
+    "votes": [
+     73,
+     11,
+     91
+    ]
+   },
+   "38-846 Nunapitchuk": {
+    "pop_inside": 594,
+    "pop_total": 594,
+    "votes": [
+     41,
+     67,
+     115
+    ]
+   }
+  },
+  "pop_cover": 0.9996,
+  "result": "check_exact_row",
+  "value": [
+   2662,
+   1425,
+   4347
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Lower Yukon School District",
+  "current": [
+   1205,
+   557,
+   1917
+  ],
+  "current_flag": "est",
+  "geoid": "0200003",
+  "district_pop2020": 6818,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-916 Hooper Bay": {
+    "pop_inside": 1375,
+    "pop_total": 1375,
+    "votes": [
+     170,
+     91,
+     273
+    ]
+   },
+   "39-934 Scammon Bay": {
+    "pop_inside": 685,
+    "pop_total": 685,
+    "votes": [
+     115,
+     48,
+     172
+    ]
+   },
+   "38-850 Russian Mission": {
+    "pop_inside": 426,
+    "pop_total": 426,
+    "votes": [
+     42,
+     21,
+     76
+    ]
+   },
+   "38-834 Marshall": {
+    "pop_inside": 493,
+    "pop_total": 493,
+    "votes": [
+     75,
+     38,
+     136
+    ]
+   },
+   "39-930 Pilot Station": {
+    "pop_inside": 615,
+    "pop_total": 615,
+    "votes": [
+     84,
+     22,
+     122
+    ]
+   },
+   "39-940 St. Mary's": {
+    "pop_inside": 121,
+    "pop_total": 720,
+    "votes": [
+     149,
+     45,
+     205
+    ]
+   },
+   "39-922 Mountain Village": {
+    "pop_inside": 629,
+    "pop_total": 629,
+    "votes": [
+     111,
+     50,
+     169
+    ]
+   },
+   "39-928 Nunam Iqua": {
+    "pop_inside": 218,
+    "pop_total": 218,
+    "votes": [
+     33,
+     11,
+     46
+    ]
+   },
+   "39-900 Alakanuk": {
+    "pop_inside": 757,
+    "pop_total": 757,
+    "votes": [
+     80,
+     28,
+     131
+    ]
+   },
+   "39-918 Kotlik": {
+    "pop_inside": 662,
+    "pop_total": 662,
+    "votes": [
+     91,
+     34,
+     134
+    ]
+   },
+   "39-910 Emmonak": {
+    "pop_inside": 827,
+    "pop_total": 827,
+    "votes": [
+     99,
+     77,
+     193
+    ]
+   }
+  },
+  "pop_cover": 0.9985,
+  "result": "keep_current",
+  "why": "precincts split: {\"39-940 St. Mary's\": 0.168}"
+ },
+ {
+  "year": "2020",
+  "name": "Yupiit School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200004",
+  "district_pop2020": 1588,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "38-800 Akiachak": {
+    "pop_inside": 682,
+    "pop_total": 687,
+    "votes": [
+     77,
+     87,
+     176
+    ]
+   },
+   "38-802 Akiak": {
+    "pop_inside": 462,
+    "pop_total": 462,
+    "votes": [
+     64,
+     43,
+     127
+    ]
+   },
+   "38-854 Tuluksak": {
+    "pop_inside": 444,
+    "pop_total": 446,
+    "votes": [
+     73,
+     23,
+     102
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   214,
+   153,
+   405
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Kashunamiut School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200005",
+  "district_pop2020": 951,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-904 Chevak": {
+    "pop_inside": 951,
+    "pop_total": 961,
+    "votes": [
+     123,
+     80,
+     211
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   123,
+   80,
+   211
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Aleutians East Borough School District",
+  "geoid": "0200007",
+  "result": "unchanged",
+  "current": [
+   178,
+   311,
+   509
+  ],
+  "value": [
+   178,
+   311,
+   509
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Aleutian Region School District",
+  "current": [
+   539,
+   532,
+   1098
+  ],
+  "current_flag": "est",
+  "geoid": "0200010",
+  "district_pop2020": 498,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "37-704 Aleutians No. 1": {
+    "pop_inside": 498,
+    "pop_total": 498,
+    "votes": [
+     61,
+     43,
+     109
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   61,
+   43,
+   109
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Bering Strait School District",
+  "current": [
+   2086,
+   1278,
+   3571
+  ],
+  "current_flag": null,
+  "geoid": "0200020",
+  "district_pop2020": 6347,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-942 St. Michael": {
+    "pop_inside": 457,
+    "pop_total": 457,
+    "votes": [
+     51,
+     40,
+     98
+    ]
+   },
+   "39-944 Stebbins": {
+    "pop_inside": 634,
+    "pop_total": 634,
+    "votes": [
+     51,
+     43,
+     101
+    ]
+   },
+   "39-948 Unalakleet": {
+    "pop_inside": 806,
+    "pop_total": 806,
+    "votes": [
+     211,
+     122,
+     351
+    ]
+   },
+   "39-932 Savoonga": {
+    "pop_inside": 835,
+    "pop_total": 835,
+    "votes": [
+     210,
+     28,
+     253
+    ]
+   },
+   "39-912 Gambell": {
+    "pop_inside": 640,
+    "pop_total": 640,
+    "votes": [
+     145,
+     61,
+     217
+    ]
+   },
+   "39-926 Nome No. 2": {
+    "pop_inside": 168,
+    "pop_total": 2272,
+    "votes": [
+     501,
+     408,
+     958
+    ]
+   },
+   "39-914 Golovin": {
+    "pop_inside": 175,
+    "pop_total": 175,
+    "votes": [
+     46,
+     23,
+     72
+    ]
+   },
+   "39-936 Shaktoolik": {
+    "pop_inside": 213,
+    "pop_total": 213,
+    "votes": [
+     40,
+     46,
+     88
+    ]
+   },
+   "39-920 Koyuk": {
+    "pop_inside": 312,
+    "pop_total": 312,
+    "votes": [
+     50,
+     64,
+     120
+    ]
+   },
+   "39-908 Elim": {
+    "pop_inside": 366,
+    "pop_total": 366,
+    "votes": [
+     47,
+     75,
+     134
+    ]
+   },
+   "39-952 White Mountain": {
+    "pop_inside": 187,
+    "pop_total": 187,
+    "votes": [
+     66,
+     17,
+     87
+    ]
+   },
+   "39-946 Teller": {
+    "pop_inside": 252,
+    "pop_total": 252,
+    "votes": [
+     43,
+     27,
+     75
+    ]
+   },
+   "39-902 Brevig Mission": {
+    "pop_inside": 428,
+    "pop_total": 428,
+    "votes": [
+     81,
+     26,
+     125
+    ]
+   },
+   "39-950 Wales": {
+    "pop_inside": 168,
+    "pop_total": 168,
+    "votes": [
+     28,
+     5,
+     36
+    ]
+   },
+   "39-906 Diomede": {
+    "pop_inside": 83,
+    "pop_total": 83,
+    "votes": [
+     11,
+     10,
+     23
+    ]
+   },
+   "39-938 Shishmaref": {
+    "pop_inside": 580,
+    "pop_total": 580,
+    "votes": [
+     178,
+     38,
+     230
+    ]
+   }
+  },
+  "pop_cover": 0.9932,
+  "result": "keep_current",
+  "why": "precincts split: {'39-926 Nome No. 2': 0.074}"
+ },
+ {
+  "year": "2020",
+  "name": "Bristol Bay Borough School District",
+  "geoid": "0200030",
+  "result": "unchanged",
+  "current": [
+   185,
+   290,
+   483
+  ],
+  "value": [
+   185,
+   290,
+   483
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Alaska Gateway School District",
+  "current": [
+   395,
+   888,
+   1327
+  ],
+  "current_flag": "est",
+  "geoid": "0200050",
+  "district_pop2020": 2239,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-060 Northway": {
+    "pop_inside": 273,
+    "pop_total": 273,
+    "votes": [
+     80,
+     64,
+     148
+    ]
+   },
+   "06-020 Chistochina": {
+    "pop_inside": 10,
+    "pop_total": 182,
+    "votes": [
+     20,
+     117,
+     145
+    ]
+   },
+   "06-053 Mentasta": {
+    "pop_inside": 118,
+    "pop_total": 120,
+    "votes": [
+     40,
+     12,
+     61
+    ]
+   },
+   "06-085 Tetlin": {
+    "pop_inside": 133,
+    "pop_total": 133,
+    "votes": [
+     38,
+     13,
+     51
+    ]
+   },
+   "06-090 Tok": {
+    "pop_inside": 1259,
+    "pop_total": 1259,
+    "votes": [
+     164,
+     597,
+     785
+    ]
+   },
+   "06-075 Tanacross": {
+    "pop_inside": 144,
+    "pop_total": 144,
+    "votes": [
+     28,
+     15,
+     45
+    ]
+   },
+   "06-027 Dot Lake": {
+    "pop_inside": 108,
+    "pop_total": 134,
+    "votes": [
+     7,
+     81,
+     88
+    ]
+   },
+   "06-030 Eagle": {
+    "pop_inside": 194,
+    "pop_total": 194,
+    "votes": [
+     38,
+     106,
+     149
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'06-020 Chistochina': 0.055, '06-027 Dot Lake': 0.806}"
+ },
+ {
+  "year": "2020",
+  "name": "Cordova City School District",
+  "geoid": "0200060",
+  "result": "unchanged",
+  "current": [
+   715,
+   594,
+   1372
+  ],
+  "value": [
+   715,
+   594,
+   1372
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Copper River School District",
+  "current": [
+   506,
+   1194,
+   1773
+  ],
+  "current_flag": "est",
+  "geoid": "0200070",
+  "district_pop2020": 2489,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-025 Copper Center": {
+    "pop_inside": 1134,
+    "pop_total": 1134,
+    "votes": [
+     276,
+     402,
+     706
+    ]
+   },
+   "09-632 Glennallen": {
+    "pop_inside": 632,
+    "pop_total": 632,
+    "votes": [
+     100,
+     349,
+     466
+    ]
+   },
+   "06-047 Kenny Lake": {
+    "pop_inside": 251,
+    "pop_total": 251,
+    "votes": [
+     54,
+     207,
+     272
+    ]
+   },
+   "06-020 Chistochina": {
+    "pop_inside": 172,
+    "pop_total": 182,
+    "votes": [
+     20,
+     117,
+     145
+    ]
+   },
+   "06-035 Gakona": {
+    "pop_inside": 300,
+    "pop_total": 300,
+    "votes": [
+     56,
+     119,
+     184
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'06-020 Chistochina': 0.945}"
+ },
+ {
+  "year": "2020",
+  "name": "Craig City School District",
+  "current": [
+   261,
+   393,
+   672
+  ],
+  "current_flag": "est",
+  "geoid": "0200090",
+  "district_pop2020": 1036,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-705 Craig": {
+    "pop_inside": 1036,
+    "pop_total": 1251,
+    "votes": [
+     261,
+     393,
+     672
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'35-705 Craig': 0.828}"
+ },
+ {
+  "year": "2020",
+  "name": "Delta/Greely School District",
+  "current": [
+   362,
+   1913,
+   2355
+  ],
+  "current_flag": "est",
+  "geoid": "0200100",
+  "district_pop2020": 4696,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "09-600 Big Delta": {
+    "pop_inside": 3560,
+    "pop_total": 3560,
+    "votes": [
+     284,
+     1505,
+     1850
+    ]
+   },
+   "06-027 Dot Lake": {
+    "pop_inside": 26,
+    "pop_total": 134,
+    "votes": [
+     7,
+     81,
+     88
+    ]
+   },
+   "09-608 Delta Junction": {
+    "pop_inside": 1108,
+    "pop_total": 1108,
+    "votes": [
+     78,
+     408,
+     505
+    ]
+   }
+  },
+  "pop_cover": 0.9996,
+  "result": "keep_current",
+  "why": "precincts split: {'06-027 Dot Lake': 0.194}"
+ },
+ {
+  "year": "2020",
+  "name": "Dillingham City School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200120",
+  "district_pop2020": 2249,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "37-714 Dillingham": {
+    "pop_inside": 2249,
+    "pop_total": 2353,
+    "votes": [
+     520,
+     439,
+     991
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'37-714 Dillingham': 0.956}"
+ },
+ {
+  "year": "2020",
+  "name": "Galena City School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200130",
+  "district_pop2020": 472,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-314 Galena": {
+    "pop_inside": 472,
+    "pop_total": 482,
+    "votes": [
+     112,
+     90,
+     225
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   112,
+   90,
+   225
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Ketchikan Gateway Borough School District",
+  "current": [
+   2890,
+   4099,
+   7294
+  ],
+  "current_flag": "est",
+  "geoid": "0200150",
+  "district_pop2020": 13948,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "36-670 South Tongass": {
+    "pop_inside": 2096,
+    "pop_total": 2162,
+    "votes": [
+     474,
+     784,
+     1310
+    ]
+   },
+   "36-660 Saxman": {
+    "pop_inside": 407,
+    "pop_total": 407,
+    "votes": [
+     108,
+     56,
+     172
+    ]
+   },
+   "36-600 Ketchikan No. 1": {
+    "pop_inside": 2841,
+    "pop_total": 2841,
+    "votes": [
+     637,
+     556,
+     1260
+    ]
+   },
+   "36-610 Ketchikan No. 2": {
+    "pop_inside": 3213,
+    "pop_total": 3213,
+    "votes": [
+     668,
+     761,
+     1494
+    ]
+   },
+   "36-620 Ketchikan No. 3": {
+    "pop_inside": 2138,
+    "pop_total": 2138,
+    "votes": [
+     405,
+     648,
+     1093
+    ]
+   },
+   "36-640 North Tongass No. 1": {
+    "pop_inside": 1213,
+    "pop_total": 1213,
+    "votes": [
+     211,
+     460,
+     696
+    ]
+   },
+   "36-650 North Tongass No. 2": {
+    "pop_inside": 2040,
+    "pop_total": 2040,
+    "votes": [
+     387,
+     834,
+     1269
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'36-670 South Tongass': 0.969}"
+ },
+ {
+  "year": "2020",
+  "name": "Anchorage School District",
+  "geoid": "0200180",
+  "result": "unchanged",
+  "current": [
+   71117,
+   68010,
+   144260
+  ],
+  "value": [
+   71117,
+   68010,
+   144260
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Juneau Borough School District",
+  "current": [
+   10610,
+   6208,
+   17464
+  ],
+  "current_flag": "est",
+  "geoid": "0200210",
+  "district_pop2020": 32255,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "33-500 Douglas": {
+    "pop_inside": 2152,
+    "pop_total": 2152,
+    "votes": [
+     937,
+     295,
+     1266
+    ]
+   },
+   "33-510 Juneau No. 1": {
+    "pop_inside": 2623,
+    "pop_total": 2623,
+    "votes": [
+     1147,
+     405,
+     1627
+    ]
+   },
+   "33-530 North Douglas": {
+    "pop_inside": 1620,
+    "pop_total": 1628,
+    "votes": [
+     804,
+     380,
+     1207
+    ]
+   },
+   "33-515 Juneau No. 2": {
+    "pop_inside": 2453,
+    "pop_total": 2453,
+    "votes": [
+     1413,
+     341,
+     1808
+    ]
+   },
+   "33-520 Juneau No. 3": {
+    "pop_inside": 1280,
+    "pop_total": 1280,
+    "votes": [
+     562,
+     198,
+     784
+    ]
+   },
+   "34-400 Auke Bay": {
+    "pop_inside": 2210,
+    "pop_total": 2210,
+    "votes": [
+     869,
+     582,
+     1499
+    ]
+   },
+   "33-525 Lemon Creek": {
+    "pop_inside": 3537,
+    "pop_total": 3537,
+    "votes": [
+     775,
+     425,
+     1236
+    ]
+   },
+   "34-410 Juneau Airport": {
+    "pop_inside": 2086,
+    "pop_total": 2086,
+    "votes": [
+     666,
+     445,
+     1159
+    ]
+   },
+   "34-430 Mendenhall Valley No. 1": {
+    "pop_inside": 3044,
+    "pop_total": 3044,
+    "votes": [
+     801,
+     669,
+     1553
+    ]
+   },
+   "34-420 Lynn Canal": {
+    "pop_inside": 1541,
+    "pop_total": 1541,
+    "votes": [
+     645,
+     429,
+     1102
+    ]
+   },
+   "34-440 Mendenhall Valley No. 2": {
+    "pop_inside": 3244,
+    "pop_total": 3244,
+    "votes": [
+     901,
+     680,
+     1644
+    ]
+   },
+   "34-460 Mendenhall Valley No. 4": {
+    "pop_inside": 3929,
+    "pop_total": 3929,
+    "votes": [
+     1116,
+     1040,
+     2237
+    ]
+   },
+   "34-450 Mendenhall Valley No. 3": {
+    "pop_inside": 2536,
+    "pop_total": 2536,
+    "votes": [
+     778,
+     699,
+     1549
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   11414,
+   6588,
+   18671
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Sitka School District",
+  "geoid": "0200240",
+  "result": "unchanged",
+  "current": [
+   2825,
+   1957,
+   4927
+  ],
+  "value": [
+   2825,
+   1957,
+   4927
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Haines Borough School District",
+  "current": [
+   1019,
+   708,
+   1779
+  ],
+  "current_flag": "est",
+  "geoid": "0200270",
+  "district_pop2020": 2080,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "33-545 Haines No. 1": {
+    "pop_inside": 1908,
+    "pop_total": 1908,
+    "votes": [
+     849,
+     611,
+     1505
+    ]
+   },
+   "33-550 Haines No. 2": {
+    "pop_inside": 172,
+    "pop_total": 172,
+    "votes": [
+     119,
+     89,
+     210
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   968,
+   700,
+   1715
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Hoonah City School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200300",
+  "district_pop2020": 931,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-720 Hoonah": {
+    "pop_inside": 931,
+    "pop_total": 996,
+    "votes": [
+     246,
+     187,
+     451
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'35-720 Hoonah': 0.935}"
+ },
+ {
+  "year": "2020",
+  "name": "Hydaburg City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200330",
+  "district_pop2020": 380,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "36-675 Hydaburg": {
+    "pop_inside": 380,
+    "pop_total": 389,
+    "votes": [
+     107,
+     21,
+     135
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   107,
+   21,
+   135
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Kake City School District",
+  "current": null,
+  "current_flag": "e20",
+  "geoid": "0200360",
+  "district_pop2020": 543,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-730 Kake": {
+    "pop_inside": 543,
+    "pop_total": 550,
+    "votes": [
+     147,
+     79,
+     241
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   147,
+   79,
+   241
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Kenai Peninsula Borough School District",
+  "geoid": "0200390",
+  "result": "unchanged",
+  "current": [
+   11077,
+   21797,
+   33945
+  ],
+  "value": [
+   11077,
+   21797,
+   33945
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Klawock City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200450",
+  "district_pop2020": 720,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-740 Klawock": {
+    "pop_inside": 720,
+    "pop_total": 800,
+    "votes": [
+     207,
+     253,
+     474
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'35-740 Klawock': 0.9}"
+ },
+ {
+  "year": "2020",
+  "name": "Kodiak Island Borough School District",
+  "geoid": "0200480",
+  "result": "unchanged",
+  "current": [
+   2222,
+   3532,
+   6033
+  ],
+  "value": [
+   2222,
+   3532,
+   6033
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Lake and Peninsula Borough School District",
+  "geoid": "0200485",
+  "result": "unchanged",
+  "current": [
+   358,
+   234,
+   644
+  ],
+  "value": [
+   358,
+   234,
+   644
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Matanuska-Susitna Borough School District",
+  "geoid": "0200510",
+  "result": "unchanged",
+  "current": [
+   12970,
+   39010,
+   53932
+  ],
+  "value": [
+   12970,
+   39010,
+   53932
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Iditarod Area School District",
+  "current": [
+   268,
+   179,
+   479
+  ],
+  "current_flag": "est",
+  "geoid": "0200520",
+  "district_pop2020": 1098,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "37-304 Holy Cross": {
+    "pop_inside": 176,
+    "pop_total": 176,
+    "votes": [
+     50,
+     17,
+     70
+    ]
+   },
+   "37-746 Sleetmute": {
+    "pop_inside": 26,
+    "pop_total": 204,
+    "votes": [
+     46,
+     5,
+     53
+    ]
+   },
+   "37-306 Mcgrath": {
+    "pop_inside": 369,
+    "pop_total": 369,
+    "votes": [
+     55,
+     96,
+     156
+    ]
+   },
+   "37-312 Takotna": {
+    "pop_inside": 56,
+    "pop_total": 56,
+    "votes": [
+     5,
+     11,
+     17
+    ]
+   },
+   "37-308 Nikolai": {
+    "pop_inside": 89,
+    "pop_total": 89,
+    "votes": [
+     32,
+     10,
+     49
+    ]
+   },
+   "37-302 Grayling": {
+    "pop_inside": 212,
+    "pop_total": 212,
+    "votes": [
+     33,
+     20,
+     63
+    ]
+   },
+   "37-300 Anvik": {
+    "pop_inside": 70,
+    "pop_total": 70,
+    "votes": [
+     21,
+     12,
+     37
+    ]
+   },
+   "37-310 Shageluk": {
+    "pop_inside": 100,
+    "pop_total": 100,
+    "votes": [
+     26,
+     8,
+     34
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'37-746 Sleetmute': 0.127}"
+ },
+ {
+  "year": "2020",
+  "name": "Annette Island School District",
+  "geoid": "0200525",
+  "result": "unchanged",
+  "current": [
+   379,
+   187,
+   591
+  ],
+  "value": [
+   379,
+   187,
+   591
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Nenana City School District",
+  "current": null,
+  "current_flag": "e20",
+  "geoid": "0200540",
+  "district_pop2020": 358,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-056 Nenana": {
+    "pop_inside": 358,
+    "pop_total": 613,
+    "votes": [
+     141,
+     234,
+     404
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'06-056 Nenana': 0.584}"
+ },
+ {
+  "year": "2020",
+  "name": "Nome School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200570",
+  "district_pop2020": 3699,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-926 Nome No. 2": {
+    "pop_inside": 2104,
+    "pop_total": 2272,
+    "votes": [
+     501,
+     408,
+     958
+    ]
+   },
+   "39-924 Nome No. 1": {
+    "pop_inside": 1595,
+    "pop_total": 1638,
+    "votes": [
+     327,
+     245,
+     603
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'39-926 Nome No. 2': 0.926}"
+ },
+ {
+  "year": "2020",
+  "name": "Fairbanks North Star Borough School District",
+  "geoid": "0200600",
+  "result": "unchanged",
+  "current": [
+   18249,
+   24878,
+   45271
+  ],
+  "value": [
+   18249,
+   24878,
+   45271
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "North Slope Borough School District",
+  "geoid": "0200610",
+  "result": "unchanged",
+  "current": [
+   1078,
+   1167,
+   2392
+  ],
+  "value": [
+   1078,
+   1167,
+   2392
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Northwest Arctic Borough School District",
+  "geoid": "0200625",
+  "result": "unchanged",
+  "current": [
+   1115,
+   778,
+   2028
+  ],
+  "value": [
+   1115,
+   778,
+   2028
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Pelican City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200630",
+  "district_pop2020": 98,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-750 Pelican/Elfin Cove": {
+    "pop_inside": 98,
+    "pop_total": 127,
+    "votes": [
+     58,
+     43,
+     103
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {'35-750 Pelican/Elfin Cove': 0.772}"
+ },
+ {
+  "year": "2020",
+  "name": "Petersburg Borough School District",
+  "geoid": "0200660",
+  "result": "unchanged",
+  "current": [
+   741,
+   1150,
+   1957
+  ],
+  "value": [
+   741,
+   1150,
+   1957
+  ],
+  "pop_cover": 0.9988
+ },
+ {
+  "year": "2020",
+  "name": "Pribilof School District",
+  "geoid": "0200670",
+  "result": "matches_exact_row",
+  "current": [
+   136,
+   25,
+   166
+  ],
+  "value": [
+   136,
+   25,
+   166
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "St. Marys City School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200680",
+  "district_pop2020": 599,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-940 St. Mary's": {
+    "pop_inside": 599,
+    "pop_total": 720,
+    "votes": [
+     149,
+     45,
+     205
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "gray",
+  "why": "precincts split: {\"39-940 St. Mary's\": 0.832}"
+ },
+ {
+  "year": "2020",
+  "name": "Skagway School District",
+  "geoid": "0200690",
+  "result": "unchanged",
+  "current": [
+   582,
+   187,
+   815
+  ],
+  "value": [
+   582,
+   187,
+   815
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Southeast Island School District",
+  "current": [
+   727,
+   1002,
+   1794
+  ],
+  "current_flag": "est",
+  "geoid": "0200700",
+  "district_pop2020": 1512,
+  "pop_not_in_any_precinct": 5,
+  "precincts": {
+   "35-705 Craig": {
+    "pop_inside": 215,
+    "pop_total": 1251,
+    "votes": [
+     261,
+     393,
+     672
+    ]
+   },
+   "35-780 Thorne Bay": {
+    "pop_inside": 554,
+    "pop_total": 554,
+    "votes": [
+     97,
+     363,
+     462
+    ]
+   },
+   "35-740 Klawock": {
+    "pop_inside": 80,
+    "pop_total": 800,
+    "votes": [
+     207,
+     253,
+     474
+    ]
+   },
+   "35-735 Kasaan": {
+    "pop_inside": 30,
+    "pop_total": 30,
+    "votes": [
+     15,
+     18,
+     41
+    ]
+   },
+   "35-745 North Prince Of Wales": {
+    "pop_inside": 472,
+    "pop_total": 472,
+    "votes": [
+     130,
+     250,
+     397
+    ]
+   },
+   "36-670 South Tongass": {
+    "pop_inside": 66,
+    "pop_total": 2162,
+    "votes": [
+     474,
+     784,
+     1310
+    ]
+   },
+   "35-760 Port Alexander": {
+    "pop_inside": 78,
+    "pop_total": 78,
+    "votes": [
+     24,
+     18,
+     44
+    ]
+   }
+  },
+  "pop_cover": 0.9888,
+  "result": "keep_current",
+  "why": "precincts split: {'35-705 Craig': 0.172, '35-740 Klawock': 0.1, '36-670 South Tongass': 0.031}"
+ },
+ {
+  "year": "2020",
+  "name": "Southwest Region School District",
+  "current": [
+   901,
+   788,
+   1769
+  ],
+  "current_flag": "est",
+  "geoid": "0200710",
+  "district_pop2020": 2608,
+  "pop_not_in_any_precinct": 73,
+  "precincts": {
+   "37-714 Dillingham": {
+    "pop_inside": 104,
+    "pop_total": 2353,
+    "votes": [
+     520,
+     439,
+     991
+    ]
+   },
+   "37-732 Manokotak": {
+    "pop_inside": 487,
+    "pop_total": 487,
+    "votes": [
+     50,
+     74,
+     132
+    ]
+   },
+   "37-754 Togiak": {
+    "pop_inside": 922,
+    "pop_total": 922,
+    "votes": [
+     100,
+     118,
+     232
+    ]
+   },
+   "37-702 Aleknagik": {
+    "pop_inside": 216,
+    "pop_total": 216,
+    "votes": [
+     23,
+     66,
+     93
+    ]
+   },
+   "37-718 Ekwok": {
+    "pop_inside": 111,
+    "pop_total": 111,
+    "votes": [
+     15,
+     25,
+     46
+    ]
+   },
+   "37-736 New Stuyahok": {
+    "pop_inside": 512,
+    "pop_total": 512,
+    "votes": [
+     159,
+     32,
+     206
+    ]
+   },
+   "37-724 Koliganek": {
+    "pop_inside": 183,
+    "pop_total": 183,
+    "votes": [
+     34,
+     34,
+     69
+    ]
+   }
+  },
+  "pop_cover": 0.972,
+  "result": "keep_current",
+  "why": "precincts split: {'37-714 Dillingham': 0.044}"
+ },
+ {
+  "year": "2020",
+  "name": "Tanana City School District",
+  "current": null,
+  "current_flag": null,
+  "geoid": "0200715",
+  "district_pop2020": 246,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-080 Tanana": {
+    "pop_inside": 246,
+    "pop_total": 249,
+    "votes": [
+     83,
+     22,
+     106
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   83,
+   22,
+   106
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Unalaska City School District",
+  "current": null,
+  "current_flag": "est",
+  "geoid": "0200720",
+  "district_pop2020": 4254,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "37-706 Aleutians No. 2 (Unalaska)": {
+    "pop_inside": 4254,
+    "pop_total": 4254,
+    "votes": [
+     478,
+     489,
+     989
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "estimate",
+  "value": [
+   478,
+   489,
+   989
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Chatham School District",
+  "current": [
+   1699,
+   792,
+   2566
+  ],
+  "current_flag": "est",
+  "geoid": "0200730",
+  "district_pop2020": 1336,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "35-700 Angoon": {
+    "pop_inside": 369,
+    "pop_total": 369,
+    "votes": [
+     183,
+     42,
+     237
+    ]
+   },
+   "35-775 Tenakee Springs": {
+    "pop_inside": 119,
+    "pop_total": 119,
+    "votes": [
+     93,
+     19,
+     115
+    ]
+   },
+   "35-750 Pelican/Elfin Cove": {
+    "pop_inside": 29,
+    "pop_total": 127,
+    "votes": [
+     58,
+     43,
+     103
+    ]
+   },
+   "35-720 Hoonah": {
+    "pop_inside": 65,
+    "pop_total": 996,
+    "votes": [
+     246,
+     187,
+     451
+    ]
+   },
+   "33-505 Gustavus": {
+    "pop_inside": 659,
+    "pop_total": 659,
+    "votes": [
+     315,
+     121,
+     453
+    ]
+   },
+   "33-555 Klukwan": {
+    "pop_inside": 87,
+    "pop_total": 87,
+    "votes": [
+     51,
+     8,
+     64
+    ]
+   }
+  },
+  "pop_cover": 0.994,
+  "result": "keep_current",
+  "why": "precincts split: {'35-750 Pelican/Elfin Cove': 0.228, '35-720 Hoonah': 0.065}"
+ },
+ {
+  "year": "2020",
+  "name": "Kuspuk School District",
+  "current": [
+   180,
+   88,
+   290
+  ],
+  "current_flag": "est",
+  "geoid": "0200760",
+  "district_pop2020": 1430,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "38-804 Aniak": {
+    "pop_inside": 517,
+    "pop_total": 517,
+    "votes": [
+     111,
+     50,
+     167
+    ]
+   },
+   "38-814 Chuathbaluk": {
+    "pop_inside": 101,
+    "pop_total": 101,
+    "votes": [
+     12,
+     12,
+     28
+    ]
+   },
+   "38-832 Lower Kalskag": {
+    "pop_inside": 278,
+    "pop_total": 278,
+    "votes": [
+     43,
+     24,
+     78
+    ]
+   },
+   "38-860 Upper Kalskag": {
+    "pop_inside": 212,
+    "pop_total": 212,
+    "votes": [
+     33,
+     12,
+     49
+    ]
+   },
+   "37-746 Sleetmute": {
+    "pop_inside": 178,
+    "pop_total": 204,
+    "votes": [
+     46,
+     5,
+     53
+    ]
+   },
+   "38-816 Crooked Creek": {
+    "pop_inside": 144,
+    "pop_total": 144,
+    "votes": [
+     14,
+     2,
+     17
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'37-746 Sleetmute': 0.873}"
+ },
+ {
+  "year": "2020",
+  "name": "Denali Borough School District",
+  "current": [
+   613,
+   680,
+   1350
+  ],
+  "current_flag": "est",
+  "geoid": "0200770",
+  "district_pop2020": 1619,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-024 Clear": {
+    "pop_inside": 149,
+    "pop_total": 173,
+    "votes": [
+     52,
+     96,
+     148
+    ]
+   },
+   "06-040 Healy": {
+    "pop_inside": 924,
+    "pop_total": 924,
+    "votes": [
+     267,
+     378,
+     673
+    ]
+   },
+   "06-005 Anderson": {
+    "pop_inside": 164,
+    "pop_total": 164,
+    "votes": [
+     21,
+     89,
+     119
+    ]
+   },
+   "06-012 Cantwell": {
+    "pop_inside": 196,
+    "pop_total": 196,
+    "votes": [
+     64,
+     102,
+     179
+    ]
+   },
+   "06-026 Denali Park": {
+    "pop_inside": 186,
+    "pop_total": 186,
+    "votes": [
+     209,
+     15,
+     231
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "keep_current",
+  "why": "precincts split: {'06-024 Clear': 0.861}"
+ },
+ {
+  "year": "2020",
+  "name": "Yukon Flats School District",
+  "current": [
+   406,
+   165,
+   594
+  ],
+  "current_flag": "est",
+  "geoid": "0200775",
+  "district_pop2020": 1158,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "06-010 Beaver": {
+    "pop_inside": 48,
+    "pop_total": 48,
+    "votes": [
+     31,
+     8,
+     49
+    ]
+   },
+   "06-015 Central": {
+    "pop_inside": 125,
+    "pop_total": 125,
+    "votes": [
+     24,
+     74,
+     102
+    ]
+   },
+   "06-033 Fort Yukon": {
+    "pop_inside": 521,
+    "pop_total": 521,
+    "votes": [
+     178,
+     52,
+     235
+    ]
+   },
+   "06-023 Circle": {
+    "pop_inside": 67,
+    "pop_total": 67,
+    "votes": [
+     29,
+     9,
+     38
+    ]
+   },
+   "06-095 Venetie": {
+    "pop_inside": 206,
+    "pop_total": 206,
+    "votes": [
+     34,
+     16,
+     54
+    ]
+   },
+   "06-007 Arctic Village": {
+    "pop_inside": 151,
+    "pop_total": 151,
+    "votes": [
+     69,
+     6,
+     75
+    ]
+   },
+   "06-070 Stevens Village": {
+    "pop_inside": 37,
+    "pop_total": 94,
+    "votes": [
+     41,
+     0,
+     41
+    ]
+   }
+  },
+  "pop_cover": 0.9974,
+  "result": "keep_current",
+  "why": "precincts split: {'06-070 Stevens Village': 0.394}"
+ },
+ {
+  "year": "2020",
+  "name": "Valdez City School District",
+  "current": [
+   531,
+   727,
+   1339
+  ],
+  "current_flag": "est",
+  "geoid": "0200780",
+  "district_pop2020": 3985,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "09-650 Valdez No. 1": {
+    "pop_inside": 1511,
+    "pop_total": 1511,
+    "votes": [
+     323,
+     444,
+     814
+    ]
+   },
+   "09-660 Valdez No. 3": {
+    "pop_inside": 1487,
+    "pop_total": 1532,
+    "votes": [
+     243,
+     454,
+     729
+    ]
+   },
+   "09-655 Valdez No. 2": {
+    "pop_inside": 987,
+    "pop_total": 987,
+    "votes": [
+     208,
+     283,
+     525
+    ]
+   }
+  },
+  "pop_cover": 1.0,
+  "result": "replace_estimate",
+  "value": [
+   774,
+   1181,
+   2068
+  ]
+ },
+ {
+  "year": "2020",
+  "name": "Chugach School District",
+  "current": [
+   337,
+   571,
+   955
+  ],
+  "current_flag": "est",
+  "geoid": "0200800",
+  "district_pop2020": 508,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "09-665 Whittier": {
+    "pop_inside": 272,
+    "pop_total": 272,
+    "votes": [
+     63,
+     96,
+     165
+    ]
+   },
+   "32-850 Tatitlek": {
+    "pop_inside": 190,
+    "pop_total": 190,
+    "votes": [
+     31,
+     21,
+     61
+    ]
+   }
+  },
+  "pop_cover": 0.9094,
+  "result": "keep_current",
+  "why": "population cover 91 % < 97 %"
+ },
+ {
+  "year": "2020",
+  "name": "Wrangell School District",
+  "geoid": "0200810",
+  "result": "unchanged",
+  "current": [
+   429,
+   809,
+   1283
+  ],
+  "value": [
+   429,
+   809,
+   1283
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Yakutat School District",
+  "geoid": "0200840",
+  "result": "unchanged",
+  "current": [
+   166,
+   122,
+   313
+  ],
+  "value": [
+   166,
+   122,
+   313
+  ],
+  "pop_cover": 1.0
+ },
+ {
+  "year": "2020",
+  "name": "Yukon-Koyukuk School District",
+  "current": [
+   845,
+   573,
+   1510
+  ],
+  "current_flag": "est",
+  "geoid": "0200862",
+  "district_pop2020": 2038,
+  "pop_not_in_any_precinct": 0,
+  "precincts": {
+   "39-318 Kaltag": {
+    "pop_inside": 158,
+    "pop_total": 158,
+    "votes": [
+     48,
+     22,
+     73
+    ]
+   },
+   "39-324 Ruby": {
+    "pop_inside": 142,
+    "pop_total": 142,
+    "votes": [
+     45,
+     19,
+     67
+    ]
+   },
+   "39-322 Nulato": {
+    "pop_inside": 240,
+    "pop_total": 240,
+    "votes": [
+     87,
+     25,
+     115
+    ]
+   },
+   "39-316 Huslia": {
+    "pop_inside": 308,
+    "pop_total": 308,
+    "votes": [
+     98,
+     15,
+     125
+    ]
+   },
+   "06-050 Manley Hot Springs": {
+    "pop_inside": 213,
+    "pop_total": 213,
+    "votes": [
+     11,
+     75,
+     86
+    ]
+   },
+   "06-070 Stevens Village": {
+    "pop_inside": 57,
+    "pop_total": 94,
+    "votes": [
+     41,
+     0,
+     41
+    ]
+   },
+   "40-328 Bettles": {
+    "pop_inside": 101,
+    "pop_total": 104,
+    "votes": [
+     22,
+     29,
+     54
+    ]
+   },
+   "39-320 Koyukuk": {
+    "pop_inside": 98,
+    "pop_total": 98,
+    "votes": [
+     51,
+     4,
+     61
+    ]
+   },
+   "40-326 Allakaket": {
+    "pop_inside": 194,
+    "pop_total": 194,
+    "votes": [
+     63,
+     14,
+     77
+    ]
+   },
+   "40-330 Hughes": {
+    "pop_inside": 85,
+    "pop_total": 85,
+    "votes": [
+     43,
+     6,
+     55
+    ]
+   },
+   "06-056 Nenana": {
+    "pop_inside": 255,
+    "pop_total": 613,
+    "votes": [
+     141,
+     234,
+     404
+    ]
+   },
+   "06-024 Clear": {
+    "pop_inside": 24,
+    "pop_total": 173,
+    "votes": [
+     52,
+     96,
+     148
+    ]
+   },
+   "06-054 Minto": {
+    "pop_inside": 150,
+    "pop_total": 150,
+    "votes": [
+     41,
+     18,
+     62
+    ]
+   }
+  },
+  "pop_cover": 0.9936,
+  "result": "keep_current",
+  "why": "precincts split: {'06-070 Stevens Village': 0.606, '06-056 Nenana': 0.416, '06-024 Clear': 0.139}"
+ },
+ {
+  "changes": [
+   {
+    "name": "Yupiit School District",
+    "year": "2024",
+    "before": [
+     6,
+     5,
+     13
+    ],
+    "after": [
+     182,
+     155,
+     406
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Yupiit School District",
+    "year": "2020",
+    "before": null,
+    "after": [
+     214,
+     153,
+     405
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Kashunamiut School District",
+    "year": "2024",
+    "before": null,
+    "after": [
+     88,
+     53,
+     161
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Kashunamiut School District",
+    "year": "2020",
+    "before": null,
+    "after": [
+     123,
+     80,
+     211
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Aleutian Region School District",
+    "year": "2024",
+    "before": [
+     328,
+     395,
+     735
+    ],
+    "after": [
+     328,
+     395,
+     735
+    ],
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Aleutian Region School District",
+    "year": "2020",
+    "before": [
+     539,
+     532,
+     1098
+    ],
+    "after": [
+     539,
+     532,
+     1098
+    ],
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Galena City School District",
+    "year": "2024",
+    "before": [
+     1,
+     0,
+     1
+    ],
+    "after": [
+     125,
+     98,
+     228
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Galena City School District",
+    "year": "2020",
+    "before": null,
+    "after": [
+     112,
+     90,
+     225
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Juneau Borough School District",
+    "year": "2020",
+    "before": [
+     10610,
+     6208,
+     17464
+    ],
+    "after": [
+     11414,
+     6588,
+     18671
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Haines Borough School District",
+    "year": "2024",
+    "before": [
+     952,
+     802,
+     1878
+    ],
+    "after": [
+     907,
+     791,
+     1820
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Haines Borough School District",
+    "year": "2020",
+    "before": [
+     1019,
+     708,
+     1779
+    ],
+    "after": [
+     968,
+     700,
+     1715
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Hydaburg City School District",
+    "year": "2024",
+    "before": null,
+    "after": null,
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Hydaburg City School District",
+    "year": "2020",
+    "before": null,
+    "after": null,
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Kake City School District",
+    "year": "2024",
+    "before": null,
+    "after": null,
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Kake City School District",
+    "year": "2020",
+    "before": null,
+    "after": null,
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   },
+   {
+    "name": "Tanana City School District",
+    "year": "2024",
+    "before": null,
+    "after": [
+     100,
+     23,
+     123
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Tanana City School District",
+    "year": "2020",
+    "before": null,
+    "after": [
+     83,
+     22,
+     106
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Unalaska City School District",
+    "year": "2024",
+    "before": [
+     33,
+     41,
+     75
+    ],
+    "after": [
+     344,
+     426,
+     783
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Unalaska City School District",
+    "year": "2020",
+    "before": null,
+    "after": [
+     478,
+     489,
+     989
+    ],
+    "why": "precinct sum (population rule)"
+   },
+   {
+    "name": "Valdez City School District",
+    "year": "2020",
+    "before": [
+     531,
+     727,
+     1339
+    ],
+    "after": [
+     531,
+     727,
+     1339
+    ],
+    "why": "precinct sum failed 2020/2024 consistency; not written"
+   }
+  ]
+ }
+]
