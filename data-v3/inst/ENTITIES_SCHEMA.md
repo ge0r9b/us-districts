@@ -35,6 +35,7 @@ Provenance (Oct 18, 2026): `source`, `source_url`, `retrieved_at`, `license` wer
 | 27 | `inception` | `1901-01-01`, `1623-01-01` | earliest sourced inception: Wikidata P571 with a P248/P854 reference, as carried by the Governments bot (foreign layer only today; no available feed has P571 for US rows, so they are empty and nothing was fetched). Stored as a full date; a year-only value is `YYYY-01-01`, a month-only value `YYYY-MM-01`. **Not** the date the current government began (Barbados 1623 is a settlement date) |
 | 28 | `inception_precision` | `day`, `month`, `year` | precision of `inception`: the bot writes P571 at its Wikidata precision (`YYYY` / `YYYY-MM` / `YYYY-MM-DD`), so it is read from that string's form; empty when `inception` is empty |
 | 29 | `inception_source` | `Wikidata Q244 P571, reference: …` | the bot's `valid_from_source` for that value (`Wikidata <QID> P571, reference: <P248 item or P854 URL>`) |
+| 30 | `valid_from_source` | `Governments bot tceq_wdd:101792: tceq_wdd (https://www14.tceq.texas.gov/…)` | where `valid_from` came from: the bot row id, its source key(s), source URL and the row's note (TCEQ WDD creation date; Census GCN incorporation date). Filled on every row with a `valid_from` (checked by the builder) |
 
 ## entity_geoid_xwalk.csv: one row per entity × unit_layer × vintage
 
@@ -107,15 +108,16 @@ Other countries' first-level ISO 3166-2 subdivisions, from the Governments bot f
 - `name` = the official name verbatim (TCEQ, upper case as published); `type` = the TCEQ district type (municipal utility
   district, …); `level` local; `gov_status` government (bot `independent`); `valid_from` = the TCEQ creation date;
   `source_record_id` = the bot id (`tceq_wdd:<id>`); `parent_id` = `state:<FIPS>` plus a `parent` row in entity_relations.csv.
-- County: an `in_county` row in entity_relations.csv with `method`: `tceq_wdd_primary_county` = the WDD's primary county as
-  given in the bot row's `county_geoid` (a sourced value, not an estimate); a point-in-polygon link would be
-  `≈point_in_polygon` (≈ marks estimates only; none today, the feed has no coordinates). No sourced county → gap
-  `special_district_county_unknown`. No units, no xwalk rows (TIGER has no special-district layer).
+- County: an `in_county` row in entity_relations.csv with `method` `sourced`, `note` `tceq_wdd_primary_county` (the WDD's
+  primary county as given in the bot row's `county_geoid`). No coordinates in the feed, so no `point_in_polygon` links. No
+  sourced county → gap `special_district_county_unknown`. No units, no xwalk rows (TIGER has no special-district layer).
 
 ## entity_relations.csv
-`entity_id, relation, related_entity_id, method, source_id`; relation `parent` (minted courts, foreign territories /
-subdivisions, special districts), `consolidated_with`, `in_county` (special district → its county; `method` says how the
-link was made, `≈` prefix only for estimates). `method` is empty for the other relations.
+`entity_id, relation, related_entity_id, method, note, source_id` (approved by Full Stack, Oct 18). relation: `parent`
+(minted courts, foreign territories / subdivisions, special districts), `consolidated_with`, `in_county` (special district →
+its county). `method` (how the link was made) ∈ `sourced` (a source states it) | `overlay` (area overlap of boundaries) |
+`point_in_polygon` (a point inside a boundary; an estimate) | `manual`; `note` holds the detail (e.g.
+`tceq_wdd_primary_county`). Today `method` is set on the `in_county` rows (all `sourced`) and empty on the older relations.
 
 ## Kind `court` (approved by Full Stack, Oct 18; applied)
 

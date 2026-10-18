@@ -1,6 +1,6 @@
 {
  "built_from": {
-  "repo_head": "574c290956d462eb391365a284e35c64808a2749",
+  "repo_head": "4215fabde19c2e8d56f57ad7ae624f02db20ee65",
   "officeholder_ref": "ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f ffdf738b171f4f3cdb317e0f41a5b5d2ca84892f",
   "gazetteer_2024": {
    "2024_Gaz_119CDs_national.txt": "80419cf7eaed8fd44a209746a23c9c439671d211dcca44ab8e17660828d656af",
@@ -201,7 +201,8 @@
   "not_in_seating_charts": 15,
   "orphan_v2_row": 28,
   "officeholder_unit_without_tiger_geoid": 49,
-  "cog2022_unit_not_linked_by_code": 57
+  "cog2022_unit_not_linked_by_code": 57,
+  "image_free_field_missing": 144
  },
  "school_gov_status_fill": {
   "no_bot_row": 375,
@@ -252,23 +253,23 @@
    "wikidata_qid_via_home_part_rule|nation:dk"
   ],
   "images_icons": {
-   "icons": 3381,
+   "icons": 3332,
    "icons_by_kind_role": {
-    "county|seal": 323,
-    "municipality|seal": 887,
-    "nation|flag": 195,
-    "province|seal": 10,
-    "state|seal": 51,
-    "subdivision|seal": 1537,
-    "territory|seal": 43,
-    "township|seal": 335
+    "county|seal": 319,
+    "municipality|seal": 883,
+    "nation|flag": 190,
+    "province|seal": 9,
+    "state|seal": 50,
+    "subdivision|seal": 1506,
+    "territory|seal": 42,
+    "township|seal": 333
    },
-   "entities_with_images_no_icon": 4690
+   "entities_with_images_no_icon": 4739
   }
  },
  "special_districts": {
   "county|none_gap": 14,
-  "county|tceq_wdd_primary_county": 291,
+  "county|sourced": 291,
   "minted": 305
  },
  "inception": {
@@ -289,6 +290,13 @@
   "issuing_body_name:governments_bot_row": 1,
   "issuing_body_name:registry_entity": 37
  },
+ "commons_backfill": {
+  "attribution|still_missing": 142,
+  "license|still_missing": 2,
+  "source_url|filled": 4726,
+  "switched_to_private": 144,
+  "cache_sha256": "08fb37990ab8e1cd4b759a1553ddb211805c8dc1d75f2fdcb505043e3cf5ab3e"
+ },
  "images_fair_use_missing_field": {
   "license": [],
   "attribution": [],
@@ -297,7 +305,7 @@
  "images_missing_field_all_rows": {
   "license": 2,
   "attribution": 142,
-  "source_url": 4726
+  "source_url": 0
  },
  "feed_map_by_status": {
   "feed_only": 40630,
@@ -305,10 +313,11 @@
   "unmapped": 974
  },
  "images_by_public_role": {
+  "no|flag": 97,
   "no|logo": 141,
-  "no|seal": 4433,
-  "yes|flag": 1783,
-  "yes|seal": 3489
+  "no|seal": 4480,
+  "yes|flag": 1686,
+  "yes|seal": 3442
  },
  "governments_feed": {
   "ceased_applied": 24,
@@ -343,10 +352,10 @@
  "feed_map_rows": 97420,
  "images_rows": 9846,
  "wikidata_filled": 42249,
- "sources": 111,
- "sources_used_here": 35,
+ "sources": 112,
+ "sources_used_here": 37,
  "geo_base": "c996a7d99cce12b598ca062dc541de542f43f6e2",
- "source_urls": 140,
+ "source_urls": 141,
  "source_record_id_filled": {
   "entities": 58116,
   "xwalk": 58591

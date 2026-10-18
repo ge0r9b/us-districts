@@ -21,6 +21,7 @@ ap.add_argument('--oh-ref', required=True); ap.add_argument('--out'); ap.add_arg
 ap.add_argument('--gov-ref', required=True, help='Governments bot commit (data-v3/institutions/governments, read only)')
 ap.add_argument('--foreign-ref', required=True, help='Governments bot commit for data-v3/institutions/governments/foreign/ + its images.csv foreign rows (read only)')
 ap.add_argument('--seating-ref', required=True, help='Seating Charts bot commit (data-v3/seating/bodies.csv, build_meta.json, city_bodies.csv; read with git show)')
+ap.add_argument('--commons-cache', required=True, help='dir written by tools/inst_commons.py fetch (Commons imageinfo/extmetadata answers + SHA256SUMS); read only')
 ap.add_argument('--world-raw', required=True, help='dir written by tools/inst_world.py fetch (Wikidata answers); Natural Earth lists read from origin/main')
 A = ap.parse_args()
 R = A.repo; OUT = A.out or os.path.join(R, 'data-v3/inst'); os.makedirs(OUT, exist_ok=True)
@@ -811,6 +812,10 @@ _cons = {CG24[c]['cog_pid6']: f'county:{c}' for c in UNLINKED_CONS if CG24[c]['c
 # normalisation in tools/inst_govfeed.py). Minted from the bot's TCEQ WDD rows; parent state:<FIPS> (+ `parent` relation);
 # county link = relation in_county with `method` (tceq_wdd_primary_county: the WDD primary county, as given by the bot's
 # county_geoid; a sourced value, not an estimate, so no ≈). No county in the row -> special_district_county_unknown gap.
+S_TCEQ = 'TCEQ Water Districts Database (Governments bot source tceq_wdd)'
+import inst_commons
+CM, CM_SHA, CM_AT = inst_commons.info(A.commons_cache)
+S_COMMONS = 'Wikimedia Commons API cache (tools/inst_commons.py)'
 SDGAPS, SDRELS, SDSTAT, _sdmint = [], [], C.Counter(), {}
 for sid_, r in inst_govfeed.special_districts(GOVF):
     e = {c: '' for c in COLS}
@@ -818,13 +823,13 @@ for sid_, r in inst_govfeed.special_districts(GOVF):
     e.update(entity_id=sid_, kind='special_district', level='local', type=r['subtype'], state_fips=r['state_fips'], state=FIPS[r['state_fips']][1],
              name=r['name'], gov_status=GSM[r['gov_status']], parent_id=r['parent_id'], parent_entity_id=r['parent_id'], feed='governments-bot',
              source_record_id=r['entity_id'], wikidata='')
-    e['_alias'] = set(); e['_v2'] = []; e['_src'] = [S_GOV]; e['_flags'] = ['outside_v2_scope:no_unit_no_boundary_set']
+    e['_alias'] = set(); e['_v2'] = []; e['_src'] = [S_GOV, S_TCEQ]; e['_flags'] = ['outside_v2_scope:no_unit_no_boundary_set']
     assert sid_ not in _ents and r['parent_id'] in _ents
     OUTROWS.append(e); _ents[sid_] = e; _sdmint[r['entity_id']] = sid_; SDSTAT['minted'] += 1
     SDRELS.append({'entity_id': sid_, 'relation': 'parent', 'related_entity_id': r['parent_id'], 'method': '', '_k': 'parent'})
     cg = r.get('county_geoid', '')
     if cg and f'county:{cg}' in _ents and _ents[f'county:{cg}']['state_fips'] == r['state_fips']:
-        SDRELS.append({'entity_id': sid_, 'relation': 'in_county', 'related_entity_id': f'county:{cg}', 'method': 'tceq_wdd_primary_county', '_k': 'county'}); SDSTAT['county|tceq_wdd_primary_county'] += 1
+        SDRELS.append({'entity_id': sid_, 'relation': 'in_county', 'related_entity_id': f'county:{cg}', 'method': 'sourced', 'note': 'tceq_wdd_primary_county', '_k': 'county'}); SDSTAT['county|sourced'] += 1
     else:
         SDGAPS.append({'gap': 'special_district_county_unknown', 'key': sid_, 'detail': f"{r['name']} ({r['entity_id']}): " + (f'county_geoid {cg} not a county of state {r["state_fips"]} in the registry' if cg else 'the bot row has no county_geoid (TCEQ WDD primary county not given or not matched to a Census county name) and no coordinates; no county link')})
         SDSTAT['county|none_gap'] += 1
@@ -904,6 +909,9 @@ def build_registry():
     CGID = next(r['source_id'] for r in CG if r['vintage'] == '2024').split(';')   # exact ids county_government.csv cites
     def pre(p): return next(k for k in CGID if k.startswith(p))
     def atom(t):
+        if t == S_TCEQ: return ['tceq_wdd']   # the Governments bot's own sources.csv id (added by the union with its sources.csv below)
+        if t == S_COMMONS: return [reg.add('commons-api-cache', 'Wikimedia Commons API imageinfo/extmetadata (descriptionurl, Artist, Credit, LicenseShortName) for free image rows with missing fields; responses cached by tools/inst_commons.py; sha256 = of the cache SHA256SUMS file',
+                                           'https://commons.wikimedia.org/w/api.php', 'metadata: CC BY-SA 4.0 / CC0 (Wikimedia); each image under its own licence', CM_AT, '', CM_SHA)]
         m = GAZ.search(t)
         if m: return [reg.add(None, f'U.S. Census Bureau, {m.group(1)} TIGER/Line Gazetteer ({m.group(2)}.txt)',
                               f'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/{m.group(1)}_Gazetteer/{m.group(2)}.zip', PD, RETRIEVED)]
@@ -963,7 +971,8 @@ def build_registry():
     wd_ = atom(S_WD)[0]; nec = atom(S_NE_C)[0]
     GAPSRC['not_in_source_list'] = f'{nec};{wd_}'
     GAPSRC['not_in_seating_charts'] = atom(S_SEATMETA)[0]
-    atom(S_BODIES); atom(S_CITYB)
+    atom(S_BODIES); atom(S_CITYB); atom(S_COMMONS)
+    GAPSRC['image_free_field_missing'] = atom(S_COMMONS)[0] + ';' + atom(S_GOV)[0]
     for f_ in inst_foreign.FILES: atom(S_GF[f_])
     GAPSRC['govbot_foreign_parent_differs'] = GAPSRC['govbot_foreign_parent_missing'] = GAPSRC['govbot_foreign_attr_differs'] = ';'.join(atom(S_GF[f_])[0] for f_ in inst_foreign.FILES[:3])   # body_entity.csv / body_key_gaps.csv cite these; registered here so the stability rebuild has them
     for g_ in ('wikidata_p297_several_items', 'wikidata_qid_via_home_part_rule', 'territory_sovereign_unknown', 'nation_not_un_member',
@@ -976,11 +985,12 @@ def build_registry():
 REG, IDS_FOR, V2SRC_FOR, GAPSRC = build_registry()
 COLS2 = ['entity_id', 'kind', 'state_fips', 'state', 'name', 'alias', 'label', 'gov_status', 'parent_id', 'valid_from', 'valid_to',
          'predecessor_id', 'successor_id', 'v2_layer', 'v2_row', 'v2_key', 'source_id',
-         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2', 'constituent_qid', 'inception', 'inception_precision', 'inception_source']
+         'feed', 'level', 'type', 'cog_pid6', 'flags', 'source_record_id', 'wikidata', 'iso_3166_2', 'constituent_qid', 'inception', 'inception_precision', 'inception_source', 'valid_from_source']
 ORDER = ['nation', 'state', 'territory', 'province', 'chamber', 'dc_council', 'court', 'subdivision', 'county', 'municipality', 'township', 'school_unified', 'school_elementary', 'school_secondary', 'special_district']
 FEEDS = {'tiger/cog', 'inst-lane', 'governments-bot', 'companies-bot', 'user-upload'}   # DATA_LOADING §15.1 feed -> origin map
 for e in OUTROWS:
     e['source_id'] = IDS_FOR(e['_src']); assert e['source_id'], e['entity_id']
+    assert not e.get('valid_from') or e.get('valid_from_source'), ('valid_from without valid_from_source', e['entity_id'])
     assert e['feed'] in FEEDS, (e['entity_id'], e['feed'])
 rows = sorted(OUTROWS, key=lambda e: (ORDER.index(e['kind']), e['state_fips'], e['entity_id']))
 for e in rows:
@@ -1050,6 +1060,32 @@ for i in GIMG + FRES['imgs']:
         i['attribution'] = f'{nm_} (issuing body)'; i['attribution_source'] = 'issuing_body_name:' + ('registry_entity' if i['entity_id'] else 'governments_bot_row'); IMGATTR[i['attribution_source']] += 1
     else:
         GAPS.append({'gap': 'image_attribution_missing', 'key': i['feed_id'], 'detail': f"fair-use {i['role']} {i['source_url']}: no attribution in the feed and no issuing-body name"}); IMGATTR['gap'] += 1
+# Commons backfill (Full Stack, Oct 18): free rows missing source_url / attribution / license are filled from the cached
+# Commons API answers (source_url = file page descriptionurl, attribution = Artist else Credit, license = LicenseShortName);
+# never invented. A free row still missing license or attribution -> public no + gap image_free_field_missing. Free rows
+# with a Copyrighted-free-use / Attribution licence stay public only with an attribution (same rule).
+CMSTAT = C.Counter()
+for i in GIMG + FRES['imgs']:
+    if i['fair_use'] == 'yes': continue
+    need = [c for c in ('source_url', 'attribution', 'license') if not i[c]]
+    if not need: continue
+    rec = CM.get(inst_commons.norm(i['file'])) if i['file'] else None
+    for c in need:
+        v, how = '', ''
+        if rec and not rec['missing']:
+            if c == 'source_url': v = rec['descriptionurl']
+            elif c == 'license': v = rec['LicenseShortName']
+            else: v, how = (rec['Artist'], 'commons_artist') if rec['Artist'] else (rec['Credit'], 'commons_credit')
+        if v:
+            i[c] = v; i['_cm'] = True; CMSTAT[f'{c}|filled'] += 1
+            if how: i['attribution_source'] = how
+        else: CMSTAT[f'{c}|still_missing'] += 1
+    miss = [c for c in ('license', 'attribution', 'source_url') if not i[c]]
+    if miss:
+        why = 'file not in the Commons cache' if not rec else ('Commons has no such file page' if rec['missing'] else 'Commons extmetadata has no ' + '/'.join({'license': 'LicenseShortName', 'attribution': 'Artist or Credit', 'source_url': 'descriptionurl'}[c] for c in miss))
+        priv = any(c in miss for c in ('license', 'attribution'))
+        GAPS.append({'gap': 'image_free_field_missing', 'key': i['entity_id'] or i['feed_id'], 'detail': f"{i['role']} {i['file']}: missing {','.join(miss)} ({why})" + ('; set public=no' if priv else '; stays public (licence and attribution present)')})
+        if priv: i['_private'] = True; CMSTAT['switched_to_private'] += 1
 IMGMISS = {c: sorted(f"{i['feed_id']}|{i['role']}|{i['file'] or i['source_url']}" for i in GIMG + FRES['imgs'] if i['fair_use'] == 'yes' and not i[c]) for c in ('license', 'attribution', 'source_url')}
 IMGMISS_ALL = {c: sum(1 for i in GIMG + FRES['imgs'] if not i[c]) for c in ('license', 'attribution', 'source_url')}
 def gap_sid(g, ids_for, v2f, gapsrc):
@@ -1072,7 +1108,7 @@ with open(os.path.join(OUT, 'body_entity.csv'), 'w', newline='', encoding='utf-8
 USED = set()
 for tbl in (rows, XW2, V2OUT, GAPS, BGAPS, BLINKS):
     for x in tbl: USED.update(i for i in x['source_id'].split(';') if i)
-assert USED <= set(REG.rows), USED - set(REG.rows)
+assert USED <= set(REG.rows) | {'tceq_wdd'}, USED - set(REG.rows)   # tceq_wdd: a Governments-bot source id, unioned below
 REG.write(os.path.join(OUT, 'sources.csv'), keep_existing=False)
 # Governments bot sources.csv: union on the bot's own ids (feed-owned rows; their ids are the bot's, not '<slug>-<sha8>')
 GV_ID = IDS_FOR([S_GOV])
@@ -1092,11 +1128,14 @@ for i in GIMG:
     i['source_id'] = ';'.join([GV_ID] + i['_sid']); assert all(x in GOVSRC for x in i['_sid']), i['_sid']
 _gfi = IDS_FOR([S_GF['images.csv']])
 for i in FRES['imgs']: i['source_id'] = _gfi
+_cmid = IDS_FOR([S_COMMONS])
+for i in GIMG + FRES['imgs']:
+    if i.get('_cm'): i['source_id'] += ';' + _cmid
 GIMG = GIMG + FRES['imgs']
 # public = free licence only (fair-use rows stay hidden); icon (one per entity, public only): nation -> its flag, every
 # government below the sovereign level -> its seal (coat of arms rows are role seal); no flag fallback, no logo icons
 _kind = {e['entity_id']: e['kind'] for e in rows}
-for i in GIMG: i['public'] = 'yes' if i['fair_use'] == 'no' else 'no'; i['icon'] = 'no'
+for i in GIMG: i['public'] = 'yes' if i['fair_use'] == 'no' and not i.get('_private') else 'no'; i['icon'] = 'no'
 _cand = C.defaultdict(list)
 for n_, i in enumerate(GIMG):
     if i['entity_id'] and i['public'] == 'yes' and i['role'] == ('flag' if _kind.get(i['entity_id']) == 'nation' else 'seal'): _cand[i['entity_id']].append((i['file'], n_))
@@ -1105,7 +1144,7 @@ ICONSTAT = {'icons': sum(1 for i in GIMG if i['icon'] == 'yes'), 'icons_by_kind_
             'entities_with_images_no_icon': len({i['entity_id'] for i in GIMG if i['entity_id']} - set(_cand))}
 with open(os.path.join(OUT, 'entity_images.csv'), 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, IMC, extrasaction='ignore', lineterminator='\n'); w.writeheader(); w.writerows(GIMG)
-RC = ['entity_id', 'relation', 'related_entity_id', 'method', 'source_id']
+RC = ['entity_id', 'relation', 'related_entity_id', 'method', 'note', 'source_id']
 _rsid = ';'.join([IDS_FOR([S_COG]), GV_ID, IDS_FOR([S_CG])][:1] + [GV_ID] + IDS_FOR([S_CG]).split(';'))
 _rsid = ';'.join(dict.fromkeys(x for x in _rsid.split(';') if x))
 for r_ in GRELS: r_['source_id'] = _rsid
@@ -1147,10 +1186,11 @@ if A.stability_test:   # rebuild the registry and every row's ids a second time 
     bad += [(v['v2_layer'], v['source_id'], v2f(v['v2_layer'])) for v in V2OUT if v2f(v['v2_layer']) != v['source_id']]
     bad += [(g['key'], g['source_id']) for g in GAPS[::-1] if gap_sid(g, ids2, v2f, gs2) != g['source_id']]
     bad += [(l_['body_key'], l_['source_id']) for l_ in BLINKS if l_['source_id'] != ids2([S_BODIES] + ([S_CITYB] if l_['kind'] == 'M' else []))]
-    bad += [(k, REG.rows[k], reg2.rows.get(k)) for k in sorted(USED) if reg2.rows.get(k) != REG.rows[k]]
+    _gonly = {k for k in GOVSRC if k not in reg2.rows}   # Governments-bot ids cited directly (tceq_wdd): checked against the bot's row
+    bad += [(k, REG.rows[k], reg2.rows.get(k)) for k in sorted(USED) if (GOVSRC[k] if k in _gonly else reg2.rows.get(k)) != REG.rows[k]]
     same = not bad
     if bad: print('stability mismatches', len(bad), bad[:5])
-    _bak = {k: REG.rows.pop(k) for k in list(REG.rows) if k in GOVSRC and k not in USED}
+    _bak = {k: REG.rows.pop(k) for k in list(REG.rows) if k in GOVSRC and (k not in USED or k in _gonly)}
     n = REG.check_ids(); REG.rows.update(_bak); n = f'{n} own + {len(_bak)} Governments-bot'
     print(f'stability test: {n} sources; second build identical: {same}; ids re-derive from url+commit: OK')
     assert same
@@ -1181,7 +1221,7 @@ summ = {
   'special_districts': dict(sorted(SDSTAT.items())),
   'inception': {'rows': sum(1 for e in rows if e.get('inception')), 'by_precision': dict(sorted(C.Counter(e['inception_precision'] for e in rows if e.get('inception')).items())),
                 'by_kind': dict(sorted(C.Counter(e['kind'] for e in rows if e.get('inception')).items())), 'valid_from_rows': sum(1 for e in rows if e.get('valid_from'))},
-  'images_attribution_filled': dict(sorted(IMGATTR.items())), 'images_fair_use_missing_field': IMGMISS, 'images_missing_field_all_rows': IMGMISS_ALL,
+  'images_attribution_filled': dict(sorted(IMGATTR.items())), 'commons_backfill': dict(sorted(CMSTAT.items()), cache_sha256=CM_SHA), 'images_fair_use_missing_field': IMGMISS, 'images_missing_field_all_rows': IMGMISS_ALL,
   'feed_map_by_status': dict(sorted(C.Counter(m['status'] for m in GFMAP).items())),
   'images_by_public_role': dict(sorted(C.Counter(f"{i['public']}|{i['role']}" for i in GIMG).items())),
   'governments_feed': dict(sorted((k, v) for k, v in GSTAT.items())), 'feed_map_rows': len(GFMAP), 'images_rows': len(GIMG),

@@ -123,7 +123,10 @@ def integrate(G, ents, gidx, consolidated=None, minted=None):
         new = [x for x in rs if 'not_in_cog2022' in x.get('flags', '').split(';')]
         if new:
             vf = sorted({x['valid_from'] for x in new if x.get('valid_from')})
-            if len(vf) == 1 and not e.get('valid_from'): e['valid_from'] = vf[0]
+            if len(vf) == 1 and not e.get('valid_from'):
+                e['valid_from'] = vf[0]
+                x0 = [x for x in new if x.get('valid_from') == vf[0]][0]
+                e['valid_from_source'] = f"Governments bot {x0['entity_id']}: {x0['source']} ({x0['source_url']})" + (f"; {x0['note']}" if x0.get('note') else '')
             if 'not_in_cog2022' not in e['_flags']: e['_flags'].append('not_in_cog2022')
             st['new_units_applied'] += 1; e['_gov'] = True
     for m in fmap:   # bot rows flagged ceased / new that found no registry entity
