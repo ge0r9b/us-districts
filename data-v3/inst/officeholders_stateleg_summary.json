@@ -1,0 +1,2231 @@
+{
+ "current": {
+  "rows": 7323,
+  "joined": 7266,
+  "no_v3_unit": 57,
+  "by_state": {
+   "Alabama": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 105,
+     "joined": 105,
+     "no_v3_unit": [],
+     "units": 105,
+     "units_with_member": 105,
+     "units_without_member": [],
+     "no_start_date": 13
+    }
+   },
+   "Alaska": {
+    "upper": {
+     "members": 20,
+     "joined": 20,
+     "no_v3_unit": [],
+     "units": 20,
+     "units_with_member": 20,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Arizona": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 60,
+     "joined": 60,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Arkansas": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 33,
+     "units_without_member": [
+      "05001",
+      "05018"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 99,
+     "units_without_member": [
+      "05008"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "California": {
+    "upper": {
+     "members": 39,
+     "joined": 39,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 39,
+     "units_without_member": [
+      "06010"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 79,
+     "joined": 79,
+     "no_v3_unit": [],
+     "units": 80,
+     "units_with_member": 79,
+     "units_without_member": [
+      "06003"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Colorado": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 64,
+     "joined": 64,
+     "no_v3_unit": [],
+     "units": 65,
+     "units_with_member": 64,
+     "units_without_member": [
+      "08032"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Connecticut": {
+    "upper": {
+     "members": 36,
+     "joined": 36,
+     "no_v3_unit": [],
+     "units": 36,
+     "units_with_member": 36,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 151,
+     "joined": 151,
+     "no_v3_unit": [],
+     "units": 151,
+     "units_with_member": 151,
+     "units_without_member": [],
+     "no_start_date": 6
+    }
+   },
+   "Delaware": {
+    "upper": {
+     "members": 21,
+     "joined": 21,
+     "no_v3_unit": [],
+     "units": 21,
+     "units_with_member": 21,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 41,
+     "joined": 41,
+     "no_v3_unit": [],
+     "units": 41,
+     "units_with_member": 41,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Florida": {
+    "upper": {
+     "members": 39,
+     "joined": 39,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 39,
+     "units_without_member": [
+      "12039"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 116,
+     "joined": 116,
+     "no_v3_unit": [],
+     "units": 120,
+     "units_with_member": 116,
+     "units_without_member": [
+      "12055",
+      "12078",
+      "12113",
+      "12116"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Georgia": {
+    "upper": {
+     "members": 55,
+     "joined": 55,
+     "no_v3_unit": [],
+     "units": 56,
+     "units_with_member": 55,
+     "units_without_member": [
+      "13012"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 180,
+     "joined": 180,
+     "no_v3_unit": [],
+     "units": 180,
+     "units_with_member": 180,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Hawaii": {
+    "upper": {
+     "members": 25,
+     "joined": 25,
+     "no_v3_unit": [],
+     "units": 25,
+     "units_with_member": 25,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 51,
+     "joined": 51,
+     "no_v3_unit": [],
+     "units": 51,
+     "units_with_member": 51,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Idaho": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 70,
+     "joined": 70,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Illinois": {
+    "upper": {
+     "members": 59,
+     "joined": 59,
+     "no_v3_unit": [],
+     "units": 59,
+     "units_with_member": 59,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 118,
+     "joined": 118,
+     "no_v3_unit": [],
+     "units": 118,
+     "units_with_member": 118,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Indiana": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Iowa": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 49,
+     "units_without_member": [
+      "19011"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 99,
+     "units_without_member": [
+      "19038"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Kansas": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 125,
+     "joined": 125,
+     "no_v3_unit": [],
+     "units": 125,
+     "units_with_member": 125,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Kentucky": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 38,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 2
+    }
+   },
+   "Louisiana": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 39,
+     "units_with_member": 38,
+     "units_without_member": [
+      "22014"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 103,
+     "joined": 103,
+     "no_v3_unit": [],
+     "units": 105,
+     "units_with_member": 103,
+     "units_without_member": [
+      "22077",
+      "22092"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Maine": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 153,
+     "joined": 151,
+     "no_v3_unit": [
+      "Houlton Band of Maliseet Indians",
+      "Passamaquoddy Tribe"
+     ],
+     "units": 151,
+     "units_with_member": 151,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Maryland": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 47,
+     "units_with_member": 47,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 141,
+     "joined": 141,
+     "no_v3_unit": [],
+     "units": 71,
+     "units_with_member": 71,
+     "units_without_member": [],
+     "no_start_date": 1
+    }
+   },
+   "Massachusetts": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 157,
+     "joined": 157,
+     "no_v3_unit": [],
+     "units": 160,
+     "units_with_member": 157,
+     "units_without_member": [
+      "25042",
+      "25074",
+      "25075"
+     ],
+     "no_start_date": 1
+    }
+   },
+   "Michigan": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 38,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 110,
+     "joined": 110,
+     "no_v3_unit": [],
+     "units": 110,
+     "units_with_member": 110,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Minnesota": {
+    "upper": {
+     "members": 67,
+     "joined": 67,
+     "no_v3_unit": [],
+     "units": 67,
+     "units_with_member": 67,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 133,
+     "joined": 133,
+     "no_v3_unit": [],
+     "units": 134,
+     "units_with_member": 133,
+     "units_without_member": [
+      "2721A"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Mississippi": {
+    "upper": {
+     "members": 51,
+     "joined": 51,
+     "no_v3_unit": [],
+     "units": 52,
+     "units_with_member": 51,
+     "units_without_member": [
+      "28034"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 120,
+     "joined": 120,
+     "no_v3_unit": [],
+     "units": 122,
+     "units_with_member": 120,
+     "units_without_member": [
+      "28070",
+      "28077"
+     ],
+     "no_start_date": 3
+    }
+   },
+   "Missouri": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 34,
+     "units_with_member": 33,
+     "units_without_member": [
+      "29010"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 155,
+     "joined": 155,
+     "no_v3_unit": [],
+     "units": 163,
+     "units_with_member": 155,
+     "units_without_member": [
+      "29029",
+      "29095",
+      "29099",
+      "29110",
+      "29114",
+      "29149",
+      "29159",
+      "29160"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Montana": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Nebraska": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Nevada": {
+    "upper": {
+     "members": 21,
+     "joined": 21,
+     "no_v3_unit": [],
+     "units": 21,
+     "units_with_member": 21,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 42,
+     "joined": 42,
+     "no_v3_unit": [],
+     "units": 42,
+     "units_with_member": 42,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New Hampshire": {
+    "upper": {
+     "members": 24,
+     "joined": 24,
+     "no_v3_unit": [],
+     "units": 24,
+     "units_with_member": 24,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 382,
+     "joined": 327,
+     "no_v3_unit": [
+      "Belknap 8",
+      "Carroll 7",
+      "Carroll 8",
+      "Cheshire 15",
+      "Cheshire 16",
+      "Cheshire 17",
+      "Cheshire 18",
+      "Coos 7",
+      "Grafton 17",
+      "Grafton 18",
+      "Hillsborough 37",
+      "Hillsborough 38",
+      "Hillsborough 39",
+      "Hillsborough 40",
+      "Hillsborough 41",
+      "Hillsborough 44",
+      "Hillsborough 45",
+      "Merrimack 25",
+      "Merrimack 26",
+      "Merrimack 27",
+      "Merrimack 28",
+      "Merrimack 29",
+      "Merrimack 30",
+      "Rockingham 31",
+      "Rockingham 32",
+      "Rockingham 33",
+      "Rockingham 34",
+      "Rockingham 35",
+      "Rockingham 36",
+      "Rockingham 37",
+      "Rockingham 38",
+      "Rockingham 39",
+      "Rockingham 40",
+      "Strafford 18",
+      "Strafford 19",
+      "Strafford 20",
+      "Strafford 21",
+      "Sullivan 7",
+      "Sullivan 8"
+     ],
+     "units": 164,
+     "units_with_member": 160,
+     "units_without_member": [
+      "33201",
+      "33306",
+      "33409",
+      "33722"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "New Jersey": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 80,
+     "joined": 80,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New Mexico": {
+    "upper": {
+     "members": 42,
+     "joined": 42,
+     "no_v3_unit": [],
+     "units": 42,
+     "units_with_member": 42,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 68,
+     "joined": 68,
+     "no_v3_unit": [],
+     "units": 70,
+     "units_with_member": 68,
+     "units_without_member": [
+      "35037",
+      "35041"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "New York": {
+    "upper": {
+     "members": 62,
+     "joined": 62,
+     "no_v3_unit": [],
+     "units": 63,
+     "units_with_member": 62,
+     "units_without_member": [
+      "36012"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 150,
+     "units_with_member": 150,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "North Carolina": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 120,
+     "joined": 120,
+     "no_v3_unit": [],
+     "units": 120,
+     "units_with_member": 120,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "North Dakota": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 47,
+     "units_with_member": 47,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 94,
+     "joined": 94,
+     "no_v3_unit": [],
+     "units": 48,
+     "units_with_member": 48,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Ohio": {
+    "upper": {
+     "members": 32,
+     "joined": 32,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 32,
+     "units_without_member": [
+      "39013"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 99,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Oklahoma": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 48,
+     "units_with_member": 47,
+     "units_without_member": [
+      "40024"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 101,
+     "units_with_member": 99,
+     "units_without_member": [
+      "40077",
+      "40099"
+     ],
+     "no_start_date": 1
+    }
+   },
+   "Oregon": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 2
+    },
+    "lower": {
+     "members": 60,
+     "joined": 60,
+     "no_v3_unit": [],
+     "units": 60,
+     "units_with_member": 60,
+     "units_without_member": [],
+     "no_start_date": 2
+    }
+   },
+   "Pennsylvania": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 203,
+     "joined": 203,
+     "no_v3_unit": [],
+     "units": 203,
+     "units_with_member": 203,
+     "units_without_member": [],
+     "no_start_date": 1
+    }
+   },
+   "Rhode Island": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 38,
+     "units_without_member": [],
+     "no_start_date": 3
+    },
+    "lower": {
+     "members": 74,
+     "joined": 74,
+     "no_v3_unit": [],
+     "units": 75,
+     "units_with_member": 74,
+     "units_without_member": [
+      "44031"
+     ],
+     "no_start_date": 4
+    }
+   },
+   "South Carolina": {
+    "upper": {
+     "members": 46,
+     "joined": 46,
+     "no_v3_unit": [],
+     "units": 46,
+     "units_with_member": 46,
+     "units_without_member": [],
+     "no_start_date": 7
+    },
+    "lower": {
+     "members": 124,
+     "joined": 124,
+     "no_v3_unit": [],
+     "units": 124,
+     "units_with_member": 124,
+     "units_without_member": [],
+     "no_start_date": 25
+    }
+   },
+   "South Dakota": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 70,
+     "joined": 70,
+     "no_v3_unit": [],
+     "units": 37,
+     "units_with_member": 37,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Tennessee": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 33,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 98,
+     "joined": 98,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 98,
+     "units_without_member": [
+      "47084"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Texas": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 31,
+     "units_with_member": 30,
+     "units_without_member": [
+      "48022"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 148,
+     "joined": 148,
+     "no_v3_unit": [],
+     "units": 150,
+     "units_with_member": 148,
+     "units_without_member": [
+      "48001",
+      "48093"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Utah": {
+    "upper": {
+     "members": 29,
+     "joined": 29,
+     "no_v3_unit": [],
+     "units": 29,
+     "units_with_member": 29,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 74,
+     "joined": 74,
+     "no_v3_unit": [],
+     "units": 75,
+     "units_with_member": 74,
+     "units_without_member": [
+      "49016"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Vermont": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 16,
+     "units_with_member": 16,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 109,
+     "units_with_member": 109,
+     "units_without_member": [],
+     "no_start_date": 2
+    }
+   },
+   "Virginia": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 99,
+     "units_without_member": [
+      "51020"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Washington": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 98,
+     "joined": 98,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "West Virginia": {
+    "upper": {
+     "members": 34,
+     "joined": 34,
+     "no_v3_unit": [],
+     "units": 17,
+     "units_with_member": 17,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Wisconsin": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 33,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 99,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Wyoming": {
+    "upper": {
+     "members": 31,
+     "joined": 31,
+     "no_v3_unit": [],
+     "units": 31,
+     "units_with_member": 31,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 62,
+     "joined": 62,
+     "no_v3_unit": [],
+     "units": 62,
+     "units_with_member": 62,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   }
+  }
+ },
+ "2024": {
+  "rows": 7348,
+  "joined": 7289,
+  "no_v3_unit": 59,
+  "by_state": {
+   "Alabama": {
+    "upper": {
+     "members": 34,
+     "joined": 34,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 34,
+     "units_without_member": [
+      "01005"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 103,
+     "joined": 103,
+     "no_v3_unit": [],
+     "units": 105,
+     "units_with_member": 103,
+     "units_without_member": [
+      "01011",
+      "01013"
+     ],
+     "no_start_date": 13
+    }
+   },
+   "Alaska": {
+    "upper": {
+     "members": 20,
+     "joined": 20,
+     "no_v3_unit": [],
+     "units": 20,
+     "units_with_member": 20,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 38,
+     "units_without_member": [
+      "02026",
+      "02029"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Arizona": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 60,
+     "joined": 60,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Arkansas": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "California": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 80,
+     "joined": 80,
+     "no_v3_unit": [],
+     "units": 80,
+     "units_with_member": 80,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Colorado": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 64,
+     "joined": 64,
+     "no_v3_unit": [],
+     "units": 65,
+     "units_with_member": 64,
+     "units_without_member": [
+      "08033"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Connecticut": {
+    "upper": {
+     "members": 36,
+     "joined": 36,
+     "no_v3_unit": [],
+     "units": 36,
+     "units_with_member": 36,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 151,
+     "units_with_member": 150,
+     "units_without_member": [
+      "09113"
+     ],
+     "no_start_date": 7
+    }
+   },
+   "Delaware": {
+    "upper": {
+     "members": 21,
+     "joined": 21,
+     "no_v3_unit": [],
+     "units": 21,
+     "units_with_member": 21,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 41,
+     "joined": 41,
+     "no_v3_unit": [],
+     "units": 41,
+     "units_with_member": 41,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Florida": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 38,
+     "units_without_member": [
+      "12014",
+      "12015"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 118,
+     "joined": 118,
+     "no_v3_unit": [],
+     "units": 120,
+     "units_with_member": 118,
+     "units_without_member": [
+      "12003",
+      "12032"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Georgia": {
+    "upper": {
+     "members": 56,
+     "joined": 56,
+     "no_v3_unit": [],
+     "units": 56,
+     "units_with_member": 56,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 180,
+     "joined": 180,
+     "no_v3_unit": [],
+     "units": 180,
+     "units_with_member": 180,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Hawaii": {
+    "upper": {
+     "members": 25,
+     "joined": 25,
+     "no_v3_unit": [],
+     "units": 25,
+     "units_with_member": 25,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 51,
+     "units_with_member": 50,
+     "units_without_member": [
+      "15036"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Idaho": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 70,
+     "joined": 70,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Illinois": {
+    "upper": {
+     "members": 59,
+     "joined": 59,
+     "no_v3_unit": [],
+     "units": 59,
+     "units_with_member": 59,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 117,
+     "joined": 117,
+     "no_v3_unit": [],
+     "units": 118,
+     "units_with_member": 117,
+     "units_without_member": [
+      "17118"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Indiana": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Iowa": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Kansas": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 124,
+     "joined": 124,
+     "no_v3_unit": [],
+     "units": 125,
+     "units_with_member": 124,
+     "units_without_member": [
+      "20070"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Kentucky": {
+    "upper": {
+     "members": 37,
+     "joined": 37,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 37,
+     "units_without_member": [
+      "21018"
+     ],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 2
+    }
+   },
+   "Louisiana": {
+    "upper": {
+     "members": 39,
+     "joined": 39,
+     "no_v3_unit": [],
+     "units": 39,
+     "units_with_member": 39,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 103,
+     "joined": 103,
+     "no_v3_unit": [],
+     "units": 105,
+     "units_with_member": 103,
+     "units_without_member": [
+      "22045",
+      "22067"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Maine": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 152,
+     "joined": 151,
+     "no_v3_unit": [
+      "Passamaquoddy Tribe"
+     ],
+     "units": 151,
+     "units_with_member": 151,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Maryland": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 47,
+     "units_with_member": 47,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 140,
+     "joined": 140,
+     "no_v3_unit": [],
+     "units": 71,
+     "units_with_member": 70,
+     "units_without_member": [
+      "2427A"
+     ],
+     "no_start_date": 2
+    }
+   },
+   "Massachusetts": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 157,
+     "joined": 157,
+     "no_v3_unit": [],
+     "units": 160,
+     "units_with_member": 157,
+     "units_without_member": [
+      "25012",
+      "25029",
+      "25075"
+     ],
+     "no_start_date": 1
+    }
+   },
+   "Michigan": {
+    "upper": {
+     "members": 37,
+     "joined": 37,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 37,
+     "units_without_member": [
+      "26035"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 110,
+     "joined": 110,
+     "no_v3_unit": [],
+     "units": 110,
+     "units_with_member": 110,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Minnesota": {
+    "upper": {
+     "members": 66,
+     "joined": 66,
+     "no_v3_unit": [],
+     "units": 67,
+     "units_with_member": 66,
+     "units_without_member": [
+      "27006"
+     ],
+     "no_start_date": 2
+    },
+    "lower": {
+     "members": 134,
+     "joined": 134,
+     "no_v3_unit": [],
+     "units": 134,
+     "units_with_member": 134,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Mississippi": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 52,
+     "units_with_member": 50,
+     "units_without_member": [
+      "28018",
+      "28045"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 120,
+     "joined": 120,
+     "no_v3_unit": [],
+     "units": 122,
+     "units_with_member": 120,
+     "units_without_member": [
+      "28023",
+      "28082"
+     ],
+     "no_start_date": 3
+    }
+   },
+   "Missouri": {
+    "upper": {
+     "members": 34,
+     "joined": 34,
+     "no_v3_unit": [],
+     "units": 34,
+     "units_with_member": 34,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 162,
+     "joined": 162,
+     "no_v3_unit": [],
+     "units": 163,
+     "units_with_member": 162,
+     "units_without_member": [
+      "29095"
+     ],
+     "no_start_date": 0
+    }
+   },
+   "Montana": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Nebraska": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Nevada": {
+    "upper": {
+     "members": 21,
+     "joined": 21,
+     "no_v3_unit": [],
+     "units": 21,
+     "units_with_member": 21,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 42,
+     "joined": 42,
+     "no_v3_unit": [],
+     "units": 42,
+     "units_with_member": 42,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New Hampshire": {
+    "upper": {
+     "members": 24,
+     "joined": 24,
+     "no_v3_unit": [],
+     "units": 24,
+     "units_with_member": 24,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 398,
+     "joined": 340,
+     "no_v3_unit": [
+      "Belknap 8",
+      "Carroll 7",
+      "Carroll 8",
+      "Cheshire 15",
+      "Cheshire 16",
+      "Cheshire 17",
+      "Cheshire 18",
+      "Coos 7",
+      "Grafton 17",
+      "Grafton 18",
+      "Hillsborough 37",
+      "Hillsborough 38",
+      "Hillsborough 39",
+      "Hillsborough 40",
+      "Hillsborough 41",
+      "Hillsborough 44",
+      "Hillsborough 45",
+      "Merrimack 25",
+      "Merrimack 26",
+      "Merrimack 27",
+      "Merrimack 28",
+      "Merrimack 29",
+      "Merrimack 30",
+      "Rockingham 31",
+      "Rockingham 32",
+      "Rockingham 33",
+      "Rockingham 34",
+      "Rockingham 35",
+      "Rockingham 36",
+      "Rockingham 37",
+      "Rockingham 38",
+      "Rockingham 39",
+      "Rockingham 40",
+      "Strafford 18",
+      "Strafford 19",
+      "Strafford 20",
+      "Strafford 21",
+      "Sullivan 7",
+      "Sullivan 8"
+     ],
+     "units": 164,
+     "units_with_member": 164,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New Jersey": {
+    "upper": {
+     "members": 40,
+     "joined": 40,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 80,
+     "joined": 80,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 40,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New Mexico": {
+    "upper": {
+     "members": 42,
+     "joined": 42,
+     "no_v3_unit": [],
+     "units": 42,
+     "units_with_member": 42,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 70,
+     "joined": 70,
+     "no_v3_unit": [],
+     "units": 70,
+     "units_with_member": 70,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "New York": {
+    "upper": {
+     "members": 63,
+     "joined": 63,
+     "no_v3_unit": [],
+     "units": 63,
+     "units_with_member": 63,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 150,
+     "units_with_member": 150,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "North Carolina": {
+    "upper": {
+     "members": 50,
+     "joined": 50,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 50,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 120,
+     "joined": 120,
+     "no_v3_unit": [],
+     "units": 120,
+     "units_with_member": 120,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "North Dakota": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 47,
+     "units_with_member": 47,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 94,
+     "joined": 94,
+     "no_v3_unit": [],
+     "units": 48,
+     "units_with_member": 48,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Ohio": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 33,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 99,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Oklahoma": {
+    "upper": {
+     "members": 47,
+     "joined": 47,
+     "no_v3_unit": [],
+     "units": 48,
+     "units_with_member": 47,
+     "units_without_member": [
+      "40008"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 101,
+     "units_with_member": 99,
+     "units_without_member": [
+      "40071",
+      "40074"
+     ],
+     "no_start_date": 1
+    }
+   },
+   "Oregon": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 30,
+     "units_with_member": 30,
+     "units_without_member": [],
+     "no_start_date": 2
+    },
+    "lower": {
+     "members": 59,
+     "joined": 59,
+     "no_v3_unit": [],
+     "units": 60,
+     "units_with_member": 59,
+     "units_without_member": [
+      "41026"
+     ],
+     "no_start_date": 2
+    }
+   },
+   "Pennsylvania": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 50,
+     "units_with_member": 49,
+     "units_without_member": [
+      "42036"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 202,
+     "joined": 202,
+     "no_v3_unit": [],
+     "units": 203,
+     "units_with_member": 202,
+     "units_without_member": [
+      "42035"
+     ],
+     "no_start_date": 1
+    }
+   },
+   "Rhode Island": {
+    "upper": {
+     "members": 38,
+     "joined": 38,
+     "no_v3_unit": [],
+     "units": 38,
+     "units_with_member": 38,
+     "units_without_member": [],
+     "no_start_date": 3
+    },
+    "lower": {
+     "members": 75,
+     "joined": 75,
+     "no_v3_unit": [],
+     "units": 75,
+     "units_with_member": 75,
+     "units_without_member": [],
+     "no_start_date": 4
+    }
+   },
+   "South Carolina": {
+    "upper": {
+     "members": 46,
+     "joined": 46,
+     "no_v3_unit": [],
+     "units": 46,
+     "units_with_member": 46,
+     "units_without_member": [],
+     "no_start_date": 7
+    },
+    "lower": {
+     "members": 123,
+     "joined": 123,
+     "no_v3_unit": [],
+     "units": 124,
+     "units_with_member": 123,
+     "units_without_member": [
+      "45050"
+     ],
+     "no_start_date": 26
+    }
+   },
+   "South Dakota": {
+    "upper": {
+     "members": 35,
+     "joined": 35,
+     "no_v3_unit": [],
+     "units": 35,
+     "units_with_member": 35,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 70,
+     "joined": 70,
+     "no_v3_unit": [],
+     "units": 37,
+     "units_with_member": 37,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Tennessee": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 33,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 99,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Texas": {
+    "upper": {
+     "members": 31,
+     "joined": 31,
+     "no_v3_unit": [],
+     "units": 31,
+     "units_with_member": 31,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 150,
+     "units_with_member": 150,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Utah": {
+    "upper": {
+     "members": 29,
+     "joined": 29,
+     "no_v3_unit": [],
+     "units": 29,
+     "units_with_member": 29,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 75,
+     "joined": 75,
+     "no_v3_unit": [],
+     "units": 75,
+     "units_with_member": 75,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Vermont": {
+    "upper": {
+     "members": 30,
+     "joined": 30,
+     "no_v3_unit": [],
+     "units": 16,
+     "units_with_member": 16,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 150,
+     "joined": 150,
+     "no_v3_unit": [],
+     "units": 109,
+     "units_with_member": 109,
+     "units_without_member": [],
+     "no_start_date": 2
+    }
+   },
+   "Virginia": {
+    "upper": {
+     "members": 39,
+     "joined": 39,
+     "no_v3_unit": [],
+     "units": 40,
+     "units_with_member": 39,
+     "units_without_member": [
+      "51015"
+     ],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Washington": {
+    "upper": {
+     "members": 49,
+     "joined": 49,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 97,
+     "joined": 97,
+     "no_v3_unit": [],
+     "units": 49,
+     "units_with_member": 49,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "West Virginia": {
+    "upper": {
+     "members": 34,
+     "joined": 34,
+     "no_v3_unit": [],
+     "units": 17,
+     "units_with_member": 17,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 100,
+     "joined": 100,
+     "no_v3_unit": [],
+     "units": 100,
+     "units_with_member": 100,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Wisconsin": {
+    "upper": {
+     "members": 33,
+     "joined": 33,
+     "no_v3_unit": [],
+     "units": 33,
+     "units_with_member": 33,
+     "units_without_member": [],
+     "no_start_date": 0
+    },
+    "lower": {
+     "members": 99,
+     "joined": 99,
+     "no_v3_unit": [],
+     "units": 99,
+     "units_with_member": 99,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   },
+   "Wyoming": {
+    "upper": {
+     "members": 31,
+     "joined": 31,
+     "no_v3_unit": [],
+     "units": 31,
+     "units_with_member": 31,
+     "units_without_member": [],
+     "no_start_date": 1
+    },
+    "lower": {
+     "members": 62,
+     "joined": 62,
+     "no_v3_unit": [],
+     "units": 62,
+     "units_with_member": 62,
+     "units_without_member": [],
+     "no_start_date": 0
+    }
+   }
+  }
+ },
+ "openstates_commit": [
+  "15d03369238780811406763783a552c4a656dca4",
+  "2026-10-15T16:23:44-05:00"
+ ],
+ "snapshot_2024": "2025-04-01"
+}
