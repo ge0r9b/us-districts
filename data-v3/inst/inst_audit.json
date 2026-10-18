@@ -1,0 +1,1896 @@
+{
+ "audited": "a14a9eb data-v3/geo/QUESTIONS.md: record orchestrator decisions on Q-G2, G3, G5, G6, G7",
+ "inventory": [
+  {
+   "type": "US House (CD)",
+   "year": "2020",
+   "files": "v2/data/uscd.js (+ DC delegate from v2/data/dc.js)",
+   "have": 436,
+   "expected": 436,
+   "expected_src": "Census TIGER 2024 Gazetteer (119CDs, 50 states + DC delegate)",
+   "expected_vintage": 436,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (116CDs)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 436,
+   "exact": 363,
+   "approx": 73,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/ushouse.csv",
+   "officeholders": "no",
+   "notes": "2020 results are shown on the 2024 lines (app rule). Election-day lines differ in 13 states by district count (TIGER 2020 vs 2024: CA 53->52, CO 7->8, FL 27->28, IL 18->17, MI 14->13, MT 1->2, NY 27->26, NC 13->14, OH 16->15, OR 5->6, PA 18->17, TX 36->38, WV 3->2); states with equal counts may still have redrawn lines (2021-22 redistricting). At-large CDs coded '00' in 6 states (AK, DE, ND, SD, VT, WY; TIGER 2024 at-large states: AK, DE, ND, PR, SD, VT, WY); the map pop-up label code in v2/index.html (aname, build 18 block) turns '00' into 'District 0'. DC delegate is GEOID 1198 in data-v3/geo, injected from dc.js."
+  },
+  {
+   "type": "US House (CD)",
+   "year": "2024",
+   "files": "v2/data/uscd.js (+ DC delegate from v2/data/dc.js)",
+   "have": 436,
+   "expected": 436,
+   "expected_src": "Census TIGER 2024 Gazetteer (119CDs, 50 states + DC delegate)",
+   "expected_vintage": 436,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (116CDs)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 436,
+   "exact": 363,
+   "approx": 73,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/ushouse.csv",
+   "officeholders": "no",
+   "notes": "At-large CDs coded '00' in 6 states (AK, DE, ND, SD, VT, WY; TIGER 2024 at-large states: AK, DE, ND, PR, SD, VT, WY); the map pop-up label code in v2/index.html (aname, build 18 block) turns '00' into 'District 0'. DC delegate is GEOID 1198 in data-v3/geo, injected from dc.js."
+  },
+  {
+   "type": "State senate (SLDU)",
+   "year": "2020",
+   "files": "v2/data/ussldu.js (+ DC wards from dc.js)",
+   "have": 1950,
+   "expected": 1950,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldu + 8 DC wards)",
+   "expected_vintage": 1946,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldu, 2018 plans)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 1950,
+   "exact": 1409,
+   "approx": 541,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/senate.csv",
+   "officeholders": "no",
+   "notes": "2020 results are shown on the 2024 lines (app rule). Election-day lines differ in 2 states by district count (TIGER 2020 vs 2024: VT 13->16, WY 30->31); states with equal counts may still have redrawn lines (2021-22 redistricting)."
+  },
+  {
+   "type": "State senate (SLDU)",
+   "year": "2024",
+   "files": "v2/data/ussldu.js (+ DC wards from dc.js)",
+   "have": 1950,
+   "expected": 1950,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldu + 8 DC wards)",
+   "expected_vintage": 1946,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldu, 2018 plans)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 1949,
+   "exact": 1410,
+   "approx": 539,
+   "gray": 1,
+   "gray_names": [
+    "WY 018"
+   ],
+   "gray_reason": "WY SD 018: usable 2024 precinct cover 89 % (< 90 % rule), grayed in 737b440 after its figure was found copied from SD 027 (COVERAGE.md 'identical figures').",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/senate.csv",
+   "officeholders": "no",
+   "notes": ""
+  },
+  {
+   "type": "State house (SLDL)",
+   "year": "2020",
+   "files": "v2/data/ussldl.js (+ DC wards; NE mirrors its 49 LDs)",
+   "have": 4890,
+   "expected": 4890,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldl + 8 DC wards)",
+   "expected_vintage": 4842,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldl, 2018 plans)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 4890,
+   "exact": 3594,
+   "approx": 1296,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/statehouse.csv",
+   "officeholders": "no",
+   "notes": "2020 results are shown on the 2024 lines (app rule). Election-day lines differ in 6 states by district count (TIGER 2020 vs 2024: MD 67->71, NH 161->164, ND 47->48, VT 104->109, WV 67->100, WY 60->62); states with equal counts may still have redrawn lines (2021-22 redistricting). TIGER counts districts, not seats: multi-member districts (e.g. NH, AZ, NJ, WV, VT, SD, ND, ID, WA, MD) have more members than districts; seat counts per chamber need the legislatures' own rosters (not fetched)."
+  },
+  {
+   "type": "State house (SLDL)",
+   "year": "2024",
+   "files": "v2/data/ussldl.js (+ DC wards; NE mirrors its 49 LDs)",
+   "have": 4890,
+   "expected": 4890,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldl + 8 DC wards)",
+   "expected_vintage": 4842,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldl, 2018 plans)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 4885,
+   "exact": 3644,
+   "approx": 1241,
+   "gray": 5,
+   "gray_names": [
+    "AL 004",
+    "LA 057",
+    "MS 115",
+    "VA 089",
+    "WY 054"
+   ],
+   "gray_reason": "no 2024 House race in AL/LA/MS/VA to apportion split precincts and 2024 precinct polygons cover 39-80 % (AL Limestone/Morgan, LA St. John the Baptist, MS Harrison, VA Suffolk/Chesapeake); WY Fremont 05-1 one unit across HD 33/34/54 (COVERAGE.md build 1539). Geo lane IN PROGRESS.",
+   "attributes": "state, name/code, geometry, 2024 [D,R,total], 2020 [D,R,total], flag (est/e24/e20/cty); GEOID only in data-v3/geo/statehouse.csv",
+   "officeholders": "no",
+   "notes": "TIGER counts districts, not seats: multi-member districts (e.g. NH, AZ, NJ, WV, VT, SD, ND, ID, WA, MD) have more members than districts; seat counts per chamber need the legislatures' own rosters (not fetched)."
+  },
+  {
+   "type": "School districts, unified",
+   "year": "2020",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 10872,
+   "expected": 10872,
+   "expected_src": "Census TIGER 2024 Gazetteer (unsd)",
+   "expected_vintage": 10849,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (unsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 10846,
+   "exact": 7117,
+   "approx": 3729,
+   "gray": 26,
+   "gray_names": [
+    "AK Yupiit School District",
+    "AK Kashunamiut School District",
+    "AK Dillingham City School District",
+    "AK Galena City School District",
+    "AK Hoonah City School District",
+    "AK Hydaburg City School District",
+    "AK Kake City School District",
+    "AK Klawock City School District",
+    "AK Nenana City School District",
+    "AK Nome School District",
+    "AK Pelican City School District",
+    "AK St. Marys City School District",
+    "AK Tanana City School District",
+    "AK Unalaska City School District",
+    "CA Washington Unified School District (Yolo)",
+    "KY Graves County School District",
+    "KY Mayfield Independent School District",
+    "ME Sagadahoc Unorganized Territory",
+    "NJ Ocean Township School District (Ocean)",
+    "NM Loving Municipal Schools",
+    "NY New Suffolk Common School District",
+    "TX Boys Ranch Independent School District",
+    "VT Averill School District",
+    "VT Averys Gore School District",
+    "VT Lewis School District",
+    "VT Warners Grant School District"
+   ],
+   "gray_reason": "AK 14: area-weighting rejected for Alaska (build 1533); Kake, Nenana grayed in 737b440 (2-vote copied figure); VT 4: unorganized gores with no reporting unit (0-30 residents); 2020 Averill reported with Canaan; KY 2: 2024: precinct cover 51-79 %; 2020: Graves County reported as one unit by VEST (Mayfield cannot be separated); CA 1: 2020: usable precinct cover under 90 %; ME 1: unorganized territories/plantations reported combined with a town (e.g. 'Brownville/Twps'); no official split; NJ 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); NM 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); NY 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); TX 1: Boys Ranch ISD: no voters",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": "sum of per-state |TIGER 2020 - 2024| counts = 81"
+  },
+  {
+   "type": "School districts, unified",
+   "year": "2024",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 10872,
+   "expected": 10872,
+   "expected_src": "Census TIGER 2024 Gazetteer (unsd)",
+   "expected_vintage": 10849,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (unsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 10792,
+   "exact": 7008,
+   "approx": 3784,
+   "gray": 80,
+   "gray_names": [
+    "AL Fort Rucker School District",
+    "AL Guntersville City School District",
+    "AK Kashunamiut School District",
+    "AK Hydaburg City School District",
+    "AK Kake City School District",
+    "AK Klawock City School District",
+    "AK Nenana City School District",
+    "AK Pelican City School District",
+    "AK Tanana City School District",
+    "AR Jessieville School District",
+    "CO Aspen School District 1",
+    "CO Salida School District R-32",
+    "KY Somerset Independent School District",
+    "ME Indian Island",
+    "ME Kingsbury Plantation",
+    "ME School Administrative District 41",
+    "ME Oxford Unorganized Territory",
+    "ME Franklin Unorganized Territory",
+    "ME Sagadahoc Unorganized Territory",
+    "ME Kennebec Unorganized Territory",
+    "ME Lincoln Unorganized Territory",
+    "ME Knox Unorganized Territory",
+    "ME Somerset Unorganized Territory",
+    "ME Piscataquis Unorganized Territory",
+    "ME Penobscot Unorganized Territory",
+    "ME Hancock Unorganized Territory",
+    "ME Louds Island Unorganized Territory",
+    "MS South Delta School District",
+    "MS Western Line School District",
+    "MO Eldon R-I School District",
+    "MO La Monte R-IV School District",
+    "MO Sweet Springs R-VII School District",
+    "MO Cape Girardeau 63 School District",
+    "MO Miller County R-III School District",
+    "MO Cole Camp R-I School District",
+    "MO Delta C-7 School District",
+    "NY Bath Central School District",
+    "NY Geneva City School District",
+    "OH Shelby City School District",
+    "OH Carey Exempted Village School District",
+    "OR Pleasant Hill School District 1",
+    "OR Scappoose School District 1J",
+    "SD Britton-Hecla School District 45-4",
+    "SD Agar-Blunt-Onida School District 58-3",
+    "SD Groton Area School District 06-6",
+    "SD Aberdeen School District 06-1",
+    "SD Arlington School District 38-1",
+    "SD Brookings School District 05-1",
+    "SD Elkton School District 05-3",
+    "SD Frederick Area School District 06-2",
+    "SD Estelline School District 28-2",
+    "SD Gayville-Volin School District 63-1",
+    "SD Gettysburg School District 53-1",
+    "SD Haakon School District 27-1",
+    "SD Hoven School District 53-2",
+    "SD Langford School District 45-5",
+    "SD Lead-Deadwood School District 40-1",
+    "SD Menno School District 33-2",
+    "SD Pierre School District 32-2",
+    "SD Scotland School District 04-3",
+    "SD Sioux Valley School District 05-5",
+    "SD Spearfish School District 40-2",
+    "SD Warner School District 06-5",
+    "SD Deubrook School District 05-6",
+    "SD Yankton School District 63-3",
+    "SD Kadoka School District 35-2",
+    "SD Irene-Wakonda School District 13-3",
+    "SD Highmore-Harrold School District 34-2",
+    "TX Boys Ranch Independent School District",
+    "VT Buels Gore School District",
+    "VT Ferdinand School District",
+    "VT Glastenbury School District",
+    "VT Somerset School District",
+    "VT Averill School District",
+    "VT Averys Gore School District",
+    "VT Warners Grant School District",
+    "VT Warrens Gore School District",
+    "WI Sturgeon Bay School District",
+    "WY Uinta County School District 4",
+    "WY Weston County School District 1"
+   ],
+   "gray_reason": "SD 26: vote-center counties (Brown, Brookings, Hughes, Yankton, Potter, Haakon, Sully) report without geography; Lawrence renumbered precincts, no shapes; ME 14: unorganized territories/plantations reported combined with a town (e.g. 'Brownville/Twps'); no official split; VT 8: unorganized gores with no reporting unit (0-30 residents); 2020 Averill reported with Canaan; AK 7: area-weighting rejected for Alaska (build 1533); Kake, Nenana grayed in 737b440 (2-vote copied figure); MO 7: Cape Girardeau, Cole, Miller, Pettis precincts renumbered/merged since 2020, no 2024 shapes found; AL 2: Fort Rucker military post; Guntersville: 2 new Marshall County polling places with no shape; CO 2: Pitkin, Chaffee 2024 precinct counts differ from 2020, no public 2024 precinct layer; MS 2: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); NY 2: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); OH 2: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); OR 2: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); WY 2: Uinta, Weston 2020 shape names do not match 2024 precinct codes; AR 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); KY 1: 2024: precinct cover 51-79 %; 2020: Graves County reported as one unit by VEST (Mayfield cannot be separated); TX 1: Boys Ranch ISD: no voters; WI 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box)",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": ""
+  },
+  {
+   "type": "School districts, elementary",
+   "year": "2020",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 1952,
+   "expected": 1952,
+   "expected_src": "Census TIGER 2024 Gazetteer (elsd)",
+   "expected_vintage": 1945,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (elsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 1949,
+   "exact": 1056,
+   "approx": 893,
+   "gray": 3,
+   "gray_names": [
+    "CA Mountain View Elementary School District (Los Angeles)",
+    "CA Ocean View Elementary School District (Ventura)",
+    "CA Kashia Elementary School District"
+   ],
+   "gray_reason": "CA 3: 2020: usable precinct cover under 90 %",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": "sum of per-state |TIGER 2020 - 2024| counts = 43"
+  },
+  {
+   "type": "School districts, elementary",
+   "year": "2024",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 1952,
+   "expected": 1952,
+   "expected_src": "Census TIGER 2024 Gazetteer (elsd)",
+   "expected_vintage": 1945,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (elsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 1948,
+   "exact": 1041,
+   "approx": 907,
+   "gray": 4,
+   "gray_names": [
+    "KY East Bernstadt Independent School District",
+    "MO Pettis County R-XII School District",
+    "MT Lambert Elementary School District",
+    "NJ Gibbsboro Borough School District"
+   ],
+   "gray_reason": "KY 1: 2024: precinct cover 51-79 %; 2020: Graves County reported as one unit by VEST (Mayfield cannot be separated); MO 1: Cape Girardeau, Cole, Miller, Pettis precincts renumbered/merged since 2020, no 2024 shapes found; MT 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box); NJ 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box)",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": ""
+  },
+  {
+   "type": "School districts, secondary",
+   "year": "2020",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 481,
+   "expected": 481,
+   "expected_src": "Census TIGER 2024 Gazetteer (scsd)",
+   "expected_vintage": 473,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (scsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 481,
+   "exact": 209,
+   "approx": 272,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": "sum of per-state |TIGER 2020 - 2024| counts = 16"
+  },
+  {
+   "type": "School districts, secondary",
+   "year": "2024",
+   "files": "v2/data/ussch.js (+ DCPS from dc.js)",
+   "have": 481,
+   "expected": 481,
+   "expected_src": "Census TIGER 2024 Gazetteer (scsd)",
+   "expected_vintage": 473,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (scsd)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 479,
+   "exact": 194,
+   "approx": 285,
+   "gray": 2,
+   "gray_names": [
+    "KY Laurel County School District for East Bernstadt ISD",
+    "MT Lambert High School District"
+   ],
+   "gray_reason": "KY 1: 2024: precinct cover 51-79 %; 2020: Graves County reported as one unit by VEST (Mayfield cannot be separated); MT 1: usable precinct polygons cover only part of the district (17-88 %; per-district reasons in /workspace/db/fill_gray_2024.json on the box)",
+   "attributes": "state, name (unique since 9ff4c00), geometry, 2024, 2020, flag; type and GEOID only in data-v3/geo/schools.csv; PACK.lists.schools in v2/index.html carries a type label",
+   "officeholders": "no (no board members anywhere)",
+   "notes": ""
+  },
+  {
+   "type": "DC wards",
+   "year": "2020",
+   "files": "v2/data/dc.js (W)",
+   "have": 8,
+   "expected": 8,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldu, DC = council wards)",
+   "expected_vintage": 8,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldu, 2012 ward plan)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 8,
+   "exact": 8,
+   "approx": 0,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, 'Ward n', geometry, 2024, 2020 (DCBOE certified)",
+   "officeholders": "no",
+   "notes": "2020 values are DCBOE's 2012-plan ward totals drawn on the 2022 lines (COVERAGE.md build 1559 caveat)."
+  },
+  {
+   "type": "DC wards",
+   "year": "2024",
+   "files": "v2/data/dc.js (W)",
+   "have": 8,
+   "expected": 8,
+   "expected_src": "Census TIGER 2024 Gazetteer (sldu, DC = council wards)",
+   "expected_vintage": 8,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (sldu, 2012 ward plan)",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 8,
+   "exact": 8,
+   "approx": 0,
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, 'Ward n', geometry, 2024, 2020 (DCBOE certified)",
+   "officeholders": "no",
+   "notes": "2020 values are DCBOE's 2012-plan ward totals drawn on the 2022 lines (COVERAGE.md build 1559 caveat)."
+  },
+  {
+   "type": "Counties (as governments)",
+   "year": "2020",
+   "files": "v2/data/uscounties.js + data/election2020.js (v1, read-only) + v2/data/ak.js boroughs",
+   "have": 3144,
+   "expected": 3144,
+   "expected_src": "Census TIGER 2024 Gazetteer (counties; county governments: 3,031 per )2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": 3143,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (counties (CT 8 old counties in 2020, 9 planning regions in 2024))",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 3143,
+   "exact": 3113,
+   "approx": 30,
+   "gray": 1,
+   "gray_names": [
+    "Hawaii Kalawao County"
+   ],
+   "gray_reason": "Kalawao County votes are reported with Maui County (official)",
+   "attributes": "state, name, geometry; results keyed 'State|County' by name in data/election20XX.js (no FIPS); GEOID in data-v3/geo/counties.csv",
+   "officeholders": "no",
+   "notes": "Map counts county-equivalents (TIGER). Governments differ: CT and RI have no county governments, consolidated city-counties count as municipalities (CoG); no government/area flag in v2."
+  },
+  {
+   "type": "Counties (as governments)",
+   "year": "2024",
+   "files": "v2/data/uscounties.js + data/election2024.js (v1, read-only) + v2/data/ak.js boroughs",
+   "have": 3144,
+   "expected": 3144,
+   "expected_src": "Census TIGER 2024 Gazetteer (counties; county governments: 3,031 per )2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": 3143,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (counties (CT 8 old counties in 2020, 9 planning regions in 2024))",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 3143,
+   "exact": 3113,
+   "approx": 30,
+   "gray": 1,
+   "gray_names": [
+    "Hawaii Kalawao County"
+   ],
+   "gray_reason": "Kalawao County votes are reported with Maui County (official)",
+   "attributes": "state, name, geometry; results keyed 'State|County' by name in data/election20XX.js (no FIPS); GEOID in data-v3/geo/counties.csv",
+   "officeholders": "no",
+   "notes": "Map counts county-equivalents (TIGER). Governments differ: CT and RI have no county governments, consolidated city-counties count as municipalities (CoG); no government/area flag in v2."
+  },
+  {
+   "type": "Towns/townships (county subdivisions as governments)",
+   "year": "2020",
+   "files": "data/<State>.js towns (v1, read-only) + v2/data/parts/<State>.js",
+   "have": 22319,
+   "expected": 22450,
+   "expected_src": "Census TIGER 2024 Gazetteer (cousubs in states with governmental MCDs, all FUNCSTAT except N/S/I; township governments 16,214 per )2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": 22504,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (cousubs, same rule)",
+   "states_missing": [],
+   "states_count_mismatch": [
+    "IA 1485 vs 1660",
+    "KS 1441 vs 1391",
+    "ME 453 vs 486",
+    "NE 410 vs 396",
+    "NH 241 vs 234",
+    "VT 252 vs 247"
+   ],
+   "with_results": 22319,
+   "exact": "runtime",
+   "approx": "runtime",
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "county, name, geometry; no stored results (computed at runtime from precincts, ≈ when area-weighted); GEOID only for Iowa townships (data-v3/geo/towns.csv)",
+   "officeholders": "no",
+   "notes": "Every town value is a runtime precinct aggregation; app hides parts rows by normT() name de-duplication (IL 473, NY 197, KS 154, IA 173 …)."
+  },
+  {
+   "type": "Municipalities (incorporated places)",
+   "year": "2020",
+   "files": "data/<State>.js places (v1, read-only)",
+   "have": 19476,
+   "expected": 19465,
+   "expected_src": "Census TIGER 2024 place Gazetteer, FUNCSTAT A (active incorporated places); municipal governments 19,491 per 2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": "unknown",
+   "expected_vintage_src": "2020 place counts not fetched",
+   "states_missing": [],
+   "states_count_mismatch": [
+    "CT 30 vs 29"
+   ],
+   "with_results": "unknown",
+   "exact": 0,
+   "approx": 0,
+   "gray": "unknown",
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name with LSAD suffix, geometry; CDPs (1 rows) mixed in; no GEOID; results only through the town/precinct runtime path",
+   "officeholders": "no",
+   "notes": "Counted rows without ' CDP' suffix vs TIGER FUNCSTAT A; v1 file is outside the lane (read-only)."
+  },
+  {
+   "type": "Towns/townships (county subdivisions as governments)",
+   "year": "2024",
+   "files": "data/<State>.js towns (v1, read-only) + v2/data/parts/<State>.js",
+   "have": 22319,
+   "expected": 22450,
+   "expected_src": "Census TIGER 2024 Gazetteer (cousubs in states with governmental MCDs, all FUNCSTAT except N/S/I; township governments 16,214 per )2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": 22504,
+   "expected_vintage_src": "Census TIGER 2020 Gazetteer (cousubs, same rule)",
+   "states_missing": [],
+   "states_count_mismatch": [
+    "IA 1485 vs 1660",
+    "KS 1441 vs 1391",
+    "ME 453 vs 486",
+    "NE 410 vs 396",
+    "NH 241 vs 234",
+    "VT 252 vs 247"
+   ],
+   "with_results": 22319,
+   "exact": "runtime",
+   "approx": "runtime",
+   "gray": 0,
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "county, name, geometry; no stored results (computed at runtime from precincts, ≈ when area-weighted); GEOID only for Iowa townships (data-v3/geo/towns.csv)",
+   "officeholders": "no",
+   "notes": "Every town value is a runtime precinct aggregation; app hides parts rows by normT() name de-duplication (IL 473, NY 197, KS 154, IA 173 …)."
+  },
+  {
+   "type": "Municipalities (incorporated places)",
+   "year": "2024",
+   "files": "data/<State>.js places (v1, read-only)",
+   "have": 19476,
+   "expected": 19465,
+   "expected_src": "Census TIGER 2024 place Gazetteer, FUNCSTAT A (active incorporated places); municipal governments 19,491 per 2022 Census of Governments (Census Bureau, 2022_gov_org_meth_tech_doc.pdf): 3,031 county governments, 19,491 municipal, 16,214 town/township (national only)",
+   "expected_vintage": "unknown",
+   "expected_vintage_src": "2020 place counts not fetched",
+   "states_missing": [],
+   "states_count_mismatch": [
+    "CT 30 vs 29"
+   ],
+   "with_results": "unknown",
+   "exact": 0,
+   "approx": 0,
+   "gray": "unknown",
+   "gray_names": [],
+   "gray_reason": "",
+   "attributes": "state, name with LSAD suffix, geometry; CDPs (1 rows) mixed in; no GEOID; results only through the town/precinct runtime path",
+   "officeholders": "no",
+   "notes": "Counted rows without ' CDP' suffix vs TIGER FUNCSTAT A; v1 file is outside the lane (read-only)."
+  },
+  {
+   "type": "Precincts",
+   "year": "2020",
+   "files": "data/precincts2020/<State>.js (v1, read-only; no v2 override per orchestrator) + v2/data/precincts2020-DC.js; v2/data/x20 (2020->2024 links)",
+   "have": 163570,
+   "expected": "unknown",
+   "expected_src": "no TIGER count for election-year precincts; official per-state counts would come from the EAC EAVS 2020 (not fetched)",
+   "expected_vintage": "unknown",
+   "expected_vintage_src": "",
+   "states_missing": [],
+   "states_count_mismatch": [],
+   "with_results": 163051,
+   "exact": "n/a",
+   "approx": "n/a",
+   "gray": "n/a (519 zero-vote rows)",
+   "gray_names": [],
+   "gray_reason": "zero-vote rows (e.g. CA SR precincts with no voters, TX, WA); counties outside 90-110 % (Dem+Rep): none; counties with no precincts: none",
+   "attributes": "county, name, D, R, total, geometry; key 'County|Precinct' (not unique, see QUESTIONS.md Q-G7); no precinct id",
+   "officeholders": "no",
+   "notes": "votes 99.87% of official state totals; states outside 98-102 %: none"
+  },
+  {
+   "type": "Precincts",
+   "year": "2024",
+   "files": "data/precincts2024/<State>.js (v1, read-only; no v2 override per orchestrator) + v2/data/precincts2024-DC.js; v2/data/x20 (2020->2024 links)",
+   "have": 173276,
+   "expected": "unknown",
+   "expected_src": "no TIGER count for election-year precincts; official per-state counts would come from the EAC EAVS 2024 (not fetched)",
+   "expected_vintage": "unknown",
+   "expected_vintage_src": "",
+   "states_missing": [],
+   "states_count_mismatch": [
+    "OR 97.0%",
+    "SD 81.6%",
+    "WY 95.9%"
+   ],
+   "with_results": 166529,
+   "exact": "n/a",
+   "approx": "n/a",
+   "gray": "n/a (6747 zero-vote rows)",
+   "gray_names": [],
+   "gray_reason": "zero-vote rows (e.g. CA SR precincts with no voters, TX, WA); counties outside 90-110 % (Dem+Rep): AL 2, CO 3, CT 1, GA 3, IL 1, KS 2, MA 1, MI 1, MO 6, MT 1, NC 1, ND 1, OH 3, OR 6, SD 1, TN 1, VA 2, WV 1, WY 4; counties with no precincts: MS 1, SD 8",
+   "attributes": "county, name, D, R, total, geometry; key 'County|Precinct' (not unique, see QUESTIONS.md Q-G7); no precinct id",
+   "officeholders": "no",
+   "notes": "votes 99.54% of official state totals; states outside 98-102 %: OR 97.0%, SD 81.6%, WY 95.9%"
+  }
+ ],
+ "pack": {
+  "ushouse": {
+   "data_rows": 435,
+   "pack_rows": 435,
+   "pack_unique": 435,
+   "pack_dupe_rows": 0,
+   "data_not_in_pack": 0,
+   "data_not_in_pack_by_state": {},
+   "pack_not_in_data": 0,
+   "pack_not_in_data_by_state": {},
+   "examples_data_not_in_pack": [],
+   "examples_pack_not_in_data": []
+  },
+  "senate": {
+   "data_rows": 1942,
+   "pack_rows": 1942,
+   "pack_unique": 1942,
+   "pack_dupe_rows": 0,
+   "data_not_in_pack": 0,
+   "data_not_in_pack_by_state": {},
+   "pack_not_in_data": 0,
+   "pack_not_in_data_by_state": {},
+   "examples_data_not_in_pack": [],
+   "examples_pack_not_in_data": []
+  },
+  "statehouse": {
+   "data_rows": 4882,
+   "pack_rows": 4833,
+   "pack_unique": 4833,
+   "pack_dupe_rows": 0,
+   "data_not_in_pack": 49,
+   "data_not_in_pack_by_state": {
+    "Nebraska": 49
+   },
+   "pack_not_in_data": 0,
+   "pack_not_in_data_by_state": {},
+   "examples_data_not_in_pack": [
+    [
+     "Nebraska",
+     "001"
+    ],
+    [
+     "Nebraska",
+     "002"
+    ],
+    [
+     "Nebraska",
+     "003"
+    ],
+    [
+     "Nebraska",
+     "004"
+    ],
+    [
+     "Nebraska",
+     "005"
+    ]
+   ],
+   "examples_pack_not_in_data": []
+  },
+  "schools": {
+   "data_rows": 13304,
+   "pack_rows": 13324,
+   "pack_unique": 13250,
+   "pack_dupe_rows": 74,
+   "data_not_in_pack": 135,
+   "data_not_in_pack_by_state": {
+    "Ohio": 49,
+    "New Jersey": 27,
+    "California": 23,
+    "Texas": 22,
+    "Arkansas": 4,
+    "Oklahoma": 2,
+    "New Mexico": 2,
+    "Missouri": 2,
+    "Montana": 2,
+    "Illinois": 2
+   },
+   "pack_not_in_data": 81,
+   "pack_not_in_data_by_state": {
+    "Ohio": 21,
+    "New Jersey": 12,
+    "California": 12,
+    "Texas": 11,
+    "Arkansas": 2,
+    "Illinois": 2,
+    "New Mexico": 2,
+    "South Carolina": 1,
+    "Minnesota": 1,
+    "Missouri": 1,
+    "Connecticut": 1,
+    "Kentucky": 1,
+    "New York": 1,
+    "Oregon": 1,
+    "New Hampshire": 1,
+    "Michigan": 1,
+    "Massachusetts": 1,
+    "Rhode Island": 1,
+    "Wyoming": 1,
+    "Wisconsin": 1,
+    "Oklahoma": 1,
+    "Pennsylvania": 1,
+    "Arizona": 1,
+    "Tennessee": 1,
+    "Montana": 1,
+    "Indiana": 1
+   },
+   "examples_data_not_in_pack": [
+    [
+     "Arkansas",
+     "Harmony Grove School District (Dallas)"
+    ],
+    [
+     "Arkansas",
+     "Harmony Grove School District (Saline)"
+    ],
+    [
+     "Arkansas",
+     "Lakeside School District (Chicot)"
+    ],
+    [
+     "Arkansas",
+     "Lakeside School District (Garland)"
+    ],
+    [
+     "California",
+     "Hope Elementary School District (Santa Barbara)"
+    ]
+   ],
+   "examples_pack_not_in_data": [
+    [
+     "Arizona",
+     "School District Not Defined"
+    ],
+    [
+     "Arkansas",
+     "Harmony Grove School District"
+    ],
+    [
+     "Arkansas",
+     "Lakeside School District"
+    ],
+    [
+     "California",
+     "Hope Elementary School District"
+    ],
+    [
+     "California",
+     "Jefferson Elementary School District"
+    ]
+   ],
+   "not_defined_rows": [
+    "Arizona",
+    "California",
+    "Connecticut",
+    "Illinois",
+    "Indiana",
+    "Kentucky",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "New Hampshire",
+    "New Jersey",
+    "New York",
+    "Ohio",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "Tennessee",
+    "Wisconsin",
+    "Wyoming"
+   ],
+   "mojibake_rows": [
+    "EspaÃ±ola Municipal Schools",
+    "La CaÃ±ada Unified School District",
+    "PeÃ±asco Independent Schools"
+   ],
+   "pack_rows_with_pre_9ff4c00_names": 132,
+   "type_mismatch_vs_tiger": {}
+  }
+ },
+ "at_large": {
+  "rows": [
+   "Alaska",
+   "Delaware",
+   "North Dakota",
+   "South Dakota",
+   "Vermont",
+   "Wyoming"
+  ],
+  "tiger": [
+   "AK",
+   "DE",
+   "ND",
+   "PR",
+   "SD",
+   "VT",
+   "WY"
+  ],
+  "label": "District 0"
+ },
+ "dupes": {
+  "ushouse": 0,
+  "senate": 0,
+  "statehouse": 0,
+  "schools": 0,
+  "dcwards": 0
+ },
+ "geoid": {
+  "ushouse": {
+   "rows": 436,
+   "unmatched": 0,
+   "geoid_dupes": 0,
+   "v2_rows": 436
+  },
+  "senate": {
+   "rows": 1950,
+   "unmatched": 0,
+   "geoid_dupes": 0,
+   "v2_rows": 1950
+  },
+  "statehouse": {
+   "rows": 4890,
+   "unmatched": 0,
+   "geoid_dupes": 0,
+   "v2_rows": 4890
+  },
+  "schools": {
+   "rows": 13305,
+   "unmatched": 0,
+   "geoid_dupes": 0,
+   "v2_rows": 13305
+  },
+  "counties": {
+   "rows": 3144,
+   "unmatched": 0,
+   "geoid_dupes": 0,
+   "v2_rows": null
+  }
+ },
+ "v1_vs_v2": [
+  [
+   "Nebraska",
+   "statehouse",
+   0,
+   49
+  ],
+  [
+   "Oklahoma",
+   "schools",
+   413,
+   509
+  ]
+ ],
+ "partial_pairs": [
+  {
+   "year": "2024",
+   "state": "Illinois",
+   "a": "Grand Prairie Community Consolidated School District 6",
+   "b": "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    69,
+    402,
+    475
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Drummond Elementary School District",
+   "b": "Drummond High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    101,
+    428,
+    545
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Reed Point Elementary School District",
+   "b": "Reed Point High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    39,
+    197,
+    239
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Box Elder Elementary School District",
+   "b": "Box Elder High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    108,
+    47,
+    159
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Culbertson Elementary School District",
+   "b": "Culbertson High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    93,
+    380,
+    488
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Fairview Elementary School District",
+   "b": "Fairview High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    104,
+    686,
+    807
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Moore Elementary School District",
+   "b": "Moore High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    47,
+    193,
+    250
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Judith Gap Elementary School District",
+   "b": "Judith Gap High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    30,
+    98,
+    130
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Fairfield Elementary School District",
+   "b": "Fairfield High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    213,
+    767,
+    1007
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Power Elementary School District",
+   "b": "Power High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    117,
+    377,
+    508
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Savage Elementary School District",
+   "b": "Savage High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    49,
+    313,
+    370
+   ]
+  },
+  {
+   "year": "2024",
+   "state": "Montana",
+   "a": "Richey Elementary School District",
+   "b": "Richey High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    35,
+    274,
+    318
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "California",
+   "a": "Big Creek Elementary School District",
+   "b": "Sierra Unified School District (9-12)",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    513,
+    1378,
+    1933
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "California",
+   "a": "Monson-Sultana Joint Union Elementary School District",
+   "b": "Dinuba Unified School District (9-12)",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    192,
+    248,
+    447
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "California",
+   "a": "Marcum-Illinois Union Elementary School District",
+   "b": "East Nicolaus Joint Union High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    114,
+    310,
+    436
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Illinois",
+   "a": "Grand Prairie Community Consolidated School District 6",
+   "b": "Woodlawn Unit District 209 (9-12) in Grand Prairie",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    89,
+    406,
+    497
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Illinois",
+   "a": "Dwight Common School District 232",
+   "b": "Dwight Township High School District 230",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    788,
+    1669,
+    2516
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Drummond Elementary School District",
+   "b": "Drummond High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    121,
+    409,
+    543
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Three Forks Elementary School District",
+   "b": "Three Forks High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    532,
+    1372,
+    1962
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Reed Point Elementary School District",
+   "b": "Reed Point High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    46,
+    182,
+    232
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Box Elder Elementary School District",
+   "b": "Box Elder High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    134,
+    45,
+    183
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Havre Elementary School District",
+   "b": "Havre High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    2202,
+    3369,
+    5782
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Gardiner Elementary School District",
+   "b": "Gardiner High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    505,
+    463,
+    983
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Lambert Elementary School District",
+   "b": "Lambert High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    60,
+    289,
+    364
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Culbertson Elementary School District",
+   "b": "Culbertson High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    107,
+    421,
+    539
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Fairview Elementary School District",
+   "b": "Fairview High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    116,
+    727,
+    864
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Moore Elementary School District",
+   "b": "Moore High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    66,
+    267,
+    339
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Judith Gap Elementary School District",
+   "b": "Judith Gap High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    29,
+    106,
+    138
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Harlem Elementary School District",
+   "b": "Harlem High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    816,
+    432,
+    1274
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Conrad Elementary School District",
+   "b": "Conrad High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    461,
+    1328,
+    1827
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Fairfield Elementary School District",
+   "b": "Fairfield High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    276,
+    860,
+    1153
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Power Elementary School District",
+   "b": "Power High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    99,
+    262,
+    365
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Frazer Elementary School District",
+   "b": "Frazer High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    299,
+    1296,
+    1620
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Savage Elementary School District",
+   "b": "Savage High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    55,
+    342,
+    400
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Richey Elementary School District",
+   "b": "Richey High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    40,
+    266,
+    313
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Montana",
+   "a": "Fort Benton Elementary School District",
+   "b": "Fort Benton High School District",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    443,
+    849,
+    1336
+   ]
+  },
+  {
+   "year": "2020",
+   "state": "Oregon",
+   "a": "Harney County School District 4",
+   "b": "Harney County Union High School District 1J",
+   "found": true,
+   "still_identical": true,
+   "value": [
+    288,
+    1735,
+    2052
+   ]
+  }
+ ],
+ "attributes": {
+  "ushouse": {
+   "row_lengths": {
+    "6": 73,
+    "5": 363
+   },
+   "flags": {
+    "est": 73,
+    "None": 363
+   }
+  },
+  "senate": {
+   "row_lengths": {
+    "6": 575,
+    "5": 1375
+   },
+   "flags": {
+    "est": 509,
+    "None": 1375,
+    "e24": 30,
+    "e20": 32,
+    "cty": 4
+   }
+  },
+  "statehouse": {
+   "row_lengths": {
+    "6": 1350,
+    "5": 3540
+   },
+   "flags": {
+    "est": 1187,
+    "None": 3540,
+    "e20": 109,
+    "e24": 54
+   }
+  },
+  "schools": {
+   "row_lengths": {
+    "5": 8077,
+    "6": 5228
+   },
+   "flags": {
+    "None": 8181,
+    "est": 4814,
+    "e24": 162,
+    "e20": 94,
+    "cty": 54
+   }
+  },
+  "dcwards": {
+   "row_lengths": {
+    "5": 8
+   },
+   "flags": {
+    "None": 8
+   }
+  }
+ },
+ "officeholder_hits": {
+  "COVERAGE.md": 2,
+  "ak.js": 0,
+  "canada.js": 0,
+  "countries.js": 0,
+  "ctryshape.js": 0,
+  "dc.js": 0,
+  "precincts2020-DC.js": 0,
+  "precincts2024-DC.js": 0,
+  "uscd.js": 0,
+  "uscounties.js": 0,
+  "ussch.js": 0,
+  "ussldl.js": 0,
+  "ussldu.js": 0,
+  "usstates.js": 0,
+  "../index.html": 1
+ },
+ "sizes": {
+  "v2/data/uscd.js": [
+   614849,
+   214436
+  ],
+  "v2/data/ussldu.js": [
+   1256870,
+   439211
+  ],
+  "v2/data/ussldl.js": [
+   2062537,
+   719272
+  ],
+  "v2/data/ussch.js": [
+   4750426,
+   1583971
+  ],
+  "v2/data/dc.js": [
+   6603,
+   2176
+  ],
+  "v2/data/uscounties.js": [
+   1044446,
+   361805
+  ],
+  "v2/data/ak.js": [
+   5100,
+   2287
+  ],
+  "v2/data/parts/Oregon.js": [
+   26866,
+   8672
+  ],
+  "v2/data/parts/Wyoming.js": [
+   4125,
+   1039
+  ],
+  "v2/data/parts/Missouri.js": [
+   89202,
+   28416
+  ],
+  "v2/data/parts/Maine.js": [
+   962,
+   317
+  ],
+  "v2/data/x20/Oregon.js": [
+   46486,
+   13824
+  ],
+  "v2/data/x20/Wyoming.js": [
+   17019,
+   5597
+  ],
+  "v2/data/x20/Missouri.js": [
+   128737,
+   38769
+  ],
+  "data/precincts2024/Oregon.js": [
+   793074,
+   264712
+  ],
+  "data/precincts2024/Wyoming.js": [
+   342137,
+   115822
+  ],
+  "data/precincts2024/Missouri.js": [
+   1051941,
+   359695
+  ],
+  "v2/index.html": [
+   5901329,
+   884435
+  ]
+ },
+ "shortfalls": {
+  "Oregon": {
+   "precinct_votes": 2141880,
+   "official": 2207592,
+   "ratio": 0.9702,
+   "counties": [
+    {
+     "county": "Columbia County",
+     "precinct_votes": 25559,
+     "official_votes": 31094,
+     "dem_rep_ratio": 0.818,
+     "missing": 5535
+    },
+    {
+     "county": "Gilliam County",
+     "precinct_votes": 767,
+     "official_votes": 1130,
+     "dem_rep_ratio": 0.678,
+     "missing": 363
+    },
+    {
+     "county": "Jefferson County",
+     "precinct_votes": 10487,
+     "official_votes": 11653,
+     "dem_rep_ratio": 0.896,
+     "missing": 1166
+    },
+    {
+     "county": "Lane County",
+     "precinct_votes": 185375,
+     "official_votes": 206547,
+     "dem_rep_ratio": 0.894,
+     "missing": 21172
+    },
+    {
+     "county": "Polk County",
+     "precinct_votes": 42431,
+     "official_votes": 47025,
+     "dem_rep_ratio": 0.895,
+     "missing": 4594
+    },
+    {
+     "county": "Sherman County",
+     "precinct_votes": 982,
+     "official_votes": 1138,
+     "dem_rep_ratio": 0.853,
+     "missing": 156
+    }
+   ],
+   "gray_schools_2024": [
+    "Pleasant Hill School District 1",
+    "Scappoose School District 1J"
+   ],
+   "gray_statehouse_2024": []
+  },
+  "Wyoming": {
+   "precinct_votes": 255387,
+   "official": 266353,
+   "ratio": 0.9588,
+   "counties": [
+    {
+     "county": "Albany County",
+     "precinct_votes": 14129,
+     "official_votes": 17639,
+     "dem_rep_ratio": 0.79,
+     "missing": 3510
+    },
+    {
+     "county": "Fremont County",
+     "precinct_votes": 14450,
+     "official_votes": 17060,
+     "dem_rep_ratio": 0.838,
+     "missing": 2610
+    },
+    {
+     "county": "Uinta County",
+     "precinct_votes": 8066,
+     "official_votes": 8984,
+     "dem_rep_ratio": 0.887,
+     "missing": 918
+    },
+    {
+     "county": "Weston County",
+     "precinct_votes": 1832,
+     "official_votes": 3494,
+     "dem_rep_ratio": 0.519,
+     "missing": 1662
+    }
+   ],
+   "gray_schools_2024": [
+    "Uinta County School District 4",
+    "Weston County School District 1"
+   ],
+   "gray_statehouse_2024": [
+    "054"
+   ]
+  },
+  "Missouri": {
+   "precinct_votes": 2943295,
+   "official": 2993596,
+   "ratio": 0.9832,
+   "counties": [
+    {
+     "county": "Cape Girardeau County",
+     "precinct_votes": 34292,
+     "official_votes": 40336,
+     "dem_rep_ratio": 0.849,
+     "missing": 6044
+    },
+    {
+     "county": "Cole County",
+     "precinct_votes": 35590,
+     "official_votes": 40128,
+     "dem_rep_ratio": 0.887,
+     "missing": 4538
+    },
+    {
+     "county": "Dallas County",
+     "precinct_votes": 7500,
+     "official_votes": 8440,
+     "dem_rep_ratio": 0.888,
+     "missing": 940
+    },
+    {
+     "county": "Miller County",
+     "precinct_votes": 10378,
+     "official_votes": 13009,
+     "dem_rep_ratio": 0.797,
+     "missing": 2631
+    },
+    {
+     "county": "Pettis County",
+     "precinct_votes": 11338,
+     "official_votes": 18877,
+     "dem_rep_ratio": 0.601,
+     "missing": 7539
+    },
+    {
+     "county": "Shelby County",
+     "precinct_votes": 2704,
+     "official_votes": 3262,
+     "dem_rep_ratio": 0.829,
+     "missing": 558
+    }
+   ],
+   "gray_schools_2024": [
+    "Eldon R-I School District",
+    "La Monte R-IV School District",
+    "Sweet Springs R-VII School District",
+    "Cape Girardeau 63 School District",
+    "Miller County R-III School District",
+    "Cole Camp R-I School District",
+    "Delta C-7 School District",
+    "Pettis County R-XII School District"
+   ],
+   "gray_statehouse_2024": []
+  },
+  "South Dakota": {
+   "precinct_votes": 349925,
+   "official": 428922,
+   "ratio": 0.8158,
+   "counties": [
+    {
+     "county": "Pennington County",
+     "precinct_votes": 48522,
+     "official_votes": 56580,
+     "dem_rep_ratio": 0.857,
+     "missing": 8058
+    },
+    {
+     "county": "Brookings County",
+     "precinct_votes": 0,
+     "official_votes": 14939,
+     "dem_rep_ratio": 0.0,
+     "missing": 14939
+    },
+    {
+     "county": "Brown County",
+     "precinct_votes": 0,
+     "official_votes": 17043,
+     "dem_rep_ratio": 0.0,
+     "missing": 17043
+    },
+    {
+     "county": "Haakon County",
+     "precinct_votes": 0,
+     "official_votes": 1125,
+     "dem_rep_ratio": 0.0,
+     "missing": 1125
+    },
+    {
+     "county": "Hughes County",
+     "precinct_votes": 0,
+     "official_votes": 8435,
+     "dem_rep_ratio": 0.0,
+     "missing": 8435
+    },
+    {
+     "county": "Lawrence County",
+     "precinct_votes": 0,
+     "official_votes": 15409,
+     "dem_rep_ratio": 0.0,
+     "missing": 15409
+    },
+    {
+     "county": "Potter County",
+     "precinct_votes": 0,
+     "official_votes": 1298,
+     "dem_rep_ratio": 0.0,
+     "missing": 1298
+    },
+    {
+     "county": "Sully County",
+     "precinct_votes": 0,
+     "official_votes": 901,
+     "dem_rep_ratio": 0.0,
+     "missing": 901
+    },
+    {
+     "county": "Yankton County",
+     "precinct_votes": 0,
+     "official_votes": 10832,
+     "dem_rep_ratio": 0.0,
+     "missing": 10832
+    }
+   ],
+   "gray_schools_2024": [
+    "Britton-Hecla School District 45-4",
+    "Agar-Blunt-Onida School District 58-3",
+    "Groton Area School District 06-6",
+    "Aberdeen School District 06-1",
+    "Arlington School District 38-1",
+    "Brookings School District 05-1",
+    "Elkton School District 05-3",
+    "Frederick Area School District 06-2",
+    "Estelline School District 28-2",
+    "Gayville-Volin School District 63-1",
+    "Gettysburg School District 53-1",
+    "Haakon School District 27-1",
+    "Hoven School District 53-2",
+    "Langford School District 45-5",
+    "Lead-Deadwood School District 40-1",
+    "Menno School District 33-2",
+    "Pierre School District 32-2",
+    "Scotland School District 04-3",
+    "Sioux Valley School District 05-5",
+    "Spearfish School District 40-2",
+    "Warner School District 06-5",
+    "Deubrook School District 05-6",
+    "Yankton School District 63-3",
+    "Kadoka School District 35-2",
+    "Irene-Wakonda School District 13-3",
+    "Highmore-Harrold School District 34-2"
+   ],
+   "gray_statehouse_2024": []
+  }
+ },
+ "precinct_cells": {
+  "Oregon|precincts|2024": {
+   "n": 1244,
+   "filled": 1244,
+   "est": 0,
+   "empty": 0,
+   "dupe": 0,
+   "noname": 0,
+   "notes": [],
+   "votes": 2141880,
+   "official": 2207592,
+   "ratio": 0.9702,
+   "cty_none": [],
+   "cty_off": [
+    "Columbia County",
+    "Gilliam County",
+    "Jefferson County",
+    "Lane County",
+    "Polk County",
+    "Sherman County"
+   ],
+   "cty_off_total": [
+    "Columbia County",
+    "Gilliam County",
+    "Jefferson County",
+    "Lane County",
+    "Sherman County"
+   ],
+   "x20": 1243,
+   "x20_orphan": 0,
+   "exp": null,
+   "info": "all-votes rule: 5 outside (Columbia County, Gilliam County, Jefferson County, Lane County, Sherman County)",
+   "why": "votes 97.0% of official; 6 counties outside 90-110% (Dem+Rep)",
+   "status": "S"
+  },
+  "Wyoming|precincts|2024": {
+   "n": 415,
+   "filled": 415,
+   "est": 0,
+   "empty": 0,
+   "dupe": 0,
+   "noname": 0,
+   "notes": [],
+   "votes": 255387,
+   "official": 266353,
+   "ratio": 0.9588,
+   "cty_none": [],
+   "cty_off": [
+    "Albany County",
+    "Fremont County",
+    "Uinta County",
+    "Weston County"
+   ],
+   "cty_off_total": [
+    "Albany County",
+    "Fremont County",
+    "Uinta County",
+    "Weston County"
+   ],
+   "x20": 410,
+   "x20_orphan": 0,
+   "exp": null,
+   "why": "votes 95.9% of official; 4 counties outside 90-110% (Dem+Rep)",
+   "status": "S"
+  },
+  "Missouri|precincts|2024": {
+   "n": 3021,
+   "filled": 3021,
+   "est": 0,
+   "empty": 0,
+   "dupe": 0,
+   "noname": 0,
+   "notes": [],
+   "votes": 2943295,
+   "official": 2993596,
+   "ratio": 0.9832,
+   "cty_none": [],
+   "cty_off": [
+    "Cape Girardeau County",
+    "Cole County",
+    "Dallas County",
+    "Miller County",
+    "Pettis County",
+    "Shelby County"
+   ],
+   "cty_off_total": [
+    "Cape Girardeau County",
+    "Cole County",
+    "Dallas County",
+    "Miller County",
+    "Pettis County",
+    "Shelby County"
+   ],
+   "x20": 2982,
+   "x20_orphan": 0,
+   "exp": null,
+   "why": "6 counties outside 90-110% (Dem+Rep)",
+   "status": "S"
+  },
+  "South Dakota|precincts|2024": {
+   "n": 623,
+   "filled": 623,
+   "est": 0,
+   "empty": 0,
+   "dupe": 0,
+   "noname": 0,
+   "notes": [],
+   "votes": 349925,
+   "official": 428922,
+   "ratio": 0.8158,
+   "cty_none": [
+    "Brookings County",
+    "Brown County",
+    "Haakon County",
+    "Hughes County",
+    "Lawrence County",
+    "Potter County",
+    "Sully County",
+    "Yankton County"
+   ],
+   "cty_off": [
+    "Pennington County"
+   ],
+   "cty_off_total": [
+    "Pennington County"
+   ],
+   "exp": null,
+   "why": "votes 81.6% of official; 8 counties with no precincts; 1 counties outside 90-110% (Dem+Rep)",
+   "status": "S"
+  }
+ }
+}
