@@ -63,11 +63,15 @@ Appendix A / B titles); `statcan_types_ca.csv` lists every type with its class, 
 - CD governments: MRC, RD, RM, UC, DM and Ontario CTY (geo008: legislated "group of neighbouring municipalities joined together for
   ... regional planning and managing common services"). CDR / TER are StatCan creations; NB CT, NS / PE CTY, ON DIS, REG and QC TÉ = gap.
 
-## First Nations governments (ruled, blocked)
+## First Nations governments (ruled; entities built, reserve links pending)
 
 Full Stack ruled kind `indigenous_government`, ids `first_nation:ca-<band number>`, links `entity_unit` role `reserve_of` from the
-reserve / settlement / land `ca_csd` units. Official sources (ISC "First Nations Location", OGL-Canada, open.canada.ca dataset
-b6567c5c-8339-4055-99fa-63f92114d9e4): the band list `Premiere_Nation_First_Nation_CSV.zip` and the First Nation - reserve relation
-`Relation_Premiere_Nation_reserve_Relation_First_Nation_Reserve_CSV.zip` (+ their data dictionaries) on data.sac-isc.gc.ca. All ISC
-hosts (data.sac-isc.gc.ca, geo.sac-isc.gc.ca, data.aadnc-aandc.gc.ca) refuse TLS from this box (unexpected EOF); not bypassed.
-Nothing is minted on names alone; the build waits for the browser downloads.
+reserve / settlement / land `ca_csd` units. Built from ISC "First Nations Location" (OGL-Canada, open.canada.ca
+b6567c5c-8339-4055-99fa-63f92114d9e4; browser download 2026-10-18, data.sac-isc.gc.ca refuses TLS from the box):
+- `entities_ca_indigenous.csv`: 638 bands. Parent = province / territory of the StatCan 2021 CSD polygon containing the ISC band
+  location point (all 638 fall in exactly one; flag `parent_from:isc_location_in_statcan_csd_2021`), else `nation:ca`.
+- `first_nation_reserves_ca.csv`: the ISC First Nation - reserve relation, 3,543 band x reserve rows (3,329 ISC reserves, 56 shared).
+- `entity_unit_ca.csv`: 0 rows. The relation gives the ISC reserve number (ADMIN_LAND_ID, = NRCan CLSS ALCODE) but no StatCan
+  CSDUID, and no official reserve -> CSD crosswalk is on the box. Names are never matched. Options for Full Stack: (a) StatCan 2021
+  First Nation/Indian band geography correspondence files (www12.statcan.gc.ca, browser download); (b) a geometry overlay of the
+  CLSS reserve polygons (AL_TA_CA_SHP_DCM_eng.zip, on the box, ALCODE) with lcsd000b21a_e, as an estimate needing a ruling.

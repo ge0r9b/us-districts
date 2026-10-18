@@ -12,6 +12,9 @@ Schema: CANADA_SCHEMA_PROPOSALS.md (Full Stack rulings R1-R6 accepted and applie
 | `entities_ca_municipal.csv` | 3,545 | 3,406 `municipality` (`municipality:ca-<CSDUID>`, parent province / territory) + 139 CD governments (`county:ca-<CDUID>`) |
 | `entity_geoid_xwalk_ca.csv` | 3,547 | entity -> `ca_csd` / `ca_cd` unit, columns of `entity_geoid_xwalk.csv` + `is_estimate`, `share_basis`; Flin Flon / Lloydminster: 4 rows `relation=part`, `overlap=split`, both shares ≈ population-weighted (92-151-X block population); all other rows `primary` / `equal` / 1.0000 |
 | `statcan_types_ca.csv` | 78 | every StatCan CSD type (57) and CD type x province, with class, count and the quoted StatCan basis |
+| `entities_ca_indigenous.csv` | 638 | `first_nation:ca-<band number>`, kind `indigenous_government` (ISC band list), parent from the ISC location point (flagged) |
+| `first_nation_reserves_ca.csv` | 3,543 | ISC First Nation - reserve relation (band, ISC reserve number, names, bands_sharing); `csd_unit_key` empty until an official crosswalk exists |
+| `entity_unit_ca.csv` | 0 | `entity_id, boundary_set, unit_type, unit_key, role (reserve_of), source_id, source_record_id, flags`; empty: no official reserve -> CSD crosswalk |
 | `entities_ca_provincial.csv` | 13 | `chamber:ca-<iso>-legislature` (parent `province:ca-*` / `territory:ca-*`) |
 | `boundary_sets_ca.csv` | 26 | one row per boundary set: `boundary_set, country, province, unit_type, vintage, is_current, source_id` (`is_current` unique per country + province + unit_type; province empty for Canada-wide sets) |
 | `units_ca_fed.csv` | 681 | FEDs: `ec-2023-fed` 343, `ec-2013-fed` 338 |
@@ -21,8 +24,8 @@ Schema: CANADA_SCHEMA_PROPOSALS.md (Full Stack rulings R1-R6 accepted and applie
 | `units_ca_cd.csv` / `units_ca_csd.csv` | 293 / 5,161 | StatCan 2021 census divisions / subdivisions (types from 92-151-X; `attrs` csd_type / csd_class / pop2021) |
 | `officeholders_ca_house_current.csv` | 343 | current MPs (337) + vacancies (6) |
 | `persons_ca.csv` | 337 | `ca-mp:<PersonId>` |
-| `gaps_ca_federal.csv`, `gaps_ca_provincial.csv`, `gaps_ca_municipal.csv` | 4 / 14 / 33 | every gap with its reason |
-| `sources_ca.csv` | 43 | same columns and id scheme as `data-v3/inst/sources.csv` (merge as a union) + `non_commercial`, `attribution_required` (`true` / `false`; empty = licence silent or none) |
+| `gaps_ca_federal.csv`, `gaps_ca_provincial.csv`, `gaps_ca_municipal.csv`, `gaps_ca_indigenous.csv` | 4 / 14 / 33 / 114 | every gap with its reason |
+| `sources_ca.csv` | 45 | same columns and id scheme as `data-v3/inst/sources.csv` (merge as a union) + `non_commercial`, `attribution_required` (`true` / `false`; empty = licence silent or none) |
 | `summary_ca_*.json` | - | counts |
 
 Entity columns = `entities.csv` columns + `country` (iso2), `province` (ISO 3166-2, empty for national bodies), `labels` (JSON by language, e.g. `{"fr":"Sénat du Canada"}`), `external_id` (empty for now). `state_fips` / `state` are empty.

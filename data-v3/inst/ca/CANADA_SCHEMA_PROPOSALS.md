@@ -42,5 +42,5 @@ R6 values (licence texts read 2026-10-18):
 8. RULED (Full Stack, after 3bbb54a): ids `municipality:ca-<CSDUID>` and `county:ca-<CDUID>` (first freeze, applied); xwalk
    `relation=part`, `overlap=split` with both shares ≈ population-weighted for Flin Flon / Lloydminster (docs/v3 5e561f6, applied).
 9. RULED: kind `indigenous_government`, ids `first_nation:ca-<band number>`, reserve / settlement / land `ca_csd` units linked by
-   `entity_unit` role `reserve_of`, from an official band list + official reserve-to-band relation only. NOT BUILT YET: the ISC
-   open-data hosts refuse TLS from the box (see CANADA_PLAN.md).
+   `entity_unit` role `reserve_of`, from an official band list + official reserve-to-band relation only. Entities built (638);
+   reserve_of links not made: the ISC relation has no CSDUID and no official reserve -> CSD crosswalk is available (CANADA_PLAN.md).
