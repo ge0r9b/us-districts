@@ -283,7 +283,7 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 -- 'lei:' / 'cik:' are NOT ingested in v3: reserved entity_alias schemes for the v5/v6 bridge to the user's private
 -- corporate database. Governments: 'cog:<id>', 'fr:<id>', 'bia:<slug>'.
 -- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house',
--- the US Senate is 'chamber:us-senate' (frozen id). Courts: 'court:<state>-<slug>' (kind court, parent = the state entity).
+-- the US Senate is 'us-senate' (frozen id). Courts: 'court:<state>-<slug>' (kind court, parent = the state entity).
 -- Verified on data/inst-entities 8e1db01: 54,144 entities (municipality 19,525, township 18,076, school_unified 10,872,
 -- county 3,080, school_elementary 1,952, school_secondary 481, chamber 100, state 51, territory 5, nation 1, dc_council 1).
 -- The same entity_id carries across boundary vintages; a new id is minted only when the government
@@ -519,7 +519,7 @@ create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where uni
 -- e.g. NYC's council and its mayor both point at the municipal entity. Officeholders and seat links use body_key.
 -- (There is no entity.body_key column.)
 create table body_entity (
-  body_key         text primary key,                 -- 'chamber:al-lower', 'us-house', 'chamber:us-senate', 'court:tx-criminal-appeals', '<entity>#council'
+  body_key         text primary key,                 -- 'chamber:al-lower', 'us-house', 'us-senate', 'court:tx-criminal-appeals', '<entity>#council'
   entity_id        text not null references entity(entity_id) on update cascade,
   role             text not null check (role in ('council','mayor','chamber','court','board')),
   source_record_id text

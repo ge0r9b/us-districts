@@ -396,7 +396,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
     - **Élections Québec data (DGEQ, non-commercial) is excluded from paid features.** Any paid tier filters out sources and boundary sets whose licence has `non_commercial = true`.
   - **Courts, US Senate and bodies (rulings to Institutions, Oct 18, 2026):**
     - New kind **`court`**, id `court:<state>-<slug>`. It covers 35 state supreme courts plus the Texas and Oklahoma courts of criminal appeals. Each court's parent is its state government (`parent_id = state:<FIPS>`). Courts not covered are gaps with reason `not_in_seating_charts`.
-    - **`chamber:us-senate`** is a frozen id, mirroring the US House. The House's frozen registry id is `us-house`.
+    - **`us-senate`** is a frozen id, mirroring the registry's frozen `us-house`.
     - **`body_entity`** (`body_key` PK, `entity_id`, `role` in council / mayor / chamber / court / board, `source_record_id`):
       - Officeholders (`officeholder.body_key`) and seat links (`entity_unit.body_key` on `seat_district` rows) point at a body, not straight at an entity.
       - Several bodies can share one entity. For example, NYC's council and its mayor both point at the municipal entity.
@@ -420,8 +420,8 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
         - `gaps_ca_indigenous.csv` has another 146 gaps.
       - **Why an overlay:** no StatCan 2021 file maps reserves to CSDUIDs. StatCan's correspondence files cover only dissemination blocks (DB) and dissemination areas (DA).
     - **`first_nation_reserves_ca.csv` (b8acf34):** one row per band × reserve, 3,543 rows.
-      - New columns: `csd_unit_key` (one CSDUID, or two joined with `;`), `csd_link_count` (0 / 1 / 2) and `csd_boundary_set` (`statcan-2021-csd`).
-      - Status is one of `csd_linked`, `below_threshold` or `no_csd`, optionally followed by `also_below_threshold_overlaps:N`. In the file it is carried inside `flags`, next to `shared_reserve`.
+      - New columns: `csd_unit_key` (one CSDUID, or two joined with `;`), `csd_link_count` (0 / 1 / 2) and `csd_boundary_set` (`statcan-2021-csd`). `csd_boundary_set` is filled only on linked rows (1,140) and is empty on the other 2,403.
+      - Status is one of `csd_linked`, `below_threshold` or `no_csd`, optionally followed by `also_below_threshold_overlaps:N`. There is no separate status column: the status lives in `flags`, alongside `shared_reserve` (e.g. `shared_reserve;csd_linked;also_below_threshold_overlaps:2`). The loader reads it from there.
       - Counts:
 
         | Status | Rows | Reserves |
