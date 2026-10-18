@@ -1,6 +1,6 @@
 # v3 schema: explanation
 
-> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 65 statements; re-checked after the Q-G4 update) but **has not been applied to any database**. No database account exists yet.
+> Phase 1 plan, branch `v3/plan`. The DDL is in [`SCHEMA.sql`](SCHEMA.sql). It has been syntax-checked with the Postgres parser (`pglast` 8.6, 75 statements; re-checked after the Q-E12/Q-E13/Q-I1 update) but **has not been applied to any database**. No database account exists yet.
 
 ## Where it comes from
 - The spec's Supabase proposal (`docs/us-districts-spec.md` §4.2): entity, entity_alias, versioned boundary, topic/election/answer/candidate, result with `is_estimate`, `method` and `coverage`, plus source with `commercial_ok`. v3 keeps those ideas and their meaning, and changes four things:
@@ -26,7 +26,11 @@
 | | `entity_unit` | `jurisdiction` (PA → PA polygon), `seat_district` (PA House → each sldl unit), `same_as` (school district ↔ its polygon). |
 | | `alias` | Shared names for both filters (PA = Pennsylvania, USA = United States), per spec §5.3. |
 | Contests | `party`, `candidate`, `office`, `contest`, `answer` | See below. |
-| Results | `result`, `result_total`, `result_history` | Facts, totals and coverage, plus an audit trail of overwritten values. |
+| Results | `result`, `result_total`, `result_history` | Facts, totals and coverage, plus an audit trail of overwritten values. A result is identified by `(year, office, stage, boundary_set, unit_type, unit_id)` + answer (Q-E12): contest = year + office token (stage derived from `_special` / `_runoff`), unit = `unit_key` within its `boundary_set` (`slug` = the rows' `boundary_set`, e.g. `v2-2024`). Geometry joins on the set, not the year. |
+| | `contest_display_slot` | v2-parity view: which answer fills v2's **d** and **r** columns (Q-E13: the Democratic nominee, or an independent who beat the Democrat or ran with no Democrat; the Republican). Every answer is still stored; colour follows party. |
+| People | `person` | One canonical `person_id` = `scheme:id` per person, priority `bioguide:` > `ocd-person/` > `state-leg:` (Q-I1). Holds `bioguide`, `ocd_person`, `official_ids`, `name`, optional link to `candidate`. |
+| | `person_alias` | Former canonical IDs (OpenStates duplicate merges, resolved session-scoped IDs) → current person, with the OpenStates commit. |
+| | `officeholder` | Who held a seat: `unit_id` + date range (`valid_from`, `valid_to`), `person_id` (null + `status = 'vacant'` for vacancies), party, source commit. Indexed on (unit, dates) for "who represented this district on date X". |
 | Aggregates | `unit_contest_agg`, `answer_share` (materialized) | Instant reads: one row per unit with all answers, and presorted bar-list rows. |
 | Staging | `load_batch`, `stg_result_row`, `stg_reject` | Ingest in the bot's exact row format (DATA_LOADING.md). |
 | Geocoder | `geocode_cache` | Stores a hash of the address and the point only. Raw addresses are never stored. |

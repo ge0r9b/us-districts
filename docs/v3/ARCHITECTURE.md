@@ -125,6 +125,9 @@ v3/ingest/      staging loader, validators, pack + tile builders
 ```
 Data files stay in the data lanes (`data-v3/results/`, `data-v3/geo/`, per REPO-RULES). v3 reads them and never writes them.
 
+## 8b. Working process
+Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institution Data) directly and copies the orchestrator. The answers are recorded in DATA_LOADING §10 with dates. The geo merge build removes the last two `../data/` loads from v2.
+
 ## 9. Beyond v3 (deliberately left room for, not built in v3.0)
 | Later capability | What already makes room for it |
 |---|---|

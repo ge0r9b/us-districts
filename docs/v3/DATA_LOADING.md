@@ -10,7 +10,7 @@
 3. **Precedence (confirmed by the orchestrator, Oct 18, 2026, Q-E8): official values win over v2's, and v2's are kept in history.** When both exist for the same (contest, unit, answer), the official `data-v3/` row is current, whatever its `retrieved_at`: the loader ranks `method = official` above `v2_import` before comparing timestamps. The legacy row is kept in `result_history`, and differences are written to a diff report for the data lanes (they already publish such audits, e.g. `PA/pa_v2_vs_official_mismatches.csv`).
 
 ## 1. Input: the Election Data bot's row format (exact)
-One CSV (UTF-8, header row, RFC 4180 quoting) per batch, with exactly these 13 columns in this order. The "Observed" column is what the committed files on `origin/data/election` (7faa12d) actually contain. v3 follows the files, not the column names.
+One CSV (UTF-8, header row, RFC 4180 quoting) per batch: the 13 base columns below, plus the optional `method` (already present as column 14 in the 2022/2024 Senate files on `data/election` 66ec3f5) and `boundary_set` (Q-E12, being added by the lane). **The loader maps columns by header name, not position**, so 13, 14 or 15 columns in either order of the optional pair all load. The "Observed" column is what the committed files on `origin/data/election` (7faa12d) actually contain. v3 follows the files, not the column names.
 
 | # | Column | Observed in `data-v3/results/` | v3 rule | Maps to |
 |---|---|---|---|---|
@@ -27,13 +27,15 @@ One CSV (UTF-8, header row, RFC 4180 quoting) per batch, with exactly these 13 c
 | 11 | `weight` | `1` | number in (0, 1]; empty → 1. The 2016 README: "exact reported totals (weight = 1)"; ≈ only for area-weighted rows | `result.weight` |
 | 12 | `source_url` | a URL, sometimes **followed by a note**: `https://www.fec.gov/…/federalelections2016.xlsx (sheet "Table 2. Electoral &  Pop Vote")` | split on the first whitespace: URL → `source.url`, rest → `source.notes` | `source` |
 | 13 | `retrieved_at` | `2026-10-18T09:39:46Z` | ISO 8601 with zone | `source.retrieved_at`, `result.retrieved_at` |
+| opt | `method` | `official` (state rows), `retabulated`, `area_weighted` (2022 Senate) | as listed in §1 note | `result.method`; `is_estimate = (method = 'area_weighted')`; `official` and `retabulated` are exact |
+| opt | `boundary_set` | not yet in committed files (lane adding it) | lowercase-hyphen slug: `v2-2024` (2022/2024 Senate rows, 2016 presidential district rows), later e.g. `tiger-2020`; **if missing**, derived from the layer (`unit_type` + file → default set, `boundary_set_default`) | `boundary_set.slug`; geometry joins on it, **not on year** |
 
 **Deriving `answer_key`** (stable across years, so deltas compare like with like):
 - Partisan offices (president, us_house, state legislature): `party=DEM` → `dem_nominee`, `REP` → `rep_nominee` (one per contest, else reject R10); `candidate_id=all-others` → `other` (`is_aggregate`); any other candidate → `cand:<candidate_id>`.
 - The v2 view ("D, R and total of all candidates") is then `dem_nominee`, `rep_nominee` and `total = sum of all answers`. `other` is computed as `total − D − R` when only an aggregate exists. Third-party candidates (Jorgensen, Stein, Castle …) stay individual answers, available for N-answer views, and sum into "other" for the v2 view.
 - Measures: `answer` `Yes`/`No` → `yes`/`no`. Multi-choice → `choice:<n>` by ballot order. Nonpartisan races → `cand:<candidate_id>`.
 
-The **natural key** of a row is `(state, year, office, district, unit_type, unit_id, candidate_id)`. One row per key per batch.
+The **natural key** of a row is `(year, office, stage, boundary_set, unit_type, unit_id, candidate_id)` (Q-E12; `state` and `district` are implied: `district` is always `statewide` for Senate and President, Q-E5). One row per key per batch. Below the state level, `unit_id` is the boundary set's own ID: precincts `ST|v2county|v2precinct[|#n]` (the `#n` suffix splits repeated v2 names) and districts the 2024 GEOIDs from `data-v3/geo` (`0101` CD, `01001` SLD, `0100190` school). Precinct IDs are stable **only within a boundary set** (Q-E6). `stage` is derived from the office token: `*_special` → special, `*_runoff` → runoff, else general.
 
 `method` (estimate flag) is **not** in the bot format. Until decided (DECISIONS.md D6): `is_estimate = weight < 1`; `method = official` when weight = 1. Proposed: an optional 14th column `method`. The staging table has room for it, and the loader accepts 13 or 14 columns.
 
@@ -57,7 +59,7 @@ It runs offline (on the box or in CI) with a writer role, never from the web API
 ## 4. Validation rules (each is one SQL statement inserting into `stg_reject`)
 | Rule | Check | On failure |
 |---|---|---|
-| R01 header | exactly the 13 (or 14 with `method`) column names, in order; files with other headers (audits, mismatch lists) are skipped and listed, not loaded | reject / skip whole file |
+| R01 header | the 13 base column names present (any order), plus optional `method` / `boundary_set`; files with other headers (audits, mismatch lists) are skipped and listed, not loaded | reject / skip whole file |
 | R02 required | `state, year, office, unit_id, unit_type, votes, source_url, retrieved_at, candidate_id` non-empty (measures: `answer` instead of `candidate_id`) | reject row |
 | R03 votes | numeric, ≥ 0 | reject row |
 | R04 weight | empty or numeric in (0, 1] | reject row |
@@ -234,8 +236,8 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 - **Q-E3** Can the bot add an optional `method` column (`official|area_weighted|allocated|votes_in_split|town_apportioned|retabulated`)? Without it, ≈ can only be inferred from `weight < 1`, and re-tabulated district totals (weight 1 but estimated) lose their ≈. For `x20` rows: which are exact same-shape and which are area-weighted?
 - ~~**Q-E9**~~ **Resolved (orchestrator, Oct 18, 2026; verified against cfef4cc):** 2016 is not stored in row positions; it lives in separate lazy-loaded `v2/data/` files (`election2016.js`, `ds2016-*.js` with a 4th element `1` = ≈ and missing key = gray, `precincts2016/` in `__prec` format). See §8. Small README mismatch: it also mentions an `e16` flag, but no `e16` occurs in any of the files (Q-E10). Original question: where does the 2016 `[d, r, tot]` triple sit in each file (a new slot after `a2020` in `__usdist`/`__uscd` rows? `ELECTION2016` in `data/election2016.js`? `precincts2016/`?), and which estimate flags cover 2016 (an `e16` flag, or a new meaning for `est` across three years)? v3 needs the exact layout before the importer's slot map is final.
 - **Q-E4** (largely answered by Q-E9: 2016 precincts ship as `v2/data/precincts2016/` in `__prec` format and are read by the legacy parser; still open whether bot-row CSVs will also exist) 2016 precincts are being built in the v2 `__prec` JS format. Will they also be emitted as bot rows (CSV) under `data-v3/results/2016/`, or should v3 read the JS through the legacy parser?
-- **Q-E5** `district` = `statewide` for statewide contests: confirm the token (vs empty), and the format for seats (`01` vs `1` vs `PA-01`).
-- **Q-E6** `unit_id` for precincts: what key will bot rows use (v2 `County|Precinct` name, VEST GEOID, state precinct code)? Is it stable across years?
+- ~~**Q-E5**~~ **Resolved:** `district` is always `statewide` for these contests, and district layers use GEOIDs. Original: `district` = `statewide` for statewide contests: confirm the token (vs empty), and the format for seats (`01` vs `1` vs `PA-01`).
+- ~~**Q-E6**~~ **Resolved:** precinct `unit_id`s are v2-2024 polygon keys `ST|v2county|v2precinct[|#n]`, stable only within a boundary set. Original: `unit_id` for precincts: what key will bot rows use (v2 `County|Precinct` name, VEST GEOID, state precinct code)? Is it stable across years?
 - **Q-E7** "All others" vs individual minor candidates: the FEC files use one `all-others` row, while PA DOS lists each ballot candidate but no write-ins (2016 PA total 6,115,402 vs FEC 6,165,478). Which should v3 show as "total of all candidates" when both exist for the same unit and year?
 - ~~**Q-E8**~~ **Resolved (orchestrator, Oct 18, 2026): official values win and v2's are kept in history.** Original question: when `data-v3` official totals differ from v2 (e.g. PA 2020 Allegheny, `PA/GAPS.md`), confirm v3 should show the official value and keep v2's in history (the planned precedence).
 
@@ -247,6 +249,11 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 - **Q-E12** (open) Cross-vintage results: confirm that 2022 (and any future off-year) rows are always keyed to the 2024 precinct polygons, so v3 attaches them to `precincts-2024`. If a lane later ships real 2022 polygons, the loader needs a new boundary set and a crosswalk.
 - **Q-E13** (open) Office tokens: confirm `us_senate_special` / `us_senate_runoff` are stage variants of `us_senate` (v3 stores one office and `contest.stage`), and that the d-slot rule (an independent can take the d slot) holds for every contest.
 - **Q-I1** (open) Officeholders: will `person_id` stay bioguide (House) / OpenStates ocd-person (state legislatures)? v3 stores these as an `officeholder` table keyed by unit plus a date range.
+
+- ~~**Q-E12**~~ **Resolved (Oct 18, 2026):** rows are keyed by contest year + `unit_id`; below state level `unit_id` is the boundary set's own ID. The lane adds a `boundary_set` column (after `retrieved_at`) = `v2-2024` for the 2022/2024 Senate rows and 2016 presidential district rows; future values use the same lowercase-hyphen form (`tiger-2020`). v3 keys results on `(year, office, stage, boundary_set, unit_type, unit_id)` and joins geometry on `boundary_set`; a missing column is derived from the layer. **Note:** the committed Senate files already use column 14 for `method`, so `boundary_set` will be column 15, and the loader reads by header name.
+- ~~**Q-E13**~~ **Resolved (Oct 18, 2026):** Senate office tokens are `us_senate` (regular) and `us_senate_special` (unexpired terms: CA and NE 2024, CA and OK 2022). The **GA 2022 runoff token is `us_senate_runoff`** (read from `data-v3/results/2022/senate/us_senate_2022_*.csv` on `data/election` 66ec3f5). `district` is always `statewide`. The d/r rule is in §12.
+
+- **Q-I2** (new) The 15 session-scoped state-legislator IDs are written `mn-house-15367`, `vt-41827` and so on, not `<state>-leg:<id>`. Will the lane prefix them (`state-leg:…`) in `persons.csv`, and when is `persons.csv` committed?
 
 **Geo & Institution Data**
 - ~~**Q-G1**~~ **Resolved (done, bbc8854 / 9ff4c00):** `data-v3/geo/<layer>.csv`, one line per v2 row with `geoid`; every row matched, no GEOID reused within a layer. The 58 duplicate school keys were renamed `<name> (<county>)`; `v2_name_collisions.csv` maps `old_name → new_name → geoid` (use `old_name` for pre-rename main commits). The importer keys on `state|name` (post-rename) or `(layer, row)`, and the ≥ 90 % IoU fallback is dropped. Not covered yet: v1 towns/places → `v1_towns.csv` + places crosswalk (in progress). Note: the app's `normT()` hides same-named towns (IL 473, NY 197, IA 173, KS 154 …), so `state|county|name` is not unique for towns; use GEOID.
@@ -262,3 +269,41 @@ Verified against the files at `main` 509d31d (build 202610181567), `origin/data/
 ## 11. Re-runs and restore
 - Every load is reproducible from (data-lane commit, file sha256). A `data-YYYYMMDD` tag (ARCHITECTURE.md §6) records the `dv` and the Neon branch or snapshot.
 - Rebuild from scratch: new Neon branch → apply migrations → replay batches in `load_batch` order → compare aggregates with the tagged snapshot.
+
+## 12. v2-parity display rule: the "d" and "r" columns (Q-E13)
+v2 shows two answers plus the total. For v3 this is **a view, not the data**: v3 keeps every answer (all candidates, plus `all-others` where the source only has an aggregate), and the mapping lives in `contest_display_slot` (SCHEMA.sql).
+- **d** = the Democratic nominee. If an independent beat the Democrat statewide, or there was no Democrat, **d** is that independent instead.
+- **r** = the Republican.
+- **total** = all candidates.
+- **Colour still follows party** (`answer.party_id`), so an independent in the d slot is not coloured Democratic.
+
+| Case | d | r | Note |
+|---|---|---|---|
+| ME 2024 | King (I) | Republican | Costello (D) goes to all-others in the v2 view |
+| VT (Sanders races) | Sanders (I) | Republican | |
+| NE 2024 regular | Osborn (I) | Republican | no Democrat |
+| UT 2022 | McMullin (I) | Republican | no Democrat |
+| AK 2022 | Chesbro (D) | Murkowski (R) | first-round votes; Tshibaka (R) goes to all-others |
+| LA 2022 | Chambers (D) | Republican | |
+| ND 2022 | Christiansen (D) | Republican | |
+
+The loader fills `contest_display_slot` from the lane's race config (`data-v3/results/{2022,2024}/senate/tools/races22.py` / `races.py`, "d-slot rule"), records `rule` (`dem_nominee`, `independent_beat_dem`, `no_dem`) per contest, and the parity gate compares the v3 d/r/total with v2's numbers.
+
+## 13. Officeholders (Q-I1, resolved; `data-v3/inst/` on `data/inst-officeholders` 9295919)
+
+| File | Rows (verified) | person_id | Notes |
+|---|---|---|---|
+| `officeholders_house_2020.csv` | 441 (439 `bioguide:`, 2 vacant) | `bioguide:<ID>` (permanent) | `unit_geoid` + `unit_vintage` `cd116` |
+| `officeholders_house_2024.csv` | 441 (440 + 1 vacant) | same | `cd119` |
+| `officeholders_house_current.csv` | 441 (439 + 2 vacant) | same | House Clerk MemberData.xml |
+| `officeholders_stateleg_2024.csv` | 7,348 (all `ocd-person/<uuid>`) | OpenStates | `sldl2024`/`sldu2024`; OpenStates commit in `source` |
+| `officeholders_stateleg_current.csv` | 7,309 (7,294 `ocd-person/`, **15 session-scoped**) | OpenStates | the 15 are MN 3, NH 2, TX 1, VT 9 |
+
+Common columns: `unit_geoid, unit_vintage, join_status, entity_id, seat, …, person_id, name, party, status, term_start, term_end, …, source, source_url, source_id, retrieved_at, sha256, license`. Vacancies: empty `person_id`, `status = vacant`.
+
+**Design (agreed):** `person_id = scheme:id`, one canonical ID per person, priority **bioguide > ocd-person > state-leg**. A `persons.csv` crosswalk (`person_id, bioguide, ocd_person, official_ids, name, aliases`, where aliases = former canonical IDs) feeds `person` + `person_alias`. Officeholder rows load into `officeholder` keyed by **unit + date range** (`valid_from = term_start`, `valid_to = term_end`; `unit` resolved from `unit_geoid` in the boundary set for `unit_vintage`). When OpenStates merges duplicates, the old ID moves to `person_alias` (`on update cascade` keeps officeholder rows attached).
+
+**Mismatches with the description (to confirm with the lane):** (1) the 15 session-scoped IDs in the committed file look like `mn-house-15367`, `nh-seat-4092`, `tx-H_A4480`, `vt-41827`, not `<state>-leg:<id>`, and have no `scheme:` prefix; v3 will normalize them to `state-leg:<value>` unless the lane renames them (Q-I2). (2) `persons.csv` is not committed yet; until it is, v3 builds `person` from the officeholder files and leaves `person_alias` empty.
+
+## 14. Process
+Since Oct 18, 2026 the v3 lane asks the data bots directly and copies the orchestrator. The geo merge build will remove the last two `../data/` loads from v2 (state geography files, `zcta2024.js`), together with the Ohio / Union County "Washington township" key fix.

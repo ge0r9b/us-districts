@@ -45,9 +45,12 @@ Filter: `year`, `office`, `state`, `district`, `kind` (candidate|measure|poll), 
 ### `GET /contests/{contest_key}`
 One contest with its answers, candidates (name, photo, credit), sources and licenses (for attribution), and coverage per unit type.
 
+### `GET /officeholders` and `GET /people/{person_id}`
+`/officeholders?unit=<key>&boundary_set=cd119&date=2026-10-18` returns who held the seat on that date (or `from`/`to` for a range): `[{person_id, name, party, status, valid_from, valid_to, source}]`, with vacancies as `person_id: null, status: "vacant"`. `/people/{person_id}` accepts a canonical ID (`bioguide:B001323`, `ocd-person/<uuid>`) or any alias, and redirects (301) from an alias to the canonical ID. Cache: `s-maxage=86400` (rosters change rarely; pinned by data version).
+
 ### `GET /results`
 Results for a contest by unit.
-Params: `contest` (required, repeatable: any number of years, e.g. `contest=2016|US|president|&contest=2020|US|president|&contest=2024|US|president|` for a 3-point time slider or a delta), `unit_type` (required), `state`, `parent` (unit key, for drill-down), `units` (comma list of keys), `fmt`.
+Params: `contest` (required, repeatable: any number of years, e.g. `contest=2016|US|president|&contest=2020|US|president|&contest=2024|US|president|` for a 3-point time slider or a delta), `unit_type` (required), `state`, `parent` (unit key, for drill-down), `units` (comma list of keys), `boundary_set` (slug, e.g. `v2-2024`; default = the contest's set for that `unit_type`; geometry and `unit_id`s are matched on it, not on year), `fmt`. Office tokens include `president`, `us_senate`, `us_senate_special` and `us_senate_runoff` (GA 2022). Each contest in the response carries `display_slots: {"d": answer_key, "r": answer_key}` for the v2-parity D/R/total view (DATA_LOADING §12); all answers are still returned, and colour follows party.
 ```json
 {"dv":42,"contest":["2024|US|president|"],"unit_type":"county","answers":["dem_nominee","rep_nominee","other"],
  "rows":[{"unit":"PA|Erie County","name":"Erie County","votes":[67456,68866,1273],"total":137595,

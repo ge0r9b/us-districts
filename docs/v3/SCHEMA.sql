@@ -85,7 +85,8 @@ insert into unit_type_def (unit_type, category, label, tiger_set) values
 -- visibility 'private' or 'shared', license 'proprietary'.
 create table boundary_set (
   id               bigint generated always as identity primary key,
-  slug             text not null unique,
+  slug             text not null unique,             -- = the bot rows' boundary_set token (Q-E12): lowercase-hyphen,
+                                                   -- e.g. 'v2-2024' (v2's 2024 polygons/GEOIDs), 'tiger-2020'. Geometry joins on this, NOT on year.
   unit_type        text not null references unit_type_def(unit_type),
   vintage_year     int  not null,                    -- boundary year (2024 = current)
   valid_from       date,
@@ -262,7 +263,9 @@ create table office (
 -- One race / question at one time point.
 create table contest (
   id               bigint generated always as identity primary key,
-  contest_key      text not null unique,             -- '{year}|{state}|{office}|{district}' e.g. '2024|US|president|', '2024|PA|state_house|101'
+  contest_key      text not null unique,             -- '{year}|{state}|{office}|{district}' e.g. '2024|US|president|', '2022|GA|us_senate_runoff|'
+                                                   -- office token carries special/runoff (Q-E13: us_senate, us_senate_special, us_senate_runoff);
+                                                   -- stage is derived from it ('special', 'runoff', else 'general')
   office_id        bigint not null references office(id),
   year             int not null check (year between 1789 and 2100),  -- any year (2016/2020/2024 today)
   election_date    date,
@@ -345,6 +348,67 @@ create table result_history (
 );
 create index result_history_key on result_history (contest_id, unit_id, answer_id);
 
+-- v2-parity display slots (Q-E13). v3 keeps every answer; this maps one answer to v2's 'd' and 'r'
+-- columns for the D / R / total view. 'd' = the Democratic nominee, unless an independent beat the
+-- Democrat statewide or there was no Democrat, then that independent (King ME 2024, Sanders VT, Osborn
+-- NE 2024, McMullin UT 2022, Chesbro AK 2022 first round, Chambers LA 2022, Christiansen ND 2022).
+-- 'r' = the Republican (AK 2022: Murkowski, first round). Colour still follows answer.party_id.
+create table contest_display_slot (
+  contest_id  bigint not null references contest(id) on delete cascade,
+  slot        char(1) not null check (slot in ('d','r')),
+  answer_id   bigint not null references answer(id) on delete cascade,
+  rule        text not null default 'dem_nominee',   -- 'dem_nominee' | 'independent_beat_dem' | 'no_dem' | 'rep_nominee'
+  note        text,
+  primary key (contest_id, slot)
+);
+
+-- ---------------------------------------------------------------------------
+-- 5b. People and officeholders (Q-I1; data-v3/inst/ on data/inst-officeholders)
+-- ---------------------------------------------------------------------------
+-- One canonical person_id 'scheme:id' per person, chosen in priority order:
+--   bioguide:<ID> (permanent) > ocd-person/<uuid> (OpenStates; stable, but can change on a duplicate merge)
+--   > session-scoped state-legislature ids (resolved to ocd-person where possible).
+create table person (
+  person_id     text primary key,                    -- 'bioguide:B001323', 'ocd-person/a84a3fe8-...'
+  scheme        text not null check (scheme in ('bioguide','ocd-person','state-leg')),
+  bioguide      text unique,
+  ocd_person    text unique,
+  official_ids  jsonb not null default '{}',          -- other official ids (state roster ids, FEC ...)
+  name          text not null,
+  candidate_id  bigint references candidate(id),      -- same human as an election candidate, when linked
+  meta          jsonb not null default '{}'
+);
+create index person_name_trgm on person using gin (lower(name) gin_trgm_ops);
+
+-- Former canonical ids (OpenStates merges, session-scoped ids that were later resolved) -> current person.
+create table person_alias (
+  alias_id      text primary key,                    -- e.g. an old ocd-person/<uuid>, 'mn-house-15367'
+  person_id     text not null references person(person_id) on update cascade on delete cascade,
+  kind          text not null default 'former_canonical' check (kind in ('former_canonical','session_scoped','official')),
+  source_commit text                                  -- OpenStates commit where the alias was recorded
+);
+create index person_alias_person on person_alias (person_id);
+
+-- Who held a seat (unit) over a date range. Vacancy = person_id null + status 'vacant'.
+create table officeholder (
+  id            bigint generated always as identity primary key,
+  unit_id       bigint not null references unit(id),  -- seat polygon (cd116/cd119, sldl2024 ... via boundary_set)
+  entity_id     bigint references entity(id),         -- chamber ('us-house', 'al-house')
+  seat          text,                                 -- multi-member seats
+  person_id     text references person(person_id) on update cascade,
+  party         text,
+  status        text not null,                        -- 'elected','serving','serving_at_2025-04-01','vacant'
+  valid_from    date,
+  valid_to      date,                                 -- null = open-ended / current
+  elected_date  date,
+  source_id     bigint references source(id),
+  source_commit text,                                 -- upstream commit (congress-legislators, OpenStates)
+  check (status <> 'vacant' or person_id is null),
+  check (valid_to is null or valid_from is null or valid_to >= valid_from)
+);
+create index officeholder_unit_dates on officeholder (unit_id, valid_from, valid_to);
+create index officeholder_person on officeholder (person_id);
+
 -- ---------------------------------------------------------------------------
 -- 6. Precomputed aggregates (instant reads)
 -- ---------------------------------------------------------------------------
@@ -415,7 +479,8 @@ create unlogged table stg_result_row (
   state         text, year text, office text, district text,
   unit_id       text, unit_type text, candidate_id text, answer text,
   party         text, votes text, weight text, source_url text, retrieved_at text,
-  method        text,                                -- optional extra column (DECISIONS.md D6)
+  method        text,                                -- column 14 in the 2022/2024 Senate files (DECISIONS.md D6)
+  boundary_set  text,                                -- Q-E12: boundary_set.slug ('v2-2024'); if absent, derived from the layer
   primary key (load_batch_id, line_no)
 );
 

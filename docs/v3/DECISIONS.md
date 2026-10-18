@@ -2,6 +2,8 @@
 
 Each item has a **recommended default**. If the user says nothing, Phase 2 proceeds with the default. Data-format questions for the data lanes are listed separately in DATA_LOADING.md §10 (Q-E1…Q-E8, Q-G1…Q-G7).
 
+**Resolved Oct 18, 2026 (data lanes, via direct ask with the orchestrator copied):** Q-E5, Q-E6, Q-E12 (results keyed on year, office, stage, boundary_set, unit_type, unit_id; new `boundary_set` column), Q-E13 (Senate office tokens and the v2 d/r slot rule) and Q-I1 (person IDs: `bioguide` > `ocd-person` > `state-leg`, with `person`, `person_alias` and `officeholder` tables). Details are in DATA_LOADING §10, §12 and §13.
+
 **Resolved Oct 18, 2026 (orchestrator):** D11 (2016 in v2, 3-point slider) and Q-E8 (official values win over v2's, and v2's are kept in history). D13 / Q-G4 (three school types plus a parent category) also resolved. **Queued with the geo merge build:** the loader repoint to `v2/data/` and the Ohio / Union County "Washington township" duplicate key. **Pending:** D10 (orchestrator triage).
 
 | # | Decision | Options | Recommended default | Why |
