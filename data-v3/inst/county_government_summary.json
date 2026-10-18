@@ -1,0 +1,61 @@
+{
+ "rows": 3152,
+ "vintage_2024": 3144,
+ "vintage_2020_extra": [
+  "09001",
+  "09003",
+  "09005",
+  "09007",
+  "09009",
+  "09011",
+  "09013",
+  "09015"
+ ],
+ "only_2024_vs_2020_gazetteer": [
+  "09110",
+  "09120",
+  "09130",
+  "09140",
+  "09150",
+  "09160",
+  "09170",
+  "09180",
+  "09190"
+ ],
+ "cog_county_units": 3031,
+ "cog_county_units_not_in_tiger": [],
+ "has_own_government": {
+  "yes": 3031,
+  "no": 113
+ },
+ "government_kind": {
+  "county": 3031,
+  "none": 35,
+  "municipal": 74,
+  "none in this county area": 4
+ },
+ "tiger_A": 3032,
+ "disagreements": [
+  {
+   "county_geoid": "13101",
+   "name": "Echols County",
+   "tiger_funcstat": "C",
+   "cog_county_unit": "COUNTY OF ECHOLS",
+   "cog_unit_cited": null
+  },
+  {
+   "county_geoid": "15003",
+   "name": "Honolulu County",
+   "tiger_funcstat": "A",
+   "cog_county_unit": null,
+   "cog_unit_cited": "CITY AND COUNTY OF HONOLULU"
+  },
+  {
+   "county_geoid": "22109",
+   "name": "Terrebonne Parish",
+   "tiger_funcstat": "A",
+   "cog_county_unit": null,
+   "cog_unit_cited": "CONSOLIDATED GOVERNMENT OF TERREBONNE"
+  }
+ ]
+}
