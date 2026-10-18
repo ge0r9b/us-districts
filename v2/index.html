@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181567";</script>
+<script>window.BUILD="202610181568";</script>
 <script>/* build 1565: fast integer formatting with thousands commas (toLocaleString costs ~0.1 ms a call; ~1,300 calls per list render) */ window.fmtC=n=>{ n=Math.round(n); const s=String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,","); return n<0?"-"+s:s; };</script>
 <script>/* build 1564: input quiet window. ~50 polling intervals (layout syncs) used to land inside a tap's frame; for 250 ms after any pointer/key/click
    input their ticks wait (one deferred call each), so the tap's own update reaches the screen first */
@@ -1809,7 +1809,7 @@ const _oi=openInfo; openInfo=function(){ _oi(); const box=sheet.querySelector(".
     add("Coverage "+yr, LYR.find(l=>l[1]===fillTop)[2]+": avg "+Math.round(s/Math.max(n,1)*100)+"% of votes covered by precinct results; "+g+" of "+n+" districts under 50% (gray)."); }); }
   if(cur){ const yrs=yrsOn(); yrs.forEach(yr=>{ const v=vals(cur,yr); if(v) add(aname(cur)+" "+yr, (numMode==="pct"?"":"Total votes "+fmtN(v.tot))+(v.cov!=null?"; coverage ~"+Math.round(v.cov*100)+"%":"")+(v.n?"; "+fmtN(v.n)+" precincts summed":"")); }); } };
 window.__v2.cands=candOn; window.__v2.precRows=st=>(PREC[st]||[]).filter(r=>r[0]===window.__dbgCounty); window.__v2.townsIn=townsIn; window.__v2.renderList=renderList; window.__v2.areaAt=areaAt; window.__v2.showArea=showArea;
-const _sy=syncYears; syncYears=function(){ _sy(); renderCands(); refreshBubble(); if(view==="list") renderList(); };
+const _sy=syncYears; syncYears=function(){ _sy(); if(window.__mapLaterOn&&window.__mapLaterOn()) window.__later("rcL",()=>{ try{ renderCands(); }catch(e){} }); else renderCands(); refreshBubble(); if(view==="list") renderList(); };
 addEventListener("resize",()=>layoutSide()); setInterval(()=>layoutSide(),700);
 renderCands();
 // ===== exclusive layer type + hierarchy fold-down =====
@@ -2372,7 +2372,7 @@ function loadNat(){ return natL||(natL=new Promise(r=>{ const s=document.createE
 const natLL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
 function natFill(d){ return ctyFill([d.st,d.nm]); }
 let natSeq=0;
-function drawNat(){ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
+function drawNat(){ if(window.__mapLaterOn&&window.__mapLaterOn()){ window.__later("drawNat",()=>drawNat()); return; } /* build 1568 */ const seq=++natSeq; if(!plotting()){ natGroup.clearLayers(); natPrec.clearLayers(); return; }
   const m=ym(); Promise.all([loadNat(), window.ELECTION2024?null:loadElection(), m!=="2024"?loadE2020():null]).then(()=>{ if(seq!==natSeq||!NAT) return;
     const mk=m+"|"+JSON.stringify(heatSel()); if(!natGroup.__m||natGroup.__m!==mk){ const ls=natGroup.getLayers(); natGroup.__m=mk;
       if(ls.length===NAT.length&&ls.every((l,i)=>l.__d===NAT[i])) ls.forEach(l=>{ const f=natFill(l.__d); if(l.options.fillColor!==f) l.setStyle({fillColor:f}); }); /* build 1564: a year/answer change recolours the existing shapes (no rebuild of ~3,000 polygons) */
@@ -2446,7 +2446,7 @@ const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hi
   yr.insertBefore(w,$("c2024")); let A=N-1,B=N-1;
   const xs=i=>{ const r=w.getBoundingClientRect(); return 52+(N>1?i/(N-1):0)*(r.width-104); };
   const near=cx=>{ const r=w.getBoundingClientRect(); let best=0,bd=1e9; for(let i=0;i<N;i++){ const d=Math.abs(r.left+xs(i)-cx); if(d<bd){bd=d;best=i;} } return best; };
-  const paint=()=>{ w.querySelectorAll(".tk").forEach(t=>t.style.left=xs(+t.dataset.i)+"px"); const lo=Math.min(A,B),hi=Math.max(A,B); w.classList.toggle("rng",lo!==hi);
+  const paint=()=>{ const W0=w.getBoundingClientRect().width; const xs=i=>52+(N>1?i/(N-1):0)*(W0-104); /* build 1568: one layout read per paint (was one per tick/knob) */ w.querySelectorAll(".tk").forEach(t=>t.style.left=xs(+t.dataset.i)+"px"); const lo=Math.min(A,B),hi=Math.max(A,B); w.classList.toggle("rng",lo!==hi);
     w.querySelector(".kn.a").style.left=xs(A)+"px"; w.querySelector(".kn.b").style.left=xs(B)+"px"; const f=w.querySelector(".fill"); f.style.left=xs(lo)+"px"; f.style.width=(xs(hi)-xs(lo))+"px"; };
   const fromState=()=>{ const v=+$("yslider").value; if(v===1){A=0;B=N-1;} else {A=B=(v===0?0:N-1);} paint(); };
   window.__ySelectAll=()=>{ A=0; B=N-1; commit(); }; // full available range (all years), generic for N years
@@ -2465,7 +2465,7 @@ const _yo=yrsOn; yrsOn=function(){ const y=_yo(); if(y.length>1&&$("barTime").hi
     if(!g.moved){ A=B=near(e.clientX); } g=null; P.clear(); commit(); };
   w.addEventListener("pointerup",up); w.addEventListener("pointercancel",up);
   w.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ const d=e.key==="ArrowLeft"?-1:1; A=B=Math.max(0,Math.min(N-1,(A===B?A:B)+d)); commit(); } }); w.tabIndex=0;
-  const _syS=syncYears; syncYears=function(){ const r=_syS.apply(this,arguments); try{ fromState(); }catch(_){} return r; };
+  const _syS=syncYears; syncYears=function(){ try{ fromState(); }catch(_){} const r=_syS.apply(this,arguments); return r; }; /* build 1568: knobs first, before the list makes layout dirty */
   $("yslider").addEventListener("input",()=>setTimeout(fromState,0));
   const align=()=>{ const c=$("bTime"); if($("barTime").hidden) return; const cr=c.getBoundingClientRect(), wr=w.getBoundingClientRect(); if(!wr.height) return; const y=Math.round(cr.top+cr.height/2-wr.top); if(w.style.getPropertyValue("--ytr")!==y+"px"){ w.style.setProperty("--ytr",y+"px"); w.style.setProperty("--ylb",Math.max(-8,y-11-3-11)+"px"); } };
   new MutationObserver(()=>requestAnimationFrame(align)).observe($("barTime"),{attributes:true,attributeFilter:["hidden"]}); addEventListener("resize",align); setInterval(align,500);
@@ -2709,10 +2709,10 @@ const _v15=vals; vals=function(a,yr){ const ak_k=a&&a.kind==="natcd"?(a.tk||"ush
 const _sv15=scopeVals; scopeVals=function(a,yr){ if(a.kind==="sum"&&window.__ak){ const r=_sv15(a,yr); const v=__ak["state"+yr]; if(a.st==="Alaska") return {dem:v[0],rep:v[1],tot:v[2]}; if(!a.st&&r){ const E=yr==="2020"?window.ELECTION2020:window.ELECTION2024; let d=r.dem,R=r.rep,t=r.tot; if(E) for(const k in E) if(k.startsWith("Alaska|")){ d-=E[k][0]; R-=E[k][1]; t-=E[k][2]; } return {dem:d+v[0],rep:R+v[1],tot:t+v[2]}; } return r; } return _sv15(a,yr); };
 // national fallback for Alaska (no county results): statewide color, or House districts in 2024 when Alaska is the open state
 const akGroup=L.layerGroup().addTo(map);
-function drawAK(){ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
+function drawAK(){ if(window.__mapLaterOn&&window.__mapLaterOn()){ window.__later("drawAK",()=>drawAK()); return; } /* build 1568 */ akGroup.clearLayers(); if(!plotting()) return; loadAK().then(()=>{ akGroup.clearLayers(); if(!window.__ak||natTypeOn()) return; const m=ym(), mg=v=>(v[1]-v[0])/v[2];
   const fc0=m==="delta"?deltaColor(mg(__ak.state2024)-mg(__ak.state2020)):heatC(__ak["state"+m][0],__ak["state"+m][1],__ak["state"+m][2]); const BO=__ak.boro2024||{}, BO20=__ak.boro2020||{};
   (NAT||[]).filter(d=>d.st==="Alaska").forEach(d=>{ const bv=m==="2020"?BO20[d.nm]:BO[d.nm], b0=BO20[d.nm]; const fc=m==="delta"?((bv&&bv[2]&&b0&&b0[2])?deltaColor(mg(bv)-mg(b0)):fc0):(bv&&bv[2])?heatC(bv[0],bv[1],bv[2]):fc0; L.polygon(natLL(d),{renderer:natRenderer,pane:"natPane",fill:true,fillColor:fc,fillOpacity:0.75,color:"#fff",weight:0.4,interactive:false}).addTo(akGroup); }); }); }
-const _dn15=drawNat; drawNat=function(){ _dn15(); drawAK(); };
+const _dn15=drawNat; drawNat=function(){ if(window.__mapLaterOn&&window.__mapLaterOn()){ window.__later("drawNat",()=>drawNat()); return; } /* build 1568: the whole national redraw (fill, AK, CD outlines) follows the list by a frame */ _dn15(); drawAK(); };
 loadAK().then(()=>{ drawNat(); renderCands(); });
 // solid statewide shading when the whole lower 48 fits; state lines on top
 { map.createPane("stPane"); map.getPane("stPane").style.zIndex=341; map.getPane("stPane").style.pointerEvents="none";
@@ -3567,7 +3567,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   function skelDone(){ const B=document.body.classList; if(!B.contains("laskel")) return; clearTimeout(LA.__skTo);
     try{ window.__navCommit&&window.__navCommit(); }catch(e){} B.remove("laskel"); try{ window.__bbSync&&window.__bbSync(); }catch(e){} try{ place(); laThumbs(); }catch(e){}
     try{ const g=document.querySelector("#listView .lvgrid"); if(LA.__dk&&g){ const kids=[...g.children].slice(0,40); if(kids.length) SKC.set(LA.__dk,kids.map(e=>e.outerHTML).join("")); if(SKC.size>40) SKC.delete(SKC.keys().next().value); } }catch(e){} LA.__dk=null; }
-  function render0(){ if(!LA.on) return; const lv=document.getElementById("listView"); if(!LA.__noMap){ computeAgg(); drawMap(); } LA.__noMap=0; /* build 1564: a sort flip changes no map colour: skip the aggregate + map redraw */
+  function render0(){ if(!LA.on) return; const lv=document.getElementById("listView"); if(!LA.__noMap){ computeAgg(); if(window.__mapLaterOn&&window.__mapLaterOn()) window.__later("laMap",drawMap); else drawMap(); } LA.__noMap=0; /* build 1564: a sort flip changes no map colour: skip the aggregate + map redraw */
     LA.sc=null; if(ym()!=="delta"){ try{ LA.sc=sortCand(ym()); }catch(e){} } { const k=[LA.sc&&LA.sc.id,numMode,ym(),scopeK()].join("|"); if(LA.skey!==undefined&&LA.skey!==k) LA.sort="desc"; LA.skey=k; } /* a new sort key (answer, %/#, year, list) starts high→low */
     nounSync();
     const rows=LA.items.map(a=>{ let s=null; try{ s=sortVal(a); }catch(e){} return {a,s}; }); const dir=LA.sort==="asc"?1:-1;
@@ -3599,13 +3599,13 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
           const tok=LA.__fillTok=(LA.__fillTok||0)+1, slice=dl=>{ if(tok!==LA.__fillTok) return; const t=performance.now(); while(rest.length&&(performance.now()-t<6||(dl&&dl.didTimeout))) put(rest.shift()); if(rest.length) (window.requestIdleCallback||(f=>setTimeout(f,30)))(slice,{timeout:300}); else { restyle(); clampLabels(); fitLabels(); } };
           if(rest.length) (window.requestIdleCallback||(f=>setTimeout(f,30)))(slice,{timeout:300});
           /* build 1565: paint the new values first; the in-bar labels (fit-or-hide needs a layout) are hidden for that one frame and fitted right after */
-          restyle(); try{ renderCands(); }catch(e){} g0.classList.add("unfit"); cancelAnimationFrame(LA.__fitRaf2); LA.__fitRaf2=requestAnimationFrame(()=>{ const f=()=>{ try{ if(LA.on){ place(); laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); } }finally{ g0.classList.remove("unfit"); } }; if(window.requestIdleCallback) requestIdleCallback(f,{timeout:60}); else setTimeout(f,16); }); return; } } }
+          restyle(); try{ if(window.__mapLaterOn&&window.__mapLaterOn()) window.__later("rcL",()=>{ try{ renderCands(); }catch(e){} }); else renderCands(); }catch(e){} g0.classList.add("unfit"); cancelAnimationFrame(LA.__fitRaf2); LA.__fitRaf2=requestAnimationFrame(()=>{ const f=()=>{ try{ if(LA.on){ place(); laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); } }finally{ g0.classList.remove("unfit"); } }; if(window.requestIdleCallback) requestIdleCallback(f,{timeout:60}); else setTimeout(f,16); }); return; } } }
     lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; lv.__laHead=head; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw","84px"); /* build 1551: narrower name column, longer bars; a cut-off name shows its full text in a bubble */
     g.classList.toggle("dl",yrsNow().length>1); g.innerHTML=R2.map(x=>"<div class='"+x.cls+"'>"+x.h+"</div>").join(""); { let i=0; for(const el of g.children){ const x=R2[i++]; if(x){ el.__a=x.a; el.__k=x.k; } } } fitNames(g);
     { const r0=g.firstElementChild; if(r0&&r0.classList.contains("lvrow")){ const cs=getComputedStyle(r0), h=r0.getBoundingClientRect().height-(parseFloat(cs.paddingTop)||0)-(parseFloat(cs.paddingBottom)||0)-(parseFloat(cs.borderTopWidth)||0)-(parseFloat(cs.borderBottomWidth)||0); if(h>0) g.style.setProperty("--rh",h.toFixed(1)+"px"); } } /* build 1564: placeholder height for rows whose content is skipped */
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
     if(keepTop) lv.scrollTop=keepTop; else if(lv.scrollTop) lv.scrollTop=0; /* a different list (drill-in, new level/scope) opens at the top; the browser would otherwise keep the old list's offset */
-    restyle(); place(); try{ renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
+    restyle(); place(); try{ if(window.__mapLaterOn&&window.__mapLaterOn()) window.__later("rcL",()=>{ try{ renderCands(); }catch(e){} }); else renderCands(); }catch(e){} laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); if(keepTop&&Math.abs(lv.scrollTop-keepTop)>1) lv.scrollTop=keepTop;
     if(rows.length&&!g.querySelector('.lvrow.la')&&!LA.__retry){ LA.__retry=1; setTimeout(()=>{ LA.__retry=0; if(LA.on) render(); },300); } }
 
   /* ---- left-edge candidate column for list charts (bar, pie, line, change bars): same thumbnails as the map, ranked for the current selection (the tapped row, else the totals of the loaded list), tap toggles a candidate; an answer without a photo gets a rank-number badge ---- */
@@ -4004,5 +4004,13 @@ html body .tlab svg text { fill: #fff !important; }
 #laCands .lact .cpt { left: 19px !important; right: auto !important; top: 34px !important; transform: translateX(-50%); }
 #listView .lvgrid.unfit .sg b{visibility:hidden!important} /* build 1565: one frame, until the labels are fitted */
 </style>
+<script>/* build 1568: time slider answers first, map follows. A year change in the list view paints the list rows + thumbnails first; the
+   map layers under the list (state/national fill, Alaska, list-area polygons) redraw one frame later, coalesced, so the drag's own frame stays short. */
+(function(){ const q=new Map(); let sch=0; window.__laterRuns=0; const run=()=>{ sch=0; const fs=[...q.values()]; q.clear(); window.__laterRuns+=fs.length; fs.forEach(f=>{ try{ f(); }catch(e){} }); };
+  window.__later=(k,f)=>{ q.set(k,f); if(!sch){ sch=1; requestAnimationFrame(()=>requestAnimationFrame(run)); } };
+  window.__mapLaterOn=()=>!!window.__mapLater&&document.body.classList.contains("listmode");
+  const yl=e=>{ if(!e.target||e.target.id!=="yslider") return; window.__mapLater=1; clearTimeout(window.__mlT); window.__mlT=setTimeout(()=>{ window.__mapLater=0; },0); };
+  document.addEventListener("input",yl,true); document.addEventListener("change",yl,true);
+})();</script>
 </body>
 </html>
