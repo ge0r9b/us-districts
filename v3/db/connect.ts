@@ -40,17 +40,29 @@ export async function openLoadDb(connectionString: string): Promise<pg.Pool> {
       options: "-c search_path=usd,public",
     });
   }
-  const client = new Client(connectionString);
-  await client.connect();
-  await client.query("set search_path = usd, public");
-  const session = {
-    query: (text: string, params?: unknown[]) => client.query(text, params),
-    release: () => {},
+  let client: Client;
+  const open = async () => {
+    client = new Client(connectionString);
+    await client.connect();
+    await client.query("set search_path = usd, public");
+  };
+  await open();
+  const query = (text: string, params?: unknown[]) => client.query(text, params);
+  const session = { query, release: () => {} };
+  // connect() returns this same socket. A dropped WebSocket has to open a new client.
+  const reconnect = async () => {
+    try {
+      await client.end();
+    } catch {
+      /* already closed */
+    }
+    await open();
   };
   return {
-    query: session.query,
+    query,
     connect: async () => session,
     end: () => client.end(),
+    reconnect,
   } as unknown as pg.Pool;
 }
 

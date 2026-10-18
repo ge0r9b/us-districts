@@ -1,9 +1,13 @@
 import { afterAll, describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { applyResults, markSuperseded } from "../ingest/apply.ts";
-import { mapInstImage, mapRelationMethod, loadInstitutionTables } from "../ingest/inst-entities.ts";
-import { assignLocationUnits } from "../ingest/locations.ts";
+import { mapInstImage, mapRelationMethod, loadInstitutionTables, loadInstitutions } from "../ingest/inst-entities.ts";
+import { assignLocationUnits, isConnectionDrop } from "../ingest/locations.ts";
 import { repoRoot } from "../ingest/load-all.ts";
 import { dryRunPrecincts } from "../ingest/precincts.ts";
+import { catalogRowBytes } from "../ingest/row-width.ts";
 import { createTestPool } from "./db.ts";
 
 const pool = createTestPool();
@@ -97,7 +101,18 @@ describe("neon follow-up", () => {
     expect(estimate.rollup).toBeGreaterThan(0);
     expect(estimate.databaseBytes).toBeGreaterThan(0);
     expect(estimate.note).toContain("Precinct result facts stay out of Postgres");
-    expect(estimate.parts.find((part) => part.table === "unit")?.bytes).not.toBeNull();
+    expect(estimate.note).toContain("PMTiles");
+    const unit = estimate.parts.find((part) => part.table === "unit");
+    expect(unit?.bytes).not.toBeNull();
+    expect(unit?.bytesPerRow ?? 999).toBeLessThan(450);
+    expect(estimate.parts.find((part) => part.table === "unit_crosswalk")?.bytes).not.toBeNull();
+    expect(estimate.parts.find((part) => part.table === "precinct_rollup")?.bytes).not.toBeNull();
+    expect(estimate.estimatedBytes).not.toBeNull();
+    const emptyWidth = await catalogRowBytes(pool, "usd.unit_crosswalk", {
+      textBytes: { method: 8, source_id: 8 },
+      indexBytes: 48,
+    });
+    expect(emptyWidth).toBeGreaterThan(24);
   });
 
   it("loads institution entities, relations, image metadata, and bodies", async () => {
@@ -114,7 +129,16 @@ describe("neon follow-up", () => {
     const loaded = await loadInstitutionTables(pool, {
       entities: [
         row("state:48", { kind: "state", name: "Texas", state_fips: "48", state: "Texas" }),
-        row("county:48001", { kind: "county", name: "Anderson County", state_fips: "48", parent_id: "state:48" }),
+        row("county:48001", {
+          kind: "county",
+          name: "Anderson County",
+          state_fips: "48",
+          state: "Texas",
+          parent_id: "state:48",
+          v2_key: "Texas|Anderson County",
+          v2_layer: "v2:counties",
+          alias: "Anderson",
+        }),
         row("special_district:tx-tceq-101265", {
           kind: "special_district",
           name: "Example WCID",
@@ -148,6 +172,9 @@ describe("neon follow-up", () => {
           public: "yes",
           icon: "yes",
           attribution: "State of Texas",
+          source_url: "https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg",
+          commons_url: "https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg",
+          licence_url: "https://creativecommons.org/publicdomain/zero/1.0/",
           source_id: "wikidata_images",
         },
         {
@@ -189,6 +216,38 @@ describe("neon follow-up", () => {
       `select public, icon, served_path from entity_image where entity_id = 'state:48' and role = 'flag'`,
     );
     expect(image.rows[0]).toEqual({ public: true, icon: true, served_path: null });
+    const hot = await pool.query<{ attribution: string | null; file_url: string | null; state: string | null; v2_key: string[] | null }>(
+      `select i.attribution, i.file_url, e.state, e.v2_key
+       from entity_image i
+       join entity e on e.entity_id = i.entity_id
+       where i.entity_id = 'state:48' and i.role = 'flag'`,
+    );
+    expect(hot.rows[0]?.attribution).toBeNull();
+    expect(hot.rows[0]?.file_url).toBeNull();
+    expect(hot.rows[0]?.state).toBeNull();
+    expect(hot.rows[0]?.v2_key).toBeNull();
+    const text = await pool.query<{ attribution: string; source_url: string }>(
+      `select t.attribution, t.source_url
+       from entity_image_text t
+       join entity_image i on i.id = t.image_id
+       where i.entity_id = 'state:48' and i.role = 'flag'`,
+    );
+    expect(text.rows[0]).toEqual({
+      attribution: "State of Texas",
+      source_url: "https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg",
+    });
+    const deed = await pool.query<{ url: string }>(
+      `select url from license where code = 'LicenseRef-PublicDomain'`,
+    );
+    expect(deed.rows[0]?.url).toBe("https://creativecommons.org/publicdomain/zero/1.0/");
+    const extra = await pool.query<{ v2_key: string[] }>(
+      `select v2_key from entity_extra where entity_id = 'county:48001'`,
+    );
+    expect(extra.rows[0]?.v2_key).toEqual(["Texas|Anderson County"]);
+    const alias = await pool.query<{ alias: string }>(
+      `select alias from entity_alias where entity_id = 'county:48001'`,
+    );
+    expect(alias.rows[0]?.alias).toBe("Anderson");
     const body = await pool.query<{ entity_id: string; role: string }>(
       `select entity_id, role from body_entity where body_key = 'us-tx-house'`,
     );
@@ -258,6 +317,50 @@ describe("neon follow-up", () => {
       `select status from load_batch where file_sha256 = 'sha-still-rejected'`,
     );
     expect(after.rows[0]?.status).toBe("superseded");
+  });
+
+  it("prices institutions from origin/data/inst-entities and writes nothing on a dry run", async () => {
+    expect(isConnectionDrop(new Error("Connection terminated unexpectedly"))).toBe(true);
+    expect(isConnectionDrop(new Error("syntax error"))).toBe(false);
+    const before = await pool.query<{ n: string }>("select count(*)::text n from entity");
+    const report = await loadInstitutions(pool, {
+      root,
+      currentBytes: 236 * 1024 * 1024,
+      allow: false,
+      dryRun: true,
+    });
+    const after = await pool.query<{ n: string }>("select count(*)::text n from entity");
+    expect(after.rows[0]?.n).toBe(before.rows[0]?.n);
+    expect(report.status).toBe("dry-run");
+    expect(report.gitCommit?.startsWith("f0f1f6d")).toBe(true);
+    expect(report.entities).toBeGreaterThan(50_000);
+    expect(report.estimate.projectedBytes).not.toBeNull();
+    const margin = (report.estimate.projectedBytes ?? 0) - 236 * 1024 * 1024;
+    expect(margin).toBeGreaterThan(5 * 1024 * 1024);
+    expect(margin).toBeLessThan(114 * 1024 * 1024);
+    expect(report.estimate.projectedBytes!).toBeLessThan(350 * 1024 * 1024);
+  });
+
+  it("supersedes a rejected batch in the migration when a later applied batch exists", async () => {
+    await pool.query(
+      `insert into load_batch (file_name, file_sha256, status)
+       values ('us_senate_2024_sldu.csv', 'sha-stale-rejected', 'rejected'),
+              ('us_senate_2024_sldu.csv', 'sha-stale-applied', 'applied'),
+              ('never-applied.csv', 'sha-stale-lonely', 'rejected')
+       on conflict (file_sha256) do nothing`,
+    );
+    const sql = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../db/migrations/013_slim_load.sql"), "utf8");
+    await pool.query(sql);
+    const rows = await pool.query<{ file_sha256: string; status: string }>(
+      `select file_sha256, status from load_batch
+       where file_sha256 in ('sha-stale-rejected', 'sha-stale-applied', 'sha-stale-lonely')
+       order by file_sha256`,
+    );
+    expect(rows.rows).toEqual([
+      { file_sha256: "sha-stale-applied", status: "applied" },
+      { file_sha256: "sha-stale-lonely", status: "rejected" },
+      { file_sha256: "sha-stale-rejected", status: "superseded" },
+    ]);
   });
 });
 

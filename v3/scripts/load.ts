@@ -16,12 +16,13 @@ function safe(err: unknown): string {
 
 const include = list("include", "USD_LOAD_INCLUDE", ["core", "districts", "precincts", "schools"]);
 const allowOverBudget = list("allow-over-budget", "USD_LOAD_OVER_BUDGET", []);
+const dryRun = process.argv.includes("--dry-run");
 
 let db: Awaited<ReturnType<typeof openLoadDb>> | null = null;
 try {
   const url = requireDatabaseUrl();
   db = await openLoadDb(url);
-  const summary = await loadAll(db, repoRoot(), { include, allowOverBudget });
+  const summary = await loadAll(db, repoRoot(), { include, allowOverBudget, dryRun });
   console.log(
     JSON.stringify(
       {

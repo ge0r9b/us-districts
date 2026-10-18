@@ -239,7 +239,7 @@ create table seat_member_unit (
   source_id      text references source(source_id),
   primary key (seat_unit_id, member_unit_id)       -- seat_member_units.csv (ffdf738): seat_unit_key + boundary_set -> seat_unit_id;
 );                                                 -- member_unit_layer + member_unit_key + member_boundary_set -> member_unit_id
-create index unit_centroid_gist on unit using gist (centroid);
+create index unit_centroid_gist on unit using gist (centroid) where centroid is not null;
 
 -- ZCTA -> place / town / county shares (v2/data/zcta_xref, Census 2020 relationship files), for ZIP search and lists.
 create table zcta_unit_share (
@@ -385,6 +385,16 @@ create index entity_kind on entity (kind, state_fips);
 create index entity_v2 on entity using gin (v2_key);
 create index entity_name_trgm on entity using gin (lower(name) gin_trgm_ops);
 
+-- Institution load keeps v2 keys and long source notes off the hot entity row. No secondary index.
+create table entity_extra (
+  entity_id         text primary key references entity(entity_id) on delete cascade,
+  v2_layer          text[],
+  v2_key            text[],
+  v2_row            text[],
+  valid_from_source text,
+  inception_source  text
+);
+
 -- Government changes (merger, dissolution, incorporation, CT planning regions): many-to-many.
 create table entity_succession (
   predecessor_id text not null references entity(entity_id),
@@ -499,11 +509,18 @@ create table entity_image (
   check (entity_id is not null or feed_entity_id is not null),
   check (not fair_use or not public),
   check (not icon or public),                        -- icons are always freely licensed
-  check (not public or attribution is not null),     -- a public file needs attribution
-  check (public or (attribution is not null and source_url is not null)),  -- a hidden file needs both
   unique nulls not distinct (entity_id, feed_entity_id, role)
 );
 create unique index entity_image_one_icon on entity_image (coalesce(entity_id, feed_entity_id)) where icon;   -- at most one icon per entity
+-- Long image text. A public row still needs attribution; the loader writes it here.
+-- Licence deed URLs are license.url, one row per code, not a copy on every image.
+create table entity_image_text (
+  image_id    bigint primary key references entity_image(id) on delete cascade,
+  attribution text,
+  source_url  text,
+  usage_basis text,
+  note        text
+);
 create table entity_image_source (
   image_id   bigint not null references entity_image(id) on delete cascade,
   source_id  text not null references source(source_id),

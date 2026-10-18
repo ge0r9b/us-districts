@@ -22,6 +22,8 @@ export type LoadOptions = {
   /** Defaults to core only, so tests stay on the alpha.1 files. The db:load script passes the rest. */
   include?: string[];
   allowOverBudget?: string[];
+  /** Price institutions and write nothing. Locations are not assigned. */
+  dryRun?: boolean;
 };
 
 export type SizeEstimate = {
@@ -282,6 +284,38 @@ function resultGap(report: ApplyReport): string | null {
 export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOptions = {}): Promise<LoadSummary> {
   const include = new Set(options.include ?? ["core"]);
   const allow = new Set(options.allowOverBudget ?? []);
+  if (options.dryRun) {
+    const current = await databaseBytes(pool);
+    const gaps: string[] = [];
+    const estimates: SizeEstimate[] = [];
+    let institutions: InstitutionLoadReport | null = null;
+    if (include.has("institutions")) {
+      institutions = await loadInstitutions(pool, {
+        root,
+        currentBytes: current,
+        allow: allow.has("institutions"),
+        dryRun: true,
+      });
+      estimates.push({
+        group: "institutions",
+        bytes: institutions.estimate.projectedBytes ?? 0,
+        action: `${institutions.status}; slim row width, nothing written`,
+      });
+      if (institutions.gap) gaps.push(institutions.gap);
+    } else {
+      gaps.push("dry-run writes nothing. Pass --include=institutions to price that load.");
+    }
+    return {
+      boundaries: null,
+      results: [],
+      companies: null,
+      institutions,
+      locations: null,
+      gaps,
+      estimates,
+      databaseBytes: current,
+    };
+  }
   const cache = ensureDataCache(root);
   const gaps: string[] = [];
   const results: ApplyReport[] = [];
@@ -412,23 +446,6 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     });
   }
 
-  if (include.has("institutions")) {
-    const current = await databaseBytes(pool);
-    institutions = await loadInstitutions(pool, { root, currentBytes: current, allow: allow.has("institutions") });
-    estimates.push({
-      group: "institutions",
-      bytes: institutions.estimate.fileBytes,
-      action: `${institutions.status}; file bytes, budget is pg_database_size`,
-    });
-    if (institutions.gap) gaps.push(institutions.gap);
-  } else {
-    estimates.push({
-      group: "institutions",
-      bytes: 0,
-      action: "not requested (npm run db:load -- --include=institutions)",
-    });
-  }
-
   for (const held of HELD) {
     if (!include.has(held.id)) {
       estimates.push({ group: held.id, bytes: 0, action: "not requested" });
@@ -444,6 +461,23 @@ export async function loadAll(pool: pg.Pool, root = repoRoot(), options: LoadOpt
     gaps.push(
       `locations: ${locations.outside} US points fall outside every county, state, and US House unit (flag no_unit_resolved). ${locations.skippedNonUs} non-US points were left unit-less.`,
     );
+  }
+
+  if (include.has("institutions")) {
+    const current = await databaseBytes(pool);
+    institutions = await loadInstitutions(pool, { root, currentBytes: current, allow: allow.has("institutions") });
+    estimates.push({
+      group: "institutions",
+      bytes: institutions.estimate.projectedBytes ?? institutions.estimate.fileBytes,
+      action: `${institutions.status}; slim row width, after locations`,
+    });
+    if (institutions.gap) gaps.push(institutions.gap);
+  } else {
+    estimates.push({
+      group: "institutions",
+      bytes: 0,
+      action: "not requested (npm run db:load -- --include=institutions)",
+    });
   }
 
   if (changed) await refreshAggregates(pool);

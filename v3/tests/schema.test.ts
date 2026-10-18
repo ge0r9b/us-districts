@@ -30,7 +30,7 @@ describe("schema", () => {
   it("skips migration files that are already applied", async () => {
     const again = await migrate(testDatabaseUrl());
     expect(again.applied).toEqual([]);
-    expect(again.skipped).toHaveLength(12);
+    expect(again.skipped).toHaveLength(13);
   });
 
   it("seeds again without duplicating reference rows", async () => {

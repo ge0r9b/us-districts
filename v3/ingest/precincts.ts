@@ -5,6 +5,7 @@ import type pg from "pg";
 import { contestKey, stateName } from "@usd/core";
 import { loadPrecinctState, precinctStateNames, type PrecinctFeature, type PrecinctState } from "./precinct-source.ts";
 import { writePrecinctPmtiles } from "./precinct-tiles.ts";
+import { catalogRowBytes } from "./row-width.ts";
 import { ensureUnits } from "./units.ts";
 
 export type PrecinctPack = {
@@ -133,7 +134,7 @@ export type PrecinctGrowth = {
   /** Upper bound: county and US House parents, times the three presidential years. */
   rollup: number;
   databaseBytes: number;
-  /** Sum of the parts that have a measured bytes-per-row. Null when any part is unmeasured. */
+  /** Sum of the part estimates. Empty tables use catalog row width, so this is not null. */
   estimatedBytes: number | null;
   projectedBytes: number | null;
   parts: { table: string; rows: number; bytesPerRow: number | null; bytes: number | null }[];
@@ -188,36 +189,40 @@ export async function dryRunPrecincts(
             (select count(*)::text from precinct_rollup) rollup_rows`,
   );
   const size = sized.rows[0];
-  const part = (table: string, addRows: number, relBytes: string | undefined, relRows: string | undefined) => {
+  const unitWidth = await catalogRowBytes(db, "usd.unit", {
+    skip: ["centroid", "label_point", "bbox", "legacy_key", "area_m2", "parent_boundary_set"],
+    textBytes: { name: 48, unit_key: 16, unit_type: 12, source_record_id: 8, meta: 8, labels: 8 },
+    indexBytes: 96,
+  });
+  const widthOrLive = async (table: string, relBytes: string | undefined, relRows: string | undefined) => {
     const rows = Number(relRows ?? 0);
-    const bytes = Number(relBytes ?? 0);
-    const bytesPerRow = rows > 0 ? bytes / rows : null;
-    return {
-      table,
-      rows: addRows,
-      bytesPerRow,
-      bytes: bytesPerRow == null ? null : Math.round(addRows * bytesPerRow),
-    };
+    if (rows > 0) return Number(relBytes ?? 0) / rows;
+    return catalogRowBytes(db, table, {
+      textBytes: { method: 8, source_id: 8, contest_key: 28 },
+      indexBytes: 48,
+    });
   };
+  const part = (table: string, addRows: number, bytesPerRow: number) => ({
+    table,
+    rows: addRows,
+    bytesPerRow,
+    bytes: Math.round(addRows * bytesPerRow),
+  });
   const parts = [
-    part("unit", units, size?.unit_bytes, size?.unit_rows),
-    part("unit_crosswalk", crosswalk, size?.crosswalk_bytes, size?.crosswalk_rows),
-    part("precinct_rollup", rollup, size?.rollup_bytes, size?.rollup_rows),
+    part("unit", units, unitWidth),
+    part("unit_crosswalk", crosswalk, await widthOrLive("usd.unit_crosswalk", size?.crosswalk_bytes, size?.crosswalk_rows)),
+    part("precinct_rollup", rollup, await widthOrLive("usd.precinct_rollup", size?.rollup_bytes, size?.rollup_rows)),
   ];
-  const unmeasured = parts.filter((row) => row.bytes == null).map((row) => row.table);
-  const estimatedBytes = unmeasured.length === 0 ? parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0) : null;
+  const estimatedBytes = parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0);
   const databaseBytes = Number(size?.db ?? 0);
-  const measured = parts.filter((row) => row.bytes != null).map((row) => `${row.table} ${row.bytes} bytes`);
+  const measured = parts.map((row) => `${row.table} ${row.bytes} bytes`);
   const note = [
     "Upper bound if these precinct rows are not loaded yet. A second run does not insert another copy.",
     "Precinct result facts stay out of Postgres. This counts unit keys, unit_crosswalk membership, and precinct_rollup only.",
-    unmeasured.length
-      ? `Unmeasured (empty table, no bytes-per-row): ${unmeasured.join(", ")}.`
-      : "Every part is pg_total_relation_size divided by the live row count.",
-    measured.length ? `Measured: ${measured.join("; ")}.` : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+    "Precinct polygons stay in PMTiles. The unit estimate skips centroid and legacy_key, so it is not the blended size of state and county rows.",
+    "Empty crosswalk and rollup tables use catalog row width.",
+    `Measured: ${measured.join("; ")}.`,
+  ].join(" ");
   return {
     states: names.length,
     units,
@@ -257,7 +262,7 @@ async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void>
     state.features.map((feature) => ({
       unit_type: "precinct",
       unit_key: feature.id,
-      legacy_key: `${state.name}|${feature.county}|${feature.name}|${feature.ordinal}`,
+      legacy_key: null,
       name: feature.name,
       state_fips: fips.rows[0]?.fips ?? null,
       state_abbr: state.abbr,
@@ -269,21 +274,36 @@ async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void>
   try {
     await client.query("begin");
     await client.query(
-      `update unit u
-       set centroid = st_setsrid(st_makepoint(x.lon, x.lat), 4326),
-           parent_unit_id = c.id
-       from jsonb_to_recordset($1::jsonb) as x(unit_key text, lon float8, lat float8, county text)
-       join boundary_set bp on bp.slug = 'v2-2024' and bp.unit_type = 'precinct'
-       join boundary_set bc on bc.slug = 'v2-2024' and bc.unit_type = 'county'
-       join unit c on c.boundary_set_id = bc.id and btrim(c.state_abbr) = $2 and c.name = x.county
-       where u.boundary_set_id = bp.id and u.unit_key = x.unit_key
-         and (u.parent_unit_id is distinct from c.id
-           or u.centroid is distinct from st_setsrid(st_makepoint(x.lon, x.lat), 4326))`,
+      `create temp table precinct_point on commit drop as
+       select u.id, st_setsrid(st_makepoint(x.lon, x.lat), 4326) geom
+       from jsonb_to_recordset($1::jsonb) as x(unit_key text, lon float8, lat float8)
+       join unit u on u.unit_key = x.unit_key
+       join boundary_set b on b.id = u.boundary_set_id and b.slug = 'v2-2024' and b.unit_type = 'precinct'
+       where x.lon is not null and x.lat is not null`,
       [
         JSON.stringify(state.features.map((feature) => ({
           unit_key: feature.id,
           lon: feature.lon,
           lat: feature.lat,
+        }))),
+      ],
+    );
+    await client.query(
+      `update unit u
+       set parent_unit_id = c.id,
+           centroid = null,
+           legacy_key = null
+       from jsonb_to_recordset($1::jsonb) as x(unit_key text, county text)
+       join boundary_set bp on bp.slug = 'v2-2024' and bp.unit_type = 'precinct'
+       join boundary_set bc on bc.slug = 'v2-2024' and bc.unit_type = 'county'
+       join unit c on c.boundary_set_id = bc.id and btrim(c.state_abbr) = $2 and c.name = x.county
+       where u.boundary_set_id = bp.id and u.unit_key = x.unit_key
+         and (u.parent_unit_id is distinct from c.id
+           or u.centroid is not null
+           or u.legacy_key is not null)`,
+      [
+        JSON.stringify(state.features.map((feature) => ({
+          unit_key: feature.id,
           county: feature.county,
         }))),
         state.abbr,
@@ -309,10 +329,10 @@ async function storeMembership(db: pg.Pool, state: PrecinctState): Promise<void>
          join unit d on d.unit_type = 'ushouse' and btrim(d.state_abbr) = btrim(p.state_abbr)
          join boundary_set bd on bd.id = d.boundary_set_id and bd.slug = 'v2-2024'
          join unit_geom g on g.unit_id = d.id and g.lod = 0
+         join precinct_point pt on pt.id = p.id
          where bp.slug = 'v2-2024' and bp.unit_type = 'precinct'
            and btrim(p.state_abbr) = $1
-           and p.centroid is not null
-           and st_covers(g.geom, p.centroid)
+           and st_covers(g.geom, pt.geom)
          order by p.id, st_area(g.geom)
        ) picked
        on conflict (from_unit_id, to_unit_id) do nothing`,

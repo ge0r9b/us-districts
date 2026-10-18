@@ -136,12 +136,14 @@ export type MappedImage = {
   file: string | null;
   file_url: string | null;
   license: string;
+  licence_url: string | null;
   fair_use: boolean;
   public: boolean;
   icon: boolean;
   usage_basis: string | null;
   attribution: string | null;
   source_url: string | null;
+  note: string | null;
   wikidata: string | null;
   retrieved_at: string | null;
   source_ids: string[];
@@ -173,6 +175,7 @@ export function mapInstImage(row: Record<string, string>): MappedImage | null {
   const fairUse = yes(row.fair_use);
   const attribution = orNull(row.attribution);
   const sourceUrl = orNull(row.source_url);
+  const commonsUrl = orNull(row.commons_url ?? row.file_url);
   const licenseRaw = (row.license ?? "").trim();
   const license = licenseRaw || (fairUse ? "fair-use" : "unknown");
   const askedPublic = row.public != null && row.public.trim() !== "" ? yes(row.public) : !fairUse;
@@ -185,14 +188,16 @@ export function mapInstImage(row: Record<string, string>): MappedImage | null {
     feed_entity_id: feedId,
     role: role as MappedImage["role"],
     file: orNull(row.file ?? row.commons_file),
-    file_url: orNull(row.commons_url ?? row.file_url),
+    file_url: commonsUrl && commonsUrl !== sourceUrl ? commonsUrl : null,
     license,
+    licence_url: orNull(row.licence_url),
     fair_use: fairUse,
     public: isPublic,
     icon,
     usage_basis: orNull(row.usage_basis),
     attribution,
     source_url: sourceUrl,
+    note: orNull(row.note),
     wikidata: wikidataId(row.wikidata ?? row.wikidata_qid),
     retrieved_at: orNull(row.retrieved_at),
     source_ids: sourceList(row.source_id),
@@ -209,6 +214,86 @@ export function dedupeIcons(images: MappedImage[]): MappedImage[] {
     seen.add(key);
     return row;
   });
+}
+
+function imagePayload(row: MappedImage): Record<string, unknown> {
+  return {
+    entity_id: row.entity_id ?? "",
+    feed_entity_id: row.feed_entity_id ?? "",
+    role: row.role,
+    file: row.file,
+    file_url: row.file_url,
+    license: row.license,
+    fair_use: row.fair_use,
+    public: row.public,
+    icon: row.icon,
+    wikidata: row.wikidata,
+    retrieved_at: row.retrieved_at,
+    attribution: row.attribution,
+    source_url: row.source_url,
+    usage_basis: row.usage_basis,
+    note: row.note,
+  };
+}
+
+/** Licence deeds are one `license` row. Long image text is `entity_image_text`, not the hot row. */
+async function writeImageRows(client: pg.PoolClient, ready: MappedImage[]): Promise<number> {
+  if (ready.length === 0) return 0;
+  const licences = new Map<string, string | null>();
+  for (const row of ready) {
+    if (!licences.has(row.license) || (row.licence_url && !licences.get(row.license))) {
+      licences.set(row.license, row.licence_url);
+    }
+  }
+  await insertJsonChunks(
+    client,
+    `insert into license (code, name, url)
+     select code, code, url
+     from jsonb_to_recordset($1::jsonb) as x(code text, url text)
+     on conflict (code) do update
+       set url = excluded.url
+       where excluded.url is not null and license.url is distinct from excluded.url`,
+    [...licences].map(([code, url]) => ({ code, url })),
+  );
+  const written = await insertJsonChunks(
+    client,
+    `insert into entity_image (
+       entity_id, feed_entity_id, role, file, file_url, license, fair_use, public, icon, wikidata, retrieved_at
+     )
+     select nullif(entity_id, ''), nullif(feed_entity_id, ''), role, file, file_url, license,
+            fair_use, public, icon, wikidata, retrieved_at
+     from jsonb_to_recordset($1::jsonb) as x(
+       entity_id text, feed_entity_id text, role text, file text, file_url text, license text,
+       fair_use boolean, public boolean, icon boolean, wikidata text, retrieved_at timestamptz
+     )
+     on conflict (entity_id, feed_entity_id, role) do update
+       set file = excluded.file, file_url = excluded.file_url, license = excluded.license,
+           fair_use = excluded.fair_use, public = excluded.public, icon = excluded.icon,
+           wikidata = excluded.wikidata, attribution = null, source_url = null, usage_basis = null`,
+    ready.map(imagePayload),
+  );
+  await insertJsonChunks(
+    client,
+    `insert into entity_image_text (image_id, attribution, source_url, usage_basis, note)
+     select i.id, x.attribution, x.source_url, x.usage_basis, x.note
+     from jsonb_to_recordset($1::jsonb) as x(
+       entity_id text, feed_entity_id text, role text, attribution text, source_url text,
+       usage_basis text, note text
+     )
+     join entity_image i
+       on i.role = x.role
+      and i.entity_id is not distinct from nullif(x.entity_id, '')
+      and i.feed_entity_id is not distinct from nullif(x.feed_entity_id, '')
+     on conflict (image_id) do update
+       set attribution = excluded.attribution, source_url = excluded.source_url,
+           usage_basis = excluded.usage_basis, note = excluded.note
+       where entity_image_text.attribution is distinct from excluded.attribution
+          or entity_image_text.source_url is distinct from excluded.source_url
+          or entity_image_text.usage_basis is distinct from excluded.usage_basis
+          or entity_image_text.note is distinct from excluded.note`,
+    ready.map(imagePayload),
+  );
+  return written;
 }
 
 async function ensureSources(db: pg.PoolClient, ids: string[]): Promise<void> {
@@ -291,41 +376,7 @@ export async function applyInstImages(
       client,
       ready.flatMap((row) => row.source_ids),
     );
-    const written = await insertJsonChunks(
-      client,
-      `insert into entity_image (
-         entity_id, feed_entity_id, role, file, file_url, license, fair_use, public, icon,
-         usage_basis, attribution, source_url, wikidata, retrieved_at
-       )
-       select nullif(entity_id, ''), nullif(feed_entity_id, ''), role, file, file_url, license,
-              fair_use, public, icon, usage_basis, attribution, source_url, wikidata, retrieved_at
-       from jsonb_to_recordset($1::jsonb) as x(
-         entity_id text, feed_entity_id text, role text, file text, file_url text, license text,
-         fair_use boolean, public boolean, icon boolean, usage_basis text, attribution text,
-         source_url text, wikidata text, retrieved_at timestamptz
-       )
-       on conflict (entity_id, feed_entity_id, role) do update
-         set file = excluded.file, file_url = excluded.file_url, license = excluded.license,
-             fair_use = excluded.fair_use, public = excluded.public, icon = excluded.icon,
-             usage_basis = excluded.usage_basis, source_url = excluded.source_url,
-             wikidata = excluded.wikidata, attribution = excluded.attribution`,
-      ready.map((row) => ({
-        entity_id: row.entity_id ?? "",
-        feed_entity_id: row.feed_entity_id ?? "",
-        role: row.role,
-        file: row.file,
-        file_url: row.file_url,
-        license: row.license,
-        fair_use: row.fair_use,
-        public: row.public,
-        icon: row.icon,
-        usage_basis: row.usage_basis,
-        attribution: row.attribution,
-        source_url: row.source_url,
-        wikidata: row.wikidata,
-        retrieved_at: row.retrieved_at,
-      })),
-    );
+    const written = await writeImageRows(client, ready);
     const links = ready.flatMap((row) =>
       row.source_ids.map((source_id, ord) => ({
         entity_id: row.entity_id ?? "",
@@ -391,7 +442,7 @@ export type InstitutionEstimate = {
 };
 
 export type InstitutionLoadReport = {
-  status: "applied" | "refused";
+  status: "applied" | "refused" | "dry-run";
   entities: number;
   relations: number;
   images: number;
@@ -428,68 +479,147 @@ function textList(raw: string | undefined): string[] | null {
   return items.length ? items : null;
 }
 
-export async function measureInstitutionGrowth(
-  db: pg.Pool,
-  counts: { entities: number; relations: number; images: number; bodies: number; fileBytes: number },
+function chars(value: string | null | undefined): number {
+  const text = value?.trim() ?? "";
+  return text ? text.length + 1 : 0;
+}
+
+/**
+ * Bytes we will actually write: tuple header plus the stored strings.
+ * v2 text and image attribution are on the side tables. State is omitted when
+ * state_fips is set. The name trigram index is two bytes per name character.
+ * A live pg_total_relation_size / count is not used: a small table's indexes
+ * make that average far larger than a new institution row.
+ */
+export function projectInstitutionBytes(
+  input: InstInputs,
   databaseBytes: number,
-): Promise<InstitutionEstimate> {
-  const sized = await db.query<{
-    entity_bytes: string;
-    entity_rows: string;
-    relation_bytes: string;
-    relation_rows: string;
-    image_bytes: string;
-    image_rows: string;
-    body_bytes: string;
-    body_rows: string;
-  }>(`
-    select pg_total_relation_size('usd.entity')::text entity_bytes,
-           (select count(*)::text from entity) entity_rows,
-           pg_total_relation_size('usd.entity_relation')::text relation_bytes,
-           (select count(*)::text from entity_relation) relation_rows,
-           pg_total_relation_size('usd.entity_image')::text image_bytes,
-           (select count(*)::text from entity_image) image_rows,
-           pg_total_relation_size('usd.body_entity')::text body_bytes,
-           (select count(*)::text from body_entity) body_rows
-  `);
-  const size = sized.rows[0];
-  const part = (table: string, addRows: number, relBytes: string | undefined, relRows: string | undefined) => {
-    const rows = Number(relRows ?? 0);
-    const bytesPerRow = rows > 0 ? Number(relBytes ?? 0) / rows : null;
-    return {
-      table,
-      rows: addRows,
-      bytesPerRow,
-      bytes: bytesPerRow == null ? null : Math.round(addRows * bytesPerRow),
-    };
-  };
+  alreadyLoaded: boolean,
+): InstitutionEstimate & { imagesSkipped: number } {
+  let entities = 0;
+  let entityBytes = 0;
+  let extras = 0;
+  let extraBytes = 0;
+  let aliasRows = 0;
+  let aliasBytes = 0;
+  for (const row of input.entities) {
+    const entityId = (row.entity_id ?? "").trim();
+    const kind = (row.kind ?? "").trim();
+    const name = (row.name ?? "").trim();
+    if (!entityId || !name || !ENTITY_KINDS.has(kind)) continue;
+    entities++;
+    const stateFips = /^\d{2}$/.test((row.state_fips ?? "").trim());
+    const nameBytes = chars(name);
+    entityBytes +=
+      24 +
+      48 +
+      chars(entityId) +
+      chars(kind) +
+      (stateFips ? 0 : chars(row.state)) +
+      nameBytes +
+      chars(row.label) +
+      chars(row.gov_status) +
+      chars(row.parent_id) +
+      chars(row.feed) +
+      chars(row.level) +
+      chars(row.type) +
+      chars(row.cog_pid6) +
+      chars(row.flags) +
+      chars(row.wikidata) +
+      chars(row.iso_3166_2) +
+      nameBytes * 2 +
+      64;
+    const side =
+      chars(row.v2_layer) + chars(row.v2_key) + chars(row.v2_row) + chars(row.valid_from_source) + chars(row.inception_source);
+    if (side > 0) {
+      extras++;
+      extraBytes += 24 + chars(entityId) + side;
+    }
+    for (const alias of textList(row.alias) ?? []) {
+      aliasRows++;
+      aliasBytes += 24 + chars(alias) + chars(entityId) + 8;
+    }
+  }
+  const relations = mapInstRelations(
+    input.relations.map((row) => ({
+      entity_id: row.entity_id ?? "",
+      relation: row.relation ?? "",
+      related_entity_id: row.related_entity_id ?? "",
+      method: row.method,
+      source_id: row.source_id,
+    })),
+  );
+  let relationBytes = 0;
+  for (const row of relations.relations) {
+    relationBytes +=
+      24 +
+      32 +
+      chars(row.parent_id) +
+      chars(row.child_id) +
+      chars(row.relation) +
+      chars(row.method) +
+      chars(row.source_id) +
+      chars(row.source_record_id);
+  }
+  let images = 0;
+  let imagesSkipped = 0;
+  let imageBytes = 0;
+  let imageTextBytes = 0;
+  for (const row of input.images) {
+    const mapped = mapInstImage(row);
+    if (!mapped) {
+      imagesSkipped++;
+      continue;
+    }
+    images++;
+    imageBytes += 24 + 40 + chars(mapped.entity_id) + chars(mapped.feed_entity_id) + chars(mapped.file) + chars(mapped.file_url) + chars(mapped.license) + chars(mapped.wikidata);
+    imageTextBytes += 24 + 8 + chars(mapped.attribution) + chars(mapped.source_url) + chars(mapped.usage_basis) + chars(mapped.note);
+  }
+  let bodies = 0;
+  let bodyBytes = 0;
+  for (const row of input.bodies) {
+    const role = (row.role ?? "").trim();
+    const entityId = (row.entity_id ?? "").trim();
+    const bodyKey = (row.body_key ?? "").trim();
+    if (!bodyKey || !entityId || !BODY_ROLES.has(role)) continue;
+    bodies++;
+    bodyBytes += 24 + chars(bodyKey) + chars(entityId) + chars(role) + chars(row.source_record_id);
+  }
+  const part = (table: string, rows: number, raw: number) => ({
+    table,
+    rows,
+    bytesPerRow: rows > 0 ? raw / rows : 0,
+    bytes: alreadyLoaded ? 0 : Math.round(raw),
+  });
   const parts = [
-    part("entity", counts.entities, size?.entity_bytes, size?.entity_rows),
-    part("entity_relation", counts.relations, size?.relation_bytes, size?.relation_rows),
-    part("entity_image", counts.images, size?.image_bytes, size?.image_rows),
-    part("body_entity", counts.bodies, size?.body_bytes, size?.body_rows),
+    part("entity", entities, entityBytes),
+    part("entity_extra", extras, extraBytes),
+    part("entity_alias", aliasRows, aliasBytes),
+    part("entity_relation", relations.relations.length, relationBytes),
+    part("entity_image", images, imageBytes),
+    part("entity_image_text", images, imageTextBytes),
+    part("body_entity", bodies, bodyBytes),
   ];
-  const unmeasured = parts.filter((row) => row.rows > 0 && row.bytes == null).map((row) => row.table);
-  const projectedBytes = unmeasured.length
-    ? null
-    : databaseBytes + parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0);
+  const added = alreadyLoaded ? 0 : parts.reduce((sum, row) => sum + (row.bytes ?? 0), 0);
   const note = [
-    `Source files are ${counts.fileBytes} bytes on disk. That number is the CSV size, not a Postgres estimate.`,
-    unmeasured.length
-      ? `Unmeasured (that table has no rows yet, so there is no bytes-per-row): ${unmeasured.join(", ")}.`
-      : "Projected growth is pg_total_relation_size divided by the live row count, times the rows in these files.",
-    "Image binaries are not loaded.",
+    `Source files are ${input.fileBytes} bytes on disk. That number is the CSV size, not a Postgres estimate.`,
+    "Projected Postgres bytes are the slim row width: v2 keys and long source notes are in entity_extra with no index, image attribution is in entity_image_text, a repeated commons URL is not stored twice, and licence_url is one license row.",
+    "State text is omitted when state_fips is set. Image binaries are not loaded.",
+    alreadyLoaded
+      ? "These files are already applied, so the projection adds nothing."
+      : "Upper bound if these rows are not loaded yet. A second run does not insert another copy.",
   ].join(" ");
   return {
-    entities: counts.entities,
-    relations: counts.relations,
-    images: counts.images,
-    bodies: counts.bodies,
-    fileBytes: counts.fileBytes,
+    entities,
+    relations: relations.relations.length,
+    images,
+    bodies,
+    fileBytes: input.fileBytes,
     databaseBytes,
-    projectedBytes,
+    projectedBytes: databaseBytes + added,
     parts,
     note,
+    imagesSkipped,
   };
 }
 
@@ -537,6 +667,8 @@ export async function loadInstitutionTables(
 ): Promise<Omit<InstitutionLoadReport, "estimate" | "gap"> & { imagesSkipped: number }> {
   const entityIds = new Set(input.entities.map((row) => row.entity_id.trim()).filter(Boolean));
   const entities: Record<string, unknown>[] = [];
+  const extras: Record<string, unknown>[] = [];
+  const aliases: { alias: string; entity_id: string }[] = [];
   const parents: { entity_id: string; parent_id: string }[] = [];
   const succession: { predecessor_id: string; successor_id: string }[] = [];
   const sourceIds: string[] = [];
@@ -546,19 +678,17 @@ export async function loadInstitutionTables(
     const name = (row.name ?? "").trim();
     if (!entityId || !name || !ENTITY_KINDS.has(kind)) continue;
     sourceIds.push(...(textList(row.source_id) ?? []));
+    const stateFips = /^\d{2}$/.test((row.state_fips ?? "").trim()) ? row.state_fips.trim() : null;
     entities.push({
       entity_id: entityId,
       kind,
-      state_fips: /^\d{2}$/.test((row.state_fips ?? "").trim()) ? row.state_fips.trim() : null,
-      state: blank(row.state),
+      state_fips: stateFips,
+      state: stateFips ? null : blank(row.state),
       name,
       label: blank(row.label),
       gov_status: blank(row.gov_status),
       valid_from: day(row.valid_from),
       valid_to: day(row.valid_to),
-      v2_layer: textList(row.v2_layer),
-      v2_key: textList(row.v2_key),
-      v2_row: textList(row.v2_row),
       feed: blank(row.feed),
       level: blank(row.level),
       type: blank(row.type),
@@ -570,8 +700,25 @@ export async function loadInstitutionTables(
       constituent_qid: /^Q[0-9]+$/.test((row.constituent_qid ?? "").trim()) ? row.constituent_qid.trim() : null,
       inception: day(row.inception),
       inception_precision: PRECISIONS.has((row.inception_precision ?? "").trim()) ? row.inception_precision.trim() : null,
-      inception_source: blank(row.inception_source),
     });
+    const v2Layer = textList(row.v2_layer);
+    const v2Key = textList(row.v2_key);
+    const v2Row = textList(row.v2_row);
+    const validFromSource = blank(row.valid_from_source);
+    const inceptionSource = blank(row.inception_source);
+    if (v2Layer || v2Key || v2Row || validFromSource || inceptionSource) {
+      extras.push({
+        entity_id: entityId,
+        v2_layer: v2Layer,
+        v2_key: v2Key,
+        v2_row: v2Row,
+        valid_from_source: validFromSource,
+        inception_source: inceptionSource,
+      });
+    }
+    for (const alias of textList(row.alias) ?? []) {
+      aliases.push({ alias, entity_id: entityId });
+    }
     const parentId = (row.parent_id ?? "").trim();
     if (parentId && parentId !== entityId) parents.push({ entity_id: entityId, parent_id: parentId });
     for (const predecessor of textList(row.predecessor_id) ?? []) {
@@ -625,34 +772,65 @@ export async function loadInstitutionTables(
       client,
       `insert into entity (
          entity_id, kind, state_fips, state, name, label, gov_status, valid_from, valid_to,
-         v2_layer, v2_key, v2_row, feed, level, type, cog_pid6, flags, origin,
+         feed, level, type, cog_pid6, flags, origin,
          source_record_id, wikidata, iso_3166_2, constituent_qid,
-         inception, inception_precision, inception_source
+         inception, inception_precision
        )
        select entity_id, kind, state_fips, state, name, label, gov_status, valid_from, valid_to,
-              v2_layer, v2_key, v2_row, feed, level, type, cog_pid6, flags, 'inst',
+              feed, level, type, cog_pid6, flags, 'inst',
               source_record_id, wikidata, iso_3166_2, constituent_qid,
-              inception, inception_precision, inception_source
+              inception, inception_precision
        from jsonb_to_recordset($1::jsonb) as x(
          entity_id text, kind text, state_fips text, state text, name text, label text, gov_status text,
-         valid_from date, valid_to date, v2_layer text[], v2_key text[], v2_row text[],
+         valid_from date, valid_to date,
          feed text, level text, type text, cog_pid6 text, flags text[], source_record_id text,
          wikidata text, iso_3166_2 text, constituent_qid text, inception date,
-         inception_precision text, inception_source text
+         inception_precision text
        )
        on conflict (entity_id) do update
          set kind = excluded.kind, state_fips = excluded.state_fips, state = excluded.state,
              name = excluded.name, label = excluded.label, gov_status = excluded.gov_status,
              valid_from = excluded.valid_from, valid_to = excluded.valid_to,
-             v2_layer = excluded.v2_layer, v2_key = excluded.v2_key, v2_row = excluded.v2_row,
+             v2_layer = null, v2_key = null, v2_row = null, inception_source = null,
+             valid_from_source = null,
              feed = excluded.feed, level = excluded.level, type = excluded.type, cog_pid6 = excluded.cog_pid6,
              flags = excluded.flags, source_record_id = excluded.source_record_id,
              wikidata = excluded.wikidata, iso_3166_2 = excluded.iso_3166_2,
              constituent_qid = excluded.constituent_qid, inception = excluded.inception,
-             inception_precision = excluded.inception_precision, inception_source = excluded.inception_source
+             inception_precision = excluded.inception_precision
          where entity.origin = 'inst'`,
       entities,
     );
+    if (extras.length > 0) {
+      await insertJsonChunks(
+        client,
+        `insert into entity_extra (entity_id, v2_layer, v2_key, v2_row, valid_from_source, inception_source)
+         select entity_id, v2_layer, v2_key, v2_row, valid_from_source, inception_source
+         from jsonb_to_recordset($1::jsonb) as x(
+           entity_id text, v2_layer text[], v2_key text[], v2_row text[],
+           valid_from_source text, inception_source text
+         )
+         on conflict (entity_id) do update
+           set v2_layer = excluded.v2_layer, v2_key = excluded.v2_key, v2_row = excluded.v2_row,
+               valid_from_source = excluded.valid_from_source, inception_source = excluded.inception_source
+           where entity_extra.v2_key is distinct from excluded.v2_key
+              or entity_extra.v2_row is distinct from excluded.v2_row
+              or entity_extra.v2_layer is distinct from excluded.v2_layer
+              or entity_extra.inception_source is distinct from excluded.inception_source
+              or entity_extra.valid_from_source is distinct from excluded.valid_from_source`,
+        extras,
+      );
+    }
+    if (aliases.length > 0) {
+      await insertJsonChunks(
+        client,
+        `insert into entity_alias (alias, entity_id, kind)
+         select alias, entity_id, 'alt'
+         from jsonb_to_recordset($1::jsonb) as x(alias text, entity_id text)
+         on conflict (alias, entity_id) where entity_id is not null do nothing`,
+        aliases,
+      );
+    }
     if (parents.length > 0) {
       await insertJsonChunks(
         client,
@@ -696,43 +874,7 @@ export async function loadInstitutionTables(
           mappedRelations.relations,
         )
       : 0;
-    const imageWrites = readyImages.length
-      ? await insertJsonChunks(
-          client,
-          `insert into entity_image (
-             entity_id, feed_entity_id, role, file, file_url, license, fair_use, public, icon,
-             usage_basis, attribution, source_url, wikidata, retrieved_at
-           )
-           select nullif(entity_id, ''), nullif(feed_entity_id, ''), role, file, file_url, license,
-                  fair_use, public, icon, usage_basis, attribution, source_url, wikidata, retrieved_at
-           from jsonb_to_recordset($1::jsonb) as x(
-             entity_id text, feed_entity_id text, role text, file text, file_url text, license text,
-             fair_use boolean, public boolean, icon boolean, usage_basis text, attribution text,
-             source_url text, wikidata text, retrieved_at timestamptz
-           )
-           on conflict (entity_id, feed_entity_id, role) do update
-             set file = excluded.file, file_url = excluded.file_url, license = excluded.license,
-                 fair_use = excluded.fair_use, public = excluded.public, icon = excluded.icon,
-                 usage_basis = excluded.usage_basis, source_url = excluded.source_url,
-                 wikidata = excluded.wikidata, attribution = excluded.attribution`,
-          readyImages.map((row) => ({
-            entity_id: row.entity_id ?? "",
-            feed_entity_id: row.feed_entity_id ?? "",
-            role: row.role,
-            file: row.file,
-            file_url: row.file_url,
-            license: row.license,
-            fair_use: row.fair_use,
-            public: row.public,
-            icon: row.icon,
-            usage_basis: row.usage_basis,
-            attribution: row.attribution,
-            source_url: row.source_url,
-            wikidata: row.wikidata,
-            retrieved_at: row.retrieved_at,
-          })),
-        )
-      : 0;
+    const imageWrites = await writeImageRows(client, readyImages);
     if (readyImages.some((row) => row.source_ids.length > 0)) {
       await insertJsonChunks(
         client,
@@ -807,21 +949,38 @@ export async function loadInstitutionTables(
 
 export async function loadInstitutions(
   db: pg.Pool,
-  opts: { root: string; currentBytes: number; allow: boolean },
+  opts: { root: string; currentBytes: number; allow: boolean; dryRun?: boolean },
 ): Promise<InstitutionLoadReport> {
   const input = readInst(opts.root);
-  const estimate = await measureInstitutionGrowth(
-    db,
-    {
-      entities: input.entities.length,
-      relations: input.relations.length,
-      images: input.images.length,
-      bodies: input.bodies.length,
-      fileBytes: input.fileBytes,
-    },
-    opts.currentBytes,
+  const applied = await db.query(
+    `select file_sha256 from load_batch
+     where status = 'applied' and file_sha256 = any($1::text[])`,
+    [input.files.map((file) => file.sha256)],
   );
-  if (overMeasuredBudget(opts.currentBytes) && !opts.allow) {
+  const alreadyLoaded = input.files.length > 0 && applied.rowCount === input.files.length;
+  const projected = projectInstitutionBytes(input, opts.currentBytes, alreadyLoaded);
+  const { imagesSkipped, ...estimate } = projected;
+  const over =
+    (estimate.projectedBytes != null && estimate.projectedBytes > BUDGET_BYTES) ||
+    overMeasuredBudget(opts.currentBytes);
+  const gap = over
+    ? `institutions: projected ${formatMb(estimate.projectedBytes ?? opts.currentBytes)} against a live ${formatMb(opts.currentBytes)}, over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`
+    : null;
+  if (opts.dryRun) {
+    return {
+      status: "dry-run",
+      entities: estimate.entities,
+      relations: estimate.relations,
+      images: estimate.images,
+      imagesSkipped,
+      bodies: estimate.bodies,
+      parents: 0,
+      estimate,
+      gitCommit: input.gitCommit,
+      gap,
+    };
+  }
+  if (over && !opts.allow) {
     return {
       status: "refused",
       entities: 0,
@@ -832,7 +991,7 @@ export async function loadInstitutions(
       parents: 0,
       estimate,
       gitCommit: input.gitCommit,
-      gap: `institutions: database is ${formatMb(opts.currentBytes)} (pg_database_size), over ${formatMb(BUDGET_BYTES)}. ${estimate.note} Rows were not inserted.`,
+      gap,
     };
   }
   const loaded = await loadInstitutionTables(db, input);
