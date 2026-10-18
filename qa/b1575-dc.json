@@ -1,0 +1,186 @@
+{
+ "1024x768": {
+  "menu_rows": [
+   "All States"
+  ],
+  "states_early": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "states_late": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "dc_click": "DIV.lvrow la cmp lapress",
+  "DC_early": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DC_late": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DC_dom": "<img alt=\"\" src=\"img/flags/US.png?v=202610181575\" onerror=\"this.src='img/flags/US.png'\">",
+  "DC_vis_imgs": [],
+  "DE_after_DC_early": {
+   "crumb": "Delaware",
+   "flag": "Delaware.png",
+   "fnat": [
+    22,
+    48
+   ],
+   "frend": [
+    10.1,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DE_after_DC_late": {
+   "crumb": "Delaware",
+   "flag": "Delaware.png",
+   "fnat": [
+    22,
+    48
+   ],
+   "frend": [
+    10.1,
+    22
+   ],
+   "thumbs": [],
+   "thw": "10.1px"
+  }
+ },
+ "390": {
+  "menu_rows": [
+   "All States"
+  ],
+  "states_early": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "states_late": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "dc_click": "DIV.lvrow la cmp lapress",
+  "DC_early": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DC_late": {
+   "crumb": "All States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DC_dom": "<img alt=\"\" src=\"img/flags/US.png?v=202610181575\" onerror=\"this.src='img/flags/US.png'\">",
+  "DC_vis_imgs": [],
+  "DE_after_DC_early": {
+   "crumb": "Delaware",
+   "flag": "Delaware.png",
+   "fnat": [
+    22,
+    48
+   ],
+   "frend": [
+    10.1,
+    22
+   ],
+   "thumbs": [],
+   "thw": "30px"
+  },
+  "DE_after_DC_late": {
+   "crumb": "Delaware",
+   "flag": "Delaware.png",
+   "fnat": [
+    22,
+    48
+   ],
+   "frend": [
+    10.1,
+    22
+   ],
+   "thumbs": [],
+   "thw": "10.1px"
+  }
+ }
+}

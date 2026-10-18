@@ -1,0 +1,3038 @@
+{
+ "Alabama": {
+  "counties": 67,
+  "solid": 8,
+  "all": 5,
+  "list": [
+   {
+    "state": "Alabama",
+    "county": "Cullman County",
+    "n": 48,
+    "clamped": 47,
+    "side": "R",
+    "minabs": 12.8
+   },
+   {
+    "state": "Alabama",
+    "county": "Jackson County",
+    "n": 30,
+    "clamped": 30,
+    "side": "R",
+    "minabs": 60.8
+   },
+   {
+    "state": "Alabama",
+    "county": "Marshall County",
+    "n": 25,
+    "clamped": 24,
+    "side": "R",
+    "minabs": 53.8
+   },
+   {
+    "state": "Alabama",
+    "county": "Blount County",
+    "n": 23,
+    "clamped": 23,
+    "side": "R",
+    "minabs": 74.7
+   },
+   {
+    "state": "Alabama",
+    "county": "Winston County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 73.5
+   },
+   {
+    "state": "Alabama",
+    "county": "Marion County",
+    "n": 15,
+    "clamped": 15,
+    "side": "R",
+    "minabs": 71.9
+   },
+   {
+    "state": "Alabama",
+    "county": "Cleburne County",
+    "n": 14,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 71.9
+   },
+   {
+    "state": "Alabama",
+    "county": "Bibb County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 13.3
+   }
+  ]
+ },
+ "Alaska": {
+  "counties": 30,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Arizona": {
+  "counties": 15,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Arkansas": {
+  "counties": 75,
+  "solid": 3,
+  "all": 0,
+  "list": [
+   {
+    "state": "Arkansas",
+    "county": "Polk County",
+    "n": 17,
+    "clamped": 16,
+    "side": "R",
+    "minabs": 55.8
+   },
+   {
+    "state": "Arkansas",
+    "county": "Searcy County",
+    "n": 15,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 55.0
+   },
+   {
+    "state": "Arkansas",
+    "county": "Pike County",
+    "n": 11,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 3.7
+   }
+  ]
+ },
+ "California": {
+  "counties": 58,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Colorado": {
+  "counties": 64,
+  "solid": 5,
+  "all": 3,
+  "list": [
+   {
+    "state": "Colorado",
+    "county": "Yuma County",
+    "n": 14,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 49.8
+   },
+   {
+    "state": "Colorado",
+    "county": "Baca County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 61.9
+   },
+   {
+    "state": "Colorado",
+    "county": "Washington County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 70.2
+   },
+   {
+    "state": "Colorado",
+    "county": "Cheyenne County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 59.3
+   },
+   {
+    "state": "Colorado",
+    "county": "Kiowa County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 67.8
+   }
+  ]
+ },
+ "Connecticut": {
+  "counties": 9,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Delaware": {
+  "counties": 3,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "District of Columbia": {
+  "counties": 0,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Florida": {
+  "counties": 67,
+  "solid": 4,
+  "all": 1,
+  "list": [
+   {
+    "state": "Florida",
+    "county": "Gilchrist County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 31.8
+   },
+   {
+    "state": "Florida",
+    "county": "Dixie County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 38.1
+   },
+   {
+    "state": "Florida",
+    "county": "Holmes County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 70.2
+   },
+   {
+    "state": "Florida",
+    "county": "Lafayette County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 35.3
+   }
+  ]
+ },
+ "Georgia": {
+  "counties": 159,
+  "solid": 24,
+  "all": 8,
+  "list": [
+   {
+    "state": "Georgia",
+    "county": "Banks County",
+    "n": 13,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 69.8
+   },
+   {
+    "state": "Georgia",
+    "county": "Gordon County",
+    "n": 12,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 42.6
+   },
+   {
+    "state": "Georgia",
+    "county": "Haralson County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 67.0
+   },
+   {
+    "state": "Georgia",
+    "county": "Jeff Davis County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 11.2
+   },
+   {
+    "state": "Georgia",
+    "county": "Pierce County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 63.2
+   },
+   {
+    "state": "Georgia",
+    "county": "Pike County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 59.4
+   },
+   {
+    "state": "Georgia",
+    "county": "Franklin County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 58.0
+   },
+   {
+    "state": "Georgia",
+    "county": "Murray County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 66.2
+   },
+   {
+    "state": "Georgia",
+    "county": "Chattooga County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 52.8
+   },
+   {
+    "state": "Georgia",
+    "county": "Charlton County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 36.0
+   },
+   {
+    "state": "Georgia",
+    "county": "Heard County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 60.9
+   },
+   {
+    "state": "Georgia",
+    "county": "Berrien County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 52.0
+   },
+   {
+    "state": "Georgia",
+    "county": "Crisp County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 4.1
+   },
+   {
+    "state": "Georgia",
+    "county": "Clinch County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 43.2
+   },
+   {
+    "state": "Georgia",
+    "county": "Dawson County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 60.8
+   },
+   {
+    "state": "Georgia",
+    "county": "Glascock County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 80.0
+   },
+   {
+    "state": "Georgia",
+    "county": "Brantley County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 80.5
+   },
+   {
+    "state": "Georgia",
+    "county": "Jasper County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 37.8
+   },
+   {
+    "state": "Georgia",
+    "county": "Turner County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 33.9
+   },
+   {
+    "state": "Georgia",
+    "county": "Montgomery County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 33.2
+   },
+   {
+    "state": "Georgia",
+    "county": "Lamar County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 58.5
+   },
+   {
+    "state": "Georgia",
+    "county": "Treutlen County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 8.6
+   },
+   {
+    "state": "Georgia",
+    "county": "Towns County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 57.8
+   },
+   {
+    "state": "Georgia",
+    "county": "Irwin County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 40.4
+   }
+  ]
+ },
+ "Hawaii": {
+  "counties": 4,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Idaho": {
+  "counties": 44,
+  "solid": 10,
+  "all": 5,
+  "list": [
+   {
+    "state": "Idaho",
+    "county": "Jefferson County",
+    "n": 21,
+    "clamped": 21,
+    "side": "R",
+    "minabs": 61.1
+   },
+   {
+    "state": "Idaho",
+    "county": "Franklin County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 63.0
+   },
+   {
+    "state": "Idaho",
+    "county": "Bear Lake County",
+    "n": 15,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 49.5
+   },
+   {
+    "state": "Idaho",
+    "county": "Caribou County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 59.4
+   },
+   {
+    "state": "Idaho",
+    "county": "Oneida County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 69.0
+   },
+   {
+    "state": "Idaho",
+    "county": "Boundary County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 54.9
+   },
+   {
+    "state": "Idaho",
+    "county": "Adams County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 35.4
+   },
+   {
+    "state": "Idaho",
+    "county": "Butte County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 66.3
+   },
+   {
+    "state": "Idaho",
+    "county": "Clark County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 65.3
+   },
+   {
+    "state": "Idaho",
+    "county": "Camas County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 47.0
+   }
+  ]
+ },
+ "Illinois": {
+  "counties": 102,
+  "solid": 1,
+  "all": 1,
+  "list": [
+   {
+    "state": "Illinois",
+    "county": "Edwards County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 60.6
+   }
+  ]
+ },
+ "Indiana": {
+  "counties": 92,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Iowa": {
+  "counties": 99,
+  "solid": 1,
+  "all": 0,
+  "list": [
+   {
+    "state": "Iowa",
+    "county": "Lyon County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 46.2
+   }
+  ]
+ },
+ "Kansas": {
+  "counties": 105,
+  "solid": 24,
+  "all": 16,
+  "list": [
+   {
+    "state": "Kansas",
+    "county": "Sherman County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 60.2
+   },
+   {
+    "state": "Kansas",
+    "county": "Sheridan County",
+    "n": 15,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 33.3
+   },
+   {
+    "state": "Kansas",
+    "county": "Chautauqua County",
+    "n": 14,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 55.9
+   },
+   {
+    "state": "Kansas",
+    "county": "Hamilton County",
+    "n": 12,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 56.0
+   },
+   {
+    "state": "Kansas",
+    "county": "Logan County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 60.0
+   },
+   {
+    "state": "Kansas",
+    "county": "Trego County",
+    "n": 11,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 57.1
+   },
+   {
+    "state": "Kansas",
+    "county": "Scott County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 62.0
+   },
+   {
+    "state": "Kansas",
+    "county": "Stevens County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 63.0
+   },
+   {
+    "state": "Kansas",
+    "county": "Ness County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 67.0
+   },
+   {
+    "state": "Kansas",
+    "county": "Morton County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 58.8
+   },
+   {
+    "state": "Kansas",
+    "county": "Elk County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 65.7
+   },
+   {
+    "state": "Kansas",
+    "county": "Gove County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 74.6
+   },
+   {
+    "state": "Kansas",
+    "county": "Kearny County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 61.1
+   },
+   {
+    "state": "Kansas",
+    "county": "Meade County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 60.7
+   },
+   {
+    "state": "Kansas",
+    "county": "Cheyenne County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 65.1
+   },
+   {
+    "state": "Kansas",
+    "county": "Gray County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 62.7
+   },
+   {
+    "state": "Kansas",
+    "county": "Clark County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 57.1
+   },
+   {
+    "state": "Kansas",
+    "county": "Lane County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 67.1
+   },
+   {
+    "state": "Kansas",
+    "county": "Wallace County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 75.6
+   },
+   {
+    "state": "Kansas",
+    "county": "Comanche County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 58.6
+   },
+   {
+    "state": "Kansas",
+    "county": "Kiowa County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 65.2
+   },
+   {
+    "state": "Kansas",
+    "county": "Greeley County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 69.2
+   },
+   {
+    "state": "Kansas",
+    "county": "Stanton County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 56.8
+   },
+   {
+    "state": "Kansas",
+    "county": "Wichita County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 64.7
+   }
+  ]
+ },
+ "Kentucky": {
+  "counties": 120,
+  "solid": 15,
+  "all": 8,
+  "list": [
+   {
+    "state": "Kentucky",
+    "county": "Clay County",
+    "n": 20,
+    "clamped": 19,
+    "side": "R",
+    "minabs": 58.1
+   },
+   {
+    "state": "Kentucky",
+    "county": "McCreary County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 65.7
+   },
+   {
+    "state": "Kentucky",
+    "county": "Leslie County",
+    "n": 17,
+    "clamped": 17,
+    "side": "R",
+    "minabs": 61.7
+   },
+   {
+    "state": "Kentucky",
+    "county": "Russell County",
+    "n": 16,
+    "clamped": 15,
+    "side": "R",
+    "minabs": 56.5
+   },
+   {
+    "state": "Kentucky",
+    "county": "Rockcastle County",
+    "n": 15,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 44.8
+   },
+   {
+    "state": "Kentucky",
+    "county": "Martin County",
+    "n": 14,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 73.4
+   },
+   {
+    "state": "Kentucky",
+    "county": "Clinton County",
+    "n": 13,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 67.1
+   },
+   {
+    "state": "Kentucky",
+    "county": "Monroe County",
+    "n": 12,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 59.2
+   },
+   {
+    "state": "Kentucky",
+    "county": "Jackson County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 62.9
+   },
+   {
+    "state": "Kentucky",
+    "county": "Cumberland County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 41.9
+   },
+   {
+    "state": "Kentucky",
+    "county": "Owsley County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 65.8
+   },
+   {
+    "state": "Kentucky",
+    "county": "Butler County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 49.1
+   },
+   {
+    "state": "Kentucky",
+    "county": "Ballard County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 56.7
+   },
+   {
+    "state": "Kentucky",
+    "county": "Lewis County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 72.3
+   },
+   {
+    "state": "Kentucky",
+    "county": "Grant County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 64.4
+   }
+  ]
+ },
+ "Louisiana": {
+  "counties": 64,
+  "solid": 2,
+  "all": 1,
+  "list": [
+   {
+    "state": "Louisiana",
+    "county": "LaSalle Parish",
+    "n": 21,
+    "clamped": 20,
+    "side": "R",
+    "minabs": 20.7
+   },
+   {
+    "state": "Louisiana",
+    "county": "Cameron Parish",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 70.1
+   }
+  ]
+ },
+ "Maine": {
+  "counties": 16,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Maryland": {
+  "counties": 24,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Massachusetts": {
+  "counties": 14,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Michigan": {
+  "counties": 83,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Minnesota": {
+  "counties": 87,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Mississippi": {
+  "counties": 81,
+  "solid": 2,
+  "all": 1,
+  "list": [
+   {
+    "state": "Mississippi",
+    "county": "George County",
+    "n": 20,
+    "clamped": 19,
+    "side": "R",
+    "minabs": 54.6
+   },
+   {
+    "state": "Mississippi",
+    "county": "Tishomingo County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 68.2
+   }
+  ]
+ },
+ "Missouri": {
+  "counties": 115,
+  "solid": 28,
+  "all": 19,
+  "list": [
+   {
+    "state": "Missouri",
+    "county": "Douglas County",
+    "n": 13,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 65.4
+   },
+   {
+    "state": "Missouri",
+    "county": "Osage County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 63.1
+   },
+   {
+    "state": "Missouri",
+    "county": "Maries County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 60.7
+   },
+   {
+    "state": "Missouri",
+    "county": "Ozark County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 54.0
+   },
+   {
+    "state": "Missouri",
+    "county": "Wayne County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 67.1
+   },
+   {
+    "state": "Missouri",
+    "county": "Wright County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 69.7
+   },
+   {
+    "state": "Missouri",
+    "county": "Texas County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 67.2
+   },
+   {
+    "state": "Missouri",
+    "county": "Barton County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 61.5
+   },
+   {
+    "state": "Missouri",
+    "county": "Bollinger County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 66.2
+   },
+   {
+    "state": "Missouri",
+    "county": "Putnam County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 65.5
+   },
+   {
+    "state": "Missouri",
+    "county": "Dent County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 66.1
+   },
+   {
+    "state": "Missouri",
+    "county": "Bates County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 53.7
+   },
+   {
+    "state": "Missouri",
+    "county": "Oregon County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 64.3
+   },
+   {
+    "state": "Missouri",
+    "county": "Stoddard County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 69.1
+   },
+   {
+    "state": "Missouri",
+    "county": "Shannon County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 50.9
+   },
+   {
+    "state": "Missouri",
+    "county": "Harrison County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 64.9
+   },
+   {
+    "state": "Missouri",
+    "county": "Ripley County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 68.5
+   },
+   {
+    "state": "Missouri",
+    "county": "DeKalb County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 53.8
+   },
+   {
+    "state": "Missouri",
+    "county": "Cedar County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 58.7
+   },
+   {
+    "state": "Missouri",
+    "county": "Carter County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 64.2
+   },
+   {
+    "state": "Missouri",
+    "county": "Daviess County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 58.0
+   },
+   {
+    "state": "Missouri",
+    "county": "Shelby County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 60.1
+   },
+   {
+    "state": "Missouri",
+    "county": "Dade County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 63.4
+   },
+   {
+    "state": "Missouri",
+    "county": "Atchison County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 54.6
+   },
+   {
+    "state": "Missouri",
+    "county": "Holt County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 61.4
+   },
+   {
+    "state": "Missouri",
+    "county": "Gentry County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 57.6
+   },
+   {
+    "state": "Missouri",
+    "county": "Schuyler County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 59.3
+   },
+   {
+    "state": "Missouri",
+    "county": "Mercer County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 67.9
+   }
+  ]
+ },
+ "Montana": {
+  "counties": 56,
+  "solid": 8,
+  "all": 4,
+  "list": [
+   {
+    "state": "Montana",
+    "county": "Musselshell County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 57.4
+   },
+   {
+    "state": "Montana",
+    "county": "Powder River County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 58.8
+   },
+   {
+    "state": "Montana",
+    "county": "Garfield County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 83.8
+   },
+   {
+    "state": "Montana",
+    "county": "Carter County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 70.3
+   },
+   {
+    "state": "Montana",
+    "county": "Phillips County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 42.0
+   },
+   {
+    "state": "Montana",
+    "county": "Daniels County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 59.4
+   },
+   {
+    "state": "Montana",
+    "county": "McCone County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 70.8
+   },
+   {
+    "state": "Montana",
+    "county": "Golden Valley County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 71.6
+   }
+  ]
+ },
+ "Nebraska": {
+  "counties": 93,
+  "solid": 30,
+  "all": 23,
+  "list": [
+   {
+    "state": "Nebraska",
+    "county": "Holt County",
+    "n": 13,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 61.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Cedar County",
+    "n": 13,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 56.7
+   },
+   {
+    "state": "Nebraska",
+    "county": "Cherry County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 64.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Morrill County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 60.2
+   },
+   {
+    "state": "Nebraska",
+    "county": "Polk County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 54.1
+   },
+   {
+    "state": "Nebraska",
+    "county": "Antelope County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 69.7
+   },
+   {
+    "state": "Nebraska",
+    "county": "Furnas County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 60.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Knox County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 27.9
+   },
+   {
+    "state": "Nebraska",
+    "county": "Cuming County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 54.2
+   },
+   {
+    "state": "Nebraska",
+    "county": "Webster County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 58.3
+   },
+   {
+    "state": "Nebraska",
+    "county": "Kimball County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 60.4
+   },
+   {
+    "state": "Nebraska",
+    "county": "Pierce County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 68.0
+   },
+   {
+    "state": "Nebraska",
+    "county": "Chase County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 67.9
+   },
+   {
+    "state": "Nebraska",
+    "county": "Frontier County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 65.1
+   },
+   {
+    "state": "Nebraska",
+    "county": "Nuckolls County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 60.4
+   },
+   {
+    "state": "Nebraska",
+    "county": "Greeley County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 57.1
+   },
+   {
+    "state": "Nebraska",
+    "county": "Dundy County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 61.3
+   },
+   {
+    "state": "Nebraska",
+    "county": "Hitchcock County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 73.7
+   },
+   {
+    "state": "Nebraska",
+    "county": "Franklin County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 66.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Garden County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 66.3
+   },
+   {
+    "state": "Nebraska",
+    "county": "Boyd County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 73.6
+   },
+   {
+    "state": "Nebraska",
+    "county": "Brown County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 70.0
+   },
+   {
+    "state": "Nebraska",
+    "county": "Keya Paha County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 77.2
+   },
+   {
+    "state": "Nebraska",
+    "county": "Gosper County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 50.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Hayes County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 87.9
+   },
+   {
+    "state": "Nebraska",
+    "county": "Deuel County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 65.1
+   },
+   {
+    "state": "Nebraska",
+    "county": "Garfield County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 70.8
+   },
+   {
+    "state": "Nebraska",
+    "county": "Sioux County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 75.6
+   },
+   {
+    "state": "Nebraska",
+    "county": "Harlan County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 66.5
+   },
+   {
+    "state": "Nebraska",
+    "county": "Perkins County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 69.1
+   }
+  ]
+ },
+ "Nevada": {
+  "counties": 17,
+  "solid": 3,
+  "all": 1,
+  "list": [
+   {
+    "state": "Nevada",
+    "county": "Lincoln County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 56.4
+   },
+   {
+    "state": "Nevada",
+    "county": "Eureka County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 72.0
+   },
+   {
+    "state": "Nevada",
+    "county": "Esmeralda County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 59.6
+   }
+  ]
+ },
+ "New Hampshire": {
+  "counties": 10,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New Jersey": {
+  "counties": 21,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New Mexico": {
+  "counties": 33,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "New York": {
+  "counties": 62,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "North Carolina": {
+  "counties": 100,
+  "solid": 1,
+  "all": 0,
+  "list": [
+   {
+    "state": "North Carolina",
+    "county": "Graham County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 55.5
+   }
+  ]
+ },
+ "North Dakota": {
+  "counties": 53,
+  "solid": 11,
+  "all": 7,
+  "list": [
+   {
+    "state": "North Dakota",
+    "county": "Dunn County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 26.9
+   },
+   {
+    "state": "North Dakota",
+    "county": "Stark County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 57.7
+   },
+   {
+    "state": "North Dakota",
+    "county": "Burke County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 65.5
+   },
+   {
+    "state": "North Dakota",
+    "county": "Logan County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 67.4
+   },
+   {
+    "state": "North Dakota",
+    "county": "Emmons County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 73.3
+   },
+   {
+    "state": "North Dakota",
+    "county": "Renville County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 62.2
+   },
+   {
+    "state": "North Dakota",
+    "county": "Bowman County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 67.8
+   },
+   {
+    "state": "North Dakota",
+    "county": "Slope County",
+    "n": 3,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 77.9
+   },
+   {
+    "state": "North Dakota",
+    "county": "Billings County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 43.9
+   },
+   {
+    "state": "North Dakota",
+    "county": "Nelson County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 31.8
+   },
+   {
+    "state": "North Dakota",
+    "county": "Hettinger County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 64.9
+   }
+  ]
+ },
+ "Ohio": {
+  "counties": 88,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Oklahoma": {
+  "counties": 77,
+  "solid": 19,
+  "all": 15,
+  "list": [
+   {
+    "state": "Oklahoma",
+    "county": "Woodward County",
+    "n": 16,
+    "clamped": 16,
+    "side": "R",
+    "minabs": 62.6
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Latimer County",
+    "n": 13,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 47.9
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Washita County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 65.1
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Pushmataha County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 64.6
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Beckham County",
+    "n": 12,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 57.8
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Kingfisher County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 65.4
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Haskell County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 65.0
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Coal County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 66.6
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Jefferson County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 53.4
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Dewey County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 66.1
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Roger Mills County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 68.7
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Alfalfa County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 65.8
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Major County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 74.5
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Ellis County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 66.0
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Beaver County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 78.3
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Grant County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 60.0
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Harper County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 69.7
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Greer County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 60.0
+   },
+   {
+    "state": "Oklahoma",
+    "county": "Cimarron County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 79.3
+   }
+  ]
+ },
+ "Oregon": {
+  "counties": 36,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Pennsylvania": {
+  "counties": 67,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Rhode Island": {
+  "counties": 5,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "South Carolina": {
+  "counties": 46,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "South Dakota": {
+  "counties": 58,
+  "solid": 8,
+  "all": 5,
+  "list": [
+   {
+    "state": "South Dakota",
+    "county": "Perkins County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 60.8
+   },
+   {
+    "state": "South Dakota",
+    "county": "Harding County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 75.0
+   },
+   {
+    "state": "South Dakota",
+    "county": "Campbell County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 64.8
+   },
+   {
+    "state": "South Dakota",
+    "county": "Douglas County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 56.6
+   },
+   {
+    "state": "South Dakota",
+    "county": "McPherson County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 61.3
+   },
+   {
+    "state": "South Dakota",
+    "county": "Gregory County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 58.6
+   },
+   {
+    "state": "South Dakota",
+    "county": "Stanley County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 44.4
+   },
+   {
+    "state": "South Dakota",
+    "county": "Jones County",
+    "n": 2,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 73.7
+   }
+  ]
+ },
+ "Tennessee": {
+  "counties": 95,
+  "solid": 24,
+  "all": 12,
+  "list": [
+   {
+    "state": "Tennessee",
+    "county": "Campbell County",
+    "n": 21,
+    "clamped": 20,
+    "side": "R",
+    "minabs": 55.8
+   },
+   {
+    "state": "Tennessee",
+    "county": "Hawkins County",
+    "n": 19,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 40.2
+   },
+   {
+    "state": "Tennessee",
+    "county": "Claiborne County",
+    "n": 16,
+    "clamped": 15,
+    "side": "R",
+    "minabs": 43.4
+   },
+   {
+    "state": "Tennessee",
+    "county": "Wayne County",
+    "n": 14,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 59.8
+   },
+   {
+    "state": "Tennessee",
+    "county": "Hardin County",
+    "n": 14,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 61.2
+   },
+   {
+    "state": "Tennessee",
+    "county": "Morgan County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 64.7
+   },
+   {
+    "state": "Tennessee",
+    "county": "Rhea County",
+    "n": 12,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 57.8
+   },
+   {
+    "state": "Tennessee",
+    "county": "Fentress County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 62.5
+   },
+   {
+    "state": "Tennessee",
+    "county": "Grundy County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 49.0
+   },
+   {
+    "state": "Tennessee",
+    "county": "Perry County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 48.5
+   },
+   {
+    "state": "Tennessee",
+    "county": "Grainger County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 63.4
+   },
+   {
+    "state": "Tennessee",
+    "county": "Johnson County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 61.9
+   },
+   {
+    "state": "Tennessee",
+    "county": "Scott County",
+    "n": 10,
+    "clamped": 10,
+    "side": "R",
+    "minabs": 72.9
+   },
+   {
+    "state": "Tennessee",
+    "county": "Union County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 68.5
+   },
+   {
+    "state": "Tennessee",
+    "county": "Macon County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 64.2
+   },
+   {
+    "state": "Tennessee",
+    "county": "Sequatchie County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 57.0
+   },
+   {
+    "state": "Tennessee",
+    "county": "Overton County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 48.8
+   },
+   {
+    "state": "Tennessee",
+    "county": "Polk County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 64.5
+   },
+   {
+    "state": "Tennessee",
+    "county": "Unicoi County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 49.7
+   },
+   {
+    "state": "Tennessee",
+    "county": "Clay County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 44.6
+   },
+   {
+    "state": "Tennessee",
+    "county": "Hancock County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 67.6
+   },
+   {
+    "state": "Tennessee",
+    "county": "Meigs County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 60.9
+   },
+   {
+    "state": "Tennessee",
+    "county": "Moore County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 64.2
+   },
+   {
+    "state": "Tennessee",
+    "county": "Lake County",
+    "n": 3,
+    "clamped": 2,
+    "side": "R",
+    "minabs": 44.6
+   }
+  ]
+ },
+ "Texas": {
+  "counties": 254,
+  "solid": 87,
+  "all": 63,
+  "list": [
+   {
+    "state": "Texas",
+    "county": "Van Zandt County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 60.4
+   },
+   {
+    "state": "Texas",
+    "county": "Brown County",
+    "n": 18,
+    "clamped": 17,
+    "side": "R",
+    "minabs": 53.5
+   },
+   {
+    "state": "Texas",
+    "county": "Clay County",
+    "n": 16,
+    "clamped": 16,
+    "side": "R",
+    "minabs": 71.0
+   },
+   {
+    "state": "Texas",
+    "county": "Montague County",
+    "n": 15,
+    "clamped": 15,
+    "side": "R",
+    "minabs": 75.3
+   },
+   {
+    "state": "Texas",
+    "county": "Leon County",
+    "n": 14,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 58.4
+   },
+   {
+    "state": "Texas",
+    "county": "Comanche County",
+    "n": 14,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 69.4
+   },
+   {
+    "state": "Texas",
+    "county": "Wood County",
+    "n": 14,
+    "clamped": 14,
+    "side": "R",
+    "minabs": 62.1
+   },
+   {
+    "state": "Texas",
+    "county": "Archer County",
+    "n": 13,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 66.7
+   },
+   {
+    "state": "Texas",
+    "county": "San Jacinto County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 60.4
+   },
+   {
+    "state": "Texas",
+    "county": "Scurry County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 63.4
+   },
+   {
+    "state": "Texas",
+    "county": "Hamilton County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 67.0
+   },
+   {
+    "state": "Texas",
+    "county": "Lavaca County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 69.0
+   },
+   {
+    "state": "Texas",
+    "county": "Bosque County",
+    "n": 11,
+    "clamped": 11,
+    "side": "R",
+    "minabs": 60.7
+   },
+   {
+    "state": "Texas",
+    "county": "DeWitt County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 1.2
+   },
+   {
+    "state": "Texas",
+    "county": "Haskell County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 51.4
+   },
+   {
+    "state": "Texas",
+    "county": "Eastland County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 74.5
+   },
+   {
+    "state": "Texas",
+    "county": "Jackson County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 57.0
+   },
+   {
+    "state": "Texas",
+    "county": "Dallam County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 66.7
+   },
+   {
+    "state": "Texas",
+    "county": "Runnels County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 71.3
+   },
+   {
+    "state": "Texas",
+    "county": "McCulloch County",
+    "n": 9,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 52.8
+   },
+   {
+    "state": "Texas",
+    "county": "Armstrong County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 69.2
+   },
+   {
+    "state": "Texas",
+    "county": "Hemphill County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 64.9
+   },
+   {
+    "state": "Texas",
+    "county": "Shackelford County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 73.8
+   },
+   {
+    "state": "Texas",
+    "county": "Franklin County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 51.4
+   },
+   {
+    "state": "Texas",
+    "county": "Carson County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 74.5
+   },
+   {
+    "state": "Texas",
+    "county": "Sterling County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 66.7
+   },
+   {
+    "state": "Texas",
+    "county": "Lipscomb County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 72.8
+   },
+   {
+    "state": "Texas",
+    "county": "Concho County",
+    "n": 8,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 59.3
+   },
+   {
+    "state": "Texas",
+    "county": "Young County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 68.9
+   },
+   {
+    "state": "Texas",
+    "county": "Hansford County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 77.8
+   },
+   {
+    "state": "Texas",
+    "county": "Hutchinson County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 61.6
+   },
+   {
+    "state": "Texas",
+    "county": "Callahan County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 70.6
+   },
+   {
+    "state": "Texas",
+    "county": "Rains County",
+    "n": 8,
+    "clamped": 8,
+    "side": "R",
+    "minabs": 61.7
+   },
+   {
+    "state": "Texas",
+    "county": "Menard County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 59.1
+   },
+   {
+    "state": "Texas",
+    "county": "Delta County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 51.6
+   },
+   {
+    "state": "Texas",
+    "county": "Mills County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 71.5
+   },
+   {
+    "state": "Texas",
+    "county": "Oldham County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 68.1
+   },
+   {
+    "state": "Texas",
+    "county": "Gaines County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 72.0
+   },
+   {
+    "state": "Texas",
+    "county": "Collingsworth County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 72.3
+   },
+   {
+    "state": "Texas",
+    "county": "Gray County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 65.4
+   },
+   {
+    "state": "Texas",
+    "county": "Hall County",
+    "n": 7,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 59.2
+   },
+   {
+    "state": "Texas",
+    "county": "Sherman County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 81.6
+   },
+   {
+    "state": "Texas",
+    "county": "Kimble County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 67.7
+   },
+   {
+    "state": "Texas",
+    "county": "San Saba County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 63.9
+   },
+   {
+    "state": "Texas",
+    "county": "Upton County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 65.6
+   },
+   {
+    "state": "Texas",
+    "county": "Jack County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 69.5
+   },
+   {
+    "state": "Texas",
+    "county": "Martin County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 62.2
+   },
+   {
+    "state": "Texas",
+    "county": "Garza County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 63.9
+   },
+   {
+    "state": "Texas",
+    "county": "Knox County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 64.2
+   },
+   {
+    "state": "Texas",
+    "county": "Motley County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 81.8
+   },
+   {
+    "state": "Texas",
+    "county": "Kent County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 70.1
+   },
+   {
+    "state": "Texas",
+    "county": "Dickens County",
+    "n": 6,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 55.5
+   },
+   {
+    "state": "Texas",
+    "county": "Hartley County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 78.6
+   },
+   {
+    "state": "Texas",
+    "county": "Briscoe County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 74.7
+   },
+   {
+    "state": "Texas",
+    "county": "Reagan County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 41.9
+   },
+   {
+    "state": "Texas",
+    "county": "Coleman County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 73.3
+   },
+   {
+    "state": "Texas",
+    "county": "Real County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 60.8
+   },
+   {
+    "state": "Texas",
+    "county": "Winkler County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 43.6
+   },
+   {
+    "state": "Texas",
+    "county": "Cochran County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 28.1
+   },
+   {
+    "state": "Texas",
+    "county": "Donley County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 72.8
+   },
+   {
+    "state": "Texas",
+    "county": "Coke County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 77.1
+   },
+   {
+    "state": "Texas",
+    "county": "Throckmorton County",
+    "n": 5,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 50.9
+   },
+   {
+    "state": "Texas",
+    "county": "Borden County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 75.0
+   },
+   {
+    "state": "Texas",
+    "county": "Stephens County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 76.0
+   },
+   {
+    "state": "Texas",
+    "county": "Roberts County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 87.8
+   },
+   {
+    "state": "Texas",
+    "county": "Schleicher County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 41.5
+   },
+   {
+    "state": "Texas",
+    "county": "Stonewall County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 55.1
+   },
+   {
+    "state": "Texas",
+    "county": "McMullen County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 83.3
+   },
+   {
+    "state": "Texas",
+    "county": "Ochiltree County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 77.8
+   },
+   {
+    "state": "Texas",
+    "county": "Crane County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 57.3
+   },
+   {
+    "state": "Texas",
+    "county": "Edwards County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 59.8
+   },
+   {
+    "state": "Texas",
+    "county": "Andrews County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 68.8
+   },
+   {
+    "state": "Texas",
+    "county": "Foard County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 58.8
+   },
+   {
+    "state": "Texas",
+    "county": "Glasscock County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 76.6
+   },
+   {
+    "state": "Texas",
+    "county": "Jones County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 62.9
+   },
+   {
+    "state": "Texas",
+    "county": "Irion County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 65.8
+   },
+   {
+    "state": "Texas",
+    "county": "Mitchell County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 66.0
+   },
+   {
+    "state": "Texas",
+    "county": "Childress County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 71.2
+   },
+   {
+    "state": "Texas",
+    "county": "Cottle County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 50.3
+   },
+   {
+    "state": "Texas",
+    "county": "Baylor County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 68.4
+   },
+   {
+    "state": "Texas",
+    "county": "Madison County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 38.4
+   },
+   {
+    "state": "Texas",
+    "county": "Hardeman County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 69.5
+   },
+   {
+    "state": "Texas",
+    "county": "Loving County",
+    "n": 4,
+    "clamped": 3,
+    "side": "R",
+    "minabs": 46.9
+   },
+   {
+    "state": "Texas",
+    "county": "King County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 81.8
+   },
+   {
+    "state": "Texas",
+    "county": "Somervell County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 67.4
+   },
+   {
+    "state": "Texas",
+    "county": "Wheeler County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 81.0
+   },
+   {
+    "state": "Texas",
+    "county": "Mason County",
+    "n": 4,
+    "clamped": 4,
+    "side": "R",
+    "minabs": 60.0
+   }
+  ]
+ },
+ "Utah": {
+  "counties": 29,
+  "solid": 5,
+  "all": 2,
+  "list": [
+   {
+    "state": "Utah",
+    "county": "Sevier County",
+    "n": 23,
+    "clamped": 22,
+    "side": "R",
+    "minabs": 59.4
+   },
+   {
+    "state": "Utah",
+    "county": "Millard County",
+    "n": 17,
+    "clamped": 16,
+    "side": "R",
+    "minabs": 50.0
+   },
+   {
+    "state": "Utah",
+    "county": "Emery County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 60.4
+   },
+   {
+    "state": "Utah",
+    "county": "Piute County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 69.2
+   },
+   {
+    "state": "Utah",
+    "county": "Daggett County",
+    "n": 2,
+    "clamped": 1,
+    "side": "R",
+    "minabs": 52.4
+   }
+  ]
+ },
+ "Vermont": {
+  "counties": 14,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Virginia": {
+  "counties": 133,
+  "solid": 6,
+  "all": 6,
+  "list": [
+   {
+    "state": "Virginia",
+    "county": "Scott County",
+    "n": 17,
+    "clamped": 17,
+    "side": "R",
+    "minabs": 62.6
+   },
+   {
+    "state": "Virginia",
+    "county": "Lee County",
+    "n": 15,
+    "clamped": 15,
+    "side": "R",
+    "minabs": 66.1
+   },
+   {
+    "state": "Virginia",
+    "county": "Charlottesville city",
+    "n": 8,
+    "clamped": 8,
+    "side": "D",
+    "minabs": 62.3
+   },
+   {
+    "state": "Virginia",
+    "county": "Bland County",
+    "n": 7,
+    "clamped": 7,
+    "side": "R",
+    "minabs": 61.4
+   },
+   {
+    "state": "Virginia",
+    "county": "Petersburg city",
+    "n": 7,
+    "clamped": 7,
+    "side": "D",
+    "minabs": 60.6
+   },
+   {
+    "state": "Virginia",
+    "county": "Falls Church city",
+    "n": 3,
+    "clamped": 3,
+    "side": "D",
+    "minabs": 61.1
+   }
+  ]
+ },
+ "Washington": {
+  "counties": 39,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "West Virginia": {
+  "counties": 55,
+  "solid": 4,
+  "all": 2,
+  "list": [
+   {
+    "state": "West Virginia",
+    "county": "Grant County",
+    "n": 14,
+    "clamped": 13,
+    "side": "R",
+    "minabs": 56.3
+   },
+   {
+    "state": "West Virginia",
+    "county": "Doddridge County",
+    "n": 12,
+    "clamped": 12,
+    "side": "R",
+    "minabs": 62.1
+   },
+   {
+    "state": "West Virginia",
+    "county": "Wirt County",
+    "n": 10,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 48.8
+   },
+   {
+    "state": "West Virginia",
+    "county": "Ritchie County",
+    "n": 9,
+    "clamped": 9,
+    "side": "R",
+    "minabs": 63.8
+   }
+  ]
+ },
+ "Wisconsin": {
+  "counties": 72,
+  "solid": 0,
+  "all": 0,
+  "list": []
+ },
+ "Wyoming": {
+  "counties": 23,
+  "solid": 5,
+  "all": 4,
+  "list": [
+   {
+    "state": "Wyoming",
+    "county": "Campbell County",
+    "n": 36,
+    "clamped": 36,
+    "side": "R",
+    "minabs": 60.9
+   },
+   {
+    "state": "Wyoming",
+    "county": "Converse County",
+    "n": 18,
+    "clamped": 18,
+    "side": "R",
+    "minabs": 61.0
+   },
+   {
+    "state": "Wyoming",
+    "county": "Crook County",
+    "n": 17,
+    "clamped": 16,
+    "side": "R",
+    "minabs": 59.7
+   },
+   {
+    "state": "Wyoming",
+    "county": "Niobrara County",
+    "n": 6,
+    "clamped": 6,
+    "side": "R",
+    "minabs": 74.1
+   },
+   {
+    "state": "Wyoming",
+    "county": "Weston County",
+    "n": 5,
+    "clamped": 5,
+    "side": "R",
+    "minabs": 67.9
+   }
+  ]
+ }
+}

@@ -1,0 +1,404 @@
+{
+ "chromium-1024x768": {
+  "build": "202610181575",
+  "US": {
+   "thumbs": [
+    {
+     "lab": "FLAG US.png?v=202610181575",
+     "btn": [
+      0,
+      0,
+      30,
+      22
+     ],
+     "img": [
+      68,
+      36
+     ]
+    },
+    {
+     "lab": "Donald Trump 2024",
+     "btn": [
+      8,
+      122,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ]
+    },
+    {
+     "lab": "Kamala Harris 2024",
+     "btn": [
+      8,
+      166,
+      42,
+      36
+     ],
+     "img": [
+      30,
+      30
+     ]
+    }
+   ]
+  },
+  "Wyoming": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Wyoming.png?v=202610181575",
+      "btn": [
+       0,
+       0,
+       27.8,
+       22
+      ],
+      "img": [
+       48,
+       38
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       40.9,
+       33.8
+      ],
+      "img": [
+       27.8,
+       27.8
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       164,
+       40.9,
+       33.8
+      ],
+      "img": [
+       27.8,
+       27.8
+      ]
+     }
+    ],
+    "map": {
+     "z": 8,
+     "c": [
+      44.2531,
+      -105.5511
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Campbell County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 36
+   },
+   "z1": {
+    "map": {
+     "z": 9,
+     "c": [
+      44.2531,
+      -105.5511
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Campbell County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 59
+   },
+   "z2": {
+    "map": {
+     "z": 10,
+     "c": [
+      44.2531,
+      -105.5511
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Campbell County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 23
+   }
+  },
+  "Alabama": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Alabama.png?v=202610181575",
+      "btn": [
+       0,
+       0,
+       14.7,
+       22
+      ],
+      "img": [
+       32,
+       48
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       151,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ]
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      34.7281,
+      -85.9708
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jackson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 66
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      34.7281,
+      -85.9708
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jackson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 16
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      34.7281,
+      -85.9708
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jackson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 13
+   }
+  },
+  "Idaho": {
+   "county": {
+    "thumbs": [
+     {
+      "lab": "FLAG Idaho.png?v=202610181575",
+      "btn": [
+       0,
+       0,
+       14.7,
+       22
+      ],
+      "img": [
+       32,
+       48
+      ]
+     },
+     {
+      "lab": "Donald Trump 2024",
+      "btn": [
+       8,
+       122,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ]
+     },
+     {
+      "lab": "Kamala Harris 2024",
+      "btn": [
+       8,
+       151,
+       34.4,
+       20.7
+      ],
+      "img": [
+       14.7,
+       14.7
+      ]
+     }
+    ],
+    "map": {
+     "z": 10,
+     "c": [
+      43.8412,
+      -112.1615
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jefferson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 20
+   },
+   "z1": {
+    "map": {
+     "z": 11,
+     "c": [
+      43.8412,
+      -112.1615
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jefferson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 9
+   },
+   "z2": {
+    "map": {
+     "z": 12,
+     "c": [
+      43.8412,
+      -112.1615
+     ],
+     "paths": 0,
+     "canv": 6,
+     "crumbs": "Jefferson County",
+     "lt": "none",
+     "svgRend": false,
+     "prec": 0
+    },
+    "ncol": 9
+   }
+  },
+  "US_list_thumbs_3s": [
+   {
+    "lab": "FLAG US.png?v=202610181576",
+    "btn": [
+     0,
+     0,
+     30,
+     22
+    ],
+    "img": [
+     68,
+     36
+    ]
+   },
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   }
+  ],
+  "US_list_thumbs": [
+   {
+    "lab": "FLAG US.png?v=202610181576",
+    "btn": [
+     0,
+     0,
+     30,
+     22
+    ],
+    "img": [
+     68,
+     36
+    ]
+   },
+   {
+    "lab": "Donald Trump 2024",
+    "btn": [
+     8,
+     119,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   },
+   {
+    "lab": "Kamala Harris 2024",
+    "btn": [
+     8,
+     163,
+     300,
+     36
+    ],
+    "img": [
+     30,
+     30
+    ]
+   }
+  ],
+  "err": []
+ }
+}

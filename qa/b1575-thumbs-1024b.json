@@ -1,0 +1,1139 @@
+{
+ "1024x768": {
+  "build": "202610181575",
+  "US": {
+   "crumb": "United States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [
+    [
+     30,
+     30
+    ],
+    [
+     30,
+     30
+    ]
+   ],
+   "thw": "30px"
+  },
+  "states": {
+   "NH": {
+    "ok": true,
+    "early": {
+     "crumb": "New Hampshire",
+     "flag": "New_Hampshire.png",
+     "fnat": [
+      26,
+      48
+     ],
+     "frend": [
+      11.9,
+      22
+     ],
+     "thumbs": [
+      [
+       11.9,
+       11.9
+      ],
+      [
+       11.9,
+       11.9
+      ]
+     ],
+     "thw": "11.9px"
+    },
+    "late": {
+     "crumb": "New Hampshire",
+     "flag": "New_Hampshire.png",
+     "fnat": [
+      26,
+      48
+     ],
+     "frend": [
+      11.9,
+      22
+     ],
+     "thumbs": [
+      [
+       11.9,
+       11.9
+      ],
+      [
+       11.9,
+       11.9
+      ]
+     ],
+     "thw": "11.9px"
+    }
+   },
+   "NJ": {
+    "ok": true,
+    "early": {
+     "crumb": "New Jersey",
+     "flag": "New_Jersey.png",
+     "fnat": [
+      27,
+      48
+     ],
+     "frend": [
+      12.4,
+      22
+     ],
+     "thumbs": [
+      [
+       11.9,
+       11.9
+      ],
+      [
+       11.9,
+       11.9
+      ]
+     ],
+     "thw": "11.9px"
+    },
+    "late": {
+     "crumb": "New Jersey",
+     "flag": "New_Jersey.png",
+     "fnat": [
+      27,
+      48
+     ],
+     "frend": [
+      12.4,
+      22
+     ],
+     "thumbs": [
+      [
+       12.4,
+       12.4
+      ],
+      [
+       12.4,
+       12.4
+      ]
+     ],
+     "thw": "12.4px"
+    }
+   },
+   "NM": {
+    "ok": true,
+    "early": {
+     "crumb": "New Mexico",
+     "flag": "New_Mexico.png",
+     "fnat": [
+      43,
+      48
+     ],
+     "frend": [
+      19.7,
+      22
+     ],
+     "thumbs": [
+      [
+       19.7,
+       19.7
+      ],
+      [
+       19.7,
+       19.7
+      ]
+     ],
+     "thw": "19.7px"
+    },
+    "late": {
+     "crumb": "New Mexico",
+     "flag": "New_Mexico.png",
+     "fnat": [
+      43,
+      48
+     ],
+     "frend": [
+      19.7,
+      22
+     ],
+     "thumbs": [
+      [
+       19.7,
+       19.7
+      ],
+      [
+       19.7,
+       19.7
+      ]
+     ],
+     "thw": "19.7px"
+    }
+   },
+   "NY": {
+    "ok": true,
+    "early": {
+     "crumb": "New York",
+     "flag": "New_York.png",
+     "fnat": [
+      48,
+      38
+     ],
+     "frend": [
+      27.8,
+      22
+     ],
+     "thumbs": [
+      [
+       19.7,
+       19.7
+      ],
+      [
+       19.7,
+       19.7
+      ]
+     ],
+     "thw": "19.7px"
+    },
+    "late": {
+     "crumb": "New York",
+     "flag": "New_York.png",
+     "fnat": [
+      48,
+      38
+     ],
+     "frend": [
+      27.8,
+      22
+     ],
+     "thumbs": [
+      [
+       27.8,
+       27.8
+      ],
+      [
+       27.8,
+       27.8
+      ]
+     ],
+     "thw": "27.8px"
+    }
+   },
+   "NC": {
+    "ok": true,
+    "early": {
+     "crumb": "North Carolina",
+     "flag": "North_Carolina.png",
+     "fnat": [
+      48,
+      21
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       27.8,
+       27.8
+      ],
+      [
+       27.8,
+       27.8
+      ]
+     ],
+     "thw": "27.8px"
+    },
+    "late": {
+     "crumb": "North Carolina",
+     "flag": "North_Carolina.png",
+     "fnat": [
+      48,
+      21
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "ND": {
+    "ok": true,
+    "early": {
+     "crumb": "North Dakota",
+     "flag": "North_Dakota.png",
+     "fnat": [
+      48,
+      30
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "North Dakota",
+     "flag": "North_Dakota.png",
+     "fnat": [
+      48,
+      30
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "OH": {
+    "ok": true,
+    "early": {
+     "crumb": "Ohio",
+     "flag": "Ohio.png",
+     "fnat": [
+      44,
+      48
+     ],
+     "frend": [
+      20.2,
+      22
+     ],
+     "thumbs": [
+      [
+       20.2,
+       20.2
+      ],
+      [
+       20.2,
+       20.2
+      ]
+     ],
+     "thw": "20.2px"
+    },
+    "late": {
+     "crumb": "Ohio",
+     "flag": "Ohio.png",
+     "fnat": [
+      44,
+      48
+     ],
+     "frend": [
+      20.2,
+      22
+     ],
+     "thumbs": [
+      [
+       20.2,
+       20.2
+      ],
+      [
+       20.2,
+       20.2
+      ]
+     ],
+     "thw": "20.2px"
+    }
+   },
+   "OK": {
+    "ok": true,
+    "early": {
+     "crumb": "Oklahoma",
+     "flag": "Oklahoma.png",
+     "fnat": [
+      48,
+      25
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       20.2,
+       20.2
+      ],
+      [
+       20.2,
+       20.2
+      ]
+     ],
+     "thw": "20.2px"
+    },
+    "late": {
+     "crumb": "Oklahoma",
+     "flag": "Oklahoma.png",
+     "fnat": [
+      48,
+      25
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "OR": {
+    "ok": true,
+    "early": {
+     "crumb": "Oregon",
+     "flag": "Oregon.png",
+     "fnat": [
+      48,
+      37
+     ],
+     "frend": [
+      28.5,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Oregon",
+     "flag": "Oregon.png",
+     "fnat": [
+      48,
+      37
+     ],
+     "frend": [
+      28.5,
+      22
+     ],
+     "thumbs": [
+      [
+       28.5,
+       28.5
+      ],
+      [
+       28.5,
+       28.5
+      ]
+     ],
+     "thw": "28.5px"
+    }
+   },
+   "PA": {
+    "ok": true,
+    "early": {
+     "crumb": "Pennsylvania",
+     "flag": "Pennsylvania.png",
+     "fnat": [
+      48,
+      30
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Pennsylvania",
+     "flag": "Pennsylvania.png",
+     "fnat": [
+      48,
+      30
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "RI": {
+    "ok": true,
+    "early": {
+     "crumb": "Rhode Island",
+     "flag": "Rhode_Island.png",
+     "fnat": [
+      32,
+      48
+     ],
+     "frend": [
+      14.7,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Rhode Island",
+     "flag": "Rhode_Island.png",
+     "fnat": [
+      32,
+      48
+     ],
+     "frend": [
+      14.7,
+      22
+     ],
+     "thumbs": [
+      [
+       14.7,
+       14.7
+      ],
+      [
+       14.7,
+       14.7
+      ]
+     ],
+     "thw": "14.7px"
+    }
+   },
+   "SC": {
+    "ok": true,
+    "early": {
+     "crumb": "South Carolina",
+     "flag": "South_Carolina.png",
+     "fnat": [
+      48,
+      39
+     ],
+     "frend": [
+      27.1,
+      22
+     ],
+     "thumbs": [
+      [
+       27.1,
+       27.1
+      ],
+      [
+       27.1,
+       27.1
+      ]
+     ],
+     "thw": "27.1px"
+    },
+    "late": {
+     "crumb": "South Carolina",
+     "flag": "South_Carolina.png",
+     "fnat": [
+      48,
+      39
+     ],
+     "frend": [
+      27.1,
+      22
+     ],
+     "thumbs": [
+      [
+       27.1,
+       27.1
+      ],
+      [
+       27.1,
+       27.1
+      ]
+     ],
+     "thw": "27.1px"
+    }
+   },
+   "SD": {
+    "ok": true,
+    "early": {
+     "crumb": "South Dakota",
+     "flag": "South_Dakota.png",
+     "fnat": [
+      48,
+      32
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       27.1,
+       27.1
+      ],
+      [
+       27.1,
+       27.1
+      ]
+     ],
+     "thw": "27.1px"
+    },
+    "late": {
+     "crumb": "South Dakota",
+     "flag": "South_Dakota.png",
+     "fnat": [
+      48,
+      32
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "TN": {
+    "ok": true,
+    "early": {
+     "crumb": "Tennessee",
+     "flag": "Tennessee.png",
+     "fnat": [
+      48,
+      15
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Tennessee",
+     "flag": "Tennessee.png",
+     "fnat": [
+      48,
+      15
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "TX": {
+    "ok": true,
+    "early": {
+     "crumb": "Texas",
+     "flag": "Texas.png",
+     "fnat": [
+      48,
+      46
+     ],
+     "frend": [
+      23,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Texas",
+     "flag": "Texas.png",
+     "fnat": [
+      48,
+      46
+     ],
+     "frend": [
+      23,
+      22
+     ],
+     "thumbs": [
+      [
+       23,
+       23
+      ],
+      [
+       23,
+       23
+      ]
+     ],
+     "thw": "23px"
+    }
+   },
+   "UT": {
+    "ok": true,
+    "early": {
+     "crumb": "Utah",
+     "flag": "Utah.png",
+     "fnat": [
+      38,
+      48
+     ],
+     "frend": [
+      17.4,
+      22
+     ],
+     "thumbs": [
+      [
+       17.4,
+       17.4
+      ],
+      [
+       17.4,
+       17.4
+      ]
+     ],
+     "thw": "17.4px"
+    },
+    "late": {
+     "crumb": "Utah",
+     "flag": "Utah.png",
+     "fnat": [
+      38,
+      48
+     ],
+     "frend": [
+      17.4,
+      22
+     ],
+     "thumbs": [
+      [
+       17.4,
+       17.4
+      ],
+      [
+       17.4,
+       17.4
+      ]
+     ],
+     "thw": "17.4px"
+    }
+   },
+   "VT": {
+    "ok": true,
+    "early": {
+     "crumb": "Vermont",
+     "flag": "Vermont.png",
+     "fnat": [
+      31,
+      48
+     ],
+     "frend": [
+      14.2,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Vermont",
+     "flag": "Vermont.png",
+     "fnat": [
+      31,
+      48
+     ],
+     "frend": [
+      14.2,
+      22
+     ],
+     "thumbs": [
+      [
+       14.2,
+       14.2
+      ],
+      [
+       14.2,
+       14.2
+      ]
+     ],
+     "thw": "14.2px"
+    }
+   },
+   "VA": {
+    "ok": true,
+    "early": {
+     "crumb": "Virginia",
+     "flag": "Virginia.png",
+     "fnat": [
+      48,
+      23
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Virginia",
+     "flag": "Virginia.png",
+     "fnat": [
+      48,
+      23
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "WA": {
+    "ok": true,
+    "early": {
+     "crumb": "Washington",
+     "flag": "Washington.png",
+     "fnat": [
+      48,
+      33
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "Washington",
+     "flag": "Washington.png",
+     "fnat": [
+      48,
+      33
+     ],
+     "frend": [
+      30,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    }
+   },
+   "WV": {
+    "ok": true,
+    "early": {
+     "crumb": "West Virginia",
+     "flag": "West_Virginia.png",
+     "fnat": [
+      48,
+      44
+     ],
+     "frend": [
+      24,
+      22
+     ],
+     "thumbs": [
+      [
+       30,
+       30
+      ],
+      [
+       30,
+       30
+      ]
+     ],
+     "thw": "30px"
+    },
+    "late": {
+     "crumb": "West Virginia",
+     "flag": "West_Virginia.png",
+     "fnat": [
+      48,
+      44
+     ],
+     "frend": [
+      24,
+      22
+     ],
+     "thumbs": [
+      [
+       24,
+       24
+      ],
+      [
+       24,
+       24
+      ]
+     ],
+     "thw": "24px"
+    }
+   },
+   "WI": {
+    "ok": true,
+    "early": {
+     "crumb": "Wisconsin",
+     "flag": "Wisconsin.png",
+     "fnat": [
+      46,
+      48
+     ],
+     "frend": [
+      21.1,
+      22
+     ],
+     "thumbs": [
+      [
+       21.1,
+       21.1
+      ],
+      [
+       21.1,
+       21.1
+      ]
+     ],
+     "thw": "21.1px"
+    },
+    "late": {
+     "crumb": "Wisconsin",
+     "flag": "Wisconsin.png",
+     "fnat": [
+      46,
+      48
+     ],
+     "frend": [
+      21.1,
+      22
+     ],
+     "thumbs": [
+      [
+       21.1,
+       21.1
+      ],
+      [
+       21.1,
+       21.1
+      ]
+     ],
+     "thw": "21.1px"
+    }
+   },
+   "WY": {
+    "ok": true,
+    "early": {
+     "crumb": "Wyoming",
+     "flag": "Wyoming.png",
+     "fnat": [
+      48,
+      38
+     ],
+     "frend": [
+      27.8,
+      22
+     ],
+     "thumbs": [
+      [
+       21.1,
+       21.1
+      ],
+      [
+       21.1,
+       21.1
+      ]
+     ],
+     "thw": "21.1px"
+    },
+    "late": {
+     "crumb": "Wyoming",
+     "flag": "Wyoming.png",
+     "fnat": [
+      48,
+      38
+     ],
+     "frend": [
+      27.8,
+      22
+     ],
+     "thumbs": [
+      [
+       27.8,
+       27.8
+      ],
+      [
+       27.8,
+       27.8
+      ]
+     ],
+     "thw": "27.8px"
+    }
+   }
+  },
+  "opts": [
+   "Colorado"
+  ],
+  "fresh_before": [
+   "OR",
+   "VT"
+  ],
+  "back_US": {
+   "crumb": "United States",
+   "flag": "US.png",
+   "fnat": [
+    68,
+    36
+   ],
+   "frend": [
+    30,
+    22
+   ],
+   "thumbs": [
+    [
+     30,
+     30
+    ],
+    [
+     30,
+     30
+    ]
+   ],
+   "thw": "30px"
+  },
+  "err": []
+ }
+}
