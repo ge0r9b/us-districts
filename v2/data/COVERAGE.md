@@ -885,12 +885,12 @@ counties (public domain); no results are stored.
 - **Geometry**: shared-edge simplification. All feature and county boundaries are noded and polygonized at full resolution into
   an exact face coverage, simplified as a whole with `shapely.coverage_simplify`; each row is the union of its faces, so neighbours
   share identical vertices. Tiling check: overlap and interior gaps between county-subdivision rows are 0.0000 % in every state;
-  place pieces outside their county ≤ 0.08 %.
+  place pieces outside their county ≤ 0.09 % of place area.
 - **Tolerance**: the smallest of 0.0002–0.002° that keeps a file ≤ 300 KB, otherwise 0.002° (orchestrator ruling Q-G9: 0.002° as
   is, since Pages serves `.js` gzipped). 14 parts files and 4 places files stay over 300 KB raw (bold; all ≤ 288 KB gzipped).
 - **Accuracy**: area error = symmetric difference against TIGER as % of TIGER area. At 0.002° it is highest where cities have
-  ragged annexation edges (North Carolina 4.9 %, South Carolina 3.8 %, Georgia 2.8 %, Alabama 2.7 %, Texas 2.3 %; no single row
-  above 0.13 % of the state total). Hausdorff maxima of county-clipped place rows are inflated by zero-area slivers in the TIGER
+  ragged annexation edges (North Carolina 4.9 %, South Carolina 3.8 %, Georgia 2.8 %, Alabama 2.7 %, Texas 2.3 %; in North Carolina and Georgia
+  the error is spread over many small towns, no row above 0.13 % of the state total). Hausdorff maxima of county-clipped place rows are inflated by zero-area slivers in the TIGER
   clip (e.g. Marana town, Pinal County: 0.16° with matching area), so they are not listed.
 - **Kept old geometry**: 47 parts rows that do not resolve to a TIGER 2024 feature in their county (e.g. Pennsylvania
   "Osceola Mills borough" under Centre County) keep their existing geometry; listed per state in the build reports.
