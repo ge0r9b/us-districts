@@ -181,6 +181,11 @@ Plan: copy the intent, not the selectors. Each v2 test becomes a v3 test with th
 - [ ] Findings are logged in **`BUGS.md` on `qa/bugs`** (QA-### ids, severity scale as there); v3 fixes cite the id, and the parity gate needs 0 open Critical.
 - [ ] The v3 lane's own Playwright port keeps using ports 8860–8899 so it never collides with QA.
 
+## L3. Beyond parity: institution lists (v3.1+, not a parity item)
+- [ ] Brands and organizations appear in the institution filter as `wikidata:Q…` entities, shown by `brand_name`. No SEC/GLEIF/LEI data and no `lei:`/`cik:` ids anywhere in the UI, API or packs (they're reserved for the v5/v6 private bridge).
+- [ ] Establishments (`entity_location`, `establishment_at` / `hq_in`) render as points and resolve to units by point-in-polygon. Retracted sites are hidden, not deleted.
+- [ ] Scraped brands with no QID never appear; approved user adds show with a `usd:` id until a QID appears.
+
 ## M. v2 intake alignment (UI and test side)
 See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] Every v2 row value shown in the UI (`[dem, rep, total]`, `est`/`e20`/`e24`/`cty`, null = gray) maps to `result` + `result_total` + `is_estimate`, and the v3 pop-up and list render identically. Gate: ported `district-consistency` and `est-*` pass on both v2 and v3 with identical numbers.

@@ -20,7 +20,7 @@
    join boundary_set b on b.id = u.boundary_set_id and b.is_current and b.visibility = 'public';
    ```
    This uses the partial GiST index `unit_geom_gist_lod0`, about 8 bbox candidates per point and then an exact test. The expected time is a few ms warm.
-4. **ZIPs and place names never call a provider.** ZIP comes from a ZCTA centroid table, places from `unit`/`entity`/`alias` (pg_trgm). Only street addresses go to Census.
+4. **ZIPs and place names never call a provider.** ZIP comes from a ZCTA centroid table, places from `unit`/`entity`/`entity_alias` (pg_trgm). Only street addresses go to Census.
 5. Privacy: raw addresses are not logged or stored, only the hash and point. Responses are `Cache-Control: private`.
 
 ## Provider options (checked Oct 18, 2026)

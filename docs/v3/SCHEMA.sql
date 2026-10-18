@@ -189,8 +189,11 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 -- One row per government / institution, NO vintage. entity_id is opaque and frozen at first-seen
 -- kind + GEOID ('county:01001', 'muni:place:0107000', 'town:cousub:0911001080', 'school:0100003',
 -- 'state:01', 'nation:us', 'territory:72'); chambers use 'chamber:<st>-lower' / 'chamber:<st>-upper' ('chamber:al-lower');
--- Bot entities use bare scheme:id (like person ids): companies 'lei:<LEI>' > 'cik:<CIK>' > other documented scheme
--- (the non-canonical ids go to alias, kind='external_id'); governments 'cog:<id>', 'fr:<id>', 'bia:<slug>'.
+-- Bot entities use bare scheme:id (like person ids). Companies/brands/organizations: 'wikidata:Q<id>' is the ONLY
+-- canonical company id in v3 (scraped brands with no QID get no entity and are excluded); moderated user adds get
+-- 'usd:<uuid>' on approval and are re-keyed to 'wikidata:Q...' when a QID appears (usd: kept in entity_alias).
+-- 'lei:' / 'cik:' are NOT ingested in v3: reserved entity_alias schemes for the v5/v6 bridge to the user's private
+-- corporate database. Governments: 'cog:<id>', 'fr:<id>', 'bia:<slug>'.
 -- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house'.
 -- Verified on data/inst-entities 8e1db01: 54,144 entities (municipality 19,525, township 18,076, school_unified 10,872,
 -- county 3,080, school_elementary 1,952, school_secondary 481, chamber 100, state 51, territory 5, nation 1, dc_council 1).
@@ -204,7 +207,7 @@ create table entity (
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
-                  'company','nonprofit','fund',                              -- Companies bot; subsidiaries/brands are companies linked by entity_relation
+                  'brand','company','nonprofit','fund',                      -- Companies bot (Wikidata); brand -> parent via entity_relation
                   'other')),
   state_fips    char(2),
   state         text,
@@ -219,14 +222,16 @@ create table entity (
   v2_layer      text[],                              -- ';'-list in the CSV: 'v2:counties', 'v2:parts'
   v2_key        text[],                              -- 'Alabama|Autauga County' (parts rows: state|county|name)
   v2_row        text[],                              -- 'v2:counties#342' (informational; shifts between builds)
-  legal_form_code text,                              -- ISO 20275 ELF code (GLEIF 'legal_form_code', e.g. 'XTIQ'); companies/nonprofits/funds
-  legal_form    text,                                -- ELF label ('Corporation', 'Business Corporation'), else GLEIF OtherLegalForm
+  brand_name    text,                                -- public-facing brand / label (Wikidata label), shown in the institution filter
+  legal_form_code text,                              -- optional ISO 20275 ELF code when Wikidata states one (P1454); no GLEIF ingest in v3
+  legal_form    text,                                -- optional legal-form label
   feed          text,                                -- which build fed the row: 'tiger/cog' (54,042) or 'inst-lane' (102)
   level         text,                                -- extras: federal / state / county / local
-  type          text,                                -- finer type (TIGER LSAD text, 'city'); companies: 'public','private','nonprofit'
+  type          text,                                -- finer type (TIGER LSAD text, 'city'); brands: Wikidata P31 class label
   cog_pid6      text,                                -- CoG 2022 unit id
   flags         text[],                              -- review flags ('gov_status_unknown:...')
   origin        text not null default 'inst' check (origin in ('inst','governments_bot','companies_bot','user')),
+  check (kind not in ('brand','company','nonprofit','fund') or entity_id ~ '^(wikidata:Q[0-9]+|usd:[0-9a-f-]{36})$'),
   source_id     bigint references source(id),        -- source, source_url, retrieved_at, license
   has_region    boolean not null default true,
   icon_flag     text,
@@ -262,13 +267,12 @@ create table entity_geoid (
 );
 create index entity_geoid_lookup on entity_geoid (unit_layer, geoid, vintage);
 
--- Companies: parent/subsidiary ownership over time (the containment parent_id stays geographic/institutional).
+-- Brands/organizations: brand -> parent QID links over time (Wikidata P749 parent organization / P127 owned by).
+-- No ownership percentages in v3 (corporate ownership detail stays in the user's private database, v5/v6 bridge).
 create table entity_relation (
-  parent_id     text not null references entity(entity_id),
-  child_id      text not null references entity(entity_id),
-  relation      text not null default 'direct_parent' check (relation in ('direct_parent','ultimate_parent','ex21_subsidiary',
-                                                   'fund_managed_by','subfund_of','feeder_to','brand','division','joint_venture')),
-  ownership_pct numeric(5,2) check (ownership_pct is null or ownership_pct between 0 and 100),
+  parent_id     text not null references entity(entity_id),   -- 'wikidata:Q...'
+  child_id      text not null references entity(entity_id),   -- the brand
+  relation      text not null default 'parent_org' check (relation in ('parent_org','owned_by','brand_of')),
   valid_from    date,
   valid_to      date,
   source_id     bigint references source(id),
@@ -278,54 +282,59 @@ create table entity_relation (
 );
 create index entity_relation_child on entity_relation (child_id);
 
--- Companies: where they are (HQ, sites). Either a point or a GEOID (or both).
+-- Locations / establishments: one row per site (store, branch, venue) or HQ. Point-in-polygon by GIST.
 create table entity_location (
-  id          bigint generated always as identity primary key,
-  entity_id   text not null references entity(entity_id) on delete cascade,
-  role        text not null check (role in ('hq_in','site_in','registered_office','other')),  -- company_locations.csv 'relation'
-  geoid_layer text,                                  -- 'place','county','state' (resolved unit via geoid at load)
-  geoid       text,
-  boundary_set text,                                 -- slug from the file ('v2-2024'); with geoid resolves unit_id
-  unit_id     bigint references unit(id),
-  point       geography(Point, 4326),                -- from lat/lon
-  address_hash text,                                 -- no raw addresses stored (same rule as geocode_cache)
-  valid_from  date,
-  valid_to    date,
-  source_id   bigint references source(id),
-  check (geoid is not null or point is not null)
+  location_id  bigint generated always as identity primary key,
+  location_key text unique,                          -- the bot's stable site id (e.g. Wikidata QID of the site or source:record id)
+  entity_id    text not null references entity(entity_id) on delete cascade,   -- brand/organization QID
+  role         text not null check (role in ('hq_in','establishment_at')),
+  name         text,                                 -- site name ('Target Store T-1234')
+  address      text,                                 -- public business address as published (not a user address)
+  geom         geometry(Point, 4326),                -- from lat/lon
+  geoid        text,                                 -- optional GEOID (place/county) when the source gives one
+  boundary_set text,                                 -- optional, with geoid
+  unit_id      bigint references unit(id),           -- resolved by point-in-polygon at load
+  valid_from   date,
+  valid_to     date,
+  source_id    bigint references source(id),
+  retrieved_at timestamptz,
+  retracted    boolean not null default false,       -- set via the retract list; never deleted
+  check (geom is not null or geoid is not null)
 );
-create index entity_location_entity on entity_location (entity_id);
-create index entity_location_geoid on entity_location (geoid_layer, geoid);
-create index entity_location_point on entity_location using gist (point);
+create index entity_location_entity on entity_location (entity_id) where not retracted;
+create index entity_location_geoid on entity_location (geoid);
+create index entity_location_geom on entity_location using gist (geom);   -- point-in-polygon / bbox queries
 
 -- Dedupe / merge across data-v3/inst (registry), data-v3/institutions (bots) and user submissions.
--- A merged-away id never disappears: it becomes an alias row pointing at the survivor (like person_alias).
+-- A merged-away id never disappears: it becomes an entity_alias row pointing at the survivor (like person_alias).
 create table entity_merge (
   from_id          text primary key,                 -- the id that was merged away (still resolvable)
   into_id          text not null references entity(entity_id),
   match_confidence numeric(4,3) not null check (match_confidence between 0 and 1),
-  match_rule       text not null,                    -- 'same_geoid','same_lei','same_cik','name+state+trgm>=0.9','manual'
-                                                   -- e.g. from_id 'cik:1750' into_id 'lei:MP76T5YQX3YK5VVAQ802'
+  match_rule       text not null,                    -- 'same_geoid','same_qid','qid_redirect','usd_to_qid','name+state+trgm>=0.9','manual'
+                                                   -- e.g. from_id 'usd:3f2c…' into_id 'wikidata:Q1046951'
   decided_by       text not null,                    -- 'auto' (>= 0.95) or a moderator id
   decided_at       timestamptz not null default now()
 );
 
 -- Shared names: both filters resolve aliases through one table (PA = Pennsylvania, USA = US).
--- entities.csv 'alias' (;-list) loads here.
-create table alias (
+-- entities.csv 'alias' (;-list) loads here; also external ids, former QIDs (Wikidata merges/redirects), usd: ids
+-- re-keyed to a QID, and the reserved lei:/cik: schemes (no v3 loader; v5/v6 bridge only, never served publicly).
+create table entity_alias (
   alias       text not null,                         -- lower(unaccent(...))
   entity_id   text references entity(entity_id) on delete cascade,
   unit_id     bigint references unit(id) on delete cascade,
-  kind        text not null default 'abbr' check (kind in ('abbr','alt','historic','postal','external_id','merged_id')),
-  scheme      text,                                  -- for external ids: 'lei','cik','ein','wikidata','cog_pid6','v2_key'
+  kind        text not null default 'abbr' check (kind in ('abbr','alt','historic','postal','external_id','merged_id','former_qid','reserved')),
+  scheme      text,                                  -- external ids: 'wikidata','cog_pid6','v2_key','usd'; reserved (v5/v6): 'lei','cik'
   match_confidence numeric(4,3) check (match_confidence is null or match_confidence between 0 and 1),
                                                    -- null = asserted by the source; < 1 = fuzzy match by the dedupe step
   source_id   bigint references source(id),
-  check ((entity_id is null) <> (unit_id is null))
+  check ((entity_id is null) <> (unit_id is null)),
+  check (scheme not in ('lei','cik') or kind = 'reserved')   -- reserved schemes: stored only for the future bridge
 );
-create index alias_alias on alias (alias text_pattern_ops);
-create unique index alias_entity_uq on alias (alias, entity_id) where entity_id is not null;
-create unique index alias_unit_uq   on alias (alias, unit_id)   where unit_id   is not null;
+create index alias_alias on entity_alias (alias text_pattern_ops);
+create unique index alias_entity_uq on entity_alias (alias, entity_id) where entity_id is not null;
+create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where unit_id   is not null;
 
 -- Resolved entity -> unit links (derived at load time: entity_geoid joined to unit.geoid within the
 -- boundary sets of that vintage; chambers get one 'seat_district' row per seat unit).
