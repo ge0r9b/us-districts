@@ -1,0 +1,110 @@
+{
+ "walgreens": {
+  "file": "walgreens.csv",
+  "rows": 7991,
+  "phone_reformatted": 7991,
+  "county_differs_from_input_2023_county": 0,
+  "flags": {
+   "independent_walgreens_affiliate_operator_unknown": 4,
+   "powered_by_walgreens_affiliate_operator_unknown": 9,
+   "status_temporarily_closed": 3,
+   "status_pharmacy_temporarily_closed": 8
+  }
+ },
+ "cvs": {
+  "file": "cvs.csv",
+  "rows": 9001,
+  "phone_reformatted": 0,
+  "county_differs_from_input_2023_county": 0,
+  "flags": {}
+ },
+ "mcdonalds": {
+  "file": "mcdonalds.csv",
+  "rows": 13486,
+  "atp_us_features": 13486,
+  "duplicate_refs_dropped": 0,
+  "atp_non_us_features_skipped": 10870,
+  "flags": {
+   "county_nearest_within_2km": 1
+  }
+ },
+ "marriott": {
+  "file": "marriott.csv",
+  "rows": 10417,
+  "input_rows": 10417,
+  "exact_duplicate_rows_dropped": 0,
+  "v5_missing_coordinates": 3692,
+  "atp_matched": 8892,
+  "coords_filled_from_atp": 2880,
+  "address_filled_from_atp": 3279,
+  "still_missing_coordinates": 812,
+  "atp_properties_not_in_v5": 66,
+  "us_rows": 6306,
+  "flags": {
+   "coordinates_from_atp": 2880,
+   "address_from_atp": 3279,
+   "missing_coordinates": 812,
+   "brand_qid_from_wikidata_name_match": 6866,
+   "v5_vs_atp_coordinates_km": 86,
+   "brand_qid_from_brand_name": 59,
+   "no_marsha_code": 39,
+   "county_nearest_within_km": 3
+  }
+ },
+ "brands_rows": 40,
+ "marriott_brand_name_to_qid_learned_from_atp": {
+  "AC Hotels": "Q5653536",
+  "Aloft": "Q4734166",
+  "Apartments by Marriott Bonvoy": "Q3918608",
+  "City Express": "Q109329542",
+  "Courtyard": "Q1053170",
+  "Delta Hotels": "Q5254663",
+  "Design Hotels": "Q5264274",
+  "EDITION": "Q91218404",
+  "Element": "Q91948072",
+  "Fairfield": "Q5430314",
+  "Four Points": "Q1439966",
+  "Four Points Flex": "Q1439966",
+  "Gaylord": "Q3099664",
+  "Le Méridien": "Q261077",
+  "Marriott Executive Apartments": "Q72636824",
+  "Marriott Hotels": "Q3918608",
+  "Marriott Vacation Club": "Q6772996",
+  "Moxy": "Q70287020",
+  "Protea": "Q17092570",
+  "Renaissance": "Q2143252",
+  "Residence Inn": "Q7315394",
+  "Sheraton": "Q634831",
+  "SpringHill Suites": "Q7580351",
+  "St. Regis": "Q30715430",
+  "The Ritz-Carlton": "Q782200",
+  "The Ritz-Carlton Reserve": "Q782200",
+  "TownePlace Suites": "Q7830092"
+ },
+ "marriott_brand_name_to_qid_wikidata": {
+  "citizenM": "Q5122531",
+  "Aloft": "Q4734166",
+  "Courtyard": "Q1053170",
+  "Moxy": "Q70287020",
+  "Autograph Collection": "Q19872869",
+  "AC Hotels": "Q5653536",
+  "Tribute Portfolio": "Q92021343",
+  "Element": "Q91948072",
+  "SpringHill Suites": "Q7580351",
+  "The Ritz-Carlton": "Q782200",
+  "W Hotels": "Q7958488",
+  "The Luxury Collection": "Q2412604",
+  "TownePlace Suites": "Q7830092",
+  "Renaissance": "Q2143252",
+  "JW Marriott": "Q1067636",
+  "Sheraton": "Q634831",
+  "Residence Inn": "Q7315394",
+  "Protea": "Q17092570",
+  "Le Méridien": "Q261077",
+  "Delta Hotels": "Q5254663",
+  "Gaylord": "Q3099664",
+  "EDITION": "Q91218404",
+  "Westin": "Q1969162"
+ },
+ "built": "2026-10-18"
+}

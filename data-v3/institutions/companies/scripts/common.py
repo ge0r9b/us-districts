@@ -1,4 +1,4 @@
-"""Shared helpers for the companies pipeline (data-v3/institutions/companies).
+"""Shared helpers for the brands/locations pipeline (data-v3/institutions/companies).
 
 Raw downloads go to ../raw/ (gitignored). Nothing here estimates or invents values:
 every output row carries the URL it came from and the date the raw file was retrieved.
@@ -18,11 +18,10 @@ ROOT = HERE.parent                       # data-v3/institutions/companies
 RAW = pathlib.Path(os.environ.get("COMPANIES_RAW", ROOT / "raw"))
 RAW.mkdir(parents=True, exist_ok=True)
 
-# SEC fair-access policy: declare who you are, <= 10 requests/second.
-# https://www.sec.gov/os/accessing-edgar-data
+# Identify the crawler with a contact address on every request.
 CONTACT = os.environ.get("CONTACT_EMAIL", "ultredex@mail.grokbot.com")
 USER_AGENT = os.environ.get(
-    "SEC_USER_AGENT", f"us-districts-data {CONTACT}")  # SEC rejects UAs with URLs/parentheses
+    "HTTP_USER_AGENT", f"us-districts-data {CONTACT}")
 
 _session = requests.Session()
 _session.headers.update({"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"})
