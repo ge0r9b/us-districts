@@ -216,7 +216,8 @@ a published national total for Gemeindeverbände was not verified. Gemeindefreie
 
 Geometry: land parts only (GF = 4; the 155 GEM / 93 VWG / 33 KRS water parts, GF = 2, of the North Sea, Baltic and Bodensee are
 dropped). Base coverage = the 10,939 Gemeinden, validated per Land (all valid, nothing cleaned), coverage_simplify at **10 m**
-(VG250 is already a 1:250,000 product: 1,908,596 → 1,747,829 vertices, area error 0.0013 %, Hausdorff median 1.1 m, max 6.9 m).
+(VG250 is already a 1:250,000 product: 1,908,596 → 1,747,829 vertices, area error 0.0013 %, Hausdorff median 1.1 m, max 6.9 m). The whole national
+coverage is valid after simplification (checked with coverage_is_valid on all 10,939).
 VWG / KRS / LAN are unions of the simplified Gemeinden by ARS prefix (9 / 5 / 2), so all four layers nest exactly; the
 full-resolution unions equal BKG's own VWG / KRS / LAN polygons (symmetric difference 0.0000 % for every unit, no code missing or
 extra). `area_km2` = geodesic area of the full-resolution GF = 4 polygon (sum of Länder 357,184.67 km²; Destatis' official area
@@ -274,15 +275,19 @@ Saint-Pierre-et-Miquelon) are outside the 34,875 and are a separate layer; SPM's
 
 Geometry: base coverage = the 34,875 communes, each territory simplified in its own projected CRS, validated per département
 (all valid, nothing cleaned), coverage_simplify at **20 m**: FXX 27,180,904 → 6,234,511 vertices, area error 0.13 %, Hausdorff
-median 13.3 m (max 441 m, a single outlier; DROM medians 18–41 m, max 58–137 m). Départements and régions are unions of the
+median 13.3 m (max 441 m, a single outlier; DROM medians 18–41 m, max 58–137 m). Each territory's whole coverage is valid after
+simplification. Départements and régions are unions of the
 simplified communes by their INSEE codes; EPCI are unions of the member communes listed in IGN's EPCI layer
 (`codes_insee_des_communes_membres`; every listed code found). The full-resolution unions equal IGN's own région, département and
 EPCI polygons (symmetric difference 0.0000 % for every unit; no code missing or extra). `area_km2` = geodesic area of the
 full-resolution polygon. Output WGS84, 5 decimals, gzip mtime 0.
 
-Regenerate (inputs about 247 MB of .7z; sha256 FXX `688eb44505d9b4a8e422ded2f4afaac799f10783de563132ca1a60e9491c6278`, GLP
-`53f6340c…e6e`, MTQ `3d04005f…327`, GUF `267721af…e2c`, REU `6e9e6aee…1de62`, MYT `86d5e746…7d0`, BLM `bddc87d6…169`, MAF
-`08fa723d…5be96`, SPM `75bad941…435`; full hashes in `../geo-data-raw/adminexpress/SHA256SUMS`):
+Regenerate (inputs about 247 MB of .7z; sha256 of each, also in `../geo-data-raw/adminexpress/SHA256SUMS`):
+FXX `688eb44505d9b4a8e422ded2f4afaac799f10783de563132ca1a60e9491c6278`, GLP `53f6340c0143c17dd554fd3c191046dd2af288e255ca11d6cf8b480340c91e6e`,
+MTQ `3d04005ffad90eb82a4e53663d53a04940c4a5fad64e1f41e8e4abd568841327`, GUF `267721af2a6dd3e50990e8c6bd337392c7ebfeec10e5c79abf36ac2fb09ce098`,
+REU `6e9e6aeea31352df75d59128eaf14247460481ed2d8690032481440515a1de62`, MYT `86d5e7463c7ce1b96afaef93d423596f1a682b818b723efd1c7145cf27e347d0`,
+BLM `bddc87d6e3b604d3d1efbb310a640515ba7c0c6b38571d26eeaa10345c545169`, MAF `08fa723dbfe2061d14bc20ef28055374dc1fc02398e68543a1023bebeef5be96`,
+SPM `75bad941a664eab3ae8a35ed535c055221ff3c7abf23bc5e48ac29188410a435`.
 
 ```
 mkdir -p ../geo-data-raw/adminexpress && cd ../geo-data-raw/adminexpress
@@ -296,3 +301,69 @@ for s in load base dep reg epci om; do
 
 Uncompressed GeoJSON bytes: REG 5,914,434; DEP 11,549,042; EPCI 32,743,757; COM 129,454,005; COM_OM 108,018. Per-stage
 numbers in `../geo-data-raw/v3fr/report.json`.
+
+## United Kingdom, ONS Open Geography Portal BFC (`tools/ons_fetch.py`, `tools/foreign_geojson.py … gb`)
+
+Source and licence:
+- Office for National Statistics, Open Geography Portal, **BFC** layers (full resolution, clipped to the coastline at Mean High
+  Water), fetched from ONS's ArcGIS feature services `services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/<service>/FeatureServer`
+  in British National Grid (EPSG:27700), full resolution (no server generalization, mm precision), Oct 18, 2026:
+  `Local_Authority_Districts_May_2026_Boundaries_UK_BFC` (LAD_MAY_2026_UK_BFC), `Counties_and_Unitary_Authorities_December_2025_Boundaries_UK_BFC`
+  (CTYUA_DEC_2025_UK_BFC), `Combined_Authorities_December_2025_Boundaries_EN_BFC` (CAUTH_DEC_2025_EN_BFC, layer 1),
+  `PARNCP_MAY_2026_EW_BFC` (Parishes and Non-Civil Parished Areas (May 2026) Boundaries EW BFC). BFC was available for all four.
+  Latest editions on Oct 18, 2026: LAD and PARNCP May 2026; CTYUA and CAUTH December 2025 (no May 2026 edition exists). LAD codes
+  are identical in LAD Dec 2025 and May 2026 (361 each), so CTYUA Dec 2025 aligns with LAD May 2026. ONS stopped issuing a
+  parish-only layer after May 2024; PARNCP is the full England and Wales coverage.
+  Licence **Open Government Licence v3.0** (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+- Required attribution (ONS geography licences page, "Digital boundaries and reference maps"), plus a change note:
+  `Source: Office for National Statistics licensed under the Open Government Licence v.3.0. Contains OS data © Crown copyright
+  and database right 2026.` — geometry simplified at 20 m and reprojected to WGS84. (The NI LGDs in the LAD layer are LPS-derived;
+  ONS publishes them under the same OGL statement.)
+
+| layer | features (official total) | CSV in git (key) | GeoJSON (not in git) | .gz bytes | .gz sha256 |
+|---|---|---|---|---|---|
+| Local Authority Districts, May 2026 | 361 (E 296, S 32, W 22, N 11) | `gb_lad.csv` (`code` = LAD26CD) | `gb_lad_2026.geojson.gz` | 4,456,105 | `4f63d0ff28d0636594c6f075dae3e64a388de1cd5f1aa3544be68d9b9b9a782c` |
+| Counties and unitary authorities, Dec 2025 | 218 (21 counties + 197 unitary) | `gb_ctyua.csv` (CTYUA25CD) | `gb_ctyua_2025.geojson.gz` | 3,877,281 | `3556609a318bc823dc883c82b9c44c2cc5a306aba0335963b33a4c5d6d06ad6e` |
+| Combined authorities, Dec 2025 | 15 (15) | `gb_cauth.csv` (CAUTH25CD) | `gb_cauth_2025.geojson.gz` | 445,484 | `97bfbe35bd7fc315bdee5a02e7eb0b8b86a95ecf2ab5c3f742abc8c311264d6f` |
+| Parishes / communities / NCP areas, May 2026 | 11,542 (10,464 + 878 + 200) | `gb_par.csv` (PARNCP26CD) | `gb_par_2026.geojson.gz` | 11,902,782 | `68b0aa8ac759d5f3a2e906158be6f6082ac9cafb7a684bc6f13990a1de5da203` |
+
+CSV columns: `gb_lad`: `code`, `name`, `name_cy` (Welsh name, Wales only), `type` (E06 unitary authority, E07 non-metropolitan district,
+E08 metropolitan district, E09 London borough, S12 council area, W06 principal area, N09 local government district), `parent_ctyua`,
+`cauth` (E47 code or blank), `area_km2`. `gb_ctyua` / `gb_cauth`: `code`, `name`, `name_cy`, `type`, `parent` (GSS country code;
+E92000001 for CAs), `area_km2`, `n_lad`, `lads` (member LAD codes). `gb_par`: `code`, `name`, `name_cy`, `type` (E04 parish,
+W04 community, E43 non-civil parished area), `parent_lad`, `area_km2`.
+
+Counts checked: LAD 361 by prefix (E06 63, E07 164, E08 36, E09 33 = England 296; S12 32 Scottish council areas; W06 22 Welsh principal
+areas; N09 11 NI LGDs: the statutory totals). CTYUA 218 = 21 counties (ONS `CTY_DEC_2025_EN_NC` names-and-codes list: 21) + 63 E06
++ 36 E08 + 33 E09 + 32 + 22 + 11. CAUTH 15 (Greater Manchester, South Yorkshire, West Yorkshire, Liverpool City Region, Tees Valley,
+West Midlands, Cambridgeshire and Peterborough, West of England, York and North Yorkshire, North East, and the combined county
+authorities East Midlands, Devon and Torbay, Hull and East Yorkshire, Greater Lincolnshire, Lancashire; the Greater London
+Authority is not a CA). Parishes: every code equals ONS's separate names-and-codes lists `PAR_APR_2026_EW_NC` (11,342 = 10,464
+E04 + 878 W04) and `NCP_APR_2026_EN_NC` (200 E43), no code missing or extra (`../geo-data-raw/ons/nc_check.json`).
+
+Geometry: base coverage = the 11,542 PARNCP units (England and Wales) + the 43 Scottish and NI LADs, validated per CTYUA (the
+England–Scotland border units E06000057, E06000063, S12000006, S12000026 as one group, where parish edges meet the Scottish LAD
+edges: 5 features with unmatched edges, repaired by coverage_clean, 0.7 m² moved), coverage_simplify at **20 m**: 21,394,514 →
+2,440,369 vertices, area error 0.15 %, Hausdorff median 16.6 m (max 517 m, isolated outliers on the coast); the whole national
+coverage is valid after simplification. LAD = union of its PARNCP units (PARNCP26 carries LAD26CD) or the LAD itself (S, N);
+CTYUA and CAUTH = unions of LADs, membership from the full-resolution overlap with ONS's CTYUA / CAUTH polygons (every LAD ≥ 99.94 %
+inside one CTYUA; 106 LADs in a CA, all ≥ 99 % inside). Check against the published polygons (full-resolution union vs ONS
+polygon, symmetric difference): LAD max 0.027 % (E06000058 BCP; next 0.001 %); CAUTH max 0.017 %; CTYUA max 0.148 % (E06000023
+Bristol), 0.104 % (E06000044 Portsmouth), all others ≤ 0.043 %: those are coastline/estuary differences between the December 2025
+CTYUA and the May 2026 LAD/PARNCP editions, and our CTYUA follows the May 2026 lines. No code missing or extra in any layer.
+`area_km2` = geodesic area of the full-resolution ONS polygon (BFC, so land to Mean High Water; LAD total 244,438 km²).
+Output WGS84 (pyproj EPSG:27700 → 4326), 5 decimals, gzip mtime 0.
+
+Regenerate (raw ONS pulls, Esri JSON, sha256: LAD `855aef10143e9343c070e349d0462bddbd5506976844aecc8ea04a4795dfec26`, CTYUA
+`87ba6aa10b103faf7eb1a57c57b567b87c9e705df85a727ed40f2ee4a3097984`, CAUTH `7bb5e1aae7929cd41c7dcc3d9dd8ae4031d1221f55697aa75ade4ddd392cb450`,
+PAR `d973ac2872a06e3a1ff5a08ce6caf9f1792585f6037e15a02258a6ae6dbf124e`; ONS can republish a layer in place, so a fresh pull can
+differ):
+
+```
+python3 tools/ons_fetch.py ../geo-data-raw/ons LAD CAUTH CTYUA PAR
+for s in load base lad ctyua cauth; do
+  python3 -W ignore tools/foreign_geojson.py . ../geo-data-raw gb --out ../geo-data-raw/v3gb --stage $s; done
+```
+
+Uncompressed GeoJSON bytes: LAD 15,598,700; CTYUA 13,589,679; CAUTH 1,519,994; PAR 44,310,467. Per-stage numbers in
+`../geo-data-raw/v3gb/report.json`.
