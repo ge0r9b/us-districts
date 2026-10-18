@@ -394,6 +394,14 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
   - **Licences:** the `license` seed adds `OGL-CA`, `OGL-NB`, `StatCan-OL`, `EO-OUDPL`, `DGEQ-OD`, `EBC-OD`, `PEI-OD`, `not-stated` (AB, MB, SK, NL), `HoC-website`, `ca-public-record` (legislature sites) and `ca-federal-law`.
     - `source.non_commercial` and `source.attribution_required` (and the same flags on `license`) are set from these.
     - **Élections Québec data (DGEQ, non-commercial) is excluded from paid features.** Any paid tier filters out sources and boundary sets whose licence has `non_commercial = true`.
+  - **Courts, US Senate and bodies (rulings to Institutions, Oct 18, 2026):**
+    - New kind **`court`**, id `court:<state>-<slug>`. It covers 35 state supreme courts plus the Texas and Oklahoma courts of criminal appeals. Each court's parent is its state government (`parent_id = state:<FIPS>`). Courts not covered are gaps with reason `not_in_seating_charts`.
+    - **`chamber:us-senate`** is a frozen id, mirroring the US House. The House's frozen registry id is `us-house`.
+    - **`body_entity`** (`body_key` PK, `entity_id`, `role` in council / mayor / chamber / court / board, `source_record_id`):
+      - Officeholders (`officeholder.body_key`) and seat links (`entity_unit.body_key` on `seat_district` rows) point at a body, not straight at an entity.
+      - Several bodies can share one entity. For example, NYC's council and its mayor both point at the municipal entity.
+      - Chambers get a body row with `body_key` = the chamber id and `role = chamber`. Courts get one with `role = court`.
+      - There is no `entity.body_key`.
   - **Canadian governments and First Nations (3bbb54a):**
     - Ids are `municipality:ca-<CSDUID>` (kind `municipality`) and `county:ca-<CDUID>` (kind `county`, for county and regional governments). SCHEMA.sql checks both.
     - First Nations use the new kind `indigenous_government` (US tribes can move to it later), with id `first_nation:ca-<band number>` from the CIRNAC band list. These are not minted from StatCan's First Nations CSD types, because one band can hold many reserves.
@@ -411,6 +419,20 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
         - `gaps_ca_reserve_overlay.csv` has 2,631 gaps: 361 below-threshold overlaps plus 2,270 reserves flagged `no_csd`.
         - `gaps_ca_indigenous.csv` has another 146 gaps.
       - **Why an overlay:** no StatCan 2021 file maps reserves to CSDUIDs. StatCan's correspondence files cover only dissemination blocks (DB) and dissemination areas (DA).
+    - **`first_nation_reserves_ca.csv` (b8acf34):** one row per band × reserve, 3,543 rows.
+      - New columns: `csd_unit_key` (one CSDUID, or two joined with `;`), `csd_link_count` (0 / 1 / 2) and `csd_boundary_set` (`statcan-2021-csd`).
+      - Status is one of `csd_linked`, `below_threshold` or `no_csd`, optionally followed by `also_below_threshold_overlaps:N`. In the file it is carried inside `flags`, next to `shared_reserve`.
+      - Counts:
+
+        | Status | Rows | Reserves |
+        |---|---|---|
+        | `csd_linked`, one CSD | 1,118 | 1,051 |
+        | `csd_linked`, two CSDs | 22 | 8 |
+        | `below_threshold` | 157 | 151 |
+        | `no_csd` | 2,246 | 2,119 |
+        | **Total** | **3,543** | **3,329** |
+
+      - Links sum to 1,162 (1,118 + 2 × 22) and match `entity_unit_ca.csv` row for row. The file is a cross-check only; `reserve_of` loads from `entity_unit_ca.csv`.
     - Xwalk relation **`part`** (with `share_of_geoid_in_entity` / `share_of_entity_in_geoid`) covers the two municipalities that span a provincial border, each with a CSD in both provinces: Flin Flon (`4621064` MB + `4718052` SK) and Lloydminster (`4810039` AB + `4717029` SK).
     - Boundary sets `eq-2022-ced` (125) and `eq-2022-sv` (17,745, key `<CO_CEP>:<NO_SV>`), from the 2022 Quebec general election, are registered as not current.
   - **Tiles:** Canadian ridings and polls get PMTiles built from the source layers (Elections Canada, provincial agency and StatCan shapefiles named in `geometry_ref`). This is part of the **v3.1 tile build**, one archive per boundary set.

@@ -282,7 +282,8 @@ create index unit_crosswalk_to on unit_crosswalk (to_unit_id);
 -- 'usd:<uuid>' on approval and are re-keyed to 'wikidata:Q...' when a QID appears (usd: kept in entity_alias).
 -- 'lei:' / 'cik:' are NOT ingested in v3: reserved entity_alias schemes for the v5/v6 bridge to the user's private
 -- corporate database. Governments: 'cog:<id>', 'fr:<id>', 'bia:<slug>'.
--- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house'.
+-- unicameral Nebraska is 'chamber:ne-upper' (no -lower), DC is 'chamber:dc-council' (kind dc_council), the US House is 'us-house',
+-- the US Senate is 'chamber:us-senate' (frozen id). Courts: 'court:<state>-<slug>' (kind court, parent = the state entity).
 -- Verified on data/inst-entities 8e1db01: 54,144 entities (municipality 19,525, township 18,076, school_unified 10,872,
 -- county 3,080, school_elementary 1,952, school_secondary 481, chamber 100, state 51, territory 5, nation 1, dc_council 1).
 -- The same entity_id carries across boundary vintages; a new id is minted only when the government
@@ -294,6 +295,7 @@ create table entity (
                   'nation','territory','province','state','county','municipality','township',  -- province: Canadian provinces (parent nation:ca)
                   'school_unified','school_elementary','school_secondary',   -- Q-G4; unit_category 'school_district'
                   'chamber','dc_council',
+                  'court',                                                   -- 35 state supreme courts + TX/OK courts of criminal appeals
                   'indigenous_government',                                   -- First Nations (Canada: 'first_nation:ca-<band number>'); US tribes later
                   'government_other',                                        -- Governments bot (special districts, authorities, foreign govts)
                   'brand','organization','company','nonprofit','fund',       -- Companies bot (Wikidata): brands.csv kind brand|organization
@@ -330,6 +332,7 @@ create table entity (
   -- Units exist for any country with a registered boundary set (Canada first); other non-US places stay entity-only
   -- (no entity_geoid / entity_unit rows; entity_location.unit_id and boundary_set null).
   check (kind <> 'nation' or entity_id ~ '^nation:[a-z]{2}$'),
+  check (kind <> 'court' or entity_id ~ '^court:[a-z]{2}-[a-z0-9-]+$'),
   -- Canada: municipality:ca-<CSDUID>, county:ca-<CDUID> (county / regional governments), first_nation:ca-<band number>
   check (country is distinct from 'ca' or kind <> 'municipality' or entity_id ~ '^municipality:ca-[0-9]{7}$'),
   check (country is distinct from 'ca' or kind <> 'county' or entity_id ~ '^county:ca-[0-9]{4}$'),
@@ -512,10 +515,22 @@ create unique index alias_unit_uq   on entity_alias (alias, unit_id)   where uni
 --  'jurisdiction'  : the entity governs this area (state:42 -> PA polygon; county:01001 -> county)
 --  'seat_district' : a chamber's seat area (chamber:pa-lower -> each sldl unit)
 --  'same_as'       : entity and unit are the same thing (school:0100003 -> its polygon)
+-- Bodies that hold seats or offices (council, mayor, chamber, court, board). Several bodies can share one entity,
+-- e.g. NYC's council and its mayor both point at the municipal entity. Officeholders and seat links use body_key.
+-- (There is no entity.body_key column.)
+create table body_entity (
+  body_key         text primary key,                 -- 'chamber:al-lower', 'us-house', 'chamber:us-senate', 'court:tx-criminal-appeals', '<entity>#council'
+  entity_id        text not null references entity(entity_id) on update cascade,
+  role             text not null check (role in ('council','mayor','chamber','court','board')),
+  source_record_id text
+);
+create index body_entity_entity on body_entity (entity_id);
+
 create table entity_unit (
   id         bigint generated always as identity primary key,
   entity_id  text not null references entity(entity_id) on delete cascade,
   unit_id    bigint not null references unit(id) on delete cascade,
+  body_key   text references body_entity(body_key),  -- seat_district rows: which body's seats these are
   role       text not null check (role in ('jurisdiction','seat_district','same_as','reserve_of')),  -- reserve_of: a First Nation's reserve /
                                                    -- settlement / land ca_csd units (many-to-many, one row per band x CSD x reserve)
   method     text check (method in ('overlay')),     -- how the link was derived; null = taken from the source as-is
@@ -711,6 +726,7 @@ create table officeholder (
   unit_geoid    text,
   unit_vintage  smallint,
   unit_plan     text,                                 -- 'cd116','cd119','sldl2024','sldu2024'; Canada 'rep-order-2023'
+  body_key      text references body_entity(body_key), -- the body that holds the seat ('chamber:al-lower', NYC 'council' vs 'mayor')
   unit_key      text,                                 -- file unit_key: seat keys, Canadian keys (FED_NUM); unit_id = (boundary_set, unit_key)
   boundary_set  text,                                 -- file 'boundary_set' ('v2-2024', 'tiger-2020-cd116'); seat units use the same slug
   join_status   text,                                 -- 'joined','joined_unpaired_2020','no_v3_unit','no_v3_unit_floterial','no_v3_unit_tribal'
