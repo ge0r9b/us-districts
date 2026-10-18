@@ -842,3 +842,26 @@ Tools: `tools/prep_official_precincts.py` joins official precinct shapes to offi
 | LA 057 | gray | **still gray** | Official precinct shapes (36) and returns (36 precincts) match 1:1. However, St. John the Baptist reports **early voting parish-wide**: 9,991 of 18,827 votes (53 %). The precincts hold only 46.7 % of the parish's Harris+Trump votes, under the 50 % usability floor of `fill_gray.py`. No official source places the early votes by precinct, so it is not estimated | Louisiana Legislature 2024 Precinct Shapefiles (12-31-2024); Louisiana SOS official precinct results, Presidential Electors race 67190 |
 
 Caveat for VA 089: both city layers are the current GIS layers (the Chesapeake layer was edited for precinct 052 on 2025-07-09), not a frozen November 2024 snapshot. The 2024 precinct lists match them exactly (64 and 30 units).
+
+## South Dakota 2024 from official sources (Oct 18, 2026, branch `data/geo`)
+
+Root `data/` stays untouched and there is no precinct override; only district values in `v2/data` are corrected.
+
+**Pennington County: 4 school districts corrected.** The app's precinct file has 39 of Pennington's 46 precincts (85.7 % of official votes). Missing are 2-2, 3-4, 3-5, 4-5, CL, NH and WP: 8,058 votes, all inside Rapid City School District. Votes for all 46 come from the official county canvass. The scanned canvass was transcribed: every column adds up to the printed Total and to the official county result, 20,051 D / 35,009 R / 56,580, and the 39 precincts already in the app agree vote for vote. The 39 existing shapes are kept. The 7 missing precincts take their shape from the county GIS precinct layer, minus the kept shapes. That layer is the 2025-26 vintage. Its precinct 1-6, created in Nov 2025, has no 2024 result and no registered voters in 2026, so it is left out. The same rules then apply (strict exact, else the `fill_gray.py` estimate), with `fill_official_precincts.py --recompute` used for these named rows only:
+
+| School district | Before | After |
+|---|---|---|
+| Rapid City 51-4 | 17,559 D / 29,681 R / 48,564 (shown exact, but the 7 missing precincts' 8,058 votes were absent) | **≈ 18,594 / 30,988 / 50,988** (`e24`; 2020 unchanged) |
+| Douglas 51-1 | ≈ 1,422 / 3,430 / 4,973 (county scaling 1/0.857 spread Rapid City's missing votes here) | **≈ 1,277 / 3,067 / 4,458** (`est`) |
+| Wall 51-5 | ≈ 225 / 1,225 / 1,469 (same scaling) | **≈ 195 / 1,045 / 1,262** (`est`) |
+| Custer 16-1 | ≈ 1,605 / 4,342 / 6,069 | **≈ 1,593 / 4,304 / 6,020** (`est`) |
+
+Not changed:
+- Hill City 51-2 and New Underwood 51-3 don't depend on the missing precincts.
+- State House and Senate come from OpenElections' district-labelled precinct results, not area.
+- Sources: SD SOS 2024 General Election official county canvass documents, Marshall-Ziebach bundle p. 89 (https://sdsos.gov/elections-voting/assets/2024/Recount-Canvass-and-Canvass-Docs-General/Marshall-Ziebach.pdf); Pennington County GIS Voting MapServer layer 13 (https://gis.rcgov.org/server/rest/services/AGOL/Voting/MapServer/13).
+
+**The 26 gray school districts stay gray: structural, no official source places these votes.** Each touches at least one of Brookings, Brown, Haakon, Hughes, Lawrence, Potter, Sully or Yankton.
+- Seven of these counties are vote-centre counties (marked "(Vote Center)" by SD SOS; Haakon's units are also polling places, not precincts): Brookings, Brown, Haakon, Hughes, Potter, Sully and Yankton. Their official canvass reports by vote centre plus one countywide Absentee Precinct, and neither unit has a geography. Absentee share of the vote: Brookings ≈ 62 %, Brown ≈ 59 %, Yankton ≈ 66 %, Hughes ≈ 43 %.
+- Lawrence reports 10 geographic precincts, but its countywide Absentee Precinct holds 59.5 % of Harris+Trump. The precincts would place only 40.5 %, under the 50 % usability floor, so even with county GIS shapes the Lead-Deadwood and Spearfish districts can't be estimated.
+- Sources: SD SOS 2024 General Election official county canvass documents (Aurora-Clark, Clay-Faulk, Grant-Lyman, Marshall-Ziebach bundles); SD SOS election-night site precinct/vote-centre listing.
