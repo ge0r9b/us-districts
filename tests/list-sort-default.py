@@ -3,6 +3,7 @@
 # chart-row alignment: names start at the top fields' text x, normal weight, no ' County'; bars end 12px from the edge;
 # the org crumb names the listed level ('Pennsylvania' + mid-gray 'counties', not part of its textContent);
 # name column 84px: a cut-off name ends in an ellipsis and a tap on it shows the full name in a bubble (the row tap still works).
+# Build 1560: bubbles show only on tap (no hover / long-press); the tap also drills in, so the bubble goes after 2 s.
 import asyncio,sys,json
 from playwright.async_api import async_playwright
 U=sys.argv[1] if len(sys.argv)>1 else "http://localhost:8843/v2/"
@@ -76,7 +77,12 @@ async def main():
       bb=await pg.evaluate("()=>{const b=document.querySelector('.bub'); const r=b.getBoundingClientRect(); return {hidden:b.hidden,text:b.textContent,top:r.top,bottom:r.bottom}}")
       ck(not bb['hidden'] and bb['text']==nm+' County' and bb['bottom']<=box[1],"tap on a cut-off name: bubble with the full name above it",[nm,bb])
       await pg.screenshot(path='/workspace/pa-counties-namebubble-1551.png')
-      await settle(3000); lv1=await info()
+      await pg.wait_for_timeout(1300); bv=await pg.evaluate("()=>{const b=document.querySelector('.bub'); return !b.hidden&&!b.classList.contains('fade')}")
+      ck(bv,"name bubble still up ~1.5s after the tap (build 1560)",bv)
+      await pg.wait_for_timeout(1000); bv=await pg.evaluate("()=>{const b=document.querySelector('.bub'); return b.hidden}")
+      ck(bv,"name bubble gone ~2.5s after the tap: the tap also drilled in, so it goes after 2 s (build 1560)",bv)
+      # build 1560: bubbles only on tap -- no hover / long-press bubble
+      await settle(1500); lv1=await info()
       ck((lv1['lv'],lv1['order'][:1])!=(lv0['lv'],lv0['order'][:1]),"the tap still reaches the row (opens that county as before)",[lv0['lv'],lv1['lv']])
     ck(not er,"no page errors",er[:2])
     await b.close()

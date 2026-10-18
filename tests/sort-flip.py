@@ -1,4 +1,4 @@
-# t229: one tap flips list sort direction at once; bubble names the new direction ~1.8s, no layout shift; alternates; persists
+# t229: one tap flips list sort direction at once; bubble names the new direction for 2 s (build 1560), no layout shift; alternates; persists
 import asyncio,sys
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0
@@ -27,8 +27,8 @@ async def run(b,tag,vp):
     ck(tag+" tap %d: bubble '%s' shown"%(n+1,exp),bb['vis'] and bb['txt']==exp,bb)
     ck(tag+" tap %d: rows did not shift"%(n+1),g[0]==g0[0] and g[1]==g0[1] and g[3]==g0[3],(g,g0))
     seq.append(o)
-  await pg.wait_for_timeout(1000); bb=await pg.evaluate(BUB); ck(tag+" bubble still up at ~1.3s",bb['vis'],bb)
-  await pg.wait_for_timeout(1200); bb=await pg.evaluate(BUB); ck(tag+" bubble gone after ~2.2s",not bb['vis'],bb)
+  await pg.wait_for_timeout(1500); bb=await pg.evaluate(BUB); ck(tag+" bubble still up at ~1.75s",bb['vis'],bb)
+  await pg.wait_for_timeout(700); bb=await pg.evaluate(BUB); ck(tag+" bubble gone after ~2.45s (build 1560: a tap that acts -> bubble goes after 2 s)",not bb['vis'],bb)
   sn=await pg.evaluate("()=>window.__stateSnapshot().so"); cur=await pg.evaluate("()=>window.__laInfo().sort")
   ck(tag+" direction persisted in snapshot",sn==cur,(sn,cur))
   ck(tag+" no page errors",not errs,errs[:3]); await pg.close()

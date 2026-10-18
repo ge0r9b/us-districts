@@ -6,7 +6,28 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610171559";</script>
+<script>window.BUILD="202610171560";</script>
+<script>/* build 1560: new builds reach open tabs. GitHub Pages serves index.html with max-age=600 and iOS Safari keeps a tab's page alive for hours/days (resume, bfcache), so a tab could run an old build long after a push.
+   Check the deployed BUILD (first 2 KB of this page, cache-busting query + no-store, Range request) on load, on return to the tab (visibilitychange/pageshow) and every 5 min; a newer build reloads once
+   via ?v=<build> (a fresh URL for every cache) with the current view in the hash. Loop guard: at most one reload per target build per 5 min (sessionStorage); no sessionStorage = never auto-reload. */
+(function(){ var B=window.BUILD, K="usd.upd", busy=0, pend=null, lastIn=Date.now();
+  ["pointerdown","keydown","touchstart","wheel"].forEach(function(t){ addEventListener(t,function(){ lastIn=Date.now(); },{capture:true,passive:true}); });
+  function go(nb){ try{ var g=JSON.parse(sessionStorage.getItem(K)||"null"); if(g&&g.b===nb&&Date.now()-g.t<300000) return false; sessionStorage.setItem(K,JSON.stringify({b:nb,t:Date.now()})); }catch(e){ return false; }
+    var h=location.hash; try{ if(window.__stateSnapshot&&window.__stateEncode&&!(window.__stateRestoring&&window.__stateRestoring())) h="#s="+window.__stateEncode(window.__stateSnapshot()); }catch(e){}
+    window.__updReloading=nb; location.replace(location.pathname+"?v="+nb+h); return true; }
+  function check(now){ if(busy||!window.fetch) return Promise.resolve(null); busy=1; var ctl=window.AbortController?new AbortController():null;
+    return fetch(location.pathname+"?bc="+Date.now(),{cache:"no-store",headers:{Range:"bytes=0-2047"},signal:ctl?ctl.signal:undefined}).then(function(r){ if(!r.ok) throw new Error("status "+r.status);
+        var rd=r.body&&r.body.getReader?r.body.getReader():null; if(!rd) return r.text(); var s="", dec=new TextDecoder();
+        return (function pump(){ return rd.read().then(function(x){ if(x.value) s+=dec.decode(x.value,{stream:true}); if(x.done||s.length>=2048||/BUILD="\d+"/.test(s)){ try{ rd.cancel(); }catch(e){} return s; } return pump(); }); })(); })
+      .then(function(s){ busy=0; var m=/window\.BUILD="(\d+)"/.exec(s||""); if(!m) return null; var nb=m[1]; window.__updSeen=nb;
+        if(+nb>+B){ pend=nb; if(now||document.visibilityState==="hidden"||Date.now()-lastIn>60000) go(nb); } return nb; })
+      .catch(function(){ busy=0; return null; }); }
+  window.__updCheck=check;
+  check(true);
+  document.addEventListener("visibilitychange",function(){ if(document.visibilityState!=="visible") return; if(pend&&go(pend)) return; check(true); });
+  addEventListener("pageshow",function(e){ if(e.persisted) check(true); });
+  setInterval(function(){ if(document.visibilityState==="visible") check(false); },300000);
+})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>US districts</title>
 <link rel="icon" href="data:,">
@@ -14,7 +35,15 @@
 <script>/* iOS Safari: the URL/tool bar collapsing changes innerHeight by <120px without a real resize; swallow those (capture phase, registered before every other listener) so nothing relayouts/re-renders/scroll-resets because of the toolbar. Width changes (rotation) and big height changes (keyboard) pass. */
 (function(){ var lw=innerWidth, lh=innerHeight; addEventListener("resize",function(e){ var w=innerWidth,h=innerHeight; if(w===lw&&Math.abs(h-lh)<120&&e.isTrusted!==false&&!window.__resizeForce){ e.stopImmediatePropagation(); return; } lw=w; lh=h; },true); })();</script>
 <script>/* blank-topic snapshot: hide results before first paint so a restored blank topic never flashes President results */
-(function(){ try{ var o=null, m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ var t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } else { var j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&o.top==="-") document.documentElement.classList.add("notopic0"); }catch(e){} })();</script>
+(function(){ try{ var o=null, m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ var t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } else { var j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&o.top==="-") document.documentElement.classList.add("notopic0");
+  /* build 1560: a restored non-default view (another state, list, chart, topic, district type, time, # mode, map position) is applied step by step after load; keep the results area blank until it has settled so nothing visibly jumps (html.boot, released by the boot block at the end of the page) */
+  if(o&&typeof o==="object"){ var D={top:"President",lt:"none",yv:2,tb:false,nm:"pct",vw:"map"}, nd=false; for(var k in o){ if(k==="v"||k==="so") continue; if(k==="ll"){ var l=o.ll; if(!(l&&l[0]===39.8&&l[1]===-98.6&&l[2]===4)) nd=true; continue; } if(!(k in D)||D[k]!==o[k]) nd=true; } if(nd){ document.documentElement.classList.add("boot"); window.__bootT0=Date.now(); } } }catch(e){} })();</script>
+<style>/* build 1560: boot cover (no fade: hidden, then shown at once in its final layout) */
+  html.boot body { background: #ddd !important; }
+  html.boot body > *:not(.v2bar), html.boot .v2bar > * { opacity: 0 !important; transition: none !important; animation: none !important; pointer-events: none !important; }
+  html.boot body::after { content: ""; position: fixed; z-index: 99999; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; border: 2px solid rgba(0,0,0,.12); border-top-color: rgba(0,0,0,.5); animation: bootspin .8s linear infinite; }
+  @keyframes bootspin { to { transform: rotate(360deg); } }
+</style>
 <style>
   html.notopic0 .cands, html.notopic0 .cpanel, html.notopic0 .dmx, html.notopic0 .dlx, html.notopic0 .heatlegend, html.notopic0 #chartLg, html.notopic0 .leaflet-heat-pane, html.notopic0 .leaflet-natPane-pane, html.notopic0 .leaflet-stPane-pane { display: none !important; }
   .lvrow.la b.rn.est .nmx { display:block; overflow:hidden; text-overflow:ellipsis; padding-right:13px; box-sizing:border-box; } .lvrow.la b.rn .estm { position:absolute; right:1px; top:50%; transform:translateY(-50%); font-weight:700; font-size:13px; line-height:1; color:#7a7f87; }
@@ -1617,9 +1646,9 @@ function showBub(b,ms){ bub.textContent=t32(b.getAttribute("aria-label")); bub.h
 function hideBub(){ clearTimeout(bubT); bub.classList.add("fade"); bubT=setTimeout(()=>bub.hidden=true,300); }
 const fine=matchMedia("(hover:hover) and (pointer:fine)").matches;
 document.querySelectorAll(".xrow .lbtn").forEach(b=>{ b.innerHTML=icon(b.dataset.k); b.classList.add("ibtn");
-  if(fine){ b.addEventListener("mouseenter",()=>showBub(b,0)); b.addEventListener("mouseleave",hideBub); }
+  /* build 1560: no hover bubble (bubbles show only on tap; the open type row labels every button) */
   let lp=null, long=false;
-  b.addEventListener("touchstart",()=>{ long=false; lp=setTimeout(()=>{ long=true; showBub(b,1800); },450); },{passive:true});
+  b.addEventListener("touchstart",()=>{ long=false; lp=setTimeout(()=>{ long=true; },450); },{passive:true}); /* build 1560: long-press still never picks, but shows no bubble */
   b.addEventListener("touchend",e=>{ clearTimeout(lp); if(long){ e.preventDefault(); } },{passive:false});
   b.addEventListener("touchmove",()=>clearTimeout(lp),{passive:true});
   });
@@ -2614,7 +2643,7 @@ drawNat();
   const vis=e=>{ if(!e) return null; const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).display!=="none"&&getComputedStyle(e).visibility!=="hidden"?r:null; };
   const sync=()=>{ try{ const host=document.getElementById("bLyr"), T=[]; const open=!lrow.hidden;
       if(open){ const bs=[...lrow.querySelectorAll(".lbtn")].map(b=>[b,vis(b)]).filter(x=>x[1]); bs.forEach(([b,r],i)=>{ const nb=bs[i+1]||bs[i-1]; const gap=nb?Math.abs((nb[1].left+nb[1].width/2)-(r.left+r.width/2)):120; T.push([b.dataset.k==="schools"?"Schools":lbOf(b),r,Math.max(44,gap-4),b.dataset.k]); }); } /* build 1556: 'Schools' in the open row so the four labels fit on one line each */
-      else { const hr=vis(host); if(hr){ const ob=lrow.querySelector(".lbtn.on"), k=ob&&["ushouse","senate","statehouse","schools"].includes(ob.dataset.k)?ob.dataset.k:"ushouse"; T.push([lbOf(lrow.querySelector('.lbtn[data-k="'+k+'"]')),hr,110,"host:"+k]); } }
+      /* build 1560: labels only while the type row is expanded; the collapsed type button shows none */
       while(pool.length<T.length){ const d=document.createElement("div"); d.className="tlab"; d.setAttribute("aria-hidden","true"); document.body.append(d); pool.push(d); }
       /* build 1556: single-line labels; centred on their button, then packed left-to-right with a 3px gap (and pulled back inside the screen) so neighbours never overlap */
       const P=[]; pool.forEach((d,i)=>{ const t=T[i]; if(!t){ if(!d.hidden) d.hidden=true; return; } const [txt,r,mw,k]=t; if(d.textContent!==txt) d.textContent=txt; d.dataset.k=k; if(d.style.maxWidth) d.style.maxWidth="";
@@ -3421,16 +3450,16 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   { const cut=e=>{ const rn=e&&e.closest&&e.closest("#listView .lvrow.la.cmp b.rn"); const nm=rn&&rn.querySelector(".nmx"); return nm&&nm.scrollWidth>nm.clientWidth+1?{rn,nm}:null; };
     const full=o=>String(o.rn.title||o.nm.textContent).replace(/ \(≈ estimate\)$/,"");
     const nameBub=(o,ms)=>{ try{ if(typeof showBub!=="function") return; showBub({getAttribute:()=>full(o),getBoundingClientRect:()=>o.nm.getBoundingClientRect()},ms); }catch(e){} };
-    window.__nameBub=(el,ms)=>{ const o=cut(el); if(o) nameBub(o,ms||1500); return !!o; };
+    window.__nameBub=(el,ms)=>{ const o=cut(el); if(o) nameBub(o,ms||2000); return !!o; };
     const lvw=window; let lt=null, x0=0, y0=0; /* window capture: runs before any row handler */
     /* the row's own pointerdown/tap handling can re-render the list before the click lands (target detached), so the cut-off name, its text and position are taken at pointerdown */
     let pd=null; lvw.addEventListener("pointerdown",e=>{ const o=cut(e.target); pd=o?{t:Date.now(),x:e.clientX,y:e.clientY,txt:full(o),r:o.nm.getBoundingClientRect()}:null; },true);
     const pdBub=(ms)=>{ const q=pd; pd=null; try{ if(typeof showBub==="function") showBub({getAttribute:()=>q.txt,getBoundingClientRect:()=>q.r},ms); }catch(e){} };
-    if(lvw){ lvw.addEventListener("click",e=>{ if(pd&&Date.now()-pd.t<1500&&Math.hypot(e.clientX-pd.x,e.clientY-pd.y)<12){ pdBub(1500); return; } const o=cut(e.target); if(o) nameBub(o,1500); },true);
-      lvw.addEventListener("touchstart",e=>{ const o=cut(e.target), p=e.touches&&e.touches[0]; clearTimeout(lt); if(!o||!p) return; x0=p.clientX; y0=p.clientY; lt=setTimeout(()=>nameBub(o,1800),450); },{passive:true});
+    if(lvw){ lvw.addEventListener("click",e=>{ if(pd&&Date.now()-pd.t<1500&&Math.hypot(e.clientX-pd.x,e.clientY-pd.y)<12){ pdBub(2000); return; } const o=cut(e.target); if(o) nameBub(o,2000); },true); /* build 1560: tap only; the tap also acts on the row, so the bubble goes after 2 s */
+      lvw.addEventListener("touchstart",e=>{ const o=cut(e.target), p=e.touches&&e.touches[0]; clearTimeout(lt); if(!o||!p) return; x0=p.clientX; y0=p.clientY; /* build 1560: no long-press bubble (tap only) */ },{passive:true});
       lvw.addEventListener("touchmove",e=>{ const p=e.touches&&e.touches[0]; if(p&&Math.hypot(p.clientX-x0,p.clientY-y0)>12) clearTimeout(lt); },{passive:true});
       ["touchend","touchcancel"].forEach(k=>lvw.addEventListener(k,()=>clearTimeout(lt),{passive:true}));
-      lvw.addEventListener("pointerover",e=>{ if(e.pointerType!=="mouse") return; const o=cut(e.target); if(o) nameBub(o,0); });
+      /* build 1560: no hover bubble (tap only) */
       lvw.addEventListener("pointerout",e=>{ if(e.pointerType!=="mouse") return; const o=cut(e.target); if(o&&!(e.relatedTarget&&o.rn.contains(e.relatedTarget))){ try{ hideBub(); }catch(_){} } }); } }
   function alignRows(){ try{ const g=document.querySelector("#listView .lvgrid"), r=g&&g.querySelector(".lvrow.la b.rn"); if(!r) return; const cur=parseFloat(g.style.getPropertyValue("--lapad"))||44; const dl=g.classList.contains("dl"), cmp=!!r.closest(".lvrow.cmp"); /* single-year chart rows: name text at x=52 = the top fields' text (the thumbnail column ends at 50) */ const d=(dl?44:52)+(document.body.classList.contains("lathumb")&&(dl||!cmp)?46:0)-r.getBoundingClientRect().left; if(Math.abs(d)>0.4) g.style.setProperty("--lapad",(cur+d).toFixed(1)+"px"); }catch(e){} }
   window.addEventListener("resize",()=>{ if(LA.on) setTimeout(()=>{ alignRows(); setDlen(); clampLabels(); fitLabels(); },60); });
@@ -3515,7 +3544,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   /* one tap flips the direction at once (no menu); a small text bubble names the new direction for ~1.8s (overlay, no fade, no layout shift) */
   const bub=document.createElement("div"); bub.id="laSortBub"; bub.hidden=true; document.body.append(bub); let bubT=0;
   { const c=document.createElement("style"); c.textContent="#laSortBub{position:fixed;z-index:1003;padding:4px 8px;background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.25);font:600 11px/1.2 system-ui,sans-serif;color:#111;white-space:nowrap;pointer-events:none} #laSortBub[hidden]{display:none} body.foldfs #laSortBub{display:none!important}"; document.head.append(c); }
-  sb.addEventListener("click",e=>{ e.stopPropagation(); sp.hidden=true; LA.sort=LA.sort==="asc"?"desc":"asc"; LA.sig=sig(); render(); place(); bub.textContent=LA.sort==="asc"?"Low to high":"High to low"; bub.hidden=false; clearTimeout(bubT); bubT=setTimeout(()=>{ bub.hidden=true; },1800); });
+  sb.addEventListener("click",e=>{ e.stopPropagation(); sp.hidden=true; LA.sort=LA.sort==="asc"?"desc":"asc"; LA.sig=sig(); render(); place(); bub.textContent=LA.sort==="asc"?"Low to high":"High to low"; bub.hidden=false; clearTimeout(bubT); bubT=setTimeout(()=>{ bub.hidden=true; },2000); }); /* build 1560: tap flips the sort -> bubble goes after 2 s */
   sp.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LA.sort=b.dataset.s; sp.hidden=true; LA.sig=sig(); render(); });
   document.addEventListener("pointerdown",e=>{ if(!sp.hidden&&!sp.contains(e.target)&&e.target!==sb&&!sb.contains(e.target)) sp.hidden=true; });
   function place(){ const t=$("barTime"), anchor=(t&&!t.hidden)?t:$("barGeo"); const r=anchor.getBoundingClientRect(); const gap=parseFloat(getComputedStyle($("barGeo")).gap)||8; const btn=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--btn"))||44;
@@ -3706,5 +3735,16 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
 </script>
 <script defer src="data/countries.js?v=202610141526"></script>
 <script src="data/dc.js?v=202610171559"></script>
+<script>/* build 1560: release the boot cover once the restored view has settled (restore finished + key UI rects unchanged for 300 ms; hard limit 12 s) */
+(function(){ var H=document.documentElement; if(!H.classList.contains("boot")) return; var t0=window.__bootT0||Date.now(), last="", same=0;
+  var SEL="#cands,#laCands,.rbtn,#lyrRow,#listView,#chartBox,#barGeo .fsq,#crumbs,#bBack,#laSort,#barTime,.cpanel";
+  function sig(){ var o=[]; document.querySelectorAll(SEL).forEach(function(e){ var r=e.getBoundingClientRect(); o.push(Math.round(r.left)+","+Math.round(r.top)+","+Math.round(r.width)+","+Math.round(r.height)); }); return o.join("|"); }
+  function done(){ H.classList.remove("boot"); ["__typeLabels","__clampLabels","__chartSync","__dlSync","__dmSync","__lyrSync"].forEach(function(f){ try{ typeof window[f]==="function"&&window[f](); }catch(e){} }); window.__bootDone=Date.now()-t0; }
+  (function tick(){ var rest=!window.__stateRestoring||window.__stateRestoring(); if(Date.now()-t0>12000){ done(); return; }
+    if(!rest){ var s=sig(); if(s===last) same+=50; else { same=0; last=s; } if(same>=300){ done(); return; } } setTimeout(tick,50); })(); })();</script>
+<script>/* build 1560: at nationwide scope (no state picked) only state shapes draw. The county heat layer used to keep every county of the states
+   opened earlier in the session (GEOM.counties is cumulative), so after drilling into e.g. Arkansas and back, Arkansas showed a county mesh on the US map. */
+(function(){ if(typeof drawHeat!=="function") return; const _dh=drawHeat; drawHeat=function(){ const r=_dh.apply(this,arguments); try{ if(!state.value&&heatLayer) heatLayer.clearLayers(); }catch(e){} return r; };
+  window.__heatCount=()=>{ let n=0; try{ heatLayer&&heatLayer.eachLayer(()=>n++); }catch(e){} return n; }; })();</script>
 </body>
 </html>
