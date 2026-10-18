@@ -4,14 +4,15 @@
     python3 scripts/build_all.py               # write the CSVs + summary.json (deterministic for a given cache)
 """
 import collections, json, os
-import build_cog, build_states, build_federal_agencies, build_tribes
+import build_cog, build_states, build_federal_agencies, build_tribes, build_changes
+from build_changes import CHANGE_COLUMNS
 from common import ROOT, COLUMNS, XWALK_COLUMNS, EXTERNAL_IDS, SOURCE_TABLE, LICENSES, PUBLIC_DOMAIN, Registry, write_csv, manifest, meta
 
 
 def main():
     reg = Registry()
     states, xs = build_states.build(reg)
-    local, xl, per_state, chk = build_cog.build(reg)
+    local, xl, chk = build_cog.build(reg)
     fed = build_federal_agencies.build(reg)
     tribes, xt, n_lines = build_tribes.build(reg)
     # geoid provenance: add the TIGER / F-33 source code to rows whose geoid came from it
@@ -23,6 +24,17 @@ def main():
             continue
         add = next((v if v else 'f33_' + g.rsplit('_', 1)[-1] + ';gaz2024' for p, v in geo_src if g.startswith(p)), 'gaz2024')
         r['source'] = r['source'] + ';' + add
+    # changes after the CoG 2022 snapshot (Census GCN + cited state sources): new rows, ceased units, renames
+    new_rows, changes, change_src = build_changes.build(reg, local)
+    for r in new_rows:
+        if r['geoid']:
+            xl.append({'entity_id': r['entity_id'], 'unit_layer': r['geoid_layer'], 'geoid': r['geoid'], 'vintage': r['geoid_vintage'],
+                       'relation': 'primary', 'match': r['geoid_match']})
+    lost = {r['entity_id'] for r in local if r['geoid_match'] == 'ceased_geoid_to_successor'}
+    xl = [x for x in xl if not (x['entity_id'] in lost and x['relation'] == 'primary')]
+    local = local + new_rows
+    per_state = build_cog.write_local(local)
+    write_csv(os.path.join(ROOT, 'changes_since_cog2022.csv'), changes, CHANGE_COLUMNS)
     src_of = {r['entity_id']: r['source'] for r in local}
     for x in xl:                         # crosswalk rows carry the same geoid provenance as their entity
         if x['entity_id'] in src_of:
@@ -36,7 +48,8 @@ def main():
         ra = sorted(meta(k)['retrieved_at'] for k in keys)
         src_rows.append({'source_id': sid, 'source': desc, 'source_url': url, 'license': LICENSES.get(sid, PUBLIC_DOMAIN),
                          'retrieved_at': ra[-1] if ra else '', 'commit': ''})
-    for sid in sorted(used - set(SOURCE_TABLE)):
+    src_rows += change_src
+    for sid in sorted(used - set(SOURCE_TABLE) - {r['source_id'] for r in change_src}):
         if sid.startswith('bia_'):
             bm = meta('bia_notice')
             import json as _j
@@ -56,6 +69,7 @@ def main():
     out['county_government_check.csv'] = len(chk)
     out['id_registry.csv'] = n_reg
     out['sources.csv'] = len(src_rows)
+    out['changes_since_cog2022.csv'] = len(changes)
     for k, v in per_state.items():
         out['local/{}.csv'.format(k)] = v
     ids = [r['entity_id'] for r in states + local + fed + tribes]
@@ -79,6 +93,8 @@ def main():
         'geoid_match': {'{}|{}'.format(*k): v for k, v in sorted(collections.Counter((r['type'], r['geoid_match']) for r in local + tribes).items())},
         'tiger_counties_without_cog_county_government': sum(1 for c in chk if c['cog_county_government'] == 'no'),
         'bia_list_lines': n_lines,
+        'changes_since_cog2022': {'{}|{}'.format(*k): v for k, v in sorted(collections.Counter((c['change_type'], c['source_id']) for c in changes).items())},
+        'changes_by_state': dict(sorted(collections.Counter(c['state'] for c in changes).items())),
         'dangling_parent_ids': dangling,
         'school_geoids_vs_data_v3_geo_schools_csv': school_check,
         'tiger_status': dict(sorted(collections.Counter(r.get('tiger_status', '') for r in local + tribes + states).items())),

@@ -1,7 +1,7 @@
 """2022 Census of Governments individual units -> local/<USPS>.csv (+ crosswalk rows, county check).
 
 Input : cache/Govt_Units_2022_Final.xlsx (from govt_units_2022.ZIP), cache/2024_Gaz_*_national.txt
-Output: local/<USPS>.csv, county_government_check.csv; returns crosswalk rows to build_all.py
+Output: county_government_check.csv; returns unit rows + crosswalk rows; build_all.py writes local/<USPS>.csv
 
 GEOID rules (Geography bot conventions, TIGER 2024 vintage, strings with leading zeros):
   county        -> counties  SS+CCC from FIPS_STATE+FIPS_COUNTY, kept only if it exists in the 2024 Gazetteer
@@ -382,16 +382,6 @@ def build(reg):
         xw = [x for x in xw if x['entity_id'] not in lose]
 
     rows.sort(key=lambda r: (r['state_fips'], r['type'], r['county_geoid'], r['name'], r['cog_id']))
-    by_state = collections.defaultdict(list)
-    for r in rows:
-        by_state[r['state']].append(r)
-    outdir = os.path.join(ROOT, 'local')
-    for f in os.listdir(outdir) if os.path.isdir(outdir) else []:
-        if f.endswith('.csv'):
-            os.remove(os.path.join(outdir, f))
-    counts = {}
-    for usps, rs in sorted(by_state.items()):
-        counts[usps] = write_csv(os.path.join(outdir, usps + '.csv'), rs, COLUMNS)
 
     # county government check: every 2024 TIGER county vs the CoG county governments
     cog_cty = collections.defaultdict(list)
@@ -421,4 +411,16 @@ def build(reg):
               ['county_geoid', 'tiger_name', 'state', 'cog_county_government', 'cog_id', 'cog_name', 'note', 'source', 'source_date'])
     for x in xw:
         x.update(source='cog2022;gaz2024', source_date=m['last_modified'])
-    return rows, xw, counts, chk
+    return rows, xw, chk
+
+
+def write_local(rows):
+    """local/<USPS>.csv, one file per state (written by build_all.py after source codes and post-2022 changes)."""
+    by_state = collections.defaultdict(list)
+    for r in sorted(rows, key=lambda r: (r['state_fips'], r['type'], r['county_geoid'], r['name'], r['cog_id'], r['entity_id'])):
+        by_state[r['state']].append(r)
+    outdir = os.path.join(ROOT, 'local')
+    for f in os.listdir(outdir) if os.path.isdir(outdir) else []:
+        if f.endswith('.csv'):
+            os.remove(os.path.join(outdir, f))
+    return {usps: write_csv(os.path.join(outdir, usps + '.csv'), rs, COLUMNS) for usps, rs in sorted(by_state.items())}

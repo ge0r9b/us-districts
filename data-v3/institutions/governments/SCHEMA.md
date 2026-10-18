@@ -30,7 +30,7 @@ are only ever appended (`nces_leaid`, `tiger_status`, then `flags`, `valid_from`
 | `gnis_id` | `02403054` | ANSI/GNIS feature code of the matched TIGER feature (TIGER `ANSICODE` / `AIANNHNS` / `STATENS`) |
 | `ocd_id` | | optional, empty |
 | `wikidata_qid` | `Q356979` | tribes: only when the BIA current name equals exactly one Wikidata item's English label or official name (P1448) among instances of Q7840353 (federally recognized Native American tribe), and no other BIA line matches that item (`flags` says `qid_by_p1448` or `qid_by_label`). Wikidata has no BIA-ID property. Other types: from exact identifier links only (see images part) |
-| `is_active` | `Y` / `N` | CoG `IS_ACTIVE` (`N` = dormant but still a government) |
+| `is_active` | `Y` / `N` / `false` | CoG `IS_ACTIVE` (`N` = dormant but still a government); `false` = the government has ceased to exist (dissolved, merged, deorganized, consolidated) on `valid_to`, per a cited record in `changes_since_cog2022.csv`. Rows are never deleted. |
 | `note` | | free text (why a value is blank, cross-reference text, etc.) |
 | `source` | `cog2022;f33_2024;gaz2024` | `;`-separated stable source codes, defined in `sources.csv`: the record's source first, then the source(s) of its GEOID / QID |
 | `source_url` | | only when row-specific (FR agency page, change records); otherwise empty and the URL is in `sources.csv` |
@@ -38,8 +38,8 @@ are only ever appended (`nces_leaid`, `tiger_status`, then `flags`, `valid_from`
 | `retrieved_at` | `2026-10-18T13:16:51Z` | UTC time the cached copy was downloaded |
 | `license` | `public domain (U.S. Government work, 17 U.S.C. 105)` | |
 | `nces_leaid` | `0100270` | school districts: NCES LEAID from the F-33 file (filled even when TIGER 2024 has no polygon for it) |
-| `flags` | `owner_unknown` | `;`-separated machine flags: `owner_unknown` (dependent school system, owning government not given by CoG), `qid_by_p1448` / `qid_by_label` (how a tribe QID was matched) |
-| `valid_from`, `valid_to` | `2023-04-01` | ISO dates from a cited change record (`changes_since_cog2022.csv`); empty = in force at the CoG 2022 snapshot / still in force |
+| `flags` | `owner_unknown` | `;`-separated machine flags: `owner_unknown` (dependent school system, owning government not given by CoG), `qid_by_p1448` / `qid_by_label` (how a tribe QID was matched), `ceased` (see `valid_to`), `not_in_cog2022` (unit created after the CoG 2022 snapshot, see `valid_from`) |
+| `valid_from`, `valid_to` | `2023-04-01` | ISO dates (`YYYY-MM-DD`, or `YYYY-MM` when the source fixes only the month) from a cited change record (`changes_since_cog2022.csv`); empty = in force at the CoG 2022 snapshot / still in force. Some CoG 2022 units had already ceased before the snapshot (CoG was stale), so `valid_to` can be earlier than 2022. |
 | `tiger_status` | `current_2024` / `absent_2024` | whether `geoid` exists in TIGER 2024; `absent_2024` = an older-vintage GEOID was carried (dissolved / merged / re-coded unit) |
 
 ### Frozen IDs: id_registry.csv
@@ -62,6 +62,9 @@ sources; empty for files served over HTTP).
 | `cog:` | CoG `CENSUS_ID_PID6` | Census internal unit ID, kept across CoG cycles |
 | `fr:` | Federal Register API agency `id` | permanent in the API |
 | `bia:` | slug of the listed name at first registration | frozen in `id_registry.csv`; renames keep the ID (former name in `alias`) |
+| `gcn:` | Census code of a unit created after CoG 2022: place `SSPPPPP`, or cousub GEOID `SSCCCMMMMM` (registry key `census_code:place:` / `census_code:cousub:`) | frozen in the registry |
+| `nces_leaid:` | NCES LEAID of a school district created after CoG 2022 | permanent |
+| `wi_mds_incorporation:` | Wisconsin DOA Municipal Data System incorporation record ID (unit not yet in any Census file) | frozen in the registry |
 
 ## Types
 | type | definition | source | maps from Grok Bot's draft names |
@@ -75,6 +78,25 @@ sources; empty for files served over HTTP).
 | `federal_agency` | agency or sub-agency in the Federal Register agency list; `subtype` = `agency` / `sub_agency` | FR API | (new) |
 | `tribe` | entity on the BIA list of federally recognized tribes; `subtype` = `contiguous_48` / `alaska_native` / `cross_reference` | BIA FR notice | `tribal` |
 | `sovereign`, `foreign` | reserved for later non-US rows (countries, foreign governments); not used yet | | `sovereign`, `foreign` |
+
+## changes_since_cog2022.csv
+One row per (government, change) after the 2022 Census of Governments snapshot. Built by `scripts/build_changes.py`.
+
+| column | meaning |
+|---|---|
+| `entity_id` | the CoG unit, or the new unit's ID (new rows are added to `local/<USPS>.csv` with `valid_from`) |
+| `change_type` | `dissolution` (disincorporated, merged into another unit, deorganized, township organization discontinued), `incorporation` (new municipality), `new_township` (new organized township), `consolidation_abolished` / `consolidation_new_entity` (school district consolidations), `reclassification` (legal kind changed, e.g. town to city; name and ID unchanged), `rename` |
+| `effective_date` | ISO date (or `YYYY-MM`) from the source |
+| `name`, `state` | CoG name (for a rename: the new name) and USPS code |
+| `source_url` | the record's URL (several separated by ` ; ` when a state source and the Census record both cite it) |
+| `retrieved_at` | retrieval time of the source |
+| `source_id` | codes in `sources.csv` (`census_gcn`, or a state source such as `sc_legislature`, `wi_mds`) |
+| `successor_id` | the government that took over, where the source names one |
+| `cog_id` | CoG PID6 of the affected unit (empty for new units) |
+| `detail` | the source's own description; GCN rows cite file year and line number |
+
+`changes_curated.csv` is the committed, hand-entered input for changes cited to state sources (legislature acts,
+state agency registries, official election results); every row has its URL and retrieval date.
 
 ## Crosswalk: governments_geoid_xwalk.csv
 Shape of `data-v3/inst/entity_geoid_xwalk.csv`. One row per (entity, GEOID); the entity's primary GEOID is included.

@@ -43,6 +43,13 @@ SOURCES['wikidata_tribes'] = ('https://query.wikidata.org/sparql?format=json&que
     'SELECT ?i ?label ?off WHERE { ?i wdt:P31 wd:Q7840353 . OPTIONAL { ?i rdfs:label ?label FILTER(LANG(?label)="en") } '
     'OPTIONAL { ?i wdt:P1448 ?off } }'), 'wd_tribes.json')
 
+# Census Bureau Geographic Change Notes (BAS): official record of incorporations, disincorporations, mergers and
+# renames reported by state/local governments, by effective year. Used for changes after the CoG 2022 snapshot.
+GCN_YEARS = ('2021', '2022', '2023', '2024', '2025')
+GCN = 'https://www2.census.gov/geo/docs/reference/bndrychange/national_gcn_{}.txt'
+for y in GCN_YEARS:
+    SOURCES['gcn_' + y] = (GCN.format(y), 'national_gcn_{}.txt'.format(y))
+
 PUBLIC_DOMAIN = 'public domain (U.S. Government work, 17 U.S.C. 105)'
 COLUMNS = ['entity_id', 'name', 'type', 'subtype', 'gov_status', 'parent_id', 'state_fips', 'state',
            'county_geoid', 'geoid', 'geoid_layer', 'geoid_vintage', 'geoid_match', 'cog_id', 'cog_gidid',
@@ -77,6 +84,9 @@ SOURCE_TABLE = {
     'f33_2022': ('U.S. Census Bureau, Annual Survey of School System Finances FY2022 (elsec22.txt)', F33.format('2022', '22'), ['f33_2022']),
     'wikidata_tribes': ('Wikidata SPARQL: items with P31 = Q7840353 (federally recognized Native American tribe), English label and P1448 official name',
                         'https://query.wikidata.org/', ['wikidata_tribes']),
+    'census_gcn': ('U.S. Census Bureau, Geographic Change Notes (Boundary and Annexation Survey), national files by effective year '
+                   + '-'.join((GCN_YEARS[0], GCN_YEARS[-1])), 'https://www2.census.gov/geo/docs/reference/bndrychange/',
+                   ['gcn_' + y for y in GCN_YEARS]),
 }
 LICENSES = {'wikidata_tribes': 'CC0 1.0 (Wikidata)'}
 

@@ -8,19 +8,21 @@ GEOIDs where an exact rule finds one, and per-row provenance. The column definit
 | file | rows | content |
 |---|---|---|
 | `states.csv` | 50 | state governments (`state:SS`) |
-| `local/<USPS>.csv` | 92,150 total in 51 files (50 states + DC) | every unit in the 2022 Census of Governments individual-unit file: 3,031 county, 19,491 municipality, 16,214 township, 12,546 independent school districts + 1,313 dependent school systems, 39,555 special districts |
+| `local/<USPS>.csv` | 92,178 total in 51 files (50 states + DC) | every unit in the 2022 Census of Governments individual-unit file (92,150) plus 28 units created since: 3,031 county, 19,491 municipality, 16,214 township, 12,546 independent school districts + 1,313 dependent school systems, 39,555 special districts |
 | `federal_agencies.csv` | 473 | Federal Register agencies and sub-agencies with `parent_id` (includes abolished agencies; the API has no active flag) |
 | `tribes.csv` | 577 | every line of the latest BIA list (FR 2026-01899, 91 FR 4102, Jan 30, 2026: 348 contiguous-48 lines + 229 Alaska lines; 4 of them are "(See …)" cross-references). The notice text says 575 entities. |
-| `governments_geoid_xwalk.csv` | 56,484 | every (entity, TIGER GEOID) pair, primary included |
+| `governments_geoid_xwalk.csv` | 56,529 | every (entity, TIGER GEOID) pair, primary included |
 | `county_government_check.csv` | 3,222 | each TIGER 2024 county (incl. 78 PR municipios) and whether CoG 2022 lists a county government there |
-| `id_registry.csv` | 93,251 | frozen entity IDs (see SCHEMA.md); committed and appended by every build |
-| `sources.csv` | 13 | stable source codes used in `source` columns |
+| `id_registry.csv` | 93,278 | frozen entity IDs (see SCHEMA.md); committed and appended by every build |
+| `sources.csv` | 19 | stable source codes used in `source` columns |
+| `changes_since_cog2022.csv` | 131 | incorporations, dissolutions, mergers, consolidations, reclassifications after the CoG 2022 snapshot (see below) |
+| `changes_curated.csv` | 26 | hand-entered input for the changes cited to state sources |
 | `summary.json` | | row counts, match counts, source URLs/dates (written by the build) |
 | `scripts/` | | Python 3 stdlib + `openpyxl` (to read the CoG .xlsx) |
 
 Exact current counts are always in `summary.json`.
 
-## Sources (open, public domain U.S. Government works)
+## Sources (open public records: U.S. Government works, plus the state records listed under Changes)
 | code | source | URL | date |
 |---|---|---|---|
 | `cog2022` | U.S. Census Bureau, 2022 Census of Governments: Organization, Government Units Listing (`Govt_Units_2022_Final.xlsx`, tabs General Purpose / Special District / School District / DEP School Dist) | https://www2.census.gov/programs-surveys/gus/datasets/2022/govt_units_2022.ZIP | published 2023-08-24 |
@@ -31,6 +33,7 @@ Exact current counts are always in `summary.json`.
 | `f33` | Census Annual Survey of School System Finances (F-33) unit files `elsec24.txt`, `elsec23.txt`, `elsec22.txt` (FY2024, FY2023, FY2022): `PID6` (= CoG `CENSUS_ID_PID6`) and `NCESID` (= NCES LEAID). Current layout (FY2024 doc `school24doc.docx`) carries `PID6`, not the old 14-digit `IDCENSUS` | https://www2.census.gov/programs-surveys/school-finances/tables/2024/secondary-education-finance/elsec24.txt | FY2024 |
 | `census_state_codes` | Census 2020 FIPS state codes | https://www2.census.gov/geo/docs/reference/codes2020/national_state2020.txt | 2023-02-13 |
 | `fr_agencies` | Federal Register API v1 agencies | https://www.federalregister.gov/api/v1/agencies | retrieved 2026-10-18 |
+| `census_gcn` | Census Geographic Change Notes (BAS), national files 2021-2025 | https://www2.census.gov/geo/docs/reference/bndrychange/ | retrieved 2026-10-18 |
 | `bia:2026-01899` | BIA, "Indian Entities Recognized by and Eligible To Receive Services From the United States Bureau of Indian Affairs", 91 FR 4102 | https://www.federalregister.gov/documents/2026/01/30/2026-01899/ | published 2026-01-30 |
 
 Every entity row carries `source` (codes from `sources.csv`), `source_date`, `retrieved_at` and `license`;
@@ -74,6 +77,36 @@ does not say which government a dependent school system belongs to (only its typ
 county → municipality containment, so no such parents are set. `county_geoid` is the CoG county area, not a parent.
 FR agencies use the API's `parent_id`. States and tribes have no parent.
 
+## Changes since the 2022 Census of Governments
+`changes_since_cog2022.csv`, applied to the entity rows: ceased units get `is_active=false`, `valid_to` and the flag
+`ceased` (never deleted); new units are added with `valid_from` and the flag `not_in_cog2022`.
+
+Sources:
+- `census_gcn`: Census Bureau Geographic Change Notes (Boundary and Annexation Survey), national files for
+  effective years 2021-2025 (https://www2.census.gov/geo/docs/reference/bndrychange/). These are the federal record of
+  incorporations, disincorporations, mergers and legal-description changes reported by state and local governments,
+  so they cover every state in one pass. A GCN record is used only when its state + code (or ANSI code) is the CoG
+  unit's code, its core name equals the CoG core name and its kind (city/village/borough vs township) agrees. Records
+  that only follow redistricting (voting-district cousubs in AR, NE, VA, WV), CDPs, UTs and Census spelling
+  corrections ("Corrected ...") are skipped. New units must be a governmental kind and not already in CoG; new
+  townships only in states whose CoG has township governments. A 2024-2025 incorporation whose code TIGER 2024 still
+  shows as a CDP gets no GEOID (note says so). Where GCN's ANSI code disagrees with TIGER 2024, TIGER's is kept and the
+  note says so (GCN gives Gluckstadt MS and Hochatown OK the same ANSI code).
+- State sources (`changes_curated.csv`): South Carolina Legislature acts 104, 105, 106 of 2021 and 256 of 2022 (Bamberg,
+  Barnwell, Clarendon and Florence school consolidations, July 1, 2022) plus the SC Department of Education letter for
+  the Florence 4 date; Nebraska official 2020 Kearney County results + Neb. Rev. Stat. 23-295 (14 townships
+  discontinued, January 2023; the statute fixes only the month); Maine P&SL 2017 ch. 11 + Maine Revenue Services
+  deorganization list (Codyville, July 1, 2019); Florida CS/HB 1215 = Laws of Florida 2020-196 (Weeki Wachee,
+  June 9, 2020); Wisconsin DOA Municipal Data System (Village of French Island, May 21, 2026).
+
+Counts by change type and source: consolidation_abolished / sc_legislature 6, consolidation_new_entity / sc_legislature 3, dissolution / census_gcn 42, dissolution / fl_legislature 1, dissolution / me_legislature 1, dissolution / ne_kearney_election 14, incorporation / census_gcn 18, incorporation / wi_mds 1, new_township / census_gcn 6, reclassification / census_gcn 39.
+
+Not recorded (could not be confirmed from an official source in this pass, or out of scope): Clarendon County
+School Districts 1 and 3 (CoG 2022 lists them; Act 106 names only districts 2 and 4); Rib Mountain WI, where GCN gives
+2023-07-11 and WI MDS gives 2023-07-21 (GCN date kept); special-district creations and dissolutions (TX TCEQ water
+districts, CA State Controller special districts) are not done yet; CoG 2022 omissions that are not changes (Howard KS,
+Keene KY, St. Mary KY, Plantersville TX, Poetry TX existed before 2022) are not added.
+
 ## Rerun
 ```
 cd data-v3/institutions/governments
@@ -87,4 +120,4 @@ picks the newest BIA list notice from the Federal Register search, so a refresh 
 `cache/manifest.json` records URL, Last-Modified and retrieval time per file. Raw downloads are never committed.
 
 Scripts: `common.py` (download/cache, readers, column lists), `build_states.py`, `build_cog.py`,
-`build_federal_agencies.py`, `build_tribes.py`, `build_all.py`.
+`build_federal_agencies.py`, `build_tribes.py`, `build_changes.py`, `build_all.py`.
