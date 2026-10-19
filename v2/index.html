@@ -1967,8 +1967,8 @@ window.__orgGlobal=function(){ const go=()=>{ let box=document.getElementById("o
 document.addEventListener("input",e=>{ if(e.target.closest&&e.target.closest("#barGeo .fsq")) document.body.classList.toggle("fqtyping",e.target.value!==""); },true);
 document.addEventListener("input",e=>{ if(!document.body.classList.contains("orgglobal")||!e.target.closest||!e.target.closest(".fsq")) return; const q=e.target.value.trim().toLowerCase(); const b=document.getElementById("orgGlobal"); b&&[...b.children].forEach(li=>li.style.display=!q||li.textContent.toLowerCase().includes(q)?"":"none"); },true);
 const _sc2=state.onchange, _cc2=county.onchange;
-state.onchange=()=>{ hier.dist=null; drawDist(); _sc2(); crumbs(); if(view==="list") renderList(); };
-county.onchange=()=>{ hier.dist=null; drawDist(); _cc2(); crumbs(); if(view==="list") renderList(); };
+state.onchange=()=>{ window.__selField={st:state.value||"",co:county.value||""}; hier.dist=null; drawDist(); _sc2(); crumbs(); if(view==="list") renderList(); };
+county.onchange=()=>{ window.__selField={st:state.value||"",co:county.value||""}; hier.dist=null; drawDist(); _cc2(); crumbs(); if(view==="list") renderList(); };
 // list mode follows the hierarchy
 listAreas=function(){ const ch=children(); if(!ch.kind) { if(!state.value) return []; }
   let items=ch.items.filter(it=>it.d).map(it=>({kind:it.kind,d:it.d,yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"}));
@@ -2747,7 +2747,7 @@ map.on("dblclick",e=>{ const a=areaAt(e.latlng); if(!a||!a.d) return; { const k=
   const it=kind==="precinct"?a.d.slice(0,6):a.d; const pl=L.polygon(toLatLngs(it)); map.fitBounds(pl.getBounds(),{maxZoom:15,paddingTopLeft:[70,200],paddingBottomRight:[80,140]});
   const g=$("gq"), t=areaLabel(a); nameLock=t; g.value=""; g.placeholder=t32(t); g.title=t; });
 const _wai=whereAmI; whereAmI=function(){ const GL=window.__geoLock; if(GL&&state.value===GL.st&&(window.__userGesture?window.__userGesture():0)<=GL.t){ const g=$("gq"); g.placeholder=t32(GL.lbl); return; } if(nameLock){ const g=$("gq"); g.placeholder=t32(nameLock); return; } _wai(); };
-map.on("dragstart",()=>{ nameLock=null; }); map.on("zoomstart",e=>{ if(!map.__fitting) {} });
+map.on("dragstart",()=>{ nameLock=null; }); { const clr=()=>{ window.__selField=null; }; map.on("dragstart",clr); const mc=map.getContainer(); mc.addEventListener("wheel",clr,{passive:true}); mc.addEventListener("touchstart",e=>{ if(e.touches&&e.touches.length>1) clr(); },{passive:true}); mc.addEventListener("dblclick",clr); document.addEventListener("keydown",e=>{ if(document.activeElement===mc&&/^(Arrow|\+|-|=)/.test(e.key)) clr(); }); } map.on("zoomstart",e=>{ if(!map.__fitting) {} });
 /* build 1564: the bottom geography field follows the view, not the map centre. In the list view the list covers the lower map, so the centre
    (reverse-looked-up) landed in a county of the list area or beyond it (iPhone, PA counties: 'Steuben County, NY'). There the field shows the
    listed area (state, or county within a state); on the map a centre outside the selected state shows the state. */
@@ -2755,6 +2755,7 @@ map.on("dragstart",()=>{ nameLock=null; }); map.on("zoomstart",e=>{ if(!map.__fi
     const st=state.value||"", co=(typeof county!=="undefined"&&county.value)||"", lm=document.body.classList.contains("listmode")&&window.__LA&&window.__LA.on;
     const lbl=co&&st?(co+", "+(ABBR[st]||st)):st;
     if(lm&&!nameLock){ const t=lbl||"United States"; g.placeholder=t32(t); g.title=t; return; }
+    { const SF=window.__selField; if(!nameLock&&st&&SF&&SF.st===st&&SF.co===co){ g.placeholder=t32(lbl); g.title=lbl; return; } } /* build 1618 (QA-109): after a pick the field names the selection; the map centre is looked up only once the user moves the map */
     _w2(); if(st&&!nameLock){ const ph=g.placeholder||"", m=/, ([A-Z]{2})$/.exec(ph), ab=ABBR[st]||st; if(m&&m[1]!==ab){ g.placeholder=t32(lbl); g.title=lbl; } } }; }
 $("gq").addEventListener("focus",()=>{ nameLock=null; });
 // ===== district type drives the nationwide fill (US House: all 435 districts) =====
