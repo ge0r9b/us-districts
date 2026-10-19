@@ -11,7 +11,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['chromium','webkit'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch()
-      for pre,q,st,word,ll in [(None,'Pittsburgh','Pennsylvania','Pittsburgh',(40.44,-79.99)),('Illinois','Springfield','Illinois','Springfield',(39.8,-89.65)),(None,'Fulton County','Georgia','Fulton',(33.79,-84.47))]:
+      for pre,q,st,word,ll in [(None,'Pittsburgh','Pennsylvania','Pittsburgh',(40.44,-79.99)),('Illinois','Springfield','Illinois','Springfield',(39.8,-89.65)),(None,'Fulton County, GA','Georgia','Fulton',(33.79,-84.47))]:
         c=await b.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(4000)
         if pre: await typ(pg,pre)
