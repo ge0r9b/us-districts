@@ -2995,6 +2995,12 @@ function pip(d,ll){ const q=d.bb; return ll.lng>=q[0]&&ll.lng<=q[2]&&ll.lat>=q[1
 { const _aa18=areaAt; areaAt=function(ll){ let a=_aa18(ll); if(a&&a.kind==="natcd"&&(a.tk||"ushouse")===ltype) return a; if(a&&a.kind==="natcd") a=null; if(!natTypeOn()) return a; const k=ltype; if(!DS[k]) return a; if(a&&a.kind!=="county"&&a.kind!=="sum"&&a.kind!==k&&!(a.kind==="precinct"&&!window.__autoP)) return a;
   const m=ym(), has=d=>m==="delta"?(d.v["2024"]&&d.v["2020"]):d.v[m]; const hits=DS[k].filter(d=>pip(d,ll)); const d=hits.find(has)||hits[0]; return d?{kind:"natcd",tk:k,d:[d.st,d.nm,d.polys,,,d.est],cd:d}:(a&&a.kind==="county"?null:a); }; }
 { const _an18=aname; aname=function(a){ if(a.kind!=="natcd") return _an18(a); const k=a.tk||"ushouse"; return k==="schools"?a.d[1]:"District "+String(a.d[1]).replace(/^0+(?=\d)/,""); }; }
+{ /* build 1605 (QA-074): school districts that share a name in one state (Ohio's three "Eastern Local School District") are labelled with their county */
+  let DUP=null; const dup=d=>{ if(!DUP){ DUP={}; (GEOM.schools||[]).forEach(x=>{ const k=x[0]+"|"+x[1]; DUP[k]=(DUP[k]||0)+1; }); } return DUP[d[0]+"|"+d[1]]>1; };
+  const cty=d=>{ if(d.__cty!==undefined) return d.__cty; let best=null, A=0; try{ d[d.length-1].forEach(rs=>{ const r=rs[0]; let a=0,cx=0,cy=0; for(let i=0,j=r.length-1;i<r.length;j=i++){ const f=r[j][0]*r[i][1]-r[i][0]*r[j][1]; a+=f; cx+=(r[j][0]+r[i][0])*f; cy+=(r[j][1]+r[i][1])*f; } if(Math.abs(a)>A){ A=Math.abs(a); best=a?[cx/(3*a),cy/(3*a)]:r[0]; } }); }catch(e){}
+    let c=null; if(best){ const C=(GEOM.counties||[]).filter(x=>x[0]===d[0]); c=C.find(x=>pointInItem(x,best[0],best[1])); if(!c){ try{ const v=d[d.length-1][0][0][0]; c=C.find(x=>pointInItem(x,v[0],v[1])); }catch(e){} } } return d.__cty=c?c[1]:null; };
+  window.__schCty=cty;
+  const _an74=aname; aname=function(a){ const n=_an74(a); const isS=a&&a.d&&(a.kind==="schools"||(a.kind==="natcd"&&a.tk==="schools")); if(!isS||!GEOM.schools||!dup(a.d)) return n; const c=cty(a.d); return c?n+" ("+c+")":n; }; }
 { const _al18=areaLabel; areaLabel=function(a){ if(a.kind!=="natcd"||!a.tk||a.tk==="ushouse") return _al18(a); const ab=ABBR[a.d[0]]||a.d[0], n=String(a.d[1]).replace(/^0+(?=\w)/,"");
   return t32(a.tk==="senate"?ab+" Senate "+n:a.tk==="statehouse"?ab+" House "+n:a.d[1]+", "+ab); }; }
 // precinct zoom: a single tap shows the tapped precinct even when a district type is selected
