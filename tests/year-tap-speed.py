@@ -1,5 +1,6 @@
 # QA-085: year taps on Pennsylvania's district-type maps paint in under 100 ms (tap -> rAF -> task), WebKit touch 390/375/320, Chromium 1024x576 and 390 (QA-085 reopened for Chromium).
 # State house, state senate, US House and the county map; '16/'24/'20/'24 x3. Pass: median < 100 and at most 1 of 12 taps over 100 (first data load).
+# DPR 2 and Chromium is_mobile at every size, same as Bug Tester's qa/common.py ctx().
 import asyncio,sys,json
 from playwright.async_api import async_playwright
 URL=sys.argv[1] if len(sys.argv)>1 else 'http://localhost:8843/v2/'; import os; TY=['statehouse','senate','ushouse','map']; PROF=bool(os.environ.get('PROF')); ONLY=os.environ.get('ONLY','');
@@ -22,7 +23,7 @@ async def main():
     for ENG,W,H in CFG:
      b=await getattr(p,ENG).launch()
      for ty in TY:
-       c=await b.new_context(viewport={'width':W,'height':H},has_touch=True,is_mobile=(W<600)); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
+       c=await b.new_context(viewport={'width':W,'height':H},device_scale_factor=2,has_touch=True,is_mobile=(ENG=='chromium' or W<600)); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
        await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(3500)
        await pg.evaluate("()=>{const s=document.getElementById('state');s.value='Pennsylvania';s.onchange&&s.onchange()}"); await pg.wait_for_timeout(4000)
        if ty!='map':

@@ -1104,7 +1104,11 @@ function countyAt(latlng) {
 function drawHeat() {
   if (!map) return;
   if (window.__mapLaterOn && window.__mapLaterOn() && !window.__heatNow) { window.__later("heat0", () => { window.__heatNow = 1; try { __heat0(); } finally { window.__heatNow = 0; } }); return; } /* build 1603 (QA-020): in the list view a drill/Back paints the list first; the map's precinct heat (all ~25,000 CA precincts after Back from LA County) is rebuilt two frames later */
-  if (heatLayer) heatLayer.clearLayers();
+  { /* build 1605 (QA-085): a year tap only changes colours: when the same shapes are drawn, recolour them in place (was: clear + rebuild every polygon, 13 ms of a Chromium year tap) */
+    const lv=heatOn&&heatLevel==="precinct"?null:(heatOn&&window.ELECTION2024?"c":null), its=lv?heatItems():null, ls=heatLayer?heatLayer.getLayers():[];
+    if (lv && heatLayer && heatLayer.__sig===(state.value+"|"+(county.value||"")) && ls.length===its.length && ls.every((l,i)=>l.__d===its[i])) {
+      ls.forEach(l=>{ const d=l.__d, f=countyFill(d[0]+"|"+d[1])||"#d6d3d1"; if(l.options.fillColor!==f) l.setStyle({fillColor:f}); }); return; } }
+  if (heatLayer) { heatLayer.clearLayers(); heatLayer.__sig=null; }
   if (!heatOn) return;
   if (heatLevel === "precinct") {
     if (!state.value) { mapnote.textContent = "Pick a state to see its precinct results."; return; }
@@ -1123,8 +1127,9 @@ function drawHeat() {
   heatItems().forEach(d => {
     const fill = countyFill(d[0] + "|" + d[1]) || "#d6d3d1";
     const hl = county.value && d[1] === county.value && d[0] === state.value;
-    L.polygon(toLatLngs(d), { renderer: heatRenderer, pane: "heatPane", color: hl ? "#111" : "#ffffff", weight: hl ? 2.5 : 0.6, fillColor: fill, fillOpacity: 0.72, interactive: false }).addTo(heatLayer);
+    const pl=L.polygon(toLatLngs(d), { renderer: heatRenderer, pane: "heatPane", color: hl ? "#111" : "#ffffff", weight: hl ? 2.5 : 0.6, fillColor: fill, fillOpacity: 0.72, interactive: false }); pl.__d=d; pl.addTo(heatLayer);
   });
+  if (heatLayer) heatLayer.__sig = state.value+"|"+(county.value||"");
 }
 const __heat0 = drawHeat;
 function setHeat(on) {
