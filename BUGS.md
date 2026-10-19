@@ -721,6 +721,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
   - **Fail, country:** US 2024 total votes -0.166% (others short 258,202; Harris +0.0027%, Trump +0.0022% pass); US 2020 Biden +0.0128% (+10,404) and total +0.026%; Trump 2020 +0.009% pass.
   - **Fail, states (> 0.1%):** NY 2020 Biden +0.27% / Trump +0.22% / total +0.26% (large state; the 2024 NY merge did not fix 2020); PA 2020 total +0.14% (candidates pass); ME 2020 Biden -1.06%, Trump -0.23%; total-vote shortfalls 2024 (others missing, so third-party % is wrong): WY -1.00, ND -0.84, VT -0.82, MD -0.75, IL -0.73, WA -0.65, MA -0.58, RI -0.53, NE -0.53, NH -0.49, VA -0.46 (VA Harris +0.07 pass), AK 2020 -0.55, NH 2020 -0.22.
   - **Pass:** every other state/year (all candidate gaps < 0.1%). Severity: MED (wrong totals vs certified); fix = use certified state totals including others.
+- **Chromium smoke, 5 sizes (390x844, 375x667, 320, 1024x576, 1024x768), build 1613:** console, page errors, failed requests all empty; CLS 0; no overlaps, clipping or off-screen controls. Over 100 ms: All States row 116-127 ms (QA-007 still open, all sizes except 320); US House deselect 124 ms at 1024x576. Data qa/b1612p33-flow-chromium-.json (filename prefix stale, run 11:23-11:31 AM on 1613).
 
 ## Re-test status, build 1612 (pass 33 rush, Oct 19 ~10:40-11:05 AM EDT; live line 9 moved to 202610181613 at 11:02 AM)
 - Build **1612** (`7beb223`), every run read `window.BUILD` = 202610181612. Chromium 390x844 touch; WebKit 390x844 for QA-103.
