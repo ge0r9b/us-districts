@@ -2543,7 +2543,7 @@ const _yo=yrsOn; yrsOn=function(){ if(window.__y16&&!window.__y16hi) return ["20
   w.addEventListener("pointermove",e=>{ if(!P.has(e.pointerId)||!g) return; P.set(e.pointerId,e.clientX);
     if(g.two){ const v=[...P.values()]; if(v.length>=2){ A=near(v[0]); B=near(v[1]); paint(); } return; }
     if(!g.moved&&Math.abs(e.clientX-g.x0)<6) return; g.moved=true; w.classList.add("drag"); const i=near(e.clientX);
-    if(g.end==="A") A=i; else if(g.end==="B") B=i; else if(g.mouse&&g.anchor!=null){ A=g.anchor; B=i; } else { A=B=i; } paint(); });
+    if(g.end==="A") A=i; else if(g.end==="B") B=i; else { A=B=i; } /* build 1617 (ruling): a mouse drag moves the single knob like a touch drag; a range is made only the touch way */ paint(); });
   const up=e=>{ if(!P.has(e.pointerId)) return; P.delete(e.pointerId); if(!g) return; if(g.two&&P.size) return; w.classList.remove("drag");
     if(!g.moved){ A=B=near(e.clientX); } g=null; P.clear(); commit(); };
   w.addEventListener("pointerup",up); w.addEventListener("pointercancel",up);
