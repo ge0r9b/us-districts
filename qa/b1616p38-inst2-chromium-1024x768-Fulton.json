@@ -1,0 +1,50 @@
+{
+ "build": "202610181616",
+ "Fulton": {
+  "icon": [
+   "img/flags/US.png?v=202610181616",
+   "img/flags/US.png?v=202610181616"
+  ],
+  "rows": [
+   "COUNTIES",
+   "Fulton County, GA",
+   "Fulton County, NY",
+   "Fulton County, OH",
+   "Fulton County, IL",
+   "Fulton County, IN",
+   "Fulton County, PA",
+   "Fulton County, AR",
+   "Fulton County, KY"
+  ],
+  "rowxy": [
+   512,
+   158.390625
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "crumbs_open": "Fulton County",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Fulton County",
+    "gq": "Cobb County, GA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "mp": [
+    10,
+    33.845,
+    -84.474
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[33.845,-84.4745,10]}",
+   "rows": []
+  },
+  "err": []
+ }
+}

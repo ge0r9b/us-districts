@@ -1,0 +1,26 @@
+chart Georgia 24-pie-pct {"lat": 39.2, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 50.7% / ", "Kamala Harris \u00b7 48.5% / "], "ysl": [2, 2]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 24-pie-num {"lat": null, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 2.66M / ", "Kamala Harris \u00b7 2.55M / "], "ysl": [2, 2]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 20-bar-pct {"lat": 19.2, "mode": "bar", "ch": "", "th": ["Joe Biden 2020 / ", "Donald Trump 2020 / "], "ysl": [1, 1]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 20-bar-num {"lat": null, "mode": "bar", "ch": "", "th": ["Joe Biden 2020 / ", "Donald Trump 2020 / "], "ysl": [1, 1]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 16-pie-pct {"lat": 30.8, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 50.8% / ", "Hillary Clinton \u00b7 45.6% / "], "ysl": [0, 0]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 16-pie-num {"lat": null, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 2.09M / ", "Hillary Clinton \u00b7 1.88M / "], "ysl": [0, 0]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 16-24-bar-pct {"lat": null, "mode": null, "ch": "D+20 | R+20", "th": ["Donald Trump 2016 / 51%", "Hillary Clinton 2016 / 46%", "Donald Trump 2024 / 51%", "Kamala Harris 2024 / 49%"], "ysl": [0, 2]} {'over': ['51% x line chart'], 'clip': [], 'off': []}
+chart Georgia 16-24-bar-num {"lat": null, "mode": null, "ch": "D+20 | R+20", "th": ["Donald Trump 2016 / 2.1M", "Hillary Clinton 2016 / 1.9M", "Donald Trump 2024 / 2.7M", "Kamala Harris 2024 / 2.5M"], "ysl": [0, 2]} {'over': ['2.7M x line chart'], 'clip': [], 'off': []}
+chart Georgia 20-24-line-pct {"lat": 15.8, "mode": "line", "ch": "", "th": [], "ysl": [1, 2]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 20-24-line-num {"lat": null, "mode": "line", "ch": "", "th": [], "ysl": [1, 2]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 16-20-bar-pct {"lat": 19.6, "mode": "bar", "ch": "", "th": [], "ysl": [0, 1]} {'over': [], 'clip': [], 'off': []}
+chart Georgia 16-20-bar-num {"lat": null, "mode": "bar", "ch": "", "th": [], "ysl": [0, 1]} {'over': [], 'clip': [], 'off': []}
+chart Georgia list [] [] tot {'2016': [1877963, 2089104, 4114732], '2020': [2473633, 2461854, 4999960], '2024': [2548017, 2663117, 5250905]}
+chart North Carolina 24-pie-pct {"lat": 17.9, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 50.9% / ", "Kamala Harris \u00b7 47.6% / "], "ysl": [2, 2]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 24-pie-num {"lat": null, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 2.90M / ", "Kamala Harris \u00b7 2.72M / "], "ysl": [2, 2]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 20-bar-pct {"lat": 18.8, "mode": "bar", "ch": "", "th": ["Donald Trump 2020 / ", "Joe Biden 2020 / "], "ysl": [1, 1]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 20-bar-num {"lat": null, "mode": "bar", "ch": "", "th": ["Donald Trump 2020 / ", "Joe Biden 2020 / "], "ysl": [1, 1]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 16-pie-pct {"lat": 24.3, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 49.8% / ", "Hillary Clinton \u00b7 46.2% / "], "ysl": [0, 0]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 16-pie-num {"lat": null, "mode": "pie", "ch": "", "th": ["Donald Trump \u00b7 2.36M / ", "Hillary Clinton \u00b7 2.19M / "], "ysl": [0, 0]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 16-24-bar-pct {"lat": null, "mode": null, "ch": "D+20 | R+20", "th": ["Donald Trump 2016 / 50%", "Hillary Clinton 2016 / 46%", "Donald Trump 2024 / 51%", "Kamala Harris 2024 / 48%"], "ysl": [0, 2]} {'over': ['51% x line chart'], 'clip': [], 'off': []}
+chart North Carolina 16-24-bar-num {"lat": null, "mode": null, "ch": "D+20 | R+20", "th": ["Donald Trump 2016 / 2.4M", "Hillary Clinton 2016 / 2.2M", "Donald Trump 2024 / 2.9M", "Kamala Harris 2024 / 2.7M"], "ysl": [0, 2]} {'over': ['2.9M x line chart'], 'clip': [], 'off': []}
+chart North Carolina 20-24-line-pct {"lat": 27.8, "mode": "line", "ch": "", "th": [], "ysl": [1, 2]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 20-24-line-num {"lat": null, "mode": "line", "ch": "", "th": [], "ysl": [1, 2]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 16-20-bar-pct {"lat": 17.7, "mode": "bar", "ch": "", "th": [], "ysl": [0, 1]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina 16-20-bar-num {"lat": null, "mode": "bar", "ch": "", "th": [], "ysl": [0, 1]} {'over': [], 'clip': [], 'off': []}
+chart North Carolina list [] [] tot {'2016': [2189316, 2362631, 4741564], '2020': [2684292, 2758775, 5524804], '2024': [2715375, 2898423, 5699141]}

@@ -1,0 +1,496 @@
+{
+ "parts": [
+  "inst"
+ ],
+ "inst": {
+  "inputs0": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "sheet0": [
+   "All States",
+   "US House districts",
+   "S State senate districts",
+   "H State house districts",
+   "School districts",
+   "Alabama \u203a",
+   "Alaska \u203a",
+   "Arizona \u203a",
+   "Arkansas \u203a",
+   "California \u203a"
+  ],
+  "US House districts": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "US House districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "ch": "D+90 | R+90",
+   "rows": [],
+   "n": 0,
+   "mp": [
+    4,
+    39.775,
+    -98.613
+   ],
+   "layout": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat": 96.2,
+   "num": [
+    15.8,
+    "num"
+   ],
+   "th_num": [
+    "Donald Trump 2024 / 77.3M",
+    "Kamala Harris 2024 / 75.0M"
+   ],
+   "hdr_num": {
+    "title": "President",
+    "crumbs": "US House districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "num",
+    "list": false,
+    "sort": null
+   },
+   "rows_num": []
+  },
+  "State senate districts": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "S\nState senate districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "ch": "D+90 | R+90",
+   "rows": [],
+   "n": 0,
+   "mp": [
+    4,
+    39.775,
+    -98.613
+   ],
+   "layout": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat": 100,
+   "num": [
+    33.5,
+    "num"
+   ],
+   "th_num": [
+    "Donald Trump 2024 / 77.3M",
+    "Kamala Harris 2024 / 75.0M"
+   ],
+   "hdr_num": {
+    "title": "President",
+    "crumbs": "S\nState senate districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "num",
+    "list": false,
+    "sort": null
+   },
+   "rows_num": []
+  },
+  "State house districts": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "H\nState house districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "ch": "D+90 | R+90",
+   "rows": [],
+   "n": 0,
+   "mp": [
+    4,
+    39.775,
+    -98.613
+   ],
+   "layout": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat": 101.7,
+   "num": [
+    42.1,
+    "num"
+   ],
+   "th_num": [
+    "Donald Trump 2024 / 77.3M",
+    "Kamala Harris 2024 / 75.0M"
+   ],
+   "hdr_num": {
+    "title": "President",
+    "crumbs": "H\nState house districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "num",
+    "list": false,
+    "sort": null
+   },
+   "rows_num": []
+  },
+  "School districts": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "School districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "ch": "D+90 | R+90",
+   "rows": [],
+   "n": 0,
+   "mp": [
+    4,
+    39.775,
+    -98.613
+   ],
+   "layout": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat": 153.7,
+   "num": [
+    23.9,
+    "num"
+   ],
+   "th_num": [
+    "Donald Trump 2024 / 77.3M",
+    "Kamala Harris 2024 / 75.0M"
+   ],
+   "hdr_num": {
+    "title": "President",
+    "crumbs": "School districts",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "num",
+    "list": false,
+    "sort": null
+   },
+   "rows_num": []
+  },
+  "q:Georgia": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "Georgia \u203a",
+    "COUNTIES",
+    "Fulton County, GA",
+    "Gwinnett County, GA",
+    "Cobb County, GA",
+    "DeKalb County, GA",
+    "Cherokee County, GA",
+    "Chatham County, GA",
+    "Forsyth County, GA",
+    "Henry County, GA"
+   ],
+   "after": {
+    "hdr": {
+     "title": "President",
+     "crumbs": "United States",
+     "gq": "Wilkinson County, GA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [],
+    "ch": "D+900R+90",
+    "rows": [],
+    "n": 0,
+    "mp": [
+     6,
+     32.709,
+     -83.194
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "tot": [
+    2548017,
+    2663117,
+    5250905
+   ],
+   "num": [
+    null,
+    "num"
+   ],
+   "th_num": [],
+   "err": []
+  },
+  "q:Fulton": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "COUNTIES",
+    "Fulton County, GA",
+    "Fulton County, NY",
+    "Fulton County, OH",
+    "Fulton County, IL",
+    "Fulton County, IN",
+    "Fulton County, PA",
+    "Fulton County, AR",
+    "Fulton County, KY"
+   ],
+   "err": []
+  },
+  "q:Mecklenburg": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "COUNTIES",
+    "Mecklenburg County, NC",
+    "Mecklenburg County, VA"
+   ],
+   "after": {
+    "hdr": {
+     "title": "President",
+     "crumbs": "Mecklenburg County",
+     "gq": "Mecklenburg County, NC",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 66%",
+     "Donald Trump 2024 / 33%"
+    ],
+    "ch": "D+90 | R+90",
+    "rows": [],
+    "n": 0,
+    "mp": [
+     9,
+     35.259,
+     -80.804
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "tot": null,
+   "num": [
+    41.9,
+    "num"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 376k",
+    "Donald Trump 2024 / 188k"
+   ],
+   "err": []
+  },
+  "q:Franklin County, OH": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "COUNTIES",
+    "Franklin County, OH"
+   ],
+   "after": {
+    "hdr": {
+     "title": "President",
+     "crumbs": "Franklin County",
+     "gq": "Franklin County, OH",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 64%",
+     "Donald Trump 2024 / 35%"
+    ],
+    "ch": "D+90 | R+90",
+    "rows": [],
+    "n": 0,
+    "mp": [
+     9,
+     39.969,
+     -83.011
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "tot": null,
+   "num": [
+    17.2,
+    "num"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 381k",
+    "Donald Trump 2024 / 211k"
+   ],
+   "err": []
+  },
+  "q:Wayne": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "COUNTIES",
+    "Wayne County, MI",
+    "Wayne County, NC",
+    "Wayne County, OH",
+    "Wayne County, NY",
+    "Wayne County, PA",
+    "Wayne County, IN",
+    "Wayne County, WV",
+    "Wayne County, GA",
+    "Wayne County, MS"
+   ],
+   "err": []
+  },
+  "q:ohio": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "Ohio \u203a",
+    "COUNTIES",
+    "Ohio County, WV",
+    "Ohio County, KY",
+    "Ohio County, IN",
+    "Franklin County, OH",
+    "Cuyahoga County, OH",
+    "Hamilton County, OH",
+    "Summit County, OH",
+    "Montgomery County, OH"
+   ],
+   "after": {
+    "hdr": {
+     "title": "President",
+     "crumbs": "United States",
+     "gq": "Morrow County, OH",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [],
+    "ch": "D+900R+90Sources \u24d8",
+    "rows": [],
+    "n": 0,
+    "mp": [
+     6,
+     40.394,
+     -82.67
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "tot": [
+    2533699,
+    3180116,
+    5767788
+   ],
+   "num": [
+    null,
+    "num"
+   ],
+   "th_num": [],
+   "err": []
+  },
+  "q:zzqx": {
+   "inputs": [
+    [
+     "",
+     "",
+     167,
+     81
+    ]
+   ],
+   "rows": [
+    "No institutions match"
+   ],
+   "err": []
+  }
+ },
+ "build": "202610181616"
+}

@@ -1,0 +1,53 @@
+{
+ "zip19103": {
+  "q": "19103",
+  "sugg": [
+   "ZIP 19103, PAZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "19103",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    39.9534,
+    -75.1742
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.9534,-75.1742,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Philadelphia, PA 19103",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    39.9534,
+    -75.1742
+   ]
+  ],
+  "err": []
+ },
+ "build": "202610181616"
+}

@@ -1,0 +1,277 @@
+{
+ "GA-map": {
+  "addr": "55 Trinity Ave SW, Atlanta, GA 30303",
+  "sugg": [
+   "55 TRINITY AVE SW, ATLANTA, GA,\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Fulton Precinct 04I",
+    "gq": "55 TRINITY AVE SW, ATLANTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 11%"
+   ],
+   [
+    "Fulton Precinct 04I | Harris 87.2% | Trump 11.0%"
+   ],
+   [
+    14,
+    33.7555,
+    -84.3944
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Fulton Precinct 04I",
+    "gq": "55 TRINITY AVE SW, ATLANTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 11%"
+   ],
+   [
+    "Fulton Precinct 04I | Harris 87.2% | Trump 11.0%"
+   ],
+   [
+    14,
+    33.7555,
+    -84.3944
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}"
+  ],
+  "err": []
+ },
+ "build": "202610181616",
+ "GA-list": {
+  "addr": "55 Trinity Ave SW, Atlanta, GA 30303",
+  "sugg": [
+   "55 TRINITY AVE SW, ATLANTA, GA,\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Fulton Precinct 04I",
+    "gq": "55 TRINITY AVE SW, ATLANTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 11%"
+   ],
+   [],
+   [
+    14,
+    33.7555,
+    -84.3944
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}"
+  ],
+  "rows": [
+   "Fulton | 27.0% | 71.9%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Fulton Precinct 04I",
+    "gq": "55 TRINITY AVE SW, ATLANTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 11%"
+   ],
+   [
+    "Fulton Precinct 04I | Harris 87.2% | Trump 11.0%"
+   ],
+   [
+    14,
+    33.7555,
+    -84.3944
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Fulton Precinct 04I",
+    "gq": "55 TRINITY AVE SW, ATLANTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 11%"
+   ],
+   [
+    "Fulton Precinct 04I | Harris 87.2% | Trump 11.0%"
+   ],
+   [
+    14,
+    33.7555,
+    -84.3944
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"p\":\"04I\",\"ph\":\"55 TRINITY AVE SW, ATLANTA\",\"ttl\":\"55 TRINITY AVE SW, ATLANTA, GA, 30303\",\"pin\":[33.747923442489,-84.390279998653]},\"ll\":[33.7555,-84.3944,14]}"
+  ],
+  "err": []
+ },
+ "NC-map": {
+  "addr": "600 E 4th St, Charlotte, NC 28202",
+  "sugg": [
+   "600 E 4TH ST, CHARLOTTE, NC, 28\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "err": []
+ },
+ "NC-list": {
+  "addr": "600 E 4th St, Charlotte, NC 28202",
+  "sugg": [
+   "600 E 4TH ST, CHARLOTTE, NC, 28\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "rows": [
+   "Mecklenburg | 32.7% | 65.6%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "err": []
+ }
+}
