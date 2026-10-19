@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181597";</script>
+<script>window.BUILD="202610181597"; window.PREVIEW="compact";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -4254,5 +4254,30 @@ html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):not(.on):not(.t
 #laSort::before, #bBack::before { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: rgba(255,255,255,.10) !important; }
 .v2bar { background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 </style>
+<style id="compactCss">
+/* PREVIEW preview/compact-bars (user): while panning, or after a tap on the map, the Topic and Institution bars collapse to their
+   icons (seal, flag) in the left column, on the thumbnails' axis; a tap on an icon expands its bar. The Institution filter button is
+   dark while its bar is expanded and light when collapsed. Positions never move: only the strip and its text fade out. */
+#barSearch, #barGeo { transition: background-color .18s, border-color .18s, box-shadow .18s; }
+#vtitle, #crumbs > :not(.cic) { transition: opacity .18s; }
+body.cmpT #barSearch, body.cmpG #barGeo { background: transparent !important; border-color: transparent !important; box-shadow: none !important; pointer-events: none; }
+body.cmpT #barSearch > #bSearch, body.cmpG #barGeo > #bGeo { pointer-events: auto; }
+body.cmpT #vtitle { color: transparent !important; pointer-events: auto; max-width: 44px; overflow: hidden; cursor: pointer; }
+body.cmpG #crumbs > :not(.cic) { opacity: 0; pointer-events: none; }
+body.cmpG #crumbs { pointer-events: none; } body.cmpG #crumbs .cic { pointer-events: auto; cursor: pointer; }
+</style>
+<script>/* PREVIEW compact bars */
+(function(){ const B=document.body.classList, $=id=>document.getElementById(id);
+  const geoBtn=()=>{ const g=$("bGeo"); if(g) g.classList.toggle("typed",!B.contains("cmpG")); };
+  const collapse=()=>{ if(B.contains("listmode")||B.contains("foldfs")||B.contains("srchfs")||B.contains("geofs")) return; B.add("cmpT","cmpG"); geoBtn(); };
+  const expand=k=>{ B.remove(k); geoBtn(); };
+  let g0=0; const wait=()=>{ if(typeof map==="undefined"||!map||!map.on){ return setTimeout(wait,300); }
+    const c=map.getContainer(); ["pointerdown","touchstart","wheel"].forEach(t=>c.addEventListener(t,()=>{ g0=Date.now(); },{passive:true,capture:true}));
+    map.on("movestart zoomstart",()=>{ if(Date.now()-g0<1500) collapse(); }); map.on("click",collapse); };
+  wait(); geoBtn();
+  document.addEventListener("click",e=>{ const t=e.target; if(!t||!t.closest) return; if(B.contains("cmpT")&&t.closest("#vtitle")){ e.preventDefault(); e.stopPropagation(); expand("cmpT"); } else if(B.contains("cmpG")&&t.closest("#crumbs .cic")){ e.preventDefault(); e.stopPropagation(); expand("cmpG"); } },true);
+  new MutationObserver(()=>{ if(B.contains("listmode")&&(B.contains("cmpT")||B.contains("cmpG"))){ B.remove("cmpT","cmpG"); geoBtn(); } }).observe(document.body,{attributes:true,attributeFilter:["class"]});
+  window.__compact={collapse,expand:()=>{ B.remove("cmpT","cmpG"); geoBtn(); }};
+})();</script>
 </body>
 </html>
