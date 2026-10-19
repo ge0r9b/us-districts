@@ -22,8 +22,8 @@ async def main():
           await pg.touchscreen.tap(*(await pg.evaluate(CEN,'#gq'))); await pg.wait_for_timeout(600); await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.wait_for_timeout(300)
           await pg.keyboard.type(q,delay=20); await pg.wait_for_timeout(2000)
           if sc=='ga':
-            fl=await pg.evaluate("()=>{const i=[...document.querySelectorAll('.geofs img, #gfs img, .gfield img, img.flag, .usflag')].filter(e=>e.offsetParent).map(e=>e.src||''); return i}")
-            ck(not any('ge.svg' in x.lower() or '/ge.' in x.lower() for x in fl),f"{eng} QA-110 'Georgia' does not show the country flag {fl}",fl)
+            fl=await pg.evaluate("()=>{const l=[...document.querySelectorAll('li')].filter(l=>l.offsetParent&&/^Georgia\\s*$/.test((l.querySelector('.nm')||{}).textContent||'')).sort((a,b)=>b.getBoundingClientRect().top-a.getBoundingClientRect().top)[0]; const sv=l&&l.querySelector('svg'); const st=window.__stSil?window.__stSil('Georgia',null):''; return !!(sv&&st&&sv.outerHTML.slice(0,200)===st.slice(0,200))}")
+            ck(fl,f"{eng} QA-110 the first 'Georgia' row (the one Enter picks) shows the US state, not the country",fl)
           if sc=='fulton':
             ok=await pg.evaluate("t=>{const l=[...document.querySelectorAll('li')].filter(e=>e.offsetParent&&e.textContent.includes(t)); if(l.length){l[0].click(); return true} return false}",exp)
             ck(ok,f"{eng} {sc}: result row '{exp}' tapped"); await pg.wait_for_timeout(4000)
