@@ -4262,7 +4262,7 @@ html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):not(.on):not(.t
 #vtitle, #crumbs > :not(.cic) { transition: opacity .18s; }
 body.cmpT #barSearch, body.cmpG #barGeo { background: transparent !important; border-color: transparent !important; box-shadow: none !important; pointer-events: none; }
 body.cmpT #barSearch > #bSearch, body.cmpG #barGeo > #bGeo { pointer-events: auto; }
-body.cmpT #vtitle { color: transparent !important; pointer-events: auto; max-width: 44px; overflow: hidden; cursor: pointer; }
+body.cmpT #vtitle { color: transparent !important; pointer-events: none; } /* width unchanged so the search button never moves; the seal is hit-tested by position */
 body.cmpG #crumbs > :not(.cic) { opacity: 0; pointer-events: none; }
 body.cmpG #crumbs { pointer-events: none; } body.cmpG #crumbs .cic { pointer-events: auto; cursor: pointer; }
 </style>
@@ -4275,7 +4275,7 @@ body.cmpG #crumbs { pointer-events: none; } body.cmpG #crumbs .cic { pointer-eve
     const c=map.getContainer(); ["pointerdown","touchstart","wheel"].forEach(t=>c.addEventListener(t,()=>{ g0=Date.now(); },{passive:true,capture:true}));
     map.on("movestart zoomstart",()=>{ if(Date.now()-g0<1500) collapse(); }); map.on("click",collapse); };
   wait(); geoBtn();
-  document.addEventListener("click",e=>{ const t=e.target; if(!t||!t.closest) return; if(B.contains("cmpT")&&t.closest("#vtitle")){ e.preventDefault(); e.stopPropagation(); expand("cmpT"); } else if(B.contains("cmpG")&&t.closest("#crumbs .cic")){ e.preventDefault(); e.stopPropagation(); expand("cmpG"); } },true);
+  document.addEventListener("click",e=>{ const t=e.target; if(!t||!t.closest) return; const vt=$("vtitle"), vr=vt&&vt.getBoundingClientRect(); if(B.contains("cmpT")&&vr&&e.clientY>=vr.top&&e.clientY<=vr.bottom&&e.clientX>=vr.left-4&&e.clientX<=vr.left+48){ e.preventDefault(); e.stopPropagation(); expand("cmpT"); } else if(B.contains("cmpG")&&t.closest("#crumbs .cic")){ e.preventDefault(); e.stopPropagation(); expand("cmpG"); } },true);
   new MutationObserver(()=>{ if(B.contains("listmode")&&(B.contains("cmpT")||B.contains("cmpG"))){ B.remove("cmpT","cmpG"); geoBtn(); } }).observe(document.body,{attributes:true,attributeFilter:["class"]});
   window.__compact={collapse,expand:()=>{ B.remove("cmpT","cmpG"); geoBtn(); }};
 })();</script>
