@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181599";</script>
+<script>window.BUILD="202610181500";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2693,7 +2693,7 @@ window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
   { let bub=null, bt=0; const hide=()=>{ if(bub){ bub.remove(); bub=null; } clearTimeout(bt); };
     const tgt=e=>{ const t=e.target; if(!t||!t.closest) return null; const el=t.closest(".cpanel .sechip")||((document.body.classList.contains("chv")||!!candBox.querySelector(".dmx,.cpanel,.dlx"))?t.closest("#cands .cand, #cands img.dmt, #cands .dmoc, #cands .dmx img"):null); return el; }; /* build 1600 (QA-086): also a range chart drawn with the time row closed (no body.chv): same white bubble */
     let pd=null, shown=0; const show=el=>{ hide(); shown=Date.now();
-      let nm=el.dataset.nm||el.dataset.pt||el.getAttribute("aria-label")||el.title||""; nm=nm.split(" \u00b7 ")[0]; if(ym()!=="delta"&&!window.__y16hi) nm=nm.replace(/\s+\d{4}$/,"");
+      let nm=el.dataset.nm||el.dataset.pt||el.dataset.party||el.getAttribute("aria-label")||el.title||""; /* build 1600 (QA-086): range rows drawn with the time row closed keep the name in data-party */ nm=nm.split(" \u00b7 ")[0]; if(ym()!=="delta"&&!window.__y16hi) nm=nm.replace(/\s+\d{4}$/,"");
       if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub);
       /* build 1597 (QA-076): placed from the photo itself (a chart-view .cand button is the whole 300 px row, so the bubble landed over the photo on phones and mid-bar on iPad), on the photo's row at the nearest spot that covers no value label ('49.9%', '+3.1') and no other photo: right of the photo, left of it, or just past a label */
       const a=(el.matches&&el.matches(".cand")&&el.querySelector("img"))||el, r=a.getBoundingClientRect();
