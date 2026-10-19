@@ -1,0 +1,49 @@
+{
+ "build": "202610181615",
+ "globals": "__cls __shifts __quiet __quietLeft __updCheck __updSeen __geo __prec __VY __ymRaw __OFF __ymode __crumbs __fillTop __aggWarm __aggDbg __v2 __x20 __match16 __precY __precDelta __lyrSync __lvOnly __candOn __candsOn __CANDS __syncYears __hier __allPick __orgGlobal __placeCols __parts __townsIn __loadParts __townAudit __clockKeep __usIndex __lineSvg __topicOn __setTopic __uscty __chartSync __chartFix __ymCheck __ySelectAll __ySet16 __ySetYr __ysl __numMode __dmSync __dlSync __iconBubHide __iconPin __mapFlush __mapPendView __uscd __cdFill __lyrClose __typeBub __typeLabels __STget __usst __stTot __vspan __map __stSolid __fillOf __heatC __userGesture __stSil __provSil __ctrySil __usSil __PTS __points __loadPts __geoRowIcon __isEst __audit __dbg __setNum __usdist __DS __GEOM __pii __bbo __pip __schCty __geoSubmit __geoOpen __geoClose __geoUSFirst __goAddr __addrPin __restoreSel __goDC __dcMapSel __applySel __dcLm __lookupAddr __addrLike __normA __addrFirst __orgTypes __orgTypesUpd __SA __stateQ __ctxEditStart __glyphCy __navCommit __filterBack __backDepth __backVisible __bbSync __worldEnter __worldExit __W __worldFind __lod __LA __distInCounty __dtier __dsRow __scopeValsDbg __rawSV __vyApply __estRow __dTot __clampLabels __nounSync __nameBub __laSkel __laThumbs __PHOTO __laExit __laEnter __laSoft __laSort __laInfo __laChildren __laPick __realRow __laEnsureRow __stateSnapshot __stateEncode __stateDecode __stateSaveNow __stateApply __stateRestoring __districtTypes __applyDistrictCtx __laLab __layoutSide __sil __W_prov __orgCountry __NAMES __entities __orgSearch __orgSearchRows __boundShown __heatCount __laterRuns __later __idleLater __mapLaterOn __ds2016 __inject16 __load16 __need16 __loadPrec16 __has16 __ok16 __ak __hsK __autoP",
+ "lyr": [
+  "ushouse:",
+  "senate:S",
+  "statehouse:H",
+  "schools:"
+ ],
+ "geo": [
+  "lvrow flat oti la-row|All States",
+  "lvrow flat oti|US House districts",
+  "lvrow flat oti|S State senate districts",
+  "lvrow flat oti|H State house districts",
+  "lvrow flat oti|School districts",
+  "|Alabama \u203a",
+  "|Alaska \u203a",
+  "|Arizona \u203a",
+  "|Arkansas \u203a",
+  "|California \u203a",
+  "|Colorado \u203a",
+  "|Connecticut \u203a",
+  "|Delaware \u203a",
+  "|Florida \u203a",
+  "|Georgia \u203a",
+  "|Hawaii \u203a",
+  "|Idaho \u203a",
+  "|Illinois \u203a",
+  "|Indiana \u203a",
+  "|Iowa \u203a",
+  "|Kansas \u203a",
+  "|Kentucky \u203a",
+  "|Louisiana \u203a",
+  "|Maine \u203a",
+  "|Maryland \u203a",
+  "|Massachusetts \u203a",
+  "|Michigan \u203a",
+  "|Minnesota \u203a",
+  "|Mississippi \u203a",
+  "|Missouri \u203a"
+ ],
+ "buttons": [
+  "crumb glob usc tbPar:All countries",
+  "bSearch:Search",
+  "bGeo:Geography filter"
+ ],
+ "sortsrc": "<button id=\"laSort\" type=\"button\" aria-label=\"Sort\"><svg viewBox=\"0 0 29 24\" width=\"21.75\" height=\"18\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 5.2v13.6M3.5 15.3L7 18.8l3.5-3.5M22 18.8V5.2M18.5 8.7L22 5.2l3.5 3.5\"></path></svg></button>",
+ "chart": []
+}

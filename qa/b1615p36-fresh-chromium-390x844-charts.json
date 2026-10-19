@@ -1,0 +1,247 @@
+{
+ "parts": [
+  "charts"
+ ],
+ "build": "202610181615",
+ "charts": {
+  "Colorado": {
+   "tot": {
+    "2016": [
+     1338870,
+     1202484,
+     2780247
+    ],
+    "2020": [
+     1804352,
+     1364607,
+     3256980
+    ],
+    "2024": [
+     1728159,
+     1377441,
+     3192745
+    ]
+   },
+   "num-24-pie": {
+    "lat": 21.6,
+    "mode": "pie",
+    "txt": "",
+    "th": [
+     "Kamala Harris \u00b7 1.73M / ",
+     "Donald Trump \u00b7 1.38M / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-16-bar": {
+    "lat": 18.8,
+    "mode": "bar",
+    "txt": "",
+    "th": [
+     "Hillary Clinton 2016 / ",
+     "Donald Trump 2016 / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-20-24-line": {
+    "lat": 34.3,
+    "mode": "line",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-16-24-bar": {
+    "lat": 11.2,
+    "mode": "bar",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-24-pie": {
+    "lat": 20.2,
+    "mode": "pie",
+    "txt": "",
+    "th": [
+     "Kamala Harris \u00b7 1.73M / ",
+     "Donald Trump \u00b7 1.38M / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-16-bar": {
+    "lat": 23.9,
+    "mode": "bar",
+    "txt": "",
+    "th": [
+     "Hillary Clinton 2016 / ",
+     "Donald Trump 2016 / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-20-24-line": {
+    "lat": 11.2,
+    "mode": "line",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-16-24-bar": {
+    "lat": 10,
+    "mode": "bar",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   }
+  },
+  "Virginia": {
+   "tot": {
+    "2016": [
+     1981473,
+     1769443,
+     3984631
+    ],
+    "2020": [
+     2413568,
+     1962430,
+     4460524
+    ],
+    "2024": [
+     2335395,
+     2075085,
+     4505941
+    ]
+   },
+   "num-24-pie": {
+    "lat": 28,
+    "mode": "pie",
+    "txt": "",
+    "th": [
+     "Kamala Harris \u00b7 2.34M / ",
+     "Donald Trump \u00b7 2.08M / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-16-bar": {
+    "lat": 18,
+    "mode": "bar",
+    "txt": "",
+    "th": [
+     "Hillary Clinton 2016 / ",
+     "Donald Trump 2016 / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-20-24-line": {
+    "lat": 13.6,
+    "mode": "line",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "num-16-24-bar": {
+    "lat": 25.1,
+    "mode": "bar",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-24-pie": {
+    "lat": 11.4,
+    "mode": "pie",
+    "txt": "",
+    "th": [
+     "Kamala Harris \u00b7 2.34M / ",
+     "Donald Trump \u00b7 2.08M / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-16-bar": {
+    "lat": 11,
+    "mode": "bar",
+    "txt": "",
+    "th": [
+     "Hillary Clinton 2016 / ",
+     "Donald Trump 2016 / "
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-20-24-line": {
+    "lat": 34.3,
+    "mode": "line",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   },
+   "pct-16-24-bar": {
+    "lat": 18.4,
+    "mode": "bar",
+    "txt": "",
+    "th": [],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    }
+   }
+  }
+ },
+ "err": []
+}

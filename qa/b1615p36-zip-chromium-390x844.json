@@ -1,0 +1,305 @@
+{
+ "stpaul": {
+  "q": "75 Rev Dr Martin Luther King Jr Blvd, St Paul, MN 55155",
+  "sugg": [
+   "No address match (try adding ci\u2026"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "St. Paul, MN 55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[44.9519,-93.0994,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "St. Paul, MN 55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ]
+  ],
+  "err": []
+ },
+ "build": "202610181615",
+ "zip55155": {
+  "q": "55155",
+  "sugg": [
+   "ZIP 55155, MNZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[44.9519,-93.0994,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "St. Paul, MN 55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ]
+  ],
+  "err": []
+ },
+ "zip90210": {
+  "q": "90210",
+  "sugg": [
+   "ZIP 90210, CAZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "90210",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    34.1005,
+    -118.4146
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[34.1005,-118.4146,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Los Angeles, CA 90210",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    34.1005,
+    -118.4146
+   ]
+  ],
+  "err": []
+ },
+ "fakeduluth": {
+  "q": "1 Nonexistent Rd, Duluth, MN 55802",
+  "sugg": [
+   "No address match (try adding ci\u2026"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Duluth, MN 55802",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    46.7642,
+    -92.0824
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[46.7642,-92.0824,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Duluth, MN 55802",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    46.7642,
+    -92.0824
+   ]
+  ],
+  "err": []
+ },
+ "mpls": {
+  "q": "600 Nicollet Mall, Minneapolis, MN 55402",
+  "sugg": [
+   "600 NICOLLET AVE, MINNEAPOLIS, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Minneapolis W-7 P-6",
+    "gq": "600 NICOLLET AVE, MINNEAPOLIS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 79%",
+    "Donald Trump 2024 / 17%"
+   ],
+   [
+    "Minneapolis W-7 P-6, Hennepin Co | Harris 79.3% | Trump 17.0%"
+   ],
+   [
+    14,
+    44.9784,
+    -93.2723
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Minnesota\",\"co\":\"Hennepin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Minnesota\",\"co\":\"Hennepin County\",\"p\":\"Minneapolis W-7 P-6\",\"ph\":\"600 NICOLLET AVE, MINNEAPOLIS\",\"ttl\":\"600 NICOLLET AVE, MINNEAPOLIS, MN, 55402\",\"pin\":[44.977827079029,-93.271549701611]},\"ll\":[44.9784,-93.2723,14]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Minneapolis W-7 P-6",
+    "gq": "600 NICOLLET AVE, MINNEAPOLIS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 79%",
+    "Donald Trump 2024 / 17%"
+   ],
+   [
+    14,
+    44.9784,
+    -93.2723
+   ]
+  ],
+  "err": []
+ },
+ "zip30334": {
+  "q": "30334",
+  "sugg": [
+   "ZIP 30334, GAZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "30334",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    33.7487,
+    -84.3879
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[33.7487,-84.3879,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Atlanta, GA 30334",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    33.7487,
+    -84.3879
+   ]
+  ],
+  "err": []
+ }
+}

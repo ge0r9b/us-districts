@@ -1,0 +1,61 @@
+{
+ "chromium-mouse": {
+  "ysl": [
+   0,
+   2
+  ],
+  "th": [
+   "Donald Trump 2016 48%",
+   "Hillary Clinton 2016 47%",
+   "Donald Trump 2024 50%",
+   "Kamala Harris 2024 48%"
+  ],
+  "err": []
+ },
+ "chromium-cdptouch": {
+  "ysl": [
+   0,
+   0
+  ],
+  "th": [
+   "Donald Trump 2016 48%",
+   "Hillary Clinton 2016 47%"
+  ],
+  "err": []
+ },
+ "chromium-ptouch": {
+  "ysl": [
+   0,
+   0
+  ],
+  "th": [
+   "Donald Trump 2016 48%",
+   "Hillary Clinton 2016 47%"
+  ],
+  "err": []
+ },
+ "webkit-mouse": {
+  "ysl": [
+   0,
+   2
+  ],
+  "th": [
+   "Donald Trump 2016 48%",
+   "Hillary Clinton 2016 47%",
+   "Donald Trump 2024 50%",
+   "Kamala Harris 2024 48%"
+  ],
+  "err": []
+ },
+ "webkit-ptouch": {
+  "ysl": [
+   0,
+   0
+  ],
+  "th": [
+   "Donald Trump 2016 48%",
+   "Hillary Clinton 2016 47%"
+  ],
+  "err": []
+ }
+}

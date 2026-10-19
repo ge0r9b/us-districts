@@ -1,0 +1,103 @@
+{
+ "stpaul": {
+  "q": "75 Rev Dr Martin Luther King Jr Blvd, St Paul, MN 55155",
+  "sugg": [
+   "No address match (try adding ci\u2026"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "St. Paul, MN 55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[44.9519,-93.0994,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "St. Paul, MN 55155",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    44.9519,
+    -93.0994
+   ]
+  ],
+  "err": []
+ },
+ "build": "202610181615",
+ "zip90210": {
+  "q": "90210",
+  "sugg": [
+   "ZIP 90210, CAZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "90210",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    13,
+    34.1005,
+    -118.4146
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[34.1005,-118.4146,13]}",
+   ""
+  ],
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "Los Angeles, CA 90210",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    13,
+    34.1005,
+    -118.4146
+   ]
+  ],
+  "err": []
+ }
+}

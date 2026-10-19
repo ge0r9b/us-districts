@@ -1,0 +1,154 @@
+{
+ "parts": [
+  "drag"
+ ],
+ "build": "202610181615",
+ "drag": {
+  "dom": {
+   "w": "<div id=\"ysl\" role=\"group\" aria-label=\"Year\" tabindex=\"0\" style=\"--ytr: 17px; --ylb: -8px;\"><div class=\"trk\" style=\"left: 19px; right: 19px;\"></div><div class=\"fill\" style=\"left: 933px; width: 0px;\"></div><span class=\"ylb l\" style=\"left: 1px;\">'16</span><span class=\"ylb r\" style=\"right: auto; left: 915px;\">'24</span><div class=\"tk\" data-i=\"0\" style=\"left: 19px;\"><i></i><span>'16</span></div><div class=\"tk\" data-i=\"1\" style=\"left: 476px;\"><i></i><span>'20</span></div><div class=\"tk\" data-i=\"2\" style=\"left: 933px;\"><i></i><span>'24</span></div><div class=\"kn a\" style=\"left: 933px;\"></div><div cl",
+   "N": 3,
+   "kn": [
+    [
+     "kn a",
+     941,
+     138
+    ],
+    [
+     "kn b",
+     0,
+     0
+    ]
+   ]
+  },
+  "24to16": {
+   "from": [
+    2,
+    2
+   ],
+   "to": [
+    0,
+    0
+   ],
+   "knob": [
+    941,
+    138
+   ],
+   "target": [
+    60,
+    143
+   ],
+   "moved": [],
+   "gone": [],
+   "new": [],
+   "seq": [
+    [
+     0,
+     "[2,2]",
+     "50%"
+    ],
+    [
+     166,
+     "[1,1]",
+     "50%"
+    ],
+    [
+     383,
+     "[0,0]",
+     "50%"
+    ],
+    [
+     526,
+     "[0,0]",
+     "48%"
+    ]
+   ],
+   "th": [
+    "Donald Trump 2016 / 48%",
+    "Hillary Clinton 2016 / 47%"
+   ],
+   "ym": "2024"
+  },
+  "16to20": {
+   "from": [
+    0,
+    0
+   ],
+   "to": [
+    1,
+    1
+   ],
+   "knob": [
+    27,
+    138
+   ],
+   "target": [
+    484,
+    143
+   ],
+   "moved": [],
+   "gone": [],
+   "new": [],
+   "seq": [
+    [
+     0,
+     "[0,0]",
+     "48%"
+    ],
+    [
+     280,
+     "[1,1]",
+     "48%"
+    ],
+    [
+     507,
+     "[1,1]",
+     "50%"
+    ]
+   ],
+   "th": [
+    "Joe Biden 2020 / 50%",
+    "Donald Trump 2020 / 49%"
+   ],
+   "ym": "2020"
+  },
+  "20to24": {
+   "from": [
+    1,
+    1
+   ],
+   "to": [
+    2,
+    2
+   ],
+   "knob": [
+    484,
+    138
+   ],
+   "target": [
+    908,
+    143
+   ],
+   "moved": [],
+   "gone": [],
+   "new": [],
+   "seq": [
+    [
+     0,
+     "[1,1]",
+     "50%"
+    ],
+    [
+     267,
+     "[2,2]",
+     "50%"
+    ]
+   ],
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "ym": "2024"
+  }
+ },
+ "err": []
+}

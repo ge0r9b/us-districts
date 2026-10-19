@@ -1,0 +1,2589 @@
+{
+ "Colorado": {
+  "lat": {},
+  "build": "202610181615",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Colorado",
+    "gq": "Colorado",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 43%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    1338870,
+    1202484,
+    2780247
+   ],
+   "2020": [
+    1804352,
+    1364607,
+    3256980
+   ],
+   "2024": [
+    1728159,
+    1377441,
+    3192745
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 43%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 55%",
+    "Donald Trump 2020 / 42%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 43%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 67.8,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Colorado",
+      "gq": "Colorado",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 54%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 19.1,
+    "n": 35,
+    "rows": [
+     "30 | 47.6% | 50.0%",
+     "4 | 57.3% | 40.1%",
+     "23 | 55.2% | 42.1%",
+     "2 | 55.4% | 42.0%",
+     "20 | 40.0% | 57.2%",
+     "16 | 42.2% | 55.1%"
+    ],
+    "order": {
+     "n": 35,
+     "first": [
+      47.6,
+      57.3,
+      55.2,
+      55.4,
+      40.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 21.5,
+    "lat_numpick": 19.4,
+    "num": "num",
+    "rows_num": [
+     "30 | 55K | 57K",
+     "4 | 65K | 45K",
+     "23 | 61K | 47K",
+     "2 | 61K | 46K",
+     "20 | 44K | 63K"
+    ],
+    "order_num": {
+     "n": 35,
+     "first": [
+      55000.0,
+      65000.0,
+      61000.0,
+      61000.0,
+      44000.0
+     ],
+     "not_desc_at": [
+      1,
+      5,
+      6,
+      7,
+      8
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.73M",
+     "Donald Trump 2024 / 1.38M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 90.7,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Colorado",
+      "gq": "Colorado",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 54%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 8.6,
+    "n": 65,
+    "rows": [
+     "65 | 57.2%",
+     "39 | 53.1% | 44.5%",
+     "25 | 43.3% | 54.0%",
+     "49 | 32.1% | 65.1%",
+     "45 | 57.0% | 40.5%",
+     "14 | 53.9% | 43.4%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      57.2,
+      53.1,
+      43.3,
+      32.1,
+      57.0
+     ],
+     "not_desc_at": [
+      4,
+      7,
+      11,
+      12,
+      16
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 26.4,
+    "lat_numpick": 25.3,
+    "num": "num",
+    "rows_num": [
+     "65 | 38K | 26K",
+     "39 | 35K | 29K",
+     "25 | 27K | 34K",
+     "49 | 20K | 40K",
+     "45 | 35K | 25K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      38000.0,
+      35000.0,
+      27000.0,
+      20000.0,
+      35000.0
+     ],
+     "not_desc_at": [
+      4,
+      7,
+      11,
+      12,
+      16
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.73M",
+     "Donald Trump 2024 / 1.38M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Colorado\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[40.38,-105.3369,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Colorado\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[40.3787,-105.3311,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Colorado",
+      "gq": "Colorado",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 65,
+     "rows": [
+      "65 | 57.2%",
+      "39 | 53.1% | 44.5%",
+      "25 | 43.3% | 54.0%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 87.4,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Colorado",
+      "gq": "Colorado",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 54%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 17.2,
+    "n": 178,
+    "rows": [
+     "Denver County 1 | 20.6% | 76.6%",
+     "Jefferson County R-1 | 38.8% | 58.3%",
+     "Douglas County RE-1 | 52.3% | 45.3%",
+     "Cherry Creek 5 | 39.0% | 58.0%",
+     "Boulder Valley RE-2 | 79.2%",
+     "Poudre R-1 | 33.5% | 63.5%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      20.6,
+      38.8,
+      52.3,
+      39.0,
+      79.2
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      4,
+      6,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 35.3,
+    "lat_numpick": 35.3,
+    "num": "num",
+    "rows_num": [
+     "Denver County 1 | 75K | 279K",
+     "Jefferson County R-1 | 141K | 211K",
+     "Douglas County RE-1 | 127K | 110K",
+     "Cherry Creek 5 | 97K",
+     "Boulder Valley RE-2 | 110K"
+    ],
+    "order_num": {
+     "n": 64,
+     "first": [
+      75000.0,
+      141000.0,
+      127000.0,
+      97000.0,
+      110000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      7,
+      8,
+      29
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.73M",
+     "Donald Trump 2024 / 1.38M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 65.9,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Colorado",
+      "gq": "Colorado",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 54%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 16.7,
+    "n": 8,
+    "rows": [
+     "4 | 57.9% | 39.6%",
+     "7 | 41.1% | 56.1%",
+     "2 | 28.7% | 68.5%",
+     "3 | 53.6% | 43.9%",
+     "5 | 53.2% | 44.1%",
+     "1 | 20.6% | 76.6%"
+    ],
+    "order": {
+     "n": 8,
+     "first": [
+      57.9,
+      41.1,
+      28.7,
+      53.6,
+      53.2
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 26.8,
+    "lat_numpick": 15.5,
+    "num": "num",
+    "rows_num": [
+     "4 | 267K | 183K",
+     "7 | 183K | 250K",
+     "2 | 124K | 296K",
+     "3 | 218K | 179K",
+     "5 | 200K | 166K"
+    ],
+    "order_num": {
+     "n": 8,
+     "first": [
+      267000.0,
+      183000.0,
+      124000.0,
+      218000.0,
+      200000.0
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      7
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.73M",
+     "Donald Trump 2024 / 1.38M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Colorado",
+     "gq": "Colorado",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "drill": {
+   "menu": [
+    "Colorado counties",
+    "Adams County \u203a",
+    "Alamosa County \u203a"
+   ],
+   "lat_counties": 60.3,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Colorado",
+    "gq": "Colorado",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 64,
+   "rows1": [
+    "El Paso | 53.6%",
+    "Denver | 20.6% | 76.7%",
+    "Jefferson | 38.9% | 58.3%",
+    "Arapahoe | 38.5% | 58.6%",
+    "Douglas | 52.3% | 45.3%"
+   ],
+   "order1": {
+    "n": 64,
+    "first": [
+     53.6,
+     20.6,
+     38.9,
+     38.5,
+     52.3
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     8,
+     9,
+     12
+    ]
+   },
+   "lat_county": 7.7,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Denver County",
+    "gq": "Denver County, CO",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 1,
+   "rows2": [
+    "Denver city | 20.3% | 76.8%"
+   ],
+   "order2": {
+    "n": 1,
+    "first": [
+     20.3
+    ],
+    "not_desc_at": []
+   },
+   "th2": [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 21%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 40.6,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Denver city",
+    "gq": "Denver County, CO",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 292,
+   "rows3": [
+    "Precinct 702 | 18.2% | 79.4%",
+    "Precinct 537 | 85.7%",
+    "Precinct 519 | 82.7%",
+    "Precinct 423 | 23.8% | 73.3%",
+    "Precinct 517 | 19.0% | 78.0%",
+    "Precinct 727 | 29.9% | 67.4%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 20%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Denver city",
+     "gq": "Denver County, CO",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 77%",
+     "Donald Trump 2024 / 20%"
+    ],
+    [
+     9,
+     "39.849",
+     "-104.840"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Colorado\",\"co\":\"Denver County\",\"lt\":\"counties\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Denver County\",\"Denver city\"],\"ll\":[39.8486,-104.8398,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Colorado\",\"co\":\"Denver County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8486,-104.8398,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Denver County",
+     "gq": "Denver County, CO",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 77%",
+     "Donald Trump 2024 / 21%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Minnesota": {
+  "lat": {},
+  "build": "202610181615",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Minnesota",
+    "gq": "Minnesota",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    1367716,
+    1322951,
+    2944813
+   ],
+   "2020": [
+    1717077,
+    1484065,
+    3277171
+   ],
+   "2024": [
+    1656979,
+    1519032,
+    3253920
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 46%",
+    "Donald Trump 2016 / 45%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 52%",
+    "Donald Trump 2020 / 45%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 51.2,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Minnesota",
+      "gq": "Minnesota",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 51%",
+      "Donald Trump 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 15.5,
+    "n": 67,
+    "rows": [
+     "45 | 40.7% | 56.9%",
+     "37 | 44.6% | 52.8%",
+     "41 | 48.2% | 49.6%",
+     "30 | 61.7% | 36.3%",
+     "48 | 48.6% | 48.8%",
+     "33 | 48.7% | 49.2%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      40.7,
+      44.6,
+      48.2,
+      61.7,
+      48.6
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3,
+      5,
+      6
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 26.9,
+    "lat_numpick": 41.2,
+    "num": "num",
+    "rows_num": [
+     "45 | 24K | 33K",
+     "37 | 25K | 30K",
+     "41 | 27K | 28K",
+     "30 | 34K | 20K",
+     "48 | 27K | 27K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      24000.0,
+      25000.0,
+      27000.0,
+      34000.0,
+      27000.0
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3,
+      6,
+      8
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.66M",
+     "Donald Trump 2024 / 1.52M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 84.3,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Minnesota",
+      "gq": "Minnesota",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 51%",
+      "Donald Trump 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 12.7,
+    "n": 134,
+    "rows": [
+     "41A | 46.8% | 51.0%",
+     "34A | 48.4% | 49.3%",
+     "45A | 48.0% | 49.7%",
+     "48A | 53.3% | 44.2%",
+     "37A | 48.9% | 48.5%",
+     "45B | 33.2% | 64.4%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      46.8,
+      48.4,
+      48.0,
+      53.3,
+      48.9
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      7,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 20.4,
+    "lat_numpick": 30.4,
+    "num": "num",
+    "rows_num": [
+     "41A | 14K | 16K",
+     "34A | 14K | 15K",
+     "45A | 14K | 15K",
+     "48A | 15K | 13K",
+     "37A | 14K | 14K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      14000.0,
+      14000.0,
+      14000.0,
+      15000.0,
+      14000.0
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      7,
+      8,
+      13
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.66M",
+     "Donald Trump 2024 / 1.52M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Minnesota\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[47.7245,-93.1201,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Minnesota\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[47.7245,-93.1201,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Minnesota",
+      "gq": "Minnesota",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 134,
+     "rows": [
+      "41A | 46.8% | 51.0%",
+      "34A | 48.4% | 49.3%",
+      "45A | 48.0% | 49.7%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 133.7,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Minnesota",
+      "gq": "Minnesota",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 51%",
+      "Donald Trump 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 11.4,
+    "n": 330,
+    "rows": [
+     "Minneapolis | 85.0%",
+     "Anoka-Hennepin | 49.1% | 48.3%",
+     "St. Paul | 19.7% | 77.4%",
+     "Rosemount-Apple Valley-Eagan | 38.6% | 58.8%",
+     "Osseo | 36.6% | 60.8%",
+     "Rochester | 39.4% | 57.9%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      85.0,
+      49.1,
+      19.7,
+      38.6,
+      36.6
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      8,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30.8,
+    "lat_numpick": 108.4,
+    "num": "num",
+    "rows_num": [
+     "Minneapolis | 186K",
+     "Anoka-Hennepin | 70K | 69K",
+     "St. Paul | 108K",
+     "Rosemount-Apple Valley-Eagan | 53K",
+     "Osseo | 51K"
+    ],
+    "order_num": {
+     "n": 64,
+     "first": [
+      186000.0,
+      70000.0,
+      108000.0,
+      53000.0,
+      51000.0
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      7,
+      28,
+      31
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.66M",
+     "Donald Trump 2024 / 1.52M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 81,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Minnesota",
+      "gq": "Minnesota",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 51%",
+      "Donald Trump 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 13.7,
+    "n": 8,
+    "rows": [
+     "6 | 58.6%",
+     "8 | 56.1% | 41.9%",
+     "2 | 45.9% | 51.7%",
+     "3 | 38.1% | 59.3%",
+     "7 | 67.2% | 30.8%",
+     "1 | 54.9% | 42.9%"
+    ],
+    "order": {
+     "n": 8,
+     "first": [
+      58.6,
+      56.1,
+      45.9,
+      38.1,
+      67.2
+     ],
+     "not_desc_at": [
+      4
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29.3,
+    "lat_numpick": 33,
+    "num": "num",
+    "rows_num": [
+     "6 | 253K | 169K",
+     "8 | 242K | 181K",
+     "2 | 196K | 221K",
+     "3 | 162K | 252K",
+     "7 | 270K | 124K"
+    ],
+    "order_num": {
+     "n": 8,
+     "first": [
+      253000.0,
+      242000.0,
+      196000.0,
+      162000.0,
+      270000.0
+     ],
+     "not_desc_at": [
+      4,
+      7
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 1.66M",
+     "Donald Trump 2024 / 1.52M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Minnesota",
+     "gq": "Minnesota",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "drill": {
+   "menu": [
+    "Minnesota counties",
+    "Aitkin County \u203a",
+    "Anoka County \u203a"
+   ],
+   "lat_counties": 93.2,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Minnesota",
+    "gq": "Minnesota",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 87,
+   "rows1": [
+    "Hennepin | 27.5% | 70.2%",
+    "Ramsey | 27.2% | 70.5%",
+    "Dakota | 42.5% | 55.4%",
+    "Anoka | 51.0% | 46.6%",
+    "Washington | 44.6% | 53.5%"
+   ],
+   "order1": {
+    "n": 65,
+    "first": [
+     27.5,
+     27.2,
+     42.5,
+     51.0,
+     44.6
+    ],
+    "not_desc_at": [
+     2,
+     3,
+     6,
+     7,
+     8
+    ]
+   },
+   "lat_county": 7.6,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Hennepin County",
+    "gq": "Hennepin County, MN",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 45,
+   "rows2": [
+    "Minneapolis city | 85.0%",
+    "Bloomington city | 33.4% | 63.9%",
+    "Plymouth city | 34.6% | 62.5%",
+    "Maple Grove city | 40.9% | 56.5%",
+    "Brooklyn Park city | 31.8% | 65.6%",
+    "Eden Prairie city | 35.1% | 62.0%"
+   ],
+   "order2": {
+    "n": 45,
+    "first": [
+     85.0,
+     33.4,
+     34.6,
+     40.9,
+     31.8
+    ],
+    "not_desc_at": [
+     2,
+     3,
+     5,
+     9,
+     11
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 25.4,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Minneapolis city",
+    "gq": "Hennepin County, MN",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 137,
+   "rows3": [
+    "W-3 P-7 | 85.5%",
+    "W-7 P-8 | 87.7%",
+    "W-10 P-1 | 87.7%",
+    "W-8 P-4 | 91.6%",
+    "W-4 P-3 | 82.2%",
+    "W-7 P-4 | 83.6%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 85%",
+    "Donald Trump 2024 / 12%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Minneapolis city",
+     "gq": "Hennepin County, MN",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 85%",
+     "Donald Trump 2024 / 12%"
+    ],
+    [
+     11,
+     "44.990",
+     "-93.258"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Minnesota\",\"co\":\"Hennepin County\",\"lt\":\"counties\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Hennepin County\",\"Minneapolis city\"],\"ll\":[44.9901,-93.2581,11]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Minnesota\",\"co\":\"Hennepin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[44.9901,-93.2581,11]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Hennepin County",
+     "gq": "Hennepin County, MN",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 70%",
+     "Donald Trump 2024 / 28%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Virginia": {
+  "lat": {},
+  "build": "202610181615",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Virginia",
+    "gq": "Virginia",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    1981473,
+    1769443,
+    3984631
+   ],
+   "2020": [
+    2413568,
+    1962430,
+    4460524
+   ],
+   "2024": [
+    2335395,
+    2075085,
+    4505941
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 50%",
+    "Donald Trump 2016 / 44%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2020 / 44%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 68.8,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Virginia",
+      "gq": "Virginia",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 12.1,
+    "n": 40,
+    "rows": [
+     "12 | 49.0% | 49.2%",
+     "26 | 58.9% | 39.6%",
+     "31 | 44.1% | 52.9%",
+     "10 | 63.4% | 35.2%",
+     "11 | 36.5% | 62.1%",
+     "38 | 28.8% | 67.7%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      49.0,
+      58.9,
+      44.1,
+      63.4,
+      36.5
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      8,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 26.1,
+    "lat_numpick": 26.9,
+    "num": "num",
+    "rows_num": [
+     "12 | 67K | 68K",
+     "26 | 80K | 54K",
+     "31 | 58K | 69K",
+     "10 | 80K | 44K",
+     "11 | 45K | 76K"
+    ],
+    "order_num": {
+     "n": 40,
+     "first": [
+      67000.0,
+      80000.0,
+      58000.0,
+      80000.0,
+      45000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      8,
+      12
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.34M",
+     "Donald Trump 2024 / 2.08M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 102.8,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Virginia",
+      "gq": "Virginia",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 14.1,
+    "n": 100,
+    "rows": [
+     "73 | 48.5% | 49.6%",
+     "30 | 49.3% | 48.3%",
+     "55 | 38.6% | 60.1%",
+     "72 | 61.2% | 37.5%",
+     "6 | 31.8% | 64.5%",
+     "59 | 51.6% | 46.9%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      48.5,
+      49.3,
+      38.6,
+      61.2,
+      31.8
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 22.1,
+    "lat_numpick": 44.5,
+    "num": "num",
+    "rows_num": [
+     "73 | 29K | 30K",
+     "30 | 28K | 27K",
+     "55 | 22K | 34K",
+     "72 | 34K | 21K",
+     "6 | 17K | 35K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      29000.0,
+      28000.0,
+      22000.0,
+      34000.0,
+      17000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      7,
+      8
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.34M",
+     "Donald Trump 2024 / 2.08M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Virginia\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.4022,-79.1895,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Virginia\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.4022,-79.1895,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Virginia",
+      "gq": "Virginia",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 100,
+     "rows": [
+      "73 | 48.5% | 49.6%",
+      "30 | 49.3% | 48.3%",
+      "55 | 38.6% | 60.1%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 98.7,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Virginia",
+      "gq": "Virginia",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 17.5,
+    "n": 136,
+    "rows": [
+     "Fairfax County Public | 31.1% | 66.1%",
+     "Loudoun County Public | 40.4% | 56.7%",
+     "Virginia Beach City Public | 48.0% | 50.7%",
+     "Prince William County Public | 39.7% | 57.6%",
+     "Chesterfield County Public | 44.8% | 53.8%",
+     "Henrico County Public | 34.4% | 63.6%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      31.1,
+      40.4,
+      48.0,
+      39.7,
+      44.8
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      4,
+      7,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 10.7,
+    "lat_numpick": 37.6,
+    "num": "num",
+    "rows_num": [
+     "Fairfax County Public | 182K | 386K",
+     "Loudoun County Public | 129K",
+     "Virginia Beach City Public",
+     "Prince William County Public",
+     "Chesterfield County Public"
+    ],
+    "order_num": {
+     "n": 62,
+     "first": [
+      182000.0,
+      129000.0,
+      167000.0,
+      128000.0,
+      127000.0
+     ],
+     "not_desc_at": [
+      2,
+      27,
+      31,
+      35,
+      39
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.34M",
+     "Donald Trump 2024 / 2.08M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 101.1,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Virginia",
+      "gq": "Virginia",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 14.4,
+    "n": 11,
+    "rows": [
+     "1 | 51.7% | 46.6%",
+     "5 | 55.5% | 43.1%",
+     "10 | 44.2% | 52.7%",
+     "6 | 61.1% | 37.3%",
+     "2 | 49.3% | 49.1%",
+     "9 | 71.4% | 27.5%"
+    ],
+    "order": {
+     "n": 11,
+     "first": [
+      51.7,
+      55.5,
+      44.2,
+      61.1,
+      49.3
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 15.4,
+    "lat_numpick": 17,
+    "num": "num",
+    "rows_num": [
+     "1 | 246K | 222K",
+     "5 | 244K | 190K",
+     "10 | 184K | 219K",
+     "6 | 252K | 154K",
+     "2 | 203K | 202K"
+    ],
+    "order_num": {
+     "n": 11,
+     "first": [
+      246000.0,
+      244000.0,
+      184000.0,
+      252000.0,
+      203000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      7,
+      9
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.34M",
+     "Donald Trump 2024 / 2.08M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Virginia",
+     "gq": "Virginia",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "drill": {
+   "menu": [
+    "Virginia counties",
+    "Accomack County \u203a",
+    "Albemarle County \u203a"
+   ],
+   "lat_counties": 84.6,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Virginia",
+    "gq": "Virginia",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 133,
+   "rows1": [
+    "Fairfax | 31.1% | 66.1%",
+    "Loudoun | 40.4% | 56.7%",
+    "Virginia Beach city | 48.0% | 50.7%",
+    "Prince William | 39.6% | 57.6%",
+    "Chesterfield | 44.8% | 53.8%"
+   ],
+   "order1": {
+    "n": 65,
+    "first": [
+     31.1,
+     40.4,
+     48.0,
+     39.6,
+     44.8
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     4,
+     7,
+     8
+    ]
+   },
+   "lat_county": 17.6,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Fairfax County",
+    "gq": "Fairfax County, VA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 3,
+   "rows2": [
+    "Vienna town | 27.2% | 69.5%",
+    "Herndon town | 30.3% | 65.6%",
+    "Clifton town | 40.3% | 57.5%"
+   ],
+   "order2": {
+    "n": 3,
+    "first": [
+     27.2,
+     30.3,
+     40.3
+    ],
+    "not_desc_at": [
+     1,
+     2
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 66%",
+    "Donald Trump 2024 / 31%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 30.7,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Vienna town",
+    "gq": "Fairfax County, VA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 4,
+   "rows3": [
+    "213-Vienna #1 | 27.7% | 68.9%",
+    "214-Vienna #2 | 28.4% | 68.3%",
+    "218-Vienna #6 | 24.9% | 72.1%",
+    "216-Vienna #4 | 27.2% | 69.4%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Vienna town",
+     "gq": "Fairfax County, VA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 69%",
+     "Donald Trump 2024 / 27%"
+    ],
+    [
+     12,
+     "38.911",
+     "-77.261"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Virginia\",\"co\":\"Fairfax County\",\"lt\":\"counties\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Fairfax County\",\"Vienna town\"],\"ll\":[38.9108,-77.2614,12]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Virginia\",\"co\":\"Fairfax County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.9108,-77.2614,12]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Fairfax County",
+     "gq": "Fairfax County, VA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 66%",
+     "Donald Trump 2024 / 31%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Washington": {
+  "lat": {},
+  "build": "202610181615",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Washington",
+    "gq": "Washington",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 39%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    1742718,
+    1221747,
+    3317019
+   ],
+   "2020": [
+    2369612,
+    1584651,
+    4087631
+   ],
+   "2024": [
+    2245849,
+    1530923,
+    3924243
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 53%",
+    "Donald Trump 2016 / 37%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 58%",
+    "Donald Trump 2020 / 39%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 39%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 67.3,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Washington",
+      "gq": "Washington",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 57%",
+      "Donald Trump 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 13.5,
+    "n": 49,
+    "rows": [
+     "24 | 41.6% | 55.5%",
+     "36 | 89.2%",
+     "20 | 62.2% | 35.1%",
+     "40 | 27.9% | 68.8%",
+     "26 | 43.7% | 53.2%",
+     "42 | 43.5% | 53.3%"
+    ],
+    "order": {
+     "n": 49,
+     "first": [
+      41.6,
+      89.2,
+      62.2,
+      27.9,
+      43.7
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      8,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 34.8,
+    "lat_numpick": 40.7,
+    "num": "num",
+    "rows_num": [
+     "24 | 41K | 55K",
+     "36 | 88K",
+     "20 | 59K | 33K",
+     "40 | 26K | 64K",
+     "26 | 41K | 50K"
+    ],
+    "order_num": {
+     "n": 49,
+     "first": [
+      41000.0,
+      88000.0,
+      59000.0,
+      26000.0,
+      41000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      10,
+      12
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.25M",
+     "Donald Trump 2024 / 1.53M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 95.4,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Washington",
+      "gq": "Washington",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 57%",
+      "Donald Trump 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 31.4,
+    "n": 49,
+    "rows": [
+     "24 | 41.6% | 55.5%",
+     "36 | 89.2%",
+     "20 | 62.2% | 35.1%",
+     "40 | 27.9% | 68.8%",
+     "26 | 43.7% | 53.2%",
+     "42 | 43.5% | 53.3%"
+    ],
+    "order": {
+     "n": 49,
+     "first": [
+      41.6,
+      89.2,
+      62.2,
+      27.9,
+      43.7
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      8,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 21,
+    "lat_numpick": 36.3,
+    "num": "num",
+    "rows_num": [
+     "24 | 41K | 55K",
+     "36 | 88K",
+     "20 | 59K | 33K",
+     "40 | 26K | 64K",
+     "26 | 41K | 50K"
+    ],
+    "order_num": {
+     "n": 49,
+     "first": [
+      41000.0,
+      88000.0,
+      59000.0,
+      26000.0,
+      41000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      10,
+      12
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.25M",
+     "Donald Trump 2024 / 1.53M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[48.4875,-120.6738,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[48.4875,-120.6738,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Washington",
+      "gq": "Washington",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 49,
+     "rows": [
+      "24 | 41.6% | 55.5%",
+      "36 | 89.2%",
+      "20 | 62.2% | 35.1%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 91.3,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Washington",
+      "gq": "Washington",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 57%",
+      "Donald Trump 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 18.4,
+    "n": 295,
+    "rows": [
+     "Seattle Public | 87.5%",
+     "Spokane Public | 39.9% | 56.1%",
+     "Tacoma Public | 27.8% | 68.8%",
+     "Lake Washington | 24.1% | 71.3%",
+     "Edmonds | 27.3% | 68.7%",
+     "Vancouver Public | 36.2% | 60.3%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      87.5,
+      39.9,
+      27.8,
+      24.1,
+      27.3
+     ],
+     "not_desc_at": [
+      4,
+      5,
+      6,
+      8,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 32.9,
+    "lat_numpick": 42.7,
+    "num": "num",
+    "rows_num": [
+     "Seattle Public | 362K",
+     "Spokane Public | 119K",
+     "Tacoma Public | 73K | 106K",
+     "Lake Washington | 102K",
+     "Edmonds | 87K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      362000.0,
+      119000.0,
+      73000.0,
+      102000.0,
+      87000.0
+     ],
+     "not_desc_at": [
+      3,
+      30,
+      34,
+      36,
+      38
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.25M",
+     "Donald Trump 2024 / 1.53M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 50.4,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Washington",
+      "gq": "Washington",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 57%",
+      "Donald Trump 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 11.2,
+    "n": 10,
+    "rows": [
+     "7 | 85.8%",
+     "6 | 38.8% | 58.1%",
+     "8 | 45.5% | 51.3%",
+     "2 | 36.6% | 60.2%",
+     "3 | 50.3% | 47.0%",
+     "5 | 53.9% | 43.2%"
+    ],
+    "order": {
+     "n": 10,
+     "first": [
+      85.8,
+      38.8,
+      45.5,
+      36.6,
+      50.3
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 21.7,
+    "lat_numpick": 20.3,
+    "num": "num",
+    "rows_num": [
+     "7 | 373K",
+     "6 | 168K | 252K",
+     "8 | 194K | 218K",
+     "2 | 154K | 254K",
+     "3 | 212K | 198K"
+    ],
+    "order_num": {
+     "n": 10,
+     "first": [
+      373000.0,
+      168000.0,
+      194000.0,
+      154000.0,
+      212000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      7,
+      9
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 2.25M",
+     "Donald Trump 2024 / 1.53M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Washington",
+     "gq": "Washington",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "drill": {
+   "menu": [
+    "Washington counties",
+    "Adams County \u203a",
+    "Asotin County \u203a"
+   ],
+   "lat_counties": 39.1,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Washington",
+    "gq": "Washington",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 39,
+   "rows1": [
+    "King | 22.5% | 74.1%",
+    "Pierce | 43.1% | 53.9%",
+    "Snohomish | 38.9% | 57.8%",
+    "Spokane | 51.0% | 46.0%",
+    "Clark | 45.1% | 52.1%"
+   ],
+   "order1": {
+    "n": 39,
+    "first": [
+     22.5,
+     43.1,
+     38.9,
+     51.0,
+     45.1
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     8,
+     11,
+     13
+    ]
+   },
+   "lat_county": 29.7,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "King County",
+    "gq": "King County, WA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 39,
+   "rows2": [
+    "Seattle city | 87.0%",
+    "Bellevue city | 26.5% | 69.0%",
+    "Kent city | 36.0% | 60.3%",
+    "Kirkland city | 24.1% | 71.6%",
+    "Renton city | 29.2% | 67.1%",
+    "Federal Way city | 35.0% | 61.6%"
+   ],
+   "order2": {
+    "n": 39,
+    "first": [
+     87.0,
+     26.5,
+     36.0,
+     24.1,
+     29.2
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     5,
+     7,
+     9
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 74%",
+    "Donald Trump 2024 / 22%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 38,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Seattle city",
+    "gq": "King County, WA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 1016,
+   "rows3": [
+    "Sea 37-1895 | 91.9%",
+    "Sea 36-2126 | 89.7%",
+    "Sea 36-1394 | 93.8%",
+    "Sea 43-1857 | 91.2%",
+    "Sea 36-1324 | 91.9%",
+    "Sea 34-1487 | 80.9%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 9%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Seattle city",
+     "gq": "King County, WA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 87%",
+     "Donald Trump 2024 / 9%"
+    ],
+    [
+     10,
+     "47.646",
+     "-122.333"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"co\":\"King County\",\"lt\":\"counties\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"King County\",\"Seattle city\"],\"ll\":[47.646,-122.3328,10]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"co\":\"King County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[47.646,-122.3328,10]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "King County",
+     "gq": "King County, WA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 74%",
+     "Donald Trump 2024 / 22%"
+    ]
+   }
+  },
+  "err": []
+ }
+}
