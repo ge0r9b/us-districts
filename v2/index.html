@@ -1978,7 +1978,7 @@ setType("counties");
 const _dh3=drawHeat; drawHeat=function(){ _dh3(); if(fillTop&&heatLevel==="county"&&heatLayer&&state.value) heatLayer.clearLayers(); };
 // ===== photo candidate buttons, ranked per area =====
 const PHOTO={h24:"img/harris.jpg?v="+window.BUILD,t24:"img/trump.jpg?v="+window.BUILD,b20:"img/biden.jpg?v="+window.BUILD,t20:"img/trump.jpg?v="+window.BUILD,c16:"img/clinton.jpg?v="+window.BUILD,t16:"img/trump.jpg?v="+window.BUILD};
-function scopeArea(){ if(cur) return cur; if(hier.dist&&state.value) return {kind:ltype,d:hier.dist};
+function scopeArea(){ if(cur) return cur; if(hier.dist&&state.value) return {kind:(ltype==="counties"||ltype==="none"||!ltype)?"towns":ltype,d:hier.dist}; /* build 1612 (QA-096): a city picked from its county's list is a town (its numbers showed empty under the default type) */
   if(county.value){ const c=(GEOM.counties||[]).find(d=>d[0]===state.value&&d[1]===county.value); if(c) return {kind:"county",d:c}; }
   return {kind:"sum",st:state.value||""}; }
 function scopeVals(a,yr){ if(a.kind!=="sum") return vals(a,yr);
@@ -3712,7 +3712,10 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     return h; }
   function computeAgg(){ const yrs=yrsNow(); const sum={}; yrs.forEach(y=>sum[y]={dem:0,rep:0,tot:0}); let n=0;
     LA.items.forEach(a=>{ if(NOTOP(a)) return; const vs=yrs.map(y=>vals(a,y)); if(vs.some(v=>!v)) return; n++; vs.forEach((v,i)=>{ const s=sum[yrs[i]]; s.dem+=v.dem; s.rep+=v.rep; s.tot+=v.tot; (CANDS[yrs[i]]||[]).forEach(c=>{ if(c.k&&!(c.k in {dem:1,rep:1,tot:1})) s[c.k]=(s[c.k]||0)+(+v[c.k]||0); }); }); });
-    LA.agg=n?sum:null; LA.nData=n; LA.title="Total of "+LA.items.length+" "+LA.noun+(LA.parent?" in "+LA.parent:""); }
+    LA.agg=n?sum:null; LA.nData=n; LA.title="Total of "+LA.items.length+" "+LA.noun+(LA.parent?" in "+LA.parent:"");
+    /* build 1612 (QA-094 / QA-095): the list's own place shows its own official result, never the sum of the rows: a county's cities list shows the county (its unincorporated part is not a city row), a state's district list shows the state (precincts outside any district are not lost) */
+    try{ const id=LA.lv&&LA.lv.id; let own=null, lbl=null; if((id==="townships"||(id==="districts"&&LA.lv.dt))&&state.value&&county.value){ const cd=(GEOM.counties||[]).find(d=>d[0]===state.value&&d[1]===county.value)||[state.value,county.value]; own={kind:"county",d:cd}; lbl=county.value; } else if((id==="districts"||id==="counties")&&state.value&&!county.value&&!hier.dist){ own={kind:"sum",st:state.value}; lbl=state.value; }
+      if(own){ const o={}; let ok=true; yrs.forEach(y=>{ const v=vals(own,y); if(v&&v.tot) o[y]=v; else ok=false; }); if(ok){ LA.agg=o; LA.title=lbl; } } }catch(e){} }
   function colorAgg(){ if(!LA.agg) return "#d6d3d1"; const m=ym(); if(m==="delta"){ const a=LA.agg["2020"],b=LA.agg["2024"]; if(!a||!b||!a.tot||!b.tot) return "#d6d3d1"; return deltaColor((b.rep-b.dem)/b.tot-(a.rep-a.dem)/a.tot); } const v=LA.agg[m]; if(!v||!v.tot) return "#d6d3d1"; return heatC(v.dem,v.rep,v.tot); }
   function drawMap(){ if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; if(!LA.on||(LA.lv&&LA.lv.nat)) return; const col=colorAgg(); const g=L.layerGroup(); const none=!LA.agg;
     /* build 1572: each unit is filled with its OWN result (a real heat map, any year incl. 2016), gray only when it has none; was one aggregate colour for the whole list */
