@@ -2,7 +2,7 @@
 # QA-098: the same for addresses outside DC (Phoenix, Tallahassee, Austin): from a list, the globe shows the precinct's title AND numbers and view, exactly as the same search from the map.
 # QA-103: then a reload restores the exact selection (title, numbers, field, map colour, view), for DC and for a searched precinct.
 # QA-092: fresh load > geo > All States > globe opens the normal US view (same as the US view after Back, Back), not zoom 2 over Minnesota. WebKit + Chromium 390.
-import asyncio,sys,json,re,os
+import re,asyncio,sys,json,re,os
 from playwright.async_api import async_playwright
 URL=sys.argv[1] if len(sys.argv)>1 else "http://localhost:8843/v2/"; F=[]
 def ck(c,m,x=None): print(("ok   " if c else "FAIL ")+m+("" if c else " "+json.dumps(x)[:600]),flush=True); (None if c else F.append(m))
@@ -49,6 +49,7 @@ async def main():
             if not os.environ.get('NORL'): await reload_ck(pg,eng,sc,er)
             ck(not er,f"{eng} {sc}: no page errors",er); await c.close(); continue
           l=await pg.evaluate(ST); r=REF.get(sc[-3:])
+          ck(not re.search(r'Precinct \S+ (counties|cities|precincts|districts)',l['crumbs']),f"{eng} {sc}: QA-106 the header does not call the precinct a level ({l['crumbs']!r})",l)
           ck(l['list'] and r and ((l['title']==r['title'] and l['thumbs']==r['thumbs']) or ('Precinct' not in l['title'] and l['title']!=r['title'])),f"{eng} {sc}: QA-098 in the list view the title matches the numbers ({l['title']!r} {l['thumbs']!r}; map search: {r and (r['title'],r['thumbs'])})",[l,r])
           await pg.touchscreen.tap(*(await tap('#bGlobe'))); await pg.wait_for_timeout(3000)
           a=await pg.evaluate(ST); r=REF.get(sc[-3:])
