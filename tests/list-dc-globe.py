@@ -31,7 +31,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['webkit','chromium'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch(); ref=None; REF={}
-      for sc in [s for s in ['back','usglobe','dcrow','dcaddr','map-wdc','map-phx','list-phx','map-tlh','list-tlh','map-aus','list-aus'] if not os.environ.get('SC') or s in os.environ['SC']]:
+      for sc in [s for s in ['back','usglobe','map-wdc','dcrow','dcaddr','map-phx','list-phx','map-tlh','list-tlh','map-aus','list-aus'] if not os.environ.get('SC') or s in os.environ['SC']]:
         c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(4500)
         tap=lambda s: pg.evaluate(CEN,s)
@@ -80,6 +80,7 @@ async def main():
           ck('United States' not in a['title'] and ('District of Columbia' in a['title'] or 'DC' in a['title'].split()),f"{eng} {sc}: QA-093 the title says District of Columbia",a)
           tdc='District of Columbia' in a['title']; tus='United States' in a['title']
           ck((tdc and dcnums(a)) or (tus and not dcnums(a)),f"{eng} {sc}: the title matches the numbers (title {a['title']!r}, thumbs {a['thumbs']!r})",a)
+          if sc=='dcaddr' and REF.get('wdc'): r=REF['wdc']; ck(a['ph']==r['ph'] and abs(a['z']-r['z'])<=1,f"{eng} dcaddr: the globe opens on the address like the map search (field {a['ph']!r} z {a['z']} vs {r['ph']!r} z {r['z']})",[a,r])
           if not os.environ.get('NORL'): await reload_ck(pg,eng,sc,er)
           ck(abs(a['c'][0]-38.9)<0.3 and abs(a['c'][1]+77.03)<0.4 and a['z']>=9,f"{eng} {sc}: the map is on DC",a)
         await pg.screenshot(path=f"/tmp/dcg-{eng[:2]}-{sc}.png")
