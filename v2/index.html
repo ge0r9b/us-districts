@@ -1866,7 +1866,7 @@ const _sy=syncYears; syncYears=function(){ _sy(); if(window.__mapLaterOn&&window
 addEventListener("resize",()=>layoutSide()); setInterval(()=>layoutSide(),700);
 renderCands();
 // ===== exclusive layer type + hierarchy fold-down =====
-const hier={dist:null};
+const hier={dist:null}; window.__hier=hier;
 let ltype="counties";
 function setType(k){ ltype=k; active.clear(); active.add(k); fillTop=AGG_LAYERS.has(k)?k:null; hier.dist=null;
   const lv=k==="precincts"?"precinct":"county"; if(heatLevelSel.value!==lv){ heatLevelSel.value=lv; heatLevelSel.onchange(); }
@@ -3619,7 +3619,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
         return null; }
       return _v(a,yr); };
     const _n=aname; aname=function(a){ if(a.kind==="laagg") return LA.title; if(a.kind==="ctry"||a.kind==="prov") return a.name; return _n(a); };
-    const _s=scopeArea; scopeArea=function(){ if(LA.on) return {kind:"laagg"}; const a=_s(); if(a&&a.kind==="sum"&&!a.st&&LA.dc&&!state.value&&!Wk()) return {kind:"sum",st:"District of Columbia"}; /* build 1585 (QA-072): DC's own numbers, whatever district type */ return a; };
+    const _s=scopeArea; scopeArea=function(){ if(LA.on){ try{ const X=window.__xCrumb; if(X&&X.sel&&X.sel.a&&X.sel.a.kind==="precinct"&&state.value===X.st&&(county.value||"")===X.co) return Object.assign({},X.sel.a,{yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"}); }catch(e){} return {kind:"laagg"}; } /* build 1614 (QA-098 list view): a searched address's precinct is the title, so it is also the numbers */ const a=_s(); if(a&&a.kind==="sum"&&!a.st&&LA.dc&&!state.value&&!Wk()) return {kind:"sum",st:"District of Columbia"}; /* build 1585 (QA-072): DC's own numbers, whatever district type */ return a; };
     const _aa=areaAt; areaAt=function(ll){ if(LA.on){ return LA.polys.some(r=>pip(r,ll.lng,ll.lat))?{kind:"laagg"}:null; } return _aa(ll); }; }
   /* build 1574: change view for a range from '16. The '20>'24 machinery runs unchanged on virtual years: "2020" = 2016, "2024" = the end year.
      Only the outermost data reads (vals / scopeVals), the map fills and the answer lists translate; everything keyed by the real year stays real. */
@@ -3970,7 +3970,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     const dec=t=>{ try{ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; return JSON.parse(decodeURIComponent(escape(atob(t)))); }catch(e){ return null; } };
     const snap=()=>{ const o={v:VER}; try{ o.top=(window.__topicOn&&window.__topicOn())?(OFFICES.find(x=>x.id===office)||{}).label||null:"-"; }catch(e){}
       try{ o.w=window.__W?window.__W():null; }catch(e){} try{ o.st=state.value||""; o.co=county.value||""; }catch(e){} try{ o.lt=ltype; }catch(e){}
-      try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; o.y16=window.__y16?1+(window.__y16hi||0):null; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; o.lap=LA.on&&LA.lv&&LA.lv.id==="precincts"&&LA.parent?String(LA.parent):null; /* build 1580 (QA-050): the town whose precinct list is open */ o.dc=LA.dc?1:null; }catch(e){} try{ if(hier.dist&&county.value){ if((GEOM.towns||[]).indexOf(hier.dist)>=0) o.tw=["t",String(hier.dist[1]),String(hier.dist[2])]; else if((GEOM.places||[]).indexOf(hier.dist)>=0) o.tw=["p",String(hier.dist[1])]; } }catch(e){} /* build 1613 (QA-097): the city whose map is open */ try{ const X=window.__xCrumb; if(X&&X.sel&&X.sel.save&&state.value===X.st&&(county.value||"")===X.co) o.sel=X.sel.save; }catch(e){}
+      try{ o.yv=+$("yslider").value; o.tb=!$("barTime").hidden; o.y16=window.__y16?1+(window.__y16hi||0):null; }catch(e){} try{ o.ch=window.chartMode||null; o.nm=numMode; o.vw=view; o.so=LA.sort; o.la=LA.on&&LA.lv?LA.lv.id:null; o.lap=LA.on&&LA.lv&&LA.lv.id==="precincts"&&LA.parent?String(LA.parent):null; /* build 1580 (QA-050): the town whose precinct list is open */ o.dc=LA.dc?1:null; }catch(e){} try{ const hd=(window.__hier||{}).dist; if(hd&&county.value&&!LA.on){ if(typeof hd[1]==="string"&&typeof hd[2]==="string"&&hd[1]===county.value) o.tw=["c",hd[1],hd[2]]; } }catch(e){} /* build 1613 (QA-097): the city whose map is open */ try{ const X=window.__xCrumb; if(X&&X.sel&&X.sel.save&&state.value===X.st&&(county.value||"")===X.co) o.sel=X.sel.save; }catch(e){}
       try{ const pv=window.__mapPendView&&window.__mapPendView(); const c=pv?pv[0]:map.getCenter(), z=pv?pv[1]:map.getZoom(); o.ll=[+c.lat.toFixed(4),+c.lng.toFixed(4),+(+z).toFixed(2)]; }catch(e){} /* build 1609 (QA-091): a map move still waiting behind the list is what gets saved (WebKit saved zoom 2 over Minnesota after a DC address search) */
       Object.keys(o).forEach(k=>{ if(o[k]===null||o[k]===undefined||o[k]==="") delete o[k]; }); return o; };
     window.__stateSnapshot=snap; window.__stateEncode=enc; window.__stateDecode=dec;
@@ -3988,7 +3988,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(typeof o.w==="string"&&o.w&&window.__worldEnter){ try{ window.__worldEnter(o.w); }catch(e){} await sleep(800); }
       else if(typeof o.st==="string"&&o.st&&allStates().indexOf(o.st)>=0){ try{ county.value=""; hier.dist=null; state.value=o.st; state.onchange&&state.onchange(); bump(); await sleep(1800);
           if(typeof o.co==="string"&&o.co&&[...county.options].some(x=>x.value===o.co)){ county.value=o.co; county.onchange&&county.onchange(); bump(); await sleep(1200); }
-          if(Array.isArray(o.tw)&&o.co&&county.value===o.co){ const d=o.tw[0]==="t"?(GEOM.towns||[]).find(x=>x[0]===o.st&&String(x[1])===o.tw[1]&&String(x[2])===o.tw[2]):o.tw[0]==="p"?(GEOM.places||[]).find(x=>x[0]===o.st&&String(x[1])===o.tw[1]):null; if(d){ try{ hier.dist=d; drawDist(); crumbs(); }catch(e){} await sleep(400); } }
+          if(Array.isArray(o.tw)&&o.co&&county.value===o.co){ let d=null; try{ await ensureFor(); const ch=children(); const it=ch&&ch.items.find(i=>i.d&&String(i.d[1])===o.tw[1]&&String(i.d[2])===o.tw[2]); d=it?it.d:null; }catch(e){} if(d){ try{ window.__hier.dist=d; drawDist(); crumbs(); try{ renderCands(); }catch(_){} }catch(e){} await sleep(400); } }
           await sleep(250); document.documentElement.classList.remove("rstc"); /* build 1581: thumbnails appear once, final */
           const g=document.getElementById("gq"); if(g){ const lbl=o.co?o.co+", "+(ABBR[o.st]||o.st):o.st; g.placeholder=lbl; g.title=lbl; try{ nameLock=lbl; }catch(e){} window.__geoLock={lbl:lbl,t:Date.now(),st:state.value}; } }catch(e){} }
       bump();

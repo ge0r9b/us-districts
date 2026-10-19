@@ -48,6 +48,8 @@ async def main():
             if sc=='map-phx': ck(dcnums(a) is False and re.search(r'Harris[^/]*?(6\d|7\d)%',a['thumbs']) is not None,f"{eng} {sc}: the precinct's own numbers (Harris ~70)",a)
             if not os.environ.get('NORL'): await reload_ck(pg,eng,sc,er)
             ck(not er,f"{eng} {sc}: no page errors",er); await c.close(); continue
+          l=await pg.evaluate(ST); r=REF.get(sc[-3:])
+          ck(l['list'] and r and ((l['title']==r['title'] and l['thumbs']==r['thumbs']) or ('Precinct' not in l['title'] and l['title']!=r['title'])),f"{eng} {sc}: QA-098 in the list view the title matches the numbers ({l['title']!r} {l['thumbs']!r}; map search: {r and (r['title'],r['thumbs'])})",[l,r])
           await pg.touchscreen.tap(*(await tap('#bGlobe'))); await pg.wait_for_timeout(3000)
           a=await pg.evaluate(ST); r=REF.get(sc[-3:])
           ck(not a['list'],f"{eng} {sc}: the globe opens the map",a)
