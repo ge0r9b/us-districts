@@ -1,0 +1,786 @@
+{
+  "2016": {
+    "source": "FEC Federal Elections 2016, Table 2 Electoral & Pop Vote (https://www.fec.gov/resources/cms-content/documents/federalelections2016.xlsx). Dem = Clinton (D + Women's Equality + Working Families); Rep = Trump (R + American Independent + Conservative). Total includes all candidates and write-ins.",
+    "states": {
+      "Alabama": {
+        "d": 729547,
+        "r": 1318255,
+        "total": 2123372
+      },
+      "Alaska": {
+        "d": 116454,
+        "r": 163387,
+        "total": 318608
+      },
+      "Arizona": {
+        "d": 1161167,
+        "r": 1252401,
+        "total": 2573165
+      },
+      "Arkansas": {
+        "d": 380494,
+        "r": 684872,
+        "total": 1130676
+      },
+      "California": {
+        "d": 8753792,
+        "r": 4483814,
+        "total": 14181604
+      },
+      "Colorado": {
+        "d": 1338870,
+        "r": 1202484,
+        "total": 2780247
+      },
+      "Connecticut": {
+        "d": 897572,
+        "r": 673215,
+        "total": 1644920
+      },
+      "Delaware": {
+        "d": 235603,
+        "r": 185127,
+        "total": 443814
+      },
+      "District of Columbia": {
+        "d": 282830,
+        "r": 12723,
+        "total": 311268
+      },
+      "Florida": {
+        "d": 4504975,
+        "r": 4617886,
+        "total": 9420039
+      },
+      "Georgia": {
+        "d": 1877963,
+        "r": 2089104,
+        "total": 4114732
+      },
+      "Hawaii": {
+        "d": 266891,
+        "r": 128847,
+        "total": 428937
+      },
+      "Idaho": {
+        "d": 189765,
+        "r": 409055,
+        "total": 690255
+      },
+      "Illinois": {
+        "d": 3090729,
+        "r": 2146015,
+        "total": 5536424
+      },
+      "Indiana": {
+        "d": 1033126,
+        "r": 1557286,
+        "total": 2734958
+      },
+      "Iowa": {
+        "d": 653669,
+        "r": 800983,
+        "total": 1566031
+      },
+      "Kansas": {
+        "d": 427005,
+        "r": 671018,
+        "total": 1184402
+      },
+      "Kentucky": {
+        "d": 628854,
+        "r": 1202971,
+        "total": 1924149
+      },
+      "Louisiana": {
+        "d": 780154,
+        "r": 1178638,
+        "total": 2029032
+      },
+      "Maine": {
+        "d": 357735,
+        "r": 335593,
+        "total": 747927
+      },
+      "Maryland": {
+        "d": 1677928,
+        "r": 943169,
+        "total": 2781446
+      },
+      "Massachusetts": {
+        "d": 1995196,
+        "r": 1090893,
+        "total": 3325046
+      },
+      "Michigan": {
+        "d": 2268839,
+        "r": 2279543,
+        "total": 4799284
+      },
+      "Minnesota": {
+        "d": 1367716,
+        "r": 1322951,
+        "total": 2944813
+      },
+      "Mississippi": {
+        "d": 485131,
+        "r": 700714,
+        "total": 1209357
+      },
+      "Missouri": {
+        "d": 1071068,
+        "r": 1594511,
+        "total": 2808605
+      },
+      "Montana": {
+        "d": 177709,
+        "r": 279240,
+        "total": 497147
+      },
+      "Nebraska": {
+        "d": 284494,
+        "r": 495961,
+        "total": 844227
+      },
+      "Nevada": {
+        "d": 539260,
+        "r": 512058,
+        "total": 1125385
+      },
+      "New Hampshire": {
+        "d": 348526,
+        "r": 345790,
+        "total": 744296
+      },
+      "New Jersey": {
+        "d": 2148278,
+        "r": 1601933,
+        "total": 3874046
+      },
+      "New Mexico": {
+        "d": 385234,
+        "r": 319667,
+        "total": 798319
+      },
+      "New York": {
+        "d": 4556118,
+        "r": 2819533,
+        "total": 7721442,
+        "note": "Matches NYSBOE certified (Clinton Dem+WF+WEP, Trump Rep+Con). Same as FEC Table 2."
+      },
+      "North Carolina": {
+        "d": 2189316,
+        "r": 2362631,
+        "total": 4741564
+      },
+      "North Dakota": {
+        "d": 93758,
+        "r": 216794,
+        "total": 344360
+      },
+      "Ohio": {
+        "d": 2394164,
+        "r": 2841005,
+        "total": 5496487
+      },
+      "Oklahoma": {
+        "d": 420375,
+        "r": 949136,
+        "total": 1452992
+      },
+      "Oregon": {
+        "d": 1002106,
+        "r": 782403,
+        "total": 2001336
+      },
+      "Pennsylvania": {
+        "d": 2926441,
+        "r": 2970733,
+        "total": 6165478
+      },
+      "Rhode Island": {
+        "d": 252525,
+        "r": 180543,
+        "total": 464144
+      },
+      "South Carolina": {
+        "d": 855373,
+        "r": 1155389,
+        "total": 2103027
+      },
+      "South Dakota": {
+        "d": 117458,
+        "r": 227721,
+        "total": 370093
+      },
+      "Tennessee": {
+        "d": 870695,
+        "r": 1522925,
+        "total": 2508027
+      },
+      "Texas": {
+        "d": 3877868,
+        "r": 4685047,
+        "total": 8969226
+      },
+      "Utah": {
+        "d": 310676,
+        "r": 515231,
+        "total": 1131430
+      },
+      "Vermont": {
+        "d": 178573,
+        "r": 95369,
+        "total": 315067
+      },
+      "Virginia": {
+        "d": 1981473,
+        "r": 1769443,
+        "total": 3984631
+      },
+      "Washington": {
+        "d": 1742718,
+        "r": 1221747,
+        "total": 3317019
+      },
+      "West Virginia": {
+        "d": 188794,
+        "r": 489371,
+        "total": 714423
+      },
+      "Wisconsin": {
+        "d": 1382536,
+        "r": 1405284,
+        "total": 2976150
+      },
+      "Wyoming": {
+        "d": 55973,
+        "r": 174419,
+        "total": 255849
+      }
+    }
+  },
+  "2020": {
+    "source": "FEC Federal Elections 2020, Table 2 Electoral & Pop Vote (https://www.fec.gov/resources/cms-content/documents/federalelections2020.xlsx). Dem = Biden (D + Working Families); Rep = Trump (R + Conservative). Total includes all candidates and write-ins.",
+    "states": {
+      "Alabama": {
+        "d": 849624,
+        "r": 1441170,
+        "total": 2323282
+      },
+      "Alaska": {
+        "d": 153778,
+        "r": 189951,
+        "total": 359530
+      },
+      "Arizona": {
+        "d": 1672143,
+        "r": 1661686,
+        "total": 3387326
+      },
+      "Arkansas": {
+        "d": 423932,
+        "r": 760647,
+        "total": 1219069
+      },
+      "California": {
+        "d": 11110639,
+        "r": 6006518,
+        "total": 17501380
+      },
+      "Colorado": {
+        "d": 1804352,
+        "r": 1364607,
+        "total": 3256980
+      },
+      "Connecticut": {
+        "d": 1080831,
+        "r": 714717,
+        "total": 1823857
+      },
+      "Delaware": {
+        "d": 296268,
+        "r": 200603,
+        "total": 504346
+      },
+      "District of Columbia": {
+        "d": 317323,
+        "r": 18586,
+        "total": 344356
+      },
+      "Florida": {
+        "d": 5297045,
+        "r": 5668731,
+        "total": 11067456
+      },
+      "Georgia": {
+        "d": 2473633,
+        "r": 2461854,
+        "total": 4999960
+      },
+      "Hawaii": {
+        "d": 366130,
+        "r": 196864,
+        "total": 574469
+      },
+      "Idaho": {
+        "d": 287021,
+        "r": 554119,
+        "total": 867934
+      },
+      "Illinois": {
+        "d": 3471915,
+        "r": 2446891,
+        "total": 6033744
+      },
+      "Indiana": {
+        "d": 1242498,
+        "r": 1729857,
+        "total": 3033210
+      },
+      "Iowa": {
+        "d": 759061,
+        "r": 897672,
+        "total": 1690871
+      },
+      "Kansas": {
+        "d": 570323,
+        "r": 771406,
+        "total": 1373986
+      },
+      "Kentucky": {
+        "d": 772474,
+        "r": 1326646,
+        "total": 2136768
+      },
+      "Louisiana": {
+        "d": 856034,
+        "r": 1255776,
+        "total": 2148062
+      },
+      "Maine": {
+        "d": 435072,
+        "r": 360737,
+        "total": 819461
+      },
+      "Maryland": {
+        "d": 1985023,
+        "r": 976414,
+        "total": 3037030
+      },
+      "Massachusetts": {
+        "d": 2382202,
+        "r": 1167202,
+        "total": 3631402
+      },
+      "Michigan": {
+        "d": 2804040,
+        "r": 2649852,
+        "total": 5539302
+      },
+      "Minnesota": {
+        "d": 1717077,
+        "r": 1484065,
+        "total": 3277171
+      },
+      "Mississippi": {
+        "d": 539398,
+        "r": 756764,
+        "total": 1313759
+      },
+      "Missouri": {
+        "d": 1253014,
+        "r": 1718736,
+        "total": 3025962
+      },
+      "Montana": {
+        "d": 244786,
+        "r": 343602,
+        "total": 603674
+      },
+      "Nebraska": {
+        "d": 374583,
+        "r": 556846,
+        "total": 956383
+      },
+      "Nevada": {
+        "d": 703486,
+        "r": 669890,
+        "total": 1405376
+      },
+      "New Hampshire": {
+        "d": 424937,
+        "r": 365660,
+        "total": 806205
+      },
+      "New Jersey": {
+        "d": 2608400,
+        "r": 1883313,
+        "total": 4549457
+      },
+      "New Mexico": {
+        "d": 501614,
+        "r": 401894,
+        "total": 923965
+      },
+      "New York": {
+        "d": 5244886,
+        "r": 3251997,
+        "total": 8616861,
+        "note": "Matches NYSBOE certified (Biden Dem+WF, Trump Rep+Con), total 8,616,861. Same as FEC Table 2."
+      },
+      "North Carolina": {
+        "d": 2684292,
+        "r": 2758775,
+        "total": 5524804
+      },
+      "North Dakota": {
+        "d": 115042,
+        "r": 235751,
+        "total": 362024
+      },
+      "Ohio": {
+        "d": 2679165,
+        "r": 3154834,
+        "total": 5922202
+      },
+      "Oklahoma": {
+        "d": 503890,
+        "r": 1020280,
+        "total": 1560699
+      },
+      "Oregon": {
+        "d": 1340383,
+        "r": 958448,
+        "total": 2374321
+      },
+      "Pennsylvania": {
+        "d": 3458229,
+        "r": 3377674,
+        "total": 6936976
+      },
+      "Rhode Island": {
+        "d": 307486,
+        "r": 199922,
+        "total": 517757
+      },
+      "South Carolina": {
+        "d": 1091541,
+        "r": 1385103,
+        "total": 2513329
+      },
+      "South Dakota": {
+        "d": 150471,
+        "r": 261043,
+        "total": 422609
+      },
+      "Tennessee": {
+        "d": 1143711,
+        "r": 1852475,
+        "total": 3053851
+      },
+      "Texas": {
+        "d": 5259126,
+        "r": 5890347,
+        "total": 11315056
+      },
+      "Utah": {
+        "d": 560282,
+        "r": 865140,
+        "total": 1488289
+      },
+      "Vermont": {
+        "d": 242820,
+        "r": 112704,
+        "total": 367428
+      },
+      "Virginia": {
+        "d": 2413568,
+        "r": 1962430,
+        "total": 4460524
+      },
+      "Washington": {
+        "d": 2369612,
+        "r": 1584651,
+        "total": 4087631
+      },
+      "West Virginia": {
+        "d": 235984,
+        "r": 545382,
+        "total": 794731
+      },
+      "Wisconsin": {
+        "d": 1630866,
+        "r": 1610184,
+        "total": 3298041
+      },
+      "Wyoming": {
+        "d": 73491,
+        "r": 193559,
+        "total": 276765
+      }
+    }
+  },
+  "2024": {
+    "source": "FEC Official 2024 Presidential General Election Results (https://www.fec.gov/resources/cms-content/documents/2024presgeresults.xlsx). Dem = Harris; Rep = Trump. Total includes all candidates and write-ins. State-certified overrides noted per state where they differ from FEC.",
+    "states": {
+      "Alabama": {
+        "d": 772412,
+        "r": 1462616,
+        "total": 2265090
+      },
+      "Alaska": {
+        "d": 140026,
+        "r": 184458,
+        "total": 338177
+      },
+      "Arizona": {
+        "d": 1582860,
+        "r": 1770242,
+        "total": 3390161
+      },
+      "Arkansas": {
+        "d": 396905,
+        "r": 759241,
+        "total": 1182676
+      },
+      "California": {
+        "d": 9276179,
+        "r": 6081697,
+        "total": 15865475
+      },
+      "Colorado": {
+        "d": 1728159,
+        "r": 1377441,
+        "total": 3192745
+      },
+      "Connecticut": {
+        "d": 992053,
+        "r": 736918,
+        "total": 1759010
+      },
+      "Delaware": {
+        "d": 289758,
+        "r": 214351,
+        "total": 512912
+      },
+      "District of Columbia": {
+        "d": 294185,
+        "r": 21076,
+        "total": 325869
+      },
+      "Florida": {
+        "d": 4683038,
+        "r": 6110125,
+        "total": 10893752
+      },
+      "Georgia": {
+        "d": 2548017,
+        "r": 2663117,
+        "total": 5250905
+      },
+      "Hawaii": {
+        "d": 313044,
+        "r": 193661,
+        "total": 516701
+      },
+      "Idaho": {
+        "d": 274972,
+        "r": 605246,
+        "total": 905057
+      },
+      "Illinois": {
+        "d": 3062863,
+        "r": 2449079,
+        "total": 5633310
+      },
+      "Indiana": {
+        "d": 1163603,
+        "r": 1720347,
+        "total": 2936677
+      },
+      "Iowa": {
+        "d": 707278,
+        "r": 927019,
+        "total": 1663506
+      },
+      "Kansas": {
+        "d": 544853,
+        "r": 758802,
+        "total": 1327591
+      },
+      "Kentucky": {
+        "d": 704043,
+        "r": 1337494,
+        "total": 2074530
+      },
+      "Louisiana": {
+        "d": 766870,
+        "r": 1208505,
+        "total": 2006975
+      },
+      "Maine": {
+        "d": 435652,
+        "r": 377977,
+        "total": 831375
+      },
+      "Maryland": {
+        "d": 1902577,
+        "r": 1035550,
+        "total": 3038334
+      },
+      "Massachusetts": {
+        "d": 2126518,
+        "r": 1251303,
+        "total": 3473668
+      },
+      "Michigan": {
+        "d": 2736533,
+        "r": 2816636,
+        "total": 5664186
+      },
+      "Minnesota": {
+        "d": 1656979,
+        "r": 1519032,
+        "total": 3253920
+      },
+      "Mississippi": {
+        "d": 466668,
+        "r": 747744,
+        "total": 1228008
+      },
+      "Missouri": {
+        "d": 1200599,
+        "r": 1751986,
+        "total": 2995327
+      },
+      "Montana": {
+        "d": 231906,
+        "r": 352079,
+        "total": 602990
+      },
+      "Nebraska": {
+        "d": 369995,
+        "r": 564816,
+        "total": 952182
+      },
+      "Nevada": {
+        "d": 705197,
+        "r": 751205,
+        "total": 1484840
+      },
+      "New Hampshire": {
+        "d": 418488,
+        "r": 395523,
+        "total": 826189
+      },
+      "New Jersey": {
+        "d": 2220713,
+        "r": 1968215,
+        "total": 4272725
+      },
+      "New Mexico": {
+        "d": 478802,
+        "r": 423391,
+        "total": 923403
+      },
+      "New York": {
+        "d": 4619543,
+        "r": 3579519,
+        "total": 8263474,
+        "note": "NYSBOE certified contest 5591 county sums (Dem+Working Families, Rep+Conservative, total=all candidates excl blank/void). FEC file has 4,619,195 / 3,578,899 / 8,262,495."
+      },
+      "North Carolina": {
+        "d": 2715375,
+        "r": 2898423,
+        "total": 5699141
+      },
+      "North Dakota": {
+        "d": 112327,
+        "r": 246505,
+        "total": 368155
+      },
+      "Ohio": {
+        "d": 2533699,
+        "r": 3180116,
+        "total": 5767788
+      },
+      "Oklahoma": {
+        "d": 499599,
+        "r": 1036213,
+        "total": 1566173
+      },
+      "Oregon": {
+        "d": 1240600,
+        "r": 919480,
+        "total": 2244493
+      },
+      "Pennsylvania": {
+        "d": 3423042,
+        "r": 3543308,
+        "total": 7058732
+      },
+      "Rhode Island": {
+        "d": 285156,
+        "r": 214406,
+        "total": 513386
+      },
+      "South Carolina": {
+        "d": 1028452,
+        "r": 1483747,
+        "total": 2548140
+      },
+      "South Dakota": {
+        "d": 146859,
+        "r": 272081,
+        "total": 428922
+      },
+      "Tennessee": {
+        "d": 1056265,
+        "r": 1966865,
+        "total": 3063942
+      },
+      "Texas": {
+        "d": 4835250,
+        "r": 6393597,
+        "total": 11388674
+      },
+      "Utah": {
+        "d": 562566,
+        "r": 883818,
+        "total": 1488494
+      },
+      "Vermont": {
+        "d": 235791,
+        "r": 119395,
+        "total": 369422
+      },
+      "Virginia": {
+        "d": 2335395,
+        "r": 2075085,
+        "total": 4505941,
+        "note": "VA ELECT certification of Dec 2, 2024 (enr.elections.virginia.gov / Certificate of Ascertainment). FEC file has 2,333,778 / 2,074,097 / 4,503,288; certified total includes 23,365 write-ins."
+      },
+      "Washington": {
+        "d": 2245849,
+        "r": 1530923,
+        "total": 3924243
+      },
+      "West Virginia": {
+        "d": 214309,
+        "r": 533556,
+        "total": 762582
+      },
+      "Wisconsin": {
+        "d": 1668229,
+        "r": 1697626,
+        "total": 3422918
+      },
+      "Wyoming": {
+        "d": 69527,
+        "r": 192633,
+        "total": 269048
+      }
+    }
+  }
+}
