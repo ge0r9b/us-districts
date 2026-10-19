@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181612";</script>
+<script>window.BUILD="202610181613";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
