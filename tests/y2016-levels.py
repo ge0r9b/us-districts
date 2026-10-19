@@ -75,8 +75,8 @@ async def main():
     # live 1570 report: All States at a '16-'20 range was stuck on 'Loading 2016 results…' with 2020/24 order and no values
     def clv(r):
       m=re.search(r'Clinton\)?: ?([\d,.]+)',r[1]); return float(m.group(1).replace(',','')) if m else None
-    od=[clv(r) for r in await pg.evaluate(ROWS)][:8]
-    ck(all(x is not None for x in od) and od==sorted(od,reverse=True),"All States at '16: rows sorted by 2016 Clinton values",od)
+    od=[r[1] for r in (await pg.evaluate("()=>window.__laInfo().order"))][:8]  # build 1588 (user): default sort = total votes (was: Clinton share)
+    ck(all(x is not None for x in od) and od==sorted(od,reverse=True),"All States at '16: rows sorted high-to-low by the 2016 sort value (total votes since 1588)",od)
     for hi in (1,2):
       await pg.evaluate("(h)=>window.__ySet16(h)",hi); await pg.wait_for_timeout(4000)
       rows=await pg.evaluate(ROWS); n=sum("'16→" in r[1] for r in rows); ld=await pg.evaluate("()=>getComputedStyle(document.querySelector('#listView .lvgrid'),'::before').content")
@@ -103,7 +103,9 @@ async def main():
     await pg.evaluate("()=>document.querySelector('li.la-row').click()"); await pg.wait_for_timeout(6000)
     await pg.evaluate("()=>[...document.querySelectorAll('#listView .lvrow.la')].find(r=>r.querySelector('.nmx').textContent==='PA').click()"); await pg.wait_for_timeout(8000)
     await pg.evaluate("()=>document.getElementById('bGlobe').click()"); await pg.wait_for_timeout(6000)
-    x=await pg.evaluate(PANE,'.leaflet-la-pane'); ck(colored(x,100,6),"PA counties map at '16 (from the list): each county coloured D/R, not one pale fill",x)
+    x=await pg.evaluate(PANE,'.leaflet-la-pane')
+    if not (x and x.get('n')): x=await pg.evaluate(PANE,'.leaflet-heat-pane') or await pg.evaluate(PANE,'.leaflet-nat-pane')  # build 1588: the map button leaves the list for the plain map (no list layer)
+    ck(colored(x,100,6),"PA counties map at '16 (from the list): each county coloured D/R, not one pale fill",x)
     await pg.screenshot(path='/workspace/y2016-map-pa.png')
     x=await pg.evaluate(PANE,'.leaflet-heat-pane'); ck(colored(x),"PA county heat layer at '16 coloured",x)
     await c.close()
