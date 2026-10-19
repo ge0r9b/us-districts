@@ -73,3 +73,6 @@ The user, relayed via Trailblazer, at **11:53 AM EDT**:
 - **macOS:** the iOS app runs natively on the Mac in an **iPhone-sized window by default** (like iPhone Mirroring), with `tablet` and `desktop` as choices in the same selector.
 - **Web** gets the same selector, with the same labels and the same `auto` default.
 - **Purely presentational:** the layout mode changes only arrangement and density. All three modes use the same `/api/v1` and the same shared core: the same data, the same rules, the same results. No feature is missing in any mode, and the PR checklist item above applies to each mode.
+
+## Note: v2 iPhone shell (us-districts native/ios-v2, Oct 18, 2026)
+us-districts branch `native/ios-v2` (5b74850) adds an unsigned SwiftUI web view around the live v2 page with an offline disk cache, iPhone-only, built by GitHub Actions for the user to sign and share. It's the user's small v2 app, separate from v3/v4 native work, and changes nothing here.
