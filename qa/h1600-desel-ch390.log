@@ -1,0 +1,9 @@
+/workspace/w/lanes/qa/qa/h1600-desel.py:11: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  img=Image.open(io.BytesIO(b)).convert("RGB").resize((W//4,H//4)); d=list(img.getdata())
+start {'lt': 'E', 'nat': 'E', 'prec': 'E', 'pane': 'block/1', 'solid': True, 'body': ''}
+picked {'lt': 'E', 'nat': 'E', 'prec': 'E', 'pane': 'block/1', 'solid': False, 'body': 'lyropen'}
+deselected {'lt': 'E', 'nat': 'E', 'prec': 'E', 'pane': 'block/1', 'solid': True, 'body': ''} 202610181618
+A 24 PA z4:38S z5:46 z6:46 z7:67 z8:63 z9:76 z10:79 z11:81 | lt E nat E prec E pane block/1
+reloaded {'lt': 'E', 'nat': 'E', 'prec': 'E', 'pane': 'block/1', 'solid': False, 'body': ''}
+R 24 PA z4:38S z5:46 z6:46 z7:67 z8:64 z9:76 z10:79 z11:81 | lt E nat E prec E pane block/1
+ERRS []

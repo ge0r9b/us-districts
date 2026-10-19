@@ -1,0 +1,15 @@
+chromium build 202610181618
+['Fairfax', 'Fairfax city']
+['Vienna town']
+ok   chromium Vienna (chart None): reload keeps the map view
+ok   chromium Vienna: reload restores the city ('Fairfax County Vienna town' vs 'Fairfax County Vienna town')
+ok   chromium Vienna: reload restores the numbers ('Kamala Harris 2024 69% / Donald Trump 2024 27%' vs 'Kamala Harris 2024 69% / Donald Trump 2024 27%')
+ok   chromium Vienna: no page errors
+webkit build 202610181618
+['Fairfax', 'Fairfax city']
+['Vienna town']
+ok   webkit Vienna (chart None): reload keeps the map view
+ok   webkit Vienna: reload restores the city ('Fairfax County Vienna town' vs 'Fairfax County Vienna town')
+ok   webkit Vienna: reload restores the numbers ('Kamala Harris 2024 69% / Donald Trump 2024 27%' vs 'Kamala Harris 2024 69% / Donald Trump 2024 27%')
+ok   webkit Vienna: no page errors
+FAILS 0

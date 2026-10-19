@@ -1,0 +1,252 @@
+{
+ "build": "202610181618",
+ "Pennsylvania": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "body": "geofs",
+  "rows": [],
+  "li": [
+   "Pennsylvania",
+   "Pennsylvania township, Mason Co\u2026 Town",
+   "Adams County, PA County",
+   "Allegheny County, PA County",
+   "Armstrong County, PA County"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "mp": [
+    6,
+    41.129,
+    -77.607
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Philadelphia County": {
+  "how": "row:Philadelphia County, PA",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "body": "geofs",
+  "rows": [],
+  "li": [
+   "Philadelphia County, PA County",
+   "Philadelphia township, Cass Cou\u2026 Town",
+   "Philadelphia city, Neshoba Coun\u2026 Town",
+   "Philadelphia town, Jefferson Co\u2026 Town",
+   "Philadelphia village, Jefferson\u2026 Town"
+  ],
+  "rowxy": [
+   195,
+   708
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Philadelphia County",
+    "gq": "Philadelphia County, PA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 79%",
+    "Donald Trump 2024 / 20%"
+   ],
+   "mp": [
+    10,
+    40.002,
+    -75.118
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Pittsburgh": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "body": "geofs",
+  "rows": [],
+  "li": [
+   "East Pittsburgh borough, Allegh\u2026 Town",
+   "Pittsburgh city, Allegheny Coun\u2026 Town"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Allegheny County",
+    "gq": "No match: East Pittsburgh borou\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 39%"
+   ],
+   "mp": [
+    9,
+    40.434,
+    -80.024
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Fulton": {
+  "how": "row:Fulton County, GA",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "body": "geofs",
+  "rows": [],
+  "li": [
+   "Fulton County, AR County",
+   "Fulton County, GA County",
+   "Fulton County, IL County",
+   "Fulton County, IN County",
+   "Fulton County, KY County"
+  ],
+  "rowxy": [
+   195,
+   660
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Fulton County",
+    "gq": "Fulton County, GA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "mp": [
+    6,
+    32.709,
+    -83.194
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Ohio": {
+  "how": "row:Ohio",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "body": "geofs",
+  "rows": [],
+  "li": [
+   "Ohio",
+   "Ohio County, IN County",
+   "Ohio County, KY County",
+   "Ohio County, WV County",
+   "Ohio township, Bureau County, IL Town"
+  ],
+  "rowxy": [
+   195,
+   708
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "",
+    "crumbs": "All\u203aUnited States",
+    "gq": "ZIP, place, county or address",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / ",
+    "Kamala Harris 2024 / "
+   ],
+   "mp": [
+    4,
+    39.8,
+    -98.6
+   ],
+   "rows": []
+  },
+  "err": []
+ }
+}

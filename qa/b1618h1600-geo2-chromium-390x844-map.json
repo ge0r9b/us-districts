@@ -1,0 +1,315 @@
+{
+ "build": "202610181618",
+ "Pennsylvania": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "Pennsylvania \u203a",
+   "COUNTIES",
+   "Philadelphia County, PA",
+   "Allegheny County, PA",
+   "Montgomery County, PA",
+   "Bucks County, PA",
+   "Delaware County, PA",
+   "Chester County, PA",
+   "Lancaster County, PA",
+   "York County, PA"
+  ],
+  "sheet_open": true,
+  "sheet": [
+   "Pennsylvania US House districts",
+   "District 01 \u203a",
+   "District 02 \u203a",
+   "District 03 \u203a",
+   "District 04 \u203a",
+   "District 05 \u203a",
+   "District 06 \u203a",
+   "District 07 \u203a",
+   "District 08 \u203a",
+   "District 09 \u203a"
+  ],
+  "lt_open": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "closed": {
+   "lt": {
+    "on": "ushouse",
+    "lt": "ushouse"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "mp": [
+    6,
+    41.129,
+    -77.607
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Philadelphia County": {
+  "how": "row:Philadelphia County, PA",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "COUNTIES",
+   "Philadelphia County, PA"
+  ],
+  "rowxy": [
+   195,
+   158.390625
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "closed": {
+   "lt": {
+    "on": "ushouse",
+    "lt": "ushouse"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Philadelphia County, PA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 79%",
+    "Donald Trump 2024 / 20%"
+   ],
+   "mp": [
+    10,
+    40.003,
+    -75.118
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Pittsburgh": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "COUNTIES",
+   "Pittsburg County, OK"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "closed": {
+   "lt": {
+    "on": "ushouse",
+    "lt": "ushouse"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Oklahoma",
+    "gq": "Pittsburg County, OK",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 79%",
+    "Kamala Harris 2024 / 20%"
+   ],
+   "mp": [
+    9,
+    34.948,
+    -95.721
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Fulton": {
+  "how": "row:Fulton County, GA",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "COUNTIES",
+   "Fulton County, GA",
+   "Fulton County, NY",
+   "Fulton County, OH",
+   "Fulton County, IL",
+   "Fulton County, IN",
+   "Fulton County, PA",
+   "Fulton County, AR",
+   "Fulton County, KY"
+  ],
+  "rowxy": [
+   195,
+   158.390625
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "closed": {
+   "lt": {
+    "on": "ushouse",
+    "lt": "ushouse"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Georgia",
+    "gq": "Fulton County, GA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "mp": [
+    9,
+    33.845,
+    -84.474
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Ohio": {
+  "how": "row:Ohio",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "Ohio \u203a",
+   "COUNTIES",
+   "Ohio County, WV",
+   "Ohio County, KY",
+   "Ohio County, IN",
+   "Franklin County, OH",
+   "Cuyahoga County, OH",
+   "Hamilton County, OH",
+   "Summit County, OH",
+   "Montgomery County, OH"
+  ],
+  "rowxy": [
+   195,
+   128
+  ],
+  "sheet_open": true,
+  "sheet": [
+   "Ohio US House districts",
+   "District 01 \u203a",
+   "District 02 \u203a",
+   "District 03 \u203a",
+   "District 04 \u203a",
+   "District 05 \u203a",
+   "District 06 \u203a",
+   "District 07 \u203a",
+   "District 08 \u203a",
+   "District 09 \u203a"
+  ],
+  "lt_open": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "closed": {
+   "lt": {
+    "on": "ushouse",
+    "lt": "ushouse"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Ohio",
+    "gq": "Ohio",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   "mp": [
+    6,
+    40.397,
+    -82.661
+   ],
+   "rows": []
+  },
+  "err": []
+ }
+}

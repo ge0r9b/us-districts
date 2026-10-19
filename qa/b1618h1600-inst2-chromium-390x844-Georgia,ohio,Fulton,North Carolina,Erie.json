@@ -1,0 +1,257 @@
+{
+ "build": "202610181618",
+ "Georgia": {
+  "icon": [
+   "img/flags/US.png?v=202610181618",
+   "img/flags/c/ge.png?v=202610181618"
+  ],
+  "rows": [
+   "Georgia \u203a",
+   "COUNTIES",
+   "Fulton County, GA",
+   "Gwinnett County, GA",
+   "Cobb County, GA",
+   "DeKalb County, GA",
+   "Cherokee County, GA",
+   "Chatham County, GA",
+   "Forsyth County, GA",
+   "Henry County, GA"
+  ],
+  "sheet_open": true,
+  "sheet": [
+   "Georgia counties",
+   "Appling County \u203a",
+   "Atkinson County \u203a",
+   "Bacon County \u203a",
+   "Baker County \u203a",
+   "Baldwin County \u203a",
+   "Banks County \u203a",
+   "Barrow County \u203a",
+   "Bartow County \u203a",
+   "Ben Hill County \u203a"
+  ],
+  "crumbs_open": "United States",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Georgia",
+    "gq": "Georgia",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 49%"
+   ],
+   "mp": [
+    6,
+    32.713,
+    -83.188
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[32.7134,-83.1885,6]}",
+   "rows": []
+  },
+  "err": []
+ },
+ "ohio": {
+  "icon": [
+   "img/flags/US.png?v=202610181618",
+   "img/stateflags/Ohio.png?v=202610181618"
+  ],
+  "rows": [
+   "Ohio \u203a",
+   "COUNTIES",
+   "Ohio County, WV",
+   "Ohio County, KY",
+   "Ohio County, IN",
+   "Franklin County, OH",
+   "Cuyahoga County, OH",
+   "Hamilton County, OH",
+   "Summit County, OH",
+   "Montgomery County, OH"
+  ],
+  "sheet_open": true,
+  "sheet": [
+   "Ohio counties",
+   "Adams County \u203a",
+   "Allen County \u203a",
+   "Ashland County \u203a",
+   "Ashtabula County \u203a",
+   "Athens County \u203a",
+   "Auglaize County \u203a",
+   "Belmont County \u203a",
+   "Brown County \u203a",
+   "Butler County \u203a"
+  ],
+  "crumbs_open": "United States",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Ohio",
+    "gq": "Ohio",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   "mp": [
+    6,
+    40.397,
+    -82.661
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Ohio\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.3968,-82.6611,6]}",
+   "rows": []
+  },
+  "err": []
+ },
+ "Fulton": {
+  "icon": [
+   "img/flags/US.png?v=202610181618",
+   "img/flags/US.png?v=202610181618"
+  ],
+  "rows": [
+   "COUNTIES",
+   "Fulton County, GA",
+   "Fulton County, NY",
+   "Fulton County, OH",
+   "Fulton County, IL",
+   "Fulton County, IN",
+   "Fulton County, PA",
+   "Fulton County, AR",
+   "Fulton County, KY"
+  ],
+  "rowxy": [
+   195,
+   158.390625
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "crumbs_open": "Fulton County",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Fulton County",
+    "gq": "Fulton County, GA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "mp": [
+    9,
+    33.845,
+    -84.474
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[33.845,-84.4745,9]}",
+   "rows": []
+  },
+  "err": []
+ },
+ "North Carolina": {
+  "icon": [
+   "img/flags/US.png?v=202610181618",
+   "img/stateflags/North_Carolina.png?v=202610181618"
+  ],
+  "rows": [
+   "North Carolina \u203a",
+   "COUNTIES",
+   "Northampton County, NC",
+   "Wake County, NC",
+   "Mecklenburg County, NC",
+   "Guilford County, NC",
+   "Forsyth County, NC",
+   "Durham County, NC",
+   "Buncombe County, NC",
+   "Cumberland County, NC"
+  ],
+  "sheet_open": true,
+  "sheet": [
+   "North Carolina counties",
+   "Alamance County \u203a",
+   "Alexander County \u203a",
+   "Alleghany County \u203a",
+   "Anson County \u203a",
+   "Ashe County \u203a",
+   "Avery County \u203a",
+   "Beaufort County \u203a",
+   "Bertie County \u203a",
+   "Bladen County \u203a"
+  ],
+  "crumbs_open": "United States",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "North Carolina",
+    "gq": "North Carolina",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "mp": [
+    5,
+    35.174,
+    -79.849
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[35.1738,-79.8486,5]}",
+   "rows": []
+  },
+  "err": []
+ },
+ "Erie": {
+  "icon": [
+   "img/flags/US.png?v=202610181618",
+   "img/flags/US.png?v=202610181618"
+  ],
+  "rows": [
+   "COUNTIES",
+   "Erie County, NY",
+   "Erie County, PA",
+   "Erie County, OH"
+  ],
+  "rowxy": [
+   195,
+   206.390625
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "crumbs_open": "Erie County",
+  "closed": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Erie County",
+    "gq": "Erie County, PA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 49%"
+   ],
+   "mp": [
+    9,
+    42.183,
+    -80.065
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Erie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[42.1834,-80.0653,9]}",
+   "rows": []
+  },
+  "err": []
+ }
+}

@@ -1,0 +1,5 @@
+/workspace/w/lanes/qa/qa/h1600-geo.py:7: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  img=Image.open(io.BytesIO(b)).convert("RGB").resize((W//4,H//4)); d=list(img.getdata())
+Pennsylvania | pre on: ushouse | input  | after on: ushouse | top: Pennsylvania | US House districts | Pennsylvania | US House districts | bottom: District 15 | District 16 | › | District 17 | › | tint 0 | qa/shotsh1600/b1618h-geo-chromium-390-Pennsylvania.png
+Philadelphia County, PA | pre on: ushouse | input  | after on: ushouse | top: President | Pennsylvania | bottom: © Esri · VEST · NYT | tint 52 | qa/shotsh1600/b1618h-geo-chromium-390-PhiladelphiaCounty.png
+Pittsburgh | pre on: ushouse | input  | after on: ushouse | top: President | Oklahoma | bottom: © Esri · VEST · NYT | tint 81 | qa/shotsh1600/b1618h-geo-chromium-390-Pittsburgh.png

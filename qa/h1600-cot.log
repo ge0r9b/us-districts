@@ -1,0 +1,23 @@
+ok   webkit Texas > Harris: QA-094 the cities list shows the county's own result ('Kamala Harris 2024 52% / Donald Trump 2024 46%' vs its row 'Republican (Trump): 46.4% | Democratic (Harris): 52.0% | Other: 1.6%')
+ok   webkit Houston city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 60% / Donald Trump 2024 38%' vs list 'Kamala Harris 2024 60% / Donald Trump 2024 38%')
+ok   webkit Texas: no page errors
+ok   webkit Florida > Miami-Dade: QA-094 the cities list shows the county's own result ('Donald Trump 2024 55% / Kamala Harris 2024 44%' vs its row 'Republican (Trump): 55.4% | Democratic (Harris): 43.9% | Other: 0.7%')
+ok   webkit Miami city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 50% / Donald Trump 2024 49%' vs list 'Kamala Harris 2024 50% / Donald Trump 2024 49%')
+ok   webkit Florida: no page errors
+ok   webkit Arizona > Maricopa: QA-094 the cities list shows the county's own result ('Donald Trump 2024 51% / Kamala Harris 2024 48%' vs its row 'Republican (Trump): 51.2% | Democratic (Harris): 47.7% | Other: 1.1%')
+ok   webkit Phoenix city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 56% / Donald Trump 2024 42%' vs list 'Kamala Harris 2024 56% / Donald Trump 2024 42%')
+ok   webkit Arizona: no page errors
+ok   webkit Florida state senate list: QA-095 the thumbnails show the official state total (6.11M / 4.68M): 'Donald Trump 2024 6.11M / Kamala Harris 2024 4.68M'
+ok   webkit FL senate: no page errors
+ok   chromium Texas > Harris: QA-094 the cities list shows the county's own result ('Kamala Harris 2024 52% / Donald Trump 2024 46%' vs its row 'Republican (Trump): 46.4% | Democratic (Harris): 52.0% | Other: 1.6%')
+ok   chromium Houston city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 60% / Donald Trump 2024 38%' vs list 'Kamala Harris 2024 60% / Donald Trump 2024 38%')
+ok   chromium Texas: no page errors
+ok   chromium Florida > Miami-Dade: QA-094 the cities list shows the county's own result ('Donald Trump 2024 55% / Kamala Harris 2024 44%' vs its row 'Republican (Trump): 55.4% | Democratic (Harris): 43.9% | Other: 0.7%')
+ok   chromium Miami city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 50% / Donald Trump 2024 49%' vs list 'Kamala Harris 2024 50% / Donald Trump 2024 49%')
+ok   chromium Florida: no page errors
+ok   chromium Arizona > Maricopa: QA-094 the cities list shows the county's own result ('Donald Trump 2024 51% / Kamala Harris 2024 48%' vs its row 'Republican (Trump): 51.2% | Democratic (Harris): 47.7% | Other: 1.1%')
+ok   chromium Phoenix city > globe: QA-096 the map shows the city's numbers ('Kamala Harris 2024 56% / Donald Trump 2024 42%' vs list 'Kamala Harris 2024 56% / Donald Trump 2024 42%')
+ok   chromium Arizona: no page errors
+ok   chromium Florida state senate list: QA-095 the thumbnails show the official state total (6.11M / 4.68M): 'Donald Trump 2024 6.11M / Kamala Harris 2024 4.68M'
+ok   chromium FL senate: no page errors
+FAILS 0
