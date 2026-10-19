@@ -9,7 +9,7 @@ async def typ(pg,q,how='enter'):
   await pg.keyboard.type(q,delay=20); await pg.wait_for_timeout(1800)
   if how=='enter': await pg.keyboard.press('Enter')
   elif how=='button': await pg.tap('#bGlobe')
-  else: await pg.evaluate("()=>{const l=[...document.querySelectorAll('#gfs li, .geofs li')].filter(l=>l.offsetParent).sort((a,b)=>b.getBoundingClientRect().top-a.getBoundingClientRect().top)[0]; l&&l.click()}")
+  else: await pg.evaluate("()=>{const l=[...document.querySelectorAll('#gfs li, .geofs li')].filter(l=>l.offsetParent&&!l.classList.contains('addr')).sort((a,b)=>b.getBoundingClientRect().top-a.getBoundingClientRect().top)[0]; l&&l.click()}")
   await pg.wait_for_timeout(7000)
 async def main():
   async with async_playwright() as p:

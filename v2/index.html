@@ -3101,7 +3101,7 @@ document.getElementById("heat").checked=true; setHeat(true); crumbs(); updateLeg
   const pinLayer=L.layerGroup().addTo(map);
   const goAddr=m=>{ window.__xCrumb=null; closeG(); nameLock=null; pinLayer.clearLayers(); L.circleMarker([m.lat,m.lon],{radius:8,color:"#fff",weight:3,fillColor:"#111",fillOpacity:1,pane:"markerPane"}).addTo(pinLayer);
     const short=m.addr.split(",").slice(0,2).join(",").trim(); GQ.placeholder=t32(short); GQ.title=m.addr;
-    const st=m.st&&allStates().includes(m.st)?m.st:null; const res={addr:m.addr,lat:m.lat,lon:m.lon,state:st,county:null,precinct:null,level:"point"}; window.__lastAddr=res;
+    let st=m.st&&allStates().includes(m.st)?m.st:null; if(!st){ try{ const mm=String(m.addr).match(/,\s*([A-Z]{2})\b(?:\s+\d{5})?/g); const ab=mm&&mm[mm.length-1].replace(/[^A-Z]/g,""); const S=ab&&ab!=="DC"&&allStates().find(x=>ABBR[x]===ab); if(S) st=S; }catch(e){} } /* build 1619: an address result without a state field takes the state from its own text, so it is selected like any address */ const res={addr:m.addr,lat:m.lat,lon:m.lon,state:st,county:null,precinct:null,level:"point"}; window.__lastAddr=res;
     /* build 1578 (QA-062): DC has no state/county pickers; an address inside DC opens DC itself (title, field, crumb, thumbnails and map together) */
     if(!st&&(/,\s*DC\b|District of Columbia/i.test(m.addr)||(m.lat>38.79&&m.lat<38.996&&m.lon>-77.12&&m.lon<-76.909))){ res.state="District of Columbia"; res.county="District of Columbia"; res.level="county"; window.__goDC(short,[m.lat,m.lon]); return Promise.resolve(res); }
     if(!st){ map.setView([m.lat,m.lon],15); return Promise.resolve(res); }
