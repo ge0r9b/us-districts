@@ -1,0 +1,201 @@
+{
+ "Wisconsin": {
+  "lat": {},
+  "build": "202610181617",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "gq": "Wisconsin",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 49%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    1382536,
+    1405284,
+    2976150
+   ],
+   "2020": [
+    1630866,
+    1610184,
+    3298041
+   ],
+   "2024": [
+    1668229,
+    1697626,
+    3422918
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 47%",
+    "Hillary Clinton 2016 / 46%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 49%",
+    "Donald Trump 2020 / 49%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 49%"
+   ]
+  },
+  "drill": {
+   "menu": [
+    "Wisconsin counties",
+    "Adams County \u203a",
+    "Ashland County \u203a"
+   ],
+   "lat_counties": 75,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "gq": "Wisconsin",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 72,
+   "rows1": [
+    "Milwaukee | 29.8% | 68.3%",
+    "Dane | 23.4% | 75.1%",
+    "Waukesha | 59.2% | 39.5%",
+    "Brown | 53.1% | 45.6%",
+    "Outagamie | 54.4% | 44.2%"
+   ],
+   "order1": {
+    "n": 50,
+    "first": [
+     29.8,
+     23.4,
+     59.2,
+     53.1,
+     54.4
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     7,
+     10,
+     12
+    ]
+   },
+   "lat_county": 32.2,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Dane County",
+    "gq": "Dane County, WI",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 60,
+   "rows2": [
+    "Madison city | 83.3%",
+    "Sun Prairie city | 28.0% | 70.5%",
+    "Fitchburg city | 20.1% | 78.1%",
+    "Middleton city | 79.8%",
+    "Verona city | 24.7% | 73.7%",
+    "Waunakee village | 36.1% | 62.7%"
+   ],
+   "order2": {
+    "n": 50,
+    "first": [
+     83.3,
+     28.0,
+     20.1,
+     79.8,
+     24.7
+    ],
+    "not_desc_at": [
+     3,
+     5,
+     8,
+     10,
+     11
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 23%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 33.3,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Dane County Madison city",
+    "gq": "Dane County, WI",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 125,
+   "rows3": [
+    "City of Madison Ward 114 | 22.7% | 75.4%",
+    "City of Madison Ward 113 | 28.0% | 70.8%",
+    "City of Madison Ward 80 | 88.7%",
+    "City of Madison Ward 19 | 94.7%",
+    "City of Madison Ward 40 | 94.0%",
+    "City of Madison Ward 46 | 90.5%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 15%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Dane County Madison city",
+     "gq": "Dane County, WI",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 83%",
+     "Donald Trump 2024 / 15%"
+    ],
+    [
+     9,
+     "43.164",
+     "-89.397"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Dane County\",\"Madison city\"],\"ll\":[43.1641,-89.3971,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Dane County\",\"Madison city\"],\"ll\":[43.1621,-89.3971,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Dane County Madison city",
+     "gq": "Dane County, WI",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 83%",
+     "Donald Trump 2024 / 15%"
+    ]
+   }
+  },
+  "err": []
+ }
+}

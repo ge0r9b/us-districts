@@ -1,0 +1,694 @@
+{
+ "PAh-map": {
+  "addr": "501 N 3rd St, Harrisburg, PA 17120",
+  "sugg": [
+   "501 N 3RD ST, HARRISBURG, PA, 1\u2026Address",
+   "Pennsylvania State Capitol, 501\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2644,
+    -76.892
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2645,
+    -76.8919
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2645,-76.8919,13]}"
+  ],
+  "err": []
+ },
+ "build": "202610181617",
+ "PAh-list": {
+  "addr": "501 N 3rd St, Harrisburg, PA 17120",
+  "sugg": [
+   "501 N 3RD ST, HARRISBURG, PA, 1\u2026Address",
+   "Pennsylvania State Capitol, 501\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [],
+   [
+    6,
+    41.0078,
+    -77.605
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[41.0078,-77.605,6]}"
+  ],
+  "rows": [
+   "Dauphin | 46.5% | 52.4%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2645,
+    -76.8921
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2645,-76.8921,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2644,
+    -76.892
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}"
+  ],
+  "err": []
+ },
+ "AZ-map": {
+  "addr": "1700 W Washington St, Phoenix, AZ 85007",
+  "sugg": [
+   "1700 W WASHINGTON ST, PHOENIX, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    13,
+    33.4459,
+    -112.0904
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    13,
+    33.4459,
+    -112.0904
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}"
+  ],
+  "err": []
+ },
+ "AZ-list": {
+  "addr": "1700 W Washington St, Phoenix, AZ 85007",
+  "sugg": [
+   "1700 W WASHINGTON ST, PHOENIX, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [],
+   [
+    13,
+    33.4459,
+    -112.0904
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}"
+  ],
+  "rows": [
+   "Maricopa | 51.2% | 47.7%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    13,
+    33.4459,
+    -112.0904
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    13,
+    33.4459,
+    -112.0904
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.4459,-112.0904,13]}"
+  ],
+  "err": []
+ },
+ "MD-map": {
+  "addr": "100 N Holliday St, Baltimore, MD 21202",
+  "sugg": [
+   "100 N HOLLIDAY ST, BALTIMORE, M\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Baltimore City 04-01",
+    "gq": "100 N HOLLIDAY ST, BALTIMORE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 9%"
+   ],
+   [
+    "Baltimore City 04-01 | Harris 87.5% | Trump 9.4%"
+   ],
+   [
+    13,
+    39.2926,
+    -76.6095
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6095,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6095,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Baltimore City 04-01",
+    "gq": "100 N HOLLIDAY ST, BALTIMORE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 9%"
+   ],
+   [
+    "Baltimore City 04-01 | Harris 87.5% | Trump 9.4%"
+   ],
+   [
+    13,
+    39.2926,
+    -76.6095
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6095,13]}"
+  ],
+  "err": []
+ },
+ "MD-list": {
+  "addr": "100 N Holliday St, Baltimore, MD 21202",
+  "sugg": [
+   "100 N HOLLIDAY ST, BALTIMORE, M\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Baltimore City 04-01",
+    "gq": "100 N HOLLIDAY ST, BALTIMORE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 9%"
+   ],
+   [],
+   [
+    13,
+    39.2926,
+    -76.6095
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6095,13]}"
+  ],
+  "rows": [
+   "Baltimore city | 85.2%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Baltimore City 04-01",
+    "gq": "100 N HOLLIDAY ST, BALTIMORE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 9%"
+   ],
+   [
+    "Baltimore City 04-01 | Harris 87.5% | Trump 9.4%"
+   ],
+   [
+    13,
+    39.2926,
+    -76.6096
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6096,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Baltimore City 04-01",
+    "gq": "100 N HOLLIDAY ST, BALTIMORE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 9%"
+   ],
+   [
+    "Baltimore City 04-01 | Harris 87.5% | Trump 9.4%"
+   ],
+   [
+    13,
+    39.2926,
+    -76.6095
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Maryland\",\"co\":\"Baltimore city\",\"p\":\"BALTIMORE CITY 04-01\",\"ph\":\"100 N HOLLIDAY ST, BALTIMORE\",\"ttl\":\"100 N HOLLIDAY ST, BALTIMORE, MD, 21202\",\"pin\":[39.290553715097,-76.610352002635]},\"ll\":[39.2926,-76.6095,13]}"
+  ],
+  "err": []
+ },
+ "CA-map": {
+  "addr": "1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102",
+  "sugg": [
+   "1 DR CARLTON P GOODLETT PL, SAN\u2026Address",
+   "1, Dr. Carlton B. Goodlett Plac\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "San Francisco Precinct 7532",
+    "gq": "1 DR CARLTON P GOODLETT PL, SAN\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 80%",
+    "Donald Trump 2024 / 16%"
+   ],
+   [
+    "San Francisco Precinct 7532 | Harris 79.7% | Trump 15.7%"
+   ],
+   [
+    14,
+    37.7828,
+    -122.4151
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "San Francisco Precinct 7532",
+    "gq": "1 DR CARLTON P GOODLETT PL, SAN\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 80%",
+    "Donald Trump 2024 / 16%"
+   ],
+   [
+    "San Francisco Precinct 7532 | Harris 79.7% | Trump 15.7%"
+   ],
+   [
+    14,
+    37.7828,
+    -122.4151
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}"
+  ],
+  "err": []
+ },
+ "CA-list": {
+  "addr": "1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102",
+  "sugg": [
+   "1 DR CARLTON P GOODLETT PL, SAN\u2026Address",
+   "1, Dr. Carlton B. Goodlett Plac\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "San Francisco Precinct 7532",
+    "gq": "1 DR CARLTON P GOODLETT PL, SAN\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 80%",
+    "Donald Trump 2024 / 16%"
+   ],
+   [],
+   [
+    14,
+    37.7828,
+    -122.4151
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}"
+  ],
+  "rows": [
+   "San Francisco | 80.3%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "San Francisco Precinct 7532",
+    "gq": "1 DR CARLTON P GOODLETT PL, SAN\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 80%",
+    "Donald Trump 2024 / 16%"
+   ],
+   [
+    "San Francisco Precinct 7532 | Harris 79.7% | Trump 15.7%"
+   ],
+   [
+    14,
+    37.7828,
+    -122.4151
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "San Francisco Precinct 7532",
+    "gq": "1 DR CARLTON P GOODLETT PL, SAN\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 80%",
+    "Donald Trump 2024 / 16%"
+   ],
+   [
+    "San Francisco Precinct 7532 | Harris 79.7% | Trump 15.7%"
+   ],
+   [
+    14,
+    37.7828,
+    -122.4151
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"co\":\"San Francisco County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"California\",\"co\":\"San Francisco County\",\"p\":\"7532\",\"ph\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO\",\"ttl\":\"1 DR CARLTON P GOODLETT PL, SAN FRANCISCO, CA, 94102\",\"pin\":[37.778536095745,-122.41831039539]},\"ll\":[37.7828,-122.4151,14]}"
+  ],
+  "err": []
+ },
+ "WI-map": {
+  "addr": "2 E Main St, Madison, WI 53703",
+  "sugg": [
+   "Looking up address\u2026"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    14,
+    43.077,
+    -89.3861
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3861,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3861,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    14,
+    43.077,
+    -89.3861
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3861,14]}"
+  ],
+  "err": []
+ },
+ "WI-list": {
+  "addr": "2 E Main St, Madison, WI 53703",
+  "sugg": [
+   "2 E MAIN ST, MADISON, WI, 53703Address",
+   "Wisconsin State Capitol, 2, Eas\u2026Address",
+   "The West, 2, East Main Street, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [],
+   [
+    14,
+    43.077,
+    -89.3865
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3865,14]}"
+  ],
+  "rows": [
+   "Dane | 23.4% | 75.1%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    14,
+    43.077,
+    -89.3861
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3861,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    14,
+    43.077,
+    -89.3861
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.077,-89.3861,14]}"
+  ],
+  "err": []
+ }
+}

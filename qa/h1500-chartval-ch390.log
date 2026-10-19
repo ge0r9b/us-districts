@@ -1,0 +1,51 @@
+Georgia bar-24-pct bar [2, 2] 50.7% | 48.5% | … | 0.8% |  
+Georgia bar-24-num bar [2, 2] 2.66M | 2.55M | … | 40K |  
+Georgia bar-16-pct bar [0, 0] 50.8% | 45.6% | … | 3.6% |  
+Georgia bar-16-num bar [0, 0] 2.09M | 1.88M | … | 148K |  
+Georgia bar-20-24-pct bar [1, 2] +1.5 | −0.9 | … | −0.5
+Georgia bar-20-24-num bar [1, 2] +201K | +74K | … | −25K
+Georgia bar-16-24-pct bar [0, 2] −0.1 | +2.9 | … | −2.8
+Georgia bar-16-24-num bar [0, 2] +574K | +670K | … | −108K
+Georgia line-24-pct bar [2, 2] 50.7% | 48.5% | … | 0.8% |  
+Georgia line-24-num bar [2, 2] 2.66M | 2.55M | … | 40K |  
+Georgia line-16-pct bar [0, 0] 50.8% | 45.6% | … | 3.6% |  
+Georgia line-16-num bar [0, 0] 2.09M | 1.88M | … | 148K |  
+Georgia line-20-24-pct line [1, 2] 46% | 48% | 50% | 52% | +1.5 | −0.9
+Georgia line-20-24-num line [1, 2] 2.4M | 2.5M | 2.6M | 2.7M | 2.8M | +201K | +74K
+Georgia line-16-24-pct line [0, 2] 43% | 45% | 48% | 50% | 53% | −1.5 | +1.5 | +3.8 | −0.9
+Georgia line-16-24-num line [0, 2] 1.5M | 2M | 2.5M | 3M | +373K | +201K | +596K | +74K
+Georgia tot {"2016": [1877963, 2089104, 4114732], "2020": [2473633, 2461854, 4999960], "2024": [2548017, 2663117, 5250905]} err []
+Arizona bar-24-pct bar [2, 2] 52.2% | 46.7% | … | 1.1% |  
+Arizona bar-24-num bar [2, 2] 1.77M | 1.58M | … | 37K |  
+Arizona bar-16-pct bar [0, 0] 48.7% | 45.1% | … | 6.2% |  
+Arizona bar-16-num bar [0, 0] 1.25M | 1.16M | … | 160K |  
+Arizona bar-20-24-pct bar [1, 2] +3.2 | −2.7 | … | −0.5
+Arizona bar-20-24-num bar [1, 2] +109K | −89K | … | −16K
+Arizona bar-16-24-pct bar [0, 2] +3.5 | +1.6 | … | −5.1
+Arizona bar-16-24-num bar [0, 2] +518K | +422K | … | −123K
+Arizona line-24-pct bar [2, 2] 52.2% | 46.7% | … | 1.1% |  
+Arizona line-24-num bar [2, 2] 1.77M | 1.58M | … | 37K |  
+Arizona line-16-pct bar [0, 0] 48.7% | 45.1% | … | 6.2% |  
+Arizona line-16-num bar [0, 0] 1.25M | 1.16M | … | 160K |  
+Arizona line-20-24-pct line [1, 2] 45% | 48% | 50% | 53% | 55% | +3.2 | −2.7
+Arizona line-20-24-num line [1, 2] 1.5M | 1.6M | 1.7M | 1.8M | 1.9M | +109K | −89K
+Arizona line-16-24-pct line [0, 2] 40% | 45% | 50% | 55% | +0.4 | +3.2 | +4.2 | −2.7
+Arizona line-16-24-num line [0, 2] 500K | 1M | 1.5M | 2M | +409K | +109K | +511K | −89K
+Arizona tot {"2016": [1161167, 1252401, 2573165], "2020": [1672143, 1661686, 3387326], "2024": [1582860, 1770242, 3390161]} err []
+Wisconsin bar-24-pct bar [2, 2] 49.6% | 48.7% | … | 1.7% |  
+Wisconsin bar-24-num bar [2, 2] 1.70M | 1.67M | … | 57K |  
+Wisconsin bar-16-pct bar [0, 0] 47.2% | 46.5% | … | 6.3% |  
+Wisconsin bar-16-num bar [0, 0] 1.41M | 1.38M | … | 188K |  
+Wisconsin bar-20-24-pct bar [1, 2] +0.8 | −0.7 | … | −0.1
+Wisconsin bar-20-24-num bar [1, 2] +87K | +37K | … | +72
+Wisconsin bar-16-24-pct bar [0, 2] +2.4 | +2.3 | … | −4.7
+Wisconsin bar-16-24-num bar [0, 2] +292K | +286K | … | −131K
+Wisconsin line-24-pct bar [2, 2] 49.6% | 48.7% | … | 1.7% |  
+Wisconsin line-24-num bar [2, 2] 1.70M | 1.67M | … | 57K |  
+Wisconsin line-16-pct bar [0, 0] 47.2% | 46.5% | … | 6.3% |  
+Wisconsin line-16-num bar [0, 0] 1.41M | 1.38M | … | 188K |  
+Wisconsin line-20-24-pct line [1, 2] 48.0% | 48.5% | 49.0% | 49.5% | 50.0% | +0.8 | −0.7
+Wisconsin line-20-24-num line [1, 2] 1.55M | 1.6M | 1.65M | 1.7M | 1.75M | +87K | +37K
+Wisconsin line-16-24-pct line [0, 2] 44% | 46% | 48% | 50% | 52% | +1.6 | +0.8 | +3.0 | −0.7
+Wisconsin line-16-24-num line [0, 2] 1.2M | 1.4M | 1.6M | 1.8M | +205K | +87K | +248K | +37K
+Wisconsin tot {"2016": [1382536, 1405284, 2976150], "2020": [1630866, 1610184, 3298041], "2024": [1668229, 1697626, 3422918]} err []
