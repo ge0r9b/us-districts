@@ -2684,7 +2684,18 @@ window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
     const tgt=e=>{ const t=e.target; if(!t||!t.closest) return null; const el=t.closest(".cpanel .sechip")||(document.body.classList.contains("chv")?t.closest("#cands .cand, #cands img.dmt, #cands .dmoc"):null); return el; };
     let pd=null, shown=0; const show=el=>{ hide(); shown=Date.now();
       let nm=el.dataset.nm||el.dataset.pt||el.getAttribute("aria-label")||el.title||""; nm=nm.split(" \u00b7 ")[0]; if(ym()!=="delta"&&!window.__y16hi) nm=nm.replace(/\s+\d{4}$/,"");
-      if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub); const r=el.getBoundingClientRect(), b=bub.getBoundingClientRect(); let x=r.right+8; if(x+b.width>innerWidth-6) x=Math.max(6,r.left-8-b.width); bub.style.left=x+"px"; bub.style.top=Math.max(4,r.top+r.height/2-b.height/2)+"px"; bt=setTimeout(hide,3000); };
+      if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub);
+      /* build 1597 (QA-076): placed from the photo itself (a chart-view .cand button is the whole 300 px row, so the bubble landed over the photo on phones and mid-bar on iPad), on the photo's row at the nearest spot that covers no value label ('49.9%', '+3.1') and no other photo: right of the photo, left of it, or just past a label */
+      const a=(el.matches&&el.matches(".cand")&&el.querySelector("img"))||el, r=a.getBoundingClientRect();
+      const all=[...document.querySelectorAll(".cpanel *, #cands *")].filter(e=>e!==bub&&e.offsetWidth&&((!e.children.length&&(e.textContent||"").trim())||e.matches("img,.dmt,.sechip"))&&!a.contains(e)&&!e.contains(a)).map(e=>e.getBoundingClientRect()); all.push(r);
+      const place=()=>{ const b=bub.getBoundingClientRect(), w=b.width, h=b.height, best={c:1e12};
+        const mid=Math.max(4,r.top+r.height/2-h/2); [[mid,0],[r.top-4-h,400],[r.bottom+4,400]].forEach(([top,pen])=>{ if(top<4||top+h>innerHeight-4) return; const bot=top+h, obs=all.filter(q=>q.bottom>top+1&&q.top<bot-1);
+          const xs=pen?[r.left,r.right-w]:[r.right+8,r.left-8-w]; obs.forEach(q=>{ xs.push(q.right+6,q.left-6-w); });
+          xs.forEach(x=>{ if(x<6||x+w>innerWidth-6) return; let c=pen; obs.forEach(q=>{ const o=Math.min(x+w,q.right)-Math.max(x,q.left); if(o>0) c+=(q===r?1e6:1e4)*o; }); c+=Math.max(0,x-r.right,r.left-(x+w)); if(c<best.c){ best.c=c; best.x=x; best.t=top; } }); });
+        return best; };
+      let p=place(); if(p.c>=1e4){ const full=nm, y=(full.match(/\s(\d{4})$/)||[])[1], base=full.replace(/\s+\d{4}$/,""), sh=base.split(/\s+/).pop()+(y?" \u2019"+y.slice(2):""); if(sh!==full){ bub.textContent=sh; const q=place(); if(q.c<p.c){ p=q; bub.title=full; } else bub.textContent=full; } }
+      /* tight phone range rows: no clean spot for 'Donald Trump 2024' on the row, so the bubble reads 'Trump ’24' (full name in its title), or sits just above/below the photo */
+      if(p.x===undefined){ p={x:Math.max(6,Math.min(innerWidth-6-bub.getBoundingClientRect().width,r.right+8)),t:Math.max(4,r.top)}; } bub.style.left=p.x+"px"; bub.style.top=p.t+"px"; bt=setTimeout(hide,3000); };
     /* WebKit touch does not always synthesise a click on a non-control span, so the bubble opens on pointerup; the click that may follow is swallowed (it must never toggle the candidate) */
     document.addEventListener("pointerdown",e=>{ const el=tgt(e); pd=el?{el,x:e.clientX,y:e.clientY}:null; if(bub&&!el) hide(); },true);
     document.addEventListener("pointerup",e=>{ const el=tgt(e); if(el&&pd&&pd.el===el&&Math.hypot(e.clientX-pd.x,e.clientY-pd.y)<10) show(el); pd=null; },true);
