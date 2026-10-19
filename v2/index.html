@@ -3761,7 +3761,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
      thumbnails in that same task, so they appear together, in their final spot, in one frame. */
   const SKC=new Map();
   function skel(a){ try{ const lv=document.getElementById("listView"), g0=lv&&lv.querySelector(".lvgrid"); if(!g0) return;
-      const k=[a.kind,String(aname(a)),typeof ltype!=="undefined"?ltype:"",numMode,ym()].join("|"); LA.__dk=k; LA.__skS=scopeK();
+      const k=[a.kind,String(aname(a)),typeof ltype!=="undefined"?ltype:"",numMode,ym(),window.chartMode||""].join("|"); LA.__dk=k; /* build 1602 (QA-084): the chart mode is part of the cached-rows key (bar rows cached on a bar visit were shown at 30 px on the first split-bar visit) */ LA.__skS=scopeK();
       const c=SKC.get(k); let h=c; if(!h){ h=""; const n=Math.min(30,Math.ceil((lv.clientHeight||800)/23)+2); for(let i=0;i<n;i++) h+='<div class="lvskel" style="--w:'+(92-((i*37)%28))+'%"></div>'; }
       g0.innerHTML=h; g0.classList.add("skel"); lv.scrollTop=0; document.body.classList.add("laskel");
       clearTimeout(LA.__skTo); LA.__skTo=setTimeout(()=>{ if(!document.body.classList.contains("laskel")) return; if(g0.classList.contains("skel")){ g0.classList.remove("skel"); LA.__skS=null; try{ if(LA.on) render(); }catch(e){} } skelDone(); },3500); }catch(e){} }

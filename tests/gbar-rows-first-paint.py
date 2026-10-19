@@ -35,15 +35,18 @@ async def main():
         await run(f'drill MA #{rep}',lambda: nmxy('MA')); await run(f'drill Worcester #{rep}',lambda: nmxy('Worcester'))
         await run(f'Back 1 #{rep}',back); await run(f'Back 2 #{rep}',back)
       ck(not er,f"{W}: no page errors",er); await c.close()
-      for cold in ['MA','Worcester']:
+      for cold in ['MA','Worcester','MA after bar']:
         c=await b.new_context(viewport={'width':W,'height':H},has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(3500)
         await pg.touchscreen.tap(*(await center(pg,'#bGeo'))); await pg.wait_for_timeout(1200); await pg.touchscreen.tap(*(await center(pg,'li.la-row'))); await pg.wait_for_timeout(4000)
+        if cold=='MA after bar':  # pass 25: the bar list visited first caches 30 px rows
+          await pg.touchscreen.tap(*(await nmxy('MA'))); await pg.wait_for_timeout(3000); await pg.touchscreen.tap(*(await nmxy('Worcester'))); await pg.wait_for_timeout(3000)
+          await pg.touchscreen.tap(*(await center(pg,'#bBack'))); await pg.wait_for_timeout(2000); await pg.touchscreen.tap(*(await center(pg,'#bBack'))); await pg.wait_for_timeout(2000)
         await pg.touchscreen.tap(*(await center(pg,'#chartBox .cmain'))); await pg.wait_for_timeout(900)
         await pg.touchscreen.tap(*(await center(pg,'#chartBox .copts button[data-ch=gbar]'))); await pg.wait_for_timeout(2500)
         if cold=='Worcester':
           xy=await nmxy('MA'); await pg.touchscreen.tap(*xy); await pg.wait_for_timeout(3000)
-        await run(f'COLD first visit, drill {cold}',lambda: nmxy(cold))
+        await run(f'COLD first visit, drill {cold}',lambda: nmxy(cold.split()[0]))
         ck(not er,f"{W}: cold {cold}: no page errors",er); await c.close()
     await b.close()
   print("FAILS",len(F)); sys.exit(1 if F else 0)
