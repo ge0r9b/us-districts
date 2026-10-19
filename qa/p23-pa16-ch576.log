@@ -1,0 +1,7 @@
+chromium bar 16a {"b": "202610181595", "y": "2024", "mode": "bar", "bars": [["rep", [48, 186, 514, 208], "48.2%"], ["dem", [48, 230, 508, 252], "47.5%"], ["oth", [48, 274, 90, 296], "\u2026 4.4%"]], "pie": null, "pietxt": null, "lbl": ["Donald Trump 2016 ", "Hillary Clinton 2016 "]}
+chromium bar 24 {"b": "202610181595", "y": "2024", "mode": "bar", "bars": [["rep", [48, 186, 536, 208], "50.4%"], ["dem", [48, 230, 519, 252], "48.7%"], ["oth", [48, 274, 57, 296], "\u2026 1.0%"]], "pie": null, "pietxt": null, "lbl": ["Donald Trump 2024 ", "Kamala Harris 2024 "]}
+chromium bar 16b {"b": "202610181595", "y": "2024", "mode": "bar", "bars": [["rep", [48, 186, 514, 208], "48.2%"], ["dem", [48, 230, 508, 252], "47.5%"], ["oth", [48, 274, 90, 296], "\u2026 4.4%"]], "pie": null, "pietxt": null, "lbl": ["Donald Trump 2016 ", "Hillary Clinton 2016 "]}
+chromium pie 16a {"b": "202610181595", "y": "2024", "mode": "pie", "bars": [], "pie": [340, 182, 670, 512], "pietxt": "48.2%47.5%", "lbl": ["Donald Trump \u00b7 48.2% ", "Hillary Clinton \u00b7 47.5% "]}
+chromium pie 24 {"b": "202610181595", "y": "2024", "mode": "pie", "bars": [], "pie": [340, 182, 670, 512], "pietxt": "50.4%48.7%", "lbl": ["Donald Trump \u00b7 50.4% ", "Kamala Harris \u00b7 48.7% "]}
+chromium pie 16b {"b": "202610181595", "y": "2024", "mode": "pie", "bars": [], "pie": [340, 182, 670, 512], "pietxt": "48.2%47.5%", "lbl": ["Donald Trump \u00b7 48.2% ", "Hillary Clinton \u00b7 47.5% "]}
+err [] []

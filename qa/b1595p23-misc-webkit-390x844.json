@@ -1,0 +1,32 @@
+{
+ "mode": "bar",
+ "bubble": {
+  "t": "Donald Trump",
+  "b": [
+   6,
+   115,
+   116,
+   143
+  ],
+  "img": [
+   12,
+   114,
+   42,
+   144
+  ],
+  "vis": "1"
+ },
+ "gap_MA": {
+  "rows": 0,
+  "txt": "",
+  "crumbs": "Massachusetts",
+  "thumbs": 0
+ },
+ "gap_OH": {
+  "rows": 0,
+  "txt": "",
+  "crumbs": "Ohio",
+  "thumbs": 0
+ },
+ "err": []
+}

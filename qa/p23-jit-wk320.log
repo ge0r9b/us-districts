@@ -1,0 +1,14 @@
+webkit 320 set 10 {'n': 1, 'chip': [111], 'row': [112], 'st': [10]} [[7, 111, 112, 10]]
+webkit 320 set 22 {'n': 1, 'chip': [111], 'row': [100], 'st': [22]} [[12, 111, 100, 22]]
+webkit 320 set 25 {'n': 1, 'chip': [111], 'row': [97], 'st': [25]} [[1, 111, 97, 25]]
+webkit 320 set 40 {'n': 1, 'chip': [111], 'row': [82], 'st': [40]} [[11, 111, 82, 40]]
+webkit 320 set 97 {'n': 1, 'chip': [111], 'row': [25], 'st': [97]} [[14, 111, 25, 97]]
+webkit 320 wheel 40 {'n': 1, 'chip': [111], 'row': [82], 'st': [40]} [[8, 111, 82, 40]]
+webkit 320 wheel 60 {'n': 1, 'chip': [111], 'row': [22], 'st': [100]} [[8, 111, 22, 100]]
+webkit 320 wheel -100 {'n': 1, 'chip': [111], 'row': [122], 'st': [0]} [[9, 111, 122, 0]]
+webkit 320 wheel 25 {'n': 1, 'chip': [111], 'row': [97], 'st': [25]} [[7, 111, 97, 25]]
+webkit 320 smooth 25 all {'n': 1, 'chip': [111], 'row': [97], 'st': [25]} after1s {'n': 0, 'chip': [], 'row': [], 'st': []}
+webkit 320 smooth 60 all {'n': 4, 'chip': [111], 'row': [62, 63, 75, 97], 'st': [25, 47, 59, 60]} after1s {'n': 0, 'chip': [], 'row': [], 'st': []}
+webkit 320 smooth 0 all {'n': 5, 'chip': [111], 'row': [62, 63, 95, 115, 122], 'st': [0, 7, 27, 59, 60]} after1s {'n': 0, 'chip': [], 'row': [], 'st': []}
+webkit 320 chiptop [(15, [111, 'top: 111px; right: 68px;']), (20, [111, 'top: 111px; right: 68px;']), (22, [111, 'top: 111px; right: 68px;']), (25, [111, 'top: 111px; right: 68px;']), (28, [111, 'top: 111px; right: 68px;']), (30, [111, 'top: 111px; right: 68px;']), (35, [111, 'top: 111px; right: 68px;']), (0, [111, 'top: 111px; right: 68px;'])]
+err []
