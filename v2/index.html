@@ -1522,6 +1522,7 @@ function precDisp(st,cty,raw){ let n=String(raw==null?"":raw).replace(/_/g," ").
   let cs=cty.replace(/ (County|Parish|Borough|Census Area|Municipality|City and Borough)$/i,"").replace(/ city$/,"").trim(); if(/^District of Columbia$/i.test(cs)) cs="DC";
   const code=x=>(cs?cs+" ":"")+"Precinct "+(/^\d+$/.test(x)?String(+x):x);
   let m;
+  if(st!=="Colorado"&&/^\d{9,12}$/.test(n)) return (cs?cs+" ":"")+"Precinct "+n.slice(5); /* build 1616 (QA-105): a census GEOID (state 2 + county 3 + code) shows the county and its own code, 'Dauphin Precinct 0270' */
   if(st==="Colorado"&&/^\d{10}$/.test(n)) return code(n.slice(7));               // CRS 1-5-101.5: CD(1) SD(2) HD(2) county(2) precinct(3)
   if(/^Philadelphia/i.test(cty)&&((m=n.match(/^(\d+)-(\d+)$/))||(m=n.match(/WARD (\d+) (?:PRECINCT|DIVISION|DIV|DISTRICT) (\d+)/i)))) return "Philadelphia Ward "+(+m[1])+" Div "+(+m[2]);
   if(st==="New York"&&(m=n.match(/^(\d{3})\/(\d{2})$/))) return (cs?cs+" ":"")+"AD "+(+m[2])+" ED "+(+m[1]);
