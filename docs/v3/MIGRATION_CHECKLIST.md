@@ -1,6 +1,6 @@
 # v2 → v3 migration checklist (feature parity)
 
-> **Scope (D25, Oct 19, 2026): v3 is US-only.** Every item below that mentions countries, provinces, Canada or foreign governments is **parked** for the US build: only the US (and its territories) is shown. Country/province search rows and flags are out of v3.
+> **Scope (D25, corrected Oct 19, 2026):** foreign rows (countries, provinces, Canada, foreign governments, foreign company locations) are kept with the same columns and roles as US rows. Only foreign **boundary polygons** are parked: items that need non-US district shapes or tiles wait for that country's own repo.
 
 > **v2 → v3 parity:** see [V2_PARITY_CHECKLIST.md](V2_PARITY_CHECKLIST.md), one line per v2 build fix or QA item from Build 1585 on. v3 cannot ship until every line there is ticked.
 
@@ -37,7 +37,7 @@ Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text 
 
 ## D. District types (Layers button)
 - [ ] **School districts = one list over three unit types** (Q-G4): `school_unified`, `school_elementary`, `school_secondary` (TIGER UNSD / ELSD / SCSD) under the parent category `school_district`. The Layers menu, list-all, counts and sort treat them as one "School districts" list exactly as v2 does. Pop-ups and the geocoder may name two school districts (elementary + secondary) for one point. Test: ported `district-list-view` / `district-consistency` on schools, plus a v3 check that an ELSD+SCSD point returns both.
-- [ ] Types: US House, State senate, State house, School districts; data-driven per country (US only; Canada and all other countries parked by D25, own repos later) (HO §2; SPEC §3). Test: `district-ctx`.
+- [ ] Types: US House, State senate, State house, School districts; data-driven per country (non-US district polygons parked by D25; foreign rows kept; per-country boundary repos later) (HO §2; SPEC §3). Test: `district-ctx`.
 - [ ] Menu stays open after a pick; closes on outside tap (swallowed), main button, or the selected type; tapping the selected type deselects and restores the defaults; one dark label above the selected type while open (1563–1565; SPEC §8). Tests: `type-menu-sticky`, `type-labels`, `district-menu`.
 - [ ] A selected type shows its district list (not the consolidated total) in list view; numbers equal the map pop-ups (HO §3). US House lists all 435 nationwide; other types go states → counties → districts; a district spanning counties appears under each county with whole-district numbers and ≈ (SPEC §7.3). Tests: `district-list-view`, `district-consistency`, `type-switch`, `list-all-districts`.
 - [ ] **DC**: its 8 Council wards stand in for both state senate and state house; DCPS is its one school district (1559, `v2/data/dc.js`). Test: `dc-wards`.
