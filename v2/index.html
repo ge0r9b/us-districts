@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181595"; window.PREVIEW="shadows";</script>
+<script>window.BUILD="202610181597"; window.PREVIEW="shadows";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2684,7 +2684,18 @@ window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
     const tgt=e=>{ const t=e.target; if(!t||!t.closest) return null; const el=t.closest(".cpanel .sechip")||(document.body.classList.contains("chv")?t.closest("#cands .cand, #cands img.dmt, #cands .dmoc"):null); return el; };
     let pd=null, shown=0; const show=el=>{ hide(); shown=Date.now();
       let nm=el.dataset.nm||el.dataset.pt||el.getAttribute("aria-label")||el.title||""; nm=nm.split(" \u00b7 ")[0]; if(ym()!=="delta"&&!window.__y16hi) nm=nm.replace(/\s+\d{4}$/,"");
-      if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub); const r=el.getBoundingClientRect(), b=bub.getBoundingClientRect(); let x=r.right+8; if(x+b.width>innerWidth-6) x=Math.max(6,r.left-8-b.width); bub.style.left=x+"px"; bub.style.top=Math.max(4,r.top+r.height/2-b.height/2)+"px"; bt=setTimeout(hide,3000); };
+      if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub);
+      /* build 1597 (QA-076): placed from the photo itself (a chart-view .cand button is the whole 300 px row, so the bubble landed over the photo on phones and mid-bar on iPad), on the photo's row at the nearest spot that covers no value label ('49.9%', '+3.1') and no other photo: right of the photo, left of it, or just past a label */
+      const a=(el.matches&&el.matches(".cand")&&el.querySelector("img"))||el, r=a.getBoundingClientRect();
+      const all=[...document.querySelectorAll(".cpanel *, #cands *")].filter(e=>e!==bub&&e.offsetWidth&&((!e.children.length&&(e.textContent||"").trim())||e.matches("img,.dmt,.sechip"))&&!a.contains(e)&&!e.contains(a)).map(e=>e.getBoundingClientRect()); all.push(r);
+      const place=()=>{ const b=bub.getBoundingClientRect(), w=b.width, h=b.height, best={c:1e12};
+        const mid=Math.max(4,r.top+r.height/2-h/2); [[mid,0],[r.top-4-h,400],[r.bottom+4,400]].forEach(([top,pen])=>{ if(top<4||top+h>innerHeight-4) return; const bot=top+h, obs=all.filter(q=>q.bottom>top+1&&q.top<bot-1);
+          const xs=pen?[r.left,r.right-w]:[r.right+8,r.left-8-w]; obs.forEach(q=>{ xs.push(q.right+6,q.left-6-w); });
+          xs.forEach(x=>{ if(x<6||x+w>innerWidth-6) return; let c=pen; obs.forEach(q=>{ const o=Math.min(x+w,q.right)-Math.max(x,q.left); if(o>0) c+=(q===r?1e6:1e4)*o; }); c+=Math.max(0,x-r.right,r.left-(x+w)); if(c<best.c){ best.c=c; best.x=x; best.t=top; } }); });
+        return best; };
+      let p=place(); if(p.c>=1e4){ const full=nm, y=(full.match(/\s(\d{4})$/)||[])[1], base=full.replace(/\s+\d{4}$/,""), sh=base.split(/\s+/).pop()+(y?" \u2019"+y.slice(2):""); if(sh!==full){ bub.textContent=sh; const q=place(); if(q.c<p.c){ p=q; bub.title=full; } else bub.textContent=full; } }
+      /* tight phone range rows: no clean spot for 'Donald Trump 2024' on the row, so the bubble reads 'Trump ’24' (full name in its title), or sits just above/below the photo */
+      if(p.x===undefined){ p={x:Math.max(6,Math.min(innerWidth-6-bub.getBoundingClientRect().width,r.right+8)),t:Math.max(4,r.top)}; } bub.style.left=p.x+"px"; bub.style.top=p.t+"px"; bt=setTimeout(hide,3000); };
     /* WebKit touch does not always synthesise a click on a non-control span, so the bubble opens on pointerup; the click that may follow is swallowed (it must never toggle the candidate) */
     document.addEventListener("pointerdown",e=>{ const el=tgt(e); pd=el?{el,x:e.clientX,y:e.clientY}:null; if(bub&&!el) hide(); },true);
     document.addEventListener("pointerup",e=>{ const el=tgt(e); if(el&&pd&&pd.el===el&&Math.hypot(e.clientX-pd.x,e.clientY-pd.y)<10) show(el); pd=null; },true);
@@ -3526,7 +3537,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     if(!state.value){ if(ltype==="ushouse") return {id:"districts",nat:true,label:"List all US House districts",noun:"US House districts"}; return {id:"states",label:"List all states",noun:"states"}; }
     if(hier.dist) return {id:"precincts",label:"List all precincts",noun:"precincts"};
     if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]&&dtier()){ if(!county.value) return {id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; /* build 1564: a state lists its own school / state house / state senate districts ('Pennsylvania school districts'), not its counties */ return {id:"districts",dt:true,label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())+" in "+county.value,noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())}; }
-    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?null:{id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())};
+    if(ltype&&ltype!=="counties"&&ltype!=="towns"&&ALLLBL[ltype]) return county.value?(ltype==="ushouse"&&(GEOM.counties||[]).some(d=>d[0]===state.value&&d[1]===county.value)?{id:"districts",dt:true,label:"List all US House districts in "+county.value,noun:"US House districts"}:null)/* build 1596 (QA-005): US House picked inside a county lists the county's US House districts (whole-district numbers, split ones marked ≈), like the other district types */:{id:"districts",label:"List all "+ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase()),noun:ALLLBL[ltype].replace(/^(School|State) /,m=>m.toLowerCase())};
     if(county.value) return {id:"townships",label:"List all townships",noun:"townships"};
     return {id:"counties",label:"List all counties",noun:"counties"}; }
   // ---- items ----
@@ -3795,7 +3806,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   function laThumbs(){ try{ try{ window.__bbSync&&window.__bbSync(); }catch(e){} /* build 1565: chevron state first, so the thumbnails take their final spot in one step */ const B=document.body.classList; const ok=LA.on&&B.contains("listmode")&&!B.contains("foldfs")&&!B.contains("geofs")&&!B.contains("srchfs")&&(!window.__topicOn||window.__topicOn())&&!!document.querySelector("#listView .lvrow.la.cmp");
       if(B.contains("lathumb")!==ok){ B.toggle("lathumb",ok); try{ alignRows(); setDlen(); }catch(e){} }
       if(!lacBox){ lacBox=document.createElement("div"); lacBox.id="laCands"; lacBox.setAttribute("aria-label","Candidates"); document.body.append(lacBox);
-        lacBox.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".lact"); if(!b) return; e.stopPropagation(); e.preventDefault(); const yrs=yrsNow(), yr=yrs[yrs.length-1], c=(CANDS[yr]||[]).find(x=>x.id===b.dataset.cid); if(!c) return;
+        lacBox.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".lact"); if(!b) return; if(window.__realRow&&window.__realRow(e)) return; /* build 1596: the finger was on a list row (touch adjustment retargeted the tap to this thumbnail): the row's own tap handler drills in */ e.stopPropagation(); e.preventDefault(); const yrs=yrsNow(), yr=yrs[yrs.length-1], c=(CANDS[yr]||[]).find(x=>x.id===b.dataset.cid); if(!c) return;
           const ids=yrs.map(y=>(CANDS[y]||[]).find(x=>cKey(x)===cKey(c))).filter(Boolean).map(x=>x.id), turn=!candOn.has(c.id); ids.forEach(i=>turn?candOn.add(i):candOn.delete(i));
           try{ renderCands(); }catch(_){} try{ refreshBubble(); }catch(_){} try{ renderList(); }catch(_){} laThumbs(); },true); }
       if(!ok){ lacBox.hidden=true; return; }
@@ -3890,8 +3901,11 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   /* build 1564: a tapped row shades at once (the drill-in's data load + zoom take longer; the press shows the tap landed) */
   const press=r=>{ try{ r.classList.add("lapress"); clearTimeout(r.__prT); r.__prT=setTimeout(()=>r.classList.remove("lapress"),1500); }catch(e){} };
   { let ty=null,tx=0,done=0; const lvEl=()=>document.getElementById("listView");
-    const hit=e=>{ if(e.target.closest&&e.target.closest("[data-party]")) return null; const r=e.target.closest&&e.target.closest(".lvrow.la"); return r&&r.__a?r:null; };
-    document.addEventListener("touchstart",e=>{ const r=hit(e); ty=r?e.touches[0].clientY:null; tx=r?e.touches[0].clientX:0; },{passive:true,capture:true});
+    /* build 1596: rows are found at the finger's REAL point. Chromium/Android touch adjustment retargets a tap near the thumbnail column (e.g. on a row name at x 57, 7 px right of a thumbnail) to the thumbnail button, which toggled the candidate instead of drilling in */
+    const realEl=e=>{ const p=(e.changedTouches&&e.changedTouches[0])||(e.touches&&e.touches[0]); let x,y; if(p){ x=p.clientX; y=p.clientY; } else if(e.type==="click"&&window.__tp&&Date.now()-window.__tp.t<1200){ x=window.__tp.x; y=window.__tp.y; } else return e.target; return document.elementFromPoint(x,y)||e.target; };
+    window.__realRow=e=>{ const t=realEl(e), r=t&&t.closest&&t.closest(".lvrow.la"); return r&&r.__a?r:null; };
+    const hit=e=>{ const t=realEl(e); if(!t||!t.closest||t.closest("[data-party]")) return null; const r=t.closest(".lvrow.la"); return r&&r.__a?r:null; };
+    document.addEventListener("touchstart",e=>{ const p0=e.touches&&e.touches[0]; if(p0) window.__tp={x:p0.clientX,y:p0.clientY,t:Date.now()}; const r=hit(e); ty=r?e.touches[0].clientY:null; tx=r?e.touches[0].clientX:0; },{passive:true,capture:true});
     document.addEventListener("touchend",e=>{ const r=hit(e); if(!r||ty===null) return; const t=e.changedTouches[0]; const m=Math.abs(t.clientY-ty)+Math.abs(t.clientX-tx); ty=null; if(m>10) return; done=Date.now(); press(r); window.__laPick(r.__a); },{passive:true,capture:true});
     document.addEventListener("click",e=>{ const r=hit(e); if(!r||Date.now()-done<600) return; e.stopPropagation(); press(r); window.__laPick(r.__a); },true); }
   window.__laEnsureRow=ensureRow;
@@ -4239,6 +4253,7 @@ html body .tlab svg text { fill: #fff !important; }
 html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):not(.on):not(.typed) { background: linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.06) 100%) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 #laSort::before, #bBack::before { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: rgba(255,255,255,.10) !important; }
 .v2bar { background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+</style>
 <style id="metalCss">
 /* PREVIEW preview/shadows (user, 18 Oct 6:04 PM + 7:23 PM): pressed-metal Liquid Glass buttons, faint thumbnail shadow, subtle chart shadows,
    unselected buttons clearer instead of blurred, text fields opaque white. CSS only: no new backdrop-filter, nothing animated. */
