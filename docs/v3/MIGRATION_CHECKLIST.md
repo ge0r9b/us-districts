@@ -359,3 +359,12 @@ See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] **QA-108 LOW (open, orchestrator: not intended):** at 1024×768 a mouse drag on the time slider knob splits it into a '16–'24 range, while a touch drag moves the single knob. v3: mouse and touch drag the knob the same way; range only through the explicit range control.
 - [x] **iPad pan:** 57.3 fps on 1615 (back over the ≥55 gate). Keep the gate.
 - [ ] **Open QA at 1616 (pass 37):** CRITICAL QA-107; MEDIUM QA-099, QA-085, QA-073, QA-007; LOW QA-101, QA-108, QA-074. Fixed since 12:20: QA-003, QA-096, QA-097, QA-098, QA-104, QA-105, QA-106.
+
+
+## v3 scope: boundaries beyond the US (D25 ruling, Oct 19, 2026)
+- [ ] National (admin-0) boundaries for all countries: Natural Earth 10m → `world-adm0@1.pmtiles` on R2, rows/ids only in Neon.
+- [ ] Canada provinces, census divisions, CSDs (StatCan 2021) → PMTiles.
+- [ ] Canada federal ridings 2013 and 2023 → PMTiles.
+- [ ] Canada polling divisions 2019 / 2021 / 2025 (Elections Canada SHP in `w/inst-raw/ca/`) → PMTiles; 100 % key join with the 872c4fc5 rows.
+- [ ] Perf gate: world and Canadian layers are no slower than the US layers (tile fetch, first paint, pan fps, click-to-name) in both engines.
+- [ ] Guard: no other foreign sub-national shapes loaded (tile-build allowlist + `unit_geom` refuses non-US geometry); FR/UK/DE files stay on the box unused.

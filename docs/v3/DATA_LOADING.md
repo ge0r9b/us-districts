@@ -3,7 +3,7 @@
 > Plan only. Nothing has been loaded and no database exists yet. Data files belong to the data lanes (REPO-RULES: Election Data owns `data-v3/results/`, Geo & Institution Data owns `data-v3/geo/`). v3 only reads them.
 
 ## 0a. Scope: foreign rows kept, foreign polygons excluded (D25, user ruling Oct 19, 2026, corrected)
-v3 stores foreign geographic and institutional **rows** for all major countries with the same columns and roles as US rows: nations, provinces and subdivisions, Canada 2021 geography rows, FR/DE/GB and other foreign governments (`load_group` 2, `institutions-foreign`), and brand locations with a non-US `country_code`. Loaders load them by default; nothing foreign that was scraped is deleted. **Only foreign boundary polygons are parked**: no non-US geometry in `unit_geom`, PMTiles or GeoJSON packs (Canadian ridings/polls/CSD tiles, UK/DE/FR GeoJSON). Each country may get its own repo later for its boundaries. Already-scraped foreign boundaries (Canada 2021 geo, polling divisions, UK/DE/FR GeoJSON) are never deleted and are kept as files; no new foreign polygons load into v3, and any already in Neon stay (size reported only). US territories (PR, VI, GU, AS, MP) are US, polygons included.
+v3 stores foreign geographic and institutional **rows** for all major countries with the same columns and roles as US rows: nations, provinces and subdivisions, Canada 2021 geography rows, FR/DE/GB and other foreign governments (`load_group` 2, `institutions-foreign`), and brand locations with a non-US `country_code`. Loaders load them by default; nothing foreign that was scraped is deleted. **Foreign polygons (D25, Oct 19 ruling):** national boundaries for all countries and all Canadian levels go into v3 as static PMTiles only (see §Boundaries beyond the US); no other foreign sub-national polygons without the user's approval, and no foreign geometry in Neon `unit_geom`. Each country may get its own repo later for its boundaries. Already-scraped foreign boundaries (Canada 2021 geo, polling divisions, UK/DE/FR GeoJSON) are never deleted and are kept as files; no new foreign polygons load into v3, and any already in Neon stay (size reported only). US territories (PR, VI, GU, AS, MP) are US, polygons included.
 
 Neon audit (Oct 19, 2026, read-only): about 70,800 foreign `entity` rows (~32 MiB with indexes) and about 107,200 foreign `entity_location` rows (~39 MiB with indexes) are loaded, plus 24 Canadian `boundary_set` rows (no Canadian `unit` rows). These are **kept**.
 
@@ -816,3 +816,33 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **Build 1616 (9f41265):** QA-097 a city-map reload restores the city from the county's parts (verified 6 cities, both engines); QA-105 census-GEOID precinct names read "<County> Precinct <local part>" (e.g. "Dauphin Precinct 0270") and only when the id starts with the state FIPS; QA-106 the list header no longer reads "<precinct> counties". For v3: precinct `display_name` is built at load from the same rule (strip the 2-digit state + 3-digit county FIPS from a GEOID-shaped name, keep the local part, prefix the county short name); never derive the header noun from the selection.
 - **perf 40e4b1c (Build 1615 vs 1613):** no regression beyond noise; iPad pan back to 57.3 fps / 10 dropped (1613 was 53.8), so v2 meets the ≥55 fps v3 gate again. First map 617–1021 ms (TTFB noise), bytes +4.5 KB gz for the totals table.
 - **v3/build ac41801 → 9ff1c3d:** 8bfe521 loads the certified state totals (closes the earlier QA-003 flag), 9ff1c3d keeps the county layer on reload (QA-104). Still a draft; no deploy, no Neon load.
+
+
+## Boundaries beyond the US (D25 ruling, Oct 19, 2026)
+
+Scope: national (admin-0) boundaries for every country, plus every Canadian level we already have. Nothing else foreign sub-national (France, UK, Germany files stay on the box, unused) without the user's approval. All of it is served as static PMTiles on R2; **Neon holds only unit rows and metadata (boundary_set, unit_key, names, parent, country/province, geometry_ref), no polygons.**
+
+### Sources
+| Layer | Source | Licence | Raw size |
+|---|---|---|---|
+| World admin-0 | **Natural Earth 1:10m Admin 0 – Countries** (`ne_10m_admin_0_countries`, naturalearthdata.com). Chosen over geoBoundaries ADM0 for a single consistent file, stable ISO codes and smaller size; use the 1:50m file for z0–z3. | Public domain | ~5 MB zip / ~9 MB shp (10m) |
+| CA provinces (PR), census divisions (CD), CSDs (5,161) | StatCan 2021 Cartographic Boundary Files, staged at `lanes/geo-data-raw/v3ca/ca_{pr,cd,csd}_2021.geojson.gz` (built from `lanes/geo-data-raw/statcan2021`, 258 MB raw; `w/inst-raw/ca/lcsd000b21a_e.zip` 156 MB) | Statistics Canada Open Licence | 15 / 16 / 18 MB gz |
+| CA federal ridings 2013 (338) and 2023 (343) | `lanes/geo-data-raw/v3ca/ca_fed2013.geojson.gz`, `ca_fed2023.geojson.gz` (Elections Canada / StatCan) | Open Government Licence – Canada | 16 / 16 MB gz |
+| CA polling divisions ec-2019-pd (66,064), ec-2021-pd (69,797), ec-2025-pd (71,217) | Elections Canada shapefiles already downloaded in `w/inst-raw/ca/`: `polling_divisions_boundaries_2019.shp.zip` (80 MB; .shp 135 MB), `PD_CA_2021_EN.zip` (95 MB; .shp 169 MB), `PollingDivisionBoundaries_2025_SHP.zip` (95 MB; .shp 175 MB). Rows on us-districts `data/inst-canada` 872c4fc5 carry `geometry_ref` = `<zip>:PD_CA_<yr>_EN`, keyed `FED_NUM:PD_NUM-SFX`. Official URLs in `sources_ca.csv` (ec-ge43/44/45-boundaries). | Open Government Licence – Canada | 270 MB zipped total |
+
+### Build
+1. `ogr2ogr` each source to WGS84 newline GeoJSON, keeping only `unit_key` (matching the Neon row), `name`, `name_fr` and parent key as properties. PD key = `FED_NUM:PD_NUM-PD_NBR_SFX`; joins must hit 100 % of the Neon rows (fail the build otherwise).
+2. tippecanoe → one PMTiles per set and version, same pipeline and flags as the US layers (stable ids, `--detect-shared-borders`, ≤200 KB gz tiles):
+
+| Archive | Zooms | Estimated size |
+|---|---|---|
+| `world-adm0@1.pmtiles` | z0–z8 | 4–8 MB |
+| `ca-pr-2021@1` | z0–z10 | 5–10 MB |
+| `ca-cd-2021@1` | z3–z11 | 10–20 MB |
+| `ca-csd-2021@1` | z5–z12 | 20–40 MB |
+| `ca-fed-2013@1`, `ca-fed-2023@1` | z3–z12 | 10–20 MB each |
+| `ca-pd-2019@1`, `ca-pd-2021@1`, `ca-pd-2025@1` | z8–z14 | 60–120 MB each (could split per province like US precincts) |
+| **Total** | | **~200–420 MB on R2** (estimate, not measured; R2 free tier is 10 GB) |
+
+3. Static packs: `packs/{dv}/geo/world/adm0.json` (iso, name, bbox), `packs/{dv}/geo/ca/{set}/bbox.json` + `names.json` (unit_key → name, parent, bbox) for local click/search, the same layout as the US sets. PMTiles live at `/tiles/{set}@{ver}.pmtiles` on R2.
+4. Neon: load only the rows (`units`, names, parents, `geometry_ref`). Guard: the loader refuses any non-US geometry insert into `unit_geom`, and the tile build refuses any foreign sub-national set not on the allowlist (`world-adm0`, `ca-*`).
