@@ -2726,7 +2726,7 @@ window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
   const hid=()=>me.style.visibility==="hidden";
   const flush=()=>{ if(!pend) return; const p=pend; pend=null; now++; try{ p[0]==="sv"?_sv.apply(map,p[1]):_fb.apply(map,p[1]); }catch(e){} finally{ now--; } };
   const rIC=window.requestIdleCallback?f=>requestIdleCallback(f,{timeout:700}):f=>setTimeout(f,120);
-  let q=0; const sched=()=>{ if(q) return; q=1; rIC(()=>{ q=0; flush(); }); };
+  let q=0; const sched=()=>{ if(q) return; q=1; setTimeout(()=>rIC(()=>{ q=0; flush(); }),600); }; /* build 1608 (QA-020): the hidden map's move waits 600 ms first, so it never lands between a Back and the new list rows */
   map.setView=function(){ if(!now&&hid()){ pend=["sv",[...arguments]]; sched(); return this; } if(!now) pend=null; return _sv.apply(this,arguments); };
   map.fitBounds=function(){ if(!now&&hid()){ pend=["fb",[...arguments]]; sched(); return this; } if(!now) pend=null; return _fb.apply(this,arguments); };
   window.__mapFlush=flush; new MutationObserver(()=>{ if(!hid()) flush(); }).observe(me,{attributes:true,attributeFilter:["style"]}); }
@@ -3357,7 +3357,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
       if(norm(g.lt)!==norm(T.lt)){ const k=DT.indexOf(T.lt)>=0?T.lt:g.lt, b=document.querySelector('#lyrRow .lbtn[data-k="'+k+'"]'); if(b) try{ b.click(); }catch(e){} }
       const go=()=>{ if((county.value||"")!==(T.co||"")){ county.value=T.co||""; county.onchange&&county.onchange(); }
         const wantD=T.dist||"", haveD=hier.dist?hier.dist.join("~"):""; if(wantD!==haveD){ hier.dist=T.dd?T.dd.slice():null; try{ if(T.dd) drawDist(); }catch(e){} try{ crumbs(); }catch(e){} try{ window.__laSoft&&window.__laSoft(); }catch(e){} } };
-      if((state.value||"")!==(T.st||"")){ hier.dist=null; county.value=""; state.value=T.st||""; state.onchange&&state.onchange(); let n=0; const w=setInterval(()=>{ if(!T.co||[...county.options].some(x=>x.value===T.co)||++n>25){ clearInterval(w); go(); } },120); } else go(); } }
+      if((state.value||"")!==(T.st||"")){ hier.dist=null; county.value=""; state.value=T.st||""; state.onchange&&state.onchange(); if(!T.co){ go(); } else { let n=0; const w=setInterval(()=>{ if([...county.options].some(x=>x.value===T.co)||++n>25){ clearInterval(w); go(); } },120); } } else go(); } } /* build 1608 (QA-020): no county to wait for (Back to All States / a state): finish at once */
   function back(){ if(B().contains("ctxedit")){ const i=inp(); if(i) i.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true,cancelable:true})); return true; }
     if(!vis()) return false; const T=stack.pop(); nav=1; navT=Date.now(); cur=T; window.__slideDir="r"; restore(T); return true; }
   window.__filterBack=back; window.__backDepth=()=>stack.length; window.__backVisible=vis;
@@ -3856,7 +3856,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
   function fit(){ if(LA.nofit&&Date.now()-LA.nofit<5000){ LA.nofit=0; return; } LA.nofit=0; try{ let b=null; if(LA.lv.id==="states") b=L.latLngBounds([24.5,-125],[49.5,-66.9]); else LA.polys.forEach(r=>r.forEach(([y,x])=>{ if(x>0&&x<180&&LA.lv.id!=="countries") return; b=b?b.extend([y,x]):L.latLngBounds([y,x],[y,x]); })); if(b&&LA.lv.id!=="countries") map.fitBounds(b,{maxZoom:12,paddingTopLeft:[70,200],paddingBottomRight:[80,120],animate:false}); }catch(e){} }
   function exit(soft){ if(!LA.on) return; LA.on=false; if(LA.layer){ LA.layer.remove(); LA.layer=null; } LA.polys=[]; LA.items=[]; LA.agg=null; cur=null; try{ if(bubPop) map.closePopup(bubPop); }catch(e){} const sp=document.getElementById("laSortPop"); if(sp) sp.hidden=true;
     /* in list view a filter/menu change must never leave an empty body: keep the rows on screen (no flash of the results block) and re-enter list-all for the new level as soon as the change settles */
-    if(soft!==false&&view==="list"){ LA.pend=Date.now(); LA.psig=""; LA.pn=0; try{ crumbs(); }catch(e){} return; }
+    if(soft!==false&&view==="list"){ LA.pend=Date.now(); LA.psig=""; LA.pn=0; try{ crumbs(); }catch(e){} setTimeout(()=>{ try{ settle(); }catch(e){} setTimeout(()=>{ try{ settle(); }catch(e){} },0); },0); /* build 1608 (QA-020): the two "settled" checks run within a frame, not two 90 ms ticks later (Back showed the new rows 160-280 ms after the tap) */ return; }
     fin(); }
   function fin(){ LA.pend=0; document.body.classList.remove("listall"); try{ document.getElementById("listView").innerHTML=""; renderCands(); }catch(e){} try{ crumbs(); }catch(e){} try{ redraw(); }catch(e){} }
   const psig=()=>{ try{ const lv=level(); return lv?[lv.id,state.value,county.value,ltype,hier.dist&&hier.dist.join("~"),Wk()].join("|"):""; }catch(e){ return ""; } };
@@ -4263,6 +4263,7 @@ html body .tlab svg text { fill: #fff !important; }
   { const iq=new Map(); let ist=0; const irun=()=>{ ist=0; const fs=[...iq.values()]; iq.clear(); fs.forEach(f=>{ try{ f(); }catch(e){} }); };
     window.__idleLater=(k,f)=>{ iq.set(k,f); if(ist) return; ist=1; setTimeout(()=>{ if(window.requestIdleCallback) requestIdleCallback(irun,{timeout:1200}); else setTimeout(irun,150); },350); };
     new MutationObserver(()=>{ if(ist&&!document.body.classList.contains("listmode")) irun(); }).observe(document.body,{attributes:true,attributeFilter:["class"]}); } /* leaving the list runs it at once */
+  { const _df=drawFocus; drawFocus=function(){ const A=arguments; if(document.body.classList.contains("listmode")&&!window.__focusNow&&window.__idleLater){ window.__idleLater("focus",()=>{ window.__focusNow=1; try{ drawFocus.apply(null,A); }finally{ window.__focusNow=0; } }); return; } return _df.apply(this,A); }; } /* build 1608 (QA-020): in the list view the hidden map's focus outline + heat (27-40 ms on Back) wait for idle, after the new rows */
   window.__mapLaterOn=()=>!!window.__mapLater&&document.body.classList.contains("listmode");
   const yl=e=>{ if(!e.target||e.target.id!=="yslider") return; window.__mapLater=1; clearTimeout(window.__mlT); window.__mlT=setTimeout(()=>{ window.__mapLater=0; },0); };
   document.addEventListener("input",yl,true); document.addEventListener("change",yl,true);
