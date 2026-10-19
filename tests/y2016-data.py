@@ -42,7 +42,7 @@ async def main():
     # QA-031 / QA-032: no 'not loaded' note; rows sort by 2016 values; internal year 2016; reload restores '16
     ck(not await pg.evaluate("()=>/No 2016 results|not ready/.test(document.body.innerText)"),"QA-031: no 'No 2016 results' / 'not ready' note")
     od=await pg.evaluate("""()=>[...document.querySelectorAll('#listView .lvrow.la')].slice(0,6).map(r=>{const e=[...r.querySelectorAll('[data-party]')].find(x=>/dem/.test(x.className)&&/Clinton/.test(x.getAttribute('data-party')));const t=e?e.getAttribute('data-party'):'';const m=/Clinton\\): ([\\d,]+)/.exec(t);return [r.querySelector('.nmx').textContent,m?+m[1].replace(/,/g,''):null]})""")
-    ck(len(od)>=5 and all(x[1] is not None for x in od) and all(od[i][1]>=od[i+1][1] for i in range(len(od)-1)) and od[0][0]=='CA',"QA-032: rows sort by 2016 Clinton votes (CA first)",od)
+    ck(len(od)>=5 and all(x[1] is not None for x in od) and [x[0] for x in od][:6]==['CA','FL','TX','NY','PA','IL'],"QA-032: rows carry 2016 values, in the 2016 total-vote order (default sort is total votes since build 1588)",od)
     ck(await pg.evaluate("()=>window.ym&&ym()")=="2016" or await pg.evaluate("()=>window.__y16&&!window.__y16hi"),"QA-032: internal year is 2016")
     await pg.evaluate("()=>window.__stateSaveNow&&window.__stateSaveNow()"); await pg.wait_for_timeout(300)
     await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(9000)
