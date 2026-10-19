@@ -1,0 +1,55 @@
+chromium build 202610181616
+ok   chromium Miami (chart bar): reload keeps the list view
+ok   chromium Miami: reload restores the city ('Miami-Dade County Miami city' vs 'Miami-Dade County Miami city')
+ok   chromium Miami: reload restores the numbers ('Kamala Harris 2024  / Donald Trump 2024 ' vs 'Kamala Harris 2024  / Donald Trump 2024 ')
+ok   chromium Miami: no page errors
+chromium build 202610181616
+ok   chromium Houston (chart None): reload keeps the map view
+ok   chromium Houston: reload restores the city ('Harris County Houston city' vs 'Harris County Houston city')
+ok   chromium Houston: reload restores the numbers ('Kamala Harris 2024 60% / Donald Trump 2024 38%' vs 'Kamala Harris 2024 60% / Donald Trump 2024 38%')
+ok   chromium Houston: no page errors
+chromium build 202610181616
+ok   chromium Denver (chart None): reload keeps the map view
+ok   chromium Denver: reload restores the city ('Denver County Denver city' vs 'Denver County Denver city')
+ok   chromium Denver: reload restores the numbers ('Kamala Harris 2024 77% / Donald Trump 2024 20%' vs 'Kamala Harris 2024 77% / Donald Trump 2024 20%')
+ok   chromium Denver: no page errors
+chromium build 202610181616
+ok   chromium Minneapolis (chart None): reload keeps the map view
+ok   chromium Minneapolis: reload restores the city ('Hennepin County Minneapolis city' vs 'Hennepin County Minneapolis city')
+ok   chromium Minneapolis: reload restores the numbers ('Kamala Harris 2024 85% / Donald Trump 2024 12%' vs 'Kamala Harris 2024 85% / Donald Trump 2024 12%')
+ok   chromium Minneapolis: no page errors
+chromium build 202610181616
+FAIL chromium Vienna: flow error "playwright.async_api._generated.Touchscreen.tap() argument after * must be an iterable, not NoneType"
+chromium build 202610181616
+ok   chromium Seattle (chart None): reload keeps the map view
+ok   chromium Seattle: reload restores the city ('King County Seattle city' vs 'King County Seattle city')
+ok   chromium Seattle: reload restores the numbers ('Kamala Harris 2024 87% / Donald Trump 2024 9%' vs 'Kamala Harris 2024 87% / Donald Trump 2024 9%')
+ok   chromium Seattle: no page errors
+webkit build 202610181616
+ok   webkit Miami (chart bar): reload keeps the list view
+ok   webkit Miami: reload restores the city ('Miami-Dade County Miami city' vs 'Miami-Dade County Miami city')
+ok   webkit Miami: reload restores the numbers ('Kamala Harris 2024  / Donald Trump 2024 ' vs 'Kamala Harris 2024  / Donald Trump 2024 ')
+ok   webkit Miami: no page errors
+webkit build 202610181616
+ok   webkit Houston (chart None): reload keeps the map view
+ok   webkit Houston: reload restores the city ('Harris County Houston city' vs 'Harris County Houston city')
+ok   webkit Houston: reload restores the numbers ('Kamala Harris 2024 60% / Donald Trump 2024 38%' vs 'Kamala Harris 2024 60% / Donald Trump 2024 38%')
+ok   webkit Houston: no page errors
+webkit build 202610181616
+ok   webkit Denver (chart None): reload keeps the map view
+ok   webkit Denver: reload restores the city ('Denver County Denver city' vs 'Denver County Denver city')
+ok   webkit Denver: reload restores the numbers ('Kamala Harris 2024 77% / Donald Trump 2024 20%' vs 'Kamala Harris 2024 77% / Donald Trump 2024 20%')
+ok   webkit Denver: no page errors
+webkit build 202610181616
+ok   webkit Minneapolis (chart None): reload keeps the map view
+ok   webkit Minneapolis: reload restores the city ('Hennepin County Minneapolis city' vs 'Hennepin County Minneapolis city')
+ok   webkit Minneapolis: reload restores the numbers ('Kamala Harris 2024 85% / Donald Trump 2024 12%' vs 'Kamala Harris 2024 85% / Donald Trump 2024 12%')
+ok   webkit Minneapolis: no page errors
+webkit build 202610181616
+FAIL webkit Vienna: flow error "playwright.async_api._generated.Touchscreen.tap() argument after * must be an iterable, not NoneType"
+webkit build 202610181616
+ok   webkit Seattle (chart None): reload keeps the map view
+ok   webkit Seattle: reload restores the city ('King County Seattle city' vs 'King County Seattle city')
+ok   webkit Seattle: reload restores the numbers ('Kamala Harris 2024 87% / Donald Trump 2024 9%' vs 'Kamala Harris 2024 87% / Donald Trump 2024 9%')
+ok   webkit Seattle: no page errors
+FAILS 2

@@ -708,6 +708,19 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Re-test status, build 1616 (pass 37, Oct 19 ~1:25-1:50 PM EDT; line 9 = 202610181616)
+- **Build 1616** (`window.BUILD` 202610181616, live line 9 and every run).
+- **QA-097 [MEDIUM] FIXED on 1616**, Chromium + WebKit 390x844, touch. Path: state + Enter > geo > counties > county > city > globe > reload. Title, view and numbers identical after the reload, no page errors, 6/6 cities in both engines: Miami (Miami-Dade County Miami city, bar chart, view kept), Houston (Harris County Houston city, 60% / 38%), Denver (Denver County Denver city, 77% / 20%), Minneapolis (Hennepin County Minneapolis city, 85% / 12%), Vienna VA (Fairfax County Vienna town, 69% / 27%), Seattle (King County Seattle city, 87% / 9%). Shots qa/shots37/b1616p37-{ch,we}-390x844-097-<city>-{before,reload}.png; scripts qa/p37-097.py, qa/p37-097v.py (Vienna; the county row is "Fairfax"); log qa/p37-097.log.
+- **QA-107 [CRITICAL, orchestrator confirmed] still OPEN on 1616.** Chromium 390x844: map > "90210" > suggestion "ZIP 90210, CA" > Enter: map at zoom 13 (34.1005, -118.4146), title crumbs "United States", thumbnails **Trump 50% / Harris 48%** (national). Same after a reload. Expected: the precinct (or county) containing the point, title and numbers matching. Shots qa/shots37/b1616p37-ch-390x844-zip-zip90210{,-reload}.png; data qa/b1616p37-zip-chromium-390x844.json.
+- **New: QA-108 [LOW]** mouse drag on the time slider makes a range (below).
+
+### QA-108 [LOW] At 1024x768 a mouse drag on the time slider splits it into a '16-'24 range; a touch drag moves the single knob
+- Severity: LOW (orchestrator: not intended) | Build 1615/1616 | Chromium + WebKit 1024x768, mouse vs touch
+- Steps: fresh load at 1024x768 > drag the time slider knob with the mouse from '24 to '16.
+- Expected: like touch, the single knob moves to '16 (one year shown). A mouse drag should move the single knob like touch.
+- Actual: the slider splits into a '16 to '24 range (two knobs, range view). A touch drag of the same knob moves the single knob.
+- Found in pass 36 (1615); the orchestrator ruled it not intended on Oct 19.
+
 ## Re-test status, build 1615 (pass 36, Oct 19 ~12:54-1:17 PM EDT; line 9 = 202610181615 at start and end)
 - **Build 1615** (`window.BUILD` 202610181615 in every run's JSON `build`), unchanged since pass 35. No v3 yet: https://ge0r9b.github.io/us-districts/v3/ **404** at 12:54 PM; docs/ has only the spec (no HANDOFF v3 URL). Fresh-area pass plus the layout sweep. 1-3 of my browsers at a time (other lanes also running Playwright), so tap timings are somewhat noisy. No console errors, page errors or failed requests in any pass-36 run. Data `qa/b1615p36-*.json`, logs `qa/b1615p36-*.log`, shots `qa/shots36/b1615p36-*.png`, scripts `qa/p36-*.py`.
 - **New: QA-107 [CRITICAL by the QA-093/103 ruling] A ZIP search (or an address that falls back to its ZIP) shows the ZIP's place in the field and the map, but the US title and US numbers.** Details below. 6/6 queries in Chromium, 2/2 in WebKit (390x844).
@@ -723,7 +736,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - **Open bugs re-measured, unchanged on 1615 (Chromium):** QA-099 open (chip 288-322 x 177-199 over the first row's second label: "Miami-Dade | 55.4%", "Harris | 46.4%", "Houston city", "Miami city"; `qa/b1615p36-chip-chromium-390.json`). QA-007 All States row 88 / 168 / 94 ms (3 fresh loads, 390x844; open). QA-102 "Texas counties" 123 / 154 / 132 ms, Harris > Houston city 122 / 115 / 120 ms (open; Harris County drill 11-47 ms). QA-085 PA year taps at 1024x576, 12 taps min / median / max: state house 44 / **121** / 159 ms (10 of 12 over 100; pass 32 median 111), PA county map 16 / 81 / 202 (5 of 12) (open, noisy: 1-2 other browsers). Data `qa/b1615p36-lat-chromium-390x844.json`, `qa/b1615p36-ylat-chromium-1024x576.json`.
 - Not re-run this pass: QA-101 / QA-105 / QA-106 / QA-074 / QA-018 / QA-073 direct runs (no 1615 change since pass 35), WebKit smoke flow, Chromium 390 / 1024x768 and WebKit 375 layout sizes (done in pass 35).
 
-### QA-107 [CRITICAL by the QA-093/103 ruling, orchestrator to confirm] A ZIP search, or an address that falls back to its ZIP, shows the ZIP's place in the field and on the map under the US title and US numbers
+### QA-107 [CRITICAL, confirmed by the orchestrator Oct 19; still open on 1616 (pass 37)] A ZIP search, or an address that falls back to its ZIP, shows the ZIP's place in the field and on the map under the US title and US numbers
 - Severity: CRITICAL by the ruling "a place shown under another place's title or numbers" (the same mixed screen as QA-103: map and bottom field on a ZIP, title "United States", thumbnails Trump 50% / Harris 48%). Also hit by real addresses the geocoder can't match (two state capitols). | Build 1615 | Chromium 390x844 (6/6 queries), WebKit 390x844 (2/2), touch
 - Steps: on the map, type "90210" (or "55155", "30334") in the bottom field, pick "ZIP 90210, CA" or press Enter; or type "75 Rev Dr Martin Luther King Jr Blvd, St Paul, MN 55155" / "1 Capitol Square, Columbus, OH 43215" / "1 Nonexistent Rd, Duluth, MN 55802" + Enter (suggestion "No address match (try adding ci…"). Optionally reload.
 - Expected: the title and thumbnails name and show a place that contains the ZIP point (e.g. its precinct or county, as an address search does), or the map stays on the US view; never a ZIP / city in the field and on the map while the title and numbers are the whole US.
@@ -872,7 +885,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-st-Texas-drill-sub-map.png, shots/b1610p31-ch-390x844-st-Florida-drill-sub-map.png, shots/b1610p31-ch-390x844-st-NewYork-drill-sub-map.png, shots/b1610p31-ch-390x844-st-Arizona-drill-sub-map.png
 - Data: `qa/b1610p31-states-chromium-390x844-b.json` > `<state>.drill.map3` (thumbnail text "Kamala Harris 2024 / " with nothing after it), `th3` (list values)
 
-### QA-097 [Changed on 1615 (pass 35): view now kept, but the city is dropped on reload (county title + numbers)] [MEDIUM] Reload on the city-level map (Florida, after a range/chart change) comes back as the county list view
+### QA-097 [Fixed on 1616 (verified pass 37, Chromium + WebKit 390x844, 6 cities)] [was: Changed on 1615 (pass 35): view now kept, but the city is dropped on reload (county title + numbers)] [MEDIUM] Reload on the city-level map (Florida, after a range/chart change) comes back as the county list view
 - Severity: MEDIUM (wrong view restored) | Build 1610 | Chromium 390x844, touch
 - Steps: Florida + Enter > time button, '16>'20 / '20>'24 / '16>'24 with each chart, back to '24 > geo > "Florida counties" > Miami-Dade > Miami city > globe (map) > reload.
 - Expected: the map view restored (saved `vw` "map").
