@@ -1,0 +1,318 @@
+{
+ "build": "202610181618",
+ "Richmond County, GA": {
+  "li": [
+   "Richmond County, GA County",
+   "Augusta-Richmond County consoli\u2026 Town",
+   "Richmond Hill city, Bryan Count\u2026 Town",
+   "Blythe city, Richmond County, GA Town",
+   "Hephzibah city, Richmond County\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Richmond County",
+   "gq": "Richmond County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 68%",
+   "Donald Trump 2024 / 32%"
+  ],
+  "mp": [
+   6,
+   32.709,
+   -83.194
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Richmond County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/410/280 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/411/280 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/408/278 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/409/276 net::ERR_ABORTED"
+  ]
+ },
+ "Richmond@row": {
+  "li": [
+   "Richmond County, GA County",
+   "Richmond County, NY County",
+   "Richmond County, NC County",
+   "Richmond County, VA County",
+   "Richmond city, VA County"
+  ],
+  "rowtap": [
+   195,
+   708,
+   "Richmond County, GA\nCounty"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Richmond County",
+   "gq": "Richmond County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 68%",
+   "Donald Trump 2024 / 32%"
+  ],
+  "mp": [
+   6,
+   32.709,
+   -83.194
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Richmond County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/278 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/277 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/279 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/408/276 net::ERR_ABORTED"
+  ]
+ },
+ "Lancaster County, PA": {
+  "li": [
+   "Lancaster County, PA County",
+   "Lancaster township, Butler Coun\u2026 Town",
+   "Lancaster city, Lancaster Count\u2026 Town",
+   "Lancaster township, Lancaster C\u2026 Town",
+   "Paradise township, Lancaster Co\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Lancaster County",
+   "gq": "Lancaster County, PA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 57%",
+   "Kamala Harris 2024 / 42%"
+  ],
+  "mp": [
+   9,
+   40.019,
+   -76.297
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Pennsylvania",
+   "co": "Lancaster County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Lancaster@row": {
+  "li": [
+   "Lancaster County, NE County",
+   "Lancaster County, PA County",
+   "Lancaster County, SC County",
+   "Lancaster County, VA County",
+   "Lancaster city, Los Angeles Cou\u2026 Town"
+  ],
+  "rowtap": [
+   195,
+   708,
+   "Lancaster County, NE\nCounty"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Lancaster County",
+   "gq": "Lancaster County, NE",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 51%",
+   "Donald Trump 2024 / 47%"
+  ],
+  "mp": [
+   5,
+   41.518,
+   -99.681
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Nebraska",
+   "co": "Lancaster County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/767/473 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/767/474 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/771/473 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/771/474 net::ERR_ABORTED"
+  ]
+ },
+ "Jackson County, MO": {
+  "li": [
+   "Jackson County, MO County",
+   "Jackson city, Cape Girardeau Co\u2026 Town",
+   "Jackson township, Daviess Count\u2026 Town",
+   "Jackson township, Gentry County\u2026 Town",
+   "Jackson township, Grundy County\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Jackson County",
+   "gq": "Jackson County, MO",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 59%",
+   "Donald Trump 2024 / 40%"
+  ],
+  "mp": [
+   6,
+   38.341,
+   -92.437
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Missouri",
+   "co": "Jackson County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/389/242 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/393/244 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/388/245 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/393/245 net::ERR_ABORTED"
+  ]
+ },
+ "Fulton": {
+  "li": [
+   "Fulton County, AR County",
+   "Fulton County, GA County",
+   "Fulton County, IL County",
+   "Fulton County, IN County",
+   "Fulton County, KY County"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Fulton County",
+   "gq": "Fulton County, AR",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 80%",
+   "Kamala Harris 2024 / 18%"
+  ],
+  "mp": [
+   6,
+   34.771,
+   -92.129
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Arkansas",
+   "co": "Fulton County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/401/251 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/400/249 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/400/252 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/401/249 net::ERR_ABORTED"
+  ]
+ },
+ "Fulton County, GA": {
+  "li": [
+   "Fulton County, GA County",
+   "South Fulton city, Fulton Count\u2026 Town",
+   "Alpharetta city, Fulton County,\u2026 Town",
+   "Atlanta city, Fulton County, GA Town",
+   "Chattahoochee Hills city, Fulto\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Fulton County",
+   "gq": "Fulton County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 72%",
+   "Donald Trump 2024 / 27%"
+  ],
+  "mp": [
+   6,
+   32.709,
+   -83.194
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Fulton County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Philadelphia": {
+  "li": [
+   "Philadelphia County, PA County",
+   "Philadelphia township, Cass Cou\u2026 Town",
+   "Philadelphia city, Neshoba Coun\u2026 Town",
+   "Philadelphia town, Jefferson Co\u2026 Town",
+   "Philadelphia village, Jefferson\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Philadelphia County",
+   "gq": "Philadelphia County, PA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 79%",
+   "Donald Trump 2024 / 20%"
+  ],
+  "mp": [
+   10,
+   40.002,
+   -75.118
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Pennsylvania",
+   "co": "Philadelphia County",
+   "lt": "none"
+  },
+  "err": []
+ }
+}

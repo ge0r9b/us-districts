@@ -1,0 +1,127 @@
+{
+ "build": "202610181618",
+ "Ohio": {
+  "gq_globe": {
+   "st": {
+    "crumbs": "Franklin County",
+    "list": true,
+    "n": 0,
+    "sort": "",
+    "lv": "-"
+   },
+   "rows": []
+  },
+  "drill": {
+   "st": {
+    "crumbs": "Franklin County",
+    "list": true,
+    "n": 43,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Columbus city (Franklin part) | 29.5% | 68.3%",
+    "Jackson township (Franklin part) | 56.8% | 42.0%",
+    "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+    "Dublin city | 42.2% | 55.3%",
+    "Upper Arlington city | 35.9% | 62.2%"
+   ]
+  },
+  "lat_flip": 31.7,
+  "flip": {
+   "st": {
+    "crumbs": "Franklin County",
+    "list": true,
+    "n": 43,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Urbancrest village | 29.7% | 68.9%",
+    "Valleyview village | 54.2% | 45.1%",
+    "Pickerington city | 62.5% | 34.2%",
+    "Lockbourne village | 73.5% | 25.8%",
+    "Marble Cliff village | 29.7% | 69.2%"
+   ]
+  },
+  "back": {
+   "st": {
+    "crumbs": "Franklin County",
+    "list": true,
+    "n": 43,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Columbus city (Franklin part) | 29.5% | 68.3%",
+    "Jackson township (Franklin part) | 56.8% | 42.0%",
+    "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+    "Dublin city | 42.2% | 55.3%",
+    "Upper Arlington city | 35.9% | 62.2%"
+   ]
+  },
+  "err": []
+ },
+ "Nevada": {
+  "gq_globe": {
+   "st": {
+    "crumbs": "Clark County",
+    "list": true,
+    "n": 0,
+    "sort": "",
+    "lv": "-"
+   },
+   "rows": []
+  },
+  "drill": {
+   "st": {
+    "crumbs": "Clark County",
+    "list": true,
+    "n": 5,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Las Vegas city | 46.7% | 51.5%",
+    "Henderson city | 53.2% | 45.0%",
+    "North Las Vegas city | 38.1% | 60.0%",
+    "Mesquite city | 62.9% | 35.4%",
+    "Boulder City city | 66.1% | 32.0%"
+   ]
+  },
+  "lat_flip": 15.5,
+  "flip": {
+   "st": {
+    "crumbs": "Clark County",
+    "list": true,
+    "n": 5,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Boulder City city | 66.1% | 32.0%",
+    "Mesquite city | 62.9% | 35.4%",
+    "North Las Vegas city | 38.1% | 60.0%",
+    "Henderson city | 53.2% | 45.0%",
+    "Las Vegas city | 46.7% | 51.5%"
+   ]
+  },
+  "back": {
+   "st": {
+    "crumbs": "Clark County",
+    "list": true,
+    "n": 5,
+    "sort": "",
+    "lv": "townships"
+   },
+   "rows": [
+    "Las Vegas city | 46.7% | 51.5%",
+    "Henderson city | 53.2% | 45.0%",
+    "North Las Vegas city | 38.1% | 60.0%",
+    "Mesquite city | 62.9% | 35.4%",
+    "Boulder City city | 66.1% | 32.0%"
+   ]
+  },
+  "err": []
+ }
+}

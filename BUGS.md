@@ -708,6 +708,63 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Hourly run on build 1618 (~5 PM EDT, Oct 19 4:54-5:22 PM EDT; line 9 = 202610181618 at start (4:54) and end (5:21), every run's JSON / log `build` = 202610181618)
+- **Build 1618 unchanged**, so this is a fresh-coverage pass, not a full re-test. Touch on phones (is_mobile in Chromium), Chromium + WebKit, up to 4 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests in any run.** The only failed requests are aborted ArcGIS basemap tiles (`net::ERR_ABORTED` while the map moves), which is normal. Data `qa/b1618h1700-*.json`, logs `qa/h1700-*.log`, shots `qa/shotsh1700/b1618h7-*.png`, scripts `qa/h1700-*.py`, copied from h1600. New scripts: `h1700-city.py` (QA-115 breadth, both fields, `@row` = tap the first row), `h1700-tot.py` (all-state `__stTot` vs FEC plus thumbnails for 8 states), `h1700-wi.py` (Wisconsin repro, 15 s reload wait), `h1700-cochart.py` / `h1700-colist.py` (county charts / list sort), `h1700-coglobe.py` / `h1700-globelist.py` (map > list), `h1700-ylat.py` (QA-085). `h1700-cmp.py` diffs the sweep against 1618 4 PM.
+- **New: QA-116 [HIGH, needs ruling] a county picked in the bottom field opens at state zoom.** Title, numbers, field and county outline are right, but the map stays at the state's zoom 5-7 instead of flying to the county. Fulton County, GA (typed in full + Enter): z6 over the whole Southeast. The geo-filter button path goes to z9. Both engines. Details below.
+- **QA-115 [CRITICAL] still OPEN: new evidence from 12 names in both fields.** Chromium 390x844, fresh load, no type. WebKit 390x844 gave the same results with a 15 s wait.
+  - **Bottom field (#gq) + Enter** (row 1, then crumb title / field / thumbnails / map):
+    - "Portland" > "Portland city, Ashley County, AR" > title **Ashley County**, field **"No match: Portland city, Ashley…"**, Trump 73 / Harris 25, z6 over Arkansas.
+    - "Springfield" > "Springfield town, Baca County, CO" > **Baca County**, field "No match: Springfield town, Bac…", 84 / 14.
+    - "Boston" > "Boston city, Thomas County, GA" > title **Thomas County**, field "Boston city, Thomas County, GA", Trump 62 / Harris 38, z16 on the Georgia town. Boston, MA is not in the first 5 rows.
+    - "Kansas City" > "Kansas City city, Wyandotte Cou…" (KS) > title **Wyandotte County**, field names the city, Harris 61 / 37.
+    - "Jackson" > Jackson County, **AL** (85 / 14).
+    - "Richmond" > Richmond County, **GA** (68 / 32).
+    - "Lancaster" > Lancaster County, **NE** (51 / 47).
+    - "Austin" > **Austin County, TX** (Trump 81 / 18). Austin city is not in the top 3.
+    - "Columbus" > Columbus County, NC (67 / 33), as on 4 PM.
+    - "Pittsburgh" > "East Pittsburgh borough" > Allegheny County, field "No match: East Pittsburgh borou…", 60 / 39, as on 4 PM.
+    - Reasonable: "Arlington" > Arlington County, VA (78 / 20); "Denver" > Denver County, CO (77 / 21; the county is the city).
+    - Two mechanisms: (1) the first suggestion is the first state alphabetically (AL / AR / CO / GA / NE), not the big or exact city. (2) When a town is picked, the county's title and numbers show with the town in the field, sometimes as "No match: …" even with no district type picked.
+  - **Geo-filter sheet (#bGeo) + Enter** (counties, states and countries only; fuzzy match):
+    - "Portland" > **Poland** (country; title and field "Poland").
+    - "Kansas City" > **Arkansas** (sheet rows "Kansas ›", "Arkansas ›"; Enter opened Arkansas, Trump 64 / 34).
+    - "Pittsburgh" > **Pittsburg County, OK** (79 / 20).
+    - "Jackson" > Jackson County, MO; "Richmond" > Richmond County, NY; "Lancaster" > Lancaster County, PA. These pick a different first county than the bottom field does.
+    - "Boston", "Springfield" > "No institutions match"; Enter keeps the US.
+    - On this path title, numbers and field always agree, so the wrong place is the whole problem.
+  - Shots: qa/shotsh1700/b1618h7-ch-390x844-citygq-{Portland,Boston,KansasCity,Lancaster,Austin}.png, qa/shotsh1700/b1618h7-ch-390x844-citybgeo-{Portland,KansasCity,Pittsburgh}.png, qa/shotsh1700/b1618h7-we-390x844-citygq-*.png. Data `qa/b1618h1700-citygq-chromium-390x844.json`, `qa/b1618h1700-citybgeo-chromium-390x844.json`, `qa/b1618h1700-citygq-webkit-390x844-w15.json`.
+- **Wisconsin observation from 1617 (types toggled, then Dane > Madison city + globe + reload): NOT reproduced, not filed.** Clean runs in WebKit 390x844 and Chromium 375x667 with a 15 s reload wait. Senate / house / schools / US House each on and off (33 / 99 / 421 / 8 rows; type off returns to the Wisconsin map with no type). Then Dane County (60 rows) > Madison city (125 rows; 83 / 15) > globe (z9 on Madison) > reload. Saved state before and after is identical: `lt:"none"`, `tw:["c","Dane County","Madison city"]`, `vw:"map"`. Only `ll` moved 0.002°. Title, thumbnails and view were restored. The 1617 `lt:"counties"` came from a loaded run. Data `qa/b1618h1700-wi-{webkit-390x844-wk,chromium-375x667-ch}-types.json`.
+- **QA-104 still FIXED** (orchestrator `p35-orch-reload-lists.py` on live, Chromium + WebKit 390): 18 ok / FAILS 0. FL state house list (120 rows), Miami-Dade cities list (34) and Miami-Dade county map all restore the same saved state, title, rows and thumbnails (Trump 55 / Harris 44). Log `qa/h1700-104-reloadlists.log`.
+- **QA-085 [HIGH, slow tap] still OPEN** (Chromium 1024x576, PA year taps, 12 per map). Run with 3 other browsers: county map median 135 ms, state house 134, senate 111. Run with 2 other browsers: county map median 90 ms (26-155), state house 123 ms (26-152). The first tap ('16) is always fast (17-32 ms). Logs `qa/h1700-ylat-ch1024x576{,-solo}.log`. The JSON holds the solo run.
+- **2020 / 2024 state totals vs FEC (all 50 states + DC, `__stTot`, Chromium 390; FEC tables `qa/fec20.json` / `qa/fec24.json`):**
+  - 92 of 102 state-years equal FEC exactly for Dem, Rep and total. NV, NC, NH, MN, TX, FL, OH are exact in both years; CA 2024 is exact.
+  - Gaps that pass the user rule: CA 2020 +389 / +89 / +499 (0.003%), NJ 2020 +65 / +39, IN 2020 +82 / +338, ID 2020 total -80, ND 2020 +140 / +156 (small state, 0.12%), KS 2020 total +1,683 (candidates exact).
+  - VA 2024 +1,617 / +988, NY 2024 +348 / +620 and NY 2020 +13,901 / +7,199 have been logged before. The app values are the state-certified figures (VA 2,335,395 / 2,075,085; NY 2020 5,244,886 / 3,251,997) that the orchestrator's official table uses.
+  - PA 2020 total 6,936,976 (candidates exact) equals the orchestrator's official table (`qa/b1614p35-off-ch.log`); the FEC table has 6,915,283.
+  - Thumbnails match the totals to the shown rounding in % and # for the 8 states, both years. NV '24 Trump 51 / Harris 47, 751k / 705k; NC '20 Trump 50 / Biden 49, 2.8M / 2.7M; NH '24 51 / 48, 418k / 396k; MN '20 52 / 45, 1.7M / 1.5M; TX '24 56 / 42, 6.4M / 4.8M; CA '20 63 / 34, 11.1M / 6.0M; FL '24 56 / 43, 6.1M / 4.7M; OH '24 55 / 44, 3.2M / 2.5M.
+  - Side note, not filed: thumbnails write "k" ("751k"), list rows and charts write "K".
+  - Data `qa/b1618h1700-tot-chromium-390x844.json`, shots qa/shotsh1700/b1618h7-ch-390x844-tot-*.png.
+- **County drill charts (Franklin County, OH and Clark County, NV; Chromium 1024x576 and WebKit 320x568):** pie, single bar, thumbnails, range bar and range line at '24, '16, '16-'20, '20-'24 and '16-'24, each in % and #.
+  - Values agree between % and # and with the thumbnails. Franklin '24 63.7 / 35.3 / 1.0% = 381K / 211K / 6K; '16 60.7 / 34.5 / 4.8% = 351K / 199K / 28K; '20 thumbnails 65% / 33% = 409k / 211k; deltas '16-'20 +4.1 / -1.0 / -3.2 = +58K / +12K / -18K; '20-'24 -1.2 / +1.8 = -29K / -407.
+  - Clark '24 Harris 50.4 / Trump 47.8 / 1.7% = 520K / 493K / 18K; '20 54% / 44% = 522k / 431k; '16-'24 -2.0 / +6.1 = +118K / +173K.
+  - Pie is in R-then-D order (by design); single bar is high to low.
+  - LAYOUT check (overlap with buttons / clip / off screen) is empty in every state, including the open chart menu at both sizes.
+  - Observation (QA-013 family, accepted): at 320 with the time row open, the chart button sits over the right end of the first single-bar track (qa/shotsh1700/b1618h7-we-320x568-cochart-FranklinCounty-line-24-pct.png). The fill (63.7%) ends before it.
+  - Sort flip in the Franklin County places list (43 rows; Ohio > counties > Franklin): Columbus city first > flipped: Urbancrest village first > back: Columbus first, 32 / 38 ms (Chromium 1024x576 / WebKit 320). At 320 the first rows show one label (QA-099).
+  - Data `qa/b1618h1700-cochart-*.json`, `qa/b1618h1700-colist-*.json`, shots qa/shotsh1700/b1618h7-*-cochart-*.png, qa/shotsh1700/b1618h7-*-colist-*.png.
+- **Question, not filed:** the globe from any map to the list shows only the thumbnails and no rows (`la:null`): US, Ohio, Georgia, Franklin / Fulton / Philadelphia County, Chromium 390 and WebKit 1024x768. Rows come only from the geography menu. Since that holds at every level it looks like the long-standing design (the "place's list view" of QA-079). One case is worth a ruling: Ohio > counties > Franklin (43 rows) > globe (map) > globe again comes back with **0 rows**, so a map round trip loses the drilled list. Data `qa/b1618h1700-coglobe-*.json`, `qa/b1618h1700-globelist-*.json`, shots qa/shotsh1700/b1618h7-ch-1024x576-colist-Franklin-gqglobe.png.
+- **QA-099 [MEDIUM] still OPEN, unchanged** (Chromium 390x844, time row open): chip 288-322 x 177-199 over "71.9%" (Fulton), "81.6%" (Atlanta city), "63.7%" (Franklin), "68.3%" (Columbus city (Franklin part)). Shots qa/shotsh1700/b1618h7-ch-390x844-tr1-chip-{Georgia-Fulton,Ohio-Franklin}.png; data `qa/b1618h1700-chip-chromium-390x844-tr1.json`.
+- **Layout-stability sweep (16 steps) at all 5 sizes: Chromium 390x844, 320x568, 1024x768, WebKit 375x667, 1024x576.** The `moved` lists match the 1618 4 PM run step for step (`h1700-cmp.py`). The only items are the known ones: map thumbnails +68 px when the time row opens, chart button hidden on US House (QA-057), first row +14 px on grouped bar, back chevron appears / goes, crumbs transient on the All States step (this time also in WebKit 1024x576, same known item). **No new jump.** No errors or failed requests. Data `qa/b1618h1700-layout3-*.json`, logs `qa/h1700-lay3-*.log`.
+- **Orchestrator verify list (1618) holds:**
+  - (1) 2016 colours: CA, NY, IL, CO, VA, WA blue; TX, OH, KS red; FL / PA / MI / WI pale red, the known '?' tint with the same pixels as 4 PM. PA county map '16: Philadelphia / Allegheny / Lackawanna blue, Lancaster / Westmoreland / Clearfield / Erie red. **Pass.**
+  - (2) PA '16 bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5; '24 50.2 / 48.5 / 1.3; '16 again identical (WebKit 390). **Pass.**
+  - (3) Sort chip clear of rows: **fail** (QA-099).
+  - (4) Rows number only ("1", "4", "17"; senate "4 (≈ estimate)"), DC "At-large 90.3%", "DE At-large", bars next to icons. **Pass.**
+  - (5) Thumbnails on the topic-icon axis (x 27) in all 12 checked views. **Pass.**
+  - (6) Menus overlay at 320 and 1024x576 (US and Alabama, WebKit): backdrop rgba(0,0,0,0); pie box 52,114-254,316 / 306,114-704,512, not shrunk; menu taps 12-19 ms. **Pass.**
+  - Data `qa/b1618h1700-{own-chromium-iphone390,pa16-webkit-390x844,menus-webkit-iphone320_ipad1024x576}.json`.
+- **Not re-run this hour (unchanged build, covered at 4 PM):** QA-111 / 109 / 107 / 098 / 103 / 097 / 094-096 fixes, QA-110, QA-112, QA-113 (#bGeo type), QA-074, QA-018, QA-105 / 106, QA-073 / 102 / 007 timing. QA-100 stays HIGH until Historic Election Data reports on NY.
+
 ## Re-test status, build 1618 (hourly run ~4 PM EDT, Oct 19 ~3:51-4:12 PM EDT; line 9 = 202610181618 at start and end, every run's JSON / log `build` = 202610181618)
 - **Build 1618** (`581534c` on main, 3:46 PM EDT: QA-111 deselect returns to zoom-tiered heat; geo-filter entry clears the district type; QA-109 field names the picked place; QA-110 US state above same-name country). Touch on phones (is_mobile in Chromium), Chromium + WebKit, up to 6 browsers at once, so tap timings are noisy. **No console errors, page errors or failed requests in any run.** Data `qa/b1618h1600-*.json`, logs `qa/h1600-*.log`, shots `qa/shotsh1600/b1618h-*.png`, scripts `qa/h1600-*.py` (adapted from the pass-39 and h1500 scripts; new `h1600-geo2.py` (QA-113, both entry fields), `h1600-110.py`, `h1600-town.py`).
 - **QA-111 [CRITICAL] FIXED on 1618, both engines.** Fresh load > type menu > pick > tap the same type again > close, then z4 > z11 one step at a time (% of screen clearly red / blue; S = statewide fills; bare basemap measures ~6-37%): Chromium 390x844 US House, PA '24: 38S / 46 / 46 / 67 / 63 / 76 / 79 / 81 (1617: blank 7-24 at z5-z11). WebKit 390x844 US House PA '24 38S / 45 / 46 / 67 / 63 / 76 / 79 / 81 and '16 37S / 45 / 46 / 66 / 64 / 76 / 78 / 78. WebKit 390x844 School districts: PA as above, GA 46S / 57 / 61 / 70 / 73 / 75 / 72 / 70, Philadelphia 40S / 48 / 52 / 46 / 45 / 45 / 62 / 58. Chromium 1024x768 School districts PA 51S / 49S / 52 / 55 / 71 / 70 / 78 / 79. After a reload: identical numbers. Shots qa/shotsh1600/b1618h-desel-A-{chromium-390-ushouse,webkit-390-ushouse,webkit-390-schools,chromium-1024-schools}-menu-24-*-z{6,9}.png; logs `qa/h1600-desel-*.log`.
@@ -1408,3 +1465,30 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Earlier (1617, pass 39b, QA-113 notes): 'Pittsburgh' resolved to Pittsburg County, OK.
 - Expected: an exact city or town name wins, and the incorporated city beats 'East X' or a similarly named county. Ties go by population or the current state, and a ', PA'-style suffix is respected.
 - Shots: `qa/shotsh1600/b1618h-ch-1024x768-geo2-list-Pittsburgh-1.png`, `-2.png`.
+- **More evidence (hourly run ~5 PM EDT, 1618, Chromium + WebKit 390x844):**
+  - Bottom field (#gq) + Enter lands on: "Portland" > Portland city, AR (title Ashley County, field "No match: Portland city, Ashley…", 73 / 25); "Springfield" > Springfield town, CO (title Baca County, field "No match: …"); "Boston" > Boston city, GA (title Thomas County, 62 / 38); "Kansas City" > Kansas City, KS (title Wyandotte County); "Jackson" > Jackson County, AL; "Richmond" > Richmond County, GA; "Lancaster" > Lancaster County, NE; "Austin" > Austin County, TX (81 / 18).
+  - Geo-filter sheet (#bGeo) + Enter lands on: "Portland" > the country Poland; "Kansas City" > Arkansas; "Pittsburgh" > Pittsburg County, OK.
+  - Mechanisms: the first state alphabetically wins; a town pick shows its county's title and numbers; #bGeo matches fuzzily.
+  - Details in the '~5 PM EDT' run section; shots qa/shotsh1700/b1618h7-{ch,we}-390x844-city{gq,bgeo}-*.png.
+
+### QA-116 [HIGH, needs ruling; build 1618, hourly run ~5 PM EDT] A county picked in the bottom field opens at state zoom, not on the county
+- Severity: HIGH, proposed (the main search path shows a multi-state map under a county title; the county is only a small outline). Title, numbers, field and outline are the right place, so this is not the QA-115 wrong-place family. | Build 1618 | Chromium 390x844 and WebKit 390x844 (15 s wait), touch
+- Steps: fresh load > tap the bottom field > type "Fulton County, GA" (or "Richmond County, GA", "Franklin County, OH", "Lancaster County, NE", "Jackson County, MO") > Enter, or tap the county row > wait 6-15 s.
+- Expected: the map flies to the county, as the geo-filter button path does (Fulton County, GA > z9 at 33.85, -84.47; Franklin County, OH > z9 at 39.97, -83.01) and as the bottom field does for Philadelphia (z10), Allegheny (z9), Lancaster County, PA (z9) and Columbus County, NC (z9).
+- Actual: the map stays at the state view. Title, numbers and field are right and the county is outlined.
+
+  | County | Thumbnails | Map |
+  |---|---|---|
+  | Fulton County, GA | 72 / 27 | z6 at 32.71, -83.19 (centre of Georgia; the whole Southeast) |
+  | Richmond County, GA | 68 / 32 | z6, same centre |
+  | Franklin County, OH | 64 / 35 | z6 at 40.39, -82.67 (centre of Ohio) |
+  | Lancaster County, NE | 51 / 47 | z5 at 41.52, -99.68 (centre of Nebraska) |
+  | Jackson County, MO | | z6 at 38.34, -92.44 |
+  | Fulton County, AR | | z6 at 34.77, -92.13 |
+  | Jackson County, AL | | z7 at 32.61, -86.68 |
+  | Austin County, TX | | z5 at 31.32, -100.08 |
+  | Denver County, CO | | z6 at 39.03, -105.55 |
+
+  Ashley County and Cleveland County, AR (from "Portland" / "Cleveland") are the same, z6 at 34.77, -92.13; Cleveland already did this in the 4 PM run's data. The same happens with the row tap ("Richmond@row", "Lancaster@row") and in WebKit after 15 s. Town picks zoom (Boston city, GA z16; Kansas City, KS z15), and so does Baca County, CO (z8). The 4 PM `geo2gq` data already had Fulton at z6 (unnoticed then).
+- Screenshots: qa/shotsh1700/b1618h7-ch-390x844-citygq-FultonCountyGA.png, qa/shotsh1700/b1618h7-ch-390x844-citygq-Lancaster.png, qa/shotsh1700/b1618h7-we-390x844-citygq-Richmond.png, qa/shotsh1700/b1618h7-ch-390x844-coglobe-gq-map.png (Franklin, gq) vs qa/shotsh1700/b1618h7-ch-390x844-coglobe-bgeo-map.png (Franklin, #bGeo, z9)
+- Data: `qa/b1618h1700-citygq-chromium-390x844-zoom.json`, `qa/b1618h1700-citygq-{chromium-390x844,webkit-390x844-w15}.json` (`mp`), `qa/b1618h1700-coglobe-{chromium,webkit}-390x844*.json`; script `qa/h1700-city.py` (WT / SUF env), `qa/h1700-coglobe.py`

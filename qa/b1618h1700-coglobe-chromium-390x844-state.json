@@ -1,0 +1,157 @@
+{
+ "build": "202610181618",
+ "state": {
+  "statelist": {
+   "crumbs": "Ohio",
+   "gq": "Ohio",
+   "list": true,
+   "n": 88,
+   "lv": "counties",
+   "snap": {
+    "v": 1,
+    "top": "President",
+    "st": "Ohio",
+    "lt": "none",
+    "yv": 2,
+    "tb": false,
+    "nm": "pct",
+    "vw": "list",
+    "so": "desc",
+    "la": "counties",
+    "ll": [
+     41.0628,
+     -82.5513,
+     6
+    ]
+   }
+  },
+  "drill": {
+   "st": {
+    "crumbs": "Franklin County",
+    "gq": "Franklin County, OH",
+    "list": true,
+    "n": 43,
+    "lv": "townships",
+    "snap": {
+     "v": 1,
+     "top": "President",
+     "st": "Ohio",
+     "co": "Franklin County",
+     "lt": "none",
+     "yv": 2,
+     "tb": false,
+     "nm": "pct",
+     "vw": "list",
+     "so": "desc",
+     "la": "townships",
+     "ll": [
+      39.9687,
+      -83.0127,
+      9
+     ]
+    }
+   },
+   "rows": [
+    "Columbus city (Franklin part) | 29.5% | 68.3%",
+    "Jackson township (Franklin part) | 56.8% | 42.0%",
+    "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+    "Dublin city | 42.2% | 55.3%"
+   ]
+  },
+  "map": {
+   "st": {
+    "crumbs": "Franklin County",
+    "gq": "Franklin County, OH",
+    "list": false,
+    "n": 0,
+    "lv": "-",
+    "snap": {
+     "v": 1,
+     "top": "President",
+     "st": "Ohio",
+     "co": "Franklin County",
+     "lt": "none",
+     "yv": 2,
+     "tb": false,
+     "nm": "pct",
+     "vw": "map",
+     "so": "desc",
+     "ll": [
+      39.9687,
+      -83.0127,
+      9
+     ]
+    }
+   },
+   "th": [
+    "Kamala Harris 2024 / 64%",
+    "Donald Trump 2024 / 35%"
+   ],
+   "mp": [
+    9,
+    39.969,
+    -83.013
+   ]
+  },
+  "lat_globe": 22.2,
+  "list": {
+   "st": {
+    "crumbs": "Franklin County",
+    "gq": "Franklin County, OH",
+    "list": true,
+    "n": 0,
+    "lv": "-",
+    "snap": {
+     "v": 1,
+     "top": "President",
+     "st": "Ohio",
+     "co": "Franklin County",
+     "lt": "none",
+     "yv": 2,
+     "tb": false,
+     "nm": "pct",
+     "vw": "list",
+     "so": "desc",
+     "ll": [
+      39.9687,
+      -83.0127,
+      9
+     ]
+    }
+   },
+   "rows": [],
+   "th": [
+    "Kamala Harris 2024 / Kamala Harris 63.7%",
+    "Donald Trump 2024 / Donald Trump 35.3%"
+   ]
+  },
+  "reload": {
+   "st": {
+    "crumbs": "Franklin County",
+    "gq": "Franklin County, OH",
+    "list": true,
+    "n": 0,
+    "lv": "-",
+    "snap": {
+     "v": 1,
+     "top": "President",
+     "st": "Ohio",
+     "co": "Franklin County",
+     "lt": "none",
+     "yv": 2,
+     "tb": false,
+     "nm": "pct",
+     "vw": "list",
+     "so": "desc",
+     "ll": [
+      39.9693,
+      -83.0114,
+      9
+     ]
+    }
+   },
+   "rows": []
+  },
+  "err": []
+ }
+}

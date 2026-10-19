@@ -1,0 +1,453 @@
+{
+ "build": "202610181618",
+ "Portland": {
+  "li": [
+   "Portland city, Ashley County, AR Town",
+   "Portland town, Lower Connecticu\u2026 Town",
+   "Portland township, Whiteside Co\u2026 Town",
+   "Portland city, Jay County, IN Town",
+   "Portland city, Cumberland Count\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Ashley County",
+   "gq": "No match: Portland city, Ashley\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 73%",
+   "Kamala Harris 2024 / 25%"
+  ],
+  "mp": [
+   6,
+   34.771,
+   -92.129
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Arkansas",
+   "co": "Ashley County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/410/249 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/410/252 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/249 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/252 net::ERR_ABORTED"
+  ]
+ },
+ "Springfield": {
+  "li": [
+   "Springfield town, Baca County, \u2026 Town",
+   "Springfield city, Bay County, FL Town",
+   "Springfield city, Effingham Cou\u2026 Town",
+   "Springfield city, Sangamon Coun\u2026 Town",
+   "Springfield township, Sangamon \u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Baca County",
+   "gq": "No match: Springfield town, Bac\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 84%",
+   "Kamala Harris 2024 / 14%"
+  ],
+  "mp": [
+   8,
+   37.319,
+   -102.564
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Colorado",
+   "co": "Baca County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Kansas City": {
+  "li": [
+   "Kansas City city, Wyandotte Cou\u2026 Town",
+   "North Kansas City city, Clay Co\u2026 Town",
+   "Kansas City city, Jackson Count\u2026 Town",
+   "Bassett city, Allen County, KS Town",
+   "Elsmore city, Allen County, KS Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Wyandotte County",
+   "gq": "Kansas City city, Wyandotte Cou\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 61%",
+   "Donald Trump 2024 / 37%"
+  ],
+  "mp": [
+   15,
+   39.116,
+   -94.83
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Kansas",
+   "co": "Wyandotte County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/781/484 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/780/485 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/781/483 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/781/486 net::ERR_ABORTED"
+  ]
+ },
+ "Jackson": {
+  "li": [
+   "Jackson County, AL County",
+   "Jackson County, AR County",
+   "Jackson County, CO County",
+   "Jackson County, FL County",
+   "Jackson County, GA County"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Jackson County",
+   "gq": "Jackson County, AL",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 85%",
+   "Kamala Harris 2024 / 14%"
+  ],
+  "mp": [
+   7,
+   32.609,
+   -86.681
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Alabama",
+   "co": "Jackson County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/406/265 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/406/268 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/405/265 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/405/268 net::ERR_ABORTED"
+  ]
+ },
+ "Richmond": {
+  "li": [
+   "Richmond County, GA County",
+   "Richmond County, NY County",
+   "Richmond County, NC County",
+   "Richmond County, VA County",
+   "Richmond city, VA County"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Richmond County",
+   "gq": "Richmond County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 68%",
+   "Donald Trump 2024 / 32%"
+  ],
+  "mp": [
+   6,
+   32.709,
+   -83.194
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Richmond County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/409/278 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/412/278 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/409/279 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/412/277 net::ERR_ABORTED"
+  ]
+ },
+ "Lancaster": {
+  "li": [
+   "Lancaster County, NE County",
+   "Lancaster County, PA County",
+   "Lancaster County, SC County",
+   "Lancaster County, VA County",
+   "Lancaster city, Los Angeles Cou\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Lancaster County",
+   "gq": "Lancaster County, NE",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 51%",
+   "Donald Trump 2024 / 47%"
+  ],
+  "mp": [
+   5,
+   41.518,
+   -99.681
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Nebraska",
+   "co": "Lancaster County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/769/472 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/769/475 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/768/472 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/768/475 net::ERR_ABORTED"
+  ]
+ },
+ "Arlington": {
+  "li": [
+   "Arlington County, VA County",
+   "Arlington city, Calhoun County,\u2026 Town",
+   "Arlington village, Bureau Count\u2026 Town",
+   "Arlington Heights village, Cook\u2026 Town",
+   "Arlington city, Fayette County,\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Arlington County",
+   "gq": "Arlington County, VA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 78%",
+   "Donald Trump 2024 / 20%"
+  ],
+  "mp": [
+   11,
+   38.881,
+   -77.102
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Virginia",
+   "co": "Arlington County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Austin": {
+  "li": [
+   "Austin County, TX County",
+   "Austin city, Lonoke County, AR Town",
+   "Austin township, Macon County, \u2026 Town",
+   "Austin city, Scott County, IN Town",
+   "Port Austin township, Huron Cou\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Austin County",
+   "gq": "Austin County, TX",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 81%",
+   "Kamala Harris 2024 / 18%"
+  ],
+  "mp": [
+   5,
+   31.32,
+   -100.077
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Texas",
+   "co": "Austin County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/426/237 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/426/236 net::ERR_ABORTED"
+  ]
+ },
+ "Denver": {
+  "li": [
+   "Denver County, CO County",
+   "Denver city, Denver County, CO Town",
+   "Denver township, Richland Count\u2026 Town",
+   "Denver town, Miami County, IN Town",
+   "Denver city, Bremer County, IA Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Denver County",
+   "gq": "Denver County, CO",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 77%",
+   "Donald Trump 2024 / 21%"
+  ],
+  "mp": [
+   6,
+   39.026,
+   -105.551
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Colorado",
+   "co": "Denver County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Boston": {
+  "li": [
+   "Boston city, Thomas County, GA Town",
+   "New Boston city, Mercer County,\u2026 Town",
+   "New Boston township, Mercer Cou\u2026 Town",
+   "Boston town, Wayne County, IN Town",
+   "Boston township, Wayne County, \u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Thomas County",
+   "gq": "Boston city, Thomas County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 62%",
+   "Kamala Harris 2024 / 38%"
+  ],
+  "mp": [
+   16,
+   30.791,
+   -83.794
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Thomas County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/838/545 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/838/548 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/839/545 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/839/548 net::ERR_ABORTED"
+  ]
+ },
+ "Pittsburgh": {
+  "li": [
+   "East Pittsburgh borough, Allegh\u2026 Town",
+   "Pittsburgh city, Allegheny Coun\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Allegheny County",
+   "gq": "No match: East Pittsburgh borou\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 60%",
+   "Donald Trump 2024 / 39%"
+  ],
+  "mp": [
+   9,
+   40.434,
+   -80.024
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Columbus": {
+  "li": [
+   "Columbus County, NC County",
+   "Columbus city, Muscogee County,\u2026 Town",
+   "Columbus township, Adams County\u2026 Town",
+   "Columbus village, Adams County,\u2026 Town",
+   "Columbus city, Bartholomew Coun\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Columbus County",
+   "gq": "Columbus County, NC",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 67%",
+   "Kamala Harris 2024 / 33%"
+  ],
+  "mp": [
+   9,
+   34.215,
+   -78.617
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "North Carolina",
+   "co": "Columbus County",
+   "lt": "none"
+  },
+  "err": []
+ }
+}

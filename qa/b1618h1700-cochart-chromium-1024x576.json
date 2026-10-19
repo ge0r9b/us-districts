@@ -1,0 +1,960 @@
+{
+ "Franklin County, OH": {
+  "build": "202610181618",
+  "crumbs": "Franklin County",
+  "gq": "Franklin County, OH",
+  "opts": [
+   "pie"
+  ],
+  "menu_layout": {
+   "over": [],
+   "clip": [],
+   "off": []
+  },
+  "pie-24-pct": {
+   "lat": 26.4,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "35.3% | 63.7% | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris \u00b7 63.7% / ",
+    "Donald Trump \u00b7 35.3% / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-24-num": {
+   "lat": 26.4,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "211K | 381K | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris \u00b7 381K / ",
+    "Donald Trump \u00b7 211K / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-pct": {
+   "lat": 26.4,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "34.5% | 60.7% | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton \u00b7 60.7% / ",
+    "Donald Trump \u00b7 34.5% / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-num": {
+   "lat": 26.4,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "199K | 351K | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton \u00b7 351K / ",
+    "Donald Trump \u00b7 199K / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-20-pct": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "\u22121.0 | +4.1 | \u2026 | \u22123.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-20-num": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+12K | +58K | \u2026 | \u221218K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-20-24-pct": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+1.8 | \u22121.2 | \u2026 | \u22120.6",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-20-24-num": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "\u2212407 | \u221229K | \u2026 | \u22124K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-24-pct": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+0.8 | +2.9 | \u2026 | \u22123.8",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-24-num": {
+   "lat": 26.4,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+11K | +29K | \u2026 | \u221222K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "64% | 35%",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Kamala Harris 2024 / 64%",
+    "Donald Trump 2024 / 35%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "381k | 211k",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Kamala Harris 2024 / 381k",
+    "Donald Trump 2024 / 211k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "61% | 34%",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Hillary Clinton 2016 / 61%",
+    "Donald Trump 2016 / 34%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "351k | 199k",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Hillary Clinton 2016 / 351k",
+    "Donald Trump 2016 / 199k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-20-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "34% | 61% | 33% | 65%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 34%",
+    "Hillary Clinton 2016 / 61%",
+    "Donald Trump 2020 / 33%",
+    "Joe Biden 2020 / 65%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-20-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "199k | 351k | 211k | 409k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 199k",
+    "Hillary Clinton 2016 / 351k",
+    "Donald Trump 2020 / 211k",
+    "Joe Biden 2020 / 409k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-20-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "33% | 65% | 35% | 64%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2020 / 33%",
+    "Joe Biden 2020 / 65%",
+    "Donald Trump 2024 / 35%",
+    "Kamala Harris 2024 / 64%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-20-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "211k | 409k | 211k | 381k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2020 / 211k",
+    "Joe Biden 2020 / 409k",
+    "Donald Trump 2024 / 211k",
+    "Kamala Harris 2024 / 381k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "34% | 61% | 35% | 64%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 34%",
+    "Hillary Clinton 2016 / 61%",
+    "Donald Trump 2024 / 35%",
+    "Kamala Harris 2024 / 64%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "199k | 351k | 211k | 381k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 199k",
+    "Hillary Clinton 2016 / 351k",
+    "Donald Trump 2024 / 211k",
+    "Kamala Harris 2024 / 381k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-24-pct": {
+   "lat": 40.5,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "63.7% | 35.3% | \u2026 | 1.0% | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris 2024 / ",
+    "Donald Trump 2024 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-24-num": {
+   "lat": 40.5,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "381K | 211K | \u2026 | 6K | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris 2024 / ",
+    "Donald Trump 2024 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-pct": {
+   "lat": 40.5,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "60.7% | 34.5% | \u2026 | 4.8% | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton 2016 / ",
+    "Donald Trump 2016 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-num": {
+   "lat": 40.5,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "351K | 199K | \u2026 | 28K | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton 2016 / ",
+    "Donald Trump 2016 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-20-pct": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "20% | 40% | 60% | 80% | \u22121.0 | +4.1",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-20-num": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "100K | 200K | 300K | 400K | 500K | +12K | +58K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-20-24-pct": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "20% | 40% | 60% | 80% | +1.8 | \u22121.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-20-24-num": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "100K | 200K | 300K | 400K | 500K | \u2212407 | \u221229K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-24-pct": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "20% | 40% | 60% | 80% | \u22121.0 | +1.8 | +4.1 | \u22121.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-24-num": {
+   "lat": 40.5,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "100K | 200K | 300K | 400K | 500K | +12K | \u2212407 | +58K | \u221229K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "list": {
+   "crumbs": "Franklin County",
+   "rows": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "err": []
+ },
+ "Clark County, NV": {
+  "build": "202610181618",
+  "crumbs": "Clark County",
+  "gq": "Clark County, NV",
+  "opts": [
+   "pie"
+  ],
+  "menu_layout": {
+   "over": [],
+   "clip": [],
+   "off": []
+  },
+  "pie-24-pct": {
+   "lat": 17.6,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "47.8% | 50.4% | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris \u00b7 50.4% / ",
+    "Donald Trump \u00b7 47.8% / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-24-num": {
+   "lat": 17.6,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "493K | 520K | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris \u00b7 520K / ",
+    "Donald Trump \u00b7 493K / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-pct": {
+   "lat": 17.6,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "41.7% | 52.4% | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton \u00b7 52.4% / ",
+    "Donald Trump \u00b7 41.7% / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-num": {
+   "lat": 17.6,
+   "mode": "pie",
+   "ym": "2024",
+   "txt": "320K | 402K | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton \u00b7 402K / ",
+    "Donald Trump \u00b7 320K / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-20-pct": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+2.6 | +1.2 | \u2026 | \u22123.8",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-20-num": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+111K | +120K | \u2026 | \u221225K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-20-24-pct": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+3.5 | \u22123.2 | \u2026 | \u22120.3",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-20-24-num": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+62K | \u22122K | \u2026 | \u22122K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-24-pct": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+6.1 | \u22122.0 | \u2026 | \u22124.1",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "pie-16-24-num": {
+   "lat": 17.6,
+   "mode": "bar",
+   "ym": "delta",
+   "txt": "+173K | +118K | \u2026 | \u221227K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "50% | 48%",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 48%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "520k | 493k",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Kamala Harris 2024 / 520k",
+    "Donald Trump 2024 / 493k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "52% | 42%",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Hillary Clinton 2016 / 52%",
+    "Donald Trump 2016 / 42%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "2024",
+   "txt": "402k | 320k",
+   "cb": "D+90 | R+90",
+   "th": [
+    "Hillary Clinton 2016 / 402k",
+    "Donald Trump 2016 / 320k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-20-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "42% | 52% | 44% | 54%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 42%",
+    "Hillary Clinton 2016 / 52%",
+    "Donald Trump 2020 / 44%",
+    "Joe Biden 2020 / 54%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-20-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "320k | 402k | 431k | 522k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 320k",
+    "Hillary Clinton 2016 / 402k",
+    "Donald Trump 2020 / 431k",
+    "Joe Biden 2020 / 522k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-20-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "44% | 54% | 48% | 50%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2020 / 44%",
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2024 / 48%",
+    "Kamala Harris 2024 / 50%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-20-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "431k | 522k | 493k | 520k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2020 / 431k",
+    "Joe Biden 2020 / 522k",
+    "Donald Trump 2024 / 493k",
+    "Kamala Harris 2024 / 520k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-24-pct": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "42% | 52% | 48% | 50%",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 42%",
+    "Hillary Clinton 2016 / 52%",
+    "Donald Trump 2024 / 48%",
+    "Kamala Harris 2024 / 50%"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "bar-16-24-num": {
+   "lat": null,
+   "mode": null,
+   "ym": "delta",
+   "txt": "320k | 402k | 493k | 520k",
+   "cb": "D+20 | R+20",
+   "th": [
+    "Donald Trump 2016 / 320k",
+    "Hillary Clinton 2016 / 402k",
+    "Donald Trump 2024 / 493k",
+    "Kamala Harris 2024 / 520k"
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-24-pct": {
+   "lat": 22.8,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "50.4% | 47.8% | \u2026 | 1.7% | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris 2024 / ",
+    "Donald Trump 2024 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-24-num": {
+   "lat": 22.8,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "520K | 493K | \u2026 | 18K | \u00a0",
+   "cb": "",
+   "th": [
+    "Kamala Harris 2024 / ",
+    "Donald Trump 2024 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-pct": {
+   "lat": 22.8,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "52.4% | 41.7% | \u2026 | 5.8% | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton 2016 / ",
+    "Donald Trump 2016 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-num": {
+   "lat": 22.8,
+   "mode": "bar",
+   "ym": "2024",
+   "txt": "402K | 320K | \u2026 | 45K | \u00a0",
+   "cb": "",
+   "th": [
+    "Hillary Clinton 2016 / ",
+    "Donald Trump 2016 / "
+   ],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-20-pct": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "30% | 40% | 50% | 60% | +2.6 | +1.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-20-num": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "200K | 300K | 400K | 500K | 600K | +111K | +120K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-20-24-pct": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "40% | 45% | 50% | 55% | 60% | +3.5 | \u22123.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-20-24-num": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "400K | 450K | 500K | 550K | +62K | \u22122K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-24-pct": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "30% | 40% | 50% | 60% | +2.6 | +3.5 | +1.2 | \u22123.2",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "line-16-24-num": {
+   "lat": 22.8,
+   "mode": "line",
+   "ym": "delta",
+   "txt": "200K | 300K | 400K | 500K | 600K | +111K | +62K | +120K | \u22122K",
+   "cb": "",
+   "th": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "list": {
+   "crumbs": "Clark County",
+   "rows": [],
+   "lay": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "err": []
+ }
+}

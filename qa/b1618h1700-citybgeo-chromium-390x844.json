@@ -1,0 +1,415 @@
+{
+ "build": "202610181618",
+ "Portland": {
+  "li": [
+   "COUNTRIES",
+   "Poland",
+   "COUNTIES",
+   "Cortland County, NY"
+  ],
+  "hdr": {
+   "title": "",
+   "crumbs": "Poland",
+   "gq": "Poland",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [],
+  "mp": [
+   5,
+   53.356,
+   19.999
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": null,
+   "co": null,
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Springfield": {
+  "li": [
+   "No institutions match"
+  ],
+  "sheet": [
+   "No institutions match"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "United States",
+   "gq": "United States",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "mp": [
+   4,
+   39.775,
+   -98.613
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": null,
+   "co": null,
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Kansas City": {
+  "li": [
+   "Kansas \u203a",
+   "Arkansas \u203a",
+   "STATES",
+   "Kansas",
+   "COUNTIES"
+  ],
+  "sheet": [
+   "Arkansas counties",
+   "Arkansas County \u203a",
+   "Ashley County \u203a",
+   "Baxter County \u203a",
+   "Benton County \u203a",
+   "Boone County \u203a",
+   "Bradley County \u203a",
+   "Calhoun County \u203a",
+   "Carroll County \u203a",
+   "Chicot County \u203a"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Arkansas",
+   "gq": "Arkansas",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 64%",
+   "Kamala Harris 2024 / 34%"
+  ],
+  "mp": [
+   6,
+   34.778,
+   -92.131
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Arkansas",
+   "co": null,
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Jackson": {
+  "li": [
+   "COUNTIES",
+   "Jackson County, MO",
+   "Jackson County, OR",
+   "Jackson County, MI",
+   "Jackson County, MS"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Jackson County",
+   "gq": "Jackson County, MO",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 59%",
+   "Donald Trump 2024 / 40%"
+  ],
+  "mp": [
+   9,
+   39.035,
+   -94.357
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Missouri",
+   "co": "Jackson County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Richmond": {
+  "li": [
+   "COUNTIES",
+   "Richmond County, NY",
+   "Richmond city, VA",
+   "Richmond County, GA",
+   "Richmond County, NC"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Richmond County",
+   "gq": "Richmond County, NY",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 64%",
+   "Kamala Harris 2024 / 35%"
+  ],
+  "mp": [
+   11,
+   40.564,
+   -74.147
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "New York",
+   "co": "Richmond County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Lancaster": {
+  "li": [
+   "COUNTIES",
+   "Lancaster County, PA",
+   "Lancaster County, NE",
+   "Lancaster County, SC",
+   "Lancaster County, VA"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Lancaster County",
+   "gq": "Lancaster County, PA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 57%",
+   "Kamala Harris 2024 / 42%"
+  ],
+  "mp": [
+   9,
+   40.019,
+   -76.298
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Pennsylvania",
+   "co": "Lancaster County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Arlington": {
+  "li": [
+   "COUNTIES",
+   "Arlington County, VA",
+   "Darlington County, SC"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Arlington County",
+   "gq": "Arlington County, VA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 78%",
+   "Donald Trump 2024 / 20%"
+  ],
+  "mp": [
+   11,
+   38.881,
+   -77.102
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Virginia",
+   "co": "Arlington County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Austin": {
+  "li": [
+   "COUNTIES",
+   "Austin County, TX"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Austin County",
+   "gq": "Austin County, TX",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 81%",
+   "Kamala Harris 2024 / 18%"
+  ],
+  "mp": [
+   9,
+   29.85,
+   -96.313
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Texas",
+   "co": "Austin County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Denver": {
+  "li": [
+   "COUNTIES",
+   "Denver County, CO"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Denver County",
+   "gq": "Denver County, CO",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 77%",
+   "Donald Trump 2024 / 21%"
+  ],
+  "mp": [
+   9,
+   39.764,
+   -104.854
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Colorado",
+   "co": "Denver County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Boston": {
+  "li": [
+   "No institutions match"
+  ],
+  "sheet": [
+   "No institutions match"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "United States",
+   "gq": "United States",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "mp": [
+   4,
+   39.775,
+   -98.613
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": null,
+   "co": null,
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Pittsburgh": {
+  "li": [
+   "COUNTIES",
+   "Pittsburg County, OK"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Pittsburg County",
+   "gq": "Pittsburg County, OK",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 79%",
+   "Kamala Harris 2024 / 20%"
+  ],
+  "mp": [
+   9,
+   34.948,
+   -95.721
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Oklahoma",
+   "co": "Pittsburg County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Columbus": {
+  "li": [
+   "COUNTIES",
+   "Columbus County, NC"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Columbus County",
+   "gq": "Columbus County, NC",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 67%",
+   "Kamala Harris 2024 / 33%"
+  ],
+  "mp": [
+   9,
+   34.215,
+   -78.617
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "North Carolina",
+   "co": "Columbus County",
+   "lt": "none"
+  },
+  "err": []
+ }
+}
