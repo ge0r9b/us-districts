@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181597";</script>
+<script>window.BUILD="202610181598";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -3792,7 +3792,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
           /* build 1565: paint the new values first; the in-bar labels (fit-or-hide needs a layout) are hidden for that one frame and fitted right after */
           restyle(); try{ if(window.__mapLaterOn&&window.__mapLaterOn()) window.__later("rcL",()=>{ try{ renderCands(); }catch(e){} }); else renderCands(); }catch(e){} g0.classList.add("unfit"); cancelAnimationFrame(LA.__fitRaf2); LA.__fitRaf2=requestAnimationFrame(()=>{ const f=()=>{ try{ if(LA.on){ place(); laThumbs(); alignRows(); setDlen(); clampLabels(); fitLabels(); } }finally{ g0.classList.remove("unfit"); } }; if(window.requestIdleCallback) requestIdleCallback(f,{timeout:60}); else setTimeout(f,16); }); return; } } }
     lv.innerHTML=head; lv.__laKey=key; lv.__laScope=scope; lv.__laHead=head; const g=lv.querySelector(".lvgrid"); g.style.setProperty("--rnw","84px"); /* build 1551: narrower name column, longer bars; a cut-off name shows its full text in a bubble */
-    g.classList.toggle("dl",yrsNow().length>1); g.innerHTML=R2.map(x=>"<div class='"+x.cls+"'>"+x.h+"</div>").join(""); { let i=0; for(const el of g.children){ const x=R2[i++]; if(x){ el.__a=x.a; el.__k=x.k; } } } fitNames(g);
+    g.classList.toggle("dl",yrsNow().length>1); g.innerHTML=R2.map((x,i)=>"<div class='"+x.cls+(i<40?" cv0":"")+"'>"+x.h+"</div>").join(""); /* build 1598 (QA-084): the first 40 rows skip content-visibility, so they lay out at their real height in the first frame (WebKit drew them at the 30 px placeholder, then grew them to 44) and --rh below measures the real row */ { let i=0; for(const el of g.children){ const x=R2[i++]; if(x){ el.__a=x.a; el.__k=x.k; } } } fitNames(g);
     { const r0=g.firstElementChild; if(r0&&r0.classList.contains("lvrow")){ const cs=getComputedStyle(r0), h=r0.getBoundingClientRect().height-(parseFloat(cs.paddingTop)||0)-(parseFloat(cs.paddingBottom)||0)-(parseFloat(cs.borderTopWidth)||0)-(parseFloat(cs.borderBottomWidth)||0); if(h>0) g.style.setProperty("--rh",h.toFixed(1)+"px"); } } /* build 1564: placeholder height for rows whose content is skipped */
     if(!rows.length) g.innerHTML="<p>"+esc(t32("Nothing to list"))+"</p>";
     if(keepTop) lv.scrollTop=keepTop; else if(lv.scrollTop) lv.scrollTop=0; /* a different list (drill-in, new level/scope) opens at the top; the browser would otherwise keep the old list's offset */
@@ -4215,6 +4215,7 @@ html body .tlab svg text { fill: #fff !important; }
 #laCands .lact .cpt { z-index: 2; left: auto; right: 0; background: #fff !important; color: #111; max-width: none; overflow: visible; } /* right-aligned to the thumbnail column: % badges sit where they did, long # badges grow left under the photo instead of over the row names */
 /* build 1564: off-screen list rows skip layout and paint (content-visibility); a placeholder keeps the scroll height, then each row remembers its real size */
 #listView .lvgrid > .lvrow.la{content-visibility:auto;contain-intrinsic-size:auto var(--rh,23px)}
+#listView .lvgrid > .lvrow.la.cv0{content-visibility:visible}
 #listView .lvgrid > .lvrow.la.lapress{background:rgba(0,0,0,.10)!important;transition:none!important}
 /* build 1564: list thumbnails fully visible. #laCands scrolls (overflow-y:auto also clips x), so the 2px ring and long '#' badges were cut at its
    edges, and '3.46M' badges ran over the photo and the next thumbnail. Now: 4px inner padding on every side (box moved 4px up/left, so the photos

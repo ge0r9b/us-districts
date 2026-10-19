@@ -18,7 +18,7 @@ async def main():
         m=await pg.evaluate(M); old=m['lvTop']+31; want=old-31/2
         ck(abs(m['rowTop']-want)<=1.5,f"{vw}x{vh} {lvl}: first row top {m['rowTop']:.1f} = old top {old:.0f} - gap/2 ({want:.1f})",m)
         ck(m['chipBot']>m['rowTop']+4 and m['chipTop']<m['rowTop'] and m['chipMid']<=m['rowMid'],f"{vw}x{vh} {lvl}: the chip overlaps the first row's top half (chip {m['chipTop']:.0f}-{m['chipBot']:.0f}, row {m['rowTop']:.0f}-{m['rowTop']+m['rowH']:.0f})",m)
-        ck('0.05' in m['bg'] and 'blur(3px)' in m['bf'] and m['bc']=='rgba(0, 0, 0, 0.85)',f"{vw}x{vh} {lvl}: clearer chip glass, crisp outline kept",m)
+        ck(m['bf'] in ('none','') and m['bc']=='rgba(0, 0, 0, 0.85)',f"{vw}x{vh} {lvl}: chip without backdrop blur (user, 1594 clear buttons), crisp outline kept",m)  # was: 1575 'clearer chip glass' (0.05 + blur 3px), superseded by 1594
         ys=[]
         for i in range(8): ys.append(await pg.evaluate("()=>document.querySelector('#listView .lvgrid > .lvrow').getBoundingClientRect().top")); await pg.wait_for_timeout(120)
         ck(max(ys)-min(ys)<0.5,f"{vw}x{vh} {lvl}: first row steady",ys)
