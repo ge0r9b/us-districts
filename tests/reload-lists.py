@@ -1,4 +1,4 @@
-# Pass 33 note: a reload restores list views exactly: FL state house district list, FL counties > Miami-Dade cities list (snapshot, title, thumbnails, rows). Chromium + WebKit 390.
+# QA-104: the Miami-Dade county map (lt counties) reload keeps the layer. Pass 33 note: a reload restores list views exactly: FL state house district list, FL counties > Miami-Dade cities list (snapshot, title, thumbnails, rows). Chromium + WebKit 390.
 import asyncio,sys,json,os
 from playwright.async_api import async_playwright
 URL=sys.argv[1] if len(sys.argv)>1 else "http://localhost:8843/v2/"; F=[]
@@ -10,7 +10,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['chromium','webkit'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch()
-      for sc in ['flhouse','miami']:
+      for sc in ['flhouse','miami','mdmap']:
         c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(4000)
         await pg.touchscreen.tap(*(await pg.evaluate(CEN,'#gq'))); await pg.wait_for_timeout(500); await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.keyboard.type('Florida',delay=20); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(4000)
@@ -18,8 +18,9 @@ async def main():
         if sc=='flhouse':
           await pg.evaluate("()=>document.querySelector('.lbtn[data-k=statehouse]').click()"); await pg.wait_for_timeout(4000)
         await pg.touchscreen.tap(*(await pg.evaluate(CEN,'li.la-row'))); await pg.wait_for_timeout(5000)
-        if sc=='miami':
+        if sc in ('miami','mdmap'):
           await pg.touchscreen.tap(*(await pg.evaluate(NMXY,'Miami-Dade'))); await pg.wait_for_timeout(5000)
+        if sc=='mdmap': await pg.touchscreen.tap(*(await pg.evaluate(CEN,'#bGlobe'))); await pg.wait_for_timeout(3000)
         a=await pg.evaluate(ST)
         await pg.evaluate("()=>window.__stateSaveNow&&window.__stateSaveNow()"); await pg.wait_for_timeout(400); s0=await pg.evaluate("()=>window.__stateSnapshot()")
         await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(13000)
