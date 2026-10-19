@@ -17,24 +17,25 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['chromium','webkit'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch()
-      for how in ['deselect','default']:
-        c=await b.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True); pg=await c.new_page()
+      for how in ['deselect','deselect-nt','default']:
+        c=await (b.new_context(viewport={'width':390,'height':844}) if how.endswith('-nt') else b.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True)); pg=await c.new_page()
         await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(4000)
-        if how=='deselect':
-          for k in ['ushouse','schools']:
+        if how.startswith('deselect'):
+          for k in (['ushouse'] if how.endswith('-nt') else ['schools','ushouse']):
             await pg.evaluate("()=>document.getElementById('bLyr').click()"); await pg.wait_for_timeout(800)
             await pg.evaluate("k=>document.querySelector('#lyrRow .lbtn[data-k='+k+']').click()",k); await pg.wait_for_timeout(3000)
             await pg.evaluate("k=>document.querySelector('#lyrRow .lbtn[data-k='+k+']').click()",k); await pg.wait_for_timeout(2500)
-          await pg.evaluate("()=>{ if(!document.getElementById('lyrRow').hidden) document.getElementById('bLyr').click() }"); await pg.wait_for_timeout(800)
-        for yr in ([2,1,0,'r'] if how=='deselect' else [2]):
-          if yr=='r': await pg.evaluate("()=>window.__ySelectAll()")
+          if not how.endswith('-nt'): await pg.evaluate("()=>{ if(!document.getElementById('lyrRow').hidden) document.getElementById('bLyr').click() }"); await pg.wait_for_timeout(800)
+        for yr in (['as-is',2,1,0,'r'] if how=='deselect' else ['as-is'] if how=='deselect-nt' else [2]):
+          if yr=='as-is': pass
+          elif yr=='r': await pg.evaluate("()=>window.__ySelectAll()")
           else: await pg.evaluate(f"()=>window.__ySetYr({yr})")
           await pg.wait_for_timeout(2500)
           for nm,ll in [('PA',[40.27,-76.88]),('CA',[34.05,-118.25])]:
             for z in [4,7,10,12]:
               await pg.evaluate(f"()=>{{map.setView({ll},{z},{{animate:false}})}}"); await pg.wait_for_timeout(5500 if z>=10 else 3500)
               h=await heat(pg); ck(h>0.2,f"{eng} {how} yr {yr} {nm} z{z}: shaded ({h:.2f})",h)
-        if how=='deselect':
+        if how.startswith('deselect'):
           await pg.evaluate("()=>window.__ySetYr(2)"); await pg.evaluate("()=>{map.setView([40.27,-76.88],10,{animate:false})}"); await pg.wait_for_timeout(5000)
           await pg.evaluate("()=>window.__stateSaveNow&&window.__stateSaveNow()"); await pg.wait_for_timeout(400)
           await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(10000)
