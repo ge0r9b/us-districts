@@ -37,6 +37,7 @@ async def main():
           await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(2500)
           lt2=await pg.evaluate("()=>[window.__stateSnapshot().lt,[...document.querySelectorAll('#lyrRow .lbtn.on')].map(b=>b.dataset.k),document.body.classList.contains('listmode')]")
           ck(lt2[0] in ('none','') and not lt2[1],f"{eng} geo: list view has no district type either {lt2}",lt2)
+          await pg.evaluate("()=>{ if(document.body.classList.contains('foldfs')) document.getElementById('bGeo').click() }"); await pg.wait_for_timeout(1500)
           await pg.evaluate("()=>{ if(document.body.classList.contains('listmode')) document.getElementById('bGlobe').click() }"); await pg.wait_for_timeout(2500)
         for yr in (['as-is',2,1,0,'r'] if how=='deselect' else ['as-is'] if how in ('deselect-nt','geo') else [2]):
           if yr=='as-is': pass
@@ -46,7 +47,7 @@ async def main():
           for nm,ll in [('PA',[40.27,-76.88]),('CA',[34.05,-118.25])]:
             for z in [4,7,10,12]:
               await pg.evaluate(f"()=>{{map.setView({ll},{z},{{animate:false}})}}"); await pg.wait_for_timeout(5500 if z>=10 else 3500)
-              h=await heat(pg); ck(h>0.2,f"{eng} {how} yr {yr} {nm} z{z}: shaded ({h:.2f})",h)
+              h=await heat(pg); (await pg.screenshot(path=f"/tmp/hz-{how}-{nm}{z}.png")) if h<0.2 else None; ck(h>0.2,f"{eng} {how} yr {yr} {nm} z{z}: shaded ({h:.2f})",h)
         if how.startswith('deselect') or how=='geo':
           await pg.evaluate("()=>window.__ySetYr(2)"); await pg.evaluate("()=>{map.setView([40.27,-76.88],10,{animate:false})}"); await pg.wait_for_timeout(5000)
           await pg.evaluate("()=>window.__stateSaveNow&&window.__stateSaveNow()"); await pg.wait_for_timeout(400)
