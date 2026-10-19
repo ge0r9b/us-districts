@@ -1124,7 +1124,7 @@ function drawHeat() {
     return;
   }
   if (!window.ELECTION2024) return;
-  try { if (fillTop && heatLevel === "county" && state.value) return; } catch (e) {} /* build 1605 (QA-085): a district type fills the state, so the county heat is not drawn at all (was: built, then cleared by the wrapper below) */
+  if (window.__fillTop && window.__fillTop() && heatLevel === "county" && state.value) { heatLayer && heatLayer.clearLayers(); return; } /* build 1605 (QA-085): a district type fills the state, so the county heat is not drawn at all (was: built, then cleared by the wrapper below) */
   heatItems().forEach(d => {
     const fill = countyFill(d[0] + "|" + d[1]) || "#d6d3d1";
     const hl = county.value && d[1] === county.value && d[0] === state.value;
@@ -1353,7 +1353,7 @@ const LYR=[["S","schools","School districts"],["T","towns","Towns, cities, borou
 const AGG_LAYERS=new Set(["ushouse","senate","statehouse","schools"]);
 const OFFICES=[{id:"president",label:"President",letter:"Pr",scope:"us"}]; // add more offices here later
 let office="president";
-const active=new Set(["counties"]); let fillTop=null; // last-activated aggregatable layer gets fill
+const active=new Set(["counties"]); let fillTop=null; window.__fillTop=()=>fillTop; // last-activated aggregatable layer gets fill
 const lyrGroup=map?L.layerGroup().addTo(map):null;
 if(map){ map.createPane("lyrPane"); map.getPane("lyrPane").style.zIndex=360; }
 const lyrRenderer=map?L.canvas({pane:"lyrPane"}):null;
