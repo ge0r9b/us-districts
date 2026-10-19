@@ -775,3 +775,9 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **Build 1602:** cached list rows are keyed by chart mode, so a bar visit's 30 px rows never show on a first split-bar visit (QA-084, verified fixed).
 - **Build 1603:** in the list view, Back and drill-ins paint the list first and the map's precinct heat follows two frames later (QA-020; WebKit Back from LA County cities to CA counties 45–61 ms, was about 400–450).
 - **Build 1604:** an alias hit ("America" = United States) drops typo look-alikes such as South Africa and Amelia County (QA-067; pass 26 found it still open on 1599/1601 in the real search, 1604 not yet re-verified).
+
+### 9.14 Drift check, Oct 19, 2026 06:00 EDT (us-districts main 101924c Build 1607; qa/bugs 0551f80 passes 27–28; ge0r9b/v3 unchanged at v3/build 8324e6f)
+- **No data or field changes.** Builds 1605–1607 touch only `v2/index.html` and tests (`addr-from-list.py`, `thumbs-no-drop.py`, `back-la-speed.py`, `inst-search-real.py`, `year-tap-speed.py`, `y2016-data.py`). Every data/* branch is unchanged on both repos. Still no v2.0 tag.
+- **Build 1605:** an address that resolves to DC from a list view ends exactly as tapping DC in the All States list (QA-087 CRITICAL, verified fixed in pass 28). WebKit releases a field when the focused field is removed. QA-085 Chromium: county heat recoloured in place and skipped under a district fill, smaller canvas padding, empty canvases hidden.
+- **Build 1606:** list thumbnails keep their place under the back chevron on every drill-in and Back (QA-089), institution search matches at word starts so "USA" no longer lists Colusa County (QA-088), and in the list view the map heat is built on idle after the rows (QA-020: Back from LA County cities shows CA rows at 158–198 ms, was 400–760).
+- **Build 1607:** after a DC address search from a list view, the selected DC row is scrolled into view.
