@@ -1,0 +1,45 @@
+start {'b': '202610181595', 'st': 0, 'chip': [111, 133], 'geo': [56, 106], 'time': [114, 162], 'vv': [0, 0, 1, 0], 'row': 122}
+drag 40 {'b': '202610181595', 'st': 25, 'chip': [111, 133], 'geo': [56, 106], 'time': [114, 162], 'vv': [0, 0, 1, 0], 'row': 97}
+drag 40 {'b': '202610181595', 'st': 50, 'chip': [111, 133], 'geo': [56, 106], 'time': [114, 162], 'vv': [0, 0, 1, 0], 'row': 72}
+drag -80 {'b': '202610181595', 'st': 0, 'chip': [111, 133], 'geo': [56, 106], 'time': [114, 162], 'vv': [0, 0, 1, 0], 'row': 122}
+drag 20 {'b': '202610181595', 'st': 5, 'chip': [111, 133], 'geo': [56, 106], 'time': [114, 162], 'vv': [0, 0, 1, 0], 'row': 117}
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/p22-drag.py", line 21, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/p22-drag.py", line 19, in main
+    await pg.screenshot(path='/workspace/w/lanes/qa/shots/b1595p22-ch-390-drag-chip.png')
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 10883, in screenshot
+    await self._impl_obj.screenshot(
+    ...<13 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 830, in screenshot
+    encoded_binary = await self._channel.send(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+        "screenshot", self._timeout_settings.timeout, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.screenshot: Target page, context or browser has been closed
+Call log:
+  - taking page screenshot
+  - waiting for fonts to load...
+  - fonts loaded
+

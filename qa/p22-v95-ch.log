@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/p22-v95.py", line 148, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/p22-v95.py", line 139, in main
+    await pick('gbar'); await chip('range16-gbar-pct'); await scale('range16-gbar-pct')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/w/lanes/qa/qa/p22-v95.py", line 117, in chip
+    await touchscroll(sc); h=await pg.evaluate(HIT); R['chip'].append((n,sc,h))
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/w/lanes/qa/qa/p22-v95.py", line 64, in touchscroll
+    await pg.evaluate(f"()=>{{const l=document.getElementById('listView');l.scrollTop={dy}}}"); await pg.wait_for_timeout(400)
+                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 12673, in wait_for_timeout
+    await self._impl_obj.wait_for_timeout(timeout=to_milliseconds(timeout))
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 1144, in wait_for_timeout
+    await self._main_frame.wait_for_timeout(timeout)
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 925, in wait_for_timeout
+    await self._channel.send("waitForTimeout", None, {"waitTimeout": timeout})
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.wait_for_timeout: Target page, context or browser has been closed

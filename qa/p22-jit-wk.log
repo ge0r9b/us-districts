@@ -1,0 +1,46 @@
+webkit 390 scrollTop 10 1 changes [[4, 111, 112, 10]]
+webkit 390 scrollTop 40 1 changes [[9, 111, 82, 40]]
+webkit 390 scrollTop 97 1 changes [[11, 111, 25, 97]]
+webkit 390 drag 40 1 [[2, 111, 82, 40]]
+webkit 390 drag 60 1 [[4, 111, 22, 100]]
+webkit 1024 scrollTop 10 1 changes [[7, 111, 112, 10]]
+webkit 1024 scrollTop 40 1 changes [[11, 111, 82, 40]]
+webkit 1024 scrollTop 97 1 changes [[30, 111, 25, 97]]
+webkit 1024 drag 40 1 [[12, 111, 82, 40]]
+webkit 1024 drag 60 1 [[29, 111, 22, 100]]
+Traceback (most recent call last):
+  File "/workspace/w/lanes/qa/qa/p22-jit.py", line 34, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/workspace/w/lanes/qa/qa/p22-jit.py", line 17, in main
+    await pg.evaluate(f"()=>{{document.getElementById('listView').scrollTop={st}}}"); fr=await pg.evaluate(SAMP,int(__import__("os").environ.get("MS","3000")))
+                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/async_api/_generated.py", line 9421, in evaluate
+    await self._impl_obj.evaluate(
+        expression=expression, arg=mapping.to_impl(arg)
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_page.py", line 474, in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 346, in evaluate
+    await self._channel.send(
+    ...<6 lines>...
+    )
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/box/.local/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.evaluate: Target page, context or browser has been closed
