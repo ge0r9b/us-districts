@@ -46,6 +46,8 @@ async def main():
         else:
           ck(dcnums(a),f"{eng} {sc}: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals",{'before':a0,'after':a})
           ck('United States' not in a['title'] and ('District of Columbia' in a['title'] or 'DC' in a['title'].split()),f"{eng} {sc}: QA-093 the title says District of Columbia",a)
+          tdc='District of Columbia' in a['title']; tus='United States' in a['title']
+          ck((tdc and dcnums(a)) or (tus and not dcnums(a)),f"{eng} {sc}: the title matches the numbers (title {a['title']!r}, thumbs {a['thumbs']!r})",a)
           ck(abs(a['c'][0]-38.9)<0.3 and abs(a['c'][1]+77.03)<0.4 and a['z']>=9,f"{eng} {sc}: the map is on DC",a)
         await pg.screenshot(path=f"/tmp/dcg-{eng[:2]}-{sc}.png")
         ck(not er,f"{eng} {sc}: no page errors",er); await c.close()
