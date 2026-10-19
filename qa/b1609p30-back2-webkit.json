@@ -1,0 +1,229 @@
+{
+ "eng": "webkit",
+ "sizes": {
+  "390": {
+   "reps": [
+    {
+     "drillCA": {
+      "touchend": 2,
+      "click": null,
+      "first_frame": 43,
+      "first_dom_change": 16,
+      "paint_after_dom_change": 43,
+      "rows_visible": 373,
+      "max_gap": 429,
+      "timeline": [
+       [
+        43,
+        0,
+        "",
+        0
+       ],
+       [
+        373,
+        58,
+        "Los Angeles",
+        0
+       ],
+       [
+        1646,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "drillLA": {
+      "touchend": 0,
+      "click": null,
+      "first_frame": 14,
+      "first_dom_change": 4,
+      "paint_after_dom_change": 14,
+      "rows_visible": 312,
+      "max_gap": 448,
+      "timeline": [
+       [
+        14,
+        0,
+        "",
+        58
+       ],
+       [
+        312,
+        88,
+        "Los Angeles city",
+        58
+       ],
+       [
+        1232,
+        88,
+        "Los Angeles city",
+        3087
+       ]
+      ]
+     },
+     "back": {
+      "touchend": 21,
+      "click": null,
+      "first_frame": 60,
+      "first_dom_change": 50,
+      "paint_after_dom_change": 62,
+      "rows_visible": 60,
+      "max_gap": 164,
+      "timeline": [
+       [
+        60,
+        58,
+        "Los Angeles",
+        3087
+       ],
+       [
+        1056,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "back2": {
+      "touchend": 21,
+      "click": null,
+      "first_frame": 58,
+      "first_dom_change": 49,
+      "paint_after_dom_change": 65,
+      "rows_visible": 58,
+      "max_gap": 306,
+      "timeline": [
+       [
+        58,
+        51,
+        "CA",
+        58
+       ],
+       [
+        579,
+        51,
+        "CA",
+        0
+       ],
+       [
+        1241,
+        51,
+        "CA",
+        58
+       ]
+      ]
+     }
+    }
+   ],
+   "build": "202610181609",
+   "map_check": {
+    "allstates_hidden": {
+     "ll": [
+      39.8,
+      -98.6,
+      4
+     ],
+     "focus": 0,
+     "heat": 58,
+     "crumbs": "All States",
+     "vis": true
+    },
+    "allstates_to_map": [
+     [
+      80,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ],
+     [
+      300,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ],
+     [
+      700,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ],
+     [
+      1200,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ],
+     [
+      2500,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ],
+     [
+      4000,
+      {
+       "ll": [
+        39.775,
+        -98.613,
+        4
+       ],
+       "focus": 0,
+       "heat": 58,
+       "crumbs": "United States",
+       "vis": true
+      }
+     ]
+    ],
+    "ca_xy": null,
+    "crumbs_list": [
+     "United States",
+     0
+    ]
+   },
+   "map_check_EXC": "playwright.async_api._generated.Touchscreen.tap() argument after * must be an iterable, not NoneType",
+   "err": []
+  }
+ },
+ "build": "202610181609"
+}

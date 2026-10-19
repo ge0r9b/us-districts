@@ -1,0 +1,437 @@
+{
+ "eng": "chromium",
+ "build": "202610181609",
+ "390x844-tapdc": {
+  "st": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "dc": {
+   "nrows": 51,
+   "dc": {
+    "txt": "DC | 90.3%",
+    "cls": "lvrow la lasel cmp",
+    "box": [
+     8,
+     1592,
+     382,
+     30
+    ],
+    "vis": {
+     "inViewport": false,
+     "inList": false,
+     "listTop": 106,
+     "listBottom": 782,
+     "hitIsRow": false
+    }
+   },
+   "sel": [
+    "DC"
+   ],
+   "scroll": 0,
+   "vtitle": "President",
+   "back": false,
+   "gq": ""
+  },
+  "diff_before_after": null,
+  "transient": null,
+  "scroll_changes": [],
+  "nframes": 0,
+  "cls": 0,
+  "shifts": [],
+  "err": [],
+  "reqfail": []
+ },
+ "390x844-allstates": {
+  "st": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}",
+   "pop": []
+  },
+  "dc": {
+   "nrows": 51,
+   "dc": {
+    "txt": "DC | 90.3%",
+    "cls": "lvrow la lasel cmp",
+    "box": [
+     8,
+     710,
+     382,
+     30
+    ],
+    "vis": {
+     "inViewport": true,
+     "inList": true,
+     "listTop": 106,
+     "listBottom": 782,
+     "hitIsRow": true
+    }
+   },
+   "sel": [
+    "DC"
+   ],
+   "scroll": 882,
+   "vtitle": "President",
+   "back": false,
+   "gq": ""
+  },
+  "diff_before_after": [
+   {
+    "el": "firstRow",
+    "dx": 0,
+    "dy": -882,
+    "dw": 0,
+    "dh": 0,
+    "before": [
+     8,
+     122,
+     382,
+     30
+    ],
+    "after": [
+     8,
+     -760,
+     382,
+     30
+    ]
+   }
+  ],
+  "transient": {},
+  "scroll_changes": [
+   [
+    0,
+    0
+   ],
+   [
+    745,
+    882
+   ]
+  ],
+  "nframes": 420,
+  "cls": 0,
+  "shifts": [],
+  "err": [],
+  "reqfail": [],
+  "ls": {
+   "usd.state": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}"
+  },
+  "map_hidden": [
+   38.8987,
+   -77.0352,
+   15
+  ],
+  "map_after_globe": [
+   [
+    100,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    400,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    700,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    1500,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    3500,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ]
+  ],
+  "st_map": {
+   "crumbs": "United States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Donald Trump 2024 50%",
+    "Kamala Harris 2024 48%"
+   ],
+   "rows": [],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+   "pop": []
+  },
+  "heat": 0,
+  "snap_after_map": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+  "after_reload": {
+   "map": [
+    38.8987,
+    -77.0352,
+    15
+   ],
+   "st": {
+    "crumbs": "United States",
+    "gq": "",
+    "ph": "DC 20220",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ],
+    "rows": [],
+    "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+    "pop": []
+   }
+  }
+ },
+ "390x844-phila": {
+  "st": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}",
+   "pop": []
+  },
+  "dc": {
+   "nrows": 51,
+   "dc": {
+    "txt": "DC | 90.3%",
+    "cls": "lvrow la lasel cmp",
+    "box": [
+     8,
+     710,
+     382,
+     30
+    ],
+    "vis": {
+     "inViewport": true,
+     "inList": true,
+     "listTop": 106,
+     "listBottom": 782,
+     "hitIsRow": true
+    }
+   },
+   "sel": [
+    "DC"
+   ],
+   "scroll": 882,
+   "vtitle": "President",
+   "back": false,
+   "gq": ""
+  },
+  "diff_before_after": [
+   {
+    "el": "firstRow",
+    "dx": 0,
+    "dy": -882,
+    "dw": 0,
+    "dh": 0,
+    "before": [
+     8,
+     122,
+     382,
+     30
+    ],
+    "after": [
+     8,
+     -760,
+     382,
+     30
+    ]
+   },
+   {
+    "el": "laSort",
+    "new": [
+     288,
+     111,
+     34,
+     22
+    ]
+   }
+  ],
+  "transient": {},
+  "scroll_changes": [
+   [
+    0,
+    0
+   ],
+   [
+    829,
+    882
+   ]
+  ],
+  "nframes": 413,
+  "cls": 0,
+  "shifts": [],
+  "err": [],
+  "reqfail": [],
+  "ls": {
+   "usd.state": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}"
+  },
+  "map_hidden": [
+   38.8987,
+   -77.0352,
+   15
+  ],
+  "map_after_globe": [
+   [
+    100,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    400,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    700,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    1500,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ],
+   [
+    3500,
+    [
+     38.8987,
+     -77.0352,
+     15
+    ]
+   ]
+  ],
+  "st_map": {
+   "crumbs": "United States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Donald Trump 2024 50%",
+    "Kamala Harris 2024 48%"
+   ],
+   "rows": [],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+   "pop": []
+  },
+  "heat": 0,
+  "snap_after_map": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+  "after_reload": {
+   "map": [
+    38.8987,
+    -77.0352,
+    15
+   ],
+   "st": {
+    "crumbs": "United States",
+    "gq": "",
+    "ph": "DC 20220",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ],
+    "rows": [],
+    "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+    "pop": []
+   }
+  }
+ },
+ "390x844-map": {
+  "st": {
+   "crumbs": "District of Columbia",
+   "gq": "",
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"ll\":[38.8987,-77.0352,15]}",
+   "pop": [
+    "District of Columbia, DC\nHarris 90.3%\nTrump 6.5%"
+   ]
+  },
+  "dc": {
+   "nrows": 0,
+   "dc": null,
+   "sel": [],
+   "scroll": 0,
+   "vtitle": "President",
+   "back": false,
+   "gq": ""
+  },
+  "diff_before_after": [],
+  "transient": {},
+  "scroll_changes": [
+   [
+    20,
+    0
+   ]
+  ],
+  "nframes": 417,
+  "cls": 0,
+  "shifts": [],
+  "err": [],
+  "reqfail": []
+ }
+}
