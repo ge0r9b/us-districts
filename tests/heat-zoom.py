@@ -17,7 +17,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['chromium','webkit'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch()
-      for how in ['deselect','deselect-nt','default']:
+      for how in (os.environ.get('HOW','geo,deselect,deselect-nt,default').split(',')):
         c=await (b.new_context(viewport={'width':390,'height':844}) if how.endswith('-nt') else b.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True)); pg=await c.new_page()
         await pg.goto(U,wait_until="networkidle"); await pg.wait_for_timeout(4000)
         if how.startswith('deselect'):
@@ -26,7 +26,19 @@ async def main():
             await pg.evaluate("k=>document.querySelector('#lyrRow .lbtn[data-k='+k+']').click()",k); await pg.wait_for_timeout(3000)
             await pg.evaluate("k=>document.querySelector('#lyrRow .lbtn[data-k='+k+']').click()",k); await pg.wait_for_timeout(2500)
           if not how.endswith('-nt'): await pg.evaluate("()=>{ if(!document.getElementById('lyrRow').hidden) document.getElementById('bLyr').click() }"); await pg.wait_for_timeout(800)
-        for yr in (['as-is',2,1,0,'r'] if how=='deselect' else ['as-is'] if how=='deselect-nt' else [2]):
+        if how=='geo':
+          await pg.evaluate("()=>document.getElementById('bLyr').click()"); await pg.wait_for_timeout(800)
+          await pg.evaluate("()=>document.querySelector('#lyrRow .lbtn[data-k=ushouse]').click()"); await pg.wait_for_timeout(3000)
+          await pg.evaluate("()=>{ if(!document.getElementById('lyrRow').hidden) document.getElementById('bLyr').click() }"); await pg.wait_for_timeout(800)
+          await pg.evaluate("()=>{const g=document.getElementById('gq'); g.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true})); g.focus()}"); await pg.wait_for_timeout(600)
+          await pg.keyboard.type('Pennsylvania',delay=20); await pg.wait_for_timeout(1500); await pg.keyboard.press('Enter'); await pg.wait_for_timeout(6000)
+          lt=await pg.evaluate("()=>[window.__stateSnapshot().lt,[...document.querySelectorAll('#lyrRow .lbtn.on')].map(b=>b.dataset.k),state.value]")
+          ck(lt[0] in ('none','') and not lt[1] and lt[2]=='Pennsylvania',f"{eng} geo: a geo-filter entry deselects the district type {lt}",lt)
+          await pg.evaluate("()=>document.getElementById('bGeo').click()"); await pg.wait_for_timeout(2500)
+          lt2=await pg.evaluate("()=>[window.__stateSnapshot().lt,[...document.querySelectorAll('#lyrRow .lbtn.on')].map(b=>b.dataset.k),document.body.classList.contains('listmode')]")
+          ck(lt2[0] in ('none','') and not lt2[1],f"{eng} geo: list view has no district type either {lt2}",lt2)
+          await pg.evaluate("()=>{ if(document.body.classList.contains('listmode')) document.getElementById('bGlobe').click() }"); await pg.wait_for_timeout(2500)
+        for yr in (['as-is',2,1,0,'r'] if how=='deselect' else ['as-is'] if how in ('deselect-nt','geo') else [2]):
           if yr=='as-is': pass
           elif yr=='r': await pg.evaluate("()=>window.__ySelectAll()")
           else: await pg.evaluate(f"()=>window.__ySetYr({yr})")
@@ -35,7 +47,7 @@ async def main():
             for z in [4,7,10,12]:
               await pg.evaluate(f"()=>{{map.setView({ll},{z},{{animate:false}})}}"); await pg.wait_for_timeout(5500 if z>=10 else 3500)
               h=await heat(pg); ck(h>0.2,f"{eng} {how} yr {yr} {nm} z{z}: shaded ({h:.2f})",h)
-        if how.startswith('deselect'):
+        if how.startswith('deselect') or how=='geo':
           await pg.evaluate("()=>window.__ySetYr(2)"); await pg.evaluate("()=>{map.setView([40.27,-76.88],10,{animate:false})}"); await pg.wait_for_timeout(5000)
           await pg.evaluate("()=>window.__stateSaveNow&&window.__stateSaveNow()"); await pg.wait_for_timeout(400)
           await pg.reload(wait_until="networkidle"); await pg.wait_for_timeout(10000)
