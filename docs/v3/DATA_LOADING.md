@@ -768,3 +768,10 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **Build 1598:** split-bar rows draw at 44 px in the first frame (QA-084, partly verified in pass 25).
 - **Build 1599:** year taps recolour district maps in place and prefetch other years when the time row opens (QA-085), boundary slivers drop out of county town lists (QA-006), fuzzy search only as a fallback (QA-067), plus QA-051, QA-061, QA-068, QA-069 and QA-086 fixes. The sliver rule needs a minimum-overlap threshold in the county-to-town overlap the loader bakes into the pack.
 - **v3/build 8324e6f:** year changes restyle the loaded map with feature-state (no tile reload) and split rows are locked at 44 px; perf:client now checks both. This covers the QA-084 and QA-085 gates for state, county and US House; PA state legislative maps and WebKit first visits are still to be checked.
+
+### 9.13 Drift check, Oct 19, 2026 04:00 EDT (us-districts main 5850c12 Build 1604; qa/bugs cced02f pass 26; ge0r9b/v3 unchanged at v3/build 8324e6f)
+- **No data or field changes.** Builds 1600–1604 touch only `v2/index.html` and tests, and every data/* branch is unchanged on both repos. Still no v2.0 tag.
+- **Build 1600/1601:** the range-chart thumbnail bubble reads the name from `data-party` when the time row is closed (QA-086, verified fixed in pass 26). 1601 only corrects the build number (1500 was a typo).
+- **Build 1602:** cached list rows are keyed by chart mode, so a bar visit's 30 px rows never show on a first split-bar visit (QA-084, verified fixed).
+- **Build 1603:** in the list view, Back and drill-ins paint the list first and the map's precinct heat follows two frames later (QA-020; WebKit Back from LA County cities to CA counties 45–61 ms, was about 400–450).
+- **Build 1604:** an alias hit ("America" = United States) drops typo look-alikes such as South Africa and Amelia County (QA-067; pass 26 found it still open on 1599/1601 in the real search, 1604 not yet re-verified).
