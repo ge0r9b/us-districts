@@ -43,6 +43,10 @@ Box is shared and was loaded (load avg 3-5) so treat single numbers as +/-30%.
 | 1595 (c34d398) | 375x667 | 1.59 / 7.81 | 3.66 / 13.34 | 580 | 739 | 557 | 107 | 46 / 95 (cold 95) | 74 / 77 (cold 70) | 22 / 35 | 27 / 71 | 36 / 37 | 41 / 49 | 60.0 fps, p95 16.8, max 16.8, dropped 0/280 |
 | 1595 (c34d398) | 320x568 | 1.59 / 7.81 | 3.66 / 13.34 | 730 | 775 | 565 | 113 | 32 / 85 (cold 85) | 86 / 127 (cold 47) | 18 / 23 | 15 / 22 | 41 / 51 | 42 / 58 | 59.8 fps, p95 16.8, max 33.2, dropped 1/279 |
 | 1595 (c34d398) | ipad820x1180 | 1.59 / 7.81 | 3.66 / 13.34 | 1067 | 1148 | 891 | 163 | 44 / 130 (cold 130) | 67 / 78 (cold 47) | 24 / 34 | 14 / 24 | 40 / 43 | 46 / 75 | 47.9 fps, p95 33.4, max 66.7, dropped 55/217 |
+| 1611 (f435ab2) | 390x844 | 1.60 / 7.83 | 3.67 / 13.35 | 599 | 972 | 929 | 145 | 35 / 91 (cold 91) | 75 / 103 (cold 55) | 16 / 31 | 16 / 46 | 27 / 32 | 49 / 138 | 59.6 fps, p95 16.8, max 50, dropped 2/278 |
+| 1611 (f435ab2) | 375x667 | 1.60 / 7.83 | 3.67 / 13.36 | 694 | 699 | 642 | 111 | 44 / 103 (cold 103) | 74 / 96 (cold 51) | 18 / 26 | 16 / 35 | 22 / 38 | 56 / 88 | 59.2 fps, p95 16.7, max 83.3, dropped 4/279 |
+| 1611 (f435ab2) | 320x568 | 1.60 / 7.83 | 3.67 / 13.35 | 665 | 670 | 624 | 99 | 40 / 116 (cold 116) | 114 / 213 (cold 54) | 11 / 19 | 15 / 52 | 27 / 33 | 46 / 78 | 59.4 fps, p95 16.8, max 49.9, dropped 3/281 |
+| 1611 (f435ab2) | ipad820x1180 | 1.60 / 7.83 | 3.67 / 13.35 | 931 | 993 | 650 | 135 | 59 / 112 (cold 112) | 79 / 87 (cold 36) | 14 / 21 | 16 / 29 | 32 / 43 | 50 / 84 | 57.3 fps, p95 16.8, max 66.7, dropped 10/210 |
 
 Raw JSON: raw/b<build>-live-<viewport>.json (per-try latencies, top-10 resources, notes).
 
@@ -140,4 +144,13 @@ Run 2026-10-18 20:52-21:04 EDT, load avg 0.6-2.1, same tools/baseline.py and sel
 - Bytes: 1.59 / 7.81 MB initial and 3.66 / 13.34 MB PA session, flat (the on-demand 2016 district file from 1589 is not in the default 2024 PA session). index.html still 5.97 MB raw.
 - Taps flat: All States 34/46/32/44 (1588: 39/33/45/36), US House pick 70/74/86/67 (72/68/68/61), Line 15/22/18/24 (14/14/14/12), drill PA 13/27/15/14, back 33/36/41/40 (39/36/35/43), time step 46/41/42/46 (47/40/43/49). Every median under 100 ms. Maxes over 100 only on single tries: 320 US House one 127 ms try (cold 47), iPad All States cold 130 ms (1588 cold 155).
 - First map 669/557/565/891 ms (1588: 974/911/674/689), phones faster; iPad +29% (inside the band and the 638-1147 ms range since 1575), iPad DCL 459 -> 1067 and long tasks 720 ms total is a single-run outlier pattern seen before (1575 DCL 1417, 1579 1215), so noise, not a regression. Pan unchanged (phones 59.6-60 fps, iPad 47.9 fps, 55 dropped).
+- No proposal landed (PACK still inline, no data versioning); QA-007 and QA-041 still look fixed.
+
+## 1611 (f435ab2) vs 1595 (c34d398)
+Run 2026-10-19 08:51-09:09 EDT, load avg 0.5-1.9 (other bots' Chromium/WebKit tests running alongside), same tools/baseline.py and selectors (0 notes, 0 page errors). 1596-1611 are list, DC, school-district, address-search and Back-speed builds; 1611 is the newest, 1596-1610 were not measured separately. Medians vs medians (390/375/320/iPad).
+- Bytes: 1.60 / 7.83 MB initial and 3.67 / 13.35 MB PA session (+0.01 gz, +0.02 raw), flat. index.html 5.99 MB raw; PACK/XREF still inline.
+- Back is faster (1608 QA-020: list re-entry within a frame, hidden map move and focus outline deferred): 27/23/27/32 ms (1595: 33/36/41/40).
+- iPad pan improved: 57.3 fps, 10 dropped (1595: 47.9 fps, 55 dropped; 43-48 fps since 1575). Phones unchanged at 59.2-59.6 fps.
+- Other taps flat: All States 35/44/40/59 (34/46/32/44; iPad +33% but max 112 vs cold 130 before), US House pick 75/74/114/79 (70/74/86/67), Line 16/18/11/14, drill PA 16/16/15/16, time step 49/56/46/50. The 320 US House median of 114 ms (tries 54/78/147/114/213) did not reproduce: rerun raw/b1611-live-320x568-run2.json gave 50/70/71/98/83, median 71, so noise, not a regression.
+- First map 929/642/624/650 ms (1595: 669/557/565/891). 390 is +39% but its TTFB was 147 ms (others 59-63), so network noise, inside the 557-1147 ms range since 1575; iPad -27%.
 - No proposal landed (PACK still inline, no data versioning); QA-007 and QA-041 still look fixed.
