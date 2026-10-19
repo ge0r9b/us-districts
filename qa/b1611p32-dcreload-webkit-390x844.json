@@ -1,0 +1,102 @@
+{
+ "mapaddr": {
+  "before": {
+   "list": false,
+   "crumbs": "District of Columbia",
+   "title": "District of Columbia",
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "thumbs": "Kamala Harris 2024 90% / Donald Trump 2024 6%",
+   "z": 15,
+   "c": [
+    38.9,
+    -77.04
+   ]
+  },
+  "snap_before": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"ll\":[38.8987,-77.0352,15]}",
+  "after": {
+   "list": false,
+   "crumbs": "United States",
+   "title": "United States",
+   "ph": "DC 20220",
+   "val": "",
+   "st": "",
+   "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%",
+   "z": 15,
+   "c": [
+    38.9,
+    -77.04
+   ]
+  },
+  "snap_after": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0352,15]}",
+  "err": []
+ },
+ "build": "202610181611",
+ "dcrow": {
+  "before": {
+   "list": false,
+   "crumbs": "District of Columbia",
+   "title": "District of Columbia",
+   "ph": "District of Columbia",
+   "val": "",
+   "st": "",
+   "thumbs": "Kamala Harris 2024 90% / Donald Trump 2024 6%",
+   "z": 11,
+   "c": [
+    38.89,
+    -77.01
+   ]
+  },
+  "snap_before": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"ll\":[38.8926,-77.0142,11]}",
+  "after": {
+   "list": false,
+   "crumbs": "United States",
+   "title": "United States",
+   "ph": "DC 20565",
+   "val": "",
+   "st": "",
+   "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%",
+   "z": 11,
+   "c": [
+    38.89,
+    -77.01
+   ]
+  },
+  "snap_after": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8926,-77.0142,11]}",
+  "err": []
+ },
+ "listaddr": {
+  "before": {
+   "list": false,
+   "crumbs": "District of Columbia",
+   "title": "District of Columbia",
+   "ph": "District of Columbia",
+   "val": "",
+   "st": "",
+   "thumbs": "Kamala Harris 2024 90% / Donald Trump 2024 6%",
+   "z": 15,
+   "c": [
+    38.9,
+    -77.03
+   ]
+  },
+  "snap_before": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"ll\":[38.8987,-77.0322,15]}",
+  "after": {
+   "list": false,
+   "crumbs": "United States",
+   "title": "United States",
+   "ph": "DC 20045",
+   "val": "",
+   "st": "",
+   "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%",
+   "z": 15,
+   "c": [
+    38.9,
+    -77.03
+   ]
+  },
+  "snap_after": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[38.8987,-77.0322,15]}",
+  "err": []
+ }
+}

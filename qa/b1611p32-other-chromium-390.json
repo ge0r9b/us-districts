@@ -1,0 +1,101 @@
+{
+ "build": "202610181611",
+ "QA018": {
+  "xy": [
+   218.10000000000002,
+   287
+  ],
+  "hit": "I.sg rep",
+  "crumbs_after": "All States",
+  "first_rows": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%"
+  ]
+ },
+ "QA006": {
+  "n": 1,
+  "rockledge": [],
+  "crumbs": "Philadelphia County",
+  "first": [
+   "Philadelphia city | 20.0% | 78.5%"
+  ]
+ },
+ "QA015": {
+  "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0029,-75.118,10]}",
+  "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0027,-75.118,10]}",
+  "crumbs_after": "Philadelphia County"
+ },
+ "QA073": {
+  "California": 132.7,
+  "Texas": 205.4,
+  "Pennsylvania": 260.5,
+  "Ohio": 172
+ },
+ "QA074": {
+  "California": {
+   "n": 974,
+   "dup_names": [
+    "Caruthers Unified School Distri\u2026",
+    "Eureka City Unified School Dist\u2026",
+    "Healdsburg Unified School Distr\u2026",
+    "Hope Elementary School District\u2026",
+    "Jefferson Elementary School Dis\u2026",
+    "Junction Elementary School Dist\u2026",
+    "Lakeside Union Elementary Schoo\u2026",
+    "Lammersville Joint Unified Scho\u2026",
+    "Liberty Elementary School Distr\u2026",
+    "Mountain View Elementary School\u2026",
+    "Nevada Joint Union High School \u2026",
+    "Oakdale Joint Unified School Di\u2026",
+    "Ocean View Elementary School Di\u2026",
+    "Orland Joint Unified School Dis\u2026",
+    "Pacific Union Elementary School\u2026"
+   ],
+   "dup_rows": [
+    "Perris Union High School Distri\u2026 || Perris Union High School Distri\u2026 | 55.5% | 42.1%",
+    "Twin Rivers Unified School Dist\u2026 || ",
+    "Nevada Joint Union High School \u2026 || ",
+    "Santa Barbara Unified School Di\u2026 || ",
+    "Ocean View Elementary School Di\u2026 || ",
+    "Santa Barbara Unified School Di\u2026 || ",
+    "Santa Cruz City High School Dis\u2026 || ",
+    "Santa Cruz City High School Dis\u2026 || ",
+    "Washington Unified School Distr\u2026 || ",
+    "Lakeside Union Elementary Schoo\u2026 || "
+   ]
+  },
+  "Ohio": {
+   "n": 611,
+   "dup_names": [
+    "Buckeye Local School District (\u2026",
+    "Crestview Local School District\u2026",
+    "Eastern Local School District (\u2026",
+    "Highland Local School District \u2026",
+    "Madison Local School District (\u2026",
+    "Manchester Local School Distric\u2026",
+    "Northeastern Local School Distr\u2026",
+    "Northridge Local School Distric\u2026",
+    "Northwest Local School District\u2026",
+    "Northwestern Local School Distr\u2026",
+    "Riverside Local School District\u2026",
+    "Southeast Local School District\u2026",
+    "Southeastern Local School Distr\u2026",
+    "Southern Local School District \u2026",
+    "Springfield Local School Distri\u2026"
+   ],
+   "dup_rows": [
+    "Northwest Local School District\u2026 || Northwest Local School District\u2026 | 55.3% | 43.7%",
+    "Riverside Local School District\u2026 || Riverside Local School District\u2026 | 62.4% | 36.7%",
+    "Springfield Local School Distri\u2026 || ",
+    "Highland Local School District \u2026 || ",
+    "Madison Local School District (\u2026 || ",
+    "Northeastern Local School Distr\u2026 || ",
+    "Springfield Local School Distri\u2026 || ",
+    "Buckeye Local School District (\u2026 || ",
+    "Madison Local School District (\u2026 || ",
+    "Northwest Local School District\u2026 || "
+   ]
+  }
+ }
+}

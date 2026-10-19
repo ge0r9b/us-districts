@@ -1,0 +1,45 @@
+=== 08:50:40 start p32-orch-ch.log
+=== 08:50:40 start p32-states-b.log
+=== 08:50:40 end p32-states-b.log rc=0
+=== 08:50:40 start p32-other-ch.log
+=== 08:50:58 start p32-states-b.log
+=== 08:52:02 end p32-orch-ch.log rc=0
+=== 08:52:02 start p32-globe-ch390.log
+=== 08:52:45 end p32-other-ch.log rc=0
+=== 08:52:45 start p32-own-ch390.log
+=== 08:54:08 end p32-globe-ch390.log rc=0
+=== 08:54:08 start p32-addr-ch.log
+=== 08:54:33 end p32-own-ch390.log rc=0
+=== 08:56:11 end p32-addr-ch.log rc=0
+=== 08:56:11 start p32-globe-ch1024.log
+=== 08:58:20 end p32-globe-ch1024.log rc=0
+=== 08:58:20 start p32-addr2-ch.log
+=== 09:02:28 end p32-states-b.log rc=0
+=== 09:02:45 end p32-addr2-ch.log rc=0
+=== 09:02:45 start p32-chip-ch.log
+=== 09:03:42 end p32-chip-ch.log rc=0
+=== 09:03:42 start p32-074-ch.log
+=== 09:05:01 end p32-074-ch.log rc=0
+=== CH-FUNC DONE 09:05:01
+=== 09:05:01 start p32-ylat-ch576.log
+=== 09:08:36 end p32-ylat-ch576.log rc=0
+=== 09:08:36 start p32-flow-ch.log
+=== 09:16:47 end p32-flow-ch.log rc=0
+=== CH DONE 09:16:47
+=== 09:16:47 start p32-orch-wk.log
+=== 09:16:47 start p32-lay3-wk390.log
+=== 09:18:10 end p32-orch-wk.log rc=0
+=== 09:18:10 start p32-globe-wk390.log
+=== 09:18:17 end p32-lay3-wk390.log rc=0
+=== 09:18:17 start p32-lay3-wk1024.log
+=== 09:19:51 end p32-lay3-wk1024.log rc=0
+=== 09:19:51 start p32-pa16-wk.log
+=== 09:20:17 end p32-globe-wk390.log rc=0
+=== 09:20:17 start p32-addr-wk.log
+=== 09:20:42 end p32-pa16-wk.log rc=0
+=== 09:20:42 start p32-menus-wk.log
+=== 09:21:39 end p32-addr-wk.log rc=0
+=== 09:21:39 start p32-globe-wk1024.log
+=== 09:23:47 end p32-menus-wk.log rc=0
+=== 09:23:49 end p32-globe-wk1024.log rc=0
+=== ALL DONE 09:23:49

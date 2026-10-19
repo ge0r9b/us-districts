@@ -1,0 +1,18 @@
+ref US view after Back {"list": false, "crumbs": "United States", "title": "United States", "ph": "United States", "val": "", "st": "", "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%", "z": 4, "c": [39.77, -98.61]}
+ok   chromium usglobe: the globe opens the map
+ok   chromium QA-092: All States > globe opens the normal US view (z 4 at [39.77, -98.61]; after Back,Back: (4, [39.77, -98.61]))
+ok   chromium QA-092: still titled United States
+ok   chromium usglobe: no page errors
+ok   chromium dcrow: the globe opens the map
+ok   chromium dcrow: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   chromium dcrow: QA-093 the title says District of Columbia
+ok   chromium dcrow: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcrow: the map is on DC
+ok   chromium dcrow: no page errors
+ok   chromium dcaddr: the globe opens the map
+ok   chromium dcaddr: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   chromium dcaddr: QA-093 the title says District of Columbia
+ok   chromium dcaddr: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcaddr: the map is on DC
+ok   chromium dcaddr: no page errors
+FAILS 0

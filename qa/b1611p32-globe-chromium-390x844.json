@@ -1,0 +1,683 @@
+{
+ "eng": "chromium",
+ "fresh": [
+  [
+   "load",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.8,
+     -98.6,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "allstates_list",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "globe1",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe2",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 Donald Trump 49.9%",
+     "Kamala Harris 2024 Kamala Harris 48.4%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe3",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe4",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 Donald Trump 49.9%",
+     "Kamala Harris 2024 Kamala Harris 48.4%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ]
+ ],
+ "build": "202610181611",
+ "fresh_err": [],
+ "backback": [
+  [
+   "load",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.8,
+     -98.6,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "allstates_list",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "LA_list",
+   {
+    "crumbs": "Los Angeles County",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 65%",
+     "Donald Trump 2024 32%"
+    ]
+   },
+   {
+    "ll": [
+     33.793,
+     -118.299,
+     8
+    ],
+    "focus": 89,
+    "heat": 3087,
+    "crumbs": "Los Angeles County",
+    "vis": true
+   }
+  ],
+  [
+   "back1",
+   {
+    "crumbs": "California",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 58%",
+     "Donald Trump 2024 38%"
+    ]
+   },
+   {
+    "ll": [
+     37.419,
+     -119.307,
+     5
+    ],
+    "focus": 58,
+    "heat": 58,
+    "crumbs": "California",
+    "vis": true
+   }
+  ],
+  [
+   "back2",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.8,
+     -98.6,
+     4
+    ],
+    "focus": 0,
+    "heat": 58,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "globe1",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 58,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe2",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 Donald Trump 49.9%",
+     "Kamala Harris 2024 Kamala Harris 48.4%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 58,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe3",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 58,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "globe4",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 Donald Trump 49.9%",
+     "Kamala Harris 2024 Kamala Harris 48.4%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 58,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ]
+ ],
+ "backback_err": [],
+ "tapdc": [
+  [
+   "load",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.8,
+     -98.6,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "allstates_list",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "dc_tapped",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.893,
+     -77.015,
+     11
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "globe1",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.893,
+     -77.014,
+     11
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe2",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 Kamala Harris 90.3%",
+     "Donald Trump 2024 Donald Trump 6.5%"
+    ]
+   },
+   {
+    "ll": [
+     38.893,
+     -77.014,
+     11
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe3",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.893,
+     -77.014,
+     11
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe4",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 Kamala Harris 90.3%",
+     "Donald Trump 2024 Donald Trump 6.5%"
+    ]
+   },
+   {
+    "ll": [
+     38.893,
+     -77.014,
+     11
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ]
+ ],
+ "tapdc_err": [],
+ "addr": [
+  [
+   "load",
+   {
+    "crumbs": "United States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.8,
+     -98.6,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "United States",
+    "vis": true
+   }
+  ],
+  [
+   "allstates_list",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Donald Trump 2024 50%",
+     "Kamala Harris 2024 48%"
+    ]
+   },
+   {
+    "ll": [
+     39.775,
+     -98.613,
+     4
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "addr_done",
+   {
+    "crumbs": "All States",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.899,
+     -77.035,
+     15
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "All States",
+    "vis": true
+   }
+  ],
+  [
+   "globe1",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.899,
+     -77.032,
+     15
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe2",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 Kamala Harris 90.3%",
+     "Donald Trump 2024 Donald Trump 6.5%"
+    ]
+   },
+   {
+    "ll": [
+     38.899,
+     -77.032,
+     15
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe3",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 90%",
+     "Donald Trump 2024 6%"
+    ]
+   },
+   {
+    "ll": [
+     38.899,
+     -77.032,
+     15
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ],
+  [
+   "globe4",
+   {
+    "crumbs": "District of Columbia",
+    "list": 0,
+    "globe": "Map or list",
+    "thumbs": [
+     "Kamala Harris 2024 Kamala Harris 90.3%",
+     "Donald Trump 2024 Donald Trump 6.5%"
+    ]
+   },
+   {
+    "ll": [
+     38.899,
+     -77.032,
+     15
+    ],
+    "focus": 0,
+    "heat": 0,
+    "crumbs": "District of Columbia",
+    "vis": true
+   }
+  ]
+ ],
+ "addr_err": []
+}
