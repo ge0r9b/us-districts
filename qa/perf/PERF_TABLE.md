@@ -158,3 +158,15 @@ Run 2026-10-19 08:51-09:09 EDT, load avg 0.5-1.9 (other bots' Chromium/WebKit te
 | 1613 (81be4c7) | 375x667 | 1.60 / 7.84 | 3.67 / 13.36 | 461 | 745 | 572 | 117 | 46 / 106 (cold 106) | 80 / 96 (cold 57) | 17 / 34 | 13 / 20 | 28 / 33 | 52 / 108 | 59.8 fps, p95 16.7, max 33.3, dropped 1/280 |
 | 1613 (81be4c7) | 320x568 | 1.60 / 7.84 | 3.67 / 13.35 | 480 | 707 | 697 | 106 | 52 / 171 (cold 104) | 75 / 88 (cold 55) | 16 / 18 | 25 / 30 | 30 / 30 | 54 / 87 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
 | 1613 (81be4c7) | ipad820x1180 | 1.60 / 7.84 | 3.67 / 13.35 | 1035 | 1078 | 718 | 148 | 56 / 137 (cold 137) | 90 / 109 (cold 86) | 16 / 35 | 18 / 31 | 38 / 60 | 62 / 190 | 53.8 fps, p95 33.3, max 100, dropped 24/207 |
+| 1615 (6dfa3f1) | 390x844 | 1.60 / 7.85 | 3.67 / 13.37 | 799 | 1170 | 962 | 141 | 61 / 102 (cold 102) | 96 / 158 (cold 70) | 25 / 28 | 13 / 17 | 28 / 33 | 51 / 92 | 59.6 fps, p95 16.8, max 33.3, dropped 2/279 |
+| 1615 (6dfa3f1) | 375x667 | 1.60 / 7.85 | 3.67 / 13.37 | 714 | 971 | 788 | 130 | 40 / 111 (cold 111) | 82 / 106 (cold 72) | 18 / 25 | 13 / 18 | 26 / 36 | 55 / 88 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
+| 1615 (6dfa3f1) | 320x568 | 1.60 / 7.85 | 3.67 / 13.36 | 856 | 898 | 807 | 131 | 48 / 150 (cold 150) | 80 / 93 (cold 73) | 15 / 17 | 12 / 44 | 30 / 38 | 49 / 124 | 59.8 fps, p95 16.8, max 33.4, dropped 1/279 |
+| 1615 (6dfa3f1) | ipad820x1180 | 1.60 / 7.85 | 3.67 / 13.37 | 1161 | 1213 | 1021 | 218 | 46 / 149 (cold 149) | 80 / 85 (cold 63) | 17 / 30 | 26 / 45 | 26 / 53 | 52 / 101 | 57.3 fps, p95 16.8, max 66.6, dropped 10/210 |
+
+## 1615 (6dfa3f1) vs 1613 (81be4c7)
+Run 2026-10-19 12:51-13:05 EDT, load avg 0.9-3.4 (other bots' Chromium/WebKit tests alongside), same tools/baseline.py and selectors. 1614 (QA-098 list thumbnails) and 1615 (QA-003 official certified state totals, QA-104 county layer on reload) have no speed changes; 1614 was not measured separately. Medians vs medians (390/375/320/iPad).
+- Bytes: 1.60 / 7.85 MB initial and 3.67 / 13.37 MB PA session (+4.5 KB gz, +9 KB raw for the official state totals), flat.
+- Taps flat, every median under 100 ms: All States 61/40/48/46 (1613: 42/46/52/56; 390 +45% but max 102 = cold try), US House pick 96/82/80/80 (87/80/75/90), Line 25/18/15/17 (17/17/16/16), drill PA 13/13/12/26, back 28/26/30/26, time step 51/55/49/52. Maxes over 100 only on cold first tries (All States cold 102-150, 1613 cold 95-137) and one 390 US House try of 158 ms.
+- First map 962/788/807/1021 ms (1613: 588/572/697/718). 390 and 375 had slow TTFB (315 and 209 ms vs 63-74 before), so network noise; iPad rerun (raw/b1615-live-ipad820x1180-run2.json, TTFB 68) gave 617 ms, DCL 858, longest task 120, so the first iPad run (TTFB 142, longest task 218) was noise, not a regression. All values inside the 557-1147 ms range since 1575.
+- iPad pan 57.3 fps, 10 dropped (1613: 53.8 fps, 24 dropped); phones 59.6-60 fps.
+- No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.

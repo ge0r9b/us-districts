@@ -1,0 +1,341 @@
+{
+ "ipad820x1180": {
+  "viewport": "ipad820x1180",
+  "lat": {
+   "open_institution": [
+    86.8,
+    22.1,
+    37.5,
+    23.6,
+    26.7
+   ],
+   "all_states": [
+    149,
+    52.6,
+    40.8,
+    40.2,
+    46.5
+   ],
+   "time_open": [
+    70.5
+   ],
+   "time_step": [
+    100.7,
+    65,
+    50.2,
+    66.3,
+    53.2,
+    47.5,
+    94.8,
+    48.1,
+    47.3,
+    48.4
+   ],
+   "chart_menu": [
+    32.2,
+    9.1,
+    15.8,
+    9.1,
+    14.2,
+    16.1,
+    18.2,
+    20.6,
+    15.6,
+    16.8
+   ],
+   "chart_line": [
+    30.2,
+    15.3,
+    22.7,
+    16.6,
+    12.2
+   ],
+   "chart_bar": [
+    24.7,
+    23,
+    10.9,
+    27.4,
+    10.2
+   ],
+   "time_close": [
+    24.2
+   ],
+   "drill_PA": [
+    45.2,
+    15.6,
+    33.7,
+    13.5,
+    26.5
+   ],
+   "back": [
+    29.2,
+    21.2,
+    52.8,
+    22.7
+   ],
+   "type_menu": [
+    15.5
+   ],
+   "ushouse_pick": [
+    62.6,
+    80.2,
+    81.9,
+    85,
+    77.8
+   ],
+   "ushouse_deselect": [
+    34.7,
+    46.1,
+    36.3,
+    33.7
+   ]
+  },
+  "notes": [],
+  "errors": [],
+  "timing": {
+   "ttfb": 142,
+   "html_done": 187,
+   "dcl": 1161,
+   "load": 1213,
+   "fcp": 272,
+   "lcp": 776,
+   "first_vector_map": 1021,
+   "first_tile": 735,
+   "first_map": 1021,
+   "longtasks_ms": 727,
+   "longest_task": 218,
+   "heapMB": 55
+  },
+  "bytes_initial": {
+   "all": {
+    "enc": 2768922,
+    "dec": 8976394,
+    "n": 89
+   },
+   "app": {
+    "enc": 1604315,
+    "dec": 7845363,
+    "n": 19
+   },
+   "tiles": {
+    "enc": 1164607,
+    "dec": 1131031,
+    "n": 70
+   }
+  },
+  "top10_initial": [
+   {
+    "url": "v2/",
+    "enc": 945992,
+    "dec": 6005639
+   },
+   {
+    "url": "v2/data/uscounties.js",
+    "enc": 383531,
+    "dec": 1044446
+   },
+   {
+    "url": "v2/data/ctryshape.js",
+    "enc": 57052,
+    "dec": 195836
+   },
+   {
+    "url": "lib/leaflet.js",
+    "enc": 43604,
+    "dec": 147552
+   },
+   {
+    "url": "v2/data/election2024.js",
+    "enc": 46846,
+    "dec": 137875
+   },
+   {
+    "url": "v2/data/usstates.js",
+    "enc": 48753,
+    "dec": 122868
+   },
+   {
+    "url": "v2/data/canada.js",
+    "enc": 24490,
+    "dec": 77739
+   },
+   {
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/5/12/8",
+    "enc": 36204,
+    "dec": 35720
+   },
+   {
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/5/9/4",
+    "enc": 32720,
+    "dec": 32236
+   },
+   {
+    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/5/11/9",
+    "enc": 29882,
+    "dec": 29398
+   }
+  ],
+  "pan": {
+   "frames": 210,
+   "avg_ms": 17.5,
+   "p95_ms": 16.8,
+   "max_ms": 66.6,
+   "janky_gt25": 6,
+   "dropped": 10,
+   "fps": 57.3
+  },
+  "map_view": {
+   "all_states": [
+    4,
+    39.775,
+    -98.613
+   ],
+   "drill_PA": [
+    7,
+    41.133,
+    -77.605
+   ]
+  },
+  "ymode_range": "delta",
+  "ymode_end": "2024",
+  "pa_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"Philadelphia County\",721441],[\"Allegheny County\",720504],[\"Montgomery County\",520906",
+  "pa_ushouse_rows": 17,
+  "bytes_pa_session": {
+   "all": {
+    "enc": 8355757,
+    "dec": 23191297,
+    "n": 655
+   },
+   "app": {
+    "enc": 3672677,
+    "dec": 13365862,
+    "n": 78
+   },
+   "tiles": {
+    "enc": 4683080,
+    "dec": 9825409,
+    "n": 576
+   }
+  },
+  "top10_pa_session": [
+   {
+    "url": "v2/",
+    "enc": 945992,
+    "dec": 6005639
+   },
+   {
+    "url": "data/Pennsylvania.js",
+    "enc": 870459,
+    "dec": 2349244
+   },
+   {
+    "url": "v2/data/precincts2024/Pennsylvania.js",
+    "enc": 760817,
+    "dec": 2219789
+   },
+   {
+    "url": "v2/data/uscounties.js",
+    "enc": 383531,
+    "dec": 1044446
+   },
+   {
+    "url": "v2/data/uscd.js",
+    "enc": 228173,
+    "dec": 614849
+   },
+   {
+    "url": "v2/data/ctryshape.js",
+    "enc": 57052,
+    "dec": 195836
+   },
+   {
+    "url": "lib/leaflet.js",
+    "enc": 43604,
+    "dec": 147552
+   },
+   {
+    "url": "v2/data/election2020.js",
+    "enc": 46728,
+    "dec": 137962
+   },
+   {
+    "url": "v2/data/election2024.js",
+    "enc": 46846,
+    "dec": 137875
+   },
+   {
+    "url": "v2/data/usstates.js",
+    "enc": 48753,
+    "dec": 122868
+   }
+  ],
+  "heapMB_end": 238,
+  "lat_summary": {
+   "open_institution": {
+    "median": 26.7,
+    "max": 86.8,
+    "n": 5
+   },
+   "all_states": {
+    "median": 46.5,
+    "max": 149,
+    "n": 5
+   },
+   "time_open": {
+    "median": 70.5,
+    "max": 70.5,
+    "n": 1
+   },
+   "time_step": {
+    "median": 51.7,
+    "max": 100.7,
+    "n": 10
+   },
+   "chart_menu": {
+    "median": 16.0,
+    "max": 32.2,
+    "n": 10
+   },
+   "chart_line": {
+    "median": 16.6,
+    "max": 30.2,
+    "n": 5
+   },
+   "chart_bar": {
+    "median": 23,
+    "max": 27.4,
+    "n": 5
+   },
+   "time_close": {
+    "median": 24.2,
+    "max": 24.2,
+    "n": 1
+   },
+   "drill_PA": {
+    "median": 26.5,
+    "max": 45.2,
+    "n": 5
+   },
+   "back": {
+    "median": 25.9,
+    "max": 52.8,
+    "n": 4
+   },
+   "type_menu": {
+    "median": 15.5,
+    "max": 15.5,
+    "n": 1
+   },
+   "ushouse_pick": {
+    "median": 80.2,
+    "max": 85,
+    "n": 5
+   },
+   "ushouse_deselect": {
+    "median": 35.5,
+    "max": 46.1,
+    "n": 4
+   }
+  }
+ }
+}
