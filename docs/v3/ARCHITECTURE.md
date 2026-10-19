@@ -176,9 +176,11 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **More offices and contest types** (US House, legislatures, school boards, ballot measures, multi-choice, primaries) | `office`, `contest.stage/kind/vote_for`, N answers per contest, `candidate_key` stable across offices; the bot row format already carries `office` and `district` |
 | **Institution lists**: public-facing brands, establishments and organizations from Wikidata (`wikidata:Q<id>`, store locations) from the Companies bot (7e7bba2a), and governments flagged sovereign or incorporated from the Governments bot (a901cced) | `entity.kind` `brand` / `company` / `nonprofit` / `fund` / `government_other`, `entity_relation` (brand → parent QID, dates), `entity_location` (`hq_in` / `establishment_at`, Point + GIST), `entity_merge` + `entity_alias` (former QIDs, `usd:` re-keys), `entity_history` + `retraction`. Pipeline in DATA_LOADING §15 |
 | **User add/upload with moderation** | `app_user`, `submission` (pending/approved/rejected, evidence URL), `moderation_log`, `rate_limit_bucket`; API `/submissions` (phase 3+). Needs auth (D18) |
-| Other countries (Canada parked) | `entity.kind` `nation`; per-country config for district types |
+| Other countries: **out of scope for v3 (D25, Oct 19, 2026)**. v3 is US-only; Canada and each other country get their own repo later | `entity.kind` `nation` and per-country district-type config stay in the schema but carry only US rows |
 
 ### Roadmap: when each piece lands
+**Scope (D25, user ruling Oct 19, 2026): v3 is US-only (states, DC and US territories). Canada and all other countries are parked and will get their own repos later; nothing foreign loads into Neon or shows on v3 screens.**
+
 | Phase / version | Lands | Depends on |
 |---|---|---|
 | **Phase 1 (now)** | This plan: schema, API and loaders, on paper | — |
@@ -187,7 +189,7 @@ Since Oct 18, 2026 the v3 lane asks the data bots (Election Data, Geo & Institut
 | **v3.1** | List ingest: **Wikidata brands + locations** (Companies bot; **the complete set**: all brands and all ~38,000 locations from `data/companies`, 38,092 at b583b2c; about 1.4 MB gz and roughly 10–20 MB in Postgres with the GIST index (estimate); D21) **plus governments** (Governments bot) **plus Canada** (D23: units, officeholders and people from `data/inst-canada`; v3-only, no v2 JSON; the v3.1 tile build adds PMTiles for the Canadian ridings and polls, built from the source layers), deduped and merged with the registry | Companies + Governments bots' files; scraped-data policy (DATA_LOADING §15.3) |
 | **v3.2** | Scheduled refresh: scrapers run offline (box or CI) with the writer role, because Workers Free caps Cron Triggers at 10 ms CPU (5 per account); diffs applied with history (`valid_from`/`valid_to`, retract list, no silent deletes) | Writer role off the read path; Workers Paid ($5/month, 30 s to 15 min CPU per cron run) only if refresh moves onto Cloudflare |
 | **v3.3 (phase 3+)** | Auth; user add form + CSV upload; moderation queue, audit log, rate limits; `/submissions` API | D18 auth provider |
-| **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices; other countries | Auth; commercial licensing; Cloudflare Workers Paid if the free limits are hit |
+| **v4+** | Live and weighted voting; paid custom boundary sets; more years and offices (other countries are not on the v3 roadmap: D25, each gets its own repo) | Auth; commercial licensing; Cloudflare Workers Paid if the free limits are hit |
 | **v4 / v5** | **Native macOS and iOS apps**, built in Cursor, on the same public API. v3 stays **API-first**, so every app feature goes through `/v1` and static packs, with no app-only server logic | Stable versioned API; Apple developer account |
 | **v5 / v6** | **Bridge to the user's private corporate database** (LEI/CIK crosswalk via `entity_alias` reserved schemes). It stays **off the public v3 surface**: no public API fields, no static packs, server-side only | User's server + auth; a separate private connection |
 
