@@ -170,3 +170,16 @@ Run 2026-10-19 12:51-13:05 EDT, load avg 0.9-3.4 (other bots' Chromium/WebKit te
 - First map 962/788/807/1021 ms (1613: 588/572/697/718). 390 and 375 had slow TTFB (315 and 209 ms vs 63-74 before), so network noise; iPad rerun (raw/b1615-live-ipad820x1180-run2.json, TTFB 68) gave 617 ms, DCL 858, longest task 120, so the first iPad run (TTFB 142, longest task 218) was noise, not a regression. All values inside the 557-1147 ms range since 1575.
 - iPad pan 57.3 fps, 10 dropped (1613: 53.8 fps, 24 dropped); phones 59.6-60 fps.
 - No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.
+| 1617 (bc9bb19) | 390x844 | 1.60 / 7.85 | 3.67 / 13.37 | 895 | 978 | 687 | 138 | 44 / 93 (cold 93) | 71 / 104 (cold 67) | 25 / 30 | 15 / 59 | 22 / 30 | 49 / 76 | 60.0 fps, p95 16.8, max 16.8, dropped 0/280 |
+| 1617 (bc9bb19) | 375x667 | 1.60 / 7.85 | 3.67 / 13.37 | 667 | 674 | 616 | 103 | 39 / 97 (cold 97) | 77 / 89 (cold 55) | 14 / 24 | 12 / 14 | 34 / 68 | 46 / 84 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
+| 1617 (bc9bb19) | 320x568 | 1.60 / 7.85 | 3.67 / 13.37 | 697 | 703 | 651 | 111 | 40 / 139 (cold 139) | 99 / 117 (cold 49) | 22 / 34 | 14 / 27 | 33 / 45 | 50 / 81 | 59.2 fps, p95 16.7, max 83.3, dropped 4/279 |
+| 1617 (bc9bb19) | ipad820x1180 | 1.60 / 7.85 | 3.67 / 13.37 | 1094 | 1140 | 852 | 176 | 60 / 105 (cold 105) | 69 / 74 (cold 60) | 17 / 19 | 15 / 16 | 25 / 48 | 53 / 81 | 52.7 fps, p95 33.3, max 50, dropped 30/215 |
+
+## 1617 (bc9bb19) vs 1615 (6dfa3f1)
+Run 2026-10-19 14:50-15:05 EDT, load avg 0.5-4.7 (other bots' Chromium tests alongside), same tools/baseline.py and selectors (0 page errors). 1616 (QA-097 city reload, QA-105/106 precinct labels) and 1617 (QA-107 ZIP selection through the shared path, QA-108 mouse drag moves the single slider knob) have no intended speed changes; 1616 was not measured separately. Medians vs medians (390/375/320/iPad).
+- Bytes: 1.60 / 7.85 MB initial and 3.67 / 13.37 MB PA session, flat.
+- Time slider open at 320x568 went over 100 ms: 119 ms, and the rerun raw/b1617-live-320x568-run2.json gave 106 ms (one try per run; 1611-1615 at 320: 41/55/49). The other viewports are flat at 36/38/39 (1615: 44/45/70). Possibly the QA-108 slider change at narrow width; worth a profile if it holds next build. Time step itself flat: 49/46/50/53 (1615: 51/55/49/52).
+- Other taps flat, every median under 100 ms: All States 44/39/40/60 (1615: 61/40/48/46), US House pick 71/77/99/69 (96/82/80/80; 320 rerun median 81), Line 25/14/22/17, drill PA 15/12/14/15, back 22/34/33/25. Maxes over 100 only on cold first tries (All States cold 93-139) and single US House tries of 104-118 ms.
+- First map 687/616/651/852 ms (1615: 962/788/807/1021; 320 rerun 676), faster, inside the 557-1147 ms range since 1575.
+- Pan: phones 59.2-60 fps; iPad 52.7 fps, 30 dropped (1615: 57.3, 10 dropped) with load avg 4.7 during that run, same as 1613's 53.8, so noise.
+- No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.
