@@ -183,3 +183,16 @@ Run 2026-10-19 14:50-15:05 EDT, load avg 0.5-4.7 (other bots' Chromium tests alo
 - First map 687/616/651/852 ms (1615: 962/788/807/1021; 320 rerun 676), faster, inside the 557-1147 ms range since 1575.
 - Pan: phones 59.2-60 fps; iPad 52.7 fps, 30 dropped (1615: 57.3, 10 dropped) with load avg 4.7 during that run, same as 1613's 53.8, so noise.
 - No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.
+| 1618 (581534c) | 390x844 | 1.61 / 7.85 | 3.67 / 13.37 | 671 | 1039 | 829 | 143 | 34 / 97 (cold 97) | 80 / 86 (cold 62) | 16 / 18 | 24 / 27 | 23 / 50 | 57 / 115 | 60.0 fps, p95 16.8, max 16.8, dropped 0/277 |
+| 1618 (581534c) | 375x667 | 1.61 / 7.85 | 3.68 / 13.37 | 458 | 686 | 533 | 101 | 62 / 106 (cold 106) | 72 / 104 (cold 60) | 12 / 17 | 12 / 22 | 29 / 33 | 52 / 79 | 59.8 fps, p95 16.7, max 33.3, dropped 1/277 |
+| 1618 (581534c) | 320x568 | 1.61 / 7.85 | 3.68 / 13.37 | 653 | 658 | 612 | 98 | 35 / 90 (cold 90) | 76 / 94 (cold 57) | 17 / 27 | 15 / 21 | 27 / 67 | 45 / 81 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
+| 1618 (581534c) | ipad820x1180 | 1.61 / 7.85 | 3.68 / 13.38 | 831 | 934 | 754 | 125 | 52 / 116 (cold 116) | 72 / 78 (cold 57) | 17 / 20 | 12 / 34 | 23 / 25 | 52 / 99 | 55.5 fps, p95 16.8, max 66.7, dropped 17/208 |
+
+## 1618 (581534c) vs 1617 (bc9bb19)
+Run 2026-10-19 16:54-17:06 EDT, load avg 1.1-3.5 (other bots' Chromium/WebKit tests alongside), same tools/baseline.py and selectors (0 page errors). 1618 (QA-111 heat after district-type deselect, geo-filter clears district type, QA-109 field names picked place, QA-110 state above same-name country) has no intended speed change. Medians (390/375/320/iPad).
+- Bytes: 1.61 / 7.85 MB initial and 3.67-3.68 / 13.37 MB PA session, flat (index.html 6.01 MB raw).
+- Time slider open at 320x568 back to 36 ms (1617: 119, rerun 106), so 1617's jump was noise or load. Other viewports 26/30/37 (1617: 36/38/39). Time step 57/52/45/52, flat.
+- Taps, every median under 100 ms: All States 34/62/35/52 (1617: 44/39/40/60; 375 up but within noise and well under 100), US House pick 80/72/76/72 (71/77/99/69), Line 16/12/17/17, drill PA 24/12/15/12, back 23/29/27/23. Maxes over 100 only on cold first tries (All States cold 90-116) and one US House try of 104 ms.
+- First map 829/533/612/754 ms (1617: 687/616/651/852), inside the usual range.
+- Pan: phones 59.8-60 fps; iPad 55.5 fps, 17 dropped (1617: 52.7, 30 dropped).
+- No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.
