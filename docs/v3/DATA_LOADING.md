@@ -754,3 +754,11 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **v3/build 42ac077–0a39df5:** total-votes sort, per-year colours with the 2016 DC delegate seat, local pick from decoded tiles with a bbox pre-filter, a split map bundle, and a preloaded map chunk. That closes the 1588 and 1589 flags.
 - **perf 1b4d427:** 1595 within noise of 1588; iPad pan 47.9 fps keeps the ≥ 55 fps gate open.
 - **preview/shadows** is a preview lane, not main. It isn't parity until a v2 build adopts it.
+
+### 9.11 Drift check, Oct 19, 2026 00:00 EDT (us-districts main f9e148f Build 1597; qa/bugs 71e0b5d; ge0r9b/v3 unchanged, v3/build 0a39df5)
+- **No data or field changes.** Builds 1596–1597 are UI only, and every data/* branch is unchanged on both repos. Still no v2.0 tag.
+- **Build 1596:** US House inside a county lists that county's US House districts with split ones marked ≈ (QA-005 fixed), and row taps hit-test at the finger's real point. In v3 the county list needs a county-to-district overlap with whole versus partial flags, served by `/api/v1` and baked into the static pack.
+- **Build 1597:** the name bubble sits beside the photo, never over a value label or another photo (QA-076).
+- **QA passes 23–24:** new QA-084 HIGH (split-bar rows draw at 30 px then 44 px) and QA-085 HIGH (year taps on PA district-type maps 150–425 ms). Both are v3 gates in MIGRATION_CHECKLIST.
+- **main now has `previews/shadows/` and `previews/compact/`** (noindex, built by `tools/mkpreview.py`, loading v2 data). They're proposals until a v2 build adopts them.
+
