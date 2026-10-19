@@ -43,3 +43,7 @@
 - **Name search parity:** `v2/data/geo_index/<a-z|0>.js` (`__geoIndex([[name,type,stateAbbr,key],…])`, 115,745 rows: state, county, town, place, sch, cd, sldu, sldl, zcta) is what v2's search box will match. v3 serves the same rows from `unit` (`unit_name_trgm`, display labels such as "District 1" or "OH Senate 2" stored in `unit.meta.label`) plus ZCTA rows, and the parity test compares top results for a fixed query list against the v2 index.
 - **ZIP lookups:** `v2/data/zcta_xref/` → `zcta_unit_share`. A typed ZIP resolves locally (no provider call) to its county/place/town units with land shares; the external geocoder is only for street addresses.
 - **Result pin / star:** `unit.label_point` (from `v2/data/points/`) is the point a name result zooms to and the state-icon star; it always lies inside the shape.
+
+## ZIP results must select a place (QA-107, Oct 19, 2026 14:00 EDT check)
+- v2 1615/1616 (QA-107, CRITICAL, still open): picking "ZIP 90210, CA" or an address the provider can only match to its ZIP zooms the map to the ZIP but leaves the title and numbers at the United States.
+- v3 rule: `/api/v1/geocode` returns, for a ZIP or ZIP fallback, the precinct (else county) containing the ZCTA label point as the selection, the same shape as a street-address hit. The client applies it through the one selection path, so title, numbers, outline, field and saved view all name that place. Gate: 90210, 55155, 30334 and a non-matching capitol address, in both engines, before and after reload.

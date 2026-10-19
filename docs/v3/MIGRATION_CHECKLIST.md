@@ -343,3 +343,15 @@ See DATA_LOADING.md §9 for the full artifact → table map. UI-relevant points:
 - [ ] **QA-074 suffix width:** the county/grade suffix on same-name school rows must stay visible (v2's 100 px name column cuts it). v3 list rows truncate the base name before the `display_name` suffix.
 - [ ] **QA-101 LOW / Kings "New York city" row:** a county list must not label a borough-level row as the whole city; await orchestrator ruling, then mirror it in v3 place naming.
 - [ ] **iPad pan 53.8 fps on 1613 (was 57.3):** keep the ≥55 fps v3 gate; flag if the next perf run stays under.
+
+## Added by the Oct 19, 2026 14:00 EDT drift check (main 9f41265 Build 1616; qa/bugs 183963c passes 35–37; perf 40e4b1c; ge0r9b/v3 v3/build 9ff1c3d)
+- [x] **Certified state totals (QA-003):** shipped in v2 1615 and in v3/build 8bfe521 from the same ff5f180 file; values match. Keep the per-state/year equality gate.
+- [x] **QA-104 county layer on reload:** fixed in v2 1615; v3/build 9ff1c3d restores the layer type from the saved view, with a test.
+- [ ] **QA-098 list view:** verified fixed on 1614 (8 addresses × list / list reload / map, both engines). Keep the v3 gate: title = numbers in list view, after the globe and after reload.
+- [ ] **QA-097 city map reload:** fixed on 1616 (6 cities, both engines). v3 saved view stores the city (county + place id), view mode and chart/range; add a city-map reload case.
+- [ ] **QA-107 CRITICAL (open on 1616, orchestrator confirmed):** a ZIP search, or an address that falls back to its ZIP, shows the ZIP on the map and in the field but the US title and US numbers. v3 gate: a ZIP result selects the precinct (or county) containing its label point, so title, numbers, outline and field all name the same place, also after reload. See GEOCODER.md.
+- [ ] **QA-105 LOW (fixed on 1616):** census-GEOID precinct names read "Dauphin Precinct 0270", not "Dauphin Precinct 420430270". v3 builds this into precinct `display_name` at load.
+- [ ] **QA-106 LOW (fixed on 1616):** after an address search from a list, the header names the list, never "<precinct> counties".
+- [ ] **QA-108 LOW (open, orchestrator: not intended):** at 1024×768 a mouse drag on the time slider knob splits it into a '16–'24 range, while a touch drag moves the single knob. v3: mouse and touch drag the knob the same way; range only through the explicit range control.
+- [x] **iPad pan:** 57.3 fps on 1615 (back over the ≥55 gate). Keep the gate.
+- [ ] **Open QA at 1616 (pass 37):** CRITICAL QA-107; MEDIUM QA-099, QA-085, QA-073, QA-007; LOW QA-101, QA-108, QA-074. Fixed since 12:20: QA-003, QA-096, QA-097, QA-098, QA-104, QA-105, QA-106.
