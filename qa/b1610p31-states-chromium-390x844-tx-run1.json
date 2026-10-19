@@ -1,0 +1,723 @@
+{
+ "Texas": {
+  "lat": {},
+  "build": "202610181610",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Texas",
+    "gq": "Texas",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 56%",
+    "Kamala Harris 2024 / 42%"
+   ]
+  ],
+  "tot": {
+   "2016": null,
+   "2020": null,
+   "2024": [
+    4835250,
+    6393597,
+    11380105
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 52%",
+    "Hillary Clinton 2016 / 43%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 52%",
+    "Joe Biden 2020 / 46%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 56%",
+    "Kamala Harris 2024 / 42%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 65.9,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Texas",
+      "gq": "Texas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 56%",
+      "Kamala Harris 2024 / 42%"
+     ]
+    ],
+    "lat_tolist": 26.5,
+    "n": 31,
+    "rows": [
+     "25 | 60.2%",
+     "8 | 57.9% | 39.3%",
+     "12 | 58.3% | 39.9%",
+     "30 | 62.8% | 35.6%",
+     "14 | 25.6% | 71.8%",
+     "5 | 60.8% | 37.6%"
+    ],
+    "order": {
+     "n": 31,
+     "first": [
+      60.2,
+      57.9,
+      58.3,
+      62.8,
+      25.6
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      5,
+      6,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 56%",
+     "Kamala Harris 2024 / 42%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29.3,
+    "lat_numpick": 54.7,
+    "num": "num",
+    "rows_num": [
+     "25 | 318K | 203K",
+     "8 | 277K | 188K",
+     "12 | 273K | 187K",
+     "30 | 291K | 165K",
+     "14 | 113K | 316K"
+    ],
+    "order_num": {
+     "n": 31,
+     "first": [
+      318000.0,
+      277000.0,
+      273000.0,
+      291000.0,
+      113000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      9,
+      11
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 6.39M",
+     "Kamala Harris 2024 / 4.83M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "%",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "%",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 103.2,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Texas",
+      "gq": "Texas",
+      "ym": "2024",
+      "num": "%",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 6.4M",
+      "Kamala Harris 2024 / 4.8M"
+     ]
+    ],
+    "lat_tolist": 15.6,
+    "n": 150,
+    "rows": [
+     "73 | 92K | 39K",
+     "19 | 90K | 36K",
+     "52 | 62K | 53K",
+     "122 | 64K | 51K",
+     "20 | 64K | 48K",
+     "60 | 90K"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      92000.0,
+      90000.0,
+      62000.0,
+      64000.0,
+      64000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      8,
+      11,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "%",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 6.39M",
+     "Kamala Harris 2024 / 4.84M"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 23.4,
+    "lat_numpick": 40.1,
+    "num": "num",
+    "rows_num": [
+     "73 | 92K | 39K",
+     "19 | 90K | 36K",
+     "52 | 62K | 53K",
+     "122 | 64K | 51K",
+     "20 | 64K | 48K"
+    ],
+    "order_num": {
+     "n": 65,
+     "first": [
+      92000.0,
+      90000.0,
+      62000.0,
+      64000.0,
+      64000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      8,
+      11,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 6.39M",
+     "Kamala Harris 2024 / 4.84M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "%",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"%\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[34.3071,-99.668,4]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[34.2742,-99.6373,4]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Texas",
+      "gq": "Texas",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 150,
+     "rows": [
+      "73 | 69.3%",
+      "19 | 70.5% | 28.3%",
+      "52 | 53.1% | 44.9%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 255.6,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Texas",
+      "gq": "Texas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 56%",
+      "Kamala Harris 2024 / 42%"
+     ]
+    ],
+    "lat_tolist": 9.8,
+    "n": 1019,
+    "rows": [
+     "Houston Independent School Dist\u2026 | 31.4% | 66.8%",
+     "Dallas Independent School Distr\u2026 | 32.7% | 65.4%",
+     "Austin Independent School Distr\u2026 | 22.5% | 75.0%",
+     "Northside Independent School Di\u2026 | 44.1% | 54.8%",
+     "Cypress-Fairbanks Independent S\u2026 | 53.9% | 44.3%",
+     "Fort Bend Independent School Di\u2026 | 40.0% | 56.7%"
+    ],
+    "order": {
+     "n": 65,
+     "first": [
+      31.4,
+      32.7,
+      22.5,
+      44.1,
+      53.9
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4,
+      6,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 56%",
+     "Kamala Harris 2024 / 42%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 35.4,
+    "lat_numpick": 151.9,
+    "num": "num",
+    "rows_num": [
+     "Houston Independent School Dist\u2026 | 148K | 314K",
+     "Dallas Independent School Distr\u2026 | 113K | 226K",
+     "Austin Independent School Distr\u2026 | 255K",
+     "Northside Independent School Di\u2026 | 121K | 150K",
+     "Cypress-Fairbanks Independent S\u2026 | 131K | 108K"
+    ],
+    "order_num": {
+     "n": 63,
+     "first": [
+      148000.0,
+      113000.0,
+      255000.0,
+      121000.0,
+      131000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      7,
+      9,
+      10
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 6.40M",
+     "Kamala Harris 2024 / 4.83M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "%",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "%",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 71.6,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Texas",
+      "gq": "Texas",
+      "ym": "2024",
+      "num": "%",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 6.4M",
+      "Kamala Harris 2024 / 4.8M"
+     ]
+    ],
+    "lat_tolist": 9.4,
+    "n": 38,
+    "rows": [
+     "21 | 266K | 164K",
+     "26 | 242K | 149K",
+     "3 | 233K | 153K",
+     "24 | 217K | 158K",
+     "31 | 231K | 143K",
+     "4 | 239K | 120K"
+    ],
+    "order": {
+     "n": 38,
+     "first": [
+      266000.0,
+      242000.0,
+      233000.0,
+      217000.0,
+      231000.0
+     ],
+     "not_desc_at": [
+      4,
+      5,
+      8,
+      11,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "%",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 6.39M",
+     "Kamala Harris 2024 / 4.83M"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 14.4,
+    "lat_numpick": 21.5,
+    "num": "num",
+    "rows_num": [
+     "21 | 266K | 164K",
+     "26 | 242K | 149K",
+     "3 | 233K | 153K",
+     "24 | 217K | 158K",
+     "31 | 231K | 143K"
+    ],
+    "order_num": {
+     "n": 38,
+     "first": [
+      266000.0,
+      242000.0,
+      233000.0,
+      217000.0,
+      231000.0
+     ],
+     "not_desc_at": [
+      4,
+      5,
+      8,
+      11,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 6.39M",
+     "Kamala Harris 2024 / 4.83M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "%",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Texas",
+     "gq": "Texas",
+     "ym": "2024",
+     "num": "%",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 4.7M",
+     "Hillary Clinton 2016 / 3.9M",
+     "Donald Trump 2020 / 5.9M",
+     "Joe Biden 2020 / 5.3M"
+    ],
+    "charts": {
+     "line": {
+      "lat": 37.4,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 16.5,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 12.7,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Texas counties",
+    "Anderson County \u203a",
+    "Andrews County \u203a"
+   ],
+   "lat_counties": 131,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Texas",
+    "gq": "Texas",
+    "ym": "2024",
+    "num": "%",
+    "list": true,
+    "sort": null
+   },
+   "n1": 254,
+   "rows1": [
+    "Harris | 723K | 809K",
+    "Dallas | 323K | 511K",
+    "Tarrant | 427K | 385K",
+    "Bexar | 338K | 411K",
+    "Travis | 399K"
+   ],
+   "order1": {
+    "n": 61,
+    "first": [
+     723000.0,
+     323000.0,
+     427000.0,
+     338000.0,
+     399000.0
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     5,
+     25,
+     26
+    ]
+   },
+   "lat_county": 79,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Harris County",
+    "gq": "Harris County, TX",
+    "ym": "2024",
+    "num": "%",
+    "list": true,
+    "sort": null
+   },
+   "n2": 34,
+   "rows2": [
+    "Houston city | 272K | 433K",
+    "Pasadena city | 37K",
+    "Baytown city | 17K",
+    "Deer Park city | 14K",
+    "Bellaire city | 10K",
+    "La Porte city | 10K"
+   ],
+   "order2": {
+    "n": 34,
+    "first": [
+     272000.0,
+     37000.0,
+     17000.0,
+     14000.0,
+     10000.0
+    ],
+    "not_desc_at": [
+     27,
+     32
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 499K",
+    "Donald Trump 2024 / 374K"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 326.6,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Houston city",
+    "gq": "Harris County, TX",
+    "ym": "2024",
+    "num": "%",
+    "list": true,
+    "sort": null
+   },
+   "n3": 636,
+   "rows3": [
+    "Precinct 200 | 1K | 2K",
+    "Precinct 461 | 2K | 2K",
+    "Precinct 70 | 2K | 2K",
+    "Precinct 234 | 2K | 1K",
+    "Precinct 86 | 1K | 2K",
+    "Precinct 155 | 2K | 1K"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 433K",
+    "Donald Trump 2024 / 272K"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Houston city",
+     "gq": "Harris County, TX",
+     "ym": "2024",
+     "num": "%",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / ",
+     "Donald Trump 2024 / "
+    ],
+    [
+     8,
+     "30.017",
+     "-95.433"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"%\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[30.0168,-95.4327,8]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[30.0168,-95.4327,8]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Harris County",
+     "gq": "Harris County, TX",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / ",
+     "Donald Trump 2024 / "
+    ]
+   }
+  },
+  "err": []
+ }
+}
