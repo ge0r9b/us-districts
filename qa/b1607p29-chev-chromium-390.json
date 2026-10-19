@@ -1,0 +1,207 @@
+{
+ "eng": "chromium",
+ "build": "202610181607",
+ "tapdc_after_phila": {
+  "phila_chev": [
+   {
+    "tag": "BUTTON",
+    "id": "bBack",
+    "cls": "bbk",
+    "aria": "Back",
+    "box": [
+     -3,
+     100,
+     44,
+     44
+    ]
+   },
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d on",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "after": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "chev": [
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d on",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "after_chev_tap": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "WY | 72.3%",
+    "WV | 70.0%",
+    "ND | 67.5%",
+    "ID | 66.9%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "chev2": [
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "err": []
+ },
+ "addr_phila": {
+  "phila_chev": [
+   {
+    "tag": "BUTTON",
+    "id": "bBack",
+    "cls": "bbk",
+    "aria": "Back",
+    "box": [
+     -3,
+     100,
+     44,
+     44
+    ]
+   },
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d on",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "after": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "chev": [
+   {
+    "tag": "BUTTON",
+    "id": "bBack",
+    "cls": "bbk",
+    "aria": "Back",
+    "box": [
+     -3,
+     100,
+     44,
+     44
+    ]
+   },
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d on",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "after_chev_tap": {
+   "crumbs": "Philadelphia County",
+   "gq": "",
+   "ph": "Philadelphia County, PA",
+   "thumbs": [
+    "Kamala Harris 2024 79%",
+    "Donald Trump 2024 20%"
+   ],
+   "rows": [
+    "Philadelphia city | 20.0% | 78.5%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0449,-75.1112,10]}",
+   "pop": []
+  },
+  "chev2": [
+   {
+    "tag": "BUTTON",
+    "id": "bBack",
+    "cls": "bbk",
+    "aria": "Back",
+    "box": [
+     -3,
+     100,
+     44,
+     44
+    ]
+   },
+   {
+    "tag": "BUTTON",
+    "id": "",
+    "cls": "lact d on",
+    "aria": "Kamala Harris 2024",
+    "box": [
+     8,
+     153,
+     42,
+     47
+    ]
+   }
+  ],
+  "err": []
+ }
+}
