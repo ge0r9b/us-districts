@@ -1,0 +1,81 @@
+ok   webkit 390x844 row closed: range chart thumbnails present (5)
+FAIL webkit 390x844 row closed: tap photo at [11, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 390x844 row closed: tap photo at [298, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 390x844 row closed: tap photo at [11, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 390x844 row closed: tap photo at [298, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+ok   webkit 390x844 row closed: no page errors
+ok   webkit 390x844 row open: range chart thumbnails present (5)
+ok   webkit 390x844 row open: tap photo at [12, 182]: white bubble 'Donald Trump 2020', no dark bubble
+ok   webkit 390x844 row open: bubble covers no photo or button
+ok   webkit 390x844 row open: tap photo at [292, 182]: white bubble 'Donald Trump 2024', no dark bubble
+ok   webkit 390x844 row open: bubble covers no photo or button
+ok   webkit 390x844 row open: tap photo at [12, 226]: white bubble 'Joe Biden 2020', no dark bubble
+ok   webkit 390x844 row open: bubble covers no photo or button
+ok   webkit 390x844 row open: tap photo at [292, 226]: white bubble 'Harris ’24', no dark bubble
+ok   webkit 390x844 row open: bubble covers no photo or button
+ok   webkit 390x844 row open: no page errors
+ok   webkit 375x667 row closed: range chart thumbnails present (5)
+FAIL webkit 375x667 row closed: tap photo at [11, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 375x667 row closed: tap photo at [283, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 375x667 row closed: tap photo at [11, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 375x667 row closed: tap photo at [283, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+ok   webkit 375x667 row closed: no page errors
+ok   webkit 375x667 row open: range chart thumbnails present (5)
+ok   webkit 375x667 row open: tap photo at [12, 182]: white bubble 'Donald Trump 2020', no dark bubble
+ok   webkit 375x667 row open: bubble covers no photo or button
+ok   webkit 375x667 row open: tap photo at [277, 182]: white bubble 'Donald Trump 2024', no dark bubble
+ok   webkit 375x667 row open: bubble covers no photo or button
+ok   webkit 375x667 row open: tap photo at [12, 226]: white bubble 'Joe Biden 2020', no dark bubble
+ok   webkit 375x667 row open: bubble covers no photo or button
+ok   webkit 375x667 row open: tap photo at [277, 226]: white bubble 'Harris ’24', no dark bubble
+ok   webkit 375x667 row open: bubble covers no photo or button
+ok   webkit 375x667 row open: no page errors
+ok   webkit 320x568 row closed: range chart thumbnails present (5)
+FAIL webkit 320x568 row closed: tap photo at [11, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 320x568 row closed: tap photo at [228, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 320x568 row closed: tap photo at [11, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 320x568 row closed: tap photo at [228, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+ok   webkit 320x568 row closed: no page errors
+ok   webkit 320x568 row open: range chart thumbnails present (5)
+ok   webkit 320x568 row open: tap photo at [12, 182]: white bubble 'Donald Trump 2020', no dark bubble
+ok   webkit 320x568 row open: bubble covers no photo or button
+ok   webkit 320x568 row open: tap photo at [222, 182]: white bubble 'Donald Trump 2024', no dark bubble
+ok   webkit 320x568 row open: bubble covers no photo or button
+ok   webkit 320x568 row open: tap photo at [12, 226]: white bubble 'Biden ’20', no dark bubble
+ok   webkit 320x568 row open: bubble covers no photo or button
+ok   webkit 320x568 row open: tap photo at [222, 226]: white bubble 'Harris ’24', no dark bubble
+ok   webkit 320x568 row open: bubble covers no photo or button
+ok   webkit 320x568 row open: no page errors
+ok   webkit 1024x768 row closed: range chart thumbnails present (5)
+FAIL webkit 1024x768 row closed: tap photo at [11, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 1024x768 row closed: tap photo at [932, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 1024x768 row closed: tap photo at [11, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL webkit 1024x768 row closed: tap photo at [932, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+ok   webkit 1024x768 row closed: no page errors
+ok   webkit 1024x768 row open: range chart thumbnails present (5)
+ok   webkit 1024x768 row open: tap photo at [12, 182]: white bubble 'Donald Trump 2020', no dark bubble
+ok   webkit 1024x768 row open: bubble covers no photo or button
+ok   webkit 1024x768 row open: tap photo at [926, 182]: white bubble 'Donald Trump 2024', no dark bubble
+ok   webkit 1024x768 row open: bubble covers no photo or button
+ok   webkit 1024x768 row open: tap photo at [12, 226]: white bubble 'Joe Biden 2020', no dark bubble
+ok   webkit 1024x768 row open: bubble covers no photo or button
+ok   webkit 1024x768 row open: tap photo at [926, 226]: white bubble 'Kamala Harris 2024', no dark bubble
+ok   webkit 1024x768 row open: bubble covers no photo or button
+ok   webkit 1024x768 row open: no page errors
+ok   chromium 390x844 row closed: range chart thumbnails present (5)
+FAIL chromium 390x844 row closed: tap photo at [11, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL chromium 390x844 row closed: tap photo at [298, 121]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL chromium 390x844 row closed: tap photo at [11, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+FAIL chromium 390x844 row closed: tap photo at [298, 169]: white bubble 'None', no dark bubble {"icon": null, "party": false}
+ok   chromium 390x844 row closed: no page errors
+ok   chromium 390x844 row open: range chart thumbnails present (5)
+ok   chromium 390x844 row open: tap photo at [12, 182]: white bubble 'Donald Trump 2020', no dark bubble
+ok   chromium 390x844 row open: bubble covers no photo or button
+ok   chromium 390x844 row open: tap photo at [292, 182]: white bubble 'Donald Trump 2024', no dark bubble
+ok   chromium 390x844 row open: bubble covers no photo or button
+ok   chromium 390x844 row open: tap photo at [12, 226]: white bubble 'Joe Biden 2020', no dark bubble
+ok   chromium 390x844 row open: bubble covers no photo or button
+ok   chromium 390x844 row open: tap photo at [292, 226]: white bubble 'Harris ’24', no dark bubble
+ok   chromium 390x844 row open: bubble covers no photo or button
+ok   chromium 390x844 row open: no page errors
+FAILS 20

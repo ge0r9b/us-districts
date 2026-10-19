@@ -1,0 +1,25 @@
+ok   390 statehouse: year taps median 67 ms, 1 of 12 over 100 ms
+ok   390 statehouse: no page errors
+ok   390 senate: year taps median 47 ms, 0 of 12 over 100 ms
+ok   390 senate: no page errors
+ok   390 ushouse: year taps median 31 ms, 0 of 12 over 100 ms
+ok   390 ushouse: no page errors
+ok   390 map: year taps median 48 ms, 0 of 12 over 100 ms
+ok   390 map: no page errors
+ok   375 statehouse: year taps median 58 ms, 1 of 12 over 100 ms
+ok   375 statehouse: no page errors
+ok   375 senate: year taps median 46 ms, 1 of 12 over 100 ms
+ok   375 senate: no page errors
+ok   375 ushouse: year taps median 27 ms, 0 of 12 over 100 ms
+ok   375 ushouse: no page errors
+ok   375 map: year taps median 47 ms, 0 of 12 over 100 ms
+ok   375 map: no page errors
+ok   320 statehouse: year taps median 68 ms, 0 of 12 over 100 ms
+ok   320 statehouse: no page errors
+ok   320 senate: year taps median 49 ms, 1 of 12 over 100 ms
+ok   320 senate: no page errors
+ok   320 ushouse: year taps median 29 ms, 0 of 12 over 100 ms
+ok   320 ushouse: no page errors
+ok   320 map: year taps median 50 ms, 0 of 12 over 100 ms
+ok   320 map: no page errors
+FAILS 0

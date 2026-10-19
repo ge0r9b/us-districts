@@ -1,0 +1,75 @@
+{
+ "build": "202610181599",
+ "qa067": {
+  "America": [
+   "COUNTRY",
+   "United States",
+   "South Africa",
+   "COUNTIES",
+   "Amelia County, VA"
+  ],
+  "Afrika": [
+   "COUNTRIES",
+   "Central African Republic",
+   "South Africa"
+  ],
+  "penn": [
+   "Pennsylvania \u203a",
+   "COUNTIES",
+   "Pennington County, SD",
+   "Pennington County, MN",
+   "Philadelphia County, PA",
+   "Allegheny County, PA",
+   "Montgomery County, PA",
+   "Bucks County, PA"
+  ]
+ },
+ "qa067_err": [],
+ "qa069": {
+  "crumb": "New York AD 75 ED 15",
+  "ph": "350 5TH AVE, NEW YORK",
+  "st": "New York",
+  "center": [
+   40.7517,
+   -73.985,
+   15
+  ],
+  "gq": "",
+  "err": []
+ },
+ "qa068": {
+  "crumb": "District of Columbia",
+  "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+  "st": "",
+  "center": [
+   38.8987,
+   -77.0352,
+   15
+  ],
+  "gq": "",
+  "err": []
+ },
+ "qa061": {
+  "dc_found": true,
+  "after_dc": [
+   "All States",
+   "District of Columbia"
+  ],
+  "after_de": [
+   "Delaware",
+   "Delaware"
+  ],
+  "err": []
+ },
+ "qa051": {
+  "labels": [
+   "Joe Biden 2020 / Joe Biden 2020",
+   "Donald Trump 2020 / Donald Trump 2020"
+  ],
+  "text": [
+   "51%",
+   "47%"
+  ],
+  "err": []
+ }
+}

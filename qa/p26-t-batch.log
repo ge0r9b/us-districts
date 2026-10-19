@@ -1,0 +1,9 @@
+ok   QA-006: Philadelphia County lists only Philadelphia city; Rockledge stays in Montgomery
+ok   QA-067: 'America' does not list South Africa
+ok   QA-067: a typo still finds its place when nothing else matches
+ok   QA-069: NY precinct id reads 'New York AD 75 ED 15'
+ok   QA-068: DC address opens at the address, zoom 15
+ok   QA-061: after DC, picking Delaware puts Delaware in the bottom field
+ok   QA-051: '16>'20 list thumbnails are labelled 2020
+ok   no page errors
+FAILS 0

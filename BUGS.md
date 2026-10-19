@@ -122,7 +122,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Evidence: `qa/last.py` output (senate/school level 1). Screenshot of the end state: shots/b1568-ch-390-senate-list.png
 
 
-### QA-006 Rockledge borough (Montgomery County) listed under Philadelphia County
+### QA-006 [Fixed on 1599 (verified pass 26)] Rockledge borough (Montgomery County) listed under Philadelphia County
 - Severity: High (wrong geography in results list) | Build 1566 | 390x844 (data issue, all sizes)
 - Steps: All States > time range '20-'24 > PA > Philadelphia > townships list.
 - Expected: Philadelphia County contains only Philadelphia city.
@@ -445,7 +445,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: the app opens "Philadelphia County" as a single-place summary (2016 Trump 15.4% / Clinton 82.5% | 2024 Trump 20.0% / Harris 78.8%, "R+8.3 shift") and no list. The range itself is kept.
 - Screenshot: shots/b1574-ch-390-r16-24-prec-reload.png
 
-### QA-051 Low (still open on 1577 in the lists; fixed on the US map) '16>'20 list thumbnails are labelled "Joe Biden 2024"
+### QA-051 [Fixed on 1599 (verified pass 26)] Low '16>'20 list thumbnails are labelled "Joe Biden 2024"
 - Build 1574/1575 | 390x844. All States in '16>'20: the thumbnails show the right 2020 values (Biden 51%, Trump 47%), but their aria-label and hover title say "Joe Biden 2024" / "Donald Trump 2024". Screenshot: shots/b1574-ch-390-r16-20-states-pct.png
 
 ### QA-052 Medium Tapping into the Philadelphia city precincts is slow in a '16 range
@@ -501,7 +501,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Screenshots: shots/b1576-thumbs-ch-{1024x768,390}-Blount.png (before), shots/b1576-thumbs-ch-{1024x768,390}-Blount-list.png (after)
 - Data: `qa/b1576-thumbs-*.json` > trans.Blount_list.frames
 
-### QA-061 [MEDIUM] Bottom geo field keeps saying "District of Columbia" after switching to another state
+### QA-061 [Fixed on 1599 (verified pass 26)] [MEDIUM] Bottom geo field keeps saying "District of Columbia" after switching to another state
 - Severity: MEDIUM | Build 1576 (same on 1575) | Chromium 1024x768 and 390x844
 - Steps: Geo > All States > DC row; then pick Delaware in the state menu.
 - Expected: bottom field reads Delaware (or the current area).
@@ -577,7 +577,7 @@ Same steps as first logged. One browser at a time. WebKit 390 matched Chromium o
 - Actual: each row has two 2-point polylines (e.g. FL `0,49.6 100,54.9` / `0,48.3 100,40.5`) and one net label per candidate (+7.1 / -4.8). The thumbnails show only the 2024 candidates.
 - Screenshots: shots/b1577-ch-1024x768-r16-24-line.png (list), shots/b1577-ch-1024x768-US-16-24-line.png (single place, 3 points)
 
-### QA-067 [LOW] Institution search "America" lists South Africa
+### QA-067 [Still open on 1599/1601 in the real search (pass 26)] [LOW] Institution search "America" lists South Africa
 - Build 1577 | Chromium 390/1024. Typing "America" in the institution field gives COUNTRY United States, then South Africa, then counties. South Africa doesn't contain "America" and isn't a synonym, so this looks like a loose fuzzy match. Data: `qa/b1577-chromium-1024x768.json` > inst.
 
 ## Re-test status, builds 1578 / 1579 / 1580 (pass 13, Oct 18 ~12:56-1:45 PM EDT)
@@ -598,14 +598,14 @@ The live build moved during the pass: 1578 at 12:56, 1579 by ~1:05, 1580 by ~1:3
 
 ## New on builds 1578-1580 (pass 13)
 
-### QA-068 [MEDIUM] A DC address from another place puts the pin in the middle of DC, not at the address
+### QA-068 [Fixed on 1599 (verified pass 26)] [MEDIUM] A DC address from another place puts the pin in the middle of DC, not at the address
 - Build 1578 / 1579 | Chromium 375x667, WebKit 1024x576
 - Steps: "Franklin County, OH" > Enter; then "1600 Pennsylvania Ave NW, Washington, DC 20500" > Enter.
 - Expected: the pin and map at the White House (38.8977, -77.0365), as a fresh-load DC address search did on 1568 (zoom 15).
 - Actual: the map centres on 38.8926, -77.0145 at zoom 11 and the pin sits there, about 2 km east of the White House. The title and numbers are right (QA-062 fix).
 - Screenshots: shots/b1577p13-we-1024-addr2-1.png, shots/b1577p13-ch-375-addr2-1.png
 
-### QA-069 [LOW] New York address: title shows a raw id "015/75"
+### QA-069 [Fixed on 1599 (verified pass 26)] [LOW] New York address: title shows a raw id "015/75"
 - Build 1578 | Chromium 375x667, WebKit 1024x576
 - Steps: "Allegheny County, PA" > Enter; then "350 5th Ave, New York, NY 10118" > Enter.
 - Actual: the popup says "New York AD 75 ED 15, Harris 76.0%, Trump 22.1%" and the thumbnails match, but the title (crumb) reads "015/75".
@@ -708,6 +708,21 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Re-test status, builds 1599-1602 (pass 26, live line 9 = 202610181599 at start; Oct 19 ~1:54-2:50 AM EDT)
+- Builds: **1599** (`c19f7a0`, QA-085 recolour in place, QA-006, QA-067, QA-051, QA-061, QA-068, QA-069, QA-086 first try) at the start; **1600/1601** (`06d369f`/`2ad6b2d`, QA-086 name from data-party; 1601 only fixes the build number) by ~2:10 AM; **1602** (`6d73ec1`, QA-084 cached rows keyed by chart mode) by ~2:30 AM. Each item names the build its runs read from `window.BUILD`. No console errors, page errors or failed requests in any pass-26 run. No v3 preview or live URL yet.
+- **QA-086 fixed on 1600/1601:** with the time row closed, a range-chart thumbnail tap now shows the white bubble beside the photo in both engines (WebKit 390 38-44 ms after the tap, Chromium 390 57-64 ms): "Donald Trump 2020" x 11-154, y 89-117 above the photo (x 11-41, y 121-151), "Donald Trump 2024" x 185-328 left of the clock button (x 334-382), "Joe Biden 2020" x 47-159 beside the photo, "Harris ’24" x 212-292. No dark bubble. The orchestrator's `tests/range-bubble-closed.py` failed all 16 closed-row taps on 1599 (run 1:55-2:00 AM, before 1600 landed); my probe on 1601 passes. Shots: shots/b1599p26-we-390x844-rangebub-closed-0.png, shots/b1599p26-ch-390x844-rangebub-closed-1.png. Data: `qa/b1599p26-rangebub-{webkit,chromium}-390x844.json`, `qa/p26-t-rangeclosed.log`.
+- **QA-084 fixed on 1602:** orchestrator `tests/gbar-rows-first-paint.py` 0 fails (cold first visits and bar-then-split, 390 and 320). Layout sweep 390 (Chromium and WebKit, 1602): no transient row on the first-visit split-bar drill-ins (MA, Worcester) or Back. Data: `qa/p26-t-gbar.log`, `qa/b1599p26-layout2-{chromium,webkit}-390.json`.
+- **QA-085 fixed in WebKit, still slow in Chromium (1599-1601):** orchestrator `tests/year-tap-speed.py` (WebKit) 0 fails: 390 state house median 67 ms (1/12 over 100), senate 47, US House 31, county map 48; 375 and 320 the same range (27-68 ms medians, at most 1/12 over 100). Chromium (own `qa/p26-ylat.py`, 1601): 1024x576 state house 125 / 188 / 230 ms (min / median / max, 12 of 12 over 100), state senate 106 / 172 / 353 (12/12); 390 state house 18 / 142 / 170 (11/12), county map 28 / 112 / 212 (7/12). Better than 1598 (196 / 307 / 531 at 1024x576) but still over 100 ms. Shot: shots/b1599p26-ch-1024x576-ylat-PA-statehouse.png. Data: `qa/b1599p26-ylat-chromium-{1024x576,390x844}.json`, `qa/p26-t-yeartap.log`.
+- **QA-006 fixed (1599):** Philadelphia County townships list shows only "Philadelphia city" at all 5 sizes in the smoke flow; orchestrator `tests/qa-batch-1600.py` confirms Rockledge stays in Montgomery County.
+- **QA-067 still open in the real search (1599 and 1601):** the orchestrator's unit check passes (it ranks a 3-item test list), but typing "America" in the institution field (real taps and typing, WebKit 390x844, Chromium 375x667, WebKit 1024x768 on 1601) still lists COUNTRY "United States", **"South Africa"**, then COUNTIES "Amelia County, VA". Both South Africa and Amelia look like loose fuzzy matches shown next to a real match. "Afrika" lists Central African Republic and South Africa (fine). Shots: shots/b1599p26-ch-375x667-inst-America.png, shots/b1601p26-we-1024x768-inst-America.png. Data: `qa/b1599p26-batch-*.json`, script `qa/p26-batch.py`, `qa/p26-067.py`.
+- **QA-068 fixed (1599):** "Franklin County, OH" > Enter, then "1600 Pennsylvania Ave NW, Washington, DC 20500" > Enter: map at 38.8987, -77.0352, zoom 15 (about 150 m from the White House point, was 2 km at zoom 11); title "District of Columbia". WebKit 390 and Chromium 375. Shot: shots/b1599p26-we-390x844-qa068.png
+- **QA-069 fixed (1599):** "Allegheny County, PA", then "350 5th Ave, New York, NY 10118": title reads "New York AD 75 ED 15". Shot: shots/b1599p26-we-390x844-qa069.png
+- **QA-061 fixed (1599):** All States > tap DC > state menu Delaware: crumb "Delaware", bottom field "Delaware" (was "District of Columbia"). Shot: shots/b1599p26-we-390x844-qa061-DE.png
+- **QA-051 fixed (1599):** '16>'20 All States list thumbnails labelled "Joe Biden 2020" / "Donald Trump 2020" (51% / 47%), aria-label and title. Shot: shots/b1599p26-we-390x844-qa051.png
+- **Orchestrator verify list holds (1601/1602):** '16 colours (Chromium 390): US House map 27.2% blue at '16 (Clinton 48% / Trump 46%), PA map 26.3%, PA US House 26.8%, senate 25.1%, state house 24.0%; Philadelphia and Pittsburgh D, rural PA and Lancaster R in every map. PA '16 bar 48.2 / 47.5 / Other 4.4 and pie 48.2 / 47.5 (WebKit 390, 1602; '24 bar 50.4 / 48.7). Rows number-only, names x 52-77 and bars from x 83 in bar, split and range split lists, one bar scale (spread 1.007-1.037), chip clear (no chip issue in the verify run). Data: `qa/b1599p26-{col16,v}-chromium-iphone390.json`, `qa/b1599p26-pa16-webkit-390x844.json`.
+- **Smoke flow, Chromium, all 5 sizes, touch (1601/1602):** institution menu > All States, sort flip, % / #, time row, 2020 and the range, chart menu, PA > Philadelphia > townships, Back, district-type menu, US House (Districts 5 / 3 / 2 from the Philadelphia list), reload restores PA > Philadelphia County list, bar, #, 2024; White House address goes to DC. Numbers unchanged (CA 38.3 / 58.5, PA 50.4 / 48.7). No layout overlaps or off-screen elements. Only tap over 100 ms: All States row at 1024x768 114 ms (QA-007; 86-96 ms at the other sizes). Watch item unchanged: tiny periodic layout shifts after the # tap (0.0003-0.0023 each, every ~250 ms; first names `#laCands`). Data: `qa/b1599p26-flow-chromium-.json`.
+- **Layout sweep 390 (Chromium and WebKit, 1602):** slider, top fields, right buttons, bottom bar and first row did not move on year changes, drill-ins or Back. Only change: row height 30 > 44 px when switching the chart from bar to split bar (expected, same as pass 25).
+
 ## Re-test status, build 1597 (pass 25, live line 9 = 202610181597; Oct 18-19 ~11:55 PM-12:50 AM EDT)
 - Builds: 1597 (`8b3ccbc`, QA-076 name bubble beside the photo) was live at the start; **1598** (`43a3de5`, QA-084 split-bar rows draw at their final height in the first frame) went live at ~12:02 AM EDT mid-pass. Runs from ~12:04 AM on read `window.BUILD` = 202610181598 (each data file records its build). Box quiet, one browser per process; no runs killed. No console errors, page errors, failed requests or HTTP errors in any pass-25 run.
 - **QA-076 fixed (1597, still fixed on 1598):** orchestrator's `tests/icon-bubble.py` on live: 0 fails (WebKit 390x844, 375x667, 320x568, 1024x768; Chromium 390x844; bar, pie and range bar with the time row open). Own probe `qa/p25-bubble.py` (fresh load US 2024 > chart button > Bar > tap Trump, then Harris; also PA): Chromium 390x844, 375x667, 320x568, 1024x576, 1024x768 and WebKit 390x844, 1024x768 all give the same boxes: "Donald Trump" bubble x 92-201, y 115-143 next to the photo at x 12-42, y 114-144; "Kamala Harris" x 92-201, y 159-187 next to the photo at y 158-188; the 50 px gap holds the value label ("49.9%" / "48.4%"), which the bubble no longer covers; inside the screen, over no other photo. PA ('24) same boxes. Range 2020 > 2024 with the time row open (WebKit 390): "Donald Trump 2020" x 12-155, y 150-178 right above the photo (y 182-212), "Harris ’24" x 206-286 left of the photo at x 292-322; none over a photo or label. Shots: shots/b1597p25-ch-390x844-bubble-us-0.png, shots/b1597p25-ch-1024x768-bubble-us-0.png, shots/b1597p25-we-390x844-bubble-pa-1.png, shots/b1597p25-we-390x844-rangebub-open-0.png. Data: `qa/b1597p25-bubble-*.json`, `qa/p25-icon-bubble.log`, `qa/b1597p25-rangebub-*.json`.
@@ -724,7 +739,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - **Layout sweep 390 (Chromium and WebKit, `qa/p25-lay2.py`):** slider, top fields, right buttons and bottom bar did not move on year changes, drill-ins or Back. Only the remaining QA-084 first-visit transient. Chromium 1024x768: same result as 390 (`qa/b1597p25-layout2-chromium-1024x768.json`).
 - **Previews (not v2, not v3), sanity load at Chromium 390x844:** /previews/shadows/ and /previews/compact/ both load (HTTP 200, BUILD 202610181597, title "PREVIEW …", robots noindex,nofollow), no console errors, page errors or failed requests; thumbnails Trump 50% / Harris 48%, map drawn, All States list rows CA 38.3 / 58.5, TX 56.2 / 42.5 (same as v2). Shots: shots/b1597p25-ch-390-preview-{shadows,compact}{,-list}.png. No polish bugs filed (as asked).
 
-### QA-086 [MEDIUM] Range chart with the time row closed: tapping a thumbnail shows no name bubble (WebKit) or the old dark bubble over the clock button (Chromium)
+### QA-086 [Fixed on 1600/1601 (verified pass 26)] [MEDIUM] Range chart with the time row closed: tapping a thumbnail shows no name bubble (WebKit) or the old dark bubble over the clock button (Chromium)
 - Build 1597 and 1598 | WebKit 390x844 and 1024x768 (no bubble), Chromium 390x844 (dark bubble) (touch). With the time row open both engines show the new 1597 bubble correctly.
 - Steps: fresh load (US) > clock button > select 2020 > 2024 > tap the clock button again to close the time row > chart button > Bar > tap a thumbnail (Trump 2020 at left, Trump 2024 / Harris 2024 at right).
 - Expected: the same white name bubble as with the row open / at one year, beside the photo, not over a photo, label, field or button.
@@ -760,14 +775,14 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Seen, not filed: on a first visit the drilled list shows a gray placeholder (skeleton rows, no thumbnails or back chevron) for 230-430 ms while the data loads (both engines); repeat visits draw at once. Looks intended. Shot: shots/b1595p23-we-390-drillgap-OH.png
 - Harness note: the layout sweep's "chart-bar" step does nothing because Bar is already the list's chart, and its "MA" tap at 1024x768 can land on the thumbnail column; `qa/p23-lay2.py` and `qa/p23-rowfr.py` tap the row name instead.
 
-### QA-084 [Partly fixed on 1598 (pass 25): Back and repeat drill-ins clean; first-visit drill-ins still 30 > 44 px] [HIGH] Split bar list: rows first draw at the plain bar height (30 px), then grow to 44 px, so every row below the first drops 14 px per row on each drill-in and Back
+### QA-084 [Fixed on 1602 (verified pass 26)] [HIGH] Split bar list: rows first draw at the plain bar height (30 px), then grow to 44 px, so every row below the first drops 14 px per row on each drill-in and Back
 - Build 1595 (earlier builds not checked) | Chromium 390x844, 1024x576; WebKit 390x844, 1024x768 (touch)
 - Steps: All States list > chart button > Split bar (2024, %) > tap "MA" > tap "Worcester" > Back > Back. (Bar list, same steps: no change.)
 - Expected: the new rows draw once at their final size; nothing moves afterwards.
 - Actual: the new list first draws with 30 px rows (row tops 122 / 152 / 182) and then switches to 44 px rows (122 / 166 / 210): row 2 moves down 14 px, row 3 28 px, row n 14 x (n−1) px (Nantucket, the 14th MA row, about 182 px). How long the short rows stay up: WebKit 390: drill-in 346 / 326 ms on a first visit, Back 19-22 ms, repeat drill-ins flip twice (30 > 44 > 30 > 44, 20-85 ms each). WebKit 1024x768: drill-in 531 / 324 ms, Back 84 / 91 ms, repeats 21-54 ms. Chromium 390: drill-in 200 / 183 ms, Back 6-20 ms, repeats 12-13 ms. Chromium 1024x576: drill-in 150 / 229 ms, Back 12-19 ms, repeats 11-17 ms. In WebKit's long first-visit phase the short rows are a faded single stacked bar per row with names cut to "M…", "W…", and no thumbnails or back chevron, and then the split bars appear (see the mid shot).
 - Shots: shots/b1595p23-we-390-rowfr-gbar-drillMA-0-mid.png (short rows, ~210 ms), shots/b1595p23-we-390-rowfr-gbar-drillMA-0-end.png (final). Data: `qa/b1595p23-rowfr-{webkit-390x844,webkit-1024x768,chromium-390x844,chromium-1024x576}.json` (per-frame tops and heights of the first 3 rows), script `qa/p23-rowfr.py`
 
-### QA-085 [HIGH (slow tap)] Year taps on Pennsylvania's district-type maps take 150-425 ms to paint
+### QA-085 [WebKit fixed on 1599; Chromium still 140-190 ms medians (pass 26)] [HIGH (slow tap)] Year taps on Pennsylvania's district-type maps take 150-425 ms to paint
 - Build 1595 (pass 21's '16-colour run on 1592-1594 at 390 already logged 131-335 ms for these taps, not filed then) | Chromium 1024x576, 390x844; WebKit 390x844 (touch)
 - Steps: geo field "Pennsylvania" + Enter > district-type button > State house (or State senate, US House) > close the row > clock button > tap '16, '24, '20, '24 on the slider (x3).
 - Expected: under 100 ms from tap to next paint.
