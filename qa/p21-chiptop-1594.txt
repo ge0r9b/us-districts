@@ -1,0 +1,4 @@
+# pass 21, build 1594, All States list at 390x844, #laSort top after setting listView.scrollTop and waiting 900 ms (qa/p21-chiptop.py)
+chromium: 15>111  20>111  22>109  25>106  28>111  30>111  35>111  0>111   (inline style "top: 109px" / "top: 106px")
+webkit:   15>111  20>111  22>109  25>106  28>111  30>111  35>111  0>111
+# touch drags at 390 Chromium (qa/p21-drag.py): start chip 111-133, row 122; drag 40 > scrollTop 25, chip 106-128; drag 40 > 50, chip 111; drag -80 > 0, chip 111; drag 20 > 5, chip 111

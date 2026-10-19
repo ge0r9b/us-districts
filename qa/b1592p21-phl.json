@@ -1,0 +1,50 @@
+{
+ "PA counties": {
+  "ids": [
+   "t24",
+   "h24"
+  ],
+  "t24": [
+   [
+    "Philadelphia County",
+    144311
+   ]
+  ],
+  "h24": [
+   [
+    "Philadelphia County",
+    568571
+   ]
+  ],
+  "tot": [
+   [
+    "Philadelphia County",
+    721441
+   ]
+  ]
+ },
+ "Philadelphia towns": {
+  "ids": [
+   "t24",
+   "h24"
+  ],
+  "t24": [
+   [
+    "Philadelphia County",
+    721441
+   ]
+  ],
+  "h24": [
+   [
+    "Philadelphia County",
+    721441
+   ]
+  ],
+  "tot": [
+   [
+    "Philadelphia County",
+    568571
+   ]
+  ]
+ }
+}

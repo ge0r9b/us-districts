@@ -1,0 +1,1239 @@
+{
+ "iphone390": {
+  "lat": {
+   "open_institution": 88,
+   "list_all_states": 121,
+   "sort_flip": 77,
+   "sort_flip_back": 15,
+   "num_toggle": 69,
+   "num_pick": 32,
+   "time_open": 47,
+   "chart_menu": 6,
+   "chart_gbar": 41,
+   "chart_menu_re": 35,
+   "chart_line": 10,
+   "chart_menu_single": 16,
+   "drill_PA": 10,
+   "drill_county": 13,
+   "drill_town": 12,
+   "back": 397,
+   "type_menu": 20,
+   "type_ushouse": 129,
+   "type_deselect": 74
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "191K x School districts",
+     "249K x School districts"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6106,
+   "list_all_states": 7807,
+   "sort_flip": 13107,
+   "sort_flip_back": 14501,
+   "num_toggle": 16778,
+   "time_open": 20715,
+   "chart_menu": 28468,
+   "chart_gbar": 29537,
+   "chart_menu_re": 32226,
+   "chart_line": 33204,
+   "chart_menu_single": 38895,
+   "back": 58010,
+   "type_menu": 61717,
+   "type_ushouse": 63054,
+   "type_deselect": 67363
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 3.47M",
+   "OH | 3.15M",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M | \u2212614K",
+   "NY | R +953K | \u2212626K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[",
+  "county_rows": [
+   "Los Angeles | 1.19M | 2.42M",
+   "San Diego | 841K",
+   "Orange",
+   "Riverside | 940K",
+   "San Bernardino | 762K",
+   "Santa Clara | 750K",
+   "Alameda | 670K",
+   "Sacramento | 657K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "town_rows": [
+   "Los Angeles city | 370K | 977K",
+   "Long Beach city | 176K",
+   "Santa Clarita city | 115K",
+   "Glendale city | 75K",
+   "Torrance city | 69K",
+   "Pasadena city | 65K",
+   "Lancaster city | 54K",
+   "Palmdale city | 54K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles city\",1393072],[\"Long Beach city\",176015],[\"Santa Clarita city\",115077],[\"Glendale city\",74708],[\"Torrance city",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "ushouse_rows": [
+   "3 | 218K | 202K",
+   "40 | 194K | 185K",
+   "2 | 277K",
+   "36 | 111K | 262K",
+   "49 | 172K | 202K",
+   "5 | 219K | 152K",
+   "10 | 119K | 247K",
+   "19 | 117K | 246K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[38.7883,-119.0918,5]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[38.7883,-119.0918,5]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone375": {
+  "lat": {
+   "open_institution": 80,
+   "list_all_states": 124,
+   "sort_flip": 18,
+   "sort_flip_back": 15,
+   "num_toggle": 16,
+   "num_pick": 42,
+   "time_open": 48,
+   "chart_menu": 17,
+   "chart_gbar": 12,
+   "chart_menu_re": 5,
+   "chart_line": 11,
+   "chart_menu_single": 8,
+   "drill_PA": 4,
+   "drill_county": 15,
+   "drill_town": 8,
+   "back": 393,
+   "type_menu": 24,
+   "type_ushouse": 109,
+   "type_deselect": 56
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "187K x School districts",
+     "166K x State house",
+     "166K x School districts",
+     "167K x School districts",
+     "182K x State house",
+     "182K x School districts"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5953,
+   "list_all_states": 7666,
+   "sort_flip": 12982,
+   "sort_flip_back": 14353,
+   "num_toggle": 16624,
+   "time_open": 20475,
+   "chart_menu": 28146,
+   "chart_gbar": 29196,
+   "chart_menu_re": 31860,
+   "chart_line": 32825,
+   "chart_menu_single": 38515,
+   "back": 57552,
+   "type_menu": 61220,
+   "type_ushouse": 62594,
+   "type_deselect": 66925
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 3.47M",
+   "OH | 3.15M",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M | \u2212614K",
+   "NY | R +953K | \u2212626K",
+   "TX | R +927K | +503K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M",
+   "NC | 2.90M",
+   "MI"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[",
+  "county_rows": [
+   "Los Angeles | 1.19M | 2.42M",
+   "San Diego",
+   "Orange",
+   "Riverside | 940K",
+   "San Bernardino | 762K",
+   "Santa Clara | 750K",
+   "Alameda | 670K",
+   "Sacramento | 657K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "town_rows": [
+   "Los Angeles city | 370K | 977K",
+   "Long Beach city | 176K",
+   "Santa Clarita city | 115K",
+   "Glendale city | 75K",
+   "Torrance city | 69K",
+   "Pasadena city | 65K",
+   "Lancaster city | 54K",
+   "Palmdale city | 54K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles city\",1393072],[\"Long Beach city\",176015],[\"Santa Clarita city\",115077],[\"Glendale city\",74708],[\"Torrance city",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "ushouse_rows": [
+   "3 | 218K | 202K",
+   "40 | 194K | 185K",
+   "2 | 277K",
+   "36 | 262K",
+   "49 | 172K | 202K",
+   "5 | 219K | 152K",
+   "10 | 247K",
+   "19 | 246K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[40.159,-118.8671,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[40.159,-118.8671,4]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "iphone320": {
+  "lat": {
+   "open_institution": 91,
+   "list_all_states": 126,
+   "sort_flip": 17,
+   "sort_flip_back": 29,
+   "num_toggle": 6,
+   "num_pick": 29,
+   "time_open": 42,
+   "chart_menu": 12,
+   "chart_gbar": 23,
+   "chart_menu_re": 6,
+   "chart_line": 10,
+   "chart_menu_single": 15,
+   "drill_PA": 4,
+   "drill_county": 20,
+   "drill_town": 7,
+   "back": 413,
+   "type_menu": 19,
+   "type_ushouse": 88,
+   "type_deselect": 60
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [
+     "19 x School districts",
+     "246K x State house",
+     "50 x School districts",
+     "125K x State house",
+     "125K x School districts",
+     "235K x State house"
+    ],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 5968,
+   "list_all_states": 7682,
+   "sort_flip": 12949,
+   "sort_flip_back": 14304,
+   "num_toggle": 16574,
+   "time_open": 20367,
+   "chart_menu": 27959,
+   "chart_gbar": 29012,
+   "chart_menu_re": 31673,
+   "chart_line": 32639,
+   "chart_menu_single": 38315,
+   "back": 57384,
+   "type_menu": 61052,
+   "type_ushouse": 62366,
+   "type_deselect": 66625
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 5.24M",
+   "PA",
+   "IL",
+   "OH",
+   "MI"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M",
+   "FL | R +1.06M",
+   "NY | R +953K",
+   "TX | R +927K",
+   "NJ | R +473K",
+   "IL | R +411K",
+   "MA | R +340K",
+   "MI | R +234K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 4.62M",
+   "PA",
+   "OH",
+   "NC",
+   "MI"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[",
+  "county_rows": [
+   "Los Angeles | 2.42M",
+   "San Diego",
+   "Orange",
+   "Riverside | 940K",
+   "San Bernardino | 762K",
+   "Santa Clara | 750K",
+   "Alameda | 670K",
+   "Sacramento | 657K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "town_rows": [
+   "Los Angeles city | 977K",
+   "Long Beach city | 176K",
+   "Santa Clarita city | 115K",
+   "Glendale city | 75K",
+   "Torrance city | 69K",
+   "Pasadena city | 65K",
+   "Lancaster city | 54K",
+   "Palmdale city | 54K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles city\",1393072],[\"Long Beach city\",176015],[\"Santa Clarita city\",115077],[\"Glendale city\",74708],[\"Torrance city",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "ushouse_rows": [
+   "3 | 218K | 202K",
+   "40 | 194K | 185K",
+   "2 | 277K",
+   "36 | 262K",
+   "49 | 172K | 202K",
+   "5 | 219K | 152K",
+   "10 | 247K",
+   "19 | 246K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[40.159,-118.8671,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[40.159,-118.8671,4]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x576": {
+  "lat": {
+   "open_institution": 86,
+   "list_all_states": 126,
+   "sort_flip": 35,
+   "sort_flip_back": 30,
+   "num_toggle": 6,
+   "num_pick": 27,
+   "time_open": 47,
+   "chart_menu": 24,
+   "chart_gbar": 13,
+   "chart_menu_re": 40,
+   "chart_line": 14,
+   "chart_menu_single": 17,
+   "drill_PA": 7,
+   "drill_county": 16,
+   "drill_town": 16,
+   "back": 453,
+   "type_menu": 25,
+   "type_ushouse": 91,
+   "type_deselect": 62
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6045,
+   "list_all_states": 7782,
+   "sort_flip": 13114,
+   "sort_flip_back": 14534,
+   "num_toggle": 16803,
+   "time_open": 20747,
+   "chart_menu": 28534,
+   "chart_gbar": 29653,
+   "chart_menu_re": 32382,
+   "chart_line": 33353,
+   "chart_menu_single": 39095,
+   "back": 58394,
+   "type_menu": 62129,
+   "type_ushouse": 63557,
+   "type_deselect": 67936
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3% | 26.1%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 2.45M | 3.47M",
+   "OH | 3.15M | 2.68M",
+   "MI | 2.65M | 2.80M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | +85K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | +84K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[",
+  "county_rows": [
+   "Los Angeles | 1.19M | 2.42M",
+   "San Diego | 593K | 841K",
+   "Orange | 655K | 692K",
+   "Riverside | 464K | 452K | 940K",
+   "San Bernardino | 378K | 362K | 762K",
+   "Santa Clara | 211K | 511K | 750K",
+   "Alameda | 500K | 670K",
+   "Sacramento | 252K | 382K | 657K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "town_rows": [
+   "Los Angeles city | 370K | 977K",
+   "Long Beach city | 120K | 176K",
+   "Santa Clarita city | 54K | 57K | 115K",
+   "Glendale city | 75K",
+   "Torrance city | 69K",
+   "Pasadena city | 65K",
+   "Lancaster city | 54K",
+   "Palmdale city | 54K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles city\",1393072],[\"Long Beach city\",176015],[\"Santa Clarita city\",115077],[\"Glendale city\",74708],[\"Torrance city",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "ushouse_rows": [
+   "3 | 218K | 202K",
+   "40 | 194K | 185K",
+   "2 | 100K | 277K",
+   "36 | 111K | 262K",
+   "49 | 172K | 202K",
+   "5 | 219K | 152K",
+   "10 | 119K | 247K",
+   "19 | 117K | 246K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[40.159,-118.8671,4]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[37.4211,-119.27,5]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ },
+ "ipad1024x768": {
+  "lat": {
+   "open_institution": 95,
+   "list_all_states": 157,
+   "sort_flip": 48,
+   "sort_flip_back": 13,
+   "num_toggle": 13,
+   "num_pick": 33,
+   "time_open": 49,
+   "chart_menu": 9,
+   "chart_gbar": 22,
+   "chart_menu_re": 15,
+   "chart_line": 13,
+   "chart_menu_single": 6,
+   "drill_PA": 11,
+   "drill_county": 33,
+   "drill_town": 26,
+   "back": 413,
+   "type_menu": 28,
+   "type_ushouse": 91,
+   "type_deselect": 58
+  },
+  "layout": {
+   "map": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "inst_menu": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "allstates_num": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "delta": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_gbar_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "chart_line_range": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "PA_counties": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "county_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "town_level": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "ushouse": {
+    "over": [],
+    "clip": [],
+    "off": []
+   }
+  },
+  "notes": [],
+  "t": {
+   "open_institution": 6078,
+   "list_all_states": 7865,
+   "sort_flip": 13286,
+   "sort_flip_back": 14719,
+   "num_toggle": 16988,
+   "time_open": 21073,
+   "chart_menu": 29043,
+   "chart_gbar": 30230,
+   "chart_menu_re": 32960,
+   "chart_line": 33927,
+   "chart_menu_single": 39713,
+   "back": 59058,
+   "type_menu": 62789,
+   "type_ushouse": 64253,
+   "type_deselect": 68677
+  },
+  "rows_default": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.2% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.7% | 56.3%",
+   "PA | 50.4% | 48.7%",
+   "OH | 55.2% | 43.9%",
+   "NC | 51.0% | 47.8%",
+   "MI | 49.7% | 48.3%"
+  ],
+  "sortinfo": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[\"North Carolina\",5679647],[\"Michigan\",5662504],[\"Illinois\",5592368],[\"Georgia\",5250047],[\"Virginia\",",
+  "rows_flipped": [
+   "WY | 72.3% | 26.1%",
+   "DC | 90.3%",
+   "AK | 54.5% | 41.4%",
+   "ND | 67.5% | 30.8%",
+   "VT | 32.6% | 64.4%",
+   "SD | 63.4% | 34.2%",
+   "RI | 42.0% | 55.8%",
+   "DE | 41.9% | 56.6%"
+  ],
+  "num_after_tap": "pct",
+  "num_mode": "num",
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "time": {
+   "min": "0",
+   "max": "2",
+   "v": "2",
+   "hidden": false
+  },
+  "ymode_2020": "2020",
+  "rows_2020": [
+   "CA | 6.01M | 11.11M",
+   "TX | 5.89M | 5.26M",
+   "FL | 5.67M | 5.30M",
+   "NY | 3.25M | 5.24M",
+   "PA | 3.38M | 3.46M",
+   "IL | 2.45M | 3.47M",
+   "OH | 3.15M | 2.68M",
+   "MI | 2.65M | 2.80M"
+  ],
+  "ymode_range": "delta",
+  "rows_delta": [
+   "CA | R +1.91M | \u22121.83M | +124K",
+   "FL | R +1.06M | +441K | \u2212614K",
+   "NY | R +953K | +327K | \u2212626K | \u2212122K",
+   "TX | R +927K | +503K | \u2212424K",
+   "NJ | R +473K | +85K | \u2212388K",
+   "IL | R +411K | \u2212409K",
+   "MA | R +340K | +84K | \u2212256K",
+   "MI | R +234K | +167K"
+  ],
+  "chart_opts": [
+   "gbar",
+   "line"
+  ],
+  "chart_mode": [
+   [
+    "gbar",
+    "gbar"
+   ],
+   [
+    "line",
+    "line"
+   ]
+  ],
+  "ymode_single": "2024",
+  "chart_opts_single": [
+   "gbar"
+  ],
+  "chart_now": "bar",
+  "PA_rows": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M",
+   "NC | 2.90M | 2.72M",
+   "MI | 2.82M | 2.74M"
+  ],
+  "PA_info": "{\"on\":true,\"pend\":false,\"lv\":\"states\",\"sort\":\"desc\",\"sc\":\"t24\",\"order\":[[\"California\",15862536],[\"Texas\",11380105],[\"Florida\",10893547],[\"New York\",8198094],[\"Pennsylvania\",7034206],[\"Ohio\",5765017],[",
+  "county_rows": [
+   "Los Angeles | 1.19M | 2.42M",
+   "San Diego | 593K | 841K",
+   "Orange | 655K | 692K",
+   "Riverside | 464K | 452K | 940K",
+   "San Bernardino | 378K | 362K | 762K",
+   "Santa Clara | 211K | 511K | 750K",
+   "Alameda | 500K | 670K",
+   "Sacramento | 252K | 382K | 657K"
+  ],
+  "county_info": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "town_rows": [
+   "Los Angeles city | 370K | 977K",
+   "Long Beach city | 120K | 176K",
+   "Santa Clarita city | 54K | 57K | 115K",
+   "Glendale city | 75K",
+   "Torrance city | 69K",
+   "Pasadena city | 65K",
+   "Lancaster city | 54K",
+   "Palmdale city | 54K"
+  ],
+  "town_info": "{\"on\":true,\"pend\":false,\"lv\":\"townships\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles city\",1393072],[\"Long Beach city\",176015],[\"Santa Clarita city\",115077],[\"Glendale city\",74708],[\"Torrance city",
+  "after_back": "{\"on\":true,\"pend\":false,\"lv\":\"counties\",\"sort\":\"desc\",\"sc\":\"h24\",\"order\":[[\"Los Angeles County\",3728427],[\"San Diego County\",1477786],[\"Orange County\",1390965],[\"Riverside County\",940405],[\"San Bernar",
+  "ushouse_rows": [
+   "3 | 218K | 202K",
+   "40 | 194K | 185K",
+   "2 | 100K | 277K",
+   "36 | 111K | 262K",
+   "49 | 172K | 202K",
+   "5 | 219K | 152K",
+   "10 | 119K | 247K",
+   "19 | 117K | 246K"
+  ],
+  "restore": [
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"counties\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[38.8023,-119.0869,5]}",
+   "{\"v\":1,\"top\":\"President\",\"st\":\"California\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"num\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[38.8023,-119.0869,5]}",
+   false
+  ],
+  "addr_sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "addr_result": {
+   "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+   "val": "",
+   "st": "",
+   "co": "",
+   "pop": []
+  },
+  "cls": 0,
+  "shifts": [],
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ }
+}

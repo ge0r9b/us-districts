@@ -1,0 +1,238 @@
+{
+ "iphone390": {
+  "iss": [
+   "Pennsylvania bar at 16a (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania bar at 24 (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania bar at 16b (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania bar at 20 (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania bar at 16c (ymode 2024, chartMode bar): chart blank",
+   "#chartBox .cmain: not visible",
+   "#chartBox .copts button[data-ch=pie]: not visible",
+   "Pennsylvania pie at 16a (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania pie at 24 (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania pie at 16b (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania pie at 20 (ymode 2024, chartMode bar): chart blank",
+   "Pennsylvania pie at 16c (ymode 2024, chartMode bar): chart blank",
+   "Alabama bar at 16a (ymode 2024, chartMode None): chart blank",
+   "Alabama bar at 24 (ymode 2024, chartMode None): chart blank",
+   "Alabama bar at 16b (ymode 2024, chartMode None): chart blank",
+   "Alabama bar at 20 (ymode 2024, chartMode None): chart blank",
+   "Alabama bar at 16c (ymode 2024, chartMode None): chart blank",
+   "Alabama pie at 16a (ymode 2024, chartMode pie): chart blank",
+   "Alabama pie at 24 (ymode 2024, chartMode pie): chart blank",
+   "Alabama pie at 16b (ymode 2024, chartMode pie): chart blank",
+   "Alabama pie at 20 (ymode 2024, chartMode pie): chart blank",
+   "Alabama pie at 16c (ymode 2024, chartMode pie): chart blank"
+  ],
+  "lat": {},
+  "y16_Pennsylvania_bar": [
+   [
+    "16a",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "24",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "16b",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "20",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "16c",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ]
+  ],
+  "y16_Pennsylvania_pie": [
+   [
+    "16a",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "24",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "16b",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "20",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ],
+   [
+    "16c",
+    "2024",
+    "bar",
+    null,
+    [
+     null,
+     null,
+     null
+    ],
+    false
+   ]
+  ],
+  "y16_Alabama_bar": [
+   [
+    "16a",
+    "2024",
+    null,
+    null,
+    [],
+    false
+   ],
+   [
+    "24",
+    "2024",
+    null,
+    null,
+    [],
+    false
+   ],
+   [
+    "16b",
+    "2024",
+    null,
+    null,
+    [],
+    false
+   ],
+   [
+    "20",
+    "2024",
+    null,
+    null,
+    [],
+    false
+   ],
+   [
+    "16c",
+    "2024",
+    null,
+    null,
+    [],
+    false
+   ]
+  ],
+  "y16_Alabama_pie": [
+   [
+    "16a",
+    "2024",
+    "pie",
+    null,
+    [],
+    false
+   ],
+   [
+    "24",
+    "2024",
+    "pie",
+    null,
+    [],
+    false
+   ],
+   [
+    "16b",
+    "2024",
+    "pie",
+    null,
+    [],
+    false
+   ],
+   [
+    "20",
+    "2024",
+    "pie",
+    null,
+    [],
+    false
+   ],
+   [
+    "16c",
+    "2024",
+    "pie",
+    null,
+    [],
+    false
+   ]
+  ],
+  "menus": {}
+ }
+}
