@@ -1,0 +1,21 @@
+OK   chromium thumbnail tap still toggles the candidate (and back) 
+OK   chromium Philadelphia: townships list 
+OK   chromium Philadelphia > US House: list of the county's US House districts ['District 02', 'District 03', 'District 05'] 
+OK   chromium Philadelphia: deselect US House -> townships list again 
+OK   chromium no page errors 
+OK   chromium thumbnail tap still toggles the candidate (and back) 
+OK   chromium Allegheny: townships list 
+OK   chromium Allegheny > US House: list of the county's US House districts ['District 12', 'District 17'] 
+OK   chromium Allegheny: deselect US House -> townships list again 
+OK   chromium no page errors 
+OK   webkit thumbnail tap still toggles the candidate (and back) 
+OK   webkit Philadelphia: townships list 
+OK   webkit Philadelphia > US House: list of the county's US House districts ['District 02', 'District 03', 'District 05'] 
+OK   webkit Philadelphia: deselect US House -> townships list again 
+OK   webkit no page errors 
+OK   webkit thumbnail tap still toggles the candidate (and back) 
+OK   webkit Allegheny: townships list 
+OK   webkit Allegheny > US House: list of the county's US House districts ['District 12', 'District 17'] 
+OK   webkit Allegheny: deselect US House -> townships list again 
+OK   webkit no page errors 
+FAILS 0
