@@ -10,7 +10,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['chromium','webkit'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch()
-      for st,co,city,chart in [('Florida','Miami-Dade','Miami city','bar'),('Texas','Harris','Houston city',None)]:
+      for st,co,city,chart in [('Florida','Miami-Dade','Miami city','bar'),('Texas','Harris','Houston city',None),('Colorado','Denver','Denver',None),('Minnesota','Hennepin','Minneapolis','bar'),('Virginia','Fairfax County','Vienna',None),('Washington','King','Seattle',None)]:
         c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(4000)
         await pg.touchscreen.tap(*(await pg.evaluate(CEN,'#gq'))); await pg.wait_for_timeout(500); await pg.evaluate("()=>document.getElementById('gq').focus()"); await pg.keyboard.type(st,delay=20); await pg.keyboard.press("Enter"); await pg.wait_for_timeout(4000)
