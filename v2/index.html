@@ -2790,7 +2790,7 @@ LYR.push(["N","none","Counties"]); TYPE_LBL.none="County";
 const lyrClose=()=>{ lrow.hidden=true; const lb=document.getElementById("bLyr"); if(lb) lb.classList.remove("on"); try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); };
 window.__lyrClose=lyrClose;
 lrow.querySelectorAll(".lbtn").forEach(b=>{ b.onclick=()=>{ const k=b.dataset.k, open=!lrow.hidden;
-    if(open&&ltype===k&&b.classList.contains("on")){ setType("counties"); drawNat(); try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); return; } /* build 1565: tapping the selected type deselects it (default counties/towns/precincts view), menu stays open */
+    if(open&&ltype===k&&b.classList.contains("on")){ setType("none"); drawNat(); /* build 1618 (user): a deselected type goes back to the zoom-dependent heat (state, county, precinct), not the plain counties type */ try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); return; } /* build 1565: tapping the selected type deselects it (default counties/towns/precincts view), menu stays open */
     if(["ushouse","senate","statehouse","schools"].includes(k)) try{ localStorage.setItem("v2.lastType",k); }catch(e){}
     setType(open?k:(ltype===k?"none":k)); drawNat(); if(!open){ lyrClose(); return; } try{ syncLetters(); }catch(e){} window.__lyrSync&&window.__lyrSync(); }; });
 { let eat=0; const inMenu=t=>!!(t&&t.closest&&(t.closest("#lyrRow")||t.closest("#bLyr")));
