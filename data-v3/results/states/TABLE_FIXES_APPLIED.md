@@ -48,3 +48,16 @@ c17c59d7b058d3901d6abd5982bf723b6b5ed650779458d9241ac6741c9afc58  ma24_president
 99c6631d85f465634198ff9c01107d17dd61080ad3ceefb93fb1851427458029  wi20_post_recount.pdf
 ```
 URLs: https://elections.cdn.sos.ca.gov/sov/2020-general/sov/18-presidential.xlsx ; https://elections.wi.gov/sites/default/files/legacy/County%2520by%2520County%2520Report%2520-%2520President%2520of%2520the%2520United%2520States%2520post%2520recount.pdf ; https://www.sos.alabama.gov/sites/default/files/election-2020/Final%20Canvass%20of%20Results-Merged.pdf ; https://enr.indianavoters.in.gov/archive/2020General/download/AllOfficeResults.csv ; https://electionstats.state.ma.us/elections/download/165300/precincts_include:0/
+
+## QA-100 / QA-101 New York county rows (Oct 19 2026)
+NY county triples in `v2/data/election{2016,2020,2024}.js` replaced with NYS Board of Elections county results (all 62 keys per year, NY only). d = all Democratic-nominee lines (DEM+WOR, 2016 also WEP), r = Trump REP+CON, total = every candidate incl. write-ins/scattering (official Total Votes − Blank − Void). Sources: NYSBOE results database contests 1650 (2016), 308 (2020), 5591 (2024) county CSVs and official documents 116 / 128 / 476 (2016 county CSV lacks the Trump columns, so 2016 r is taken from doc 116 pp.2-3; internal check: CSV candidates + Trump = Total−Blank−Void in all 62 counties). Corrected rows: `ny/ny_counties_{year}.csv`; script `ny/build.py`.
+
+| Year | Before (D / R / total) | After | FEC D / R / total |
+|---|---|---|---|
+| 2016 | 4,556,131 / 2,819,552 / 7,720,570 | 4,556,118 / 2,819,533 / 7,721,442 | 4,556,118 / 2,819,533 / 7,721,442 |
+| 2020 | 5,244,886 / 3,251,997 / 8,618,852 | 5,244,886 / 3,251,997 / 8,616,861 | NYSBOE 5,244,886 / 3,251,997 / 8,616,861 |
+| 2024 | 4,619,195 / 3,578,899 / 8,198,094 | 4,619,543 / 3,579,519 / 8,263,474 | 4,619,195 / 3,578,899 / 8,262,495 |
+
+- 2024: total was d+r in all 62 counties (other candidates dropped), so every NY county summed to 100% (Kings 72.0/28.0 → 70.9/27.6). d/r fusion lines were already correct, except Allegany (+319 / +599) and Nassau (+29 / +21), where NYSBOE's Feb-2025 compiled certified document 476 is higher than the FEC table; NYSBOE used.
+- 2016: v2 county rows were VEST precinct sums (precincts assigned to nearest county), which shifted votes among Bronx/Kings/Queens/New York/Nassau/Westchester (9 counties d/r off, up to 4,549 D); now official.
+- 2020: d/r unchanged; totals differed in 41 counties (VEST write-in field incl. blank/void); now official.
