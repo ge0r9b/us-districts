@@ -4232,5 +4232,31 @@ html body .tlab svg text { fill: #fff !important; }
   /* build 1586 (live 1585: PA/AL '16 pie and bar blank): coming back to '16 when the 2016 files are already loaded never re-added y16d, so the chart stayed display:none. Re-check whenever the body class changes. */
   new MutationObserver(()=>{ try{ window.__ok16(); }catch(e){} }).observe(document.body,{attributes:true,attributeFilter:["class"]}); { const _l=window.__load16; window.__load16=k=>{ const r=_l(k); try{ window.__ok16(); }catch(e){} return r; }; }
 })();</script>
+<style id="metalCss">
+/* PREVIEW preview/shadows (user, 18 Oct 6:04 PM + 7:23 PM): pressed-metal Liquid Glass buttons, faint thumbnail shadow, subtle chart shadows,
+   unselected buttons clearer instead of blurred, text fields opaque white. CSS only: no new backdrop-filter, nothing animated. */
+html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr) {
+  background: radial-gradient(120% 90% at 30% 20%, rgba(255,255,255,.30) 0%, rgba(255,255,255,.10) 55%, rgba(255,255,255,.04) 100%) !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;   /* unselected: no blur, the map shows through */
+  border: 2px solid rgba(0,0,0,.92) !important; border-width: 2px !important; background-clip: padding-box !important;   /* thick dark rim */
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.95),          /* top bevel highlight */
+              inset 0 -2px 2px rgba(0,0,0,.30),               /* lower bevel shade */
+              inset 0 0 0 1px rgba(255,255,255,.35),          /* inner metal edge */
+              2px 3px 0 rgba(0,0,0,.55),                      /* crisp drop shadow, down and right */
+              3px 5px 8px rgba(0,0,0,.22) !important;         /* soft depth */
+}
+html body :is(#barTime #bTime, .rbtn, #bGeo, .xrow .lbtn, #bLyr):is(.on, .typed) {
+  border: 2px solid rgba(0,0,0,.95) !important; border-width: 2px !important;
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.38), inset 0 -2px 2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.22),
+              2px 3px 0 rgba(0,0,0,.55), 3px 5px 8px rgba(0,0,0,.26) !important;
+}
+/* text fields: always opaque white, never see-through or blurred */
+.v2bar { background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+/* faint shadow under the answer thumbnails */
+#cands .cand img, #laCands .lact img, .dmt { box-shadow: 0 1px 3px rgba(0,0,0,.22), 0 0 1px rgba(0,0,0,.18); }
+/* very subtle shadow on solid bars, pie slices and lines */
+.sbw .sg, .gbt i, .dmb i, .sebx i, .cbt i { box-shadow: 0 1px 1.5px rgba(0,0,0,.16); }
+.cpie1 svg, .cpieL svg, .lnw svg, .clinechart svg { filter: drop-shadow(0 1px 1px rgba(0,0,0,.18)); }
+</style>
 </body>
 </html>
