@@ -762,3 +762,9 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **QA passes 23–24:** new QA-084 HIGH (split-bar rows draw at 30 px then 44 px) and QA-085 HIGH (year taps on PA district-type maps 150–425 ms). Both are v3 gates in MIGRATION_CHECKLIST.
 - **main now has `previews/shadows/` and `previews/compact/`** (noindex, built by `tools/mkpreview.py`, loading v2 data). They're proposals until a v2 build adopts them.
 
+
+### 9.12 Drift check, Oct 19, 2026 02:00 EDT (us-districts main c19f7a0 Build 1599; qa/bugs 136695c; ge0r9b/v3 v3/build 8324e6f)
+- **No data or field changes.** Builds 1598–1599 touch only `v2/index.html` and tests, and every data/* branch is unchanged on both repos. Still no v2.0 tag.
+- **Build 1598:** split-bar rows draw at 44 px in the first frame (QA-084, partly verified in pass 25).
+- **Build 1599:** year taps recolour district maps in place and prefetch other years when the time row opens (QA-085), boundary slivers drop out of county town lists (QA-006), fuzzy search only as a fallback (QA-067), plus QA-051, QA-061, QA-068, QA-069 and QA-086 fixes. The sliver rule needs a minimum-overlap threshold in the county-to-town overlap the loader bakes into the pack.
+- **v3/build 8324e6f:** year changes restyle the loaded map with feature-state (no tile reload) and split rows are locked at 44 px; perf:client now checks both. This covers the QA-084 and QA-085 gates for state, county and US House; PA state legislative maps and WebKit first visits are still to be checked.
