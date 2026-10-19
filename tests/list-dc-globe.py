@@ -12,7 +12,7 @@ ST="""()=>({list:document.body.classList.contains('listmode'),crumbs:(document.g
  thumbs:[...document.querySelectorAll('.cand,#laCands .lact')].filter(e=>e.offsetParent).map(e=>(e.getAttribute('aria-label')||'')+' '+e.innerText.replace(/\\n/g,' ')).slice(0,4).join(' / '),
  z:map.getZoom(),c:[+map.getCenter().lat.toFixed(2),+map.getCenter().lng.toFixed(2)]})"""
 ADDR="1600 Pennsylvania Ave NW, Washington, DC 20500"
-XA={'wdc':"1600 Pennsylvania Ave NW, Washington, DC 20500",'phx':"1700 W Washington St, Phoenix, AZ 85007",'tlh':"400 S Monroe St, Tallahassee, FL 32399",'aus':"1100 Congress Ave, Austin, TX 78701"}
+XA={'wdc':"1600 Pennsylvania Ave NW, Washington, DC 20500",'phx':"1700 W Washington St, Phoenix, AZ 85007",'tlh':"400 S Monroe St, Tallahassee, FL 32399",'aus':"1100 Congress Ave, Austin, TX 78701",'z90':'90210','z55':'55155','z43':'43215','a43':'1 Capitol Square, Columbus, OH 43215'}
 def dcnums(a):
   pc=[int(x) for x in re.findall(r'(\d+)(?:\.\d)?\s*%',a['thumbs'])]
   return any(x>=85 for x in pc) and not any(45<=x<=55 for x in pc)
@@ -31,7 +31,7 @@ async def main():
   async with async_playwright() as p:
     for eng in [e for e in ['webkit','chromium'] if not os.environ.get('ONLY') or e==os.environ['ONLY']]:
       b=await getattr(p,eng).launch(); ref=None; REF={}
-      for sc in [s for s in ['back','usglobe','map-wdc','dcrow','dcaddr','map-phx','list-phx','map-tlh','list-tlh','map-aus','list-aus'] if not os.environ.get('SC') or s in os.environ['SC']]:
+      for sc in [s for s in ['back','usglobe','map-wdc','dcrow','dcaddr','map-phx','list-phx','map-tlh','list-tlh','map-aus','list-aus','map-z90','list-z90','map-z55','list-z55','map-z43','list-z43','map-a43'] if not os.environ.get('SC') or s in os.environ['SC']]:
         c=await b.new_context(viewport={'width':390,'height':844},device_scale_factor=2,has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
         await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(4500)
         tap=lambda s: pg.evaluate(CEN,s)
@@ -44,7 +44,7 @@ async def main():
           if sc.startswith('map-'):
             a=await pg.evaluate(ST); REF[sc[-3:]]=a; print('ref',sc,json.dumps(a)[:400])
             if sc=='map-wdc': ck('District of Columbia' in a['title'] and dcnums(a),f"{eng} {sc}: from the map, DC with its numbers",a)
-            else: ck('Precinct' in a['title'] or 'precinct' in a['title'].lower() or re.search(r'\d',a['title']),f"{eng} {sc}: from the map, titled with the precinct",a)
+            else: ck('United States' not in a['title'] and dcnums(a) is False,f"{eng} {sc}: QA-107 not the US title/numbers",a); ck('Precinct' in a['title'] or 'precinct' in a['title'].lower() or re.search(r'\d',a['title']),f"{eng} {sc}: from the map, titled with the precinct",a)
             if sc=='map-phx': ck(dcnums(a) is False and re.search(r'Harris[^/]*?(6\d|7\d)%',a['thumbs']) is not None,f"{eng} {sc}: the precinct's own numbers (Harris ~70)",a)
             if not os.environ.get('NORL'): await reload_ck(pg,eng,sc,er)
             ck(not er,f"{eng} {sc}: no page errors",er); await c.close(); continue
