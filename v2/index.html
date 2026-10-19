@@ -2423,7 +2423,7 @@ $("vtitle").onclick=()=>{ if($("topin")) return; const inp=document.createElemen
   inp.addEventListener("blur",()=>setTimeout(done,120)); };
 // ===== nationwide results: light county layer everywhere, precinct detail lazy-loaded for states in view =====
 map.createPane("natPane"); map.getPane("natPane").style.zIndex=340; map.getPane("natPane").style.pointerEvents="none";
-const natRenderer=L.canvas({pane:"natPane",padding:0.3}); const natGroup=L.layerGroup().addTo(map), natPrec=L.layerGroup().addTo(map);
+const natRenderer=L.canvas({pane:"natPane",padding:0.1}); const natGroup=L.layerGroup().addTo(map), natPrec=L.layerGroup().addTo(map);
 let NAT=null, natL=null;
 window.__uscty=function(rows){ NAT=rows.map(([st,nm,enc])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
   let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e]}; }); };
@@ -2857,7 +2857,7 @@ loadAK().then(()=>{ drawNat(); renderCands(); });
 // solid statewide shading when the whole lower 48 fits; state lines on top
 { map.createPane("stPane"); map.getPane("stPane").style.zIndex=341; map.getPane("stPane").style.pointerEvents="none";
   map.createPane("stLinePane"); map.getPane("stLinePane").style.zIndex=450; /* build 1595 (user): state outlines draw ON TOP of every sub-state layer (districts 440, precincts/towns 360, counties 340/350) */ map.getPane("stLinePane").style.pointerEvents="none";
-  const stR=L.canvas({pane:"stPane",padding:0.3}), stLR=L.canvas({pane:"stLinePane",padding:0.3}); const stFillG=L.layerGroup().addTo(map), stLineG=L.layerGroup().addTo(map);
+  const stR=L.canvas({pane:"stPane",padding:0.1}), stLR=L.canvas({pane:"stLinePane",padding:0.1}); const stFillG=L.layerGroup().addTo(map), stLineG=L.layerGroup().addTo(map);
   let ST=null; window.__STget=()=>ST; window.__usst=rows=>{ ST=rows.map(([st,enc])=>({st,polys:enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }))})); };
   const sc=document.createElement("script"); sc.src="data/usstates.js?v="+window.BUILD; sc.onload=()=>{ drawLines(); upd(true); }; document.head.append(sc);
   const LL=d=>d.polys.map(p=>p.map(r=>r.map(([x,y])=>[y,x])));
@@ -2971,7 +2971,7 @@ window.__v2.dbg=()=>({fillTop,heatOn,lt:ltype,li:layerItems(ltype).length,la:lis
 // ===== list view: only the candidate rows (totals for the current filters); no per-area sub-list =====
 renderList=function(){ lv.innerHTML=""; };
 // ===== every district type fills nationwide from a combined file (lazy-loaded) =====
-map.createPane("typePane").style.zIndex=440; map.getPane("typePane").style.pointerEvents="none"; const typeRenderer=L.canvas({pane:"typePane",padding:0.3});
+map.createPane("typePane").style.zIndex=440; map.getPane("typePane").style.pointerEvents="none"; const typeRenderer=L.canvas({pane:"typePane",padding:0.1});
 const TFILE={ushouse:"uscd.js",senate:"ussldu.js",statehouse:"ussldl.js",schools:"ussch.js"}, DS={ushouse:null}, DSL={};
 function decRows(rows){ return rows.map(([st,nm,enc,a24,a20,est])=>{ const polys=enc.map(rs=>rs.map(f=>{ const o=[]; let x=0,y=0; for(let i=0;i<f.length;i+=2){ x+=f[i]; y+=f[i+1]; o.push([x/1000,y/1000]); } return o; }));
   let a=1e9,b=1e9,c=-1e9,e=-1e9; polys.forEach(p=>p[0].forEach(([X,Y])=>{ if(X<a)a=X; if(X>c)c=X; if(Y<b)b=Y; if(Y>e)e=Y; })); return {st,nm,polys,bb:[a,b,c,e],v:{"2024":a24,"2020":a20},est:est}; }); }
@@ -4081,6 +4081,9 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
 // ===== boundary color rule: WHITE when data shading is plotted, BLACK when only boundaries are viewed (no topic / no answers / no plot). Applied at draw time to every canvas boundary stroke; switches instantly (no fades) =====
 /* build 1564: right after a tap, map recolours (setStyle/add/remove) are drawn one frame later, so the tap's list/control change paints first.
    Pan/zoom redraws (_updatePaths -> _redraw) are not affected. */
+/* build 1605 (QA-085): a canvas with no shapes is hidden (display:none), so Chromium does not copy the empty bitmap to the screen on every frame; it shows again with its first shape */
+(function(){ const P=L.Canvas.prototype, _ip=P._initPath, _rp=P._removePath, vis=r=>{ const c=r._container; if(!c) return; const on=!!(r._layers&&Object.keys(r._layers).length); const d=on?"":"none"; if(c.style.display!==d) c.style.display=d; };
+  P._initPath=function(l){ const x=_ip.apply(this,arguments); vis(this); return x; }; P._removePath=function(l){ const x=_rp.apply(this,arguments); vis(this); return x; }; })();
 (function(){ const _rq=L.Canvas.prototype._requestRedraw; L.Canvas.prototype._requestRedraw=function(layer){ if(!this._map) return; if(!(window.__quietLeft&&window.__quietLeft()>0)) return _rq.call(this,layer);
     this._extendRedrawBounds(layer); if(this._redrawRequest) return; this._redrawRequest=L.Util.requestAnimFrame(()=>{ setTimeout(()=>{ if(this._map) this._redraw(); else this._redrawRequest=null; },0); }); }; })();
 (function(){ const BC=new Set(["#fff","#ffffff","#1c1917","#1f2937","#57534e"]);
