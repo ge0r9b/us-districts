@@ -1,5 +1,5 @@
 # QA-074: school district lists: every row's name is unique (same-name districts carry their county), no district listed twice
-import asyncio,sys,json,collections
+import asyncio,sys,json,collections,re
 from playwright.async_api import async_playwright
 base=sys.argv[1]; fails=0; ONLY=sys.argv[2:] 
 def ck(n,ok,d=''):
@@ -21,6 +21,9 @@ async def run(b,eng,st):
     print(f"INFO {eng} {st}: rows cut to the same text at 390 (design hold, not a fail): {len(dt)}",dt[:6])
   if st=='Ohio':
     e=[x['n'] for x in R if x['n'].startswith('Eastern Local School District')]
+    if eng=='chromium':
+      vis=[x['t'] for x in R if x['n'].startswith('Eastern Local School District')]
+      ck(len(vis)==3 and len(set(vis))==3 and all(re.match(r'^Eastern Local \(\w[\w .-]*\)$',v) for v in vis),f"{eng} Ohio: QA-074 the rows read 'Eastern Local (County)' in full at 390: {vis}",vis)
     ck(f"{eng} Ohio: the three Eastern Local rows carry their county",len(e)==3 and all('(' in x for x in e),e)
   ck(f"{eng} {st}: no page errors",not errs,errs); await c.close()
 async def m():
