@@ -1,5 +1,7 @@
 # v2 → v3 parity checklist
 
+**Rule: v2 is feature-frozen. Every v2 build is a pure fix, mirrored into v3/build build by build (never in daily batches).**
+
 **Rule: v3 cannot ship until every line below is ticked.** A line is ticked only when a v3 test or gate exists on `ge0r9b/v3` `v3/build` and passes as far as recorded. Planned or untested items stay unticked. The "Next-version trajectory check" adds a line for every new v2 build fix or QA item (from `us-districts` main, `BUILD` and `qa/bugs`).
 
 Scope: v2 Build 1585 through Build 1617 (us-districts main bc9bb19), plus the user-reported 1617 heat-map bug. Paths are under `v3/` on `v3/build` (9ff1c3d). `perf:client` = `npm run perf:client` (`scripts/perf-client.ts`, Chromium + WebKit, Fast 4G).
@@ -21,7 +23,7 @@ Scope: v2 Build 1585 through Build 1617 (us-districts main bc9bb19), plus the us
 - [x] Build 1591 / QA-077: range bars stay on icon rows with the time row closed — v3 test/gate: tests/parity.test.ts::"QA-077 returns icon-row changes and no names", passing
 - [ ] Build 1592: Topic/Search row flush at the safe-area top — v3 test/gate: none, untested
 - [ ] Build 1592 / QA-079: chart off returns to the view it was opened from; reload restores it — v3 test/gate: none, untested
-- [x] Build 1593 / QA-081: list names/bars start at one left edge in every list mode — v3 test/gate: tests/parity.test.ts::"starts split bars at the same left edge as stacked bars", passing
+- [x] Build 1593 / QA-081: list names/bars start at one left edge in every list mode — v3 test/gate: tests/parity.test.ts::"starts split bars at the same left edge as stacked bars", passing — PARTIAL tick: the test checks only the shared bar left edge, not names left-aligned at x=52 in every list mode; add a name-x check before ship
 - [ ] Build 1593 / QA-080: nationwide at-large rows read "DE At-large" (title "Delaware at-large") — v3 test/gate: none for the nationwide label, untested
 - [ ] Build 1594: unselected floating buttons without backdrop blur; text fields always opaque white — v3 test/gate: none, untested
 - [ ] Build 1595: state outlines on top of every sub-state layer and thicker — v3 test/gate: none, untested
@@ -64,5 +66,5 @@ Scope: v2 Build 1585 through Build 1617 (us-districts main bc9bb19), plus the us
 - [ ] Build 1617 / QA-099: chip lists — v3 test/gate: none, untested
 - [ ] Build 1617 / QA-107 (CRITICAL): a ZIP search (or address→ZIP fallback) selects the containing precinct: title, numbers, field, saved state — v3 test/gate: planned (GEOCODER.md), untested
 - [ ] Build 1617 / QA-108: mouse drag moves the single slider knob, same as touch — v3 test/gate: none, untested
-- [ ] Build 1617 (user-reported heat map): with no district type selected, county shading shows when a few counties span the screen and precinct shading at about one county's width — v3 test/gate: perf:client at 390 and 1024×768 in Chromium and WebKit checks the shading layer per zoom, planned, untested
+- [ ] Build 1617 (user-reported heat map): with no district type selected, three shading tiers: state shading when more than one state spans the width, county shading at a few counties across, precinct shading at about one county across — v3 test/gate: perf:client at 390 and 1024×768 in Chromium and WebKit checks the shading layer per zoom tier (state / county / precinct), planned, untested
 - [x] Perf gate (1613/1615): iPad panning ≥ 55 fps — v3 test/gate: perf:client ipadPan (61.6–62 fps WebKit), passing
