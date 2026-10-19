@@ -1191,3 +1191,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Actual: the saved position is zoom 2 centred over Minnesota.
 - Data: qa/b1607p29-addr-*.json.
 - Ruled by design, not filed: after this search, All States shows a Back button that returns to Philadelphia County, because Back returns to the previous view.
+
+### Orchestrator notes, Oct 19 ~9:35 AM EDT
+- QA-103 is confirmed CRITICAL: reload must restore the exact selection.
+- QA-100 and QA-101 (NY county data): Historic Election Data fixed them at f940021 on data/election, and the builder is merging it into main next. Once a build with it is live, recheck Kings County against Brooklyn borough and the NY state totals against FEC.
