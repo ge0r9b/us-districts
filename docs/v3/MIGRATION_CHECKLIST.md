@@ -1,5 +1,7 @@
 # v2 → v3 migration checklist (feature parity)
 
+> **v2 → v3 parity:** see [V2_PARITY_CHECKLIST.md](V2_PARITY_CHECKLIST.md), one line per v2 build fix or QA item from Build 1585 on. v3 cannot ship until every line there is ticked.
+
 Sources for every item: `REPO-RULES.md` (RR), `HANDOFF.md` (HO, build 1548 text plus later builds), `docs/us-districts-spec.md` (SPEC), `v2/index.html` at build **202610181567** (`main` 509d31d), and the 80 Playwright tests in `tests/` (at 9ac59a9) (the de facto spec). Nothing here is invented. If an item has no source, it is not listed. **v3 reaches parity when every box is checked and each listed v2 test, ported to v3, passes.**
 
 ## A. Process and global rules
