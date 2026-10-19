@@ -1030,3 +1030,11 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Layout sweep, 5 sizes x {All States, PA counties} x {%, #} x {bar, pie, range line, range bar} (Chromium): no new overlaps; only QA-009 at 320 ("+5.9", "−1.83M", "+3.7", "−35K" under the Chart button) and the known QA-011 name cut-offs (Montgomery, Westmoreland, Northampton, Susquehanna). Shots: shots/b1571-ch-*-sw-*.png
 - Chart type kept for pie and bar while the slider moves '16 > '20 > '24; pie in a 2020 > 2024 range is offered (per the 1571 notes).
 - Not done: random-tap monkey (harness argument error, rerun next pass), WebKit range-from-'16 (needs a touch drag that WebKit's driver lacks).
+
+### QA-091 [MEDIUM] WebKit saves the map position as zoom 2 over Minnesota after a DC address search from a list view
+- Build 1607, WebKit 390x844, touch. Filed per the orchestrator's ruling (Oct 19, 6:35 AM EDT).
+- Steps: PA > Philadelphia townships list, tap the bottom field, type "1600 Pennsylvania Ave NW, Washington, DC 20500", press Enter, then reload or inspect the saved state.
+- Expected: the saved map position is DC's (near 38.90, -77.04).
+- Actual: the saved position is zoom 2 centred over Minnesota.
+- Data: qa/b1607p29-addr-*.json.
+- Ruled by design, not filed: after this search, All States shows a Back button that returns to Philadelphia County, because Back returns to the previous view.
