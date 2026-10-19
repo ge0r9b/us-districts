@@ -1,0 +1,236 @@
+{
+ "eng": "webkit",
+ "sizes": {
+  "390": {
+   "reps": [
+    {
+     "drillCA": {
+      "touchend": 1,
+      "click": null,
+      "first_frame": 19,
+      "first_dom_change": 6,
+      "paint_after_dom_change": 19,
+      "rows_visible": 846,
+      "max_gap": 733,
+      "timeline": [
+       [
+        19,
+        0,
+        "",
+        0
+       ],
+       [
+        715,
+        0,
+        "",
+        58
+       ],
+       [
+        846,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "drillLA": {
+      "touchend": 1,
+      "click": null,
+      "first_frame": 17,
+      "first_dom_change": 5,
+      "paint_after_dom_change": 17,
+      "rows_visible": 1142,
+      "max_gap": 934,
+      "timeline": [
+       [
+        17,
+        0,
+        "",
+        58
+       ],
+       [
+        1142,
+        88,
+        "Los Angeles city",
+        3087
+       ]
+      ]
+     },
+     "back": {
+      "touchend": 51,
+      "click": null,
+      "first_frame": 61,
+      "first_dom_change": 598,
+      "paint_after_dom_change": 1356,
+      "rows_visible": 647,
+      "max_gap": 717,
+      "timeline": [
+       [
+        61,
+        88,
+        "Los Angeles city",
+        3087
+       ],
+       [
+        647,
+        58,
+        "Los Angeles",
+        24202
+       ],
+       [
+        1364,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "back2": {
+      "touchend": 25,
+      "click": null,
+      "first_frame": 29,
+      "first_dom_change": 155,
+      "paint_after_dom_change": 413,
+      "rows_visible": 412,
+      "max_gap": 290,
+      "timeline": [
+       [
+        29,
+        58,
+        "Los Angeles",
+        0
+       ],
+       [
+        75,
+        58,
+        "Los Angeles",
+        58
+       ],
+       [
+        412,
+        51,
+        "CA",
+        58
+       ]
+      ]
+     }
+    },
+    {
+     "drillCA": {
+      "touchend": 1,
+      "click": null,
+      "first_frame": 21,
+      "first_dom_change": 16,
+      "paint_after_dom_change": 21,
+      "rows_visible": 278,
+      "max_gap": 170,
+      "timeline": [
+       [
+        21,
+        40,
+        "Los Angeles",
+        58
+       ],
+       [
+        278,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "drillLA": {
+      "touchend": 1,
+      "click": null,
+      "first_frame": 16,
+      "first_dom_change": 11,
+      "paint_after_dom_change": 16,
+      "rows_visible": 16,
+      "max_gap": 428,
+      "timeline": [
+       [
+        16,
+        40,
+        "Los Angeles city",
+        58
+       ],
+       [
+        438,
+        88,
+        "Los Angeles city",
+        58
+       ],
+       [
+        1137,
+        88,
+        "Los Angeles city",
+        3087
+       ]
+      ]
+     },
+     "back": {
+      "touchend": 45,
+      "click": null,
+      "first_frame": 48,
+      "first_dom_change": 541,
+      "paint_after_dom_change": 854,
+      "rows_visible": 558,
+      "max_gap": 889,
+      "timeline": [
+       [
+        48,
+        88,
+        "Los Angeles city",
+        3087
+       ],
+       [
+        558,
+        58,
+        "Los Angeles",
+        24202
+       ],
+       [
+        1783,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "back2": {
+      "touchend": 26,
+      "click": null,
+      "first_frame": 29,
+      "first_dom_change": 144,
+      "paint_after_dom_change": 434,
+      "rows_visible": 434,
+      "max_gap": 317,
+      "timeline": [
+       [
+        29,
+        58,
+        "Los Angeles",
+        0
+       ],
+       [
+        76,
+        58,
+        "Los Angeles",
+        58
+       ],
+       [
+        434,
+        51,
+        "CA",
+        58
+       ]
+      ]
+     }
+    }
+   ],
+   "build": "202610181605",
+   "err": []
+  }
+ },
+ "build": "202610181605"
+}

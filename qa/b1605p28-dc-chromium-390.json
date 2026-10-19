@@ -1,0 +1,66 @@
+{
+ "eng": "chromium",
+ "build": "202610181605",
+ "tapdc": {
+  "st": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "st2": {
+   "back": [],
+   "dc": {
+    "txt": "DC | 90.3%",
+    "cls": "lvrow la lasel cmp",
+    "y": 1592,
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   "scroll": 0,
+   "nrows": 51
+  },
+  "err": []
+ },
+ "addr": {
+  "st": {
+   "crumbs": "All States",
+   "gq": "",
+   "ph": "District of Columbia",
+   "thumbs": [
+    "Kamala Harris 2024 90%",
+    "Donald Trump 2024 6%"
+   ],
+   "rows": [
+    "CA | 38.3% | 58.5%",
+    "TX | 56.2% | 42.5%",
+    "FL | 56.1% | 43.0%",
+    "NY | 43.7% | 56.3%"
+   ],
+   "snap": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8926,-77.0145,11]}",
+   "pop": []
+  },
+  "st2": {
+   "back": [],
+   "dc": {
+    "txt": "DC | 90.3%",
+    "cls": "lvrow la lasel cmp",
+    "y": 1592,
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   "scroll": 0,
+   "nrows": 51
+  },
+  "err": []
+ }
+}
