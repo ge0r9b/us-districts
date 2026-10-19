@@ -1,0 +1,5 @@
+/workspace/w/lanes/qa/qa/b1583-solid.py:20: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  for p in cr.getdata(): q.add((p[0]//24,p[1]//24,p[2]//24))
+chromium 1024x768 Wyoming done
+chromium 1024x768 Alabama done
+chromium 1024x768 Idaho done

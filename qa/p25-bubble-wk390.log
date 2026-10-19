@@ -1,0 +1,10 @@
+webkit 390 844 us 0 OK {"txt": "Donald Trump", "op": "1", "b": [92, 115, 201, 143], "photo": [12, 114, 42, 144], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "id": "iconBub", "gq": [8, 794, 326, 836], "inside": true, "i": 0, "ok": true}
+webkit 390 844 us 1 OK {"txt": "Kamala Harris", "op": "1", "b": [92, 159, 201, 187], "photo": [12, 158, 42, 188], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "id": "iconBub", "gq": [8, 794, 326, 836], "inside": true, "i": 1, "ok": true}
+webkit 390 844 us err [] 202610181598
+webkit 390 844 range 0 FAIL {"none": 1, "i": 0, "ok": false}
+webkit 390 844 range 1 FAIL {"none": 1, "i": 1, "ok": false}
+webkit 390 844 range 2 FAIL {"none": 1, "i": 2, "ok": false}
+webkit 390 844 range err [] 202610181598
+webkit 390 844 pa 0 OK {"txt": "Donald Trump", "op": "1", "b": [92, 115, 201, 143], "photo": [12, 114, 42, 144], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "id": "iconBub", "gq": [8, 794, 326, 836], "inside": true, "i": 0, "ok": true}
+webkit 390 844 pa 1 OK {"txt": "Kamala Harris", "op": "1", "b": [92, 159, 201, 187], "photo": [12, 158, 42, 188], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "id": "iconBub", "gq": [8, 794, 326, 836], "inside": true, "i": 1, "ok": true}
+webkit 390 844 pa err [] 202610181598

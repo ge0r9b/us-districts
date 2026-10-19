@@ -1,0 +1,10 @@
+chromium 320 568 us 0 FAIL {"txt": "Donald Trump", "op": "1", "b": [92, 115, 201, 143], "photo": [12, 114, 42, 144], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "inside": true, "i": 0, "ok": false}
+chromium 320 568 us 1 FAIL {"txt": "Kamala Harris", "op": "1", "b": [92, 159, 201, 187], "photo": [12, 158, 42, 188], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "inside": true, "i": 1, "ok": false}
+chromium 320 568 us err [] 202610181598
+chromium 320 568 range 0 FAIL {"none": 1, "i": 0, "ok": false}
+chromium 320 568 range 1 FAIL {"none": 1, "i": 1, "ok": false}
+chromium 320 568 range 2 FAIL {"none": 1, "i": 2, "ok": false}
+chromium 320 568 range err [] 202610181598
+chromium 320 568 pa 0 FAIL {"txt": "Donald Trump", "op": "1", "b": [92, 115, 201, 143], "photo": [12, 114, 42, 144], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "inside": true, "i": 0, "ok": false}
+chromium 320 568 pa 1 FAIL {"txt": "Kamala Harris", "op": "1", "b": [92, 159, 201, 187], "photo": [12, 158, 42, 188], "overPhoto": false, "overOther": [], "lbl": [], "gap": 50, "inside": true, "i": 1, "ok": false}
+chromium 320 568 pa err [] 202610181598

@@ -1,0 +1,36 @@
+1 open-geo-menu True {'crumbs': 'All countries', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'gone'), ('bLyr', 'gone'), ('bNum', 'gone'), ('bTime', 'gone'), ('chartBtn', 'gone'), ('crumbs', 0, -56, 0, 0), ('gq', 'gone'), ('thumb0', 'gone'), ('thumb1', 'gone'), ('vtitle', 'gone')] transient []
+2 drill-MA True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [] transient []
+3 drill-Worcester True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('bGlobe', 'new'), ('bLyr', 'new'), ('bNum', 'new'), ('bTime', 'new'), ('chartBtn', 'new'), ('crumbs', 0, 56, 0, 0), ('gq', 'new'), ('thumb0', 'new'), ('thumb1', 'new'), ('vtitle', 'new')] transient []
+4 open-time-slider True {'crumbs': 'Worcester County', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+5 switch-USHouse-layers True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+6 close-layers-row True {'crumbs': 'Massachusetts', 'list': False, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+7 switch-back-President True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+8 close-layers-row2 True {'crumbs': 'Worcester County', 'list': False, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+9 view-list-Worcester True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, -3, 276, 0), ('thumb1', 0, -3, 276, 0)] transient []
+10 list-switch-USHouse True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+11 list-close-layers-a True {'crumbs': 'Massachusetts', 'list': True, 'lt': 'ushouse', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'new')] transient []
+SHOT-TIMEOUT ../shots/b1584p16-ch-390-ls12-list-switch-back-President-after.png Page.screenshot: Timeout 20000ms exceeded.
+Call log:
+  - taking page screenshot
+
+12 list-switch-back-President True {'crumbs': 'Worcester County', 'list': True, 'lt': 'counties', 'lv': '-', 'ysl': [2, 2]} moved [('chartBtn', 'gone')] transient []
+EXC list-close-layers-b Page.evaluate: Target crashed 
+EXC list-year-2020 Page.evaluate: Target crashed 
+EXC list-range-16-24 Page.evaluate: Target crashed 
+EXC list-year-2024 Page.evaluate: Target crashed 
+EXC view-map-Worcester Page.evaluate: Target crashed 
+EXC year-2020 Page.evaluate: Target crashed 
+EXC year-2016 Page.evaluate: Target crashed 
+EXC year-2024 Page.evaluate: Target crashed 
+EXC range-20-24 Page.evaluate: Target crashed 
+EXC range-16-24 Page.evaluate: Target crashed 
+EXC year-2024-b Page.evaluate: Target crashed 
+24 open-time-slider-US True {'crumbs': 'United States', 'list': False, 'lt': 'none', 'lv': '-', 'ysl': [2, 2]} moved [('thumb0', 0, 68, 0, 0), ('thumb1', 0, 68, 0, 0), ('ysl', 'new')] transient []
+EXC geo-menu-all-states Page.evaluate: Target crashed 
+EXC list-drill-MA Page.evaluate: Target crashed 
+EXC list-drill-Worcester Page.evaluate: Target crashed 
+EXC list-back-1 Page.evaluate: Target crashed 
+EXC list-back-2 Page.evaluate: Target crashed 
+EXC chart-bar Page.evaluate: Target crashed 
+EXC list-drill-MA-bar Page.evaluate: Target crashed 
+EXC list-back-bar Page.evaluate: Target crashed 
