@@ -1124,6 +1124,7 @@ function drawHeat() {
     return;
   }
   if (!window.ELECTION2024) return;
+  try { if (fillTop && heatLevel === "county" && state.value) return; } catch (e) {} /* build 1605 (QA-085): a district type fills the state, so the county heat is not drawn at all (was: built, then cleared by the wrapper below) */
   heatItems().forEach(d => {
     const fill = countyFill(d[0] + "|" + d[1]) || "#d6d3d1";
     const hl = county.value && d[1] === county.value && d[0] === state.value;
@@ -2338,7 +2339,7 @@ const _dh7=drawHeat; drawHeat=function(){ _dh7(); if(hier.dist) drawPrecInDist()
 const _areaAt7=areaAt; areaAt=function(ll){ if(hier.dist&&heatOn){ const r=precIn(hier.dist).find(r=>pointInItem(r.slice(0,6),ll.lng,ll.lat)); if(r) return {kind:"precinct",d:r,yr:ym()==="2016"?"2016":ym()==="2020"?"2020":"2024"}; } return _areaAt7(ll); };
 // county context outlines for the current state
 const ctxGroup=L.layerGroup().addTo(map);
-function drawCtx(){ ctxGroup.clearLayers(); if(!state.value) return; (GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)).forEach(d=>L.polygon(toLatLngs(d),{renderer:lyrRenderer,pane:"lyrPane",fill:false,color:"#57534e",weight:county.value?2:0.6,dashArray:county.value?null:"2 3",interactive:false}).addTo(ctxGroup)); }
+function drawCtx(){ { const k=state.value+"|"+(county.value||""); if(ctxGroup.__k===k&&ctxGroup.getLayers().length){ ctxGroup.eachLayer(l=>{ const r=l._renderer; if(r&&r._drawLast!==l._order) l.bringToFront(); }); return; } ctxGroup.__k=k; } /* build 1605 (QA-085): the county outlines do not change with the year: kept, not rebuilt on every heat redraw */ ctxGroup.clearLayers(); if(!state.value) return; (GEOM.counties||[]).filter(d=>d[0]===state.value&&(!county.value||d[1]===county.value)).forEach(d=>L.polygon(toLatLngs(d),{renderer:lyrRenderer,pane:"lyrPane",fill:false,color:"#57534e",weight:county.value?2:0.6,dashArray:county.value?null:"2 3",interactive:false}).addTo(ctxGroup)); }
 const _dh8=drawHeat; drawHeat=function(){ _dh8(); drawCtx(); };
 // bottom field: exact state / county / town names set the geography filter, then zoom; anything else just moves the map
 const _nav7=navTo; navTo=function(q){ const t=String(q).trim(), lo=t.toLowerCase();
