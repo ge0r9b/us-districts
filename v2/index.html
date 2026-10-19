@@ -1594,18 +1594,20 @@ function aggHtml(k,d){ const lab=LYR.find(l=>l[1]===k)[2], m=ym(), {a24,a20}=dis
   if(m==="delta") h+= okA(a24)&&okA(a20) ? "<b>Change:</b> "+((mg(a24)-mg(a20))>=0?"R +":"D +")+Math.abs((mg(a24)-mg(a20))*100).toFixed(1)+" pts<br>Same district, both years" : "No change: coverage under 50%";
   return h; }
 function refreshLayers(){
-  if(!lyrGroup) return; const seq=++drawSeq; lyrGroup.clearLayers(); crumbs2();
-  if(!state.value) return; const m=ym();
+  if(!lyrGroup) return; const seq=++drawSeq; const sig=[state.value,(typeof county!=="undefined"&&county.value)||"",[...active].join(),heatOn?1:0,fillTop||""].join("|"); if(lyrGroup.__sig!==sig){ lyrGroup.clearLayers(); lyrGroup.__sig=null; } crumbs2(); /* build 1600 (QA-085): same state + same layers = keep the shapes, recolour them below (a year tap was clearing and rebuilding every district polygon) */
+  if(!state.value){ lyrGroup.clearLayers(); lyrGroup.__sig=null; return; } const m=ym();
   const lgd=document.querySelector(".heatlegend strong"); if(lgd&&heatOn&&fillTop){ const L2=LYR.find(l=>l[1]===fillTop)[2]; lgd.textContent=t32(m==="delta"?"Change "+vy("2020").slice(2)+"→"+vy("2024").slice(2)+" · "+L2:m+" · "+L2+" margin"); } else if(window.updateLegend) updateLegend();
   const need=heatOn&&fillTop;
   loadState(state.value).then(()=>need?Promise.all([m!=="2020"?loadPrecincts(state.value):null,m!=="2024"?loadPrec20(state.value):null,m!=="2024"?loadE2020():null]):null).then(()=>{
     if(seq!==drawSeq) return;
+    if(lyrGroup.__sig===sig&&lyrGroup.getLayers().length){ lyrGroup.eachLayer(l=>{ if(!l.__fk) return; const fc=distFill(l.__fk,l.__d), op=fc==="#a8a29e"?0:0.72; if(l.options.fillColor!==fc||l.options.fillOpacity!==op) l.setStyle({fillColor:fc,fillOpacity:op}); }); }
+    else { lyrGroup.clearLayers(); lyrGroup.__sig=sig;
     ["counties","towns","schools","ushouse","senate","statehouse"].filter(k=>active.has(k)&&!(k==="counties"&&heatOn)).forEach(k=>{
       const filling=heatOn&&k===fillTop;
       layerItems(k).forEach(d=>{ let o={renderer:lyrRenderer,pane:"lyrPane",interactive:false,color:k==="counties"?"#111":"#1f2937",weight:k==="counties"?1.2:1.6,fill:false};
         if(filling){ const fc=distFill(k,d); o={...o,fill:true,fillColor:fc,fillOpacity:fc==="#a8a29e"?0:0.72,color:"#ffffff",weight:0.6}; }
-        L.polygon(toLatLngs(d),o).addTo(lyrGroup); });
-    });
+        const pl=L.polygon(toLatLngs(d),o); if(filling){ pl.__fk=k; pl.__d=d; } pl.addTo(lyrGroup); });
+    }); }
     if(need){ const n=layerItems(fillTop).length, gray=layerItems(fillTop).filter(d=>distFill(fillTop,d)==="#a8a29e").length;
       const miss=(m!=="2020"&&!PREC[state.value]?"2024 ":"")+(m!=="2024"&&!PREC20[state.value]?"2020 ":"");
       mapnote.textContent=LYR.find(l=>l[1]===fillTop)[2]+": "+n+" districts, "+gray+" gray (under 50% of votes covered"+(m==="delta"?" in either year":"")+")."+(miss?" No "+miss.trim().replace(" "," or ")+" precinct results for "+state.value+".":""); }
