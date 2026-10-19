@@ -1,0 +1,144 @@
+{
+ "eng": "chromium",
+ "sizes": {
+  "390": {
+   "reps": [
+    {
+     "drillCA": {
+      "touchend": 0,
+      "click": 0,
+      "first_frame": 12,
+      "first_dom_change": 16,
+      "paint_after_dom_change": 29,
+      "rows_visible": 561,
+      "max_gap": 237,
+      "timeline": [
+       [
+        12,
+        51,
+        "CA",
+        0
+       ],
+       [
+        29,
+        0,
+        "",
+        0
+       ],
+       [
+        382,
+        0,
+        "",
+        58
+       ],
+       [
+        561,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "drillLA": {
+      "touchend": 0,
+      "click": 0,
+      "first_frame": 12,
+      "first_dom_change": 16,
+      "paint_after_dom_change": 30,
+      "rows_visible": 1149,
+      "max_gap": 903,
+      "timeline": [
+       [
+        12,
+        58,
+        "Los Angeles",
+        58
+       ],
+       [
+        30,
+        0,
+        "",
+        58
+       ],
+       [
+        1149,
+        88,
+        "Los Angeles city",
+        3087
+       ]
+      ]
+     },
+     "back": {
+      "touchend": 0,
+      "click": 0,
+      "first_frame": 2,
+      "first_dom_change": 644,
+      "paint_after_dom_change": 664,
+      "rows_visible": 654,
+      "max_gap": 468,
+      "timeline": [
+       [
+        2,
+        88,
+        "Los Angeles city",
+        3087
+       ],
+       [
+        470,
+        88,
+        "Los Angeles city",
+        24202
+       ],
+       [
+        654,
+        58,
+        "Los Angeles",
+        24202
+       ],
+       [
+        795,
+        58,
+        "Los Angeles",
+        58
+       ]
+      ]
+     },
+     "back2": {
+      "touchend": 0,
+      "click": 0,
+      "first_frame": 8,
+      "first_dom_change": 322,
+      "paint_after_dom_change": 341,
+      "rows_visible": 322,
+      "max_gap": 175,
+      "timeline": [
+       [
+        8,
+        58,
+        "Los Angeles",
+        58
+       ],
+       [
+        45,
+        58,
+        "Los Angeles",
+        0
+       ],
+       [
+        322,
+        51,
+        "CA",
+        0
+       ]
+      ]
+     }
+    }
+   ],
+   "build": "202610181602",
+   "err": [
+    "http://127.0.0.1:8850/v2/?bc=1792393884201 net::ERR_ABORTED"
+   ]
+  }
+ },
+ "build": "202610181602"
+}
