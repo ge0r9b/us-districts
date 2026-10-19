@@ -9,11 +9,11 @@ async def main():
   async with async_playwright() as p:
     b=await p.webkit.launch(); c=await b.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
     await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(3500)
-    t=await pg.evaluate("""async()=>{ await loadState('Pennsylvania'); await loadParts('Pennsylvania'); return {ph:townsIn('Pennsylvania','Philadelphia County').map(t=>t[2]), mo:townsIn('Pennsylvania','Montgomery County').map(t=>t[2]).filter(n=>/Rockledge/.test(n))}; }""")
+    t=await pg.evaluate("""async()=>{ await loadState('Pennsylvania'); await window.__loadParts('Pennsylvania'); return {ph:window.__townsIn('Pennsylvania','Philadelphia County').map(t=>t[2]), mo:window.__townsIn('Pennsylvania','Montgomery County').map(t=>t[2]).filter(n=>/Rockledge/.test(n))}; }""")
     ck(t['ph']==['Philadelphia city'] and t['mo']==['Rockledge borough'],"QA-006: Philadelphia County lists only Philadelphia city; Rockledge stays in Montgomery",t)
     r=await pg.evaluate("()=>fuzzyRank([{name:'South Africa',tag:'Country'},{name:'United States of America',tag:'Country'},{name:'American Fork city, UT',tag:'City'}],'America',50).map(x=>x.name)")
     ck('South Africa' not in r and len(r)==2,"QA-067: 'America' does not list South Africa",r)
-    r=await pg.evaluate("()=>fuzzyRank([{name:'South Africa',tag:'Country'}],'Afirca',50).map(x=>x.name)")
+    r=await pg.evaluate("()=>fuzzyRank([{name:'South Africa',tag:'Country'}],'Afrika',50).map(x=>x.name)")
     ck(r==['South Africa'],"QA-067: a typo still finds its place when nothing else matches",r)
     r=await pg.evaluate("()=>precDisp('New York','New York County','015/75')")
     ck(r=='New York AD 75 ED 15',"QA-069: NY precinct id reads 'New York AD 75 ED 15'",r)

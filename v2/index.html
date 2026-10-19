@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610181598";</script>
+<script>window.BUILD="202610181599";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2014,6 +2014,7 @@ window.__parts=function(st,rows){ PARTS[st]=rows.map(r=>({county:r[0],name:r[1],
 function loadParts(st){ if(!st||PARTS[st]||!STATE_FILES[st]) return Promise.resolve();
   return PARTL[st]||(PARTL[st]=new Promise(res=>{ const s=document.createElement("script"); s.src="data/parts/"+STATE_FILES[st]+"?v="+window.BUILD; s.onload=res; s.onerror=()=>{ PARTS[st]=[]; res(); }; document.head.append(s); })); }
 const TW={};
+window.__townsIn=(st,c)=>townsIn(st,c); window.__loadParts=st=>loadParts(st);
 function sliver(polys){ let A=0, lat=40; try{ polys.forEach(p=>p.forEach((r,k)=>{ let t=0; for(let i=0,j=r.length-1;i<r.length;j=i++) t+=r[j][0]*r[i][1]-r[i][0]*r[j][1]; A+=(k?-1:1)*Math.abs(t)/2; lat=r[0][1]; })); }catch(e){ return false; } return A*12321*Math.cos(lat*Math.PI/180)<0.02; } /* km2 under 0.02 = a digitising sliver, not a real piece of a town */
 function normT(n){ return String(n).toLowerCase().replace(/\s+(city|borough|town|township|village|cdp|municipality|charter township|plantation)$/,"").trim(); }
 function townsIn(st,c){ const key=st+"|"+c; if(TW[key]) return TW[key];
