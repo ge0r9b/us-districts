@@ -1103,6 +1103,7 @@ function countyAt(latlng) {
 }
 function drawHeat() {
   if (!map) return;
+  if (window.__mapLaterOn && window.__mapLaterOn() && !window.__heatNow) { window.__later("heat0", () => { window.__heatNow = 1; try { __heat0(); } finally { window.__heatNow = 0; } }); return; } /* build 1603 (QA-020): in the list view a drill/Back paints the list first; the map's precinct heat (all ~25,000 CA precincts after Back from LA County) is rebuilt two frames later */
   if (heatLayer) heatLayer.clearLayers();
   if (!heatOn) return;
   if (heatLevel === "precinct") {
@@ -1125,6 +1126,7 @@ function drawHeat() {
     L.polygon(toLatLngs(d), { renderer: heatRenderer, pane: "heatPane", color: hl ? "#111" : "#ffffff", weight: hl ? 2.5 : 0.6, fillColor: fill, fillOpacity: 0.72, interactive: false }).addTo(heatLayer);
   });
 }
+const __heat0 = drawHeat;
 function setHeat(on) {
   heatOn = on;
   if (!map) return;
@@ -4249,6 +4251,9 @@ html body .tlab svg text { fill: #fff !important; }
   window.__mapLaterOn=()=>!!window.__mapLater&&document.body.classList.contains("listmode");
   const yl=e=>{ if(!e.target||e.target.id!=="yslider") return; window.__mapLater=1; clearTimeout(window.__mlT); window.__mlT=setTimeout(()=>{ window.__mapLater=0; },0); };
   document.addEventListener("input",yl,true); document.addEventListener("change",yl,true);
+  /* build 1603 (QA-020): a Back or row tap in the list view also lets the map layers under the list follow one frame later */
+  const nav=e=>{ const t=e.target; if(!t||!t.closest||!t.closest("#bBack,#listView .lvrow,#crumbs .crumb")) return; window.__mapLater=1; clearTimeout(window.__mlT); window.__mlT=setTimeout(()=>{ window.__mapLater=0; },250); };
+  document.addEventListener("pointerup",nav,true); document.addEventListener("click",nav,true);
 })();</script>
 <script>/* build 1570: 2016 data, lazy. Nothing loads until 2016 is selected; then only the file the current list needs (states, counties, or the
    selected district layer). The no-data look (names, note) paints at once; values fill in when the file arrives. */
