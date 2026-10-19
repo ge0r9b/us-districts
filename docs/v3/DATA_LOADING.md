@@ -747,3 +747,10 @@ Since Oct 18, 2026 the v3 lane asks the data bots directly (Election Data, Geo, 
 - **perf/speed-baseline 5e92d72:** 1588 within noise of 1585 (taps all under 100 ms medians, iPad pan 47.7 fps), so the 1584 bar stands and iPad pan ≥ 55 fps remains a v3 gate.
 - **native/ios-v2 5b74850 (us-districts):** an unsigned SwiftUI web-view shell around the live v2 page with an offline disk cache, built by GitHub Actions for the user to sign. It's the user's small v2 native app, not v3; it changes nothing in this plan (NATIVE.md note).
 - **v3/build c37d0d3 → bd7e0a9:** versioned result packs, map clicks and name search local from `bbox.json` + PMTiles + `names.json`, one Neon statement per Worker pick/search/geocode, geocode cache, `npm test` on in-memory PGlite (101 pass), table compaction under the Neon cap, Wrangler pinned 4.86.0, DC outline attached. Matches ARCHITECTURE §5c; no doc drift.
+
+### 9.10 Drift check, Oct 18, 2026 22:00 EDT (us-districts main c34d398 Build 1595; qa/bugs 0997a90, perf/speed-baseline 1b4d427, new preview/shadows 4394663; ge0r9b/v3 v3/build 0a39df5)
+- **No data or field changes.** Builds 1593–1595 are UI only, and every data/* branch is unchanged on both repos. Still no v2.0 tag.
+- **Builds 1593–1595:** names at x=52 in every list mode (QA-081), `DE At-large` nationwide (QA-080), the 1590 sort-chip header band replaced by a floating chip that nudges labels aside (1594), chip fixed at rest (QA-083), clearer unselected glass buttons and opaque text fields (1594), and state outlines on top and thicker (1595). Parity items in MIGRATION_CHECKLIST.
+- **v3/build 42ac077–0a39df5:** total-votes sort, per-year colours with the 2016 DC delegate seat, local pick from decoded tiles with a bbox pre-filter, a split map bundle, and a preloaded map chunk. That closes the 1588 and 1589 flags.
+- **perf 1b4d427:** 1595 within noise of 1588; iPad pan 47.9 fps keeps the ≥ 55 fps gate open.
+- **preview/shadows** is a preview lane, not main. It isn't parity until a v2 build adopts it.
