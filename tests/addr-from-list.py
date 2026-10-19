@@ -9,6 +9,7 @@ CEN="s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundi
 ST="""()=>({crumbs:(document.getElementById('crumbs')||{}).innerText||'',ph:document.getElementById('gq').placeholder,
  thumbs:[...document.querySelectorAll('.cand,#laCands .lact')].filter(e=>e.offsetParent).map(e=>(e.getAttribute('aria-label')||'')+' '+e.innerText.replace(/\\n/g,' ')).slice(0,4).join(' / '),
  rows:[...document.querySelectorAll('#listView .lvrow')].filter(r=>r.offsetParent).length,
+ dcvis:(()=>{const e=[...document.querySelectorAll('#listView .lvrow .nmx')].find(e=>e.offsetParent&&e.textContent.trim()==='DC'); if(!e) return null; const r=e.getBoundingClientRect(); const bb=document.getElementById('barBottom'); const lim=bb?bb.getBoundingClientRect().top:innerHeight; return r.top>=0&&r.bottom<=lim;})(),
  states:[...document.querySelectorAll('#listView .lvrow .nmx')].filter(r=>r.offsetParent).map(e=>e.textContent.trim()).filter(t=>/^(CA|TX|FL|NY|PA)$/.test(t)).length})"""
 ADDR="1600 Pennsylvania Ave NW, Washington, DC 20500"
 async def main():
@@ -31,6 +32,7 @@ async def main():
         pc=[int(x) for x in re.findall(r'(\d+)(?:\.\d)?\s*%',a['thumbs'])]
         ok=any(x>=85 for x in pc) and not any(45<=x<=55 for x in pc) 
         ck(ok,f"{eng} 390 from {sc}: DC's own result (Harris ~90 / Trump ~6) (same as tapping DC in the All States list)",a)
+        if sc!='map': ck(a['dcvis'] is True,f"{eng} 390 from {sc}: the selected DC row is on screen (pass 28)",a)
         if sc!='map': await pg.screenshot(path=f"/tmp/addr-{eng[:2]}-{sc}.png")
         ck(not er,f"{eng} {sc}: no page errors",er); await c.close()
       await b.close()
