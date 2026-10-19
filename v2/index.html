@@ -2690,7 +2690,7 @@ window.__v2.loadPrec20=loadPrec20; window.__v2.loadE2020=loadE2020;
     }catch(e){} finally{ busy=0; } };
   /* build 1585 (user): in a chart view a thumbnail (or the gray 'Other' chip) shows its name in a white bubble on tap; closes on the next tap elsewhere or after 3 s. It never toggles the candidate there. */
   { let bub=null, bt=0; const hide=()=>{ if(bub){ bub.remove(); bub=null; } clearTimeout(bt); };
-    const tgt=e=>{ const t=e.target; if(!t||!t.closest) return null; const el=t.closest(".cpanel .sechip")||(document.body.classList.contains("chv")?t.closest("#cands .cand, #cands img.dmt, #cands .dmoc"):null); return el; };
+    const tgt=e=>{ const t=e.target; if(!t||!t.closest) return null; const el=t.closest(".cpanel .sechip")||((document.body.classList.contains("chv")||!!candBox.querySelector(".dmx,.cpanel,.dlx"))?t.closest("#cands .cand, #cands img.dmt, #cands .dmoc, #cands .dmx img"):null); return el; }; /* build 1600 (QA-086): also a range chart drawn with the time row closed (no body.chv): same white bubble */
     let pd=null, shown=0; const show=el=>{ hide(); shown=Date.now();
       let nm=el.dataset.nm||el.dataset.pt||el.getAttribute("aria-label")||el.title||""; nm=nm.split(" \u00b7 ")[0]; if(ym()!=="delta"&&!window.__y16hi) nm=nm.replace(/\s+\d{4}$/,"");
       if(!nm) return; bub=document.createElement("div"); bub.id="iconBub"; bub.textContent=nm; document.body.append(bub);
@@ -3997,7 +3997,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
        until the 200ms layout timer. The outermost layer now runs the pass on the finished thumbnail box (same task, so nothing in between is painted). */
     { const _rcZ=renderCands; renderCands=function(){ const r=_rcZ.apply(this,arguments); try{ layoutSide(); }catch(e){} return r; }; }
     let bub=null, bt=0; const hide=()=>{ if(bub){ bub.remove(); bub=null; } clearTimeout(bt); };
-    document.addEventListener("click",e=>{ const el=e.target.closest&&e.target.closest("[data-party]"); if(!el){ hide(); return; } hide(); const r=el.getBoundingClientRect(); bub=document.createElement("div"); bub.id="partyBub"; bub.textContent=el.dataset.party; document.body.append(bub); const w=bub.offsetWidth; bub.style.left=Math.max(w/2+6,Math.min(innerWidth-w/2-6,r.left+r.width/2))+"px"; bub.style.top=(r.top-4)+"px"; bt=setTimeout(hide,1800); },true);
+    document.addEventListener("click",e=>{ const el=e.target.closest&&e.target.closest("[data-party]"); if(!el){ hide(); return; } hide(); if(el.closest("#cands")&&(el.matches("img,.cand,.dmoc,.dmt")||el.querySelector("img"))) return; /* build 1600 (QA-086): thumbnails never get the old dark bubble; they use the white #iconBub beside the photo */ const r=el.getBoundingClientRect(); bub=document.createElement("div"); bub.id="partyBub"; bub.textContent=el.dataset.party; document.body.append(bub); const w=bub.offsetWidth; bub.style.left=Math.max(w/2+6,Math.min(innerWidth-w/2-6,r.left+r.width/2))+"px"; bub.style.top=(r.top-4)+"px"; bt=setTimeout(hide,1800); },true);
     document.addEventListener("scroll",hide,true); }
 
   { const _of=openFold; openFold=function(){ const r=_of.apply(this,arguments); Promise.resolve(r).then(()=>{ setTimeout(ensureRow,0); setTimeout(ensureRow,120); setTimeout(ensureRow,450); }); return r; }; }

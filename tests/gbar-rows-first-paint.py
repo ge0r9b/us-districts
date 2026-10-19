@@ -1,5 +1,5 @@
 # QA-084: split bar (gbar) list rows draw at their final height on the first painted frame of every drill-in and Back
-# (no 30 px -> 44 px growth). Per-frame sample of the first 3 rows' top/height for 1.2 s after each tap. WebKit touch 390/375/320.
+# (no 30 px -> 44 px growth). Pass 25: also a COLD first visit (fresh page per check: load > All States > Split bar > MA > Worcester). Per-frame sample of the first 3 rows' top/height for 1.2 s after each tap. WebKit touch 390/375/320.
 import asyncio,sys,json
 from playwright.async_api import async_playwright
 URL=sys.argv[1] if len(sys.argv)>1 else "http://localhost:8843/v2/"; F=[]
@@ -35,6 +35,16 @@ async def main():
         await run(f'drill MA #{rep}',lambda: nmxy('MA')); await run(f'drill Worcester #{rep}',lambda: nmxy('Worcester'))
         await run(f'Back 1 #{rep}',back); await run(f'Back 2 #{rep}',back)
       ck(not er,f"{W}: no page errors",er); await c.close()
+      for cold in ['MA','Worcester']:
+        c=await b.new_context(viewport={'width':W,'height':H},has_touch=True,is_mobile=True); pg=await c.new_page(); er=[]; pg.on('pageerror',lambda e:er.append(str(e)[:150]))
+        await pg.goto(URL,wait_until="networkidle"); await pg.wait_for_timeout(3500)
+        await pg.touchscreen.tap(*(await center(pg,'#bGeo'))); await pg.wait_for_timeout(1200); await pg.touchscreen.tap(*(await center(pg,'li.la-row'))); await pg.wait_for_timeout(4000)
+        await pg.touchscreen.tap(*(await center(pg,'#chartBox .cmain'))); await pg.wait_for_timeout(900)
+        await pg.touchscreen.tap(*(await center(pg,'#chartBox .copts button[data-ch=gbar]'))); await pg.wait_for_timeout(2500)
+        if cold=='Worcester':
+          xy=await nmxy('MA'); await pg.touchscreen.tap(*xy); await pg.wait_for_timeout(3000)
+        await run(f'COLD first visit, drill {cold}',lambda: nmxy(cold))
+        ck(not er,f"{W}: cold {cold}: no page errors",er); await c.close()
     await b.close()
   print("FAILS",len(F)); sys.exit(1 if F else 0)
 asyncio.run(main())
