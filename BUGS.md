@@ -1391,7 +1391,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Not covered: deselect with a state selected; 1024x768 deselect.
 - Shots: `qa/shots39/desel-A-webkit-390-ushouse-menu-{24,16}-{PA,GA,Philly}-z{6,9}.png` (blank), `qa/shots39/desel-R-*` (after reload), `qa/shots39/desel-A-chromium-390-schools-menu-*`, and bisect `qa/shots39/desel-b8853-*` (1565) / `qa/shots39/desel-b8854-*` (1564). Probe: `qa/p39-desel.py`.
 
-### QA-113 [HIGH, PARTLY FIXED on 1618: the bottom-field (#gq) entry now clears the type and shows the place; still OPEN on the #bGeo sheet as filed, and "Pittsburgh" in the bottom field resolves to East Pittsburgh borough / Allegheny County (hourly run ~4 PM EDT); ruled HIGH by the orchestrator, Oct 19 ~3:50 PM EDT; the 'Pittsburgh' to Pittsburg County, OK mismatch is part of QA-113: the exact name and the current-state context should win] A geo-filter entry doesn't clear the selected district type and doesn't show the entered place
+### QA-113 [HIGH, PARTLY FIXED on 1618: the bottom-field (#gq) entry now clears the type and shows the place; still OPEN on the #bGeo sheet as filed, and "Pittsburgh" in the bottom field resolves to East Pittsburgh borough / Allegheny County (hourly run ~4 PM EDT); ruled HIGH by the orchestrator, Oct 19 ~3:50 PM EDT. Since 4:13 PM EDT it covers only the geo-filter button path (an entry doesn't clear the district type); the wrong-place results were split out to QA-115] A geo-filter entry doesn't clear the selected district type and doesn't show the entered place
 - User spec: typing into the geo filter and entering or picking a country, state, county or town must show results for that entry and deselect any district type, in both list and map views.
 - Steps (Chromium 390x844 touch, 1617): fresh load, pick US House in the type menu and close it, tap #bGeo, type the query, press Enter.
   - "Pennsylvania": US House stays on; the list shows "Pennsylvania US House districts" with District 01-17 instead of Pennsylvania results with the type cleared.
@@ -1399,3 +1399,12 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
   - "Pittsburgh": US House stays on, and it resolves to Pittsburg County, OK (title "Oklahoma") rather than Pittsburgh, PA (wrong place picked; possibly a separate bug).
 - Not yet checked: WebKit, 1024x768, list view, picking from the suggestion rows instead of Enter.
 - Shots: `qa/shots39/geo-chromium-390-{Pennsylvania,PhiladelphiaCounty,Pittsburgh}.png`. Probe: `qa/p39-geo.py`.
+
+### QA-115 [CRITICAL, orchestrator ruling Oct 19 4:13 PM EDT, split out of QA-113] Enter on a city name lands on the wrong place
+- Build 1618, Chromium and WebKit (same in both).
+- 'Pittsburgh' and 'Pittsburgh, PA' go to East Pittsburgh borough and Allegheny County (60/39).
+- 'Columbus' goes to Columbus County, NC.
+- 'Cleveland' goes to Cleveland County, AR.
+- Earlier (1617, pass 39b, QA-113 notes): 'Pittsburgh' resolved to Pittsburg County, OK.
+- Expected: an exact city or town name wins, and the incorporated city beats 'East X' or a similarly named county. Ties go by population or the current state, and a ', PA'-style suffix is respected.
+- Shots: `qa/shotsh1600/b1618h-ch-1024x768-geo2-list-Pittsburgh-1.png`, `-2.png`.
