@@ -1,0 +1,47 @@
+{
+ "build": "202610181615",
+ "QA018": {
+  "xy": [
+   218.10000000000002,
+   287
+  ],
+  "hit": "I.sg rep",
+  "crumbs_after": "All States",
+  "first_rows": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%"
+  ]
+ },
+ "QA006": {
+  "n": 1,
+  "rockledge": [],
+  "crumbs": "Philadelphia County",
+  "first": [
+   "Philadelphia city | 20.0% | 78.5%"
+  ]
+ },
+ "QA015": {
+  "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0029,-75.118,10]}",
+  "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0027,-75.118,10]}",
+  "crumbs_after": "Philadelphia County"
+ },
+ "QA073": {
+  "California": 190.2,
+  "Texas": 233.1,
+  "Pennsylvania": 128.8,
+  "Ohio": 119.5
+ },
+ "QA074": {
+  "California": {
+   "n": 974,
+   "dup_names": [],
+   "dup_rows": []
+  },
+  "Ohio": {
+   "n": 611,
+   "dup_names": [],
+   "dup_rows": []
+  }
+ }
+}

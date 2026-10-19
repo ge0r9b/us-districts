@@ -1,0 +1,31 @@
+ok   chromium y2 PA row = official (Harris): 3,423,042 (Trump): 3,543,308: Republican (Trump): 3,543,308 | Democratic (Harris): 3,423,042 | Other: 92,382
+ok   chromium y2 NY row = official (Harris): 4,619,543 (Trump): 3,579,519: Republican (Trump): 3,579,519 | Democratic (Harris): 4,619,543 | Other: 64,412
+ok   chromium y2 GA row = official (Harris): 2,548,017 : Republican (Trump): 2,663,117 | Democratic (Harris): 2,548,017 | Other: 39,771
+ok   chromium y2 US: scope numbers = the official table exactly [75019578, 77304188, 155241934] vs [75019578, 77304188, 155241934]
+ok   chromium y2 New York: scope numbers = the official table exactly [4619543, 3579519, 8263474] vs [4619543, 3579519, 8263474]
+ok   chromium y2 Pennsylvania: scope numbers = the official table exactly [3423042, 3543308, 7058732] vs [3423042, 3543308, 7058732]
+ok   chromium y2 Maine: scope numbers = the official table exactly [435652, 377977, 831375] vs [435652, 377977, 831375]
+ok   chromium y2 Wyoming: scope numbers = the official table exactly [69527, 192633, 269048] vs [69527, 192633, 269048]
+ok   chromium y2 Virginia: scope numbers = the official table exactly [2335395, 2075085, 4505941] vs [2335395, 2075085, 4505941]
+ok   chromium y2 All States thumbnails = official national ['75.02M', '77.30M']: Donald Trump 2024 77.30M / Kamala Harris 2024 75.02M
+ok   chromium y1 PA row = official (Biden): 3,458,229 (Trump): 3,377,674: Republican (Trump): 3,377,674 | Democratic (Biden): 3,458,229 | Other: 101,073
+ok   chromium y1 NY row = official (Biden): 5,244,886 (Trump): 3,251,997: Republican (Trump): 3,251,997 | Democratic (Biden): 5,244,886 | Other: 119,978
+ok   chromium y1 AZ row = official (Biden): 1,672,143 : Republican (Trump): 1,661,686 | Democratic (Biden): 1,672,143 | Other: 53,497
+ok   chromium y1 US: scope numbers = the official table exactly [81283501, 74223975, 158429631] vs [81283501, 74223975, 158429631]
+ok   chromium y1 New York: scope numbers = the official table exactly [5244886, 3251997, 8616861] vs [5244886, 3251997, 8616861]
+ok   chromium y1 Pennsylvania: scope numbers = the official table exactly [3458229, 3377674, 6936976] vs [3458229, 3377674, 6936976]
+ok   chromium y1 Maine: scope numbers = the official table exactly [435072, 360737, 819461] vs [435072, 360737, 819461]
+ok   chromium y1 Wyoming: scope numbers = the official table exactly [73491, 193559, 276765] vs [73491, 193559, 276765]
+ok   chromium y1 Virginia: scope numbers = the official table exactly [2413568, 1962430, 4460524] vs [2413568, 1962430, 4460524]
+ok   chromium y1 All States thumbnails = official national ['81.28M', '74.22M']: Joe Biden 2020 81.28M / Donald Trump 2020 74.22M
+ok   chromium y0 PA row = official (Clinton): 2,926,441 (Trump): 2,970,733: Republican (Trump): 2,970,733 | Democratic (Clinton): 2,926,441 | Other: 268,304
+ok   chromium y0 MI row = official (Clinton): 2,268,839 (Trump): 2,279,543: Republican (Trump): 2,279,543 | Democratic (Clinton): 2,268,839 | Other: 250,902
+ok   chromium y0 US: scope numbers = the official table exactly [65853514, 62984828, 136669276] vs [65853514, 62984828, 136669276]
+ok   chromium y0 New York: scope numbers = the official table exactly [4556118, 2819533, 7721442] vs [4556118, 2819533, 7721442]
+ok   chromium y0 Pennsylvania: scope numbers = the official table exactly [2926441, 2970733, 6165478] vs [2926441, 2970733, 6165478]
+ok   chromium y0 Maine: scope numbers = the official table exactly [357735, 335593, 747927] vs [357735, 335593, 747927]
+ok   chromium y0 Wyoming: scope numbers = the official table exactly [55973, 174419, 255849] vs [55973, 174419, 255849]
+ok   chromium y0 Virginia: scope numbers = the official table exactly [1981473, 1769443, 3984631] vs [1981473, 1769443, 3984631]
+ok   chromium y0 All States thumbnails = official national ['65.85M', '62.98M']: Hillary Clinton 2016 65.85M / Donald Trump 2016 62.98M
+ok   chromium: no page errors
+FAILS 0

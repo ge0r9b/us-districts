@@ -1,0 +1,10 @@
+ok   webkit flhouse: reload restores the same saved state
+ok   webkit flhouse: reload restores the same list (title, rows, thumbnails): 'Florida' 120 'Donald Trump 2024 56% / Kamala Harris 2024 43%'
+ok   webkit flhouse: no page errors
+ok   webkit miami: reload restores the same saved state
+ok   webkit miami: reload restores the same list (title, rows, thumbnails): 'Miami-Dade County' 34 'Donald Trump 2024 55% / Kamala Harris 2024 44%'
+ok   webkit miami: no page errors
+ok   webkit mdmap: reload restores the same saved state
+ok   webkit mdmap: reload restores the same list (title, rows, thumbnails): 'Miami-Dade County' 0 'Donald Trump 2024 55% / Kamala Harris 2024 44%'
+ok   webkit mdmap: no page errors
+FAILS 0

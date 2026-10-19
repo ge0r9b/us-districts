@@ -89,7 +89,7 @@ Severity: **Critical** = wrong numbers, crashes, broken buttons/flows. High = sp
 - Actual: Biden 558,669 (-11,654), Trump 758,100 (-13,306); total 1,349,567 vs 1,372,303.
 - Screenshot: shots/chromium-ipad1024x768-allstates-2020-num.png
 
-### QA-003 Other state totals that differ from official (smaller)
+### QA-003 [Fixed on 1615 (verified pass 35) under the user rule: certified state totals incl. others] Other state totals that differ from official (smaller)
 - Severity: Critical (wrong numbers, small) | Build 1566 | All sizes
 - Compared every state D/R vs FEC (`qa/cmp.py`). Exact matches for 2024: all states except below; PA/GA/MI/WI/AZ/NV/NC 2024 exact.
 - 2024: VA Harris +1,617 / Trump +988 over official (2,335,395/2,075,085 vs 2,333,778/2,074,097); MA +27/+5; NH +8/+55.
@@ -708,6 +708,38 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Re-test status, builds 1614 / 1615 (pass 35, Oct 19 ~12:12-12:45 PM EDT)
+- **Builds:** line 9 read 202610181614 at the start (12:12 PM). **1615** (`6dfa3f1`, committed 12:20 PM: QA-003 official certified state totals, QA-104 county layer restored on reload, NYC "(Brooklyn part)" row label) went live mid-pass (~12:30 PM). Runs on **1614**: the 8-address QA-098 runs (both engines), layout sweep 390, PA '16. Runs on **1615** (each JSON `build`): states drill/reload, DC reload, city-map reload, reload-lists, official totals, NY data, verify-list own check, menus, layout sweep 1024x768 / 1024x576 / WebKit 375 / 320, smoke flow, older bugs, cmp.py. Up to 4-5 browsers ran in parallel (two engines plus three queues), so **tap timings this pass are noisy** and not used to judge QA-007 / QA-073 / QA-085 / QA-102. No console errors, page errors or failed requests in any run. Data `qa/b1614p35-*.json`, logs `qa/b1614p35-*.log`, shots `qa/shots35/b1614p35-*.png`.
+- **QA-098 [CRITICAL] FIXED on 1614 (verified pass 35), Chromium + WebKit 390x844, touch.** 8 addresses x 3 paths (from All States staying in the list; from All States then reload in the list; from the map), plus the globe after the list path and a reload after the globe: title and thumbnails always the same place, and equal to the map search / popup. All States > address > Enter (list view): Phoenix "Maricopa Precinct 242" Harris 70 / Trump 28 (popup 70.4 / 28.3); Tallahassee "Leon Precinct 42" 74 / 24 (73.6 / 24.0); Austin "Travis Precinct 300" 69 / 28; Philadelphia City Hall "Philadelphia Precinct 815" 81 / 19 (80.8 / 18.6); Harrisburg Capitol "Dauphin Precinct 420430270" 75 / 24 (74.7 / 24.2); Empire State Bldg "New York AD 75 ED 15" 76 / 22 (76.0 / 22.1); Detroit and Brooklyn Borough Hall resolve to Wayne County 63 / 34 and Kings County 71 / 28 on every path (no precinct at that point; other Brooklyn addresses resolve to EDs, e.g. 350 Jay St "Kings AD 52 ED 10" 88 / 10). Globe: same title and numbers, popup on the precinct. Reload (list or map): the precinct title and numbers come back (list view shows "Kamala Harris 70.4%" in the chart labels). The list's single row is still the county row (Maricopa 51.2 / 47.7) under the precinct title (see QA-106). Orchestrator test `tests/list-dc-globe.py` (live, 1614/1615): **77 ok, FAILS 0** in both engines. Shots: qa/shots35/b1614p35-{ch,we}-390x844-addr2-{TX,FL,AZ,PA,PAh,NY,MI,NYb}-{list,listr,map}{,-tomap,-reload}.png (e.g. qa/shots35/b1614p35-ch-390x844-addr2-AZ-list.png). Data `qa/b1614p35-addr2-{chromium,webkit}-390x844.json`.
+- **QA-103 [CRITICAL] still fixed on 1615** (both engines, 390x844): map address / DC row / list address > reload keep "District of Columbia" Harris 90 / Trump 6 at z15 / z11 / z15. Data `qa/b1614p35-dcreload-{chromium,webkit}-390x844.json`, shots qa/shots35/b1614p35-{ch,we}-390x844-dcreload-*-after.png.
+- **QA-104 [MEDIUM] FIXED on 1615 (verified pass 35):** orchestrator `tests/reload-lists.py` 9 ok / FAILS 0 in Chromium and WebKit 390 (Miami-Dade county map with `lt` counties reload keeps the saved state, title and Trump 55 / Harris 44; FL state house list 120 rows and Miami-Dade cities list 34 rows restored). Logs `qa/b1614p35-rl-{ch,wk}.log`.
+- **QA-097 [MEDIUM] CHANGED, still open on 1615:** the view is now kept (Florida with the range + bar step: saved `vw` "map" before and after, map shown), but the **city is not restored**: before the reload the saved state has `"tw":["c","Miami-Dade County","Miami city"]` and the title "Miami-Dade County Miami city" with Harris 50 / Trump 49; after the reload `tw` is gone and the screen is the county ("Miami-Dade County", Trump 55 / Harris 44). Same for Houston city (60 / 38 > Harris County 52 / 46) and Brooklyn borough (71 / 27 > Kings County 71 / 28), both engines. Title and numbers stay consistent (no mixed screen), so not critical. Orchestrator `tests/city-map-reload.py`: 4 ok / **FAILS 4** in each engine ("reload restores the city", "reload restores the numbers" for Miami city and Houston city). Steps: Florida + Enter > geo > Florida counties > Miami-Dade > Miami city > globe (optionally chart bar) > reload. Expected: Miami city map, 50 / 49. Actual: Miami-Dade County map, 55 / 44. Chromium + WebKit 390x844, build 1615. Shots qa/shots35/b1614p35-{ch,we}-390x844-st-Florida-drill-sub-map.png (before), qa/shots35/b1614p35-{ch,we}-390x844-st-Florida-drill-reload.png (after). Data `qa/b1614p35-states-{chromium,webkit}-390x844-r1614.json` > drill.reload, logs `qa/b1614p35-cmr-{ch,wk}.log`.
+- **QA-096 [HIGH] FIXED (seen on 1615):** city precinct list > globe shows numbers: Miami city Harris 50 / Trump 49, Brooklyn borough 71 / 27 (both engines), Houston city 60 / 38.
+- **QA-003 [MED] FIXED on 1615 under the user rule (state and national figures = certified totals):** orchestrator `tests/official-totals.py` 30 ok / FAILS 0 (US '24 75,019,578 / 77,304,188 / 155,241,934; NY, PA, ME, WY, VA exact; rows PA 3,543,308 / 3,423,042 / other 92,382). Others are now included: WY 2024 Trump 71.6% (was 72.3%), ND 67.0, VT 63.8 (smoke flow rows). `cmp.py` vs the FEC compiled tables: remaining gaps only where the certified state figure differs from FEC's table (NY 2020 +13,901 = NYSBOE 5,244,886; VA 2024 +1,617 = 0.04%; CA 2020 +389) and all under the rule; national 2024 vs FEC +0.0026% / +0.0021% / total +0.0023%. Log `qa/b1614p35-cmp.log`, `qa/b1614p35-off-ch.log`.
+- **QA-101 [LOW] still open, half fixed:** NY data test 8 ok / FAILS 0 (Kings = NYSBOE 2016/2020/2024; NY thumbnails 4.62M / 3.58M); the Kings city row now reads "New York city (Brooklyn part)" (label part fixed). Kings 70.9 / 27.6 vs Brooklyn borough 70.6 / 27.3 thumbnails 71 / 28 vs 71 / 27 remain (0.3 pt). Log `qa/b1614p35-ny-ch.log`.
+- **Layout-stability sweep, all 5 sizes, touch (16 steps: slider open at US, All States, MA drill, '20 / '24 year changes, Worcester County, US House list, Back x2, grouped bar, drill / Back again, map):** Chromium 390x844 (1614), 1024x768, 1024x576 (1615), WebKit 375x667, 320x568 (1615): step-for-step identical to passes 31-34; thumbnails, top fields, right buttons, slider, first row and bottom bar did not move on any view switch, year change, drill-in or Back. Only the known items (map thumbnails +68 px when the time row opens, chart button hidden on US House = QA-057, first row +14 px on grouped bar, back chevron appears / goes, iPad crumbs transient on All States). No new jump. Data `qa/b1614p35-layout3-*.json`, shots qa/shots35/b1614p35-*-ls3??-*.png.
+- **Smoke flow, Chromium all 5 sizes (1615):** no console / page errors, no failed requests, CLS 0, no overlaps / clipping / off-screen elements; every field the same as 1613 except the All States rows, which now use the certified totals (QA-003). Over 100 ms (noisy, parallel browsers): All States row 323 ms (390), 138 (1024x576), 122 (1024x768); open institution menu 253 ms (390); type deselect 108 (1024x576). QA-007 still open. Data `qa/b1614p35-flow-chromium-.json`.
+- **Orchestrator verify list holds (1614/1615, Chromium 390):** PA '16 bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5, '24 50.4 / 48.7 / 1.0, '16 again identical (official 48.18 / 47.46); '16 colours: CA, NY, IL, CO, VA, WA blue, TX, OH, KS red, FL / PA / MI / WI pale red (margins under 1.2 pt, correct), US '16 Clinton 48 / Trump 46; PA rows number only ("1", "4", "17"; senate "10", "12"); DC "At-large 90.3%", "DE At-large"; thumbnails on the icon axis in all views; menus overlay at all 5 sizes with nothing dimmed or shrunk (backdrop rgba(0,0,0,0), pie box 210,114-800,704 at 1024x768). Sort chip still not clear in county / city lists (QA-099). Data `qa/b1614p35-{pa16,own,menus}-chromium-*.json`.
+- **Unchanged on 1615 (Chromium 390):** QA-099 open (chip 288-322 x 177-199 over the first row's second label: "Miami-Dade | 55.4%", "Harris | 46.4%"); QA-074 open (no duplicate visible names, but county suffixes still cut by the 100 px name column, e.g. "Lakota Local (Butler)" needs 134 px); QA-073 School districts CA 190 / TX 233 / PA 129 / OH 120 ms (noisy); QA-018 open (OH bar tap stays on All States); QA-006 still fixed; QA-015 the same (40.0029 > 40.0027). Data `qa/b1614p35-{other,chip,074}-chromium-*.json`.
+- **New: QA-105 [LOW]** precinct names are raw census ids outside Philadelphia / NYC (e.g. "Dauphin Precinct 420430270"); **QA-106 [LOW]** list header after an address search from a list reads "<precinct> counties". Details below.
+- Not re-run this pass (time): QA-085 year-tap latency, WebKit smoke flow, institution / type flows in WebKit, QA-005 / QA-064 / QA-072 direct runs.
+
+### QA-105 [LOW] Precinct names shown as raw census ids (PA outside Philadelphia, Staten Island)
+- Severity: LOW (polish, like QA-069; numbers right) | Build 1614 / 1615 | Chromium + WebKit 390x844
+- Steps: type "501 N 3rd St, Harrisburg, PA 17120" + Enter (or "100 State St, Erie, PA 16507", "1000 Richmond Terrace, Staten Island, NY 10301"); or Pennsylvania > geo > counties > Dauphin > Harrisburg city.
+- Expected: a readable precinct name (e.g. the county's ward / precinct name), as Philadelphia ("Philadelphia Precinct 815") and Manhattan / Brooklyn ("New York AD 75 ED 15") show.
+- Actual: title "Dauphin Precinct 420430270", "Erie Precinct 420490370", "Richmond Precinct 360850061020"; Harrisburg city list rows "Precinct 420430280", "Precinct 420430430", ...
+- Screenshots: qa/shots35/b1614p35-ch-390x844-addr2-PAh-map.png, qa/shots35/b1614p35-ch-390x844-harrisburg-precincts.png
+- Data: `qa/b1614p35-probe-chromium-390x844.json`, `qa/b1614p35-addr2-chromium-390x844.json` > PAh-*
+
+### QA-106 [LOW] After an address search from a list, the list header reads "<precinct> counties"
+- Severity: LOW (wording; title and numbers match since 1614) | Build 1614 | Chromium + WebKit 390x844
+- Steps: geo > All States > type "1700 W Washington St, Phoenix, AZ 85007" + Enter (stay in the list).
+- Expected: a header that names the list (e.g. "Maricopa County" or "Arizona counties") over the county row, with the precinct shown as the selection.
+- Actual: header "Maricopa Precinct 242 counties" over one row "Maricopa 51.2% / 47.7%" (the county), thumbnails the precinct 70 / 28. Same for "Leon Precinct 42 counties", "Philadelphia Precinct 815 counties".
+- Screenshot: qa/shots35/b1614p35-ch-390x844-addr2-AZ-list.png
+- Data: `qa/b1614p35-addr2-chromium-390x844.json` > AZ-list.res
+
 ## Re-test status, build 1613 (pass 34, Oct 19 ~11:04-11:20 AM EDT; line 9 = 202610181613)
 - **QA-098 [CRITICAL, orchestrator ruling 11:03 AM: any title over another place's numbers] STILL OPEN in list view on 1613 (Chromium 390x844):** All States > address > Enter, staying in the list: Phoenix: crumb "Maricopa Precinct 242" over Trump 51% / Harris 48% (Maricopa County; precinct is Harris 70 / Trump 28); Tallahassee: "Leon Precinct 42" over Harris 60 / Trump 39 (Leon County; precinct 74 / 24); Austin: "Travis Precinct 300" over 69 / 29 (Travis County 68.8/29.4; precinct 69.3/28.4, close by chance). Michigan (Detroit) shows "Wayne County" over Wayne numbers: OK. After the globe all three show the precinct numbers (70/28, 74/24, 69/28): map side fixed. Shots: shots/b1613p33-ch-390x844-addr2-{AZ,FL,TX}-list.png (+ -tomap). Data qa/b1613p33-addr2-chromium-390x844.json.
 - **QA-094 / QA-095 FIXED in WebKit 390x844 too (1613):** Harris 52/46, Miami-Dade 55/44 (55.4/43.9), Maricopa 51/48; FL senate # header 6.11M / 4.68M; 0 page errors (qa/p34-cot-wk.log, FAILS 0).
@@ -765,7 +797,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - **Layout sweep (16 steps, 1611), WebKit 390x844 and 1024x768:** nothing moved on any view switch (MA > Worcester County results with the slider > US House list), year change, drill-in or Back except the expected ones (map thumbnails +68 px when the time row opens, first row 30 > 44 px for split bar, chart button hidden with the type row open, back chevron appears / goes); no transients. Data `qa/b1611p32-layout3-webkit-{390,1024x768}.json`, shots shots/b1611p32-we-*-ls3??-*.png.
 - Skipped (time): sort-chip 60-check harness; WebKit smoke flow (ran in pass 31); layout sweep at 375 / 320 / 1024x576; clean single-browser re-measure of QA-073 / QA-102; WebKit QA-085; institution / type flows in WebKit; QA-005 / QA-064 / QA-072 direct re-runs.
 
-### QA-103 [CRITICAL by the QA-093 ruling (same screen); orchestrator to confirm] A DC map view does not survive a reload: US title and US numbers over the DC outline
+### QA-103 [Fixed on 1612; still fixed on 1615 (pass 35)] [CRITICAL] A DC map view does not survive a reload: US title and US numbers over the DC outline
 - Severity: CRITICAL by the QA-093 ruling (the same mixed screen QA-093 had: DC drawn, the US title and numbers); the user just has to reload. Not a regression of 1611: the pass-30 data (`qa/b1609p30-addr-chromium-390x844.json` > `after_reload`) already showed "United States" 50% / 48% at DC zoom 15 after a reload, but it was not looked at then. New on 1611: the saved state now carries `"dc":1`, and it is dropped on load. | Build 1611 | Chromium and WebKit 390x844, touch
 - Steps: (a) from the map: type "1600 Pennsylvania Ave NW, Washington, DC 20500" + Enter; or (b) geo button > All States > tap the DC row > globe; or (c) All States > the same address + Enter > globe. Then reload the page.
 - Expected: the DC view comes back (title "District of Columbia", Harris 90% / Trump 6%), as the saved state says (`{"v":1,...,"vw":"map","dc":1,"ll":[38.8926,-77.0142,11]}`); or, if DC is not restored, the US view (zoom 4) under the US title.
@@ -809,7 +841,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-st-Michigan-senate-list-num.png, shots/b1610p31-ch-390x844-st-NewYork-statehouse-list-num.png, shots/b1610p31-ch-390x844-st-Florida-senate-list-num.png
 - Data: `qa/b1610p31-states-chromium-390x844-b.json` > `<state>.types.<type>.th_num` (and `tot` = `__stTot`), FEC `qa/fec24.json`; script `qa/p31-states.py`
 
-### QA-096 [HIGH] City / borough precinct list > globe: the map thumbnails show no numbers
+### QA-096 [Fixed on 1615 (verified pass 35)] [HIGH] City / borough precinct list > globe: the map thumbnails show no numbers
 - Severity: HIGH (numbers missing on the main view) | Build 1610 | Chromium 390x844, touch
 - Steps: state + Enter > geo button > "<state> counties" > a county > the first city (Houston city, Miami city, Phoenix city, Brooklyn borough) > globe button (list > map).
 - Expected: the map with the place's numbers next to the thumbnails (as in the precinct list just before: Houston city Harris 60% / Trump 38%).
@@ -817,7 +849,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-st-Texas-drill-sub-map.png, shots/b1610p31-ch-390x844-st-Florida-drill-sub-map.png, shots/b1610p31-ch-390x844-st-NewYork-drill-sub-map.png, shots/b1610p31-ch-390x844-st-Arizona-drill-sub-map.png
 - Data: `qa/b1610p31-states-chromium-390x844-b.json` > `<state>.drill.map3` (thumbnail text "Kamala Harris 2024 / " with nothing after it), `th3` (list values)
 
-### QA-097 [MEDIUM] Reload on the city-level map (Florida, after a range/chart change) comes back as the county list view
+### QA-097 [Changed on 1615 (pass 35): view now kept, but the city is dropped on reload (county title + numbers)] [MEDIUM] Reload on the city-level map (Florida, after a range/chart change) comes back as the county list view
 - Severity: MEDIUM (wrong view restored) | Build 1610 | Chromium 390x844, touch
 - Steps: Florida + Enter > time button, '16>'20 / '20>'24 / '16>'24 with each chart, back to '24 > geo > "Florida counties" > Miami-Dade > Miami city > globe (map) > reload.
 - Expected: the map view restored (saved `vw` "map").
@@ -825,7 +857,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-st-Florida-drill-sub-map.png (before), shots/b1610p31-ch-390x844-st-Florida-drill-reload.png (after)
 - Data: `qa/b1610p31-states-chromium-390x844-b.json` > `Florida.drill.reload` (`before`, `after`)
 
-### QA-098 [CRITICAL (wrong numbers, QA-087 family)] Non-DC address search from the All States list: the title is the precinct, the numbers are the county's (wrong winner in Phoenix)
+### QA-098 [Fixed on 1614 (verified pass 35, both engines, 8 addresses)] [CRITICAL (wrong numbers, QA-087 family)] Non-DC address search from the All States list: the title is the precinct, the numbers are the county's (wrong winner in Phoenix)
 - Severity: CRITICAL (wrong numbers under the place's title; like QA-087, ruled critical) | Build 1610 | Chromium 390x844, touch
 - Steps: fresh load > geo button > All States > tap the bottom field > type "1700 W Washington St, Phoenix, AZ 85007" > Enter; then the globe button.
 - Expected: as the same search from the map does: title "Maricopa Precinct 242", Harris 70% / Trump 28% (popup Harris 70.4% / Trump 28.3%).
@@ -833,7 +865,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-addr2-AZ-list.png, shots/b1610p31-ch-390x844-addr2-AZ-list-tomap.png, shots/b1610p31-ch-390x844-addr2-FL-list.png, shots/b1610p31-ch-390x844-addr2-FL-list-tomap.png, shots/b1610p31-ch-390x844-addr2-TX-list.png (compare shots/b1610p31-ch-390x844-addr2-AZ-map.png)
 - Data: `qa/b1610p31-addr2-chromium-390x844.json` > `<ST>-list` (`res`, `rows`, `tomap`) vs `<ST>-map`; script `qa/p31-addr2.py`
 
-### QA-099 [MEDIUM] Sort chip overlaps the first row's bar by 5 px and hides its second label (time row open, county and city lists)
+### QA-099 [MEDIUM, still open on 1615] Sort chip overlaps the first row's bar by 5 px and hides its second label (time row open, county and city lists)
 - Severity: MEDIUM (overlap; verify-list rule "chip clear of every row's bars and labels") | Build 1610 | Chromium 390x844, touch
 - Steps: Florida (or Texas) + Enter > time button (row open) > geo button > "<state> counties"; then tap Miami-Dade (or Harris).
 - Expected: the chip clear of the first row, as in All States.
@@ -841,7 +873,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390-chip-Florida-Miami-Dade.png, shots/b1610p31-ch-390-chip-Texas-Harris.png, shots/b1610p31-ch-390x844-st-Michigan-senate-list-num.png
 - Data: `qa/b1610p31-chip-chromium-390.json` (`chip`, `rows[0].hit`); script `qa/p31-chip.py`
 
-### QA-100 [HIGH, may be CRITICAL] New York county rows add up to exactly 100% (no other candidates), so Kings County and Brooklyn borough show different numbers
+### QA-100 [Fixed on 1613 (pass 34); NY data test still FAILS 0 on 1615 (pass 35)] [HIGH, may be CRITICAL] New York county rows add up to exactly 100% (no other candidates), so Kings County and Brooklyn borough show different numbers
 - Severity: HIGH (the same area shows two results ~1.4 points apart; may count as wrong numbers) | Build 1610 | Chromium 390x844, touch
 - Steps: "New York" + Enter > geo button > "New York counties"; then Kings > the Brooklyn borough row.
 - Expected: one result for Brooklyn (Kings County = Brooklyn borough), others included as everywhere else.
@@ -849,7 +881,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1610p31-ch-390x844-st-NewYork-drill-Kings.png, shots/b1610p31-ch-390x844-st-NewYork-drill-reload.png
 - Data: `qa/b1610p31-states-chromium-390x844-b.json` > `New York.drill` (`rows1`, `rows2`, `th3`, `reload.th`)
 
-### QA-101 [LOW] New York 2024 map: Trump 44% (FEC 43.3%), the state total is 0.78% below FEC
+### QA-101 [LOW, still open on 1615 (0.3 pt Kings vs Brooklyn); row label fixed] New York 2024 map: Trump 44% (FEC 43.3%), the state total is 0.78% below FEC
 - Severity: LOW (gap under 0.5 points) | Build 1610 | Chromium 390x844
 - Steps: "New York" + Enter (map, 2024).
 - Expected: Harris 56% / Trump 43% (FEC 55.91% / 43.31%).

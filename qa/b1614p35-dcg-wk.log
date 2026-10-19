@@ -1,0 +1,83 @@
+ref US view after Back {"list": false, "crumbs": "United States", "title": "United States", "ph": "United States", "val": "", "st": "", "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%", "z": 4, "c": [39.77, -98.61]}
+ok   webkit usglobe: the globe opens the map
+ok   webkit QA-092: All States > globe opens the normal US view (z 4 at [39.77, -98.61]; after Back,Back: (4, [39.77, -98.61]))
+ok   webkit QA-092: still titled United States
+ok   webkit usglobe: no page errors
+ref map-wdc {"list": false, "crumbs": "District of Columbia", "title": "District of Columbia", "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "val": "", "st": "", "thumbs": "Kamala Harris 2024 90% / Donald Trump 2024 6%", "z": 15, "c": [38.9, -77.04]}
+ok   webkit map-wdc: from the map, DC with its numbers
+ok   webkit map-wdc: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   webkit map-wdc: QA-103 reload restores the field ('1600 PENNSYLVANIA AVE NW, WASHI…' vs '1600 PENNSYLVANIA AVE NW, WASHI…')
+ok   webkit map-wdc: QA-103 reload restores the map view (z 15 [38.9, -77.04] vs 15 [38.9, -77.04])
+ok   webkit map-wdc: QA-103 the map is coloured after the reload (49 filled shapes, before 49)
+ok   webkit map-wdc: no page errors
+ok   webkit dcrow: the globe opens the map
+ok   webkit dcrow: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   webkit dcrow: QA-093 the title says District of Columbia
+ok   webkit dcrow: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   webkit dcrow: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   webkit dcrow: QA-103 reload restores the field ('District of Columbia' vs 'District of Columbia')
+ok   webkit dcrow: QA-103 reload restores the map view (z 11 [38.89, -77.01] vs 11 [38.89, -77.01])
+ok   webkit dcrow: QA-103 the map is coloured after the reload (871 filled shapes, before 871)
+ok   webkit dcrow: the map is on DC
+ok   webkit dcrow: no page errors
+ok   webkit dcaddr: the globe opens the map
+ok   webkit dcaddr: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   webkit dcaddr: QA-093 the title says District of Columbia
+ok   webkit dcaddr: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   webkit dcaddr: the globe opens on the address like the map search (field '1600 PENNSYLVANIA AVE NW, WASHI…' z 15 vs '1600 PENNSYLVANIA AVE NW, WASHI…' z 15)
+ok   webkit dcaddr: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   webkit dcaddr: QA-103 reload restores the field ('1600 PENNSYLVANIA AVE NW, WASHI…' vs '1600 PENNSYLVANIA AVE NW, WASHI…')
+ok   webkit dcaddr: QA-103 reload restores the map view (z 15 [38.9, -77.04] vs 15 [38.9, -77.04])
+ok   webkit dcaddr: QA-103 the map is coloured after the reload (49 filled shapes, before 49)
+ok   webkit dcaddr: the map is on DC
+ok   webkit dcaddr: no page errors
+ref map-phx {"list": false, "crumbs": "Maricopa Precinct 242", "title": "Maricopa Precinct 242", "ph": "1700 W WASHINGTON ST, PHOENIX", "val": "", "st": "Arizona", "thumbs": "Kamala Harris 2024 70% / Donald Trump 2024 28%", "z": 14, "c": [33.44, -112.09]}
+ok   webkit map-phx: from the map, titled with the precinct
+ok   webkit map-phx: the precinct's own numbers (Harris ~70)
+ok   webkit map-phx: QA-103 reload restores the title and numbers ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs 'Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%')
+ok   webkit map-phx: QA-103 reload restores the field ('1700 W WASHINGTON ST, PHOENIX' vs '1700 W WASHINGTON ST, PHOENIX')
+ok   webkit map-phx: QA-103 reload restores the map view (z 14 [33.44, -112.09] vs 14 [33.44, -112.09])
+ok   webkit map-phx: QA-103 the map is coloured after the reload (4105 filled shapes, before 4105)
+ok   webkit map-phx: no page errors
+ok   webkit list-phx: QA-098 in the list view the title matches the numbers ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%'; map search: ('Maricopa Precinct 242', 'Kamala Harris 2024 70% / Donald Trump 2024 28%'))
+ok   webkit list-phx: the globe opens the map
+ok   webkit list-phx: QA-098 the globe shows the same title and numbers as the map search ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs ('Maricopa Precinct 242', 'Kamala Harris 2024 70% / Donald Trump 2024 28%'))
+ok   webkit list-phx: QA-098 the same map view as the map search (z 14 vs 14)
+ok   webkit list-phx: QA-103 reload restores the title and numbers ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs 'Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%')
+ok   webkit list-phx: QA-103 reload restores the field ('1700 W WASHINGTON ST, PHOENIX' vs '1700 W WASHINGTON ST, PHOENIX')
+ok   webkit list-phx: QA-103 reload restores the map view (z 14 [33.44, -112.09] vs 14 [33.44, -112.09])
+ok   webkit list-phx: QA-103 the map is coloured after the reload (4105 filled shapes, before 4105)
+ok   webkit list-phx: no page errors
+ref map-tlh {"list": false, "crumbs": "Leon Precinct 42", "title": "Leon Precinct 42", "ph": "400 S MONROE ST, TALLAHASSEE", "val": "", "st": "Florida", "thumbs": "Kamala Harris 2024 74% / Donald Trump 2024 24%", "z": 13, "c": [30.45, -84.27]}
+ok   webkit map-tlh: from the map, titled with the precinct
+ok   webkit map-tlh: QA-103 reload restores the title and numbers ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs 'Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%')
+ok   webkit map-tlh: QA-103 reload restores the field ('400 S MONROE ST, TALLAHASSEE' vs '400 S MONROE ST, TALLAHASSEE')
+ok   webkit map-tlh: QA-103 reload restores the map view (z 13 [30.45, -84.27] vs 13 [30.45, -84.27])
+ok   webkit map-tlh: QA-103 the map is coloured after the reload (3308 filled shapes, before 3308)
+ok   webkit map-tlh: no page errors
+ok   webkit list-tlh: QA-098 in the list view the title matches the numbers ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%'; map search: ('Leon Precinct 42', 'Kamala Harris 2024 74% / Donald Trump 2024 24%'))
+ok   webkit list-tlh: the globe opens the map
+ok   webkit list-tlh: QA-098 the globe shows the same title and numbers as the map search ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs ('Leon Precinct 42', 'Kamala Harris 2024 74% / Donald Trump 2024 24%'))
+ok   webkit list-tlh: QA-098 the same map view as the map search (z 13 vs 13)
+ok   webkit list-tlh: QA-103 reload restores the title and numbers ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs 'Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%')
+ok   webkit list-tlh: QA-103 reload restores the field ('400 S MONROE ST, TALLAHASSEE' vs '400 S MONROE ST, TALLAHASSEE')
+ok   webkit list-tlh: QA-103 reload restores the map view (z 13 [30.45, -84.27] vs 13 [30.45, -84.27])
+ok   webkit list-tlh: QA-103 the map is coloured after the reload (3308 filled shapes, before 3308)
+ok   webkit list-tlh: no page errors
+ref map-aus {"list": false, "crumbs": "Travis Precinct 300", "title": "Travis Precinct 300", "ph": "1100 CONGRESS AVE, AUSTIN", "val": "", "st": "Texas", "thumbs": "Kamala Harris 2024 69% / Donald Trump 2024 28%", "z": 13, "c": [30.28, -97.74]}
+ok   webkit map-aus: from the map, titled with the precinct
+ok   webkit map-aus: QA-103 reload restores the title and numbers ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs 'Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%')
+ok   webkit map-aus: QA-103 reload restores the field ('1100 CONGRESS AVE, AUSTIN' vs '1100 CONGRESS AVE, AUSTIN')
+ok   webkit map-aus: QA-103 reload restores the map view (z 13 [30.28, -97.74] vs 13 [30.28, -97.74])
+ok   webkit map-aus: QA-103 the map is coloured after the reload (3493 filled shapes, before 3493)
+ok   webkit map-aus: no page errors
+ok   webkit list-aus: QA-098 in the list view the title matches the numbers ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%'; map search: ('Travis Precinct 300', 'Kamala Harris 2024 69% / Donald Trump 2024 28%'))
+ok   webkit list-aus: the globe opens the map
+ok   webkit list-aus: QA-098 the globe shows the same title and numbers as the map search ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs ('Travis Precinct 300', 'Kamala Harris 2024 69% / Donald Trump 2024 28%'))
+ok   webkit list-aus: QA-098 the same map view as the map search (z 13 vs 13)
+ok   webkit list-aus: QA-103 reload restores the title and numbers ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs 'Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%')
+ok   webkit list-aus: QA-103 reload restores the field ('1100 CONGRESS AVE, AUSTIN' vs '1100 CONGRESS AVE, AUSTIN')
+ok   webkit list-aus: QA-103 reload restores the map view (z 13 [30.28, -97.74] vs 13 [30.28, -97.74])
+ok   webkit list-aus: QA-103 the map is coloured after the reload (3493 filled shapes, before 3493)
+ok   webkit list-aus: no page errors
+FAILS 0
