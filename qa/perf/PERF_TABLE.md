@@ -210,3 +210,21 @@ Run 2026-10-25 16:57-17:20 EDT, load avg 1.0-5.2 (other bots' Chromium/WebKit te
 - Pan: phones 60 fps, 0 dropped; iPad 59.0 fps, 4 dropped (1618: 55.5, 17 dropped).
 - /workspace/perf/perf.py (390, 4x CPU throttle, 1 round, raw/b1620-live-perfpy.json): glass/no-glass taps #bNum 22/17, #bTime 29/26, #bLyr 22/17 ms; map pan+pinch 41/39 fps; list scroll 59.8/59.3 fps (436 rows); list sort 73/75 ms (perf1.log on 1575: 410-450 ms).
 - No proposal landed: PACK/XREF still inline in index.html, data still versioned by window.BUILD (50 refs), ussch.js and precincts2024/Alaska.js still lazy (not fetched in a PA session), index.html not trimmed. QA-007 (All States, US House pick) and QA-041 (Line pick) still look fixed.
+
+| 1621 (844c703) | 390x844 | 1.61 / 7.86 | 3.68 / 13.38 | 542 | 718 | 661 | 115 | 44 / 82 (cold 82) | 73 / 127 (cold 43) | 12 / 24 | 18 / 19 | 24 / 28 | 45 / 66 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
+| 1621 (844c703) | 375x667 | 1.61 / 7.86 | 3.68 / 13.38 | 889 | 906 | 831 | 122 | 50 / 95 (cold 95) | 65 / 86 (cold 43) | 19 / 29 | 13 / 15 | 26 / 30 | 51 / 82 | 60.0 fps, p95 16.8, max 16.8, dropped 0/280 |
+| 1621 (844c703) | 320x568 | 1.61 / 7.86 | 3.68 / 13.38 | 504 | 737 | 606 | 95 | 77 / 166 (cold 77) | 78 / 86 (cold 40) | 17 / 27 | 24 / 30 | 23 / 28 | 55 / 73 | 58.1 fps, p95 16.7, max 116.7, dropped 9/281 |
+| 1621 (844c703) | ipad820x1180 | 1.61 / 7.86 | 3.68 / 13.38 | 533 | 905 | 839 | 150 | 43 / 203 (cold 203) | 79 / 171 (cold 43) | 24 / 40 | 10 / 51 | 29 / 39 | 57 / 88 | 56.6 fps, p95 16.8, max 99.9, dropped 14/230 |
+
+## 1621 (844c703) vs 1620 (09b6cd9)
+Run 2026-10-25 18:52-19:13 EDT, load avg 2.8-9.5 (other bots' Chromium/WebKit tests alongside), same tools/baseline.py and selectors (0 notes, 0 page errors). Live v2 served BUILD 202610251621. 1621 (QA-128 strict town-membership rule, QA-129 geo entry with a district type) has no intended speed change. Medians (390/375/320/iPad).
+- Bytes: 1.61 / 7.86 MB initial and 3.68 / 13.38 MB PA session (+1 KB gz, +2 KB raw), flat.
+- Taps, every median under 100 ms: All States 44/50/77/43 (1620: 45/50/44/37), US House pick 73/65/78/79 (80/82/67/68), Line 12/19/17/24 (18/14/15/13), drill PA 18/13/24/10, back 24/26/23/29, time step 45/51/55/57 (48/42/42/48), time slider open 27/29/26/28.
+- Startup: first map 661/831/606/839 (1620: 669/575/803/574).
+- Pan: 390/375 60 fps, 320 58.1 fps (9 dropped), iPad 56.6 fps (14 dropped; load 9.5 during that run).
+- 375, 320 and iPad were rerun (raw/b1621-live2-*.json, load 5.8 at start): 375 first map 510, All States 38; 320 All States 43, first map 802 (1620's first run was also 803), pan 60 fps; iPad first map 680, Line 16, US House 59, pan 59.2 fps. So the first-run outliers (320 All States +75%, 375/iPad first map +45%) were load noise, not a regression.
+- /workspace/perf/perf.py (390, 4x CPU throttle, 1 round, raw/b1621-live-perfpy.txt, load 7.2): glass/no-glass taps #bNum 23/132 (no-glass outlier), #bTime 25/38, #bLyr 19/28 ms; map pan+pinch 40/33 fps; list scroll 59.6/59.5 fps (436 rows); list sort 80/85 ms.
+- No proposal landed (bytes unchanged: PACK/XREF still inline, ussch.js and Alaska precincts still lazy, index.html not trimmed). QA-007 and QA-041 still look fixed.
+| 1621 (844c703) rerun | 375x667 | 1.61 / 7.86 | 3.68 / 13.39 | 425 | 887 | 510 | 105 | 38 / 89 (cold 89) | 68 / 120 (cold 65) | 16 / 16 | 29 / 42 | 22 / 32 | 44 / 75 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
+| 1621 (844c703) rerun | 320x568 | 1.61 / 7.86 | 3.68 / 13.38 | 828 | 841 | 802 | 121 | 43 / 109 (cold 109) | 70 / 106 (cold 48) | 17 / 29 | 19 / 27 | 25 / 27 | 42 / 72 | 60.0 fps, p95 16.7, max 16.8, dropped 0/277 |
+| 1621 (844c703) rerun | ipad820x1180 | 1.61 / 7.86 | 3.68 / 13.39 | 438 | 801 | 680 | 122 | 38 / 103 (cold 103) | 59 / 63 (cold 53) | 16 / 27 | 12 / 42 | 23 / 30 | 44 / 71 | 59.2 fps, p95 16.8, max 33.4, dropped 3/221 |

@@ -1,0 +1,2 @@
+glass {"map": {"fps": 39.8, "p95": 66.8, "long50": 8, "frames": 114}, "tap": {"#bNum": 22.6, "#bTime": 25.2, "#bLyr": 18.8}, "list": {"fps": 59.6, "p95": 16.7, "long50": 1, "frames": 608}, "rows": 436, "tapList": {"#bNum": 11.5, "#laSort": 80.1}}
+noglass {"map": {"fps": 33.2, "p95": 83.3, "long50": 7, "frames": 99}, "tap": {"#bNum": 132.1, "#bTime": 37.8, "#bLyr": 27.7}, "list": {"fps": 59.5, "p95": 16.8, "long50": 1, "frames": 608}, "rows": 436, "tapList": {"#bNum": 10.8, "#laSort": 84.8}}
