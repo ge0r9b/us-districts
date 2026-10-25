@@ -1,0 +1,101 @@
+{
+ "Pennsylvaniasenate": {
+  "a": [
+   {
+    "crumbs": "District 010",
+    "list": false,
+    "mode": null,
+    "lt": "senate",
+    "la": null,
+    "lap": null
+   },
+   [
+    "Kamala Harris 2024 / 55%",
+    "Donald Trump 2024 / 44%"
+   ]
+  ],
+  "menu": [
+   "pie"
+  ],
+  "b": [
+   {
+    "crumbs": "District 010",
+    "list": true,
+    "mode": "bar",
+    "lt": "senate",
+    "la": "precincts",
+    "lap": "District 010"
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ]
+  ]
+ },
+ "Pennsylvanianone": {
+  "a": [
+   {
+    "crumbs": "Pennsylvania",
+    "list": false,
+    "mode": null,
+    "lt": "none",
+    "la": null,
+    "lap": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ]
+  ],
+  "menu": [
+   "pie"
+  ],
+  "b": [
+   {
+    "crumbs": "Pennsylvania",
+    "list": true,
+    "mode": "pie",
+    "lt": "none",
+    "la": null,
+    "lap": null
+   },
+   [
+    "Donald Trump \u00b7 50.2% / ",
+    "Kamala Harris \u00b7 48.5% / "
+   ]
+  ]
+ },
+ "Ohioushouse": {
+  "a": [
+   {
+    "crumbs": "District 07",
+    "list": false,
+    "mode": null,
+    "lt": "ushouse",
+    "la": null,
+    "lap": null
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ]
+  ],
+  "menu": [
+   "pie"
+  ],
+  "b": [
+   {
+    "crumbs": "District 07",
+    "list": true,
+    "mode": "bar",
+    "lt": "ushouse",
+    "la": "precincts",
+    "lap": "District 07"
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ]
+  ]
+ }
+}

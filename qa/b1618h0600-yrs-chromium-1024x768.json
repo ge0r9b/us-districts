@@ -1,0 +1,974 @@
+{
+ "Wisconsin>@1": {
+  "build": "202610181618",
+  "distrow": [
+   61,
+   136.5,
+   "33"
+  ],
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "District 033",
+    "gq": "Wisconsin",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 32%"
+   ],
+   [
+    9,
+    43.187,
+    -88.443
+   ]
+  ],
+  "yrs": [
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 106.3,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "District 033",
+    "th": [
+     "Donald Trump 2016 / 66%",
+     "Hillary Clinton 2016 / 28%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     32.3,
+     47.3
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-pct-0.png"
+   },
+   {
+    "mode": "pct",
+    "i": 1,
+    "lat": 162.6,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "District 033",
+    "th": [
+     "Donald Trump 2020 / 66%",
+     "Joe Biden 2020 / 32%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     29.6,
+     47.4
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-pct-1.png"
+   },
+   {
+    "mode": "pct",
+    "i": 2,
+    "lat": 96.9,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "District 033",
+    "th": [
+     "Donald Trump 2024 / 66%",
+     "Kamala Harris 2024 / 32%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     29.6,
+     47.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-pct-2.png"
+   },
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 128.7,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "District 033",
+    "th": [
+     "Donald Trump 2016 / 66%",
+     "Hillary Clinton 2016 / 28%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     32.3,
+     47.3
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-pct-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 86.8,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "th": [
+     "Donald Trump 2016 / 1.4M",
+     "Hillary Clinton 2016 / 1.4M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     32.3,
+     47.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-num-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 1,
+    "lat": 119.4,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "th": [
+     "Joe Biden 2020 / 1.6M",
+     "Donald Trump 2020 / 1.6M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     29.6,
+     47.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-num-1.png"
+   },
+   {
+    "mode": "num",
+    "i": 2,
+    "lat": 70.6,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "th": [
+     "Donald Trump 2024 / 1.7M",
+     "Kamala Harris 2024 / 1.7M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     29.6,
+     47.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-num-2.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 86.2,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "th": [
+     "Donald Trump 2016 / 1.4M",
+     "Hillary Clinton 2016 / 1.4M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     32.3,
+     47.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Wisconsin-@1-num-0.png"
+   }
+  ],
+  "reload": [
+   {
+    "mode": "pct",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "District 033",
+     "gq": "Wisconsin",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Wisconsin",
+     "gq": "Wisconsin",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 66%",
+     "Hillary Clinton 2016 / 28%"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 46%"
+    ]
+   },
+   {
+    "mode": "num",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Wisconsin",
+     "gq": "Wisconsin",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Wisconsin",
+     "gq": "Wisconsin",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 1.4M",
+     "Hillary Clinton 2016 / 1.4M"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 1.4M",
+     "Hillary Clinton 2016 / 1.4M"
+    ]
+   }
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 20.5,
+    "pct": [
+     {
+      "mode": "bar",
+      "lv": "33 | 66.1% | 32.5% | 8 | 47.9% | 50.4% | 27 | 22.9% | 75.3% | 28 | 60.3% | 38.2% | 1 | 59.4% | 39.1% | 16 | 34.4% | 63.9% | 12 | 63.9% | 34.8% | 19 | 62.2% | 36.4% | 26 | 14.7% | 83.5% | 5 | 46.0% | 51.9% | 25 | 56.1% | 42.5% | 10 | 59.2% | 38.7% | 20 | 66.6% | 32.0% | 2 | 63.0% | 35.7% | 11 | 63.2% | 35.3% | 14 | 48.4% | 50.0% | 7 | 34.7% | 63.0% | 17 | 48.7% | 49.7% | 31 | 48.1% | 50.3% | 32 | 4",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 49%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Wisconsin",
+      "gq": "Wisconsin",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "bar",
+      "lv": "33 | 84K | 41K | 8 | 58K | 61K | 27 | 28K | 92K | 28 | 70K | 44K | 1 | 68K | 45K | 16 | 39K | 72K | 12 | 72K | 39K | 19 | 70K | 41K | 26 | 93K | 5 | 51K | 57K | 25 | 62K | 47K | 10 | 65K | 42K | 20 | 72K | 35K | 2 | 68K | 39K | 11 | 68K | 38K | 14 | 51K | 53K | 7 | 36K | 66K | 17 | 51K | 52K | 31 | 50K | 52K | 32 | 49K | 52K | 29 | 61K | 41K | 9 | 58K | 42K | 24 | 56K | 43K | 13 | 65K | 34K | 21 |",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2024 / 1.70M",
+      "Kamala Harris 2024 / 1.67M"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Wisconsin",
+      "gq": "Wisconsin",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "bar",
+       "lv": "33 | 84K | 41K | 8 | 58K | 61K | 27 | 28K | 92K | 28 | 70K | 44K | 1 | 68K | 45K | 16 | 39K | 72K | 12 | 72K | 39K | 19 | 70K | 41K | 26 | 93K | 5 | 51K | 57K | 25 | 62K | 47K | 10 | 65K | 42K | 20 | 72K | 35K | 2 | 68K | 39K | 11 | 68K | 38K | 14 | 51K | 53K | 7 | 36K | 66K | 17 | 51K | 52K | 31 | 50K | 52K | 32 | 49K | 52K | 29 | 61K | 41K | 9 | 58K | 42K | 24 | 56K | 43K | 13 | 65K | 34K | 21 |",
+       "svgtxt": []
+      },
+      [
+       "Donald Trump 2024 / 1.70M",
+       "Kamala Harris 2024 / 1.67M"
+      ],
+      {
+       "title": "President",
+       "crumbs": "Wisconsin",
+       "gq": "Wisconsin",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   },
+   "line-16-24": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   },
+   "line-20-24": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   }
+  },
+  "err": []
+ },
+ "Michigan": {
+  "build": "202610181618",
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "Michigan",
+    "gq": "Michigan",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    6,
+    45.089,
+    -86.265
+   ]
+  ],
+  "yrs": [
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 91.2,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.2,
+     3.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-pct-0.png"
+   },
+   {
+    "mode": "pct",
+    "i": 1,
+    "lat": 127.4,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 48%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     47.5,
+     5.4
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-pct-1.png"
+   },
+   {
+    "mode": "pct",
+    "i": 2,
+    "lat": 123.4,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.1,
+     4.8
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-pct-2.png"
+   },
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 102.8,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.2,
+     3.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-pct-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 80.3,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2016 / 2.3M",
+     "Hillary Clinton 2016 / 2.3M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.2,
+     3.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-num-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 1,
+    "lat": 115,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Joe Biden 2020 / 2.8M",
+     "Donald Trump 2020 / 2.6M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     47.5,
+     5.4
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-num-1.png"
+   },
+   {
+    "mode": "num",
+    "i": 2,
+    "lat": 110.8,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2024 / 2.8M",
+     "Kamala Harris 2024 / 2.7M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.1,
+     4.8
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-num-2.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 107.4,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Michigan",
+    "th": [
+     "Donald Trump 2016 / 2.3M",
+     "Hillary Clinton 2016 / 2.3M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.2,
+     3.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-1024x768-yrs-Michigan-num-0.png"
+   }
+  ],
+  "reload": [
+   {
+    "mode": "pct",
+    "same_state": false,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 47%"
+    ]
+   },
+   {
+    "mode": "num",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 2.3M",
+     "Hillary Clinton 2016 / 2.3M"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 2.3M",
+     "Hillary Clinton 2016 / 2.3M"
+    ]
+   }
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 23.2,
+    "pct": [
+     {
+      "mode": "pie",
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump \u00b7 49.7% / ",
+      "Kamala Harris \u00b7 48.3% / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "pie",
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump \u00b7 2.82M / ",
+      "Kamala Harris \u00b7 2.74M / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "pie",
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Donald Trump \u00b7 2.82M / ",
+       "Kamala Harris \u00b7 2.74M / "
+      ],
+      {
+       "title": "President",
+       "crumbs": "Michigan",
+       "gq": "Michigan",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16": {
+    "opts": [
+     "bar"
+    ],
+    "already": true,
+    "pct": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2016 / 47%",
+      "Hillary Clinton 2016 / 47%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "ysl": [
+       0,
+       0
+      ],
+      "num": "pct",
+      "list": false
+     }
+    ],
+    "num": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2016 / 2.3M",
+      "Hillary Clinton 2016 / 2.3M"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "ysl": [
+       0,
+       0
+      ],
+      "num": "num",
+      "list": false
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": null,
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Donald Trump 2016 / 2.3M",
+       "Hillary Clinton 2016 / 2.3M"
+      ],
+      {
+       "title": "President",
+       "crumbs": "Michigan",
+       "gq": "Michigan",
+       "ym": "2024",
+       "ysl": [
+        0,
+        0
+       ],
+       "num": "num",
+       "list": false
+      }
+     ]
+    }
+   },
+   "line-16-24": {
+    "opts": [
+     "line"
+    ],
+    "lat": 37.9,
+    "pct": [
+     {
+      "mode": "line",
+      "lv": "",
+      "svgtxt": []
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "delta",
+      "ysl": [
+       0,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "line",
+      "lv": "",
+      "svgtxt": []
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "delta",
+      "ysl": [
+       0,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "line",
+       "lv": "",
+       "svgtxt": []
+      },
+      [],
+      {
+       "title": "President",
+       "crumbs": "Michigan",
+       "gq": "Michigan",
+       "ym": "delta",
+       "ysl": [
+        0,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "line-20-24": {
+    "opts": [
+     "bar"
+    ],
+    "already": true,
+    "pct": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2020 / 48%",
+      "Joe Biden 2020 / 51%",
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 48%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "pct",
+      "list": false
+     }
+    ],
+    "num": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2020 / 2.6M",
+      "Joe Biden 2020 / 2.8M",
+      "Donald Trump 2024 / 2.8M",
+      "Kamala Harris 2024 / 2.7M"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "num",
+      "list": false
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": null,
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Donald Trump 2020 / 2.6M",
+       "Joe Biden 2020 / 2.8M",
+       "Donald Trump 2024 / 2.8M",
+       "Kamala Harris 2024 / 2.7M"
+      ],
+      {
+       "title": "President",
+       "crumbs": "Michigan",
+       "gq": "Michigan",
+       "ym": "delta",
+       "ysl": [
+        1,
+        2
+       ],
+       "num": "num",
+       "list": false
+      }
+     ]
+    }
+   }
+  },
+  "err": []
+ }
+}

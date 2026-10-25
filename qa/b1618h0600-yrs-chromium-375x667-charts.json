@@ -1,0 +1,470 @@
+{
+ "Worcester County, MA": {
+  "build": "202610181618",
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "Worcester County",
+    "gq": "Worcester County, MA",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   [
+    7,
+    42.043,
+    -71.684
+   ]
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 19.4,
+    "pct": [
+     {
+      "mode": "pie",
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Kamala Harris \u00b7 53.9% / ",
+      "Donald Trump \u00b7 43.9% / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "pie",
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Kamala Harris \u00b7 226K / ",
+      "Donald Trump \u00b7 184K / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": "pie",
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Kamala Harris \u00b7 226K / ",
+       "Donald Trump \u00b7 184K / "
+      ],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16": {
+    "opts": [
+     "bar"
+    ],
+    "already": true,
+    "pct": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Hillary Clinton 2016 / 51%",
+      "Donald Trump 2016 / 40%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       0,
+       0
+      ],
+      "num": "pct",
+      "list": false
+     }
+    ],
+    "num": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Hillary Clinton 2016 / 199k",
+      "Donald Trump 2016 / 158k"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       0,
+       0
+      ],
+      "num": "num",
+      "list": false
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": null,
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Hillary Clinton 2016 / 199k",
+       "Donald Trump 2016 / 158k"
+      ],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "2024",
+       "ysl": [
+        0,
+        0
+       ],
+       "num": "num",
+       "list": false
+      }
+     ]
+    }
+   },
+   "line-16-24": {
+    "opts": [
+     "line"
+    ],
+    "lat": 49.2,
+    "pct": [
+     {
+      "mode": "line",
+      "lv": "",
+      "svgtxt": []
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       0,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "line",
+      "lv": "",
+      "svgtxt": []
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       0,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "line",
+       "lv": "",
+       "svgtxt": []
+      },
+      [],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "delta",
+       "ysl": [
+        0,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "line-20-24": {
+    "opts": [
+     "bar"
+    ],
+    "already": true,
+    "pct": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2020 / 40%",
+      "Joe Biden 2020 / 58%",
+      "Donald Trump 2024 / 44%",
+      "Kamala Harris 2024 / 54%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "pct",
+      "list": false
+     }
+    ],
+    "num": [
+     {
+      "mode": null,
+      "lv": "",
+      "svgtxt": []
+     },
+     [
+      "Donald Trump 2020 / 172k",
+      "Joe Biden 2020 / 249k",
+      "Donald Trump 2024 / 184k",
+      "Kamala Harris 2024 / 226k"
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "num",
+      "list": false
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": null,
+       "lv": "",
+       "svgtxt": []
+      },
+      [
+       "Donald Trump 2020 / 172k",
+       "Joe Biden 2020 / 249k",
+       "Donald Trump 2024 / 184k",
+       "Kamala Harris 2024 / 226k"
+      ],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "delta",
+       "ysl": [
+        1,
+        2
+       ],
+       "num": "num",
+       "list": false
+      }
+     ]
+    }
+   }
+  },
+  "err": []
+ },
+ "Pennsylvania>@1": {
+  "build": "202610181618",
+  "distrow": [
+   61,
+   136.5,
+   "10"
+  ],
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "District 010",
+    "gq": "Pennsylvania",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 55%",
+    "Donald Trump 2024 / 44%"
+   ],
+   [
+    9,
+    40.341,
+    -74.978
+   ]
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 19.3,
+    "pct": [
+     {
+      "mode": "bar",
+      "lv": "Chalfont Borough | 42.6% | Buckingham Twp Lower #1 | 49.5% | 49.7% | Lower Makefield Twp South #4 | 39.5% | 58.6% | Newtown Twp #8 | 45.1% | 53.7% | Plumstead Twp #4 | 46.1% | 52.5% | Buckingham Twp Upper #2 | 45.2% | 53.6% | Newtown Twp #6 | 47.5% | 51.6% | Lower Makefield Twp North #2 | 43.3% | 55.4% | Lower Makefield Twp North #3 | 42.8% | 55.5% | Newtown Twp #7 | 42.4% | 56.0% | Solebury Twp M",
+      "svgtxt": []
+     },
+     [
+      "Kamala Harris 2024 / 54%",
+      "Donald Trump 2024 / 44%"
+     ],
+     {
+      "title": "President",
+      "crumbs": "District 010",
+      "gq": "Pennsylvania",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "bar",
+      "lv": "Chalfont Borough | 1K | 2K | Buckingham Twp Lower #1 | 1K | 1K | Lower Makefield Twp South #4 | 1K | 2K | Newtown Twp #8 | 1K | 1K | Plumstead Twp #4 | 1K | 1K | Buckingham Twp Upper #2 | 1K | 1K | Newtown Twp #6 | 1K | 1K | Lower Makefield Twp North #2 | 954 | 1K | Lower Makefield Twp North #3 | 941 | 1K | Newtown Twp #7 | 910 | 1K | Solebury Twp Middle | 717 | 1K | Buckingham Twp Middle #1 | 968",
+      "svgtxt": []
+     },
+     [
+      "Kamala Harris 2024 / 92K",
+      "Donald Trump 2024 / 75K"
+     ],
+     {
+      "title": "President",
+      "crumbs": "District 010",
+      "gq": "Pennsylvania",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": "bar",
+       "lv": "Chalfont Borough | 1K | 2K | Buckingham Twp Lower #1 | 1K | 1K | Lower Makefield Twp South #4 | 1K | 2K | Newtown Twp #8 | 1K | 1K | Plumstead Twp #4 | 1K | 1K | Buckingham Twp Upper #2 | 1K | 1K | Newtown Twp #6 | 1K | 1K | Lower Makefield Twp North #2 | 954 | 1K | Lower Makefield Twp North #3 | 941 | 1K | Newtown Twp #7 | 910 | 1K | Solebury Twp Middle | 717 | 1K | Buckingham Twp Middle #1 | 968",
+       "svgtxt": []
+      },
+      [
+       "Kamala Harris 2024 / 92K",
+       "Donald Trump 2024 / 75K"
+      ],
+      {
+       "title": "President",
+       "crumbs": "District 010",
+       "gq": "Pennsylvania",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   },
+   "line-16-24": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   },
+   "line-20-24": {
+    "opts": [
+     "gbar"
+    ],
+    "missing": true
+   }
+  },
+  "err": []
+ }
+}

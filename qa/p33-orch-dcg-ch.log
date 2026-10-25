@@ -1,0 +1,79 @@
+ref US view after Back {"list": false, "crumbs": "United States", "title": "United States", "ph": "United States", "val": "", "st": "", "thumbs": "Donald Trump 2024 50% / Kamala Harris 2024 48%", "z": 4, "c": [39.77, -98.61]}
+ok   chromium usglobe: the globe opens the map
+ok   chromium QA-092: All States > globe opens the normal US view (z 4 at [39.77, -98.61]; after Back,Back: (4, [39.77, -98.61]))
+ok   chromium QA-092: still titled United States
+ok   chromium usglobe: no page errors
+ok   chromium dcrow: the globe opens the map
+ok   chromium dcrow: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   chromium dcrow: QA-093 the title says District of Columbia
+ok   chromium dcrow: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcrow: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcrow: QA-103 reload restores the field ('District of Columbia' vs 'District of Columbia')
+ok   chromium dcrow: QA-103 reload restores the map view (z 11 [38.89, -77.01] vs 11 [38.89, -77.01])
+ok   chromium dcrow: QA-103 the map is coloured after the reload (3173 filled shapes, before 871)
+ok   chromium dcrow: the map is on DC
+ok   chromium dcrow: no page errors
+ok   chromium dcaddr: the globe opens the map
+ok   chromium dcaddr: QA-093 the map shows DC's own numbers (Harris ~90 / Trump ~6), not US totals
+ok   chromium dcaddr: QA-093 the title says District of Columbia
+ok   chromium dcaddr: the title matches the numbers (title 'District of Columbia', thumbs 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcaddr: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium dcaddr: QA-103 reload restores the field ('District of Columbia' vs 'District of Columbia')
+ok   chromium dcaddr: QA-103 reload restores the map view (z 11 [38.89, -77.01] vs 11 [38.89, -77.01])
+ok   chromium dcaddr: QA-103 the map is coloured after the reload (3173 filled shapes, before 872)
+ok   chromium dcaddr: the map is on DC
+ok   chromium dcaddr: no page errors
+ref map-wdc {"list": false, "crumbs": "District of Columbia", "title": "District of Columbia", "ph": "1600 PENNSYLVANIA AVE NW, WASHI\u2026", "val": "", "st": "", "thumbs": "Kamala Harris 2024 90% / Donald Trump 2024 6%", "z": 15, "c": [38.9, -77.04]}
+ok   chromium map-wdc: from the map, DC with its numbers
+ok   chromium map-wdc: QA-103 reload restores the title and numbers ('District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%' vs 'District of Columbia' 'Kamala Harris 2024 90% / Donald Trump 2024 6%')
+ok   chromium map-wdc: QA-103 reload restores the field ('1600 PENNSYLVANIA AVE NW, WASHI…' vs '1600 PENNSYLVANIA AVE NW, WASHI…')
+ok   chromium map-wdc: QA-103 reload restores the map view (z 15 [38.9, -77.04] vs 15 [38.9, -77.04])
+ok   chromium map-wdc: QA-103 the map is coloured after the reload (3174 filled shapes, before 49)
+ok   chromium map-wdc: no page errors
+ref map-phx {"list": false, "crumbs": "Maricopa Precinct 242", "title": "Maricopa Precinct 242", "ph": "1700 W WASHINGTON ST, PHOENIX", "val": "", "st": "Arizona", "thumbs": "Kamala Harris 2024 70% / Donald Trump 2024 28%", "z": 14, "c": [33.44, -112.09]}
+ok   chromium map-phx: from the map, titled with the precinct
+ok   chromium map-phx: the precinct's own numbers (Harris ~70)
+ok   chromium map-phx: QA-103 reload restores the title and numbers ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs 'Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%')
+ok   chromium map-phx: QA-103 reload restores the field ('1700 W WASHINGTON ST, PHOENIX' vs '1700 W WASHINGTON ST, PHOENIX')
+ok   chromium map-phx: QA-103 reload restores the map view (z 14 [33.44, -112.09] vs 14 [33.44, -112.09])
+ok   chromium map-phx: QA-103 the map is coloured after the reload (4104 filled shapes, before 4105)
+ok   chromium map-phx: no page errors
+ok   chromium list-phx: the globe opens the map
+ok   chromium list-phx: QA-098 the globe shows the same title and numbers as the map search ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs ('Maricopa Precinct 242', 'Kamala Harris 2024 70% / Donald Trump 2024 28%'))
+ok   chromium list-phx: QA-098 the same map view as the map search (z 14 vs 14)
+ok   chromium list-phx: QA-103 reload restores the title and numbers ('Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%' vs 'Maricopa Precinct 242' 'Kamala Harris 2024 70% / Donald Trump 2024 28%')
+ok   chromium list-phx: QA-103 reload restores the field ('1700 W WASHINGTON ST, PHOENIX' vs '1700 W WASHINGTON ST, PHOENIX')
+ok   chromium list-phx: QA-103 reload restores the map view (z 14 [33.44, -112.09] vs 14 [33.44, -112.09])
+ok   chromium list-phx: QA-103 the map is coloured after the reload (4104 filled shapes, before 4105)
+ok   chromium list-phx: no page errors
+ref map-tlh {"list": false, "crumbs": "Leon Precinct 42", "title": "Leon Precinct 42", "ph": "400 S MONROE ST, TALLAHASSEE", "val": "", "st": "Florida", "thumbs": "Kamala Harris 2024 74% / Donald Trump 2024 24%", "z": 13, "c": [30.45, -84.27]}
+ok   chromium map-tlh: from the map, titled with the precinct
+ok   chromium map-tlh: QA-103 reload restores the title and numbers ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs 'Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%')
+ok   chromium map-tlh: QA-103 reload restores the field ('400 S MONROE ST, TALLAHASSEE' vs '400 S MONROE ST, TALLAHASSEE')
+ok   chromium map-tlh: QA-103 reload restores the map view (z 13 [30.45, -84.27] vs 13 [30.45, -84.27])
+ok   chromium map-tlh: QA-103 the map is coloured after the reload (3307 filled shapes, before 3308)
+ok   chromium map-tlh: no page errors
+ok   chromium list-tlh: the globe opens the map
+ok   chromium list-tlh: QA-098 the globe shows the same title and numbers as the map search ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs ('Leon Precinct 42', 'Kamala Harris 2024 74% / Donald Trump 2024 24%'))
+ok   chromium list-tlh: QA-098 the same map view as the map search (z 13 vs 13)
+ok   chromium list-tlh: QA-103 reload restores the title and numbers ('Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%' vs 'Leon Precinct 42' 'Kamala Harris 2024 74% / Donald Trump 2024 24%')
+ok   chromium list-tlh: QA-103 reload restores the field ('400 S MONROE ST, TALLAHASSEE' vs '400 S MONROE ST, TALLAHASSEE')
+ok   chromium list-tlh: QA-103 reload restores the map view (z 13 [30.45, -84.27] vs 13 [30.45, -84.27])
+ok   chromium list-tlh: QA-103 the map is coloured after the reload (3307 filled shapes, before 3308)
+ok   chromium list-tlh: no page errors
+ref map-aus {"list": false, "crumbs": "Travis Precinct 300", "title": "Travis Precinct 300", "ph": "1100 CONGRESS AVE, AUSTIN", "val": "", "st": "Texas", "thumbs": "Kamala Harris 2024 69% / Donald Trump 2024 28%", "z": 13, "c": [30.28, -97.74]}
+ok   chromium map-aus: from the map, titled with the precinct
+ok   chromium map-aus: QA-103 reload restores the title and numbers ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs 'Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%')
+ok   chromium map-aus: QA-103 reload restores the field ('1100 CONGRESS AVE, AUSTIN' vs '1100 CONGRESS AVE, AUSTIN')
+ok   chromium map-aus: QA-103 reload restores the map view (z 13 [30.28, -97.74] vs 13 [30.28, -97.74])
+ok   chromium map-aus: QA-103 the map is coloured after the reload (3492 filled shapes, before 3493)
+ok   chromium map-aus: no page errors
+ok   chromium list-aus: the globe opens the map
+ok   chromium list-aus: QA-098 the globe shows the same title and numbers as the map search ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs ('Travis Precinct 300', 'Kamala Harris 2024 69% / Donald Trump 2024 28%'))
+ok   chromium list-aus: QA-098 the same map view as the map search (z 13 vs 13)
+ok   chromium list-aus: QA-103 reload restores the title and numbers ('Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%' vs 'Travis Precinct 300' 'Kamala Harris 2024 69% / Donald Trump 2024 28%')
+ok   chromium list-aus: QA-103 reload restores the field ('1100 CONGRESS AVE, AUSTIN' vs '1100 CONGRESS AVE, AUSTIN')
+ok   chromium list-aus: QA-103 reload restores the map view (z 13 [30.28, -97.74] vs 13 [30.28, -97.74])
+ok   chromium list-aus: QA-103 the map is coloured after the reload (3492 filled shapes, before 3493)
+ok   chromium list-aus: no page errors
+FAILS 0

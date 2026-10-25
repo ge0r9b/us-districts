@@ -1,0 +1,870 @@
+{
+ "Pennsylvania": {
+  "build": "202610181618",
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    6,
+    41.133,
+    -77.605
+   ]
+  ],
+  "yrs": [
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 20.8,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2016 / 48%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.9,
+     6.9
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-pct-0.png"
+   },
+   {
+    "mode": "pct",
+    "i": 1,
+    "lat": 58.6,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Joe Biden 2020 / 50%",
+     "Donald Trump 2020 / 49%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.8,
+     8.7
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-pct-1.png"
+   },
+   {
+    "mode": "pct",
+    "i": 2,
+    "lat": 67.6,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.6,
+     7.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-pct-2.png"
+   },
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 94.4,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2016 / 48%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.9,
+     6.9
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-pct-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 23.5,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2016 / 3.0M",
+     "Hillary Clinton 2016 / 2.9M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.9,
+     6.9
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-num-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 1,
+    "lat": 50.1,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Joe Biden 2020 / 3.5M",
+     "Donald Trump 2020 / 3.4M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     49.8,
+     8.7
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-num-1.png"
+   },
+   {
+    "mode": "num",
+    "i": 2,
+    "lat": 44,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2024 / 3.5M",
+     "Kamala Harris 2024 / 3.4M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.6,
+     7.5
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-num-2.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 105.7,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "th": [
+     "Donald Trump 2016 / 3.0M",
+     "Hillary Clinton 2016 / 2.9M"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     51.9,
+     6.9
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-Pennsylvania-num-0.png"
+   }
+  ],
+  "reload": [
+   {
+    "mode": "pct",
+    "same_state": false,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Pennsylvania",
+     "gq": "Pennsylvania",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Pennsylvania",
+     "gq": "Pennsylvania",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 48%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 48%",
+     "Hillary Clinton 2016 / 47%"
+    ]
+   },
+   {
+    "mode": "num",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Pennsylvania",
+     "gq": "Pennsylvania",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Pennsylvania",
+     "gq": "Pennsylvania",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "th_b": [
+     "Donald Trump 2016 / 3.0M",
+     "Hillary Clinton 2016 / 2.9M"
+    ],
+    "th_a": [
+     "Donald Trump 2016 / 3.0M",
+     "Hillary Clinton 2016 / 2.9M"
+    ]
+   }
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 20.3,
+    "pct": [
+     {
+      "mode": "pie",
+      "txt": ""
+     },
+     [
+      "Donald Trump \u00b7 50.2% / ",
+      "Kamala Harris \u00b7 48.5% / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Pennsylvania",
+      "gq": "Pennsylvania",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "pie",
+      "txt": ""
+     },
+     [
+      "Donald Trump \u00b7 3.54M / ",
+      "Kamala Harris \u00b7 3.42M / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Pennsylvania",
+      "gq": "Pennsylvania",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "pie",
+       "txt": ""
+      },
+      [
+       "Donald Trump \u00b7 3.54M / ",
+       "Kamala Harris \u00b7 3.42M / "
+      ],
+      {
+       "title": "President",
+       "crumbs": "Pennsylvania",
+       "gq": "Pennsylvania",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16-24": {
+    "opts": [
+     "line"
+    ],
+    "missing": true
+   },
+   "line-24": {
+    "opts": [
+     "line"
+    ],
+    "lat": 35.8,
+    "pct": [
+     {
+      "mode": "line",
+      "txt": ""
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Pennsylvania",
+      "gq": "Pennsylvania",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "line",
+      "txt": ""
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Pennsylvania",
+      "gq": "Pennsylvania",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": "line",
+       "txt": ""
+      },
+      [],
+      {
+       "title": "President",
+       "crumbs": "Pennsylvania",
+       "gq": "Pennsylvania",
+       "ym": "delta",
+       "ysl": [
+        1,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "line-16-24": {
+    "opts": [
+     "bar"
+    ],
+    "missing": true
+   }
+  },
+  "err": []
+ },
+ "Worcester County, MA": {
+  "build": "202610181618",
+  "start": [
+   {
+    "title": "President",
+    "crumbs": "Worcester County",
+    "gq": "Worcester County, MA",
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "num": "pct",
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   [
+    7,
+    42.043,
+    -71.684
+   ]
+  ],
+  "yrs": [
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 25.3,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 40%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.7,
+     24.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-pct-0.png"
+   },
+   {
+    "mode": "pct",
+    "i": 1,
+    "lat": 66.6,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Joe Biden 2020 / 58%",
+     "Donald Trump 2020 / 40%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     3.1,
+     33.9
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-pct-1.png"
+   },
+   {
+    "mode": "pct",
+    "i": 2,
+    "lat": 90.1,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 44%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.5,
+     27.3
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-pct-2.png"
+   },
+   {
+    "mode": "pct",
+    "i": 0,
+    "lat": 121.6,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 40%"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.7,
+     24.2
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-pct-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 14.7,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Hillary Clinton 2016 / 199k",
+     "Donald Trump 2016 / 158k"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.6,
+     24.1
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-num-0.png"
+   },
+   {
+    "mode": "num",
+    "i": 1,
+    "lat": 70,
+    "ym": "2020",
+    "ysl": [
+     1,
+     1
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Joe Biden 2020 / 249k",
+     "Donald Trump 2020 / 172k"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     3.1,
+     33.8
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-num-1.png"
+   },
+   {
+    "mode": "num",
+    "i": 2,
+    "lat": 49.5,
+    "ym": "2024",
+    "ysl": [
+     2,
+     2
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Kamala Harris 2024 / 226k",
+     "Donald Trump 2024 / 184k"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.5,
+     27.3
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-num-2.png"
+   },
+   {
+    "mode": "num",
+    "i": 0,
+    "lat": 109.1,
+    "ym": "2024",
+    "ysl": [
+     0,
+     0
+    ],
+    "title": "President",
+    "crumbs": "Worcester County",
+    "th": [
+     "Hillary Clinton 2016 / 199k",
+     "Donald Trump 2016 / 158k"
+    ],
+    "busy_after_4s": [],
+    "rb": [
+     5.6,
+     24.1
+    ],
+    "shot": "shotsh0600/b1618h6-ch-390x844-yrs-WorcesterCountyMA-num-0.png"
+   }
+  ],
+  "reload": [
+   {
+    "mode": "pct",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Worcester County",
+     "gq": "Worcester County, MA",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Worcester County",
+     "gq": "Worcester County, MA",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "pct",
+     "list": false
+    },
+    "th_b": [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 40%"
+    ],
+    "th_a": [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 40%"
+    ]
+   },
+   {
+    "mode": "num",
+    "same_state": true,
+    "hdr_b": {
+     "title": "President",
+     "crumbs": "Worcester County",
+     "gq": "Worcester County, MA",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "hdr_a": {
+     "title": "President",
+     "crumbs": "Worcester County",
+     "gq": "Worcester County, MA",
+     "ym": "2024",
+     "ysl": [
+      0,
+      0
+     ],
+     "num": "num",
+     "list": false
+    },
+    "th_b": [
+     "Hillary Clinton 2016 / 199k",
+     "Donald Trump 2016 / 158k"
+    ],
+    "th_a": [
+     "Hillary Clinton 2016 / 199k",
+     "Donald Trump 2016 / 158k"
+    ]
+   }
+  ],
+  "charts": {
+   "pie-24": {
+    "opts": [
+     "pie"
+    ],
+    "lat": 24.4,
+    "pct": [
+     {
+      "mode": "pie",
+      "txt": ""
+     },
+     [
+      "Kamala Harris \u00b7 53.9% / ",
+      "Donald Trump \u00b7 43.9% / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "pie",
+      "txt": ""
+     },
+     [
+      "Kamala Harris \u00b7 226K / ",
+      "Donald Trump \u00b7 184K / "
+     ],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "2024",
+      "ysl": [
+       2,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": false,
+     "after": [
+      {
+       "mode": "pie",
+       "txt": ""
+      },
+      [
+       "Kamala Harris \u00b7 226K / ",
+       "Donald Trump \u00b7 184K / "
+      ],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "2024",
+       "ysl": [
+        2,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "pie-16-24": {
+    "opts": [
+     "line"
+    ],
+    "missing": true
+   },
+   "line-24": {
+    "opts": [
+     "line"
+    ],
+    "lat": 21.5,
+    "pct": [
+     {
+      "mode": "line",
+      "txt": ""
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "pct",
+      "list": true
+     }
+    ],
+    "num": [
+     {
+      "mode": "line",
+      "txt": ""
+     },
+     [],
+     {
+      "title": "President",
+      "crumbs": "Worcester County",
+      "gq": "Worcester County, MA",
+      "ym": "delta",
+      "ysl": [
+       1,
+       2
+      ],
+      "num": "num",
+      "list": true
+     }
+    ],
+    "reload": {
+     "same_state": true,
+     "after": [
+      {
+       "mode": "line",
+       "txt": ""
+      },
+      [],
+      {
+       "title": "President",
+       "crumbs": "Worcester County",
+       "gq": "Worcester County, MA",
+       "ym": "delta",
+       "ysl": [
+        1,
+        2
+       ],
+       "num": "num",
+       "list": true
+      }
+     ]
+    }
+   },
+   "line-16-24": {
+    "opts": [
+     "bar"
+    ],
+    "missing": true
+   }
+  },
+  "err": []
+ }
+}

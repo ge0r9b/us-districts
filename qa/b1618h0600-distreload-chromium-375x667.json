@@ -1,0 +1,131 @@
+{
+ "Pennsylvania:ushouse:@1:map": {
+  "xy": [
+   61,
+   136.5,
+   "1"
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "District 01",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 49%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.495,-75.1163,8]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.495,-75.1163,8]}"
+  ],
+  "ok": false,
+  "err": []
+ },
+ "Ohio:schools:@1:map": {
+  "xy": [
+   102,
+   136.5,
+   "Columbus City"
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "Columbus City School District",
+    "gq": "Ohio",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 73%",
+    "Donald Trump 2024 / 26%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Ohio\",\"lt\":\"schools\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.0455,-82.9729,9]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Ohio",
+    "gq": "Ohio",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Ohio\",\"lt\":\"schools\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.0455,-82.9729,9]}"
+  ],
+  "ok": false,
+  "err": []
+ },
+ "Ohio:senate:@1:map": {
+  "xy": [
+   61,
+   136.5,
+   "18"
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "District 018",
+    "gq": "Ohio",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Ohio\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[41.7283,-81.329,8]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Ohio",
+    "gq": "Ohio",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Ohio\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[41.7283,-81.329,8]}"
+  ],
+  "ok": false,
+  "err": []
+ }
+}

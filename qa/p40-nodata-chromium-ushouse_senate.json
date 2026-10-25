@@ -1,0 +1,64 @@
+{
+ "ushouse|16": {
+  "n": 436,
+  "crumb": "US House districts",
+  "nd": [
+   "FL-20"
+  ],
+  "ym": "2024"
+ },
+ "ushouse|20": {
+  "n": 436,
+  "crumb": "US House districts",
+  "nd": [],
+  "ym": "2020"
+ },
+ "ushouse|24": {
+  "n": 436,
+  "crumb": "US House districts",
+  "nd": [],
+  "ym": "2024"
+ },
+ "ushouse|16-24": {
+  "n": 436,
+  "crumb": "US House districts",
+  "nd": [],
+  "ym": "delta"
+ },
+ "ushouse|20-24": {
+  "n": 436,
+  "crumb": "US House districts",
+  "nd": [],
+  "ym": "delta"
+ },
+ "senate|16": {
+  "n": 51,
+  "crumb": "S\nAll States",
+  "nd": [],
+  "ym": "2024"
+ },
+ "senate|20": {
+  "n": 51,
+  "crumb": "S\nAll States",
+  "nd": [],
+  "ym": "2020"
+ },
+ "senate|24": {
+  "n": 51,
+  "crumb": "S\nAll States",
+  "nd": [],
+  "ym": "2024"
+ },
+ "senate|16-24": {
+  "n": 51,
+  "crumb": "S\nAll States",
+  "nd": [],
+  "ym": "delta"
+ },
+ "senate|20-24": {
+  "n": 51,
+  "crumb": "S\nAll States",
+  "nd": [],
+  "ym": "delta"
+ }
+}

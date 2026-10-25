@@ -1,0 +1,786 @@
+{
+ "Kentucky": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Kentucky",
+    "gq": "Kentucky",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    628854,
+    1202971,
+    1924149
+   ],
+   "2020": [
+    772474,
+    1326646,
+    2136768
+   ],
+   "2024": [
+    704043,
+    1337494,
+    2074530
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 63%",
+    "Hillary Clinton 2016 / 33%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 62%",
+    "Joe Biden 2020 / 36%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  },
+  "drill": {
+   "menu": [
+    "Kentucky counties",
+    "Adair County \u203a",
+    "Allen County \u203a"
+   ],
+   "lat_counties": 116.4,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Kentucky",
+    "gq": "Kentucky",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 120,
+   "rows1": [
+    "Jefferson | 40.9%",
+    "Fayette | 39.9% | 58.0%",
+    "Kenton | 59.9% | 38.2%",
+    "Boone | 67.7%",
+    "Warren | 61.3% | 37.0%"
+   ],
+   "order1": {
+    "n": 50,
+    "first": [
+     40.9,
+     39.9,
+     59.9,
+     67.7,
+     61.3
+    ],
+    "not_desc_at": [
+     2,
+     3,
+     6,
+     7,
+     9
+    ]
+   },
+   "lat_county": 18.3,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Jefferson County",
+    "gq": "Jefferson County, KY",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 84,
+   "rows2": [
+    "Louisville/Jefferson County met\u2026 | 49.1%",
+    "Jeffersontown city | 47.1% | 51.2%",
+    "St. Matthews city | 35.3% | 62.9%",
+    "Lyndon city | 42.1% | 56.0%",
+    "Middletown city | 46.5% | 51.9%",
+    "Shively city | 23.2% | 75.6%"
+   ],
+   "order2": {
+    "n": 50,
+    "first": [
+     49.1,
+     47.1,
+     35.3,
+     42.1,
+     46.5
+    ],
+    "not_desc_at": [
+     3,
+     4,
+     6,
+     7,
+     9
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 41%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 40.2,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Jefferson County Louisville/Jef\u2026",
+    "gq": "Jefferson County, KY",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 252,
+   "rows3": [
+    "Precinct S160 | 51.1%",
+    "Precinct B159 | 51.9% | 46.3%",
+    "Precinct V104 | 54.1% | 43.9%",
+    "Precinct V129 | 60.9%",
+    "Precinct V105 | 69.5% | 29.2%",
+    "Precinct B134 | 49.3% | 49.3%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 49%",
+    "Donald Trump 2024 / 49%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Jefferson County Louisville/Jef\u2026",
+     "gq": "Jefferson County, KY",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 49%",
+     "Donald Trump 2024 / 49%"
+    ],
+    [
+     9,
+     "38.274",
+     "-85.665"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Kentucky\",\"co\":\"Jefferson County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Jefferson County\",\"Louisville/Jefferson County metro government (balance)\"],\"ll\":[38.2738,-85.6645,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Kentucky\",\"co\":\"Jefferson County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Jefferson County\",\"Louisville/Jefferson County metro government (balance)\"],\"ll\":[38.2738,-85.6645,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Jefferson County Louisville/Jef\u2026",
+     "gq": "Jefferson County, KY",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 49%",
+     "Donald Trump 2024 / 49%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Maine": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Maine",
+    "gq": "Maine",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 45%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    357735,
+    335593,
+    747927
+   ],
+   "2020": [
+    435072,
+    360737,
+    819461
+   ],
+   "2024": [
+    435652,
+    377977,
+    831375
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 45%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 53%",
+    "Donald Trump 2020 / 44%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 45%"
+   ]
+  },
+  "drill": {
+   "menu": [
+    "Maine counties",
+    "Androscoggin County \u203a",
+    "Aroostook County \u203a"
+   ],
+   "lat_counties": 45.4,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Maine",
+    "gq": "Maine",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 16,
+   "rows1": [
+    "Cumberland | 30.6% | 66.9%",
+    "York | 43.8% | 54.3%",
+    "Penobscot | 54.5% | 43.6%",
+    "Kennebec | 50.2% | 47.5%",
+    "Androscoggin | 52.0% | 45.9%"
+   ],
+   "order1": {
+    "n": 16,
+    "first": [
+     30.6,
+     43.8,
+     54.5,
+     50.2,
+     52.0
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     4,
+     6,
+     8
+    ]
+   },
+   "lat_county": 29.3,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Cumberland County",
+    "gq": "Cumberland County, ME",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 28,
+   "rows2": [
+    "Portland city | 80.6%",
+    "South Portland city | 22.9% | 74.4%",
+    "Scarborough town | 33.4% | 64.9%",
+    "Brunswick town | 25.9% | 71.3%",
+    "Windham town | 47.2% | 51.1%",
+    "Gorham town | 38.9% | 59.0%"
+   ],
+   "order2": {
+    "n": 28,
+    "first": [
+     80.6,
+     22.9,
+     33.4,
+     25.9,
+     47.2
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     9,
+     11,
+     13
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 67%",
+    "Donald Trump 2024 / 31%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 24.4,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Cumberland County Portland city",
+    "gq": "Cumberland County, ME",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 1,
+   "rows3": [
+    "Precinct 05170 | 80.6%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 81%",
+    "Donald Trump 2024 / 16%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Cumberland County Portland city",
+     "gq": "Cumberland County, ME",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 81%",
+     "Donald Trump 2024 / 16%"
+    ],
+    [
+     9,
+     "43.715",
+     "-70.149"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Maine\",\"co\":\"Cumberland County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Cumberland County\",\"Portland city\"],\"ll\":[43.7145,-70.1491,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Maine\",\"co\":\"Cumberland County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Cumberland County\",\"Portland city\"],\"ll\":[43.7145,-70.1491,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Cumberland County Portland city",
+     "gq": "Cumberland County, ME",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 81%",
+     "Donald Trump 2024 / 16%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Nebraska": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Nebraska",
+    "gq": "Nebraska",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    284494,
+    495961,
+    844227
+   ],
+   "2020": [
+    374583,
+    556846,
+    956383
+   ],
+   "2024": [
+    369995,
+    564816,
+    952182
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 59%",
+    "Hillary Clinton 2016 / 34%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 58%",
+    "Joe Biden 2020 / 39%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ]
+  },
+  "drill": {
+   "menu": [
+    "Nebraska counties",
+    "Adams County \u203a",
+    "Antelope County \u203a"
+   ],
+   "lat_counties": 55.1,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Nebraska",
+    "gq": "Nebraska",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 93,
+   "rows1": [
+    "Douglas | 44.2%",
+    "Lancaster | 47.1% | 51.4%",
+    "Sarpy | 55.2% | 43.5%",
+    "Buffalo | 71.8%",
+    "Hall | 68.3% | 30.5%"
+   ],
+   "order1": {
+    "n": 50,
+    "first": [
+     44.2,
+     47.1,
+     55.2,
+     71.8,
+     68.3
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     5,
+     7
+    ]
+   },
+   "lat_county": 17.5,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Douglas County",
+    "gq": "Douglas County, NE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 6,
+   "rows2": [
+    "Omaha city | 41.2%",
+    "Ralston city | 49.3% | 49.3%",
+    "Waterloo village | 70.9%",
+    "Valley city | 69.2%",
+    "Bennington city | 63.6% | 35.3%",
+    "Boys Town village | 53.1% | 45.5%"
+   ],
+   "order2": {
+    "n": 6,
+    "first": [
+     41.2,
+     49.3,
+     70.9,
+     69.2,
+     63.6
+    ],
+    "not_desc_at": [
+     1,
+     2
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 20.2,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Douglas County Omaha city",
+    "gq": "Douglas County, NE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 184,
+   "rows3": [
+    "Ward 07 Precinct 23 | 55.1%",
+    "Ward 05 Precinct 24 | 54.1% | 44.8%",
+    "Ward 06 Precinct 04 | 44.7% | 53.8%",
+    "Ward 05 Precinct 21 | 54.8% | 44.4%",
+    "Ward 05 Precinct 12 | 53.4% | 45.8%",
+    "Ward 06 Precinct 08 | 47.7% | 51.4%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 41%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Douglas County Omaha city",
+     "gq": "Douglas County, NE",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 41%"
+    ],
+    [
+     9,
+     "41.374",
+     "-96.060"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Nebraska\",\"co\":\"Douglas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Douglas County\",\"Omaha city\"],\"ll\":[41.3737,-96.0603,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Nebraska\",\"co\":\"Douglas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Douglas County\",\"Omaha city\"],\"ll\":[41.3717,-96.0603,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Douglas County Omaha city",
+     "gq": "Douglas County, NE",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 57%",
+     "Donald Trump 2024 / 41%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "New Mexico": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    385234,
+    319667,
+    798319
+   ],
+   "2020": [
+    501614,
+    401894,
+    923965
+   ],
+   "2024": [
+    478802,
+    423391,
+    923403
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 40%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2020 / 43%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  },
+  "drill": {
+   "menu": [
+    "New Mexico counties",
+    "Bernalillo County \u203a",
+    "Catron County \u203a"
+   ],
+   "lat_counties": 51.4,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 33,
+   "rows1": [
+    "Bernalillo | 38.2% | 59.2%",
+    "Do\u00f1a Ana | 44.0% | 53.8%",
+    "Santa Fe | 24.4% | 73.3%",
+    "Sandoval | 46.0% | 51.8%",
+    "San Juan | 64.7% | 33.0%"
+   ],
+   "order1": {
+    "n": 33,
+    "first": [
+     38.2,
+     44.0,
+     24.4,
+     46.0,
+     64.7
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     4,
+     7,
+     8
+    ]
+   },
+   "lat_county": 27.6,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Bernalillo County",
+    "gq": "Bernalillo County, NM",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 5,
+   "rows2": [
+    "Albuquerque city | 36.9%",
+    "Los Ranchos de Albuquerque vill\u2026 | 32.4% | 65.4%",
+    "Edgewood town | 48.1% | 49.0%",
+    "Tijeras village | 50.2% | 47.2%",
+    "Rio Rancho city | 38.5% | 59.3%"
+   ],
+   "order2": {
+    "n": 5,
+    "first": [
+     36.9,
+     32.4,
+     48.1,
+     50.2,
+     38.5
+    ],
+    "not_desc_at": [
+     2,
+     3
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 59%",
+    "Donald Trump 2024 / 38%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 45.1,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Bernalillo County Albuquerque c\u2026",
+    "gq": "Bernalillo County, NM",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 553,
+   "rows3": [
+    "Precinct 57 | 30.3% | 67.7%",
+    "Precinct 205 | 46.3% | 51.0%",
+    "Precinct 118 | 47.9% | 50.4%",
+    "Precinct 206 | 46.5% | 51.7%",
+    "Precinct 377 | 21.6% | 74.0%",
+    "Precinct 54 | 42.1% | 55.8%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 37%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Bernalillo County Albuquerque c\u2026",
+     "gq": "Bernalillo County, NM",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 60%",
+     "Donald Trump 2024 / 37%"
+    ],
+    [
+     9,
+     "35.197",
+     "-106.703"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"co\":\"Bernalillo County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Bernalillo County\",\"Albuquerque city\"],\"ll\":[35.1974,-106.7033,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"co\":\"Bernalillo County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Bernalillo County\",\"Albuquerque city\"],\"ll\":[35.1974,-106.7033,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Bernalillo County Albuquerque c\u2026",
+     "gq": "Bernalillo County, NM",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 60%",
+     "Donald Trump 2024 / 37%"
+    ]
+   }
+  },
+  "err": []
+ }
+}

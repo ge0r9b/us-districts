@@ -1,0 +1,206 @@
+{
+ "Wisconsin:senate:33:map": {
+  "xy": [
+   61,
+   136.5
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "District 033",
+    "gq": "Wisconsin",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 32%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[43.1872,-88.4427,9]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Wisconsin",
+    "gq": "Wisconsin",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 49%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[43.1872,-88.4427,9]}"
+  ],
+  "ok": false,
+  "err": []
+ },
+ "Wisconsin:senate:33:list": {
+  "xy": [
+   61,
+   136.5
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "District 033",
+    "gq": "Wisconsin",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 33%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"precincts\",\"lap\":\"District 033\",\"ll\":[43.1873,-88.4433,9]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "District 033",
+    "gq": "Wisconsin",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 33%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"lt\":\"senate\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"precincts\",\"lap\":\"District 033\",\"ll\":[43.1873,-88.4433,9]}"
+  ],
+  "ok": true,
+  "err": []
+ },
+ "Georgia:statehouse:56:map": {
+  "xy": [
+   65,
+   443.5
+  ],
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "District 056",
+    "gq": "Georgia",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Kamala Harris 2024 / 88%",
+    "Donald Trump 2024 / 11%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[33.782,-84.4286,11]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Georgia",
+    "gq": "Georgia",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 49%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[33.782,-84.4286,11]}"
+  ],
+  "ok": false,
+  "err": []
+ },
+ "Pennsylvania:ushouse:District 07:map": {
+  "xy": null,
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[42.4559,-77.3877,5]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": false
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[42.4559,-77.3877,5]}"
+  ],
+  "ok": true,
+  "err": []
+ },
+ "Pennsylvania:ushouse:07:list": {
+  "xy": null,
+  "before": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[42.4434,-77.385,5]}"
+  ],
+  "after": [
+   {
+    "title": "President",
+    "crumbs": "Pennsylvania",
+    "gq": "Pennsylvania",
+    "ysl": [
+     2,
+     2
+    ],
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[42.4434,-77.385,5]}"
+  ],
+  "ok": true,
+  "err": []
+ }
+}

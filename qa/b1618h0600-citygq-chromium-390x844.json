@@ -1,0 +1,190 @@
+{
+ "build": "202610181618",
+ "Portland": {
+  "li": [
+   "Portland city, Ashley County, AR Town",
+   "Portland town, Lower Connecticu\u2026 Town",
+   "Portland township, Whiteside Co\u2026 Town",
+   "Portland city, Jay County, IN Town",
+   "Portland city, Cumberland Count\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Ashley County",
+   "gq": "No match: Portland city, Ashley\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 73%",
+   "Kamala Harris 2024 / 25%"
+  ],
+  "mp": [
+   6,
+   34.771,
+   -92.129
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Arkansas",
+   "co": "Ashley County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/251 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/410/249 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/410/252 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/413/249 net::ERR_ABORTED"
+  ]
+ },
+ "Boston": {
+  "li": [
+   "Boston city, Thomas County, GA Town",
+   "New Boston city, Mercer County,\u2026 Town",
+   "New Boston township, Mercer Cou\u2026 Town",
+   "Boston town, Wayne County, IN Town",
+   "Boston township, Wayne County, \u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Thomas County",
+   "gq": "Boston city, Thomas County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 62%",
+   "Kamala Harris 2024 / 38%"
+  ],
+  "mp": [
+   16,
+   30.791,
+   -83.794
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Thomas County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/838/545 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/838/548 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/839/545 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/11/839/548 net::ERR_ABORTED"
+  ]
+ },
+ "Pittsburgh": {
+  "li": [
+   "East Pittsburgh borough, Allegh\u2026 Town",
+   "Pittsburgh city, Allegheny Coun\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Allegheny County",
+   "gq": "No match: East Pittsburgh borou\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 60%",
+   "Donald Trump 2024 / 39%"
+  ],
+  "mp": [
+   9,
+   40.434,
+   -80.024
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Pennsylvania",
+   "co": "Allegheny County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Springfield": {
+  "li": [
+   "Springfield town, Baca County, \u2026 Town",
+   "Springfield city, Bay County, FL Town",
+   "Springfield city, Effingham Cou\u2026 Town",
+   "Springfield city, Sangamon Coun\u2026 Town",
+   "Springfield township, Sangamon \u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Baca County",
+   "gq": "No match: Springfield town, Bac\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Donald Trump 2024 / 84%",
+   "Kamala Harris 2024 / 14%"
+  ],
+  "mp": [
+   8,
+   37.319,
+   -102.564
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Colorado",
+   "co": "Baca County",
+   "lt": "none"
+  },
+  "err": []
+ },
+ "Fulton County, GA": {
+  "li": [
+   "Fulton County, GA County",
+   "South Fulton city, Fulton Count\u2026 Town",
+   "Alpharetta city, Fulton County,\u2026 Town",
+   "Atlanta city, Fulton County, GA Town",
+   "Chattahoochee Hills city, Fulto\u2026 Town"
+  ],
+  "hdr": {
+   "title": "President",
+   "crumbs": "Fulton County",
+   "gq": "Fulton County, GA",
+   "ym": "2024",
+   "num": "pct",
+   "list": false,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / 72%",
+   "Donald Trump 2024 / 27%"
+  ],
+  "mp": [
+   6,
+   32.709,
+   -83.194
+  ],
+  "gqv": "",
+  "sel": {
+   "sel": null,
+   "st": "Georgia",
+   "co": "Fulton County",
+   "lt": "none"
+  },
+  "err": [
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/407/271 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/411/272 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/411/270 net::ERR_ABORTED",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/10/412/271 net::ERR_ABORTED"
+  ]
+ }
+}

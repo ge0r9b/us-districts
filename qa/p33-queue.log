@@ -1,0 +1,31 @@
+=== 09:56:45 start p33-dcreload-ch.log
+=== 09:58:15 end p33-dcreload-ch.log rc=0
+=== 09:58:15 start p33-addr2-ch.log
+=== 10:00:48 end p33-addr2-ch.log rc=0
+=== 10:00:48 start p33-states-r.log
+=== 10:08:05 end p33-states-r.log rc=0
+=== 10:08:05 start p33-states-f.log
+=== 10:20:08 end p33-states-f.log rc=0
+=== 10:20:08 start p33-chip-ch.log
+=== 10:21:05 end p33-chip-ch.log rc=0
+=== 10:21:05 start p33-v95-ch.log
+=== 10:34:54 end p33-v95-ch.log rc=0
+=== 10:34:54 start p33-other-ch.log
+=== 10:34:58 queue1/2 stopped; build 1612 re-test queue
+=== 10:34:58 start p33-orch-dcg-ch.log
+=== 10:41:02 end p33-orch-dcg-ch.log rc=0
+=== 10:41:02 start p33-orch-cot-ch.log
+=== 10:42:56 end p33-orch-cot-ch.log rc=0
+=== 10:42:56 start p33-dcreload-ch2.log
+=== 10:44:25 end p33-dcreload-ch2.log rc=0
+=== 10:44:25 start p33-addr2-ch2.log
+=== 10:48:52 end p33-addr2-ch2.log rc=0
+=== 10:48:52 start p33-states-r2.log
+=== 10:59:46 end p33-states-r2.log rc=0
+=== 10:59:46 start p33-chip-ch2.log
+=== 11:00:43 end p33-chip-ch2.log rc=0
+=== 11:00:43 start p33-074-ch.log
+=== 11:02:03 end p33-074-ch.log rc=0
+=== 11:02:03 start p33-other-ch.log
+=== 11:04:08 end p33-other-ch.log rc=0
+=== 11:04:08 start p33-own-ch390.log

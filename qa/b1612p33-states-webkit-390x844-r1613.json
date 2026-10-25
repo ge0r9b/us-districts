@@ -1,0 +1,1127 @@
+{
+ "Michigan": {
+  "lat": {},
+  "build": "202610181613",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Michigan",
+    "gq": "Michigan",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ]
+  ],
+  "tot": {
+   "2016": null,
+   "2020": null,
+   "2024": [
+    2736533,
+    2816636,
+    5662504
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 47%",
+    "Hillary Clinton 2016 / 47%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 51%",
+    "Donald Trump 2020 / 48%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 67,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 48%"
+     ]
+    ],
+    "lat_tolist": 57,
+    "n": 38,
+    "rows": [
+     "37 | 54.6% | 43.8%",
+     "24 | 64.3% | 34.2%",
+     "13 | 43.6% | 53.9%",
+     "36 | 67.8% | 30.9%",
+     "23 | 56.8% | 41.8%",
+     "31 | 58.5% | 39.9%"
+    ],
+    "order": {
+     "n": 38,
+     "first": [
+      54.6,
+      64.3,
+      43.6,
+      67.8,
+      56.8
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      8,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 54,
+    "lat_numpick": 65,
+    "num": "num",
+    "rows_num": [
+     "37 | 95K | 76K",
+     "24 | 111K | 59K",
+     "13 | 75K | 93K",
+     "36 | 115K | 52K",
+     "23 | 94K | 69K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      95000.0,
+      111000.0,
+      75000.0,
+      115000.0,
+      94000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      8,
+      10
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.82M",
+     "Kamala Harris 2024 / 2.74M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 63,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 48%"
+     ]
+    ],
+    "lat_tolist": 24,
+    "n": 110,
+    "rows": [
+     "103 | 45.7% | 52.8%",
+     "22 | 46.5% | 51.2%",
+     "6 | 33.0% | 65.4%",
+     "66 | 65.3% | 33.3%",
+     "50 | 65.2% | 33.5%",
+     "20 | 46.4% | 51.3%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      45.7,
+      46.5,
+      33.0,
+      65.3,
+      65.2
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 41,
+    "lat_numpick": 72,
+    "num": "num",
+    "rows_num": [
+     "103 | 30K | 35K",
+     "22 | 30K | 33K",
+     "6 | 21K | 41K",
+     "66 | 41K | 21K",
+     "50 | 40K | 21K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      30000.0,
+      30000.0,
+      21000.0,
+      41000.0,
+      40000.0
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      7,
+      9,
+      13
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.82M",
+     "Kamala Harris 2024 / 2.74M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[46.3166,-86.0449,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[46.3166,-86.0449,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 110,
+     "rows": [
+      "103 | 45.7% | 52.8%",
+      "22 | 46.5% | 51.2%",
+      "6 | 33.0% | 65.4%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 144,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 48%"
+     ]
+    ],
+    "lat_tolist": 37,
+    "n": 540,
+    "rows": [
+     "Detroit Public Schools Communit\u2026 | 90.9%",
+     "Utica Community | 62.1%",
+     "Grand Rapids Public | 28.7% | 69.5%",
+     "Ann Arbor Public | 81.4%",
+     "Plymouth-Canton Community | 42.2% | 53.6%",
+     "Livonia Public | 46.7% | 50.9%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      90.9,
+      62.1,
+      28.7,
+      81.4,
+      42.2
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      7,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 11,
+    "lat_numpick": 121,
+    "num": "num",
+    "rows_num": [
+     "Detroit Public Schools Communit\u2026 | 208K",
+     "Utica Community | 70K | 41K",
+     "Grand Rapids Public | 65K",
+     "Ann Arbor Public | 75K",
+     "Plymouth-Canton Community | 42K"
+    ],
+    "order_num": {
+     "n": 22,
+     "first": [
+      208000.0,
+      70000.0,
+      65000.0,
+      75000.0,
+      42000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      9
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.82M",
+     "Kamala Harris 2024 / 2.74M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 72,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Michigan",
+      "gq": "Michigan",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 50%",
+      "Kamala Harris 2024 / 48%"
+     ]
+    ],
+    "lat_tolist": 12,
+    "n": 13,
+    "rows": [
+     "9 | 65.5%",
+     "1 | 59.9% | 38.7%",
+     "6 | 37.0% | 60.3%",
+     "7 | 49.8% | 48.6%",
+     "11 | 40.9% | 57.0%",
+     "2 | 64.4% | 34.1%"
+    ],
+    "order": {
+     "n": 13,
+     "first": [
+      65.5,
+      59.9,
+      37.0,
+      49.8,
+      40.9
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      8,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 22,
+    "lat_numpick": 21,
+    "num": "num",
+    "rows_num": [
+     "9 | 319K | 161K",
+     "1 | 290K | 188K",
+     "6 | 172K | 280K",
+     "7 | 231K | 225K",
+     "11 | 188K | 262K"
+    ],
+    "order_num": {
+     "n": 13,
+     "first": [
+      319000.0,
+      290000.0,
+      172000.0,
+      231000.0,
+      188000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      8,
+      10
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.82M",
+     "Kamala Harris 2024 / 2.74M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Michigan",
+     "gq": "Michigan",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "err": []
+ },
+ "New York": {
+  "lat": {},
+  "build": "202610181613",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "New York",
+    "gq": "New York",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 56%",
+    "Donald Trump 2024 / 43%"
+   ]
+  ],
+  "tot": {
+   "2016": null,
+   "2020": null,
+   "2024": [
+    4619543,
+    3579519,
+    8263474
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 59%",
+    "Donald Trump 2016 / 37%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 61%",
+    "Donald Trump 2020 / 38%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 56%",
+    "Donald Trump 2024 / 43%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 97,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New York",
+      "gq": "New York",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 56%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 39,
+    "n": 63,
+    "rows": [
+     "60 | 56.2% | 42.7%",
+     "2 | 54.5% | 43.8%",
+     "5 | 57.3% | 41.4%",
+     "41 | 43.6% | 55.4%",
+     "40 | 45.3% | 54.1%",
+     "7 | 51.3% | 47.2%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      56.2,
+      54.5,
+      57.3,
+      43.6,
+      45.3
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      6,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 56%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 38,
+    "lat_numpick": 69,
+    "num": "num",
+    "rows_num": [
+     "60 | 108K | 82K",
+     "2 | 101K | 82K",
+     "5 | 105K | 76K",
+     "41 | 78K | 99K",
+     "40 | 78K | 93K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      108000.0,
+      101000.0,
+      105000.0,
+      78000.0,
+      78000.0
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      6,
+      8,
+      11
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 4.62M",
+     "Donald Trump 2024 / 3.58M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 95,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New York",
+      "gq": "New York",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 56%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 27,
+    "n": 150,
+    "rows": [
+     "14 | 59.7%",
+     "147 | 63.8% | 35.4%",
+     "8 | 62.3% | 36.5%",
+     "135 | 38.3% | 60.4%",
+     "94 | 57.1% | 42.3%",
+     "112 | 49.6% | 49.8%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      59.7,
+      63.8,
+      62.3,
+      38.3,
+      57.1
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      8,
+      10,
+      15
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 56%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 43,
+    "lat_numpick": 93,
+    "num": "num",
+    "rows_num": [
+     "14 | 49K | 32K",
+     "147 | 52K | 29K",
+     "8 | 50K | 30K",
+     "135 | 30K | 48K",
+     "94 | 44K | 33K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      49000.0,
+      52000.0,
+      50000.0,
+      30000.0,
+      44000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      8,
+      10,
+      15
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 4.62M",
+     "Donald Trump 2024 / 3.58M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New York\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[44.056,-75.542,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New York\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[44.056,-75.542,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "New York",
+      "gq": "New York",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 150,
+     "rows": [
+      "14 | 59.7%",
+      "147 | 63.8% | 35.4%",
+      "8 | 62.3% | 36.5%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 134,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New York",
+      "gq": "New York",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 56%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 680,
+    "rows": [
+     "New York City Department Of Edu\u2026 | 29.9% | 68.2%",
+     "Buffalo City | 75.6%",
+     "Yonkers City | 43.3% | 55.8%",
+     "Rochester City | 79.7%",
+     "Sewanhaka Central High | 47.3% | 50.8%",
+     "Sachem Central | 62.8% | 36.0%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      29.9,
+      75.6,
+      43.3,
+      79.7,
+      47.3
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      7,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 56%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 10,
+    "lat_numpick": 127,
+    "num": "num",
+    "rows_num": [
+     "New York City Department Of Edu\u2026 | 829K | 1.89M",
+     "Buffalo City | 91K",
+     "Yonkers City | 75K",
+     "Rochester City | 61K",
+     "Sewanhaka Central High | 60K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      829000.0,
+      91000.0,
+      75000.0,
+      61000.0,
+      60000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 4.62M",
+     "Donald Trump 2024 / 3.58M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 61,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New York",
+      "gq": "New York",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 56%",
+      "Donald Trump 2024 / 43%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 26,
+    "rows": [
+     "1 | 54.3% | 44.3%",
+     "23 | 60.1% | 39.1%",
+     "17 | 49.3% | 49.9%",
+     "4 | 48.8% | 50.0%",
+     "19 | 48.7% | 50.4%",
+     "3 | 51.4% | 47.1%"
+    ],
+    "order": {
+     "n": 26,
+     "first": [
+      54.3,
+      60.1,
+      49.3,
+      48.8,
+      48.7
+     ],
+     "not_desc_at": [
+      1,
+      5,
+      7,
+      9,
+      11
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 56%",
+     "Donald Trump 2024 / 43%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30,
+    "lat_numpick": 26,
+    "num": "num",
+    "rows_num": [
+     "1 | 233K | 190K",
+     "23 | 237K | 154K",
+     "17 | 192K | 194K",
+     "4 | 189K | 194K",
+     "19 | 187K | 194K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      233000.0,
+      237000.0,
+      192000.0,
+      189000.0,
+      187000.0
+     ],
+     "not_desc_at": [
+      1,
+      5,
+      7,
+      9,
+      11
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 4.62M",
+     "Donald Trump 2024 / 3.58M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New York",
+     "gq": "New York",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "drill": {
+   "menu": [
+    "New York counties",
+    "Albany County \u203a",
+    "Allegany County \u203a"
+   ],
+   "lat_counties": 71,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "New York",
+    "gq": "New York",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 62,
+   "rows1": [
+    "Kings | 27.6% | 70.9%",
+    "Suffolk | 54.7% | 44.8%",
+    "Nassau | 51.7% | 47.5%",
+    "Queens | 37.2% | 61.4%",
+    "New York | 17.4% | 81.6%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     27.6,
+     54.7,
+     51.7,
+     37.2,
+     17.4
+    ],
+    "not_desc_at": [
+     1,
+     5,
+     6,
+     8,
+     9
+    ]
+   },
+   "lat_county": 35,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Kings County",
+    "gq": "Kings County, NY",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 2,
+   "rows2": [
+    "Brooklyn borough | 27.3% | 70.6%",
+    "New York city | 27.3% | 70.6%"
+   ],
+   "order2": {
+    "n": 2,
+    "first": [
+     27.3,
+     27.3
+    ],
+    "not_desc_at": []
+   },
+   "th2": [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 45,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Brooklyn borough",
+    "gq": "Kings County, NY",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 1306,
+   "rows3": [
+    "AD 50 ED 1 | 85.2%",
+    "AD 44 ED 6 | 91.9%",
+    "AD 57 ED 17 | 90.7%",
+    "AD 52 ED 26 | 89.6%",
+    "AD 50 ED 24 | 88.3%",
+    "AD 44 ED 16 | 94.1%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 27%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Brooklyn borough",
+     "gq": "Kings County, NY",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 71%",
+     "Donald Trump 2024 / 27%"
+    ],
+    [
+     10,
+     "40.696",
+     "-73.942"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New York\",\"co\":\"Kings County\",\"lt\":\"counties\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.6963,-73.9421,10]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New York\",\"co\":\"Kings County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[40.6963,-73.9421,10]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Kings County",
+     "gq": "Kings County, NY",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 71%",
+     "Donald Trump 2024 / 28%"
+    ]
+   }
+  },
+  "err": []
+ }
+}

@@ -4,6 +4,8 @@ from playwright.async_api import async_playwright
 URL="https://ge0r9b.github.io/us-districts/v2/"; ENG=sys.argv[1]; K=sys.argv[2]; LIM=int(sys.argv[3]) if len(sys.argv)>3 else 99
 MODES=[("16","__ySetYr(0)"),("20","__ySetYr(1)"),("24","__ySetYr(2)"),("16-24","__ySet16(2)"),("20-24","__ySelectAll()")]
 ROWS="()=>{const R=[...document.querySelectorAll('#listView .lvrow.la')];return {n:R.length,crumb:(document.getElementById('crumbs')||{}).textContent.trim(),nm:R.map(r=>(r.querySelector('.nmx')||r).textContent.trim()),nd:R.filter(r=>/no data/.test(r.textContent)).map(r=>(r.querySelector('.nmx')||r).textContent.trim().slice(0,50)),load:/Loading/.test(document.getElementById('listView').textContent)}}"
+import os
+if os.environ.get("MODES"): MODES=[m for m in MODES if m[0] in os.environ["MODES"].split(",")]
 async def stable(pg,mn=2):
   prev=None
   for i in range(10):
