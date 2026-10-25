@@ -710,7 +710,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~9 AM EDT (8:57-9:05 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests.** Logs `qa/h0900-*.log`, data `qa/b1618h0900-*.json`, shots `qa/shotsh0900/b1618h9-*.png`. Scripts `qa/h0900-city.py` / `h0900-cityN.py` (copies of h0800-city.py), `h0900-lay3.py`, `h0900-cmp.py`.
-- **New: QA-123 [CRITICAL by the QA-087/093/098/103/119/121 ruling, orchestrator to confirm] Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
+- **New: QA-124 [HIGH by orchestrator ruling Oct 25: votes counted once, filed under the wrong town; raise a case to CRITICAL only if the precinct also still appears under its own town] (filed by the 9 AM run as QA-123, renumbered) Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
   - Size, build, engine: Chromium 390x844 (MA), WebKit 1024x768 (MI, NJ, PA), Chromium 375x667 (neighbour lists); build 1618, touch.
   - Steps: bottom field state name + Enter > geo filter (#bGeo) > counties > county > town.
   - Expected: a town's list holds only its own precincts, and each precinct appears under the town it belongs to.
@@ -731,7 +731,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 ## Hourly run, build 1618, Oct 25 ~8 AM EDT (7:51-8:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch on phones, Chromium + WebKit, up to 6 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests in any run.** Logs `qa/h0800-*.log`, data `qa/b1618h0800-*.json`, shots `qa/shotsh0800/b1618h8-*.png`. Scripts are `qa/h0800-*.py`: lay3, addr2, own, pa16, states and cmp are copied from h0700, and city, dupaudit and sortchart are new.
 - **QA-119 family hunt.** `qa/h0800-dupaudit.py` loads each state's 2024 precincts and assigns them to towns by centroid, approximating the app's `precRowsIn`. It flags precincts whose name names a different town of the same county. Results are in `qa/b1618h0800-dupaudit-sb_*.json`, 50 files, one per state. Burlington, VT is flagged again (QA-119 still open). The UI checks below are `qa/h0800-city.py`, which drills state > geo sheet > county > town and lists every row.
-  - **New: QA-121 [CRITICAL by the QA-087/093/098/103/119 ruling, orchestrator to confirm] Warwick city, RI includes West Warwick town's votes, tapping that row shows West Warwick under Warwick's title, and West Warwick's own drill-in is empty.**
+  - **New: QA-121 [CRITICAL, confirmed by orchestrator Oct 25] Warwick city, RI includes West Warwick town's votes, tapping that row shows West Warwick under Warwick's title, and West Warwick's own drill-in is empty.**
     - Size, build, engine: Chromium 320x568 and WebKit 1024x576 (Warwick); WebKit 390x844 (West Warwick); build 1618, touch.
     - Steps: bottom field "Rhode Island" + Enter > geo filter (#bGeo) > Rhode Island counties > Kent > Warwick city.
     - Expected: Warwick city's own rows and totals only. West Warwick town appears only as its own row in the Kent list, and drilling into it shows its own results.
@@ -739,7 +739,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
     - Both Warwick rows are prefixed "003-" (raw codes, see QA-105/120). Other RI towns are too: "007-Providence", and the CT town rows ("110-Hartford", "170-Milford").
     - Shots: qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list-num.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-tapSuspect.png, qa/shotsh0800/b1618h8-we-1024x576-city-Warwickcity-{list,list-num,tapSuspect}.png, qa/shotsh0800/b1618h8-we-390x844-city-WestWarwicktown-list.png
     - Data: `qa/b1618h0800-city-chromium-320x568-a.json`, `qa/b1618h0800-city-webkit-1024x576-w.json`, `qa/b1618h0800-city-webkit-390x844-d.json`
-  - **New: QA-122 [MEDIUM, may be HIGH; needs ruling] Connecticut, South Central region: Milford is listed twice, as "Milford city (balance)" and "Milford town", with the same votes.**
+  - **New: QA-122 [MEDIUM by orchestrator ruling; HIGH only if a county/region sum counts Milford twice] Connecticut, South Central region: Milford is listed twice, as "Milford city (balance)" and "Milford town", with the same votes.**
     - Size, build, engine: Chromium 390x844, build 1618, touch.
     - Steps: "Connecticut" + Enter > geo sheet > Connecticut counties > South Central Connecticut Planning Region.
     - Expected: one Milford row (the town; the census "city (balance)" is the same place minus Woodmont borough).
@@ -1635,3 +1635,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Side note: the district's thumbnails read Harris 55% / Trump 44% on the map and 54% / 44% in the precinct list, both for District 010. Ohio District 07 matches (55 / 44). The gap is a rounding-level difference (< 1 point), LOW.
 - Screenshots: qa/shotsh0600/b1618h6-ch-390x844-dpie-Pennsylvania-senate-menu.png, qa/shotsh0600/b1618h6-ch-390x844-dpie-Pennsylvania-senate-pie.png, qa/shotsh0600/b1618h6-ch-390x844-dpie-Pennsylvania-none-pie.png, qa/shotsh0600/b1618h6-ch-375x667-yrs-Pennsylvania-@1-chart-pie-24-pct.png
 - Data: `qa/b1618h0600-dpie-chromium-390x844.json`, `qa/b1618h0600-yrs-*.json` > charts
+
+
+## Numbering note (Oct 25, ~10 AM EDT)
+Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH).
