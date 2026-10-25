@@ -1,3 +1,4 @@
+# Oct 25 5PM (1620) copy of h1620-lay3.py + tap-to-paint (first frame where title/crumbs/first-row/thumb text changes); was: 3PM copy of h1200-lay3.py
 # b1574: layout-stability sweep. Records bounding boxes of chrome elements before/after (and every frame during) each view switch, year change, drill-in, back.
 import asyncio,json,sys
 from playwright.async_api import async_playwright
@@ -12,6 +13,8 @@ BOX="""()=>{const o={};const add=(k,e)=>{if(!e||!e.offsetParent&&getComputedStyl
  return o}"""
 SAMPLE="""(ms)=>new Promise(res=>{const fr=[];const t0=performance.now();const f=()=>{const t=performance.now()-t0;fr.push([Math.round(t),(%s)()]);if(t<ms)requestAnimationFrame(f);else res(fr)};requestAnimationFrame(f)})"""%BOX
 VISTXT="(t)=>{const L=[...document.querySelectorAll('li,.lvrow,button')].filter(e=>e.offsetParent&&e.innerText);const nm=e=>e.innerText.trim().split('\\n').map(x=>x.replace('›','').trim()).filter(x=>x.length>1)[0]||'';let e=L.filter(e=>nm(e)===t);if(!e.length)e=L.filter(e=>nm(e).startsWith(t));if(!e.length)return null;const r=e[e.length-1];r.scrollIntoView({block:'nearest'});const n=r.querySelector('.nmx')||r;const b=n.getBoundingClientRect();return [b.left+b.width/2,b.top+b.height/2]}"
+SIG="()=>{const t=e=>e?e.innerText.slice(0,60):'';const fr=[...document.querySelectorAll('#listView .lvrow')].find(e=>e.offsetParent);return [t(document.getElementById('vtitle')),t(document.getElementById('crumbs')),t(fr),[...document.querySelectorAll('.cand,#laCands .lact')].filter(e=>e.offsetParent).map(e=>e.innerText).join('|').slice(0,80),document.body.className].join('#')}"
+SIGS="""(ms)=>new Promise(res=>{const s0=(%s)();const t0=performance.now();const f=()=>{const t=performance.now()-t0;if((%s)()!==s0)return res(Math.round(t));if(t<ms)requestAnimationFrame(f);else res(null)};requestAnimationFrame(f)})"""%(SIG,SIG)
 TH=2
 def diff(a,b):
   out=[]
@@ -41,15 +44,15 @@ async def main():
       try: await _step(name,action,settle)
       except Exception as e: steps.append({'step':name,'EXC':str(e)[:200]}); print('EXC',name,str(e)[:120],flush=True)
     async def _step(name,action,settle=2200):
-      n[0]+=1; tag=f"shotsh1800/b1618h7-{eng[:2]}-{size}-ls3{n[0]:02d}-{name}"
+      n[0]+=1; tag=f"shotsb1621/b1621h18-{eng[:2]}-{size}-ls3{n[0]:02d}-{name}"
       a=await pg.evaluate(BOX); await safeshot(pg,tag+"-before.png")
-      samp=asyncio.ensure_future(pg.evaluate(SAMPLE,settle))
+      samp=asyncio.ensure_future(pg.evaluate(SAMPLE,settle)); sg=asyncio.ensure_future(pg.evaluate(SIGS,settle))
       ok=await action()
-      frames=await samp; await pg.wait_for_timeout(300)
+      frames=await samp; paint=await sg; await pg.wait_for_timeout(300)
       z=await pg.evaluate(BOX); await safeshot(pg,tag+"-after.png")
       st=await pg.evaluate("()=>({crumbs:(document.getElementById('crumbs')||{}).innerText,list:document.body.classList.contains('listmode'),lt:window.__stateSnapshot&&window.__stateSnapshot().lt,lv:window.__laInfo().on?window.__laInfo().lv:'-',ysl:window.__ysl.get()})")
-      steps.append({'n':n[0],'step':name,'ok':ok,'state':st,'moved':diff(a,z),'transient':transient(frames,z),'shots':[tag+"-before.png",tag+"-after.png"]})
-      print(n[0],name,ok,st,'moved',[ (m['el'],m.get('dx'),m.get('dy'),m.get('dw'),m.get('dh')) if 'dx' in m else (m['el'],'gone' if 'gone' in m else 'new') for m in steps[-1]['moved']],'transient',list(steps[-1]['transient'].keys()),flush=True)
+      steps.append({'n':n[0],'step':name,'ok':ok,'state':st,'moved':diff(a,z),'transient':transient(frames,z),'paint_ms':paint,'shots':[tag+"-before.png",tag+"-after.png"]})
+      print(n[0],name,ok,'paint',paint,st,'moved',[ (m['el'],m.get('dx'),m.get('dy'),m.get('dw'),m.get('dh')) if 'dx' in m else (m['el'],'gone' if 'gone' in m else 'new') for m in steps[-1]['moved']],'transient',list(steps[-1]['transient'].keys()),flush=True)
     async def tap(sel):
       xy=await center(pg,sel)
       if not xy: return False
@@ -99,5 +102,5 @@ async def main():
     await step('view-map-US',lambda: tap('#bGlobe'),3500)
     R['err']=log['pageerr']+[x for x in log['console'] if x.startswith('error')][:8]; R['reqfail']=log['reqfail'][:10]; R['http']=log['http'][:10]
     await c.close(); await b.close()
-  json.dump(R,open(f'b1618h1800-layout3-{eng}-{size}.json','w'),indent=1)
+  json.dump(R,open(f'b1621h1800-layout3-{eng}-{size}.json','w'),indent=1)
 asyncio.run(main())

@@ -1,0 +1,809 @@
+{
+ "New Jersey|Gloucester City city": {
+  "tapC": [
+   93.5,
+   316.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Camden County",
+    "gq": "Camden County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 63%",
+    "Donald Trump 2024 / 36%"
+   ],
+   36,
+   [
+    "Gloucester township | 41.5% | 56.8%",
+    "Gloucester City city | 47.0% | 51.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   443.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Camden County Gloucester City c\u2026",
+    "gq": "Camden County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ],
+   8,
+   [
+    "Ward 02 District 03 | 48.9%",
+    "Ward 03 District 02 | 54.5% | 43.7%",
+    "Ward 03 District 01 | 44.2% | 54.1%",
+    "Ward 02 District 02 | 48.0% | 49.8%",
+    "Ward 01 District 02 | 38.6% | 59.0%",
+    "Ward 01 District 01 | 43.2% | 55.3%",
+    "Ward 01 District 03 | 55.0% | 43.2%",
+    "Ward 02 District 01 | 38.5% | 60.2%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 2K",
+    "Donald Trump 2024 / 2K"
+   ],
+   [
+    "Ward 02 District 03 | 367 | 373",
+    "Ward 03 District 02 | 352 | 282",
+    "Ward 03 District 01 | 263 | 322",
+    "Ward 02 District 02 | 268 | 278"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "New Jersey|Gloucester township": {
+  "tapC": [
+   93.5,
+   316.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Camden County",
+    "gq": "Camden County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 63%",
+    "Donald Trump 2024 / 36%"
+   ],
+   36,
+   [
+    "Gloucester township | 41.5% | 56.8%",
+    "Gloucester City city | 47.0% | 51.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Camden County Gloucester townsh\u2026",
+    "gq": "Camden County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 42%"
+   ],
+   40,
+   [
+    "Township Ward 00 District 35 | 38.0% | 59.6%",
+    "Township Ward 00 District 30 | 44.7% | 53.7%",
+    "Township Ward 00 District 15 | 45.4% | 53.2%",
+    "Township Ward 00 District 19 | 43.6% | 54.4%",
+    "Township Ward 00 District 18 | 31.2% | 67.0%",
+    "Township Ward 00 District 17 | 30.1% | 68.1%",
+    "Township Ward 00 District 20 | 38.9% | 59.6%",
+    "Township Ward 00 District 09 | 45.9% | 52.6%",
+    "Township Ward 00 District 29 | 42.6% | 56.2%",
+    "Township Ward 00 District 31 | 37.3% | 61.5%",
+    "Township Ward 00 District 05 | 39.3% | 58.7%",
+    "Township Ward 00 District 13 | 39.0% | 59.6%",
+    "Township Ward 00 District 24 | 43.2% | 55.9%",
+    "Township Ward 00 District 12 | 46.9% | 51.4%",
+    "Township Ward 00 District 06 | 44.6% | 54.1%",
+    "Township Ward 00 District 16 | 46.2% | 52.7%",
+    "Township Ward 00 District 07 | 53.7% | 44.2%",
+    "Township Ward 00 District 32 | 41.4% | 57.1%",
+    "Township Ward 00 District 23 | 26.7% | 69.9%",
+    "Township Ward 00 District 25 | 53.5% | 44.8%",
+    "Township Ward 00 District 33 | 28.9% | 69.5%",
+    "Township Ward 00 District 04 | 50.0% | 48.2%",
+    "Township Ward 00 District 11 | 46.9% | 51.0%",
+    "Township Ward 00 District 08 | 27.7% | 71.1%",
+    "Township Ward 00 District 14 | 28.7% | 69.3%",
+    "Township Ward 00 District 40 | 41.1% | 56.9%",
+    "Township Ward 00 District 34 | 38.2% | 60.3%",
+    "Township Ward 00 District 26 | 46.6% | 50.7%",
+    "Township Ward 00 District 10 | 54.1% | 44.5%",
+    "Township Ward 00 District 27 | 51.5% | 47.2%",
+    "Township Ward 00 District 22 | 48.6% | 49.4%",
+    "Township Ward 00 District 38 | 35.5% | 63.1%",
+    "Township Ward 00 District 36 | 35.1% | 63.3%",
+    "Township Ward 00 District 02 | 48.8% | 49.2%",
+    "Township Ward 00 District 03 | 48.0% | 51.1%",
+    "Township Ward 00 District 21 | 54.5% | 44.5%",
+    "Township Ward 00 District 28 | 30.1% | 68.3%",
+    "Township Ward 00 District 01 | 53.3% | 45.2%",
+    "Township Ward 00 District 39 | 40.1% | 58.8%",
+    "Township Ward 00 District 37 | 21.8% | 76.9%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 19K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "Township Ward 00 District 35 | 457 | 718",
+    "Township Ward 00 District 30 | 477 | 574",
+    "Township Ward 00 District 15 | 478 | 561",
+    "Township Ward 00 District 19 | 459 | 572"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Michigan|Alpena city": {
+  "tapC": [
+   102,
+   443.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Alpena County",
+    "gq": "Alpena County, MI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 35%"
+   ],
+   10,
+   [
+    "Alpena township | 61.6%",
+    "Alpena city | 54.5% | 43.9%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Alpena County Alpena city",
+    "gq": "Alpena County, MI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   5,
+   [
+    "City of Alpena, Precinct 1 | 56.8%",
+    "City of Alpena, Precinct 6 | 55.5% | 42.9%",
+    "City of Alpena, Precinct 5 | 49.5% | 49.4%",
+    "City of Alpena, Precinct 4 | 54.8% | 43.1%",
+    "City of Alpena, Precinct 3 | 54.5% | 43.4%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 3K",
+    "Kamala Harris 2024 / 2K"
+   ],
+   [
+    "City of Alpena, Precinct 1 | 856 | 632",
+    "City of Alpena, Precinct 6 | 621 | 480",
+    "City of Alpena, Precinct 5 | 479 | 478",
+    "City of Alpena, Precinct 4 | 522 | 410"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Michigan|Royal Oak city": {
+  "tapC": [
+   102,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Oakland County",
+    "gq": "Oakland County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   59,
+   [
+    "Royal Oak city | 32.9% | 65.2%",
+    "Clawson city | 40.6% | 57.4%",
+    "Royal Oak charter township | 93.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   316.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Oakland County Royal Oak city",
+    "gq": "Oakland County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 65%",
+    "Donald Trump 2024 / 33%"
+   ],
+   18,
+   [
+    "Royal Oak, Precinct 9 | 33.0% | 65.2%",
+    "Royal Oak, Precinct 1 | 29.2% | 69.1%",
+    "Royal Oak, Precinct 12 | 33.2% | 64.8%",
+    "Royal Oak, Precinct 4 | 34.5% | 63.3%",
+    "Royal Oak, Precinct 3 | 33.5% | 64.6%",
+    "Royal Oak, Precinct 13 | 36.3% | 62.2%",
+    "Royal Oak, Precinct 18 | 37.3% | 60.4%",
+    "Royal Oak, Precinct 8 | 34.0% | 64.3%",
+    "Royal Oak, Precinct 6 | 28.4% | 69.4%",
+    "Royal Oak, Precinct 5 | 29.5% | 68.6%",
+    "Royal Oak, Precinct 2 | 34.9% | 63.0%",
+    "Royal Oak, Precinct 16 | 33.3% | 64.6%",
+    "Royal Oak, Precinct 17 | 34.8% | 63.7%",
+    "Royal Oak, Precinct 15 | 30.9% | 66.9%",
+    "Royal Oak, Precinct 11 | 34.1% | 64.2%",
+    "Royal Oak, Precinct 14 | 32.0% | 66.0%",
+    "Royal Oak, Precinct 7 | 30.3% | 67.7%",
+    "Royal Oak, Precinct 10 | 31.4% | 66.3%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 26K",
+    "Donald Trump 2024 / 13K"
+   ],
+   [
+    "Royal Oak, Precinct 9 | 1K | 2K",
+    "Royal Oak, Precinct 1 | 960 | 2K",
+    "Royal Oak, Precinct 12 | 1K | 2K",
+    "Royal Oak, Precinct 4 | 1K | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Pennsylvania|Bristol township": {
+  "tapC": [
+   102,
+   226.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Bucks County",
+    "gq": "Bucks County, PA",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 49%"
+   ],
+   54,
+   [
+    "Bristol township | 49.0% | 49.8%",
+    "Bristol borough | 41.3% | 57.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   196.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Bucks County Bristol township",
+    "gq": "Bucks County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 49%"
+   ],
+   29,
+   [
+    "Twp 8th-2nd | 50.7%",
+    "Twp 9th-2nd | 52.2% | 46.6%",
+    "Twp 4th-1st | 47.6% | 50.8%",
+    "Twp 9th-1st | 51.8% | 46.5%",
+    "Twp 9th-3rd | 46.1% | 53.1%",
+    "Twp 4th-2nd | 40.3% | 58.7%",
+    "Twp 1st-1st | 58.9% | 40.1%",
+    "Twp 11th-1st | 55.1% | 44.4%",
+    "Twp 8th-1st | 49.2% | 49.3%",
+    "Twp 11th-2nd | 52.2% | 46.9%",
+    "Twp 7th-1st | 49.1% | 48.9%",
+    "Twp 2nd-1st | 44.2% | 55.1%",
+    "Twp 7th-2nd | 45.6% | 53.6%",
+    "Twp 5th-1st | 49.6% | 49.3%",
+    "Twp 1st-3rd | 58.8% | 39.7%",
+    "Twp 3rd-2nd | 49.7% | 49.8%",
+    "Twp 5th-2nd | 30.2% | 68.6%",
+    "Twp 6th-2nd | 48.6% | 50.1%",
+    "Twp 4th-3rd | 55.1% | 43.7%",
+    "Twp 2nd-3rd | 42.1% | 56.8%",
+    "Twp 1st-2nd | 53.8% | 45.5%",
+    "Twp 10th-2nd | 43.3% | 55.7%",
+    "Twp 10th-1st | 54.7% | 43.4%",
+    "Twp 3rd-1st | 33.7% | 64.8%",
+    "Twp 6th-1st | 51.4% | 47.7%",
+    "Twp 10th-3rd | 50.4% | 48.4%",
+    "Twp 3rd-3rd | 50.0% | 48.7%",
+    "Twp 2nd-2nd | 47.8% | 50.4%",
+    "Twp 6th-3rd | 53.3% | 45.6%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 14K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "Twp 8th-2nd | 725 | 685",
+    "Twp 9th-2nd | 702 | 627",
+    "Twp 4th-1st | 617 | 659",
+    "Twp 9th-1st | 668 | 599"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Pennsylvania|Baldwin township": {
+  "tapC": [
+   102,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 39%"
+   ],
+   131,
+   [
+    "Baldwin borough | 46.2% | 52.7%"
+   ]
+  ],
+  "tapT": [
+   102,
+   443.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County Baldwin townsh\u2026",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 42%"
+   ],
+   1,
+   [
+    "Tp Dist 1 | 42.2% | 56.9%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 394",
+    "Donald Trump 2024 / 292"
+   ],
+   [
+    "Tp Dist 1 | 292 | 394"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Vermont|Barre town": {
+  "tapC": [
+   92.5,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Washington County",
+    "gq": "Washington County, VT",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 27%"
+   ],
+   20,
+   [
+    "Barre town | 44.4% | 53.0%",
+    "Barre city | 35.0% | 61.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Washington County Barre town",
+    "gq": "Washington County, VT",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 53%",
+    "Donald Trump 2024 / 44%"
+   ],
+   1,
+   [
+    "Town | 44.4% | 53.0%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 3K",
+    "Donald Trump 2024 / 2K"
+   ],
+   [
+    "Town | 2K | 3K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Illinois|Skokie village": {
+  "tapC": [
+   95.5,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Cook County",
+    "gq": "Cook County, IL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   145,
+   [
+    "Niles township | 38.5% | 60.3%",
+    "Skokie village | 34.0% | 64.8%"
+   ]
+  ],
+  "tapT": [
+   102,
+   443.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Cook County Skokie village",
+    "gq": "Cook County, IL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 65%",
+    "Donald Trump 2024 / 34%"
+   ],
+   37,
+   [
+    "Niles 18 | 32.3% | 67.1%",
+    "Niles 7 | 33.8% | 65.1%",
+    "Niles 21 | 22.5% | 76.6%",
+    "Niles 60 | 36.6% | 61.6%",
+    "Niles 16 | 35.0% | 63.2%",
+    "Niles 61 | 40.5% | 58.4%",
+    "Niles 31 | 35.7% | 63.0%",
+    "Niles 15 | 37.9% | 61.0%",
+    "Niles 26 | 48.9% | 49.5%",
+    "Niles 24 | 43.0% | 55.8%",
+    "Niles 49 | 87.4%",
+    "Niles 40 | 27.3% | 71.4%",
+    "Niles 17 | 30.9% | 67.9%",
+    "Niles 14 | 31.7% | 67.3%",
+    "Niles 39 | 32.1% | 66.1%",
+    "Niles 33 | 33.5% | 65.7%",
+    "Niles 44 | 35.0% | 64.3%",
+    "Niles 41 | 34.3% | 64.7%",
+    "Niles 34 | 40.1% | 58.6%",
+    "Niles 23 | 36.8% | 61.2%",
+    "Niles 19 | 44.4% | 54.9%",
+    "Niles 37 | 32.2% | 66.8%",
+    "Niles 28 | 18.6% | 80.7%",
+    "Niles 42 | 37.1% | 62.0%",
+    "Niles 22 | 41.5% | 56.0%",
+    "Niles 48 | 43.9% | 54.4%",
+    "Niles 20 | 38.0% | 61.2%",
+    "Niles 27 | 34.1% | 64.0%",
+    "Niles 12 | 40.6% | 58.6%",
+    "Niles 45 | 27.0% | 72.1%",
+    "Niles 62 | 42.1% | 56.7%",
+    "Niles 36 | 24.4% | 75.2%",
+    "Niles 55 | 23.3% | 75.8%",
+    "Niles 25 | 34.6% | 64.3%",
+    "Niles 47 | 32.8% | 66.7%",
+    "Niles 32 | 31.0% | 67.9%",
+    "Niles 8 | 24.6% | 74.9%"
+   ]
+  ],
+  "suspect": [
+   "Niles 18 | 32.3% | 67.1%",
+   "Niles 7 | 33.8% | 65.1%",
+   "Niles 21 | 22.5% | 76.6%",
+   "Niles 60 | 36.6% | 61.6%",
+   "Niles 16 | 35.0% | 63.2%",
+   "Niles 61 | 40.5% | 58.4%",
+   "Niles 31 | 35.7% | 63.0%",
+   "Niles 15 | 37.9% | 61.0%",
+   "Niles 26 | 48.9% | 49.5%",
+   "Niles 24 | 43.0% | 55.8%",
+   "Niles 49 | 87.4%",
+   "Niles 40 | 27.3% | 71.4%",
+   "Niles 17 | 30.9% | 67.9%",
+   "Niles 14 | 31.7% | 67.3%",
+   "Niles 39 | 32.1% | 66.1%",
+   "Niles 33 | 33.5% | 65.7%",
+   "Niles 44 | 35.0% | 64.3%",
+   "Niles 41 | 34.3% | 64.7%",
+   "Niles 34 | 40.1% | 58.6%",
+   "Niles 23 | 36.8% | 61.2%",
+   "Niles 19 | 44.4% | 54.9%",
+   "Niles 37 | 32.2% | 66.8%",
+   "Niles 28 | 18.6% | 80.7%",
+   "Niles 42 | 37.1% | 62.0%",
+   "Niles 22 | 41.5% | 56.0%",
+   "Niles 48 | 43.9% | 54.4%",
+   "Niles 20 | 38.0% | 61.2%",
+   "Niles 27 | 34.1% | 64.0%",
+   "Niles 12 | 40.6% | 58.6%",
+   "Niles 45 | 27.0% | 72.1%",
+   "Niles 62 | 42.1% | 56.7%",
+   "Niles 36 | 24.4% | 75.2%",
+   "Niles 55 | 23.3% | 75.8%",
+   "Niles 25 | 34.6% | 64.3%",
+   "Niles 47 | 32.8% | 66.7%",
+   "Niles 32 | 31.0% | 67.9%",
+   "Niles 8 | 24.6% | 74.9%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 19K",
+    "Donald Trump 2024 / 10K"
+   ],
+   [
+    "Niles 18 | 387 | 804",
+    "Niles 7 | 382 | 736",
+    "Niles 21 | 238 | 812",
+    "Niles 60 | 387 | 651"
+   ]
+  ],
+  "suspect_num": [
+   "Niles 18 | 387 | 804",
+   "Niles 7 | 382 | 736",
+   "Niles 21 | 238 | 812",
+   "Niles 60 | 387 | 651",
+   "Niles 16 | 353 | 638",
+   "Niles 61 | 400 | 576",
+   "Niles 31 | 351 | 619",
+   "Niles 15 | 368 | 592",
+   "Niles 26 | 460 | 466",
+   "Niles 24 | 399 | 517",
+   "Niles 49 | 808",
+   "Niles 40 | 251 | 657",
+   "Niles 17 | 276 | 607",
+   "Niles 14 | 280 | 594",
+   "Niles 39 | 278 | 572",
+   "Niles 33 | 284 | 557",
+   "Niles 44 | 295 | 543",
+   "Niles 41 | 280 | 529",
+   "Niles 34 | 315 | 460",
+   "Niles 23 | 284 | 472",
+   "Niles 19 | 339 | 419",
+   "Niles 37 | 244 | 506",
+   "Niles 28 | 599",
+   "Niles 42 | 274 | 458",
+   "Niles 22 | 294 | 397",
+   "Niles 48 | 305 | 378",
+   "Niles 20 | 262 | 422",
+   "Niles 27 | 213 | 400",
+   "Niles 12 | 234 | 338",
+   "Niles 45 | 148 | 396",
+   "Niles 62 | 220 | 296",
+   "Niles 36 | 117 | 360",
+   "Niles 55 | 106 | 345",
+   "Niles 25 | 149 | 277",
+   "Niles 47 | 133 | 271",
+   "Niles 32 | 122 | 267",
+   "Niles 8 | 84 | 256 | 342"
+  ],
+  "tapS": [
+   "Niles 18",
+   [
+    79,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Cook County Skokie village",
+    "gq": "Cook County, IL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 804",
+    "Donald Trump 2024 / 387"
+   ],
+   [
+    "Niles 18 | 387 | 804",
+    "Niles 7 | 382 | 736",
+    "Niles 21 | 238 | 812"
+   ]
+  ],
+  "err": []
+ },
+ "Georgia|Forest Park city": {
+  "tapC": [
+   102,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 15%"
+   ],
+   7,
+   [
+    "Forest Park city | 25.6% | 73.5%",
+    "Morrow city | 21.6% | 77.8%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Forest Park city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 73%",
+    "Donald Trump 2024 / 26%"
+   ],
+   4,
+   [
+    "063FP1 - Forest Park 1 | 21.0% | 78.3%",
+    "063FP2 - Forest Park 2 | 19.3% | 79.8%",
+    "063FP4 - Forest Park 4 | 36.1% | 62.4%",
+    "063FP6 - Forest Park 6 | 32.0% | 67.2%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 4K",
+    "Donald Trump 2024 / 1K"
+   ],
+   [
+    "063FP1 - Forest Park 1 | 322 | 1K",
+    "063FP2 - Forest Park 2 | 283 | 1K",
+    "063FP4 - Forest Park 4 | 365 | 630",
+    "063FP6 - Forest Park 6 | 281 | 591"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Georgia|Morrow city": {
+  "tapC": [
+   102,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 15%"
+   ],
+   7,
+   [
+    "Forest Park city | 25.6% | 73.5%",
+    "Morrow city | 21.6% | 77.8%"
+   ]
+  ],
+  "tapT": [
+   102,
+   196.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Morrow city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 78%",
+    "Donald Trump 2024 / 22%"
+   ],
+   2,
+   [
+    "063MO1 - Morrow 1 | 86.1%",
+    "063MO2 - Morrow 2 | 33.8% | 65.5%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 2K",
+    "Donald Trump 2024 / 657"
+   ],
+   [
+    "063MO1 - Morrow 1 | 2K",
+    "063MO2 - Morrow 2 | 415 | 804"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ }
+}

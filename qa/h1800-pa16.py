@@ -24,7 +24,7 @@ async def main():
       for i,yl in [(0,'16a'),(2,'24'),(0,'16b')]:
         if yl!='16a': await tick(i)
         g=await pg.evaluate(G); out.append((ch,yl,g)); print(eng,ch,yl,json.dumps(g)[:600],flush=True)
-        await safeshot(pg,f'shotsh1800/b1618h7-{eng[:2]}-{W}x{H}-PA-{ch}-{yl}.png')
+        await safeshot(pg,f'shotsb1621/b1621h18-{eng[:2]}-{W}x{H}-PA-{ch}-{yl}.png')
     print('err',log['pageerr'][:3],[x for x in log['console'] if x.startswith('error')][:3]); await b.close()
-  json.dump(out,open(f'b1618h1800-pa16-{eng}-{W}x{H}.json','w'),indent=1)
+  json.dump(out,open(f'b1621h1800-pa16-{eng}-{W}x{H}.json','w'),indent=1)
 asyncio.run(main())

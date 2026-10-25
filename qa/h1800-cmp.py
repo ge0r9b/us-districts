@@ -4,7 +4,7 @@ def mv(f):
   for s in d['steps']:
     o.append((s['step'],sorted([(m['el'],m.get('dx'),m.get('dy'),m.get('dw'),m.get('dh')) if 'dx' in m else (m['el'],'gone' if 'gone' in m else 'new') for m in s.get('moved',[])],key=str),sorted(s.get('transient',{}).keys()), s.get('EXC')))
   return d,o
-for f1 in sorted(glob.glob('b1618h1800-layout3-*.json')):
+for f1 in sorted(glob.glob('b1621h1800-layout3-*.json')):
   k=f1.split('layout3-')[1]
   prev=[f for f in sorted(glob.glob('b16*-layout3-'+k),key=os.path.getmtime) if f!=f1]
   if not prev: print(k,'no prev'); continue

@@ -1752,7 +1752,7 @@ Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with 
 ## Hourly run, build 1620 (Oct 25 ~4 PM EDT): 2 new CRITICAL bugs (QA-128, QA-129); QA-115/116/119/121/126 fixed; QA-113/124 partly fixed
 - Live line 9 now `202610251620` (main e541e09 Build 1619 search fixes, 09b6cd9 Build 1620 place-membership gate). v3 still 404.
 
-### QA-128 [CRITICAL (wrong numbers under a place's title, regression from the 1620 gate)] Build 1620's name gate moves whole towns' precincts to a same-named neighbour; about 1,200 towns now show "Nothing to list"
+### QA-128 [FIXED on 1621 (Oct 25 ~6 PM EDT)] [CRITICAL (wrong numbers under a place's title, regression from the 1620 gate)] Build 1620's name gate moves whole towns' precincts to a same-named neighbour; about 1,200 towns now show "Nothing to list"
 - Build 202610251620, Chromium 390x844 and WebKit 390x844, touch. First bad build: 1620 (09b6cd9). Both were fine on 1618.
 - Cause (from the diff): `twOwner()` matches a precinct name against each town's base name, which drops "city / township / charter township / borough / village / town". Same-named city and township pairs share a base. The tie goes to whichever sorts first, and a township's "X Township 3" also matches the city "X". Precincts named for a township (MCD) also leave the village that holds them.
 - Steps: state + Enter > #bGeo > first list level (counties) > tap the county > tap the town.
@@ -1772,7 +1772,7 @@ Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with 
   - Franklin County, OH: Jackson township 26K to 1.6K, Washington twp 25K to 0.5K, Mifflin twp 20K to 0, Norwich twp 21K to 1.4K. Their city-named precincts ("GROVE CITY", "COLUMBUS", "GAHANNA") moved to the cities. That may be correct for Ohio's township/city overlap; it needs a ruling. The Franklin County list order changed: Columbus, Grove City, Upper Arlington; it was Columbus, Jackson twp, Washington twp.
 - Screenshots: `qa/shotsh1600/b1620h16-ch-390x844-cityN-GloucesterCitycity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Gloucestertownship-list.png`, `qa/shotsh1600/b1620h16-we-390x844-cityN-Gloucestertownship-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Alpenacity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-RoyalOakcity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Skokievillage-list.png`. Data: `qa/b1620h1600-gate-{a,s1,s2,s3}.json` (`changed`, `emptied`), `qa/h1600-cityN-{A,B,C,W}.log`.
 
-### QA-129 [CRITICAL (place under another place's numbers)] List view with a district type on: entering a city shows the city's title with its county's numbers
+### QA-129 [FIXED on 1621 (numbers; Oct 25 ~6 PM EDT); empty list body split out as QA-130] [CRITICAL (place under another place's numbers)] List view with a district type on: entering a city shows the city's title with its county's numbers
 - Build 202610251620, Chromium 390x844 and WebKit 390x844 / 1024x768, touch. On 1618 the same entry landed on the wrong place (QA-115), so this could not be seen then.
 - Steps: fresh load > globe (All States list) > layers > US House > close > bottom field (or #bGeo) "Pittsburgh" + Enter.
 - Expected: Pittsburgh city's list and numbers (Harris 77% / Trump 21%, as the map view and the no-type list path show).
@@ -1894,3 +1894,39 @@ Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with 
 - **Menus overlay without shrinking or dimming: PASS.** With the type menu open, the map rect is unchanged (0,0,320,568), with no filter and opacity 1 (Chromium 320).
 - **Tap latency:** sort, chart menu and type taps took 11-77 ms (Chromium 320). One WebKit 1024x768 sample was 101 ms (`dc_map`, DC list > map; other taps 11-73 ms). It is 1 ms over the limit in a single sample, so it is noted here and not filed; recheck next run.
 - Data: `qa/b1620h1700-{own,col16,pa16,sortchart,geo2*,cityN}-*.json`, `qa/h1700-*.log`.
+
+## Hourly run, build 1621 (Oct 25 ~6 PM EDT; 5:56-6:17 PM EDT; line 9 = 202610251621 at start and end; v3 still 404)
+Touch, Chromium and WebKit. No console or page errors in any run. Next new bug is QA-131.
+
+### Fixed
+- **QA-128 FIXED (CRITICAL).** UI, Chromium 390x844 (`qa/h1800-cityN.py`): Gloucester City city NJ 8 rows (2K / 2K) and Gloucester township 40 rows (Harris 57 / Trump 42, 19K / 14K); Alpena city 5 rows and Alpena township has its own; Royal Oak city 18 rows (65 / 33, 26K / 13K); Bristol township PA 29 rows (14K / 14K); Baldwin township PA 1 row; Barre town VT 1 row ("Town"); Skokie village 37 rows (65 / 34, its own "Niles NN" precincts). No neighbour rows in any of them.
+  - Data audit on the app's own membership (`qa/b1621x-empty-a.json`, IL MN IA IN MI OH MO NE NJ PA VT): gated and centroid counts match for every QA-128 example. Only 4 towns are empty against centroid membership (Grandview village IL, Burns Harbor town IN, Coldwater township MI, Brice village OH), and each is one precinct named for the neighbour that now holds it ("City of Coldwater, Ward 2, Precinct 1" in Coldwater city, "COLUMBUS 45-O" in Columbus). Those moves look right, so not filed. About 1,212 emptied towns on 1620, 4 now.
+- **QA-129 FIXED (CRITICAL, numbers).** All States list > US House on > #bGeo "Pittsburgh" / "Boston" / "Columbus" + Enter: type cleared, header "Allegheny County Pittsburgh city" with **Harris 76.7% / Trump 21.7%** (city, not county 60 / 39); Boston 76.0 / 19.4; Columbus 68.3 / 29.5. Chromium 390x844 and WebKit 1024x768. With and without a type the result is now identical. Shots `qa/shotsb1621/b1621h18-ch-390x844-geo2fold-list-Pittsburgh-2.png`, `qa/shotsb1621/b1621h18-we-1024x768-geo2fold-list-Boston-2.png`.
+- **QA-124 partly fixed:** Forest Park city GA now has only its own 4 "Forest Park N" rows and Morrow city only "Morrow 1/2". Kenosha city WI has 78 "City of Kenosha" rows, no Pleasant Prairie.
+
+### New
+### QA-130 [MEDIUM, pending orchestrator ruling] List view: entering a city in the geography field shows the city's thumbnails over an empty grey list (no rows, no "Nothing to list")
+- Build 202610251621, Chromium 390x844 and WebKit 1024x768, touch.
+- Steps: fresh load > globe (All States list) > (with or without US House on) > #bGeo > "Pittsburgh" + Enter > close sheet. Same for "Boston" and "Columbus".
+- Expected: Pittsburgh city's precinct list, as the drill path gives (Pennsylvania > Allegheny > Pittsburgh city: 402 rows), or at least the "Nothing to list" message.
+- Actual: header and thumbnails are right (76.7 / 21.7), but `#listView` is hidden and the area under the thumbnails is empty grey, still empty after 12 s. On 1620 the same entry showed one wrong "Allegheny" row (QA-129). Related to the line-939 question (globe to list shows thumbnails only).
+- Shots: `qa/shotsb1621/b1621h18-ch-390x844-q129-Pittsburgh-type1.png`, `qa/shotsb1621/b1621h18-ch-390x844-q129-Pittsburgh-type0.png`. Data `qa/b1621h1800-q129-chromium-390x844.json`.
+
+### Changed / still open
+- **QA-124 REOPENED for Pittsburgh (HIGH):** Allegheny > Pittsburgh city (402 rows, 77 / 22) again lists **"Baldwin Tp Dist 2" 46.4% / 52.5%**, which was gone on 1620. Baldwin township now has only "Tp Dist 1" (42.2 / 56.9, 394 / 292 votes). Counted once (not in Baldwin township), so HIGH. Burlington city NC still has "West Graham" (46.6 / 52.5). Shots `qa/shotsb1621/b1621h1800-ch-390x844-cityN-Pittsburghcity-list.png`, `-tapSuspect.png`, `qa/shotsb1621/b1621h1800-ch-390x844-cityN-Baldwintownship-list.png`, `qa/shotsb1621/b1621h1800-ch-390x844-cityN-Burlingtoncity-list.png`.
+- **QA-122 CHANGED back to the 1618 form (MED):** "Milford city (balance)" and "Milford town" both list one row "170-Milford 46.7% / 47.3%" (the same place twice; on 1620 the balance was empty). Shots `qa/shotsb1621/b1621h1800-ch-390x844-cityN-Milford{citybalance,town}-list.png`.
+- **QA-113 unchanged:** tapping a suggestion row in #bGeo ("Fulton County, GA", "Ohio") still keeps US House on (Chromium 320x568 map).
+- **QA-127 unchanged:** Arlington County VA list has 0 rows and no thumbnails.
+- QA-094 / QA-099 not re-run this hour (no related change in 1621).
+
+### Orchestrator verify list
+- **2016 colours: PASS** (Chromium 390): US House '16 is 27.2% blue / 72.8% red; PA 26.3% blue; Philadelphia and Pittsburgh D, rural PA and Lancaster R; labels Clinton 48 / Trump 46 (US), Trump 48 / Clinton 47 (PA).
+- **PA '16 pie and bar: PASS** (WebKit 390x844): '16 pie 48.2 / 47.5, '24 50.2 / 48.5, correct after '16 > '24 > '16.
+- **At-large labels, number-only rows, thumbnail axis: PASS** (WebKit 320 and 1024x768, `h1800-own`): DC "At-large", US "DE At-large", PA rows "1", "4", "17"; no axis issue. The pale FL/PA/MI/WI '16 colours at 1024x768 are the known sub-1.2-point margins.
+- **Menus overlay without shrinking or dimming:** unchanged code path; layout sweep shows no map/list rect change.
+- **Sort chip:** not re-run (QA-099 still open from 5 PM).
+
+### Layout-stability and tap-to-paint sweep (`qa/h1800-lay3.py`, `qa/h1800-cmp.py`)
+- Chromium 390, 375, 1024x576 and WebKit 320, 1024x768: **all 40 compared steps SAME as 1620**. Only the known slider push (thumbnails +68 px) and split-bar first row +14 px height.
+- Tap-to-paint, solo runs: all under 100 ms. Worst non-drill steps 59-92 ms (All States sheet). WebKit 1024x768 DC list > map was 96 ms solo (101 ms on the 5 PM run and again 101 ms in a loaded parallel run), so it sits right at the limit; not filed. A loaded parallel run also gave a 196 ms WebKit 320 senate-layer tap and a 119 ms Chromium '16 > '24 tap; both were 52-64 ms solo, so treated as box load.
+- Data: `qa/b1621h1800-*.json`, `qa/h1800-*.log`.

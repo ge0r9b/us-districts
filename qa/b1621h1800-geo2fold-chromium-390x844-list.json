@@ -1,0 +1,166 @@
+{
+ "build": "202610251621",
+ "Pittsburgh": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "COUNTIES",
+   "Pittsburg County, OK"
+  ],
+  "li": [
+   "COUNTIES",
+   "Pittsburg County, OK"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Pittsburgh city, Allegheny Coun\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / Kamala Harris 76.7%",
+    "Donald Trump 2024 / Donald Trump 21.7%"
+   ],
+   "mp": [
+    16,
+    40.438,
+    -79.997
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Boston": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "No institutions match"
+  ],
+  "li": [
+   "No institutions match"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Suffolk County Boston city",
+    "gq": "Boston city, Suffolk County, MA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / Kamala Harris 76.0%",
+    "Donald Trump 2024 / Donald Trump 19.4%"
+   ],
+   "mp": [
+    7,
+    42.068,
+    -71.718
+   ],
+   "rows": []
+  },
+  "err": []
+ },
+ "Columbus": {
+  "how": "enter",
+  "pre": {
+   "on": "ushouse",
+   "lt": "ushouse"
+  },
+  "inp": [
+   [
+    "",
+    "",
+    167,
+    81
+   ]
+  ],
+  "rows": [
+   "COUNTIES",
+   "Columbus County, NC"
+  ],
+  "li": [
+   "COUNTIES",
+   "Columbus County, NC"
+  ],
+  "sheet_open": false,
+  "sheet": [],
+  "lt_open": {
+   "on": "",
+   "lt": "none"
+  },
+  "closed": {
+   "lt": {
+    "on": "",
+    "lt": "none"
+   },
+   "hdr": {
+    "title": "President",
+    "crumbs": "Franklin County Columbus city",
+    "gq": "Columbus city, Franklin County,\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / Kamala Harris 68.3%",
+    "Donald Trump 2024 / Donald Trump 29.5%"
+   ],
+   "mp": [
+    16,
+    40.062,
+    -82.891
+   ],
+   "rows": []
+  },
+  "err": []
+ }
+}
