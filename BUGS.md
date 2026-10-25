@@ -708,6 +708,26 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Hourly run, build 1618, Oct 25 ~9 AM EDT (8:57-9:05 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
+- Touch, Chromium + WebKit. **No console errors, page errors or failed app requests.** Logs `qa/h0900-*.log`, data `qa/b1618h0900-*.json`, shots `qa/shotsh0900/b1618h9-*.png`. Scripts `qa/h0900-city.py` / `h0900-cityN.py` (copies of h0800-city.py), `h0900-lay3.py`, `h0900-cmp.py`.
+- **New: QA-123 [CRITICAL by the QA-087/093/098/103/119/121 ruling, orchestrator to confirm] Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
+  - Size, build, engine: Chromium 390x844 (MA), WebKit 1024x768 (MI, NJ, PA), Chromium 375x667 (neighbour lists); build 1618, touch.
+  - Steps: bottom field state name + Enter > geo filter (#bGeo) > counties > county > town.
+  - Expected: a town's list holds only its own precincts, and each precinct appears under the town it belongs to.
+  - Actual (row name, figures in the town list):
+    - Chicopee city, Hampden MA (20 rows): **"Holyoke Precinct 2-A"** 32.8% / 63.9%, 248 / 484. Holyoke city's own list has 13 rows and no 2-A.
+    - Sandwich town, Barnstable MA (7 rows): **"Mashpee Precinct 3"** 47.1% / 50.1%, 892 / 949. Mashpee town's own list has only 3 rows and no Precinct 3.
+    - Ann Arbor city, Washtenaw MI (48 rows): **"Pittsfield Charter Township, Pr…"** 20.2% / 76.5%, 634 / 2K, and a row "Township, Precinct 1" 21.8% / 74.3% (a township precinct, name cut at the front). Pittsfield charter township's own list has 8 rows and no Precinct 3.
+    - Kalamazoo city, MI (29 rows): **"Oshtemo Township, Precinct 6"** 388 / 800.
+    - Lyndhurst township, Bergen NJ (16 rows): **"Rutherford Borough Ward 00 Dist…"** 420 / 463.
+    - Pittsburgh city, Allegheny PA (402 rows): **"Baldwin Tp Dist 2"** 289 / 327.
+  - Tapping the stray row keeps the host town's title (e.g. "Hampden County Chicopee city") and the thumbnails switch to that precinct's numbers (Holyoke 2-A: Harris 484 / Trump 248). So the neighbour's precinct is shown under the host town's title, and its votes go to the wrong town (the owner town is short by the same amount).
+  - Passed: Marblehead town, MA (6 rows, no Salem precinct, though the audit flagged one).
+  - Shots: qa/shotsh0900/b1618h9-ch-390x844-city-Chicopeecity-{list,list-num,tapSuspect}.png, qa/shotsh0900/b1618h9-ch-390x844-city-Sandwichtown-{list,list-num,tapSuspect}.png, qa/shotsh0900/b1618h9-we-1024x768-city-{AnnArborcity,Kalamazoocity,Lyndhursttownship,Pittsburghcity}-{list,list-num,tapSuspect}.png, qa/shotsh0900/b1618h9-ch-375x667-cityN-{Holyokecity,Mashpeetown,Pittsfieldchartertownship}-list.png
+  - Data: `qa/b1618h0900-city-chromium-390x844-a.json`, `qa/b1618h0900-city-webkit-1024x768-b.json`, `qa/b1618h0900-cityN-chromium-375x667-n.json`. More leads (many MI village/township, NJ and PA border precincts) are in the 8 AM audit files; not all checked.
+- **Layout sweep (Chromium 1024x768 / 375 / 320, WebKit 1024x576 / 390):** identical to the 7 and 8 AM runs (slider open moves thumbnails +68 px as before; gbar first row +14 px height as before). No new jumps.
+- Open items not rerun (unchanged build): QA-119, 121, 122, 117, 118, 115, 116, 113, 112, 110, 099, 074, 018, 105 / 106 / 120, 073 / 102 / 085. QA-100 stays HIGH.
+
 ## Hourly run, build 1618, Oct 25 ~8 AM EDT (7:51-8:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch on phones, Chromium + WebKit, up to 6 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests in any run.** Logs `qa/h0800-*.log`, data `qa/b1618h0800-*.json`, shots `qa/shotsh0800/b1618h8-*.png`. Scripts are `qa/h0800-*.py`: lay3, addr2, own, pa16, states and cmp are copied from h0700, and city, dupaudit and sortchart are new.
 - **QA-119 family hunt.** `qa/h0800-dupaudit.py` loads each state's 2024 precincts and assigns them to towns by centroid, approximating the app's `precRowsIn`. It flags precincts whose name names a different town of the same county. Results are in `qa/b1618h0800-dupaudit-sb_*.json`, 50 files, one per state. Burlington, VT is flagged again (QA-119 still open). The UI checks below are `qa/h0800-city.py`, which drills state > geo sheet > county > town and lists every row.

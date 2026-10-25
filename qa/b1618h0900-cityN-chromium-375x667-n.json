@@ -1,0 +1,184 @@
+{
+ "Massachusetts|Holyoke city": {
+  "tapC": [
+   89,
+   346.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Hampden County",
+    "gq": "Hampden County, MA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 53%",
+    "Donald Trump 2024 / 45%"
+   ],
+   23,
+   [
+    "Holyoke city | 33.1% | 62.8%"
+   ]
+  ],
+  "tapT": [
+   102,
+   256.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Hampden County Holyoke city",
+    "gq": "Hampden County, MA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 63%",
+    "Donald Trump 2024 / 33%"
+   ],
+   13,
+   [
+    "Precinct 5-A | 42.9%",
+    "Precinct 7-A | 29.4% | 66.9%",
+    "Precinct 7-B | 24.0% | 71.8%",
+    "Precinct 3-B | 36.9% | 59.7%",
+    "Precinct 6-B | 29.8% | 65.5%",
+    "Precinct 5-B | 42.9% | 53.5%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 9K",
+    "Donald Trump 2024 / 5K"
+   ],
+   [
+    "Precinct 5-A | 788 | 981",
+    "Precinct 7-A | 520 | 1K",
+    "Precinct 7-B | 350 | 1K",
+    "Precinct 3-B | 502 | 812"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Massachusetts|Mashpee town": {
+  "tapC": [
+   89,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Barnstable County",
+    "gq": "Barnstable County, MA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 39%"
+   ],
+   15,
+   [
+    "Mashpee town | 38.9% | 58.1%"
+   ]
+  ],
+  "tapT": [
+   102,
+   376.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Barnstable County Mashpee town",
+    "gq": "Barnstable County, MA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 58%",
+    "Donald Trump 2024 / 39%"
+   ],
+   3,
+   [
+    "Precinct 1 | 36.2% | 61.1%",
+    "Precinct 4 | 37.7% | 59.1%",
+    "Precinct 2 | 43.1% | 53.9%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 3K",
+    "Donald Trump 2024 / 2K"
+   ],
+   [
+    "Precinct 1 | 745 | 1K",
+    "Precinct 4 | 725 | 1K",
+    "Precinct 2 | 805 | 1K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Michigan|Pittsfield charter township": {
+  "tapC": [
+   102,
+   286.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Washtenaw County",
+    "gq": "Washtenaw County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 27%"
+   ],
+   27,
+   [
+    "Pittsfield charter township | 24.6% | 70.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   196.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Washtenaw County Pittsfield cha\u2026",
+    "gq": "Washtenaw County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 25%"
+   ],
+   8,
+   [
+    "Pittsfield Charter Township, Pr\u2026 | 31.8% | 64.7%",
+    "Pittsfield Charter Township, Pr\u2026 | 74.0%",
+    "Pittsfield Charter Township, Pr\u2026 | 79.8%",
+    "Pittsfield Charter Township, Pr\u2026 | 76.9%",
+    "Pittsfield Charter Township, Pr\u2026 | 31.6% | 60.8%",
+    "Pittsfield Charter Township, Pr\u2026 | 75.3%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 13K",
+    "Donald Trump 2024 / 5K"
+   ],
+   [
+    "Pittsfield Charter Township, Pr\u2026 | 1K | 2K",
+    "Pittsfield Charter Township, Pr\u2026 | 2K",
+    "Pittsfield Charter Township, Pr\u2026 | 2K",
+    "Pittsfield Charter Township, Pr\u2026 | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ }
+}

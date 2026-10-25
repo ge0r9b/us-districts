@@ -1,0 +1,364 @@
+{
+ "Michigan|Ann Arbor city": {
+  "tapC": [
+   99.5,
+   286.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Washtenaw County",
+    "gq": "Washtenaw County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 27%"
+   ],
+   27,
+   [
+    "Ann Arbor city | 13.6% | 83.5%",
+    "Pittsfield charter township | 24.6% | 70.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Washtenaw County Ann Arbor city",
+    "gq": "Washtenaw County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   48,
+   [
+    "Township, Precinct 1 | 21.8% | 74.3%",
+    "Pittsfield Charter Township, Pr\u2026 | 20.2% | 76.5%",
+    "City of Ann Arbor, Ward 1, Prec\u2026 | 16.5% | 78.4%",
+    "City of Ann Arbor, Ward 4, Prec\u2026 | 15.1% | 82.8%",
+    "City of Ann Arbor, Ward 3, Prec\u2026 | 21.0% | 76.5%",
+    "City of Ann Arbor, Ward 5, Prec\u2026 | 91.1%"
+   ]
+  ],
+  "suspect": [
+   "Pittsfield Charter Township, Pr\u2026 | 20.2% | 76.5%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 63K",
+    "Donald Trump 2024 / 10K"
+   ],
+   [
+    "Township, Precinct 1 | 730 | 2K",
+    "Pittsfield Charter Township, Pr\u2026 | 634 | 2K",
+    "City of Ann Arbor, Ward 1, Prec\u2026 | 2K",
+    "City of Ann Arbor, Ward 4, Prec\u2026 | 2K"
+   ]
+  ],
+  "suspect_num": [
+   "Pittsfield Charter Township, Pr\u2026 | 634 | 2K"
+  ],
+  "tapS": [
+   "Pittsfield Charter Township, Pr\u2026",
+   [
+    102,
+    166.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Washtenaw County Ann Arbor city",
+    "gq": "Washtenaw County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 2K",
+    "Donald Trump 2024 / 634"
+   ],
+   [
+    "Township, Precinct 1 | 730 | 2K",
+    "Pittsfield Charter Township, Pr\u2026 | 634 | 2K",
+    "City of Ann Arbor, Ward 1, Prec\u2026 | 2K"
+   ]
+  ],
+  "err": []
+ },
+ "New Jersey|Lyndhurst township": {
+  "tapC": [
+   90.5,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Bergen County",
+    "gq": "Bergen County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ],
+   70,
+   [
+    "Lyndhurst township | 55.9% | 42.3%",
+    "Rutherford borough | 43.0% | 55.0%"
+   ]
+  ],
+  "tapT": [
+   102,
+   405.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Bergen County Lyndhurst township",
+    "gq": "Bergen County, NJ",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 56%",
+    "Kamala Harris 2024 / 42%"
+   ],
+   16,
+   [
+    "Township Ward 00 District 01 | 49.4% | 48.9%",
+    "Rutherford Borough Ward 00 Dist\u2026 | 46.6% | 51.4%",
+    "Township Ward 00 District 03 | 52.1% | 45.7%",
+    "Township Ward 00 District 10 | 60.4% | 38.6%",
+    "Township Ward 00 District 04 | 57.0% | 40.7%",
+    "Township Ward 00 District 06 | 55.4% | 43.2%"
+   ]
+  ],
+  "suspect": [
+   "Rutherford Borough Ward 00 Dist\u2026 | 46.6% | 51.4%"
+  ],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 6K",
+    "Kamala Harris 2024 / 5K"
+   ],
+   [
+    "Township Ward 00 District 01 | 473 | 468",
+    "Rutherford Borough Ward 00 Dist\u2026 | 420 | 463",
+    "Township Ward 00 District 03 | 464 | 407",
+    "Township Ward 00 District 10 | 492 | 314"
+   ]
+  ],
+  "suspect_num": [
+   "Rutherford Borough Ward 00 Dist\u2026 | 420 | 463"
+  ],
+  "tapS": [
+   "Rutherford Borough Ward 00 Dist\u2026",
+   [
+    102,
+    166.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Bergen County Lyndhurst township",
+    "gq": "Bergen County, NJ",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 463",
+    "Donald Trump 2024 / 420"
+   ],
+   [
+    "Township Ward 00 District 01 | 473 | 468",
+    "Rutherford Borough Ward 00 Dist\u2026 | 420 | 463",
+    "Township Ward 00 District 03 | 464 | 407"
+   ]
+  ],
+  "err": []
+ },
+ "Pennsylvania|Pittsburgh city": {
+  "tapC": [
+   102,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 39%"
+   ],
+   131,
+   [
+    "Pittsburgh city | 21.7% | 76.7%",
+    "Baldwin borough | 46.2% | 52.7%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 22%"
+   ],
+   402,
+   [
+    "Ward 2 Dist 1 | 22.3% | 76.0%",
+    "Ward 2 Dist 2 | 29.0% | 69.5%",
+    "Ward 1 Dist 1 | 22.3% | 76.4%",
+    "Ward 6 Dist 1 | 20.6% | 77.6%",
+    "Ward 4 Dist 8 | 15.1% | 83.8%",
+    "Ward 14 Dist 7 | 86.1%"
+   ]
+  ],
+  "suspect": [
+   "Baldwin Tp Dist 2 | 46.4% | 52.5%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 124K",
+    "Donald Trump 2024 / 35K"
+   ],
+   [
+    "Ward 2 Dist 1 | 357 | 1K",
+    "Ward 2 Dist 2 | 437 | 1K",
+    "Ward 1 Dist 1 | 314 | 1K",
+    "Ward 6 Dist 1 | 268 | 1K"
+   ]
+  ],
+  "suspect_num": [],
+  "tapS": [
+   "Baldwin Tp Dist 2",
+   [
+    102,
+    405.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 327",
+    "Donald Trump 2024 / 289"
+   ],
+   [
+    "Ward 2 Dist 1 | 357 | 1K",
+    "Ward 2 Dist 2 | 437 | 1K",
+    "Ward 1 Dist 1 | 314 | 1K"
+   ]
+  ],
+  "err": []
+ },
+ "Michigan|Kalamazoo city": {
+  "tapC": [
+   99.5,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kalamazoo County",
+    "gq": "Kalamazoo County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 58%",
+    "Donald Trump 2024 / 40%"
+   ],
+   21,
+   [
+    "Kalamazoo city | 22.1% | 75.7%",
+    "Oshtemo charter township | 37.5% | 60.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kalamazoo County Kalamazoo city",
+    "gq": "Kalamazoo County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 22%"
+   ],
+   29,
+   [
+    "City of Kalamazoo, Precinct 5 | 22.3% | 75.6%",
+    "City of Kalamazoo, Precinct 20 | 18.8% | 79.0%",
+    "City of Kalamazoo, Precinct 22 | 16.9% | 81.0%",
+    "City of Kalamazoo, Precinct 10 | 33.3% | 64.3%",
+    "City of Kalamazoo, Precinct 12 | 25.7% | 72.6%",
+    "City of Kalamazoo, Precinct 16 | 25.2% | 73.3%"
+   ]
+  ],
+  "suspect": [
+   "Oshtemo Township, Precinct 6 | 31.8% | 65.6%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 26K",
+    "Donald Trump 2024 / 8K"
+   ],
+   [
+    "City of Kalamazoo, Precinct 5 | 457 | 2K",
+    "City of Kalamazoo, Precinct 20 | 1K",
+    "City of Kalamazoo, Precinct 22 | 1K",
+    "City of Kalamazoo, Precinct 10 | 542 | 1K"
+   ]
+  ],
+  "suspect_num": [
+   "Oshtemo Township, Precinct 6 | 388 | 800"
+  ],
+  "tapS": [
+   "Oshtemo Township, Precinct 6",
+   [
+    102,
+    405.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Kalamazoo County Kalamazoo city",
+    "gq": "Kalamazoo County, MI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 800",
+    "Donald Trump 2024 / 388"
+   ],
+   [
+    "City of Kalamazoo, Precinct 5 | 457 | 2K",
+    "City of Kalamazoo, Precinct 20 | 1K",
+    "City of Kalamazoo, Precinct 22 | 1K"
+   ]
+  ],
+  "err": []
+ }
+}
