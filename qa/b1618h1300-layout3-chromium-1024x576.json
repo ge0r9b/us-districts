@@ -1,0 +1,594 @@
+{
+ "size": "1024x576",
+ "eng": "chromium",
+ "steps": [
+  {
+   "n": 1,
+   "step": "open-time-slider-US",
+   "ok": true,
+   "state": {
+    "crumbs": "United States",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "thumb0",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      114,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      182,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "dx": 0,
+     "dy": 68,
+     "dw": 0,
+     "dh": 0,
+     "before": [
+      8,
+      158,
+      42,
+      36
+     ],
+     "after": [
+      8,
+      226,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "ysl",
+     "new": [
+      8,
+      121,
+      952,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls301-open-time-slider-US-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls301-open-time-slider-US-after.png"
+   ]
+  },
+  {
+   "n": 2,
+   "step": "geo-menu-all-states",
+   "ok": true,
+   "state": {
+    "crumbs": "All States",
+    "list": true,
+    "lt": "none",
+    "lv": "states",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "firstRow",
+     "new": [
+      12,
+      190,
+      1012,
+      30
+     ]
+    },
+    {
+     "el": "laSort",
+     "new": [
+      922,
+      177,
+      34,
+      22
+     ]
+    },
+    {
+     "el": "lthumb0",
+     "new": [
+      8,
+      217,
+      42,
+      47
+     ]
+    },
+    {
+     "el": "lthumb1",
+     "new": [
+      8,
+      269,
+      42,
+      47
+     ]
+    },
+    {
+     "el": "thumb0",
+     "gone": [
+      8,
+      182,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "gone": [
+      8,
+      226,
+      42,
+      36
+     ]
+    }
+   ],
+   "transient": {
+    "crumbs": [
+     [
+      15,
+      [
+       8,
+       59,
+       952,
+       44
+      ]
+     ],
+     [
+      97,
+      [
+       8,
+       3,
+       952,
+       44
+      ]
+     ],
+     [
+      1602,
+      [
+       8,
+       59,
+       952,
+       44
+      ]
+     ]
+    ]
+   },
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls302-geo-menu-all-states-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls302-geo-menu-all-states-after.png"
+   ]
+  },
+  {
+   "n": 3,
+   "step": "list-drill-MA",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "back",
+     "new": [
+      -3,
+      166,
+      44,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls303-list-drill-MA-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls303-list-drill-MA-after.png"
+   ]
+  },
+  {
+   "n": 4,
+   "step": "list-year-2020-MA",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     1,
+     1
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls304-list-year-2020-MA-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls304-list-year-2020-MA-after.png"
+   ]
+  },
+  {
+   "n": 5,
+   "step": "list-year-2024-MA",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls305-list-year-2024-MA-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls305-list-year-2024-MA-after.png"
+   ]
+  },
+  {
+   "n": 6,
+   "step": "list-drill-Worcester",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": true,
+    "lt": "none",
+    "lv": "townships",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls306-list-drill-Worcester-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls306-list-drill-Worcester-after.png"
+   ]
+  },
+  {
+   "n": 7,
+   "step": "list-ushouse-Worcester",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "ushouse",
+    "lv": "districts",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "gone": [
+      968,
+      178,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls307-list-ushouse-Worcester-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls307-list-ushouse-Worcester-after.png"
+   ]
+  },
+  {
+   "n": 8,
+   "step": "list-ushouse-off",
+   "ok": false,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "ushouse",
+    "lv": "districts",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "chartBtn",
+     "new": [
+      968,
+      178,
+      48,
+      48
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls308-list-ushouse-off-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls308-list-ushouse-off-after.png"
+   ]
+  },
+  {
+   "n": 9,
+   "step": "list-back-1",
+   "ok": "#bBack",
+   "state": {
+    "crumbs": "Worcester County",
+    "list": true,
+    "lt": "none",
+    "lv": "townships",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls309-list-back-1-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls309-list-back-1-after.png"
+   ]
+  },
+  {
+   "n": 10,
+   "step": "list-back-2",
+   "ok": "#bBack",
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls310-list-back-2-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls310-list-back-2-after.png"
+   ]
+  },
+  {
+   "n": 11,
+   "step": "chart-gbar",
+   "ok": true,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "firstRow",
+     "dx": 0,
+     "dy": 0,
+     "dw": 0,
+     "dh": 14,
+     "before": [
+      12,
+      190,
+      1012,
+      30
+     ],
+     "after": [
+      12,
+      190,
+      1012,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls311-chart-gbar-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls311-chart-gbar-after.png"
+   ]
+  },
+  {
+   "n": 12,
+   "step": "list-drill-MA-gbar",
+   "ok": false,
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls312-list-drill-MA-gbar-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls312-list-drill-MA-gbar-after.png"
+   ]
+  },
+  {
+   "n": 13,
+   "step": "list-drill-Worcester-gbar",
+   "ok": true,
+   "state": {
+    "crumbs": "Worcester County",
+    "list": true,
+    "lt": "none",
+    "lv": "townships",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls313-list-drill-Worcester-gbar-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls313-list-drill-Worcester-gbar-after.png"
+   ]
+  },
+  {
+   "n": 14,
+   "step": "list-back-gbar-1",
+   "ok": "#bBack",
+   "state": {
+    "crumbs": "Massachusetts",
+    "list": true,
+    "lt": "none",
+    "lv": "counties",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls314-list-back-gbar-1-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls314-list-back-gbar-1-after.png"
+   ]
+  },
+  {
+   "n": 15,
+   "step": "list-back-gbar-2",
+   "ok": "#bBack",
+   "state": {
+    "crumbs": "All States",
+    "list": true,
+    "lt": "none",
+    "lv": "states",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "back",
+     "gone": [
+      -3,
+      166,
+      44,
+      44
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls315-list-back-gbar-2-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls315-list-back-gbar-2-after.png"
+   ]
+  },
+  {
+   "n": 16,
+   "step": "view-map-US",
+   "ok": true,
+   "state": {
+    "crumbs": "United States",
+    "list": false,
+    "lt": "none",
+    "lv": "-",
+    "ysl": [
+     2,
+     2
+    ]
+   },
+   "moved": [
+    {
+     "el": "firstRow",
+     "gone": [
+      12,
+      190,
+      1012,
+      44
+     ]
+    },
+    {
+     "el": "laSort",
+     "gone": [
+      922,
+      177,
+      34,
+      22
+     ]
+    },
+    {
+     "el": "lthumb0",
+     "gone": [
+      8,
+      217,
+      42,
+      47
+     ]
+    },
+    {
+     "el": "lthumb1",
+     "gone": [
+      8,
+      269,
+      42,
+      47
+     ]
+    },
+    {
+     "el": "thumb0",
+     "new": [
+      8,
+      182,
+      42,
+      36
+     ]
+    },
+    {
+     "el": "thumb1",
+     "new": [
+      8,
+      226,
+      42,
+      36
+     ]
+    }
+   ],
+   "transient": {},
+   "shots": [
+    "shotsh1300/b1618h13-ch-1024x576-ls316-view-map-US-before.png",
+    "shotsh1300/b1618h13-ch-1024x576-ls316-view-map-US-after.png"
+   ]
+  }
+ ],
+ "build": "202610181618",
+ "err": [],
+ "reqfail": [],
+ "http": []
+}

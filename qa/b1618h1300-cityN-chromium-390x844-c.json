@@ -1,0 +1,402 @@
+{
+ "Florida|Coral Gables": {
+  "tapC": [
+   95,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   34,
+   [
+    "Coral Gables city | 50.1% | 48.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   256.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County Coral Gables \u2026",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   17,
+   [
+    "Precinct 636 | 47.6%",
+    "Precinct 604 | 42.6% | 56.3%",
+    "Precinct 601 | 48.9% | 50.0%",
+    "Precinct 617 | 61.2% | 37.4%",
+    "Precinct 611 | 49.4% | 48.7%",
+    "Precinct 633 | 49.2% | 48.8%",
+    "Precinct 615 | 53.0% | 45.6%",
+    "Precinct 607 | 47.6% | 50.6%",
+    "Precinct 608 | 54.6% | 43.7%",
+    "Precinct 613 | 47.4% | 50.9%",
+    "Precinct 614 | 44.8% | 54.1%",
+    "Precinct 618 | 61.0% | 37.6%",
+    "Precinct 808 | 59.0% | 39.9%",
+    "Precinct 640 | 41.0% | 57.4%",
+    "Precinct 612 | 45.4% | 53.7%",
+    "Precinct 635 | 53.0% | 45.4%",
+    "Precinct 646 | 37.8% | 60.2%"
+   ]
+  ],
+  "suspect": [
+   "Precinct 808 | 59.0% | 39.9%"
+  ],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 15K",
+    "Kamala Harris 2024 / 14K"
+   ],
+   [
+    "Precinct 636 | 2K | 2K",
+    "Precinct 604 | 1K | 2K",
+    "Precinct 601 | 1K | 1K",
+    "Precinct 617 | 2K | 1K"
+   ]
+  ],
+  "suspect_num": [
+   "Precinct 808 | 666"
+  ],
+  "tapS": [
+   "Precinct 808",
+   [
+    93,
+    496.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County Coral Gables \u2026",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 666",
+    "Kamala Harris 2024 / 451"
+   ],
+   [
+    "Precinct 636 | 2K | 2K",
+    "Precinct 604 | 1K | 2K",
+    "Precinct 601 | 1K | 1K"
+   ]
+  ],
+  "err": []
+ },
+ "Florida|South Miami": {
+  "tapC": [
+   95,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   34,
+   [
+    "South Miami city | 42.3% | 56.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   443.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County South Miami c\u2026",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 57%",
+    "Donald Trump 2024 / 42%"
+   ],
+   5,
+   [
+    "Precinct 606 | 41.7% | 57.3%",
+    "Precinct 621 | 35.4% | 63.5%",
+    "Precinct 652 | 53.0% | 45.8%",
+    "Precinct 623 | 47.3% | 51.3%",
+    "Precinct 605 | 44.4% | 53.3%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 3K",
+    "Donald Trump 2024 / 3K"
+   ],
+   [
+    "Precinct 606 | 1K | 2K",
+    "Precinct 621 | 635 | 1K",
+    "Precinct 652 | 549 | 474",
+    "Precinct 623 | 571"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Florida|West Miami": {
+  "tapC": [
+   95,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   34,
+   [
+    "West Miami city | 64.9% | 34.1%"
+   ]
+  ],
+  "tapT": [
+   102,
+   484.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County West Miami ci\u2026",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 65%",
+    "Kamala Harris 2024 / 34%"
+   ],
+   1,
+   [
+    "Precinct 426 | 64.9%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 2K",
+    "Kamala Harris 2024 / 1K"
+   ],
+   [
+    "Precinct 426 | 2K | 1K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Florida|Miami": {
+  "tapC": [
+   95,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   34,
+   [
+    "Miami city | 48.7%",
+    "Miami Gardens city | 24.0% | 75.0%",
+    "Miami Beach city | 45.6% | 52.7%",
+    "Miami Lakes town | 72.1% | 27.0%",
+    "Miami Springs city | 63.1% | 35.8%",
+    "Miami Shores village | 31.9% | 66.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County Miami city",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 49%"
+   ],
+   123,
+   [
+    "Precinct 624 | 49.7%",
+    "Precinct 587 | 36.1% | 62.5%",
+    "Precinct 573 | 55.3% | 43.3%",
+    "Precinct 569 | 48.1% | 50.5%",
+    "Precinct 504 | 32.7% | 65.4%",
+    "Precinct 544 | 42.3% | 56.0%",
+    "Precinct 665 | 49.6% | 48.6%",
+    "Precinct 549 | 68.3% | 31.1%",
+    "Precinct 568 | 51.8% | 47.1%",
+    "Precinct 543 | 57.4% | 41.5%",
+    "Precinct 578 | 57.2% | 41.6%",
+    "Precinct 579 | 55.3% | 42.9%",
+    "Precinct 986 | 72.7% | 26.6%",
+    "Precinct 575 | 65.6% | 33.4%",
+    "Precinct 596 | 63.7% | 35.5%",
+    "Precinct 582 | 43.9% | 54.5%",
+    "Precinct 576 | 57.9% | 40.7%",
+    "Precinct 557 | 70.5% | 29.0%",
+    "Precinct 541 | 48.3% | 49.4%",
+    "Precinct 662 | 40.8% | 57.3%",
+    "Precinct 639 | 53.9% | 44.6%",
+    "Precinct 540 | 71.1%",
+    "Precinct 584 | 27.7% | 70.6%",
+    "Precinct 561 | 53.2% | 45.6%",
+    "Precinct 599 | 36.6% | 62.1%",
+    "Precinct 559 | 65.8% | 33.3%",
+    "Precinct 577 | 54.6% | 44.3%",
+    "Precinct 563 | 51.7% | 46.6%",
+    "Precinct 572 | 51.8% | 46.4%",
+    "Precinct 529 | 44.3% | 54.7%",
+    "Precinct 567 | 54.3% | 44.4%",
+    "Precinct 538 | 48.2% | 50.3%",
+    "Precinct 520 | 16.2% | 83.0%",
+    "Precinct 532 | 28.9% | 69.7%",
+    "Precinct 669 | 59.1% | 39.8%",
+    "Precinct 583 | 74.1% | 25.1%",
+    "Precinct 545 | 62.3% | 37.3%",
+    "Precinct 524 | 48.2% | 50.3%",
+    "Precinct 591 | 50.3% | 49.1%",
+    "Precinct 526 | 55.6% | 43.7%",
+    "Precinct 553 | 73.3% | 25.9%",
+    "Precinct 554 | 75.7% | 23.8%",
+    "Precinct 984 | 47.3% | 50.3%",
+    "Precinct 566 | 53.8% | 45.3%",
+    "Precinct 982 | 44.7% | 54.0%",
+    "Precinct 536 | 45.6% | 52.4%",
+    "Precinct 564 | 57.8% | 41.3%",
+    "Precinct 510 | 70.4% | 29.1%",
+    "Precinct 533 | 15.6% | 82.8%",
+    "Precinct 537 | 35.5% | 62.9%",
+    "Precinct 574 | 25.0% | 72.9%",
+    "Precinct 522 | 20.1% | 78.4%",
+    "Precinct 600 | 40.0% | 58.6%",
+    "Precinct 523 | 44.5% | 54.9%",
+    "Precinct 581 | 60.2% | 39.2%",
+    "Precinct 593 | 60.9% | 37.8%",
+    "Precinct 519 | 17.6% | 81.6%",
+    "Precinct 558 | 74.6% | 24.3%",
+    "Precinct 565 | 57.0% | 41.9%",
+    "Precinct 515 | 23.7% | 74.1%",
+    "Precinct 983 | 47.6% | 50.6%",
+    "Precinct 571 | 53.7% | 45.2%",
+    "Precinct 550 | 70.1% | 29.0%",
+    "Precinct 560 | 64.7% | 33.6%",
+    "Precinct 551 | 67.8% | 31.7%",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 72K",
+    "Donald Trump 2024 / 70K"
+   ],
+   [
+    "Precinct 624 | 2K | 2K",
+    "Precinct 587 | 1K | 3K",
+    "Precinct 573 | 2K | 2K",
+    "Precinct 569 | 2K | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ }
+}
