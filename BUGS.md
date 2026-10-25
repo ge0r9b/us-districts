@@ -1725,3 +1725,16 @@ Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Wa
   - Data `qa/b1618h1300-sortchart-{chromium-320x568-OH,webkit-1024x576-TX}.json`; shots `qa/shotsh1300/b1618h13-*-sc-*.png`.
 - **Layout sweep** (President > time slider > All States > MA > '20 / '24 > Worcester > US House on/off > back x2 > split bar > drill/back > map), Chromium at 390, 375, 320, 1024x576 and 1024x768: every step is **SAME** as the ~12 PM run. Only the known items appear (slider opening pushes the thumbnails 68 px; the split-bar first row grows by 14 px). No new movement, no errors, no failed requests. Data `qa/b1618h1300-layout3-chromium-*.json`; compare with `qa/h1300-cmp.py`.
 - No tap over 100 ms among the measured taps (sort chip, chart menu, district-type menu).
+
+## Hourly run, build 1618 (Oct 25 ~2 PM EDT): 1 new bug (QA-127)
+- Live line 9 still `202610181618`; v3 still 404.
+
+### QA-127 [HIGH, pending orchestrator ruling] A county with no towns drills to "Nothing to list" with no thumbnails
+- Build 202610181618, Chromium 390x844 touch.
+- Steps: search "Virginia" > geo-filter button > first list level (counties) > tap "Arlington County". Same for Henrico County VA, Chesterfield County VA and Howard County MD.
+- Expected: the county's precincts (or a single "unincorporated"/county row) with the county's numbers in the thumbnails (Arlington is about 78% / 20%, as the address search shows).
+- Actual: the header reads "Arlington County townships", the list says **"Nothing to list"**, and both thumbnails are gone. The county has no incorporated towns, so the township level is empty and its precincts can't be reached at all. Honolulu County HI (one row) works. Related to QA-094: counties that are partly unincorporated (e.g. Fairfax County VA lists only Vienna, Herndon and Clifton, about 13K of 568K votes) also hide the unincorporated precincts.
+- Screenshot: `qa/shotsh1400/b1618h14-ch-390x844-cityN-Arlington-list.png`. Data: `qa/h1400-cityN-a.log`, `qa/h1400-cityN2-a.log`.
+
+- Neighbour-town hunt (QA-119/121/124/126 pattern), Chromium and WebKit 390x844: clean for San Francisco city (514 rows, 80 / 16, 324K / 63K), Denver city (297 rows, 77 / 21, 274K / 74K), Alexandria city VA (31 rows, 60K / 16K), Falls Church city VA (3 wards), Dallas city (472 rows, 65 / 33, 248K / 127K, no Garland/Irving/Mesquite/Richardson/University Park/Highland Park rows). Vienna town VA again 4 own rows. No console errors.
+- Layout sweep at 390, 375, 320, 1024x576, 1024x768 (`qa/h1400-cmp.py`): every step SAME as the ~1 PM run; only the known items. One aborted cache-bust reload request at 375 (`?bc=...`), harmless.
