@@ -710,7 +710,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~10 AM EDT (9:50-10:01 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests. No tap over 100 ms** (max 80 ms, the '20 tick on Dane County, Chromium 320). Logs `qa/h1000-*.log`, data `qa/b1618h1000-*.json`, shots `qa/shotsh1000/b1618h10-*.png`. Scripts: `qa/h1000-cityN.py` (copy of h0900-cityN.py), `h1000-modes.py`, `h1000-order.py` (new), `h1000-lay3.py`, `h1000-cmp.py` (copies of h0900), `h1000-sum.py`.
-- **QA-123 (same bug, 2 more examples; still CRITICAL pending orchestrator confirmation).** Same steps (state + Enter > #bGeo > counties > county > town):
+- **QA-124 (stray neighbour precincts, HIGH by ruling; the 10 AM run filed this as QA-123, renumbered): 2 more examples.** Same steps (state + Enter > #bGeo > counties > county > town):
   - Kenosha city, Kenosha WI (Chromium 320x568, 76 rows): **"Village of Pleasant Prairie War…"** 54.3% / 44.5%, 586 / 481 (the 8 AM audit names it Pleasant Prairie Ward 6). Tapping it keeps the title "Kenosha County Kenosha city" with thumbnails Trump 586 / Harris 481. Shots: qa/shotsh1000/b1618h10-ch-320x568-cityN-Kenoshacity-{list,list-num,tapSuspect}.png
   - Cleveland city, Cuyahoga OH (WebKit 1024x576, 330 rows): **"Brook Park -01-A"** 49.6% / 49.8%, 304 / 305. Tapping it keeps the title "Cuyahoga County Cleveland city" with thumbnails Harris 305 / Trump 304. Brook Park city's own list (WebKit 390x844, 11 rows) has no 01-A row, so Brook Park is short by those votes. Shots: qa/shotsh1000/b1618h10-we-1024x576-cityN-Clevelandcity-{list,list-num,tapSuspect}.png, qa/shotsh1000/b1618h10-we-390x844-cityN-BrookParkcity-list.png
   - Data: `qa/b1618h1000-cityN-chromium-320x568-a.json`, `qa/b1618h1000-cityN-webkit-1024x576-b.json`, `qa/b1618h1000-cityN-webkit-390x844-o.json`
@@ -722,7 +722,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
   - NY: Buffalo (207), Rochester (165), Syracuse (150). All rows are "Precinct <code>", so I could check only that no row names a neighbour and that neighbour towns are separate rows.
   - OH: Columbus city, Franklin (540 rows; no Reynoldsburg / Clinton / Perry / Sharon / Truro / Norwich / Madison / Jefferson rows, though the audit flagged them), Dayton (90 rows, no Trotwood / Harrison), Cincinnati (190 rows, no Anderson).
   - Data: `qa/b1618h1000-cityN-chromium-390x844-c.json` plus the a / b files above.
-- **New: QA-124 [LOW] Precinct names start with a stray "-" (the city name has been stripped, but its separator is left behind).**
+- **New: QA-125 [LOW] (the 10 AM run filed this as QA-124, renumbered) Precinct names start with a stray "-" (the city name has been stripped, but its separator is left behind).**
   - Size, build, engine: WebKit 1024x576 and 390x844 (Cleveland, Brook Park), Chromium 320x568 and WebKit 1024x576 (Madison '20); build 1618, touch.
   - Steps: Ohio + Enter > #bGeo > Ohio counties > Cuyahoga > Cleveland city (or Brook Park city). Or: Wisconsin > Dane > Madison city with the slider on '20.
   - Expected: readable precinct names such as "03-L" or "Cleveland 03-L", and "Ward 45" or "C 0045".
@@ -1676,4 +1676,4 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 
 ## Numbering note (Oct 25, ~10 AM EDT)
-Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH).
+Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW).
