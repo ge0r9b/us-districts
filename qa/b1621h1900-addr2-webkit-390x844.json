@@ -1,0 +1,966 @@
+{
+ "GA-map": {
+  "addr": "535 Telfair St, Augusta, GA 30901",
+  "sugg": [
+   "535 TELFAIR ST, AUGUSTA, GA, 30\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Richmond Precinct 112",
+    "gq": "535 TELFAIR ST, AUGUSTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Richmond Precinct 112 | Harris 71.5% | Trump 27.8%"
+   ],
+   [
+    13,
+    33.4794,
+    -81.9613
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Richmond Precinct 112",
+    "gq": "535 TELFAIR ST, AUGUSTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Richmond Precinct 112 | Harris 71.5% | Trump 27.8%"
+   ],
+   [
+    13,
+    33.4794,
+    -81.9613
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}"
+  ],
+  "err": []
+ },
+ "build": "202610251621",
+ "GA-list": {
+  "addr": "535 Telfair St, Augusta, GA 30901",
+  "sugg": [
+   "535 TELFAIR ST, AUGUSTA, GA, 30\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Richmond Precinct 112",
+    "gq": "535 TELFAIR ST, AUGUSTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [],
+   [
+    13,
+    33.4794,
+    -81.9613
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}"
+  ],
+  "rows": [
+   "Richmond | 31.7% | 67.8%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Richmond Precinct 112",
+    "gq": "535 TELFAIR ST, AUGUSTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Richmond Precinct 112 | Harris 71.5% | Trump 27.8%"
+   ],
+   [
+    13,
+    33.4794,
+    -81.9613
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Richmond Precinct 112",
+    "gq": "535 TELFAIR ST, AUGUSTA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 71%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Richmond Precinct 112 | Harris 71.5% | Trump 27.8%"
+   ],
+   [
+    13,
+    33.4794,
+    -81.9613
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Richmond County\",\"p\":\"112\",\"ph\":\"535 TELFAIR ST, AUGUSTA\",\"ttl\":\"535 TELFAIR ST, AUGUSTA, GA, 30901\",\"pin\":[33.470246243439,-81.96145184795]},\"ll\":[33.4794,-81.9613,13]}"
+  ],
+  "err": []
+ },
+ "GA2-map": {
+  "addr": "2 E Bay St, Savannah, GA 31401",
+  "sugg": [
+   "2 E BAY ST, SAVANNAH, GA, 31401Address",
+   "Savannah Economic Development A\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Chatham Precinct 8-01C",
+    "gq": "2 E BAY ST, SAVANNAH",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Chatham Precinct 8-01C | Harris 76.1% | Trump 22.9%"
+   ],
+   [
+    11,
+    32.1411,
+    -81.0869
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1411,-81.0869,11]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1411,-81.0869,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Chatham Precinct 8-01C",
+    "gq": "2 E BAY ST, SAVANNAH",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Chatham Precinct 8-01C | Harris 76.1% | Trump 22.9%"
+   ],
+   [
+    11,
+    32.1411,
+    -81.0869
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1411,-81.0869,11]}"
+  ],
+  "err": []
+ },
+ "GA2-list": {
+  "addr": "2 E Bay St, Savannah, GA 31401",
+  "sugg": [
+   "2 E BAY ST, SAVANNAH, GA, 31401Address",
+   "Savannah Economic Development A\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Chatham Precinct 8-01C",
+    "gq": "2 E BAY ST, SAVANNAH",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [],
+   [
+    11,
+    32.1411,
+    -81.0869
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1411,-81.0869,11]}"
+  ],
+  "rows": [
+   "Chatham | 40.6% | 58.6%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Chatham Precinct 8-01C",
+    "gq": "2 E BAY ST, SAVANNAH",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Chatham Precinct 8-01C | Harris 76.1% | Trump 22.9%"
+   ],
+   [
+    11,
+    32.1413,
+    -81.0867
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1413,-81.0867,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Chatham Precinct 8-01C",
+    "gq": "2 E BAY ST, SAVANNAH",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Chatham Precinct 8-01C | Harris 76.1% | Trump 22.9%"
+   ],
+   [
+    11,
+    32.1411,
+    -81.0869
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Georgia\",\"co\":\"Chatham County\",\"p\":\"8-01C\",\"ph\":\"2 E BAY ST, SAVANNAH\",\"ttl\":\"2 E BAY ST, SAVANNAH, GA, 31401\",\"pin\":[32.080955134356,-81.091148248688]},\"ll\":[32.1411,-81.0869,11]}"
+  ],
+  "err": []
+ },
+ "NC-map": {
+  "addr": "600 E 4th St, Charlotte, NC 28202",
+  "sugg": [
+   "600 E 4TH ST, CHARLOTTE, NC, 28\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "err": []
+ },
+ "NC-list": {
+  "addr": "600 E 4th St, Charlotte, NC 28202",
+  "sugg": [
+   "600 E 4TH ST, CHARLOTTE, NC, 28\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "rows": [
+   "Mecklenburg | 32.7% | 65.6%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Mecklenburg Precinct 13",
+    "gq": "600 E 4TH ST, CHARLOTTE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 23%"
+   ],
+   [
+    "Mecklenburg Precinct 13 | Harris 75.6% | Trump 22.7%"
+   ],
+   [
+    13,
+    35.2308,
+    -80.8357
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Mecklenburg County\",\"p\":\"013\",\"ph\":\"600 E 4TH ST, CHARLOTTE\",\"ttl\":\"600 E 4TH ST, CHARLOTTE, NC, 28202\",\"pin\":[35.222019006959,-80.839212861788]},\"ll\":[35.2308,-80.8357,13]}"
+  ],
+  "err": []
+ },
+ "NC2-map": {
+  "addr": "300 W Washington St, Greensboro, NC 27401",
+  "sugg": [
+   "300 W WASHINGTON ST, GREENSBORO\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Guilford Precinct G44",
+    "gq": "300 W WASHINGTON ST, GREENSBORO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Guilford Precinct G44 | Harris 82.7% | Trump 14.0%"
+   ],
+   [
+    13,
+    36.075,
+    -79.795
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.075,-79.795,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.075,-79.795,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Guilford Precinct G44",
+    "gq": "300 W WASHINGTON ST, GREENSBORO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Guilford Precinct G44 | Harris 82.7% | Trump 14.0%"
+   ],
+   [
+    13,
+    36.075,
+    -79.7951
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.075,-79.7951,13]}"
+  ],
+  "err": []
+ },
+ "NC2-list": {
+  "addr": "300 W Washington St, Greensboro, NC 27401",
+  "sugg": [
+   "300 W WASHINGTON ST, GREENSBORO\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Guilford Precinct G44",
+    "gq": "300 W WASHINGTON ST, GREENSBORO",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [],
+   [
+    13,
+    36.075,
+    -79.795
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.075,-79.795,13]}"
+  ],
+  "rows": [
+   "Guilford | 38.4% | 60.2%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Guilford Precinct G44",
+    "gq": "300 W WASHINGTON ST, GREENSBORO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Guilford Precinct G44 | Harris 82.7% | Trump 14.0%"
+   ],
+   [
+    13,
+    36.0749,
+    -79.7951
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.0749,-79.7951,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Guilford Precinct G44",
+    "gq": "300 W WASHINGTON ST, GREENSBORO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Guilford Precinct G44 | Harris 82.7% | Trump 14.0%"
+   ],
+   [
+    13,
+    36.075,
+    -79.795
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"North Carolina\",\"co\":\"Guilford County\",\"p\":\"G44\",\"ph\":\"300 W WASHINGTON ST, GREENSBORO\",\"ttl\":\"300 W WASHINGTON ST, GREENSBORO, NC, 27401\",\"pin\":[36.070346421951,-79.792282594481]},\"ll\":[36.075,-79.795,13]}"
+  ],
+  "err": []
+ },
+ "NV-map": {
+  "addr": "1 E 1st St, Reno, NV 89501",
+  "sugg": [
+   "1 E 1ST ST, RENO, NV, 89501Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Washoe Precinct 1039",
+    "gq": "1 E 1ST ST, RENO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 62%",
+    "Donald Trump 2024 / 36%"
+   ],
+   [
+    "Washoe Precinct 1039 | Harris 62.1% | Trump 36.0%"
+   ],
+   [
+    14,
+    39.5327,
+    -119.8199
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Washoe Precinct 1039",
+    "gq": "1 E 1ST ST, RENO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 62%",
+    "Donald Trump 2024 / 36%"
+   ],
+   [
+    "Washoe Precinct 1039 | Harris 62.1% | Trump 36.0%"
+   ],
+   [
+    14,
+    39.5327,
+    -119.8199
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}"
+  ],
+  "err": []
+ },
+ "NV-list": {
+  "addr": "1 E 1st St, Reno, NV 89501",
+  "sugg": [
+   "1 E 1ST ST, RENO, NV, 89501Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Washoe Precinct 1039",
+    "gq": "1 E 1ST ST, RENO",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 62%",
+    "Donald Trump 2024 / 36%"
+   ],
+   [],
+   [
+    14,
+    39.5327,
+    -119.8199
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}"
+  ],
+  "rows": [
+   "Washoe | 48.3% | 49.3%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Washoe Precinct 1039",
+    "gq": "1 E 1ST ST, RENO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 62%",
+    "Donald Trump 2024 / 36%"
+   ],
+   [
+    "Washoe Precinct 1039 | Harris 62.1% | Trump 36.0%"
+   ],
+   [
+    14,
+    39.5327,
+    -119.8199
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Washoe Precinct 1039",
+    "gq": "1 E 1ST ST, RENO",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 62%",
+    "Donald Trump 2024 / 36%"
+   ],
+   [
+    "Washoe Precinct 1039 | Harris 62.1% | Trump 36.0%"
+   ],
+   [
+    14,
+    39.5327,
+    -119.8199
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Nevada\",\"co\":\"Washoe County\",\"p\":\"1039\",\"ph\":\"1 E 1ST ST, RENO\",\"ttl\":\"1 E 1ST ST, RENO, NV, 89501\",\"pin\":[39.525923935316,-119.812888153326]},\"ll\":[39.5327,-119.8199,14]}"
+  ],
+  "err": []
+ },
+ "TX-map": {
+  "addr": "901 Bagby St, Houston, TX 77002",
+  "sugg": [
+   "901 BAGBY ST, HOUSTON, TX, 77002Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Harris Precinct 16",
+    "gq": "901 BAGBY ST, HOUSTON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 29%"
+   ],
+   [
+    "Harris Precinct 16 | Harris 69.2% | Trump 29.2%"
+   ],
+   [
+    14,
+    29.7572,
+    -95.364
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Harris Precinct 16",
+    "gq": "901 BAGBY ST, HOUSTON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 29%"
+   ],
+   [
+    "Harris Precinct 16 | Harris 69.2% | Trump 29.2%"
+   ],
+   [
+    14,
+    29.7572,
+    -95.364
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}"
+  ],
+  "err": []
+ },
+ "TX-list": {
+  "addr": "901 Bagby St, Houston, TX 77002",
+  "sugg": [
+   "901 BAGBY ST, HOUSTON, TX, 77002Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Harris Precinct 16",
+    "gq": "901 BAGBY ST, HOUSTON",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 29%"
+   ],
+   [],
+   [
+    14,
+    29.7572,
+    -95.364
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}"
+  ],
+  "rows": [
+   "Harris | 46.4% | 52.0%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Harris Precinct 16",
+    "gq": "901 BAGBY ST, HOUSTON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 29%"
+   ],
+   [
+    "Harris Precinct 16 | Harris 69.2% | Trump 29.2%"
+   ],
+   [
+    14,
+    29.7572,
+    -95.364
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Harris Precinct 16",
+    "gq": "901 BAGBY ST, HOUSTON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 29%"
+   ],
+   [
+    "Harris Precinct 16 | Harris 69.2% | Trump 29.2%"
+   ],
+   [
+    14,
+    29.7572,
+    -95.364
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Harris County\",\"p\":\"0016\",\"ph\":\"901 BAGBY ST, HOUSTON\",\"ttl\":\"901 BAGBY ST, HOUSTON, TX, 77002\",\"pin\":[29.760724420884,-95.369483289562]},\"ll\":[29.7572,-95.364,14]}"
+  ],
+  "err": []
+ },
+ "TX2-map": {
+  "addr": "1500 Marilla St, Dallas, TX 75201",
+  "sugg": [
+   "1500 MARILLA ST, DALLAS, TX, 75\u2026Address",
+   "Dallas City Hall, 1500, Marilla\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dallas Precinct 3008",
+    "gq": "1500 MARILLA ST, DALLAS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   [
+    "Dallas Precinct 3008 | Harris 72.2% | Trump 26.9%"
+   ],
+   [
+    13,
+    32.7804,
+    -96.798
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7804,-96.798,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7804,-96.798,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dallas Precinct 3008",
+    "gq": "1500 MARILLA ST, DALLAS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   [
+    "Dallas Precinct 3008 | Harris 72.2% | Trump 26.9%"
+   ],
+   [
+    13,
+    32.7803,
+    -96.798
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7803,-96.798,13]}"
+  ],
+  "err": []
+ },
+ "TX2-list": {
+  "addr": "1500 Marilla St, Dallas, TX 75201",
+  "sugg": [
+   "1500 MARILLA ST, DALLAS, TX, 75\u2026Address",
+   "Dallas City Hall, 1500, Marilla\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dallas Precinct 3008",
+    "gq": "1500 MARILLA ST, DALLAS",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   [],
+   [
+    13,
+    32.7804,
+    -96.798
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7804,-96.798,13]}"
+  ],
+  "rows": [
+   "Dallas | 38.0% | 60.2%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Dallas Precinct 3008",
+    "gq": "1500 MARILLA ST, DALLAS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   [
+    "Dallas Precinct 3008 | Harris 72.2% | Trump 26.9%"
+   ],
+   [
+    13,
+    32.7805,
+    -96.798
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7805,-96.798,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dallas Precinct 3008",
+    "gq": "1500 MARILLA ST, DALLAS",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 72%",
+    "Donald Trump 2024 / 27%"
+   ],
+   [
+    "Dallas Precinct 3008 | Harris 72.2% | Trump 26.9%"
+   ],
+   [
+    13,
+    32.7804,
+    -96.798
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Texas\",\"co\":\"Dallas County\",\"p\":\"3008\",\"ph\":\"1500 MARILLA ST, DALLAS\",\"ttl\":\"1500 MARILLA ST, DALLAS, TX, 75201\",\"pin\":[32.776661403645,-96.795838517178]},\"ll\":[32.7804,-96.798,13]}"
+  ],
+  "err": []
+ }
+}

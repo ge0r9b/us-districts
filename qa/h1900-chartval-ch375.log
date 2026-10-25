@@ -1,0 +1,34 @@
+Nevada bar-24-pct bar [2, 2] 50.6% | 47.5% | … | 1.9% |  
+Nevada bar-24-num bar [2, 2] 751K | 705K | … | 28K |  
+Nevada bar-16-pct bar [0, 0] 47.9% | 45.5% | … | 6.6% |  
+Nevada bar-16-num bar [0, 0] 539K | 512K | … | 74K |  
+Nevada bar-20-24-pct bar [1, 2] +2.9 | −2.6 | … | −0.4
+Nevada bar-20-24-num bar [1, 2] +81K | +2K | … | −4K
+Nevada bar-16-24-pct bar [0, 2] +5.1 | −0.4 | … | −4.7
+Nevada bar-16-24-num bar [0, 2] +239K | +166K | … | −46K
+Nevada line-24-pct bar [2, 2] 50.6% | 47.5% | … | 1.9% |  
+Nevada line-24-num bar [2, 2] 751K | 705K | … | 28K |  
+Nevada line-16-pct bar [0, 0] 47.9% | 45.5% | … | 6.6% |  
+Nevada line-16-num bar [0, 0] 539K | 512K | … | 74K |  
+Nevada line-20-24-pct line [1, 2] 46% | 48% | 50% | 52% | +2.9 | −2.6
+Nevada line-20-24-num line [1, 2] 600K | 650K | 750K | 800K | +81K | +2K
+Nevada line-16-24-pct line [0, 2] 43% | 45% | 48% | 50% | 53% | +2.2 | +2.9 | +2.1 | −2.6
+Nevada line-16-24-num line [0, 2] 400K | 600K | 800K | 1M | +158K | +81K | +164K | +2K
+Nevada tot {"2016": [539260, 512058, 1125385], "2020": [703486, 669890, 1405376], "2024": [705197, 751205, 1484840]} err []
+Texas bar-24-pct bar [2, 2] 56.1% | 42.5% | … | 1.4% |  
+Texas bar-24-num bar [2, 2] 6.39M | 4.84M | … | 160K |  
+Texas bar-16-pct bar [0, 0] 52.2% | 43.2% | … | 4.5% |  
+Texas bar-16-num bar [0, 0] 4.69M | 3.88M | … | 406K |  
+Texas bar-20-24-pct bar [1, 2] +4.1 | −4.0 | … | −0.1
+Texas bar-20-24-num bar [1, 2] +503K | −424K | … | −6K
+Texas bar-16-24-pct bar [0, 2] +3.9 | −0.8 | … | −3.1
+Texas bar-16-24-num bar [0, 2] +1.71M | +957K | … | −246K
+Texas line-24-pct bar [2, 2] 56.1% | 42.5% | … | 1.4% |  
+Texas line-24-num bar [2, 2] 6.39M | 4.84M | … | 160K |  
+Texas line-16-pct bar [0, 0] 52.2% | 43.2% | … | 4.5% |  
+Texas line-16-num bar [0, 0] 4.69M | 3.88M | … | 406K |  
+Texas line-20-24-pct line [1, 2] 30% | 40% | 50% | 60% | 70% | +4.1 | −4.0
+Texas line-20-24-num line [1, 2] 4M | 5M | 6M | 7M | +503K | −424K
+Texas line-16-24-pct line [0, 2] 30% | 40% | 50% | 60% | 70% | −0.2 | +4.1 | +3.2 | −4.0
+Texas line-16-24-num line [0, 2] 2M | 4M | 6M | 8M | +1.21M | +503K | +1.38M | −424K
+Texas tot {"2016": [3877868, 4685047, 8969226], "2020": [5259126, 5890347, 11315056], "2024": [4835250, 6393597, 11388674]} err []

@@ -1958,3 +1958,58 @@ Touch, Chromium and WebKit. No console or page errors in any run. Next new bug i
 - Result: 0/150 failures. Minimum party-pixel share was 0.16, and every settle had at least 436 filled features. No page errors or console errors. Passes are in qa/shotsb1621/q132-*-pass-*.png.
 - Side note: when "United States" is typed in search, the map goes to world zoom 0, not the US view (see the earlier search→US finding).
 - Not tried yet: a real iOS device or memory pressure, a cold load straight into a saved type, or backgrounding/foregrounding the tab.
+
+## Build 202610251621 hourly ~7 PM EDT (Oct 25; 6:58-7:24 PM EDT; line 9 = 202610251621 at start and end; v3 still 404)
+Touch, Chromium and WebKit. No console errors, page errors or failed app requests in any run. QA-132 is taken by the 7:20 PM attempt log for the user's district-type switching report (above), so the new bug below is **QA-133**. Next new bug is QA-134.
+
+### New
+### QA-133 [LOW, overlapping labels] Single-place line chart: change labels are drawn on top of the lines, and a label can sit nearer to the other party's line
+- Build 202610251621. Chromium 375x667 and WebKit 1024x768, touch. The 1617 shots look the same (`qa/shotsh1500/b1617h-ch-390x844-chartval-Georgia-line-16-24-num.png`), so this is long-standing, not a regression.
+- Steps: type a state + Enter > open the time slider > drag to a range ('16>'24 or '20>'24) > chart menu > Line. Tested with Texas, Nevada and Georgia, in % and #.
+- Expected: each segment's change label is clear of both polylines and sits next to its own line.
+- Actual:
+  - Texas '16>'24 # (375x667): "+1.21M" is Trump's change, but it sits under the red line and on top of the blue line, which crosses the text. "+1.38M" is Clinton to Biden and sits below the blue line, so the label nearest the blue line belongs to red.
+  - Georgia '16>'24 # (WebKit 1024x768): the blue line runs through "+373K", and the red line crosses "+201K" / "+74K" (the lines are close together in '20>'24).
+  - Nevada '16>'24 % (375x667): "+2.9" / "−2.6" are drawn on the point where the red and blue lines cross.
+  - The values themselves are right (see Numbers below).
+- Shots: `qa/shotsb1621/b1621h19-ch-375x667-chartval-Texas-line-16-24-num.png`, `qa/shotsb1621/b1621h19-we-1024x768-chartval-Georgia-line-16-24-num.png`, `qa/shotsb1621/b1621h19-ch-375x667-chartval-Nevada-line-16-24-pct.png`.
+- In list views the line labels were not re-checked this hour. The North Carolina '16>'24 line chart at 1024x576 is clear (`qa/shotsb1621/b1621h19-ch-1024x576-st-NorthCarolina-range16-24-line.png`).
+
+### Re-checks (still reproducing, unchanged)
+- **QA-130 (MED, pending ruling) still reproduces.** Chromium 390x844: All States list > #bGeo "Pittsburgh" / "Boston" + Enter, with US House on or off. Header and thumbnails are right (Pittsburgh city 76.7 / 21.7, Boston city 76.0 / 19.4), but `#listView` has 0 rows and is hidden after 4 s and still after 12 s. Shots `qa/shotsb1621/b1621h19-ch-390x844-q129-{Pittsburgh,Boston}-type{0,1}.png`, data `qa/b1621h1900-q129-chromium-390x844.json`.
+- **QA-131 (HIGH, ruling requested) still reproduces.** WebKit 390x844, persistent profile: Pittsburgh + Enter (z16, precinct heat) > "United States" + Enter. Result: z0 whole world, header still "Allegheny County Pittsburgh city", `heatLevel` still "precinct". Shots `qa/shotsb1621/b1621h19-iph-we-390x844-A2-backUS.png`, `-B2-backUS.png`; data `qa/b1621h19-iph-390x844.json`. `#bNum` is at its normal spot (334,740) in every step.
+- **QA-099 still open.** The sort chip (218-252 x 111-133 at 320) covers the first row's bar at All States in every year ('16 CA "61.7%", '20 "63.5%", '24 "58.5%") and Mecklenburg's Charlotte city bar ('16 67.1%, '20 71.1%, '24 69.6%). In bar mode it also covers NC counties Wake "61.9%". At WebKit 1024x768 it covers CA's bar in % and # and the "Other" segment, Fulton County's Atlanta city bar ("80.1%" / "148K" in '16, "81.8%" / "175K" in '20, "81.6%" / "182K" in '24), and GA counties Fulton "71.9%" in bar mode. Split bar % rows are clear. Shots `qa/shotsb1621/b1621h19-{ch-320x568,we-1024x768}-sc-*-y{16,20,24}.png`.
+- **QA-102 still open (timing):** opening "Georgia counties" (159 rows) from the geo menu took 123 ms (WebKit 390x844, loaded) and **166 ms solo**, the same as 1618 (166 ms). The county drill (13-16 ms) and the city precinct drill (17-18 ms) are fast.
+- **QA-106 (LOW) unchanged:** after an address search from the All States list, the list shows one county row under the precinct title (Richmond 31.7 / 67.8, Chatham 40.6 / 58.6, Mecklenburg 32.7 / 65.6, Guilford 38.4 / 60.2).
+
+### Fresh areas: pass
+- **Time slider through every year, with % / # and sort at state, county and district-list levels** (`qa/h1900-sortchart.py`; Chromium 320x568 All States > NC > Mecklenburg; WebKit 1024x768 All States > GA > Fulton):
+  - '16 / '20 / '24 thumbnails: US Clinton 48 / Trump 46 (65.85M / 62.98M), Biden 51 / 47 (81.28M / 74.22M), Trump 50 / Harris 48 (77.30M / 75.02M); NC 50 / 46, 50 / 49, 51 / 48 (2.36M / 2.19M, 2.76M / 2.68M, 2.90M / 2.72M); GA 51 / 46, 49 / 49, 51 / 49.
+  - Counties match official returns: Mecklenburg '16 Clinton 62 / Trump 33 (295K / 156K), '20 Biden 67 / 32, '24 Harris 66 / 33. Fulton '16 69 / 27 (297K / 118K), '20 73 / 26 (380K / 137K), '24 72 / 27 (385K / 145K). Tyrrell NC '16 is 975 / 720 / 44, an exact match to the county return.
+  - Lists sort high to low by total in every year. One chip tap gives the reverse (WY / DC; Tyrrell / Hyde; Taliaferro / Quitman; Pineville / Stallings; Mountain Park / Chattahoochee Hills), and a second tap restores the original order exactly (every case). Chip taps took 7-58 ms.
+- **Single-place charts, bar and line, every year and range, % and #** (`qa/h1900-chartval.py`; Chromium 375x667 Nevada and Texas, WebKit 1024x768 Texas and Georgia). Every value equals the certified totals at the shown rounding:
+  - NV '24 Trump 50.6 / Harris 47.5 (751K / 705K); '16 Clinton 47.9 / 45.5.
+  - TX '24 6,393,597 / 4,835,250; '16 4,685,047 / 3,877,868.
+  - GA '24 2,663,117 / 2,548,017; '20 2,473,633 / 2,461,854; '16 2,089,104 / 1,877,963.
+  - The line '16>'24 segment changes are right: GA −1.5 / +1.5 (R) and +3.8 / −0.9 (D); TX −0.2 / +4.1 and +3.2 / −4.0; NV +2.2 / +2.9 and +2.1 / −2.6; # TX +1.21M / +503K and +1.38M / −424K. Pie was checked last run.
+- **District-type cycling, reload and state restore** (`qa/h1900-wi.py`; WebKit 390x844 Georgia, Chromium 1024x576 North Carolina):
+  - Row counts: GA senate 56, state house 180, school districts 184, US House 14; NC 50 / 120 / 118 / 14.
+  - Rows are number-only ("56", "166", "7"), and school districts are named.
+  - Type picks took 48-93 ms, and switching to # 16-42 ms. The state-house list survives a reload, with the same snapshot and rows (GA "166 | 65.2%", NC "17 | 60.8%"). The county > city > map drill also survives a reload (Fulton > Atlanta city 178 precincts, 82 / 17; Wake > Raleigh city 86 precincts, 70 / 28).
+  - LAYOUT check: no overlap, clipping or off-screen elements in any type, in % or #. Ranges '16-'20 line, '20-'24 bar and '16-'24 line behave as on 1617.
+- **Address search, non-capital addresses** (`qa/h1900-addr2.py`; WebKit 390x844 map + list + globe + reload, Chromium 1024x576 map + reload). Every result is plausible, and the title, thumbnails and popup are the same place on every path:
+  - Augusta "535 Telfair St" > Richmond Precinct 112, 71 / 28.
+  - Savannah "2 E Bay St" > Chatham Precinct 8-01C, 76 / 23.
+  - Charlotte "600 E 4th St" > Mecklenburg Precinct 13, 76 / 23.
+  - Greensboro "300 W Washington St" > Guilford Precinct G44, 83 / 14.
+  - Reno "1 E 1st St" > Washoe Precinct 1039, 62 / 36.
+  - Houston "901 Bagby St" > Harris Precinct 16, 69 / 29.
+  - Dallas "1500 Marilla St" > Dallas Precinct 3008, 72 / 27.
+  - Reload restores the same title, numbers and map position in every case.
+- **Menus overlay without shrinking or dimming: PASS.** With the type menu open, `#map` is unchanged (0,0,320,568 and 0,0,1024,768), opacity is 1 and there is no filter. With the chart menu open, the list rect is unchanged.
+- **Number-only rows, At-large and thumbnail axis:** district rows are number-only (above). At-large and DC were checked last run (unchanged code).
+
+### Layout-stability and tap-to-paint sweep (`qa/h1900-lay3.py`, `qa/h1900-cmp.py`)
+- Chromium 390, 375, 320, 1024x576, 1024x768 and WebKit 320, 390, 1024x768: **every step matches 1620/1621 (SAME)**. The only movement is the known pair: the slider pushes the thumbnails +68 px, and the split-bar first row grows +14 px. The only DIFF flags are the transient crumbs-text sample during the All States sheet; that sample flips both ways between runs (WebKit 1024x768 now, WebKit 390 before), so it is not a jump.
+- Tap-to-paint: every non-drill step was 6-84 ms. The All States sheet measured 357 ms (Chromium 390) and 344 ms (WebKit 320) while four browsers were running; **solo it was 71 / 74 ms**, so that was box load. The list drills (220-239 ms, including the script's 200 ms pre-tap wait) are the same as on 1621 at 6 PM.
+- Data: `qa/b1621h1900-*.json`, `qa/h1900-*.log`; shots `qa/shotsb1621/b1621h19-*.png`.
