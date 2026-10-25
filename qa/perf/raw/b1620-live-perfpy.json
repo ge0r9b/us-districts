@@ -1,0 +1,56 @@
+{
+ "url": "https://ge0r9b.github.io/us-districts/v2/?v=<ms>",
+ "tool": "/workspace/perf/perf.py (390x844, DPR 3, 4x CPU throttle, 1 round)",
+ "glass": [
+  {
+   "map": {
+    "fps": 41.0,
+    "p95": 33.3,
+    "long50": 4,
+    "frames": 95
+   },
+   "tap": {
+    "#bNum": 21.7,
+    "#bTime": 29.2,
+    "#bLyr": 22.0
+   },
+   "list": {
+    "fps": 59.8,
+    "p95": 16.7,
+    "long50": 0,
+    "frames": 610
+   },
+   "rows": 436,
+   "tapList": {
+    "#bNum": 11.1,
+    "#laSort": 73.3
+   }
+  }
+ ],
+ "noglass": [
+  {
+   "map": {
+    "fps": 39.4,
+    "p95": 50,
+    "long50": 4,
+    "frames": 90
+   },
+   "tap": {
+    "#bNum": 16.9,
+    "#bTime": 25.5,
+    "#bLyr": 16.8
+   },
+   "list": {
+    "fps": 59.3,
+    "p95": 16.8,
+    "long50": 1,
+    "frames": 609
+   },
+   "rows": 436,
+   "tapList": {
+    "#bNum": 12.9,
+    "#laSort": 75.2
+   }
+  }
+ ]
+}

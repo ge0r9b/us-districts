@@ -196,3 +196,17 @@ Run 2026-10-19 16:54-17:06 EDT, load avg 1.1-3.5 (other bots' Chromium/WebKit te
 - First map 829/533/612/754 ms (1617: 687/616/651/852), inside the usual range.
 - Pan: phones 59.8-60 fps; iPad 55.5 fps, 17 dropped (1617: 52.7, 30 dropped).
 - No proposal landed (PACK/XREF still inline, no data versioning); QA-007 and QA-041 still look fixed.
+| 1620 (09b6cd9) | 390x844 | 1.61 / 7.86 | 3.68 / 13.38 | 565 | 933 | 669 | 188 | 45 / 84 (cold 84) | 80 / 105 (cold 40) | 18 / 21 | 10 / 26 | 34 / 47 | 48 / 84 | 60.0 fps, p95 16.8, max 16.8, dropped 0/286 |
+| 1620 (09b6cd9) | 375x667 | 1.61 / 7.86 | 3.68 / 13.38 | 495 | 735 | 575 | 112 | 50 / 106 (cold 106) | 82 / 151 (cold 43) | 14 / 23 | 25 / 28 | 27 / 31 | 42 / 75 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1620 (09b6cd9) | 320x568 | 1.61 / 7.86 | 3.68 / 13.38 | 571 | 853 | 803 | 136 | 44 / 75 (cold 75) | 67 / 114 (cold 39) | 15 / 19 | 12 / 16 | 28 / 48 | 42 / 63 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1620 (09b6cd9) | ipad820x1180 | 1.61 / 7.86 | 3.68 / 13.38 | 445 | 800 | 574 | 116 | 37 / 90 (cold 90) | 68 / 91 (cold 33) | 13 / 28 | 24 / 32 | 27 / 30 | 48 / 70 | 59.0 fps, p95 16.7, max 33.4, dropped 4/224 |
+
+## 1620 (09b6cd9) vs 1618 (581534c)
+Run 2026-10-25 16:57-17:20 EDT, load avg 1.0-5.2 (other bots' Chromium/WebKit tests alongside), same tools/baseline.py and selectors (0 notes, 0 page errors). Live v2 served BUILD 202610251620, byte-identical to main 09b6cd98. 1619 (QA-113/115/116 search fixes; #bGeo sheet entry of an exact place resolves like the bottom field) and 1620 (QA-119/121, QA-124/126 place-membership gate: a precinct named for another town of the county counts under that town) have no intended speed change; 1619 was not measured separately. Medians (390/375/320/iPad).
+- Bytes: 1.61 / 7.86 MB initial and 3.68 / 13.38 MB PA session (+3 KB gz, +9 KB raw), flat. index.html 6.02 MB raw.
+- Taps flat, every median under 100 ms: All States 45/50/44/37 (1618: 34/62/35/52), US House pick 80/82/67/68 (80/72/76/72), Line 18/14/15/13 (16/12/17/17), drill PA 10/25/12/24 (24/12/15/12; 12-26 ms swings seen since 1613), back 34/27/28/27 (23/29/27/23), time step 48/42/42/48 (57/52/45/52), time slider open 29/25/24/31 (26/30/36/37). Maxes over 100 only on the cold All States try at 375 (106) and single US House tries of 105/151/114 ms (390/375/320).
+- 390 (All States +32%, back +48%, longest task 188) and 320 (first map 803, +31%; longest task 136) were rerun (raw/b1620-live-390x844-run2.json, raw/b1620-live-320x568-run2.json) at lower load: 390 All States 30, back 24, US House 66, first map 500, longest task 110; 320 All States 33, US House 63, first map 531, longest task 206 (one load-time task; first run 136). So noise, not a regression.
+- Startup: DCL 565/495/571/445 (1618: 671/458/653/831), first map 669/575/803/574 (829/533/612/754), inside the usual range.
+- Pan: phones 60 fps, 0 dropped; iPad 59.0 fps, 4 dropped (1618: 55.5, 17 dropped).
+- /workspace/perf/perf.py (390, 4x CPU throttle, 1 round, raw/b1620-live-perfpy.json): glass/no-glass taps #bNum 22/17, #bTime 29/26, #bLyr 22/17 ms; map pan+pinch 41/39 fps; list scroll 59.8/59.3 fps (436 rows); list sort 73/75 ms (perf1.log on 1575: 410-450 ms).
+- No proposal landed: PACK/XREF still inline in index.html, data still versioned by window.BUILD (50 refs), ussch.js and precincts2024/Alaska.js still lazy (not fetched in a PA session), index.html not trimmed. QA-007 (All States, US House pick) and QA-041 (Line pick) still look fixed.
