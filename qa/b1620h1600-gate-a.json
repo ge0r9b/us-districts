@@ -1,0 +1,3140 @@
+[
+{
+"st": "Vermont",
+"nprec": 247,
+"towns": 266,
+"changed": [
+{
+"c": "Bennington County",
+"t": "Old Bennington village",
+"old": 1,
+"now": 0,
+"oldv": 7127,
+"nowv": 0,
+"lost": [
+"003-Bennington"
+],
+"gain": []
+},
+{
+"c": "Chittenden County",
+"t": "Burlington city",
+"old": 2,
+"now": 1,
+"oldv": 32916,
+"nowv": 20455,
+"lost": [
+"SOUTH BURLINGTON CITY"
+],
+"gain": []
+},
+{
+"c": "Chittenden County",
+"t": "South Burlington city",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 12461,
+"lost": [],
+"gain": [
+"SOUTH BURLINGTON CITY"
+]
+},
+{
+"c": "Franklin County",
+"t": "St. Albans city",
+"old": 1,
+"now": 2,
+"oldv": 3060,
+"nowv": 6843,
+"lost": [],
+"gain": [
+"ST. ALBANS TOWN"
+]
+},
+{
+"c": "Franklin County",
+"t": "St. Albans town",
+"old": 1,
+"now": 0,
+"oldv": 3783,
+"nowv": 0,
+"lost": [
+"ST. ALBANS TOWN"
+],
+"gain": []
+},
+{
+"c": "Orleans County",
+"t": "Derby Center village",
+"old": 1,
+"now": 0,
+"oldv": 2664,
+"nowv": 0,
+"lost": [
+"DERBY TOWN"
+],
+"gain": []
+},
+{
+"c": "Orleans County",
+"t": "Newport city",
+"old": 1,
+"now": 2,
+"oldv": 1902,
+"nowv": 2772,
+"lost": [],
+"gain": [
+"NEWPORT TOWN"
+]
+},
+{
+"c": "Orleans County",
+"t": "Newport town",
+"old": 1,
+"now": 0,
+"oldv": 870,
+"nowv": 0,
+"lost": [
+"NEWPORT TOWN"
+],
+"gain": []
+},
+{
+"c": "Washington County",
+"t": "Barre city",
+"old": 1,
+"now": 2,
+"oldv": 3713,
+"nowv": 8513,
+"lost": [],
+"gain": [
+"BARRE TOWN"
+]
+},
+{
+"c": "Washington County",
+"t": "Barre town",
+"old": 1,
+"now": 0,
+"oldv": 4800,
+"nowv": 0,
+"lost": [
+"BARRE TOWN"
+],
+"gain": []
+}
+],
+"emptied": [
+"Bennington County / Old Bennington village",
+"Franklin County / St. Albans town",
+"Orleans County / Derby Center village",
+"Orleans County / Newport town",
+"Washington County / Barre town"
+],
+"dups": []
+},
+{
+"st": "Rhode Island",
+"nprec": 39,
+"towns": 39,
+"changed": [
+{
+"c": "Kent County",
+"t": "Warwick city",
+"old": 2,
+"now": 1,
+"oldv": 59869,
+"nowv": 45719,
+"lost": [
+"003-West Warwick"
+],
+"gain": []
+},
+{
+"c": "Kent County",
+"t": "West Warwick town",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 14150,
+"lost": [],
+"gain": [
+"003-West Warwick"
+]
+}
+],
+"emptied": [],
+"dups": []
+},
+{
+"st": "Michigan",
+"nprec": 3975,
+"towns": 1703,
+"changed": [
+{
+"c": "Menominee County",
+"t": "Menominee city",
+"old": 4,
+"now": 5,
+"oldv": 4048,
+"nowv": 6233,
+"lost": [],
+"gain": [
+"Menominee Township, Precinct 1"
+]
+},
+{
+"c": "Menominee County",
+"t": "Menominee township",
+"old": 1,
+"now": 0,
+"oldv": 2185,
+"nowv": 0,
+"lost": [
+"Menominee Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Menominee County",
+"t": "Stephenson city",
+"old": 1,
+"now": 2,
+"oldv": 447,
+"nowv": 830,
+"lost": [],
+"gain": [
+"Stephenson Township, Precinct 1"
+]
+},
+{
+"c": "Menominee County",
+"t": "Stephenson township",
+"old": 1,
+"now": 0,
+"oldv": 383,
+"nowv": 0,
+"lost": [
+"Stephenson Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Alpena County",
+"t": "Alpena city",
+"old": 5,
+"now": 10,
+"oldv": 5464,
+"nowv": 11131,
+"lost": [],
+"gain": [
+"Alpena Township, Precinct 1",
+"Alpena Township, Precinct 2",
+"Alpena Township, Precinct 3",
+"Alpena Township, Precinct 4",
+"Alpena Township, Precinct 5"
+]
+},
+{
+"c": "Alpena County",
+"t": "Alpena township",
+"old": 5,
+"now": 0,
+"oldv": 5667,
+"nowv": 0,
+"lost": [
+"Alpena Township, Precinct 1",
+"Alpena Township, Precinct 2",
+"Alpena Township, Precinct 3",
+"Alpena Township, Precinct 4",
+"Alpena Township, Precinct 5"
+],
+"gain": []
+},
+{
+"c": "Clare County",
+"t": "Harrison city",
+"old": 2,
+"now": 1,
+"oldv": 2222,
+"nowv": 939,
+"lost": [
+"Hayes Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Clare County",
+"t": "Hayes township",
+"old": 1,
+"now": 2,
+"oldv": 1277,
+"nowv": 2560,
+"lost": [],
+"gain": [
+"Hayes Township, Precinct 1"
+]
+},
+{
+"c": "Marquette County",
+"t": "Ishpeming city",
+"old": 2,
+"now": 3,
+"oldv": 3303,
+"nowv": 5556,
+"lost": [],
+"gain": [
+"Ishpeming Township, Precinct 1"
+]
+},
+{
+"c": "Marquette County",
+"t": "Ishpeming township",
+"old": 1,
+"now": 0,
+"oldv": 2253,
+"nowv": 0,
+"lost": [
+"Ishpeming Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Marquette County",
+"t": "Negaunee city",
+"old": 1,
+"now": 2,
+"oldv": 2672,
+"nowv": 4738,
+"lost": [],
+"gain": [
+"Negaunee Township, Precinct 1"
+]
+},
+{
+"c": "Marquette County",
+"t": "Negaunee township",
+"old": 1,
+"now": 0,
+"oldv": 2066,
+"nowv": 0,
+"lost": [
+"Negaunee Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Leelanau County",
+"t": "Leelanau township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 1801,
+"lost": [],
+"gain": [
+"Leelanau Township, Precinct 1"
+]
+},
+{
+"c": "Schoolcraft County",
+"t": "Manistique city",
+"old": 1,
+"now": 2,
+"oldv": 1361,
+"nowv": 1992,
+"lost": [],
+"gain": [
+"Manistique Township, Precinct 1"
+]
+},
+{
+"c": "Schoolcraft County",
+"t": "Manistique township",
+"old": 1,
+"now": 0,
+"oldv": 631,
+"nowv": 0,
+"lost": [
+"Manistique Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Alger County",
+"t": "Munising city",
+"old": 1,
+"now": 2,
+"oldv": 1092,
+"nowv": 2387,
+"lost": [],
+"gain": [
+"Munising Township, Precinct 1"
+]
+},
+{
+"c": "Alger County",
+"t": "Munising township",
+"old": 1,
+"now": 0,
+"oldv": 1295,
+"nowv": 0,
+"lost": [
+"Munising Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Newaygo County",
+"t": "Grant city",
+"old": 1,
+"now": 2,
+"oldv": 415,
+"nowv": 2261,
+"lost": [],
+"gain": [
+"Grant Township, Precinct 1"
+]
+},
+{
+"c": "Newaygo County",
+"t": "Grant township",
+"old": 1,
+"now": 0,
+"oldv": 1846,
+"nowv": 0,
+"lost": [
+"Grant Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Sanilac County",
+"t": "Marlette city",
+"old": 1,
+"now": 2,
+"oldv": 880,
+"nowv": 1870,
+"lost": [],
+"gain": [
+"Marlette Township, Precinct 1"
+]
+},
+{
+"c": "Sanilac County",
+"t": "Marlette township",
+"old": 1,
+"now": 0,
+"oldv": 990,
+"nowv": 0,
+"lost": [
+"Marlette Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Sanilac County",
+"t": "Minden City village",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 317,
+"lost": [],
+"gain": [
+"Minden Township, Precinct 1"
+]
+},
+{
+"c": "Sanilac County",
+"t": "Minden township",
+"old": 1,
+"now": 0,
+"oldv": 317,
+"nowv": 0,
+"lost": [
+"Minden Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Wayne County",
+"t": "Grosse Pointe city",
+"old": 2,
+"now": 3,
+"oldv": 4010,
+"nowv": 6014,
+"lost": [],
+"gain": [
+"GROSSE POINTE SHORES CITY 1"
+]
+},
+{
+"c": "Wayne County",
+"t": "Northville city",
+"old": 1,
+"now": 13,
+"oldv": 2049,
+"nowv": 22963,
+"lost": [],
+"gain": [
+"NORTHVILLE TWP 01",
+"NORTHVILLE TWP 10",
+"NORTHVILLE TWP 11",
+"NORTHVILLE TWP 12",
+"NORTHVILLE TWP 02",
+"NORTHVILLE TWP 03",
+"NORTHVILLE TWP 04",
+"NORTHVILLE TWP 05"
+]
+},
+{
+"c": "Wayne County",
+"t": "Northville township",
+"old": 12,
+"now": 0,
+"oldv": 20914,
+"nowv": 0,
+"lost": [
+"NORTHVILLE TWP 01",
+"NORTHVILLE TWP 10",
+"NORTHVILLE TWP 11",
+"NORTHVILLE TWP 12",
+"NORTHVILLE TWP 02",
+"NORTHVILLE TWP 03",
+"NORTHVILLE TWP 04",
+"NORTHVILLE TWP 05"
+],
+"gain": []
+},
+{
+"c": "Wayne County",
+"t": "Plymouth charter township",
+"old": 12,
+"now": 16,
+"oldv": 19310,
+"nowv": 25867,
+"lost": [],
+"gain": [
+"PLYMOUTH CITY 1",
+"PLYMOUTH CITY 2",
+"PLYMOUTH CITY 3",
+"PLYMOUTH CITY 4"
+]
+},
+{
+"c": "Wayne County",
+"t": "Plymouth city",
+"old": 4,
+"now": 0,
+"oldv": 6557,
+"nowv": 0,
+"lost": [
+"PLYMOUTH CITY 1",
+"PLYMOUTH CITY 2",
+"PLYMOUTH CITY 3",
+"PLYMOUTH CITY 4"
+],
+"gain": []
+},
+{
+"c": "Wayne County",
+"t": "Village of Grosse Pointe Shores city",
+"old": 1,
+"now": 0,
+"oldv": 2004,
+"nowv": 0,
+"lost": [
+"GROSSE POINTE SHORES CITY 1"
+],
+"gain": []
+},
+{
+"c": "Van Buren County",
+"t": "Bangor city",
+"old": 1,
+"now": 2,
+"oldv": 750,
+"nowv": 1693,
+"lost": [],
+"gain": [
+"Bangor Township, Precinct 1"
+]
+},
+{
+"c": "Van Buren County",
+"t": "Bangor township",
+"old": 1,
+"now": 0,
+"oldv": 943,
+"nowv": 0,
+"lost": [
+"Bangor Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Van Buren County",
+"t": "Mattawan village",
+"old": 1,
+"now": 0,
+"oldv": 1538,
+"nowv": 0,
+"lost": [
+"Antwerp Township, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Chippewa County",
+"t": "Bruce township",
+"old": 2,
+"now": 1,
+"oldv": 3273,
+"nowv": 1353,
+"lost": [
+"Soo Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Chippewa County",
+"t": "Soo township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 1920,
+"lost": [],
+"gain": [
+"Soo Township, Precinct 1"
+]
+},
+{
+"c": "Clinton County",
+"t": "Bingham township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 1898,
+"lost": [],
+"gain": [
+"Bingham Township, Precinct 1"
+]
+},
+{
+"c": "Clinton County",
+"t": "Ovid city",
+"old": 1,
+"now": 2,
+"oldv": 697,
+"nowv": 2072,
+"lost": [],
+"gain": [
+"Ovid Township, Precinct 1"
+]
+},
+{
+"c": "Clinton County",
+"t": "Ovid township",
+"old": 1,
+"now": 0,
+"oldv": 1375,
+"nowv": 0,
+"lost": [
+"Ovid Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Clinton County",
+"t": "St. Johns city",
+"old": 4,
+"now": 3,
+"oldv": 6407,
+"nowv": 4509,
+"lost": [
+"Bingham Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "St. Joseph County",
+"t": "Sturgis city",
+"old": 4,
+"now": 5,
+"oldv": 3819,
+"nowv": 4763,
+"lost": [],
+"gain": [
+"Sturgis Township, Precinct 1"
+]
+},
+{
+"c": "St. Joseph County",
+"t": "Sturgis township",
+"old": 1,
+"now": 0,
+"oldv": 944,
+"nowv": 0,
+"lost": [
+"Sturgis Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Iron County",
+"t": "Crystal Falls city",
+"old": 1,
+"now": 2,
+"oldv": 837,
+"nowv": 1895,
+"lost": [],
+"gain": [
+"Crystal Falls Township, Precinct 1"
+]
+},
+{
+"c": "Iron County",
+"t": "Crystal Falls township",
+"old": 1,
+"now": 0,
+"oldv": 1058,
+"nowv": 0,
+"lost": [
+"Crystal Falls Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Iron County",
+"t": "Iron River city",
+"old": 2,
+"now": 3,
+"oldv": 1444,
+"nowv": 2174,
+"lost": [],
+"gain": [
+"Iron River Township, Precinct 1"
+]
+},
+{
+"c": "Iron County",
+"t": "Iron River township",
+"old": 2,
+"now": 0,
+"oldv": 1538,
+"nowv": 0,
+"lost": [
+"Iron River Township, Precinct 1",
+"Stambaugh Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Iron County",
+"t": "Stambaugh township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 808,
+"lost": [],
+"gain": [
+"Stambaugh Township, Precinct 1"
+]
+},
+{
+"c": "Alcona County",
+"t": "Harrisville city",
+"old": 1,
+"now": 2,
+"oldv": 288,
+"nowv": 1146,
+"lost": [],
+"gain": [
+"Harrisville Township, Precinct 1"
+]
+},
+{
+"c": "Alcona County",
+"t": "Harrisville township",
+"old": 1,
+"now": 0,
+"oldv": 858,
+"nowv": 0,
+"lost": [
+"Harrisville Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ottawa County",
+"t": "Holland charter township",
+"old": 11,
+"now": 12,
+"oldv": 18186,
+"nowv": 19390,
+"lost": [],
+"gain": [
+"Holland Charter Township, Precinct 1"
+]
+},
+{
+"c": "Ottawa County",
+"t": "Holland city",
+"old": 11,
+"now": 10,
+"oldv": 14389,
+"nowv": 13185,
+"lost": [
+"Holland Charter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Barry County",
+"t": "Middleville village",
+"old": 1,
+"now": 0,
+"oldv": 1863,
+"nowv": 0,
+"lost": [
+"Thornapple Township, Precinct 3"
+],
+"gain": []
+},
+{
+"c": "Gogebic County",
+"t": "Bessemer city",
+"old": 1,
+"now": 2,
+"oldv": 1022,
+"nowv": 1710,
+"lost": [],
+"gain": [
+"Bessemer Township, Precinct 1"
+]
+},
+{
+"c": "Gogebic County",
+"t": "Bessemer township",
+"old": 1,
+"now": 0,
+"oldv": 688,
+"nowv": 0,
+"lost": [
+"Bessemer Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Gogebic County",
+"t": "Wakefield city",
+"old": 1,
+"now": 2,
+"oldv": 897,
+"nowv": 1089,
+"lost": [],
+"gain": [
+"Wakefield Township, Precinct 1"
+]
+},
+{
+"c": "Gogebic County",
+"t": "Wakefield township",
+"old": 1,
+"now": 0,
+"oldv": 192,
+"nowv": 0,
+"lost": [
+"Wakefield Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Berrien Springs village",
+"old": 1,
+"now": 0,
+"oldv": 859,
+"nowv": 0,
+"lost": [
+"Oronoko Charter Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Bridgman city",
+"old": 2,
+"now": 1,
+"oldv": 3501,
+"nowv": 1356,
+"lost": [
+"Lake Charter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Buchanan city",
+"old": 2,
+"now": 3,
+"oldv": 2173,
+"nowv": 4282,
+"lost": [],
+"gain": [
+"Buchanan Charter Township, Precinct 1"
+]
+},
+{
+"c": "Berrien County",
+"t": "Buchanan township",
+"old": 1,
+"now": 0,
+"oldv": 2109,
+"nowv": 0,
+"lost": [
+"Buchanan Charter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Lake charter township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 2145,
+"lost": [],
+"gain": [
+"Lake Charter Township, Precinct 1"
+]
+},
+{
+"c": "Berrien County",
+"t": "New Buffalo city",
+"old": 1,
+"now": 2,
+"oldv": 1044,
+"nowv": 2746,
+"lost": [],
+"gain": [
+"New Buffalo Township, Precinct 1"
+]
+},
+{
+"c": "Berrien County",
+"t": "New Buffalo township",
+"old": 1,
+"now": 0,
+"oldv": 1702,
+"nowv": 0,
+"lost": [
+"New Buffalo Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Niles city",
+"old": 4,
+"now": 9,
+"oldv": 4978,
+"nowv": 12451,
+"lost": [],
+"gain": [
+"Niles Charter Township, Precinct 1",
+"Niles Charter Township, Precinct 2",
+"Niles Charter Township, Precinct 3",
+"Niles Charter Township, Precinct 4",
+"Niles Charter Township, Precinct 5"
+]
+},
+{
+"c": "Berrien County",
+"t": "Niles township",
+"old": 5,
+"now": 0,
+"oldv": 7473,
+"nowv": 0,
+"lost": [
+"Niles Charter Township, Precinct 1",
+"Niles Charter Township, Precinct 2",
+"Niles Charter Township, Precinct 3",
+"Niles Charter Township, Precinct 4",
+"Niles Charter Township, Precinct 5"
+],
+"gain": []
+},
+{
+"c": "Berrien County",
+"t": "Watervliet city",
+"old": 1,
+"now": 2,
+"oldv": 833,
+"nowv": 2437,
+"lost": [],
+"gain": [
+"Watervliet Charter Township, Precinct 1"
+]
+},
+{
+"c": "Berrien County",
+"t": "Watervliet township",
+"old": 1,
+"now": 0,
+"oldv": 1604,
+"nowv": 0,
+"lost": [
+"Watervliet Charter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ogemaw County",
+"t": "Rose City city",
+"old": 1,
+"now": 2,
+"oldv": 232,
+"nowv": 1060,
+"lost": [],
+"gain": [
+"Rose Township, Precinct 1"
+]
+},
+{
+"c": "Ogemaw County",
+"t": "Rose township",
+"old": 1,
+"now": 0,
+"oldv": 828,
+"nowv": 0,
+"lost": [
+"Rose Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ogemaw County",
+"t": "West Branch city",
+"old": 1,
+"now": 2,
+"oldv": 1102,
+"nowv": 2695,
+"lost": [],
+"gain": [
+"West Branch Township, Precinct 1"
+]
+},
+{
+"c": "Ogemaw County",
+"t": "West Branch township",
+"old": 1,
+"now": 0,
+"oldv": 1593,
+"nowv": 0,
+"lost": [
+"West Branch Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ingham County",
+"t": "Dansville village",
+"old": 1,
+"now": 0,
+"oldv": 1598,
+"nowv": 0,
+"lost": [
+"Ingham Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ingham County",
+"t": "East Lansing city",
+"old": 17,
+"now": 16,
+"oldv": 18138,
+"nowv": 17498,
+"lost": [
+"Lansing Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ingham County",
+"t": "Lansing charter township",
+"old": 5,
+"now": 6,
+"oldv": 4971,
+"nowv": 5611,
+"lost": [],
+"gain": [
+"Lansing Township, Precinct 1"
+]
+},
+{
+"c": "Ingham County",
+"t": "Leslie city",
+"old": 1,
+"now": 2,
+"oldv": 1025,
+"nowv": 2511,
+"lost": [],
+"gain": [
+"Leslie Township, Precinct 1"
+]
+},
+{
+"c": "Ingham County",
+"t": "Leslie township",
+"old": 1,
+"now": 0,
+"oldv": 1486,
+"nowv": 0,
+"lost": [
+"Leslie Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Lapeer County",
+"t": "Columbiaville village",
+"old": 1,
+"now": 0,
+"oldv": 1518,
+"nowv": 0,
+"lost": [
+"Marathon Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Lapeer County",
+"t": "Imlay City city",
+"old": 2,
+"now": 3,
+"oldv": 1660,
+"nowv": 3635,
+"lost": [],
+"gain": [
+"Imlay Township, Precinct 1"
+]
+},
+{
+"c": "Lapeer County",
+"t": "Imlay township",
+"old": 1,
+"now": 0,
+"oldv": 1975,
+"nowv": 0,
+"lost": [
+"Imlay Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Lapeer County",
+"t": "Lapeer city",
+"old": 2,
+"now": 4,
+"oldv": 4344,
+"nowv": 7653,
+"lost": [],
+"gain": [
+"Lapeer Township, Precinct 2",
+"Lapeer Township, Precinct 1"
+]
+},
+{
+"c": "Lapeer County",
+"t": "Lapeer township",
+"old": 2,
+"now": 0,
+"oldv": 3309,
+"nowv": 0,
+"lost": [
+"Lapeer Township, Precinct 2",
+"Lapeer Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Shiawassee County",
+"t": "Caledonia charter township",
+"old": 1,
+"now": 2,
+"oldv": 1691,
+"nowv": 2626,
+"lost": [],
+"gain": [
+"Caledonia Charter Township, Precinct 2"
+]
+},
+{
+"c": "Shiawassee County",
+"t": "Corunna city",
+"old": 2,
+"now": 1,
+"oldv": 2549,
+"nowv": 1614,
+"lost": [
+"Caledonia Charter Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Shiawassee County",
+"t": "Perry city",
+"old": 0,
+"now": 2,
+"oldv": 0,
+"nowv": 2468,
+"lost": [],
+"gain": [
+"Perry Township, Precinct 1",
+"Perry Township, Precinct 2"
+]
+},
+{
+"c": "Shiawassee County",
+"t": "Perry township",
+"old": 3,
+"now": 1,
+"oldv": 3679,
+"nowv": 1211,
+"lost": [
+"Perry Township, Precinct 1",
+"Perry Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "St. Clair County",
+"t": "St. Clair city",
+"old": 0,
+"now": 2,
+"oldv": 0,
+"nowv": 4959,
+"lost": [],
+"gain": [
+"St. Clair Township, Precinct 1",
+"St. Clair Township, Precinct 2"
+]
+},
+{
+"c": "St. Clair County",
+"t": "St. Clair township",
+"old": 2,
+"now": 0,
+"oldv": 4959,
+"nowv": 0,
+"lost": [
+"St. Clair Township, Precinct 1",
+"St. Clair Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Livingston County",
+"t": "Brighton city",
+"old": 3,
+"now": 10,
+"oldv": 5245,
+"nowv": 18880,
+"lost": [],
+"gain": [
+"Brighton Charter Township, Precinct 1",
+"Brighton Charter Township, Precinct 2",
+"Brighton Charter Township, Precinct 4",
+"Brighton Charter Township, Precinct 6",
+"Brighton Charter Township, Precinct 7",
+"Brighton Charter Township, Precinct 3",
+"Brighton Charter Township, Precinct 5"
+]
+},
+{
+"c": "Livingston County",
+"t": "Brighton township",
+"old": 7,
+"now": 0,
+"oldv": 13635,
+"nowv": 0,
+"lost": [
+"Brighton Charter Township, Precinct 1",
+"Brighton Charter Township, Precinct 2",
+"Brighton Charter Township, Precinct 4",
+"Brighton Charter Township, Precinct 6",
+"Brighton Charter Township, Precinct 7",
+"Brighton Charter Township, Precinct 3",
+"Brighton Charter Township, Precinct 5"
+],
+"gain": []
+},
+{
+"c": "Livingston County",
+"t": "Fowlerville village",
+"old": 1,
+"now": 0,
+"oldv": 1487,
+"nowv": 0,
+"lost": [
+"Handy Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Livingston County",
+"t": "Howell city",
+"old": 2,
+"now": 4,
+"oldv": 5553,
+"nowv": 10713,
+"lost": [],
+"gain": [
+"Howell Township, Precinct 1",
+"Howell Township, Precinct 2"
+]
+},
+{
+"c": "Livingston County",
+"t": "Howell township",
+"old": 2,
+"now": 0,
+"oldv": 5160,
+"nowv": 0,
+"lost": [
+"Howell Township, Precinct 1",
+"Howell Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Livingston County",
+"t": "Pinckney village",
+"old": 1,
+"now": 0,
+"oldv": 1382,
+"nowv": 0,
+"lost": [
+"Putnam Township, Precinct 3"
+],
+"gain": []
+},
+{
+"c": "Tuscola County",
+"t": "Vassar city",
+"old": 1,
+"now": 2,
+"oldv": 1333,
+"nowv": 3433,
+"lost": [],
+"gain": [
+"Vassar Township, Precinct 1"
+]
+},
+{
+"c": "Tuscola County",
+"t": "Vassar township",
+"old": 1,
+"now": 0,
+"oldv": 2100,
+"nowv": 0,
+"lost": [
+"Vassar Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Oceana County",
+"t": "Hart city",
+"old": 1,
+"now": 2,
+"oldv": 857,
+"nowv": 1938,
+"lost": [],
+"gain": [
+"Hart Township, Precinct 1"
+]
+},
+{
+"c": "Oceana County",
+"t": "Hart township",
+"old": 1,
+"now": 0,
+"oldv": 1081,
+"nowv": 0,
+"lost": [
+"Hart Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Oceana County",
+"t": "Rothbury village",
+"old": 1,
+"now": 0,
+"oldv": 1511,
+"nowv": 0,
+"lost": [
+"Grant Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Washtenaw County",
+"t": "Ann Arbor charter township",
+"old": 1,
+"now": 2,
+"oldv": 1645,
+"nowv": 4997,
+"lost": [],
+"gain": [
+"Ann Arbor Township, Precinct 1"
+]
+},
+{
+"c": "Washtenaw County",
+"t": "Ann Arbor city",
+"old": 48,
+"now": 46,
+"oldv": 75342,
+"nowv": 68853,
+"lost": [
+"Pittsfield Charter Township, Precinct 3",
+"Ann Arbor Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Washtenaw County",
+"t": "Dexter city",
+"old": 2,
+"now": 5,
+"oldv": 3123,
+"nowv": 7989,
+"lost": [],
+"gain": [
+"Dexter Township, Precinct 2",
+"Dexter Township, Precinct 3",
+"Dexter Township, Precinct 1"
+]
+},
+{
+"c": "Washtenaw County",
+"t": "Dexter township",
+"old": 3,
+"now": 0,
+"oldv": 4866,
+"nowv": 0,
+"lost": [
+"Dexter Township, Precinct 2",
+"Dexter Township, Precinct 3",
+"Dexter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Washtenaw County",
+"t": "Pittsfield charter township",
+"old": 8,
+"now": 9,
+"oldv": 18742,
+"nowv": 21879,
+"lost": [],
+"gain": [
+"Pittsfield Charter Township, Precinct 3"
+]
+},
+{
+"c": "Washtenaw County",
+"t": "Saline city",
+"old": 2,
+"now": 3,
+"oldv": 6187,
+"nowv": 7833,
+"lost": [],
+"gain": [
+"Saline Township, Precinct 1"
+]
+},
+{
+"c": "Washtenaw County",
+"t": "Saline township",
+"old": 1,
+"now": 0,
+"oldv": 1646,
+"nowv": 0,
+"lost": [
+"Saline Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Hillsdale County",
+"t": "Hillsdale city",
+"old": 4,
+"now": 5,
+"oldv": 3663,
+"nowv": 4968,
+"lost": [],
+"gain": [
+"Hillsdale Township, Precinct 1"
+]
+},
+{
+"c": "Hillsdale County",
+"t": "Hillsdale township",
+"old": 1,
+"now": 0,
+"oldv": 1305,
+"nowv": 0,
+"lost": [
+"Hillsdale Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Hillsdale County",
+"t": "Litchfield city",
+"old": 1,
+"now": 2,
+"oldv": 715,
+"nowv": 1242,
+"lost": [],
+"gain": [
+"Litchfield Township, Precinct 1"
+]
+},
+{
+"c": "Hillsdale County",
+"t": "Litchfield township",
+"old": 1,
+"now": 0,
+"oldv": 527,
+"nowv": 0,
+"lost": [
+"Litchfield Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Hillsdale County",
+"t": "Reading city",
+"old": 1,
+"now": 2,
+"oldv": 472,
+"nowv": 1505,
+"lost": [],
+"gain": [
+"Reading Township, Precinct 1"
+]
+},
+{
+"c": "Hillsdale County",
+"t": "Reading township",
+"old": 1,
+"now": 0,
+"oldv": 1033,
+"nowv": 0,
+"lost": [
+"Reading Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Genesee County",
+"t": "Davison city",
+"old": 2,
+"now": 11,
+"oldv": 2927,
+"nowv": 15368,
+"lost": [],
+"gain": [
+"Davison Township, Precinct 2",
+"Davison Township, Precinct 3",
+"Davison Township, Precinct 4",
+"Davison Township, Precinct 5",
+"Davison Township, Precinct 6",
+"Davison Township, Precinct 7",
+"Davison Township, Precinct 8",
+"Davison Township, Precinct 9"
+]
+},
+{
+"c": "Genesee County",
+"t": "Davison township",
+"old": 9,
+"now": 0,
+"oldv": 12441,
+"nowv": 0,
+"lost": [
+"Davison Township, Precinct 2",
+"Davison Township, Precinct 3",
+"Davison Township, Precinct 4",
+"Davison Township, Precinct 5",
+"Davison Township, Precinct 6",
+"Davison Township, Precinct 7",
+"Davison Township, Precinct 8",
+"Davison Township, Precinct 9"
+],
+"gain": []
+},
+{
+"c": "Genesee County",
+"t": "Goodrich village",
+"old": 1,
+"now": 0,
+"oldv": 1319,
+"nowv": 0,
+"lost": [
+"Atlas Township, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Genesee County",
+"t": "Mount Morris city",
+"old": 2,
+"now": 12,
+"oldv": 1308,
+"nowv": 10580,
+"lost": [],
+"gain": [
+"Mount Morris Township, Precinct 7",
+"Mount Morris Township, Precinct 3",
+"Mount Morris Township, Precinct 6",
+"Mount Morris Township, Precinct 9",
+"Mount Morris Township, Precinct 11",
+"Mount Morris Township, Precinct 1",
+"Mount Morris Township, Precinct 8",
+"Mount Morris Township, Precinct 2"
+]
+},
+{
+"c": "Genesee County",
+"t": "Mount Morris township",
+"old": 10,
+"now": 0,
+"oldv": 9272,
+"nowv": 0,
+"lost": [
+"Mount Morris Township, Precinct 7",
+"Mount Morris Township, Precinct 3",
+"Mount Morris Township, Precinct 6",
+"Mount Morris Township, Precinct 9",
+"Mount Morris Township, Precinct 11",
+"Mount Morris Township, Precinct 1",
+"Mount Morris Township, Precinct 8",
+"Mount Morris Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Presque Isle County",
+"t": "Rogers City city",
+"old": 1,
+"now": 2,
+"oldv": 1698,
+"nowv": 2384,
+"lost": [],
+"gain": [
+"Rogers Township, Precinct 1"
+]
+},
+{
+"c": "Presque Isle County",
+"t": "Rogers township",
+"old": 1,
+"now": 0,
+"oldv": 686,
+"nowv": 0,
+"lost": [
+"Rogers Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Calhoun County",
+"t": "Albion city",
+"old": 6,
+"now": 7,
+"oldv": 3203,
+"nowv": 3848,
+"lost": [],
+"gain": [
+"Albion Township, Precinct 1"
+]
+},
+{
+"c": "Calhoun County",
+"t": "Albion township",
+"old": 1,
+"now": 0,
+"oldv": 645,
+"nowv": 0,
+"lost": [
+"Albion Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Calhoun County",
+"t": "Marshall city",
+"old": 2,
+"now": 3,
+"oldv": 3952,
+"nowv": 6021,
+"lost": [],
+"gain": [
+"Marshall Township, Precinct 1"
+]
+},
+{
+"c": "Calhoun County",
+"t": "Marshall township",
+"old": 1,
+"now": 0,
+"oldv": 2069,
+"nowv": 0,
+"lost": [
+"Marshall Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Mecosta County",
+"t": "Big Rapids charter township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 2280,
+"lost": [],
+"gain": [
+"Big Rapids Township, Precinct 1"
+]
+},
+{
+"c": "Mecosta County",
+"t": "Big Rapids city",
+"old": 4,
+"now": 3,
+"oldv": 5372,
+"nowv": 3092,
+"lost": [
+"Big Rapids Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Huron County",
+"t": "Caseville city",
+"old": 1,
+"now": 2,
+"oldv": 452,
+"nowv": 1730,
+"lost": [],
+"gain": [
+"Caseville Township, Precinct 1"
+]
+},
+{
+"c": "Huron County",
+"t": "Caseville township",
+"old": 1,
+"now": 0,
+"oldv": 1278,
+"nowv": 0,
+"lost": [
+"Caseville Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Iosco County",
+"t": "Tawas City city",
+"old": 1,
+"now": 2,
+"oldv": 1050,
+"nowv": 2169,
+"lost": [],
+"gain": [
+"Tawas Township, Precinct 1"
+]
+},
+{
+"c": "Iosco County",
+"t": "Tawas township",
+"old": 1,
+"now": 0,
+"oldv": 1119,
+"nowv": 0,
+"lost": [
+"Tawas Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ionia County",
+"t": "Ionia city",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 2029,
+"lost": [],
+"gain": [
+"Ionia Township, Precinct 1"
+]
+},
+{
+"c": "Ionia County",
+"t": "Ionia township",
+"old": 1,
+"now": 0,
+"oldv": 2029,
+"nowv": 0,
+"lost": [
+"Ionia Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ionia County",
+"t": "Lake Odessa village",
+"old": 1,
+"now": 0,
+"oldv": 1069,
+"nowv": 0,
+"lost": [
+"Odessa Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ionia County",
+"t": "Portland city",
+"old": 1,
+"now": 2,
+"oldv": 2252,
+"nowv": 4666,
+"lost": [],
+"gain": [
+"Portland Township, Precinct 1"
+]
+},
+{
+"c": "Ionia County",
+"t": "Portland township",
+"old": 1,
+"now": 0,
+"oldv": 2414,
+"nowv": 0,
+"lost": [
+"Portland Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Ionia County",
+"t": "Saranac village",
+"old": 1,
+"now": 0,
+"oldv": 801,
+"nowv": 0,
+"lost": [
+"Boston Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Macomb County",
+"t": "Clinton charter township",
+"old": 41,
+"now": 42,
+"oldv": 55830,
+"nowv": 56740,
+"lost": [],
+"gain": [
+"Clinton Township, Precinct 13"
+]
+},
+{
+"c": "Macomb County",
+"t": "Mount Clemens city",
+"old": 7,
+"now": 6,
+"oldv": 8638,
+"nowv": 7728,
+"lost": [
+"Clinton Township, Precinct 13"
+],
+"gain": []
+},
+{
+"c": "Macomb County",
+"t": "New Haven village",
+"old": 2,
+"now": 0,
+"oldv": 3276,
+"nowv": 0,
+"lost": [
+"Lenox Township, Precinct 3",
+"Lenox Township, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Macomb County",
+"t": "Richmond city",
+"old": 2,
+"now": 4,
+"oldv": 3627,
+"nowv": 6046,
+"lost": [],
+"gain": [
+"Richmond Township, Precinct 1",
+"Richmond Township, Precinct 2"
+]
+},
+{
+"c": "Macomb County",
+"t": "Richmond township",
+"old": 2,
+"now": 0,
+"oldv": 2419,
+"nowv": 0,
+"lost": [
+"Richmond Township, Precinct 1",
+"Richmond Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Macomb County",
+"t": "Romeo village",
+"old": 1,
+"now": 0,
+"oldv": 1160,
+"nowv": 0,
+"lost": [
+"Bruce Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Dickinson County",
+"t": "Breitung charter township",
+"old": 2,
+"now": 3,
+"oldv": 2134,
+"nowv": 3860,
+"lost": [],
+"gain": [
+"Breitung Township, Precinct 3"
+]
+},
+{
+"c": "Dickinson County",
+"t": "Iron Mountain city",
+"old": 4,
+"now": 3,
+"oldv": 5710,
+"nowv": 3984,
+"lost": [
+"Breitung Township, Precinct 3"
+],
+"gain": []
+},
+{
+"c": "Dickinson County",
+"t": "Norway city",
+"old": 1,
+"now": 2,
+"oldv": 1530,
+"nowv": 2534,
+"lost": [],
+"gain": [
+"Norway Township, Precinct 1"
+]
+},
+{
+"c": "Dickinson County",
+"t": "Norway township",
+"old": 1,
+"now": 0,
+"oldv": 1004,
+"nowv": 0,
+"lost": [
+"Norway Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Saginaw County",
+"t": "Frankenmuth city",
+"old": 1,
+"now": 2,
+"oldv": 3408,
+"nowv": 4770,
+"lost": [],
+"gain": [
+"Frankenmuth Township, Precinct 1"
+]
+},
+{
+"c": "Saginaw County",
+"t": "Frankenmuth township",
+"old": 1,
+"now": 0,
+"oldv": 1362,
+"nowv": 0,
+"lost": [
+"Frankenmuth Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Saginaw County",
+"t": "Zilwaukee city",
+"old": 1,
+"now": 2,
+"oldv": 913,
+"nowv": 954,
+"lost": [],
+"gain": [
+"Zilwaukee Township, Precinct 1"
+]
+},
+{
+"c": "Saginaw County",
+"t": "Zilwaukee township",
+"old": 1,
+"now": 0,
+"oldv": 41,
+"nowv": 0,
+"lost": [
+"Zilwaukee Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Bay County",
+"t": "Pinconning city",
+"old": 1,
+"now": 2,
+"oldv": 584,
+"nowv": 2002,
+"lost": [],
+"gain": [
+"Pinconning Township, Precinct 1"
+]
+},
+{
+"c": "Bay County",
+"t": "Pinconning township",
+"old": 1,
+"now": 0,
+"oldv": 1418,
+"nowv": 0,
+"lost": [
+"Pinconning Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Arenac County",
+"t": "Au Gres city",
+"old": 1,
+"now": 2,
+"oldv": 562,
+"nowv": 1185,
+"lost": [],
+"gain": [
+"Au Gres Township, Precinct 1"
+]
+},
+{
+"c": "Arenac County",
+"t": "Au Gres township",
+"old": 1,
+"now": 0,
+"oldv": 623,
+"nowv": 0,
+"lost": [
+"Au Gres Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Arenac County",
+"t": "Standish city",
+"old": 1,
+"now": 2,
+"oldv": 715,
+"nowv": 1699,
+"lost": [],
+"gain": [
+"Standish Township, Precinct 1"
+]
+},
+{
+"c": "Arenac County",
+"t": "Standish township",
+"old": 1,
+"now": 0,
+"oldv": 984,
+"nowv": 0,
+"lost": [
+"Standish Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Cheboygan County",
+"t": "Mackinaw City village",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 349,
+"lost": [],
+"gain": [
+"Mackinaw Township, Precinct 1"
+]
+},
+{
+"c": "Cheboygan County",
+"t": "Mackinaw township",
+"old": 1,
+"now": 0,
+"oldv": 349,
+"nowv": 0,
+"lost": [
+"Mackinaw Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Gladwin County",
+"t": "Beaverton city",
+"old": 1,
+"now": 2,
+"oldv": 557,
+"nowv": 1599,
+"lost": [],
+"gain": [
+"Beaverton Township, Precinct 1"
+]
+},
+{
+"c": "Gladwin County",
+"t": "Beaverton township",
+"old": 1,
+"now": 0,
+"oldv": 1042,
+"nowv": 0,
+"lost": [
+"Beaverton Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Gladwin County",
+"t": "Gladwin city",
+"old": 1,
+"now": 2,
+"oldv": 1451,
+"nowv": 1992,
+"lost": [],
+"gain": [
+"Gladwin Township, Precinct 1"
+]
+},
+{
+"c": "Gladwin County",
+"t": "Gladwin township",
+"old": 1,
+"now": 0,
+"oldv": 541,
+"nowv": 0,
+"lost": [
+"Gladwin Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Monroe County",
+"t": "Milan city",
+"old": 1,
+"now": 2,
+"oldv": 1252,
+"nowv": 2252,
+"lost": [],
+"gain": [
+"Milan Township, Precinct 1"
+]
+},
+{
+"c": "Monroe County",
+"t": "Milan township",
+"old": 1,
+"now": 0,
+"oldv": 1000,
+"nowv": 0,
+"lost": [
+"Milan Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Monroe County",
+"t": "South Rockwood village",
+"old": 1,
+"now": 0,
+"oldv": 1894,
+"nowv": 0,
+"lost": [
+"Berlin Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Kalamazoo County",
+"t": "Kalamazoo charter township",
+"old": 9,
+"now": 10,
+"oldv": 10811,
+"nowv": 12137,
+"lost": [],
+"gain": [
+"Kalamazoo Township, Precinct 10"
+]
+},
+{
+"c": "Kalamazoo County",
+"t": "Kalamazoo city",
+"old": 29,
+"now": 27,
+"oldv": 34928,
+"nowv": 32382,
+"lost": [
+"Kalamazoo Township, Precinct 10",
+"Oshtemo Township, Precinct 6"
+],
+"gain": []
+},
+{
+"c": "Kalamazoo County",
+"t": "Oshtemo charter township",
+"old": 9,
+"now": 10,
+"oldv": 11697,
+"nowv": 12917,
+"lost": [],
+"gain": [
+"Oshtemo Township, Precinct 6"
+]
+},
+{
+"c": "Kalamazoo County",
+"t": "Vicksburg village",
+"old": 1,
+"now": 0,
+"oldv": 2383,
+"nowv": 0,
+"lost": [
+"Schoolcraft Township, Precinct 3"
+],
+"gain": []
+},
+{
+"c": "Mackinac County",
+"t": "St. Ignace city",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 539,
+"lost": [],
+"gain": [
+"St. Ignace Township, Precinct 1"
+]
+},
+{
+"c": "Mackinac County",
+"t": "St. Ignace township",
+"old": 1,
+"now": 0,
+"oldv": 539,
+"nowv": 0,
+"lost": [
+"St. Ignace Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Eaton County",
+"t": "Delta charter township",
+"old": 15,
+"now": 14,
+"oldv": 22533,
+"nowv": 20763,
+"lost": [
+"City of Lansing, Ward 3, Precinct 22"
+],
+"gain": []
+},
+{
+"c": "Eaton County",
+"t": "Eaton Rapids city",
+"old": 2,
+"now": 3,
+"oldv": 1877,
+"nowv": 4457,
+"lost": [],
+"gain": [
+"Eaton Rapids Township, Precinct 1"
+]
+},
+{
+"c": "Eaton County",
+"t": "Eaton Rapids township",
+"old": 1,
+"now": 0,
+"oldv": 2580,
+"nowv": 0,
+"lost": [
+"Eaton Rapids Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Eaton County",
+"t": "Lansing city",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 1770,
+"lost": [],
+"gain": [
+"City of Lansing, Ward 3, Precinct 22"
+]
+},
+{
+"c": "Manistee County",
+"t": "Manistee city",
+"old": 2,
+"now": 3,
+"oldv": 3482,
+"nowv": 5438,
+"lost": [],
+"gain": [
+"Manistee Township, Precinct 1"
+]
+},
+{
+"c": "Manistee County",
+"t": "Manistee township",
+"old": 1,
+"now": 0,
+"oldv": 1956,
+"nowv": 0,
+"lost": [
+"Manistee Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Missaukee County",
+"t": "Lake City city",
+"old": 1,
+"now": 2,
+"oldv": 538,
+"nowv": 2408,
+"lost": [],
+"gain": [
+"Lake Township, Precinct 1"
+]
+},
+{
+"c": "Missaukee County",
+"t": "Lake township",
+"old": 1,
+"now": 0,
+"oldv": 1870,
+"nowv": 0,
+"lost": [
+"Lake Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Beverly Hills village",
+"old": 5,
+"now": 0,
+"oldv": 7568,
+"nowv": 0,
+"lost": [
+"Southfield Township, Precinct 5",
+"Southfield Township, Precinct 1",
+"Southfield Township, Precinct 2",
+"Southfield Township, Precinct 3",
+"Southfield Township, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Bingham Farms village",
+"old": 1,
+"now": 0,
+"oldv": 810,
+"nowv": 0,
+"lost": [
+"Southfield Township, Precinct 6"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Farmington city",
+"old": 4,
+"now": 5,
+"oldv": 4897,
+"nowv": 6140,
+"lost": [],
+"gain": [
+"Farmington, Precinct 4"
+]
+},
+{
+"c": "Oakland County",
+"t": "Farmington Hills city",
+"old": 28,
+"now": 27,
+"oldv": 49529,
+"nowv": 48286,
+"lost": [
+"Farmington, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Franklin village",
+"old": 1,
+"now": 0,
+"oldv": 2260,
+"nowv": 0,
+"lost": [
+"Southfield Township, Precinct 7"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Lake Orion village",
+"old": 1,
+"now": 0,
+"oldv": 1796,
+"nowv": 0,
+"lost": [
+"Orion Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Leonard village",
+"old": 1,
+"now": 0,
+"oldv": 1641,
+"nowv": 0,
+"lost": [
+"Addison Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Novi city",
+"old": 25,
+"now": 26,
+"oldv": 35527,
+"nowv": 35651,
+"lost": [],
+"gain": [
+"Novi Township, Precinct 1"
+]
+},
+{
+"c": "Oakland County",
+"t": "Novi township",
+"old": 1,
+"now": 0,
+"oldv": 124,
+"nowv": 0,
+"lost": [
+"Novi Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Ortonville village",
+"old": 1,
+"now": 0,
+"oldv": 877,
+"nowv": 0,
+"lost": [
+"Brandon Township, Precinct 6"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Rochester city",
+"old": 7,
+"now": 6,
+"oldv": 9416,
+"nowv": 8371,
+"lost": [
+"Rochester Hills, Precinct 14"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Rochester Hills city",
+"old": 31,
+"now": 32,
+"oldv": 44707,
+"nowv": 45752,
+"lost": [],
+"gain": [
+"Rochester Hills, Precinct 14"
+]
+},
+{
+"c": "Oakland County",
+"t": "Royal Oak charter township",
+"old": 2,
+"now": 20,
+"oldv": 1230,
+"nowv": 40741,
+"lost": [],
+"gain": [
+"Royal Oak, Precinct 13",
+"Royal Oak, Precinct 2",
+"Royal Oak, Precinct 16",
+"Royal Oak, Precinct 14",
+"Royal Oak, Precinct 10",
+"Royal Oak, Precinct 15",
+"Royal Oak, Precinct 11",
+"Royal Oak, Precinct 17"
+]
+},
+{
+"c": "Oakland County",
+"t": "Royal Oak city",
+"old": 18,
+"now": 0,
+"oldv": 39511,
+"nowv": 0,
+"lost": [
+"Royal Oak, Precinct 13",
+"Royal Oak, Precinct 2",
+"Royal Oak, Precinct 16",
+"Royal Oak, Precinct 14",
+"Royal Oak, Precinct 10",
+"Royal Oak, Precinct 15",
+"Royal Oak, Precinct 11",
+"Royal Oak, Precinct 17"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Southfield city",
+"old": 36,
+"now": 43,
+"oldv": 44476,
+"nowv": 55114,
+"lost": [],
+"gain": [
+"Southfield Township, Precinct 6",
+"Southfield Township, Precinct 5",
+"Southfield Township, Precinct 1",
+"Southfield Township, Precinct 7",
+"Southfield Township, Precinct 2",
+"Southfield Township, Precinct 3",
+"Southfield Township, Precinct 4"
+]
+},
+{
+"c": "Oakland County",
+"t": "Southfield township",
+"old": 7,
+"now": 0,
+"oldv": 10638,
+"nowv": 0,
+"lost": [
+"Southfield Township, Precinct 6",
+"Southfield Township, Precinct 5",
+"Southfield Township, Precinct 1",
+"Southfield Township, Precinct 7",
+"Southfield Township, Precinct 2",
+"Southfield Township, Precinct 3",
+"Southfield Township, Precinct 4"
+],
+"gain": []
+},
+{
+"c": "Oakland County",
+"t": "Wolverine Lake village",
+"old": 2,
+"now": 0,
+"oldv": 2985,
+"nowv": 0,
+"lost": [
+"Commerce Township, Precinct 12",
+"Commerce Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Osceola County",
+"t": "Evart city",
+"old": 1,
+"now": 2,
+"oldv": 740,
+"nowv": 1557,
+"lost": [],
+"gain": [
+"Evart Township, Precinct 1"
+]
+},
+{
+"c": "Osceola County",
+"t": "Evart township",
+"old": 1,
+"now": 0,
+"oldv": 817,
+"nowv": 0,
+"lost": [
+"Evart Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Branch County",
+"t": "Bronson city",
+"old": 1,
+"now": 2,
+"oldv": 852,
+"nowv": 1591,
+"lost": [],
+"gain": [
+"Bronson Township, Precinct 1"
+]
+},
+{
+"c": "Branch County",
+"t": "Bronson township",
+"old": 1,
+"now": 0,
+"oldv": 739,
+"nowv": 0,
+"lost": [
+"Bronson Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Branch County",
+"t": "Coldwater city",
+"old": 4,
+"now": 5,
+"oldv": 5421,
+"nowv": 6733,
+"lost": [],
+"gain": [
+"City of Coldwater, Ward 2, Precinct 1"
+]
+},
+{
+"c": "Branch County",
+"t": "Coldwater township",
+"old": 1,
+"now": 0,
+"oldv": 1312,
+"nowv": 0,
+"lost": [
+"City of Coldwater, Ward 2, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Branch County",
+"t": "Union City village",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 1484,
+"lost": [],
+"gain": [
+"Union Township, Precinct 1"
+]
+},
+{
+"c": "Branch County",
+"t": "Union township",
+"old": 1,
+"now": 0,
+"oldv": 1484,
+"nowv": 0,
+"lost": [
+"Union Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Allegan County",
+"t": "Allegan city",
+"old": 1,
+"now": 2,
+"oldv": 2394,
+"nowv": 5199,
+"lost": [],
+"gain": [
+"Allegan Township, Precinct 1"
+]
+},
+{
+"c": "Allegan County",
+"t": "Allegan township",
+"old": 1,
+"now": 0,
+"oldv": 2805,
+"nowv": 0,
+"lost": [
+"Allegan Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Allegan County",
+"t": "Otsego city",
+"old": 1,
+"now": 3,
+"oldv": 2090,
+"nowv": 5621,
+"lost": [],
+"gain": [
+"Otsego Township, Precinct 1",
+"Otsego Township, Precinct 2"
+]
+},
+{
+"c": "Allegan County",
+"t": "Otsego township",
+"old": 2,
+"now": 0,
+"oldv": 3531,
+"nowv": 0,
+"lost": [
+"Otsego Township, Precinct 1",
+"Otsego Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Allegan County",
+"t": "Saugatuck city",
+"old": 1,
+"now": 2,
+"oldv": 674,
+"nowv": 3365,
+"lost": [],
+"gain": [
+"Saugatuck Township, Precinct 1"
+]
+},
+{
+"c": "Allegan County",
+"t": "Saugatuck township",
+"old": 1,
+"now": 0,
+"oldv": 2691,
+"nowv": 0,
+"lost": [
+"Saugatuck Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Allegan County",
+"t": "Wayland city",
+"old": 2,
+"now": 3,
+"oldv": 2360,
+"nowv": 4557,
+"lost": [],
+"gain": [
+"Wayland Township, Precinct 1"
+]
+},
+{
+"c": "Allegan County",
+"t": "Wayland township",
+"old": 1,
+"now": 0,
+"oldv": 2197,
+"nowv": 0,
+"lost": [
+"Wayland Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Keweenaw County",
+"t": "Eagle Harbor township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 236,
+"lost": [],
+"gain": [
+"Eagle Harbor Township, Precinct 1"
+]
+},
+{
+"c": "Keweenaw County",
+"t": "Houghton township",
+"old": 0,
+"now": 1,
+"oldv": 0,
+"nowv": 71,
+"lost": [],
+"gain": [
+"Houghton Township, Precinct 1"
+]
+},
+{
+"c": "Charlevoix County",
+"t": "Charlevoix city",
+"old": 3,
+"now": 4,
+"oldv": 1636,
+"nowv": 2822,
+"lost": [],
+"gain": [
+"Charlevoix Township, Precinct 4"
+]
+},
+{
+"c": "Muskegon County",
+"t": "Montague city",
+"old": 1,
+"now": 2,
+"oldv": 1546,
+"nowv": 2528,
+"lost": [],
+"gain": [
+"Montague Township, Precinct 1"
+]
+},
+{
+"c": "Muskegon County",
+"t": "Montague township",
+"old": 1,
+"now": 0,
+"oldv": 982,
+"nowv": 0,
+"lost": [
+"Montague Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Muskegon County",
+"t": "Muskegon charter township",
+"old": 3,
+"now": 4,
+"oldv": 6758,
+"nowv": 9031,
+"lost": [],
+"gain": [
+"Muskegon Charter Township, Precinct 1"
+]
+},
+{
+"c": "Muskegon County",
+"t": "Muskegon city",
+"old": 10,
+"now": 9,
+"oldv": 17565,
+"nowv": 15292,
+"lost": [
+"Muskegon Charter Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Muskegon County",
+"t": "Whitehall city",
+"old": 1,
+"now": 2,
+"oldv": 1830,
+"nowv": 2938,
+"lost": [],
+"gain": [
+"Whitehall Township, Precinct 1"
+]
+},
+{
+"c": "Muskegon County",
+"t": "Whitehall township",
+"old": 1,
+"now": 0,
+"oldv": 1108,
+"nowv": 0,
+"lost": [
+"Whitehall Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Delta County",
+"t": "Escanaba city",
+"old": 4,
+"now": 6,
+"oldv": 6196,
+"nowv": 8487,
+"lost": [],
+"gain": [
+"Escanaba Township, Precinct 1",
+"Escanaba Township, Precinct 2"
+]
+},
+{
+"c": "Delta County",
+"t": "Escanaba township",
+"old": 2,
+"now": 0,
+"oldv": 2291,
+"nowv": 0,
+"lost": [
+"Escanaba Township, Precinct 1",
+"Escanaba Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Isabella County",
+"t": "Lake Isabella village",
+"old": 1,
+"now": 0,
+"oldv": 833,
+"nowv": 0,
+"lost": [
+"Sherman Township, Precinct 2"
+],
+"gain": []
+},
+{
+"c": "Lenawee County",
+"t": "Adrian city",
+"old": 6,
+"now": 8,
+"oldv": 8142,
+"nowv": 12158,
+"lost": [],
+"gain": [
+"Adrian Township, Precinct 2",
+"Adrian Township, Precinct 1"
+]
+},
+{
+"c": "Lenawee County",
+"t": "Adrian township",
+"old": 2,
+"now": 0,
+"oldv": 4016,
+"nowv": 0,
+"lost": [
+"Adrian Township, Precinct 2",
+"Adrian Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Lenawee County",
+"t": "Hudson city",
+"old": 1,
+"now": 2,
+"oldv": 1019,
+"nowv": 1951,
+"lost": [],
+"gain": [
+"Hudson Township, Precinct 1"
+]
+},
+{
+"c": "Lenawee County",
+"t": "Hudson township",
+"old": 1,
+"now": 0,
+"oldv": 932,
+"nowv": 0,
+"lost": [
+"Hudson Township, Precinct 1"
+],
+"gain": []
+},
+{
+"c": "Houghton County",
+"t": "Hancock city",
+"old": 3,
+"now": 4,
+"oldv": 2336,
+"nowv": 2694,
+"lost": [],
+"gain": [
+"HANCOCK TOWNSHIP 1"
+]
+},
+{
+"c": "Houghton County",
+"t": "Hancock township",
+"old": 1,
+"now": 0,
+"oldv": 358,
+"nowv": 0,
+"lost": [
+"HANCOCK TOWNSHIP 1"
+],
+"gain": []
+},
+{
+"c": "Houghton County",
+"t": "Laurium village",
+"old": 1,
+"now": 0,
+"oldv": 1067,
+"nowv": 0,
+"lost": [
+"CALUMET TOWNSHIP 9"
+],
+"gain": []
+}
+],
+"emptied": [
+"Menominee County / Menominee township",
+"Menominee County / Stephenson township",
+"Alpena County / Alpena township",
+"Marquette County / Ishpeming township",
+"Marquette County / Negaunee township",
+"Schoolcraft County / Manistique township",
+"Alger County / Munising township",
+"Newaygo County / Grant township",
+"Sanilac County / Marlette township",
+"Sanilac County / Minden township",
+"Wayne County / Northville township",
+"Wayne County / Plymouth city",
+"Wayne County / Village of Grosse Pointe Shores city",
+"Van Buren County / Bangor township",
+"Van Buren County / Mattawan village",
+"Clinton County / Ovid township",
+"St. Joseph County / Sturgis township",
+"Iron County / Crystal Falls township",
+"Iron County / Iron River township",
+"Alcona County / Harrisville township",
+"Barry County / Middleville village",
+"Gogebic County / Bessemer township",
+"Gogebic County / Wakefield township",
+"Berrien County / Berrien Springs village",
+"Berrien County / Buchanan township",
+"Berrien County / New Buffalo township",
+"Berrien County / Niles township",
+"Berrien County / Watervliet township",
+"Ogemaw County / Rose township",
+"Ogemaw County / West Branch township",
+"Ingham County / Dansville village",
+"Ingham County / Leslie township",
+"Lapeer County / Columbiaville village",
+"Lapeer County / Imlay township",
+"Lapeer County / Lapeer township",
+"St. Clair County / St. Clair township",
+"Livingston County / Brighton township",
+"Livingston County / Fowlerville village",
+"Livingston County / Howell township",
+"Livingston County / Pinckney village",
+"Tuscola County / Vassar township",
+"Oceana County / Hart township",
+"Oceana County / Rothbury village",
+"Washtenaw County / Dexter township",
+"Washtenaw County / Saline township",
+"Hillsdale County / Hillsdale township",
+"Hillsdale County / Litchfield township",
+"Hillsdale County / Reading township",
+"Genesee County / Davison township",
+"Genesee County / Goodrich village",
+"Genesee County / Mount Morris township",
+"Presque Isle County / Rogers township",
+"Calhoun County / Albion township",
+"Calhoun County / Marshall township",
+"Huron County / Caseville township",
+"Iosco County / Tawas township",
+"Ionia County / Ionia township",
+"Ionia County / Lake Odessa village",
+"Ionia County / Portland township",
+"Ionia County / Saranac village",
+"Macomb County / New Haven village",
+"Macomb County / Richmond township",
+"Macomb County / Romeo village",
+"Dickinson County / Norway township",
+"Saginaw County / Frankenmuth township",
+"Saginaw County / Zilwaukee township",
+"Bay County / Pinconning township",
+"Arenac County / Au Gres township",
+"Arenac County / Standish township",
+"Cheboygan County / Mackinaw township",
+"Gladwin County / Beaverton township",
+"Gladwin County / Gladwin township",
+"Monroe County / Milan township",
+"Monroe County / South Rockwood village",
+"Kalamazoo County / Vicksburg village",
+"Mackinac County / St. Ignace township",
+"Eaton County / Eaton Rapids township",
+"Manistee County / Manistee township",
+"Missaukee County / Lake township",
+"Oakland County / Beverly Hills village",
+"Oakland County / Bingham Farms village",
+"Oakland County / Franklin village",
+"Oakland County / Lake Orion village",
+"Oakland County / Leonard village",
+"Oakland County / Novi township",
+"Oakland County / Ortonville village",
+"Oakland County / Royal Oak city",
+"Oakland County / Southfield township",
+"Oakland County / Wolverine Lake village",
+"Osceola County / Evart township",
+"Branch County / Bronson township",
+"Branch County / Coldwater township",
+"Branch County / Union township",
+"Allegan County / Allegan township",
+"Allegan County / Otsego township",
+"Allegan County / Saugatuck township",
+"Allegan County / Wayland township",
+"Muskegon County / Montague township",
+"Muskegon County / Whitehall township",
+"Delta County / Escanaba township",
+"Isabella County / Lake Isabella village",
+"Lenawee County / Adrian township",
+"Lenawee County / Hudson township",
+"Houghton County / Hancock township",
+"Houghton County / Laurium village"
+],
+"dups": []
+}
+]

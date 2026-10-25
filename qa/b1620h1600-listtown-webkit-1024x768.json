@@ -1,0 +1,98 @@
+{
+ "Pittsburgh": {
+  "hdr": {
+   "title": "President",
+   "crumbs": "Allegheny County Pittsburgh city",
+   "gq": "Pittsburgh city, Allegheny Coun\u2026",
+   "ym": "2024",
+   "num": "pct",
+   "list": true,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / Kamala Harris 76.9%",
+   "Donald Trump 2024 / Donald Trump 21.5%"
+  ],
+  "rows": [],
+  "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Allegheny County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"tw\":[\"c\",\"Allegheny County\",\"Pittsburgh city\"],\"ll\":[41.0078,-77.605,7]}",
+  "map": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Pittsburgh city, Allegheny Coun\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 21%"
+   ]
+  },
+  "reload": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Allegheny County, PA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 21%"
+   ]
+  },
+  "err": []
+ },
+ "Boston": {
+  "hdr": {
+   "title": "President",
+   "crumbs": "Suffolk County Boston city",
+   "gq": "Boston city, Suffolk County, MA",
+   "ym": "2024",
+   "num": "pct",
+   "list": true,
+   "sort": null
+  },
+  "th": [
+   "Kamala Harris 2024 / Kamala Harris 76.0%",
+   "Donald Trump 2024 / Donald Trump 19.4%"
+  ],
+  "rows": [],
+  "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Massachusetts\",\"co\":\"Suffolk County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"tw\":[\"c\",\"Suffolk County\",\"Boston city\"],\"ll\":[42.0679,-71.718,8]}",
+  "map": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Suffolk County Boston city",
+    "gq": "Boston city, Suffolk County, MA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 19%"
+   ]
+  },
+  "reload": {
+   "hdr": {
+    "title": "President",
+    "crumbs": "Suffolk County Boston city",
+    "gq": "Suffolk County, MA",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   "th": [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 19%"
+   ]
+  },
+  "err": []
+ }
+}

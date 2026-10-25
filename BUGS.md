@@ -710,7 +710,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~11 AM EDT (10:55-10:59 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors or page errors.** Logs `qa/h1100-*.log`, data `qa/b1618h1100-*.json`, shots `qa/shotsh1100/b1618h11-*.png`. Scripts `qa/h1100-cityN.py` (copy of h1000-cityN.py that saves every town row), `h1100-lay3.py`, `h1100-cmp.py`. Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-*.json`, NJ / PA / NC / GA, not covered before). Each neighbour town's own list was opened too, to check for double counting.
-- **New: QA-126 [HIGH, not double counted: verified Oct 25 11 AM] West Pottsgrove township, PA is counted inside Pottstown borough, tapping that row shows it under Pottstown's title, and West Pottsgrove's own list is empty.**
+- **New: QA-126 [FIXED on 1620 (Oct 25 ~4 PM EDT)] [HIGH, not double counted: verified Oct 25 11 AM] West Pottsgrove township, PA is counted inside Pottstown borough, tapping that row shows it under Pottstown's title, and West Pottsgrove's own list is empty.**
   - Size, build, engine: WebKit 1024x768 (touch); build 1618.
   - Steps: bottom field "Pennsylvania" + Enter > geo filter (#bGeo) > counties > Montgomery > Pottstown borough. Then back > West Pottsgrove township.
   - Expected: Pottstown's list holds only Pottstown precincts; West Pottsgrove township opens its own precinct(s) with its own totals.
@@ -773,7 +773,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~9 AM EDT (8:57-9:05 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests.** Logs `qa/h0900-*.log`, data `qa/b1618h0900-*.json`, shots `qa/shotsh0900/b1618h9-*.png`. Scripts `qa/h0900-city.py` / `h0900-cityN.py` (copies of h0800-city.py), `h0900-lay3.py`, `h0900-cmp.py`.
-- **New: QA-124 [HIGH by orchestrator ruling Oct 25: votes counted once, filed under the wrong town; raise a case to CRITICAL only if the precinct also still appears under its own town] (filed by the 9 AM run as QA-123, renumbered) Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
+- **New: QA-124 [PARTLY FIXED on 1620: MA/MI/NJ/PA examples fixed; Forest Park/Morrow GA still open; Baldwin moved to the wrong Baldwin (QA-128)] [HIGH by orchestrator ruling Oct 25: votes counted once, filed under the wrong town; raise a case to CRITICAL only if the precinct also still appears under its own town] (filed by the 9 AM run as QA-123, renumbered) Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
   - Size, build, engine: Chromium 390x844 (MA), WebKit 1024x768 (MI, NJ, PA), Chromium 375x667 (neighbour lists); build 1618, touch.
   - Steps: bottom field state name + Enter > geo filter (#bGeo) > counties > county > town.
   - Expected: a town's list holds only its own precincts, and each precinct appears under the town it belongs to.
@@ -794,7 +794,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 ## Hourly run, build 1618, Oct 25 ~8 AM EDT (7:51-8:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch on phones, Chromium + WebKit, up to 6 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests in any run.** Logs `qa/h0800-*.log`, data `qa/b1618h0800-*.json`, shots `qa/shotsh0800/b1618h8-*.png`. Scripts are `qa/h0800-*.py`: lay3, addr2, own, pa16, states and cmp are copied from h0700, and city, dupaudit and sortchart are new.
 - **QA-119 family hunt.** `qa/h0800-dupaudit.py` loads each state's 2024 precincts and assigns them to towns by centroid, approximating the app's `precRowsIn`. It flags precincts whose name names a different town of the same county. Results are in `qa/b1618h0800-dupaudit-sb_*.json`, 50 files, one per state. Burlington, VT is flagged again (QA-119 still open). The UI checks below are `qa/h0800-city.py`, which drills state > geo sheet > county > town and lists every row.
-  - **New: QA-121 [CRITICAL, confirmed by orchestrator Oct 25] Warwick city, RI includes West Warwick town's votes, tapping that row shows West Warwick under Warwick's title, and West Warwick's own drill-in is empty.**
+  - **New: QA-121 [FIXED on 1620 (Oct 25 ~4 PM EDT, both engines)] [CRITICAL, confirmed by orchestrator Oct 25] Warwick city, RI includes West Warwick town's votes, tapping that row shows West Warwick under Warwick's title, and West Warwick's own drill-in is empty.**
     - Size, build, engine: Chromium 320x568 and WebKit 1024x576 (Warwick); WebKit 390x844 (West Warwick); build 1618, touch.
     - Steps: bottom field "Rhode Island" + Enter > geo filter (#bGeo) > Rhode Island counties > Kent > Warwick city.
     - Expected: Warwick city's own rows and totals only. West Warwick town appears only as its own row in the Kent list, and drilling into it shows its own results.
@@ -802,7 +802,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
     - Both Warwick rows are prefixed "003-" (raw codes, see QA-105/120). Other RI towns are too: "007-Providence", and the CT town rows ("110-Hartford", "170-Milford").
     - Shots: qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list-num.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-tapSuspect.png, qa/shotsh0800/b1618h8-we-1024x576-city-Warwickcity-{list,list-num,tapSuspect}.png, qa/shotsh0800/b1618h8-we-390x844-city-WestWarwicktown-list.png
     - Data: `qa/b1618h0800-city-chromium-320x568-a.json`, `qa/b1618h0800-city-webkit-1024x576-w.json`, `qa/b1618h0800-city-webkit-390x844-d.json`
-  - **New: QA-122 [MEDIUM by orchestrator ruling; HIGH only if a county/region sum counts Milford twice] Connecticut, South Central region: Milford is listed twice, as "Milford city (balance)" and "Milford town", with the same votes.**
+  - **New: QA-122 [CHANGED on 1620: 'Milford city (balance)' now empty (QA-128)] [MEDIUM by orchestrator ruling; HIGH only if a county/region sum counts Milford twice] Connecticut, South Central region: Milford is listed twice, as "Milford city (balance)" and "Milford town", with the same votes.**
     - Size, build, engine: Chromium 390x844, build 1618, touch.
     - Steps: "Connecticut" + Enter > geo sheet > Connecticut counties > South Central Connecticut Planning Region.
     - Expected: one Milford row (the town; the census "city (balance)" is the same place minus Woodmont borough).
@@ -845,7 +845,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~7 AM EDT (6:55-7:06 AM EDT; line 9 = 202610181618, unchanged, so a fresh-coverage pass; v3 still 404)
 - Touch on phones, Chromium + WebKit, up to 7 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests.** Logs `qa/h0700-*.log`, shots `qa/shotsh0700/b1618h7a-*.png`, scripts `qa/h0700-*.py` (copied from h0600; new `h0700-vtbur.py`).
-- **New: QA-119 [CRITICAL by the QA-087/093/098/103 ruling, orchestrator to confirm] Burlington city, VT includes South Burlington's votes, and tapping that row shows South Burlington under Burlington's title.** Chromium 390x844 and WebKit 1024x768, same result.
+- **New: QA-119 [FIXED on 1620 (Oct 25 ~4 PM EDT, both engines)] [CRITICAL by the QA-087/093/098/103 ruling, orchestrator to confirm] Burlington city, VT includes South Burlington's votes, and tapping that row shows South Burlington under Burlington's title.** Chromium 390x844 and WebKit 1024x768, same result.
   - Steps: bottom field "Vermont" + Enter > geo filter (#bGeo) > Vermont counties > Chittenden > Burlington city.
   - Expected: Burlington city's own wards or precincts and its own totals; South Burlington city appears only as its own row in the Chittenden list.
   - Actual: the Burlington city list has two rows, "City" 85.1% (Harris 17K) and **"South Burlington City" 80.0% (10K)**. The Burlington thumbnails are Harris 27K / Trump 4K (83% / 13%), which is City + South Burlington. The county list's "Burlington city" row (83.2%) is that same combined figure, while "South Burlington city" (80.1%) is also its own row, so about 10K Harris votes appear under two different county rows. Tapping "South Burlington City" keeps the title "Chittenden County Burlington ci…" and changes the thumbnails to 10K / 2K.
@@ -1632,7 +1632,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Not covered: deselect with a state selected; 1024x768 deselect.
 - Shots: `qa/shots39/desel-A-webkit-390-ushouse-menu-{24,16}-{PA,GA,Philly}-z{6,9}.png` (blank), `qa/shots39/desel-R-*` (after reload), `qa/shots39/desel-A-chromium-390-schools-menu-*`, and bisect `qa/shots39/desel-b8853-*` (1565) / `qa/shots39/desel-b8854-*` (1564). Probe: `qa/p39-desel.py`.
 
-### QA-113 [HIGH, PARTLY FIXED on 1618: the bottom-field (#gq) entry now clears the type and shows the place; still OPEN on the #bGeo sheet as filed, and "Pittsburgh" in the bottom field resolves to East Pittsburgh borough / Allegheny County (hourly run ~4 PM EDT); ruled HIGH by the orchestrator, Oct 19 ~3:50 PM EDT. Since 4:13 PM EDT it covers only the geo-filter button path (an entry doesn't clear the district type); the wrong-place results were split out to QA-115] A geo-filter entry doesn't clear the selected district type and doesn't show the entered place
+### QA-113 [HIGH, PARTLY FIXED on 1620: #bGeo Enter now clears the type; #bGeo suggestion-row tap still keeps it (hourly run ~4 PM EDT Oct 25)] [PARTLY FIXED on 1618: the bottom-field (#gq) entry now clears the type and shows the place; still OPEN on the #bGeo sheet as filed, and "Pittsburgh" in the bottom field resolves to East Pittsburgh borough / Allegheny County (hourly run ~4 PM EDT); ruled HIGH by the orchestrator, Oct 19 ~3:50 PM EDT. Since 4:13 PM EDT it covers only the geo-filter button path (an entry doesn't clear the district type); the wrong-place results were split out to QA-115] A geo-filter entry doesn't clear the selected district type and doesn't show the entered place
 - User spec: typing into the geo filter and entering or picking a country, state, county or town must show results for that entry and deselect any district type, in both list and map views.
 - Steps (Chromium 390x844 touch, 1617): fresh load, pick US House in the type menu and close it, tap #bGeo, type the query, press Enter.
   - "Pennsylvania": US House stays on; the list shows "Pennsylvania US House districts" with District 01-17 instead of Pennsylvania results with the type cleared.
@@ -1641,7 +1641,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Not yet checked: WebKit, 1024x768, list view, picking from the suggestion rows instead of Enter.
 - Shots: `qa/shots39/geo-chromium-390-{Pennsylvania,PhiladelphiaCounty,Pittsburgh}.png`. Probe: `qa/p39-geo.py`.
 
-### QA-115 [CRITICAL, orchestrator ruling Oct 19 4:13 PM EDT, split out of QA-113] Enter on a city name lands on the wrong place
+### QA-115 [FIXED on 1620 (map view, both fields, 9 city names; Oct 25 ~4 PM EDT); list view with a type on is QA-129] [CRITICAL, orchestrator ruling Oct 19 4:13 PM EDT, split out of QA-113] Enter on a city name lands on the wrong place
 - Build 1618, Chromium and WebKit (same in both).
 - 'Pittsburgh' and 'Pittsburgh, PA' go to East Pittsburgh borough and Allegheny County (60/39).
 - 'Columbus' goes to Columbus County, NC.
@@ -1655,7 +1655,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
   - Mechanisms: the first state alphabetically wins; a town pick shows its county's title and numbers; #bGeo matches fuzzily.
   - Details in the '~5 PM EDT' run section; shots qa/shotsh1700/b1618h7-{ch,we}-390x844-city{gq,bgeo}-*.png.
 
-### QA-116 [HIGH, needs ruling; build 1618, hourly run ~5 PM EDT] A county picked in the bottom field opens at state zoom, not on the county
+### QA-116 [FIXED on 1620 (Fulton z8, Franklin/Lancaster/Richmond z9; Oct 25 ~4 PM EDT)] [HIGH, needs ruling; build 1618, hourly run ~5 PM EDT] A county picked in the bottom field opens at state zoom, not on the county
 - Severity: HIGH, proposed (the main search path shows a multi-state map under a county title; the county is only a small outline). Title, numbers, field and outline are the right place, so this is not the QA-115 wrong-place family. | Build 1618 | Chromium 390x844 and WebKit 390x844 (15 s wait), touch
 - Steps: fresh load > tap the bottom field > type "Fulton County, GA" (or "Richmond County, GA", "Franklin County, OH", "Lancaster County, NE", "Jackson County, MO") > Enter, or tap the county row > wait 6-15 s.
 - Expected: the map flies to the county, as the geo-filter button path does (Fulton County, GA > z9 at 33.85, -84.47; Franklin County, OH > z9 at 39.97, -83.01) and as the bottom field does for Philadelphia (z10), Allegheny (z9), Lancaster County, PA (z9) and Columbus County, NC (z9).
@@ -1677,7 +1677,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: qa/shotsh1700/b1618h7-ch-390x844-citygq-FultonCountyGA.png, qa/shotsh1700/b1618h7-ch-390x844-citygq-Lancaster.png, qa/shotsh1700/b1618h7-we-390x844-citygq-Richmond.png, qa/shotsh1700/b1618h7-ch-390x844-coglobe-gq-map.png (Franklin, gq) vs qa/shotsh1700/b1618h7-ch-390x844-coglobe-bgeo-map.png (Franklin, #bGeo, z9)
 - Data: `qa/b1618h1700-citygq-chromium-390x844-zoom.json`, `qa/b1618h1700-citygq-{chromium-390x844,webkit-390x844-w15}.json` (`mp`), `qa/b1618h1700-coglobe-{chromium,webkit}-390x844*.json`; script `qa/h1700-city.py` (WT / SUF env), `qa/h1700-coglobe.py`
 
-### QA-117 [CRITICAL by the QA-103 ruling (reload must restore the exact selection), orchestrator to confirm; build 1618, Oct 25 ~6 AM EDT] A district picked from a list is lost on reload after switching to the map
+### QA-117 [still open on 1620] [CRITICAL by the QA-103 ruling (reload must restore the exact selection), orchestrator to confirm; build 1618, Oct 25 ~6 AM EDT] A district picked from a list is lost on reload after switching to the map
 - Severity: CRITICAL, proposed. The reload loses the selection the user made. Title, numbers and map then agree with each other (the state), so this is not a mixed screen; HIGH if the orchestrator rates it that way. | Build 1618 | Chromium 390x844, 375x667, 1024x768; WebKit 1024x768, 390x844 (touch)
 - Steps: fresh load > bottom field "Wisconsin" + Enter > layers button > State senate > close > globe (list) > tap "33" > globe (map) > reload.
 - Expected: after the reload, "District 033" with Trump 66% / Harris 32% (as before the reload, and as in list view where `lap:"District 033"` is saved and restored).
@@ -1690,7 +1690,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: qa/shotsh0600/b1618h6-ch-390x844-distreload-Wisconsin-senate-33-map-before.png, qa/shotsh0600/b1618h6-ch-390x844-distreload-Wisconsin-senate-33-map-after.png, qa/shotsh0600/b1618h6-we-1024x768-distreload-Georgia-statehouse-56-map-after.png
 - Data: `qa/b1618h0600-distreload-{chromium-390x844,webkit-1024x768,chromium-375x667}.json` (`before` / `after` = header, thumbnails, `__stateSnapshot()`), `qa/b1618h0600-yrs-chromium-1024x768.json` > reload
 
-### QA-118 [MEDIUM; build 1618, Oct 25 ~6 AM EDT] Pie in a selected district opens the precincts bar list, not a pie
+### QA-118 [still open on 1620] [MEDIUM; build 1618, Oct 25 ~6 AM EDT] Pie in a selected district opens the precincts bar list, not a pie
 - Severity: MEDIUM (the chart menu offers Pie and doesn't honour it; no wrong numbers). | Build 1618 | Chromium 390x844, 375x667, 1024x768; WebKit 390x844 (touch)
 - Steps: fresh load > "Pennsylvania" + Enter > layers > State senate > globe > tap the first row (District 010) > globe (map) > chart button > Pie. Also with US House (Ohio District 07), and at state level with a district type on (Wisconsin senate, Georgia state house).
 - Expected: a pie for the district (as for a state or county: Pennsylvania with no type > Pie gives a pie, Trump 50.2% / Harris 48.5%).
@@ -1701,6 +1701,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 
 ## Numbering note (Oct 25, ~10 AM EDT)
+(Update ~4 PM EDT: QA-128 = 1620 name-gate regression, QA-129 = list view + district type, city shows county numbers. Next new bug is QA-130.)
 Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW). QA-126 West Pottsgrove inside Pottstown PA (HIGH: misfiled, not double counted).
 
 ## Hourly run, build 1618 (Oct 25 ~12 PM EDT): no new bugs
@@ -1729,7 +1730,7 @@ Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Wa
 ## Hourly run, build 1618 (Oct 25 ~2 PM EDT): 1 new bug (QA-127)
 - Live line 9 still `202610181618`; v3 still 404.
 
-### QA-127 [HIGH, pending orchestrator ruling] A county with no towns drills to "Nothing to list" with no thumbnails
+### QA-127 [HIGH, confirmed; still open on 1620] A county with no towns drills to "Nothing to list" with no thumbnails
 - Build 202610181618, Chromium 390x844 touch.
 - Steps: search "Virginia" > geo-filter button > first list level (counties) > tap "Arlington County". Same for Henrico County VA, Chesterfield County VA and Howard County MD.
 - Expected: the county's precincts (or a single "unincorporated"/county row) with the county's numbers in the thumbnails (Arlington is about 78% / 20%, as the address search shows).
@@ -1747,3 +1748,64 @@ Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with 
   - Observation, not filed: typing "100 N Capitol Ave, Lansing" offers "100 S CAPITOL AVE" as the top suggestion (geocoder choice; the precinct shown is plausible for the capitol block).
 - Layout sweep at 390, 375, 320, 1024x576, 1024x768 (`qa/h1500-cmp.py`): every step SAME as the ~2 PM run; only the known items; no errors or failed requests.
 - Data: `qa/b1618h1500-addr2-*.json`, `qa/b1618h1500-layout3-chromium-*.json`; shots `qa/shotsh1500/`.
+
+## Hourly run, build 1620 (Oct 25 ~4 PM EDT): 2 new CRITICAL bugs (QA-128, QA-129); QA-115/116/119/121/126 fixed; QA-113/124 partly fixed
+- Live line 9 now `202610251620` (main e541e09 Build 1619 search fixes, 09b6cd9 Build 1620 place-membership gate). v3 still 404.
+
+### QA-128 [CRITICAL (wrong numbers under a place's title, regression from the 1620 gate)] Build 1620's name gate moves whole towns' precincts to a same-named neighbour; about 1,200 towns now show "Nothing to list"
+- Build 202610251620, Chromium 390x844 and WebKit 390x844, touch. First bad build: 1620 (09b6cd9). Both were fine on 1618.
+- Cause (from the diff): `twOwner()` matches a precinct name against each town's base name, which drops "city / township / charter township / borough / village / town". Same-named city and township pairs share a base. The tie goes to whichever sorts first, and a township's "X Township 3" also matches the city "X". Precincts named for a township (MCD) also leave the village that holds them.
+- Steps: state + Enter > #bGeo > first list level (counties) > tap the county > tap the town.
+  - **New Jersey > Camden > Gloucester City city**: 48 rows; 40 of them are "Gloucester Township Ward 00 District NN". Thumbnails Harris 56% / Trump 42%, **21K / 16K** (Gloucester City alone is about 4K votes). **Gloucester township**: "Nothing to list", no thumbnails (it had 41 rows, 33K votes, on 1618; the Somerdale check this morning drilled into it). Same on WebKit.
+  - **Michigan > Alpena > Alpena city**: 10 rows, including 5 "Alpena Township, Precinct N"; 6K / 5K. **Alpena township**: "Nothing to list".
+  - **Michigan > Oakland > Royal Oak city**: "Nothing to list". All 18 "Royal Oak, Precinct N" rows (the city's) are now under **Royal Oak charter township**: 20 rows, Harris 66% / Trump 32%, 27K / 13K (the real charter township has about 1.2K votes).
+  - **Pennsylvania > Bucks > Bristol borough**: 39 rows, including all the "Bristol Twp ..." rows; 17K / 16K. **Bristol township**: "Nothing to list".
+  - **Pennsylvania > Allegheny > Baldwin township**: "Nothing to list". Its "Baldwin Tp Dist 1/2" now sit in **Baldwin borough** (20 rows). Pittsburgh no longer has them (see QA-124).
+  - **Vermont > Washington > Barre city**: 2 rows, "Town" (44.4 / 53.0) and "City"; 5K / 3K. **Barre town**: "Nothing to list". St. Albans town (into St. Albans city) and Newport town (into Newport city) are the same, per the audit.
+  - **Illinois > Cook > Skokie village**: "Nothing to list" (37 "Niles NN" rows, 65 / 34, on the 1 PM run). Its rows now count under "Niles township". The audit adds Elk Grove Village, Arlington Heights, Des Plaines, Glenview, Forest Park, Blue Island, Burbank and most other Cook suburbs.
+  - Northville city, MI (Wayne) has 13 rows (12 "NORTHVILLE TWP"), and Northville township is empty. Plymouth city's "PLYMOUTH CITY n" rows went to Plymouth charter township, and Plymouth city is empty. Niles township, MI went into Niles city.
+  - Connecticut "Milford city (balance)" now has 0 rows (QA-122's duplicate Milford is now empty instead of doubled).
+- Expected: each precinct stays with its own town ("X Township ..." under X township). No town that had precincts on 1618 shows "Nothing to list".
+- Actual: the receiving town's list and thumbnails show the other town's precincts and votes under its own title. The losing town opens "Nothing to list" with no thumbnails, while the county list row for the losing town still shows numbers (Camden list: "Gloucester township 40.5 / 57.9").
+- No votes were counted twice in the cases tapped: rows left their owner rather than being copied.
+- Scale (`qa/h1600-gate.py`): the app's own `__pri` (gated) membership compared with centroid-in-polygon membership (approximately 1618's `precRowsIn0`), every state. Towns emptied: IL 332, MN 248, IA 154, IN 149, MI 105, OH 66, MO 52, NE 36, NJ 19, PA 18, SD 15, VT 5, NC 4, AR 2, KS 2, and 1 each in AL, AZ, CT, OR, SC. Total about 1,212. Big gains under the wrong title: Gloucester City NJ 4.3K to 37K votes, Egg Harbor City NJ 1.9K to 26K, Freehold borough NJ 3.9K to 25K, Rockaway borough NJ 3.6K to 19K, Royal Oak charter twp MI 1.2K to 41K, Bristol borough PA 5.3K to 33K, Newtown borough PA 1.8K to 15K, Doylestown borough PA 5.8K to 18K, Mendota city MN 127 to 8.6K.
+  - Franklin County, OH: Jackson township 26K to 1.6K, Washington twp 25K to 0.5K, Mifflin twp 20K to 0, Norwich twp 21K to 1.4K. Their city-named precincts ("GROVE CITY", "COLUMBUS", "GAHANNA") moved to the cities. That may be correct for Ohio's township/city overlap; it needs a ruling. The Franklin County list order changed: Columbus, Grove City, Upper Arlington; it was Columbus, Jackson twp, Washington twp.
+- Screenshots: `qa/shotsh1600/b1620h16-ch-390x844-cityN-GloucesterCitycity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Gloucestertownship-list.png`, `qa/shotsh1600/b1620h16-we-390x844-cityN-Gloucestertownship-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Alpenacity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-RoyalOakcity-list.png`, `qa/shotsh1600/b1620h16-ch-390x844-cityN-Skokievillage-list.png`. Data: `qa/b1620h1600-gate-{a,s1,s2,s3}.json` (`changed`, `emptied`), `qa/h1600-cityN-{A,B,C,W}.log`.
+
+### QA-129 [CRITICAL (place under another place's numbers)] List view with a district type on: entering a city shows the city's title with its county's numbers
+- Build 202610251620, Chromium 390x844 and WebKit 390x844 / 1024x768, touch. On 1618 the same entry landed on the wrong place (QA-115), so this could not be seen then.
+- Steps: fresh load > globe (All States list) > layers > US House > close > bottom field (or #bGeo) "Pittsburgh" + Enter.
+- Expected: Pittsburgh city's list and numbers (Harris 77% / Trump 21%, as the map view and the no-type list path show).
+- Actual: the district type is cleared and the header reads "Allegheny County Pittsburgh city". The thumbnails show **Harris 60% / Trump 39%** (Allegheny County), and the list is one row, "Allegheny 39.4% / 59.7%". "Boston" gives "Suffolk County Boston city" with 75 / 22 and a "Suffolk" row; "Columbus" gives "Franklin County Columbus city" with 64 / 35 and a "Franklin" row. Without a district type the same entry is correct (Pittsburgh 76.9 / 21.5). Switching to the map also shows 77 / 21.
+- Screenshots: `qa/shotsh1600/b1620h16-we-390x844-geo2fold-list-Pittsburgh-2.png`, `qa/shotsh1600/b1620h16-ch-390x844-geo2gq-list-Pittsburgh-2.png`, `qa/shotsh1600/b1620h16-we-1024x768-geo2gqt-list-Boston-2.png`. Data: `qa/b1620h1600-geo2*-list*.json`.
+
+### Re-tests of the changed items
+- **QA-115 FIXED (map view)**: in the bottom field and in #bGeo, Enter on "Pittsburgh" and "Pittsburgh, PA" opens Pittsburgh city (77 / 21, z16). The same is true for "Columbus" (Columbus city, Franklin County, OH, 68 / 30), "Cleveland" (Cleveland city, OH, 77 / 21), "Portland" (Portland city, Multnomah, 83 / 12), "Springfield" (Springfield city, Greene County, MO), "Boston" (Boston city, MA, 76 / 19), "Kansas City" (Kansas City city, Jackson County, MO) and "Philadelphia". All have the type cleared and no errors (Chromium 390x844). In list view with a type on, see the new QA-129.
+  - Observation, not filed: "Gloucester Township" + Enter opens Gloucester city, MA, not Gloucester township, NJ (the "Township" word is ignored).
+- **QA-116 FIXED**: from the bottom field and from #bGeo, Fulton County, GA opens at z8 (34.03, -84.45), Franklin County, OH at z9, Lancaster County, NE at z9 and Richmond County, GA at z9.
+- **QA-113 PARTLY FIXED**: with US House on, Enter in the #bGeo sheet now clears the type: "Pennsylvania", "Philadelphia County, PA", "Pittsburgh", "Fulton County, GA" and "Ohio" all end with type none, in map and list views. **Still open:** tapping a suggestion row in the #bGeo sheet ("Philadelphia County, PA", "Fulton County, GA", "Ohio") keeps US House on. The list shows "Ohio US House districts" and Fulton's US House rows "7 / 6 / 5" (Chromium 390 map, WebKit 390 list; shots `qa/shotsh1600/b1620h16-{ch-390x844-geo2fold-map,we-390x844-geo2fold-list}-{Fulton,Ohio,PhiladelphiaCounty}-2.png`).
+- **QA-119 FIXED**: Burlington city, VT has 1 row "City" with 85% / 11% (17K / 2K) and no South Burlington row. South Burlington city has its own row, 80% / 18% (10K / 2K). Chromium and WebKit.
+- **QA-121 FIXED**: Warwick city, RI has 1 row "003-Warwick" with 53% / 45% (24K / 21K; it was 31K / 28K). West Warwick town has "003-West Warwick" with Trump 50% / Harris 48% (7K / 7K) under its own title (it was "Nothing to list"). Chromium and WebKit.
+- **QA-126 FIXED**: Pottstown borough has 10 rows, all "Pottstown N", 62% / 37% (6K / 4K). West Pottsgrove township has its own row, 929 / 928.
+- **QA-124 PARTLY FIXED**:
+  - Fixed (each row is now under its owner and gone from the host): Holyoke 2-A (Chicopee has 19 own rows; Holyoke has 14 rows including 2-A, 484 / 248), Mashpee 3 (Sandwich 6 rows; Mashpee 4 rows including Precinct 3, 949 / 892), Pittsfield Twp 3 (out of Ann Arbor, 46 city rows), Oshtemo 6 (Kalamazoo city 27 rows; Oshtemo 10), Rutherford D-09 (Lyndhurst 15 rows; Rutherford 12), Norwood 3, Upper Providence D-1 (Media), Graham 3 (Burlington NC), Brook Park 01-A (out of Cleveland), Somers W1 (out of Kenosha). Pittsburgh city now has 400 rows with no Baldwin rows (77 / 21, 124K / 35K).
+  - Still open: Forest Park / Morrow, GA. Forest Park city still lists "063MO1 - Morrow 1" (86.1%), and Morrow city still lists "063FP6 - Forest Park 6". The "063XX# - " prefix is not stripped by `twOwner`.
+  - Changed: the Baldwin rows went to Baldwin borough, and Baldwin township is now empty (QA-128).
+- **QA-122 CHANGED**: "Milford city (balance)" now has 0 rows, and "Milford town" has 1 (part of QA-128).
+
+### Other open bugs (cheap checks)
+- QA-117 still open: WI senate District 033 > map > reload gives "Wisconsin" 50 / 49, and GA house 056 gives "Georgia" 51 / 49 (Chromium 390).
+- QA-118 still open: PA senate District 010 > chart menu offers only "pie", and tapping it opens the "District 010 precincts" bar list.
+- QA-127 still open: `__townsIn` returns 0 towns for Arlington County, VA and Howard County, MD.
+- QA-094 still open: Fairfax County lists only Clifton (2), Herndon (3) and Vienna (4).
+- QA-099 still open: at 320x568 the chip (218-252 x 111-133) sits on CA's "58.5%" bar and Columbus's "68.2%" bar. At 1024x576 (WebKit) it sits on Dallas city's "65.0%" bar.
+- Not re-run this hour: QA-012, 023, 095, 112, 120, 123, 125 (code paths unchanged by 1619/1620 apart from search).
+
+### Smoke and layout
+- **% / # / sort / chart menu** (`qa/h1600-sortchart.py`; Chromium 320x568 All States > OH > Franklin; WebKit 1024x576 All States > TX > Dallas):
+  - Sorting is high to low, the chip reverses it, and a second tap restores it.
+  - # agrees with %: US 77.30M / 75.02M; OH 3.18M / 2.53M; TX 6.39M / 4.84M; Franklin 211K / 381K / 6K; Dallas city 127K / 248K.
+  - Taps took 6-85 ms; none was over 100 ms.
+- **PA 2016** (WebKit 390x844): the bar is Trump 48.2 / Clinton 47.5 / other 4.4, and the pie is 48.2 / 47.5. '24 is 50.2 / 48.5. No errors.
+- **Layout sweep** (President > slider > All States > MA > '20 / '24 > Worcester > US House on / off > back x2 > split bar > drill / back > map), Chromium at 390, 375, 320, 1024x576 and 1024x768: every step is **SAME** as the 3 PM run on 1618. Only the known items appear (slider +68 px; split-bar first row +14 px). No console errors, no failed requests. Data `qa/b1620h1600-layout3-chromium-*.json`; compare with `qa/h1600-cmp.py`; shots `qa/shotsh1600/b1620h16-ch-*-ls3*`.
+- No console or page errors in any script this run. The only failed requests were aborted ArcGIS map tiles.
