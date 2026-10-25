@@ -708,7 +708,7 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
-## Hourly run, build 1618, Oct 25 ~10 AM EDT (9:50-10:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
+## Hourly run, build 1618, Oct 25 ~10 AM EDT (9:50-10:01 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests. No tap over 100 ms** (max 80 ms, the '20 tick on Dane County, Chromium 320). Logs `qa/h1000-*.log`, data `qa/b1618h1000-*.json`, shots `qa/shotsh1000/b1618h10-*.png`. Scripts: `qa/h1000-cityN.py` (copy of h0900-cityN.py), `h1000-modes.py`, `h1000-order.py` (new), `h1000-lay3.py`, `h1000-cmp.py` (copies of h0900), `h1000-sum.py`.
 - **QA-123 (same bug, 2 more examples; still CRITICAL pending orchestrator confirmation).** Same steps (state + Enter > #bGeo > counties > county > town):
   - Kenosha city, Kenosha WI (Chromium 320x568, 76 rows): **"Village of Pleasant Prairie War…"** 54.3% / 44.5%, 586 / 481 (the 8 AM audit names it Pleasant Prairie Ward 6). Tapping it keeps the title "Kenosha County Kenosha city" with thumbnails Trump 586 / Harris 481. Shots: qa/shotsh1000/b1618h10-ch-320x568-cityN-Kenoshacity-{list,list-num,tapSuspect}.png
