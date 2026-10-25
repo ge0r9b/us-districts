@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610251620";</script>
+<script>window.BUILD="202610251621";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2024,7 +2024,7 @@ window.__parts=function(st,rows){ PARTS[st]=rows.map(r=>({county:r[0],name:r[1],
 function loadParts(st){ if(!st||PARTS[st]||!STATE_FILES[st]) return Promise.resolve();
   return PARTL[st]||(PARTL[st]=new Promise(res=>{ const s=document.createElement("script"); s.src="data/parts/"+STATE_FILES[st]+"?v="+window.BUILD; s.onload=res; s.onerror=()=>{ PARTS[st]=[]; res(); }; document.head.append(s); })); }
 const TW={};
-window.__townsIn=(st,c)=>townsIn(st,c); window.__pri=(d,r,c)=>precRowsIn(d,r,c); window.__loadParts=st=>loadParts(st);
+window.__townsIn=(st,c)=>townsIn(st,c); window.__pri=(d,r,c)=>precRowsIn(d,r,c); window.__pri0=(d,r,c)=>precRowsIn0(d,r,c); window.__loadParts=st=>loadParts(st);
 function sliver(polys){ let A=0, lat=40; try{ polys.forEach(p=>p.forEach((r,k)=>{ let t=0; for(let i=0,j=r.length-1;i<r.length;j=i++) t+=r[j][0]*r[i][1]-r[i][0]*r[j][1]; A+=(k?-1:1)*Math.abs(t)/2; lat=r[0][1]; })); }catch(e){ return false; } return A*12321*Math.cos(lat*Math.PI/180)<0.02; } /* km2 under 0.02 = a digitising sliver, not a real piece of a town */
 function normT(n){ return String(n).toLowerCase().replace(/\s+(city|borough|town|township|village|cdp|municipality|charter township|plantation)$/,"").trim(); }
 function townsIn(st,c){ const key=st+"|"+c; if(TW[key]) return TW[key];
@@ -2037,8 +2037,13 @@ function townsIn(st,c){ const key=st+"|"+c; if(TW[key]) return TW[key];
     towns.push([st,c,p.name,polys]); have.add(normT(p.name)); });
   towns.sort((a,b)=>a[2].localeCompare(b[2])); towns.forEach(t=>{ t.__tw=towns; }); return TW[key]=towns; }
 function twBase(n){ return normT(String(n).replace(/^\d+-/,"").split(",")[0]).replace(/\s+(charter township|township|city|town|village|borough|tp|twp)$/,"").trim(); }
-function twOwner(r,T){ const nm=String(r[1]).toLowerCase().replace(/^\d+-/,"").trim(); if(!T.__bs) T.__bs=T.map(t=>[twBase(t[2]),t]).filter(x=>x[0].length>2).sort((a,b)=>b[0].length-a[0].length); for(const [b,t] of T.__bs){ if(nm===b||nm.startsWith(b+" ")||nm.startsWith(b+",")) return t; } return null; }
-function precRowsIn(d,rows,cn){ if(!rows) return []; if(d.__tw&&cn) return precRowsIn0(d,rows,cn).filter(r=>{ const o=twOwner(r,d.__tw); return !o||o===d; }).concat(rows.filter(r=>r[0]===cn&&twOwner(r,d.__tw)===d&&!precRowsIn0(d,[r],cn).length)); /* build 1620 (QA-119/121/124/126): place-membership gate; a precinct named for another town of this county belongs to that town, not to the town its centroid falls in */ return precRowsIn0(d,rows,cn); }
+function twNm(n){ return String(n).toLowerCase().replace(/^\d+-/,"").replace(/^[0-9a-z]{3,}\s+-\s+/,"").replace(/^(village|city|town|township|borough|charter township) of\s+/,"").trim(); } /* build 1621: '003-', '063MO1 - ' codes and a leading 'Village of' are not part of the place name */
+function twOwner(r,T){ const nm=twNm(r[1]); if(!T.__bs){ const c={}; T.forEach(t=>{ const b=twBase(t[2]); c[b]=(c[b]||0)+1; }); T.__bs=T.map(t=>[twBase(t[2]),t]).filter(x=>x[0].length>2&&c[x[0]]===1).sort((a,b)=>b[0].length-a[0].length); T.__amb=new Set(Object.keys(c).filter(b=>c[b]>1)); }
+  for(const b of T.__amb){ if(nm===b||nm.startsWith(b+" ")||nm.startsWith(b+",")) return null; } /* a stem two towns share (Gloucester City / Gloucester Twp) never moves a precinct */
+  const kw=(String(r[1]).toLowerCase().match(/^(?:\d+-)?(village|city|town|township|borough|charter township) of\s/)||[])[1]; /* 'Town of Stanley' only belongs to a town, never to Stanley city */
+  for(const [b,t] of T.__bs){ if(kw&&!new RegExp("\\s"+kw+"$","i").test(t[2])) continue; if(nm===b||(nm.startsWith(b)&&/^(,|\s+(city|town|township|charter township|borough|boro|village|tp|twp|precinct|pct|ward|district|dist|\d))/.test(nm.slice(b.length)))) return t; } return null; }
+function twMoves(h,rows,cn){ const K=h.__mv; if(K&&K.r===rows&&K.c===cn) return K.s; const S=new Set(); if(h[0]!=="Ohio"){ const hb=twBase(h[2]), own=precRowsIn0(h,rows,cn); own.forEach(r=>{ const o=twOwner(r,h.__tw); if(!o||o===h) return; if(hb.length>2&&new RegExp("\\b"+hb.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b").test(twNm(r[1]).slice(twBase(o[2]).length))) return; if(!precRowsIn0(o,[r],cn).length) S.set?0:S.add(r); }); if(S.size>=own.length) S.clear(); } h.__mv={r:rows,c:cn,s:S}; return S; } /* a precinct leaves its 1618 town only when it names exactly one other town of the county, does not name this town, lies outside that town's own boundary, and this town keeps at least one precinct */
+function precRowsIn(d,rows,cn){ if(!rows) return []; if(!(d.__tw&&cn)||d[0]==="Ohio") return precRowsIn0(d,rows,cn); const M=twMoves(d,rows,cn); const out=precRowsIn0(d,rows,cn).filter(r=>!M.has(r)); d.__tw.forEach(t=>{ if(t===d) return; twMoves(t,rows,cn).forEach(r=>{ if(twOwner(r,d.__tw)===d) out.push(r); }); }); return out; } /* build 1621 (QA-128): strict place-membership gate (QA-119/121/124/126) */
 function precRowsIn0(d,rows,cn){ if(!rows) return []; if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); const b=d.__bb;
   return rows.filter(r=>{ if(cn&&r[0]!==cn) return false; if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const q=r[6]; c=[(q[0]+q[2])/2,(q[1]+q[3])/2]; } r.__c=c; }
     const [x,y]=r.__c; return x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]&&pointInItem(d,x,y); }); }
@@ -2757,7 +2762,7 @@ window.__exactRank=function(A,q){ let lo=String(q||"").trim().toLowerCase(), bas
   const rk=x=>x.tag==="State"?0:((x.tag==="Town"||x.tag==="City"||x.tag==="Place")&&(inc(x)||big(x)<9999))?1:x.tag==="County"?2:3;
   const wt=x=>{ const c=x.tag==="County"?String(x.name).split(",")[0]:String(x.name).split(",")[1]; const v=c&&E[stn(x)+"|"+c.trim()]; return v?(Array.isArray(v)?(v[2]||0):(v.tot||0)):0; };
   return B.slice().sort((a,b)=>(rk(a)-rk(b))||(big(a)-big(b))||((sv&&stn(b)===sv)-(sv&&stn(a)===sv))||(wt(b)-wt(a))); };
-window.__geoClearDist=()=>{ if(!["ushouse","senate","statehouse","schools"].includes(ltype)) return; setType("none"); drawNat(); try{ syncLetters(); }catch(e){} try{ window.__lyrSync&&window.__lyrSync(); }catch(e){} try{ refreshLayers(); }catch(e){} };
+window.__geoClearDist=()=>{ if(!["ushouse","senate","statehouse","schools"].includes(ltype)) return; try{ window.__laExit&&window.__laExit(); }catch(e){} /* build 1621 (QA-129): a geo entry with a district type on leaves the district-type list, so the place list and numbers show */ setType("none"); drawNat(); try{ syncLetters(); }catch(e){} try{ window.__lyrSync&&window.__lyrSync(); }catch(e){} try{ refreshLayers(); }catch(e){} };
 map.on("dblclick",e=>{ const a=areaAt(e.latlng); if(!a||!a.d) return; { const k=a.tk||ltype; const dd=a.kind==="natcd"?(a.cd||(DS[k]||[]).find(x=>x.st===a.d[0]&&x.nm===a.d[1])):null; window.__focusD=dd?{k,d:dd}:null; } const kind=a.kind==="county"?"county":a.kind;
   const it=kind==="precinct"?a.d.slice(0,6):a.d; const pl=L.polygon(toLatLngs(it)); map.fitBounds(pl.getBounds(),{maxZoom:15,paddingTopLeft:[70,200],paddingBottomRight:[80,140]});
   const g=$("gq"), t=areaLabel(a); nameLock=t; g.value=""; g.placeholder=t32(t); g.title=t; });
@@ -3920,6 +3925,7 @@ window.__glyphCy=()=>{ const tb=document.getElementById("bTime"), cb=document.qu
     wrap(state,"onchange"); wrap(county,"onchange");
     ["__worldEnter","__worldExit"].forEach(k=>{ const f=window[k]; if(typeof f==="function") window[k]=function(){ if(!window.__laBusy&&arguments[0]!==Wk()) exit(); return f.apply(this,arguments); }; });
     document.addEventListener("click",e=>{ if(!LA.on) return; const li=e.target.closest&&e.target.closest("#sheet li, #sheet .lvrow"); if(li&&!li.classList.contains("la-row")) exit(); if(e.target.closest&&e.target.closest("#lyrRow .lbtn")) exit(); },true);
+    window.__laExit=()=>{ try{ exit(false); }catch(_){} }; /* build 1621 (QA-129) */
     document.addEventListener("keydown",e=>{ if(!LA.on||e.key!=="Enter") return; const t=e.target; if(t&&(t.id==="gq"||(t.closest&&t.closest(".fsq")))&&t.value&&t.value.trim()) exit(); },true); }
   // ---- sort control ----
   const sb=document.createElement("button"); sb.id="laSort"; sb.type="button"; sb.setAttribute("aria-label","Sort"); sb.innerHTML='<svg viewBox="0 0 29 24" width="21.75" height="18" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.2v13.6M3.5 15.3L7 18.8l3.5-3.5M22 18.8V5.2M18.5 8.7L22 5.2l3.5 3.5"/></svg>'; document.body.append(sb);
