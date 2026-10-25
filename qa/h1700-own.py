@@ -17,7 +17,7 @@ async def main():
     for tag,W,H,mob in VPS:
       if which and tag not in which: continue
       s=tag.replace('iphone','').replace('ipad',''); R=out[tag]={'iss':[],'lat':{},'ax':{}}
-      c,pg,log=await ctx(b,W,H,mob,eng); pre=f"shotsh1700/b1618h7-{eng[:2]}-{s}"
+      c,pg,log=await ctx(b,W,H,mob,eng); pre=f"shotsb1620/b1620h17-{eng[:2]}-{s}"
       async def tap(sel,name=None,w=1500):
         xy=await center(pg,sel)
         if not xy: R['iss'].append(f'{sel}: not visible'); return False
@@ -82,5 +82,5 @@ async def main():
       R['build']=await pg.evaluate('window.BUILD'); R['err']=log['pageerr'][:5]+[x for x in log['console'] if x.startswith('error')][:5]
       print(tag,json.dumps({k:R[k] for k in R if k!='ax'})[:3500],flush=True); await c.close()
     await b.close()
-  json.dump(out,open(f'b1618h1700-own-{eng}-'+'_'.join(which)+'.json','w'),indent=1)
+  json.dump(out,open(f'b1620h1700-own-{eng}-'+'_'.join(which)+'.json','w'),indent=1)
 asyncio.run(main())

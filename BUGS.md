@@ -1827,3 +1827,70 @@ Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with 
 - **Not done in this run:** QA-113 / 115 / 116 / #bGeo exact names and the layout / tap sweep in WebKit 1024x768 and 320. The hourly run (7fced10) covered them at 390.
 - **New bugs: none** (Kenosha / West Graham / Forest Park-Morrow stay under QA-124).
 - Data: `qa/b1620x-cityN-webkit-1024x768-b2.json`, `qa/b1620x-cityN-chromium-320x568-c.json`, `qa/b1620x-tot.json`, `qa/b1620-cityN-*-1.log`. Scripts `qa/b1620x-cityN.py`, `qa/b1620x-tot.py`, `qa/b1620-gate.py`.
+
+## QA hourly run on 1620, Oct 25 ~5 PM EDT
+- **Build:** `BUILD="202610251620"` (live, cache-busted fetch), unchanged since the 4 PM run. Touch input, Chromium and WebKit. No console or page errors in any script. **v3:** https://ge0r9b.github.io/us-districts/v3/ still returns 404.
+- **New bugs: none.** The next new bug number is still **QA-130**.
+
+### Layout-stability and tap-to-paint sweep (`qa/h1700-lay3.py`; compare with `qa/h1700-cmp.py`)
+- Steps: President > slider > All States > MA > '20 / '24 > Worcester > US House on / off > back x2 > split bar > drill / back > map.
+- Ran on Chromium and WebKit at 390x844, 375x667, 320x568, 1024x576 and 1024x768, 10 runs in all. This is the first WebKit run of the sweep on 1620, which covers the WebKit 1024x768 and 320 gap left by the follow-up.
+- **Every step is SAME as the last run on each engine and size.** Only the known items appear: the slider pushes the thumbnails down 68 px, and the split-bar first row grows by 14 px in height. Thumbnails, top fields, right buttons, slider, first list row and bottom bar do not move on any view switch, year change, drill-in or back.
+- The `crumbs` transient differs between runs at WebKit 375 and 390. The crumbs text changes mid-transition; no box moves. This is the same flake as before.
+- New this run: tap-to-paint, measured as the first frame where the title, crumbs, first row or thumbnail text changes.
+  - Raw drill steps read 206-227 ms. That includes the harness's own 200 ms wait before the tap, so the real figure is about 6-27 ms.
+  - Every step is under 100 ms. The worst was 72 ms (Chromium 390, All States sheet), and the WebKit worst was 64 ms (1024x576).
+- Data: `qa/b1620h1700-layout3-{chromium,webkit}-{390,375,320,1024x576,1024x768}.json` and `qa/h1700-lay-*.log`. Shots: `qa/shotsb1620/b1620h17-{ch,we}-*-ls3*`.
+
+### QA-113 / 115 / 116 / #bGeo exact names (`qa/h1700-geo2.py`; WebKit 1024x768 and Chromium 320x568)
+- **QA-115 still FIXED.** Map view, Enter on "Pittsburgh" opens Pittsburgh city (Harris 77% / Trump 21%, z16) in both engines.
+- **QA-116 still FIXED.** Fulton County, GA opens at z8 (34.03, -84.45) at 320 and at z10 at 1024x768. Philadelphia County, PA opens at z9 / z11.
+- **QA-113 still PARTLY FIXED, unchanged.**
+  - Enter in the #bGeo sheet clears US House for every name tested ("Pennsylvania", "Philadelphia County, PA", "Pittsburgh", "Fulton County, GA", "Ohio") in both engines, in map and list views.
+  - Tapping a suggestion row ("Philadelphia County, PA", "Fulton County, GA", "Ohio") still keeps US House on.
+  - With that left on, Chromium 320 list view shows the "Philadelphia County, PA" title with Philadelphia's 79 / 20 thumbnails over PA US House rows "5 / 3 / 2". "Ohio" shows "Ohio US House districts".
+  - Shots: `qa/shotsb1620/b1620h17-ch-320x568-geo2fold-list-{PhiladelphiaCounty,Fulton,Ohio}-2.png` and `qa/shotsb1620/b1620h17-we-1024x768-geo2fold-map-*-2.png`.
+- **QA-129 still OPEN (CRITICAL), confirmed in two more places.**
+  - WebKit 1024x768 list view: US House on, then #bGeo "Pittsburgh" + Enter.
+  - The header reads "Allegheny County Pittsburgh city". The thumbnails show Harris 60% / Trump 39%, and the only row is "Allegheny 39.4% / 59.7%".
+  - Chromium 320x568 shows the same thing.
+  - Shot: `qa/shotsb1620/b1620h17-we-1024x768-geo2fold1-list-Pittsburgh-2.png`.
+
+### Open bugs rechecked (`qa/h1700-cityN.py`, Chromium 390x844 / WebKit 390x844)
+- **QA-128 still OPEN (CRITICAL), unchanged:**
+  - Baldwin township PA, Gloucester township NJ, Royal Oak city MI and Skokie village IL open with 0 rows and no thumbnails.
+  - Gloucester City city NJ has 48 rows, almost all "Gloucester Township Ward 00 Dis…", with Harris 56% / Trump 42%.
+  - Alpena city MI holds "Township, Precinct 2 / 3" rows.
+  - Shots: `qa/shotsb1620/b1620h17-ch-390x844-cityN-{GloucesterCitycity,Gloucestertownship,Alpenacity,RoyalOakcity,Skokievillage,Baldwintownship}-list.png`.
+- **QA-124 still OPEN, all three remaining cases unchanged:**
+  - Kenosha city WI still has "Village of Pleasant Prairie War…" (54.3% / 44.5%), with 76 rows.
+  - Burlington city NC still has "West Graham" (46.6% / 52.5%), with 15 rows.
+  - Forest Park city GA still has "063MO1 - Morrow 1" (86.1%).
+  - Morrow city GA still has "063FP6 - Forest Park 6" (32.0% / 67.2%).
+  - Shots: `qa/shotsb1620/b1620h17-ch-390x844-cityN-{Kenoshacity,Burlingtoncity,ForestParkcity,Morrowcity}-*.png`.
+- **QA-122 still OPEN:** the South Central CT region list still has "Milford city (balance) 46.7% / 47.3%" and "Milford town 46.7% / 47.3%" (the same place twice).
+- **QA-127 still OPEN:** Arlington County VA and Howard County MD drill to 0 rows with no thumbnails (WebKit 390).
+- **QA-094 still OPEN:** Fairfax County still lists only 3 towns (Vienna town 4 rows).
+- **QA-099 still OPEN** (`qa/h1700-sortchart.py`, Chromium 320x568): the chip (218-252 x 111-133) still sits on CA's "58.5%" segment and on Columbus's "68.2%" segment. It is clear of every row on the Ohio counties list.
+- Seen in passing, under the pending Ohio ruling in QA-128: the Franklin County list order is Columbus, Grove City (24K), Upper Arlington.
+
+### Orchestrator verify list
+- **2016 map colours: PASS** (`qa/h1700-col16.py`, Chromium 390).
+  - At '16 the US House map is 27.2% blue / 72.8% red, so it is not all red.
+  - The PA map is 26.3% blue and not blank. PA US House is 26.8% blue, state senate 25.1% and state house 24.0%.
+  - Philadelphia and Pittsburgh are D; rural PA and Lancaster are R in all five maps.
+  - Labels read Clinton 48% / Trump 46% (US) and Trump 48% / Clinton 47% (PA).
+  - In WebKit 1024x768 (`qa/h1700-own.py`), FL, PA, MI and WI read pale pink. This is expected for margins under 1.2 points and is the same as earlier runs.
+- **PA '16 pie and bar: PASS** (WebKit 390x844, `qa/h1700-pa16.py`).
+  - The bar is Trump 48.2 / Clinton 47.5 / other 4.4, and the pie is 48.2 / 47.5.
+  - '24 is 50.2 / 48.5.
+  - The figures stay correct after '16 > '24 > '16.
+- **Sort chip: still FAILS** where QA-099 says, and only there.
+- **Number-only rows and At-large labels: PASS** (WebKit 320 / 1024x768).
+  - PA US House rows are "1", "4", "17" and so on.
+  - DC shows "At-large", and the US list shows "DE At-large".
+  - Bars start right next to the icons.
+- **Thumbnails on the topic-icon axis: PASS.** `h1700-own` found no axis issue in any view, WebKit 320 or 1024x768.
+- **Menus overlay without shrinking or dimming: PASS.** With the type menu open, the map rect is unchanged (0,0,320,568), with no filter and opacity 1 (Chromium 320).
+- **Tap latency:** sort, chart menu and type taps took 11-77 ms (Chromium 320). One WebKit 1024x768 sample was 101 ms (`dc_map`, DC list > map; other taps 11-73 ms). It is 1 ms over the limit in a single sample, so it is noted here and not filed; recheck next run.
+- Data: `qa/b1620h1700-{own,col16,pa16,sortchart,geo2*,cityN}-*.json`, `qa/h1700-*.log`.
