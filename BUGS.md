@@ -708,6 +708,30 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Hourly run, build 1618, Oct 25 ~11 AM EDT (10:55-10:59 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
+- Touch, Chromium + WebKit. **No console errors or page errors.** Logs `qa/h1100-*.log`, data `qa/b1618h1100-*.json`, shots `qa/shotsh1100/b1618h11-*.png`. Scripts `qa/h1100-cityN.py` (copy of h1000-cityN.py that saves every town row), `h1100-lay3.py`, `h1100-cmp.py`. Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-*.json`, NJ / PA / NC / GA, not covered before). Each neighbour town's own list was opened too, to check for double counting.
+- **New: QA-126 [CRITICAL by the QA-121 ruling, orchestrator to confirm] West Pottsgrove township, PA is counted inside Pottstown borough, tapping that row shows it under Pottstown's title, and West Pottsgrove's own list is empty.**
+  - Size, build, engine: WebKit 1024x768 (touch); build 1618.
+  - Steps: bottom field "Pennsylvania" + Enter > geo filter (#bGeo) > counties > Montgomery > Pottstown borough. Then back > West Pottsgrove township.
+  - Expected: Pottstown's list holds only Pottstown precincts; West Pottsgrove township opens its own precinct(s) with its own totals.
+  - Actual: Pottstown borough's list (11 rows) starts with **"West Pottsgrove"** 49.3% / 49.3%, Trump 929 / Harris 928, and Pottstown's totals (Harris 7K / Trump 5K) include it. Tapping the row keeps the title "Montgomery County Pottstown bor…" with thumbnails Trump 929 / Harris 928. West Pottsgrove township opens **"Nothing to list"** with no thumbnails. Same pattern as QA-121 (Warwick / West Warwick).
+  - Shots: qa/shotsh1100/b1618h11-we-1024x768-cityN-Pottstownborough-list.png, qa/shotsh1100/b1618h11-we-1024x768-cityN-Pottstownborough-tapSuspect.png, qa/shotsh1100/b1618h11-we-1024x768-cityN-WestPottsgrovetownship-list.png
+  - Data: `qa/b1618h1100-cityN-webkit-1024x768-b.json`
+- **QA-124 (stray neighbour precincts, HIGH): 8 more examples, none double counted** (each precinct is missing from its own town's list). Same steps (state + Enter > #bGeo > counties > county > town):
+  - Gloucester township, Camden NJ (Chromium 390x844, 41 rows): "Somerdale Borough Ward 00 Distr…" 205 / 341. Somerdale borough has 3 rows (Districts 01-03).
+  - Old Bridge township, Middlesex NJ (Chromium 390): "Spotswood 5" 437 / 264. Spotswood borough has 1-4, 6, 7, no 5.
+  - South River borough, Middlesex NJ (WebKit 1024x768): "East Brunswick 3" 321 / 289. East Brunswick township has no "East Brunswick 3".
+  - Media borough, Delaware PA (Chromium 375x667): "Upper Providence District 1" 454 / 1K. Upper Providence township has only 2-5.
+  - Prospect Park borough, Delaware PA (Chromium 375): "Norwood Precinct 3" 134 / 134. Norwood borough has 1, 2, 4-8, no 3.
+  - Burlington city, Alamance NC (WebKit 390x844): "Graham 3" 616 / 1K and "West Graham" (768 Trump). Graham city has only 4 rows (Graham 4, South, East, North Graham).
+  - Forest Park and Morrow, Clayton GA (WebKit 390): swapped. Forest Park city holds "063MO1 - Morrow 1" (Harris 2K, 86%), and Morrow city (2 rows) holds "063FP6 - Forest Park 6" 281 / 591, so Morrow's own list has only one of its own precincts.
+  - Tapping each stray row keeps the host town's title with the stray precinct's numbers (shots `*-tapSuspect.png`).
+  - Passed: Swarthmore borough (3 rows, no Springfield row; the audit lead was a false match) and Springfield township (22 rows).
+  - Shots: qa/shotsh1100/b1618h11-ch-390x844-cityN-Gloucestertownship-{list,tapSuspect}.png, qa/shotsh1100/b1618h11-we-390x844-cityN-{Burlingtoncity,ForestParkcity,Morrowcity}-list.png
+  - Data: `qa/b1618h1100-cityN-{chromium-390x844-a,webkit-1024x768-b,chromium-375x667-c,webkit-390x844-d}.json`
+- **Layout sweep (Chromium 1024x768 / 320, WebKit 1024x576; 16 steps):** the same as the 10 AM run step for step (`h1100-cmp.py`, all SAME). The known items are unchanged: thumbnails +68 px when the slider opens, and the first row 14 px taller on gbar. No new jumps.
+- Open items not rerun (build unchanged): QA-119, 121, 122, 123, 125, 117, 118, 115, 116, 113, 112, 110, 099, 074, 018, 105 / 106 / 120, 073 / 102 / 085.
+
 ## Hourly run, build 1618, Oct 25 ~10 AM EDT (9:50-10:01 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests. No tap over 100 ms** (max 80 ms, the '20 tick on Dane County, Chromium 320). Logs `qa/h1000-*.log`, data `qa/b1618h1000-*.json`, shots `qa/shotsh1000/b1618h10-*.png`. Scripts: `qa/h1000-cityN.py` (copy of h0900-cityN.py), `h1000-modes.py`, `h1000-order.py` (new), `h1000-lay3.py`, `h1000-cmp.py` (copies of h0900), `h1000-sum.py`.
 - **QA-124 (stray neighbour precincts, HIGH by ruling; the 10 AM run filed this as QA-123, renumbered): 2 more examples.** Same steps (state + Enter > #bGeo > counties > county > town):
@@ -1676,4 +1700,4 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 
 ## Numbering note (Oct 25, ~10 AM EDT)
-Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW).
+Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW). QA-126 West Pottsgrove inside Pottstown PA (CRITICAL, 11 AM run).

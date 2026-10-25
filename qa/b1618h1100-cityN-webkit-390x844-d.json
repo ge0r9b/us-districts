@@ -1,0 +1,373 @@
+{
+ "North Carolina|Burlington city": {
+  "tapC": [
+   95,
+   443.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 54%",
+    "Kamala Harris 2024 / 45%"
+   ],
+   10,
+   [
+    "Burlington city | 44.5%",
+    "Graham city | 50.5% | 48.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Burlington city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 45%"
+   ],
+   15,
+   [
+    "South Boone M | 47.4%",
+    "South Boone E | 46.4% | 52.6%",
+    "North Burlington | 20.3% | 78.5%",
+    "Central Boone | 55.0% | 42.7%",
+    "Graham 3 | 34.1% | 64.5%",
+    "Burlington 5 | 55.2% | 44.1%",
+    "Burlington 6 | 53.8% | 45.2%",
+    "West Burlington | 42.4% | 56.6%",
+    "Burlington 9 | 61.2% | 37.3%",
+    "Burlington 4 | 50.9% | 48.0%",
+    "10 | 47.1% | 51.6%",
+    "Burlington 8 | 31.9% | 66.3%",
+    "East Burlington | 34.2% | 65.0%",
+    "West Graham | 46.6% | 52.5%",
+    "South Burlington | 39.1% | 60.4%"
+   ]
+  ],
+  "suspect": [
+   "Graham 3 | 34.1% | 64.5%",
+   "West Graham | 46.6% | 52.5%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 13K",
+    "Donald Trump 2024 / 11K"
+   ],
+   [
+    "South Boone M | 1K | 2K",
+    "South Boone E | 1K | 2K",
+    "North Burlington | 2K",
+    "Central Boone | 1K | 872"
+   ]
+  ],
+  "suspect_num": [
+   "Graham 3 | 616 | 1K",
+   "West Graham | 768"
+  ],
+  "tapS": [
+   "Graham 3",
+   [
+    102,
+    256.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Burlington city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 1K",
+    "Donald Trump 2024 / 616"
+   ],
+   [
+    "South Boone M | 1K | 2K",
+    "South Boone E | 1K | 2K",
+    "North Burlington | 2K"
+   ]
+  ],
+  "err": []
+ },
+ "North Carolina|Graham city": {
+  "tapC": [
+   95,
+   443.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 54%",
+    "Kamala Harris 2024 / 45%"
+   ],
+   10,
+   [
+    "Graham city | 50.5% | 48.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Graham city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   4,
+   [
+    "Graham 4 | 56.0%",
+    "South Graham | 52.8% | 46.2%",
+    "East Graham | 47.8% | 50.9%",
+    "North Graham | 35.6% | 62.9%"
+   ]
+  ],
+  "suspect": [
+   "Graham 4 | 56.0%",
+   "South Graham | 52.8% | 46.2%",
+   "East Graham | 47.8% | 50.9%",
+   "North Graham | 35.6% | 62.9%"
+  ],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 5K",
+    "Kamala Harris 2024 / 5K"
+   ],
+   [
+    "Graham 4 | 2K | 2K",
+    "South Graham | 1K | 1K",
+    "East Graham | 822 | 875",
+    "North Graham | 997"
+   ]
+  ],
+  "suspect_num": [
+   "Graham 4 | 2K | 2K",
+   "South Graham | 1K | 1K",
+   "East Graham | 822 | 875",
+   "North Graham | 997"
+  ],
+  "tapS": [
+   "Graham 4",
+   [
+    97,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Graham city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 2K",
+    "Kamala Harris 2024 / 2K"
+   ],
+   [
+    "Graham 4 | 2K | 2K",
+    "South Graham | 1K | 1K",
+    "East Graham | 822 | 875"
+   ]
+  ],
+  "err": []
+ },
+ "Georgia|Forest Park city": {
+  "tapC": [
+   99.5,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 15%"
+   ],
+   7,
+   [
+    "Forest Park city | 20.8% | 78.4%",
+    "Morrow city | 33.0% | 66.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Forest Park city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 78%",
+    "Donald Trump 2024 / 21%"
+   ],
+   4,
+   [
+    "063MO1 - Morrow 1 | 86.1%",
+    "063FP1 - Forest Park 1 | 21.0% | 78.3%",
+    "063FP2 - Forest Park 2 | 19.3% | 79.8%",
+    "063FP4 - Forest Park 4 | 36.1% | 62.4%"
+   ]
+  ],
+  "suspect": [
+   "063MO1 - Morrow 1 | 86.1%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 5K",
+    "Donald Trump 2024 / 1K"
+   ],
+   [
+    "063MO1 - Morrow 1 | 2K",
+    "063FP1 - Forest Park 1 | 322 | 1K",
+    "063FP2 - Forest Park 2 | 1K",
+    "063FP4 - Forest Park 4 | 365 | 630"
+   ]
+  ],
+  "suspect_num": [
+   "063MO1 - Morrow 1 | 2K"
+  ],
+  "tapS": [
+   "063MO1 - Morrow 1",
+   [
+    102,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Forest Park city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 2K",
+    "Donald Trump 2024 / 242"
+   ],
+   [
+    "063MO1 - Morrow 1 | 2K",
+    "063FP1 - Forest Park 1 | 322 | 1K",
+    "063FP2 - Forest Park 2 | 1K"
+   ]
+  ],
+  "err": []
+ },
+ "Georgia|Morrow city": {
+  "tapC": [
+   99.5,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 15%"
+   ],
+   7,
+   [
+    "Forest Park city | 20.8% | 78.4%",
+    "Morrow city | 33.0% | 66.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   226.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Morrow city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 66%",
+    "Donald Trump 2024 / 33%"
+   ],
+   2,
+   [
+    "063MO2 - Morrow 2 | 33.8% | 65.5%",
+    "063FP6 - Forest Park 6 | 32.0% | 67.2%"
+   ]
+  ],
+  "suspect": [
+   "063MO2 - Morrow 2 | 33.8% | 65.5%",
+   "063FP6 - Forest Park 6 | 32.0% | 67.2%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 1K",
+    "Donald Trump 2024 / 696"
+   ],
+   [
+    "063MO2 - Morrow 2 | 415 | 804",
+    "063FP6 - Forest Park 6 | 281 | 591"
+   ]
+  ],
+  "suspect_num": [
+   "063MO2 - Morrow 2 | 415 | 804",
+   "063FP6 - Forest Park 6 | 281 | 591"
+  ],
+  "tapS": [
+   "063MO2 - Morrow 2",
+   [
+    102,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Clayton County Morrow city",
+    "gq": "Clayton County, GA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 804",
+    "Donald Trump 2024 / 415"
+   ],
+   [
+    "063MO2 - Morrow 2 | 415 | 804",
+    "063FP6 - Forest Park 6 | 281 | 591"
+   ]
+  ],
+  "err": []
+ }
+}
