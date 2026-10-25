@@ -1949,3 +1949,12 @@ Touch, Chromium and WebKit. No console or page errors in any run. Next new bug i
 ### iPhone '#' over the Gulf: not reproduced as detached
 - #bNum stays at the bottom right above #barBottom in every path: fresh, drill, back to US, ZIP, type on/off, reload, relaunch, list round trip, landscape, keyboard shrink and restore. Its rect is 334,740 at 390x844, 319,563 at 375x667 and 264,464 at 320x568. At the fresh US z4 view this normal spot sits over the Gulf of Mexico (13N to 25N, 84W to 87W), so the user may just be seeing its normal position. Shots: `qa/shotsb1621/b1621x-iph-we-*-00-fresh.png` and `-D*.png`.
 - Precinct heat at a whole-US view reproduced only through the QA-131 path. A fresh US load uses county tier at z4.
+
+## QA-132 attempt log — rapid district-type switching leaves map unshaded (user iPhone report) — NOT REPRODUCED on 1621 (Oct 25, ~19:20 EDT)
+- Build 202610251621 (line 9, cache-busted). Script qa/b1621y-q132.py; logs qa/shotsb1621/b1621y-*.log; JSON qa/b1621y-q132-*.json.
+- 150 sequences: WebKit touch 390x844 (50), WebKit touch 375x667 (50), Chromium 390x844 with CDP CPU throttle 4x (50).
+- Each sequence: touch-taps through #bLyr / #lyrRow at 30-300 ms gaps. Patterns: random 6-step and 10-step sequences across ushouse/senate/statehouse/schools/none, A-B-A-B toggles x4, and the same type tapped 3 times. Every other sequence ran with a 0.2-1.5 s delay on every request, so switches happened mid-load. Views: US z4, PA z7, TX z6, CA z6, Allegheny County z10.
+- Detection after a 3 s settle: count Leaflet layers with fillColor/fillOpacity>0, count distinct fill colours, and sample screenshot pixels for party red/blue.
+- Result: 0/150 failures. Minimum party-pixel share was 0.16, and every settle had at least 436 filled features. No page errors or console errors. Passes are in qa/shotsb1621/q132-*-pass-*.png.
+- Side note: when "United States" is typed in search, the map goes to world zoom 0, not the US view (see the earlier search→US finding).
+- Not tried yet: a real iOS device or memory pressure, a cold load straight into a saved type, or backgrounding/foregrounding the tab.

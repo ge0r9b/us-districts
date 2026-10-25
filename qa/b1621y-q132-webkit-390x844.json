@@ -1,0 +1,2048 @@
+{
+ "runs": [
+  {
+   "tot": 3274,
+   "filled": 3224,
+   "ncol": 760,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.236,
+   "blue": 0.002,
+   "i": 0,
+   "view": "US",
+   "seq": [
+    "senate",
+    "statehouse",
+    "senate",
+    "statehouse",
+    "schools",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.236,
+   "blue": 0.01,
+   "i": 1,
+   "view": "US",
+   "seq": [
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.263,
+   "blue": 0.011,
+   "i": 2,
+   "view": "US",
+   "seq": [
+    "senate",
+    "senate",
+    "senate"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.152,
+   "blue": 0.012,
+   "i": 3,
+   "view": "US",
+   "seq": [
+    "ushouse",
+    "statehouse",
+    "senate",
+    "ushouse",
+    "ushouse",
+    "senate",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3274,
+   "filled": 3224,
+   "ncol": 760,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.236,
+   "blue": 0.002,
+   "i": 4,
+   "view": "US",
+   "seq": [
+    "none",
+    "statehouse",
+    "none",
+    "schools",
+    "schools",
+    "none"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.259,
+   "blue": 0.013,
+   "i": 5,
+   "view": "US",
+   "seq": [
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.152,
+   "blue": 0.012,
+   "i": 6,
+   "view": "US",
+   "seq": [
+    "schools",
+    "schools",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3274,
+   "filled": 3224,
+   "ncol": 760,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.236,
+   "blue": 0.002,
+   "i": 7,
+   "view": "US",
+   "seq": [
+    "ushouse",
+    "ushouse",
+    "none",
+    "schools",
+    "none",
+    "none",
+    "ushouse",
+    "none",
+    "statehouse",
+    "none"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.236,
+   "blue": 0.01,
+   "i": 8,
+   "view": "US",
+   "seq": [
+    "statehouse",
+    "ushouse",
+    "ushouse",
+    "senate",
+    "statehouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 4,
+   "build": "202610251621",
+   "red": 0.259,
+   "blue": 0.013,
+   "i": 9,
+   "view": "US",
+   "seq": [
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.589,
+   "blue": 0.025,
+   "i": 10,
+   "view": "Pennsylvania",
+   "seq": [
+    "ushouse",
+    "ushouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.604,
+   "blue": 0.023,
+   "i": 11,
+   "view": "Pennsylvania",
+   "seq": [
+    "ushouse",
+    "senate",
+    "statehouse",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "senate",
+    "none",
+    "senate",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.604,
+   "blue": 0.023,
+   "i": 12,
+   "view": "Pennsylvania",
+   "seq": [
+    "none",
+    "none",
+    "ushouse",
+    "ushouse",
+    "schools",
+    "statehouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.589,
+   "blue": 0.025,
+   "i": 13,
+   "view": "Pennsylvania",
+   "seq": [
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.636,
+   "blue": 0.021,
+   "i": 14,
+   "view": "Pennsylvania",
+   "seq": [
+    "senate",
+    "senate",
+    "senate"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.603,
+   "blue": 0.023,
+   "i": 15,
+   "view": "Pennsylvania",
+   "seq": [
+    "senate",
+    "senate",
+    "schools",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse",
+    "none",
+    "none",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.587,
+   "blue": 0.032,
+   "i": 16,
+   "view": "Pennsylvania",
+   "seq": [
+    "schools",
+    "none",
+    "senate",
+    "statehouse",
+    "schools",
+    "none"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.637,
+   "blue": 0.022,
+   "i": 17,
+   "view": "Pennsylvania",
+   "seq": [
+    "schools",
+    "senate",
+    "schools",
+    "senate",
+    "schools",
+    "senate",
+    "schools",
+    "senate"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.589,
+   "blue": 0.024,
+   "i": 18,
+   "view": "Pennsylvania",
+   "seq": [
+    "ushouse",
+    "ushouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 7,
+   "build": "202610251621",
+   "red": 0.587,
+   "blue": 0.032,
+   "i": 19,
+   "view": "Pennsylvania",
+   "seq": [
+    "senate",
+    "schools",
+    "ushouse",
+    "none",
+    "ushouse",
+    "statehouse",
+    "statehouse",
+    "statehouse",
+    "senate",
+    "none"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.51,
+   "blue": 0.006,
+   "i": 20,
+   "view": "Texas",
+   "seq": [
+    "none",
+    "ushouse",
+    "senate",
+    "statehouse",
+    "ushouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.416,
+   "blue": 0.004,
+   "i": 21,
+   "view": "Texas",
+   "seq": [
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.51,
+   "blue": 0.006,
+   "i": 22,
+   "view": "Texas",
+   "seq": [
+    "schools",
+    "schools",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.502,
+   "blue": 0.004,
+   "i": 23,
+   "view": "Texas",
+   "seq": [
+    "statehouse",
+    "senate",
+    "schools",
+    "statehouse",
+    "senate",
+    "ushouse",
+    "statehouse",
+    "none",
+    "none",
+    "senate"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.416,
+   "blue": 0.004,
+   "i": 24,
+   "view": "Texas",
+   "seq": [
+    "ushouse",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "senate",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.502,
+   "blue": 0.003,
+   "i": 25,
+   "view": "Texas",
+   "seq": [
+    "statehouse",
+    "senate",
+    "statehouse",
+    "senate",
+    "statehouse",
+    "senate",
+    "statehouse",
+    "senate"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.509,
+   "blue": 0.006,
+   "i": 26,
+   "view": "Texas",
+   "seq": [
+    "senate",
+    "senate",
+    "senate"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.509,
+   "blue": 0.006,
+   "i": 27,
+   "view": "Texas",
+   "seq": [
+    "statehouse",
+    "schools",
+    "schools",
+    "ushouse",
+    "statehouse",
+    "statehouse",
+    "none",
+    "senate",
+    "none",
+    "none"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.642,
+   "blue": 0.003,
+   "i": 28,
+   "view": "Texas",
+   "seq": [
+    "schools",
+    "statehouse",
+    "senate",
+    "none",
+    "none",
+    "statehouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.416,
+   "blue": 0.004,
+   "i": 29,
+   "view": "Texas",
+   "seq": [
+    "senate",
+    "schools",
+    "senate",
+    "schools",
+    "senate",
+    "schools",
+    "senate",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.269,
+   "blue": 0.079,
+   "i": 30,
+   "view": "California",
+   "seq": [
+    "schools",
+    "schools",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.269,
+   "blue": 0.079,
+   "i": 31,
+   "view": "California",
+   "seq": [
+    "ushouse",
+    "senate",
+    "none",
+    "schools",
+    "ushouse",
+    "schools",
+    "none",
+    "ushouse",
+    "statehouse",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.24,
+   "blue": 0.1,
+   "i": 32,
+   "view": "California",
+   "seq": [
+    "schools",
+    "senate",
+    "none",
+    "statehouse",
+    "statehouse",
+    "statehouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.15,
+   "blue": 0.092,
+   "i": 33,
+   "view": "California",
+   "seq": [
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.24,
+   "blue": 0.1,
+   "i": 34,
+   "view": "California",
+   "seq": [
+    "statehouse",
+    "statehouse",
+    "statehouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.277,
+   "blue": 0.101,
+   "i": 35,
+   "view": "California",
+   "seq": [
+    "ushouse",
+    "none",
+    "senate",
+    "ushouse",
+    "schools",
+    "schools",
+    "ushouse",
+    "none",
+    "ushouse",
+    "senate"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3224,
+   "filled": 3174,
+   "ncol": 755,
+   "top": [
+    [
+     "rgb(178,28,29)",
+     25
+    ],
+    [
+     "rgb(214,42,36)",
+     23
+    ],
+    [
+     "rgb(207,39,35)",
+     23
+    ],
+    [
+     "rgb(171,26,27)",
+     23
+    ]
+   ],
+   "on": null,
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.27,
+   "blue": 0.079,
+   "i": 36,
+   "view": "California",
+   "seq": [
+    "none",
+    "senate",
+    "ushouse",
+    "none",
+    "schools",
+    "none"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.149,
+   "blue": 0.091,
+   "i": 37,
+   "view": "California",
+   "seq": [
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse",
+    "senate",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.241,
+   "blue": 0.1,
+   "i": 38,
+   "view": "California",
+   "seq": [
+    "statehouse",
+    "statehouse",
+    "statehouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 6,
+   "build": "202610251621",
+   "red": 0.321,
+   "blue": 0.04,
+   "i": 39,
+   "view": "California",
+   "seq": [
+    "statehouse",
+    "schools",
+    "statehouse",
+    "senate",
+    "schools",
+    "senate",
+    "none",
+    "senate",
+    "senate",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 5222,
+   "filled": 2028,
+   "ncol": 799,
+   "top": [
+    [
+     "rgb(8,48,107)",
+     24
+    ],
+    [
+     "rgb(101,169,211)",
+     11
+    ],
+    [
+     "rgb(25,93,158)",
+     10
+    ],
+    [
+     "rgb(40,119,184)",
+     10
+    ]
+   ],
+   "on": null,
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.333,
+   "blue": 0.072,
+   "i": 40,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "senate",
+    "senate",
+    "senate",
+    "senate",
+    "ushouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.248,
+   "blue": 0.115,
+   "i": 41,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools",
+    "statehouse",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.249,
+   "blue": 0.07,
+   "i": 42,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "ushouse",
+    "ushouse",
+    "ushouse"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.248,
+   "blue": 0.115,
+   "i": 43,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "ushouse",
+    "statehouse",
+    "statehouse",
+    "schools",
+    "senate",
+    "ushouse",
+    "none",
+    "none",
+    "ushouse",
+    "schools"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.244,
+   "blue": 0.101,
+   "i": 44,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "none",
+    "statehouse",
+    "senate",
+    "schools",
+    "schools",
+    "senate"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.249,
+   "blue": 0.07,
+   "i": 45,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse",
+    "schools",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 16499,
+   "filled": 13305,
+   "ncol": 1083,
+   "top": [
+    [
+     "#a8a29e",
+     86
+    ],
+    [
+     "rgb(208,40,35)",
+     71
+    ],
+    [
+     "rgb(204,38,34)",
+     69
+    ],
+    [
+     "rgb(179,29,29)",
+     68
+    ]
+   ],
+   "on": "schools",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.248,
+   "blue": 0.115,
+   "i": 46,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "schools",
+    "schools",
+    "schools"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 8084,
+   "filled": 4890,
+   "ncol": 996,
+   "top": [
+    [
+     "rgb(84,155,204)",
+     23
+    ],
+    [
+     "rgb(96,165,209)",
+     21
+    ],
+    [
+     "rgb(241,110,87)",
+     21
+    ],
+    [
+     "rgb(220,44,38)",
+     20
+    ]
+   ],
+   "on": "statehouse",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.185,
+   "blue": 0.09,
+   "i": 47,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "schools",
+    "senate",
+    "none",
+    "ushouse",
+    "none",
+    "ushouse",
+    "schools",
+    "schools",
+    "senate",
+    "statehouse"
+   ],
+   "slow": false,
+   "bad": false
+  },
+  {
+   "tot": 5144,
+   "filled": 1950,
+   "ncol": 758,
+   "top": [
+    [
+     "rgb(100,168,211)",
+     11
+    ],
+    [
+     "rgb(246,126,99)",
+     10
+    ],
+    [
+     "rgb(230,73,59)",
+     10
+    ],
+    [
+     "rgb(90,160,206)",
+     10
+    ]
+   ],
+   "on": "senate",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.244,
+   "blue": 0.101,
+   "i": 48,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "schools",
+    "ushouse",
+    "none",
+    "ushouse",
+    "ushouse",
+    "senate"
+   ],
+   "slow": true,
+   "bad": false
+  },
+  {
+   "tot": 3630,
+   "filled": 436,
+   "ncol": 310,
+   "top": [
+    [
+     "rgb(86,157,205)",
+     5
+    ],
+    [
+     "rgb(230,73,59)",
+     5
+    ],
+    [
+     "rgb(245,122,96)",
+     5
+    ],
+    [
+     "rgb(46,124,187)",
+     4
+    ]
+   ],
+   "on": "ushouse",
+   "z": 10,
+   "build": "202610251621",
+   "red": 0.249,
+   "blue": 0.07,
+   "i": 49,
+   "view": "Allegheny County, PA",
+   "seq": [
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse",
+    "statehouse",
+    "ushouse"
+   ],
+   "slow": false,
+   "bad": false
+  }
+ ],
+ "log": {
+  "console": [],
+  "pageerr": [],
+  "reqfail": [],
+  "http": []
+ }
+}
