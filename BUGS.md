@@ -710,13 +710,14 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Hourly run, build 1618, Oct 25 ~11 AM EDT (10:55-10:59 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors or page errors.** Logs `qa/h1100-*.log`, data `qa/b1618h1100-*.json`, shots `qa/shotsh1100/b1618h11-*.png`. Scripts `qa/h1100-cityN.py` (copy of h1000-cityN.py that saves every town row), `h1100-lay3.py`, `h1100-cmp.py`. Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-*.json`, NJ / PA / NC / GA, not covered before). Each neighbour town's own list was opened too, to check for double counting.
-- **New: QA-126 [CRITICAL by the QA-121 ruling, orchestrator to confirm] West Pottsgrove township, PA is counted inside Pottstown borough, tapping that row shows it under Pottstown's title, and West Pottsgrove's own list is empty.**
+- **New: QA-126 [HIGH, not double counted: verified Oct 25 11 AM] West Pottsgrove township, PA is counted inside Pottstown borough, tapping that row shows it under Pottstown's title, and West Pottsgrove's own list is empty.**
   - Size, build, engine: WebKit 1024x768 (touch); build 1618.
   - Steps: bottom field "Pennsylvania" + Enter > geo filter (#bGeo) > counties > Montgomery > Pottstown borough. Then back > West Pottsgrove township.
   - Expected: Pottstown's list holds only Pottstown precincts; West Pottsgrove township opens its own precinct(s) with its own totals.
   - Actual: Pottstown borough's list (11 rows) starts with **"West Pottsgrove"** 49.3% / 49.3%, Trump 929 / Harris 928, and Pottstown's totals (Harris 7K / Trump 5K) include it. Tapping the row keeps the title "Montgomery County Pottstown bor…" with thumbnails Trump 929 / Harris 928. West Pottsgrove township opens **"Nothing to list"** with no thumbnails. Same pattern as QA-121 (Warwick / West Warwick).
   - Shots: qa/shotsh1100/b1618h11-we-1024x768-cityN-Pottstownborough-list.png, qa/shotsh1100/b1618h11-we-1024x768-cityN-Pottstownborough-tapSuspect.png, qa/shotsh1100/b1618h11-we-1024x768-cityN-WestPottsgrovetownship-list.png
   - Data: `qa/b1618h1100-cityN-webkit-1024x768-b.json`
+  - Double-count check (2024, data files of build 1618): the "West Pottsgrove" precinct (D 928 / R 929 / 1883) appears exactly once in data/precincts2024/Pennsylvania.js. Montgomery precinct sum (426 rows) D 316,875 / R 197,979, below certified (no excess, so no duplicate). The app's Montgomery county row in data/election2024.js is 317,103 / 198,311, which matches the county's official summary report and PA DoS exactly. The PA sum of 67 county rows is D 3,423,042 / R 3,543,308, which matches the Governor's certificate exactly. The votes are misfiled under Pottstown (West Pottsgrove's town is empty), not counted twice. Stays HIGH like QA-124. 2020 not checked.
 - **QA-124 (stray neighbour precincts, HIGH): 8 more examples, none double counted** (each precinct is missing from its own town's list). Same steps (state + Enter > #bGeo > counties > county > town):
   - Gloucester township, Camden NJ (Chromium 390x844, 41 rows): "Somerdale Borough Ward 00 Distr…" 205 / 341. Somerdale borough has 3 rows (Districts 01-03).
   - Old Bridge township, Middlesex NJ (Chromium 390): "Spotswood 5" 437 / 264. Spotswood borough has 1-4, 6, 7, no 5.
@@ -1700,4 +1701,4 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 
 ## Numbering note (Oct 25, ~10 AM EDT)
-Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW). QA-126 West Pottsgrove inside Pottstown PA (CRITICAL, 11 AM run).
+Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW). QA-126 West Pottsgrove inside Pottstown PA (HIGH: misfiled, not double counted).
