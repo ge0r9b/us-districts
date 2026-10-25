@@ -1738,3 +1738,5 @@ Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Wa
 
 - Neighbour-town hunt (QA-119/121/124/126 pattern), Chromium and WebKit 390x844: clean for San Francisco city (514 rows, 80 / 16, 324K / 63K), Denver city (297 rows, 77 / 21, 274K / 74K), Alexandria city VA (31 rows, 60K / 16K), Falls Church city VA (3 wards), Dallas city (472 rows, 65 / 33, 248K / 127K, no Garland/Irving/Mesquite/Richardson/University Park/Highland Park rows). Vienna town VA again 4 own rows. No console errors.
 - Layout sweep at 390, 375, 320, 1024x576, 1024x768 (`qa/h1400-cmp.py`): every step SAME as the ~1 PM run; only the known items. One aborted cache-bust reload request at 375 (`?bc=...`), harmless.
+
+Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with no towns, or its unincorporated remainder, must show its precincts or a 'balance of county' row. Linked to QA-094 (Fairfax).
