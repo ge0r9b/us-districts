@@ -1,0 +1,563 @@
+{
+ "AZ-map": {
+  "addr": "1700 W Washington St, Phoenix, AZ 85007",
+  "sugg": [
+   "1700 W WASHINGTON ST, PHOENIX, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    14,
+    33.443,
+    -112.0909
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0909,14]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0909,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    14,
+    33.443,
+    -112.0909
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0909,14]}"
+  ],
+  "err": []
+ },
+ "build": "202610181618",
+ "AZ-list": {
+  "addr": "1700 W Washington St, Phoenix, AZ 85007",
+  "sugg": [
+   "1700 W WASHINGTON ST, PHOENIX, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [],
+   [
+    14,
+    33.443,
+    -112.0909
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0909,14]}"
+  ],
+  "rows": [
+   "Maricopa | 51.2% | 47.7%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    14,
+    33.443,
+    -112.0908
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0908,14]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Maricopa Precinct 242",
+    "gq": "1700 W WASHINGTON ST, PHOENIX",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 70%",
+    "Donald Trump 2024 / 28%"
+   ],
+   [
+    "Maricopa Precinct 242 | Harris 70.4% | Trump 28.3%"
+   ],
+   [
+    14,
+    33.443,
+    -112.0908
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"p\":\"0242\",\"ph\":\"1700 W WASHINGTON ST, PHOENIX\",\"ttl\":\"1700 W WASHINGTON ST, PHOENIX, AZ, 85007\",\"pin\":[33.448174841255,-112.098251192919]},\"ll\":[33.443,-112.0908,14]}"
+  ],
+  "err": []
+ },
+ "MI-map": {
+  "addr": "100 N Capitol Ave, Lansing, MI 48933",
+  "sugg": [
+   "100 S CAPITOL AVE, LANSING, MI,\u2026Address",
+   "Michigan State Capitol, 100, No\u2026Address",
+   "100, North Capitol Avenue, Down\u2026Address",
+   "The Rise and Progress of Michig\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Lansing, Ward 4, Precin\u2026",
+    "gq": "100 S CAPITOL AVE, LANSING",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   [
+    "City of Lansing, Ward 4, Precin\u2026 | Harris 81.8% | Trump 15.1%"
+   ],
+   [
+    13,
+    42.7343,
+    -84.5557
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7343,-84.5557,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7343,-84.5557,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Lansing, Ward 4, Precin\u2026",
+    "gq": "100 S CAPITOL AVE, LANSING",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   [
+    "City of Lansing, Ward 4, Precin\u2026 | Harris 81.8% | Trump 15.1%"
+   ],
+   [
+    13,
+    42.7343,
+    -84.5558
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7343,-84.5558,13]}"
+  ],
+  "err": []
+ },
+ "MI-list": {
+  "addr": "100 N Capitol Ave, Lansing, MI 48933",
+  "sugg": [
+   "100 S CAPITOL AVE, LANSING, MI,\u2026Address",
+   "Michigan State Capitol, 100, No\u2026Address",
+   "100, North Capitol Avenue, Down\u2026Address",
+   "The Rise and Progress of Michig\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Lansing, Ward 4, Precin\u2026",
+    "gq": "100 S CAPITOL AVE, LANSING",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   [],
+   [
+    13,
+    42.7343,
+    -84.5557
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7343,-84.5557,13]}"
+  ],
+  "rows": [
+   "Ingham | 34.2% | 63.9%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "City of Lansing, Ward 4, Precin\u2026",
+    "gq": "100 S CAPITOL AVE, LANSING",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   [
+    "City of Lansing, Ward 4, Precin\u2026 | Harris 81.8% | Trump 15.1%"
+   ],
+   [
+    13,
+    42.7344,
+    -84.5558
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7344,-84.5558,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Lansing, Ward 4, Precin\u2026",
+    "gq": "100 S CAPITOL AVE, LANSING",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   [
+    "City of Lansing, Ward 4, Precin\u2026 | Harris 81.8% | Trump 15.1%"
+   ],
+   [
+    13,
+    42.7344,
+    -84.5558
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Michigan\",\"co\":\"Ingham County\",\"p\":\"City of Lansing, Ward 4, Precinct 36\",\"ph\":\"100 S CAPITOL AVE, LANSING\",\"ttl\":\"100 S CAPITOL AVE, LANSING, MI, 48933\",\"pin\":[42.733619774672,-84.553968454462]},\"ll\":[42.7344,-84.5558,13]}"
+  ],
+  "err": []
+ },
+ "PA-map": {
+  "addr": "501 N 3rd St, Harrisburg, PA 17120",
+  "sugg": [
+   "501 N 3RD ST, HARRISBURG, PA, 1\u2026Address",
+   "Pennsylvania State Capitol, 501\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2645,
+    -76.8921
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2645,-76.8921,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2645,-76.8921,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2644,
+    -76.892
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}"
+  ],
+  "err": []
+ },
+ "PA-list": {
+  "addr": "501 N 3rd St, Harrisburg, PA 17120",
+  "sugg": [
+   "501 N 3RD ST, HARRISBURG, PA, 1\u2026Address",
+   "Pennsylvania State Capitol, 501\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [],
+   [
+    13,
+    40.2644,
+    -76.892
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}"
+  ],
+  "rows": [
+   "Dauphin | 46.5% | 52.4%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2645,
+    -76.8921
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2645,-76.8921,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Dauphin Precinct 0270",
+    "gq": "501 N 3RD ST, HARRISBURG",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 24%"
+   ],
+   [
+    "Dauphin Precinct 0270 | Harris 74.7% | Trump 24.2%"
+   ],
+   [
+    13,
+    40.2644,
+    -76.892
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Pennsylvania\",\"co\":\"Dauphin County\",\"p\":\"420430270\",\"ph\":\"501 N 3RD ST, HARRISBURG\",\"ttl\":\"501 N 3RD ST, HARRISBURG, PA, 17120\",\"pin\":[40.263320403715,-76.88436208996]},\"ll\":[40.2644,-76.892,13]}"
+  ],
+  "err": []
+ },
+ "WI-map": {
+  "addr": "2 E Main St, Madison, WI 53703",
+  "sugg": [
+   "2 E MAIN ST, MADISON, WI, 53703Address",
+   "Wisconsin State Capitol, 2, Eas\u2026Address",
+   "The West, 2, East Main Street, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    15,
+    43.0758,
+    -89.3867
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    15,
+    43.0758,
+    -89.3867
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}"
+  ],
+  "err": []
+ },
+ "WI-list": {
+  "addr": "2 E Main St, Madison, WI 53703",
+  "sugg": [
+   "2 E MAIN ST, MADISON, WI, 53703Address",
+   "Wisconsin State Capitol, 2, Eas\u2026Address",
+   "The West, 2, East Main Street, \u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [],
+   [
+    15,
+    43.0758,
+    -89.3867
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}"
+  ],
+  "rows": [
+   "Dane | 23.4% | 75.1%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    15,
+    43.0758,
+    -89.3867
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "City of Madison Ward 52",
+    "gq": "2 E MAIN ST, MADISON",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 86%",
+    "Donald Trump 2024 / 12%"
+   ],
+   [
+    "City of Madison Ward 52, Dane Co | Harris 85.9% | Trump 12.5%"
+   ],
+   [
+    15,
+    43.0758,
+    -89.3867
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wisconsin\",\"co\":\"Dane County\",\"p\":\"City of Madison Ward 52\",\"ph\":\"2 E MAIN ST, MADISON\",\"ttl\":\"2 E MAIN ST, MADISON, WI, 53703\",\"pin\":[43.07399602785,-89.383108835932]},\"ll\":[43.0758,-89.3867,15]}"
+  ],
+  "err": []
+ }
+}

@@ -1740,3 +1740,10 @@ Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Wa
 - Layout sweep at 390, 375, 320, 1024x576, 1024x768 (`qa/h1400-cmp.py`): every step SAME as the ~1 PM run; only the known items. One aborted cache-bust reload request at 375 (`?bc=...`), harmless.
 
 Ruling (orchestrator, Oct 25 2:04 PM EDT): QA-127 HIGH confirmed. A county with no towns, or its unincorporated remainder, must show its precincts or a 'balance of county' row. Linked to QA-094 (Fairfax).
+
+## Hourly run, build 1618 (Oct 25 ~3 PM EDT): no new bugs
+- Live line 9 still `202610181618`; v3 still 404.
+- Address search plus reload, new addresses (AZ Phoenix capitol, MI Lansing capitol, PA Harrisburg capitol, WI Madison), from the map and from the All States list then globe, Chromium 390x844 and WebKit 1024x768 touch: each lands on its precinct with matching popup and thumbnails (Maricopa 242 70.4/28.3, Lansing Ward 4 81.8/15.1, Dauphin 0270 74.7/24.2, Madison Ward 52 85.9/12.5), the snapshot holds the selection, and reload restores title, thumbnails and zoom exactly. No console or page errors.
+  - Observation, not filed: typing "100 N Capitol Ave, Lansing" offers "100 S CAPITOL AVE" as the top suggestion (geocoder choice; the precinct shown is plausible for the capitol block).
+- Layout sweep at 390, 375, 320, 1024x576, 1024x768 (`qa/h1500-cmp.py`): every step SAME as the ~2 PM run; only the known items; no errors or failed requests.
+- Data: `qa/b1618h1500-addr2-*.json`, `qa/b1618h1500-layout3-chromium-*.json`; shots `qa/shotsh1500/`.

@@ -1,3 +1,4 @@
+# Oct 25 3PM copy of h1200-lay3.py
 # b1574: layout-stability sweep. Records bounding boxes of chrome elements before/after (and every frame during) each view switch, year change, drill-in, back.
 import asyncio,json,sys
 from playwright.async_api import async_playwright
@@ -41,7 +42,7 @@ async def main():
       try: await _step(name,action,settle)
       except Exception as e: steps.append({'step':name,'EXC':str(e)[:200]}); print('EXC',name,str(e)[:120],flush=True)
     async def _step(name,action,settle=2200):
-      n[0]+=1; tag=f"shotsh1500/b1617h-{eng[:2]}-{size}-ls3{n[0]:02d}-{name}"
+      n[0]+=1; tag=f"shotsh1500/b1618h15-{eng[:2]}-{size}-ls3{n[0]:02d}-{name}"
       a=await pg.evaluate(BOX); await safeshot(pg,tag+"-before.png")
       samp=asyncio.ensure_future(pg.evaluate(SAMPLE,settle))
       ok=await action()
@@ -97,7 +98,7 @@ async def main():
     await step('list-back-gbar-1',back,4000)
     await step('list-back-gbar-2',back,4000)
     await step('view-map-US',lambda: tap('#bGlobe'),3500)
-    R['err']=log['pageerr']+[x for x in log['console'] if x.startswith('error')][:8]
+    R['err']=log['pageerr']+[x for x in log['console'] if x.startswith('error')][:8]; R['reqfail']=log['reqfail'][:10]; R['http']=log['http'][:10]
     await c.close(); await b.close()
-  json.dump(R,open(f'b1617h1500-layout3-{eng}-{size}.json','w'),indent=1)
+  json.dump(R,open(f'b1618h1500-layout3-{eng}-{size}.json','w'),indent=1)
 asyncio.run(main())
