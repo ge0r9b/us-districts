@@ -1702,3 +1702,8 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 
 ## Numbering note (Oct 25, ~10 AM EDT)
 Canonical: QA-119 Burlington VT (CRITICAL), QA-120 VT raw codes (LOW), QA-121 Warwick/West Warwick (CRITICAL), QA-122 Milford CT twice (MED), QA-123 map-to-list round trip loses the drilled list (MED), QA-124 stray neighbour precincts (HIGH). QA-125 stray '-' prefix on precinct names (LOW). QA-126 West Pottsgrove inside Pottstown PA (HIGH: misfiled, not double counted).
+
+## Hourly run, build 1618 (Oct 25 ~12 PM EDT): no new bugs
+- Live line 9 still `202610181618`; v3 still 404.
+- Neighbour-town hunt (QA-119/121/124/126 pattern), Chromium 390x844 touch: Portland ME, Manchester NH, Minneapolis MN (137 rows), Rochester NY (165 rows) contain no rows from South Portland/Westbrook/Falmouth, Bedford/Goffstown/Hooksett, St. Louis Park/Richfield/Golden Valley, or Brighton/Gates/Irondequoit; Wauwatosa WI opens its own wards. No console errors. Data: `qa/b1618h1200-cityN2-chromium-390x844.jsonl`.
+- Layout sweep at 390, 375, 320, 1024x576, 1024x768: identical to the previous runs (only the known items). Data: `qa/b1618h1200-layout3-chromium-*.json`.
