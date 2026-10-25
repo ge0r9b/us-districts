@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<script>window.BUILD="202610251619";</script>
+<script>window.BUILD="202610251620";</script>
 <script>/* build 1581 (user, QA-054/060 family): a reload that restores a place keeps the candidate thumbnails hidden until that place's thumbnails are final, so they never show the US order/numbers first and then jump */ (function(){ try{ let o=null; const m=/[#&]s=([^&]+)/.exec(location.hash); if(m){ let t=m[1].replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; o=JSON.parse(decodeURIComponent(escape(atob(t)))); } if(!o){ const j=localStorage.getItem("usd.state"); if(j) o=JSON.parse(j); } if(o&&(o.st||o.w||o.co)){ document.documentElement.classList.add("rstc"); setTimeout(()=>document.documentElement.classList.remove("rstc"),9000); } }catch(e){} })();</script>
 <style>html.rstc #cands, html.rstc #laCands, html.c0 #cands { visibility: hidden !important; }</style>
 <script>/* build 1581: on a fresh load the thumbnails first show once the results (and so their order and badges) are in, not before */ (function(){ const d=document.documentElement; d.classList.add("c0"); const t0=Date.now(); const f=()=>{ if((window.ELECTION2024&&document.querySelector("#cands .cand .cpt"))||Date.now()-t0>4000){ d.classList.remove("c0"); return; } requestAnimationFrame(f); }; requestAnimationFrame(f); })();</script>
@@ -2035,11 +2035,14 @@ function townsIn(st,c){ const key=st+"|"+c; if(TW[key]) return TW[key];
     if(p.polys&&PN[p.name]>1&&sliver(p.polys)) return; /* build 1600 (QA-006): a boundary sliver of a town that lies in another county (Rockledge borough's 0.006 km2 sliver on the Philadelphia line) is not a town of this county */
     let polys=p.polys; if(!polys){ const g=(GEOM.places||[]).find(d=>d[0]===st&&d[1]===p.name); if(!g) return; polys=g[g.length-1]; }
     towns.push([st,c,p.name,polys]); have.add(normT(p.name)); });
-  towns.sort((a,b)=>a[2].localeCompare(b[2])); return TW[key]=towns; }
-function precRowsIn(d,rows,cn){ if(!rows) return []; if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); const b=d.__bb;
+  towns.sort((a,b)=>a[2].localeCompare(b[2])); towns.forEach(t=>{ t.__tw=towns; }); return TW[key]=towns; }
+function twBase(n){ return normT(String(n).replace(/^\d+-/,"").split(",")[0]).replace(/\s+(charter township|township|city|town|village|borough|tp|twp)$/,"").trim(); }
+function twOwner(r,T){ const nm=String(r[1]).toLowerCase().replace(/^\d+-/,"").trim(); if(!T.__bs) T.__bs=T.map(t=>[twBase(t[2]),t]).filter(x=>x[0].length>2).sort((a,b)=>b[0].length-a[0].length); for(const [b,t] of T.__bs){ if(nm===b||nm.startsWith(b+" ")||nm.startsWith(b+",")) return t; } return null; }
+function precRowsIn(d,rows,cn){ if(!rows) return []; if(d.__tw&&cn) return precRowsIn0(d,rows,cn).filter(r=>{ const o=twOwner(r,d.__tw); return !o||o===d; }).concat(rows.filter(r=>r[0]===cn&&twOwner(r,d.__tw)===d&&!precRowsIn0(d,[r],cn).length)); /* build 1620 (QA-119/121/124/126): place-membership gate; a precinct named for another town of this county belongs to that town, not to the town its centroid falls in */ return precRowsIn0(d,rows,cn); }
+function precRowsIn0(d,rows,cn){ if(!rows) return []; if(!d.__bb) d.__bb=bboxOf(d[d.length-1]); const b=d.__bb;
   return rows.filter(r=>{ if(cn&&r[0]!==cn) return false; if(!r.__c){ let c=centroid(r[5]); if(!pointInItem(r.slice(0,6),c[0],c[1])){ const q=r[6]; c=[(q[0]+q[2])/2,(q[1]+q[3])/2]; } r.__c=c; }
     const [x,y]=r.__c; return x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]&&pointInItem(d,x,y); }); }
-precIn=function(d){ return precRowsIn(d,precSrc(),ltype==="counties"?county.value:null); };
+precIn=function(d){ return precRowsIn(d,precSrc(),d.__tw?d[1]:(ltype==="counties"?county.value:null)); };
 const _vals=vals; vals=function(a,yr){ if(a.kind!=="towns") return _vals(a,yr);
   if(yr==="2016"&&!(window.PREC16&&(a.d[0] in window.PREC16))){ window.__loadPrec16&&window.__loadPrec16(a.d[0]).then(()=>{ window.__inject16&&0; try{ if(window.__y16&&window.__y16Render) window.__y16Render(); }catch(e){} }); return null; }
   const src=yr==="2016"?(window.PREC16||{})[a.d[0]]:yr==="2020"?(window.PREC20||{})[a.d[0]]:PREC[a.d[0]]; const rows=precRowsIn(a.d,src,a.d[1]);
