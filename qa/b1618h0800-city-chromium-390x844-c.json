@@ -1,0 +1,321 @@
+{
+ "West Virginia|Charleston city": {
+  "tapC": [
+   92,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kanawha County",
+    "gq": "Kanawha County, WV",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 58%",
+    "Kamala Harris 2024 / 40%"
+   ],
+   15,
+   [
+    "Charleston city | 39.1% | 58.3%",
+    "South Charleston city | 49.0% | 48.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kanawha County Charleston city",
+    "gq": "Kanawha County, WV",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 58%",
+    "Donald Trump 2024 / 39%"
+   ],
+   45,
+   [
+    "Precinct 184 | 44.9%",
+    "Precinct 160 | 46.9% | 50.6%",
+    "Precinct 403 | 28.4% | 69.7%",
+    "Precinct 253 | 39.1% | 58.2%",
+    "Precinct 254 | 37.3% | 60.1%",
+    "Precinct 240 | 48.1% | 49.7%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 11K",
+    "Donald Trump 2024 / 8K"
+   ],
+   [
+    "Precinct 184 | 549 | 632",
+    "Precinct 160 | 507 | 547",
+    "Precinct 403 | 273 | 669",
+    "Precinct 253 | 338 | 503"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "West Virginia|South Charleston city": {
+  "tapC": [
+   92,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kanawha County",
+    "gq": "Kanawha County, WV",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 58%",
+    "Kamala Harris 2024 / 40%"
+   ],
+   15,
+   [
+    "South Charleston city | 49.0% | 48.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kanawha County South Charleston\u2026",
+    "gq": "Kanawha County, WV",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   15,
+   [
+    "Precinct 227 | 44.0%",
+    "Precinct 223 | 45.4% | 51.7%",
+    "Precinct 282 | 51.4% | 46.9%",
+    "Precinct 281 | 49.6% | 48.3%",
+    "Precinct 286 | 47.3% | 49.2%",
+    "Precinct 208 | 46.4% | 51.0%"
+   ]
+  ],
+  "suspect": [
+   "Precinct 206B | 62.2% | 34.4%",
+   "Precinct 206 | 57.4% | 39.0%",
+   "Precinct 206A | 65.2% | 33.3%"
+  ],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 3K",
+    "Kamala Harris 2024 / 3K"
+   ],
+   [
+    "Precinct 227 | 334 | 400",
+    "Precinct 223 | 344 | 391",
+    "Precinct 282 | 311 | 284",
+    "Precinct 281 | 284 | 277"
+   ]
+  ],
+  "suspect_num": [
+   "Precinct 206B | 199",
+   "Precinct 206 | 144 | 98",
+   "Precinct 206A | 66"
+  ],
+  "tapS": [
+   "Precinct 206B",
+   [
+    97.5,
+    376.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Kanawha County South Charleston\u2026",
+    "gq": "Kanawha County, WV",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 199",
+    "Kamala Harris 2024 / 110"
+   ],
+   [
+    "Precinct 227 | 334 | 400",
+    "Precinct 223 | 344 | 391",
+    "Precinct 282 | 311 | 284"
+   ]
+  ],
+  "err": []
+ },
+ "Connecticut|Milford city (balance)": {
+  "tapC": [
+   102,
+   196.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 59%",
+    "Donald Trump 2024 / 39%"
+   ],
+   17,
+   [
+    "Milford city (balance) | 46.7% | 47.3%",
+    "Milford town | 46.7% | 47.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 47%",
+    "Donald Trump 2024 / 47%"
+   ],
+   1,
+   [
+    "170-Milford | 46.7% | 47.3%"
+   ]
+  ],
+  "suspect": [
+   "170-Milford | 46.7% | 47.3%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 15K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "170-Milford | 14K | 15K"
+   ]
+  ],
+  "suspect_num": [
+   "170-Milford | 14K | 15K"
+  ],
+  "tapS": [
+   "170-Milford",
+   [
+    90.5,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 15K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "170-Milford | 14K | 15K"
+   ]
+  ],
+  "err": []
+ },
+ "Connecticut|Milford town": {
+  "tapC": [
+   102,
+   196.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 59%",
+    "Donald Trump 2024 / 39%"
+   ],
+   17,
+   [
+    "Milford city (balance) | 46.7% | 47.3%",
+    "Milford town | 46.7% | 47.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   196.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 47%",
+    "Donald Trump 2024 / 47%"
+   ],
+   1,
+   [
+    "170-Milford | 46.7% | 47.3%"
+   ]
+  ],
+  "suspect": [
+   "170-Milford | 46.7% | 47.3%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 15K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "170-Milford | 14K | 15K"
+   ]
+  ],
+  "suspect_num": [
+   "170-Milford | 14K | 15K"
+  ],
+  "tapS": [
+   "170-Milford",
+   [
+    90.5,
+    136.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "South Central Connecticut Plann\u2026",
+    "gq": "South Central Connecticut Plann\u2026",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 15K",
+    "Donald Trump 2024 / 14K"
+   ],
+   [
+    "170-Milford | 14K | 15K"
+   ]
+  ],
+  "err": []
+ }
+}

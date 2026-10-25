@@ -708,6 +708,58 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Hourly run, build 1618, Oct 25 ~8 AM EDT (7:51-8:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
+- Touch on phones, Chromium + WebKit, up to 6 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests in any run.** Logs `qa/h0800-*.log`, data `qa/b1618h0800-*.json`, shots `qa/shotsh0800/b1618h8-*.png`. Scripts are `qa/h0800-*.py`: lay3, addr2, own, pa16, states and cmp are copied from h0700, and city, dupaudit and sortchart are new.
+- **QA-119 family hunt.** `qa/h0800-dupaudit.py` loads each state's 2024 precincts and assigns them to towns by centroid, approximating the app's `precRowsIn`. It flags precincts whose name names a different town of the same county. Results are in `qa/b1618h0800-dupaudit-sb_*.json`, 50 files, one per state. Burlington, VT is flagged again (QA-119 still open). The UI checks below are `qa/h0800-city.py`, which drills state > geo sheet > county > town and lists every row.
+  - **New: QA-121 [CRITICAL by the QA-087/093/098/103/119 ruling, orchestrator to confirm] Warwick city, RI includes West Warwick town's votes, tapping that row shows West Warwick under Warwick's title, and West Warwick's own drill-in is empty.**
+    - Size, build, engine: Chromium 320x568 and WebKit 1024x576 (Warwick); WebKit 390x844 (West Warwick); build 1618, touch.
+    - Steps: bottom field "Rhode Island" + Enter > geo filter (#bGeo) > Rhode Island counties > Kent > Warwick city.
+    - Expected: Warwick city's own rows and totals only. West Warwick town appears only as its own row in the Kent list, and drilling into it shows its own results.
+    - Actual: the Warwick city list has 2 rows. "003-Warwick" is Trump 45.1% / Harris 52.9% (21K / 24K). **"003-West Warwick"** is 50.1% / 48.0% (7K / 7K). The Warwick thumbnails read **Harris 31K / Trump 28K (52% / 46%)**, which is Warwick plus West Warwick. Tapping "003-West Warwick" keeps the title "Kent County Warwick city" and switches the thumbnails to West Warwick's 7K / 7K. The Kent list also has its own "West Warwick town" row (50.0% / 48.1%), so about 14K votes appear under two Kent rows. Tapping "West Warwick town" gives **"Nothing to list" and no thumbnails** under the title "Kent County West Warwick town".
+    - Both Warwick rows are prefixed "003-" (raw codes, see QA-105/120). Other RI towns are too: "007-Providence", and the CT town rows ("110-Hartford", "170-Milford").
+    - Shots: qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-list-num.png, qa/shotsh0800/b1618h8-ch-320x568-city-Warwickcity-tapSuspect.png, qa/shotsh0800/b1618h8-we-1024x576-city-Warwickcity-{list,list-num,tapSuspect}.png, qa/shotsh0800/b1618h8-we-390x844-city-WestWarwicktown-list.png
+    - Data: `qa/b1618h0800-city-chromium-320x568-a.json`, `qa/b1618h0800-city-webkit-1024x576-w.json`, `qa/b1618h0800-city-webkit-390x844-d.json`
+  - **New: QA-122 [MEDIUM, may be HIGH; needs ruling] Connecticut, South Central region: Milford is listed twice, as "Milford city (balance)" and "Milford town", with the same votes.**
+    - Size, build, engine: Chromium 390x844, build 1618, touch.
+    - Steps: "Connecticut" + Enter > geo sheet > Connecticut counties > South Central Connecticut Planning Region.
+    - Expected: one Milford row (the town; the census "city (balance)" is the same place minus Woodmont borough).
+    - Actual: two rows with identical figures, both Trump 46.7% / Harris 47.3%. Each drills to the same single row "170-Milford" (14K / 15K), with thumbnails Harris 15K / Trump 14K. So about 30.8K votes show twice in the region list.
+    - The title after the drill-in is "South Central Connecticut Plann…" for both rows: the long region name pushes Milford's name out of the title at 390.
+    - This is the only "precinct in two towns" case the audit found in CT. NY's many hits are villages inside towns, which is expected.
+    - Shots: qa/shotsh0800/b1618h8-ch-390x844-city-Milfordcitybalance-list.png, qa/shotsh0800/b1618h8-ch-390x844-city-Milfordtown-list-num.png
+    - Data: `qa/b1618h0800-city-chromium-390x844-c.json`
+  - **Passed (no neighbouring place inside, title and numbers agree):**
+    - Portland, ME: 1 row "Precinct 05170", 37K / 7K; South Portland and Westbrook are separate rows.
+    - Charleston, SC: 62 rows (Johns Island / St. Andrews / … are real city precincts); no North Charleston rows.
+    - Salt Lake City: 137 "SLC" precincts; no South Salt Lake / West Valley rows.
+    - Kansas City, MO (Jackson): 121 rows; no Independence / Raytown rows.
+    - Las Vegas: 195 rows; no North Las Vegas.
+    - Miami: 123 rows; no Miami Beach / North Miami / Miami Gardens / Miami Springs.
+    - Pittsburgh: 402 ward rows; no East Pittsburgh / Mt. Oliver.
+    - Providence, RI: 1 row "007-Providence"; no East or North Providence.
+    - Charleston, WV: no South Charleston precincts.
+  - **Observation, not filed (precinct boundaries do not follow city lines):** Burlington city, NC (Alamance) lists the precincts "Graham 3" (616 / 1K) and "West Graham" (358 / 403). South Charleston, WV lists "Precinct 206 / 206A / 206B". These are centroid assignments of multi-place precincts, not whole neighbouring places. Their size is within normal precinct overlap.
+- **Totals vs official (`__stTot`, Chromium 320x568 for ME/NH/CT/RI/DE/NV, WebKit 1024x576 for NM/ND/SD/WY/AK).** The FEC PDFs were fetched again this run and every 2020/2024 figure was found in them. The 2016 values were checked against the FEC "Federal Elections 2016" workbook (Table 2). **32 of 33 state-years are exact.** The one gap is ND 2020: D +140 / R +156 / total +205 vs FEC and the ND certificate of ascertainment (235,595 / 114,902 / 361,819). That is 0.06%, it was already logged Oct 19 as passing the user rule, and the severity is LOW. Table in `qa/b1618h0800-totals.md`. Thumbnails agree for every year.
+- **Address search (Chromium 320x568, WebKit 1024x576; from the map and from the All States list, then globe and reload):** Portland City Hall, ME > "Cumberland Precinct 05170" 81 / 16 (map z9-10, because the precinct includes the islands; the pin and popup are on screen). NM Capitol > "Santa Fe Precinct 36" 89 / 9 (z13-14). 210 Capitol Ave, Hartford > "110-Hartford" 82 / 17 (z11). 600 E 4th St, Charlotte > "Mecklenburg Precinct 13" 76 / 23 (z12). From the list, the county row is selected under the precinct title (as accepted for QA-098), globe goes to the precinct, and **reload restores the same title and numbers in every case.** Raw IDs in the titles fall under QA-105.
+- **Sort chip, % / #, chart menu, district-type menu (`qa/h0800-sortchart.py`; Chromium 1024x768 and 320x568, WebKit 1024x576):**
+  - **Sort:** All States is high to low by total votes (CA, TX, FL); one chip tap gives WY, DC, AK, and a second restores the order (11-39 ms). PA counties: Philadelphia, Allegheny, Montgomery; flip gives Cameron, Forest, Sullivan. Same in % and #.
+  - **Chart menu:** in lists the menu offers bar / split bar (pie only from a map, as before). It opens over the list without resizing it (`#listView` rect unchanged, opacity 1). Tap-to-paint 8-54 ms.
+  - **District-type menu:** buttons ushouse / senate / statehouse / schools. The `#map` rect is unchanged when it opens, there is no filter or dimming, and it sits at the bottom right on iPad.
+  - New Mexico (Chromium 1024x576) and Nebraska (WebKit 1024x768), each type: senate 42 / 49 rows, state house 70 / 0, schools 89 / 244, US House 3 / 3. Rows show the number only, # works, and turning the type off returns to the state.
+    - Nebraska has no state house (it is unicameral), so its State house button gives "Nothing to list" with no thumbnails (qa/shotsh0800/b1618h8-we-1024x768-st-Nebraska-statehouse-list.png). That is correct data-wise. The orchestrator may want the button hidden for NE; not filed.
+    - Ranges '16-'20 line, '20-'24 bar, '16-'24 line: no overlap.
+  - **QA-099 [MEDIUM] still open:** the chip (922-956 x 111-133 at 1024; 218-252 at 320) sits on CA's first-row Harris bar ("58.5%" / "9.28M") in All States, and on Philadelphia's 78.8% bar in the PA split bar list. Also seen over Warwick's "21K" bar at 320.
+- **Standing verify list:**
+  - 2016 colours: the US '16 map has blue states (CA, NY, IL, CO, VA). The '?' tint for FL / PA / MI / WI is unchanged. WA read white at 1024x576 only because the sample point is under the top bars; it is blue on screen (qa/shotsh0800/b1618h8-we-1024x576-own-US-2016.png).
+  - PA '16 is not blank (Philadelphia / Allegheny / Lackawanna blue, the rest red).
+  - PA '16 pie: Trump 48.2% / Clinton 47.5%. PA '16 bar: 48.2 / 47.5 / 4.4 (WebKit 375x667). '24 gives 50.2 / 48.5. Going '16 > '24 > '16 keeps the chart.
+  - List rows show the number only. DC and DE are labelled "At-large". Bars sit next to the icons.
+  - Thumbnails are on the topic-icon axis in every view (`own` reports no issues at Chromium 320 or WebKit 1024x576).
+  - Menus overlay without shrinking or dimming.
+  - **Sort chip clear of rows: FAILS (QA-099).**
+- **Layout-stability sweep at 5 sizes (WebKit 390, 320, 1024x768; Chromium 375, 1024x576), engines swapped from 7 AM.** Every step is SAME as the last run of that size and engine, except one: WebKit 1024x768 no longer shows the transient "crumbs" change on All States. **No new jump.** No page errors.
+- Open items not rerun this hour (unchanged build): QA-117, 118, 115, 116, 113, 112, 110, 074, 018, 105 / 106 / 120, 073 / 102 / 085. QA-119 is still open (the data audit finds the same "SOUTH BURLINGTON CITY" precinct in Burlington city). QA-100 stays HIGH.
+
 ## Hourly run, build 1618, Oct 25 ~7 AM EDT (6:55-7:06 AM EDT; line 9 = 202610181618, unchanged, so a fresh-coverage pass; v3 still 404)
 - Touch on phones, Chromium + WebKit, up to 7 browsers at once, so tap timings are noisy. **No console errors, page errors or failed app requests.** Logs `qa/h0700-*.log`, shots `qa/shotsh0700/b1618h7a-*.png`, scripts `qa/h0700-*.py` (copied from h0600; new `h0700-vtbur.py`).
 - **New: QA-119 [CRITICAL by the QA-087/093/098/103 ruling, orchestrator to confirm] Burlington city, VT includes South Burlington's votes, and tapping that row shows South Burlington under Burlington's title.** Chromium 390x844 and WebKit 1024x768, same result.

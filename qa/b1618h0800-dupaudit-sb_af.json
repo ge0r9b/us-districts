@@ -1,0 +1,908 @@
+[
+{
+"st": "Texas",
+"nprec": 9712,
+"dups": [],
+"named": [],
+"ntowns": 1389
+},
+{
+"st": "Utah",
+"nprec": 2670,
+"dups": [],
+"named": [],
+"ntowns": 260
+},
+{
+"st": "Vermont",
+"nprec": 247,
+"dups": [
+{
+"c": "Bennington County",
+"prec": "003-Bennington",
+"towns": [
+"Bennington town",
+"Old Bennington village"
+],
+"tot": 7127
+},
+{
+"c": "Orleans County",
+"prec": "DERBY TOWN",
+"towns": [
+"Derby Center village",
+"Derby town"
+],
+"tot": 2664
+}
+],
+"named": [
+{
+"c": "Chittenden County",
+"town": "Burlington city",
+"prec": "SOUTH BURLINGTON CITY",
+"names": "South Burlington city",
+"tot": 12461
+}
+],
+"ntowns": 266
+},
+{
+"st": "Virginia",
+"nprec": 2518,
+"dups": [],
+"named": [],
+"ntowns": 237
+},
+{
+"st": "Washington",
+"nprec": 7912,
+"dups": [],
+"named": [],
+"ntowns": 288
+},
+{
+"st": "West Virginia",
+"nprec": 1611,
+"dups": [
+{
+"c": "Kanawha County",
+"prec": "206",
+"towns": [
+"Charleston city",
+"South Charleston city"
+],
+"tot": 251
+}
+],
+"named": [],
+"ntowns": 237
+},
+{
+"st": "Wisconsin",
+"nprec": 6819,
+"dups": [],
+"named": [
+{
+"c": "Barron County",
+"town": "Rice Lake city",
+"prec": "Town of STANLEY Ward 1",
+"names": "Stanley town",
+"tot": 288
+},
+{
+"c": "Barron County",
+"town": "Stanley town",
+"prec": "City of Rice Lake Ward 12",
+"names": "Rice Lake city",
+"tot": 307
+},
+{
+"c": "Barron County",
+"town": "Stanley town",
+"prec": "City of Rice Lake Ward 12",
+"names": "Rice Lake town",
+"tot": 307
+},
+{
+"c": "Brown County",
+"town": "De Pere city",
+"prec": "Town of LEDGEVIEW Ward 6",
+"names": "Ledgeview town",
+"tot": 703
+},
+{
+"c": "Brown County",
+"town": "Pittsfield town",
+"prec": "Village of Howard Ward 22",
+"names": "Howard village",
+"tot": 6
+},
+{
+"c": "Calumet County",
+"town": "Appleton city",
+"prec": "Village of Harrison Ward 6",
+"names": "Harrison town",
+"tot": 1550
+},
+{
+"c": "Calumet County",
+"town": "Appleton city",
+"prec": "Village of Harrison Ward 6",
+"names": "Harrison village",
+"tot": 1550
+},
+{
+"c": "Calumet County",
+"town": "Harrison village",
+"prec": "City of Menasha Ward 16",
+"names": "Menasha city",
+"tot": 748
+},
+{
+"c": "Calumet County",
+"town": "Harrison village",
+"prec": "Village of Sherwood Ward 2",
+"names": "Sherwood village",
+"tot": 261
+},
+{
+"c": "Calumet County",
+"town": "Menasha city",
+"prec": "Village of Harrison Ward 4",
+"names": "Harrison town",
+"tot": 13
+},
+{
+"c": "Calumet County",
+"town": "Menasha city",
+"prec": "Village of Harrison Ward 4",
+"names": "Harrison village",
+"tot": 13
+},
+{
+"c": "Chippewa County",
+"town": "Bloomer city",
+"prec": "Town of WOODMOHR Ward 2",
+"names": "Woodmohr town",
+"tot": 129
+},
+{
+"c": "Chippewa County",
+"town": "Estella town",
+"prec": "City of Cornell Ward 1",
+"names": "Cornell city",
+"tot": 186
+},
+{
+"c": "Columbia County",
+"town": "Friesland village",
+"prec": "Town of RANDOLPH Ward 1",
+"names": "Randolph town",
+"tot": 448
+},
+{
+"c": "Columbia County",
+"town": "Friesland village",
+"prec": "Town of RANDOLPH Ward 1",
+"names": "Randolph village",
+"tot": 448
+},
+{
+"c": "Crawford County",
+"town": "Bridgeport town",
+"prec": "City of Prairie Du Chien Ward 1",
+"names": "Prairie du Chien city",
+"tot": 546
+},
+{
+"c": "Crawford County",
+"town": "Bridgeport town",
+"prec": "City of Prairie Du Chien Ward 1",
+"names": "Prairie du Chien town",
+"tot": 546
+},
+{
+"c": "Dane County",
+"town": "Burke town",
+"prec": "City of Madison Ward 25",
+"names": "Madison city",
+"tot": 1831
+},
+{
+"c": "Dane County",
+"town": "Christiana town",
+"prec": "Village of Cambridge Ward 2",
+"names": "Cambridge village",
+"tot": 483
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of BLOOMING GROVE Ward 4",
+"names": "Blooming Grove town",
+"tot": 214
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of BLOOMING GROVE Ward 6",
+"names": "Blooming Grove town",
+"tot": 3
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of BLOOMING GROVE Ward 7",
+"names": "Blooming Grove town",
+"tot": 23
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of BURKE Ward 1",
+"names": "Burke town",
+"tot": 48
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "City of Fitchburg Ward 10",
+"names": "Fitchburg city",
+"tot": 1095
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Village of Mcfarland Ward 2",
+"names": "McFarland village",
+"tot": 648
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of MIDDLETON Ward 4A",
+"names": "Middleton city",
+"tot": 4
+},
+{
+"c": "Dane County",
+"town": "Madison city",
+"prec": "Town of MIDDLETON Ward 4A",
+"names": "Middleton town",
+"tot": 4
+},
+{
+"c": "Dane County",
+"town": "Middleton town",
+"prec": "City of Madison Ward 118",
+"names": "Madison city",
+"tot": 1349
+},
+{
+"c": "Dane County",
+"town": "Middleton town",
+"prec": "City of Madison Ward 120",
+"names": "Madison city",
+"tot": 7
+},
+{
+"c": "Dane County",
+"town": "Middleton town",
+"prec": "City of Madison Ward 135",
+"names": "Madison city",
+"tot": 2
+},
+{
+"c": "Dane County",
+"town": "Westport town",
+"prec": "Village of Waunakee Ward 9",
+"names": "Waunakee village",
+"tot": 898
+},
+{
+"c": "Dodge County",
+"town": "Emmet town",
+"prec": "City of Watertown Ward 4",
+"names": "Watertown city",
+"tot": 786
+},
+{
+"c": "Dodge County",
+"town": "Emmet town",
+"prec": "City of Watertown Ward 23",
+"names": "Watertown city",
+"tot": 26
+},
+{
+"c": "Dodge County",
+"town": "Trenton town",
+"prec": "City of Beaver Dam Ward 28",
+"names": "Beaver Dam city",
+"tot": 18
+},
+{
+"c": "Dodge County",
+"town": "Trenton town",
+"prec": "City of Beaver Dam Ward 28",
+"names": "Beaver Dam town",
+"tot": 18
+},
+{
+"c": "Eau Claire County",
+"town": "Eau Claire city",
+"prec": "Town of WASHINGTON Ward 1",
+"names": "Washington town",
+"tot": 43
+},
+{
+"c": "Eau Claire County",
+"town": "Eau Claire city",
+"prec": "Town of WASHINGTON Ward 4",
+"names": "Washington town",
+"tot": 252
+},
+{
+"c": "Eau Claire County",
+"town": "Eau Claire city",
+"prec": "Town of WASHINGTON Ward 7",
+"names": "Washington town",
+"tot": 215
+},
+{
+"c": "Eau Claire County",
+"town": "Union town",
+"prec": "City of Eau Claire Ward 42",
+"names": "Eau Claire city",
+"tot": 638
+},
+{
+"c": "Eau Claire County",
+"town": "Union town",
+"prec": "City of Eau Claire Ward 68",
+"names": "Eau Claire city",
+"tot": 3
+},
+{
+"c": "Florence County",
+"town": "Commonwealth town",
+"prec": "Town of FLORENCE Ward 7",
+"names": "Florence town",
+"tot": 95
+},
+{
+"c": "Grant County",
+"town": "Paris town",
+"prec": "Village of Dickeyville Ward 1",
+"names": "Dickeyville village",
+"tot": 411
+},
+{
+"c": "Green Lake County",
+"town": "Brooklyn town",
+"prec": "City of Green Lake Ward 1",
+"names": "Green Lake city",
+"tot": 269
+},
+{
+"c": "Green Lake County",
+"town": "Brooklyn town",
+"prec": "City of Green Lake Ward 1",
+"names": "Green Lake town",
+"tot": 269
+},
+{
+"c": "Jefferson County",
+"town": "Farmington town",
+"prec": "Village of Johnson Creek Ward 4",
+"names": "Johnson Creek village",
+"tot": 466
+},
+{
+"c": "Jefferson County",
+"town": "Jefferson city",
+"prec": "Town of AZTALAN Ward 4",
+"names": "Aztalan town",
+"tot": 47
+},
+{
+"c": "Jefferson County",
+"town": "Jefferson town",
+"prec": "City of Fort Atkinson Ward 8",
+"names": "Fort Atkinson city",
+"tot": 885
+},
+{
+"c": "Jefferson County",
+"town": "Oakland town",
+"prec": "Village of Cambridge Ward 1",
+"names": "Cambridge village",
+"tot": 60
+},
+{
+"c": "Juneau County",
+"town": "Lemonweir town",
+"prec": "City of Mauston Ward 8",
+"names": "Mauston city",
+"tot": 24
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Village of Pleasant Prairie Ward 6",
+"names": "Pleasant Prairie village",
+"tot": 1080
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 1",
+"names": "Somers town",
+"tot": 70
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 1",
+"names": "Somers village",
+"tot": 70
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 2",
+"names": "Somers town",
+"tot": 426
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 2",
+"names": "Somers village",
+"tot": 426
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 3",
+"names": "Somers town",
+"tot": 69
+},
+{
+"c": "Kenosha County",
+"town": "Kenosha city",
+"prec": "Town of SOMERS Ward 3",
+"names": "Somers village",
+"tot": 69
+},
+{
+"c": "Kenosha County",
+"town": "Somers town",
+"prec": "City of Kenosha Ward 82",
+"names": "Kenosha city",
+"tot": 1
+},
+{
+"c": "Kenosha County",
+"town": "Somers town",
+"prec": "City of Kenosha Ward 83",
+"names": "Kenosha city",
+"tot": 1
+},
+{
+"c": "Kenosha County",
+"town": "Somers town",
+"prec": "City of Kenosha Ward 94",
+"names": "Kenosha city",
+"tot": 1
+},
+{
+"c": "La Crosse County",
+"town": "La Crosse city",
+"prec": "Town of CAMPBELL Ward 3",
+"names": "Campbell town",
+"tot": 616
+},
+{
+"c": "La Crosse County",
+"town": "Onalaska city",
+"prec": "Town of MEDARY Ward 1",
+"names": "Medary town",
+"tot": 265
+},
+{
+"c": "La Crosse County",
+"town": "Onalaska town",
+"prec": "Village of Holmen Ward 12",
+"names": "Holmen village",
+"tot": 122
+},
+{
+"c": "La Crosse County",
+"town": "Shelby town",
+"prec": "City of La Crosse Ward 26",
+"names": "La Crosse city",
+"tot": 1448
+},
+{
+"c": "Manitowoc County",
+"town": "Schleswig town",
+"prec": "City of Kiel Ward 8",
+"names": "Kiel city",
+"tot": 4
+},
+{
+"c": "Marathon County",
+"town": "Schofield city",
+"prec": "Village of Rib Mountain Ward 3",
+"names": "Rib Mountain village",
+"tot": 494
+},
+{
+"c": "Marathon County",
+"town": "Stettin town",
+"prec": "City of Wausau Ward 10",
+"names": "Wausau city",
+"tot": 931
+},
+{
+"c": "Marathon County",
+"town": "Stettin town",
+"prec": "City of Wausau Ward 10",
+"names": "Wausau town",
+"tot": 931
+},
+{
+"c": "Marathon County",
+"town": "Wausau city",
+"prec": "Town of STETTIN Ward 3",
+"names": "Stettin town",
+"tot": 119
+},
+{
+"c": "Milwaukee County",
+"town": "Milwaukee city",
+"prec": "City of Wauwatosa Ward 24A",
+"names": "Wauwatosa city",
+"tot": 1055
+},
+{
+"c": "Monroe County",
+"town": "Tomah city",
+"prec": "Town of LA GRANGE Ward 3",
+"names": "La Grange town",
+"tot": 62
+},
+{
+"c": "Oneida County",
+"town": "Pelican town",
+"prec": "City of Rhinelander Ward 13",
+"names": "Rhinelander city",
+"tot": 224
+},
+{
+"c": "Outagamie County",
+"town": "Appleton city",
+"prec": "Town of GRAND CHUTE Ward 17",
+"names": "Grand Chute town",
+"tot": 333
+},
+{
+"c": "Outagamie County",
+"town": "Appleton city",
+"prec": "Town of GRAND CHUTE Ward 19",
+"names": "Grand Chute town",
+"tot": 133
+},
+{
+"c": "Outagamie County",
+"town": "Buchanan town",
+"prec": "Village of Combined Locks Ward 6",
+"names": "Combined Locks village",
+"tot": 23
+},
+{
+"c": "Portage County",
+"town": "Plover town",
+"prec": "City of Stevens Point Ward 16",
+"names": "Stevens Point city",
+"tot": 441
+},
+{
+"c": "Portage County",
+"town": "Stevens Point city",
+"prec": "Town of HULL Ward 1",
+"names": "Hull town",
+"tot": 304
+},
+{
+"c": "Portage County",
+"town": "Stevens Point city",
+"prec": "Town of HULL Ward 7",
+"names": "Hull town",
+"tot": 358
+},
+{
+"c": "Racine County",
+"town": "Caledonia village",
+"prec": "City of Racine Ward 13",
+"names": "Racine city",
+"tot": 762
+},
+{
+"c": "Racine County",
+"town": "Mount Pleasant village",
+"prec": "City of Racine Ward 36",
+"names": "Racine city",
+"tot": 975
+},
+{
+"c": "Racine County",
+"town": "Racine city",
+"prec": "Village of Caledonia Ward 21",
+"names": "Caledonia village",
+"tot": 303
+},
+{
+"c": "Racine County",
+"town": "Union Grove village",
+"prec": "Village of Yorkville Ward 4",
+"names": "Yorkville village",
+"tot": 290
+},
+{
+"c": "Rock County",
+"town": "Spring Valley town",
+"prec": "City of Brodhead Ward 1",
+"names": "Brodhead city",
+"tot": 59
+},
+{
+"c": "Rusk County",
+"town": "Ingram village",
+"prec": "Town of RICHLAND Ward 1",
+"names": "Richland town",
+"tot": 58
+},
+{
+"c": "Rusk County",
+"town": "Thornapple town",
+"prec": "Town of ATLANTA Ward 2",
+"names": "Atlanta town",
+"tot": 53
+},
+{
+"c": "St. Croix County",
+"town": "Star Prairie town",
+"prec": "City of New Richmond Ward 3",
+"names": "New Richmond city",
+"tot": 166
+},
+{
+"c": "St. Croix County",
+"town": "Star Prairie town",
+"prec": "City of New Richmond Ward 3",
+"names": "Richmond town",
+"tot": 166
+},
+{
+"c": "Sheboygan County",
+"town": "Sheboygan city",
+"prec": "Town of WILSON Ward 3",
+"names": "Wilson town",
+"tot": 630
+},
+{
+"c": "Sheboygan County",
+"town": "Sheboygan city",
+"prec": "Town of WILSON Ward 4",
+"names": "Wilson town",
+"tot": 607
+},
+{
+"c": "Sheboygan County",
+"town": "Waldo village",
+"prec": "Town of LYNDON Ward 2",
+"names": "Lyndon town",
+"tot": 331
+},
+{
+"c": "Sheboygan County",
+"town": "Wilson town",
+"prec": "City of Sheboygan Ward 20",
+"names": "Sheboygan city",
+"tot": 1433
+},
+{
+"c": "Sheboygan County",
+"town": "Wilson town",
+"prec": "City of Sheboygan Ward 20",
+"names": "Sheboygan town",
+"tot": 1433
+},
+{
+"c": "Taylor County",
+"town": "Lublin village",
+"prec": "Town of ROOSEVELT Ward 1",
+"names": "Roosevelt town",
+"tot": 198
+},
+{
+"c": "Trempealeau County",
+"town": "Lincoln town",
+"prec": "City of Whitehall Ward 2",
+"names": "Whitehall city",
+"tot": 245
+},
+{
+"c": "Trempealeau County",
+"town": "Preston town",
+"prec": "City of Blair Ward 1",
+"names": "Blair city",
+"tot": 198
+},
+{
+"c": "Walworth County",
+"town": "Bloomfield town",
+"prec": "City of Lake Geneva Ward 12",
+"names": "Geneva town",
+"tot": 14
+},
+{
+"c": "Walworth County",
+"town": "Bloomfield town",
+"prec": "City of Lake Geneva Ward 12",
+"names": "Lake Geneva city",
+"tot": 14
+},
+{
+"c": "Walworth County",
+"town": "Delavan city",
+"prec": "Town of DARIEN Ward 3",
+"names": "Darien town",
+"tot": 33
+},
+{
+"c": "Walworth County",
+"town": "Delavan city",
+"prec": "Town of DARIEN Ward 3",
+"names": "Darien village",
+"tot": 33
+},
+{
+"c": "Walworth County",
+"town": "East Troy town",
+"prec": "Village of Mukwonago Ward 11",
+"names": "Mukwonago village",
+"tot": 118
+},
+{
+"c": "Walworth County",
+"town": "Williams Bay village",
+"prec": "Town of DELAVAN Ward 6",
+"names": "Delavan city",
+"tot": 170
+},
+{
+"c": "Walworth County",
+"town": "Williams Bay village",
+"prec": "Town of DELAVAN Ward 6",
+"names": "Delavan town",
+"tot": 170
+},
+{
+"c": "Washington County",
+"town": "Hartford town",
+"prec": "Village of Slinger Ward 1",
+"names": "Slinger village",
+"tot": 358
+},
+{
+"c": "Waukesha County",
+"town": "Hartland village",
+"prec": "Town of MERTON Ward 9",
+"names": "Merton town",
+"tot": 569
+},
+{
+"c": "Waukesha County",
+"town": "Hartland village",
+"prec": "Town of MERTON Ward 9",
+"names": "Merton village",
+"tot": 569
+},
+{
+"c": "Waukesha County",
+"town": "Mukwonago town",
+"prec": "Village of North Prairie Ward 3",
+"names": "North Prairie village",
+"tot": 451
+},
+{
+"c": "Waukesha County",
+"town": "Sussex village",
+"prec": "Village of Lisbon Ward 7",
+"names": "Lisbon village",
+"tot": 376
+},
+{
+"c": "Waupaca County",
+"town": "Mukwa town",
+"prec": "City of New London Ward 8",
+"names": "New London city",
+"tot": 188
+},
+{
+"c": "Waupaca County",
+"town": "Waupaca city",
+"prec": "Town of FARMINGTON Ward 4",
+"names": "Farmington town",
+"tot": 362
+},
+{
+"c": "Waushara County",
+"town": "Dakota town",
+"prec": "City of Wautoma Ward 3",
+"names": "Wautoma city",
+"tot": 315
+},
+{
+"c": "Waushara County",
+"town": "Dakota town",
+"prec": "City of Wautoma Ward 3",
+"names": "Wautoma town",
+"tot": 315
+},
+{
+"c": "Winnebago County",
+"town": "Fox Crossing village",
+"prec": "City of Menasha Ward 9",
+"names": "Menasha city",
+"tot": 557
+},
+{
+"c": "Winnebago County",
+"town": "Nekimi town",
+"prec": "City of Oshkosh Ward 28",
+"names": "Oshkosh city",
+"tot": 4
+},
+{
+"c": "Winnebago County",
+"town": "Nekimi town",
+"prec": "City of Oshkosh Ward 28",
+"names": "Oshkosh town",
+"tot": 4
+},
+{
+"c": "Wood County",
+"town": "Grand Rapids town",
+"prec": "City of Wisconsin Rapids Ward 13",
+"names": "Wisconsin Rapids city",
+"tot": 347
+},
+{
+"c": "Wood County",
+"town": "Hewitt village",
+"prec": "Town of MARSHFIELD Ward 1",
+"names": "Marshfield city",
+"tot": 528
+},
+{
+"c": "Wood County",
+"town": "Hewitt village",
+"prec": "Town of MARSHFIELD Ward 1",
+"names": "Marshfield town",
+"tot": 528
+}
+],
+"ntowns": 1913
+},
+{
+"st": "Wyoming",
+"nprec": 415,
+"dups": [],
+"named": [],
+"ntowns": 100
+}
+]

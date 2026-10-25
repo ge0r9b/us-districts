@@ -1,0 +1,568 @@
+{
+ "New Mexico": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    385234,
+    319667,
+    798319
+   ],
+   "2020": [
+    501614,
+    401894,
+    923965
+   ],
+   "2024": [
+    478802,
+    423391,
+    923403
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 40%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2020 / 43%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 92,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 15.8,
+    "n": 42,
+    "rows": [
+     "25 | 17.7% | 81.6%",
+     "19 | 52.8% | 46.1%",
+     "21 | 44.7% | 54.1%",
+     "9 | 41.3% | 58.1%",
+     "18 | 38.6% | 60.5%",
+     "10 | 36.4% | 62.6%"
+    ],
+    "order": {
+     "n": 42,
+     "first": [
+      17.7,
+      52.8,
+      44.7,
+      41.3,
+      38.6
+     ],
+     "not_desc_at": [
+      1,
+      7,
+      9,
+      12,
+      14
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 12.4,
+    "lat_numpick": 21.1,
+    "num": "num",
+    "rows_num": [
+     "25 | 25K",
+     "19 | 15K | 13K",
+     "21 | 12K | 15K",
+     "9 | 11K | 15K",
+     "18 | 10K | 15K"
+    ],
+    "order_num": {
+     "n": 42,
+     "first": [
+      25000.0,
+      15000.0,
+      12000.0,
+      11000.0,
+      10000.0
+     ],
+     "not_desc_at": [
+      7,
+      9,
+      12,
+      14,
+      16
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 65.9,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 22.9,
+    "n": 70,
+    "rows": [
+     "22 | 54.3% | 44.6%",
+     "50 | 36.4% | 62.8%",
+     "47 | 18.0% | 81.7%",
+     "31 | 44.4% | 54.3%",
+     "23 | 50.8% | 48.3%",
+     "28 | 41.3% | 57.9%"
+    ],
+    "order": {
+     "n": 42,
+     "first": [
+      54.3,
+      36.4,
+      18.0,
+      44.4,
+      50.8
+     ],
+     "not_desc_at": [
+      3,
+      4,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 20.7,
+    "lat_numpick": 50.3,
+    "num": "num",
+    "rows_num": [
+     "22 | 10K | 8K",
+     "50 | 6K | 11K",
+     "47 | 14K",
+     "31 | 7K | 9K",
+     "23 | 8K | 8K"
+    ],
+    "order_num": {
+     "n": 42,
+     "first": [
+      10000.0,
+      6000.0,
+      14000.0,
+      7000.0,
+      8000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      9,
+      10,
+      11
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6394,-105.8203,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6548,-105.8065,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 70,
+     "rows": [
+      "22 | 54.3% | 44.6%",
+      "50 | 36.4% | 62.8%",
+      "47 | 18.0% | 81.7%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 48.3,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 9.7,
+    "n": 89,
+    "rows": [
+     "Albuquerque Public | 38.4% | 60.7%",
+     "Santa Fe Public | 20.8% | 78.5%",
+     "Las Cruces Public | 44.1% | 55.2%",
+     "Rio Rancho Public | 51.3% | 47.7%",
+     "Farmington Municipal | 70.8% | 28.5%",
+     "Gallup-McKinley County | 39.8% | 58.6%"
+    ],
+    "order": {
+     "n": 42,
+     "first": [
+      38.4,
+      20.8,
+      44.1,
+      51.3,
+      70.8
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29.2,
+    "lat_numpick": 32,
+    "num": "num",
+    "rows_num": [
+     "Albuquerque Public | 109K | 173K",
+     "Santa Fe Public | 13K | 48K | 61K",
+     "Las Cruces Public | 26K | 33K | 59K",
+     "Rio Rancho Public | 24K | 22K | 46K",
+     "Farmington Municipal | 18K | 25K"
+    ],
+    "order_num": {
+     "n": 42,
+     "first": [
+      109000.0,
+      13000.0,
+      26000.0,
+      24000.0,
+      18000.0
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      7,
+      8,
+      10
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 61.2,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 14.2,
+    "n": 3,
+    "rows": [
+     "1 | 43.1% | 56.0%",
+     "3 | 46.9% | 52.2%",
+     "2 | 50.6% | 48.7%"
+    ],
+    "order": {
+     "n": 3,
+     "first": [
+      43.1,
+      46.9,
+      50.6
+     ],
+     "not_desc_at": [
+      1,
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 19.1,
+    "lat_numpick": 24.6,
+    "num": "num",
+    "rows_num": [
+     "1 | 150K | 195K",
+     "3 | 138K | 153K",
+     "2 | 135K | 131K"
+    ],
+    "order_num": {
+     "n": 3,
+     "first": [
+      150000.0,
+      138000.0,
+      135000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 40%",
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2020 / 43%",
+     "Joe Biden 2020 / 54%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 36.6,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 13,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 30.9,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "err": []
+ }
+}

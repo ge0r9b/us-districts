@@ -1,0 +1,103 @@
+{
+ "Rhode Island|Providence city": {
+  "tapC": [
+   90,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Providence County",
+    "gq": "Providence County, RI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 56%",
+    "Donald Trump 2024 / 42%"
+   ],
+   16,
+   [
+    "Providence city | 22.7% | 74.4%",
+    "East Providence city | 37.9% | 60.1%",
+    "North Providence town | 45.8% | 52.5%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Providence County Providence ci\u2026",
+    "gq": "Providence County, RI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 74%",
+    "Donald Trump 2024 / 23%"
+   ],
+   1,
+   [
+    "007-Providence | 22.7% | 74.4%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 43K",
+    "Donald Trump 2024 / 13K"
+   ],
+   [
+    "007-Providence | 13K | 43K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Rhode Island|West Warwick town": {
+  "tapC": [
+   90,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kent County",
+    "gq": "Kent County, RI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 48%"
+   ],
+   5,
+   [
+    "Warwick city | 46.2%",
+    "West Warwick town | 50.0% | 48.1%"
+   ]
+  ],
+  "tapT": [
+   102,
+   196.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kent County West Warwick town",
+    "gq": "Kent County, RI",
+    "list": true
+   },
+   [],
+   0,
+   []
+  ],
+  "suspect": [],
+  "town_num": [
+   [],
+   []
+  ],
+  "suspect_num": [],
+  "err": []
+ }
+}

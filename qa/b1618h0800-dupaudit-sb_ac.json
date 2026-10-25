@@ -1,0 +1,2543 @@
+[
+{
+"st": "Massachusetts",
+"nprec": 2337,
+"dups": [],
+"named": [
+{
+"c": "Barnstable County",
+"town": "Sandwich town",
+"prec": "Mashpee Precinct 3",
+"names": "Mashpee town",
+"tot": 1894
+},
+{
+"c": "Hampden County",
+"town": "Chicopee city",
+"prec": "Holyoke Precinct 2-A",
+"names": "Holyoke city",
+"tot": 757
+},
+{
+"c": "Essex County",
+"town": "Marblehead town",
+"prec": "Salem Precinct 1-1",
+"names": "Salem city",
+"tot": 1986
+}
+],
+"ntowns": 351
+},
+{
+"st": "Michigan",
+"nprec": 3975,
+"dups": [
+{
+"c": "Van Buren County",
+"prec": "Antwerp Township, Precinct 4",
+"towns": [
+"Antwerp township",
+"Mattawan village"
+],
+"tot": 1538
+},
+{
+"c": "Barry County",
+"prec": "Thornapple Township, Precinct 3",
+"towns": [
+"Middleville village",
+"Thornapple township"
+],
+"tot": 1863
+},
+{
+"c": "Berrien County",
+"prec": "Oronoko Charter Township, Precinct 2",
+"towns": [
+"Berrien Springs village",
+"Oronoko charter township"
+],
+"tot": 859
+},
+{
+"c": "Ingham County",
+"prec": "Ingham Township, Precinct 1",
+"towns": [
+"Dansville village",
+"Ingham township"
+],
+"tot": 1598
+},
+{
+"c": "Lapeer County",
+"prec": "Marathon Township, Precinct 1",
+"towns": [
+"Columbiaville village",
+"Marathon township"
+],
+"tot": 1518
+},
+{
+"c": "Livingston County",
+"prec": "Handy Township, Precinct 2",
+"towns": [
+"Fowlerville village",
+"Handy township"
+],
+"tot": 1487
+},
+{
+"c": "Livingston County",
+"prec": "Putnam Township, Precinct 3",
+"towns": [
+"Pinckney village",
+"Putnam township"
+],
+"tot": 1382
+},
+{
+"c": "Oceana County",
+"prec": "Grant Township, Precinct 1",
+"towns": [
+"Grant township",
+"Rothbury village"
+],
+"tot": 1511
+},
+{
+"c": "Genesee County",
+"prec": "Atlas Township, Precinct 4",
+"towns": [
+"Atlas township",
+"Goodrich village"
+],
+"tot": 1319
+},
+{
+"c": "Ionia County",
+"prec": "Boston Township, Precinct 2",
+"towns": [
+"Boston township",
+"Saranac village"
+],
+"tot": 801
+},
+{
+"c": "Ionia County",
+"prec": "Odessa Township, Precinct 1",
+"towns": [
+"Lake Odessa village",
+"Odessa township"
+],
+"tot": 1069
+},
+{
+"c": "Macomb County",
+"prec": "Bruce Township, Precinct 1",
+"towns": [
+"Bruce township",
+"Romeo village"
+],
+"tot": 1160
+},
+{
+"c": "Macomb County",
+"prec": "Lenox Township, Precinct 3",
+"towns": [
+"Lenox township",
+"New Haven village"
+],
+"tot": 2271
+},
+{
+"c": "Macomb County",
+"prec": "Lenox Township, Precinct 4",
+"towns": [
+"Lenox township",
+"New Haven village"
+],
+"tot": 1005
+},
+{
+"c": "Monroe County",
+"prec": "Berlin Township, Precinct 2",
+"towns": [
+"Berlin charter township",
+"South Rockwood village"
+],
+"tot": 1894
+},
+{
+"c": "Kalamazoo County",
+"prec": "Schoolcraft Township, Precinct 3",
+"towns": [
+"Schoolcraft township",
+"Vicksburg village"
+],
+"tot": 2383
+},
+{
+"c": "Oakland County",
+"prec": "Addison Township, Precinct 1",
+"towns": [
+"Addison township",
+"Leonard village"
+],
+"tot": 1641
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 5",
+"towns": [
+"Beverly Hills village",
+"Southfield township"
+],
+"tot": 1786
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 1",
+"towns": [
+"Beverly Hills village",
+"Southfield township"
+],
+"tot": 1685
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 2",
+"towns": [
+"Beverly Hills village",
+"Southfield township"
+],
+"tot": 1920
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 3",
+"towns": [
+"Beverly Hills village",
+"Southfield township"
+],
+"tot": 1172
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 4",
+"towns": [
+"Beverly Hills village",
+"Southfield township"
+],
+"tot": 1005
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 6",
+"towns": [
+"Bingham Farms village",
+"Southfield township"
+],
+"tot": 810
+},
+{
+"c": "Oakland County",
+"prec": "Brandon Township, Precinct 6",
+"towns": [
+"Brandon charter township",
+"Ortonville village"
+],
+"tot": 877
+},
+{
+"c": "Oakland County",
+"prec": "Commerce Township, Precinct 12",
+"towns": [
+"Commerce charter township",
+"Wolverine Lake village"
+],
+"tot": 1112
+},
+{
+"c": "Oakland County",
+"prec": "Commerce Township, Precinct 2",
+"towns": [
+"Commerce charter township",
+"Wolverine Lake village"
+],
+"tot": 1873
+},
+{
+"c": "Oakland County",
+"prec": "Southfield Township, Precinct 7",
+"towns": [
+"Franklin village",
+"Southfield township"
+],
+"tot": 2260
+},
+{
+"c": "Oakland County",
+"prec": "Orion Township, Precinct 2",
+"towns": [
+"Lake Orion village",
+"Orion charter township"
+],
+"tot": 1796
+},
+{
+"c": "Isabella County",
+"prec": "Sherman Township, Precinct 2",
+"towns": [
+"Lake Isabella village",
+"Sherman township"
+],
+"tot": 833
+},
+{
+"c": "Houghton County",
+"prec": "CALUMET TOWNSHIP 9",
+"towns": [
+"Calumet charter township",
+"Laurium village"
+],
+"tot": 1067
+}
+],
+"named": [
+{
+"c": "Clare County",
+"town": "Harrison city",
+"prec": "Hayes Township, Precinct 1",
+"names": "Hayes township",
+"tot": 1283
+},
+{
+"c": "Newaygo County",
+"town": "Sheridan charter township",
+"prec": "City of Fremont, Precinct 2",
+"names": "Fremont city",
+"tot": 1215
+},
+{
+"c": "Van Buren County",
+"town": "Mattawan village",
+"prec": "Antwerp Township, Precinct 4",
+"names": "Antwerp township",
+"tot": 1538
+},
+{
+"c": "Clinton County",
+"town": "Bath charter township",
+"prec": "City of East Lansing, Precinct 17",
+"names": "East Lansing city",
+"tot": 1301
+},
+{
+"c": "Clinton County",
+"town": "Bath charter township",
+"prec": "City of East Lansing, Precinct 17",
+"names": "Lansing city",
+"tot": 1301
+},
+{
+"c": "Clinton County",
+"town": "St. Johns city",
+"prec": "Bingham Township, Precinct 1",
+"names": "Bingham township",
+"tot": 1898
+},
+{
+"c": "Iron County",
+"town": "Iron River township",
+"prec": "Stambaugh Township, Precinct 1",
+"names": "Stambaugh township",
+"tot": 808
+},
+{
+"c": "Barry County",
+"town": "Middleville village",
+"prec": "Thornapple Township, Precinct 3",
+"names": "Thornapple township",
+"tot": 1863
+},
+{
+"c": "Berrien County",
+"town": "Berrien Springs village",
+"prec": "Oronoko Charter Township, Precinct 2",
+"names": "Oronoko charter township",
+"tot": 859
+},
+{
+"c": "Berrien County",
+"town": "Bridgman city",
+"prec": "Lake Charter Township, Precinct 1",
+"names": "Lake charter township",
+"tot": 2145
+},
+{
+"c": "Ingham County",
+"town": "Dansville village",
+"prec": "Ingham Township, Precinct 1",
+"names": "Ingham township",
+"tot": 1598
+},
+{
+"c": "Lapeer County",
+"town": "Columbiaville village",
+"prec": "Marathon Township, Precinct 1",
+"names": "Marathon township",
+"tot": 1518
+},
+{
+"c": "Shiawassee County",
+"town": "Corunna city",
+"prec": "Caledonia Charter Township, Precinct 2",
+"names": "Caledonia charter township",
+"tot": 935
+},
+{
+"c": "Livingston County",
+"town": "Fowlerville village",
+"prec": "Handy Township, Precinct 2",
+"names": "Handy township",
+"tot": 1487
+},
+{
+"c": "Livingston County",
+"town": "Pinckney village",
+"prec": "Putnam Township, Precinct 3",
+"names": "Putnam township",
+"tot": 1382
+},
+{
+"c": "Oceana County",
+"town": "Rothbury village",
+"prec": "Grant Township, Precinct 1",
+"names": "Grant township",
+"tot": 1511
+},
+{
+"c": "Washtenaw County",
+"town": "Ann Arbor city",
+"prec": "Pittsfield Charter Township, Precinct 3",
+"names": "Pittsfield charter township",
+"tot": 3137
+},
+{
+"c": "Genesee County",
+"town": "Goodrich village",
+"prec": "Atlas Township, Precinct 4",
+"names": "Atlas township",
+"tot": 1319
+},
+{
+"c": "Ionia County",
+"town": "Saranac village",
+"prec": "Boston Township, Precinct 2",
+"names": "Boston township",
+"tot": 801
+},
+{
+"c": "Macomb County",
+"town": "Mount Clemens city",
+"prec": "Clinton Township, Precinct 13",
+"names": "Clinton charter township",
+"tot": 910
+},
+{
+"c": "Macomb County",
+"town": "New Haven village",
+"prec": "Lenox Township, Precinct 3",
+"names": "Lenox township",
+"tot": 2271
+},
+{
+"c": "Macomb County",
+"town": "New Haven village",
+"prec": "Lenox Township, Precinct 4",
+"names": "Lenox township",
+"tot": 1005
+},
+{
+"c": "Macomb County",
+"town": "Romeo village",
+"prec": "Bruce Township, Precinct 1",
+"names": "Bruce township",
+"tot": 1160
+},
+{
+"c": "Dickinson County",
+"town": "Iron Mountain city",
+"prec": "Breitung Township, Precinct 3",
+"names": "Breitung charter township",
+"tot": 1726
+},
+{
+"c": "Monroe County",
+"town": "South Rockwood village",
+"prec": "Berlin Township, Precinct 2",
+"names": "Berlin charter township",
+"tot": 1894
+},
+{
+"c": "Kalamazoo County",
+"town": "Kalamazoo city",
+"prec": "Oshtemo Township, Precinct 6",
+"names": "Oshtemo charter township",
+"tot": 1220
+},
+{
+"c": "Kalamazoo County",
+"town": "Vicksburg village",
+"prec": "Schoolcraft Township, Precinct 3",
+"names": "Schoolcraft township",
+"tot": 2383
+},
+{
+"c": "Eaton County",
+"town": "Delta charter township",
+"prec": "City of Lansing, Ward 3, Precinct 22",
+"names": "Lansing city",
+"tot": 1770
+},
+{
+"c": "Eaton County",
+"town": "Eaton township",
+"prec": "City of Charlotte, District 1, Precinct 1",
+"names": "Charlotte city",
+"tot": 2223
+},
+{
+"c": "Cass County",
+"town": "Pokagon township",
+"prec": "City of Dowagiac, Precinct 1",
+"names": "Dowagiac city",
+"tot": 707
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 5",
+"names": "Southfield city",
+"tot": 1786
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 5",
+"names": "Southfield township",
+"tot": 1786
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 1",
+"names": "Southfield city",
+"tot": 1685
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 1",
+"names": "Southfield township",
+"tot": 1685
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 2",
+"names": "Southfield city",
+"tot": 1920
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 2",
+"names": "Southfield township",
+"tot": 1920
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 3",
+"names": "Southfield city",
+"tot": 1172
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 3",
+"names": "Southfield township",
+"tot": 1172
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 4",
+"names": "Southfield city",
+"tot": 1005
+},
+{
+"c": "Oakland County",
+"town": "Beverly Hills village",
+"prec": "Southfield Township, Precinct 4",
+"names": "Southfield township",
+"tot": 1005
+},
+{
+"c": "Oakland County",
+"town": "Bingham Farms village",
+"prec": "Southfield Township, Precinct 6",
+"names": "Southfield city",
+"tot": 810
+},
+{
+"c": "Oakland County",
+"town": "Bingham Farms village",
+"prec": "Southfield Township, Precinct 6",
+"names": "Southfield township",
+"tot": 810
+},
+{
+"c": "Oakland County",
+"town": "Franklin village",
+"prec": "Southfield Township, Precinct 7",
+"names": "Southfield city",
+"tot": 2260
+},
+{
+"c": "Oakland County",
+"town": "Franklin village",
+"prec": "Southfield Township, Precinct 7",
+"names": "Southfield township",
+"tot": 2260
+},
+{
+"c": "Oakland County",
+"town": "Leonard village",
+"prec": "Addison Township, Precinct 1",
+"names": "Addison township",
+"tot": 1641
+},
+{
+"c": "Oakland County",
+"town": "Ortonville village",
+"prec": "Brandon Township, Precinct 6",
+"names": "Brandon charter township",
+"tot": 877
+},
+{
+"c": "Oakland County",
+"town": "Wolverine Lake village",
+"prec": "Commerce Township, Precinct 12",
+"names": "Commerce charter township",
+"tot": 1112
+},
+{
+"c": "Oakland County",
+"town": "Wolverine Lake village",
+"prec": "Commerce Township, Precinct 2",
+"names": "Commerce charter township",
+"tot": 1873
+},
+{
+"c": "Isabella County",
+"town": "Lake Isabella village",
+"prec": "Sherman Township, Precinct 2",
+"names": "Sherman township",
+"tot": 833
+},
+{
+"c": "Houghton County",
+"town": "Laurium village",
+"prec": "CALUMET TOWNSHIP 9",
+"names": "Calumet charter township",
+"tot": 1067
+}
+],
+"ntowns": 1703
+},
+{
+"st": "Minnesota",
+"nprec": 4067,
+"dups": [
+{
+"c": "Itasca County",
+"prec": "CALUMET",
+"towns": [
+"Calumet city",
+"Greenway township"
+],
+"tot": 152
+},
+{
+"c": "Itasca County",
+"prec": "MARBLE",
+"towns": [
+"Greenway township",
+"Marble city"
+],
+"tot": 269
+},
+{
+"c": "St. Louis County",
+"prec": "WHITE TWP P-3",
+"towns": [
+"Aurora city",
+"White township"
+],
+"tot": 481
+},
+{
+"c": "St. Louis County",
+"prec": "AURORA",
+"towns": [
+"Aurora city",
+"White township"
+],
+"tot": 910
+}
+],
+"named": [
+{
+"c": "Fillmore County",
+"town": "Wykoff city",
+"prec": "FILLMORE TWP",
+"names": "Fillmore township",
+"tot": 279
+},
+{
+"c": "Lac qui Parle County",
+"town": "Augusta township",
+"prec": "NASSAU",
+"names": "Nassau city",
+"tot": 29
+},
+{
+"c": "Lac qui Parle County",
+"town": "Augusta township",
+"prec": "MARIETTA",
+"names": "Marietta city",
+"tot": 58
+},
+{
+"c": "Lac qui Parle County",
+"town": "Madison city",
+"prec": "LOUISBURG",
+"names": "Louisburg city",
+"tot": 20
+},
+{
+"c": "Todd County",
+"town": "Gordon township",
+"prec": "OSAKIS",
+"names": "Osakis city",
+"tot": 94
+},
+{
+"c": "Todd County",
+"town": "Hewitt city",
+"prec": "STOWE PRAIRIE TWP",
+"names": "Stowe Prairie township",
+"tot": 298
+},
+{
+"c": "Aitkin County",
+"town": "Hill Lake township",
+"prec": "HILL CITY",
+"names": "Hill City city",
+"tot": 321
+},
+{
+"c": "Hubbard County",
+"town": "Straight River township",
+"prec": "TODD TWP P-2",
+"names": "Todd township",
+"tot": 59
+},
+{
+"c": "Olmsted County",
+"town": "Rochester city",
+"prec": "MARION TWP P-2",
+"names": "Marion township",
+"tot": 2
+},
+{
+"c": "Kandiyohi County",
+"town": "Green Lake township",
+"prec": "SPICER",
+"names": "Spicer city",
+"tot": 682
+},
+{
+"c": "Kandiyohi County",
+"town": "Prinsburg city",
+"prec": "HOLLAND TWP",
+"names": "Holland township",
+"tot": 218
+},
+{
+"c": "Cottonwood County",
+"town": "Amboy township",
+"prec": "JEFFERS",
+"names": "Jeffers city",
+"tot": 157
+},
+{
+"c": "Watonwan County",
+"town": "Long Lake township",
+"prec": "ODIN",
+"names": "Odin city",
+"tot": 58
+},
+{
+"c": "Watonwan County",
+"town": "Long Lake township",
+"prec": "ODIN",
+"names": "Odin township",
+"tot": 58
+},
+{
+"c": "Wright County",
+"town": "Middleville township",
+"prec": "HOWARD LAKE",
+"names": "Howard Lake city",
+"tot": 1287
+},
+{
+"c": "Clay County",
+"town": "Elmwood township",
+"prec": "SABIN CITY",
+"names": "Sabin city",
+"tot": 316
+},
+{
+"c": "Scott County",
+"town": "Savage city",
+"prec": "SHAKOPEE P-12A",
+"names": "Shakopee city",
+"tot": 2298
+},
+{
+"c": "Norman County",
+"town": "Lee township",
+"prec": "PERLEY",
+"names": "Perley city",
+"tot": 54
+},
+{
+"c": "Norman County",
+"town": "Winchester township",
+"prec": "BORUP",
+"names": "Borup city",
+"tot": 38
+},
+{
+"c": "Chisago County",
+"town": "Chisago Lake township",
+"prec": "LINDSTROM",
+"names": "Lindstrom city",
+"tot": 3179
+},
+{
+"c": "Chisago County",
+"town": "Chisago Lake township",
+"prec": "CENTER CITY",
+"names": "Center City city",
+"tot": 430
+},
+{
+"c": "Marshall County",
+"town": "Argyle city",
+"prec": "MIDDLE RIVER TWP",
+"names": "Middle River city",
+"tot": 49
+},
+{
+"c": "Marshall County",
+"town": "Argyle city",
+"prec": "MIDDLE RIVER TWP",
+"names": "Middle River township",
+"tot": 49
+},
+{
+"c": "Marshall County",
+"town": "Bloomer township",
+"prec": "FORK TWP",
+"names": "Fork township",
+"tot": 5
+},
+{
+"c": "Lyon County",
+"town": "Lucas township",
+"prec": "COTTONWOOD",
+"names": "Cottonwood city",
+"tot": 664
+},
+{
+"c": "Itasca County",
+"town": "Greenway township",
+"prec": "CALUMET",
+"names": "Calumet city",
+"tot": 152
+},
+{
+"c": "Itasca County",
+"town": "Greenway township",
+"prec": "MARBLE",
+"names": "Marble city",
+"tot": 269
+},
+{
+"c": "Itasca County",
+"town": "Nashwauk township",
+"prec": "KEEWATIN",
+"names": "Keewatin city",
+"tot": 563
+},
+{
+"c": "Otter Tail County",
+"town": "Everts township",
+"prec": "BATTLE LAKE",
+"names": "Battle Lake city",
+"tot": 535
+},
+{
+"c": "Otter Tail County",
+"town": "Newton township",
+"prec": "NEW YORK MILLS",
+"names": "New York Mills city",
+"tot": 688
+},
+{
+"c": "Otter Tail County",
+"town": "Sverdrup township",
+"prec": "UNDERWOOD",
+"names": "Underwood city",
+"tot": 217
+},
+{
+"c": "Cass County",
+"town": "Kego township",
+"prec": "LONGVILLE",
+"names": "Longville city",
+"tot": 115
+},
+{
+"c": "Cass County",
+"town": "Shingobee township",
+"prec": "WALKER",
+"names": "Walker city",
+"tot": 559
+},
+{
+"c": "Dakota County",
+"town": "Nininger township",
+"prec": "HASTINGS W-2 P-3",
+"names": "Hastings city",
+"tot": 1661
+},
+{
+"c": "Anoka County",
+"town": "Lexington city",
+"prec": "BLAINE W-1 P-9",
+"names": "Blaine city",
+"tot": 1509
+},
+{
+"c": "Murray County",
+"town": "Chanarambie township",
+"prec": "LAKE WILSON",
+"names": "Lake Wilson city",
+"tot": 144
+},
+{
+"c": "Ramsey County",
+"town": "Arden Hills city",
+"prec": "SHOREVIEW P-7",
+"names": "Shoreview city",
+"tot": 2875
+},
+{
+"c": "Wilkin County",
+"town": "Connelly township",
+"prec": "BRECKENRIDGE P-3",
+"names": "Breckenridge city",
+"tot": 406
+},
+{
+"c": "Wilkin County",
+"town": "Connelly township",
+"prec": "BRECKENRIDGE P-3",
+"names": "Breckenridge township",
+"tot": 406
+},
+{
+"c": "Wilkin County",
+"town": "Tanberg township",
+"prec": "ROTHSAY CITY",
+"names": "Rothsay city",
+"tot": 145
+},
+{
+"c": "Benton County",
+"town": "Minden township",
+"prec": "Sauk Rapids P-6",
+"names": "Sauk Rapids city",
+"tot": 0
+},
+{
+"c": "Benton County",
+"town": "Minden township",
+"prec": "Sauk Rapids P-6",
+"names": "Sauk Rapids township",
+"tot": 0
+},
+{
+"c": "Stearns County",
+"town": "Cold Spring city",
+"prec": "WAKEFIELD TWP",
+"names": "Wakefield township",
+"tot": 1903
+},
+{
+"c": "St. Louis County",
+"town": "Aurora city",
+"prec": "WHITE TWP P-3",
+"names": "White township",
+"tot": 481
+},
+{
+"c": "St. Louis County",
+"town": "White township",
+"prec": "BIWABIK",
+"names": "Biwabik city",
+"tot": 596
+},
+{
+"c": "St. Louis County",
+"town": "White township",
+"prec": "BIWABIK",
+"names": "Biwabik township",
+"tot": 596
+},
+{
+"c": "St. Louis County",
+"town": "White township",
+"prec": "AURORA",
+"names": "Aurora city",
+"tot": 910
+},
+{
+"c": "Grant County",
+"town": "Gorton township",
+"prec": "NORCROSS",
+"names": "Norcross city",
+"tot": 33
+},
+{
+"c": "Grant County",
+"town": "Lien township",
+"prec": "BARRETT",
+"names": "Barrett city",
+"tot": 190
+},
+{
+"c": "Grant County",
+"town": "Logan township",
+"prec": "HERMAN",
+"names": "Herman city",
+"tot": 215
+},
+{
+"c": "Chippewa County",
+"town": "Kragero township",
+"prec": "MILAN",
+"names": "Milan city",
+"tot": 104
+},
+{
+"c": "Faribault County",
+"town": "Seely township",
+"prec": "BRICELYN",
+"names": "Bricelyn city",
+"tot": 185
+},
+{
+"c": "Carlton County",
+"town": "Twin Lakes township",
+"prec": "CARLTON P-1",
+"names": "Carlton city",
+"tot": 574
+},
+{
+"c": "Morrison County",
+"town": "Upsala city",
+"prec": "ELMDALE TWP",
+"names": "Elmdale city",
+"tot": 666
+},
+{
+"c": "Morrison County",
+"town": "Upsala city",
+"prec": "ELMDALE TWP",
+"names": "Elmdale township",
+"tot": 666
+},
+{
+"c": "Pipestone County",
+"town": "Sweet township",
+"prec": "PIPESTONE PCT 2",
+"names": "Pipestone city",
+"tot": 1062
+},
+{
+"c": "Pipestone County",
+"town": "Trosky city",
+"prec": "ELMER TWP",
+"names": "Elmer township",
+"tot": 127
+},
+{
+"c": "Renville County",
+"town": "Birch Cooley township",
+"prec": "FRANKLIN",
+"names": "Franklin city",
+"tot": 231
+},
+{
+"c": "Renville County",
+"town": "Troy township",
+"prec": "DANUBE",
+"names": "Danube city",
+"tot": 253
+},
+{
+"c": "Hennepin County",
+"town": "Crystal city",
+"prec": "New Hope P-1",
+"names": "New Hope city",
+"tot": 1191
+},
+{
+"c": "Hennepin County",
+"town": "Excelsior city",
+"prec": "Shorewood P-2",
+"names": "Shorewood city",
+"tot": 2513
+},
+{
+"c": "Swift County",
+"town": "Dublin township",
+"prec": "MURDOCK",
+"names": "Murdock city",
+"tot": 133
+},
+{
+"c": "Red Lake County",
+"town": "Brooks city",
+"prec": "POPLAR RIVER TWP",
+"names": "Poplar River township",
+"tot": 69
+},
+{
+"c": "Red Lake County",
+"town": "Brooks city",
+"prec": "POPLAR RIVER TWP",
+"names": "River township",
+"tot": 69
+},
+{
+"c": "Red Lake County",
+"town": "Poplar River township",
+"prec": "BROOKS",
+"names": "Brooks city",
+"tot": 70
+},
+{
+"c": "Blue Earth County",
+"town": "Garden City township",
+"prec": "LAKE CRYSTAL",
+"names": "Lake Crystal city",
+"tot": 1437
+},
+{
+"c": "Blue Earth County",
+"town": "Jamestown township",
+"prec": "MADISON LAKE",
+"names": "Madison Lake city",
+"tot": 795
+},
+{
+"c": "Redwood County",
+"town": "Lucan city",
+"prec": "GRANITE ROCK TWP",
+"names": "Granite Rock township",
+"tot": 116
+},
+{
+"c": "Redwood County",
+"town": "Paxton township",
+"prec": "REDWOOD FALLS W-2",
+"names": "Redwood Falls city",
+"tot": 857
+},
+{
+"c": "Redwood County",
+"town": "Paxton township",
+"prec": "REDWOOD FALLS W-2",
+"names": "Redwood Falls township",
+"tot": 857
+},
+{
+"c": "Carver County",
+"town": "Laketown township",
+"prec": "VICTORIA P-5",
+"names": "Victoria city",
+"tot": 279
+},
+{
+"c": "Carver County",
+"town": "Young America township",
+"prec": "HAMBURG",
+"names": "Hamburg city",
+"tot": 324
+}
+],
+"ntowns": 2678
+},
+{
+"st": "Mississippi",
+"nprec": 1703,
+"dups": [],
+"named": [
+{
+"c": "Rankin County",
+"town": "Flowood city",
+"prec": "West Pearl",
+"names": "Pearl city",
+"tot": 995
+},
+{
+"c": "Tishomingo County",
+"town": "Belmont town",
+"prec": "Golden",
+"names": "Golden town",
+"tot": 538
+},
+{
+"c": "Madison County",
+"town": "Canton city",
+"prec": "Madison Co Baptist Family Life",
+"names": "Madison city",
+"tot": 492
+}
+],
+"ntowns": 318
+},
+{
+"st": "Missouri",
+"nprec": 3021,
+"dups": [
+{
+"c": "Henry County",
+"prec": "SPRINGFIELD/TEBO",
+"towns": [
+"Calhoun city",
+"Tebo township"
+],
+"tot": 552
+},
+{
+"c": "Harrison County",
+"prec": "RIDGEWAY",
+"towns": [
+"Marion township",
+"Ridgeway city"
+],
+"tot": 388
+},
+{
+"c": "Nodaway County",
+"prec": "MONROE",
+"towns": [
+"Monroe township",
+"Skidmore city"
+],
+"tot": 241
+},
+{
+"c": "Vernon County",
+"prec": "UNITED METHODIST CHURCH",
+"towns": [
+"Center township",
+"Nevada city"
+],
+"tot": 672
+},
+{
+"c": "Dunklin County",
+"prec": "CARDWELL",
+"towns": [
+"Buffalo township",
+"Cardwell city"
+],
+"tot": 300
+},
+{
+"c": "Dunklin County",
+"prec": "KENNETT",
+"towns": [
+"Independence township",
+"Kennett city"
+],
+"tot": 4142
+},
+{
+"c": "Bates County",
+"prec": "BUTLER (4)",
+"towns": [
+"Butler city",
+"Mount Pleasant township"
+],
+"tot": 2962
+}
+],
+"named": [
+{
+"c": "Henry County",
+"town": "Calhoun city",
+"prec": "SPRINGFIELD/TEBO",
+"names": "Springfield township",
+"tot": 552
+},
+{
+"c": "Henry County",
+"town": "Calhoun city",
+"prec": "SPRINGFIELD/TEBO",
+"names": "Tebo township",
+"tot": 552
+},
+{
+"c": "Henry County",
+"town": "Tebo township",
+"prec": "SPRINGFIELD/TEBO",
+"names": "Springfield township",
+"tot": 552
+},
+{
+"c": "Henry County",
+"town": "White Oak township",
+"prec": "URICH",
+"names": "Urich city",
+"tot": 1015
+},
+{
+"c": "Livingston County",
+"town": "Grand River township",
+"prec": "FAIRVIEW TOWNSHIP",
+"names": "Fairview township",
+"tot": 390
+},
+{
+"c": "Livingston County",
+"town": "Mooresville township",
+"prec": "GREEN TWP- MOORESVILLE TWP",
+"names": "Green township",
+"tot": 334
+},
+{
+"c": "Livingston County",
+"town": "Rich Hill township",
+"prec": "CHILLICOTHE TWP-RICH HILL TWP",
+"names": "Chillicothe township",
+"tot": 1037
+},
+{
+"c": "Livingston County",
+"town": "Sampsel township",
+"prec": "JACKSON TWP-SAMPSEL TWP",
+"names": "Jackson township",
+"tot": 496
+},
+{
+"c": "Harrison County",
+"town": "Dallas township",
+"prec": "NEW HAMPTON",
+"names": "New Hampton city",
+"tot": 398
+},
+{
+"c": "Harrison County",
+"town": "Hamilton township",
+"prec": "EAGLEVILLE",
+"names": "Eagleville town",
+"tot": 567
+},
+{
+"c": "Harrison County",
+"town": "Madison township",
+"prec": "CAINSVILLE",
+"names": "Cainsville city",
+"tot": 363
+},
+{
+"c": "Harrison County",
+"town": "Marion township",
+"prec": "RIDGEWAY",
+"names": "Ridgeway city",
+"tot": 388
+},
+{
+"c": "Harrison County",
+"town": "Sugar Creek township",
+"prec": "GILMAN CITY",
+"names": "Gilman City city",
+"tot": 369
+},
+{
+"c": "Grundy County",
+"town": "Franklin township",
+"prec": "SPICKARD",
+"names": "Spickard city",
+"tot": 174
+},
+{
+"c": "Grundy County",
+"town": "Marion township",
+"prec": "LAREDO",
+"names": "Laredo city",
+"tot": 318
+},
+{
+"c": "Grundy County",
+"town": "Myers township",
+"prec": "GALT",
+"names": "Galt city",
+"tot": 253
+},
+{
+"c": "Platte County",
+"town": "Kansas City city",
+"prec": "PLATTE WOODS/PARK HILL",
+"names": "Platte Woods city",
+"tot": 1300
+},
+{
+"c": "Platte County",
+"town": "Kansas City city",
+"prec": "FERRELVIEW/MID-CONTINENT/LINKVILLE",
+"names": "Ferrelview village",
+"tot": 2101
+},
+{
+"c": "Platte County",
+"town": "Kansas City city",
+"prec": "HOUSTON LAKE/SOUTHEAST",
+"names": "Houston Lake city",
+"tot": 3351
+},
+{
+"c": "Platte County",
+"town": "Ridgely village",
+"prec": "EDGERTON/26 RIDGELY",
+"names": "Edgerton city",
+"tot": 1015
+},
+{
+"c": "Franklin County",
+"town": "Miramiguoa Park village",
+"prec": "SULLIVAN OT/MV/OGV",
+"names": "Sullivan city",
+"tot": 822
+},
+{
+"c": "Chariton County",
+"town": "Cockrell township",
+"prec": "WAYLAND TWP BLDG",
+"names": "Wayland township",
+"tot": 189
+},
+{
+"c": "Chariton County",
+"town": "Cunningham township",
+"prec": "6-SUMNER LEGION",
+"names": "Sumner town",
+"tot": 144
+},
+{
+"c": "Chariton County",
+"town": "Triplett township",
+"prec": "BRUNSWICK LEGION",
+"names": "Brunswick township",
+"tot": 686
+},
+{
+"c": "Jasper County",
+"town": "Webb City city",
+"prec": "JOPLIN-2/3",
+"names": "Joplin city",
+"tot": 2499
+},
+{
+"c": "Caldwell County",
+"town": "Fairview township",
+"prec": "DAVIS/FAIRVIEW-08",
+"names": "Davis township",
+"tot": 655
+},
+{
+"c": "Caldwell County",
+"town": "Rockford township",
+"prec": "MIRABILE/ROCKFORD-05",
+"names": "Mirabile township",
+"tot": 628
+},
+{
+"c": "Stoddard County",
+"town": "Castor township",
+"prec": "BLOOMFIELD",
+"names": "Bloomfield city",
+"tot": 2112
+},
+{
+"c": "Stoddard County",
+"town": "Duck Creek township",
+"prec": "PUXICO",
+"names": "Puxico city",
+"tot": 1521
+},
+{
+"c": "Stoddard County",
+"town": "Elk township",
+"prec": "BERNIE",
+"names": "Bernie city",
+"tot": 1398
+},
+{
+"c": "Stoddard County",
+"town": "Liberty township",
+"prec": "DEXTER",
+"names": "Dexter city",
+"tot": 6269
+},
+{
+"c": "Stoddard County",
+"town": "Pike township",
+"prec": "ADVANCE",
+"names": "Advance city",
+"tot": 1235
+},
+{
+"c": "Stoddard County",
+"town": "Pike township",
+"prec": "BELL CITY",
+"names": "Bell City city",
+"tot": 533
+},
+{
+"c": "Stoddard County",
+"town": "Richland township",
+"prec": "ESSEX",
+"names": "Essex city",
+"tot": 531
+},
+{
+"c": "Gentry County",
+"town": "Wilson township",
+"prec": "STANBERRY COMMUNITY CENTER",
+"names": "Stanberry city",
+"tot": 908
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 2",
+"names": "Liberty city",
+"tot": 2271
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 1",
+"names": "Liberty city",
+"tot": 2168
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 6",
+"names": "Liberty city",
+"tot": 1282
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 7",
+"names": "Liberty city",
+"tot": 1582
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 5",
+"names": "Liberty city",
+"tot": 1579
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 8",
+"names": "Liberty city",
+"tot": 1337
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 3",
+"names": "Liberty city",
+"tot": 2641
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 4",
+"names": "Liberty city",
+"tot": 1934
+},
+{
+"c": "Clay County",
+"town": "Kansas City city",
+"prec": "21 Liberty 9",
+"names": "Liberty city",
+"tot": 1715
+},
+{
+"c": "Clay County",
+"town": "Pleasant Valley city",
+"prec": "Liberty 5",
+"names": "Liberty city",
+"tot": 1332
+},
+{
+"c": "Nodaway County",
+"town": "Skidmore city",
+"prec": "MONROE",
+"names": "Monroe township",
+"tot": 241
+},
+{
+"c": "Linn County",
+"town": "North Salem township",
+"prec": "ENTERPRISE / GRANTSVILLE / N SALEM",
+"names": "Enterprise township",
+"tot": 283
+},
+{
+"c": "Linn County",
+"town": "North Salem township",
+"prec": "ENTERPRISE / GRANTSVILLE / N SALEM",
+"names": "Grantsville township",
+"tot": 283
+},
+{
+"c": "Texas County",
+"town": "Carroll township",
+"prec": "SUMMERSVILLE MUSIC ROOM",
+"names": "Summersville city",
+"tot": 783
+},
+{
+"c": "Texas County",
+"town": "Jackson township",
+"prec": "RAYMONDVILLE COMM BLDG",
+"names": "Raymondville town",
+"tot": 836
+},
+{
+"c": "Texas County",
+"town": "Piney township",
+"prec": "HOUSTON STORM SHELTER",
+"names": "Houston city",
+"tot": 2750
+},
+{
+"c": "Texas County",
+"town": "Sargent township",
+"prec": "CABOOL HS GYM",
+"names": "Cabool city",
+"tot": 1981
+},
+{
+"c": "Daviess County",
+"town": "Benton township",
+"prec": "PATTONSBURG",
+"names": "Pattonsburg city",
+"tot": 549
+},
+{
+"c": "Daviess County",
+"town": "Grand River township",
+"prec": "JAMESON",
+"names": "Jameson town",
+"tot": 274
+},
+{
+"c": "Daviess County",
+"town": "Jefferson township",
+"prec": "ALTAMONT",
+"names": "Altamont village",
+"tot": 1407
+},
+{
+"c": "Daviess County",
+"town": "Monroe township",
+"prec": "GALLATIN",
+"names": "Gallatin city",
+"tot": 1130
+},
+{
+"c": "Putnam County",
+"town": "Elm township",
+"prec": "EL ELM(WORTHINGTON/MARTINSTOWN",
+"names": "Worthington village",
+"tot": 260
+},
+{
+"c": "Putnam County",
+"town": "Wilson township",
+"prec": "UNION SW",
+"names": "Union township",
+"tot": 614
+},
+{
+"c": "Carroll County",
+"town": "Eugene township",
+"prec": "COMBS/EUGENE",
+"names": "Combs township",
+"tot": 218
+},
+{
+"c": "Carroll County",
+"town": "Fairfield township",
+"prec": "WASHINGTON/FAIRFIELD",
+"names": "Washington township",
+"tot": 197
+},
+{
+"c": "Vernon County",
+"town": "Bacon township",
+"prec": "SCHELL CITY",
+"names": "Schell City city",
+"tot": 470
+},
+{
+"c": "Vernon County",
+"town": "Badger township",
+"prec": "MILO BAPTIST CHURCH",
+"names": "Milo village",
+"tot": 511
+},
+{
+"c": "Vernon County",
+"town": "Dover township",
+"prec": "SHELDON METHODIST CHURCH",
+"names": "Sheldon city",
+"tot": 712
+},
+{
+"c": "Vernon County",
+"town": "Harrison township",
+"prec": "BRONAUGH",
+"names": "Bronaugh city",
+"tot": 486
+},
+{
+"c": "Mercer County",
+"town": "Marion township",
+"prec": "MERCER COMMUNITY BLDG",
+"names": "Mercer town",
+"tot": 510
+},
+{
+"c": "DeKalb County",
+"town": "Sherman township",
+"prec": "CLARKSDALE LIONS CLUB",
+"names": "Clarksdale city",
+"tot": 624
+},
+{
+"c": "Dunklin County",
+"town": "Buffalo township",
+"prec": "CARDWELL",
+"names": "Cardwell city",
+"tot": 300
+},
+{
+"c": "Dunklin County",
+"town": "Clay township",
+"prec": "RIVES",
+"names": "Rives town",
+"tot": 123
+},
+{
+"c": "Dunklin County",
+"town": "Clay township",
+"prec": "HORNERSVILLE",
+"names": "Hornersville city",
+"tot": 298
+},
+{
+"c": "Dunklin County",
+"town": "Cotton Hill township",
+"prec": "MALDEN",
+"names": "Malden city",
+"tot": 1822
+},
+{
+"c": "Dunklin County",
+"town": "Freeborn township",
+"prec": "CLARKTON",
+"names": "Clarkton city",
+"tot": 490
+},
+{
+"c": "Dunklin County",
+"town": "Independence township",
+"prec": "KENNETT",
+"names": "Kennett city",
+"tot": 4142
+},
+{
+"c": "Dunklin County",
+"town": "Salem township",
+"prec": "SENATH",
+"names": "Senath city",
+"tot": 618
+},
+{
+"c": "Dunklin County",
+"town": "Salem township",
+"prec": "ARBYRD",
+"names": "Arbyrd city",
+"tot": 180
+},
+{
+"c": "Dunklin County",
+"town": "Union township",
+"prec": "CAMPBELL",
+"names": "Campbell city",
+"tot": 1174
+},
+{
+"c": "Bates County",
+"town": "Deer Creek township",
+"prec": "ADRIAN (1)",
+"names": "Adrian city",
+"tot": 2320
+},
+{
+"c": "Bates County",
+"town": "Mount Pleasant township",
+"prec": "BUTLER (4)",
+"names": "Butler city",
+"tot": 2962
+},
+{
+"c": "Bates County",
+"town": "Osage township",
+"prec": "RICH HILL (8)",
+"names": "Rich Hill city",
+"tot": 958
+},
+{
+"c": "Bates County",
+"town": "Walnut township",
+"prec": "HUME (7)",
+"names": "Hume town",
+"tot": 364
+},
+{
+"c": "Bates County",
+"town": "West Boone township",
+"prec": "DREXEL (5)",
+"names": "Drexel city",
+"tot": 340
+},
+{
+"c": "Bates County",
+"town": "West Point township",
+"prec": "AMORET/AMSTERDAM (2)",
+"names": "Amoret city",
+"tot": 585
+},
+{
+"c": "Bates County",
+"town": "West Point township",
+"prec": "AMORET/AMSTERDAM (2)",
+"names": "Amsterdam city",
+"tot": 585
+}
+],
+"ntowns": 1248
+},
+{
+"st": "Montana",
+"nprec": 720,
+"dups": [],
+"named": [],
+"ntowns": 127
+},
+{
+"st": "Nebraska",
+"nprec": 1326,
+"dups": [
+{
+"c": "Burt County",
+"prec": "LYONS CITY",
+"towns": [
+"Everett township",
+"Lyons city"
+],
+"tot": 413
+},
+{
+"c": "Saunders County",
+"prec": "YUTAN CITY",
+"towns": [
+"Union township",
+"Yutan city"
+],
+"tot": 746
+},
+{
+"c": "Fillmore County",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"towns": [
+"Bryant township",
+"Shickley village"
+],
+"tot": 355
+}
+],
+"named": [
+{
+"c": "Cuming County",
+"town": "Bancroft township",
+"prec": "BANC T-V-CLEVELAND-NELIGH",
+"names": "Cleveland township",
+"tot": 489
+},
+{
+"c": "Cuming County",
+"town": "Bancroft township",
+"prec": "BANC T-V-CLEVELAND-NELIGH",
+"names": "Neligh township",
+"tot": 489
+},
+{
+"c": "Cuming County",
+"town": "Garfield township",
+"prec": "SHERMAN-STCHAR-GARFD-CUMING",
+"names": "Cuming township",
+"tot": 626
+},
+{
+"c": "Cuming County",
+"town": "Garfield township",
+"prec": "SHERMAN-STCHAR-GARFD-CUMING",
+"names": "Sherman township",
+"tot": 626
+},
+{
+"c": "Boyd County",
+"town": "Basin township",
+"prec": "BUTTE-BASIN-MCCULLEY",
+"names": "Butte township",
+"tot": 421
+},
+{
+"c": "Boyd County",
+"town": "Basin township",
+"prec": "BUTTE-BASIN-MCCULLEY",
+"names": "McCulley township",
+"tot": 421
+},
+{
+"c": "Holt County",
+"town": "Iowa township",
+"prec": "ANTELOPE IOWA-VERDIGRIS",
+"names": "Antelope township",
+"tot": 229
+},
+{
+"c": "Holt County",
+"town": "Iowa township",
+"prec": "ANTELOPE IOWA-VERDIGRIS",
+"names": "Verdigris township",
+"tot": 229
+},
+{
+"c": "Holt County",
+"town": "O'Neill city",
+"prec": "GRATTAN-O'NEILL 4",
+"names": "Grattan township",
+"tot": 306
+},
+{
+"c": "Holt County",
+"town": "O'Neill city",
+"prec": "GRATTAN-O'NEILL 3",
+"names": "Grattan township",
+"tot": 302
+},
+{
+"c": "Holt County",
+"town": "O'Neill city",
+"prec": "GRATTAN-O'NEILL 2",
+"names": "Grattan township",
+"tot": 491
+},
+{
+"c": "Holt County",
+"town": "O'Neill city",
+"prec": "GRATTAN-O'NEILL 1",
+"names": "Grattan township",
+"tot": 515
+},
+{
+"c": "Holt County",
+"town": "Scott township",
+"prec": "EMMET-NORTHEAST",
+"names": "Emmet township",
+"tot": 258
+},
+{
+"c": "Custer County",
+"town": "Algernon township",
+"prec": "MASON CITY",
+"names": "Mason City village",
+"tot": 261
+},
+{
+"c": "Custer County",
+"town": "Douglas Grove township",
+"prec": "COMSTOCK-DG-SC",
+"names": "Comstock township",
+"tot": 158
+},
+{
+"c": "Custer County",
+"town": "East Custer township",
+"prec": "BERWYN-E CUST-LOUP-RYNO",
+"names": "Berwyn township",
+"tot": 343
+},
+{
+"c": "Custer County",
+"town": "East Custer township",
+"prec": "BERWYN-E CUST-LOUP-RYNO",
+"names": "Loup township",
+"tot": 343
+},
+{
+"c": "Custer County",
+"town": "East Custer township",
+"prec": "BERWYN-E CUST-LOUP-RYNO",
+"names": "Ryno township",
+"tot": 343
+},
+{
+"c": "Custer County",
+"town": "Hayes township",
+"prec": "ANSELMO",
+"names": "Anselmo village",
+"tot": 240
+},
+{
+"c": "Custer County",
+"town": "Kilfoil township",
+"prec": "MERNA COMMUNITY",
+"names": "Merna village",
+"tot": 416
+},
+{
+"c": "Custer County",
+"town": "Westerville township",
+"prec": "ANSLEY-MYR-WEST",
+"names": "Ansley township",
+"tot": 462
+},
+{
+"c": "Platte County",
+"town": "Grand Prairie township",
+"prec": "SHERMAN-GRAND PRAIRIE",
+"names": "Sherman township",
+"tot": 370
+},
+{
+"c": "Platte County",
+"town": "Loup township",
+"prec": "BUTLER-LOUP",
+"names": "Butler township",
+"tot": 402
+},
+{
+"c": "Platte County",
+"town": "Monroe township",
+"prec": "OCONEE-MONROE",
+"names": "Oconee township",
+"tot": 382
+},
+{
+"c": "Thurston County",
+"town": "Pender township",
+"prec": "BRYAN-THAYER-PENDER",
+"names": "Bryan township",
+"tot": 741
+},
+{
+"c": "Thurston County",
+"town": "Pender township",
+"prec": "BRYAN-THAYER-PENDER",
+"names": "Thayer township",
+"tot": 741
+},
+{
+"c": "Thurston County",
+"town": "Perry township",
+"prec": "FLOURNOY-MERRY-PERRY",
+"names": "Flournoy township",
+"tot": 281
+},
+{
+"c": "Thurston County",
+"town": "Perry township",
+"prec": "FLOURNOY-MERRY-PERRY",
+"names": "Merry township",
+"tot": 281
+},
+{
+"c": "Gage County",
+"town": "Barneston township",
+"prec": "WYMORE AREA",
+"names": "Wymore city",
+"tot": 1032
+},
+{
+"c": "Gage County",
+"town": "Hanover township",
+"prec": "ADAMS TWP",
+"names": "Adams township",
+"tot": 1224
+},
+{
+"c": "Gage County",
+"town": "Paddock township",
+"prec": "ODELL AREA",
+"names": "Odell village",
+"tot": 531
+},
+{
+"c": "Gage County",
+"town": "Riverside township",
+"prec": "BEATRICE WARD 1",
+"names": "Beatrice city",
+"tot": 1459
+},
+{
+"c": "Gage County",
+"town": "Rockford township",
+"prec": "FILLEY-VIRGINIA AREA",
+"names": "Filley township",
+"tot": 624
+},
+{
+"c": "Gage County",
+"town": "Rockford township",
+"prec": "FILLEY-VIRGINIA AREA",
+"names": "Virginia village",
+"tot": 624
+},
+{
+"c": "Merrick County",
+"town": "Central township",
+"prec": "CLARKSVILLE WEST",
+"names": "Clarks village",
+"tot": 134
+},
+{
+"c": "Merrick County",
+"town": "Central township",
+"prec": "CLARKSVILLE WEST",
+"names": "Clarksville township",
+"tot": 134
+},
+{
+"c": "Burt County",
+"town": "Everett township",
+"prec": "LYONS CITY",
+"names": "Lyons city",
+"tot": 413
+},
+{
+"c": "Burt County",
+"town": "Logan township",
+"prec": "EVERETT-LOGAN",
+"names": "Everett township",
+"tot": 215
+},
+{
+"c": "Saunders County",
+"town": "Chapman township",
+"prec": "WESTON",
+"names": "Weston village",
+"tot": 489
+},
+{
+"c": "Saunders County",
+"town": "Chester township",
+"prec": "PRAGUE",
+"names": "Prague village",
+"tot": 503
+},
+{
+"c": "Saunders County",
+"town": "Clear Creek township",
+"prec": "ASHLAND RURAL",
+"names": "Ashland township",
+"tot": 1083
+},
+{
+"c": "Saunders County",
+"town": "Marble township",
+"prec": "YUTAN RURAL",
+"names": "Yutan city",
+"tot": 716
+},
+{
+"c": "Saunders County",
+"town": "Mariposa township",
+"prec": "MALMO",
+"names": "Malmo village",
+"tot": 398
+},
+{
+"c": "Saunders County",
+"town": "North Cedar township",
+"prec": "CEDAR BLUFFS",
+"names": "Cedar Bluffs village",
+"tot": 846
+},
+{
+"c": "Saunders County",
+"town": "Oak Creek township",
+"prec": "VALPARAISO",
+"names": "Valparaiso village",
+"tot": 811
+},
+{
+"c": "Saunders County",
+"town": "Richland township",
+"prec": "CERESCO",
+"names": "Ceresco village",
+"tot": 1043
+},
+{
+"c": "Saunders County",
+"town": "Stocking township",
+"prec": "WAHOO RURAL",
+"names": "Wahoo city",
+"tot": 600
+},
+{
+"c": "Saunders County",
+"town": "Stocking township",
+"prec": "WAHOO RURAL",
+"names": "Wahoo township",
+"tot": 600
+},
+{
+"c": "Saunders County",
+"town": "Union township",
+"prec": "YUTAN CITY",
+"names": "Yutan city",
+"tot": 746
+},
+{
+"c": "Dixon County",
+"town": "Clark township",
+"prec": "CONCORD-DIXON-CLARK",
+"names": "Concord township",
+"tot": 272
+},
+{
+"c": "Dixon County",
+"town": "Clark township",
+"prec": "CONCORD-DIXON-CLARK",
+"names": "Dixon village",
+"tot": 272
+},
+{
+"c": "Dixon County",
+"town": "Hooker township",
+"prec": "DAILY-HOOKER-NEWCASTLE",
+"names": "Daily township",
+"tot": 409
+},
+{
+"c": "Dixon County",
+"town": "Hooker township",
+"prec": "DAILY-HOOKER-NEWCASTLE",
+"names": "Newcastle township",
+"tot": 409
+},
+{
+"c": "Dixon County",
+"town": "Logan township",
+"prec": "WAKEFIELD 3-LOGAN",
+"names": "Wakefield township",
+"tot": 220
+},
+{
+"c": "Franklin County",
+"town": "Macon township",
+"prec": "HILDRETH",
+"names": "Hildreth village",
+"tot": 413
+},
+{
+"c": "Franklin County",
+"town": "Marion township",
+"prec": "EAST FRANKLIN",
+"names": "Franklin city",
+"tot": 337
+},
+{
+"c": "Franklin County",
+"town": "North Franklin township",
+"prec": "CAMPBELL",
+"names": "Campbell village",
+"tot": 294
+},
+{
+"c": "Franklin County",
+"town": "Turkey Creek township",
+"prec": "WEST FRANKLIN",
+"names": "Franklin city",
+"tot": 556
+},
+{
+"c": "Dodge County",
+"town": "Everett township",
+"prec": "CUMING-EVERETT TWPS 023",
+"names": "Cuming township",
+"tot": 258
+},
+{
+"c": "Dodge County",
+"town": "Platte township",
+"prec": "FREMONT 1E 005",
+"names": "Fremont city",
+"tot": 753
+},
+{
+"c": "Fillmore County",
+"town": "Bryant township",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"names": "Hamilton township",
+"tot": 355
+},
+{
+"c": "Fillmore County",
+"town": "Bryant township",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"names": "Momence township",
+"tot": 355
+},
+{
+"c": "Fillmore County",
+"town": "Chelsea township",
+"prec": "GENEVA RURAL-104-107-109",
+"names": "Geneva township",
+"tot": 338
+},
+{
+"c": "Fillmore County",
+"town": "Glengary township",
+"prec": "LIBERTY-GLENGARY-FRANKLIN",
+"names": "Franklin township",
+"tot": 380
+},
+{
+"c": "Fillmore County",
+"town": "Glengary township",
+"prec": "LIBERTY-GLENGARY-FRANKLIN",
+"names": "Liberty township",
+"tot": 380
+},
+{
+"c": "Fillmore County",
+"town": "Grafton township",
+"prec": "WEST BLUE-GRAFTON-BENNETT",
+"names": "Bennett township",
+"tot": 239
+},
+{
+"c": "Fillmore County",
+"town": "Grafton township",
+"prec": "WEST BLUE-GRAFTON-BENNETT",
+"names": "West Blue township",
+"tot": 239
+},
+{
+"c": "Fillmore County",
+"town": "Shickley village",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"names": "Bryant township",
+"tot": 355
+},
+{
+"c": "Fillmore County",
+"town": "Shickley village",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"names": "Hamilton township",
+"tot": 355
+},
+{
+"c": "Fillmore County",
+"town": "Shickley village",
+"prec": "MOMENCE-BRYANT-HAMILTON",
+"names": "Momence township",
+"tot": 355
+},
+{
+"c": "Clay County",
+"town": "Logan township",
+"prec": "EDGAR CONS",
+"names": "Edgar township",
+"tot": 343
+},
+{
+"c": "Nance County",
+"town": "Timber Creek township",
+"prec": "CEDAR-TCREEK-SBRANCH",
+"names": "Cedar township",
+"tot": 199
+},
+{
+"c": "Knox County",
+"town": "Columbia township",
+"prec": "WAUSA AREA-WAU",
+"names": "Wausa village",
+"tot": 604
+},
+{
+"c": "Knox County",
+"town": "Eastern township",
+"prec": "CROFTON AREA-CFN",
+"names": "Crofton city",
+"tot": 813
+},
+{
+"c": "Knox County",
+"town": "Hill township",
+"prec": "LINDY-SANTEE-CENTER AREA-LSC",
+"names": "Center village",
+"tot": 524
+},
+{
+"c": "Knox County",
+"town": "Hill township",
+"prec": "LINDY-SANTEE-CENTER AREA-LSC",
+"names": "Santee village",
+"tot": 524
+},
+{
+"c": "Knox County",
+"town": "Jefferson township",
+"prec": "VERDIGRE AREA-VDG",
+"names": "Verdigre township",
+"tot": 739
+},
+{
+"c": "Knox County",
+"town": "Morton township",
+"prec": "BLOOMFIELD AREA-BLF",
+"names": "Bloomfield city",
+"tot": 702
+},
+{
+"c": "Knox County",
+"town": "Raymond township",
+"prec": "NIOBRARA AREA-NIO",
+"names": "Niobrara township",
+"tot": 307
+},
+{
+"c": "Butler County",
+"town": "Bone Creek township",
+"prec": "007 FRANKLIN-BONE CREEK",
+"names": "Franklin township",
+"tot": 327
+},
+{
+"c": "Butler County",
+"town": "Linwood township",
+"prec": "001 LINWOOD-SKULL CREEK-PLATTE",
+"names": "Platte township",
+"tot": 380
+},
+{
+"c": "Butler County",
+"town": "Linwood township",
+"prec": "001 LINWOOD-SKULL CREEK-PLATTE",
+"names": "Skull Creek township",
+"tot": 380
+},
+{
+"c": "Butler County",
+"town": "Oak Creek township",
+"prec": "008 OAK CREEK-CENTER",
+"names": "Center township",
+"tot": 450
+},
+{
+"c": "Butler County",
+"town": "Olive township",
+"prec": "004 UNION-OLIVE",
+"names": "Union township",
+"tot": 273
+},
+{
+"c": "Butler County",
+"town": "Plum Creek township",
+"prec": "006 PLUM CREEK-RICHARDSON-ULYSSES",
+"names": "Richardson township",
+"tot": 530
+},
+{
+"c": "Butler County",
+"town": "Plum Creek township",
+"prec": "006 PLUM CREEK-RICHARDSON-ULYSSES",
+"names": "Ulysses township",
+"tot": 530
+},
+{
+"c": "Butler County",
+"town": "Reading township",
+"prec": "005 SUMMIT-READING-READ",
+"names": "Summit township",
+"tot": 516
+}
+],
+"ntowns": 821
+},
+{
+"st": "Nevada",
+"nprec": 1236,
+"dups": [],
+"named": [],
+"ntowns": 19
+}
+]

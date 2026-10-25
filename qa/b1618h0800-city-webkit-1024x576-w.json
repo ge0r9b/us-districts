@@ -1,0 +1,620 @@
+{
+ "Rhode Island|Warwick city": {
+  "tapC": [
+   90,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kent County",
+    "gq": "Kent County, RI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 48%"
+   ],
+   5,
+   [
+    "Warwick city | 46.2% | 51.8%",
+    "West Warwick town | 50.0% | 48.1%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kent County Warwick city",
+    "gq": "Kent County, RI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ],
+   2,
+   [
+    "003-Warwick | 45.1% | 52.9%",
+    "003-West Warwick | 50.1% | 48.0%"
+   ]
+  ],
+  "suspect": [
+   "003-West Warwick | 50.1% | 48.0%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 31K",
+    "Donald Trump 2024 / 28K"
+   ],
+   [
+    "003-Warwick | 21K | 24K",
+    "003-West Warwick | 7K | 7K"
+   ]
+  ],
+  "suspect_num": [
+   "003-West Warwick | 7K | 7K"
+  ],
+  "tapS": [
+   "003-West Warwick",
+   [
+    102,
+    166.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Kent County Warwick city",
+    "gq": "Kent County, RI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 7K",
+    "Kamala Harris 2024 / 7K"
+   ],
+   [
+    "003-Warwick | 21K | 24K",
+    "003-West Warwick | 7K | 7K"
+   ]
+  ],
+  "err": []
+ },
+ "Maine|Portland city": {
+  "tapC": [
+   96,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Cumberland County",
+    "gq": "Cumberland County, ME",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 67%",
+    "Donald Trump 2024 / 31%"
+   ],
+   28,
+   [
+    "Portland city | 15.5% | 80.6%",
+    "South Portland city | 22.9% | 74.4%",
+    "Westbrook city | 32.6% | 65.0%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Cumberland County Portland city",
+    "gq": "Cumberland County, ME",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 81%",
+    "Donald Trump 2024 / 16%"
+   ],
+   1,
+   [
+    "Precinct 05170 | 15.5% | 80.6%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 37K",
+    "Donald Trump 2024 / 7K"
+   ],
+   [
+    "Precinct 05170 | 37K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "South Carolina|Charleston city": {
+  "tapC": [
+   93.5,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Charleston County",
+    "gq": "Charleston County, SC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ],
+   17,
+   [
+    "Charleston city | 42.6% | 55.4%",
+    "Mount Pleasant town | 57.2% | 41.4%",
+    "North Charleston city | 30.3% | 67.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Charleston County Charleston ci\u2026",
+    "gq": "Charleston County, SC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 55%",
+    "Donald Trump 2024 / 43%"
+   ],
+   62,
+   [
+    "Johns Island 2 | 52.9% | 45.4%",
+    "Johns Island 3A | 53.7% | 44.7%",
+    "St. Andrews 29 | 45.5% | 52.5%",
+    "St. Andrews 34 | 54.6% | 44.0%",
+    "James Island 1A | 44.0% | 54.4%",
+    "James Island 7 | 45.5% | 52.4%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 36K",
+    "Donald Trump 2024 / 28K"
+   ],
+   [
+    "Johns Island 2 | 3K | 2K",
+    "Johns Island 3A | 2K | 2K",
+    "St. Andrews 29 | 1K | 1K",
+    "St. Andrews 34 | 1K | 810"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Utah|Salt Lake City city": {
+  "tapC": [
+   90,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Salt Lake County",
+    "gq": "Salt Lake County, UT",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 43%"
+   ],
+   23,
+   [
+    "Salt Lake City city | 21.0% | 75.9%",
+    "West Valley City city | 46.4% | 50.6%",
+    "South Salt Lake city | 25.3% | 71.3%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Salt Lake County Salt Lake City\u2026",
+    "gq": "Salt Lake County, UT",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 76%",
+    "Donald Trump 2024 / 21%"
+   ],
+   137,
+   [
+    "Precinct SLC119 | 23.6% | 73.4%",
+    "Precinct SLC088 | 84.8%",
+    "Precinct SLC075 | 16.6% | 82.2%",
+    "Precinct SLC102 | 13.0% | 85.2%",
+    "Precinct SLC037 | 15.1% | 81.1%",
+    "Precinct SLC077 | 24.9% | 72.9%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 66K",
+    "Donald Trump 2024 / 18K"
+   ],
+   [
+    "Precinct SLC119 | 268 | 835",
+    "Precinct SLC088 | 963",
+    "Precinct SLC075 | 886",
+    "Precinct SLC102 | 909"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Missouri|Kansas City city": {
+  "tapC": [
+   100.5,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Jackson County",
+    "gq": "Jackson County, MO",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 59%",
+    "Donald Trump 2024 / 40%"
+   ],
+   19,
+   [
+    "Kansas City city | 20.9% | 77.3%",
+    "Independence city | 51.2% | 47.2%",
+    "Raytown city | 33.6% | 64.6%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Jackson County Kansas City city",
+    "gq": "Jackson County, MO",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 21%"
+   ],
+   121,
+   [
+    "Precinct W8-P7,8,9,10 | 17.4% | 80.9%",
+    "Precinct W24-P1,2,3,17 | 29.3% | 69.3%",
+    "Precinct W5-P2,6,7,8,12 | 17.3% | 80.3%",
+    "Precinct W22-P2,8,10,11,14 | 38.5% | 59.5%",
+    "Precinct W4-P1,2,3,4,11,12 | 86.6%",
+    "Precinct W11-P1,7,8 | 19.7% | 78.7%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 93K",
+    "Donald Trump 2024 / 25K"
+   ],
+   [
+    "Precinct W8-P7,8,9,10 | 2K",
+    "Precinct W24-P1,2,3,17 | 883 | 2K",
+    "Precinct W5-P2,6,7,8,12 | 2K",
+    "Precinct W22-P2,8,10,11,14 | 1K | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Nevada|Las Vegas city": {
+  "tapC": [
+   88,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Clark County",
+    "gq": "Clark County, NV",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 48%"
+   ],
+   5,
+   [
+    "Las Vegas city | 46.7% | 51.5%",
+    "Henderson city | 53.2% | 45.0%",
+    "North Las Vegas city | 38.1% | 60.0%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Clark County Las Vegas city",
+    "gq": "Clark County, NV",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ],
+   195,
+   [
+    "Precinct 3793 | 50.9% | 46.7%",
+    "Precinct 3740 | 55.4% | 42.8%",
+    "Precinct 3373 | 52.0% | 46.2%",
+    "Precinct 3546 | 51.0% | 47.2%",
+    "Precinct 3706 | 50.9% | 47.4%",
+    "Precinct 3606 | 50.3% | 48.1%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 149K",
+    "Donald Trump 2024 / 135K"
+   ],
+   [
+    "Precinct 3793 | 2K | 2K",
+    "Precinct 3740 | 2K | 2K",
+    "Precinct 3373 | 2K | 2K",
+    "Precinct 3546 | 2K | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Florida|Miami city": {
+  "tapC": [
+   92.5,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 44%"
+   ],
+   34,
+   [
+    "Miami city | 48.7% | 50.0%",
+    "Miami Gardens city | 24.0% | 75.0%",
+    "Miami Beach city | 45.6% | 52.7%",
+    "North Miami city | 28.8% | 69.9%",
+    "North Miami Beach city | 39.7% | 59.1%",
+    "Miami Springs city | 63.1% | 35.8%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Miami-Dade County Miami city",
+    "gq": "Miami-Dade County, FL",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 49%"
+   ],
+   123,
+   [
+    "Precinct 624 | 49.7% | 48.6%",
+    "Precinct 587 | 36.1% | 62.5%",
+    "Precinct 573 | 55.3% | 43.3%",
+    "Precinct 569 | 48.1% | 50.5%",
+    "Precinct 504 | 32.7% | 65.4%",
+    "Precinct 544 | 42.3% | 56.0%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 72K",
+    "Donald Trump 2024 / 70K"
+   ],
+   [
+    "Precinct 624 | 2K | 2K",
+    "Precinct 587 | 1K | 3K",
+    "Precinct 573 | 2K | 2K",
+    "Precinct 569 | 2K | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Pennsylvania|Pittsburgh city": {
+  "tapC": [
+   102,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 39%"
+   ],
+   131,
+   [
+    "Pittsburgh city | 21.7% | 76.7%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Allegheny County Pittsburgh city",
+    "gq": "Allegheny County, PA",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 22%"
+   ],
+   402,
+   [
+    "Ward 2 Dist 1 | 22.3% | 76.0%",
+    "Ward 2 Dist 2 | 29.0% | 69.5%",
+    "Ward 1 Dist 1 | 22.3% | 76.4%",
+    "Ward 6 Dist 1 | 20.6% | 77.6%",
+    "Ward 4 Dist 8 | 15.1% | 83.8%",
+    "Ward 14 Dist 7 | 86.1%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 124K",
+    "Donald Trump 2024 / 35K"
+   ],
+   [
+    "Ward 2 Dist 1 | 357 | 1K",
+    "Ward 2 Dist 2 | 437 | 1K",
+    "Ward 1 Dist 1 | 314 | 1K",
+    "Ward 6 Dist 1 | 268 | 1K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "North Carolina|Burlington city": {
+  "tapC": [
+   95,
+   309.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 54%",
+    "Kamala Harris 2024 / 45%"
+   ],
+   10,
+   [
+    "Burlington city | 44.5% | 54.2%",
+    "Graham city | 50.5% | 48.4%"
+   ]
+  ],
+  "tapT": [
+   102,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Burlington city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 45%"
+   ],
+   15,
+   [
+    "South Boone M | 47.4% | 51.1%",
+    "South Boone E | 46.4% | 52.6%",
+    "North Burlington | 20.3% | 78.5%",
+    "Central Boone | 55.0% | 42.7%",
+    "Graham 3 | 34.1% | 64.5%",
+    "Burlington 5 | 55.2% | 44.1%"
+   ]
+  ],
+  "suspect": [
+   "Graham 3 | 34.1% | 64.5%",
+   "West Graham | 46.6% | 52.5%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 13K",
+    "Donald Trump 2024 / 11K"
+   ],
+   [
+    "South Boone M | 1K | 2K",
+    "South Boone E | 1K | 2K",
+    "North Burlington | 437 | 2K",
+    "Central Boone | 1K | 872"
+   ]
+  ],
+  "suspect_num": [
+   "Graham 3 | 616 | 1K",
+   "West Graham | 358 | 403 | 768"
+  ],
+  "tapS": [
+   "Graham 3",
+   [
+    102,
+    256.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Alamance County Burlington city",
+    "gq": "Alamance County, NC",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 1K",
+    "Donald Trump 2024 / 616"
+   ],
+   [
+    "South Boone M | 1K | 2K",
+    "South Boone E | 1K | 2K",
+    "North Burlington | 437 | 2K"
+   ]
+  ],
+  "err": []
+ }
+}

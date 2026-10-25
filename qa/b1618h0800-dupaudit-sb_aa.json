@@ -1,0 +1,307 @@
+[
+{
+"st": "Alabama",
+"nprec": 1911,
+"dups": [],
+"named": [
+{
+"c": "Dale County",
+"town": "Dothan city",
+"prec": "GRIMES COMM_ CTR_",
+"names": "Grimes town",
+"tot": 990
+},
+{
+"c": "Madison County",
+"town": "Huntsville city",
+"prec": "DAYSTAR CH-MADISON",
+"names": "Madison city",
+"tot": 3619
+},
+{
+"c": "Jefferson County",
+"town": "Birmingham city",
+"prec": "PREC 4020 - TRUSSVILLE FIRST B",
+"names": "Trussville city",
+"tot": 4306
+},
+{
+"c": "Jefferson County",
+"town": "Hoover city",
+"prec": "PREC 3045 - BIRMINGHAM COMMUNI",
+"names": "Birmingham city",
+"tot": 859
+},
+{
+"c": "Jefferson County",
+"town": "Hoover city",
+"prec": "PREC 5005 - BIRMINGHAM FIRST S",
+"names": "Birmingham city",
+"tot": 1144
+},
+{
+"c": "Jefferson County",
+"town": "Pinson city",
+"prec": "PREC 1065/4060 - CENTER POINT",
+"names": "Center Point city",
+"tot": 2791
+}
+],
+"ntowns": 509
+},
+{
+"st": "Alaska",
+"nprec": 402,
+"dups": [],
+"named": [],
+"ntowns": 148
+},
+{
+"st": "Arizona",
+"nprec": 1694,
+"dups": [],
+"named": [],
+"ntowns": 98
+},
+{
+"st": "Arkansas",
+"nprec": 2649,
+"dups": [
+{
+"c": "Benton County",
+"prec": "102",
+"towns": [
+"Bella Vista city",
+"Bentonville city"
+],
+"tot": 155
+}
+],
+"named": [
+{
+"c": "Independence County",
+"town": "Batesville city",
+"prec": "Moorefield Ward 1",
+"names": "Moorefield town",
+"tot": 757
+},
+{
+"c": "Independence County",
+"town": "Batesville city",
+"prec": "Moorefield Ward 4",
+"names": "Moorefield town",
+"tot": 274
+},
+{
+"c": "Lonoke County",
+"town": "Cabot city",
+"prec": "08 - Cabot City Ward 4",
+"names": "Ward city",
+"tot": 2410
+},
+{
+"c": "Lonoke County",
+"town": "Cabot city",
+"prec": "07 - Cabot City Ward 3",
+"names": "Ward city",
+"tot": 2627
+},
+{
+"c": "Lonoke County",
+"town": "Cabot city",
+"prec": "05 - Cabot City Ward 1",
+"names": "Ward city",
+"tot": 1968
+},
+{
+"c": "Lonoke County",
+"town": "Carlisle city",
+"prec": "12 - Carlisle City Ward 3",
+"names": "Ward city",
+"tot": 258
+},
+{
+"c": "Lonoke County",
+"town": "Carlisle city",
+"prec": "11 - Carlisle City Ward 2",
+"names": "Ward city",
+"tot": 126
+},
+{
+"c": "Lonoke County",
+"town": "Carlisle city",
+"prec": "10 - Carlisle City Ward 1",
+"names": "Ward city",
+"tot": 448
+},
+{
+"c": "Lonoke County",
+"town": "England city",
+"prec": "17 - England City Ward 1",
+"names": "Ward city",
+"tot": 272
+},
+{
+"c": "Lonoke County",
+"town": "England city",
+"prec": "18 - England City Ward 2",
+"names": "Ward city",
+"tot": 184
+},
+{
+"c": "Lonoke County",
+"town": "England city",
+"prec": "19 - England City Ward 3",
+"names": "Ward city",
+"tot": 197
+},
+{
+"c": "Lonoke County",
+"town": "England city",
+"prec": "20 - England City Ward 4",
+"names": "Ward city",
+"tot": 215
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "37 - Lonoke City Ward 4",
+"names": "Ward city",
+"tot": 185
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "53 - Lonoke City Ward 5",
+"names": "Ward city",
+"tot": 175
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "36 - Lonoke City Ward 3",
+"names": "Ward city",
+"tot": 112
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "35 - Lonoke City Ward 2",
+"names": "Ward city",
+"tot": 214
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "54 - Lonoke City Ward 6",
+"names": "Ward city",
+"tot": 172
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "56 - Lonoke City Ward 8",
+"names": "Ward city",
+"tot": 280
+},
+{
+"c": "Lonoke County",
+"town": "Lonoke city",
+"prec": "55 - Lonoke City Ward 7",
+"names": "Ward city",
+"tot": 203
+},
+{
+"c": "Perry County",
+"town": "Perryville city",
+"prec": "04 - Fourche",
+"names": "Fourche town",
+"tot": 613
+},
+{
+"c": "Hot Spring County",
+"town": "Rockport city",
+"prec": "Malvern W-4",
+"names": "Malvern city",
+"tot": 690
+},
+{
+"c": "Mississippi County",
+"town": "Osceola city",
+"prec": "Keiser First Baptist Church",
+"names": "Keiser city",
+"tot": 257
+},
+{
+"c": "Crittenden County",
+"town": "Clarkedale city",
+"prec": "JERICHO CITY HALL",
+"names": "Jericho town",
+"tot": 252
+},
+{
+"c": "Crittenden County",
+"town": "Edmondson town",
+"prec": "ANTHONYVILLE CITY HALL",
+"names": "Anthonyville town",
+"tot": 45
+}
+],
+"ntowns": 520
+},
+{
+"st": "California",
+"nprec": 24202,
+"dups": [
+{
+"c": "Los Angeles County",
+"prec": "4400038A",
+"towns": [
+"Arcadia city",
+"Monrovia city"
+],
+"tot": 0
+}
+],
+"named": [],
+"ntowns": 482
+},
+{
+"st": "Colorado",
+"nprec": 3144,
+"dups": [],
+"named": [],
+"ntowns": 293
+},
+{
+"st": "Connecticut",
+"nprec": 167,
+"dups": [
+{
+"c": "South Central Connecticut Planning Region",
+"prec": "170-Milford",
+"towns": [
+"Milford city (balance)",
+"Milford town"
+],
+"tot": 30814
+}
+],
+"named": [],
+"ntowns": 176
+},
+{
+"st": "Delaware",
+"nprec": 525,
+"dups": [],
+"named": [],
+"ntowns": 60
+},
+{
+"st": "Florida",
+"nprec": 5546,
+"dups": [],
+"named": [],
+"ntowns": 414
+}
+]

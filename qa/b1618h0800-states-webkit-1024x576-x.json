@@ -1,0 +1,257 @@
+{
+ "New Mexico": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    385234,
+    319667,
+    798319
+   ],
+   "2020": [
+    501614,
+    401894,
+    923965
+   ],
+   "2024": [
+    478802,
+    423391,
+    923403
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 40%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2020 / 43%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  },
+  "err": []
+ },
+ "North Dakota": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "North Dakota",
+    "gq": "North Dakota",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 67%",
+    "Kamala Harris 2024 / 31%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    93758,
+    216794,
+    344360
+   ],
+   "2020": [
+    115042,
+    235751,
+    362024
+   ],
+   "2024": [
+    112327,
+    246505,
+    368155
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 63%",
+    "Hillary Clinton 2016 / 27%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 65%",
+    "Joe Biden 2020 / 32%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 67%",
+    "Kamala Harris 2024 / 31%"
+   ]
+  },
+  "err": []
+ },
+ "South Dakota": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "South Dakota",
+    "gq": "South Dakota",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 63%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    117458,
+    227721,
+    370093
+   ],
+   "2020": [
+    150471,
+    261043,
+    422609
+   ],
+   "2024": [
+    146859,
+    272081,
+    428922
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 62%",
+    "Hillary Clinton 2016 / 32%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 62%",
+    "Joe Biden 2020 / 36%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 63%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  },
+  "err": []
+ },
+ "Wyoming": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Wyoming",
+    "gq": "Wyoming",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 72%",
+    "Kamala Harris 2024 / 26%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    55973,
+    174419,
+    255849
+   ],
+   "2020": [
+    73491,
+    193559,
+    276765
+   ],
+   "2024": [
+    69527,
+    192633,
+    269048
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 68%",
+    "Hillary Clinton 2016 / 22%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 70%",
+    "Joe Biden 2020 / 27%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 72%",
+    "Kamala Harris 2024 / 26%"
+   ]
+  },
+  "err": []
+ },
+ "Alaska": {
+  "lat": {},
+  "build": "202610181618",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Alaska",
+    "gq": "Alaska",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 41%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    116454,
+    163387,
+    318608
+   ],
+   "2020": [
+    153778,
+    189951,
+    359530
+   ],
+   "2024": [
+    140026,
+    184458,
+    338177
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 51%",
+    "Hillary Clinton 2016 / 37%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 53%",
+    "Joe Biden 2020 / 43%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 41%"
+   ]
+  },
+  "err": []
+ }
+}
