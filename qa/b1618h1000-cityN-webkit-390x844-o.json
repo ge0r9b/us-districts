@@ -1,0 +1,129 @@
+{
+ "Wisconsin|Pleasant Prairie village": {
+  "tapC": [
+   93,
+   376.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kenosha County",
+    "gq": "Kenosha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 52%",
+    "Kamala Harris 2024 / 46%"
+   ],
+   13,
+   [
+    "Kenosha city | 44.5%",
+    "Pleasant Prairie village | 55.5% | 43.2%"
+   ]
+  ],
+  "tapT": [
+   102,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kenosha County Pleasant Prairie\u2026",
+    "gq": "Kenosha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 43%"
+   ],
+   16,
+   [
+    "Village of Pleasant Prairie War\u2026 | 54.5%",
+    "Village of Pleasant Prairie War\u2026 | 53.6% | 45.3%",
+    "Village of Pleasant Prairie War\u2026 | 57.7% | 40.7%",
+    "Village of Pleasant Prairie War\u2026 | 54.2% | 44.5%",
+    "Village of Pleasant Prairie War\u2026 | 54.3% | 44.5%",
+    "Village of Pleasant Prairie War\u2026 | 51.6% | 47.2%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 7K",
+    "Kamala Harris 2024 / 5K"
+   ],
+   [
+    "Village of Pleasant Prairie War\u2026 | 644 | 528",
+    "Village of Pleasant Prairie War\u2026 | 624 | 528",
+    "Village of Pleasant Prairie War\u2026 | 610 | 430",
+    "Village of Pleasant Prairie War\u2026 | 554 | 455"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Ohio|Brook Park city": {
+  "tapC": [
+   93,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Cuyahoga County",
+    "gq": "Cuyahoga County, OH",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 65%",
+    "Donald Trump 2024 / 34%"
+   ],
+   58,
+   [
+    "Cleveland city | 21.4% | 77.3%",
+    "Cleveland Heights city | 85.2%",
+    "Brook Park city | 53.8% | 45.1%"
+   ]
+  ],
+  "tapT": [
+   102,
+   443.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Cuyahoga County Brook Park city",
+    "gq": "Cuyahoga County, OH",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 54%",
+    "Kamala Harris 2024 / 45%"
+   ],
+   11,
+   [
+    "-02-B | 57.1%",
+    "-01-B | 52.6% | 46.0%",
+    "-04-A | 54.2% | 44.4%",
+    "-03-A | 53.6% | 45.5%",
+    "-04-C | 53.9% | 45.3%",
+    "-04-B | 51.1% | 47.1%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 4K",
+    "Kamala Harris 2024 / 4K"
+   ],
+   [
+    "-02-B | 453 | 331",
+    "-01-B | 412 | 361",
+    "-04-A | 417 | 342",
+    "-03-A | 406 | 345"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ }
+}

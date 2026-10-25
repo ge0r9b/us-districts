@@ -1,0 +1,443 @@
+{
+ "Wisconsin|Madison city": {
+  "tapC": [
+   95.5,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Dane County",
+    "gq": "Dane County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 23%"
+   ],
+   60,
+   [
+    "Madison city | 83.3%",
+    "Fitchburg city | 78.1%",
+    "Middleton city | 79.8%",
+    "Middleton town | 31.9% | 66.5%",
+    "Monona city | 81.2%",
+    "McFarland village | 28.2% | 70.6%",
+    "Burke town | 28.6% | 69.9%",
+    "Blooming Grove town | 23.0% | 75.1%"
+   ]
+  ],
+  "tapT": [
+   98,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Dane County Madison city",
+    "gq": "Dane County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 83%",
+    "Donald Trump 2024 / 15%"
+   ],
+   125,
+   [
+    "City of Madison Ward 114",
+    "City of Madison Ward 113 | 28.0% | 70.8%",
+    "City of Madison Ward 80 | 88.7%",
+    "City of Madison Ward 19 | 94.7%",
+    "City of Madison Ward 40 | 94.0%",
+    "City of Madison Ward 46 | 90.5%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 143K",
+    "Donald Trump 2024 / 26K"
+   ],
+   [
+    "City of Madison Ward 114 | 2K",
+    "City of Madison Ward 113 | 2K",
+    "City of Madison Ward 80 | 2K",
+    "City of Madison Ward 19 | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Wisconsin|Milwaukee city": {
+  "tapC": [
+   95.5,
+   136.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Milwaukee County",
+    "gq": "Milwaukee County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 68%",
+    "Donald Trump 2024 / 30%"
+   ],
+   19,
+   [
+    "Milwaukee city (Milwaukee part)",
+    "Wauwatosa city | 29.3% | 69.1%",
+    "West Allis city | 43.7% | 54.4%",
+    "Glendale city | 72.9%"
+   ]
+  ],
+  "tapT": [
+   98,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Milwaukee County Milwaukee city",
+    "gq": "Milwaukee County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 77%",
+    "Donald Trump 2024 / 21%"
+   ],
+   346,
+   [
+    "City of Milwaukee Ward 33 | 30.8%",
+    "City of Milwaukee Ward 173 | 82.7%",
+    "City of Milwaukee Ward 164 | 79.7%",
+    "City of Milwaukee Ward 175 | 83.8%",
+    "City of Milwaukee Ward 187 | 36.2% | 62.2%",
+    "City of Milwaukee Ward 180 | 74.7%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 192K",
+    "Donald Trump 2024 / 52K"
+   ],
+   [
+    "City of Milwaukee Ward 33 | 631 | 1K",
+    "City of Milwaukee Ward 173 | 2K",
+    "City of Milwaukee Ward 164 | 1K",
+    "City of Milwaukee Ward 175 | 2K"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Wisconsin|Kenosha city": {
+  "tapC": [
+   95.5,
+   305.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Kenosha County",
+    "gq": "Kenosha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 52%",
+    "Kamala Harris 2024 / 46%"
+   ],
+   13,
+   [
+    "Kenosha city | 44.5%",
+    "Pleasant Prairie village | 55.5%",
+    "Somers village | 52.3%",
+    "Somers town | 57.5%"
+   ]
+  ],
+  "tapT": [
+   98,
+   136.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Kenosha County Kenosha city",
+    "gq": "Kenosha County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   76,
+   [
+    "City of Kenosha Ward 62 | 46.3%",
+    "City of Kenosha Ward 58 | 47.8%",
+    "City of Kenosha Ward 33 | 50.8%",
+    "City of Kenosha Ward 9 | 46.0% | 52.9%",
+    "City of Kenosha Ward 25 | 38.7% | 59.9%",
+    "City of Kenosha Ward 1 | 42.0% | 55.7%"
+   ]
+  ],
+  "suspect": [
+   "Village of Pleasant Prairie War\u2026 | 54.3% | 44.5%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 26K",
+    "Donald Trump 2024 / 21K"
+   ],
+   [
+    "City of Kenosha Ward 62 | 810",
+    "City of Kenosha Ward 58 | 825 | 870",
+    "City of Kenosha Ward 33 | 786 | 733",
+    "City of Kenosha Ward 9 | 705 | 812"
+   ]
+  ],
+  "suspect_num": [
+   "Village of Pleasant Prairie War\u2026 | 586 | 481"
+  ],
+  "tapS": [
+   "Village of Pleasant Prairie War\u2026",
+   [
+    98,
+    305.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Kenosha County Kenosha city",
+    "gq": "Kenosha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 586",
+    "Kamala Harris 2024 / 481"
+   ],
+   [
+    "City of Kenosha Ward 62 | 810",
+    "City of Kenosha Ward 58 | 825 | 870",
+    "City of Kenosha Ward 33 | 786 | 733"
+   ]
+  ],
+  "err": []
+ },
+ "Wisconsin|Brookfield city": {
+  "tapC": [
+   95.5,
+   196.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Waukesha County",
+    "gq": "Waukesha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ],
+   38,
+   [
+    "Brookfield city | 51.7%",
+    "Elm Grove village | 48.9% | 50.0%",
+    "Brookfield town | 54.8% | 43.3%"
+   ]
+  ],
+  "tapT": [
+   98,
+   166.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Waukesha County Brookfield city",
+    "gq": "Waukesha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 52%",
+    "Kamala Harris 2024 / 46%"
+   ],
+   21,
+   [
+    "City of Brookfield Ward 6 | 52.3%",
+    "City of Brookfield Ward 17 | 50.1%",
+    "City of Brookfield Ward 18 | 50.6%",
+    "City of Brookfield Ward 20 | 49.3%",
+    "City of Brookfield Ward 15 | 54.6% | 43.3%",
+    "City of Brookfield Ward 2 | 51.0% | 47.8%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 14K",
+    "Kamala Harris 2024 / 13K"
+   ],
+   [
+    "City of Brookfield Ward 6 | 1K",
+    "City of Brookfield Ward 17 | 928 | 882",
+    "City of Brookfield Ward 18 | 821 | 753",
+    "City of Brookfield Ward 20 | 742 | 727"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Wisconsin|Brookfield town": {
+  "tapC": [
+   95.5,
+   196.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Waukesha County",
+    "gq": "Waukesha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ],
+   38,
+   [
+    "Brookfield city | 51.7%",
+    "Brookfield town | 54.8% | 43.3%"
+   ]
+  ],
+  "tapT": [
+   98,
+   305.5
+  ],
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Waukesha County Brookfield town",
+    "gq": "Waukesha County, WI",
+    "list": true
+   },
+   [
+    "Donald Trump 2024 / 55%",
+    "Kamala Harris 2024 / 43%"
+   ],
+   11,
+   [
+    "Town of BROOKFIELD Ward 6 | 56.2%",
+    "Town of BROOKFIELD Ward 1 | 52.6%",
+    "Town of BROOKFIELD Ward 3 | 55.9%",
+    "Town of BROOKFIELD Ward 4 | 56.1%",
+    "Town of BROOKFIELD Ward 7 | 56.3% | 42.6%",
+    "Town of BROOKFIELD Ward 5 | 56.1% | 42.2%"
+   ]
+  ],
+  "suspect": [],
+  "town_num": [
+   [
+    "Donald Trump 2024 / 2K",
+    "Kamala Harris 2024 / 2K"
+   ],
+   [
+    "Town of BROOKFIELD Ward 6 | 357",
+    "Town of BROOKFIELD Ward 1 | 292 | 247",
+    "Town of BROOKFIELD Ward 3 | 280 | 212",
+    "Town of BROOKFIELD Ward 4 | 264 | 200"
+   ]
+  ],
+  "suspect_num": [],
+  "err": []
+ },
+ "Wisconsin|Madison town": {
+  "tapC": [
+   95.5,
+   166.5
+  ],
+  "county": [
+   {
+    "title": "President",
+    "crumbs": "Dane County",
+    "gq": "Dane County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 23%"
+   ],
+   60,
+   [
+    "Fitchburg city | 78.1%"
+   ]
+  ],
+  "tapT": null,
+  "town": [
+   {
+    "title": "President",
+    "crumbs": "Dane County",
+    "gq": "Dane County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 75%",
+    "Donald Trump 2024 / 23%"
+   ],
+   60,
+   [
+    "Madison city | 83.3%",
+    "Sun Prairie city | 28.0% | 70.5%",
+    "Fitchburg city | 78.1%",
+    "Middleton city | 79.8%",
+    "Verona city | 73.7%",
+    "Waunakee village | 36.1% | 62.7%"
+   ]
+  ],
+  "suspect": [
+   "Fitchburg city | 78.1%"
+  ],
+  "town_num": [
+   [
+    "Kamala Harris 2024 / 274K",
+    "Donald Trump 2024 / 85K"
+   ],
+   [
+    "Madison city | 143K",
+    "Sun Prairie city | 22K",
+    "Fitchburg city | 18K",
+    "Middleton city | 15K"
+   ]
+  ],
+  "suspect_num": [
+   "Fitchburg city | 18K"
+  ],
+  "tapS": [
+   "Fitchburg city",
+   [
+    98,
+    196.5
+   ]
+  ],
+  "afterS": [
+   {
+    "title": "President",
+    "crumbs": "Dane County Fitchburg city",
+    "gq": "Dane County, WI",
+    "list": true
+   },
+   [
+    "Kamala Harris 2024 / 14K",
+    "Donald Trump 2024 / 4K"
+   ],
+   [
+    "City of Fitchburg Ward 12 | 1K",
+    "City of Fitchburg Ward 19 | 1K",
+    "City of Fitchburg Ward 13 | 1K"
+   ]
+  ],
+  "err": []
+ }
+}

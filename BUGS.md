@@ -708,6 +708,44 @@ Live line 9 was 202610181582 at the start; **1583 went live during the pass** (m
 - Screenshots: shots/b1582p14-ch-390-icons-list24.png, shots/b1582p14-ch-390-icons-map24b.png (end states; the jump is in the per-frame data)
 - Data: `qa/b1582p14-icons-*.json` > `frames` (list24, map24b, map2024r2, map1624r2); `qa/b1582p14-thumbs-390.json` > trans.Blount_list
 
+## Hourly run, build 1618, Oct 25 ~10 AM EDT (9:50-10:15 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
+- Touch, Chromium + WebKit. **No console errors, page errors or failed app requests. No tap over 100 ms** (max 80 ms, the '20 tick on Dane County, Chromium 320). Logs `qa/h1000-*.log`, data `qa/b1618h1000-*.json`, shots `qa/shotsh1000/b1618h10-*.png`. Scripts: `qa/h1000-cityN.py` (copy of h0900-cityN.py), `h1000-modes.py`, `h1000-order.py` (new), `h1000-lay3.py`, `h1000-cmp.py` (copies of h0900), `h1000-sum.py`.
+- **QA-123 (same bug, 2 more examples; still CRITICAL pending orchestrator confirmation).** Same steps (state + Enter > #bGeo > counties > county > town):
+  - Kenosha city, Kenosha WI (Chromium 320x568, 76 rows): **"Village of Pleasant Prairie War…"** 54.3% / 44.5%, 586 / 481 (the 8 AM audit names it Pleasant Prairie Ward 6). Tapping it keeps the title "Kenosha County Kenosha city" with thumbnails Trump 586 / Harris 481. Shots: qa/shotsh1000/b1618h10-ch-320x568-cityN-Kenoshacity-{list,list-num,tapSuspect}.png
+  - Cleveland city, Cuyahoga OH (WebKit 1024x576, 330 rows): **"Brook Park -01-A"** 49.6% / 49.8%, 304 / 305. Tapping it keeps the title "Cuyahoga County Cleveland city" with thumbnails Harris 305 / Trump 304. Brook Park city's own list (WebKit 390x844, 11 rows) has no 01-A row, so Brook Park is short by those votes. Shots: qa/shotsh1000/b1618h10-we-1024x576-cityN-Clevelandcity-{list,list-num,tapSuspect}.png, qa/shotsh1000/b1618h10-we-390x844-cityN-BrookParkcity-list.png
+  - Data: `qa/b1618h1000-cityN-chromium-320x568-a.json`, `qa/b1618h1000-cityN-webkit-1024x576-b.json`, `qa/b1618h1000-cityN-webkit-390x844-o.json`
+- **Passed (no neighbour rows; the title and numbers belong to the place):**
+  - NH: Manchester (1 row "011-Manchester", Harris 28K / Trump 24K), Nashua (1 row "011-Nashua", 25K / 19K), Concord (1 row "013-Concord", 15K / 9K). NH and ME towns are a single town-level row each, so a neighbour can't hide inside them.
+  - ME: Lewiston city (1 row "Precinct 01050", 9K / 7K; Auburn is a separate row), South Portland city (1 row "Precinct 05220", 12K / 4K; Portland and Cape Elizabeth separate).
+  - WI: Madison city (125 rows, all "City of Madison Ward …", 143K / 26K; no Fitchburg / McFarland / Blooming Grove / Middleton rows, though the 8 AM audit flagged them), Milwaukee city (346 rows, no Wauwatosa 24A), Brookfield city (21 rows, all "City of Brookfield Ward …") and Brookfield town (11 rows, all "Town of BROOKFIELD Ward …"), listed apart. Madison town has no row (it was dissolved in 2022), which is correct.
+  - MN: Minneapolis (137 rows "W-x P-y"), St. Paul (86 rows "ST Paul W-x P-y"), Rochester (82 rows "Wx Pyy"; no Marion Twp P-2 row, though the audit flagged one).
+  - NY: Buffalo (207), Rochester (165), Syracuse (150). All rows are "Precinct <code>", so I could check only that no row names a neighbour and that neighbour towns are separate rows.
+  - OH: Columbus city, Franklin (540 rows; no Reynoldsburg / Clinton / Perry / Sharon / Truro / Norwich / Madison / Jefferson rows, though the audit flagged them), Dayton (90 rows, no Trotwood / Harrison), Cincinnati (190 rows, no Anderson).
+  - Data: `qa/b1618h1000-cityN-chromium-390x844-c.json` plus the a / b files above.
+- **New: QA-124 [LOW] Precinct names start with a stray "-" (the city name has been stripped, but its separator is left behind).**
+  - Size, build, engine: WebKit 1024x576 and 390x844 (Cleveland, Brook Park), Chromium 320x568 and WebKit 1024x576 (Madison '20); build 1618, touch.
+  - Steps: Ohio + Enter > #bGeo > Ohio counties > Cuyahoga > Cleveland city (or Brook Park city). Or: Wisconsin > Dane > Madison city with the slider on '20.
+  - Expected: readable precinct names such as "03-L" or "Cleveland 03-L", and "Ward 45" or "C 0045".
+  - Actual: Cleveland rows read "-03-L", "-08-B", "-13-O", …. Brook Park rows read "-02-B", "-01-B", …. Madison city in '20 reads "- C 0045", "- C 0106", … (in '24 they read "City of Madison Ward 114"). The stray Brook Park row inside Cleveland (QA-123) keeps its prefix, "Brook Park -01-A".
+  - Shots: qa/shotsh1000/b1618h10-we-1024x576-cityN-Clevelandcity-tapSuspect.png, qa/shotsh1000/b1618h10-ch-320x568-md-Dane-placeprec-num.png
+  - Data: `qa/b1618h1000-cityN-webkit-1024x576-b.json`, `qa/b1618h1000-cityN-webkit-390x844-o.json`, `qa/b1618h1000-modes-chromium-320x568.json` (place_list)
+- **% vs # and sort (Chromium 320x568, WebKit 1024x576).** Lists: AZ / WI / GA counties; Maricopa / Dane / Cobb places; Phoenix / Madison / Marietta precincts.
+  - Switching between % and # keeps the same rows in the same order (full row names compared, `qa/b1618h1000-order-*.json`).
+  - Thumbnails agree between the modes: Maricopa 51% / 48% = 1.05M / 980K, Dane 75% / 23% = 274K / 85K, Cobb 57% / 42% = 228K / 169K.
+  - The default order is largest first: Phoenix > Mesa > Scottsdale, Fulton > Gwinnett > Cobb, Madison > Sun Prairie > Fitchburg.
+  - The sort chip flips the order to smallest first (Gila Bend, Greenlee, Taliaferro …), and a second tap restores the first order exactly. Chip taps took 6-38 ms.
+  - A third number at the end of some # rows is the row total (Cave Creek town 298 + 115 of 417 = 71.5% / 27.6%), not a mismatch.
+  - Data: `qa/b1618h1000-modes-*.json`
+- **Time slider on Maricopa / Dane / Cobb (both engines):** the knob at '16 / '20 / '24 matches the data (Trump 48% / Clinton 45% > Biden 50% / Trump 48% > Trump 51% / Harris 48% for Maricopa; Clinton 70% > Biden 75% > Harris 75% for Dane; Clinton 49% > Biden 56% > Harris 57% for Cobb). Rows change each time, no loading indicator stays up, and taps took 10-80 ms.
+- **Reload (both engines, 3 counties):** after a year change ('20) on the county list, and after a drill-in to the place's precinct list on '20, reload restores the same title, year, thumbnails and first rows. Shots: qa/shotsh1000/b1618h10-*-md-*-reload-{y2020,place}.png
+- **Layout sweep (Chromium 1024x768 / 375 / 320, WebKit 1024x576 / 390; 16 steps):** the `moved` and transient lists match the 9 AM run step for step (`h1000-cmp.py`, no DIFF). The known items are unchanged: thumbnails +68 px when the slider opens, and the first row 14 px taller on gbar. No new jumps.
+- **Verify list:**
+  - Thumbnails sit on the topic-icon axis, and rows are bars next to the icons (shots).
+  - The chart button over the end of the first bar at 320 with the time row open is QA-013 (accepted).
+  - Sort chip: QA-099 (5 px) is still visible in the 320 shots and was not re-measured.
+  - The At-large label and the menu overlay were not re-measured (build unchanged, passed earlier).
+- Open items not rerun (build unchanged): QA-119, 121, 122, 117, 118, 115, 116, 113, 112, 110, 099, 074, 018, 105 / 106 / 120, 073 / 102 / 085.
+
 ## Hourly run, build 1618, Oct 25 ~9 AM EDT (8:57-9:05 AM EDT; line 9 = 202610181618 at start and end; v3 still 404)
 - Touch, Chromium + WebKit. **No console errors, page errors or failed app requests.** Logs `qa/h0900-*.log`, data `qa/b1618h0900-*.json`, shots `qa/shotsh0900/b1618h9-*.png`. Scripts `qa/h0900-city.py` / `h0900-cityN.py` (copies of h0800-city.py), `h0900-lay3.py`, `h0900-cmp.py`.
 - **New: QA-124 [HIGH by orchestrator ruling Oct 25: votes counted once, filed under the wrong town; raise a case to CRITICAL only if the precinct also still appears under its own town] (filed by the 9 AM run as QA-123, renumbered) Single precincts of a neighbouring town are listed, and counted, under another town's title (smaller-scale QA-119 / QA-121).** Leads came from the 8 AM data audit (`qa/b1618h0800-dupaudit-sb_*.json`, "named" flags); each was checked in the UI.
