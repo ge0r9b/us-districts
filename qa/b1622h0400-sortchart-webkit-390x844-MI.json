@@ -1,0 +1,2229 @@
+{
+ "build": "202610251622",
+ "lyr_lat": 17,
+ "lyr": {
+  "map_before": [
+   0,
+   0,
+   390,
+   844,
+   "1",
+   "none"
+  ],
+  "map_open": [
+   0,
+   0,
+   390,
+   844,
+   "1",
+   "none"
+  ],
+  "row": [
+   110,
+   684,
+   216,
+   48,
+   "1",
+   "none"
+  ],
+  "btns": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "bodyfilter": [
+   "none",
+   "1"
+  ]
+ },
+ "states": {
+  "hdr": "All States",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.3% | 55.9%",
+   "PA | 50.2% | 48.5%",
+   "OH | 55.1% | 43.9%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 38.3% | 58.5%",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "58.5%",
+       [
+        196,
+        126,
+        369,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 56.1% | 42.5%",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 56.1% | 43.0%",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2016 / 46%"
+    ],
+    "rows": [
+     "CA | 31.6% | 61.7%",
+     "FL | 49.0% | 47.8%",
+     "TX | 52.2% | 43.2%",
+     "NY | 36.5% | 59.0%",
+     "PA | 48.2% | 47.5%",
+     "IL | 38.8% | 55.8%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 31.6% | 61.7%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "61.7%",
+         [
+          176,
+          126,
+          358,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 49.0% | 47.8%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 52.2% | 43.2%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 65.85M",
+     "Donald Trump 2016 / 62.98M"
+    ],
+    "rows_num": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 3.09M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 4.48M | 8.75M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "8.75M",
+         [
+          160,
+          126,
+          310,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          310,
+          126,
+          326,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 4.62M | 4.50M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 4.69M | 3.88M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 21,
+    "rows_flip": [
+     "WY | 256K",
+     "DC | 311K",
+     "VT | 315K",
+     "AK | 319K",
+     "ND | 344K",
+     "SD | 370K"
+    ],
+    "rows_back": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 3.09M"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 47%"
+    ],
+    "rows": [
+     "CA | 34.3% | 63.5%",
+     "TX | 52.1% | 46.5%",
+     "FL | 51.2% | 47.9%",
+     "NY | 37.7% | 60.9%",
+     "PA | 48.7% | 49.9%",
+     "IL | 40.6% | 57.5%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 34.3% | 63.5%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "63.5%",
+         [
+          184,
+          126,
+          372,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 52.1% | 46.5%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 51.2% | 47.9%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 81.28M",
+     "Donald Trump 2020 / 74.22M"
+    ],
+    "rows_num": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 3.47M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.01M | 11.11M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "11.11M",
+         [
+          166,
+          126,
+          321,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 5.89M | 5.26M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 5.67M | 5.30M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 15,
+    "rows_flip": [
+     "WY | 277K",
+     "DC | 344K",
+     "AK | 358K",
+     "ND | 362K",
+     "VT | 367K",
+     "SD | 423K"
+    ],
+    "rows_back": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 3.47M"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "CA | 38.3% | 58.5%",
+     "TX | 56.1% | 42.5%",
+     "FL | 56.1% | 43.0%",
+     "NY | 43.3% | 55.9%",
+     "PA | 50.2% | 48.5%",
+     "OH | 55.1% | 43.9%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 38.3% | 58.5%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "58.5%",
+         [
+          196,
+          126,
+          369,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 56.1% | 42.5%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 56.1% | 43.0%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 77.30M",
+     "Kamala Harris 2024 / 75.02M"
+    ],
+    "rows_num": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.08M | 9.28M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "9.28M",
+         [
+          176,
+          126,
+          318,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          318,
+          126,
+          326,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 6.39M | 4.84M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 6.11M | 4.68M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 17,
+    "rows_flip": [
+     "WY | 269K",
+     "DC | 326K",
+     "AK | 338K",
+     "ND | 368K",
+     "VT | 369K",
+     "SD | 429K"
+    ],
+    "rows_back": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M"
+    ]
+   }
+  },
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 77.30M",
+   "Kamala Harris 2024 / 75.02M"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 6.08M | 9.28M",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "9.28M",
+       [
+        176,
+        126,
+        318,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        318,
+        126,
+        326,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 6.39M | 4.84M",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 6.11M | 4.68M",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 18,
+  "rows_flip": [
+   "WY | 269K",
+   "DC | 326K",
+   "AK | 338K",
+   "ND | 368K",
+   "VT | 369K",
+   "SD | 429K"
+  ],
+  "sort2_lat": 10,
+  "rows_back": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M"
+  ],
+  "ch_open_lat": 13,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 16,
+    "mode": "gbar",
+    "rows": [
+     "CA | 38.3% | 58.5% | 3.2%",
+     "TX | 56.1% | 42.5% | 1.4%",
+     "FL | 56.1% | 43.0% | 0.9%"
+    ],
+    "chip": [
+     {
+      "row": "CA | 38.3% | 58.5% | 3.2%",
+      "box": [
+       8,
+       122,
+       390,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "TX | 56.1% | 42.5% | 1.4%",
+      "box": [
+       8,
+       166,
+       390,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "MI": {
+  "hdr": "Michigan",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "Wayne | 33.7% | 62.7% | 3.6%",
+   "Oakland | 43.8% | 54.3% | 1.9%",
+   "Macomb | 55.9% | 42.2% | 1.9%",
+   "Kent | 46.5% | 51.8% | 1.7%",
+   "Genesee | 47.2% | 51.4% | 1.4%",
+   "Washtenaw | 26.6% | 71.0% | 2.4%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Wayne | 33.7% | 62.7% | 3.6%",
+     "box": [
+      8,
+      122,
+      390,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Oakland | 43.8% | 54.3% | 1.9%",
+     "box": [
+      8,
+      166,
+      390,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Macomb | 55.9% | 42.2% | 1.9%",
+     "box": [
+      8,
+      210,
+      390,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 47%",
+     "Hillary Clinton 2016 / 47%"
+    ],
+    "rows": [
+     "Wayne | 29.5% | 66.8% | 3.7%",
+     "Oakland | 43.6% | 51.7% | 4.7%",
+     "Macomb | 53.6% | 42.1% | 4.3%",
+     "Kent | 48.3% | 45.2% | 6.4%",
+     "Genesee | 42.9% | 52.4% | 4.7%",
+     "Washtenaw | 26.9% | 68.3% | 4.7%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 29.5% | 66.8% | 3.7%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 43.6% | 51.7% | 4.7%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 53.6% | 42.1% | 4.3%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2016 / 2.28M",
+     "Hillary Clinton 2016 / 2.27M"
+    ],
+    "rows_num": [
+     "Wayne | 229K | 519K | 29K",
+     "Oakland | 289K | 343K | 31K",
+     "Macomb | 225K | 176K | 18K",
+     "Kent | 148K | 139K | 20K",
+     "Genesee | 84K | 103K | 9K",
+     "Washtenaw | 51K | 128K | 9K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 229K | 519K | 29K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 289K | 343K | 31K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 225K | 176K | 18K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 17,
+    "rows_flip": [
+     "Keweenaw | 814 | 527 | 88",
+     "Luce | 2K | 681 | 139",
+     "Ontonagon | 2K | 1K | 176",
+     "Baraga | 2K | 1K | 172",
+     "Oscoda | 3K | 1K | 175",
+     "Schoolcraft | 3K | 1K | 226"
+    ],
+    "rows_back": [
+     "Wayne | 229K | 519K | 29K",
+     "Oakland | 289K | 343K | 31K",
+     "Macomb | 225K | 176K | 18K",
+     "Kent | 148K | 139K | 20K",
+     "Genesee | 84K | 103K | 9K",
+     "Washtenaw | 51K | 128K | 9K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 48%"
+    ],
+    "rows": [
+     "Wayne | 30.3% | 68.4% | 1.2%",
+     "Oakland | 42.3% | 56.4% | 1.3%",
+     "Macomb | 53.4% | 45.3% | 1.3%",
+     "Kent | 45.9% | 52.0% | 2.0%",
+     "Genesee | 44.6% | 53.9% | 1.5%",
+     "Washtenaw | 26.0% | 72.6% | 1.4%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 30.3% | 68.4% | 1.2%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 42.3% | 56.4% | 1.3%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 53.4% | 45.3% | 1.3%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 2.80M",
+     "Donald Trump 2020 / 2.65M"
+    ],
+    "rows_num": [
+     "Wayne | 265K | 597K | 11K",
+     "Oakland | 326K | 434K | 10K",
+     "Macomb | 264K | 224K | 6K",
+     "Kent | 166K | 188K | 7K",
+     "Genesee | 99K | 119K | 3K",
+     "Washtenaw | 56K | 157K | 3K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 265K | 597K | 11K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 326K | 434K | 10K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 264K | 224K | 6K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 15,
+    "rows_flip": [
+     "Keweenaw | 862 | 672 | 23",
+     "Luce | 2K | 842 | 50",
+     "Ontonagon | 2K | 1K | 55",
+     "Baraga | 3K | 1K | 48",
+     "Schoolcraft | 3K | 2K | 66",
+     "Oscoda | 3K | 1K | 66"
+    ],
+    "rows_back": [
+     "Wayne | 265K | 597K | 11K",
+     "Oakland | 326K | 434K | 10K",
+     "Macomb | 264K | 224K | 6K",
+     "Kent | 166K | 188K | 7K",
+     "Genesee | 99K | 119K | 3K",
+     "Washtenaw | 56K | 157K | 3K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "Wayne | 33.7% | 62.7% | 3.6%",
+     "Oakland | 43.8% | 54.3% | 1.9%",
+     "Macomb | 55.9% | 42.2% | 1.9%",
+     "Kent | 46.5% | 51.8% | 1.7%",
+     "Genesee | 47.2% | 51.4% | 1.4%",
+     "Washtenaw | 26.6% | 71.0% | 2.4%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 33.7% | 62.7% | 3.6%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 43.8% | 54.3% | 1.9%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 55.9% | 42.2% | 1.9%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.82M",
+     "Kamala Harris 2024 / 2.74M"
+    ],
+    "rows_num": [
+     "Wayne | 289K | 537K | 31K",
+     "Oakland | 338K | 420K | 15K",
+     "Macomb | 285K | 215K | 9K",
+     "Kent | 173K | 193K | 6K",
+     "Genesee | 105K | 115K | 3K",
+     "Washtenaw | 59K | 157K | 5K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wayne | 289K | 537K | 31K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Oakland | 338K | 420K | 15K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Macomb | 285K | 215K | 9K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 15,
+    "rows_flip": [
+     "Keweenaw | 896 | 690 | 25",
+     "Luce | 2K | 769 | 46",
+     "Ontonagon | 2K | 1K | 49",
+     "Baraga | 3K | 1K | 65",
+     "Schoolcraft | 3K | 2K | 70",
+     "Oscoda | 4K | 1K | 62"
+    ],
+    "rows_back": [
+     "Wayne | 289K | 537K | 31K",
+     "Oakland | 338K | 420K | 15K",
+     "Macomb | 285K | 215K | 9K",
+     "Kent | 173K | 193K | 6K",
+     "Genesee | 105K | 115K | 3K",
+     "Washtenaw | 59K | 157K | 5K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Wayne | 289K | 537K | 31K",
+   "Oakland | 338K | 420K | 15K",
+   "Macomb | 285K | 215K | 9K",
+   "Kent | 173K | 193K | 6K",
+   "Genesee | 105K | 115K | 3K",
+   "Washtenaw | 59K | 157K | 5K"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 2.82M",
+   "Kamala Harris 2024 / 2.74M"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Wayne | 289K | 537K | 31K",
+     "box": [
+      8,
+      122,
+      390,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Oakland | 338K | 420K | 15K",
+     "box": [
+      8,
+      166,
+      390,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Macomb | 285K | 215K | 9K",
+     "box": [
+      8,
+      210,
+      390,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 16,
+  "rows_flip": [
+   "Keweenaw | 896 | 690 | 25",
+   "Luce | 2K | 769 | 46",
+   "Ontonagon | 2K | 1K | 49",
+   "Baraga | 3K | 1K | 65",
+   "Schoolcraft | 3K | 2K | 70",
+   "Oscoda | 4K | 1K | 62"
+  ],
+  "sort2_lat": 12,
+  "rows_back": [
+   "Wayne | 289K | 537K | 31K",
+   "Oakland | 338K | 420K | 15K",
+   "Macomb | 285K | 215K | 9K",
+   "Kent | 173K | 193K | 6K",
+   "Genesee | 105K | 115K | 3K",
+   "Washtenaw | 59K | 157K | 5K"
+  ],
+  "ch_open_lat": 14,
+  "ch_opts": [
+   "bar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "bar": {
+    "lat": 10,
+    "mode": "bar",
+    "rows": [
+     "Wayne | 33.7% | 62.7%",
+     "Oakland | 43.8% | 54.3%",
+     "Macomb | 55.9% | 42.2%"
+    ],
+    "chip": [
+     {
+      "row": "Wayne | 33.7% | 62.7%",
+      "box": [
+       8,
+       122,
+       390,
+       152
+      ],
+      "hit": [
+       [
+        "sg dem",
+        "62.7%",
+        [
+         229,
+         126,
+         370,
+         148
+        ]
+       ]
+      ]
+     },
+     {
+      "row": "Oakland | 43.8% | 54.3%",
+      "box": [
+       8,
+       152,
+       390,
+       182
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "Wayne": {
+  "hdr": "Wayne County",
+  "th_pct": [
+   "Kamala Harris 2024 / 63%",
+   "Donald Trump 2024 / 34%"
+  ],
+  "rows_pct": [
+   "Detroit city | 89.9%",
+   "Livonia city | 48.5% | 49.1%",
+   "Canton charter township | 39.4% | 55.1%",
+   "Westland city | 41.7% | 56.1%",
+   "Dearborn city | 42.5% | 36.3%",
+   "Taylor city | 48.9% | 49.0%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Detroit city | 89.9%",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "89.9%",
+       [
+        175,
+        126,
+        373,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Livonia city | 48.5% | 49.1%",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Canton charter township | 39.4% | 55.1%",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 67%",
+     "Donald Trump 2016 / 29%"
+    ],
+    "rows": [
+     "Detroit city | 95.3%",
+     "Livonia city | 51.0% | 43.7%",
+     "Canton charter township | 40.6% | 54.9%",
+     "Dearborn city | 31.0% | 63.6%",
+     "Westland city | 39.1% | 55.7%",
+     "Taylor city | 44.9% | 50.6%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 95.3%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "95.3%",
+         [
+          165,
+          126,
+          375,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 51.0% | 43.7%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 40.6% | 54.9%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 519K",
+     "Donald Trump 2016 / 229K"
+    ],
+    "rows_num": [
+     "Detroit city | 235K",
+     "Livonia city | 55K",
+     "Canton charter township | 48K",
+     "Dearborn city | 39K",
+     "Westland city | 38K",
+     "Taylor city | 25K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 235K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "235K",
+         [
+          164,
+          126,
+          324,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 55K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 48K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 13,
+    "rows_flip": [
+     "Rockwood city | 2K",
+     "Northville city (Wayne part) | 2K",
+     "Village of Grosse Pointe Shores\u2026 | 2K",
+     "Belleville city | 2K",
+     "Gibraltar city | 2K",
+     "River Rouge city | 3K"
+    ],
+    "rows_back": [
+     "Detroit city | 235K",
+     "Livonia city | 55K",
+     "Canton charter township | 48K",
+     "Dearborn city | 39K",
+     "Westland city | 38K",
+     "Taylor city | 25K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 68%",
+     "Donald Trump 2020 / 30%"
+    ],
+    "rows": [
+     "Detroit city | 94.1%",
+     "Livonia city | 48.3% | 50.2%",
+     "Canton charter township | 37.6% | 61.3%",
+     "Dearborn city | 29.7% | 68.9%",
+     "Westland city | 39.6% | 59.0%",
+     "Taylor city | 46.4% | 52.1%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 94.1%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "94.1%",
+         [
+          169,
+          126,
+          376,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 48.3% | 50.2%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 37.6% | 61.3%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 597K",
+     "Donald Trump 2020 / 265K"
+    ],
+    "rows_num": [
+     "Detroit city | 241K",
+     "Livonia city | 63K",
+     "Canton charter township | 57K",
+     "Dearborn city | 45K",
+     "Westland city | 44K",
+     "Taylor city | 30K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 241K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "241K",
+         [
+          166,
+          126,
+          325,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 63K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 57K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 18,
+    "rows_flip": [
+     "Rockwood city | 2K",
+     "Northville city (Wayne part) | 2K",
+     "Village of Grosse Pointe Shores\u2026 | 2K",
+     "Belleville city | 2K",
+     "Gibraltar city | 3K",
+     "River Rouge city | 3K"
+    ],
+    "rows_back": [
+     "Detroit city | 241K",
+     "Livonia city | 63K",
+     "Canton charter township | 57K",
+     "Dearborn city | 45K",
+     "Westland city | 44K",
+     "Taylor city | 30K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / 63%",
+     "Donald Trump 2024 / 34%"
+    ],
+    "rows": [
+     "Detroit city | 89.9%",
+     "Livonia city | 48.5% | 49.1%",
+     "Canton charter township | 39.4% | 55.1%",
+     "Westland city | 41.7% | 56.1%",
+     "Dearborn city | 42.5% | 36.3%",
+     "Taylor city | 48.9% | 49.0%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 89.9%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "89.9%",
+         [
+          175,
+          126,
+          373,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 48.5% | 49.1%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 39.4% | 55.1%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 537K",
+     "Donald Trump 2024 / 289K"
+    ],
+    "rows_num": [
+     "Detroit city | 200K",
+     "Livonia city | 63K",
+     "Canton charter township | 58K",
+     "Westland city | 44K",
+     "Dearborn city | 42K",
+     "Taylor city | 30K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Detroit city | 200K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "200K",
+         [
+          171,
+          126,
+          322,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Livonia city | 63K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Canton charter township | 58K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 13,
+    "rows_flip": [
+     "Rockwood city | 2K",
+     "Village of Grosse Pointe Shores\u2026 | 2K",
+     "Northville city (Wayne part) | 2K",
+     "Belleville city | 2K",
+     "River Rouge city | 3K",
+     "Gibraltar city | 3K"
+    ],
+    "rows_back": [
+     "Detroit city | 200K",
+     "Livonia city | 63K",
+     "Canton charter township | 58K",
+     "Westland city | 44K",
+     "Dearborn city | 42K",
+     "Taylor city | 30K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Detroit city | 200K",
+   "Livonia city | 63K",
+   "Canton charter township | 58K",
+   "Westland city | 44K",
+   "Dearborn city | 42K",
+   "Taylor city | 30K"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 537K",
+   "Donald Trump 2024 / 289K"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Detroit city | 200K",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "200K",
+       [
+        171,
+        126,
+        322,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Livonia city | 63K",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Canton charter township | 58K",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 21,
+  "rows_flip": [
+   "Rockwood city | 2K",
+   "Village of Grosse Pointe Shores\u2026 | 2K",
+   "Northville city (Wayne part) | 2K",
+   "Belleville city | 2K",
+   "River Rouge city | 3K",
+   "Gibraltar city | 3K"
+  ],
+  "sort2_lat": 11,
+  "rows_back": [
+   "Detroit city | 200K",
+   "Livonia city | 63K",
+   "Canton charter township | 58K",
+   "Westland city | 44K",
+   "Dearborn city | 42K",
+   "Taylor city | 30K"
+  ],
+  "ch_open_lat": 12,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 21,
+    "mode": "gbar",
+    "rows": [
+     "Detroit city | 7.8% | 89.9% | 2.3%",
+     "Livonia city | 48.5% | 49.1% | 2.4%",
+     "Canton charter township | 39.4% | 55.1% | 5.4%"
+    ],
+    "chip": [
+     {
+      "row": "Detroit city | 7.8% | 89.9% | 2.3%",
+      "box": [
+       8,
+       122,
+       390,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "Livonia city | 48.5% | 49.1% | 2.4%",
+      "box": [
+       8,
+       166,
+       390,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "err": []
+}

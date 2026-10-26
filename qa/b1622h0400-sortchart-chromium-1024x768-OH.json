@@ -1,0 +1,2269 @@
+{
+ "build": "202610251622",
+ "lyr_lat": 21.8,
+ "lyr": {
+  "map_before": [
+   0,
+   0,
+   1024,
+   768,
+   "1",
+   "none"
+  ],
+  "map_open": [
+   0,
+   0,
+   1024,
+   768,
+   "1",
+   "none"
+  ],
+  "row": [
+   744,
+   608,
+   216,
+   48,
+   "1",
+   "none"
+  ],
+  "btns": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "bodyfilter": [
+   "none",
+   "1"
+  ]
+ },
+ "states": {
+  "hdr": "All States",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.3% | 55.9%",
+   "PA | 50.2% | 48.5%",
+   "OH | 55.1% | 43.9%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 38.3% | 58.5%",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "58.5%",
+       [
+        439,
+        126,
+        982,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 56.1% | 42.5%",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 56.1% | 43.0%",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2016 / 46%"
+    ],
+    "rows": [
+     "CA | 31.6% | 61.7%",
+     "FL | 49.0% | 47.8%",
+     "TX | 52.2% | 43.2%",
+     "NY | 36.5% | 59.0%",
+     "PA | 48.2% | 47.5%",
+     "IL | 38.8% | 55.8%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 31.6% | 61.7%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "61.7%",
+         [
+          377,
+          126,
+          950,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          950,
+          126,
+          1012,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 49.0% | 47.8%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 52.2% | 43.2%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 65.85M",
+     "Donald Trump 2016 / 62.98M"
+    ],
+    "rows_num": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 2.15M | 3.09M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 4.48M | 8.75M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg oth",
+         "",
+         [
+          902,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 4.62M | 4.50M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 4.69M | 3.88M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 17,
+    "rows_flip": [
+     "WY | 256K",
+     "DC | 311K",
+     "VT | 315K",
+     "AK | 319K",
+     "ND | 344K",
+     "SD | 370K"
+    ],
+    "rows_back": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 2.15M | 3.09M"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 47%"
+    ],
+    "rows": [
+     "CA | 34.3% | 63.5%",
+     "TX | 52.1% | 46.5%",
+     "FL | 51.2% | 47.9%",
+     "NY | 37.7% | 60.9%",
+     "PA | 48.7% | 49.9%",
+     "IL | 40.6% | 57.5%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 34.3% | 63.5%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "63.5%",
+         [
+          402,
+          126,
+          992,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 52.1% | 46.5%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 51.2% | 47.9%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 81.28M",
+     "Donald Trump 2020 / 74.22M"
+    ],
+    "rows_num": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 2.45M | 3.47M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.01M | 11.11M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "11.11M",
+         [
+          384,
+          126,
+          941,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          941,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 5.89M | 5.26M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 5.67M | 5.30M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 23.2,
+    "rows_flip": [
+     "WY | 277K",
+     "DC | 344K",
+     "AK | 358K",
+     "ND | 362K",
+     "VT | 367K",
+     "SD | 423K"
+    ],
+    "rows_back": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 2.45M | 3.47M"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "CA | 38.3% | 58.5%",
+     "TX | 56.1% | 42.5%",
+     "FL | 56.1% | 43.0%",
+     "NY | 43.3% | 55.9%",
+     "PA | 50.2% | 48.5%",
+     "OH | 55.1% | 43.9%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 38.3% | 58.5%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "58.5%",
+         [
+          439,
+          126,
+          982,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 56.1% | 42.5%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 56.1% | 43.0%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 77.30M",
+     "Kamala Harris 2024 / 75.02M"
+    ],
+    "rows_num": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M | 2.53M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.08M | 9.28M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "9.28M",
+         [
+          419,
+          126,
+          932,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          932,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 6.39M | 4.84M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 6.11M | 4.68M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 12.9,
+    "rows_flip": [
+     "WY | 269K",
+     "DC | 326K",
+     "AK | 338K",
+     "ND | 368K",
+     "VT | 369K",
+     "SD | 429K"
+    ],
+    "rows_back": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M | 2.53M"
+    ]
+   }
+  },
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 77.30M",
+   "Kamala Harris 2024 / 75.02M"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 6.08M | 9.28M",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "9.28M",
+       [
+        419,
+        126,
+        932,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        932,
+        126,
+        960,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 6.39M | 4.84M",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 6.11M | 4.68M",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "sort_lat": 30,
+  "rows_flip": [
+   "WY | 269K",
+   "DC | 326K",
+   "AK | 338K",
+   "ND | 368K",
+   "VT | 369K",
+   "SD | 429K"
+  ],
+  "sort2_lat": 18.4,
+  "rows_back": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M"
+  ],
+  "ch_open_lat": 8.7,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   600,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 25.2,
+    "mode": "gbar",
+    "rows": [
+     "CA | 38.3% | 58.5% | 3.2%",
+     "TX | 56.1% | 42.5% | 1.4%",
+     "FL | 56.1% | 43.0% | 0.9%"
+    ],
+    "chip": [
+     {
+      "row": "CA | 38.3% | 58.5% | 3.2%",
+      "box": [
+       12,
+       122,
+       1024,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "TX | 56.1% | 42.5% | 1.4%",
+      "box": [
+       12,
+       166,
+       1024,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     600,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "OH": {
+  "hdr": "Ohio",
+  "th_pct": [
+   "Donald Trump 2024 / 55%",
+   "Kamala Harris 2024 / 44%"
+  ],
+  "rows_pct": [
+   "Franklin | 35.3% | 63.7% | 1.0%",
+   "Cuyahoga | 33.9% | 65.4% | 0.8%",
+   "Hamilton | 42.1% | 57.0% | 1.0%",
+   "Summit | 46.1% | 53.0% | 0.9%",
+   "Montgomery | 49.3% | 49.8% | 0.9%",
+   "Lucas | 43.2% | 55.8% | 0.9%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Franklin | 35.3% | 63.7% | 1.0%",
+     "box": [
+      12,
+      122,
+      1024,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Cuyahoga | 33.9% | 65.4% | 0.8%",
+     "box": [
+      12,
+      166,
+      1024,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Hamilton | 42.1% | 57.0% | 1.0%",
+     "box": [
+      12,
+      210,
+      1024,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 52%",
+     "Hillary Clinton 2016 / 44%"
+    ],
+    "rows": [
+     "Cuyahoga | 30.6% | 66.1% | 3.3%",
+     "Franklin | 34.5% | 60.7% | 4.8%",
+     "Hamilton | 42.6% | 52.9% | 4.4%",
+     "Montgomery | 48.1% | 47.4% | 4.5%",
+     "Summit | 43.6% | 52.2% | 4.2%",
+     "Lucas | 38.4% | 56.2% | 5.3%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Cuyahoga | 30.6% | 66.1% | 3.3%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Franklin | 34.5% | 60.7% | 4.8%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 42.6% | 52.9% | 4.4%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2016 / 2.84M",
+     "Hillary Clinton 2016 / 2.39M"
+    ],
+    "rows_num": [
+     "Cuyahoga | 184K | 398K | 20K",
+     "Franklin | 199K | 351K | 28K",
+     "Hamilton | 174K | 216K | 18K",
+     "Montgomery | 124K | 122K | 12K",
+     "Summit | 112K | 134K | 11K",
+     "Lucas | 76K | 111K | 11K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Cuyahoga | 184K | 398K | 20K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Franklin | 199K | 351K | 28K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 174K | 216K | 18K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 21.8,
+    "rows_flip": [
+     "Vinton | 4K | 1K | 268",
+     "Noble | 5K | 1K | 239",
+     "Morgan | 4K | 2K | 274",
+     "Monroe | 5K | 2K | 262",
+     "Harrison | 5K | 2K | 281",
+     "Paulding | 7K | 2K | 435"
+    ],
+    "rows_back": [
+     "Cuyahoga | 184K | 398K | 20K",
+     "Franklin | 199K | 351K | 28K",
+     "Hamilton | 174K | 216K | 18K",
+     "Montgomery | 124K | 122K | 12K",
+     "Summit | 112K | 134K | 11K",
+     "Lucas | 76K | 111K | 11K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Donald Trump 2020 / 53%",
+     "Joe Biden 2020 / 45%"
+    ],
+    "rows": [
+     "Franklin | 33.5% | 64.9% | 1.6%",
+     "Cuyahoga | 32.4% | 66.5% | 1.1%",
+     "Hamilton | 41.3% | 57.1% | 1.6%",
+     "Summit | 44.5% | 54.1% | 1.4%",
+     "Montgomery | 48.1% | 50.3% | 1.6%",
+     "Lucas | 40.8% | 57.5% | 1.7%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Franklin | 33.5% | 64.9% | 1.6%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cuyahoga | 32.4% | 66.5% | 1.1%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 41.3% | 57.1% | 1.6%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2020 / 3.15M",
+     "Joe Biden 2020 / 2.68M"
+    ],
+    "rows_num": [
+     "Franklin | 211K | 409K | 10K",
+     "Cuyahoga | 203K | 416K | 7K",
+     "Hamilton | 178K | 246K | 7K",
+     "Summit | 125K | 152K | 4K",
+     "Montgomery | 129K | 135K | 4K",
+     "Lucas | 82K | 115K | 3K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Franklin | 211K | 409K | 10K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cuyahoga | 203K | 416K | 7K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 178K | 246K | 7K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 32,
+    "rows_flip": [
+     "Vinton | 5K | 1K | 67",
+     "Noble | 5K | 1K | 38",
+     "Morgan | 5K | 2K | 81",
+     "Monroe | 5K | 2K | 80",
+     "Harrison | 6K | 2K | 95",
+     "Paulding | 7K | 2K | 168"
+    ],
+    "rows_back": [
+     "Franklin | 211K | 409K | 10K",
+     "Cuyahoga | 203K | 416K | 7K",
+     "Hamilton | 178K | 246K | 7K",
+     "Summit | 125K | 152K | 4K",
+     "Montgomery | 129K | 135K | 4K",
+     "Lucas | 82K | 115K | 3K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 55%",
+     "Kamala Harris 2024 / 44%"
+    ],
+    "rows": [
+     "Franklin | 35.3% | 63.7% | 1.0%",
+     "Cuyahoga | 33.9% | 65.4% | 0.8%",
+     "Hamilton | 42.1% | 57.0% | 1.0%",
+     "Summit | 46.1% | 53.0% | 0.9%",
+     "Montgomery | 49.3% | 49.8% | 0.9%",
+     "Lucas | 43.2% | 55.8% | 0.9%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Franklin | 35.3% | 63.7% | 1.0%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cuyahoga | 33.9% | 65.4% | 0.8%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 42.1% | 57.0% | 1.0%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 3.18M",
+     "Kamala Harris 2024 / 2.53M"
+    ],
+    "rows_num": [
+     "Franklin | 211K | 381K | 6K",
+     "Cuyahoga | 195K | 376K | 4K",
+     "Hamilton | 172K | 233K | 4K",
+     "Summit | 126K | 145K | 2K",
+     "Montgomery | 126K | 127K | 2K",
+     "Lucas | 82K | 106K | 2K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Franklin | 211K | 381K | 6K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cuyahoga | 195K | 376K | 4K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Hamilton | 172K | 233K | 4K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 14,
+    "rows_flip": [
+     "Vinton | 5K | 1K | 37",
+     "Noble | 5K | 1K | 42",
+     "Morgan | 5K | 2K | 54",
+     "Monroe | 5K | 1K | 62",
+     "Harrison | 5K | 2K | 66",
+     "Paulding | 7K | 2K | 86"
+    ],
+    "rows_back": [
+     "Franklin | 211K | 381K | 6K",
+     "Cuyahoga | 195K | 376K | 4K",
+     "Hamilton | 172K | 233K | 4K",
+     "Summit | 126K | 145K | 2K",
+     "Montgomery | 126K | 127K | 2K",
+     "Lucas | 82K | 106K | 2K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Franklin | 211K | 381K | 6K",
+   "Cuyahoga | 195K | 376K | 4K",
+   "Hamilton | 172K | 233K | 4K",
+   "Summit | 126K | 145K | 2K",
+   "Montgomery | 126K | 127K | 2K",
+   "Lucas | 82K | 106K | 2K"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 3.18M",
+   "Kamala Harris 2024 / 2.53M"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Franklin | 211K | 381K | 6K",
+     "box": [
+      12,
+      122,
+      1024,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Cuyahoga | 195K | 376K | 4K",
+     "box": [
+      12,
+      166,
+      1024,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Hamilton | 172K | 233K | 4K",
+     "box": [
+      12,
+      210,
+      1024,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "sort_lat": 25.8,
+  "rows_flip": [
+   "Vinton | 5K | 1K | 37",
+   "Noble | 5K | 1K | 42",
+   "Morgan | 5K | 2K | 54",
+   "Monroe | 5K | 1K | 62",
+   "Harrison | 5K | 2K | 66",
+   "Paulding | 7K | 2K | 86"
+  ],
+  "sort2_lat": 15.3,
+  "rows_back": [
+   "Franklin | 211K | 381K | 6K",
+   "Cuyahoga | 195K | 376K | 4K",
+   "Hamilton | 172K | 233K | 4K",
+   "Summit | 126K | 145K | 2K",
+   "Montgomery | 126K | 127K | 2K",
+   "Lucas | 82K | 106K | 2K"
+  ],
+  "ch_open_lat": 9.7,
+  "ch_opts": [
+   "bar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   600,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "bar": {
+    "lat": 28.5,
+    "mode": "bar",
+    "rows": [
+     "Franklin | 35.3% | 63.7%",
+     "Cuyahoga | 33.9% | 65.4%",
+     "Hamilton | 42.1% | 57.0%"
+    ],
+    "chip": [
+     {
+      "row": "Franklin | 35.3% | 63.7%",
+      "box": [
+       12,
+       122,
+       1024,
+       152
+      ],
+      "hit": [
+       [
+        "sg dem",
+        "63.7%",
+        [
+         451,
+         126,
+         1003,
+         148
+        ]
+       ]
+      ]
+     },
+     {
+      "row": "Cuyahoga | 33.9% | 65.4%",
+      "box": [
+       12,
+       152,
+       1024,
+       182
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     600,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "Franklin": {
+  "hdr": "Franklin County",
+  "th_pct": [
+   "Kamala Harris 2024 / 64%",
+   "Donald Trump 2024 / 35%"
+  ],
+  "rows_pct": [
+   "Columbus city (Franklin part) | 29.5% | 68.3%",
+   "Jackson township (Franklin part) | 56.8% | 42.0%",
+   "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+   "Dublin city | 42.2% | 55.3%",
+   "Upper Arlington city | 35.9% | 62.2%",
+   "Grove City city | 56.2% | 42.5%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Columbus city (Franklin part) | 29.5% | 68.3%",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "68.3%",
+       [
+        410,
+        126,
+        993,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Jackson township (Franklin part) | 56.8% | 42.0%",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 61%",
+     "Donald Trump 2016 / 34%"
+    ],
+    "rows": [
+     "Columbus city (Franklin part) | 27.9% | 67.4%",
+     "Jackson township (Franklin part) | 58.8% | 36.4%",
+     "Upper Arlington city | 40.1% | 55.4%",
+     "Mifflin township (Franklin part) | 41.7% | 52.9%",
+     "Washington township (Franklin p\u2026 | 46.9% | 48.7%",
+     "Grove City city | 59.0% | 36.1%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 27.9% | 67.4%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "67.4%",
+         [
+          396,
+          126,
+          972,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 58.8% | 36.4%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Upper Arlington city | 40.1% | 55.4%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 351K",
+     "Donald Trump 2016 / 199K"
+    ],
+    "rows_num": [
+     "Columbus city (Franklin part) | 99K | 240K",
+     "Jackson township (Franklin part) | 14K | 24K",
+     "Upper Arlington city | 22K",
+     "Mifflin township (Franklin part) | 21K",
+     "Washington township (Franklin p\u2026 | 21K",
+     "Grove City city | 20K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 99K | 240K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg oth",
+         "",
+         [
+          922,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 14K | 24K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Upper Arlington city | 22K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 28.7,
+    "rows_flip": [
+     "Valleyview village | 282",
+     "Urbancrest village | 314",
+     "Pickerington city | 358",
+     "Lockbourne village | 409",
+     "Marble Cliff village | 468",
+     "Brice village | 542"
+    ],
+    "rows_back": [
+     "Columbus city (Franklin part) | 99K | 240K",
+     "Jackson township (Franklin part) | 14K | 24K",
+     "Upper Arlington city | 22K",
+     "Mifflin township (Franklin part) | 21K",
+     "Washington township (Franklin p\u2026 | 21K",
+     "Grove City city | 20K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 65%",
+     "Donald Trump 2020 / 33%"
+    ],
+    "rows": [
+     "Columbus city (Franklin part) | 27.4% | 71.0%",
+     "Jackson township (Franklin part) | 58.6% | 39.8%",
+     "Washington township (Franklin p\u2026 | 43.0% | 55.8%",
+     "Dublin city | 42.7% | 56.1%",
+     "Upper Arlington city | 36.9% | 61.8%",
+     "Mifflin township (Franklin part) | 38.1% | 60.4%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 27.4% | 71.0%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "71.0%",
+         [
+          392,
+          126,
+          998,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 58.6% | 39.8%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Washington township (Franklin p\u2026 | 43.0% | 55.8%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 409K",
+     "Donald Trump 2020 / 211K"
+    ],
+    "rows_num": [
+     "Columbus city (Franklin part) | 104K | 269K",
+     "Jackson township (Franklin part) | 15K | 26K",
+     "Washington township (Franklin p\u2026 | 14K | 25K",
+     "Dublin city | 14K | 24K",
+     "Upper Arlington city | 15K | 24K",
+     "Mifflin township (Franklin part) | 23K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 104K | 269K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "269K",
+         [
+          378,
+          126,
+          947,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          947,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 15K | 26K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Washington township (Franklin p\u2026 | 14K | 25K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 27.8,
+    "rows_flip": [
+     "Urbancrest village | 316",
+     "Valleyview village | 318",
+     "Pickerington city | 384",
+     "Lockbourne village | 421",
+     "Brice village | 434",
+     "Marble Cliff village | 490"
+    ],
+    "rows_back": [
+     "Columbus city (Franklin part) | 104K | 269K",
+     "Jackson township (Franklin part) | 15K | 26K",
+     "Washington township (Franklin p\u2026 | 14K | 25K",
+     "Dublin city | 14K | 24K",
+     "Upper Arlington city | 15K | 24K",
+     "Mifflin township (Franklin part) | 23K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / 64%",
+     "Donald Trump 2024 / 35%"
+    ],
+    "rows": [
+     "Columbus city (Franklin part) | 29.5% | 68.3%",
+     "Jackson township (Franklin part) | 56.8% | 42.0%",
+     "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+     "Dublin city | 42.2% | 55.3%",
+     "Upper Arlington city | 35.9% | 62.2%",
+     "Grove City city | 56.2% | 42.5%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 29.5% | 68.3%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "68.3%",
+         [
+          410,
+          126,
+          993,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 56.8% | 42.0%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Washington township (Franklin p\u2026 | 42.5% | 55.1%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 381K",
+     "Donald Trump 2024 / 211K"
+    ],
+    "rows_num": [
+     "Columbus city (Franklin part) | 103K | 240K",
+     "Jackson township (Franklin part) | 15K | 26K",
+     "Washington township (Franklin p\u2026 | 14K | 25K",
+     "Dublin city | 13K | 24K",
+     "Upper Arlington city | 15K | 24K",
+     "Grove City city | 22K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Columbus city (Franklin part) | 103K | 240K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "240K",
+         [
+          394,
+          126,
+          942,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          942,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Jackson township (Franklin part) | 15K | 26K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Washington township (Franklin p\u2026 | 14K | 25K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      706
+     ]
+    },
+    "sort_lat": 27.3,
+    "rows_flip": [
+     "Urbancrest village | 283",
+     "Valleyview village | 319",
+     "Pickerington city | 339",
+     "Lockbourne village | 400",
+     "Marble Cliff village | 474",
+     "Brice village | 490"
+    ],
+    "rows_back": [
+     "Columbus city (Franklin part) | 103K | 240K",
+     "Jackson township (Franklin part) | 15K | 26K",
+     "Washington township (Franklin p\u2026 | 14K | 25K",
+     "Dublin city | 13K | 24K",
+     "Upper Arlington city | 15K | 24K",
+     "Grove City city | 22K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Columbus city (Franklin part) | 103K | 240K",
+   "Jackson township (Franklin part) | 15K | 26K",
+   "Washington township (Franklin p\u2026 | 14K | 25K",
+   "Dublin city | 13K | 24K",
+   "Upper Arlington city | 15K | 24K",
+   "Grove City city | 22K"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 381K",
+   "Donald Trump 2024 / 211K"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Columbus city (Franklin part) | 103K | 240K",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "240K",
+       [
+        394,
+        126,
+        942,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        942,
+        126,
+        960,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Jackson township (Franklin part) | 15K | 26K",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Washington township (Franklin p\u2026 | 14K | 25K",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    706
+   ]
+  },
+  "sort_lat": 40.9,
+  "rows_flip": [
+   "Urbancrest village | 283",
+   "Valleyview village | 319",
+   "Pickerington city | 339",
+   "Lockbourne village | 400",
+   "Marble Cliff village | 474",
+   "Brice village | 490"
+  ],
+  "sort2_lat": 29,
+  "rows_back": [
+   "Columbus city (Franklin part) | 103K | 240K",
+   "Jackson township (Franklin part) | 15K | 26K",
+   "Washington township (Franklin p\u2026 | 14K | 25K",
+   "Dublin city | 13K | 24K",
+   "Upper Arlington city | 15K | 24K",
+   "Grove City city | 22K"
+  ],
+  "ch_open_lat": 11.6,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   600,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 32.7,
+    "mode": "gbar",
+    "rows": [
+     "Columbus city (Franklin part) | 29.5% | 68.3% | 2.2%",
+     "Jackson township (Franklin part) | 56.8% | 42.0% | 1.3%",
+     "Washington township (Franklin p\u2026 | 42.5% | 55.1% | 2.5%"
+    ],
+    "chip": [
+     {
+      "row": "Columbus city (Franklin part) | 29.5% | 68.3% | 2.2%",
+      "box": [
+       12,
+       122,
+       1024,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "Jackson township (Franklin part) | 56.8% | 42.0% | 1.3%",
+      "box": [
+       12,
+       166,
+       1024,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     600,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "err": []
+}
