@@ -1,0 +1,784 @@
+[
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "00-fresh",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "76%",
+   "22%"
+  ],
+  "popups": 1,
+  "heat": "precinct",
+  "z": 16,
+  "c": {
+   "lat": 40.43810970131626,
+   "lng": -79.99685325
+  },
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "crumbs": "Allegheny County Pittsburgh city",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   40.43,
+   -79.99
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "A1-drilled",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "A2-backUS",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "A3-reload",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "A4-relaunch",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "84%",
+   "14%"
+  ],
+  "popups": 1,
+  "heat": "precinct",
+  "z": 15,
+  "c": {
+   "lat": 40.43650659753257,
+   "lng": -79.9639854232788
+  },
+  "st": "Pennsylvania",
+  "co": "Allegheny County",
+  "crumbs": "Pittsburgh Ward 4 Dist 19",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   40.43,
+   -79.96
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "B1-zip",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "B2-backUS",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "B3-relaunch",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "US House districts",
+  "list": false,
+  "lt": "ushouse",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "C1-typeon",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "C2-typeoff",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "C3-reload",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.774769485295465,
+   "lng": -98.61328125
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "D1-listRoundtrip",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.774769485295465,
+   "lng": -98.61328125
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   788,
+   286,
+   48,
+   48
+  ],
+  "bNumLL": [
+   31.58,
+   -64.34
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   336,
+   844,
+   54
+  ],
+  "vv": [
+   844,
+   390,
+   390
+  ],
+  "precPaths": 0,
+  "name": "D2-landscape",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.774769485295465,
+   "lng": -98.61328125
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "D3-portrait",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.774769485295465,
+   "lng": -98.61328125
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   440,
+   48,
+   48
+  ],
+  "bNumLL": [
+   25.64,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   490,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   544,
+   544
+  ],
+  "precPaths": 0,
+  "name": "D4-kbdshrink",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.774769485295465,
+   "lng": -98.61328125
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "D5-restored",
+  "pageerr": []
+ },
+ {
+  "build": "202610251622",
+  "title": "President",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "st": "",
+  "co": "",
+  "crumbs": "United States",
+  "list": false,
+  "lt": "none",
+  "bNum": [
+   334,
+   740,
+   48,
+   48
+  ],
+  "bNumLL": [
+   13.24,
+   -84.29
+  ],
+  "bNumPos": "static",
+  "bNumParent": "rail2",
+  "barBottom": [
+   0,
+   790,
+   390,
+   54
+  ],
+  "vv": [
+   390,
+   844,
+   844
+  ],
+  "precPaths": 0,
+  "name": "D6-relaunch",
+  "pageerr": []
+ }
+]

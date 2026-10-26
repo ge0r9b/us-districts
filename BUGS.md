@@ -2046,3 +2046,38 @@ Touch, Chromium and WebKit. No console errors, page errors or failed app request
 - Chromium 390, 320, 1024x768 and WebKit 375, 1024x576: **every step SAME** as the previous run. Only the known slider push (thumbnails +68 px) and split-bar first row +14 px.
 - Tap-to-paint: non-drill steps 6-79 ms; list drills 208-240 ms including the script's 200 ms pre-tap wait (same as before). Nothing over 100 ms.
 - Data `qa/b1621h2000-layout3-*.json`, `qa/h2000-lay3-*.log`; shots `qa/shotsb1621/b1621h20-*-ls3*.png`.
+
+## Build 202610251622 hourly ~9 PM EDT (Oct 25; 8:56-9:30 PM EDT; index.html = 202610251622 at start and end; v3 still 404)
+Touch, Chromium and WebKit (`qa/h2100-*`). No console errors, page errors or failed app requests in any run. **No new bugs. One status change: QA-131 FIXED.** Next new bug is still QA-135. (Another executor run, `qa/b1622x-*`, was running on the box at the same time; its files are not part of this commit.)
+
+### QA-131 FIXED on 1622 (CRITICAL)
+- `qa/h2100-q131.py` (persistent profile, touch): WebKit 390x844 and 320x568, Chromium 390x844. Data `qa/b1622h2100-q131-{webkit,chromium}-*.json`.
+- Path A: Pittsburgh + Enter (z16, Allegheny County Pittsburgh city, 76 / 22, precinct popup) > "United States" + Enter now gives **z4 at 39.8, -98.6, header "United States", thumbnails 50 / 48, no popup, state-tier shading painted** (was z0, Pittsburgh header, precinct popup). Reload and relaunch: US z4 with county tier.
+- Path B (ZIP 15213 > Pittsburgh Ward 4 Dist 19, 84 / 14 > "United States"): the same, fixed. Path C (US House on/off + reload) and D (list round trip, landscape, keyboard shrink, relaunch): US z4, no drift (the 1621 Atlantic z6 restore after the type toggle is also gone).
+- Leftover, not filed: the `heatLevel` variable still reads "precinct" right after "United States" + Enter, but the map paints the state tier (shots) and reload gives "county". Internal only.
+- Shots: `qa/shotsb1622/b1622h21-q131-{we,ch}-390x844-A2-backUS.png`, `-B2-backUS.png`, `qa/shotsb1622/b1622h21-q131-we-320x568-A2-backUS.png`.
+
+### Re-checks on 1622 (no status changes except QA-131)
+- **QA-130 (HIGH) still reproduces** (Chromium 390x844, `qa/h2100-q130.py`): All States list > #bGeo "Pittsburgh" / "Boston" + Enter, US House on or off: header and thumbnails right (76.7 / 21.7; 76.0 / 19.4), `#listView` hidden, 0 rows after 4 s and 12 s. Shots `qa/shotsb1622/b1622h21-ch-390x844-q129-{Pittsburgh,Boston}-type{0,1}.png`.
+- **QA-134 (HIGH, deferred) unchanged** (`qa/h2100-jeff3.py`, `qa/b1622h2100-jeff3.json`): Louisville balance 252 precincts, Harris 87,501 / Trump 87,162 of 177,622; 225 Jefferson precincts (95,213 votes) in no town; county 605 / 352,621 right.
+- **QA-124 unchanged** (Chromium 390x844, `qa/h2100-cityN.py`): Pittsburgh city (402 rows, 77 / 22) still lists "Baldwin Tp Dist 2 46.4% / 52.5%"; Baldwin township 1 row; Burlington city NC (14 rows) still lists "West Graham 46.6% / 52.5%"; Kenosha city (78 rows) still lists "Town of SOMERS Ward 2 57.0% / 41.3%". Shots `qa/shotsb1622/b1622h21-ch-390x844-cityN-*.png`.
+- **QA-127 unchanged** (`qa/h2100-q127.py`): `__townsIn` gives 0 towns for Arlington, Henrico, Fairfax VA and Howard MD.
+- **QA-113 unchanged** (Chromium 320x568 map, `qa/h2100-geo2.py`): with US House on, tapping the "Philadelphia County, PA", "Fulton County, GA" and "Ohio" suggestion rows keeps US House on; Enter ("Pennsylvania", "Pittsburgh") clears it. QA-116 stays fixed (Philadelphia County shows county numbers, Harris 79%).
+- **QA-099 unchanged** (Chromium 375x667, `qa/h2100-sortchart.py`): sort chip [273,111,307,133] still overlaps the top 7 px of the first row's bar on All States (CA, bar top 126) and Allegheny (Pittsburgh city, bar top 126); clear on the PA split rows.
+- QA-133 (LOW), QA-102, QA-106, QA-122, QA-094, QA-095, QA-100: no related change in 1622 (only QA-131 touched); not re-measured in depth. My QA-122 Milford spec used a county name and did not reach CT planning regions, so Milford was not re-checked this hour.
+
+### Regression smoke and verify list: pass
+- **% and #, years, sort** (Chromium 375x667 All States > PA > Allegheny): US '16 Clinton 65.85M / Trump 62.98M, '20 Biden 81.28M / Trump 74.22M, '24 Trump 77.30M / Harris 75.02M; PA '16 2.97M / 2.93M, '24 3.54M / 3.42M; Allegheny '24 Harris 430K / 284K. Slider positions 0/1/2 match. Chart menu gbar/bar opens (14-33 ms).
+- **2016 colours** (Chromium 390, `qa/h2100-col16.py`): US House '16 27.2% blue / 72.8% red; PA map 26.3% blue; Philadelphia and Pittsburgh D, rural PA and Lancaster R in map, US House, senate and state house; labels Clinton 48 / Trump 46 (US), Trump 48 / Clinton 47 (PA). Not all red, PA '16 not blank. The pale FL/PA/MI/WI '16 fills at 1024x768 (flagged by `h2100-own`) are the known sub-1.2-point margins.
+- **PA '16 pie and bar** (WebKit 390x844, `qa/h2100-pa16.py`): bar '16 48.2 / 47.5 / 4.4, '24 50.2 / 48.5 / 1.3, back to '16 48.2 / 47.5; pie the same. Shots `qa/shotsb1622/b1622h21-we-390x844-PA-{pie,bar}-*.png`.
+- **Number-only rows, At-large labels, thumbnail axis** (`qa/h2100-own.py` WebKit 320 and 1024x768, Chromium 375; `qa/h2100-alprobe.py` WebKit 390): PA US House rows "1", "4", "17"…, senate rows "10", "12"…; DC "At-large 90.3%"; AK "At-large 54.5 / 41.4", WY "At-large 71.6", VT "At-large 32.6 / 64.4". Thumbnails 27 / 27 on the 27 icon axis in all 10 views (map, US House list/map, senate list/map, DC, US list).
+- **Menus overlay** (Chromium 375, district-type menu): map rect 0,0,375,667 before and while open, body filter none, no dimming.
+- **Address/ZIP search and reload/restore**: ZIP 15213 lands on Pittsburgh Ward 4 Dist 19 (84 / 14) and US restore is clean (QA-131 runs above); reload restores US z4.
+
+### Layout-stability and tap-to-paint sweep (`qa/h2100-lay3.py`, `qa/h2100-cmp.py`)
+- WebKit 390, 320, 1024x768 and Chromium 375, 1024x576: **all 40 compared steps SAME** as the previous run of each size. Only the known slider push (thumbnails +68 px) and split-bar first row +14 px.
+- Tap-to-paint: non-drill steps 6-83 ms; list drills 208-234 ms including the script's 200 ms pre-tap wait (same as before). In a loaded run (two QA runs sharing the box) WebKit 1024x768 "All States" sheet was 108 ms and DC list > map 109 ms (`h2100-own`); re-runs gave DC list > map 37 ms (`qa/h2100-own-we1024-solo.log`), but the All States sheet step was 104 ms again on the re-run (`qa/h2100-lay3-webkit-1024x768.log`). The other QA run was still on the box both times, so this is not a solo measurement; 1621 runs gave 61-71 ms for the same step. **Watch item, not filed: WebKit 1024x768 'All States' sheet 104-108 ms under load; re-measure solo next run.** Layout of the step is unchanged (the previous run's transient crumbs entry is just absent now).
+- Data `qa/b1622h2100-layout3-*.json`, `qa/h2100-lay3-*.log` (loaded run kept as `*-loaded.*`); shots `qa/shotsb1622/b1622h21-*-ls3*.png`.
+
+### v3
+- https://ge0r9b.github.io/us-districts/v3/ and /v4/ return 404.
