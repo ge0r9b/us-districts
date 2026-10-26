@@ -1,0 +1,2283 @@
+{
+ "build": "202610251622",
+ "lyr_lat": 13,
+ "lyr": {
+  "map_before": [
+   0,
+   0,
+   390,
+   844,
+   "1",
+   "none"
+  ],
+  "map_open": [
+   0,
+   0,
+   390,
+   844,
+   "1",
+   "none"
+  ],
+  "row": [
+   110,
+   684,
+   216,
+   48,
+   "1",
+   "none"
+  ],
+  "btns": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "bodyfilter": [
+   "none",
+   "1"
+  ]
+ },
+ "states": {
+  "hdr": "All States",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.3% | 55.9%",
+   "PA | 50.2% | 48.5%",
+   "OH | 55.1% | 43.9%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 38.3% | 58.5%",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "58.5%",
+       [
+        196,
+        126,
+        369,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 56.1% | 42.5%",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 56.1% | 43.0%",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2016 / 46%"
+    ],
+    "rows": [
+     "CA | 31.6% | 61.7%",
+     "FL | 49.0% | 47.8%",
+     "TX | 52.2% | 43.2%",
+     "NY | 36.5% | 59.0%",
+     "PA | 48.2% | 47.5%",
+     "IL | 38.8% | 55.8%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 31.6% | 61.7%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "61.7%",
+         [
+          176,
+          126,
+          358,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 49.0% | 47.8%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 52.2% | 43.2%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 65.85M",
+     "Donald Trump 2016 / 62.98M"
+    ],
+    "rows_num": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 3.09M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 4.48M | 8.75M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "8.75M",
+         [
+          160,
+          126,
+          310,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          310,
+          126,
+          326,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 4.62M | 4.50M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 4.69M | 3.88M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 20,
+    "rows_flip": [
+     "WY | 256K",
+     "DC | 311K",
+     "VT | 315K",
+     "AK | 319K",
+     "ND | 344K",
+     "SD | 370K"
+    ],
+    "rows_back": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 3.09M"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 47%"
+    ],
+    "rows": [
+     "CA | 34.3% | 63.5%",
+     "TX | 52.1% | 46.5%",
+     "FL | 51.2% | 47.9%",
+     "NY | 37.7% | 60.9%",
+     "PA | 48.7% | 49.9%",
+     "IL | 40.6% | 57.5%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 34.3% | 63.5%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "63.5%",
+         [
+          184,
+          126,
+          372,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 52.1% | 46.5%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 51.2% | 47.9%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 81.28M",
+     "Donald Trump 2020 / 74.22M"
+    ],
+    "rows_num": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 3.47M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.01M | 11.11M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "11.11M",
+         [
+          166,
+          126,
+          321,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 5.89M | 5.26M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 5.67M | 5.30M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 12,
+    "rows_flip": [
+     "WY | 277K",
+     "DC | 344K",
+     "AK | 358K",
+     "ND | 362K",
+     "VT | 367K",
+     "SD | 423K"
+    ],
+    "rows_back": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 3.47M"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "CA | 38.3% | 58.5%",
+     "TX | 56.1% | 42.5%",
+     "FL | 56.1% | 43.0%",
+     "NY | 43.3% | 55.9%",
+     "PA | 50.2% | 48.5%",
+     "OH | 55.1% | 43.9%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 38.3% | 58.5%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "58.5%",
+         [
+          196,
+          126,
+          369,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 56.1% | 42.5%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 56.1% | 43.0%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 77.30M",
+     "Kamala Harris 2024 / 75.02M"
+    ],
+    "rows_num": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.08M | 9.28M",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "9.28M",
+         [
+          176,
+          126,
+          318,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          318,
+          126,
+          326,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 6.39M | 4.84M",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 6.11M | 4.68M",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 19,
+    "rows_flip": [
+     "WY | 269K",
+     "DC | 326K",
+     "AK | 338K",
+     "ND | 368K",
+     "VT | 369K",
+     "SD | 429K"
+    ],
+    "rows_back": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M"
+    ]
+   }
+  },
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 77.30M",
+   "Kamala Harris 2024 / 75.02M"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 6.08M | 9.28M",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "9.28M",
+       [
+        176,
+        126,
+        318,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        318,
+        126,
+        326,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 6.39M | 4.84M",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 6.11M | 4.68M",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 20,
+  "rows_flip": [
+   "WY | 269K",
+   "DC | 326K",
+   "AK | 338K",
+   "ND | 368K",
+   "VT | 369K",
+   "SD | 429K"
+  ],
+  "sort2_lat": 14,
+  "rows_back": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M"
+  ],
+  "ch_open_lat": 18,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 26,
+    "mode": "gbar",
+    "rows": [
+     "CA | 38.3% | 58.5% | 3.2%",
+     "TX | 56.1% | 42.5% | 1.4%",
+     "FL | 56.1% | 43.0% | 0.9%"
+    ],
+    "chip": [
+     {
+      "row": "CA | 38.3% | 58.5% | 3.2%",
+      "box": [
+       8,
+       122,
+       390,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "TX | 56.1% | 42.5% | 1.4%",
+      "box": [
+       8,
+       166,
+       390,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "AL": {
+  "hdr": "Alabama",
+  "th_pct": [
+   "Donald Trump 2024 / 65%",
+   "Kamala Harris 2024 / 34%"
+  ],
+  "rows_pct": [
+   "Jefferson | 44.2% | 54.6% | 1.2%",
+   "Madison | 53.7% | 44.7% | 1.6%",
+   "Mobile | 57.7% | 41.3% | 1.0%",
+   "Baldwin | 78.6% | 20.5% | 0.9%",
+   "Shelby | 69.9% | 29.0% | 1.1%",
+   "Montgomery | 34.1% | 64.8% | 1.1%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Jefferson | 44.2% | 54.6% | 1.2%",
+     "box": [
+      8,
+      122,
+      390,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Madison | 53.7% | 44.7% | 1.6%",
+     "box": [
+      8,
+      166,
+      390,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Mobile | 57.7% | 41.3% | 1.0%",
+     "box": [
+      8,
+      210,
+      390,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 62%",
+     "Hillary Clinton 2016 / 34%"
+    ],
+    "rows": [
+     "Jefferson | 44.3% | 51.6% | 4.1%",
+     "Mobile | 55.1% | 41.8% | 3.1%",
+     "Madison | 54.8% | 38.4% | 6.8%",
+     "Shelby | 72.1% | 22.7% | 5.2%",
+     "Montgomery | 35.5% | 61.4% | 3.1%",
+     "Baldwin | 76.5% | 19.4% | 4.1%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 44.3% | 51.6% | 4.1%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mobile | 55.1% | 41.8% | 3.1%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Madison | 54.8% | 38.4% | 6.8%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2016 / 1.32M",
+     "Hillary Clinton 2016 / 730K"
+    ],
+    "rows_num": [
+     "Jefferson | 135K | 157K | 13K",
+     "Mobile | 95K | 72K | 5K",
+     "Madison | 90K | 63K | 11K",
+     "Shelby | 73K | 23K | 5K",
+     "Montgomery | 34K | 59K | 3K",
+     "Baldwin | 73K | 18K | 4K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 135K | 157K | 13K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          140,
+          127,
+          320,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Mobile | 95K | 72K | 5K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Madison | 90K | 63K | 11K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 19,
+    "rows_flip": [
+     "Bullock | 1K | 4K | 40",
+     "Greene | 838 | 4K | 29",
+     "Coosa | 3K | 2K | 89",
+     "Perry | 1K | 4K | 47",
+     "Wilcox | 2K | 4K | 42",
+     "Crenshaw | 5K | 2K | 90"
+    ],
+    "rows_back": [
+     "Jefferson | 135K | 157K | 13K",
+     "Mobile | 95K | 72K | 5K",
+     "Madison | 90K | 63K | 11K",
+     "Shelby | 73K | 23K | 5K",
+     "Montgomery | 34K | 59K | 3K",
+     "Baldwin | 73K | 18K | 4K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Donald Trump 2020 / 62%",
+     "Joe Biden 2020 / 37%"
+    ],
+    "rows": [
+     "Jefferson | 42.6% | 55.8% | 1.6%",
+     "Madison | 52.8% | 44.8% | 2.4%",
+     "Mobile | 55.3% | 43.4% | 1.3%",
+     "Shelby | 69.3% | 28.9% | 1.7%",
+     "Baldwin | 76.2% | 22.4% | 1.4%",
+     "Montgomery | 33.6% | 65.1% | 1.3%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 42.6% | 55.8% | 1.6%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Madison | 52.8% | 44.8% | 2.4%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mobile | 55.3% | 43.4% | 1.3%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2020 / 1.44M",
+     "Joe Biden 2020 / 850K"
+    ],
+    "rows_num": [
+     "Jefferson | 139K | 182K | 5K",
+     "Madison | 103K | 87K | 5K",
+     "Mobile | 101K | 79K | 2K",
+     "Shelby | 80K | 33K | 2K",
+     "Baldwin | 84K | 25K | 2K",
+     "Montgomery | 33K | 65K | 1K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 139K | 182K | 5K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          140,
+          127,
+          300,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Madison | 103K | 87K | 5K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mobile | 101K | 79K | 2K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 14,
+    "rows_flip": [
+     "Bullock | 1K | 3K | 21",
+     "Greene | 875 | 4K | 16",
+     "Perry | 1K | 4K | 31",
+     "Coosa | 4K | 2K | 52",
+     "Wilcox | 2K | 4K | 22",
+     "Sumter | 2K | 5K | 45"
+    ],
+    "rows_back": [
+     "Jefferson | 139K | 182K | 5K",
+     "Madison | 103K | 87K | 5K",
+     "Mobile | 101K | 79K | 2K",
+     "Shelby | 80K | 33K | 2K",
+     "Baldwin | 84K | 25K | 2K",
+     "Montgomery | 33K | 65K | 1K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 65%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "rows": [
+     "Jefferson | 44.2% | 54.6% | 1.2%",
+     "Madison | 53.7% | 44.7% | 1.6%",
+     "Mobile | 57.7% | 41.3% | 1.0%",
+     "Baldwin | 78.6% | 20.5% | 0.9%",
+     "Shelby | 69.9% | 29.0% | 1.1%",
+     "Montgomery | 34.1% | 64.8% | 1.1%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 44.2% | 54.6% | 1.2%",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Madison | 53.7% | 44.7% | 1.6%",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mobile | 57.7% | 41.3% | 1.0%",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.46M",
+     "Kamala Harris 2024 / 772K"
+    ],
+    "rows_num": [
+     "Jefferson | 131K | 162K | 4K",
+     "Madison | 105K | 88K | 3K",
+     "Mobile | 101K | 72K | 2K",
+     "Baldwin | 96K | 25K | 1K",
+     "Shelby | 80K | 33K | 1K",
+     "Montgomery | 30K | 58K | 952"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Jefferson | 131K | 162K | 4K",
+       "box": [
+        8,
+        122,
+        390,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          140,
+          127,
+          309,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Madison | 105K | 88K | 3K",
+       "box": [
+        8,
+        166,
+        390,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mobile | 101K | 72K | 2K",
+       "box": [
+        8,
+        210,
+        390,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 18,
+    "rows_flip": [
+     "Greene | 885 | 3K | 17",
+     "Bullock | 1K | 3K | 22",
+     "Perry | 1K | 3K | 14",
+     "Wilcox | 2K | 3K | 18",
+     "Coosa | 4K | 1K | 28",
+     "Sumter | 2K | 4K | 30"
+    ],
+    "rows_back": [
+     "Jefferson | 131K | 162K | 4K",
+     "Madison | 105K | 88K | 3K",
+     "Mobile | 101K | 72K | 2K",
+     "Baldwin | 96K | 25K | 1K",
+     "Shelby | 80K | 33K | 1K",
+     "Montgomery | 30K | 58K | 952"
+    ]
+   }
+  },
+  "rows_num": [
+   "Jefferson | 131K | 162K | 4K",
+   "Madison | 105K | 88K | 3K",
+   "Mobile | 101K | 72K | 2K",
+   "Baldwin | 96K | 25K | 1K",
+   "Shelby | 80K | 33K | 1K",
+   "Montgomery | 30K | 58K | 952"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 1.46M",
+   "Kamala Harris 2024 / 772K"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Jefferson | 131K | 162K | 4K",
+     "box": [
+      8,
+      122,
+      390,
+      166
+     ],
+     "hit": [
+      [
+       "sg rep",
+       "",
+       [
+        140,
+        127,
+        309,
+        136
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Madison | 105K | 88K | 3K",
+     "box": [
+      8,
+      166,
+      390,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Mobile | 101K | 72K | 2K",
+     "box": [
+      8,
+      210,
+      390,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 24,
+  "rows_flip": [
+   "Greene | 885 | 3K | 17",
+   "Bullock | 1K | 3K | 22",
+   "Perry | 1K | 3K | 14",
+   "Wilcox | 2K | 3K | 18",
+   "Coosa | 4K | 1K | 28",
+   "Sumter | 2K | 4K | 30"
+  ],
+  "sort2_lat": 16,
+  "rows_back": [
+   "Jefferson | 131K | 162K | 4K",
+   "Madison | 105K | 88K | 3K",
+   "Mobile | 101K | 72K | 2K",
+   "Baldwin | 96K | 25K | 1K",
+   "Shelby | 80K | 33K | 1K",
+   "Montgomery | 30K | 58K | 952"
+  ],
+  "ch_open_lat": 7,
+  "ch_opts": [
+   "bar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "bar": {
+    "lat": 15,
+    "mode": "bar",
+    "rows": [
+     "Jefferson | 44.2% | 54.6%",
+     "Madison | 53.7% | 44.7%",
+     "Mobile | 57.7% | 41.3%"
+    ],
+    "chip": [
+     {
+      "row": "Jefferson | 44.2% | 54.6%",
+      "box": [
+       8,
+       122,
+       390,
+       152
+      ],
+      "hit": [
+       [
+        "sg dem",
+        "54.6%",
+        [
+         245,
+         126,
+         375,
+         148
+        ]
+       ]
+      ]
+     },
+     {
+      "row": "Madison | 53.7% | 44.7%",
+      "box": [
+       8,
+       152,
+       390,
+       182
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "Jefferson": {
+  "hdr": "Jefferson County",
+  "th_pct": [
+   "Kamala Harris 2024 / 55%",
+   "Donald Trump 2024 / 44%"
+  ],
+  "rows_pct": [
+   "Birmingham city | 20.2% | 78.2%",
+   "Hoover city | 54.6% | 42.3%",
+   "Vestavia Hills city | 64.0%",
+   "Mountain Brook city | 62.9%",
+   "Homewood city | 44.8% | 51.1%",
+   "Bessemer city | 83.8%"
+  ],
+  "chip": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Birmingham city | 20.2% | 78.2%",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "78.2%",
+       [
+        202,
+        126,
+        374,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Hoover city | 54.6% | 42.3%",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Vestavia Hills city | 64.0%",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 52%",
+     "Donald Trump 2016 / 44%"
+    ],
+    "rows": [
+     "Birmingham city | 81.8%",
+     "Hoover city | 57.5% | 36.0%",
+     "Vestavia Hills city | 66.3%",
+     "Mountain Brook city | 65.4%",
+     "Homewood city | 44.0% | 46.8%",
+     "Bessemer city | 83.5%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 81.8%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "81.8%",
+         [
+          190,
+          126,
+          370,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 57.5% | 36.0%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 66.3%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 157K",
+     "Donald Trump 2016 / 135K"
+    ],
+    "rows_num": [
+     "Birmingham city | 76K",
+     "Hoover city | 25K",
+     "Vestavia Hills city | 20K",
+     "Mountain Brook city | 13K",
+     "Homewood city | 12K",
+     "Bessemer city | 11K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 76K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "76K",
+         [
+          183,
+          126,
+          320,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          320,
+          126,
+          326,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 25K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 20K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 14,
+    "rows_flip": [
+     "Maytown town | 172",
+     "County Line town | 549",
+     "Trafford town | 556",
+     "Mulga town | 568",
+     "North Johns town | 616",
+     "Brookside town | 652"
+    ],
+    "rows_back": [
+     "Birmingham city | 76K",
+     "Hoover city | 25K",
+     "Vestavia Hills city | 20K",
+     "Mountain Brook city | 13K",
+     "Homewood city | 12K",
+     "Bessemer city | 11K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 56%",
+     "Donald Trump 2020 / 43%"
+    ],
+    "rows": [
+     "Birmingham city | 83.5%",
+     "Hoover city | 52.8% | 44.9%",
+     "Vestavia Hills city | 64.5%",
+     "Mountain Brook city | 65.9%",
+     "Homewood city | 41.5% | 55.2%",
+     "Bessemer city | 84.8%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 83.5%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "83.5%",
+         [
+          191,
+          126,
+          375,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 52.8% | 44.9%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 64.5%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 182K",
+     "Donald Trump 2020 / 139K"
+    ],
+    "rows_num": [
+     "Birmingham city | 80K",
+     "Hoover city | 28K",
+     "Vestavia Hills city | 23K",
+     "Mountain Brook city | 14K",
+     "Homewood city | 13K",
+     "Bessemer city | 11K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 80K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "80K",
+         [
+          183,
+          126,
+          324,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 28K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 23K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 12,
+    "rows_flip": [
+     "Maytown town | 192",
+     "County Line town | 561",
+     "Trafford town | 568",
+     "Mulga town | 571",
+     "North Johns town | 678",
+     "Brookside town | 777"
+    ],
+    "rows_back": [
+     "Birmingham city | 80K",
+     "Hoover city | 28K",
+     "Vestavia Hills city | 23K",
+     "Mountain Brook city | 14K",
+     "Homewood city | 13K",
+     "Bessemer city | 11K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / 55%",
+     "Donald Trump 2024 / 44%"
+    ],
+    "rows": [
+     "Birmingham city | 20.2% | 78.2%",
+     "Hoover city | 54.6% | 42.3%",
+     "Vestavia Hills city | 64.0%",
+     "Mountain Brook city | 62.9%",
+     "Homewood city | 44.8% | 51.1%",
+     "Bessemer city | 83.8%"
+    ],
+    "chip": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 20.2% | 78.2%",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "78.2%",
+         [
+          202,
+          126,
+          374,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 54.6% | 42.3%",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 64.0%",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 162K",
+     "Donald Trump 2024 / 131K"
+    ],
+    "rows_num": [
+     "Birmingham city | 17K | 66K",
+     "Hoover city | 23K",
+     "Vestavia Hills city | 23K",
+     "Mountain Brook city | 14K",
+     "Homewood city | 12K",
+     "Bessemer city | 10K"
+    ],
+    "chip_num": {
+     "chip": [
+      288,
+      111,
+      322,
+      133
+     ],
+     "chart": [
+      334,
+      178,
+      382,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Birmingham city | 17K | 66K",
+       "box": [
+        8,
+        122,
+        390,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "66K",
+         [
+          192,
+          126,
+          323,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Hoover city | 23K",
+       "box": [
+        8,
+        152,
+        390,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Vestavia Hills city | 23K",
+       "box": [
+        8,
+        182,
+        390,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      390,
+      782
+     ]
+    },
+    "sort_lat": 18,
+    "rows_flip": [
+     "Maytown town | 155",
+     "Mulga town | 430",
+     "County Line town | 512",
+     "Trafford town | 518",
+     "North Johns town | 629",
+     "West Jefferson town | 881"
+    ],
+    "rows_back": [
+     "Birmingham city | 17K | 66K",
+     "Hoover city | 23K",
+     "Vestavia Hills city | 23K",
+     "Mountain Brook city | 14K",
+     "Homewood city | 12K",
+     "Bessemer city | 10K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Birmingham city | 17K | 66K",
+   "Hoover city | 23K",
+   "Vestavia Hills city | 23K",
+   "Mountain Brook city | 14K",
+   "Homewood city | 12K",
+   "Bessemer city | 10K"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 162K",
+   "Donald Trump 2024 / 131K"
+  ],
+  "chip_num": {
+   "chip": [
+    288,
+    111,
+    322,
+    133
+   ],
+   "chart": [
+    334,
+    178,
+    382,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Birmingham city | 17K | 66K",
+     "box": [
+      8,
+      122,
+      390,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "66K",
+       [
+        192,
+        126,
+        323,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Hoover city | 23K",
+     "box": [
+      8,
+      152,
+      390,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Vestavia Hills city | 23K",
+     "box": [
+      8,
+      182,
+      390,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    390,
+    782
+   ]
+  },
+  "sort_lat": 13,
+  "rows_flip": [
+   "Maytown town | 155",
+   "Mulga town | 430",
+   "County Line town | 512",
+   "Trafford town | 518",
+   "North Johns town | 629",
+   "West Jefferson town | 881"
+  ],
+  "sort2_lat": 14,
+  "rows_back": [
+   "Birmingham city | 17K | 66K",
+   "Hoover city | 23K",
+   "Vestavia Hills city | 23K",
+   "Mountain Brook city | 14K",
+   "Homewood city | 12K",
+   "Bessemer city | 10K"
+  ],
+  "ch_open_lat": 5,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   382,
+   676,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 25,
+    "mode": "gbar",
+    "rows": [
+     "Birmingham city | 20.2% | 78.2% | 1.6%",
+     "Hoover city | 54.6% | 42.3% | 3.1%",
+     "Vestavia Hills city | 64.0% | 33.1% | 2.9%"
+    ],
+    "chip": [
+     {
+      "row": "Birmingham city | 20.2% | 78.2% | 1.6%",
+      "box": [
+       8,
+       122,
+       390,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "Hoover city | 54.6% | 42.3% | 3.1%",
+      "box": [
+       8,
+       166,
+       390,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     382,
+     676,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "err": []
+}

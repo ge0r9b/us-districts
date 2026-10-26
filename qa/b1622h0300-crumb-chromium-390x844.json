@@ -1,0 +1,95 @@
+{
+ "Oklahoma": {
+  "lat_counties": 66.2,
+  "lat_county": 21.3,
+  "c2": {
+   "txt": "Oklahoma County",
+   "full": "United States\u203aOklahoma\u203aOklahoma County",
+   "box": [
+    8,
+    59,
+    326,
+    103
+   ],
+   "sw": 318,
+   "cw": 318,
+   "kids": [
+    [
+     "",
+     12,
+     42,
+     30,
+     30,
+     "clip",
+     "30px"
+    ],
+    [
+     "Oklahoma County",
+     48,
+     278,
+     230,
+     230,
+     "ellipsis",
+     "276px"
+    ]
+   ],
+   "btns": [
+    [
+     "",
+     48,
+     59
+    ],
+    [
+     "bGeo",
+     334,
+     57
+    ]
+   ]
+  },
+  "lat_sub": 28.7,
+  "c3": {
+   "txt": "Oklahoma County Oklahoma City c\u2026",
+   "full": "United States\u203aOklahoma\u203aOklahoma County\u203aOklahoma County Oklahoma City c\u2026",
+   "box": [
+    8,
+    59,
+    326,
+    103
+   ],
+   "sw": 318,
+   "cw": 318,
+   "kids": [
+    [
+     "",
+     12,
+     42,
+     30,
+     30,
+     "clip",
+     "30px"
+    ],
+    [
+     "Oklahoma County Oklahoma City c\u2026",
+     48,
+     324,
+     365,
+     276,
+     "ellipsis",
+     "276px"
+    ]
+   ],
+   "btns": [
+    [
+     "",
+     48,
+     59
+    ],
+    [
+     "bGeo",
+     334,
+     57
+    ]
+   ]
+  }
+ }
+}

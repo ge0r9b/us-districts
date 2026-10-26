@@ -1,0 +1,2177 @@
+{
+ "Alabama": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Alabama",
+    "gq": "Alabama",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 65%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    729547,
+    1318255,
+    2123372
+   ],
+   "2020": [
+    849624,
+    1441170,
+    2323282
+   ],
+   "2024": [
+    772412,
+    1462616,
+    2265090
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 62%",
+    "Hillary Clinton 2016 / 34%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 62%",
+    "Joe Biden 2020 / 37%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 65%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 60,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Alabama",
+      "gq": "Alabama",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 65%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 33,
+    "n": 35,
+    "rows": [
+     "32 | 76.4% | 22.3%",
+     "15 | 68.0% | 30.5%",
+     "7 | 55.0% | 42.8%",
+     "1 | 77.0% | 22.1%",
+     "2 | 48.8% | 48.8%",
+     "25 | 63.2% | 35.4%"
+    ],
+    "order": {
+     "n": 35,
+     "first": [
+      76.4,
+      68.0,
+      55.0,
+      77.0,
+      48.8
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      9,
+      11
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 65%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29,
+    "lat_numpick": 49,
+    "num": "num",
+    "rows_num": [
+     "32 | 63K | 18K",
+     "15 | 54K | 24K",
+     "7 | 42K | 33K",
+     "1 | 58K | 17K",
+     "2 | 35K | 35K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      63000.0,
+      54000.0,
+      42000.0,
+      58000.0,
+      35000.0
+     ],
+     "not_desc_at": [
+      3,
+      5,
+      6,
+      9,
+      11
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.46M",
+     "Kamala Harris 2024 / 772K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 62,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Alabama",
+      "gq": "Alabama",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 65%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 22,
+    "n": 105,
+    "rows": [
+     "20 | 60.7% | 36.7%",
+     "21 | 58.3% | 39.6%",
+     "22 | 73.4% | 25.0%",
+     "25 | 51.3% | 46.0%",
+     "94 | 75.9% | 22.6%",
+     "95 | 81.0% | 17.9%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      60.7,
+      58.3,
+      73.4,
+      51.3,
+      75.9
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 65%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 39,
+    "lat_numpick": 63,
+    "num": "num",
+    "rows_num": [
+     "20 | 19K | 12K",
+     "21 | 17K | 11K",
+     "22 | 21K | 7K",
+     "25 | 14K | 13K",
+     "94 | 21K | 6K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      19000.0,
+      17000.0,
+      21000.0,
+      14000.0,
+      21000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      7,
+      9
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.46M",
+     "Kamala Harris 2024 / 772K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Alabama\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[33.3397,-86.5723,6]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Alabama\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[33.3465,-86.5708,6]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Alabama",
+      "gq": "Alabama",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 105,
+     "rows": [
+      "20 | 60.7% | 36.7%",
+      "21 | 58.3% | 39.6%",
+      "22 | 73.4% | 25.0%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 79,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Alabama",
+      "gq": "Alabama",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 65%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 13,
+    "n": 141,
+    "rows": [
+     "Mobile County | 56.6% | 42.1%",
+     "Baldwin County | 78.1% | 20.6%",
+     "Jefferson County | 54.6% | 44.9%",
+     "Huntsville City | 46.7% | 51.0%",
+     "Montgomery County | 33.2% | 65.2%",
+     "Birmingham City | 20.9% | 78.0%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      56.6,
+      78.1,
+      54.6,
+      46.7,
+      33.2
+     ],
+     "not_desc_at": [
+      1,
+      6,
+      7,
+      10,
+      11
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 65%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 37,
+    "lat_numpick": 79,
+    "num": "num",
+    "rows_num": [
+     "Mobile County | 90K | 67K",
+     "Baldwin County | 85K | 22K",
+     "Jefferson County | 57K | 47K",
+     "Huntsville City | 46K | 50K",
+     "Montgomery County | 29K | 56K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      90000.0,
+      85000.0,
+      57000.0,
+      46000.0,
+      29000.0
+     ],
+     "not_desc_at": [
+      6,
+      10,
+      12,
+      16
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.46M",
+     "Kamala Harris 2024 / 772K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 47,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Alabama",
+      "gq": "Alabama",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 65%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 11,
+    "n": 7,
+    "rows": [
+     "5 | 63.6% | 34.6%",
+     "6 | 68.7% | 30.2%",
+     "1 | 77.3% | 21.9%",
+     "4 | 82.2% | 16.9%",
+     "3 | 72.7% | 26.2%",
+     "2 | 45.6% | 53.4%"
+    ],
+    "order": {
+     "n": 7,
+     "first": [
+      63.6,
+      68.7,
+      77.3,
+      82.2,
+      72.7
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 65%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 23,
+    "lat_numpick": 41,
+    "num": "num",
+    "rows_num": [
+     "5 | 225K | 122K",
+     "6 | 242K | 106K",
+     "1 | 252K | 71K",
+     "4 | 268K",
+     "3 | 230K | 83K"
+    ],
+    "order_num": {
+     "n": 7,
+     "first": [
+      225000.0,
+      242000.0,
+      252000.0,
+      268000.0,
+      230000.0
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.46M",
+     "Kamala Harris 2024 / 772K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Alabama",
+     "gq": "Alabama",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 62%",
+     "Hillary Clinton 2016 / 34%",
+     "Donald Trump 2020 / 62%",
+     "Joe Biden 2020 / 37%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 63,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 23,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 42,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Alabama counties",
+    "Autauga County \u203a",
+    "Baldwin County \u203a"
+   ],
+   "lat_counties": 102,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Alabama",
+    "gq": "Alabama",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 67,
+   "rows1": [
+    "Jefferson | 44.2% | 54.6%",
+    "Madison | 53.7% | 44.7%",
+    "Mobile | 57.7% | 41.3%",
+    "Baldwin | 78.6% | 20.5%",
+    "Shelby | 69.9% | 29.0%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     44.2,
+     53.7,
+     57.7,
+     78.6,
+     69.9
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     6,
+     7
+    ]
+   },
+   "lat_county": 13,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Jefferson County",
+    "gq": "Jefferson County, AL",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 39,
+   "rows2": [
+    "Birmingham city | 20.2% | 78.2%",
+    "Hoover city | 54.6% | 42.3%",
+    "Vestavia Hills city | 64.0% | 33.1%",
+    "Mountain Brook city | 62.9% | 33.5%",
+    "Homewood city | 44.8% | 51.1%",
+    "Bessemer city | 15.5% | 83.8%"
+   ],
+   "order2": {
+    "n": 37,
+    "first": [
+     20.2,
+     54.6,
+     64.0,
+     62.9,
+     44.8
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     6,
+     7,
+     10
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 55%",
+    "Donald Trump 2024 / 44%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 65,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Jefferson County Birmingham city",
+    "gq": "Jefferson County, AL",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 63,
+   "rows3": [
+    "4020 - Trussville First B | 70.4% | 28.2%",
+    "2365/3160 - Church At Ros | 51.6% | 45.8%",
+    "1010 - Huffman Baptist CH | 17.5% | 81.4%",
+    "5160 - Saint Thomas Episc | 58.2% | 39.4%",
+    "2180 - Avondale Public Li | 23.0% | 74.9%",
+    "2030 - Highland Park Golf | 26.6% | 71.0%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 78%",
+    "Donald Trump 2024 / 20%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Jefferson County Birmingham city",
+     "gq": "Jefferson County, AL",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 78%",
+     "Donald Trump 2024 / 20%"
+    ],
+    [
+     10,
+     "33.577",
+     "-86.844"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Alabama\",\"co\":\"Jefferson County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Jefferson County\",\"Birmingham city\"],\"ll\":[33.5769,-86.8442,10]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Alabama\",\"co\":\"Jefferson County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Jefferson County\",\"Birmingham city\"],\"ll\":[33.5769,-86.8442,10]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Jefferson County Birmingham city",
+     "gq": "Jefferson County, AL",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 78%",
+     "Donald Trump 2024 / 20%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Arkansas": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Arkansas",
+    "gq": "Arkansas",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    380494,
+    684872,
+    1130676
+   ],
+   "2020": [
+    423932,
+    760647,
+    1219069
+   ],
+   "2024": [
+    396905,
+    759241,
+    1182676
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 61%",
+    "Hillary Clinton 2016 / 34%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 62%",
+    "Joe Biden 2020 / 35%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 69,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Arkansas",
+      "gq": "Arkansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 45,
+    "n": 35,
+    "rows": [
+     "34 | 59.5% | 37.7%",
+     "14 | 30.0% | 67.3%",
+     "24 | 79.8% | 18.1%",
+     "23 | 79.4% | 18.9%",
+     "17 | 53.3% | 43.9%",
+     "13 | 48.5% | 49.0%"
+    ],
+    "order": {
+     "n": 35,
+     "first": [
+      59.5,
+      30.0,
+      79.8,
+      79.4,
+      53.3
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      8,
+      12,
+      13
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29,
+    "lat_numpick": 57,
+    "num": "num",
+    "rows_num": [
+     "34 | 27K | 17K",
+     "14 | 12K | 28K",
+     "24 | 33K",
+     "23 | 32K",
+     "17 | 21K | 17K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      27000.0,
+      12000.0,
+      33000.0,
+      32000.0,
+      21000.0
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      8,
+      12,
+      13
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 397K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 53,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Arkansas",
+      "gq": "Arkansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 28,
+    "n": 100,
+    "rows": [
+     "78 | 62.8% | 34.8%",
+     "12 | 68.4% | 29.1%",
+     "75 | 37.4% | 59.7%",
+     "73 | 34.7% | 62.7%",
+     "42 | 79.1% | 18.8%",
+     "83 | 71.6% | 26.3%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      62.8,
+      68.4,
+      37.4,
+      34.7,
+      79.1
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      8,
+      9,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30,
+    "lat_numpick": 58,
+    "num": "num",
+    "rows_num": [
+     "78 | 11K | 6K",
+     "12 | 12K | 5K",
+     "75 | 6K | 10K",
+     "73 | 6K | 10K",
+     "42 | 13K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      11000.0,
+      12000.0,
+      6000.0,
+      6000.0,
+      13000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      8,
+      9,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 397K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Arkansas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.1289,-92.0764,7]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Arkansas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.1289,-92.0764,7]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Arkansas",
+      "gq": "Arkansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 100,
+     "rows": [
+      "78 | 62.8% | 34.8%",
+      "12 | 68.4% | 29.1%",
+      "75 | 37.4% | 59.7%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 65,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Arkansas",
+      "gq": "Arkansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 234,
+    "rows": [
+     "Little Rock | 26.4% | 71.0%",
+     "Bentonville Public | 58.0% | 39.1%",
+     "Pulaski County Special | 45.5% | 52.1%",
+     "Fayetteville | 38.0% | 58.4%",
+     "Rogers Public | 58.8% | 38.7%",
+     "Springdale | 58.7% | 38.4%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      26.4,
+      58.0,
+      45.5,
+      38.0,
+      58.8
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      7,
+      8,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 35,
+    "lat_numpick": 47,
+    "num": "num",
+    "rows_num": [
+     "Little Rock | 16K | 44K",
+     "Bentonville Public | 31K | 21K",
+     "Pulaski County Special | 24K | 28K",
+     "Fayetteville | 15K | 23K",
+     "Rogers Public | 22K | 15K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      16000.0,
+      31000.0,
+      24000.0,
+      15000.0,
+      22000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      9,
+      11,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 397K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 43,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Arkansas",
+      "gq": "Arkansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 12,
+    "n": 4,
+    "rows": [
+     "2 | 56.6% | 41.0%",
+     "3 | 61.1% | 36.2%",
+     "4 | 69.0% | 29.1%",
+     "1 | 71.7% | 26.4%"
+    ],
+    "order": {
+     "n": 4,
+     "first": [
+      56.6,
+      61.1,
+      69.0,
+      71.7
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 19,
+    "lat_numpick": 29,
+    "num": "num",
+    "rows_num": [
+     "2 | 180K | 131K",
+     "3 | 189K | 112K",
+     "4 | 193K | 82K",
+     "1 | 196K | 72K"
+    ],
+    "order_num": {
+     "n": 4,
+     "first": [
+      180000.0,
+      189000.0,
+      193000.0,
+      196000.0
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 397K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Arkansas",
+     "gq": "Arkansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 61%",
+     "Hillary Clinton 2016 / 34%",
+     "Donald Trump 2020 / 62%",
+     "Joe Biden 2020 / 35%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 53,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 23,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 37,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Arkansas counties",
+    "Arkansas County \u203a",
+    "Ashley County \u203a"
+   ],
+   "lat_counties": 105,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Arkansas",
+    "gq": "Arkansas",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 75,
+   "rows1": [
+    "Pulaski | 37.7% | 59.8%",
+    "Benton | 62.1% | 35.2%",
+    "Washington | 51.7% | 45.1%",
+    "Saline | 69.0% | 28.8%",
+    "Faulkner | 64.9% | 32.6%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     37.7,
+     62.1,
+     51.7,
+     69.0,
+     64.9
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     5,
+     7,
+     8
+    ]
+   },
+   "lat_county": 27,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Pulaski County",
+    "gq": "Pulaski County, AR",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 8,
+   "rows2": [
+    "Little Rock city | 28.3% | 69.0%",
+    "North Little Rock city | 35.1% | 62.0%",
+    "Sherwood city | 51.0% | 46.6%",
+    "Maumelle city | 51.9% | 45.8%",
+    "Jacksonville city | 41.8% | 55.7%",
+    "Cammack Village city | 36.1% | 60.9%"
+   ],
+   "order2": {
+    "n": 8,
+    "first": [
+     28.3,
+     35.1,
+     51.0,
+     51.9,
+     41.8
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     7
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 38%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 18,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Pulaski County Little Rock city",
+    "gq": "Pulaski County, AR",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 64,
+   "rows3": [
+    "Precinct 64 | 52.2% | 45.1%",
+    "Precinct 68 | 42.1% | 54.2%",
+    "Precinct 96 | 17.2% | 80.6%",
+    "Precinct 72 | 38.4% | 58.1%",
+    "Precinct 63 | 54.5% | 42.5%",
+    "Precinct 75 | 14.8% | 83.3%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 69%",
+    "Donald Trump 2024 / 28%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Pulaski County Little Rock city",
+     "gq": "Pulaski County, AR",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 69%",
+     "Donald Trump 2024 / 28%"
+    ],
+    [
+     11,
+     "34.748",
+     "-92.333"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Arkansas\",\"co\":\"Pulaski County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Pulaski County\",\"Little Rock city\"],\"ll\":[34.7478,-92.3325,11]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Arkansas\",\"co\":\"Pulaski County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Pulaski County\",\"Little Rock city\"],\"ll\":[34.7478,-92.3325,11]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Pulaski County Little Rock city",
+     "gq": "Pulaski County, AR",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 69%",
+     "Donald Trump 2024 / 28%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Oklahoma": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Oklahoma",
+    "gq": "Oklahoma",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 32%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    420375,
+    949136,
+    1452992
+   ],
+   "2020": [
+    503890,
+    1020280,
+    1560699
+   ],
+   "2024": [
+    499599,
+    1036213,
+    1566173
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 65%",
+    "Hillary Clinton 2016 / 29%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 65%",
+    "Joe Biden 2020 / 32%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 66%",
+    "Kamala Harris 2024 / 32%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 62,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Oklahoma",
+      "gq": "Oklahoma",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 66%",
+      "Kamala Harris 2024 / 32%"
+     ]
+    ],
+    "lat_tolist": 36,
+    "n": 48,
+    "rows": [
+     "22 | 60.5% | 37.4%",
+     "15 | 60.0% | 37.8%",
+     "2 | 74.3% | 23.9%",
+     "25 | 65.1% | 32.9%",
+     "41 | 60.1% | 37.2%",
+     "35 | 39.0% | 58.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      60.5,
+      60.0,
+      74.3,
+      65.1,
+      60.1
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      8,
+      13,
+      14
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 66%",
+     "Kamala Harris 2024 / 32%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 22,
+    "lat_numpick": 42,
+    "num": "num",
+    "rows_num": [
+     "22 | 25K | 16K",
+     "15 | 24K | 15K",
+     "2 | 30K | 10K",
+     "25 | 25K | 13K",
+     "41 | 23K | 14K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      25000.0,
+      24000.0,
+      30000.0,
+      25000.0,
+      23000.0
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      8,
+      13,
+      14
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.04M",
+     "Kamala Harris 2024 / 500K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 58,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Oklahoma",
+      "gq": "Oklahoma",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 66%",
+      "Kamala Harris 2024 / 32%"
+     ]
+    ],
+    "lat_tolist": 25,
+    "n": 101,
+    "rows": [
+     "12 | 77.2% | 21.2%",
+     "36 | 75.9% | 22.5%",
+     "41 | 66.8% | 31.2%",
+     "46 | 46.8% | 50.7%",
+     "85 | 43.4% | 54.3%",
+     "11 | 73.0% | 24.7%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      77.2,
+      75.9,
+      66.8,
+      46.8,
+      43.4
+     ],
+     "not_desc_at": [
+      5,
+      7,
+      9,
+      11,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 66%",
+     "Kamala Harris 2024 / 32%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29,
+    "lat_numpick": 59,
+    "num": "num",
+    "rows_num": [
+     "12 | 16K | 4K",
+     "36 | 16K | 5K",
+     "41 | 14K | 6K",
+     "46 | 9K | 10K",
+     "85 | 9K | 11K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      16000.0,
+      16000.0,
+      14000.0,
+      9000.0,
+      9000.0
+     ],
+     "not_desc_at": [
+      5,
+      7,
+      9,
+      11,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.04M",
+     "Kamala Harris 2024 / 500K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Oklahoma\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6841,-98.6572,7]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Oklahoma\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6841,-98.6572,7]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Oklahoma",
+      "gq": "Oklahoma",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 101,
+     "rows": [
+      "12 | 77.2% | 21.2%",
+      "36 | 75.9% | 22.5%",
+      "41 | 66.8% | 31.2%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 92,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Oklahoma",
+      "gq": "Oklahoma",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 66%",
+      "Kamala Harris 2024 / 32%"
+     ]
+    ],
+    "lat_tolist": 33,
+    "n": 413,
+    "rows": [
+     "Tulsa Public | 40.1% | 57.5%",
+     "Oklahoma City Public | 34.8% | 63.1%",
+     "Edmond Public | 57.5% | 39.8%",
+     "Moore Public | 61.8% | 35.9%",
+     "Broken Arrow Public | 67.3% | 30.6%",
+     "Norman Public | 44.2% | 53.5%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      40.1,
+      34.8,
+      57.5,
+      61.8,
+      67.3
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 66%",
+     "Kamala Harris 2024 / 32%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 35,
+    "lat_numpick": 78,
+    "num": "num",
+    "rows_num": [
+     "Tulsa Public | 37K | 54K",
+     "Oklahoma City Public | 29K | 52K",
+     "Edmond Public | 41K | 28K",
+     "Moore Public | 37K | 21K",
+     "Broken Arrow Public | 36K | 16K"
+    ],
+    "order_num": {
+     "n": 20,
+     "first": [
+      37000.0,
+      29000.0,
+      41000.0,
+      37000.0,
+      36000.0
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      9,
+      10,
+      13
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.04M",
+     "Kamala Harris 2024 / 500K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 53,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Oklahoma",
+      "gq": "Oklahoma",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 66%",
+      "Kamala Harris 2024 / 32%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 5,
+    "rows": [
+     "5 | 58.0% | 39.8%",
+     "2 | 77.0% | 21.4%",
+     "1 | 59.7% | 38.2%",
+     "4 | 65.5% | 32.6%",
+     "3 | 71.5% | 26.6%"
+    ],
+    "order": {
+     "n": 5,
+     "first": [
+      58.0,
+      77.0,
+      59.7,
+      65.5,
+      71.5
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 66%",
+     "Kamala Harris 2024 / 32%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 17,
+    "lat_numpick": 31,
+    "num": "num",
+    "rows_num": [
+     "5 | 197K | 135K",
+     "2 | 251K | 70K",
+     "1 | 188K | 120K",
+     "4 | 204K | 101K",
+     "3 | 197K | 73K"
+    ],
+    "order_num": {
+     "n": 5,
+     "first": [
+      197000.0,
+      251000.0,
+      188000.0,
+      204000.0,
+      197000.0
+     ],
+     "not_desc_at": [
+      1,
+      3
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.04M",
+     "Kamala Harris 2024 / 500K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Oklahoma",
+     "gq": "Oklahoma",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 65%",
+     "Hillary Clinton 2016 / 29%",
+     "Donald Trump 2020 / 65%",
+     "Joe Biden 2020 / 32%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 58,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 24,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 44,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Oklahoma counties",
+    "Adair County \u203a",
+    "Alfalfa County \u203a"
+   ],
+   "lat_counties": 97,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Oklahoma",
+    "gq": "Oklahoma",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 77,
+   "rows1": [
+    "Oklahoma | 49.7% | 48.0%",
+    "Tulsa | 56.5% | 41.3%",
+    "Cleveland | 56.4% | 41.4%",
+    "Canadian | 69.2% | 28.8%",
+    "Rogers | 76.6% | 21.6%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     49.7,
+     56.5,
+     56.4,
+     69.2,
+     76.6
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     4,
+     7,
+     9
+    ]
+   },
+   "lat_county": 13,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Oklahoma County",
+    "gq": "Oklahoma County, OK",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 20,
+   "rows2": [
+    "Oklahoma City city | 43.6% | 54.1%",
+    "Edmond city | 59.1% | 38.3%",
+    "Midwest City city | 51.3% | 46.4%",
+    "Del City city | 48.4% | 49.2%",
+    "Bethany city | 58.3% | 39.4%",
+    "Choctaw city | 72.2% | 25.9%"
+   ],
+   "order2": {
+    "n": 20,
+    "first": [
+     43.6,
+     59.1,
+     51.3,
+     48.4,
+     58.3
+    ],
+    "not_desc_at": [
+     1,
+     4,
+     5,
+     8,
+     10
+    ]
+   },
+   "th2": [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 19,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Oklahoma County Oklahoma City c\u2026",
+    "gq": "Oklahoma County, OK",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 187,
+   "rows3": [
+    "Precinct 550375 | 74.2% | 24.0%",
+    "Precinct 550452 | 56.1% | 42.9%",
+    "Precinct 550577 | 45.1% | 53.2%",
+    "Precinct 550450 | 56.8% | 40.3%",
+    "Precinct 550495 | 68.6% | 29.9%",
+    "Precinct 550533 | 21.3% | 76.0%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 54%",
+    "Donald Trump 2024 / 44%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Oklahoma County Oklahoma City c\u2026",
+     "gq": "Oklahoma County, OK",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 44%"
+    ],
+    [
+     10,
+     "35.570",
+     "-97.401"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Oklahoma\",\"co\":\"Oklahoma County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Oklahoma County\",\"Oklahoma City city\"],\"ll\":[35.5702,-97.4007,10]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Oklahoma\",\"co\":\"Oklahoma County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Oklahoma County\",\"Oklahoma City city\"],\"ll\":[35.5702,-97.4007,10]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Oklahoma County Oklahoma City c\u2026",
+     "gq": "Oklahoma County, OK",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 54%",
+     "Donald Trump 2024 / 44%"
+    ]
+   }
+  },
+  "err": []
+ }
+}
