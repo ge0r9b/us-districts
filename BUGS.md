@@ -1938,7 +1938,7 @@ Touch, Chromium and WebKit. No console or page errors in any run. Next new bug i
 - **Certified 2024 totals (`qa/b1621x-tot.json`)** match the FEC exactly (https://www.fec.gov/resources/cms-content/documents/2024presgeresults.pdf, looked up this run). In Harris / Trump / total order: RI 285,156 / 214,406 / 513,386; VT 235,791 / 119,395 / 369,422; MA 2,126,518 / 1,251,303 / 3,473,668; MI 2,736,533 / 2,816,636 / 5,664,186; NJ 2,220,713 / 1,968,215 / 4,272,725. PA also matches (3,423,042 / 3,543,308).
 - QA-124 data (`qa/b1621x-pri.json`): Pittsburgh still holds "Baldwin Tp Dist 2" and "Baldwin Br Dist 1". **Kenosha city now holds "Town of SOMERS Ward 2/3"**, a new neighbour; Pleasant Prairie is gone. Burlington NC still holds WEST GRAHAM, and Cleveland still holds BROOK PARK -01-A. Fixed: Forest Park/Morrow GA, Burlington VT, Warwick, Pottstown/West Pottsgrove, Chicopee and Ann Arbor.
 
-### QA-131 [HIGH, ruling requested; possibly CRITICAL] "United States" + Enter after a drill zooms out to the whole world, keeps the city's title and numbers, and leaves precinct heat on
+### QA-131 [FIXED on 1622 (hourly ~9 PM EDT Oct 25, WebKit 390/320 + Chromium 390)] [CRITICAL by orchestrator ruling] "United States" + Enter after a drill zooms out to the whole world, keeps the city's title and numbers, and leaves precinct heat on
 - WebKit with touch, persistent profile, 390x844, 375x667 and 320x568, build 1621 (`qa/b1621x-iph.py`).
 - Steps: type Pittsburgh + Enter in the bottom field (z16, precinct heat), then type "United States" + Enter in the bottom field. A ZIP search ("15213") then "United States" does the same.
 - Expected: the US at state zoom with state-tier shading, the "United States" title and US totals (Trump 50 / Harris 48).
