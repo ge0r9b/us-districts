@@ -1,0 +1,213 @@
+{
+ "Harris": {
+  "build": "202610251622",
+  "data": [
+   [
+    808771,
+    722695,
+    1556310
+   ]
+  ],
+  "lat_states": 98.7,
+  "lat_TX": 11,
+  "lat_Harris": 44,
+  "crumbs": "Harris County",
+  "title": "President",
+  "th_pct": [
+   "Kamala Harris 2024 / 52%",
+   "Donald Trump 2024 / 46%"
+  ],
+  "rows": [
+   "Houston city | 38.0% | 60.3%",
+   "Pasadena city | 59.9% | 39.0%",
+   "Baytown city | 54.5% | 44.5%",
+   "Deer Park city | 75.6%",
+   "Bellaire city | 41.9% | 55.4%"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 809K",
+   "Donald Trump 2024 / 723K"
+  ],
+  "rows_num": [
+   "Houston city | 272K | 433K",
+   "Pasadena city | 37K",
+   "Baytown city | 17K",
+   "Deer Park city | 14K",
+   "Bellaire city | 10K"
+  ],
+  "lat_tomap": 63.1,
+  "view": "map",
+  "lat_time": 27.9,
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "th": [
+     "Donald Trump 2016 / 42%",
+     "Hillary Clinton 2016 / 54%",
+     "Donald Trump 2020 / 43%",
+     "Joe Biden 2020 / 56%"
+    ],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 33.5,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 33.5,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 29.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 29.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 17.5,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 17.5,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "reload": {
+   "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[29.8359,-95.4327,8]}",
+   "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Texas\",\"co\":\"Harris County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[29.8345,-95.4346,8]}",
+   "crumbs": "Harris County",
+   "th": [],
+   "ysl": [
+    0,
+    2
+   ]
+  },
+  "err": []
+ }
+}

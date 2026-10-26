@@ -1,0 +1,257 @@
+{
+ "build": "202610251622",
+ "tot": [
+  [
+   282830,
+   12723,
+   311268
+  ],
+  [
+   317323,
+   18586,
+   344356
+  ],
+  [
+   294185,
+   21076,
+   325869
+  ]
+ ],
+ "lat_us_ushouse": 65,
+ "lat_us_list": 24,
+ "us_ushouse_n": 436,
+ "us_ushouse_dc": [],
+ "us_ushouse_al": [
+  "DE At-large | 41.9% | 56.6%"
+ ],
+ "map": [
+  {
+   "title": "President",
+   "crumbs": "District of Columbia",
+   "list": false,
+   "lt": "none"
+  },
+  [
+   "Kamala Harris 2024 / 90%",
+   "Donald Trump 2024 / 6%"
+  ]
+ ],
+ "years": {
+  "2016": {
+   "pct": [
+    "Hillary Clinton 2016 / 91%",
+    "Donald Trump 2016 / 4%"
+   ],
+   "num": [
+    "Hillary Clinton 2016 / 283k",
+    "Donald Trump 2016 / 13k"
+   ]
+  },
+  "2020": {
+   "pct": [
+    "Joe Biden 2020 / 92%",
+    "Donald Trump 2020 / 5%"
+   ],
+   "num": [
+    "Joe Biden 2020 / 317k",
+    "Donald Trump 2020 / 19k"
+   ]
+  },
+  "2024": {
+   "pct": [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   "num": [
+    "Kamala Harris 2024 / 294k",
+    "Donald Trump 2024 / 21k"
+   ]
+  }
+ },
+ "types_offered": [
+  "ushouse",
+  "senate",
+  "statehouse",
+  "schools"
+ ],
+ "types": {
+  "ushouse": {
+   "lat": 313,
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "District of Columbia",
+     "list": false,
+     "lt": "ushouse"
+    },
+    [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ]
+   ],
+   "lat_list": 26,
+   "hdr": {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "list": true,
+    "lt": "ushouse"
+   },
+   "rows": [
+    "At-large | 90.3%"
+   ],
+   "th": [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   "rows_num": [
+    "At-large | 294K"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 294K",
+    "Donald Trump 2024 / 21K"
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"dcdist\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"District of Columbia\",\"ttl\":\"District of Columbia\",\"pin\":null},\"ll\":[38.8926,-77.0145,11]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"lt\":\"ushouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"dcdist\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"District of Columbia\",\"ttl\":\"District of Columbia\",\"pin\":null},\"ll\":[39.8,-98.6,4]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "District of Columbia",
+     "list": true,
+     "lt": "ushouse"
+    },
+    "rows": [
+     "At-large | 90.3%"
+    ],
+    "th": [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ]
+   }
+  },
+  "senate": {
+   "lat": 45,
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "S\nDistrict of Columbia",
+     "list": false,
+     "lt": "senate"
+    },
+    [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ]
+   ],
+   "lat_list": 28,
+   "hdr": {
+    "title": "President",
+    "crumbs": "S\nDistrict of Columbia",
+    "list": true,
+    "lt": "senate"
+   },
+   "rows": [
+    "Ward 6 | 88.9%",
+    "Ward 5 | 91.8%",
+    "Ward 3 | 88.6%",
+    "Ward 4 | 91.1%",
+    "Ward 1 | 91.1%",
+    "Ward 2 | 88.4%"
+   ],
+   "th": [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   "rows_num": [
+    "Ward 6 | 43K",
+    "Ward 5 | 41K",
+    "Ward 3 | 40K",
+    "Ward 4 | 39K"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 294K",
+    "Donald Trump 2024 / 21K"
+   ]
+  },
+  "statehouse": {
+   "lat": 39,
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "H\nDistrict of Columbia",
+     "list": false,
+     "lt": "statehouse"
+    },
+    [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ]
+   ],
+   "lat_list": 19,
+   "hdr": {
+    "title": "President",
+    "crumbs": "H\nDistrict of Columbia",
+    "list": true,
+    "lt": "statehouse"
+   },
+   "rows": [
+    "Ward 6 | 88.9%",
+    "Ward 5 | 91.8%",
+    "Ward 3 | 88.6%",
+    "Ward 4 | 91.1%",
+    "Ward 1 | 91.1%",
+    "Ward 2 | 88.4%"
+   ],
+   "th": [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   "rows_num": [
+    "Ward 6 | 43K",
+    "Ward 5 | 41K",
+    "Ward 3 | 40K",
+    "Ward 4 | 39K"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 294K",
+    "Donald Trump 2024 / 21K"
+   ]
+  },
+  "schools": {
+   "lat": 41,
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "District of Columbia",
+     "list": false,
+     "lt": "schools"
+    },
+    [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ]
+   ],
+   "lat_list": 11,
+   "hdr": {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "list": true,
+    "lt": "schools"
+   },
+   "rows": [
+    "District of Columbia Public | 90.3%"
+   ],
+   "th": [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   "rows_num": [
+    "District of Columbia Public | 294K"
+   ],
+   "th_num": [
+    "Kamala Harris 2024 / 294K",
+    "Donald Trump 2024 / 21K"
+   ]
+  }
+ },
+ "err": []
+}

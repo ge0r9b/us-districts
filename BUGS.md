@@ -2258,3 +2258,103 @@ Touch, WebKit and Chromium. **No new bugs.** No page errors or console errors. O
 - **Sort and chart menu** (WebKit 1024x576, All States > GA > Fulton): sort flips correctly (14-20 ms). Bar/gbar work.
   - **QA-099 unchanged:** the sort chip [922,111,956,133] still overlaps the first row's blue bar: CA 58.5% and Atlanta city 81.6% in split bar, Fulton 71.9% in bar, and Portland 1J in Oregon schools # at 1024x576.
 - **Open and unchanged (not re-filed):** QA-099, QA-134, QA-136. Not re-run: QA-102, QA-113, QA-122, QA-124, QA-127, QA-130, QA-133, QA-135, QA-137. QA-100 stays HIGH.
+
+## Hourly run on 1622, Oct 26 ~7 AM EDT (6:55-7:35 AM EDT; live build 202610251622 at start and end)
+Touch, WebKit and Chromium. **One new bug: QA-138 (CRITICAL, page freeze).** No page errors or console errors in any run. Next new bug is QA-139. v3/ and v4/ not re-checked this run.
+
+### QA-138 [CRITICAL, ruling requested] Picking 2016 for the first time while a county's town list is open freezes the page for 1 to 4+ minutes
+- Build 202610251622. Chromium 390x844 touch (Harris TX, King WA, Cook IL, Worcester MA) and WebKit 1024x768 touch (Worcester MA; Cook IL also froze in the first chart run). Scripts `qa/d26h07-hang.py`, `qa/d26h07-hang2.py`.
+- Steps: fresh load > #bGeo > All States > tap a state row (TX / WA / IL / MA) > tap the county (Harris / King / Cook / Worcester) so its town list shows > tap the clock (#bTime) > tap the '16 tick on the slider. Same result with the slider closed and the year set to 2016 by `__ySetYr(0)` (King), and with the '16-'20 range (`__ySet16(1)`, Harris).
+- Expected: the town list repaints with 2016 numbers within about a second, like the same step on the Texas counties list (5 s probe, fine) or on the Harris County map view (2016 Clinton 54% / Trump 42% in under 5 s).
+- Actual: the main thread stops. Every page.evaluate times out (4 s each) and no tap or paint happens until it recovers:
+  - Worcester: 63 s (WebKit 1024x768, near solo) and 69 s (Chromium 390, loaded). Afterwards it shows 51% / 40%.
+  - King: 120-128 s (Chromium 390, three separate runs including near-solo, with the slider open or closed). Afterwards it shows 72% / 22%.
+  - Cook: over 170 s, still frozen when killed.
+  - Harris: over 230 s, still frozen when the 260 s timeout hit.
+  - No console or page error. On a phone this reads as a crashed tab.
+- Not triggered when 2016 data was already loaded higher up. `qa/d26h07-sortchart.py` set '16 / '20 / '24 at All States and Illinois first, then at Cook County townships '16 painted at once (Clinton 74% / Trump 21%, 1.61M / 453K, rows with % bars; `shots/b1622d26h07-ch-1024x768-sc-Cook-y16.png`). So the freeze seems to be the first 2016 load or aggregation done synchronously at town level.
+- Severity: a frozen page that the user can't use is in the crash class, so CRITICAL. It could be HIGH if the orchestrator counts a freeze that recovers as slowness.
+- Screenshots: `shots/b1622d26h07-ch-390x844-hang-WA-King-tick16-list-0-slider.png` (before the tap), `shots/b1622d26h07-ch-390x844-hang-WA-King-tick16-list-1-after.png` (after recovery), `shots/b1622d26h07-we-1024x768-hang-MA-Worcester-tick16-list-{0-slider,1-after}.png`, `shots/b1622d26h07-ch-390x844-hang-TX-Harris-tick16-map-1-after.png` (map view works). Logs: `qa/d26h07-hang2-*.log`, `qa/d26h07-hang.log`.
+
+### DC everywhere (`qa/d26h07-dc.py` WebKit 390x844, `qa/d26h07-usal.py` WebKit 390x844, `qa/d26h07-probe.py` Chromium 1024x768)
+- `__stTot('District of Columbia')` equals certified (FEC) for all three years: 2016 Clinton 282,830 / Trump 12,723 / 311,268; 2020 Biden 317,323 / Trump 18,586 / 344,356; 2024 Harris 294,185 / Trump 21,076 / 325,869.
+- Map thumbnails: '16 91% / 4% (283k / 13k), '20 92% / 5% (317k / 19k), '24 90% / 6% (294k / 21k). All match.
+- District types offered for DC: US House, senate, state house and schools.
+  - US House list: one row "At-large | 90.3%" ("294K" in #).
+  - Senate and state house lists: the 8 Council wards (Ward 6 88.9%, Ward 5 91.8%, and so on; Ward 6 shows 43K in #).
+  - Schools list: one row "District of Columbia Public… 90.3%".
+  - Headers say "District of Columbia" and the thumbnails stay on DC's own 90% / 6% (294K / 21K). Nothing is shown under another place's title.
+- The US-level US House list has 436 rows (by design, QA-027). All 7 at-large rows are labelled: DE, SD, VT, ND, AK (≈), DC and WY "At-large"; DC is "DC At-large 90.3%".
+- Reload of the DC US House list restores title, list and rows. The snapshot's `ll` falls back to the US view while in the list, but globe then returns to DC at zoom 11 (38.893, -77.014). Passes.
+- Taps took 15-65 ms, apart from one US House pick of 313 ms in a loaded run (6 browsers on the box). Not filed.
+- Shots: `shots/b1622d26h07-we-390x844-dc-*.png`, `shots/b1622d26h07-we-390x844-usal-*.png`.
+
+### County 2024 president spot checks vs official county results (app `ELECTION2024['State|County']` = [D, R, total], and county views in # mode)
+- Maricopa AZ: app 980,016 / 1,051,531. This equals the county Final Official Summary (Harris 980,016 / Trump 1,051,531).
+- Cook IL: app 1,447,821 / 583,852 / 2,056,800. This equals the Cook County Clerk + Chicago combined certified summary.
+- Harris TX: app 808,771 / 722,695. This equals the harrisvotes.com canvass.
+- King WA: app 832,606 / 252,193. This equals the King County certified results.
+- Los Angeles CA: app 2,417,109 / 1,189,862. This equals the LA County final official canvass and CA SOS SSOV.
+- Miami-Dade FL: app 480,355 / 605,590. This equals the official results.
+- Clark NV: app 520,187 / 493,052. This equals the canvass.
+- Dallas TX: app 511,118 / 322,569. This equals the certified figure; the county's unofficial final was 511,027 / 322,468.
+- Candidate figures are exact everywhere. The app's county total leaves out write-ins:
+  - Maricopa: 2,053,945 vs 2,061,574 (−7,629, 0.37%).
+  - King: 1,122,881 vs 1,130,502 (−7,621, 0.67%).
+  - Harris: 1,556,310 vs 1,557,484 (−1,174).
+  - LA: 3,728,427 vs 3,747,099 with write-ins (−18,672).
+  - Percentages shown are within 0.1-0.2 points. State totals are the certified figures, so these are county-sum gaps under the QA-003 / user rule. Noted, not filed.
+- The UI agrees with the data. Harris County view: 809K / 723K (52% / 46%). Cook County: 1.45M / 584K (70% / 28%). Maricopa, King and Cook drills show their own titles.
+- Data: `qa/b1622d26h07-probe.json`.
+
+### District-type menu walk (`qa/d26h07-states.py`; WebKit 375x667 Arizona and Washington, Chromium 1024x768 Illinois and Texas)
+- Row counts for senate / state house / schools / US House:
+  - AZ: 30 / 30 / 215 / 9.
+  - WA: 49 / 49 / 295 / 10.
+  - IL: 59 / 118 / 862 / 17.
+  - TX: 31 / 150 / 1019 / 38.
+- Rows are number-only ("3", "17", "109"). % and # switch correctly and switch back.
+- Header and thumbnails show the certified state totals: AZ 1.77M / 1.58M; WA 2.25M / 1.53M; IL 3.06M / 2.45M; TX 6.39M / 4.84M (QA-095 rule met).
+- State totals equal certified for all three years. Examples: AZ 2024 1,582,860 / 1,770,242; WA 2024 2,245,849 / 1,530,923; IL 2024 3,062,863 / 2,449,079; TX 2024 4,835,250 / 6,393,597.
+- No overlap, clipping or off-screen text.
+- The state-house list reload restores the same type and row count; only the map centre moves by about 0.01°.
+- Geo drill > county > town > globe > reload works:
+  - Maricopa: 24 towns > Phoenix city 303 precincts.
+  - King: 39 > Seattle city 1016.
+  - Cook: 145 > Chicago city 1290.
+  - Harris: 34 > Houston city 636.
+  - The snapshot is identical after reload. No errors.
+- Taps:
+  - WebKit: 10-82 ms.
+  - Chromium, with 5-6 browsers on the box: Texas schools pick 173 ms, US House pick 174 ms and the # pick 156 ms. IL senate and schools picks took 112-114 ms, and the TX counties pick 111 ms.
+  - These were not re-measured solo, because QA-138 ate the time. Watch item, not filed; QA-102 is the known geo-menu latency bug.
+- Data: `qa/b1622d26h07-states-*.json`. Shots: `shots/b1622d26h07-{we-375x667,ch-1024x768}-st-*`.
+
+### Chart menu across slider ranges in big-county views
+- **Partly done.** The county-view chart script (`qa/d26h07-ctych.py`) froze on its first range in the Cook (WebKit 1024x768) and Harris (Chromium 390) town lists; that is how QA-138 was found.
+- **Harris County map view (Chromium 390x844), rerun:** works and the numbers match certified county results.
+  - '16-'20 offers line only: Clinton > Biden +210K, Trump +155K (707,914 > 918,193 and 545,955 > 700,630).
+  - '20-'24 offers bar only: Trump +22K, Biden > Harris −109K, other +3K.
+  - '16-'24 offers line only: +210K / +155K then −109K / +22K.
+  - Labels are clear of each other and of the lines in % and #. Taps took 17-34 ms.
+  - Reload restores Harris County, range '16-'24, line chart (map centre moves by about 0.002°).
+  - Pie is not offered on ranges (only on single years), the same as before.
+  - Shots: `shots/b1622d26h07-ch-390x844-cc-Harris-r{16-20-line,20-24-bar,16-24-line}-{pct,num}.png`, `-reload.png`.
+- Cook County townships at 1024x768 Chromium (`qa/d26h07-sortchart.py`, after 2016 was preloaded) checked '16 / '20 / '24 in % and #, sort flip and back (31-52 ms), and the gbar chart (26 ms).
+  - The QA-099 chip [922,111,956,133] still sits on the Chicago "82.5%" bar. This is known; not re-filed.
+- **Carry this to next run:** ranges in the Cook, Maricopa and King views, and pie on single years in the county views.
+
+### Standing checks
+- **Layout-stability sweep** (MA > Worcester President with the slider, US House list, year change, drill-in, back, split bar, list to map) on **WebKit 375x667 and Chromium 1024x768**: **SAME as previous runs.**
+  - The only movements are the known +68 px thumbnail push from the slider and the +14 px first row in split bar.
+  - Back taps took 24-39 ms. The All States sheet took 66-75 ms. List drills took 208-233 ms, including the script's 200 ms pre-tap wait.
+  - Data: `qa/b1622d26h07-layout3-*.json`, logs `qa/d26h07-lay3-*.log`.
+- **2016 colours and PA '16** (`qa/d26h07-own.py` WebKit 375 and 1024x576; `qa/d26h07-col16.py` Chromium 390; `qa/d26h07-pa16.py` WebKit 390x844):
+  - US '16: CA/NY/IL/CO/VA are blue and TX/OH/KS red. FL/PA/MI/WI are near-white (margins under 1.2 points, known). The WA sample at 1024x576 is pure white because it falls under the top bar; this is the same harness artefact seen on 1618 and in the 4 AM run.
+  - PA '16: not blank. Philadelphia, Allegheny and Lackawanna are blue; Lancaster, Westmoreland, Erie and Clearfield are red.
+  - PA senate and house '16 maps are 24-25% blue.
+  - PA '16 bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5.
+- **List rows and thumbnails:** rows are number-only (PA "1", "4", "17"), and DC is "At-large". No thumbnail-axis issues.
+- **Taps** in the own checks took 12-95 ms; the WebKit 1024x576 DC list > map step was 95 ms.
+- **Menus** (Chromium 320 and 1024x768, US and Alabama): they overlay with a transparent backdrop; nothing is dimmed or shrunk.
+- **Open and unchanged (not re-filed):** QA-099. Not re-run: QA-102, 113, 122, 124, 127, 130, 133, 134, 135, 136, 137. QA-100 stays HIGH.

@@ -1,0 +1,213 @@
+{
+ "Cook": {
+  "build": "202610251622",
+  "data": [
+   [
+    1447821,
+    583852,
+    2056800
+   ]
+  ],
+  "lat_states": 127,
+  "lat_IL": 19,
+  "lat_Cook": 14,
+  "crumbs": "Cook County",
+  "title": "President",
+  "th_pct": [
+   "Kamala Harris 2024 / 70%",
+   "Donald Trump 2024 / 28%"
+  ],
+  "rows": [
+   "Chicago city (Cook part) | 20.6% | 78.3%",
+   "Wheeling township | 40.2% | 58.5%",
+   "Worth township (Cook part) | 45.0% | 53.5%",
+   "Proviso township | 23.7% | 75.1%",
+   "Maine township (Cook part) | 46.1% | 52.6%"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 1.45M",
+   "Donald Trump 2024 / 584K"
+  ],
+  "rows_num": [
+   "Chicago city (Cook part) | 204K | 775K",
+   "Wheeling township | 42K | 72K",
+   "Worth township (Cook part) | 63K",
+   "Proviso township | 47K | 62K",
+   "Maine township (Cook part) | 61K"
+  ],
+  "lat_tomap": 70,
+  "view": "map",
+  "lat_time": 22,
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "th": [
+     "Donald Trump 2016 / 21%",
+     "Hillary Clinton 2016 / 74%",
+     "Donald Trump 2020 / 24%",
+     "Joe Biden 2020 / 74%"
+    ],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 65,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 65,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 28,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 28,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 14,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 14,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "reload": {
+   "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Illinois\",\"co\":\"Cook County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[41.8133,-87.6874,10]}",
+   "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Illinois\",\"co\":\"Cook County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[41.8129,-87.6874,10]}",
+   "crumbs": "Cook County",
+   "th": [],
+   "ysl": [
+    0,
+    2
+   ]
+  },
+  "err": []
+ }
+}
