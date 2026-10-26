@@ -228,3 +228,18 @@ Run 2026-10-25 18:52-19:13 EDT, load avg 2.8-9.5 (other bots' Chromium/WebKit te
 | 1621 (844c703) rerun | 375x667 | 1.61 / 7.86 | 3.68 / 13.39 | 425 | 887 | 510 | 105 | 38 / 89 (cold 89) | 68 / 120 (cold 65) | 16 / 16 | 29 / 42 | 22 / 32 | 44 / 75 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
 | 1621 (844c703) rerun | 320x568 | 1.61 / 7.86 | 3.68 / 13.38 | 828 | 841 | 802 | 121 | 43 / 109 (cold 109) | 70 / 106 (cold 48) | 17 / 29 | 19 / 27 | 25 / 27 | 42 / 72 | 60.0 fps, p95 16.7, max 16.8, dropped 0/277 |
 | 1621 (844c703) rerun | ipad820x1180 | 1.61 / 7.86 | 3.68 / 13.39 | 438 | 801 | 680 | 122 | 38 / 103 (cold 103) | 59 / 63 (cold 53) | 16 / 27 | 12 / 42 | 23 / 30 | 44 / 71 | 59.2 fps, p95 16.8, max 33.4, dropped 3/221 |
+| 1622 (0863b89) | 390x844 | 1.61 / 7.86 | 3.68 / 13.38 | 470 | 721 | 548 | 117 | 37 / 93 (cold 93) | 75 / 93 (cold 44) | 16 / 28 | 15 / 33 | 22 / 48 | 48 / 92 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
+| 1622 (0863b89) | 375x667 | 1.61 / 7.86 | 3.68 / 13.38 | 462 | 690 | 551 | 101 | 49 / 93 (cold 93) | 65 / 109 (cold 40) | 14 / 28 | 12 / 25 | 19 / 19 | 54 / 75 | 60.0 fps, p95 16.7, max 16.8, dropped 0/279 |
+| 1622 (0863b89) | 320x568 | 1.61 / 7.86 | 3.68 / 13.39 | 438 | 632 | 504 | 92 | 33 / 80 (cold 80) | 67 / 112 (cold 66) | 18 / 20 | 13 / 22 | 21 / 74 | 42 / 76 | 60.0 fps, p95 16.7, max 16.8, dropped 0/278 |
+| 1622 (0863b89) | ipad820x1180 | 1.61 / 7.86 | 3.68 / 13.39 | 484 | 899 | 658 | 129 | 40 / 95 (cold 95) | 65 / 76 (cold 44) | 11 / 25 | 12 / 106 | 28 / 50 | 54 / 80 | 58.9 fps, p95 16.7, max 50, dropped 4/217 |
+
+## 1622 (0863b89) vs 1621 (844c703)
+Run 2026-10-25 20:53-21:11 EDT, load avg 1.0-2.8 (another bot's WebKit tests alongside), same tools/baseline.py and selectors (0 notes, 0 page errors). Live v2 served BUILD 202610251622, byte-identical to main 0863b89c. 1622 (QA-131 United States + Enter returns to the US; 3-line index.html change) has no intended speed change. Medians (390/375/320/iPad).
+- Bytes: 1.61 / 7.86 MB initial and 3.68 / 13.38-13.39 MB PA session (+1.3 KB raw index.html, 6.02 MB), flat.
+- Taps flat, every median under 100 ms: All States 37/49/33/40 (1621: 44/50/77/43), US House pick 75/65/67/65 (73/65/78/79), Line 16/14/18/11 (12/19/17/24), drill PA 15/12/13/12 (18/13/24/10), back 22/19/21/28 (24/26/23/29), time step 48/54/42/54 (45/51/55/57), time slider open 32/34/24/32 (27/29/26/28). Maxes over 100 only on single US House tries of 109/112 ms (375/320) and one iPad drill PA try of 106 ms.
+- 390 Line (16 vs 12, +33%, 4 ms) was rerun (raw/b1622-live2-390x844.json, load 1.6): Line 16, All States 33, US House 68, first map 541. Line 16 matches 1620's 18, so within noise, not a regression.
+- Startup: DCL 470/462/438/484 (1621: 542/889/504/533), first map 548/551/504/658 (661/831/606/839), longest task 117/101/92/129 (115/122/95/150); faster with lower load, inside the usual range.
+- Pan: phones 60 fps, 0 dropped; iPad 58.9 fps, 4 dropped (1621: 56.6, 14 dropped).
+- /workspace/perf/perf.py (390, 4x CPU throttle, 1 round, raw/b1622-live-perfpy.txt, load 1.6): glass/no-glass taps #bNum 17/20, #bTime 33/34, #bLyr 25/20 ms; map pan+pinch 42/37 fps; list scroll 59.7/59.9 fps (436 rows); list sort 82/77 ms.
+- No proposal landed (PACK/XREF still inline in index.html, data still versioned by window.BUILD, ussch.js and Alaska precincts still lazy, index.html not trimmed). QA-007 and QA-041 still look fixed.
+| 1622 (0863b89) rerun | 390x844 | 1.61 / 7.86 | 3.68 / 13.38 | 447 | 715 | 541 | 124 | 33 / 107 (cold 107) | 68 / 101 (cold 61) | 16 / 33 | 11 / 19 | 22 / 32 | 45 / 84 | 60.0 fps, p95 16.8, max 16.8, dropped 0/279 |
