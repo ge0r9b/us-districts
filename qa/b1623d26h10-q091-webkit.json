@@ -1,0 +1,68 @@
+{
+ "phl": {
+  "crumbs": "Philadelphia County",
+  "st": "Pennsylvania",
+  "co": "Philadelphia County",
+  "ll": [
+   40.0024,
+   -75.1176,
+   10
+  ],
+  "z": null,
+  "vw": "list",
+  "la": "townships",
+  "ls": "{\"v\":1,\"top\":\"President\",\"st\":\"Pennsylvania\",\"co\":\"Philadelphia County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[40.0024,-75.1176,10]}",
+  "th": [
+   "79%",
+   "20%"
+  ]
+ },
+ "dc": {
+  "crumbs": "All States",
+  "st": null,
+  "co": null,
+  "ll": [
+   38.8987,
+   -77.0352,
+   15
+  ],
+  "z": null,
+  "vw": "list",
+  "la": "states",
+  "ls": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}",
+  "th": [
+   "90%",
+   "6%"
+  ]
+ },
+ "reload": {
+  "crumbs": "All States",
+  "st": null,
+  "co": null,
+  "ll": [
+   39.8,
+   -98.6,
+   4
+  ],
+  "z": null,
+  "vw": "list",
+  "la": "states",
+  "ls": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[39.8,-98.6,4]}",
+  "th": [
+   "50%",
+   "48%"
+  ]
+ },
+ "q100": [
+  [
+   601265,
+   233964,
+   847934
+  ],
+  62
+ ],
+ "err": [
+  [],
+  []
+ ]
+}

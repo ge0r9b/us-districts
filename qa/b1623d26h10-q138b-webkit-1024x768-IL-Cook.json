@@ -1,0 +1,84 @@
+{
+ "steps": [
+  [
+   "r16-24",
+   0.0,
+   251,
+   [
+    "70%",
+    "28%"
+   ],
+   [
+    "Stone Park village R +46.0 +23.9 \u221222.1",
+    "Cicero township R +41.1 +21.9 \u221219.2 \u22122.8",
+    "Bensenville village R +32.1 +17.9 \u221214.3 \u22123.6",
+    "Schiller Park village R +30.7 +17.2 \u221213.4 \u22123.8"
+   ]
+  ],
+  [
+   "r16-20",
+   0.0,
+   246,
+   [
+    "74%",
+    "24%"
+   ],
+   [
+    "Bensenville village R +18.0 +10.7 \u22127.3 \u22123.4",
+    "Stone Park village R +15.2 +8.3 \u22126.8 \u22121.5",
+    "Schiller Park village R +14.5 +9.0 \u22125.5 \u22123.5",
+    "East Dundee village D +13.8 \u22124.8 +9.0 \u22124.2"
+   ]
+  ],
+  [
+   "r20-24",
+   0.03,
+   158,
+   [
+    "70%",
+    "28%"
+   ],
+   [
+    "Cicero township R +31.5 +15.8 \u221215.7",
+    "Stone Park village R +30.8 +15.6 \u221215.3",
+    "Summit village R +23.8 +12.3 \u221211.6",
+    "Bridgeview village R +23.3 +11.4 \u221211.9"
+   ]
+  ],
+  [
+   "y16",
+   0.0,
+   228,
+   [
+    "74%",
+    "21%"
+   ],
+   [
+    "Chicago city (Cook part) 82.9%",
+    "Thornton township 86.5%",
+    "Wheeling township 36.5% 56.4%",
+    "Proviso township 18.2% 77.2%"
+   ]
+  ],
+  [
+   "y24",
+   0.02,
+   126,
+   [
+    "70%",
+    "28%"
+   ],
+   [
+    "Chicago city (Cook part) 20.6% 78.3%",
+    "Wheeling township 40.2% 58.5%",
+    "Worth township (Cook part) 45.0% 53.5%",
+    "Proviso township 23.7% 75.1%"
+   ]
+  ]
+ ],
+ "p16_before": false,
+ "err": [
+  [],
+  []
+ ]
+}

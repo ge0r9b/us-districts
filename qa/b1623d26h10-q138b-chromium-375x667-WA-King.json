@@ -1,0 +1,84 @@
+{
+ "steps": [
+  [
+   "r16-24",
+   0.01,
+   109,
+   [
+    "74%",
+    "22%"
+   ],
+   [
+    "Beaux Arts Village town D +17.6",
+    "Black Diamond city D +15.9",
+    "Milton city D +15.8",
+    "Duvall city D +15.1 +9.6"
+   ]
+  ],
+  [
+   "r16-20",
+   0.0,
+   100,
+   [
+    "75%",
+    "22%"
+   ],
+   [
+    "Beaux Arts Village town D +14.4",
+    "Yarrow Point town D +14.2",
+    "Milton city D +13.0",
+    "Duvall city D +12.6"
+   ]
+  ],
+  [
+   "r20-24",
+   0.02,
+   67,
+   [
+    "74%",
+    "22%"
+   ],
+   [
+    "SeaTac city R +12.7 +5.4 \u22127.3",
+    "Tukwila city R +11.8 +5.1 \u22126.7",
+    "Pacific city R +9.5",
+    "Black Diamond city D +8.6"
+   ]
+  ],
+  [
+   "y16",
+   0.0,
+   95,
+   [
+    "72%",
+    "22%"
+   ],
+   [
+    "Seattle city 86.0%",
+    "Bellevue city 25.4% 68.3%",
+    "Kirkland city 24.8% 67.9%",
+    "Kent city 31.7% 61.3%"
+   ]
+  ],
+  [
+   "y24",
+   0.02,
+   69,
+   [
+    "74%",
+    "22%"
+   ],
+   [
+    "Seattle city 87.0%",
+    "Bellevue city 26.5% 69.0%",
+    "Kent city 36.0% 60.3%",
+    "Kirkland city 24.1% 71.6%"
+   ]
+  ]
+ ],
+ "p16_before": false,
+ "err": [
+  [],
+  []
+ ]
+}

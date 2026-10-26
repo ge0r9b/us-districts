@@ -1,0 +1,3 @@
+MA {"before": [-3, 100, 44, 44, "flex", "visible", false, "Massachusetts"], "after": [0, 0, 0, 0, "none", "visible", false, "Massachusetts"], "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Massachusetts\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"ll\":[42.692,-71.5737,6]}"}
+Worcester {"before": [-3, 100, 44, 44, "flex", "visible", false, "Worcester County"], "after": [0, 0, 0, 0, "none", "visible", false, "Worcester County"], "snap": "{\"v\":1,\"top\":\"President\",\"st\":\"Massachusetts\",\"co\":\"Worcester County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"ll\":[42.528,-71.8695,8]}"}
+err []

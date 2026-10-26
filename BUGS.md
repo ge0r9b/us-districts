@@ -2416,3 +2416,77 @@ Touch, WebKit and Chromium. **One new bug: QA-139 MEDIUM (ruling requested).** O
 - **PA '16** (Chromium 375x667): bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5, '16 > '24 > '16 stable.
 - **Own checks** (WebKit 320): no issues; thumbnails on the topic-icon axis (27 / 27) in every view; PA US House and senate rows number-only; DC row "At-large 90.3%"; taps 20-70 ms.
 - **Open and unchanged (not re-filed):** QA-099, QA-106, QA-112. Not re-run: 102, 113, 122, 124, 127, 130, 133, 134, 135, 136, 137, 138. QA-100 stays HIGH.
+
+## Hourly run on 1623, Oct 26 ~10 AM EDT (9:52-10:40 AM EDT; live build 202610261623 at start and end)
+Touch, WebKit and Chromium. **QA-138 FIXED on 1623.** **One new bug: QA-140 (reload in the list loses a DC address pick).** No page errors or console errors in any app run (two harness runs lost their browser under load and were rerun). Next new bug is QA-141.
+
+### What changed in 1623 (origin/main `ac6c6d0`, "Build 1623: QA-138 ..."; live v2/index.html byte-identical to origin/main)
+- `v2/index.html`: 9 lines (+5/-4), plus a new `tests/year16-town-list.py`. The 1622 line 9 read `202610251622`; now `202610261623`.
+- `twMoves` (precincts that move to another town): the single-entry cache `h.__mv={r,c,s}` is now a WeakMap keyed by each year's precinct rows, so the 2016 / 2020 / 2024 calls stop evicting each other.
+- `precRowsIn0` (point-in-polygon precinct set for a place): now memoized per place per year's rows (`d.__pr` WeakMap, returns a copy); the old body became `precRowsIn1`.
+- `vals` for town rows on a first 2016 pick: the per-row "load 2016 then repaint" now coalesces into one queued repaint (`window.__y16Q`) instead of one full repaint per waiting row.
+- Nothing else changed (no data, CSS, state-save or layout changes).
+
+### QA-138 [CRITICAL] FIXED on 1623
+- Same repro as filed (`qa/d26h10-hang3.py`, a copy of `d26h07-hang2.py`, and `qa/d26h10-hang4.py` with a 50 ms heartbeat for the longest main-thread block). Fresh page, `PREC16` not loaded before the tap (checked), geo menu > All States > state > county town list > clock > real tap on the '16 tick.
+- Results (first poll after the tap / rows repainted / longest main-thread block):
+
+| County | Engine, size | 1622 | 1623 |
+|---|---|---|---|
+| Worcester MA | WebKit 1024x768 | frozen 63 s | responsive at 0.02 s, rows 2016 by the first 2 s poll, longest block 127 ms |
+| Worcester MA | Chromium 390x844 | frozen 69 s | 0.02 s, longest block 94 ms |
+| King WA | WebKit 1024x768 | not run | 0.02 s, longest block 160 ms |
+| King WA | Chromium 390x844 | frozen 120-128 s | 0.02 s, longest block 80 ms |
+| Cook IL | WebKit 1024x768 | froze (chart run) | 0.02 s, longest block 217 ms |
+| Cook IL | Chromium 390x844 | frozen > 170 s | 0.02 s, longest block 171 ms |
+| Harris TX | WebKit 1024x768 | not run | 0.02 s, longest block 300 ms |
+| Harris TX | Chromium 390x844 | frozen > 230 s | 0.02 s, longest block 106 ms |
+| Harris TX '16-'20 range first | Chromium 390x844 | frozen | 0.01 s, longest block 126 ms |
+
+- The 2016 numbers after the pick are the same as 1622 showed after it recovered: Worcester thumbnails 51% / 40%, King 72% / 22%, Cook 74% / 21%, Harris 54% / 42% (all equal the official 2016 county results). Rows e.g. Worcester city 27.1% / 65.9%, Seattle city 86.0%, Chicago city (Cook part) 82.9%, Houston city 32.4% / 63.0%. No errors.
+- First 2016 load through a range (`qa/d26h10-q138b.py`): Cook town list WebKit 1024x768, '16-'24 first, then '16-'20, '20-'24, '16, '24: no freeze; longest blocks 251 / 246 / 158 / 228 / 126 ms (a second browser was running). King Chromium 375x667: 109 / 100 / 67 / 95 / 69 ms. Range rows sort by size of the shift (Cook '16-'24: Stone Park village R +46.0, Cicero township R +41.1); the thumbnails show the range's end year (Cook '16-'20 74% / 24%, '16-'24 70% / 28%).
+- Cache regression check (`qa/d26h10-cache.py`, Chromium 390x844): for Worcester, King, Cook, Harris, Jefferson KY, Denver, Wayne MI every town's precinct set and D / R / total for 2016, 2020 and 2024 were computed with the new caches in mixed year order ('24, '16, '20, '24, '16, '20) and again with all caches cleared: **0 differences** in 7 counties. County precinct sums are unchanged from 1622 (e.g. Worcester 2024 222,726 / 181,671, all 263 precincts in a town; Cook 2016 1,611,946 / 453,287).
+- Screenshots: `qa/shotsb1623/d26h10-{we-1024x768,ch-390x844}-q138-{MA-Worcester,WA-King,IL-Cook,TX-Harris}-tick16.png`, `qa/shotsb1623/d26h10-ch-390x844-q138-TX-Harris-r1620.png`, `qa/shotsb1623/d26h10-{we-1024x768,ch-390x844}-hang-*`, `qa/shotsb1623/d26h10-*-q138b-*`. Logs `qa/d26h10-hang3-*.log`, `qa/d26h10-hang4-*.log`, `qa/d26h10-q138b-*.log`; data `qa/b1623d26h10-cache-chromium.json`, `qa/b1623d26h10-q138b-*.json`.
+
+### New: QA-140 [CRITICAL by the QA-103 ruling "reload must restore the exact selection"; orchestrator to confirm, could be HIGH since title and numbers stay consistent] A DC address searched from a list, then a reload while still in the list, drops DC and reopens the US
+- Build 202610261623. WebKit 390x844 touch (`qa/d26h10-addr.py`, path `listr`); Chromium 390x844 and WebKit 390x844 touch (`qa/d26h10-q091.py`).
+- Steps: geo menu > All States (or All States > PA > Philadelphia County townships list) > tap the bottom field > type "1600 Pennsylvania Ave NW, Washington, DC 20500" > Enter. Stay in the list. Reload.
+- Before the reload: All States list with the DC row selected ("DC | 90.3%"), thumbnails Harris 90% / Trump 6%, bottom field "District of Columbia", map position 38.8987, -77.0352 z15. The saved state has no selection: `{"vw":"list","la":"states","ll":[38.8987,-77.0352,15]}` (no `dc` / `sel`).
+- Expected: the reload restores DC (DC row selected, Harris 90% / Trump 6%), as it does when the same search is followed by the globe before the reload (QA-103 path, still fixed: "District of Columbia" 90 / 6 at z15 after reload), and as a precinct address does on the same list path (Wyoming "200 W 24th St, Cheyenne" reloads as "Laramie Precinct 1-03" 49 / 48).
+- Actual: after the reload the list is All States with the US numbers, Trump 50% / Harris 48%, bottom field "United States", map US z4 (39.8, -98.6). The DC pick is gone. Same in Chromium from the Philadelphia townships list.
+- Not caused by 1623 (the diff does not touch state save); earlier runs always went to the map before reloading, so this path was not covered before.
+- Screenshots: `qa/shotsb1623/d26h10-we-390x844-addr2-DCw-listr.png` (before), `qa/shotsb1623/d26h10-we-390x844-addr2-DCw-listr-reload.png` (after), `qa/shotsb1623/d26h10-ch-390x844-q091-{dc,reload}.png`. Data: `qa/b1623d26h10-addr-webkit-390x844.json`, `qa/b1623d26h10-q091-{webkit,chromium}.json`.
+- Side note on the same run (QA-130 family, not re-filed): the Wyoming precinct case restores its title and thumbnails but the list body is empty grey (no rows, no "Nothing to list") after the reload; before it showed the one county row (QA-106). Shot `qa/shotsb1623/d26h10-we-390x844-addr2-WY-listr-reload.png`.
+
+### Re-test of open bugs on 1623
+- **QA-139 [MED] still open** (`qa/d26h10-backreload.py`): WebKit 375x667 Texas counties and Harris County towns, Chromium 390x844 Massachusetts counties and Worcester County towns: `#bBack` at [-3,100,44,44] before the reload, `display:none` after; saved state correct.
+- **QA-137 [MED] still open** (`qa/d26h10-detroit.py`): Detroit city 2024 row built from 60 "City of Detroit, CB N" rows, 199,698 / 17,255 / 222,123 vs official 221,157 / 19,638 / 246,552; Wayne precinct sum 514,001 / 284,043 / 830,816 (unchanged).
+- **QA-136 [LOW] still open** (`qa/d26h10-crumb.py`, WebKit 1024x768): "Oklahoma County Oklahoma City c…" with the "…" in the text, span 347 px wide; "Jefferson County Birmingham city" not cut.
+- **QA-135 [MED] still open** (`qa/d26h10-denver.py`, `qa/d26h10-cache.py`): Denver city 2024 = 292 of 304 precincts (270,984 / 71,793 / 353,019); 12 unassigned (same ids). 2016 also 11 unassigned.
+- **QA-134 [HIGH] still open** (`qa/d26h10-cache.py`): Jefferson KY 225 of 605 precincts unassigned in 2024 (239 in 2020, 225 in 2016); Louisville (balance) 2016 77,916 / 85,639.
+- **QA-112 [MED] still open** (`qa/d26h10-addr.py` WebKit 375x667): ZIP 82001 from All States: title "Laramie Precinct 4-01" 75 / 24 over the Laramie County places list ("Cheyenne city 57.5%", "Albin town 85.3%", "Burns town 85.3%").
+- **QA-106 [LOW] still open**: Cheyenne address from the list shows the one county row "Laramie 65.4% / 33.0%" under the precinct title.
+- **QA-102 [MED] still open**, solo Chromium 1024x768 (`qa/d26h10-states.py`): Texas school districts pick **182 ms** (1,019 rows), # on that list **175 ms**; Illinois school districts **139 ms** (862 rows); TX US House now 51 ms (was 147); senate / house 58-79 ms. WebKit 1024x768 solo (`qa/d26h10-crumb.py`): "Oklahoma counties" 107 ms, "Alabama counties" 105 ms, Oklahoma City city precinct drill 104 ms (single sample; was 12-27 ms).
+- **QA-099 [MED] still open** (`qa/d26h10-sortnum.py`): the sort chip [273,177,307,199] at 375 sits on CA "58.5%", Fulton "71.9%" and GA US House row 7; at 1024x576 WebKit [922,177,956,199] on CA "58.5%", Cook "70.4%", IL district 16. So the standing check "sort chip clear of all bars and labels" still fails only through QA-099.
+- **QA-130 [MED] still open** (`qa/d26h10-q130.py`, WebKit 390x844): Pittsburgh and Boston typed in the list view, with or without a district type: thumbnails 76.7 / 21.7 and 76.0 / 19.4 over an empty list at 4 s and 12 s.
+- **QA-124 [HIGH] still open** (`qa/d26h10-cityN.py`, Chromium 390x844): Pittsburgh city (402 rows) still lists "Baldwin Tp Dist 2"; Burlington city NC (14) "West Graham"; Kenosha city (78) "Town of SOMERS Ward 2".
+- **QA-127 [HIGH] still open** (`qa/d26h10-q127.py`): `__townsIn` 0 towns for Arlington, Henrico, Fairfax VA and Howard MD.
+- **QA-113 [HIGH] still open** (`qa/d26h10-geo2.py`, Chromium 320x568 map): with US House on, the "Philadelphia County, PA", "Fulton County, GA" and "Ohio" sheet rows keep US House; "Pennsylvania" and "Pittsburgh" clear it.
+- **QA-100 [HIGH]** stays HIGH (waiting on Historic Election Data for NY). App Kings County 2024 = 601,265 / 233,964 / 847,934.
+- **Still fixed:** QA-091 (WebKit 390x844: after the DC search from the Philadelphia townships list the saved position is DC 38.8987, -77.0352 z15, not zoom 2 over Minnesota; the separate reload problem is QA-140). QA-094 (county town-list thumbnails show the county, not the sum of its towns: Harris 54% / 42% at '16 and 56% / 43% at the end of '16-'20; Worcester 54 / 44 and King 74 / 22 at '24; Cook 70 / 28 at '24, 74 / 21 at '16). QA-095 (TX and IL district lists in # show 6.39M / 4.84M and 3.06M / 2.45M, the certified totals). QA-098 (WY, VT, AK, MT, DC addresses: title, thumbnails and popup agree on map and list paths and after globe + reload). QA-103 (DC address > globe > reload keeps DC 90 / 6 at z15).
+- Not re-run (code paths untouched by 1623): QA-122, QA-133.
+
+### Standing orchestrator checks
+- **2016 colours** (`qa/d26h10-own.py` WebKit 390x844 and 1024x768): US '16 CA / NY / IL / CO / VA / WA blue, TX red; FL / PA / MI / WI near-white (margins under 1.2 points, known; the script flags them every run). PA '16 not blank (`qa/d26h10-col16.py` Chromium 375): US House / senate / state house maps 23.7 / 21.3 / 19.8% blue, Philadelphia and Pittsburgh blue, rural PA and Lancaster red; labels Trump 48 / Clinton 47.
+- **PA '16 bar and pie** (`qa/d26h10-pa16.py` Chromium 390x844): bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5; '24 50.2 / 48.5 / 1.3; '16 > '24 > '16 stable, same pie box.
+- **Rows / thumbnails / menus**: district rows number-only ("7", "16"), DC "At-large" (own checks, no issues); thumbnails on the topic-icon axis in every view (own checks); menus overlay with a transparent backdrop, nothing dimmed or shrunk, pie box unchanged (`qa/d26h10-menus.py` WebKit 320 and 1024x576, US and Alabama, 12-23 ms).
+- **Sort chip**: see QA-099 above. Default order high to low in every list; flip and back work.
+
+### Smoke (all five sizes, touch)
+- 390x844: WebKit layout sweep, own checks, addresses + reload, Back after reload, DC/Philadelphia; Chromium layout sweep, QA-138, cache check, PA '16, town audits. 375x667: WebKit addresses (7 kinds, map and list), Back after reload, layout sweep; Chromium sort / % / # / ranges '16-'20, '16-'24, '20-'24 at All States, Georgia counties and Georgia US House, PA '16 colours, King town-list ranges. 320: WebKit menus; Chromium layout sweep, QA-113 sheet. 1024x576: WebKit sort / % / # / ranges at All States, Illinois counties, IL US House, layout sweep, menus. 1024x768: WebKit QA-138, crumbs, own checks, Cook ranges; Chromium layout sweep, district-type menu walk TX / IL (senate 31 / 59, house 150 / 118, schools 1,019 / 862, US House 38 / 17 rows; no overlap, clip or off-screen text; state totals equal certified for 2016 / 2020 / 2024).
+- Chart menu: gbar in the layout sweep; pie / bar in PA '16; range rows in Cook / King town lists and state / county / district lists.
+- Taps: everything under 100 ms solo except QA-102 above and the list drills (208-240 ms including the script's 200 ms pre-tap wait, known baseline). One WebKit 390 back tap at 180 ms under load re-measured solo at 28 ms.
+- Console: no page errors or console errors in any app run.
+
+### Layout-stability sweep (`qa/d26h10-lay3.py`)
+- WebKit 390 (twice, one solo), 375, 1024x576; Chromium 320, 390, 1024x768: **SAME as 1622.** Only the known +68 px thumbnail push from the slider and the +14 px first row in split bar. Back taps 23-45 ms solo; list drills 207-297 ms including the 200 ms pre-tap wait. Logs `qa/d26h10-lay3-*.log`, data `qa/b1623d26h10-layout3-*.json`.
