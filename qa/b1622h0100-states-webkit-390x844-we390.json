@@ -1,0 +1,1789 @@
+{
+ "Kansas": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Kansas",
+    "gq": "Kansas",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 57%",
+    "Kamala Harris 2024 / 41%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    427005,
+    671018,
+    1184402
+   ],
+   "2020": [
+    570323,
+    771406,
+    1373986
+   ],
+   "2024": [
+    544853,
+    758802,
+    1327591
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 57%",
+    "Hillary Clinton 2016 / 36%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 56%",
+    "Joe Biden 2020 / 42%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 57%",
+    "Kamala Harris 2024 / 41%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 54,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Kansas",
+      "gq": "Kansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 57%",
+      "Kamala Harris 2024 / 41%"
+     ]
+    ],
+    "lat_tolist": 32,
+    "n": 40,
+    "rows": [
+     "10 | 47.7% | 50.4%",
+     "7 | 33.1% | 65.3%",
+     "35 | 49.9% | 48.3%",
+     "11 | 47.9% | 50.5%",
+     "8 | 38.8% | 59.5%",
+     "9 | 56.5% | 41.7%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      47.7,
+      33.1,
+      49.9,
+      47.9,
+      38.8
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      6,
+      7,
+      11
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 57%",
+     "Kamala Harris 2024 / 41%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 20,
+    "lat_numpick": 40,
+    "num": "num",
+    "rows_num": [
+     "10 | 22K | 23K",
+     "7 | 15K | 30K",
+     "35 | 22K | 21K",
+     "11 | 21K | 22K",
+     "8 | 16K | 25K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      22000.0,
+      15000.0,
+      22000.0,
+      21000.0,
+      16000.0
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      6,
+      7,
+      11
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 545K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 53,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Kansas",
+      "gq": "Kansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 57%",
+      "Kamala Harris 2024 / 41%"
+     ]
+    ],
+    "lat_tolist": 17,
+    "n": 125,
+    "rows": [
+     "19 | 36.0% | 62.4%",
+     "27 | 54.0% | 44.3%",
+     "20 | 41.4% | 57.1%",
+     "25 | 31.2% | 67.2%",
+     "117 | 52.4% | 45.8%",
+     "14 | 48.0% | 50.4%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      36.0,
+      54.0,
+      41.4,
+      31.2,
+      52.4
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      8,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 57%",
+     "Kamala Harris 2024 / 41%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 31,
+    "lat_numpick": 55,
+    "num": "num",
+    "rows_num": [
+     "19 | 6K | 10K",
+     "27 | 8K | 7K",
+     "20 | 6K | 9K",
+     "25 | 5K | 10K",
+     "117 | 8K | 7K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      6000.0,
+      8000.0,
+      6000.0,
+      5000.0,
+      8000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      8,
+      9
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 545K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Kansas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.876,-98.0859,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Kansas\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.8761,-98.1003,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Kansas",
+      "gq": "Kansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 125,
+     "rows": [
+      "19 | 36.0% | 62.4%",
+      "27 | 54.0% | 44.3%",
+      "20 | 41.4% | 57.1%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 67,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Kansas",
+      "gq": "Kansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 57%",
+      "Kamala Harris 2024 / 41%"
+     ]
+    ],
+    "lat_tolist": 11,
+    "n": 286,
+    "rows": [
+     "Shawnee Mission Public Schools \u2026 | 37.3% | 61.0%",
+     "Wichita Unified 259 | 47.5% | 50.8%",
+     "Olathe Unified 233 | 47.1% | 51.0%",
+     "Blue Valley Unified 229 | 47.6% | 50.8%",
+     "Lawrence Unified 497 | 24.3% | 74.1%",
+     "Topeka Public Schools Unified 5\u2026 | 38.5% | 59.5%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      37.3,
+      47.5,
+      47.1,
+      47.6,
+      24.3
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      7,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 57%",
+     "Kamala Harris 2024 / 41%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 27,
+    "lat_numpick": 55,
+    "num": "num",
+    "rows_num": [
+     "Shawnee Mission Public Schools \u2026 | 46K | 75K",
+     "Wichita Unified 259 | 54K | 58K",
+     "Olathe Unified 233 | 40K | 44K",
+     "Blue Valley Unified 229 | 37K | 40K",
+     "Lawrence Unified 497 | 34K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      46000.0,
+      54000.0,
+      40000.0,
+      37000.0,
+      34000.0
+     ],
+     "not_desc_at": [
+      1
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 545K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 41,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Kansas",
+      "gq": "Kansas",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 57%",
+      "Kamala Harris 2024 / 41%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 4,
+    "rows": [
+     "3 | 47.1% | 51.2%",
+     "4 | 60.8% | 37.5%",
+     "1 | 64.7% | 33.5%",
+     "2 | 58.9% | 39.2%"
+    ],
+    "order": {
+     "n": 4,
+     "first": [
+      47.1,
+      60.8,
+      64.7,
+      58.9
+     ],
+     "not_desc_at": [
+      1,
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 57%",
+     "Kamala Harris 2024 / 41%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 4,
+    "lat_numpick": 16,
+    "num": "num",
+    "rows_num": [
+     "3 | 187K | 203K",
+     "4 | 189K | 117K",
+     "1 | 201K | 104K",
+     "2 | 181K | 121K"
+    ],
+    "order_num": {
+     "n": 4,
+     "first": [
+      187000.0,
+      189000.0,
+      201000.0,
+      181000.0
+     ],
+     "not_desc_at": [
+      1,
+      2
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 759K",
+     "Kamala Harris 2024 / 545K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Kansas",
+     "gq": "Kansas",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 57%",
+     "Hillary Clinton 2016 / 36%",
+     "Donald Trump 2020 / 56%",
+     "Joe Biden 2020 / 42%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 81,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 22,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 35,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Kansas counties",
+    "Allen County \u203a",
+    "Anderson County \u203a"
+   ],
+   "lat_counties": 83,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Kansas",
+    "gq": "Kansas",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 105,
+   "rows1": [
+    "Johnson | 44.9%",
+    "Sedgwick | 56.1% | 42.3%",
+    "Shawnee | 48.8% | 49.3%",
+    "Douglas | 30.2% | 68.2%",
+    "Wyandotte | 37.3% | 61.1%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     44.9,
+     56.1,
+     48.8,
+     30.2,
+     37.3
+    ],
+    "not_desc_at": [
+     1,
+     4,
+     5,
+     6,
+     9
+    ]
+   }
+  },
+  "err": []
+ },
+ "Nebraska": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Nebraska",
+    "gq": "Nebraska",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    284494,
+    495961,
+    844227
+   ],
+   "2020": [
+    374583,
+    556846,
+    956383
+   ],
+   "2024": [
+    369995,
+    564816,
+    952182
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 59%",
+    "Hillary Clinton 2016 / 34%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 58%",
+    "Joe Biden 2020 / 39%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 39%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 56,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nebraska",
+      "gq": "Nebraska",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 28,
+    "n": 49,
+    "rows": [
+     "39 | 61.2%",
+     "25 | 52.4% | 46.4%",
+     "49 | 55.5% | 43.3%",
+     "30 | 59.5% | 39.3%",
+     "31 | 52.5% | 46.4%",
+     "4 | 52.0% | 46.8%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      61.2,
+      52.4,
+      55.5,
+      59.5,
+      52.5
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      6,
+      7,
+      10
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 23,
+    "lat_numpick": 42,
+    "num": "num",
+    "rows_num": [
+     "39 | 17K | 11K",
+     "25 | 14K | 12K",
+     "49 | 13K | 10K",
+     "30 | 14K | 9K",
+     "31 | 12K | 11K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      17000.0,
+      14000.0,
+      13000.0,
+      14000.0,
+      12000.0
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      7,
+      10,
+      13
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 565K",
+     "Kamala Harris 2024 / 370K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 190,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nebraska",
+      "gq": "Nebraska",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 19,
+    "n": 0,
+    "rows": [],
+    "order": {
+     "n": 0,
+     "first": [],
+     "not_desc_at": []
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [],
+    "layout": {
+     "over": [
+      "Nothing to list x bTime",
+      "Nothing to list x bBack"
+     ],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 10,
+    "lat_numpick": 18,
+    "num": "num",
+    "rows_num": [],
+    "order_num": {
+     "n": 0,
+     "first": [],
+     "not_desc_at": []
+    },
+    "th_num": [],
+    "layout_num": {
+     "over": [
+      "Nothing to list x bTime",
+      "Nothing to list x bBack"
+     ],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Nebraska\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[42.8115,-99.4482,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Nebraska\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[41.5182,-99.6809,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Nebraska",
+      "gq": "Nebraska",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 0,
+     "rows": []
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 83,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nebraska",
+      "gq": "Nebraska",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 16,
+    "n": 244,
+    "rows": [
+     "Omaha Public | 37.5% | 61.0%",
+     "Lincoln Public | 43.4% | 55.0%",
+     "Millard Public | 52.6% | 46.2%",
+     "Elkhorn Public | 58.9% | 39.9%",
+     "Papillion-La Vista Community | 53.5% | 45.2%",
+     "Bellevue Public | 51.4% | 47.0%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      37.5,
+      43.4,
+      52.6,
+      58.9,
+      53.5
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 25,
+    "lat_numpick": 77,
+    "num": "num",
+    "rows_num": [
+     "Omaha Public | 55K | 89K",
+     "Lincoln Public | 55K | 70K",
+     "Millard Public | 29K | 25K",
+     "Elkhorn Public | 35K",
+     "Papillion-La Vista Community | 33K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      55000.0,
+      55000.0,
+      29000.0,
+      35000.0,
+      33000.0
+     ],
+     "not_desc_at": [
+      3
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 565K",
+     "Kamala Harris 2024 / 370K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 46,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nebraska",
+      "gq": "Nebraska",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 39%"
+     ]
+    ],
+    "lat_tolist": 14,
+    "n": 3,
+    "rows": [
+     "1 | 55.8% | 42.8%",
+     "2 | 47.0% | 51.6%",
+     "3 | 76.3%"
+    ],
+    "order": {
+     "n": 3,
+     "first": [
+      55.8,
+      47.0,
+      76.3
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 39%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 7,
+    "lat_numpick": 15,
+    "num": "num",
+    "rows_num": [
+     "1 | 178K | 136K",
+     "2 | 149K | 164K",
+     "3 | 238K | 70K"
+    ],
+    "order_num": {
+     "n": 3,
+     "first": [
+      178000.0,
+      149000.0,
+      238000.0
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 565K",
+     "Kamala Harris 2024 / 370K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nebraska",
+     "gq": "Nebraska",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 59%",
+     "Hillary Clinton 2016 / 34%",
+     "Donald Trump 2020 / 58%",
+     "Joe Biden 2020 / 39%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 57,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 25,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 33,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Nebraska counties",
+    "Adams County \u203a",
+    "Antelope County \u203a"
+   ],
+   "lat_counties": 81,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Nebraska",
+    "gq": "Nebraska",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 93,
+   "rows1": [
+    "Douglas | 44.2% | 54.4%",
+    "Lancaster | 47.1% | 51.4%",
+    "Sarpy | 55.2% | 43.5%",
+    "Buffalo | 71.8% | 26.9%",
+    "Hall | 68.3% | 30.5%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     44.2,
+     47.1,
+     55.2,
+     71.8,
+     68.3
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     5,
+     7
+    ]
+   }
+  },
+  "err": []
+ },
+ "Utah": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Utah",
+    "gq": "Utah",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    310676,
+    515231,
+    1131430
+   ],
+   "2020": [
+    560282,
+    865140,
+    1488289
+   ],
+   "2024": [
+    562566,
+    883818,
+    1488494
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 46%",
+    "Hillary Clinton 2016 / 27%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 58%",
+    "Joe Biden 2020 / 38%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 59%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 63,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Utah",
+      "gq": "Utah",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 39,
+    "n": 29,
+    "rows": [
+     "14 | 32.9% | 64.7%",
+     "27 | 83.0%",
+     "19 | 53.2% | 44.3%",
+     "21 | 69.6% | 27.0%",
+     "29 | 73.3% | 24.8%",
+     "17 | 56.3% | 41.0%"
+    ],
+    "order": {
+     "n": 29,
+     "first": [
+      32.9,
+      83.0,
+      53.2,
+      69.6,
+      73.3
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 19,
+    "lat_numpick": 45,
+    "num": "num",
+    "rows_num": [
+     "14 | 21K | 40K",
+     "27 | 52K",
+     "19 | 33K | 27K",
+     "21 | 41K | 16K",
+     "29 | 43K | 14K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      21000.0,
+      52000.0,
+      33000.0,
+      41000.0,
+      43000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 884K",
+     "Kamala Harris 2024 / 563K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 58,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Utah",
+      "gq": "Utah",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 17,
+    "n": 75,
+    "rows": [
+     "72 | 78.5%",
+     "4 | 56.9% | 41.0%",
+     "23 | 20.0% | 77.9%",
+     "74 | 70.5% | 27.8%",
+     "42 | 47.5% | 50.0%",
+     "33 | 31.6% | 65.9%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      78.5,
+      56.9,
+      20.0,
+      70.5,
+      47.5
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      8,
+      9,
+      11
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 27,
+    "lat_numpick": 46,
+    "num": "num",
+    "rows_num": [
+     "72 | 22K",
+     "4 | 15K | 11K",
+     "23 | 5K | 20K",
+     "74 | 18K | 7K",
+     "42 | 12K | 13K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      22000.0,
+      15000.0,
+      5000.0,
+      18000.0,
+      12000.0
+     ],
+     "not_desc_at": [
+      3,
+      6,
+      8,
+      9,
+      11
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 884K",
+     "Kamala Harris 2024 / 563K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Utah\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[40.2124,-111.4453,6]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Utah\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[40.2124,-111.4453,6]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Utah",
+      "gq": "Utah",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 75,
+     "rows": [
+      "72 | 78.5%",
+      "4 | 56.9% | 41.0%",
+      "23 | 20.0% | 77.9%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 71,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Utah",
+      "gq": "Utah",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 16,
+    "n": 41,
+    "rows": [
+     "Alpine | 67.9%",
+     "Davis | 60.8% | 36.0%",
+     "Granite | 40.9% | 56.2%",
+     "Jordan | 58.6% | 38.5%",
+     "Washington | 75.2% | 23.0%",
+     "Canyons | 46.2% | 51.1%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      67.9,
+      60.8,
+      40.9,
+      58.6,
+      75.2
+     ],
+     "not_desc_at": [
+      3,
+      4,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 4,
+    "lat_numpick": 29,
+    "num": "num",
+    "rows_num": [
+     "Alpine | 127K",
+     "Davis | 101K | 60K",
+     "Granite | 55K | 75K",
+     "Jordan | 62K | 41K",
+     "Washington | 73K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      127000.0,
+      101000.0,
+      55000.0,
+      62000.0,
+      73000.0
+     ],
+     "not_desc_at": [
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 884K",
+     "Kamala Harris 2024 / 563K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 47,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Utah",
+      "gq": "Utah",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 59%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 10,
+    "n": 4,
+    "rows": [
+     "1 | 58.4%",
+     "3 | 58.2% | 38.9%",
+     "4 | 61.9% | 35.2%",
+     "2 | 58.9% | 38.6%"
+    ],
+    "order": {
+     "n": 4,
+     "first": [
+      58.4,
+      58.2,
+      61.9,
+      58.9
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 59%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 8,
+    "lat_numpick": 17,
+    "num": "num",
+    "rows_num": [
+     "1 | 220K | 145K",
+     "3 | 218K | 146K",
+     "4 | 231K | 131K",
+     "2 | 214K | 140K"
+    ],
+    "order_num": {
+     "n": 4,
+     "first": [
+      220000.0,
+      218000.0,
+      231000.0,
+      214000.0
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 884K",
+     "Kamala Harris 2024 / 563K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Utah",
+     "gq": "Utah",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 46%",
+     "Hillary Clinton 2016 / 27%",
+     "Donald Trump 2020 / 58%",
+     "Joe Biden 2020 / 38%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 52,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 23,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 29,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Utah counties",
+    "Beaver County \u203a",
+    "Box Elder County \u203a"
+   ],
+   "lat_counties": 60,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Utah",
+    "gq": "Utah",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 29,
+   "rows1": [
+    "Salt Lake | 43.5% | 53.7%",
+    "Utah | 68.3%",
+    "Davis | 60.8% | 36.0%",
+    "Weber | 60.3% | 36.8%",
+    "Washington | 75.2% | 23.0%"
+   ],
+   "order1": {
+    "n": 29,
+    "first": [
+     43.5,
+     68.3,
+     60.8,
+     60.3,
+     75.2
+    ],
+    "not_desc_at": [
+     1,
+     4,
+     6,
+     7,
+     10
+    ]
+   }
+  },
+  "err": []
+ }
+}
