@@ -2382,3 +2382,37 @@ Touch, WebKit and Chromium. **No new bugs.** One update to the open QA-102 (belo
 ### Standing checks
 - **Layout-stability sweep** (MA > Worcester President with the slider, US House list, year change, drill-in, back, split bar, list to map) on **WebKit 390x844 and Chromium 1024x576**: **SAME as previous runs.** Only the known +68 px thumbnail push from the slider and the +14 px first row in split bar. Back taps 22-34 ms (WebKit), 30-36 ms (Chromium); list drills 211-235 ms including the script's 200 ms pre-tap wait. Logs `qa/d26h08-lay3-*.log`.
 - **Open and unchanged (not re-filed):** QA-099, QA-138 (not re-run, build unchanged). Not re-run: 113, 122, 124, 127, 130, 133, 134, 135, 136, 137. QA-100 stays HIGH.
+
+## Hourly run on 1622, Oct 26 ~9 AM EDT (8:52-9:10 AM EDT; live build 202610251622 at start and end)
+Touch, WebKit and Chromium. **One new bug: QA-139 MEDIUM (ruling requested).** One update to the open QA-112. No page errors, console errors or failed requests in any script. The build has not changed, so this run covered fresh areas: address edge cases, sort chip and % / # on every list level, slider ranges on state and district lists, reload and back after deep navigation. QA-138 not re-run (no '16 pick in a town list). v3/ and v4/ are still 404. Next new bug is QA-140.
+
+### New: QA-139 [MEDIUM, ruling requested] No Back button after a reload of a list below All States
+- Steps: geo menu > All States > tap a state (counties list) or then a county (town list), or a town (precinct list); the list shows the Back chevron at the top left. Reload the page.
+- Expected: the restored list keeps a way back up one level (Back chevron), as before the reload.
+- Actual: the list, title, year and sort are restored, but `#bBack` is `display:none` (0 x 0). The only way up is the geo menu. Before the reload `#bBack` is at [-3,100,44,44], display flex.
+- Seen on: WebKit 375x667 (Texas counties, Harris County towns), Chromium 390x844 (Massachusetts counties, Worcester County towns), WebKit 1024x768 (Fulton County > Atlanta city precincts), Chromium 320x568 (Ohio counties). Saved state is right, e.g. `{"st":"Texas","co":"Harris County","vw":"list","la":"townships"}`.
+- Could be by design if Back is only session history; that is why a ruling is requested.
+- Shots: `shots/b1622d26h09-we-375x667-bk-{0-TX,1-Harris}-{before,after-reload}.png`, `shots/b1622d26h09-ch-390x844-bk-{0-MA,1-Worcester}-{before,after-reload}.png`, `shots/b1622d26h09-we-1024x768-deep-{town2,reload}.png`. Data: `qa/b1622d26h09-backreload-*.json`, `qa/b1622d26h09-deep-webkit-1024x768-GA.json`.
+
+### QA-112 update (still open, MEDIUM)
+- WebKit 375x667, ZIP "82001" (Wyoming, at-large) from the All States list: title "Laramie Precinct 4-01" 75 / 24 (thumbnails = popup), list under it is the Laramie County places list ("Cheyenne city 57.5%", "Albin town", "Burns town"), no precinct row. Same as the 30303 case. Shot `shots/b1622d26h09-we-375x667-addr2-ZIP-list.png`.
+
+### Address search (`qa/d26h09-addr.py`, WebKit 375x667, map path and All States list path, each with a reload)
+- Cheyenne WY "200 W 24th St" > Laramie Precinct 1-03 49 / 48; Montpelier VT "109 State St" > Montpelier City 87 / 10 (popup 86.8 / 9.8); Juneau AK "120 4th St" > Juneau No. 2 84 / 14 marked "≈ estimate"; rural Ekalaka MT "Main St" > 13 Ekalaka (Carter Co) 84 / 13; White House > District of Columbia 90 / 6 (popup 90.3 / 6.5), list path selects the "DC 90.3%" row; ZIP 82001 > Laramie Precinct 4-01 75 / 24; "zzqx nowhere 99999" > field reads "No match: zzqx nowhere 99999", US view unchanged.
+- Title, thumbnails and popup agree in every case, the same after reload and after globe. No place under another place's numbers. The list path shows the one county row (QA-106, known) or the places list (QA-112).
+
+### Sort chip, % / # and slider ranges on every list level (`qa/d26h09-sortnum.py`)
+- Chromium 320x568: All States, Ohio counties, Ohio US House; WebKit 1024x768: Georgia counties, Georgia US House. '24, '16-'20, '16-'24, '20-'24.
+- Default is high to low in every view (single year by votes; ranges by size of the shift). Sort flip and flip back work (8-55 ms); the # pick keeps the order; no clipped row text (scrollWidth check) at 320.
+- Range numbers match certified results, e.g. '20-'24 # CA R +1.91M / Harris -1.83M; WY R +3K; '16-'20 # SD R +309, MA D +311K, CO D +303K, CA D +834K; '16-'24 # RI R +1K, AK D +3K, DC D +3K; '16-'24 % FL R +11.9, NY R +9.9; '16-'20 % VT D +9.0.
+- District lists: rows are number-only ("7", "13"), estimates marked "≈". Labels clear of each other in all four segments (GA US House '16-'20 shot).
+- Georgia counties sort taps solo on WebKit 1024x768: 20-55 ms (106 ms seen once under load, not filed).
+- Observation, not filed: after picking a district type the type menu stays open, and the next tap (on the sort chip) only closes the menu; the second tap sorts. The chip itself is not covered (elementFromPoint = chip). Shots `shots/b1622d26h09-ch-320x568-us-t0-{ush,sort1}.png`.
+- QA-099 still open: chip [218,177,252,199] over CA "58.5%" at 320, and over Franklin "63.7%" in Ohio counties.
+- Fulton County places (WebKit 1024x768, '24): sort and # work (Mountain Park city 397 lowest), drill to Atlanta city precincts. Reload restores the precinct list exactly (QA-139 aside).
+
+### Standing checks
+- **Layout-stability sweep** (MA > Worcester President with the slider, US House list, year change, drill-in, back, split bar, list to map) on **WebKit 320x568 and Chromium 375x667**: **SAME as previous runs.** Only the known +68 px thumbnail push from the slider and the +14 px first row in split bar. Back taps 25-49 ms; list drills 215-236 ms including the script's 200 ms pre-tap wait. Logs `qa/d26h09-lay3-*.log`.
+- **PA '16** (Chromium 375x667): bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5, '16 > '24 > '16 stable.
+- **Own checks** (WebKit 320): no issues; thumbnails on the topic-icon axis (27 / 27) in every view; PA US House and senate rows number-only; DC row "At-large 90.3%"; taps 20-70 ms.
+- **Open and unchanged (not re-filed):** QA-099, QA-106, QA-112. Not re-run: 102, 113, 122, 124, 127, 130, 133, 134, 135, 136, 137, 138. QA-100 stays HIGH.

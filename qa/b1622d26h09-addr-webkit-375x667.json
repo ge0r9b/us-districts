@@ -1,0 +1,960 @@
+{
+ "WY-map": {
+  "addr": "200 W 24th St, Cheyenne, WY 82001",
+  "sugg": [
+   "200 W 24TH ST, CHEYENNE, WY, 82\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 1-03",
+    "gq": "200 W 24TH ST, CHEYENNE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    "Laramie Precinct 1-03 | Harris 48.0% | Trump 49.2%"
+   ],
+   [
+    12,
+    41.1408,
+    -104.8346
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8346,12]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8346,12]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 1-03",
+    "gq": "200 W 24TH ST, CHEYENNE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    "Laramie Precinct 1-03 | Harris 48.0% | Trump 49.2%"
+   ],
+   [
+    12,
+    41.1408,
+    -104.8346
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8346,12]}"
+  ],
+  "err": []
+ },
+ "build": "202610251622",
+ "WY-list": {
+  "addr": "200 W 24th St, Cheyenne, WY 82001",
+  "sugg": [
+   "200 W 24TH ST, CHEYENNE, WY, 82\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 1-03",
+    "gq": "200 W 24TH ST, CHEYENNE",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    12,
+    41.1408,
+    -104.8346
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8346,12]}"
+  ],
+  "rows": [
+   "Laramie | 65.4% | 33.0%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 1-03",
+    "gq": "200 W 24TH ST, CHEYENNE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    "Laramie Precinct 1-03 | Harris 48.0% | Trump 49.2%"
+   ],
+   [
+    12,
+    41.1408,
+    -104.8345
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8345,12]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 1-03",
+    "gq": "200 W 24TH ST, CHEYENNE",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 49%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [
+    "Laramie Precinct 1-03 | Harris 48.0% | Trump 49.2%"
+   ],
+   [
+    12,
+    41.1408,
+    -104.8346
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"1-03\",\"ph\":\"200 W 24TH ST, CHEYENNE\",\"ttl\":\"200 W 24TH ST, CHEYENNE, WY, 82001\",\"pin\":[41.139850611856,-104.820004035339]},\"ll\":[41.1408,-104.8346,12]}"
+  ],
+  "err": []
+ },
+ "VT-map": {
+  "addr": "109 State St, Montpelier, VT 05609",
+  "sugg": [
+   "109 STATE ST, MONTPELIER, VT, 0\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Montpelier City",
+    "gq": "109 STATE ST, MONTPELIER",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 10%"
+   ],
+   [
+    "Montpelier City, Washington Co | Harris 86.8% | Trump 9.8%"
+   ],
+   [
+    11,
+    44.2938,
+    -72.5654
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[44.2938,-72.5654,11]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[44.2938,-72.5654,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Montpelier City",
+    "gq": "109 STATE ST, MONTPELIER",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 10%"
+   ],
+   [
+    "Montpelier City, Washington Co | Harris 86.8% | Trump 9.8%"
+   ],
+   [
+    11,
+    44.2938,
+    -72.5654
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[44.2938,-72.5654,11]}"
+  ],
+  "err": []
+ },
+ "VT-list": {
+  "addr": "109 State St, Montpelier, VT 05609",
+  "sugg": [
+   "109 STATE ST, MONTPELIER, VT, 0\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Montpelier City",
+    "gq": "109 STATE ST, MONTPELIER",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 10%"
+   ],
+   [],
+   [
+    7,
+    43.881,
+    -72.467
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[43.881,-72.467,7]}"
+  ],
+  "rows": [
+   "Washington | 26.6% | 70.0%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Montpelier City",
+    "gq": "109 STATE ST, MONTPELIER",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 10%"
+   ],
+   [
+    "Montpelier City, Washington Co | Harris 86.8% | Trump 9.8%"
+   ],
+   [
+    11,
+    44.2938,
+    -72.5654
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[44.2938,-72.5654,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Montpelier City",
+    "gq": "109 STATE ST, MONTPELIER",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 87%",
+    "Donald Trump 2024 / 10%"
+   ],
+   [
+    "Montpelier City, Washington Co | Harris 86.8% | Trump 9.8%"
+   ],
+   [
+    11,
+    44.2938,
+    -72.5654
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Vermont\",\"co\":\"Washington County\",\"p\":\"MONTPELIER CITY\",\"ph\":\"109 STATE ST, MONTPELIER\",\"ttl\":\"109 STATE ST, MONTPELIER, VT, 05602\",\"pin\":[44.261055700473,-72.579388705474]},\"ll\":[44.2938,-72.5654,11]}"
+  ],
+  "err": []
+ },
+ "AK-map": {
+  "addr": "120 4th St, Juneau, AK 99801",
+  "sugg": [
+   "120 4TH ST, JUNEAU, AK, 99801Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Juneau No. 2",
+    "gq": "120 4TH ST, JUNEAU",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Juneau No. 2 | Harris 83.8% | Trump 13.7% | \u2248 estimate"
+   ],
+   [
+    11,
+    58.3204,
+    -134.3951
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3204,-134.3951,11]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3204,-134.3951,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Juneau No. 2",
+    "gq": "120 4TH ST, JUNEAU",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Juneau No. 2 | Harris 83.8% | Trump 13.7% | \u2248 estimate"
+   ],
+   [
+    11,
+    58.3204,
+    -134.3951
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3204,-134.3951,11]}"
+  ],
+  "err": []
+ },
+ "AK-list": {
+  "addr": "120 4th St, Juneau, AK 99801",
+  "sugg": [
+   "120 4TH ST, JUNEAU, AK, 99801Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Juneau No. 2",
+    "gq": "120 4TH ST, JUNEAU",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [],
+   [
+    11,
+    58.3204,
+    -134.3951
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3204,-134.3951,11]}"
+  ],
+  "rows": [
+   "Juneau City and Borough | 35.0% | 60.6%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Juneau No. 2",
+    "gq": "120 4TH ST, JUNEAU",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Juneau No. 2 | Harris 83.8% | Trump 13.7% | \u2248 estimate"
+   ],
+   [
+    11,
+    58.3205,
+    -134.3954
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3205,-134.3954,11]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Juneau No. 2",
+    "gq": "120 4TH ST, JUNEAU",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 84%",
+    "Donald Trump 2024 / 14%"
+   ],
+   [
+    "Juneau No. 2 | Harris 83.8% | Trump 13.7% | \u2248 estimate"
+   ],
+   [
+    11,
+    58.3204,
+    -134.3951
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Alaska\",\"co\":\"Juneau City and Borough\",\"p\":\"Juneau No. 2\",\"ph\":\"120 4TH ST, JUNEAU\",\"ttl\":\"120 4TH ST, JUNEAU, AK, 99801\",\"pin\":[58.301902966355,-134.410491063771]},\"ll\":[58.3204,-134.3951,11]}"
+  ],
+  "err": []
+ },
+ "MTr-map": {
+  "addr": "Main St, Ekalaka, MT 59324",
+  "sugg": [
+   "Main Street, Ekalaka, Carter Co\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "13 Ekalaka",
+    "gq": "Main Street, Ekalaka",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 84%",
+    "Kamala Harris 2024 / 13%"
+   ],
+   [
+    "13 Ekalaka, Carter Co | Harris 13.4% | Trump 83.7%"
+   ],
+   [
+    13,
+    45.8945,
+    -104.5497
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5497,13]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5497,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "13 Ekalaka",
+    "gq": "Main Street, Ekalaka",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 84%",
+    "Kamala Harris 2024 / 13%"
+   ],
+   [
+    "13 Ekalaka, Carter Co | Harris 13.4% | Trump 83.7%"
+   ],
+   [
+    13,
+    45.8945,
+    -104.5497
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5497,13]}"
+  ],
+  "err": []
+ },
+ "MTr-list": {
+  "addr": "Main St, Ekalaka, MT 59324",
+  "sugg": [
+   "Main Street, Ekalaka, Carter Co\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "13 Ekalaka",
+    "gq": "Main Street, Ekalaka",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 84%",
+    "Kamala Harris 2024 / 13%"
+   ],
+   [],
+   [
+    13,
+    45.8945,
+    -104.5497
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"counties\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5497,13]}"
+  ],
+  "rows": [
+   "Carter | 89.0%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "13 Ekalaka",
+    "gq": "Main Street, Ekalaka",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 84%",
+    "Kamala Harris 2024 / 13%"
+   ],
+   [
+    "13 Ekalaka, Carter Co | Harris 13.4% | Trump 83.7%"
+   ],
+   [
+    13,
+    45.8945,
+    -104.5498
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5498,13]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "13 Ekalaka",
+    "gq": "Main Street, Ekalaka",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 84%",
+    "Kamala Harris 2024 / 13%"
+   ],
+   [
+    "13 Ekalaka, Carter Co | Harris 13.4% | Trump 83.7%"
+   ],
+   [
+    13,
+    45.8945,
+    -104.5497
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Montana\",\"co\":\"Carter County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Montana\",\"co\":\"Carter County\",\"p\":\"PRECINCT #13 EKALAKA\",\"ph\":\"Main Street, Ekalaka\",\"ttl\":\"Main Street, Ekalaka, Carter County, Montana, 59324, United States\",\"pin\":[45.8909802,-104.5470407]},\"ll\":[45.8945,-104.5497,13]}"
+  ],
+  "err": []
+ },
+ "DCw-map": {
+  "addr": "1600 Pennsylvania Ave NW, Washington, DC 20500",
+  "sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "gq": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   [
+    "District of Columbia, DC | Harris 90.3% | Trump 6.5%"
+   ],
+   [
+    15,
+    38.8987,
+    -77.0352
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"ttl\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"pin\":[38.898702605245,-77.035189204737]},\"ll\":[38.8987,-77.0352,15]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"ttl\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"pin\":[38.898702605245,-77.035189204737]},\"ll\":[38.8987,-77.0352,15]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "gq": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   [
+    "District of Columbia, DC | Harris 90.3% | Trump 6.5%"
+   ],
+   [
+    15,
+    38.8987,
+    -77.0352
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"ttl\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"pin\":[38.898702605245,-77.035189204737]},\"ll\":[38.8987,-77.0352,15]}"
+  ],
+  "err": []
+ },
+ "DCw-list": {
+  "addr": "1600 Pennsylvania Ave NW, Washington, DC 20500",
+  "sugg": [
+   "1600 PENNSYLVANIA AVE NW, WASHI\u2026Address",
+   "White House, 1600, Pennsylvania\u2026Address"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "All States",
+    "gq": "District of Columbia",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   [],
+   [
+    15,
+    38.8987,
+    -77.0352
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[38.8987,-77.0352,15]}"
+  ],
+  "rows": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%"
+  ],
+  "sel": [
+   "DC | 90.3%"
+  ],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "gq": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   [
+    "District of Columbia, DC | Harris 90.3% | Trump 6.5%"
+   ],
+   [
+    15,
+    38.8987,
+    -77.0352
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"ttl\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"pin\":[38.898702605245,-77.035189204737]},\"ll\":[38.8987,-77.0352,15]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "District of Columbia",
+    "gq": "1600 PENNSYLVANIA AVE NW, WASHI\u2026",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 90%",
+    "Donald Trump 2024 / 6%"
+   ],
+   [
+    "District of Columbia, DC | Harris 90.3% | Trump 6.5%"
+   ],
+   [
+    15,
+    38.8987,
+    -77.0352
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"dc\":1,\"sel\":{\"k\":\"dc\",\"ph\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"ttl\":\"1600 PENNSYLVANIA AVE NW, WASHINGTON\",\"pin\":[38.898702605245,-77.035189204737]},\"ll\":[38.8987,-77.0352,15]}"
+  ],
+  "err": []
+ },
+ "ZIP-map": {
+  "addr": "82001",
+  "sugg": [
+   "ZIP 82001, WYZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 4-01",
+    "gq": "ZIP 82001, WY",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 75%",
+    "Kamala Harris 2024 / 24%"
+   ],
+   [
+    "Laramie Precinct 4-01 | Harris 23.5% | Trump 75.0%"
+   ],
+   [
+    9,
+    41.1795,
+    -105.0461
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1795,-105.0461,9]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1795,-105.0461,9]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 4-01",
+    "gq": "ZIP 82001, WY",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 75%",
+    "Kamala Harris 2024 / 24%"
+   ],
+   [
+    "Laramie Precinct 4-01 | Harris 23.5% | Trump 75.0%"
+   ],
+   [
+    9,
+    41.1795,
+    -105.0461
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1795,-105.0461,9]}"
+  ],
+  "err": []
+ },
+ "ZIP-list": {
+  "addr": "82001",
+  "sugg": [
+   "ZIP 82001, WYZIP"
+  ],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 4-01",
+    "gq": "ZIP 82001, WY",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 75%",
+    "Kamala Harris 2024 / 24%"
+   ],
+   [],
+   [
+    9,
+    41.1795,
+    -105.0461
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"townships\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1795,-105.0461,9]}"
+  ],
+  "rows": [
+   "Cheyenne city | 57.5%",
+   "Albin town | 85.3%",
+   "Burns town | 85.3%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 4-01",
+    "gq": "ZIP 82001, WY",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 75%",
+    "Kamala Harris 2024 / 24%"
+   ],
+   [
+    "Laramie Precinct 4-01 | Harris 23.5% | Trump 75.0%"
+   ],
+   [
+    9,
+    41.1797,
+    -105.0471
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1797,-105.0471,9]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "Laramie Precinct 4-01",
+    "gq": "ZIP 82001, WY",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 75%",
+    "Kamala Harris 2024 / 24%"
+   ],
+   [
+    "Laramie Precinct 4-01 | Harris 23.5% | Trump 75.0%"
+   ],
+   [
+    9,
+    41.1795,
+    -105.0461
+   ],
+   "{\"v\":1,\"top\":\"President\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"sel\":{\"k\":\"prec\",\"st\":\"Wyoming\",\"co\":\"Laramie County\",\"p\":\"4-01\",\"ph\":\"ZIP 82001, WY\",\"ttl\":\"ZIP 82001, WY\",\"pin\":[41.1001,-104.9249]},\"ll\":[41.1795,-105.0461,9]}"
+  ],
+  "err": []
+ },
+ "BAD-map": {
+  "addr": "zzqx nowhere 99999",
+  "sugg": [],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "No match: zzqx nowhere 99999",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    4,
+    39.8,
+    -98.6
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8,-98.6,4]}"
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8,-98.6,4]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    4,
+    39.8,
+    -98.6
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8,-98.6,4]}"
+  ],
+  "err": []
+ },
+ "BAD-list": {
+  "addr": "zzqx nowhere 99999",
+  "sugg": [],
+  "res": [
+   {
+    "title": "President",
+    "crumbs": "All States",
+    "gq": "No match: zzqx nowhere 99999",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    4,
+    39.8085,
+    -98.5693
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"states\",\"ll\":[39.8085,-98.5693,4]}"
+  ],
+  "rows": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%"
+  ],
+  "sel": [],
+  "tomap": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "No match: zzqx nowhere 99999",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    4,
+    39.8085,
+    -98.5693
+   ]
+  ],
+  "snap_before_reload": "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8085,-98.5693,4]}",
+  "reload": [
+   {
+    "title": "President",
+    "crumbs": "United States",
+    "gq": "United States",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 50%",
+    "Kamala Harris 2024 / 48%"
+   ],
+   [],
+   [
+    4,
+    39.8,
+    -98.6
+   ],
+   "{\"v\":1,\"top\":\"President\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"ll\":[39.8,-98.6,4]}"
+  ],
+  "err": []
+ }
+}

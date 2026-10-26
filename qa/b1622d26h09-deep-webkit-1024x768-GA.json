@@ -1,0 +1,80 @@
+{
+ "build": "202610251622",
+ "drill_st": 21,
+ "st": [
+  "Georgia",
+  "President",
+  "51% / 49%"
+ ],
+ "st_sort": [
+  33,
+  55,
+  21,
+  20
+ ],
+ "st_sort_num": [
+  30,
+  25
+ ],
+ "drill_cty": 17,
+ "cty": [
+  "Fulton County",
+  "President",
+  "72% / 27%"
+ ],
+ "cty_rows": [
+  "Atlanta city | 17.4% | 81.6%",
+  "Sandy Springs city | 39.6% | 59.3%",
+  "Roswell city | 48.4% | 50.2%"
+ ],
+ "cty_sort": [
+  23,
+  8
+ ],
+ "cty_rows_after2": [
+  "Atlanta city | 17.4% | 81.6%",
+  "Sandy Springs city | 39.6% | 59.3%",
+  "Roswell city | 48.4% | 50.2%"
+ ],
+ "cty_num": [
+  "Atlanta city | 182K",
+  "Sandy Springs city | 21K | 32K | 54K",
+  "Roswell city | 24K | 25K | 49K"
+ ],
+ "cty_sort_num": 11,
+ "cty_num_flip": [
+  "Mountain Park city | 397",
+  "Chattahoochee Hills city | 2K",
+  "Palmetto city | 2K"
+ ],
+ "town_name": "Atlanta city",
+ "drill_town": 17,
+ "town": [
+  "Fulton County Atlanta city",
+  "President",
+  "82% / 17%"
+ ],
+ "town_rows": [
+  "Precinct 02D | 16.3% | 82.5%",
+  "Precinct 01B | 90.0%",
+  "Precinct 07A1 | 29.9% | 69.2%"
+ ],
+ "reload": {
+  "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"precincts\",\"lap\":\"Atlanta city\",\"ll\":[33.7903,-84.446,11]}",
+  "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Georgia\",\"co\":\"Fulton County\",\"lt\":\"none\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"precincts\",\"lap\":\"Atlanta city\",\"ll\":[33.7904,-84.446,11]}",
+  "cr": [
+   "Fulton County Atlanta city",
+   "President",
+   "82% / 17%"
+  ],
+  "rows": [
+   "Precinct 02D | 16.3% | 82.5%",
+   "Precinct 01B | 90.0%",
+   "Precinct 07A1 | 29.9% | 69.2%"
+  ]
+ },
+ "back": [
+  "noback"
+ ],
+ "err": []
+}
