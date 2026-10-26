@@ -2197,3 +2197,64 @@ Touch, WebKit and Chromium. No console errors, page errors or failed requests. *
 - **Layout-stability sweep** WebKit 375 (solo), Chromium 390 and 1024x768: SAME as previous runs (slider +68 px thumbnail push, +14 px split-bar first row, crumbs-text transient flake on All States). Back taps 20-31 ms; list drills 208-232 ms including the script's 200 ms pre-tap wait.
 - Data: `qa/h0400-*.log`, `qa/b1622h0400-*.json`; shots `qa/shotsb1622/b1622h04-*`.
 - Open and unchanged (not re-run): QA-130, QA-134, QA-135, QA-136, QA-124, QA-127, QA-113, QA-099, QA-133, QA-122.
+
+## Hourly run on 1622, Oct 26 ~6 AM EDT (5:57-6:35 AM EDT; live build 202610251622 at start and end)
+Touch, WebKit and Chromium. **No new bugs.** No page errors or console errors. One aborted request, the `?bc=` cache-buster during a scripted reload (Kentucky, Chromium 1024x576); harmless. The build has not changed, so this was a fresh-coverage pass plus the layout sweep. Next new bug is QA-138. v3/ and v4/ are still 404.
+
+### State totals vs certified (`qa/d26h06-tot.py`, Chromium 390x844, `__stTot` 2016/2020/2024 plus map thumbnails in % and #)
+- **Equal to the FEC compiled table for all three years:** NV, NM, OR, KY, GA, FL, TX, IL, MA, CT, RI, VT, HI and AK, plus CA 2016/2024, NJ 2016/2024, NY 2016 and PA 2016/2024. Examples: NV 2024 Harris 705,197 / Trump 751,205 / 1,484,840; GA 2020 Biden 2,473,633 / Trump 2,461,854 / 4,999,960; FL 2024 Harris 4,683,038 / Trump 6,110,125 / 10,893,752; TX 2024 Harris 4,835,250 / Trump 6,393,597 / 11,388,674; KY 2016 Clinton 628,854 / Trump 1,202,971 / 1,924,149; AK 2020 Biden 153,778 / Trump 189,951 / 359,530.
+- **Gaps from the FEC table where the app uses the state-certified figure (logged before under QA-003; all pass the user rule):**
+  - NY 2020: Biden 5,244,886 / Trump 3,251,997 / 8,616,861. That is +13,901 / +7,199 / +22,035 vs FEC and equals the NYSBOE certification.
+  - PA 2020: total 6,936,976. That is +21,693 vs FEC; the candidates are exact, and the total equals the orchestrator's official table.
+  - CA 2020: Biden 11,110,639 / Trump 6,006,518. That is +389 / +89 / total +499 (0.003%).
+  - NJ 2020: Biden 2,608,400 / Trump 1,883,313. That is +65 / +39 / total +104 (0.002%).
+  - NY 2024: Harris 4,619,543 / Trump 3,579,519. That is +348 / +620 / total +979 (0.012%).
+- Thumbnails: % and # are consistent with the totals in all 18 states x 3 years (0 mismatches). As before, map thumbnails write "k" (e.g. "751k"), while list thumbnails and rows write "K". This is a side note, not filed.
+- Data: `qa/b1622d26h06-tot-chromium-390x844.json`, `qa/d26h06-tot.log`. Shots: `shots/b1622d26h06-ch-390x844-tot-{NV,NM,OR,KY,GA,FL,TX,IL,NJ,NY,MA,CT,RI,VT,HI,AK,CA,PA}.png`.
+
+### Fresh flows: Nevada and New Mexico (WebKit 375x667), Oregon and Kentucky (Chromium 1024x576) (`qa/d26h06-states.py`)
+- **District-type menu:** each state was checked with state senate, state house, school districts and US House, each opened in the list, in % and #. Row counts:
+  - Nevada: 21 / 42 / 17 / 4.
+  - New Mexico: 42 / 70 / 89 / 3.
+  - Oregon: 30 / 60 / 197 / 6.
+  - Kentucky: 38 / 100 / 177 / 6.
+- **Overlap, clipping and off-screen checks:** the over/clip/off checks found nothing in every list.
+- **Number mode:** % and # switch correctly and switch back.
+- **Taps:** every tap was 2-93 ms; the slowest was the Oregon district-type pick at 92.6 ms. Nothing was over 100 ms.
+- **Reload:** the state-house list was restored with the same type and row count.
+- **Time slider ranges** ('16-'20 line, '20-'24 bar, '16-'24 line): work in all four states. The Nevada '16>'24 line still draws "+2.9 / −2.6" on the crossing point (the known chart-label issue). Shot: `shots/b1622d26h06-we-375x667-st-Nevada-range16-24-line.png`.
+- **Geo menu > counties > county > town > globe (map) > reload:** works.
+  - Counties: Clark 5 towns > Las Vegas 195 precincts; Bernalillo 5 > Albuquerque 553; Multnomah 7 > Portland 79; Jefferson KY 84 > Louisville balance 252.
+  - The state snapshot was identical after reload in all four.
+  - The Bernalillo/Jefferson crumb titles are cut at 31 characters ("Bernalillo County Albuquerque c…", "Jefferson County Louisville/Jef…"). This is QA-136, unchanged.
+- **Town audit (`qa/d26h06-audit.py`):**
+  - Clark NV: 327 of 711 precincts are in no town.
+  - Bernalillo NM: 125 of 687 precincts are in no town.
+  - Multnomah OR: 11 of 107 precincts are in no town.
+  - These precincts are unincorporated areas with no town row (Paradise / Spring Valley / Enterprise, South / North Valley, Sauvie Island / Corbett), so not filed.
+  - Jefferson KY: still 252 precincts in the Louisville balance and the 49 / 49 tie (QA-134, unchanged).
+- **Address search** (WebKit 390x844, from the map and from the list, then globe, then reload; `qa/d26h06-addr.py`):
+  - Reno > Washoe Precinct 1039, Harris 62.1 / Trump 36.0.
+  - Albuquerque Civic Plaza > Bernalillo Precinct 131, 74.4 / 19.7.
+  - Portland City Hall > Multnomah Precinct 3303, 86.1 / 9.2.
+  - Louisville > Jefferson Precinct N136, 80.0 / 20.0. N136 is one of the QA-134 precincts that is in no town.
+  - All paths restore after reload. No errors.
+- Data: `qa/b1622d26h06-states-*.json`, `qa/b1622d26h06-audit.json`, `qa/b1622d26h06-addr-webkit-390x844.json`. Shots: `shots/b1622d26h06-{we-375x667,ch-1024x576}-st-*`, `shots/b1622d26h06-we-390x844-addr2-*`.
+
+### Standing checks
+- **Layout-stability sweep** (MA > Worcester President with the slider, US House list, year change, drill-in, back, split bar, list to map) on WebKit 1024x576, Chromium 320 and WebKit 390: **SAME as previous runs.** The only movements are the known ones: the slider's +68 px thumbnail push and the +14 px first row in split bar. Back taps took 24-38 ms. List drills took 207-236 ms, including the script's 200 ms pre-tap wait (known baseline). The All States sheet took 62-73 ms. Data: `qa/b1622d26h06-layout3-*.json`; shots `shots/b1622d26h06-{we-1024x576,ch-320,we-390}-ls3*`.
+- **2016 colours and PA '16:** still pass.
+  - US '16 map: CA/NY/IL/CO/VA/WA are blue and TX/OH/KS are red. FL/PA/MI/WI are near-white because their margins are under 1.2 points (known).
+  - US House '16 (WebKit 320): 12.1% blue / 87.9% red in the sampled frame. That frame is mostly the West and Midwest at 320; see the screenshot. The map is not all red.
+  - PA '16: not blank. Philadelphia, Allegheny and Lackawanna are blue; Lancaster, Westmoreland and Clearfield are red.
+  - Labels: Clinton 48 / Trump 46 (US) and Trump 48 / Clinton 47 (PA).
+  - PA '16 chart (Chromium 1024x768): bar 48.2 / 47.5 / 4.4 and pie 48.2 / 47.5.
+  - Shots: `shots/b1622d26h06c16-we-320-col16-*.png`, `shots/b1622d26h06o-ch-{390,1024x768}-own-*.png`.
+- **List rows and thumbnails** (Chromium 390 and 1024x768):
+  - Rows show the number only (PA "1", "4", "17"), and DC is labelled "At-large".
+  - Thumbnails are centred on the topic-icon axis (27 px) in all 12 views.
+  - Taps took 3-57 ms.
+- **Menus** (WebKit 375 and 1024x576, US and Alabama): they overlay with a transparent backdrop, and nothing is dimmed or shrunk.
+- **Sort and chart menu** (WebKit 1024x576, All States > GA > Fulton): sort flips correctly (14-20 ms). Bar/gbar work.
+  - **QA-099 unchanged:** the sort chip [922,111,956,133] still overlaps the first row's blue bar: CA 58.5% and Atlanta city 81.6% in split bar, Fulton 71.9% in bar, and Portland 1J in Oregon schools # at 1024x576.
+- **Open and unchanged (not re-filed):** QA-099, QA-134, QA-136. Not re-run: QA-102, QA-113, QA-122, QA-124, QA-127, QA-130, QA-133, QA-135, QA-137. QA-100 stays HIGH.

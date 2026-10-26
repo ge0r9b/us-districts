@@ -1,0 +1,651 @@
+{
+ "Clark County": {
+  "audit": [
+   {
+    "n": "Boulder City city",
+    "np24": 711,
+    "tot24": 10260,
+    "est": false
+   },
+   {
+    "n": "Henderson city",
+    "np24": 711,
+    "tot24": 191880,
+    "est": false
+   },
+   {
+    "n": "Las Vegas city",
+    "np24": 711,
+    "tot24": 288540,
+    "est": false
+   },
+   {
+    "n": "Mesquite city",
+    "np24": 711,
+    "tot24": 13716,
+    "est": false
+   },
+   {
+    "n": "North Las Vegas city",
+    "np24": 711,
+    "tot24": 112083,
+    "est": false
+   }
+  ],
+  "x": {
+   "un": [
+    327,
+    208964,
+    196800,
+    412597
+   ],
+   "cty": [
+    711,
+    519334,
+    491795,
+    1029076
+   ],
+   "dup": 0,
+   "per": [
+    [
+     "Nevada,Clark County,Las Vegas city,-115.",
+     195,
+     148583,
+     134708
+    ],
+    [
+     "Nevada,Clark County,Henderson city,-115.",
+     106,
+     86359,
+     102148
+    ],
+    [
+     "Nevada,Clark County,North Las Vegas city",
+     73,
+     67288,
+     42726
+    ],
+    [
+     "Nevada,Clark County,Mesquite city,-114.2",
+     6,
+     4853,
+     8633
+    ],
+    [
+     "Nevada,Clark County,Boulder City city,-1",
+     4,
+     3287,
+     6780
+    ]
+   ],
+   "unNames": [
+    "1328",
+    "1330",
+    "1341",
+    "1343",
+    "1344",
+    "1351",
+    "1352",
+    "1353",
+    "1368",
+    "1602",
+    "1613",
+    "1614",
+    "1008",
+    "1619",
+    "1621",
+    "1631",
+    "1664",
+    "1016",
+    "2644",
+    "2645",
+    "2693",
+    "2740",
+    "2746",
+    "2752",
+    "4018",
+    "4035",
+    "4434",
+    "5013",
+    "4559",
+    "4031"
+   ]
+  }
+ },
+ "Bernalillo County": {
+  "audit": [
+   {
+    "n": "Albuquerque city",
+    "np24": 687,
+    "tot24": 248287,
+    "est": false
+   },
+   {
+    "n": "Edgewood town",
+    "np24": 687,
+    "tot24": 616,
+    "est": false
+   },
+   {
+    "n": "Los Ranchos de Albuquerque village",
+    "np24": 687,
+    "tot24": 3863,
+    "est": false
+   },
+   {
+    "n": "Rio Rancho city",
+    "np24": 687,
+    "tot24": 366,
+    "est": false
+   },
+   {
+    "n": "Tijeras village",
+    "np24": 687,
+    "tot24": 468,
+    "est": true
+   }
+  ],
+  "x": {
+   "un": [
+    125,
+    30904,
+    25404,
+    57712
+   ],
+   "cty": [
+    687,
+    184117,
+    118762,
+    310844
+   ],
+   "dup": 0,
+   "per": [
+    [
+     "New Mexico,Bernalillo County,Albuquerque",
+     553,
+     150168,
+     91668
+    ],
+    [
+     "New Mexico,Bernalillo County,Los Ranchos",
+     7,
+     2526,
+     1253
+    ],
+    [
+     "New Mexico,Bernalillo County,Edgewood to",
+     1,
+     302,
+     296
+    ],
+    [
+     "New Mexico,Bernalillo County,Rio Rancho ",
+     1,
+     217,
+     141
+    ],
+    [
+     "New Mexico,Bernalillo County,Tijeras vil",
+     0,
+     0,
+     0
+    ]
+   ],
+   "unNames": [
+    "000093",
+    "000250",
+    "000031",
+    "000196",
+    "000213",
+    "000181",
+    "000100",
+    "000193",
+    "000003",
+    "000259",
+    "000578",
+    "000577",
+    "000596",
+    "000597",
+    "000151",
+    "000009",
+    "000554",
+    "000555",
+    "000556",
+    "000573",
+    "000570",
+    "000558",
+    "000303",
+    "000557",
+    "000559",
+    "000575",
+    "000391",
+    "000681",
+    "000537",
+    "000569"
+   ]
+  }
+ },
+ "Multnomah County": {
+  "audit": [
+   {
+    "n": "Fairview city",
+    "np24": 107,
+    "tot24": 4205,
+    "est": false
+   },
+   {
+    "n": "Gresham city",
+    "np24": 107,
+    "tot24": 44890,
+    "est": false
+   },
+   {
+    "n": "Lake Oswego city",
+    "np24": 107,
+    "tot24": 1819,
+    "est": false
+   },
+   {
+    "n": "Maywood Park city",
+    "np24": 107,
+    "tot24": 525,
+    "est": false
+   },
+   {
+    "n": "Portland city",
+    "np24": 107,
+    "tot24": 343111,
+    "est": false
+   },
+   {
+    "n": "Troutdale city",
+    "np24": 107,
+    "tot24": 8066,
+    "est": false
+   },
+   {
+    "n": "Wood Village city",
+    "np24": 107,
+    "tot24": 1296,
+    "est": false
+   }
+  ],
+  "x": {
+   "un": [
+    11,
+    6106,
+    3833,
+    10338
+   ],
+   "cty": [
+    107,
+    325927,
+    70759,
+    414250
+   ],
+   "dup": 0,
+   "per": [
+    [
+     "Oregon,Multnomah County,Portland city,-1",
+     79,
+     286273,
+     41922
+    ],
+    [
+     "Oregon,Multnomah County,Gresham city,-12",
+     11,
+     24479,
+     18731
+    ],
+    [
+     "Oregon,Multnomah County,Troutdale city,-",
+     2,
+     4098,
+     3663
+    ],
+    [
+     "Oregon,Multnomah County,Fairview city,-1",
+     1,
+     2433,
+     1625
+    ],
+    [
+     "Oregon,Multnomah County,Lake Oswego city",
+     1,
+     1397,
+     365
+    ],
+    [
+     "Oregon,Multnomah County,Maywood Park cit",
+     1,
+     418,
+     84
+    ],
+    [
+     "Oregon,Multnomah County,Wood Village cit",
+     1,
+     723,
+     536
+    ]
+   ],
+   "unNames": [
+    "Precinct 2802",
+    "Precinct 3101",
+    "Precinct 3301",
+    "Precinct 3402",
+    "Precinct 3801",
+    "Precinct 4608",
+    "Precinct 4807",
+    "Precinct 4901",
+    "Precinct 4902",
+    "Precinct 5009",
+    "Precinct 5202"
+   ]
+  }
+ },
+ "Jefferson County": {
+  "audit": [
+   {
+    "n": "Anchorage city",
+    "np24": 605,
+    "tot24": 1599,
+    "est": false
+   },
+   {
+    "n": "Audubon Park city",
+    "np24": 605,
+    "tot24": 960,
+    "est": false
+   },
+   {
+    "n": "Bancroft city",
+    "np24": 605,
+    "tot24": 897,
+    "est": true
+   },
+   {
+    "n": "Barbourmeade city",
+    "np24": 605,
+    "tot24": 938,
+    "est": false
+   },
+   {
+    "n": "Beechwood Village city",
+    "np24": 605,
+    "tot24": 312,
+    "est": false
+   },
+   {
+    "n": "Bellemeade city",
+    "np24": 605,
+    "tot24": 683,
+    "est": false
+   },
+   {
+    "n": "Bellewood city",
+    "np24": 605,
+    "tot24": 564,
+    "est": false
+   },
+   {
+    "n": "Blue Ridge Manor city",
+    "np24": 605,
+    "tot24": 966,
+    "est": false
+   },
+   {
+    "n": "Briarwood city",
+    "np24": 605,
+    "tot24": 1016,
+    "est": true
+   },
+   {
+    "n": "Broeck Pointe city",
+    "np24": 605,
+    "tot24": 645,
+    "est": true
+   },
+   {
+    "n": "Brownsboro Farm city",
+    "np24": 605,
+    "tot24": 840,
+    "est": true
+   },
+   {
+    "n": "Brownsboro Village city",
+    "np24": 605,
+    "tot24": 607,
+    "est": true
+   },
+   {
+    "n": "Cambridge city",
+    "np24": 605,
+    "tot24": 752,
+    "est": true
+   },
+   {
+    "n": "Coldstream city",
+    "np24": 605,
+    "tot24": 1045,
+    "est": false
+   },
+   {
+    "n": "Creekside city",
+    "np24": 605,
+    "tot24": 602,
+    "est": false
+   },
+   {
+    "n": "Crossgate city",
+    "np24": 605,
+    "tot24": 647,
+    "est": true
+   },
+   {
+    "n": "Douglass Hills city",
+    "np24": 605,
+    "tot24": 1806,
+    "est": false
+   },
+   {
+    "n": "Druid Hills city",
+    "np24": 605,
+    "tot24": 209,
+    "est": false
+   },
+   {
+    "n": "Fincastle city",
+    "np24": 605,
+    "tot24": 1536,
+    "est": false
+   },
+   {
+    "n": "Forest Hills city",
+    "np24": 605,
+    "tot24": 321,
+    "est": false
+   },
+   {
+    "n": "Glenview city",
+    "np24": 605,
+    "tot24": 692,
+    "est": false
+   },
+   {
+    "n": "Glenview Hills city",
+    "np24": 605,
+    "tot24": 967,
+    "est": true
+   },
+   {
+    "n": "Glenview Manor city",
+    "np24": 605,
+    "tot24": 921,
+    "est": true
+   },
+   {
+    "n": "Goose Creek city",
+    "np24": 605,
+    "tot24": 757,
+    "est": false
+   },
+   {
+    "n": "Graymoor-Devondale city",
+    "np24": 605,
+    "tot24": 1724,
+    "est": false
+   },
+   {
+    "n": "Green Spring city",
+    "np24": 605,
+    "tot24": 821,
+    "est": true
+   },
+   {
+    "n": "Heritage Creek city",
+    "np24": 605,
+    "tot24": 428,
+    "est": false
+   },
+   {
+    "n": "Hickory Hill city",
+    "np24": 605,
+    "tot24": 850,
+    "est": true
+   },
+   {
+    "n": "Hills and Dales city",
+    "np24": 605,
+    "tot24": 1649,
+    "est": true
+   },
+   {
+    "n": "Hollow Creek city",
+    "np24": 605,
+    "tot24": 1001,
+    "est": false
+   }
+  ],
+  "x": {
+   "un": [
+    225,
+    69951,
+    23160,
+    95213
+   ],
+   "cty": [
+    605,
+    202328,
+    143853,
+    352621
+   ],
+   "dup": 0,
+   "per": [
+    [
+     "Kentucky,Jefferson County,Louisville/Jef",
+     252,
+     87501,
+     87162
+    ],
+    [
+     "Kentucky,Jefferson County,Jeffersontown ",
+     23,
+     7578,
+     6976
+    ],
+    [
+     "Kentucky,Jefferson County,St. Matthews c",
+     16,
+     5086,
+     2854
+    ],
+    [
+     "Kentucky,Jefferson County,Shively city,-",
+     12,
+     4694,
+     1441
+    ],
+    [
+     "Kentucky,Jefferson County,Lyndon city,-8",
+     8,
+     3807,
+     2858
+    ],
+    [
+     "Kentucky,Jefferson County,Middletown cit",
+     8,
+     3245,
+     2907
+    ],
+    [
+     "Kentucky,Jefferson County,Hurstbourne ci",
+     4,
+     1088,
+     1486
+    ],
+    [
+     "Kentucky,Jefferson County,Prospect city,",
+     4,
+     1615,
+     1534
+    ],
+    [
+     "Kentucky,Jefferson County,Anchorage city",
+     3,
+     749,
+     823
+    ],
+    [
+     "Kentucky,Jefferson County,Douglass Hills",
+     3,
+     868,
+     912
+    ],
+    [
+     "Kentucky,Jefferson County,Graymoor-Devon",
+     3,
+     1022,
+     675
+    ],
+    [
+     "Kentucky,Jefferson County,Indian Hills c",
+     3,
+     879,
+     916
+    ]
+   ],
+   "unNames": [
+    "N101",
+    "L216",
+    "N102",
+    "K119",
+    "L219",
+    "G143",
+    "G145",
+    "L211",
+    "L165",
+    "M196",
+    "N136",
+    "H167",
+    "N162",
+    "L166",
+    "J165",
+    "L201",
+    "C129",
+    "L210",
+    "N134",
+    "J105",
+    "N160",
+    "K175",
+    "H120",
+    "L183",
+    "L197",
+    "L207",
+    "E176",
+    "L167",
+    "G160",
+    "G174"
+   ]
+  }
+ }
+}

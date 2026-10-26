@@ -1,0 +1,2279 @@
+{
+ "build": "202610251622",
+ "lyr_lat": 15,
+ "lyr": {
+  "map_before": [
+   0,
+   0,
+   1024,
+   576,
+   "1",
+   "none"
+  ],
+  "map_open": [
+   0,
+   0,
+   1024,
+   576,
+   "1",
+   "none"
+  ],
+  "row": [
+   744,
+   416,
+   216,
+   48,
+   "1",
+   "none"
+  ],
+  "btns": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "bodyfilter": [
+   "none",
+   "1"
+  ]
+ },
+ "states": {
+  "hdr": "All States",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.3% | 55.9%",
+   "PA | 50.2% | 48.5%",
+   "OH | 55.1% | 43.9%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 38.3% | 58.5%",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "58.5%",
+       [
+        439,
+        126,
+        982,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 56.1% | 42.5%",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 56.1% | 43.0%",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2016 / 46%"
+    ],
+    "rows": [
+     "CA | 31.6% | 61.7%",
+     "FL | 49.0% | 47.8%",
+     "TX | 52.2% | 43.2%",
+     "NY | 36.5% | 59.0%",
+     "PA | 48.2% | 47.5%",
+     "IL | 38.8% | 55.8%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 31.6% | 61.7%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "61.7%",
+         [
+          377,
+          126,
+          950,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          950,
+          126,
+          1012,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 49.0% | 47.8%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 52.2% | 43.2%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 65.85M",
+     "Donald Trump 2016 / 62.98M"
+    ],
+    "rows_num": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 2.15M | 3.09M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 4.48M | 8.75M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg oth",
+         "",
+         [
+          902,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 4.62M | 4.50M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 4.69M | 3.88M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 15,
+    "rows_flip": [
+     "WY | 256K",
+     "DC | 311K",
+     "VT | 315K",
+     "AK | 319K",
+     "ND | 344K",
+     "SD | 370K"
+    ],
+    "rows_back": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 2.82M | 4.56M",
+     "PA | 2.97M | 2.93M",
+     "IL | 2.15M | 3.09M"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 47%"
+    ],
+    "rows": [
+     "CA | 34.3% | 63.5%",
+     "TX | 52.1% | 46.5%",
+     "FL | 51.2% | 47.9%",
+     "NY | 37.7% | 60.9%",
+     "PA | 48.7% | 49.9%",
+     "IL | 40.6% | 57.5%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 34.3% | 63.5%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "63.5%",
+         [
+          402,
+          126,
+          992,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 52.1% | 46.5%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 51.2% | 47.9%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 81.28M",
+     "Donald Trump 2020 / 74.22M"
+    ],
+    "rows_num": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 2.45M | 3.47M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.01M | 11.11M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "11.11M",
+         [
+          384,
+          126,
+          941,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          941,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 5.89M | 5.26M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 5.67M | 5.30M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 12,
+    "rows_flip": [
+     "WY | 277K",
+     "DC | 344K",
+     "AK | 358K",
+     "ND | 362K",
+     "VT | 367K",
+     "SD | 423K"
+    ],
+    "rows_back": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 3.25M | 5.24M",
+     "PA | 3.38M | 3.46M",
+     "IL | 2.45M | 3.47M"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "CA | 38.3% | 58.5%",
+     "TX | 56.1% | 42.5%",
+     "FL | 56.1% | 43.0%",
+     "NY | 43.3% | 55.9%",
+     "PA | 50.2% | 48.5%",
+     "OH | 55.1% | 43.9%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 38.3% | 58.5%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "58.5%",
+         [
+          439,
+          126,
+          982,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 56.1% | 42.5%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 56.1% | 43.0%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 77.30M",
+     "Kamala Harris 2024 / 75.02M"
+    ],
+    "rows_num": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M | 2.53M"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.08M | 9.28M",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "9.28M",
+         [
+          419,
+          126,
+          932,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          932,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 6.39M | 4.84M",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 6.11M | 4.68M",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 18,
+    "rows_flip": [
+     "WY | 269K",
+     "DC | 326K",
+     "AK | 338K",
+     "ND | 368K",
+     "VT | 369K",
+     "SD | 429K"
+    ],
+    "rows_back": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 3.58M | 4.62M",
+     "PA | 3.54M | 3.42M",
+     "OH | 3.18M | 2.53M"
+    ]
+   }
+  },
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 77.30M",
+   "Kamala Harris 2024 / 75.02M"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 6.08M | 9.28M",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "9.28M",
+       [
+        419,
+        126,
+        932,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        932,
+        126,
+        960,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 6.39M | 4.84M",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 6.11M | 4.68M",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "sort_lat": 14,
+  "rows_flip": [
+   "WY | 269K",
+   "DC | 326K",
+   "AK | 338K",
+   "ND | 368K",
+   "VT | 369K",
+   "SD | 429K"
+  ],
+  "sort2_lat": 9,
+  "rows_back": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 3.58M | 4.62M",
+   "PA | 3.54M | 3.42M",
+   "OH | 3.18M | 2.53M"
+  ],
+  "ch_open_lat": 41,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   408,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 15,
+    "mode": "gbar",
+    "rows": [
+     "CA | 38.3% | 58.5% | 3.2%",
+     "TX | 56.1% | 42.5% | 1.4%",
+     "FL | 56.1% | 43.0% | 0.9%"
+    ],
+    "chip": [
+     {
+      "row": "CA | 38.3% | 58.5% | 3.2%",
+      "box": [
+       12,
+       122,
+       1024,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "TX | 56.1% | 42.5% | 1.4%",
+      "box": [
+       12,
+       166,
+       1024,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     408,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "GA": {
+  "hdr": "Georgia",
+  "th_pct": [
+   "Donald Trump 2024 / 51%",
+   "Kamala Harris 2024 / 49%"
+  ],
+  "rows_pct": [
+   "Fulton | 27.0% | 71.9% | 1.1%",
+   "Gwinnett | 41.1% | 57.6% | 1.2%",
+   "Cobb | 42.0% | 56.9% | 1.1%",
+   "DeKalb | 17.1% | 81.9% | 1.0%",
+   "Cherokee | 69.1% | 30.1% | 0.8%",
+   "Chatham | 40.6% | 58.6% | 0.7%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Fulton | 27.0% | 71.9% | 1.1%",
+     "box": [
+      12,
+      122,
+      1024,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Gwinnett | 41.1% | 57.6% | 1.2%",
+     "box": [
+      12,
+      166,
+      1024,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Cobb | 42.0% | 56.9% | 1.1%",
+     "box": [
+      12,
+      210,
+      1024,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 51%",
+     "Hillary Clinton 2016 / 46%"
+    ],
+    "rows": [
+     "Fulton | 27.4% | 69.0% | 3.7%",
+     "Cobb | 46.7% | 48.9% | 4.4%",
+     "Gwinnett | 45.1% | 51.0% | 3.8%",
+     "DeKalb | 16.5% | 80.4% | 3.1%",
+     "Chatham | 41.0% | 55.9% | 3.1%",
+     "Cherokee | 72.7% | 22.8% | 4.5%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 27.4% | 69.0% | 3.7%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 46.7% | 48.9% | 4.4%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 45.1% | 51.0% | 3.8%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2016 / 2.09M",
+     "Hillary Clinton 2016 / 1.88M"
+    ],
+    "rows_num": [
+     "Fulton | 118K | 297K | 16K",
+     "Cobb | 153K | 160K | 14K",
+     "Gwinnett | 147K | 166K | 12K",
+     "DeKalb | 51K | 251K | 10K",
+     "Chatham | 46K | 62K | 4K",
+     "Cherokee | 81K | 25K | 5K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 118K | 297K | 16K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 153K | 160K | 14K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 147K | 166K | 12K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 24,
+    "rows_flip": [
+     "Taliaferro | 349 | 545 | 3",
+     "Quitman | 575 | 461 | 8",
+     "Webster | 630 | 473 | 13",
+     "Echols | 1K | 156 | 13",
+     "Clay | 566 | 697 | 8",
+     "Chattahoochee | 751 | 594 | 45"
+    ],
+    "rows_back": [
+     "Fulton | 118K | 297K | 16K",
+     "Cobb | 153K | 160K | 14K",
+     "Gwinnett | 147K | 166K | 12K",
+     "DeKalb | 51K | 251K | 10K",
+     "Chatham | 46K | 62K | 4K",
+     "Cherokee | 81K | 25K | 5K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 49%",
+     "Donald Trump 2020 / 49%"
+    ],
+    "rows": [
+     "Fulton | 26.2% | 72.6% | 1.2%",
+     "Gwinnett | 40.2% | 58.4% | 1.4%",
+     "Cobb | 42.0% | 56.3% | 1.6%",
+     "DeKalb | 15.7% | 83.1% | 1.1%",
+     "Cherokee | 68.8% | 29.5% | 1.7%",
+     "Chatham | 39.9% | 58.7% | 1.4%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 26.2% | 72.6% | 1.2%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 40.2% | 58.4% | 1.4%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 42.0% | 56.3% | 1.6%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 2.47M",
+     "Donald Trump 2020 / 2.46M"
+    ],
+    "rows_num": [
+     "Fulton | 137K | 380K | 6K",
+     "Gwinnett | 166K | 242K | 6K",
+     "Cobb | 165K | 222K | 6K",
+     "DeKalb | 58K | 308K | 4K",
+     "Cherokee | 100K | 43K | 2K",
+     "Chatham | 53K | 78K | 2K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 137K | 380K | 6K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 166K | 242K | 6K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 165K | 222K | 6K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 23,
+    "rows_flip": [
+     "Taliaferro | 360 | 561 | 7",
+     "Quitman | 604 | 497 | 5",
+     "Webster | 748 | 640 | 3",
+     "Clay | 637 | 791 | 7",
+     "Echols | 1K | 167 | 18",
+     "Baker | 897 | 652 | 6"
+    ],
+    "rows_back": [
+     "Fulton | 137K | 380K | 6K",
+     "Gwinnett | 166K | 242K | 6K",
+     "Cobb | 165K | 222K | 6K",
+     "DeKalb | 58K | 308K | 4K",
+     "Cherokee | 100K | 43K | 2K",
+     "Chatham | 53K | 78K | 2K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 49%"
+    ],
+    "rows": [
+     "Fulton | 27.0% | 71.9% | 1.1%",
+     "Gwinnett | 41.1% | 57.6% | 1.2%",
+     "Cobb | 42.0% | 56.9% | 1.1%",
+     "DeKalb | 17.1% | 81.9% | 1.0%",
+     "Cherokee | 69.1% | 30.1% | 0.8%",
+     "Chatham | 40.6% | 58.6% | 0.7%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 27.0% | 71.9% | 1.1%",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 41.1% | 57.6% | 1.2%",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 42.0% | 56.9% | 1.1%",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.66M",
+     "Kamala Harris 2024 / 2.55M"
+    ],
+    "rows_num": [
+     "Fulton | 145K | 385K | 6K",
+     "Gwinnett | 173K | 243K | 5K",
+     "Cobb | 169K | 228K | 4K",
+     "DeKalb | 63K | 300K | 4K",
+     "Cherokee | 112K | 49K | 1K",
+     "Chatham | 57K | 83K | 1K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Fulton | 145K | 385K | 6K",
+       "box": [
+        12,
+        122,
+        1024,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Gwinnett | 173K | 243K | 5K",
+       "box": [
+        12,
+        166,
+        1024,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Cobb | 169K | 228K | 4K",
+       "box": [
+        12,
+        210,
+        1024,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 21,
+    "rows_flip": [
+     "Taliaferro | 375 | 507 | 2",
+     "Quitman | 656 | 480 | 4",
+     "Webster | 790 | 544 | 2",
+     "Echols | 1K | 127 | 4",
+     "Clay | 663 | 771 | 8",
+     "Baker | 883 | 590 | 3"
+    ],
+    "rows_back": [
+     "Fulton | 145K | 385K | 6K",
+     "Gwinnett | 173K | 243K | 5K",
+     "Cobb | 169K | 228K | 4K",
+     "DeKalb | 63K | 300K | 4K",
+     "Cherokee | 112K | 49K | 1K",
+     "Chatham | 57K | 83K | 1K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Fulton | 145K | 385K | 6K",
+   "Gwinnett | 173K | 243K | 5K",
+   "Cobb | 169K | 228K | 4K",
+   "DeKalb | 63K | 300K | 4K",
+   "Cherokee | 112K | 49K | 1K",
+   "Chatham | 57K | 83K | 1K"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 2.66M",
+   "Kamala Harris 2024 / 2.55M"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Fulton | 145K | 385K | 6K",
+     "box": [
+      12,
+      122,
+      1024,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Gwinnett | 173K | 243K | 5K",
+     "box": [
+      12,
+      166,
+      1024,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Cobb | 169K | 228K | 4K",
+     "box": [
+      12,
+      210,
+      1024,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "sort_lat": 18,
+  "rows_flip": [
+   "Taliaferro | 375 | 507 | 2",
+   "Quitman | 656 | 480 | 4",
+   "Webster | 790 | 544 | 2",
+   "Echols | 1K | 127 | 4",
+   "Clay | 663 | 771 | 8",
+   "Baker | 883 | 590 | 3"
+  ],
+  "sort2_lat": 20,
+  "rows_back": [
+   "Fulton | 145K | 385K | 6K",
+   "Gwinnett | 173K | 243K | 5K",
+   "Cobb | 169K | 228K | 4K",
+   "DeKalb | 63K | 300K | 4K",
+   "Cherokee | 112K | 49K | 1K",
+   "Chatham | 57K | 83K | 1K"
+  ],
+  "ch_open_lat": 7,
+  "ch_opts": [
+   "bar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   408,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "bar": {
+    "lat": 14,
+    "mode": "bar",
+    "rows": [
+     "Fulton | 27.0% | 71.9%",
+     "Gwinnett | 41.1% | 57.6%",
+     "Cobb | 42.0% | 56.9%"
+    ],
+    "chip": [
+     {
+      "row": "Fulton | 27.0% | 71.9%",
+      "box": [
+       12,
+       122,
+       1024,
+       152
+      ],
+      "hit": [
+       [
+        "sg dem",
+        "71.9%",
+        [
+         385,
+         126,
+         1003,
+         148
+        ]
+       ]
+      ]
+     },
+     {
+      "row": "Gwinnett | 41.1% | 57.6%",
+      "box": [
+       12,
+       152,
+       1024,
+       182
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     408,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "Fulton": {
+  "hdr": "Fulton County",
+  "th_pct": [
+   "Kamala Harris 2024 / 72%",
+   "Donald Trump 2024 / 27%"
+  ],
+  "rows_pct": [
+   "Atlanta city | 17.4% | 81.6%",
+   "Sandy Springs city | 39.6% | 59.3%",
+   "Roswell city | 48.4% | 50.2%",
+   "South Fulton city | 93.1%",
+   "Johns Creek city | 45.1% | 53.3%",
+   "Alpharetta city | 48.1% | 50.2%"
+  ],
+  "chip": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Atlanta city | 17.4% | 81.6%",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "81.6%",
+       [
+        307,
+        126,
+        1003,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Sandy Springs city | 39.6% | 59.3%",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Roswell city | 48.4% | 50.2%",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 69%",
+     "Donald Trump 2016 / 27%"
+    ],
+    "rows": [
+     "Atlanta city | 16.3% | 80.1%",
+     "Roswell city | 51.6% | 43.2%",
+     "Sandy Springs city | 41.3% | 54.0%",
+     "South Fulton city | 94.3%",
+     "Johns Creek city | 49.4% | 46.3%",
+     "Alpharetta city | 51.0% | 44.3%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 16.3% | 80.1%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "80.1%",
+         [
+          298,
+          126,
+          981,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Roswell city | 51.6% | 43.2%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Sandy Springs city | 41.3% | 54.0%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 297K",
+     "Donald Trump 2016 / 118K"
+    ],
+    "rows_num": [
+     "Atlanta city | 148K",
+     "Roswell city | 23K | 19K | 44K",
+     "Sandy Springs city | 18K | 24K | 44K",
+     "South Fulton city | 40K | 43K",
+     "Johns Creek city | 17K | 16K | 35K",
+     "Alpharetta city | 13K | 11K | 26K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 148K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "148K",
+         [
+          289,
+          126,
+          931,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          931,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Roswell city | 23K | 19K | 44K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Sandy Springs city | 18K | 24K | 44K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 20,
+    "rows_flip": [
+     "Mountain Park city | 332",
+     "Chattahoochee Hills city | 1K",
+     "Palmetto city | 2K",
+     "Hapeville city | 2K",
+     "College Park city | 4K",
+     "Fairburn city | 6K | 7K"
+    ],
+    "rows_back": [
+     "Atlanta city | 148K",
+     "Roswell city | 23K | 19K | 44K",
+     "Sandy Springs city | 18K | 24K | 44K",
+     "South Fulton city | 40K | 43K",
+     "Johns Creek city | 17K | 16K | 35K",
+     "Alpharetta city | 13K | 11K | 26K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 73%",
+     "Donald Trump 2020 / 26%"
+    ],
+    "rows": [
+     "Atlanta city | 17.0% | 81.8%",
+     "Sandy Springs city | 37.9% | 60.8%",
+     "Roswell city | 46.2% | 52.3%",
+     "South Fulton city | 94.2%",
+     "Johns Creek city | 43.8% | 55.1%",
+     "Alpharetta city | 46.7% | 52.0%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 17.0% | 81.8%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "81.8%",
+         [
+          304,
+          126,
+          1002,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Sandy Springs city | 37.9% | 60.8%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Roswell city | 46.2% | 52.3%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 380K",
+     "Donald Trump 2020 / 137K"
+    ],
+    "rows_num": [
+     "Atlanta city | 175K",
+     "Sandy Springs city | 21K | 33K | 54K",
+     "Roswell city | 24K | 27K | 51K",
+     "South Fulton city | 47K | 50K",
+     "Johns Creek city | 18K | 23K | 42K",
+     "Alpharetta city | 16K | 17K | 33K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 175K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "175K",
+         [
+          295,
+          126,
+          950,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          950,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Sandy Springs city | 21K | 33K | 54K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Roswell city | 24K | 27K | 51K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 13,
+    "rows_flip": [
+     "Mountain Park city | 376",
+     "Chattahoochee Hills city | 2K",
+     "Palmetto city | 2K",
+     "Hapeville city | 2K",
+     "College Park city | 5K",
+     "Milton city | 7K"
+    ],
+    "rows_back": [
+     "Atlanta city | 175K",
+     "Sandy Springs city | 21K | 33K | 54K",
+     "Roswell city | 24K | 27K | 51K",
+     "South Fulton city | 47K | 50K",
+     "Johns Creek city | 18K | 23K | 42K",
+     "Alpharetta city | 16K | 17K | 33K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / 72%",
+     "Donald Trump 2024 / 27%"
+    ],
+    "rows": [
+     "Atlanta city | 17.4% | 81.6%",
+     "Sandy Springs city | 39.6% | 59.3%",
+     "Roswell city | 48.4% | 50.2%",
+     "South Fulton city | 93.1%",
+     "Johns Creek city | 45.1% | 53.3%",
+     "Alpharetta city | 48.1% | 50.2%"
+    ],
+    "chip": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 17.4% | 81.6%",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "81.6%",
+         [
+          307,
+          126,
+          1003,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Sandy Springs city | 39.6% | 59.3%",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Roswell city | 48.4% | 50.2%",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 385K",
+     "Donald Trump 2024 / 145K"
+    ],
+    "rows_num": [
+     "Atlanta city | 182K",
+     "Sandy Springs city | 21K | 32K | 54K",
+     "Roswell city | 24K | 25K | 49K",
+     "South Fulton city | 45K | 49K",
+     "Johns Creek city | 20K | 23K | 43K",
+     "Alpharetta city | 17K | 18K | 35K"
+    ],
+    "chip_num": {
+     "chip": [
+      922,
+      111,
+      956,
+      133
+     ],
+     "chart": [
+      968,
+      178,
+      1016,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Atlanta city | 182K",
+       "box": [
+        12,
+        122,
+        1024,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "182K",
+         [
+          298,
+          126,
+          952,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          952,
+          126,
+          960,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Sandy Springs city | 21K | 32K | 54K",
+       "box": [
+        12,
+        152,
+        1024,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Roswell city | 24K | 25K | 49K",
+       "box": [
+        12,
+        182,
+        1024,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      1024,
+      514
+     ]
+    },
+    "sort_lat": 20,
+    "rows_flip": [
+     "Mountain Park city | 397",
+     "Chattahoochee Hills city | 2K",
+     "Palmetto city | 2K",
+     "Hapeville city | 2K",
+     "College Park city | 5K",
+     "Union City city | 9K | 10K"
+    ],
+    "rows_back": [
+     "Atlanta city | 182K",
+     "Sandy Springs city | 21K | 32K | 54K",
+     "Roswell city | 24K | 25K | 49K",
+     "South Fulton city | 45K | 49K",
+     "Johns Creek city | 20K | 23K | 43K",
+     "Alpharetta city | 17K | 18K | 35K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Atlanta city | 182K",
+   "Sandy Springs city | 21K | 32K | 54K",
+   "Roswell city | 24K | 25K | 49K",
+   "South Fulton city | 45K | 49K",
+   "Johns Creek city | 20K | 23K | 43K",
+   "Alpharetta city | 17K | 18K | 35K"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 385K",
+   "Donald Trump 2024 / 145K"
+  ],
+  "chip_num": {
+   "chip": [
+    922,
+    111,
+    956,
+    133
+   ],
+   "chart": [
+    968,
+    178,
+    1016,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Atlanta city | 182K",
+     "box": [
+      12,
+      122,
+      1024,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "182K",
+       [
+        298,
+        126,
+        952,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        952,
+        126,
+        960,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Sandy Springs city | 21K | 32K | 54K",
+     "box": [
+      12,
+      152,
+      1024,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Roswell city | 24K | 25K | 49K",
+     "box": [
+      12,
+      182,
+      1024,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    1024,
+    514
+   ]
+  },
+  "sort_lat": 9,
+  "rows_flip": [
+   "Mountain Park city | 397",
+   "Chattahoochee Hills city | 2K",
+   "Palmetto city | 2K",
+   "Hapeville city | 2K",
+   "College Park city | 5K",
+   "Union City city | 9K | 10K"
+  ],
+  "sort2_lat": 11,
+  "rows_back": [
+   "Atlanta city | 182K",
+   "Sandy Springs city | 21K | 32K | 54K",
+   "Roswell city | 24K | 25K | 49K",
+   "South Fulton city | 45K | 49K",
+   "Johns Creek city | 20K | 23K | 43K",
+   "Alpharetta city | 17K | 18K | 35K"
+  ],
+  "ch_open_lat": 9,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   1016,
+   408,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 8,
+    "mode": "gbar",
+    "rows": [
+     "Atlanta city | 17.4% | 81.6% | 1.0%",
+     "Sandy Springs city | 39.6% | 59.3% | 1.1%",
+     "Roswell city | 48.4% | 50.2% | 1.3%"
+    ],
+    "chip": [
+     {
+      "row": "Atlanta city | 17.4% | 81.6% | 1.0%",
+      "box": [
+       12,
+       122,
+       1024,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "Sandy Springs city | 39.6% | 59.3% | 1.1%",
+      "box": [
+       12,
+       166,
+       1024,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     1016,
+     408,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "err": []
+}

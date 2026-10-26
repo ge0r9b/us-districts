@@ -1,0 +1,1414 @@
+{
+ "Nevada": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Nevada",
+    "gq": "Nevada",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 47%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    539260,
+    512058,
+    1125385
+   ],
+   "2020": [
+    703486,
+    669890,
+    1405376
+   ],
+   "2024": [
+    705197,
+    751205,
+    1484840
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 46%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 50%",
+    "Donald Trump 2020 / 48%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 51%",
+    "Kamala Harris 2024 / 47%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 82,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nevada",
+      "gq": "Nevada",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 51%",
+      "Kamala Harris 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 44,
+    "n": 21,
+    "rows": [
+     "20 | 61.2%",
+     "16 | 54.9% | 44.3%",
+     "17 | 70.3% | 28.9%",
+     "18 | 54.1% | 45.4%",
+     "14 | 61.3% | 38.0%",
+     "19 | 68.8% | 30.5%"
+    ],
+    "order": {
+     "n": 21,
+     "first": [
+      61.2,
+      54.9,
+      70.3,
+      54.1,
+      61.3
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      8,
+      13
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 19,
+    "lat_numpick": 29,
+    "num": "num",
+    "rows_num": [
+     "20 | 60K | 38K",
+     "16 | 50K | 41K",
+     "17 | 60K | 25K",
+     "18 | 46K | 38K",
+     "14 | 52K | 32K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      60000.0,
+      50000.0,
+      60000.0,
+      46000.0,
+      52000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      5,
+      13,
+      15
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 751K",
+     "Kamala Harris 2024 / 705K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 60,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nevada",
+      "gq": "Nevada",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 51%",
+      "Kamala Harris 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 16,
+    "n": 42,
+    "rows": [
+     "23 | 58.2%",
+     "26 | 53.0% | 46.2%",
+     "39 | 67.8% | 31.5%",
+     "36 | 61.7% | 37.7%",
+     "22 | 55.3% | 44.1%",
+     "31 | 57.7% | 41.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      58.2,
+      53.0,
+      67.8,
+      61.7,
+      55.3
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      6,
+      9,
+      12
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 29,
+    "lat_numpick": 39,
+    "num": "num",
+    "rows_num": [
+     "23 | 31K | 22K",
+     "26 | 26K | 23K",
+     "39 | 33K | 15K",
+     "36 | 29K | 18K",
+     "22 | 26K | 21K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      31000.0,
+      26000.0,
+      33000.0,
+      29000.0,
+      26000.0
+     ],
+     "not_desc_at": [
+      2,
+      5,
+      6,
+      9,
+      12
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 751K",
+     "Kamala Harris 2024 / 705K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.9603,-116.7847,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[39.9479,-116.8033,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Nevada",
+      "gq": "Nevada",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 42,
+     "rows": [
+      "23 | 58.2%",
+      "26 | 53.0% | 46.2%",
+      "39 | 67.8% | 31.5%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 52,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nevada",
+      "gq": "Nevada",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 51%",
+      "Kamala Harris 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 16,
+    "n": 17,
+    "rows": [
+     "Clark County | 47.8%",
+     "Washoe County | 48.3% | 49.3%",
+     "Douglas County | 65.4%",
+     "Lyon County | 71.1%",
+     "Carson City | 55.2% | 43.8%",
+     "Nye County | 70.2% | 28.0%"
+    ],
+    "order": {
+     "n": 17,
+     "first": [
+      47.8,
+      48.3,
+      65.4,
+      71.1,
+      55.2
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3,
+      5,
+      6
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 3,
+    "lat_numpick": 18,
+    "num": "num",
+    "rows_num": [
+     "Clark County | 493K | 520K",
+     "Washoe County | 264K",
+     "Douglas County | 36K",
+     "Lyon County | 34K",
+     "Carson City | 31K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      493000.0,
+      264000.0,
+      36000.0,
+      34000.0,
+      31000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Donald Trump 2024 / 751K",
+     "Kamala Harris 2024 / 705K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 44,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Nevada",
+      "gq": "Nevada",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 51%",
+      "Kamala Harris 2024 / 47%"
+     ]
+    ],
+    "lat_tolist": 9,
+    "n": 4,
+    "rows": [
+     "2 | 56.6%",
+     "3 | 50.1% | 49.4%",
+     "4 | 48.5% | 51.0%",
+     "1 | 48.6% | 50.9%"
+    ],
+    "order": {
+     "n": 4,
+     "first": [
+      56.6,
+      50.1,
+      48.5,
+      48.6
+     ],
+     "not_desc_at": [
+      3
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 47%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 13,
+    "lat_numpick": 12,
+    "num": "num",
+    "rows_num": [
+     "2 | 234K | 176K",
+     "3 | 191K | 188K",
+     "4 | 164K | 172K",
+     "1 | 161K | 168K"
+    ],
+    "order_num": {
+     "n": 4,
+     "first": [
+      234000.0,
+      191000.0,
+      164000.0,
+      161000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Donald Trump 2024 / 751K",
+     "Kamala Harris 2024 / 705K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Nevada",
+     "gq": "Nevada",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 46%",
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2020 / 48%",
+     "Joe Biden 2020 / 50%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 51,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 25,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 33,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Nevada counties",
+    "Carson City \u203a",
+    "Churchill County \u203a"
+   ],
+   "lat_counties": 43,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Nevada",
+    "gq": "Nevada",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 17,
+   "rows1": [
+    "Clark | 47.8%",
+    "Washoe | 48.3% | 49.3%",
+    "Douglas | 65.4% | 32.5%",
+    "Lyon | 71.1% | 26.7%",
+    "Carson City | 54.3% | 43.1%"
+   ],
+   "order1": {
+    "n": 17,
+    "first": [
+     47.8,
+     48.3,
+     65.4,
+     71.1,
+     54.3
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     5,
+     6
+    ]
+   },
+   "lat_county": 19,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Clark County",
+    "gq": "Clark County, NV",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 5,
+   "rows2": [
+    "Las Vegas city | 46.7%",
+    "Henderson city | 53.2% | 45.0%",
+    "North Las Vegas city | 38.1% | 60.0%",
+    "Mesquite city | 62.9% | 35.4%",
+    "Boulder City city | 66.1% | 32.0%"
+   ],
+   "order2": {
+    "n": 5,
+    "first": [
+     46.7,
+     53.2,
+     38.1,
+     62.9,
+     66.1
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     4
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 50%",
+    "Donald Trump 2024 / 48%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 24,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Clark County Las Vegas city",
+    "gq": "Clark County, NV",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 195,
+   "rows3": [
+    "Precinct 3793 | 50.9%",
+    "Precinct 3740 | 55.4% | 42.8%",
+    "Precinct 3373 | 52.0% | 46.2%",
+    "Precinct 3546 | 51.0% | 47.2%",
+    "Precinct 3706 | 50.9% | 47.4%",
+    "Precinct 3606 | 50.3% | 48.1%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 51%",
+    "Donald Trump 2024 / 47%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Clark County Las Vegas city",
+     "gq": "Clark County, NV",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ],
+    [
+     9,
+     "36.354",
+     "-115.220"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Clark County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Clark County\",\"Las Vegas city\"],\"ll\":[36.3538,-115.2205,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Nevada\",\"co\":\"Clark County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Clark County\",\"Las Vegas city\"],\"ll\":[36.3538,-115.2205,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Clark County Las Vegas city",
+     "gq": "Clark County, NV",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 51%",
+     "Donald Trump 2024 / 47%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "New Mexico": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    385234,
+    319667,
+    798319
+   ],
+   "2020": [
+    501614,
+    401894,
+    923965
+   ],
+   "2024": [
+    478802,
+    423391,
+    923403
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Hillary Clinton 2016 / 48%",
+    "Donald Trump 2016 / 40%"
+   ],
+   "2020": [
+    "Joe Biden 2020 / 54%",
+    "Donald Trump 2020 / 43%"
+   ],
+   "2024": [
+    "Kamala Harris 2024 / 52%",
+    "Donald Trump 2024 / 46%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 86,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 30,
+    "n": 42,
+    "rows": [
+     "25 | 17.7% | 81.6%",
+     "19 | 52.8% | 46.1%",
+     "21 | 44.7% | 54.1%",
+     "9 | 41.3% | 58.1%",
+     "18 | 38.6% | 60.5%",
+     "10 | 36.4% | 62.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      17.7,
+      52.8,
+      44.7,
+      41.3,
+      38.6
+     ],
+     "not_desc_at": [
+      1,
+      7,
+      9,
+      12,
+      14
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30,
+    "lat_numpick": 50,
+    "num": "num",
+    "rows_num": [
+     "25 | 25K",
+     "19 | 15K | 13K",
+     "21 | 12K | 15K",
+     "9 | 11K | 15K",
+     "18 | 10K | 15K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      25000.0,
+      15000.0,
+      12000.0,
+      11000.0,
+      10000.0
+     ],
+     "not_desc_at": [
+      7,
+      9,
+      12,
+      14,
+      16
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 64,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 17,
+    "n": 70,
+    "rows": [
+     "22 | 54.3% | 44.6%",
+     "50 | 36.4% | 62.8%",
+     "47 | 18.0% | 81.7%",
+     "31 | 44.4% | 54.3%",
+     "23 | 50.8% | 48.3%",
+     "28 | 41.3% | 57.9%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      54.3,
+      36.4,
+      18.0,
+      44.4,
+      50.8
+     ],
+     "not_desc_at": [
+      3,
+      4,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 22,
+    "lat_numpick": 51,
+    "num": "num",
+    "rows_num": [
+     "22 | 10K | 8K",
+     "50 | 6K | 11K",
+     "47 | 14K",
+     "31 | 7K | 9K",
+     "23 | 8K | 8K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      10000.0,
+      6000.0,
+      14000.0,
+      7000.0,
+      8000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      9,
+      10,
+      11
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6573,-105.7983,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[35.6548,-105.8065,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 70,
+     "rows": [
+      "22 | 54.3% | 44.6%",
+      "50 | 36.4% | 62.8%",
+      "47 | 18.0% | 81.7%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 56,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 14,
+    "n": 89,
+    "rows": [
+     "Albuquerque Public | 38.4%",
+     "Santa Fe Public | 20.8% | 78.5%",
+     "Las Cruces Public | 44.1% | 55.2%",
+     "Rio Rancho Public | 51.3% | 47.7%",
+     "Farmington Municipal | 70.8% | 28.5%",
+     "Gallup-McKinley County | 39.8% | 58.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      38.4,
+      20.8,
+      44.1,
+      51.3,
+      70.8
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 8,
+    "lat_numpick": 28,
+    "num": "num",
+    "rows_num": [
+     "Albuquerque Public | 109K | 173K",
+     "Santa Fe Public | 61K",
+     "Las Cruces Public | 59K",
+     "Rio Rancho Public | 46K",
+     "Farmington Municipal | 25K"
+    ],
+    "order_num": {
+     "n": 17,
+     "first": [
+      109000.0,
+      61000.0,
+      59000.0,
+      46000.0,
+      25000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 47,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "New Mexico",
+      "gq": "New Mexico",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Kamala Harris 2024 / 52%",
+      "Donald Trump 2024 / 46%"
+     ]
+    ],
+    "lat_tolist": 16,
+    "n": 3,
+    "rows": [
+     "1 | 43.1% | 56.0%",
+     "3 | 46.9% | 52.2%",
+     "2 | 50.6% | 48.7%"
+    ],
+    "order": {
+     "n": 3,
+     "first": [
+      43.1,
+      46.9,
+      50.6
+     ],
+     "not_desc_at": [
+      1,
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 52%",
+     "Donald Trump 2024 / 46%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 12,
+    "lat_numpick": 14,
+    "num": "num",
+    "rows_num": [
+     "1 | 150K | 195K",
+     "3 | 138K | 153K",
+     "2 | 135K | 131K"
+    ],
+    "order_num": {
+     "n": 3,
+     "first": [
+      150000.0,
+      138000.0,
+      135000.0
+     ],
+     "not_desc_at": []
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 479K",
+     "Donald Trump 2024 / 423K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "New Mexico",
+     "gq": "New Mexico",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 40%",
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2020 / 43%",
+     "Joe Biden 2020 / 54%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 58,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 24,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 37,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "New Mexico counties",
+    "Bernalillo County \u203a",
+    "Catron County \u203a"
+   ],
+   "lat_counties": 71,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "New Mexico",
+    "gq": "New Mexico",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 33,
+   "rows1": [
+    "Bernalillo | 38.2% | 59.2%",
+    "Do\u00f1a Ana | 44.0% | 53.8%",
+    "Santa Fe | 24.4% | 73.3%",
+    "Sandoval | 46.0% | 51.8%",
+    "San Juan | 64.7% | 33.0%"
+   ],
+   "order1": {
+    "n": 33,
+    "first": [
+     38.2,
+     44.0,
+     24.4,
+     46.0,
+     64.7
+    ],
+    "not_desc_at": [
+     1,
+     3,
+     4,
+     7,
+     8
+    ]
+   },
+   "lat_county": 15,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Bernalillo County",
+    "gq": "Bernalillo County, NM",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 5,
+   "rows2": [
+    "Albuquerque city | 36.9%",
+    "Los Ranchos de Albuquerque vill\u2026 | 32.4% | 65.4%",
+    "Edgewood town | 48.1% | 49.0%",
+    "Tijeras village | 50.2% | 47.2%",
+    "Rio Rancho city | 38.5% | 59.3%"
+   ],
+   "order2": {
+    "n": 5,
+    "first": [
+     36.9,
+     32.4,
+     48.1,
+     50.2,
+     38.5
+    ],
+    "not_desc_at": [
+     2,
+     3
+    ]
+   },
+   "th2": [
+    "Kamala Harris 2024 / 59%",
+    "Donald Trump 2024 / 38%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 34,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Bernalillo County Albuquerque c\u2026",
+    "gq": "Bernalillo County, NM",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 553,
+   "rows3": [
+    "Precinct 57 | 30.3% | 67.7%",
+    "Precinct 205 | 46.3% | 51.0%",
+    "Precinct 118 | 47.9% | 50.4%",
+    "Precinct 206 | 46.5% | 51.7%",
+    "Precinct 377 | 21.6% | 74.0%",
+    "Precinct 54 | 42.1% | 55.8%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 60%",
+    "Donald Trump 2024 / 37%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Bernalillo County Albuquerque c\u2026",
+     "gq": "Bernalillo County, NM",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 60%",
+     "Donald Trump 2024 / 37%"
+    ],
+    [
+     9,
+     "35.173",
+     "-106.659"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"co\":\"Bernalillo County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Bernalillo County\",\"Albuquerque city\"],\"ll\":[35.1727,-106.6594,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"New Mexico\",\"co\":\"Bernalillo County\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Bernalillo County\",\"Albuquerque city\"],\"ll\":[35.1727,-106.6594,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Bernalillo County Albuquerque c\u2026",
+     "gq": "Bernalillo County, NM",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 60%",
+     "Donald Trump 2024 / 37%"
+    ]
+   }
+  },
+  "err": []
+ }
+}
