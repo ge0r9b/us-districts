@@ -1,0 +1,2273 @@
+{
+ "build": "202610251622",
+ "lyr_lat": 8.5,
+ "lyr": {
+  "map_before": [
+   0,
+   0,
+   320,
+   568,
+   "1",
+   "none"
+  ],
+  "map_open": [
+   0,
+   0,
+   320,
+   568,
+   "1",
+   "none"
+  ],
+  "row": [
+   40,
+   408,
+   216,
+   48,
+   "1",
+   "none"
+  ],
+  "btns": [
+   "ushouse",
+   "senate",
+   "statehouse",
+   "schools"
+  ],
+  "bodyfilter": [
+   "none",
+   "1"
+  ]
+ },
+ "states": {
+  "hdr": "All States",
+  "th_pct": [
+   "Donald Trump 2024 / 50%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "CA | 38.3% | 58.5%",
+   "TX | 56.1% | 42.5%",
+   "FL | 56.1% | 43.0%",
+   "NY | 43.3% | 55.9%",
+   "PA | 50.2% | 48.5%",
+   "OH | 55.1% | 43.9%"
+  ],
+  "chip": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 38.3% | 58.5%",
+     "box": [
+      8,
+      122,
+      320,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "58.5%",
+       [
+        169,
+        126,
+        301,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 56.1% | 42.5%",
+     "box": [
+      8,
+      152,
+      320,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 56.1% | 43.0%",
+     "box": [
+      8,
+      182,
+      320,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 48%",
+     "Donald Trump 2016 / 46%"
+    ],
+    "rows": [
+     "CA | 31.6% | 61.7%",
+     "FL | 49.0% | 47.8%",
+     "TX | 52.2% | 43.2%",
+     "NY | 36.5% | 59.0%",
+     "PA | 48.2% | 47.5%",
+     "IL | 38.8% | 55.8%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 31.6% | 61.7%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "61.7%",
+         [
+          154,
+          126,
+          293,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 49.0% | 47.8%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 52.2% | 43.2%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 65.85M",
+     "Donald Trump 2016 / 62.98M"
+    ],
+    "rows_num": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 4.56M",
+     "PA",
+     "IL"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 4.48M | 8.75M",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "8.75M",
+         [
+          138,
+          126,
+          244,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          244,
+          126,
+          256,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "FL | 4.62M | 4.50M",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "TX | 4.69M | 3.88M",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 22.4,
+    "rows_flip": [
+     "WY | 256K",
+     "DC | 311K",
+     "VT | 315K",
+     "AK | 319K",
+     "ND | 344K",
+     "SD | 370K"
+    ],
+    "rows_back": [
+     "CA | 4.48M | 8.75M",
+     "FL | 4.62M | 4.50M",
+     "TX | 4.69M | 3.88M",
+     "NY | 4.56M",
+     "PA",
+     "IL"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 51%",
+     "Donald Trump 2020 / 47%"
+    ],
+    "rows": [
+     "CA | 34.3% | 63.5%",
+     "TX | 52.1% | 46.5%",
+     "FL | 51.2% | 47.9%",
+     "NY | 37.7% | 60.9%",
+     "PA | 48.7% | 49.9%",
+     "IL | 40.6% | 57.5%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 34.3% | 63.5%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "63.5%",
+         [
+          160,
+          126,
+          303,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 52.1% | 46.5%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 51.2% | 47.9%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 81.28M",
+     "Donald Trump 2020 / 74.22M"
+    ],
+    "rows_num": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 5.24M",
+     "PA",
+     "IL"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.01M | 11.11M",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "11.11M",
+         [
+          142,
+          126,
+          252,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 5.89M | 5.26M",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 5.67M | 5.30M",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 13.6,
+    "rows_flip": [
+     "WY | 277K",
+     "DC | 344K",
+     "AK | 358K",
+     "ND | 362K",
+     "VT | 367K",
+     "SD | 423K"
+    ],
+    "rows_back": [
+     "CA | 6.01M | 11.11M",
+     "TX | 5.89M | 5.26M",
+     "FL | 5.67M | 5.30M",
+     "NY | 5.24M",
+     "PA",
+     "IL"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 50%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "CA | 38.3% | 58.5%",
+     "TX | 56.1% | 42.5%",
+     "FL | 56.1% | 43.0%",
+     "NY | 43.3% | 55.9%",
+     "PA | 50.2% | 48.5%",
+     "OH | 55.1% | 43.9%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 38.3% | 58.5%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "58.5%",
+         [
+          169,
+          126,
+          301,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 56.1% | 42.5%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 56.1% | 43.0%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 77.30M",
+     "Kamala Harris 2024 / 75.02M"
+    ],
+    "rows_num": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 4.62M",
+     "PA",
+     "OH"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "CA | 6.08M | 9.28M",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "9.28M",
+         [
+          149,
+          126,
+          250,
+          148
+         ]
+        ],
+        [
+         "sg oth",
+         "",
+         [
+          250,
+          126,
+          256,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "TX | 6.39M | 4.84M",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "FL | 6.11M | 4.68M",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 23.1,
+    "rows_flip": [
+     "WY | 269K",
+     "DC | 326K",
+     "AK | 338K",
+     "ND | 368K",
+     "VT | 369K",
+     "SD | 429K"
+    ],
+    "rows_back": [
+     "CA | 6.08M | 9.28M",
+     "TX | 6.39M | 4.84M",
+     "FL | 6.11M | 4.68M",
+     "NY | 4.62M",
+     "PA",
+     "OH"
+    ]
+   }
+  },
+  "rows_num": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 4.62M",
+   "PA",
+   "OH"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 77.30M",
+   "Kamala Harris 2024 / 75.02M"
+  ],
+  "chip_num": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "CA | 6.08M | 9.28M",
+     "box": [
+      8,
+      122,
+      320,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "9.28M",
+       [
+        149,
+        126,
+        250,
+        148
+       ]
+      ],
+      [
+       "sg oth",
+       "",
+       [
+        250,
+        126,
+        256,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "TX | 6.39M | 4.84M",
+     "box": [
+      8,
+      152,
+      320,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "FL | 6.11M | 4.68M",
+     "box": [
+      8,
+      182,
+      320,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "sort_lat": 21.9,
+  "rows_flip": [
+   "WY | 269K",
+   "DC | 326K",
+   "AK | 338K",
+   "ND | 368K",
+   "VT | 369K",
+   "SD | 429K"
+  ],
+  "sort2_lat": 21.5,
+  "rows_back": [
+   "CA | 6.08M | 9.28M",
+   "TX | 6.39M | 4.84M",
+   "FL | 6.11M | 4.68M",
+   "NY | 4.62M",
+   "PA",
+   "OH"
+  ],
+  "ch_open_lat": 13,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   312,
+   400,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 27.4,
+    "mode": "gbar",
+    "rows": [
+     "CA | 38.3% | 58.5% | 3.2%",
+     "TX | 56.1% | 42.5% | 1.4%",
+     "FL | 56.1% | 43.0% | 0.9%"
+    ],
+    "chip": [
+     {
+      "row": "CA | 38.3% | 58.5% | 3.2%",
+      "box": [
+       8,
+       122,
+       320,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "TX | 56.1% | 42.5% | 1.4%",
+      "box": [
+       8,
+       166,
+       320,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     312,
+     400,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "NC": {
+  "hdr": "North Carolina",
+  "th_pct": [
+   "Donald Trump 2024 / 51%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows_pct": [
+   "Wake | 36.4% | 61.9% | 1.7%",
+   "Mecklenburg | 32.7% | 65.6% | 1.6%",
+   "Guilford | 38.4% | 60.2% | 1.4%",
+   "Forsyth | 42.8% | 56.0% | 1.2%",
+   "Durham | 18.2% | 80.2% | 1.6%",
+   "Buncombe | 36.9% | 61.7% | 1.4%"
+  ],
+  "chip": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Wake | 36.4% | 61.9% | 1.7%",
+     "box": [
+      8,
+      122,
+      320,
+      166
+     ],
+     "hit": []
+    },
+    {
+     "row": "Mecklenburg | 32.7% | 65.6% | 1.6%",
+     "box": [
+      8,
+      166,
+      320,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Guilford | 38.4% | 60.2% | 1.4%",
+     "box": [
+      8,
+      210,
+      320,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 50%",
+     "Hillary Clinton 2016 / 46%"
+    ],
+    "rows": [
+     "Wake | 37.2% | 57.4% | 5.5%",
+     "Mecklenburg | 32.9% | 62.3% | 4.8%",
+     "Guilford | 38.1% | 58.0% | 3.9%",
+     "Forsyth | 42.6% | 53.0% | 4.4%",
+     "Durham | 18.2% | 77.7% | 4.2%",
+     "Buncombe | 40.1% | 54.3% | 5.6%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 37.2% | 57.4% | 5.5%",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mecklenburg | 32.9% | 62.3% | 4.8%",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 38.1% | 58.0% | 3.9%",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2016 / 2.36M",
+     "Hillary Clinton 2016 / 2.19M"
+    ],
+    "rows_num": [
+     "Wake | 196K | 303K | 29K",
+     "Mecklenburg | 156K | 295K | 23K",
+     "Guilford | 98K | 149K | 10K",
+     "Forsyth | 76K | 94K | 8K",
+     "Durham | 28K | 121K | 7K",
+     "Buncombe | 56K | 75K | 8K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 196K | 303K | 29K",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          150,
+          127,
+          240,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Mecklenburg | 156K | 295K | 23K",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 98K | 149K | 10K",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 25.7,
+    "rows_flip": [
+     "Tyrrell | 975 | 720 | 44",
+     "Hyde | 1K | 965 | 51",
+     "Graham | 3K | 768 | 117",
+     "Camden | 4K | 1K | 186",
+     "Jones | 3K | 2K | 96",
+     "Alleghany | 4K | 1K | 195"
+    ],
+    "rows_back": [
+     "Wake | 196K | 303K | 29K",
+     "Mecklenburg | 156K | 295K | 23K",
+     "Guilford | 98K | 149K | 10K",
+     "Forsyth | 76K | 94K | 8K",
+     "Durham | 28K | 121K | 7K",
+     "Buncombe | 56K | 75K | 8K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Donald Trump 2020 / 50%",
+     "Joe Biden 2020 / 49%"
+    ],
+    "rows": [
+     "Wake | 35.8% | 62.3% | 1.9%",
+     "Mecklenburg | 31.6% | 66.7% | 1.7%",
+     "Guilford | 37.7% | 60.8% | 1.4%",
+     "Forsyth | 42.3% | 56.2% | 1.6%",
+     "Durham | 18.0% | 80.4% | 1.5%",
+     "Buncombe | 38.6% | 59.7% | 1.6%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 35.8% | 62.3% | 1.9%",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mecklenburg | 31.6% | 66.7% | 1.7%",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 37.7% | 60.8% | 1.4%",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2020 / 2.76M",
+     "Joe Biden 2020 / 2.68M"
+    ],
+    "rows_num": [
+     "Wake | 226K | 393K | 12K",
+     "Mecklenburg | 179K | 378K | 10K",
+     "Guilford | 107K | 173K | 4K",
+     "Forsyth | 85K | 113K | 3K",
+     "Durham | 32K | 145K | 3K",
+     "Buncombe | 62K | 97K | 3K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 226K | 393K | 12K",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          150,
+          127,
+          230,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Mecklenburg | 179K | 378K | 10K",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 107K | 173K | 4K",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 18.5,
+    "rows_flip": [
+     "Tyrrell | 1K | 758 | 15",
+     "Hyde | 1K | 1K | 28",
+     "Graham | 4K | 905 | 50",
+     "Jones | 3K | 2K | 48",
+     "Camden | 4K | 2K | 104",
+     "Gates | 3K | 3K | 58"
+    ],
+    "rows_back": [
+     "Wake | 226K | 393K | 12K",
+     "Mecklenburg | 179K | 378K | 10K",
+     "Guilford | 107K | 173K | 4K",
+     "Forsyth | 85K | 113K | 3K",
+     "Durham | 32K | 145K | 3K",
+     "Buncombe | 62K | 97K | 3K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / 51%",
+     "Kamala Harris 2024 / 48%"
+    ],
+    "rows": [
+     "Wake | 36.4% | 61.9% | 1.7%",
+     "Mecklenburg | 32.7% | 65.6% | 1.6%",
+     "Guilford | 38.4% | 60.2% | 1.4%",
+     "Forsyth | 42.8% | 56.0% | 1.2%",
+     "Durham | 18.2% | 80.2% | 1.6%",
+     "Buncombe | 36.9% | 61.7% | 1.4%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 36.4% | 61.9% | 1.7%",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": []
+      },
+      {
+       "row": "Mecklenburg | 32.7% | 65.6% | 1.6%",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 38.4% | 60.2% | 1.4%",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 2.90M",
+     "Kamala Harris 2024 / 2.72M"
+    ],
+    "rows_num": [
+     "Wake | 237K | 403K | 11K",
+     "Mecklenburg | 188K | 376K | 9K",
+     "Guilford | 109K | 171K | 4K",
+     "Forsyth | 87K | 114K | 2K",
+     "Durham | 33K | 144K | 3K",
+     "Buncombe | 59K | 99K | 2K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Wake | 237K | 403K | 11K",
+       "box": [
+        8,
+        122,
+        320,
+        166
+       ],
+       "hit": [
+        [
+         "sg rep",
+         "",
+         [
+          150,
+          127,
+          232,
+          136
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Mecklenburg | 188K | 376K | 9K",
+       "box": [
+        8,
+        166,
+        320,
+        210
+       ],
+       "hit": []
+      },
+      {
+       "row": "Guilford | 109K | 171K | 4K",
+       "box": [
+        8,
+        210,
+        320,
+        254
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 12.7,
+    "rows_flip": [
+     "Tyrrell | 1K | 680 | 15",
+     "Hyde | 1K | 931 | 21",
+     "Graham | 4K | 839 | 47",
+     "Jones | 3K | 2K | 42",
+     "Gates | 4K | 2K | 54",
+     "Washington | 3K | 3K | 33"
+    ],
+    "rows_back": [
+     "Wake | 237K | 403K | 11K",
+     "Mecklenburg | 188K | 376K | 9K",
+     "Guilford | 109K | 171K | 4K",
+     "Forsyth | 87K | 114K | 2K",
+     "Durham | 33K | 144K | 3K",
+     "Buncombe | 59K | 99K | 2K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Wake | 237K | 403K | 11K",
+   "Mecklenburg | 188K | 376K | 9K",
+   "Guilford | 109K | 171K | 4K",
+   "Forsyth | 87K | 114K | 2K",
+   "Durham | 33K | 144K | 3K",
+   "Buncombe | 59K | 99K | 2K"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 2.90M",
+   "Kamala Harris 2024 / 2.72M"
+  ],
+  "chip_num": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Wake | 237K | 403K | 11K",
+     "box": [
+      8,
+      122,
+      320,
+      166
+     ],
+     "hit": [
+      [
+       "sg rep",
+       "",
+       [
+        150,
+        127,
+        232,
+        136
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Mecklenburg | 188K | 376K | 9K",
+     "box": [
+      8,
+      166,
+      320,
+      210
+     ],
+     "hit": []
+    },
+    {
+     "row": "Guilford | 109K | 171K | 4K",
+     "box": [
+      8,
+      210,
+      320,
+      254
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "sort_lat": 27.8,
+  "rows_flip": [
+   "Tyrrell | 1K | 680 | 15",
+   "Hyde | 1K | 931 | 21",
+   "Graham | 4K | 839 | 47",
+   "Jones | 3K | 2K | 42",
+   "Gates | 4K | 2K | 54",
+   "Washington | 3K | 3K | 33"
+  ],
+  "sort2_lat": 21.7,
+  "rows_back": [
+   "Wake | 237K | 403K | 11K",
+   "Mecklenburg | 188K | 376K | 9K",
+   "Guilford | 109K | 171K | 4K",
+   "Forsyth | 87K | 114K | 2K",
+   "Durham | 33K | 144K | 3K",
+   "Buncombe | 59K | 99K | 2K"
+  ],
+  "ch_open_lat": 10.2,
+  "ch_opts": [
+   "bar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   312,
+   400,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "bar": {
+    "lat": 31.7,
+    "mode": "bar",
+    "rows": [
+     "Wake | 36.4%",
+     "Mecklenburg | 32.7% | 65.6%",
+     "Guilford | 38.4% | 60.2%"
+    ],
+    "chip": [
+     {
+      "row": "Wake | 36.4%",
+      "box": [
+       8,
+       122,
+       320,
+       152
+      ],
+      "hit": [
+       [
+        "sg dem",
+        "61.9%",
+        [
+         207,
+         126,
+         305,
+         148
+        ]
+       ]
+      ]
+     },
+     {
+      "row": "Mecklenburg | 32.7% | 65.6%",
+      "box": [
+       8,
+       152,
+       320,
+       182
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     312,
+     400,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "Mecklenburg": {
+  "hdr": "Mecklenburg County",
+  "th_pct": [
+   "Kamala Harris 2024 / 66%",
+   "Donald Trump 2024 / 33%"
+  ],
+  "rows_pct": [
+   "Charlotte city | 28.7%",
+   "Huntersville town | 48.1%",
+   "Matthews town | 46.0% | 52.1%",
+   "Mint Hill town | 52.0%",
+   "Cornelius town | 57.0% | 41.9%",
+   "Davidson town | 31.2% | 67.9%"
+  ],
+  "chip": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Charlotte city | 28.7%",
+     "box": [
+      8,
+      122,
+      320,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "69.6%",
+       [
+        195,
+        126,
+        305,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Huntersville town | 48.1%",
+     "box": [
+      8,
+      152,
+      320,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Matthews town | 46.0% | 52.1%",
+     "box": [
+      8,
+      182,
+      320,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "years": {
+   "16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 62%",
+     "Donald Trump 2016 / 33%"
+    ],
+    "rows": [
+     "Charlotte city | 28.2%",
+     "Huntersville town | 52.0%",
+     "Matthews town | 49.9%",
+     "Mint Hill town | 54.1%",
+     "Cornelius town | 59.5% | 36.0%",
+     "Davidson town | 31.1% | 63.6%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 28.2%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "67.1%",
+         [
+          194,
+          126,
+          301,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 52.0%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 49.9%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Hillary Clinton 2016 / 295K",
+     "Donald Trump 2016 / 156K"
+    ],
+    "rows_num": [
+     "Charlotte city | 246K",
+     "Huntersville town | 21K",
+     "Matthews town | 15K",
+     "Mint Hill town | 12K",
+     "Cornelius town | 7K",
+     "Davidson town | 4K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 246K",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "246K",
+         [
+          180,
+          126,
+          251,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 21K",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 15K",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 27.3,
+    "rows_flip": [
+     "Pineville town | 2K",
+     "Stallings town | 3K",
+     "Davidson town | 4K",
+     "Cornelius town | 7K",
+     "Mint Hill town | 12K",
+     "Matthews town | 15K"
+    ],
+    "rows_back": [
+     "Charlotte city | 246K",
+     "Huntersville town | 21K",
+     "Matthews town | 15K",
+     "Mint Hill town | 12K",
+     "Cornelius town | 7K",
+     "Davidson town | 4K"
+    ]
+   },
+   "20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden 2020 / 67%",
+     "Donald Trump 2020 / 32%"
+    ],
+    "rows": [
+     "Charlotte city | 27.2%",
+     "Huntersville town | 48.1%",
+     "Matthews town | 46.8% | 51.5%",
+     "Mint Hill town | 52.4%",
+     "Cornelius town | 55.1% | 43.6%",
+     "Davidson town | 32.0% | 66.7%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 27.2%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "71.1%",
+         [
+          193,
+          126,
+          305,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 48.1%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 46.8% | 51.5%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Joe Biden 2020 / 378K",
+     "Donald Trump 2020 / 179K"
+    ],
+    "rows_num": [
+     "Charlotte city | 308K",
+     "Huntersville town | 26K",
+     "Matthews town | 18K",
+     "Mint Hill town | 15K",
+     "Cornelius town | 8K",
+     "Davidson town | 6K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 308K",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "308K",
+         [
+          179,
+          126,
+          254,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 26K",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 18K",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 10.5,
+    "rows_flip": [
+     "Pineville town | 3K",
+     "Stallings town | 4K",
+     "Davidson town | 6K",
+     "Cornelius town | 8K",
+     "Mint Hill town | 15K",
+     "Matthews town | 18K"
+    ],
+    "rows_back": [
+     "Charlotte city | 308K",
+     "Huntersville town | 26K",
+     "Matthews town | 18K",
+     "Mint Hill town | 15K",
+     "Cornelius town | 8K",
+     "Davidson town | 6K"
+    ]
+   },
+   "24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / 66%",
+     "Donald Trump 2024 / 33%"
+    ],
+    "rows": [
+     "Charlotte city | 28.7%",
+     "Huntersville town | 48.1%",
+     "Matthews town | 46.0% | 52.1%",
+     "Mint Hill town | 52.0%",
+     "Cornelius town | 57.0% | 41.9%",
+     "Davidson town | 31.2% | 67.9%"
+    ],
+    "chip": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 28.7%",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "69.6%",
+         [
+          195,
+          126,
+          305,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 48.1%",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 46.0% | 52.1%",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "th_num": [
+     "Kamala Harris 2024 / 376K",
+     "Donald Trump 2024 / 188K"
+    ],
+    "rows_num": [
+     "Charlotte city | 301K",
+     "Huntersville town | 26K",
+     "Matthews town | 18K",
+     "Mint Hill town | 15K",
+     "Cornelius town | 8K",
+     "Davidson town | 6K"
+    ],
+    "chip_num": {
+     "chip": [
+      218,
+      111,
+      252,
+      133
+     ],
+     "chart": [
+      264,
+      178,
+      312,
+      226
+     ],
+     "rows": [
+      {
+       "row": "Charlotte city | 301K",
+       "box": [
+        8,
+        122,
+        320,
+        152
+       ],
+       "hit": [
+        [
+         "sg dem",
+         "301K",
+         [
+          180,
+          126,
+          254,
+          148
+         ]
+        ]
+       ]
+      },
+      {
+       "row": "Huntersville town | 26K",
+       "box": [
+        8,
+        152,
+        320,
+        182
+       ],
+       "hit": []
+      },
+      {
+       "row": "Matthews town | 18K",
+       "box": [
+        8,
+        182,
+        320,
+        212
+       ],
+       "hit": []
+      }
+     ],
+     "lv": [
+      8,
+      106,
+      320,
+      506
+     ]
+    },
+    "sort_lat": 16,
+    "rows_flip": [
+     "Pineville town | 3K",
+     "Stallings town | 4K",
+     "Davidson town | 6K",
+     "Cornelius town | 8K",
+     "Mint Hill town | 15K",
+     "Matthews town | 18K"
+    ],
+    "rows_back": [
+     "Charlotte city | 301K",
+     "Huntersville town | 26K",
+     "Matthews town | 18K",
+     "Mint Hill town | 15K",
+     "Cornelius town | 8K",
+     "Davidson town | 6K"
+    ]
+   }
+  },
+  "rows_num": [
+   "Charlotte city | 301K",
+   "Huntersville town | 26K",
+   "Matthews town | 18K",
+   "Mint Hill town | 15K",
+   "Cornelius town | 8K",
+   "Davidson town | 6K"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 376K",
+   "Donald Trump 2024 / 188K"
+  ],
+  "chip_num": {
+   "chip": [
+    218,
+    111,
+    252,
+    133
+   ],
+   "chart": [
+    264,
+    178,
+    312,
+    226
+   ],
+   "rows": [
+    {
+     "row": "Charlotte city | 301K",
+     "box": [
+      8,
+      122,
+      320,
+      152
+     ],
+     "hit": [
+      [
+       "sg dem",
+       "301K",
+       [
+        180,
+        126,
+        254,
+        148
+       ]
+      ]
+     ]
+    },
+    {
+     "row": "Huntersville town | 26K",
+     "box": [
+      8,
+      152,
+      320,
+      182
+     ],
+     "hit": []
+    },
+    {
+     "row": "Matthews town | 18K",
+     "box": [
+      8,
+      182,
+      320,
+      212
+     ],
+     "hit": []
+    }
+   ],
+   "lv": [
+    8,
+    106,
+    320,
+    506
+   ]
+  },
+  "sort_lat": 33.2,
+  "rows_flip": [
+   "Pineville town | 3K",
+   "Stallings town | 4K",
+   "Davidson town | 6K",
+   "Cornelius town | 8K",
+   "Mint Hill town | 15K",
+   "Matthews town | 18K"
+  ],
+  "sort2_lat": 20.3,
+  "rows_back": [
+   "Charlotte city | 301K",
+   "Huntersville town | 26K",
+   "Matthews town | 18K",
+   "Mint Hill town | 15K",
+   "Cornelius town | 8K",
+   "Davidson town | 6K"
+  ],
+  "ch_open_lat": 26.8,
+  "ch_opts": [
+   "gbar"
+  ],
+  "list_rect_open": [
+   8,
+   106,
+   312,
+   400,
+   "1",
+   "none"
+  ],
+  "charts": {
+   "gbar": {
+    "lat": 22.8,
+    "mode": "gbar",
+    "rows": [
+     "Charlotte city | 28.7% | 69.6% | 1.7%",
+     "Huntersville town | 48.1% | 50.6% | 1.4%",
+     "Matthews town | 46.0% | 52.1% | 1.9%"
+    ],
+    "chip": [
+     {
+      "row": "Charlotte city | 28.7% | 69.6% | 1.7%",
+      "box": [
+       8,
+       122,
+       320,
+       166
+      ],
+      "hit": []
+     },
+     {
+      "row": "Huntersville town | 48.1% | 50.6% | 1.4%",
+      "box": [
+       8,
+       166,
+       320,
+       210
+      ],
+      "hit": []
+     }
+    ],
+    "list": [
+     8,
+     106,
+     312,
+     400,
+     "1",
+     "none"
+    ]
+   }
+  }
+ },
+ "err": []
+}

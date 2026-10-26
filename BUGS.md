@@ -2081,3 +2081,17 @@ Touch, Chromium and WebKit (`qa/h2100-*`). No console errors, page errors or fai
 
 ### v3
 - https://ge0r9b.github.io/us-districts/v3/ and /v4/ return 404.
+
+## Build 1622 verification + regression vs 1621 (Oct 25, ~8:30-9:50 PM ET, executor b1622x)
+- **Build:** `window.BUILD="202610251622"` (line 9), origin/main 0863b89c.
+- **QA-131 FIXED** (persistent profile, touch): WebKit 390x844, 375x667, 320x568, Chromium 390x844. 'Pittsburgh' / '15213' / 'Boston' / 'Columbus' + Enter, then 'United States' + Enter: crumbs 'United States', zoom 4 centre 39.8,-98.6 (no world zoom), state shading, thumbnails Trump 50% / Harris 48%, field cleared, 0 popups. Reload reopens the US (not Allegheny). Atlantic reload: US House on > off > reload reopens the US at 39.8,-98.6, not the Atlantic. Shots `qa/shotsb1622/b1622x-q131-{we,ch}-<size>-*.png`, data `qa/b1622x-q131-*.json`, script `qa/b1622x-q131.py`.
+  - Note (not filed): the internal `heatLevel` stays 'precinct' after the jump back to US until reload; the rendered map is state shading (screenshot identical to fresh load), so no visible effect.
+- **Regression sweep, no regressions, no new bugs:**
+  - QA-128: empty-town audit, 16 states, 4 empty (Grandview IL, Burns Harbor IN, Coldwater twp MI, Brice OH), identical to 1621. Gloucester City 8 / Gloucester twp 40, Royal Oak 18, Skokie 37 precincts, same as 1621 (`qa/b1622x-empty-a.json`).
+  - QA-129: Pittsburgh 76.7/21.7, Boston 76.0/19.4, Columbus 68.3/29.5 in list view, with or without a type (`qa/b1622x-q129-chromium-390x844.json`).
+  - QA-119/121/126: certified 2024 totals PA, RI, VT, MA, MI, NJ match exactly (`qa/b1622x-tot.json`); TX 2024 6,393,597 / 4,835,250 matches.
+  - QA-115: 17 city names (incl. ', ST' forms) all land on the right city (`qa/b1622x-q115.json`).
+  - Address search (GA/NC/NV/TX), sort, % / #, chart values, district-type menu overlay: same as 1621, no errors.
+  - Layout3 sweep, 5 sizes x 2 engines: `moved` lists identical to 1621; slowest steps are the same list drills (~210-240 ms in both builds, known baseline). No page or console errors.
+- **Open items unchanged:** QA-124 leftovers (Pittsburgh holds 'Baldwin Tp Dist 2', Burlington NC 'West Graham', Kenosha 'Town of SOMERS Ward 2', from hourly `b1622h2100-cityN`), QA-127 (Henrico, Fairfax, Howard 0 rows, `h2100-q127.log`), QA-130 (list body empty at 4 s / 12 s), QA-134 (Jefferson KY 225 precincts unassigned, `b1622x-jeff3.json`). QA-122, QA-113, QA-099 not re-run separately; no change in the related steps.
+- Harness note: `b1622x-cityN.py` (copy of b1621x) never drills past the state list (tapC null, same in the 1621 log), so its town checks were void; hourly's h2100 cityN was used instead. The hourly run overlapped this run for part of the time, so timings may be slightly noisy.

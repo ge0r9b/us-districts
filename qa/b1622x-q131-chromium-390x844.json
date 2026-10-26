@@ -1,0 +1,262 @@
+[
+ {
+  "build": "202610251622",
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "00-fresh",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 16,
+  "c": {
+   "lat": 40.43810970131626,
+   "lng": -79.99685325
+  },
+  "title": "President",
+  "crumbs": "Allegheny County Pittsburgh city",
+  "gq": "",
+  "th": [
+   "77%",
+   "22%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Pittsburgh-1",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Pittsburgh-2US",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Pittsburgh-3reload",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 15,
+  "c": {
+   "lat": 40.43650659753257,
+   "lng": -79.9639854232788
+  },
+  "title": "President",
+  "crumbs": "Pittsburgh Ward 4 Dist 19",
+  "gq": "",
+  "th": [
+   "84%",
+   "14%"
+  ],
+  "popups": 1,
+  "paths": 0,
+  "name": "15213-1",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "15213-2US",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "15213-3reload",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 16,
+  "c": {
+   "lat": 42.36043070264194,
+   "lng": -71.05796075
+  },
+  "title": "President",
+  "crumbs": "Suffolk County Boston city",
+  "gq": "",
+  "th": [
+   "76%",
+   "19%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Boston-1",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Boston-2US",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 16,
+  "c": {
+   "lat": 39.93604221140272,
+   "lng": -82.9342248
+  },
+  "title": "President",
+  "crumbs": "Franklin County Columbus city",
+  "gq": "",
+  "th": [
+   "68%",
+   "29%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Columbus-1",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "precinct",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "Columbus-2US",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "atl-1typeoff",
+  "err": []
+ },
+ {
+  "build": "202610251622",
+  "heat": "county",
+  "z": 4,
+  "c": {
+   "lat": 39.8,
+   "lng": -98.6
+  },
+  "title": "President",
+  "crumbs": "United States",
+  "gq": "",
+  "th": [
+   "50%",
+   "48%"
+  ],
+  "popups": 0,
+  "paths": 0,
+  "name": "atl-2reload",
+  "err": []
+ }
+]
