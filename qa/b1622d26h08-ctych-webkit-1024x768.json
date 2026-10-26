@@ -1,0 +1,388 @@
+{
+ "King": {
+  "build": "202610251622",
+  "data": [
+   [
+    832606,
+    252193,
+    1122881
+   ]
+  ],
+  "lat_states": 119,
+  "lat_WA": 16,
+  "lat_King": 13,
+  "crumbs": "King County",
+  "title": "President",
+  "th_pct": [
+   "Kamala Harris 2024 / 74%",
+   "Donald Trump 2024 / 22%"
+  ],
+  "rows": [
+   "Seattle city | 87.0%",
+   "Bellevue city | 26.5% | 69.0%",
+   "Kent city | 36.0% | 60.3%",
+   "Kirkland city | 24.1% | 71.6%",
+   "Renton city | 29.2% | 67.1%"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 833K",
+   "Donald Trump 2024 / 252K"
+  ],
+  "rows_num": [
+   "Seattle city | 362K",
+   "Bellevue city | 17K | 44K | 63K",
+   "Kent city | 18K | 30K | 50K",
+   "Kirkland city | 34K | 47K",
+   "Renton city | 30K | 44K"
+  ],
+  "lat_tomap": 76,
+  "view": "map",
+  "lat_time": 21,
+  "ranges": {
+   "y16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 72%",
+     "Donald Trump 2016 / 22%"
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 43,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Hillary Clinton \u00b7 71.9% / ",
+       "Donald Trump \u00b7 21.7% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 43,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Hillary Clinton \u00b7 718K / ",
+       "Donald Trump \u00b7 216K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "y20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden \u00b7 75.0% / ",
+     "Donald Trump \u00b7 22.2% / "
+    ],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 34,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 34,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "y24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / ",
+     "Donald Trump 2024 / "
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 10,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Kamala Harris \u00b7 74.1% / ",
+       "Donald Trump \u00b7 22.5% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 10,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Kamala Harris \u00b7 833K / ",
+       "Donald Trump \u00b7 252K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 34,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 34,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 22,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 22,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 13,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 13,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        894,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "reload": {
+   "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"co\":\"King County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[47.4337,-121.8027,9]}",
+   "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Washington\",\"co\":\"King County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[47.4337,-121.8038,9]}",
+   "crumbs": "King County",
+   "th": [],
+   "ysl": [
+    0,
+    2
+   ]
+  },
+  "err": []
+ }
+}

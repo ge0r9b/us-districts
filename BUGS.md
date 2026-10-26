@@ -2358,3 +2358,27 @@ Touch, WebKit and Chromium. **One new bug: QA-138 (CRITICAL, page freeze).** No 
 - **Taps** in the own checks took 12-95 ms; the WebKit 1024x576 DC list > map step was 95 ms.
 - **Menus** (Chromium 320 and 1024x768, US and Alabama): they overlay with a transparent backdrop; nothing is dimmed or shrunk.
 - **Open and unchanged (not re-filed):** QA-099. Not re-run: QA-102, 113, 122, 124, 127, 130, 133, 134, 135, 136, 137. QA-100 stays HIGH.
+
+## Hourly run on 1622, Oct 26 ~8 AM EDT (7:55-8:35 AM EDT; live build 202610251622 at start and end)
+Touch, WebKit and Chromium. **No new bugs.** One update to the open QA-102 (below). No page errors, console errors or failed requests. The build has not changed, so this was the carried-over coverage plus the layout sweep. QA-138 not re-run (build unchanged). v3/ and v4/ are still 404. Next new bug is QA-139.
+
+### Chart menu on single years and ranges in big-county map views (`qa/d26h08-ctych.py`; Chromium 390x844 Cook IL and Maricopa AZ, WebKit 1024x768 King WA)
+- Map view used on purpose (the town list freezes on the first '16 pick, QA-138).
+- Single years: '16 and '24 offer pie, '20 offers bar (the menu shows the other type). Ranges: '16-'20 and '16-'24 line, '20-'24 bar. Same as the Harris run.
+- 2016 county figures match the official county results: Cook 1.61M / 453K (pie 73.9% / 20.8%); Maricopa Trump 747K / Clinton 703K; King Clinton 718K / Trump 216K (WA SOS: 718,322 / 216,339). 2024 figures match (Cook 1.45M / 584K, Maricopa 1.05M / 980K, King 833K / 252K).
+- Range deltas are right: Cook '16-'24 line +114K / -278K (D) and +105K / +26K (R); King '20-'24 bar Trump -17K, Biden > Harris -75K, other +4K.
+- Labels are clear of each other and of the lines and bars in % and # (screenshots checked). Chart taps took 10-43 ms.
+- Reload restores the county, the '16-'24 range and the line chart in all three.
+- Shots: `shots/b1622d26h08-{ch-390x844,we-1024x768}-cc-{Cook,Maricopa,King}-r*.png`, `-reload.png`. Data: `qa/b1622d26h08-ctych-*.json`.
+
+### QA-102 update (still open, MEDIUM): district-type picks on big states are over 100 ms even solo
+- Chromium 1024x768 touch, nothing else running on the box (`qa/d26h08-states.py`, log `qa/d26h08-states-solo.log`).
+- Steps: type the state in the bottom field + Enter > list view > district-type menu > pick a type; then # on that list.
+- Texas: School districts **247 ms** (1,019 rows), US House **147 ms** (38 rows), senate 65, state house 85. The # pick on the schools list **129 ms**.
+- Illinois: School districts **133 ms** (862 rows), senate 54, state house 68, US House 38. The # pick on the schools list **113 ms**.
+- Expected under 100 ms tap-to-paint. This confirms the 7 AM watch item (which was measured under load) as real, not load. The Texas US House pick at 147 ms is odd for 38 rows.
+- Data: `qa/b1622d26h08-states-chromium-1024x768-solo.json`.
+
+### Standing checks
+- **Layout-stability sweep** (MA > Worcester President with the slider, US House list, year change, drill-in, back, split bar, list to map) on **WebKit 390x844 and Chromium 1024x576**: **SAME as previous runs.** Only the known +68 px thumbnail push from the slider and the +14 px first row in split bar. Back taps 22-34 ms (WebKit), 30-36 ms (Chromium); list drills 211-235 ms including the script's 200 ms pre-tap wait. Logs `qa/d26h08-lay3-*.log`.
+- **Open and unchanged (not re-filed):** QA-099, QA-138 (not re-run, build unchanged). Not re-run: 113, 122, 124, 127, 130, 133, 134, 135, 136, 137. QA-100 stays HIGH.

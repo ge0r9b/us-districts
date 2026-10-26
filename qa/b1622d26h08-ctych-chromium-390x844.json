@@ -1,0 +1,774 @@
+{
+ "Cook": {
+  "build": "202610251622",
+  "data": [
+   [
+    1447821,
+    583852,
+    2056800
+   ]
+  ],
+  "lat_states": 90.1,
+  "lat_IL": 6.4,
+  "lat_Cook": 17.7,
+  "crumbs": "Cook County",
+  "title": "President",
+  "th_pct": [
+   "Kamala Harris 2024 / 70%",
+   "Donald Trump 2024 / 28%"
+  ],
+  "rows": [
+   "Chicago city (Cook part) | 20.6% | 78.3%",
+   "Wheeling township | 40.2% | 58.5%",
+   "Worth township (Cook part) | 45.0% | 53.5%",
+   "Proviso township | 23.7% | 75.1%",
+   "Maine township (Cook part) | 46.1% | 52.6%"
+  ],
+  "th_num": [
+   "Kamala Harris 2024 / 1.45M",
+   "Donald Trump 2024 / 584K"
+  ],
+  "rows_num": [
+   "Chicago city (Cook part) | 775K",
+   "Wheeling township | 72K",
+   "Worth township (Cook part) | 63K",
+   "Proviso township | 62K",
+   "Maine township (Cook part) | 61K"
+  ],
+  "lat_tomap": 74.3,
+  "view": "map",
+  "lat_time": 25.4,
+  "ranges": {
+   "y16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Hillary Clinton 2016 / 74%",
+     "Donald Trump 2016 / 21%"
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 14.5,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Hillary Clinton \u00b7 73.9% / ",
+       "Donald Trump \u00b7 20.8% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 14.5,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Hillary Clinton \u00b7 1.61M / ",
+       "Donald Trump \u00b7 453K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "y20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden \u00b7 74.4% / ",
+     "Donald Trump \u00b7 24.0% / "
+    ],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 12.7,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 12.7,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "y24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Kamala Harris 2024 / ",
+     "Donald Trump 2024 / "
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 24.1,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Kamala Harris \u00b7 70.4% / ",
+       "Donald Trump \u00b7 28.4% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 24.1,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Kamala Harris \u00b7 1.45M / ",
+       "Donald Trump \u00b7 584K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 12.9,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 12.9,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 17.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 17.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 23.1,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 23.1,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "reload": {
+   "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Illinois\",\"co\":\"Cook County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[41.8123,-87.6874,8]}",
+   "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Illinois\",\"co\":\"Cook County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[41.8129,-87.6874,8]}",
+   "crumbs": "Cook County",
+   "th": [],
+   "ysl": [
+    0,
+    2
+   ]
+  },
+  "err": []
+ },
+ "Maricopa": {
+  "build": "202610251622",
+  "data": [
+   [
+    980016,
+    1051531,
+    2053945
+   ]
+  ],
+  "lat_states": 70.7,
+  "lat_AZ": 14.4,
+  "lat_Maricopa": 9.3,
+  "crumbs": "Maricopa County",
+  "title": "President",
+  "th_pct": [
+   "Donald Trump 2024 / 51%",
+   "Kamala Harris 2024 / 48%"
+  ],
+  "rows": [
+   "Phoenix city | 42.4%",
+   "Mesa city | 54.8% | 44.0%",
+   "Scottsdale city | 53.7% | 45.4%",
+   "Gilbert town | 57.3% | 41.6%",
+   "Chandler city | 46.9% | 51.7%"
+  ],
+  "th_num": [
+   "Donald Trump 2024 / 1.05M",
+   "Kamala Harris 2024 / 980K"
+  ],
+  "rows_num": [
+   "Phoenix city | 263K | 349K",
+   "Mesa city",
+   "Scottsdale city | 146K",
+   "Gilbert town | 141K",
+   "Chandler city | 135K"
+  ],
+  "lat_tomap": 65,
+  "view": "map",
+  "lat_time": 16.1,
+  "ranges": {
+   "y16": {
+    "ysl": [
+     0,
+     0
+    ],
+    "th": [
+     "Donald Trump 2016 / 48%",
+     "Hillary Clinton 2016 / 45%"
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 13.9,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Donald Trump \u00b7 47.7% / ",
+       "Hillary Clinton \u00b7 44.8% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 13.9,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Donald Trump \u00b7 747K / ",
+       "Hillary Clinton \u00b7 703K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "y20": {
+    "ysl": [
+     1,
+     1
+    ],
+    "th": [
+     "Joe Biden \u00b7 50.3% / ",
+     "Donald Trump \u00b7 48.1% / "
+    ],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 29.5,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 29.5,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Joe Biden 2020 / ",
+       "Donald Trump 2020 / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "y24": {
+    "ysl": [
+     2,
+     2
+    ],
+    "th": [
+     "Donald Trump 2024 / ",
+     "Kamala Harris 2024 / "
+    ],
+    "rows": [],
+    "charts": {
+     "pie-pct": {
+      "lat": 28.6,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Donald Trump \u00b7 51.2% / ",
+       "Kamala Harris \u00b7 47.7% / "
+      ],
+      "rows": [],
+      "chip": []
+     },
+     "pie-num": {
+      "lat": 28.6,
+      "mode": "pie",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [
+       "Donald Trump \u00b7 1.05M / ",
+       "Kamala Harris \u00b7 980K / "
+      ],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "pie"
+    ]
+   },
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 19.6,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 19.6,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "bar-pct": {
+      "lat": 18.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "bar-num": {
+      "lat": 18.9,
+      "mode": "bar",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "th": [],
+    "rows": [],
+    "charts": {
+     "line-pct": {
+      "lat": 14.8,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     },
+     "line-num": {
+      "lat": 14.8,
+      "mode": "line",
+      "txt": "",
+      "ovl": {
+       "box": [
+        260,
+        177,
+        122,
+        6
+       ],
+       "labels": [],
+       "ov": [],
+       "clip": []
+      },
+      "th": [],
+      "rows": [],
+      "chip": []
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "reload": {
+   "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[33.2846,-112.1924,7]}",
+   "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Arizona\",\"co\":\"Maricopa County\",\"lt\":\"none\",\"yv\":1,\"tb\":true,\"y16\":3,\"ch\":\"line\",\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"ll\":[33.2801,-112.1875,7]}",
+   "crumbs": "Maricopa County",
+   "th": [],
+   "ysl": [
+    0,
+    2
+   ]
+  },
+  "err": []
+ }
+}
