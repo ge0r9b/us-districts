@@ -1,0 +1,103 @@
+{
+ "Jefferson County": {
+  "n": 84,
+  "sum24": 285105,
+  "np24": 605,
+  "top": [
+   [
+    "Louisville/Jefferson County metro government (balance)",
+    177622
+   ],
+   [
+    "Jeffersontown city",
+    14811
+   ],
+   [
+    "St. Matthews city",
+    8085
+   ],
+   [
+    "Lyndon city",
+    6793
+   ],
+   [
+    "Middletown city",
+    6251
+   ],
+   [
+    "Shively city",
+    6213
+   ],
+   [
+    "Prospect city",
+    3207
+   ],
+   [
+    "Hurstbourne city",
+    2627
+   ]
+  ]
+ },
+ "Bernalillo County": {
+  "n": 5,
+  "sum24": 253600,
+  "np24": 687,
+  "top": [
+   [
+    "Albuquerque city",
+    248287
+   ],
+   [
+    "Los Ranchos de Albuquerque village",
+    3863
+   ],
+   [
+    "Edgewood town",
+    616
+   ],
+   [
+    "Tijeras village",
+    468
+   ],
+   [
+    "Rio Rancho city",
+    366
+   ]
+  ]
+ },
+ "Multnomah County": {
+  "n": 7,
+  "sum24": 403912,
+  "np24": 107,
+  "top": [
+   [
+    "Portland city",
+    343111
+   ],
+   [
+    "Gresham city",
+    44890
+   ],
+   [
+    "Troutdale city",
+    8066
+   ],
+   [
+    "Fairview city",
+    4205
+   ],
+   [
+    "Lake Oswego city",
+    1819
+   ],
+   [
+    "Wood Village city",
+    1296
+   ],
+   [
+    "Maywood Park city",
+    525
+   ]
+  ]
+ }
+}

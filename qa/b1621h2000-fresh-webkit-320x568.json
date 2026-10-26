@@ -1,0 +1,906 @@
+{
+ "atlarge": {
+  "Alaska": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Alaska",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2024 / 55%",
+     "Kamala Harris 2024 / 41%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Alaska",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "Alaska",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Donald Trump 2024 / Donald Trump 54.5%",
+     "Kamala Harris 2024 / Kamala Harris 41.4%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Alaska",
+     "view": null
+    }
+   ]
+  },
+  "Wyoming": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Wyoming",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2024 / 72%",
+     "Kamala Harris 2024 / 26%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Wyoming",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "Wyoming",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Donald Trump 2024 / Donald Trump 71.6%",
+     "Kamala Harris 2024 / Kamala Harris 25.8%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Wyoming",
+     "view": null
+    }
+   ]
+  },
+  "Vermont": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Vermont",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Kamala Harris 2024 / 64%",
+     "Donald Trump 2024 / 32%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Vermont",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "Vermont",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Kamala Harris 2024 / Kamala Harris 63.8%",
+     "Donald Trump 2024 / Donald Trump 32.3%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Vermont",
+     "view": null
+    }
+   ]
+  },
+  "Delaware": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Delaware",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Kamala Harris 2024 / 56%",
+     "Donald Trump 2024 / 42%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Delaware",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "Delaware",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Kamala Harris 2024 / Kamala Harris 56.5%",
+     "Donald Trump 2024 / Donald Trump 41.8%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "Delaware",
+     "view": null
+    }
+   ]
+  },
+  "North Dakota": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "North Dakota",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2024 / 67%",
+     "Kamala Harris 2024 / 31%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "North Dakota",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "North Dakota",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Donald Trump 2024 / Donald Trump 67.0%",
+     "Kamala Harris 2024 / Kamala Harris 30.5%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "North Dakota",
+     "view": null
+    }
+   ]
+  },
+  "South Dakota": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "South Dakota",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2024 / 63%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "South Dakota",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "South Dakota",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Donald Trump 2024 / Donald Trump 63.4%",
+     "Kamala Harris 2024 / Kamala Harris 34.2%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "South Dakota",
+     "view": null
+    }
+   ]
+  },
+  "District of Columbia": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "District of Columbia",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Kamala Harris 2024 / 90%",
+     "Donald Trump 2024 / 6%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "District of Columbia",
+     "view": null
+    },
+    []
+   ],
+   "list": [
+    {
+     "title": "President",
+     "crumbs": "District of Columbia",
+     "list": true,
+     "ym": "2024"
+    },
+    [],
+    [],
+    [
+     "Kamala Harris 2024 / Kamala Harris 90.3%",
+     "Donald Trump 2024 / Donald Trump 6.5%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": false,
+     "crumbs": "District of Columbia",
+     "view": null
+    }
+   ]
+  }
+ },
+ "y16": {
+  "South Dakota": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "South Dakota",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2016 / 62%",
+     "Hillary Clinton 2016 / 32%"
+    ]
+   ],
+   "lat_counties": 13,
+   "counties": [
+    {
+     "title": "President",
+     "crumbs": "South Dakota",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Minnehaha | 53.7%",
+     "Pennington | 62.4%",
+     "Lincoln | 61.4%",
+     "Brown | 59.7%",
+     "Brookings | 53.2% | 38.5%",
+     "Lawrence | 62.6% | 28.3%",
+     "Codington | 66.5% | 27.2%",
+     "Meade | 72.6%"
+    ],
+    [
+     "Donald Trump 2016 / 62%",
+     "Hillary Clinton 2016 / 32%"
+    ]
+   ],
+   "lat_county": 17,
+   "county": [
+    {
+     "title": "President",
+     "crumbs": "Minnehaha County",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Sioux Falls city (Minnehaha par\u2026 | 50.1%",
+     "Brandon city | 62.6%",
+     "Brandon township | 64.4%",
+     "Split Rock township | 65.8%",
+     "Hartford city | 62.7% | 29.4%",
+     "Hartford township | 62.7% | 29.4%",
+     "Grand Meadow township | 64.8% | 28.2%",
+     "Lyons township | 64.4% | 28.2%"
+    ],
+    [
+     "Donald Trump 2016 / 54%",
+     "Hillary Clinton 2016 / 39%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": true,
+     "crumbs": "Minnehaha County",
+     "view": null
+    }
+   ],
+   "lat_sub": 46,
+   "sub": [
+    {
+     "title": "President",
+     "crumbs": "Minnehaha County Sioux Falls ci\u2026",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Precinct 02-14 | 54.5%",
+     "Precinct 03-09 | 54.1%",
+     "Precinct 04-11 | 57.5%",
+     "Precinct 02-07 | 56.1%",
+     "Precinct 01-04/01-05 | 49.9% | 42.9%",
+     "Precinct 03-17 | 58.7% | 35.1%",
+     "Precinct 03-10 | 57.3% | 37.2%",
+     "Precinct 02-02 | 53.0% | 40.2%"
+    ],
+    [
+     "Donald Trump 2016 / 50%",
+     "Hillary Clinton 2016 / 42%"
+    ]
+   ],
+   "submap": [
+    {
+     "title": "President",
+     "crumbs": "Minnehaha County Sioux Falls ci\u2026",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2016 / 50%",
+     "Hillary Clinton 2016 / 42%"
+    ],
+    [
+     9,
+     43.65,
+     -96.71
+    ]
+   ],
+   "ym_end": "2024"
+  },
+  "Oregon": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Oregon",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Hillary Clinton 2016 / 50%",
+     "Donald Trump 2016 / 39%"
+    ]
+   ],
+   "lat_counties": 13,
+   "counties": [
+    {
+     "title": "President",
+     "crumbs": "Oregon",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Multnomah | 73.3%",
+     "Washington | 30.9% | 56.9%",
+     "Clackamas | 41.3% | 47.7%",
+     "Lane | 35.0% | 53.5%",
+     "Marion | 46.3% | 42.2%",
+     "Jackson | 49.3% | 40.7%",
+     "Deschutes | 46.4% | 43.1%",
+     "Linn | 57.0% | 30.6%"
+    ],
+    [
+     "Hillary Clinton 2016 / 50%",
+     "Donald Trump 2016 / 39%"
+    ]
+   ],
+   "lat_county": 6,
+   "county": [
+    {
+     "title": "President",
+     "crumbs": "Lane County",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Eugene city",
+     "Springfield city | 40.6% | 46.4%",
+     "Florence city | 46.1% | 44.5%",
+     "Cottage Grove city | 48.8%",
+     "Junction City city | 55.3% | 32.6%",
+     "Creswell city | 53.1% | 35.2%",
+     "Veneta city | 52.5% | 34.9%",
+     "Lowell city | 52.3% | 36.2%"
+    ],
+    [
+     "Hillary Clinton 2016 / 54%",
+     "Donald Trump 2016 / 35%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": true,
+     "crumbs": "Lane County",
+     "view": null
+    }
+   ],
+   "lat_sub": 18,
+   "sub": [
+    {
+     "title": "President",
+     "crumbs": "Lane County Eugene city",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Precinct 1235 | 78.7%",
+     "Precinct 1561 | 33.8% | 55.3%",
+     "Precinct 1127 | 78.7%",
+     "Precinct 1675 | 40.8% | 48.1%",
+     "Precinct 1343 | 82.0%",
+     "Precinct 1345 | 82.3%",
+     "Precinct 1451 | 33.7% | 56.7%",
+     "Precinct 1899 | 63.6%"
+    ],
+    [
+     "Hillary Clinton 2016 / 65%",
+     "Donald Trump 2016 / 23%"
+    ]
+   ],
+   "submap": [
+    {
+     "title": "President",
+     "crumbs": "Lane County Eugene city",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Hillary Clinton 2016 / 65%",
+     "Donald Trump 2016 / 23%"
+    ],
+    [
+     10,
+     44.099,
+     -123.113
+    ]
+   ],
+   "ym_end": "2024"
+  },
+  "Kentucky": {
+   "map": [
+    {
+     "title": "President",
+     "crumbs": "Kentucky",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Donald Trump 2016 / 63%",
+     "Hillary Clinton 2016 / 33%"
+    ]
+   ],
+   "lat_counties": 13,
+   "counties": [
+    {
+     "title": "President",
+     "crumbs": "Kentucky",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Jefferson | 40.7%",
+     "Fayette | 41.8% | 51.2%",
+     "Kenton | 59.7%",
+     "Boone | 67.9%",
+     "Warren | 59.2% | 35.0%",
+     "Daviess | 63.1% | 30.9%",
+     "Hardin | 62.5% | 32.3%",
+     "Campbell | 59.0% | 34.5%"
+    ],
+    [
+     "Donald Trump 2016 / 63%",
+     "Hillary Clinton 2016 / 33%"
+    ]
+   ],
+   "lat_county": 14,
+   "county": [
+    {
+     "title": "President",
+     "crumbs": "Fayette County",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Lexington-Fayette urban county | 41.8% | 51.2%"
+    ],
+    [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 42%"
+    ],
+    {
+     "th": [
+      27,
+      27
+     ],
+     "ic": 27,
+     "listall": true,
+     "crumbs": "Fayette County",
+     "view": null
+    }
+   ],
+   "lat_sub": 113,
+   "sub": [
+    {
+     "title": "President",
+     "crumbs": "Fayette County Lexington-Fayett\u2026",
+     "list": true,
+     "ym": "2024"
+    },
+    [
+     "Hopewell Park | 40.7%",
+     "Parker Meadows | 44.9% | 47.2%",
+     "Needlerush | 51.1%",
+     "Town Branch | 36.3% | 56.1%",
+     "Red Clover | 32.5% | 60.7%",
+     "Broadmoor | 56.4% | 36.8%",
+     "Taborlake | 47.0% | 45.9%",
+     "Walton | 79.1%"
+    ],
+    [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 42%"
+    ]
+   ],
+   "submap": [
+    {
+     "title": "President",
+     "crumbs": "Fayette County Lexington-Fayett\u2026",
+     "list": false,
+     "ym": "2024"
+    },
+    [
+     "Hillary Clinton 2016 / 51%",
+     "Donald Trump 2016 / 42%"
+    ],
+    [
+     9,
+     38.115,
+     -84.457
+    ]
+   ],
+   "ym_end": "2024"
+  }
+ },
+ "line": {
+  "Oregon-16-24-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Oregon-16-24-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Oregon-16-20-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Oregon-16-20-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Kentucky-16-24-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Kentucky-16-24-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Kentucky-16-20-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "Kentucky-16-20-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "New Mexico-16-24-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "New Mexico-16-24-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "New Mexico-16-20-pct": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  },
+  "New Mexico-16-20-num": {
+   "mode": "line",
+   "clip": {
+    "box": [
+     190,
+     177,
+     122,
+     6
+    ],
+    "vw": 320,
+    "out": [],
+    "ovl": [],
+    "texts": [
+     "D+20",
+     "R+20"
+    ]
+   },
+   "th": []
+  }
+ },
+ "err": []
+}

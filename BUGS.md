@@ -2013,3 +2013,36 @@ Touch, Chromium and WebKit. No console errors, page errors or failed app request
 - Chromium 390, 375, 320, 1024x576, 1024x768 and WebKit 320, 390, 1024x768: **every step matches 1620/1621 (SAME)**. The only movement is the known pair: the slider pushes the thumbnails +68 px, and the split-bar first row grows +14 px. The only DIFF flags are the transient crumbs-text sample during the All States sheet; that sample flips both ways between runs (WebKit 1024x768 now, WebKit 390 before), so it is not a jump.
 - Tap-to-paint: every non-drill step was 6-84 ms. The All States sheet measured 357 ms (Chromium 390) and 344 ms (WebKit 320) while four browsers were running; **solo it was 71 / 74 ms**, so that was box load. The list drills (220-239 ms, including the script's 200 ms pre-tap wait) are the same as on 1621 at 6 PM.
 - Data: `qa/b1621h1900-*.json`, `qa/h1900-*.log`; shots `qa/shotsb1621/b1621h19-*.png`.
+
+## Build 202610251621 hourly ~8 PM EDT (Oct 25; 7:58-8:40 PM EDT; line 9 = 202610251621; v3 still 404)
+Touch, Chromium and WebKit. No console errors, page errors or failed app requests in any run. New bug: **QA-134**. Next new bug is QA-135.
+
+### New
+### QA-134 [HIGH, ruling requested; possibly CRITICAL like QA-094] Kentucky > Jefferson County > "Louisville/Jefferson County metro government (balance)" leaves out 225 of its precincts (95,213 votes), so Louisville shows a 49 / 49 tie instead of about Harris 58 / Trump 40
+- Build 202610251621. Chromium 390x844, touch (`qa/h2000-wi.py`); data check `qa/h2000-jeff2.py`, `qa/h2000-jeff3.py` (`qa/b1621h2000-jeff2.json`, `qa/b1621h2000-jeff3.json`).
+- Steps: type Kentucky + Enter > globe (list) > #bGeo > "Kentucky counties" > Jefferson > tap "Louisville/Jefferson County metro government (balance)" (then globe for the map).
+- Expected: Louisville Metro is a consolidated city-county, so every Jefferson County precinct that is not in one of the 83 small cities belongs to the balance. With all of them, the balance is 272,835 votes: Harris 157,452 (57.7%) / Trump 110,322 (40.4%).
+- Actual: the balance has 252 precincts, 177,622 votes: Harris 87,501 (49.3%) / Trump 87,162 (49.1%); header thumbnails "Harris 49 / Trump 49". **225 of the county's 605 precincts (95,213 votes; Harris 69,951 / Trump 23,160) are in no town at all**: N101, L216, N102, K119, L219, G143, G145, L211, L165, M196, N136, H167, ... (mostly the urban core / West End). On the map the balance outline is a ring with the core cut out. The county row and county thumbnails are right (Harris 57.4 / Trump 40.9, total 352,621), so the state and county totals are not affected; only the Louisville place is wrong. The small-city rows are not double counted (0 shared precincts).
+- Compared: Fayette KY (Lexington-Fayette 285/285 precincts), Davidson TN (Nashville balance + cities 178/178), Clarke GA (Athens-Clarke 24/24) and Wyandotte KS (1 precinct, 26 votes unassigned) are fine. Marion IN shares 587 precincts between "Indianapolis city (balance)" and the townships: the known city-inside-township overlap, not new.
+- Shots: `qa/shotsb1621/b1621h20-ch-390x844-st-Kentucky-drill-sub.png` (Louisville balance list, 252 rows, 49 / 49), `qa/shotsb1621/b1621h20-ch-390x844-st-Kentucky-drill-sub-map.png` (map: the outline excludes the core), `qa/shotsb1621/b1621h20-ch-390x844-st-Kentucky-drill-Jefferson.png` (county list, 84 towns).
+
+### Re-checks (no status changes)
+- **QA-130 still reproduces** (Chromium 390x844, All States list > #bGeo "Pittsburgh" + Enter, US House on or off): thumbnails 76.7 / 21.7, `#listView` hidden with 0 rows after 4 s and 12 s. `qa/b1621h2000-q129-chromium-390x844.json`, shots `qa/shotsb1621/b1621h20-ch-390x844-q129-Pittsburgh-type{0,1}.png`.
+- **QA-131 still reproduces** (WebKit 390x844, persistent profile): Pittsburgh + Enter (z16) > "United States" + Enter gives z0, header still "Allegheny County Pittsburgh city", heat "precinct"; ZIP path the same. `qa/b1621h20-iph-390x844.json`, shots `qa/shotsb1621/b1621h20-iph-we-390x844-A2-backUS.png`, `-B2-backUS.png`.
+- QA-133, QA-099, QA-102, QA-106: no change seen (not re-measured in depth; no build change). The QA-099 chip still touches the first bar's top edge at 320 (Sioux Falls precinct list, `qa/shotsb1621/b1621h20-we-320x568-y16-SouthDakota-sub.png`).
+
+### Fresh areas: pass
+- **District lists OR / KY / NM** (`qa/h2000-wi.py`; Chromium 390x844 Oregon + Kentucky, WebKit 1024x768 New Mexico):
+  - Certified 2024 totals (Harris / Trump / total) match exactly: OR 1,240,600 / 919,480 / 2,244,493; KY 704,043 / 1,337,494 / 2,074,530; NM 478,802 / 423,391 / 923,403. 2016 also exact: OR 1,002,106 / 782,403 / 2,001,336; KY 628,854 / 1,202,971 / 1,924,149; NM 385,234 / 319,667 / 798,319.
+  - Row counts: state senate OR 30, KY 38, NM 42; state house 60 / 100 / 70; US House 6 / 6 / 3; school districts 197 / 177 / 89. Rows number-only, school districts named.
+  - District numbers plausible: OR-5 Trump 44.4 / Harris 51.9, OR-2 61.5 / 35.2; NM-2 50.6 / 48.7, NM-1 43.1 / 56.0; KY-3 (Jefferson schools) 40.8 / 57.4.
+  - Drill: OR > Multnomah (7 towns, 79 / 17) > Portland city (79 precincts, 83 / 12); NM > Bernalillo (5 towns) > Albuquerque city (553 precincts, 60 / 37); KY > Jefferson (84 towns) > Louisville balance (see QA-134). Reload restores the same snapshot in every case. No overlap, clipping or off-screen elements in any type, % or #.
+  - Taps: type picks 42-81 ms, list/num 4-52 ms, county list open 38-85 ms.
+- **At-large labels** (`qa/h2000-alprobe.py`; WebKit 320x568 and Chromium 390x844, US House on): AK "At-large 54.5 / 41.4", WY "At-large 71.6", VT "At-large 32.6 / 64.4", DE "At-large 41.9 / 56.6", ND "At-large 67.5", SD "At-large 63.4", DC "At-large 90.3". Typing a state + Enter turns the district type off (lt none); list view with no type shows thumbnails only (the line-939 design).
+- **Earliest year ('16) drill-ins** (`qa/h2000-fresh.py`, WebKit 320x568): SD '16 Trump 62 / Clinton 32 > counties (Minnehaha first) > Minnehaha 54 / 39 > Sioux Falls city 50 / 42 with precinct rows > map z9 on Sioux Falls; thumbnails stay on '16 throughout. Thumbnails on the topic-icon axis (27 / 27 / icon 27) in every at-large view.
+- **Line chart at 320** (OR, KY, NM, '16>'24 and '16>'20, % and #): no text outside the chart or viewport and no label-on-label overlap; values right (OR '16>'24 %: Clinton/Biden +6.4 / −1.2, Trump +1.3 / +0.6; KY #: Trump +124K / +11K, D +144K / −68K). The chart menu, when open, sits over the '24 thumbnail as an overlay (map rect unchanged, no shrink); not a bug. Shots `qa/shotsb1621/b1621h20-we-320x568-line-*.png`.
+
+### Layout-stability and tap-to-paint sweep (`qa/h2000-lay3.py`, `qa/h2000-cmp.py`)
+- Chromium 390, 320, 1024x768 and WebKit 375, 1024x576: **every step SAME** as the previous run. Only the known slider push (thumbnails +68 px) and split-bar first row +14 px.
+- Tap-to-paint: non-drill steps 6-79 ms; list drills 208-240 ms including the script's 200 ms pre-tap wait (same as before). Nothing over 100 ms.
+- Data `qa/b1621h2000-layout3-*.json`, `qa/h2000-lay3-*.log`; shots `qa/shotsb1621/b1621h20-*-ls3*.png`.
