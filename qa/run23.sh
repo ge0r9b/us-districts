@@ -1,0 +1,1 @@
+for a in "webkit 390" "webkit 375" "webkit 320" "webkit 1024x576" "webkit 1024x768" "chromium 390" "chromium 1024x768"; do set -- $a; timeout 400 python3 h2300-lay3.py $1 $2 > h2300-lay3-$1-$2.log 2>&1; echo done $a; done
