@@ -1,0 +1,17 @@
+# tools/ab_startup.py, local serve.py, a = 1622 index.html (0863b89c), b = 1623 index.html (live, = ac6c6d0f), 390x844, 7 alternating reps, 11:25 EDT, load ~0.5
+a 0 {'build': '202610251622', 'html_done': 152, 'dcl': 543, 'first_map': 569, 'longest_task': 171, 'lt_ms': 368}
+b 0 {'build': '202610261623', 'html_done': 146, 'dcl': 525, 'first_map': 528, 'longest_task': 109, 'lt_ms': 274}
+b 1 {'build': '202610261623', 'html_done': 42, 'dcl': 598, 'first_map': 551, 'longest_task': 108, 'lt_ms': 278}
+a 1 {'build': '202610251622', 'html_done': 35, 'dcl': 584, 'first_map': 567, 'longest_task': 116, 'lt_ms': 290}
+a 2 {'build': '202610251622', 'html_done': 32, 'dcl': 572, 'first_map': 533, 'longest_task': 109, 'lt_ms': 278}
+b 2 {'build': '202610261623', 'html_done': 33, 'dcl': 591, 'first_map': 547, 'longest_task': 108, 'lt_ms': 281}
+b 3 {'build': '202610261623', 'html_done': 32, 'dcl': 599, 'first_map': 561, 'longest_task': 138, 'lt_ms': 313}
+a 3 {'build': '202610251622', 'html_done': 30, 'dcl': 582, 'first_map': 544, 'longest_task': 112, 'lt_ms': 293}
+a 4 {'build': '202610251622', 'html_done': 34, 'dcl': 610, 'first_map': 544, 'longest_task': 120, 'lt_ms': 296}
+b 4 {'build': '202610261623', 'html_done': 35, 'dcl': 657, 'first_map': 577, 'longest_task': 126, 'lt_ms': 311}
+b 5 {'build': '202610261623', 'html_done': 34, 'dcl': 585, 'first_map': 546, 'longest_task': 120, 'lt_ms': 293}
+a 5 {'build': '202610251622', 'html_done': 35, 'dcl': 639, 'first_map': 575, 'longest_task': 119, 'lt_ms': 308}
+a 6 {'build': '202610251622', 'html_done': 32, 'dcl': 641, 'first_map': 560, 'longest_task': 134, 'lt_ms': 312}
+b 6 {'build': '202610261623', 'html_done': 32, 'dcl': 629, 'first_map': 562, 'longest_task': 116, 'lt_ms': 290}
+a {'dcl': 584, 'first_map': 560, 'longest_task': 119, 'lt_ms': 296}
+b {'dcl': 598, 'first_map': 551, 'longest_task': 116, 'lt_ms': 290}

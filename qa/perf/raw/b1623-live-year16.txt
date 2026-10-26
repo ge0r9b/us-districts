@@ -1,0 +1,21 @@
+ok   chromium 390x844 TX Harris: town list open
+     chromium 390x844 TX Harris: 0.77s  52% / 46% -> 54% / 42%  rows: Houston city 32.4% 63.0% | Pasadena city 52.0% 43.9% | Baytown city 52.9% 43.7%
+ok   chromium 390x844 TX Harris: list repaints with 2016 (54%) in < 3.0s
+ok   chromium 390x844 TX Harris: page responsive after
+ok   chromium 390x844 TX Harris: no page errors
+ok   chromium 390x844 WA King: town list open
+     chromium 390x844 WA King: 0.32s  74% / 22% -> 72% / 22%  rows: Seattle city 86.0% | Bellevue city 25.4% 68.3% | Kirkland city 24.8% 67.9%
+ok   chromium 390x844 WA King: list repaints with 2016 (72%) in < 3.0s
+ok   chromium 390x844 WA King: page responsive after
+ok   chromium 390x844 WA King: no page errors
+ok   chromium 390x844 IL Cook: town list open
+     chromium 390x844 IL Cook: 0.56s  70% / 28% -> 74% / 21%  rows: Chicago city (Cook part) 82.9% | Thornton township 86.5% | Wheeling township 36.5% 56.4%
+ok   chromium 390x844 IL Cook: list repaints with 2016 (74%) in < 3.0s
+ok   chromium 390x844 IL Cook: page responsive after
+ok   chromium 390x844 IL Cook: no page errors
+ok   chromium 390x844 MA Worcester: town list open
+     chromium 390x844 MA Worcester: 0.44s  54% / 44% -> 51% / 40%  rows: Worcester city 27.1% 65.9% | Leominster city 41.8% 50.2% | Shrewsbury town 36.0% 56.1%
+ok   chromium 390x844 MA Worcester: list repaints with 2016 (51%) in < 3.0s
+ok   chromium 390x844 MA Worcester: page responsive after
+ok   chromium 390x844 MA Worcester: no page errors
+ALL OK
