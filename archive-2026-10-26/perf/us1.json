@@ -1,0 +1,122 @@
+{
+ "b1576": {
+  "390x844": [
+   {
+    "pick": [
+     272.9,
+     71.1,
+     66,
+     120.8,
+     71.9
+    ],
+    "back": [
+     null,
+     45.9,
+     82
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   },
+   {
+    "pick": [
+     241.9,
+     74.3,
+     77.1,
+     69.6,
+     69.6
+    ],
+    "back": [
+     null,
+     47.5,
+     41.9
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   }
+  ]
+ },
+ "b1579": {
+  "390x844": [
+   {
+    "pick": [
+     277.5,
+     105.2,
+     95.7,
+     57,
+     97.1
+    ],
+    "back": [
+     null,
+     95.5,
+     63.3
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   },
+   {
+    "pick": [
+     260.9,
+     103.4,
+     91.7,
+     139.3,
+     2.8
+    ],
+    "back": [
+     null,
+     1.9,
+     97.7
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   }
+  ]
+ },
+ "cur": {
+  "390x844": [
+   {
+    "pick": [
+     236.6,
+     89.8,
+     87.2,
+     54.6,
+     86.7
+    ],
+    "back": [
+     null,
+     99,
+     96.6
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   },
+   {
+    "pick": [
+     244.6,
+     91.8,
+     91.7,
+     140.5,
+     98
+    ],
+    "back": [
+     null,
+     60.5,
+     91.5
+    ],
+    "errors": [],
+    "warm_before_tap": false,
+    "agg": null,
+    "rows": 17
+   }
+  ]
+ }
+}
