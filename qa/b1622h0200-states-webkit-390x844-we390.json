@@ -1,0 +1,1943 @@
+{
+ "Louisiana": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Louisiana",
+    "gq": "Louisiana",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 60%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    780154,
+    1178638,
+    2029032
+   ],
+   "2020": [
+    856034,
+    1255776,
+    2148062
+   ],
+   "2024": [
+    766870,
+    1208505,
+    2006975
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 58%",
+    "Hillary Clinton 2016 / 38%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 58%",
+    "Joe Biden 2020 / 40%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 60%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 64,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Louisiana",
+      "gq": "Louisiana",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 60%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 33,
+    "n": 39,
+    "rows": [
+     "17 | 64.8%",
+     "23 | 71.5% | 26.6%",
+     "19 | 57.9% | 40.7%",
+     "11 | 73.0%",
+     "18 | 74.0% | 24.5%",
+     "26 | 80.5% | 18.5%"
+    ],
+    "order": {
+     "n": 39,
+     "first": [
+      64.8,
+      71.5,
+      57.9,
+      73.0,
+      74.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4,
+      5,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 60%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 31,
+    "lat_numpick": 96,
+    "num": "num",
+    "rows_num": [
+     "17 | 41K | 21K",
+     "23 | 45K | 17K",
+     "19 | 36K | 25K",
+     "11 | 44K | 15K",
+     "18 | 44K | 15K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      41000.0,
+      45000.0,
+      36000.0,
+      44000.0,
+      44000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      5,
+      9,
+      10
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.21M",
+     "Kamala Harris 2024 / 767K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 61,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Louisiana",
+      "gq": "Louisiana",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 60%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 21,
+    "n": 105,
+    "rows": [
+     "89 | 73.4%",
+     "58 | 36.3% | 62.4%",
+     "74 | 79.4%",
+     "82 | 60.7% | 37.1%",
+     "59 | 69.0% | 29.3%",
+     "18 | 62.9% | 35.9%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      73.4,
+      36.3,
+      79.4,
+      60.7,
+      69.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 60%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30,
+    "lat_numpick": 75,
+    "num": "num",
+    "rows_num": [
+     "89 | 22K | 7K",
+     "58 | 9K | 16K",
+     "74 | 20K | 5K",
+     "82 | 14K | 9K",
+     "59 | 16K | 7K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      22000.0,
+      9000.0,
+      20000.0,
+      14000.0,
+      16000.0
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      6,
+      7,
+      9
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.21M",
+     "Kamala Harris 2024 / 767K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Louisiana\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[31.7095,-91.2964,6]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Louisiana\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[31.7095,-91.2964,6]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Louisiana",
+      "gq": "Louisiana",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 105,
+     "rows": [
+      "89 | 73.4%",
+      "58 | 36.3% | 62.4%",
+      "74 | 79.4%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 57,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Louisiana",
+      "gq": "Louisiana",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 60%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 24,
+    "n": 69,
+    "rows": [
+     "Jefferson Parish | 55.4%",
+     "Orleans Parish | 82.2%",
+     "East Baton Rouge Parish | 39.8% | 58.0%",
+     "St. Tammany Parish | 71.1%",
+     "Lafayette Parish | 64.8% | 33.5%",
+     "Caddo Parish | 47.0% | 51.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      55.4,
+      82.2,
+      39.8,
+      71.1,
+      64.8
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      7,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 60%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 23,
+    "lat_numpick": 35,
+    "num": "num",
+    "rows_num": [
+     "Jefferson Parish | 99K | 76K",
+     "Orleans Parish | 131K",
+     "East Baton Rouge Parish | 61K | 89K",
+     "St. Tammany Parish | 98K | 38K",
+     "Lafayette Parish | 72K | 37K"
+    ],
+    "order_num": {
+     "n": 22,
+     "first": [
+      99000.0,
+      131000.0,
+      61000.0,
+      98000.0,
+      72000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      6,
+      9
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.21M",
+     "Kamala Harris 2024 / 767K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 49,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Louisiana",
+      "gq": "Louisiana",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 60%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 11,
+    "n": 6,
+    "rows": [
+     "1 | 67.6%",
+     "4 | 75.0%",
+     "3 | 71.7% | 27.0%",
+     "5 | 66.8% | 31.7%",
+     "2 | 33.6% | 64.4%",
+     "6 | 42.5% | 56.0%"
+    ],
+    "order": {
+     "n": 6,
+     "first": [
+      67.6,
+      75.0,
+      71.7,
+      66.8,
+      33.6
+     ],
+     "not_desc_at": [
+      1,
+      5
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 60%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 4,
+    "lat_numpick": 24,
+    "num": "num",
+    "rows_num": [
+     "1 | 251K | 113K",
+     "4 | 251K | 80K",
+     "3 | 240K | 90K",
+     "5 | 223K | 106K",
+     "2 | 107K | 204K"
+    ],
+    "order_num": {
+     "n": 6,
+     "first": [
+      251000.0,
+      251000.0,
+      240000.0,
+      223000.0,
+      107000.0
+     ],
+     "not_desc_at": [
+      5
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.21M",
+     "Kamala Harris 2024 / 767K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Louisiana",
+     "gq": "Louisiana",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 58%",
+     "Hillary Clinton 2016 / 38%",
+     "Donald Trump 2020 / 58%",
+     "Joe Biden 2020 / 40%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 54,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 25,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 36,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Louisiana counties",
+    "Acadia Parish \u203a",
+    "Allen Parish \u203a"
+   ],
+   "lat_counties": 80,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Louisiana",
+    "gq": "Louisiana",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 64,
+   "rows1": [
+    "East Baton Rouge Parish | 43.4%",
+    "Jefferson Parish | 55.4% | 42.5%",
+    "Orleans Parish | 82.2%",
+    "St. Tammany Parish | 71.1% | 27.3%",
+    "Lafayette Parish | 64.8% | 33.5%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     43.4,
+     55.4,
+     82.2,
+     71.1,
+     64.8
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     6,
+     7,
+     9
+    ]
+   },
+   "lat_county": 14,
+   "hdr2": {
+    "title": "President",
+    "crumbs": "Orleans Parish",
+    "gq": "Orleans Parish, LA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n2": 1,
+   "rows2": [
+    "New Orleans city | 82.2%"
+   ],
+   "order2": {
+    "n": 1,
+    "first": [
+     82.2
+    ],
+    "not_desc_at": []
+   },
+   "th2": [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   "layout2": {
+    "over": [],
+    "clip": [],
+    "off": []
+   },
+   "lat_sub": 23,
+   "hdr3": {
+    "title": "President",
+    "crumbs": "Orleans Parish New Orleans city",
+    "gq": "Orleans Parish, LA",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n3": 349,
+   "rows3": [
+    "Precinct 09-44P | 82.1%",
+    "Precinct 0003-1 | 30.8% | 66.2%",
+    "Precinct 09-44E | 95.2%",
+    "Precinct 15-19A | 36.1% | 62.1%",
+    "Precinct 017-20 | 47.3% | 50.2%",
+    "Precinct 004-14 | 42.3% | 54.2%"
+   ],
+   "th3": [
+    "Kamala Harris 2024 / 82%",
+    "Donald Trump 2024 / 15%"
+   ],
+   "map3": [
+    {
+     "title": "President",
+     "crumbs": "Orleans Parish New Orleans city",
+     "gq": "Orleans Parish, LA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    [
+     "Kamala Harris 2024 / 82%",
+     "Donald Trump 2024 / 15%"
+    ],
+    [
+     9,
+     "30.128",
+     "-89.868"
+    ],
+    []
+   ],
+   "reload": {
+    "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Louisiana\",\"co\":\"Orleans Parish\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Orleans Parish\",\"New Orleans city\"],\"ll\":[30.1285,-89.8682,9]}",
+    "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Louisiana\",\"co\":\"Orleans Parish\",\"lt\":\"none\",\"yv\":2,\"tb\":true,\"ch\":\"bar\",\"nm\":\"pct\",\"vw\":\"map\",\"so\":\"desc\",\"tw\":[\"c\",\"Orleans Parish\",\"New Orleans city\"],\"ll\":[30.1285,-89.8682,9]}",
+    "hdr": {
+     "title": "President",
+     "crumbs": "Orleans Parish New Orleans city",
+     "gq": "Orleans Parish, LA",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    },
+    "th": [
+     "Kamala Harris 2024 / 82%",
+     "Donald Trump 2024 / 15%"
+    ]
+   }
+  },
+  "err": []
+ },
+ "Mississippi": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Mississippi",
+    "gq": "Mississippi",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 61%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    485131,
+    700714,
+    1209357
+   ],
+   "2020": [
+    539398,
+    756764,
+    1313759
+   ],
+   "2024": [
+    466668,
+    747744,
+    1228008
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 58%",
+    "Hillary Clinton 2016 / 40%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 58%",
+    "Joe Biden 2020 / 41%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 61%",
+    "Kamala Harris 2024 / 38%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 65,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Mississippi",
+      "gq": "Mississippi",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 61%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 31,
+    "n": 52,
+    "rows": [
+     "10 | 63.9%",
+     "39 | 73.2%",
+     "8 | 68.4% | 30.6%",
+     "25 | 61.9% | 36.6%",
+     "6 | 75.0% | 23.9%",
+     "19 | 64.2% | 33.6%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      63.9,
+      73.2,
+      68.4,
+      61.9,
+      75.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      7,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 61%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 23,
+    "lat_numpick": 49,
+    "num": "num",
+    "rows_num": [
+     "10 | 19K | 10K",
+     "39 | 21K | 7K",
+     "8 | 19K | 8K",
+     "25 | 17K | 10K",
+     "6 | 20K | 6K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      19000.0,
+      21000.0,
+      19000.0,
+      17000.0,
+      20000.0
+     ],
+     "not_desc_at": [
+      1,
+      4,
+      6,
+      7,
+      8
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 748K",
+     "Kamala Harris 2024 / 467K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 56,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Mississippi",
+      "gq": "Mississippi",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 61%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 17,
+    "n": 122,
+    "rows": [
+     "58 | 73.0%",
+     "13 | 70.6% | 28.2%",
+     "59 | 71.4% | 27.2%",
+     "74 | 73.0%",
+     "95 | 78.1% | 20.7%",
+     "73 | 67.2% | 31.3%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      73.0,
+      70.6,
+      71.4,
+      73.0,
+      78.1
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      7
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 61%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 30,
+    "lat_numpick": 61,
+    "num": "num",
+    "rows_num": [
+     "58 | 11K | 4K",
+     "13 | 10K | 4K",
+     "59 | 10K | 4K",
+     "74 | 10K | 4K",
+     "95 | 11K | 3K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      11000.0,
+      10000.0,
+      10000.0,
+      10000.0,
+      11000.0
+     ],
+     "not_desc_at": [
+      4,
+      7,
+      9,
+      12,
+      14
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 748K",
+     "Kamala Harris 2024 / 467K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Mississippi\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[33.3397,-89.7583,6]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Mississippi\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[33.3382,-89.7666,6]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Mississippi",
+      "gq": "Mississippi",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 122,
+     "rows": [
+      "58 | 73.0%",
+      "13 | 70.6% | 28.2%",
+      "59 | 71.4% | 27.2%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 60,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Mississippi",
+      "gq": "Mississippi",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 61%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 11,
+    "n": 137,
+    "rows": [
+     "DeSoto County | 60.8%",
+     "Rankin County | 74.0%",
+     "Jackson | 83.7%",
+     "Madison County | 62.0%",
+     "Harrison County | 65.1% | 33.8%",
+     "Lamar County | 74.0% | 24.7%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      60.8,
+      74.0,
+      83.7,
+      62.0,
+      65.1
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      4,
+      5,
+      6
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 61%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 4,
+    "lat_numpick": 38,
+    "num": "num",
+    "rows_num": [
+     "DeSoto County | 48K",
+     "Rankin County | 41K | 14K",
+     "Jackson | 43K",
+     "Madison County | 28K | 16K",
+     "Harrison County | 26K | 14K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      48000.0,
+      41000.0,
+      43000.0,
+      28000.0,
+      26000.0
+     ],
+     "not_desc_at": [
+      2,
+      8
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 748K",
+     "Kamala Harris 2024 / 467K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 53,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Mississippi",
+      "gq": "Mississippi",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 61%",
+      "Kamala Harris 2024 / 38%"
+     ]
+    ],
+    "lat_tolist": 11,
+    "n": 4,
+    "rows": [
+     "1 | 67.9%",
+     "3 | 64.2% | 34.8%",
+     "4 | 70.7% | 28.2%",
+     "2 | 39.3% | 59.7%"
+    ],
+    "order": {
+     "n": 4,
+     "first": [
+      67.9,
+      64.2,
+      70.7,
+      39.3
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 61%",
+     "Kamala Harris 2024 / 38%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 11,
+    "lat_numpick": 20,
+    "num": "num",
+    "rows_num": [
+     "1 | 220K | 100K",
+     "3 | 207K | 112K",
+     "4 | 208K | 83K",
+     "2 | 113K | 171K"
+    ],
+    "order_num": {
+     "n": 4,
+     "first": [
+      220000.0,
+      207000.0,
+      208000.0,
+      113000.0
+     ],
+     "not_desc_at": [
+      2
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 748K",
+     "Kamala Harris 2024 / 467K"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Mississippi",
+     "gq": "Mississippi",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 58%",
+     "Hillary Clinton 2016 / 40%",
+     "Donald Trump 2020 / 58%",
+     "Joe Biden 2020 / 41%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 64,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 22,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 36,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Mississippi counties",
+    "Adams County \u203a",
+    "Alcorn County \u203a"
+   ],
+   "lat_counties": 80,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Mississippi",
+    "gq": "Mississippi",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 82,
+   "rows1": [
+    "Hinds | 26.3% | 72.4%",
+    "DeSoto | 60.8% | 36.7%",
+    "Harrison | 63.9% | 35.0%",
+    "Rankin | 73.0% | 25.9%",
+    "Madison | 58.0% | 40.7%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     26.3,
+     60.8,
+     63.9,
+     73.0,
+     58.0
+    ],
+    "not_desc_at": [
+     1,
+     2,
+     3,
+     5,
+     8
+    ]
+   }
+  },
+  "err": []
+ },
+ "Tennessee": {
+  "lat": {},
+  "build": "202610251622",
+  "map": [
+   {
+    "title": "President",
+    "crumbs": "Tennessee",
+    "gq": "Tennessee",
+    "ym": "2024",
+    "num": "pct",
+    "list": false,
+    "sort": null
+   },
+   [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  ],
+  "tot": {
+   "2016": [
+    870695,
+    1522925,
+    2508027
+   ],
+   "2020": [
+    1143711,
+    1852475,
+    3053851
+   ],
+   "2024": [
+    1056265,
+    1966865,
+    3063942
+   ]
+  },
+  "thumbs_by_year": {
+   "2016": [
+    "Donald Trump 2016 / 61%",
+    "Hillary Clinton 2016 / 35%"
+   ],
+   "2020": [
+    "Donald Trump 2020 / 61%",
+    "Joe Biden 2020 / 37%"
+   ],
+   "2024": [
+    "Donald Trump 2024 / 64%",
+    "Kamala Harris 2024 / 34%"
+   ]
+  },
+  "types": {
+   "senate": {
+    "lat": 66,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Tennessee",
+      "gq": "Tennessee",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 32,
+    "n": 33,
+    "rows": [
+     "27 | 65.0%",
+     "20 | 41.8% | 56.1%",
+     "11 | 58.7% | 39.8%",
+     "17 | 62.5% | 36.2%",
+     "28 | 73.3% | 25.6%",
+     "31 | 57.7% | 40.5%"
+    ],
+    "order": {
+     "n": 33,
+     "first": [
+      65.0,
+      41.8,
+      58.7,
+      62.5,
+      73.3
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 19,
+    "lat_numpick": 50,
+    "num": "num",
+    "rows_num": [
+     "27 | 82K | 42K",
+     "20 | 48K | 64K",
+     "11 | 65K | 44K",
+     "17 | 66K | 38K",
+     "28 | 76K | 27K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      82000.0,
+      48000.0,
+      65000.0,
+      66000.0,
+      76000.0
+     ],
+     "not_desc_at": [
+      2,
+      3,
+      4,
+      6,
+      8
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.97M",
+     "Kamala Harris 2024 / 1.06M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "statehouse": {
+    "lat": 67,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Tennessee",
+      "gq": "Tennessee",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 17,
+    "n": 99,
+    "rows": [
+     "26 | 59.1%",
+     "57 | 66.2% | 32.6%",
+     "63 | 66.3% | 32.0%",
+     "48 | 62.1% | 36.5%",
+     "59 | 47.8% | 50.1%",
+     "61 | 62.0% | 36.2%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      59.1,
+      66.2,
+      66.3,
+      62.1,
+      47.8
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      5,
+      6,
+      8
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 31,
+    "lat_numpick": 68,
+    "num": "num",
+    "rows_num": [
+     "26 | 26K | 17K",
+     "57 | 29K | 14K",
+     "63 | 28K | 14K",
+     "48 | 26K | 15K",
+     "59 | 20K | 21K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      26000.0,
+      29000.0,
+      28000.0,
+      26000.0,
+      20000.0
+     ],
+     "not_desc_at": [
+      1,
+      5,
+      6,
+      8,
+      10
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.97M",
+     "Kamala Harris 2024 / 1.06M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "reload": {
+     "before": "{\"v\":1,\"top\":\"President\",\"st\":\"Tennessee\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[37.2303,-85.7373,5]}",
+     "after": "{\"v\":1,\"top\":\"President\",\"st\":\"Tennessee\",\"lt\":\"statehouse\",\"yv\":2,\"tb\":false,\"nm\":\"pct\",\"vw\":\"list\",\"so\":\"desc\",\"la\":\"districts\",\"ll\":[37.2303,-85.7373,5]}",
+     "hdr": {
+      "title": "President",
+      "crumbs": "Tennessee",
+      "gq": "Tennessee",
+      "ym": "2024",
+      "num": "pct",
+      "list": true,
+      "sort": null
+     },
+     "n": 99,
+     "rows": [
+      "26 | 59.1%",
+      "57 | 66.2% | 32.6%",
+      "63 | 66.3% | 32.0%"
+     ]
+    },
+    "after_off": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "schools": {
+    "lat": 78,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Tennessee",
+      "gq": "Tennessee",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 24,
+    "n": 157,
+    "rows": [
+     "Metropolitan Nashville | 35.3% | 62.7%",
+     "Shelby County | 24.9% | 73.3%",
+     "Knox County | 59.0% | 39.4%",
+     "Hamilton County | 55.7% | 42.7%",
+     "Williamson County | 66.4% | 32.0%",
+     "Rutherford County | 62.4% | 36.2%"
+    ],
+    "order": {
+     "n": 40,
+     "first": [
+      35.3,
+      24.9,
+      59.0,
+      55.7,
+      66.4
+     ],
+     "not_desc_at": [
+      2,
+      4,
+      6,
+      8,
+      9
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 26,
+    "lat_numpick": 46,
+    "num": "num",
+    "rows_num": [
+     "Metropolitan Nashville | 102K | 182K",
+     "Shelby County | 56K | 164K",
+     "Knox County | 131K | 88K",
+     "Hamilton County | 97K | 74K",
+     "Williamson County | 82K"
+    ],
+    "order_num": {
+     "n": 23,
+     "first": [
+      102000.0,
+      56000.0,
+      131000.0,
+      97000.0,
+      82000.0
+     ],
+     "not_desc_at": [
+      2,
+      6,
+      7
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.97M",
+     "Kamala Harris 2024 / 1.06M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   },
+   "ushouse": {
+    "lat": 54,
+    "map": [
+     {
+      "title": "President",
+      "crumbs": "Tennessee",
+      "gq": "Tennessee",
+      "ym": "2024",
+      "num": "pct",
+      "list": false,
+      "sort": null
+     },
+     [
+      "Donald Trump 2024 / 64%",
+      "Kamala Harris 2024 / 34%"
+     ]
+    ],
+    "lat_tolist": 15,
+    "n": 9,
+    "rows": [
+     "5 | 58.0% | 40.4%",
+     "2 | 66.2% | 32.4%",
+     "6 | 67.0% | 31.8%",
+     "3 | 67.3% | 31.4%",
+     "1 | 78.4% | 20.6%",
+     "8 | 70.1% | 28.7%"
+    ],
+    "order": {
+     "n": 9,
+     "first": [
+      58.0,
+      66.2,
+      67.0,
+      67.3,
+      78.4
+     ],
+     "not_desc_at": [
+      1,
+      2,
+      3,
+      4,
+      6
+     ]
+    },
+    "hdr": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": true,
+     "sort": null
+    },
+    "th": [
+     "Donald Trump 2024 / 64%",
+     "Kamala Harris 2024 / 34%"
+    ],
+    "layout": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "lat_num": 4,
+    "lat_numpick": 24,
+    "num": "num",
+    "rows_num": [
+     "5 | 213K | 148K",
+     "2 | 242K | 119K",
+     "6 | 242K | 115K",
+     "3 | 243K | 113K",
+     "1 | 274K | 72K"
+    ],
+    "order_num": {
+     "n": 9,
+     "first": [
+      213000.0,
+      242000.0,
+      242000.0,
+      243000.0,
+      274000.0
+     ],
+     "not_desc_at": [
+      1,
+      3,
+      4
+     ]
+    },
+    "th_num": [
+     "Donald Trump 2024 / 1.97M",
+     "Kamala Harris 2024 / 1.06M"
+    ],
+    "layout_num": {
+     "over": [],
+     "clip": [],
+     "off": []
+    },
+    "num_back": "pct",
+    "after_off": {
+     "title": "President",
+     "crumbs": "Tennessee",
+     "gq": "Tennessee",
+     "ym": "2024",
+     "num": "pct",
+     "list": false,
+     "sort": null
+    }
+   }
+  },
+  "ranges": {
+   "16-20": {
+    "ysl": [
+     0,
+     1
+    ],
+    "ym": "delta",
+    "th": [
+     "Donald Trump 2016 / 61%",
+     "Hillary Clinton 2016 / 35%",
+     "Donald Trump 2020 / 61%",
+     "Joe Biden 2020 / 37%"
+    ],
+    "charts": {
+     "line": {
+      "lat": 59,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   },
+   "20-24": {
+    "ysl": [
+     1,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "bar": {
+      "lat": 26,
+      "mode": "bar",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "bar"
+    ]
+   },
+   "16-24": {
+    "ysl": [
+     0,
+     2
+    ],
+    "ym": "delta",
+    "th": [],
+    "charts": {
+     "line": {
+      "lat": 36,
+      "mode": "line",
+      "txt": "",
+      "layout": {
+       "over": [],
+       "clip": [],
+       "off": []
+      }
+     }
+    },
+    "opts": [
+     "line"
+    ]
+   }
+  },
+  "drill": {
+   "menu": [
+    "Tennessee counties",
+    "Anderson County \u203a",
+    "Bedford County \u203a"
+   ],
+   "lat_counties": 99,
+   "hdr1": {
+    "title": "President",
+    "crumbs": "Tennessee",
+    "gq": "Tennessee",
+    "ym": "2024",
+    "num": "pct",
+    "list": true,
+    "sort": null
+   },
+   "n1": 95,
+   "rows1": [
+    "Shelby | 36.4% | 61.8%",
+    "Davidson | 35.3% | 62.7%",
+    "Knox | 59.0% | 39.4%",
+    "Hamilton | 55.7% | 42.7%",
+    "Rutherford | 60.1% | 38.4%"
+   ],
+   "order1": {
+    "n": 40,
+    "first": [
+     36.4,
+     35.3,
+     59.0,
+     55.7,
+     60.1
+    ],
+    "not_desc_at": [
+     2,
+     4,
+     5,
+     6,
+     8
+    ]
+   }
+  },
+  "err": []
+ }
+}
