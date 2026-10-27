@@ -19,6 +19,8 @@ Pipeline (re-runnable; re-run to refresh current holders):
 Raw caches are in ../src/ (FEC xlsx, Clerk 2024 PDF text, MEDSL Senate, Klarner SLERs, Ballotpedia HTML).
 Sources: results_sources.csv. No NYT data. US Senate 2022/2024 are the Election Data lane's rows (read only).
 
+Shared candidate ids (fix 2026-10-26): Election Data `candidate_id` slugs are surname-first and repeat across states (252 slugs, e.g. `rogers-mike` = AL-03 House and MI 2024 Senate). They are now linked only by (slug, state) plus office and year (`cid_links.csv`); a slug used in several states is state-qualified in `people.cid`, and the old slug-only collisions are listed in `cid_collisions.csv`. Former members of Congress running again in the same state link to their bioguide id (MI 2024 Senate Mike Rogers = R000572). An FEC id that resolves to a member who never served from that state is not linked. Source: `tools/fetch/upstream_cids.py` (read-only Election Data checkout) -> `src/results/upstream_cids.json`.
+
 Exclusions (user request): CA, KS and WV supreme courts are removed entirely, and no court contests before 2017 are kept.
 These are build-time filters (`DROP_COURTS` in build_v3data.py, `COURT_MIN_YEAR` in build_results.py), so every rebuild stays consistent.
 Orphaned people are pruned on every build. Always run the full pipeline in order.

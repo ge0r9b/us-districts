@@ -67,13 +67,13 @@ def make_cid(name, hint=''):
     i = 2
     while cid in CIDS: cid = f'{base}-{hint.lower()}-{i}' if hint else f'{base}-{i}'; i += 1
     CIDS.add(cid); return cid
+HINT = collections.defaultdict(list)   # key -> states seen at link time (cid suffix hint)
 def person(key, name, cid=None, hint=''):
+    # cids are assigned at the end (assign_cids): an Election Data slug is only ever attached through a (slug, state)
+    # link, never by name alone, so a same-named person in another state cannot take it
     if key not in PEOPLE: PEOPLE[key] = [len(PEOPLE) + 1, name, '']
-    e = PEOPLE[key]
-    if not e[2]:
-        if cid and cid not in CIDS: CIDS.add(cid); e[2] = cid
-        else: e[2] = make_cid(e[1] or name, hint)
-    return e[0]
+    if hint and hint not in HINT[key]: HINT[key].append(hint)
+    return PEOPLE[key][0]
 # Congress id maps
 CL = json.load(open(f'{SRC}/cl/legislators-current.json')) + json.load(open(f'{SRC}/cl/legislators-historical.json'))
 FEC2BIO = {}; BIO = {}; CL_BY_ST_LAST = collections.defaultdict(list)
@@ -95,7 +95,9 @@ def congress_person(c, st, year, ttype=None):
         bm = BIO[FEC2BIO[fid]]
         import difflib
         bl = re.sub(r'[^a-z]', '', norm(bm['name'].get('last', ''))); cl_ = re.sub(r'[^a-z]', '', lastname(c['name']))
-        if bl in re.sub(r'[^a-z]', '', norm(c['name'])) or bl.startswith(cl_) or difflib.SequenceMatcher(None, bl, cl_).ratio() >= 0.75:
+        if not any(t['state'] == st for t in bm['terms']):
+            XC.append(dict(scope='FEC id vs candidate state', item=f'{year} {st} {c["name"]}', ok=0, detail=f'FEC id {fid} -> {FEC2BIO[fid]} never served from {st}; not linked'))
+        elif bl in re.sub(r'[^a-z]', '', norm(c['name'])) or bl.startswith(cl_) or difflib.SequenceMatcher(None, bl, cl_).ratio() >= 0.75:
             return person('bioguide:' + FEC2BIO[fid], c['name'], hint=st)
         XC.append(dict(scope='FEC id vs candidate name', item=f'{year} {st} {c["name"]}', ok=0, detail=f'FEC id {fid} belongs to {bm["name"].get("official_full")} in congress-legislators; ignored'))
         fid = ''
@@ -107,6 +109,15 @@ def congress_person(c, st, year, ttype=None):
     if len(cands) > 1:
         f2 = norm(re.sub(r'^\W+', '', c['name']))[:2]
         cands = [m for m in cands if norm(m['name'].get('first', ''))[:2] == f2 or norm(m['name'].get('nickname', ''))[:2] == f2] or cands
+    if not cands:
+        # former member of this state running again (e.g. MI 2024 Senate: Mike Rogers = R000572, House MI-8 2001-2015);
+        # same state + same surname + same first name/nickname + a term starting before the election; never another state
+        f2 = norm(re.sub(r'^\W+', '', c['name']))[:2]
+        old = [m for m in CL_BY_ST_LAST.get((st, lastname(c['name'])), [])
+               if any(t['state'] == st and t['start'][:4] <= str(year) for t in m['terms'])
+               and f2 in (norm(m['name'].get('first', ''))[:2], norm(m['name'].get('nickname', ''))[:2])]
+        if len(old) == 1:
+            return person('bioguide:' + old[0]['id']['bioguide'], c['name'], cid=c.get('candidate_id'), hint=st)
     if len(cands) == 1 and (c.get('win') or norm(cands[0]['name'].get('first', ''))[:2] == norm(re.sub(r'^\W+', '', c['name']))[:2]
                             or norm(cands[0]['name'].get('nickname', ''))[:2] == norm(re.sub(r'^\W+', '', c['name']))[:2]):
         return person('bioguide:' + cands[0]['id']['bioguide'], c['name'], cid=c.get('candidate_id'), hint=st)
@@ -612,6 +623,124 @@ for (b, s), evs in seat_events.items():
     new_terms += out
 print('backfilled terms', len(new_terms), dict(tl_xc), 'mmd assign overflow', mmd_assign_fail, flush=True)
 for k, v in tl_xc.items(): XC.append(dict(scope='holder timeline vs snapshot', item=k, ok=1, detail=str(v)))
+
+# ---------------- shared candidate ids (Election Data candidate_id slugs) ----------------
+def assign_cids(allterms):
+    """Link Election Data (slug, state) pairs to people and pick each person's `cid`.
+    Rules: a slug links only to a candidate in the SAME state, same office family and year, with the same surname and
+    first initial (district breaks ties); never across states. Slugs used in >1 state upstream get a state suffix in
+    people.cid (`rogers-mike-mi`) so a slug-only join cannot hit the wrong person; cid_links.csv carries every
+    (slug, state) -> person link. Generated cids never reuse an upstream slug. Writes cid_links.csv, cid_collisions.csv."""
+    UP = json.load(open(f'{SRC}/results/upstream_cids.json'))
+    USTS = collections.defaultdict(set)
+    for r in UP: USTS[r['cid']].add(r['st'])
+    KEY = {v[0]: k for k, v in PEOPLE.items()}; NAME = {v[0]: v[1] for v in PEOPLE.values()}
+    CBY = {c['c']: c for c in CONTESTS}
+    fam = lambda o: next((f for f in ('us_house', 'us_senate', 'state_house', 'state_senate', 'state_legislature') if o.startswith(f)), None)
+    IDX = collections.defaultdict(set)   # (year, st, fam) -> {(p, last, fi, district)}
+    PST = collections.defaultdict(set)
+    for c in CANDS:
+        k = CBY[c['c']]; p_ = int(c['p'])
+        if not p_: continue
+        PST[p_].add(k['st'])
+        f_ = fam(k['office'])
+        if f_: IDX[(int(k['year']), k['st'], 'state_senate' if f_ == 'state_legislature' else f_)].add((p_, lastname(NAME[p_]), fi(NAME[p_]), str(k['district']).lstrip('0')))
+    for t in allterms:
+        p_ = int(t['p']) if str(t['p']) not in ('', '0') else 0
+        if not p_: continue
+        b_ = BODY[int(t['b'])]
+        st_ = b_['st'] if b_['st'] != 'US' else SEATS[int(t['b'])][int(t['s'])]['label'][:2]
+        PST[p_].add(st_)
+    links, amb = [], []
+    LINKP = collections.defaultdict(collections.Counter)   # p -> Counter((slug, st))
+    for r in UP:
+        f_ = 'state_senate' if r['fam'] == 'state_legislature' else r['fam']
+        pool = IDX.get((r['year'], r['st'], f_), set())
+        ln, f1 = lastname(r['name']), fi(r['name'])
+        hit = {x for x in pool if x[1] == ln and (x[2] == f1 or not x[2] or not f1)}
+        if len({x[0] for x in hit}) > 1:
+            d = str(r['district']).lstrip('0')
+            hit = {x for x in hit if x[3] == d} or hit
+        ps = sorted({x[0] for x in hit})
+        row = dict(cid=r['cid'], st=r['st'], year=r['year'], office=r['office'], district=r['district'], name=r['name'])
+        if len(ps) == 1:
+            links.append(dict(row, p=ps[0], key=KEY[ps[0]], method='state+office+year+surname+initial')); LINKP[ps[0]][(r['cid'], r['st'])] += 1
+        elif len(ps) > 1:
+            amb.append(dict(row, p=';'.join(map(str, ps)), key=';'.join(KEY[x] for x in ps), method='ambiguous: same surname+initial in contest pool'))
+    # one person per (slug, state): if two people claim the same pair it is ambiguous
+    owners = collections.defaultdict(set)
+    for p_, cn in LINKP.items():
+        for pair in cn: owners[pair].add(p_)
+    CIDS.clear(); CIDS.update(USTS)                                     # upstream namespace is reserved
+    chosen = {}
+    for p_ in sorted(LINKP):
+        pairs = [pr for pr, _ in LINKP[p_].most_common() if len(owners[pr]) == 1]
+        if not pairs: continue
+        slug, st_ = pairs[0]
+        cid = slug if len(USTS[slug]) == 1 else f'{slug}-{st_.lower()}'
+        if cid in chosen.values(): continue
+        chosen[p_] = cid
+    CIDS.update(chosen.values())
+    for k, v in sorted(PEOPLE.items(), key=lambda x: x[1][0]):
+        if v[0] in chosen: v[2] = chosen[v[0]]
+        else:
+            h = HINT.get(k) or sorted(PST.get(v[0], ()))
+            v[2] = make_cid(v[1], h[0] if len(set(h)) == 1 else (h[0] if h else ''))
+    for l in links + amb: l['cid_in_people'] = ';'.join(PEOPLE[k_][2] for k_ in str(l['key']).split(';'))
+    wcsv('cid_links.csv', sorted(links + amb, key=lambda x: (x['cid'], x['st'], x['year'], x['office'])),
+         ['cid', 'st', 'year', 'office', 'district', 'name', 'p', 'key', 'cid_in_people', 'method'])
+    # ---- collisions report: every slug shared by more than one person/state, plus cross-state id links
+    prev = {}
+    pf = f'{SRC}/results/people_prev_06a2cc3.csv'
+    if os.path.exists(pf): prev = {r['key']: r['cid'] for r in csv.DictReader(open(pf))}
+    prev_by_cid = collections.defaultdict(list)
+    for k_, c_ in prev.items(): prev_by_cid[c_].append(k_)
+    rows = []
+    PSTK = {KEY[p_]: v for p_, v in PST.items()}
+    pairs = collections.defaultdict(set)
+    for l in links: pairs[(l['cid'], l['st'])].add(l['p'])
+    for (slug, st_), ps in sorted(pairs.items()):
+        multi = len(USTS[slug]) > 1
+        olds = prev_by_cid.get(slug, [])
+        for p_ in sorted(ps):
+            k_ = KEY[p_]; wrong = [x for x in olds if x != k_]
+            if len(ps) > 1: action, kind = 'ambiguous (same slug+state, several people; not attached to people.cid)', 'same slug, same state, different people'
+            elif wrong and not (PSTK.get(wrong[0], set()) & {st_}) and wrong[0] in PEOPLE:
+                action, kind = 'fixed: slug-only join hit a person from another state', 'cross-state'
+            elif wrong and wrong[0] not in PEOPLE: action, kind = 'fixed: previous holder re-keyed (same state)', 're-keyed'
+            elif wrong: action, kind = 'ambiguous: same-state duplicate person record (different keys, not merged)', 'same state, different key'
+            elif multi: action, kind = 'fixed: slug used in several states; people.cid now state-qualified', 'multi-state slug'
+            else: continue
+            rows.append(dict(slug=slug, st=st_, p=p_, key=k_, name=NAME[p_], person_states=' '.join(sorted(PST[p_])), slug_states=' '.join(sorted(USTS[slug])),
+                             kind=kind, old_cid=prev.get(k_, ''), new_cid=PEOPLE[k_][2], old_slug_holder=';'.join(wrong), action=action))
+    for a in amb:
+        rows.append(dict(slug=a['cid'], st=a['st'], p=a['p'], key=a['key'], name=a['name'], person_states='', slug_states=' '.join(sorted(USTS[a['cid']])),
+                         kind=f"ambiguous {a['year']} {a['office']} {a['district']}", old_cid='', new_cid='', old_slug_holder='', action='ambiguous (not linked)'))
+    # cross-state id links: a bioguide / os person appearing in a contest of a state they never represented
+    OSST = {}
+    for st_, chs in json.load(open(f'{SRC}/openstates_current.json')).items():
+        for ch in chs.values():
+            for m in ch.get('members', []): OSST[m['id'].split('/')[-1]] = st_
+    for p_, sts in sorted(PST.items()):
+        k_ = KEY[p_]; home = None
+        if k_.startswith('bioguide:') and k_[9:] in BIO: home = {t['state'] for t in BIO[k_[9:]]['terms']}
+        elif k_.startswith('os:') and k_[3:] in OSST: home = {OSST[k_[3:]]}
+        bad = sorted(s_ for s_ in sts if home is not None and s_ not in home)
+        if bad or (k_.startswith(('bp:', 'kl:', 'cid:', 'fec:')) and len(sts) > 1):
+            rows.append(dict(slug='', st=' '.join(bad or sorted(sts)), p=p_, key=k_, name=NAME[p_], person_states=' '.join(sorted(sts)),
+                             slug_states=' '.join(sorted(home or ())), kind='id linked in a state outside its home state' if bad else 'Ballotpedia/other page id in several states',
+                             old_cid=prev.get(k_, ''), new_cid=PEOPLE[k_][2], old_slug_holder='', action='ambiguous: one source page id used in two states (kept; check whether the person moved)'))
+    # previous build's wrong slug holders (slug held by a person of another state than every upstream use)
+    for c_, ks in sorted(prev_by_cid.items()):
+        if c_ not in USTS: continue
+        for k_ in ks:
+            if k_ not in PEOPLE: continue   # re-keyed: reported on the pair side
+            p_ = PEOPLE[k_][0]
+            if not (PST[p_] & USTS[c_]) and PEOPLE[k_][2] != c_:
+                rows.append(dict(slug=c_, st=' '.join(sorted(PST[p_])), p=p_, key=k_, name=NAME[p_], person_states=' '.join(sorted(PST[p_])), slug_states=' '.join(sorted(USTS[c_])),
+                                 kind='holder side: cid equalled an upstream slug of another state', old_cid=c_, new_cid=PEOPLE[k_][2], old_slug_holder='', action='fixed: slug released (holder side of a cross-state link)'))
+    wcsv('cid_collisions.csv', rows, ['slug', 'st', 'p', 'key', 'name', 'person_states', 'slug_states', 'kind', 'old_cid', 'new_cid', 'old_slug_holder', 'action'])
+    print('cid links', len(links), 'ambiguous', len(amb), 'linked people', len(chosen), 'collision rows', len(rows), collections.Counter(r['action'] for r in rows), flush=True)
 # ---------------- write
 def wcsv(name, rows, cols):
     with open(f'{OUT}/{name}', 'w', newline='') as f:
@@ -642,8 +771,7 @@ wcsv('city_detail.csv', cyd_rows, list(cyd_rows[0].keys()))
 for x in XC: x['detail'] = re.sub(r'\bp(\d+)\b', lambda m: 'p' + str(PREMAP.get(int(m.group(1)), '?')), str(x['detail']))
 print('orphaned people dropped', n_orph, flush=True)
 wcsv('terms.csv', allterms, ['b', 's', 'start', 'end', 'p', 'party', 'caucus', 'how', 'appt', 'approx', 'src'])
-for k, v in PEOPLE.items():
-    if not v[2]: v[2] = make_cid(v[1], '')
+assign_cids(allterms)
 wcsv('people.csv', [dict(p=v[0], key=k, name=v[1], cid=v[2]) for k, v in sorted(PEOPLE.items(), key=lambda x: x[1][0])], ['p', 'key', 'name', 'cid'])
 def srccode(s):
     if s.startswith('FEC Federal Elections') and 'special' in s: return 'FECS' + s.split()[3][2:]
