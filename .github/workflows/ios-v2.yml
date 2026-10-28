@@ -1,0 +1,48 @@
+name: iOS v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - native/ios-v2
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-v2-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unsigned:
+    name: Unsigned iOS build
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Xcode version
+        run: xcodebuild -version
+
+      - name: Install XcodeGen
+        run: HOMEBREW_NO_AUTO_UPDATE=1 brew install xcodegen
+
+      - name: Generate the Xcode project
+        working-directory: native/ios
+        run: xcodegen generate
+
+      - name: Build unsigned device and simulator apps
+        working-directory: native/ios
+        run: bash ci/build-unsigned.sh
+
+      - name: Upload unsigned artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: USDistricts-unsigned
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            native/ios/build/out/USDistricts.xcarchive.zip
+            native/ios/build/out/USDistricts-unsigned.ipa
+            native/ios/build/out/USDistricts-simulator.app.zip
